@@ -1,0 +1,103 @@
+@font-face {
+  font-family: 'lemon-light';
+  src: url('/lemon-milk/LEMONMILK-Regular.otf') format('opentype');
+}
+
+@font-face {
+  font-family: 'lemon-regular';
+  src: url('/lemon-milk/LEMONMILK-Regular.otf') format('opentype');
+}
+
+html {
+  scroll-behavior: smooth;
+  font-size: 100%;
+}
+
+html,
+body {
+  font-size: 100%;
+  font-weight: 600;
+  -webkit-font-smoothing: antialiased;
+  text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.004);
+  -webkit-overflow-scrolling: touch;
+}
+
+html,
+body,
+#root {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+strong {
+  font-family: lemon-regular, monospace;
+}
+
+a,
+button {
+  cursor: pointer;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+ul {
+  list-style: none;
+}
+
+label,
+input,
+textarea,
+select {
+  font-family: inherit;
+  background-color: transparent;
+}
+
+label:disabled,
+input:disabled,
+textarea:disabled,
+select:disabled {
+  cursor: not-allowed;
+}
+
+/* Change the white to any color */
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+  -webkit-text-fill-color: white !important;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: #ffffff;
+  transition: background-color 5000s ease-in-out 0s;
+  box-shadow: inset 0 0 20px 20px transparent;
+}
+
+label:focus,
+textarea:focus,
+input:focus {
+  outline: none;
+}
+
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+kbd {
+  text-transform: uppercase;
+  color: var(--gray-8);
+  font-family: lemon-light, monospace;
+}
+
+b {
+  text-transform: capitalize;
+  color: var(--gray-8);
+}

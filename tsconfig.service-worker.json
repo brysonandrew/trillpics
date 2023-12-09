@@ -1,0 +1,7 @@
+{
+  "extends": "./tsconfig",
+  "compilerOptions": {
+    "lib": ["ES2015"]
+  },
+  "files": ["src/main/service-worker/index.ts"]
+}

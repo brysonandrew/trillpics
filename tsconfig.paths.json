@@ -1,0 +1,28 @@
+{
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@components/*": ["src/components/*"],
+      "@constants/*": ["src/constants/*"],
+      "@hooks/*": ["src/hooks/*"],
+      "@icons/*": ["src/icons/*"],
+      "@logic/*": ["src/logic/*"],
+      "@main/*": ["src/main/*"],
+      "@ops/*": ["ops/*"],
+      "@pages/*": ["src/pages/*"],
+      "@context/*": ["src/context/*"],
+      "@utils/*": ["src/utils/*"],
+      "@app/*": ["config/app/*"],
+      "@app/config": ["config/app/index.ts"],
+      "@uno/*": ["config/uno/*"],
+      "@vite/*": ["config/vite/*"],
+      "@css/*": ["src/css/*"],
+      "@t/*": ["src/types/*"],
+      "@pages-workshop-config-types/*": ["src/pages/workshop/config/types/*"],
+      "@pages-workshop-results-list-item-images-form-list-item": [
+        "src/pages/workshop/results/list/item/images/form/list/item/*"
+      ],
+      "@mocks/*": ["src/pages/workshop/config/mocks/*"]
+    }
+  }
+}

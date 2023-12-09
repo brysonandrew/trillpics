@@ -1,0 +1,30 @@
+{
+  "compilerOptions": {
+    "types": ["vite/client", "@types/node"],
+    "experimentalDecorators": true,
+    "target": "ESNext",
+    "lib": ["ESNext", "dom", "WebWorker"],
+    "useDefineForClassFields": true,
+    "allowJs": true,
+    "skipLibCheck": true,
+    "esModuleInterop": false,
+    "allowSyntheticDefaultImports": true,
+    "strict": true,
+    "forceConsistentCasingInFileNames": true,
+    "module": "ESNext",
+    "moduleResolution": "Node",
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "noEmit": true,
+    "jsx": "react-jsx",
+    "noImplicitThis": false,
+    "jsxImportSource": "@emotion/react",
+    "plugins": [
+      {
+        "name": "@styled/typescript-styled-plugin"
+      }
+    ]
+  },
+  "include": ["src/**/*.js", "src/**/*.jsx", "src/**/*.ts", "src/**/*.tsx"],
+  "extends": "./tsconfig.paths.json"
+}
