@@ -93,11 +93,9 @@ input:focus {
 
 kbd {
   text-transform: uppercase;
-  color: var(--gray-8);
   font-family: lemon-light, monospace;
 }
 
 b {
   text-transform: capitalize;
-  color: var(--gray-8);
 }

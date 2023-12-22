@@ -6,10 +6,7 @@ import AutoSizer from 'react-virtualized-auto-sizer';
 import type { ListChildComponentProps } from 'react-window';
 import { FixedSizeList } from 'react-window';
 import { Row } from './Row';
-import {
-  Shell,
-  Context,
-} from './shell';
+import { Context } from './shell';
 import { TBaseRow } from '../types';
 
 const RenderRow = <T extends TBaseRow>(
@@ -17,11 +14,7 @@ const RenderRow = <T extends TBaseRow>(
     TRow<T>[]
   >,
 ) => {
-  return (
-    <Row<T>
-      {...props}
-    />
-  );
+  return <Row<T> {...props} />;
 };
 
 type TProps<T> = {
@@ -41,6 +34,7 @@ export const Body = <
   const rowModel: RowModel<T> =
     table.getRowModel();
   const rows: TRow<T>[] = rowModel.rows;
+
   return (
     <Context.Provider
       value={{

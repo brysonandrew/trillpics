@@ -3,8 +3,13 @@ import { useMemo } from 'react';
 import { useViewport } from '@context/viewport';
 import { APPROX_IMAGE_SIZE } from '@constants/images';
 
-const EXAMPLES = [...Array(92)].map(
-  (_, index) => `examples/${index}.png`,
+const record = import.meta.glob(
+  '../../../../../../assets/examples/in/*.png',
+);
+const count = Object.keys(record).length;
+const EXAMPLES = [...Array(count)].map(
+  (_, index) =>
+    `examples/in/${index}.png`,
 );
 
 export type TCol =
@@ -23,7 +28,7 @@ export const useEntriesContext = () => {
     const sortedResults = [
       ...EXAMPLES,
     ].sort(sortByIndex);
-    const count = sortedResults.length;
+
     const colsCount = Math.ceil(
       viewport.width /
         APPROX_IMAGE_SIZE,
@@ -62,7 +67,7 @@ export const useEntriesContext = () => {
     isDimensions,
     isResizing,
   ]);
-
+  console.log(results);
   return results;
 };
 

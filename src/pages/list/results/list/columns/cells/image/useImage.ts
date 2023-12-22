@@ -22,10 +22,10 @@ import {
 import { resolveViewportSelfCenter } from './resolveViewportSelfCenter';
 
 type TConfig = TDimensions & {
-  offsetY: number;
+  offsetX: number;
 };
 export const useImage = ({
-  offsetY,
+  offsetX,
   ...config
 }: TConfig) => {
   const { width, height } = config;
@@ -85,26 +85,32 @@ export const useImage = ({
   const style = {
     zIndex,
     ...(isFirstPosition || !isReady
-      ? {
+      ? ({
           position: 'absolute',
-          ...config,
-        }
-      : {
+          left: offsetX,
+          top: 0,
+          ...imageDimensions,
+        } as const)
+      : ({
           position: 'fixed',
           ...resolveViewportSelfCenter(
             viewport,
-            dimensions,
-            offsetY,
+            dimensions
           ),
-          ...dimensions,
-        }),
-  } as any;
+        } as const)),
+  };
+  const backdropStyle =
+    viewport.isDimensions
+      ? ({
+          position: 'fixed',
+          width: viewport.width,
+          height: viewport.height,
+        } as const)
+      : ({} as const);
   return {
     isFirstPosition,
     boxProps: {
-      style: {
-        ...config,
-      },
+      style: imageDimensions,
     },
     imageProps: {
       key: isLayout.toString(),
@@ -121,14 +127,9 @@ export const useImage = ({
     backdropProps: {
       ...FADE_PRESENCE,
       className: clsx(
-        'fixed backdrop-blur-lg bg-black-05 inset-0 z-50',
+        'backdrop-blur-lg bg-black-05 inset-0 z-50',
       ),
-      style: viewport.isDimensions
-        ? {
-            width: viewport.width,
-            height: viewport.height,
-          }
-        : {},
+      style: backdropStyle,
       onClick: handleClick,
     },
   };

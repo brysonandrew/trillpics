@@ -16,5 +16,7 @@ export const resolveViewportSelfCenter =
           dimensions.height) *
           0.5 +
         scrollY,
+      width: dimensions.width,
+      height: dimensions.height,
     };
   };

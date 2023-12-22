@@ -34,6 +34,7 @@ export const TableInfinite = <
     table.getRowModel();
   const count: number =
     rowModel.rows.length;
+
   return (
     <Body<T>
       table={table}

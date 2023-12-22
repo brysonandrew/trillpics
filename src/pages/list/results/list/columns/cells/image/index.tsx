@@ -16,6 +16,8 @@ export const Image: FC<TProps> = ({
 }) => {
   const src =
     cell.row.original.cols[index];
+  const colsCount =
+    cell.row.original.cols.length;
   const rowIndex = cell.row.index;
   const {
     isFirstPosition,
@@ -25,7 +27,7 @@ export const Image: FC<TProps> = ({
   } = useImage({
     width: size,
     height: size,
-    offsetY: 0, //rowIndex * size,
+    offsetX: size * index, //rowIndex * size,
   });
   const image = (
     <motion.img
@@ -54,6 +56,15 @@ export const Image: FC<TProps> = ({
           </>
         )}
       </>
+      <motion.kbd
+        className='center absolute top-0 left-0 h-8 px-3 rounded-full bg-gray-05 shadow text-black z-50'
+        style={{
+          x: size * 0.05 + size * index,
+          y: size * 0.05,
+        }}
+      >
+        {rowIndex * colsCount + index}
+      </motion.kbd>
     </motion.div>
   );
 };

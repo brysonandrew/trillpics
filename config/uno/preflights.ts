@@ -12,12 +12,10 @@ export const PRE_FLIGHT: Preflight<TAnyTheme> = {
 
       body:not(.dark) {
         background-color: ${theme.colors.black};
-        color: ${theme.colors['white-9']};
       }
 
       html.dark body {
         background-color: ${theme.colors.black};
-        color: ${theme.colors['white-9']};
       } 
 
       h1,

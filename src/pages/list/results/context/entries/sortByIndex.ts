@@ -1,11 +1,11 @@
-import { TExample } from './useEntriesContext';
+type TExample = any;
 
 export const sortByIndex = (
-  batchA: TExample,
-  batchB: TExample,
+  itemA: TExample,
+  itemB: TExample,
 ) => {
-  const batchAIndex = batchA.name;
-  const batchBIndex = batchB.name;
+  const batchAIndex = itemA.name;
+  const batchBIndex = itemB.name;
   if (batchBIndex < batchAIndex) {
     return 1;
   }
