@@ -1,3 +1,9 @@
+import { Header } from './header';
+import { List } from './list';
+
 export const Index = () => (
-  <div>hi</div>
+  <div>
+    <Header />
+    <List />
+  </div>
 );

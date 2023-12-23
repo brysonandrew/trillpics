@@ -3,6 +3,7 @@ import {
   useRoutes,
 } from 'react-router-dom';
 import { Shell as MainShell } from '@main/Shell';
+import { Index } from '@pages/index';
 import { List } from '@pages/list';
 
 const WITH_SHELL_KEY = 'with-shell';
@@ -10,7 +11,7 @@ const WITH_SHELL_KEY = 'with-shell';
 const SHELL_ROUTES: any[] = [
   {
     path: '/',
-    element: <List />,
+    element: <Index />,
   },
   {
     path: '/list',
