@@ -33,7 +33,7 @@ export const Header = () => {
 
   return (
     <>
-      <FadeDown />
+      {isScroll && <FadeDown />}
       <Padding05 />
       <header
         className={clsx(
@@ -53,17 +53,15 @@ export const Header = () => {
               'column-start lg:row-base gap-5',
             )}
           >
-            <motion.h1 className='lowercase text-2xl mt-0.5'>
+            <h1 className='lowercase text-2xl mt-0.5'>
               {APP_TITLE}
-            </motion.h1>
-            <motion.div>
-              <motion.kbd className='text-sm lowercase text-gray-5'>
-                t-shirts, hand printed,
-                based in new zealand
-              </motion.kbd>
-            </motion.div>
+            </h1>
+            <kbd className='text-sm lowercase opacity-60 -mt-1'>
+              t-shirts, hand printed,
+              based in new zealand
+            </kbd>
           </div>
-          <div className='relative lowercase overflow-hidden'>
+          <div className='mt-1.5 lowercase overflow-hidden'>
             <DarkMode />
           </div>
         </div>
