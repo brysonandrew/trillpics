@@ -39,3 +39,15 @@ export const resolveCompositeTitle = (
   args
     .filter(isKeyable)
     .join(TITLE_KEY_DELIMITER);
+
+
+    import { TCursorKey } from '@components/cursor/switch/config';
+import { THoverKey } from '@hooks/cursor/config';
+
+export const HOVER_KEY_DELIMITER = '=[hover]>';
+export const resolveCompositeHoverKey = (
+  cursorKey: TCursorKey,
+  key1: string,
+  key2: string,
+): THoverKey =>
+  `${cursorKey}${HOVER_KEY_DELIMITER}${key1}${HOVER_KEY_DELIMITER}${key2}`;

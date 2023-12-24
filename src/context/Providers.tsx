@@ -2,6 +2,9 @@ import { Provider as AppProvider } from '@context/app/Provider';
 import { Provider as ViewportProvider } from '@context/viewport/Provider';
 import { Provider as UserProvider } from '@context/user/Provider';
 import { Provider as AuthProvider } from '@context/auth/Provider';
+import { Provider as DarkModeProvider } from '@context/dark-mode/Provider';
+import { Provider as CursorProvider } from '@context/cursor/Provider';
+import { Provider as ScrollProvider } from '@context/scroll/Provider';
 
 import { TChildren } from '@t/index';
 import { FC } from 'react';
@@ -12,13 +15,19 @@ export const Providers: FC<TProps> = ({
 }) => {
   return (
     <AppProvider>
-      <UserProvider>
-        <ViewportProvider>
-          <AuthProvider>
-            {children}
-          </AuthProvider>
-        </ViewportProvider>
-      </UserProvider>
+      <DarkModeProvider>
+        <CursorProvider>
+          <ScrollProvider>
+            <UserProvider>
+              <ViewportProvider>
+                <AuthProvider>
+                  {children}
+                </AuthProvider>
+              </ViewportProvider>
+            </UserProvider>
+          </ScrollProvider>
+        </CursorProvider>
+      </DarkModeProvider>
     </AppProvider>
   );
 };

@@ -1,19 +1,25 @@
 import { useLocation } from 'react-router';
-import { useEffect, useRef } from 'react';
+import {
+  useEffect,
+  useRef,
+} from 'react';
+import { APP_TITLE } from '@app/index';
 
-const PROJECTS_TITLE = 'Projects';
-
-const TITLE_FROM_PATHNAME_LOOKUP: Record<string, string | null> = {
-  '/': 'Web Developer',
-  '/projects': PROJECTS_TITLE,
-  '/contact': 'Contact',
+const TITLE_FROM_PATHNAME_LOOKUP: Record<
+  string,
+  string | null
+> = {
+  '/': `${APP_TITLE} store`,
 };
 
 export const useHtmlTitle = () => {
   const prevTimestampRef = useRef(0);
 
   const { pathname } = useLocation();
-  const route = TITLE_FROM_PATHNAME_LOOKUP[pathname];
+  const route =
+    TITLE_FROM_PATHNAME_LOOKUP[
+      pathname
+    ];
 
   useEffect(() => {
     // const fetchIp = async () => {
@@ -33,11 +39,16 @@ export const useHtmlTitle = () => {
       }
     };
     const timestamp = Date.now();
-    const prevTimestamp = prevTimestampRef.current;
-    const diff = timestamp - prevTimestamp;
-    if (diff > 1000 && !import.meta.env.DEV) {
+    const prevTimestamp =
+      prevTimestampRef.current;
+    const diff =
+      timestamp - prevTimestamp;
+    if (
+      diff > 1000 &&
+      !import.meta.env.DEV
+    ) {
       insertEntry();
     }
   }, []);
-  return 'gnd';
+  return APP_TITLE;
 };

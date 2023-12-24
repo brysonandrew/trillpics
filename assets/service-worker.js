@@ -1,5 +1,5 @@
 const VERSION_NUMBER = '0.2.3';
-const CACHE_NAME = `v${VERSION_NUMBER}::gnd-service-worker`;
+const CACHE_NAME = `v${VERSION_NUMBER}::gallery-service-worker`;
 const resolveCache = async () => caches.open(CACHE_NAME);
 const matchRequest = async (cache, request) => cache.match(request);
 const putRequest = async (cache, request, response) => request.method === 'GET'

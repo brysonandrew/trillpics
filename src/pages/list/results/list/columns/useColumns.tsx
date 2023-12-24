@@ -1,5 +1,5 @@
 import { useMemo } from 'react';
-import { Image } from './cells/image';
+import { Image } from './cells/Image';
 import { TRow } from '../../context/entries/useEntriesContext';
 import { createColumnHelper } from '@tanstack/react-table';
 

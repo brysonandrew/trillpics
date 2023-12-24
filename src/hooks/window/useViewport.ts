@@ -20,6 +20,7 @@ export const INIT: TInit = {
 } as const;
 
 type TReady = TDimensionsReady & {
+  containerWidth: number;
   isResizing: boolean;
 };
 export type TViewport = TInit | TReady;
@@ -38,6 +39,18 @@ export const useViewport =
       if (typeof next !== 'undefined') {
         isResizing = next.isResizing;
       }
+      const container =
+        document.createElement('div');
+      container.className =
+        'w-container';
+      document.body.appendChild(
+        container,
+      );
+      const containerWidth =
+        container.clientWidth;
+      document.body.removeChild(
+        container,
+      );
       const width =
         document.documentElement
           .clientWidth;
@@ -46,12 +59,14 @@ export const useViewport =
           .clientHeight;
 
       const isDimensions =
+        typeof containerWidth !==
+          'undefined' &&
         typeof width !== 'undefined' &&
         typeof height !== 'undefined';
-
       if (isDimensions) {
         const ready = {
           ...(next = INIT),
+          containerWidth,
           width,
           height,
           isDimensions,

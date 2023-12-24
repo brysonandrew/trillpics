@@ -6,17 +6,20 @@ import { FC } from 'react';
 
 const Root = styled(motion.div)``;
 
-export type TBaseProps = TDivMotionProps & {
-  classValue?: ClassValue;
-};
-export const VerticalFade: FC<TBaseProps> = ({
+export type TBaseProps =
+  TDivMotionProps & {
+    classValue?: ClassValue;
+  };
+export const VerticalFade: FC<
+  TBaseProps
+> = ({
   classValue,
   style,
   ...props
 }) => (
   <Root
     className={clsx(
-      'absolute left-0 right-0 w-full dark:from-transparent from-black pointer-events-none z-10',
+      'fixed left-0 right-0 w-full h-28 dark:from-black from-white-9 to-transparent pointer-events-none z-40',
       classValue,
     )}
     style={style}

@@ -6,7 +6,8 @@ import { APPROX_IMAGE_SIZE } from '@constants/images';
 const record = import.meta.glob(
   '../../../../../../assets/examples/in/*.png',
 );
-const count = Object.keys(record).length;
+const count =
+  Object.keys(record).length;
 const EXAMPLES = [...Array(count)].map(
   (_, index) =>
     `examples/in/${index}.png`,
@@ -23,8 +24,9 @@ export const useEntriesContext = () => {
   const { isDimensions, isResizing } =
     viewport;
   const results = useMemo(() => {
-    if (isResizing || !isDimensions)
+    if (!isDimensions)
       return { rows: [], size: 0 };
+
     const sortedResults = [
       ...EXAMPLES,
     ].sort(sortByIndex);

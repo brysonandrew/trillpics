@@ -11,6 +11,7 @@ import {
   FormHTMLAttributes,
 } from 'react';
 import { LinkProps } from 'react-router-dom';
+import { TTitleProps } from '.';
 
 export type TRect = DOMRect | null;
 
@@ -85,3 +86,6 @@ export type TReplacedElement =
 export type TElement =
   | HTMLButtonElement
   | HTMLDivElement;
+
+export type TAnchorMotionProps =
+  HTMLMotionProps<'a'> & TTitleProps;

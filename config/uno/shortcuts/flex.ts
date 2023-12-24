@@ -13,8 +13,12 @@ export const FLEX: StaticShortcutMap = {
   'row-space': 'row justify-between',
   'row-start-space':
     'row-start justify-between',
+  'row-left': 'row justify-start',
+  'row-right': 'row justify-end',
   'row-end-space':
     'row-end justify-between',
+  'row-base':
+    'flex flex-row items-baseline',
   column: 'flex flex-col items-center',
   'column-start':
     'flex flex-col items-start',

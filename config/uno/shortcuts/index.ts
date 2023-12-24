@@ -8,6 +8,14 @@ import { LAYOUT } from './layout';
 
 export const SHORTCUTS: StaticShortcutMap =
   {
+    'bg-section':
+      'bg-white-8 dark:bg-black-1',
+    'bg-section-inverted':
+      'bg-black-1 dark:bg-white-9',
+    'bg-main':
+      'bg-white-9 dark:bg-black-1',
+    'text-main':
+      'text-black-1 dark:text-white-9',
     ...GRID,
     ...FLEX,
     ...INPUT,

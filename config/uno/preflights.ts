@@ -1,34 +1,17 @@
-import type { Preflight, PreflightContext } from 'unocss';
-import type { TTheme, TAnyTheme } from './theme';
-import { SANS, MONO } from './typography';
+import type {
+  Preflight,
+  PreflightContext,
+} from 'unocss';
+import type {
+  TTheme,
+  TAnyTheme,
+} from './theme';
 
-export const PRE_FLIGHT: Preflight<TAnyTheme> = {
-  getCSS: ({ theme }: PreflightContext<TTheme>) => `
-      html, body {
-        font-family: ${SANS}, Chakra Petch, Rubik, Noto Kufi Arabic, Noto Sans JP, -apple-system,
-          BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans,
-          Helvetica Neue, sans-serif;
-      }
-
-      body:not(.dark) {
-        background-color: ${theme.colors.black};
-      }
-
-      html.dark body {
-        background-color: ${theme.colors.black};
-      } 
-
-      h1,
-      code,
-      kbd,
-      samp,
-      pre {
-        font-family: ${MONO}, Courier, Menlo, and Consolas, monospace;
-      }
-      kbd {
-        font-weight: bold;
-      }
-
+export const PRE_FLIGHT: Preflight<TAnyTheme> =
+  {
+    getCSS: ({
+      theme,
+    }: PreflightContext<TTheme>) => `
       ::-webkit-scrollbar {
         background-color: ${theme.colors['white-2']};
       }
@@ -66,4 +49,4 @@ export const PRE_FLIGHT: Preflight<TAnyTheme> = {
       }
 
     `,
-} as const;
+  } as const;

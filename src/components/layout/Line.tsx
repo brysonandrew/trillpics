@@ -2,7 +2,7 @@ import styled from '@emotion/styled';
 
 export const Line = styled.hr`
   width: 100%;
-  border-color: var(--gray-04);
+  border-color: var(--gray-02);
 `;
 
 export const Black = styled.hr`

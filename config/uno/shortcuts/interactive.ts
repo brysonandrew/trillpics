@@ -6,6 +6,8 @@ import {
 
 export const SHAPES: StaticShortcutMap =
   {
+    'circle-interactive':
+      'relative p-3 cursor-pointer text-color-1',
     'interactive-sq-sm':
       'p-1 w-7 h-7 rounded-sm',
     'interactive-sq-md':
