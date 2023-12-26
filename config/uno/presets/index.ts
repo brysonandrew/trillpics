@@ -27,6 +27,7 @@ export const PRESETS: TPresets = [
       sans: SANS,
       cursive: CURSIVE,
       mono: MONO,
+      blocky: 'silkscreen'
     },
   }),
 ];

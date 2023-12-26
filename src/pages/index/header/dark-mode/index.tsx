@@ -12,6 +12,7 @@ import { useHoverKey } from '@hooks/dom/useHoverKey';
 import { Moon } from './icons/Moon';
 import { Sun } from './icons/Sun';
 import { resolveCompositeKey } from '@utils/keys';
+import { Backdrop } from '@components/interactive/Backdrop';
 
 export const DarkMode = () => {
   const { isScroll } =
@@ -25,7 +26,8 @@ export const DarkMode = () => {
     : 'dark';
   const title = `Switch to ${key} mode`;
 
-  const { handlers } = useHoverKey();
+  const { isHover, handlers } =
+    useHoverKey();
   const hoverkey = resolveCompositeKey(
     'dark-mode',
     title,
@@ -53,11 +55,16 @@ export const DarkMode = () => {
       {...SHARED_ANIMATION_PROPS}
       {...handlers(hoverkey)}
     >
+
       <motion.button
         title={title}
         onTap={handleTap}
       >
-        <div className='row-right gap-4 w-28 overflow-hidden text-sm'>
+        <div className='relative row-right gap-4 w-30 pr-2.5 py-1.5 overflow-hidden text-sm'>
+        <Backdrop
+        isHover={isHover(hoverkey)}
+        id={darkMode.darkKey}
+      />
           {createElement(
             isDarkMode ? Moon : Sun,
             {
@@ -68,7 +75,9 @@ export const DarkMode = () => {
               ),
             },
           )}
-          <kbd className='tracking-widest'>{darkMode.darkKey}</kbd>
+          <samp className='relative tracking-widest'>
+            {darkMode.darkKey}
+          </samp>
         </div>
       </motion.button>
     </motion.div>

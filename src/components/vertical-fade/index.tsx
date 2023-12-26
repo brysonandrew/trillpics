@@ -19,7 +19,7 @@ export const VerticalFade: FC<
 }) => (
   <Root
     className={clsx(
-      'fixed left-0 right-0 w-full h-28 dark:from-black from-white-9 to-transparent pointer-events-none z-40',
+      'fixed left-0 right-0 w-full h-28 dark:from-black dark:opacity-100 from-white-9 opacity-50 to-transparent pointer-events-none z-40',
       classValue,
     )}
     style={style}

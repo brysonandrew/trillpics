@@ -5,14 +5,13 @@ import {
   useImage,
 } from './useImage';
 import { motion } from 'framer-motion';
-import { createPortal } from 'react-dom';
 import { TChildren } from '@t/index';
 import { Portal } from './Portal';
 
 type TProps = TUseImageConfig & {
   boxChildren?: TChildren;
   children(
-    imageProps: TUseImageReturn['imageProps'],
+    imageReturn: TUseImageReturn,
   ): TChildren;
 };
 export const Image: FC<TProps> = ({
@@ -20,14 +19,14 @@ export const Image: FC<TProps> = ({
   children,
   ...config
 }) => {
+  const imageReturn = useImage(config);
   const {
     isFirstPosition,
     boxProps,
-    imageProps,
     backdropProps,
-  } = useImage(config);
+  } = imageReturn;
 
-  const c = children(imageProps);
+  const c = children(imageReturn);
 
   return (
     <motion.div {...boxProps}>

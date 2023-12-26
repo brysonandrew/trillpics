@@ -17,6 +17,20 @@ export const SHADOWS: Rule<TTheme>[] = [
     },
   ],
   [
+    'shadow-1-gray-02',
+    {
+      'box-shadow':
+        '0 0 1px 2px var(--gray-02)',
+    },
+  ],
+  [
+    'shadow-1-gray-04',
+    {
+      'box-shadow':
+        '0 0 1px 2px var(--gray-04)',
+    },
+  ],
+  [
     'shadow-1-teal-04',
     {
       'box-shadow':

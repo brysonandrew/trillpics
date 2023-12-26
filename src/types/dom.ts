@@ -25,6 +25,10 @@ export type TDivProps =
   HTMLAttributes<HTMLDivElement>;
 export type TDivMotionProps =
   HTMLMotionProps<'div'>;
+export type TSampMotionProps =
+  HTMLMotionProps<'samp'>;
+export type TFigureMotionProps =
+  HTMLMotionProps<'figure'>;
 
 export type THeadingProps =
   HTMLAttributes<HTMLHeadingElement>;

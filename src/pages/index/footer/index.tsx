@@ -2,7 +2,7 @@ import { Divider } from '@components/decoration/Divider';
 import { I } from '@components/Icon';
 import { FadeUp } from '@components/vertical-fade/FadeUp';
 import { motion } from 'framer-motion';
-import { ITEMS } from './config';
+import { CATEGORIES } from './config';
 
 export const Footer = () => {
   return (
@@ -12,7 +12,7 @@ export const Footer = () => {
         <div className='w-container row-space'>
           <div />
           <ul className='column-end gap-4'>
-            {ITEMS.map(
+            {CATEGORIES.map(
               ({
                 title,
                 value,
@@ -26,9 +26,9 @@ export const Footer = () => {
                     href={href}
                   >
                     <I {...iconProps} />
-                    <kbd className='tracking-widest text-sm'>
+                    <samp className='tracking-widest text-sm'>
                       {value}
-                    </kbd>
+                    </samp>
                   </motion.a>
                 </li>
               ),

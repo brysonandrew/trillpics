@@ -67,21 +67,16 @@ export const resolveNeuClasses = ({
 
   return {
     'neu-basic': {
-      color: color.text,
+      color: 'inherit',
       'background-color': base,
     },
     'neu-empty': {
       'background-color': TRANSPARENT,
-      color: TRANSPARENT,
     },
     'neu-text': {
-      color: color.text,
+      color: 'inherit',
       'text-shadow': `${shadow.fill}, ${shadow.back}`,
     },
-    // emptyText: {
-    //   color: color.text,
-    //   textShadow: `${shadow.fill}, ${shadow.back}`,
-    // },
     'neu-flat-risen': {
       'box-shadow': `${shadow.fill}, ${shadow.back}`,
     },

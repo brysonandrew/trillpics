@@ -1,10 +1,9 @@
 import { FC } from 'react';
-import { resolveConfigFromSize } from '@components/image/resolveDimensionsFromSize';
 import { TClassValueProps } from '@t/index';
 import clsx, { ClassValue } from 'clsx';
 import { useViewport } from '@context/viewport';
-import { useDarkMode } from '@context/dark-mode';
-import { Item } from './Item';
+import { Item } from '../item';
+import { resolveCompositeKey } from '@utils/keys';
 
 type TProps = TClassValueProps & {
   listClassValue: ClassValue;
@@ -19,14 +18,11 @@ export const Category: FC<TProps> = ({
   classValue,
   listClassValue,
 }) => {
-  const dm = useDarkMode();
   const vp = useViewport();
   const size = vp.isDimensions
     ? vp.containerWidth / srcs.length
     : 0;
 
-  const imageConfig =
-    resolveConfigFromSize({ size });
   return (
     <div
       className={clsx(
@@ -34,7 +30,7 @@ export const Category: FC<TProps> = ({
         classValue,
       )}
     >
-      <figure className='relative text-2xl text-black-1 dark:text-white-9 z-20'>
+      <figure className='relative text-black-1 dark:text-white-9 z-20'>
         {title}
       </figure>
       <ul
@@ -44,15 +40,15 @@ export const Category: FC<TProps> = ({
         )}
       >
         {srcs.map((name) => {
-          const canvasSrc = `/canvas/blackt.png`;
-          const printSrc = `/categories/${categoryName}/${name}/0.png`;
-
+          const src = `/categories/${categoryName}/${name}/0.png`;
           return (
             <Item
-              key={printSrc}
+              key={resolveCompositeKey(
+                categoryName,
+                name,
+              )}
+              src={src}
               size={size}
-              canvasSrc={canvasSrc}
-              printSrc={printSrc}
             />
           );
         })}

@@ -1,5 +1,5 @@
 {
-  "name": "gypsyrich",
+  "name": "luridescence",
   "version": "1.0.0",
   "description": "Gallery",
   "main": "src/main/index.tsx",
@@ -8,6 +8,8 @@
     "build": "vite build",
     "lint": "tsc --build . & eslint . --fix --ext ts,tsx",
     "format": "prettier ./src",
+    "ops/collection": "esrun ops/collection",
+    "ops/delete": "esrun ops/delete/deleteDoubleProcessed",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -44,6 +46,7 @@
     "zod": "^3.22.2"
   },
   "devDependencies": {
+    "@types/sharp": "^0.32.0",
     "@digitak/esrun": "^3.2.24",
     "@emotion/babel-preset-css-prop": "^11.11.0",
     "@emotion/react": "^11.11.1",
@@ -52,6 +55,7 @@
     "@iconify/json": "^2.2.119",
     "@iconify/react": "^4.1.1",
     "@rollup/plugin-node-resolve": "^15.1.0",
+    "sharp": "^0.32.5",
     "@styled/typescript-styled-plugin": "^1.0.0",
     "@types/lodash-es": "^4.17.12",
     "@types/node": "^18.11.18",

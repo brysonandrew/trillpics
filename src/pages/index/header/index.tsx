@@ -2,16 +2,19 @@ import { APP_TITLE } from '@app/index';
 import clsx from 'clsx';
 import {
   motion,
+  useMotionTemplate,
   useTransform,
 } from 'framer-motion';
 import { DarkMode } from './dark-mode';
 import { useScroll as useScrollContext } from '@context/scroll';
 import { Divider } from '@components/decoration/Divider';
 import { FadeDown } from '@components/vertical-fade/FadeDown';
-import { Padding05 } from './Padding';
+import { Padding } from './Padding';
 import { SCROLL } from '@context/scroll/Provider';
+import { useDarkMode } from '@context/dark-mode';
 
 export const Header = () => {
+  const { isDarkMode } = useDarkMode();
   const { isScroll, scroll } =
     useScrollContext();
 
@@ -31,43 +34,57 @@ export const Header = () => {
     },
   );
 
+  const colorValue = useTransform(
+    maskScaleY,
+    isDarkMode ? [1, 1] : [1, 0],
+    [0, 255],
+  );
+
+  const color = useMotionTemplate`rgba(${colorValue}, ${colorValue}, ${colorValue}, 1)`;
+
   return (
     <>
       {isScroll && <FadeDown />}
-      <Padding05 />
-      <header
+      <Padding />
+      <motion.header
         className={clsx(
           'sticky left-0 top-0 right-0 column w-full z-60',
         )}
+        style={{ color }}
       >
         <div
           className={clsx(
-            'w-container row-start-space',
-            isScroll
-              ? 'text-white-9'
-              : '',
+            'w-container row-space',
           )}
         >
           <div
             className={clsx(
-              'column-start lg:row-base gap-5',
+              'column-start lg:row-base gap-4',
             )}
           >
-            <h1 className='lowercase text-2xl mt-0.5'>
-              {APP_TITLE}
-            </h1>
-            <kbd className='text-sm lowercase opacity-60 -mt-1'>
-              t-shirts, hand printed,
+            <div className='relative row gap-1 pl-18 h-18'>
+              <img
+                className='absolute left-0 top-1/2 -translate-y-1/2 aspect-square rounded-full'
+                src='/logo.png'
+                alt='logo'
+                height='75%'
+              />
+              <h1 className='capitalise mt-0.5 pl-0 whitespace-nowrap'>
+                {APP_TITLE}
+              </h1>
+            </div>
+            <samp className='opacity-60 -mt-1'>
+              t-shirts hand printed,
               based in new zealand
-            </kbd>
+            </samp>
           </div>
           <div className='mt-1.5 lowercase overflow-hidden'>
             <DarkMode />
           </div>
         </div>
-      </header>
-      <Padding05 />
-      <motion.div className='sticky left-0 top-0 right-0 h-10 overflow-hidden z-40'>
+      </motion.header>
+      <Padding />
+      <motion.div className='sticky left-0 top-0 right-0 h-20 overflow-hidden z-40'>
         <Divider
           classValue={clsx(
             'absolute left-0 bottom-0 h-full',
@@ -79,7 +96,7 @@ export const Header = () => {
           originY: '100%',
           scaleY: maskScaleY,
         }}
-        className='sticky left-0 top-10 h-7 -mt-7 right-0 w-full bg-main z-60'
+        className='sticky left-0 top-14 h-17 -mt-17 right-0 w-full bg-main z-60'
       />
     </>
   );

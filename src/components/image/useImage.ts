@@ -105,6 +105,7 @@ export const useImage = ({
         } as const)
       : ({} as const);
   return {
+    isHover,
     isFirstPosition,
     boxProps: {
       style: imageDimensions,
@@ -118,16 +119,16 @@ export const useImage = ({
       },
       onLayoutAnimationComplete:
         handleLayoutAnimationComplete,
-      onClick: handleClick,
+      onTap: handleClick,
       ...handlers,
     },
     backdropProps: {
       ...FADE_PRESENCE,
       className: clsx(
-        'backdrop-blur-lg bg-black-05 inset-0 z-60',
+        'backdrop-blur-lg bg-black-05 inset-0 z-60 cursor-zoom-out',
       ),
       style: backdropStyle,
-      onClick: handleClick,
+      onTap: handleClick,
     },
   };
 };

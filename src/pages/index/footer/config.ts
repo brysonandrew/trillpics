@@ -1,4 +1,4 @@
-export const ITEMS = [
+export const CATEGORIES = [
   {
     title: 'Phone',
     value: '0064 204 069 8339',

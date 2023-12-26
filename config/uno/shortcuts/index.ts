@@ -10,6 +10,8 @@ export const SHORTCUTS: StaticShortcutMap =
   {
     'bg-section':
       'bg-white-8 dark:bg-black-1',
+    'text-section':
+      'dark:text-white-8 text-black-1',
     'bg-section-inverted':
       'bg-black-1 dark:bg-white-9',
     'bg-main':

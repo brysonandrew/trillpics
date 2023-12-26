@@ -25,6 +25,13 @@
       }
     ]
   },
-  "include": ["src/**/*.js", "src/**/*.jsx", "src/**/*.ts", "src/**/*.tsx"],
+  "include": [
+    "src/**/*.js",
+    "src/**/*.jsx",
+    "src/**/*.ts",
+    "src/**/*.tsx",
+    "ops/**/*.ts",
+    "ops/**/*.tsx"
+  ],
   "extends": "./tsconfig.paths.json"
 }

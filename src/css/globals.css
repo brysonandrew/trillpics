@@ -1,6 +1,33 @@
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono&family=Italiana&family=Luxurious+Script&family=Silkscreen:wght@700&display=swap');
+
+@font-face {
+  font-family: 'manstein';
+  src: url('/fonts/manstein/cursive.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'darleston';
+  src: url('/fonts/darleston/cursive.otf') format('opentype');
+}
+
+@font-face {
+  font-family: 'bailenson';
+  src: url('/fonts/bailenson/cursive.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'christmas-wish';
+  src: url('/fonts/christmas-wish/cursive.otf') format('opentype');
+}
+
 @font-face {
   font-family: 'better-time';
-  src: url('/fonts/better-time/italic.otf') format('opentype');
+  src: url('/fonts/better-time/cursive.otf') format('opentype');
+}
+
+@font-face {
+  font-family: 'nova-quinta';
+  src: url('/fonts/nova-quinta/cursive.otf') format('opentype');
 }
 
 @font-face {
@@ -41,7 +68,6 @@ body,
   width: 100%;
 }
 
-h1,
 h2,
 h3,
 h4,
@@ -80,7 +106,6 @@ select:disabled {
   cursor: not-allowed;
 }
 
-/* Change the white to any color */
 input:-webkit-autofill,
 input:-webkit-autofill:hover,
 input:-webkit-autofill:focus,
@@ -102,16 +127,27 @@ input:focus {
   width: 6px;
 }
 
+h1,
 figure {
-  font-family: better-time, cursive;
+  font-family: better-time,
+  christmas-wish, cursive;
 }
 
-i {
-  font-family: lemon-light-italic, cursive;
+h1 {
+  font-size: 1.4rem;
+}
+
+figure {
+  /* font-family: better-time, cursive; */
+  font-size: 1.4rem;
 }
 
 samp {
-  font-family: lemon-light-italic, cursive;
+  font-family: silkscreen, cursive;
+}
+
+i {
+  font-family: silkscreen, cursive;
 }
 
 code,
