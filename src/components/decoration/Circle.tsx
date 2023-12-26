@@ -1,0 +1,27 @@
+import clsx, { ClassValue } from 'clsx';
+import { FC } from 'react';
+import { TGradientShortcut } from '@uno/shortcuts/gradient';
+import { TChildren } from '@t/index';
+
+type TProps = {
+  classValue?: ClassValue;
+  gradient?: TGradientShortcut;
+  children: TChildren;
+};
+export const Circle: FC<TProps> = ({
+  classValue,
+  gradient = 'bg-fuchsia-pink-rose',
+  children,
+}) => {
+  return (
+    <samp
+      className={clsx(
+        'h-5 leading-none text-section-inverted bg-section-inverted text-sm px-0.97 py-0.5 rounded-xl',
+        gradient,
+        classValue,
+      )}
+    >
+      {children}
+    </samp>
+  );
+};

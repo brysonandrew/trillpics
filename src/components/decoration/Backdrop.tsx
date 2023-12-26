@@ -1,3 +1,4 @@
+import { TDivMotionProps } from '@t/dom';
 import { resolveCompositeKey } from '@utils/keys';
 import {
   AnimatePresence,
@@ -7,13 +8,14 @@ import { FC } from 'react';
 
 const name = 'backdrop';
 
-type TProps = {
+type TProps = TDivMotionProps & {
   isHover: boolean | null;
   id: string;
 };
 export const Backdrop: FC<TProps> = ({
   isHover,
   id,
+  ...props
 }) => {
   const key = resolveCompositeKey(
     name,
@@ -26,18 +28,19 @@ export const Backdrop: FC<TProps> = ({
           key={key}
           layoutId={name}
           initial={{
-            opacity: 1,
+            opacity: 0.0,
             y: '100%',
           }}
           animate={{
-            opacity: 1,
+            opacity: 0.1,
             y: '0%',
           }}
           exit={{
-            opacity: 1,
+            opacity: 0.0,
             y: '100%',
           }}
-          className='absolute -inset-1 bg-gray-01 backdrop-blur-lg'
+          className='absolute inset-1 bg-gray-5 shadow-1-gray-04 pointer-events-none'
+          {...props}
         />
       )}
     </AnimatePresence>

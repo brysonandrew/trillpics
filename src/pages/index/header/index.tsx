@@ -12,6 +12,7 @@ import { FadeDown } from '@components/vertical-fade/FadeDown';
 import { Padding } from './Padding';
 import { SCROLL } from '@context/scroll/Provider';
 import { useDarkMode } from '@context/dark-mode';
+import { Cart } from './cart';
 
 export const Header = () => {
   const { isDarkMode } = useDarkMode();
@@ -62,26 +63,22 @@ export const Header = () => {
               'column-start lg:row-base gap-4',
             )}
           >
-            <div className='relative row gap-1 pl-18 h-18'>
-              <img
-                className='absolute left-0 top-1/2 -translate-y-1/2 aspect-square rounded-full'
-                src='/logo.png'
-                alt='logo'
-                height='75%'
-              />
+            <div className='relative row gap-1 pl-0 h-18'>
               <h1 className='capitalise mt-0.5 pl-0 whitespace-nowrap'>
                 {APP_TITLE}
               </h1>
             </div>
-            <samp className='opacity-60 -mt-1'>
-              t-shirts hand printed,
-              based in new zealand
-            </samp>
           </div>
-          <div className='mt-1.5 lowercase overflow-hidden'>
+          <div className='row shrink-0 mt-1.5 lowercase overflow-hidden'>
             <DarkMode />
+            <Cart />
           </div>
         </div>
+
+        <samp className='w-container text-left opacity-60 -mt-1'>
+          t-shirts hand printed, based
+          in new zealand
+        </samp>
       </motion.header>
       <Padding />
       <motion.div className='sticky left-0 top-0 right-0 h-20 overflow-hidden z-40'>

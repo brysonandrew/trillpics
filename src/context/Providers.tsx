@@ -5,6 +5,7 @@ import { Provider as AuthProvider } from '@context/auth/Provider';
 import { Provider as DarkModeProvider } from '@context/dark-mode/Provider';
 import { Provider as CursorProvider } from '@context/cursor/Provider';
 import { Provider as ScrollProvider } from '@context/scroll/Provider';
+import { Provider as CheckoutProvider } from '@context/checkout/Provider';
 
 import { TChildren } from '@t/index';
 import { FC } from 'react';
@@ -18,13 +19,15 @@ export const Providers: FC<TProps> = ({
       <DarkModeProvider>
         <CursorProvider>
           <ScrollProvider>
-            <UserProvider>
-              <ViewportProvider>
-                <AuthProvider>
-                  {children}
-                </AuthProvider>
-              </ViewportProvider>
-            </UserProvider>
+            <CheckoutProvider>
+              <UserProvider>
+                <ViewportProvider>
+                  <AuthProvider>
+                    {children}
+                  </AuthProvider>
+                </ViewportProvider>
+              </UserProvider>
+            </CheckoutProvider>
           </ScrollProvider>
         </CursorProvider>
       </DarkModeProvider>

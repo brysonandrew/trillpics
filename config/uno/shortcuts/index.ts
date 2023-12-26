@@ -5,6 +5,7 @@ import { POSITION } from './position';
 import { GRID } from './grid';
 import { INTERACTIVE } from './interactive';
 import { LAYOUT } from './layout';
+import { GRADIENT } from './gradient';
 
 export const SHORTCUTS: StaticShortcutMap =
   {
@@ -13,7 +14,9 @@ export const SHORTCUTS: StaticShortcutMap =
     'text-section':
       'dark:text-white-8 text-black-1',
     'bg-section-inverted':
-      'bg-black-1 dark:bg-white-9',
+      'dark:bg-black-1 bg-white-8',
+    'text-section-inverted':
+      'dark:text-black-1 text-white-8',
     'bg-main':
       'bg-white-9 dark:bg-black-1',
     'text-main':
@@ -24,4 +27,6 @@ export const SHORTCUTS: StaticShortcutMap =
     ...POSITION,
     ...INTERACTIVE,
     ...LAYOUT,
+...GRADIENT,
+
   } as const;

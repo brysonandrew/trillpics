@@ -42,7 +42,7 @@ export const Sight: FC<TProps> = ({
         ...style,
       }}
       className={clsx(
-        'fixed center background-color-3 text-color-4 glow-interactive pointer-events-none rounded-full cursor-default z-50',
+        'fixed center bg-section text-section mix-blend-difference glow-interactive pointer-events-none rounded-full cursor-default z-50',
         classValue,
       )}
       {...props}

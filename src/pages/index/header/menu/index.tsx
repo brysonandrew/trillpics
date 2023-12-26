@@ -1,23 +1,17 @@
 import { resolveVerticalShiftPresence } from '@utils/animation';
-import {
-  AnimatePresence,
-  motion,
-} from 'framer-motion';
+import { motion } from 'framer-motion';
 import {
   ICON_CLASS_VALUE_PROPS,
   SHARED_ANIMATION_PROPS,
   resolveScale,
-} from './config';
+} from '../config';
 import { TRANSITION } from '@constants/animation';
 import { createElement } from 'react';
 import { useScroll as useScrollContext } from '@context/scroll';
-import { useDarkMode } from '@context/dark-mode';
 import clsx from 'clsx';
 import { CB } from '@components/interactive/circle';
 import { CBB } from '@components/interactive/circle/CBB';
 import { useHoverKey } from '@hooks/dom/useHoverKey';
-import { Moon } from './icons/Moon';
-import { Sun } from './icons/Sun';
 import { resolveCompositeKey } from '@utils/keys';
 import { useApp } from '@context/app';
 import { Cross } from '@components/icons/gallery/Cross';
@@ -53,40 +47,42 @@ export const Menu = () => {
   });
 
   return (
-      <motion.div
-        animate={{
-          scale,
-        }}
-        transition={{
-          delay: isScroll ? 0.1 : 0,
-          ...TRANSITION,
-        }}
-        {...SHARED_ANIMATION_PROPS}
-        {...handlers(hoverkey)}
+    <motion.div
+      animate={{
+        scale,
+      }}
+      transition={{
+        delay: isScroll ? 0.1 : 0,
+        ...TRANSITION,
+      }}
+      {...SHARED_ANIMATION_PROPS}
+      {...handlers(hoverkey)}
+    >
+      <CB
+        classValue={clsx(
+          'preserve-3d perspective-1000',
+        )}
       >
-        <CB
-          classValue={clsx(
-            'preserve-3d perspective-1000',
-          )}
+        <CBB
+          title={title}
+          onTap={handleTap}
         >
-          <CBB
-            title={title}
-            onTap={handleTap}
-          >
-            <div className='absolute -inset-2 center overflow-hidden rounded-full'>
-              {createElement(
-                isMenu ? Cross : Hamburger,
-                {
-                  ...iconProps(
-                    isMenu
-                      ? '-100%'
-                      : '100%',
-                  ),
-                },
-              )}
-            </div>
-          </CBB>
-        </CB>
-      </motion.div>
+          <div className='absolute -inset-2 center overflow-hidden rounded-full'>
+            {createElement(
+              isMenu
+                ? Cross
+                : Hamburger,
+              {
+                ...iconProps(
+                  isMenu
+                    ? '-100%'
+                    : '100%',
+                ),
+              },
+            )}
+          </div>
+        </CBB>
+      </CB>
+    </motion.div>
   );
 };

@@ -34,12 +34,13 @@ export const Image: FC<TProps> = ({
         {isFirstPosition ? (
           c
         ) : (
-          <Portal
-            backdropProps={
-              backdropProps
-            }
-          >
-            {c}
+          <Portal>
+            <>
+              <motion.div
+                {...backdropProps}
+              />
+              {c}
+            </>
           </Portal>
         )}
       </>

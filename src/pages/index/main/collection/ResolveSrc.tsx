@@ -32,20 +32,7 @@ export const ResolveSrc: FC<TProps> = ({
           if (
             typeof value === 'string'
           ) {
-            const blob = await fetch(
-              value,
-            ).then((r) => r.blob());
-
-            const file = new File(
-              [blob],
-              value,
-              {
-                 type: 'image/png',
-              },
-            );
-
-            console.log(file);
-
+       
             setSrc(value);
           }
         }

@@ -5,6 +5,7 @@ import {
 import { Shell as MainShell } from '@main/Shell';
 import { Index } from '@pages/index';
 import { List } from '@pages/list';
+import { Checkout } from '@pages/checkout';
 
 const WITH_SHELL_KEY = 'with-shell';
 
@@ -12,6 +13,10 @@ const SHELL_ROUTES: any[] = [
   {
     path: '/',
     element: <Index />,
+  },
+  {
+    path: '/checkout',
+    element: <Checkout />,
   },
   {
     path: '/list',

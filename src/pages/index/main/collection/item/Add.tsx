@@ -3,8 +3,9 @@ import { B } from '@components/interactive/B';
 import { I } from '@components/Icon';
 import clsx from 'clsx';
 import { TButtonMotionProps } from '@t/dom';
-import { Backdrop } from '../../../../../components/interactive/Backdrop';
+import { Backdrop } from '../../../../../components/decoration/Backdrop';
 import { resolveCompositeKey } from '@utils/keys';
+import { Circle } from '@components/decoration/Circle';
 
 type TProps = TButtonMotionProps & {
   isHover: boolean | null;
@@ -37,17 +38,19 @@ export const Add: FC<TProps> = ({
       {...props}
     >
       <Backdrop
-        id={resolveCompositeKey('add-button', key)}
+        id={resolveCompositeKey(
+          'add-button',
+          key,
+        )}
         isHover={isHover}
       />
-      <I
-        className='relative'
-        icon={clsx(
-          'lets-icons:add-ring-duotone',
-        )}
-        width={iconSize}
-        height={iconSize}
-      />
+
+      <Circle
+        classValue='relative'
+        gradient='bg-emerald-teal-cyan'
+      >
+        +
+      </Circle>
       <samp
         className={clsx(
           'relative',

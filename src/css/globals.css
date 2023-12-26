@@ -1,6 +1,21 @@
 @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono&family=Italiana&family=Luxurious+Script&family=Silkscreen:wght@700&display=swap');
 
 @font-face {
+  font-family: 'sicret-mono';
+  src: url('/fonts/sicret_mono/regular.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'manti-sans-fixed';
+  src: url('/fonts/manti-sans-fixed/fixed.otf') format('opentype');
+}
+
+@font-face {
+  font-family: 'mono-mmm-5';
+  src: url('/fonts/monoMMM_5/base.ttf') format('truetype');
+}
+
+@font-face {
   font-family: 'manstein';
   src: url('/fonts/manstein/cursive.ttf') format('truetype');
 }
@@ -129,8 +144,7 @@ input:focus {
 
 h1,
 figure {
-  font-family: better-time,
-  christmas-wish, cursive;
+  font-family: better-time, christmas-wish, cursive;
 }
 
 h1 {
@@ -143,18 +157,18 @@ figure {
 }
 
 samp {
-  font-family: silkscreen, cursive;
+  font-family: silkscreen, sans-serif;
 }
 
 i {
-  font-family: silkscreen, cursive;
+  font-family: silkscreen, monospace;
 }
 
 code,
 pre {
-  font-family: Cutive Mono, Courier, Menlo, Consolas, monospace;
+  font-family: sicret-mono, Courier, Menlo, Consolas, monospace;
 }
 
 kbd {
-  font-family: Cutive Mono, Courier, Menlo, Consolas, monospace;
+  font-family: manti-sans-fixed, Courier, Menlo, Consolas, monospace;
 }
