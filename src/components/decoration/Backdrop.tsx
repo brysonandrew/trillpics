@@ -1,32 +1,30 @@
-import { TDivMotionProps } from '@t/dom';
-import { resolveCompositeKey } from '@utils/keys';
+import {
+  TClassValueProps,
+  TDivMotionProps,
+} from '@t/dom';
+import clsx from 'clsx';
 import {
   AnimatePresence,
   motion,
 } from 'framer-motion';
 import { FC } from 'react';
 
-const name = 'backdrop';
-
-type TProps = TDivMotionProps & {
-  isHover: boolean | null;
-  id: string;
-};
+type TProps = TDivMotionProps &
+  TClassValueProps & {
+    isShown: boolean;
+    id: string;
+  };
 export const Backdrop: FC<TProps> = ({
-  isHover,
+  isShown,
   id,
+  classValue,
   ...props
 }) => {
-  const key = resolveCompositeKey(
-    name,
-    id,
-  );
   return (
     <AnimatePresence>
-      {isHover && (
+      {isShown && (
         <motion.div
-          key={key}
-          layoutId={name}
+          key={id}
           initial={{
             opacity: 0.0,
             y: '100%',
@@ -39,7 +37,10 @@ export const Backdrop: FC<TProps> = ({
             opacity: 0.0,
             y: '100%',
           }}
-          className='absolute inset-1 bg-gray-5 shadow-1-gray-04 pointer-events-none'
+          className={clsx(
+            'absolute inset-1 bg-gray-5 shadow-1-gray-04 pointer-events-none',
+            classValue,
+          )}
           {...props}
         />
       )}

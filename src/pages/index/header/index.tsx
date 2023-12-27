@@ -49,7 +49,7 @@ export const Header = () => {
       <Padding />
       <motion.header
         className={clsx(
-          'sticky left-0 top-0 right-0 column w-full z-60',
+          'sticky left-0 top-0 right-0 column gap-1 w-full z-60',
         )}
         style={{ color }}
       >
@@ -74,8 +74,7 @@ export const Header = () => {
             <Cart />
           </div>
         </div>
-
-        <samp className='w-container text-left opacity-60 -mt-1'>
+        <samp className='w-container text-left opacity-40'>
           t-shirts hand printed, based
           in new zealand
         </samp>

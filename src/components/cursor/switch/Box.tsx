@@ -29,7 +29,7 @@ export const Box: FC<TProps> = ({
   return (
     <motion.div
       className={clsx(
-        'absolute top-1/2 left-1/2 text-xl px-2 rounded-md',
+        'absolute top-1/2 left-1/2 text-xl px-2 bg-main rounded-md',
         classValue,
       )}
       style={{
@@ -55,7 +55,7 @@ export const Box: FC<TProps> = ({
         },
       )}
     >
-      <Metal classValue='rounded-md' />
+      {/* <Metal classValue='rounded-md' /> */}
       {children}
     </motion.div>
   );

@@ -11,8 +11,7 @@ import { useScroll as useScrollContext } from '@context/scroll';
 import clsx from 'clsx';
 import { CB } from '@components/interactive/circle';
 import { CBB } from '@components/interactive/circle/CBB';
-import { useHoverKey } from '@hooks/dom/useHoverKey';
-import { resolveCompositeKey } from '@utils/keys';
+import { useHoverKey } from '@hooks/cursor/useHoverKey';
 import { useApp } from '@context/app';
 import { Cross } from '@components/icons/gallery/Cross';
 import { Hamburger } from '@components/icons/gallery/Hamburger';
@@ -24,11 +23,7 @@ export const Menu = () => {
   const title = `Open menu`;
 
   const { isHover, handlers } =
-    useHoverKey();
-  const hoverkey = resolveCompositeKey(
-    'dark-mode',
-    title,
-  );
+    useHoverKey('none', title);
   const handleTap = () => {
     onMenu();
   };
@@ -42,7 +37,7 @@ export const Menu = () => {
     ),
   });
   const scale = resolveScale({
-    isHover: isHover(hoverkey),
+    isHover,
     isScroll,
   });
 
@@ -56,7 +51,7 @@ export const Menu = () => {
         ...TRANSITION,
       }}
       {...SHARED_ANIMATION_PROPS}
-      {...handlers(hoverkey)}
+      {...handlers}
     >
       <CB
         classValue={clsx(

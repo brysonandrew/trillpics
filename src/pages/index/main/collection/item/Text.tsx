@@ -1,15 +1,10 @@
 import { FC } from 'react';
-import {
-  motion,
-  MotionProps,
-} from 'framer-motion';
+import { motion } from 'framer-motion';
 import { kebabToTitle } from '@utils/format';
 import clsx from 'clsx';
-import {
-  TDivMotionProps,
-  TSampMotionProps,
-} from '@t/dom';
+import { TSampMotionProps } from '@t/dom';
 import { resolveCompositeKey } from '@utils/keys';
+import { FADE_PRESENCE } from '@constants/animation';
 
 type TProps = TSampMotionProps & {
   src: string;
@@ -27,7 +22,7 @@ export const Text: FC<TProps> = ({
       className={clsx(
         'absolute pointer-events-none',
         isFirstPosition
-          ? 'top-6 left-6 text-xl'
+          ? 'top-6 left-6 text-2xl'
           : 'left-12 top-12 text-4xl',
       )}
       layoutId={resolveCompositeKey(
@@ -35,6 +30,7 @@ export const Text: FC<TProps> = ({
         src,
       )}
       {...props}
+      {...FADE_PRESENCE}
     >
       {kebabToTitle(name)}
     </motion.samp>

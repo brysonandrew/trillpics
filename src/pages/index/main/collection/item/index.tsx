@@ -1,13 +1,10 @@
 import { FC } from 'react';
 import { resolveConfigFromSize } from '@components/image/resolveDimensionsFromSize';
-import { useHover } from '@hooks/dom/useHover';
-import { Portal } from '@components/image/Portal';
 import { useImage } from '@components/image/useImage';
 import {
   Image,
   TPassedProps,
-} from './Image';
-import { motion } from 'framer-motion';
+} from './image';
 
 type TProps = TPassedProps & {
   size: number;
@@ -25,10 +22,10 @@ export const Item: FC<TProps> = ({
 
   const { boxProps, ...rest } =
     imageReturn;
-
+ 
   return (
     <li
-      className='relative overflow-hidden'
+
       {...boxProps}
     >
       <Image

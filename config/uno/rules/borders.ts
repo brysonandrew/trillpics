@@ -11,6 +11,13 @@ export const BORDERS: Rule<TTheme>[] = [
     },
   ],
   [
+    'border-1-gray-01',
+    {
+      border:
+        '1px solid var(--gray-01)',
+    },
+  ],
+  [
     'border-1-gray-02',
     {
       border:

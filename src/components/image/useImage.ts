@@ -48,7 +48,6 @@ export const useImage = ({
     width,
     height,
   };
-
   let boxDimensions: TImageDimensionsConfig['box'] =
     config;
   if (
@@ -104,10 +103,12 @@ export const useImage = ({
           height: viewport.height,
         } as const)
       : ({} as const);
+
   return {
     isHover,
     isFirstPosition,
     boxProps: {
+      className: 'relative',
       style: imageDimensions,
     },
     imageProps: {
@@ -124,9 +125,8 @@ export const useImage = ({
     },
     backdropProps: {
       ...FADE_PRESENCE,
-      className: clsx(
-        'backdrop-blur-lg bg-black-05 inset-0 z-60 cursor-zoom-out',
-      ),
+      className:
+        'backdrop-blur-lg bg-black-05 inset-0 z-60 zoom-out',
       style: backdropStyle,
       onTap: handleClick,
     },

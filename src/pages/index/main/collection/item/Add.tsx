@@ -6,6 +6,7 @@ import { TButtonMotionProps } from '@t/dom';
 import { Backdrop } from '../../../../../components/decoration/Backdrop';
 import { resolveCompositeKey } from '@utils/keys';
 import { Circle } from '@components/decoration/Circle';
+import { FADE_PRESENCE } from '@constants/animation';
 
 type TProps = TButtonMotionProps & {
   isHover: boolean | null;
@@ -18,9 +19,6 @@ export const Add: FC<TProps> = ({
   isFirstPosition,
   ...props
 }) => {
-  const iconSize = isFirstPosition
-    ? 28
-    : 40;
   const key = resolveCompositeKey(
     'Add',
     src,
@@ -28,7 +26,7 @@ export const Add: FC<TProps> = ({
   return (
     <B
       classValue={clsx(
-        'absolute row gap-4 shadow-sm px-4 py-3 shadow-1-gray-02 overflow-hidden',
+        'absolute row gap-4 px-4 py-3 border-1-gray-02 overflow-hidden',
         isFirstPosition
           ? 'right-6 bottom-6 overflow-hidden'
           : 'right-12 bottom-12',
@@ -36,13 +34,14 @@ export const Add: FC<TProps> = ({
       look='neu-empty'
       layoutId={key}
       {...props}
+      {...FADE_PRESENCE}
     >
       <Backdrop
         id={resolveCompositeKey(
           'add-button',
           key,
         )}
-        isHover={isHover}
+        isShown={Boolean(isHover)}
       />
 
       <Circle

@@ -10,7 +10,8 @@ export const useHoverKey = (
   key2 = GLOBAL_KEY,
 ) => {
   const animate = useCursorAnimate();
-  const { hoverKey, onHoverKey } = useCursor();
+  const { hoverKey, onHoverKey } =
+    useCursor();
   const key = resolveCompositeHoverKey(
     cursorKey,
     key1,
@@ -41,3 +42,7 @@ export const useHoverKey = (
     handlers,
   };
 };
+
+export type TUseHoverKey = ReturnType<
+  typeof useHoverKey
+>;

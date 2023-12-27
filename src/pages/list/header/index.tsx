@@ -5,7 +5,7 @@ export const Header = () => {
     <header className='w-container row-space'>
       <Title3>
         <kbd className='text-xl'>
-          Workshop
+          List
         </kbd>
       </Title3>
     </header>
