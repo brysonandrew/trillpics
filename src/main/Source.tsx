@@ -2,10 +2,10 @@ import {
   Navigate,
   useRoutes,
 } from 'react-router-dom';
-import { Shell as MainShell } from '@main/Shell';
+import { Shell as MainShell } from '@main/shell/Shell';
 import { Index } from '@pages/index';
 import { List } from '@pages/list';
-import { Checkout } from '@pages/checkout';
+import { Checkout } from '@pages/checkout/main';
 
 const WITH_SHELL_KEY = 'with-shell';
 
