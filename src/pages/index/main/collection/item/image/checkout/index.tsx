@@ -1,4 +1,8 @@
-import { FC, useMemo } from 'react';
+import {
+  CSSProperties,
+  FC,
+  useMemo,
+} from 'react';
 import { TClassValueProps } from '@t/dom';
 import { useCheckout } from '@context/checkout';
 import { motion } from 'framer-motion';
@@ -14,24 +18,36 @@ import {
 } from '@context/checkout/config';
 
 const Label = styled.label`
-  & input + div {
-    background-color: white;
-    color: black;
+  html:not(.dark) & input + div {
+    background-color: var(--gray-05);
   }
-  & input:checked + div {
-    background-color: black;
-    color: white;
+  html:not(.dark)
+    &
+    input:checked
+    + div {
+    background-color: var(--white-05);
+    border: 1px solid var(--white);
+  }
+
+  html.dark & input + div {
+    background-color: var(--gray-01);
+  }
+  html.dark & input:checked + div {
+    background-color: var(--white-01);
+    border: 1px solid var(--white);
   }
 `;
 
 type TProps = TClassValueProps & {
   name: string;
   src: string;
+  style: CSSProperties;
 };
 export const Checkout: FC<TProps> = ({
   name: itemName,
   src,
   classValue,
+  style,
   ...props
 }) => {
   const form = useForm({
@@ -63,11 +79,15 @@ export const Checkout: FC<TProps> = ({
   return (
     <motion.form
       className={clsx(
-        'column-end gap-4 cursor-default bg-red hover:bg-blue',
+        'column-end gap-4 cursor-default',
         classValue,
       )}
       layout
       onSubmit={handleSubmit}
+      style={{
+        position: style.position,
+        zIndex: style.zIndex,
+      }}
       {...FADE_PRESENCE}
     >
       <input
@@ -78,10 +98,9 @@ export const Checkout: FC<TProps> = ({
       {INPUTS.map(([name, items]) => (
         <div
           key={name}
-          className='column-end gap-2 w-full'
+          className='column-end gap-2 w-full p-px'
         >
-          <kbd>{name}</kbd>
-          <ul className='row gap-2 w-full'>
+          <ul className='row gap-px w-full'>
             {items.map((value) => (
               <li
                 key={value}
@@ -98,7 +117,7 @@ export const Checkout: FC<TProps> = ({
                     title={`Select ${name}`}
                   />
                   <div className='w-full px-3 py-2 text-center'>
-                    {value}
+                    <samp>{value}</samp>
                   </div>
                 </Label>
               </li>

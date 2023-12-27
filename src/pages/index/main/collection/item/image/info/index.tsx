@@ -8,7 +8,7 @@ import {
 import { FC, Fragment } from 'react';
 import { TPassedProps } from '..';
 import { Text } from './Text';
-import { Checkout } from './checkout';
+import { Checkout } from '../checkout';
 import { Circle } from '@components/decoration/Circle';
 
 type TProps = Pick<
@@ -43,7 +43,7 @@ export const Info: FC<TProps> = ({
         ? {}
         : {
             className:
-              'absolute top-0 left-1/2 w-container -translate-x-1/2',
+              'absolute top-0 left-1/2 w-container -translate-x-1/2 pointer-events-none',
             style: {
               height: style.height,
               ...sharedStyle,
@@ -82,18 +82,7 @@ export const Info: FC<TProps> = ({
             >
               x
             </Circle>
-            <div
-              onClick={(e) =>
-                e.stopPropagation()
-              }
-            >
-              <Checkout
-                key='checkout'
-                classValue='absolute bottom-12 right-12'
-                name={name}
-                src={src}
-              />
-            </div>
+        
           </>
         )}
       </AnimatePresence>

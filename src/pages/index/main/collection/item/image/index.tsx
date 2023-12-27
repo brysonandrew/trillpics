@@ -7,6 +7,7 @@ import { Design } from './Design';
 import { Canvas } from './Canvas';
 import { CART_QUANTITY_CURSOR_KEY } from '@components/cursor/switch/config';
 import { useCursor } from '@context/cursor';
+import { Checkout } from './checkout';
 
 export type TPassedProps = {
   name: string;
@@ -90,6 +91,17 @@ export const Image: FC<TProps> = ({
         }
         style={imageProps.style}
       />
+      <>
+        {!isFirstPosition && (
+          <Checkout
+            key='checkout'
+            classValue='absolute bottom-12 right-12'
+            name={name}
+            src={src}
+            style={imageProps.style}
+          />
+        )}
+      </>
     </Root>
   );
 };

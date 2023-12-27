@@ -1,24 +1,29 @@
 import { FC } from 'react';
 import { B } from '@components/interactive/B';
 import clsx from 'clsx';
-import { TButtonMotionProps } from '@t/dom';
-import { Backdrop } from '../../../../../../../../components/decoration/Backdrop';
+import {
+  TButtonMotionProps,
+  TClassValueProps,
+} from '@t/dom';
+import { Backdrop } from '../../../../../../../components/decoration/Backdrop';
 import { resolveCompositeKey } from '@utils/keys';
 import { Circle } from '@components/decoration/Circle';
 import { TGradientShortcut } from '@uno/shortcuts/gradient';
 import { motion } from 'framer-motion';
 
-type TProps = TButtonMotionProps & {
-  variant: 'add' | 'remove';
-  gradient: TGradientShortcut;
-  iconChar: 'x' | '+';
-  children: string;
-  isHover?: boolean;
-};
+type TProps = TClassValueProps &
+  TButtonMotionProps & {
+    variant: 'add' | 'remove';
+    gradient: TGradientShortcut;
+    iconChar: 'x' | '+';
+    children: string;
+    isHover?: boolean;
+  };
 export const Button: FC<TProps> = (
   props,
 ) => {
   const {
+    classValue,
     variant,
     gradient,
     isHover,
@@ -30,10 +35,8 @@ export const Button: FC<TProps> = (
   return (
     <B
       classValue={clsx(
-        'gap-4 px-4 py-3 border-1-gray-02 overflow-hidden',
-        variant === 'add'
-          ? 'row'
-          : 'row-reverse',
+        'row gap-4 px-4 py-3 border-1-gray-02 overflow-hidden',
+        classValue,
       )}
       look='neu-empty'
       {...rest}
@@ -45,7 +48,10 @@ export const Button: FC<TProps> = (
         )}
         isShown={Boolean(isHover)}
       />
-      <Circle gradient={gradient} classValue='relative'>
+      <Circle
+        gradient={gradient}
+        classValue='relative'
+      >
         {iconChar}
       </Circle>
       <motion.samp
