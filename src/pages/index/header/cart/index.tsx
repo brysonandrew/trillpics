@@ -1,4 +1,4 @@
-import { CART_CURSOR_KEY } from '@components/cursor/switch/config';
+import { CART_CURSOR_KEY, NONE_CURSOR_KEY } from '@components/cursor/switch/config';
 import { Circle } from '@components/decoration/Circle';
 import { I } from '@components/Icon';
 import { useCheckout } from '@context/checkout';
@@ -10,7 +10,7 @@ export const Cart = () => {
   const { count } = useCheckout();
   return (
     <Item
-      cursorKey={CART_CURSOR_KEY}
+      cursorKey={NONE_CURSOR_KEY}
       Root={motion.a}
       title='Proceed to checkout'
       icon={

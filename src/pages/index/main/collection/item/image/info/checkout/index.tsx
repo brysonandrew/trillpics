@@ -1,104 +1,115 @@
-import {
-  CSSProperties,
-  FC,
-  useMemo,
-} from 'react';
-import { TButtonMotionProps } from '@t/dom';
+import { FC, useMemo } from 'react';
+import { TClassValueProps } from '@t/dom';
 import { useCheckout } from '@context/checkout';
-import { Remove } from './Remove';
-import {
-  AnimatePresence,
-  motion,
-} from 'framer-motion';
+import { motion } from 'framer-motion';
 import { Add } from './Add';
-import { TPassedProps } from './Button';
-import { Count } from './Count';
 import clsx from 'clsx';
-import { TUseHoverKey } from '@hooks/cursor/useHoverKey';
 import { FADE_PRESENCE } from '@constants/animation';
+import { useForm } from 'react-hook-form';
+import styled from '@emotion/styled';
+import {
+  DEFAULT_VALUES,
+  SIZES,
+  COLORS,
+} from '@context/checkout/config';
 
-type TProps = TButtonMotionProps &
-  TPassedProps & {
-    isShown: boolean;
-    sharedStyle: CSSProperties;
-    handlers: TUseHoverKey['handlers'];
-  };
+const Label = styled.label`
+  & input + div {
+    background-color: white;
+    color: black;
+  }
+  & input:checked + div {
+    background-color: black;
+    color: white;
+  }
+`;
+
+type TProps = TClassValueProps & {
+  name: string;
+  src: string;
+};
 export const Checkout: FC<TProps> = ({
-  sharedStyle,
-  handlers,
-  isInteraction: _isInteraction,
-  isFirstPosition,
-  isHover,
-  isParentHover,
+  name: itemName,
+  src,
+  classValue,
   ...props
 }) => {
-  const { items } = useCheckout();
+  const form = useForm({
+    defaultValues: DEFAULT_VALUES,
+  });
+  const { items: allCartItems } =
+    useCheckout();
   const cartItems = useMemo(
     () =>
-      items.filter(
-        (item) => item === props.src,
+      allCartItems.filter(
+        (item) => item === src,
       ),
-    [items, props.src],
+    [allCartItems.length, src],
   );
   const cartItemCount =
     cartItems.length;
   const isCartItems = cartItemCount > 0;
+  const { onItemsAdd } = useCheckout();
+  const handleSubmit =
+    form.handleSubmit((...args) => {
+      console.log(args);
+    });
 
-  const isInteraction =
-    _isInteraction && isCartItems;
-
-  const sharedProps = {
-    isInteraction,
-    isFirstPosition,
-    isHover,
-    isParentHover,
-    ...props,
-  };
+  const INPUTS = [
+    ['size', SIZES],
+    ['color', COLORS],
+  ] as const;
 
   return (
-    <motion.div
+    <motion.form
       className={clsx(
-        'absolute w-full row-right',
-        isFirstPosition
-          ? 'left-6 right-6 bottom-6 overflow-hidden'
-          : 'left-12 right-12 bottom-12',
+        'column-end gap-4 cursor-default bg-red hover:bg-blue',
+        classValue,
       )}
-      style={sharedStyle}
       layout
-      {...handlers}
-      {...{
-        ...FADE_PRESENCE,
-        animate: {
-          opacity:
-            !isFirstPosition || isHover
-              ? 1
-              : isParentHover
-              ? 0.6
-              : 0.2,
-        },
-      }}
+      onSubmit={handleSubmit}
+      {...FADE_PRESENCE}
     >
-      <AnimatePresence>
-        {isCartItems && (
-          <>
-            <Remove
-              key='remove'
-              {...sharedProps}
-            />
-            <Count
-              key='count'
-              {...sharedProps}
-            >
-              {cartItemCount}
-            </Count>
-          </>
-        )}
-        <Add
-          key='add'
-          cartItemCount={cartItemCount}
-          {...sharedProps}
-        />
-      </AnimatePresence>
-    </motion.div>
+      <input
+        type='hidden'
+        name='name'
+        value={itemName}
+      />
+      {INPUTS.map(([name, items]) => (
+        <div
+          key={name}
+          className='column-end gap-2 w-full'
+        >
+          <kbd>{name}</kbd>
+          <ul className='row gap-2 w-full'>
+            {items.map((value) => (
+              <li
+                key={value}
+                className='w-full'
+              >
+                <Label className='relative border-gray-1 cursor-pointer'>
+                  <input
+                    className='absolute inset-0 hidden'
+                    {...form.register(
+                      name,
+                    )}
+                    type='radio'
+                    value={value}
+                    title={`Select ${name}`}
+                  />
+                  <div className='w-full px-3 py-2 text-center'>
+                    {value}
+                  </div>
+                </Label>
+              </li>
+            ))}
+          </ul>
+        </div>
+      ))}
+      <Add
+        key='add'
+        cartItemCount={cartItemCount}
+      />
+    </motion.form>
   );
 };

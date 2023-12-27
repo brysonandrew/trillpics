@@ -7,7 +7,6 @@ type TProps = TPassedProps & {
   children: TChildren;
 };
 export const Count: FC<TProps> = ({
-  isInteraction,
   children,
 }) => {
   return (
@@ -15,8 +14,8 @@ export const Count: FC<TProps> = ({
       key='count'
       classValue='relative'
       gradient={
-        isInteraction
-          ? 'bg-red-orange-amber'
+        false
+          ? undefined
           : 'bg-light-lighter'
       }
       

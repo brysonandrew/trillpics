@@ -1,5 +1,5 @@
 import type { FC } from 'react';
-import type { TContext } from './types';
+import type { TContext } from './config';
 import { Checkout } from '.';
 
 type TConsumerProps = {

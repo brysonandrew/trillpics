@@ -14,7 +14,7 @@ type TProps<T extends FieldValues> =
     | 'min'
     | 'max'
     | 'step'
-    | 'defaultValue'
+    | 'value'
   > & {
     form: UseFormReturn<T>;
     name: Path<T>;

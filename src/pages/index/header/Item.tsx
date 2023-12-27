@@ -5,7 +5,6 @@ import {
   motion,
 } from 'framer-motion';
 import { FC } from 'react';
-import { useCursor } from '@context/cursor';
 import { Backdrop } from '@components/decoration/Backdrop';
 import {
   TAnchorMotionProps,
@@ -15,10 +14,7 @@ import { TChildren } from '@t/index';
 import { SHARED_ANIMATION_PROPS } from './config';
 import { useScroll } from '@context/scroll';
 import { useHoverKey } from '@hooks/cursor/useHoverKey';
-import {
-  PROJECT_CURSOR_KEY,
-  TCursorKey,
-} from '@components/cursor/switch/config';
+import { TCursorKey } from '@components/cursor/switch/config';
 import { useDarkMode } from '@context/dark-mode';
 import { resolveCompositeKey } from '@utils/keys';
 
@@ -81,9 +77,9 @@ export const Item: FC<TProps> = ({
             />
           )}
         </AnimatePresence>
-        <Backdrop
+        <Backdrop 
           id={title}
-          isHover={isHover}
+          isShown={isHover}
         />
         <div className='center h-12 w-12 shink-0 grow-0'>
           {icon}

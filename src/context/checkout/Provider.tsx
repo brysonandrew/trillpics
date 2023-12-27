@@ -2,7 +2,14 @@ import type { FC } from 'react';
 import type { TChildrenElement } from '@t/index';
 import { Checkout } from '.';
 import { useLocalStorage } from '@hooks/dom/useLocalStorage';
-import { TItem, TItems } from './types';
+import {
+  DEFAULT_VALUES,
+  TDefaultValues,
+  TItem,
+  TItems,
+} from './config';
+import { DefaultValues } from 'react-hook-form';
+import { useLocalStorageForm } from './useLocalStorageForm';
 
 type TProviderProps = {
   children: TChildrenElement;
@@ -10,6 +17,10 @@ type TProviderProps = {
 export const Provider: FC<
   TProviderProps
 > = ({ children }) => {
+  const form = useLocalStorageForm<
+    DefaultValues<TDefaultValues>
+  >({ defaultValues: DEFAULT_VALUES });
+
   const [items, setItems] =
     useLocalStorage<TItems>(
       'cart-items',
@@ -46,6 +57,7 @@ export const Provider: FC<
   return (
     <Checkout.Provider
       value={{
+        form,
         count: items.length,
         items,
         onItemsAdd,

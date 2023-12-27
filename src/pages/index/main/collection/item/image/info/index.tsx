@@ -8,14 +8,14 @@ import {
 import { FC, Fragment } from 'react';
 import { TPassedProps } from '..';
 import { Text } from './Text';
-import { Close } from './Close';
 import { Checkout } from './checkout';
+import { Circle } from '@components/decoration/Circle';
 
 type TProps = Pick<
   TPassedProps,
   'name' | 'src'
 > &
-  TUseHoverKey & {
+  Pick<TUseHoverKey, 'isHover'> & {
     isFirstPosition: boolean;
     isShown: boolean;
     style: TUseImageReturn['imageProps']['style'];
@@ -23,7 +23,6 @@ type TProps = Pick<
   };
 export const Info: FC<TProps> = ({
   isHover,
-  handlers,
   name,
   src,
   isFirstPosition,
@@ -44,7 +43,7 @@ export const Info: FC<TProps> = ({
         ? {}
         : {
             className:
-              'absolute top-0 left-1/2 w-container -translate-x-1/2 pointer-events-none',
+              'absolute top-0 left-1/2 w-container -translate-x-1/2',
             style: {
               height: style.height,
               ...sharedStyle,
@@ -65,34 +64,38 @@ export const Info: FC<TProps> = ({
               style={sharedStyle}
             />
           )}
-
-        {isShown &&
-          !isFirstPosition && (
-            <Close
-              key='close'
-              src={src}
-              style={sharedStyle}
-              isHover={isHover}
-              {...handlers}
-            />
-          )}
-        <Checkout
-          key='checkout'
-          isFirstPosition={
-            isFirstPosition
-          }
-          isHover={isHover}
-          isParentHover={isParentHover}
-          isShown={isShown}
-          isInteraction={
-            isParentHover ||
-            isHover ||
-            !isFirstPosition
-          }
-          src={src}
-          sharedStyle={sharedStyle}
-          handlers={handlers}
-        />
+        {isShown && isFirstPosition && (
+          <Circle
+            key='enter'
+            classValue='absolute bottom-6 right-6 pointer-events-none'
+            gradient='bg-green-emerald-teal'
+          >
+            +
+          </Circle>
+        )}
+        {!isFirstPosition && (
+          <>
+            <Circle
+              key='exit'
+              classValue='absolute top-18 right-18 pointer-events-none'
+              gradient='bg-fuchsia-pink-rose'
+            >
+              x
+            </Circle>
+            <div
+              onClick={(e) =>
+                e.stopPropagation()
+              }
+            >
+              <Checkout
+                key='checkout'
+                classValue='absolute bottom-12 right-12'
+                name={name}
+                src={src}
+              />
+            </div>
+          </>
+        )}
       </AnimatePresence>
     </Root>
   );

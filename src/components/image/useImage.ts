@@ -1,5 +1,6 @@
 import {
   EXIT_CURSOR_KEY,
+  NONE_CURSOR_KEY,
   VIEW_CURSOR_KEY,
 } from '@components/cursor/switch/config';
 import { FADE_PRESENCE } from '@constants/animation';
@@ -40,12 +41,7 @@ export const useImage = ({
   const isFirstPosition =
     position === POSITIONS[0];
   const { isHover, handlers } =
-    useHoverKey(
-      isFirstPosition
-        ? VIEW_CURSOR_KEY
-        : 'none',
-      id,
-    );
+    useHoverKey(NONE_CURSOR_KEY, id);
   const isLayout = Boolean(isHover);
   const handleTap = () => {
     if (isFirstPosition) {

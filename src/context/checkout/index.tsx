@@ -3,7 +3,7 @@ import {
   createContext,
 } from 'react';
 import { CONTEXT } from './constants';
-import { TContext } from './types';
+import { TContext } from './config';
 
 export const Checkout = createContext<TContext>(CONTEXT);
 

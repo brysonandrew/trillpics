@@ -2,7 +2,7 @@ import { NOOP } from '@constants/functions';
 import type {
   TContext,
   TItems,
-} from './types';
+} from './config';
 
 const INIT_ITEMS: TItems = [];
 

@@ -11,7 +11,7 @@ type TProps = {
 };
 export const Circle: FC<TProps> = ({
   classValue,
-  gradient = 'bg-fuchsia-pink-rose',
+  gradient,
   children,
 }) => {
   return (

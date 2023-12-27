@@ -7,7 +7,7 @@ import { useDarkMode } from '@context/dark-mode';
 import { Moon } from './icons/Moon';
 import { Sun } from './icons/Sun';
 import { Item } from '../Item';
-import { DARK_MODE_CURSOR_KEY } from '@components/cursor/switch/config';
+import { DARK_MODE_CURSOR_KEY, NONE_CURSOR_KEY } from '@components/cursor/switch/config';
 
 export const DarkMode = () => {
   const { isScroll } =
@@ -34,7 +34,7 @@ export const DarkMode = () => {
 
   return (
     <Item
-    cursorKey={DARK_MODE_CURSOR_KEY}
+      cursorKey={NONE_CURSOR_KEY}
       title={title}
       onTap={handleTap}
       transition={{
