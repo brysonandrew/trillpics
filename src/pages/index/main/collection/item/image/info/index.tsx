@@ -9,6 +9,7 @@ import { FC, Fragment } from 'react';
 import { TPassedProps } from '..';
 import { Add } from './Add';
 import { Text } from './Text';
+import { Close } from './Close';
 
 type TProps = Pick<
   TPassedProps,
@@ -77,6 +78,20 @@ export const Info: FC<TProps> = ({
             {...handlers}
           />
         )}
+        {isShown &&
+          !isFirstPosition && (
+            <Close
+              key='close'
+              src={src}
+              style={{
+                position:
+                  style.position,
+                zIndex: style.zIndex,
+              }}
+              isHover={isHover}
+              {...handlers}
+            />
+          )}
       </AnimatePresence>
     </Root>
   );
