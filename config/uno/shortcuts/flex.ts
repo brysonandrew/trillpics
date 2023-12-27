@@ -4,6 +4,8 @@ export const FLEX: StaticShortcutMap = {
   'inline-row':
     'inline-flex flex-row items-center',
   row: 'flex flex-row items-center',
+  'row-reverse':
+    'flex flex-row-reverse items-center',
   'row-wrap': 'row flex-wrap',
   'row-wrap-right':
     'row-wrap justify-end',

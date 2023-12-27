@@ -7,9 +7,9 @@ import {
 } from 'framer-motion';
 import { FC, Fragment } from 'react';
 import { TPassedProps } from '..';
-import { Add } from './Add';
 import { Text } from './Text';
 import { Close } from './Close';
+import { Checkout } from './checkout';
 
 type TProps = Pick<
   TPassedProps,
@@ -19,6 +19,7 @@ type TProps = Pick<
     isFirstPosition: boolean;
     isShown: boolean;
     style: TUseImageReturn['imageProps']['style'];
+    isParentHover: boolean;
   };
 export const Info: FC<TProps> = ({
   isHover,
@@ -28,10 +29,15 @@ export const Info: FC<TProps> = ({
   isFirstPosition,
   isShown,
   style,
+  isParentHover,
 }) => {
   const Root = isFirstPosition
     ? Fragment
     : motion.div;
+  const sharedStyle = {
+    position: style.position,
+    zIndex: style.zIndex,
+  };
   return (
     <Root
       {...(isFirstPosition
@@ -41,7 +47,7 @@ export const Info: FC<TProps> = ({
               'absolute top-0 left-1/2 w-container -translate-x-1/2 pointer-events-none',
             style: {
               height: style.height,
-              zIndex: style.zIndex,
+              ...sharedStyle,
             },
             ...FADE_PRESENCE,
           })}
@@ -50,48 +56,43 @@ export const Info: FC<TProps> = ({
         {typeof name !== 'undefined' &&
           isShown && (
             <Text
-              key={name}
+              key='text'
               name={name}
               isFirstPosition={
                 isFirstPosition
               }
               src={src}
-              style={{
-                position:
-                  style.position,
-                zIndex: style.zIndex,
-              }}
+              style={sharedStyle}
             />
           )}
-        {isShown && (
-          <Add
-            key='add'
-            isFirstPosition={
-              isFirstPosition
-            }
-            src={src}
-            style={{
-              position: style.position,
-              zIndex: style.zIndex,
-            }}
-            isHover={isHover}
-            {...handlers}
-          />
-        )}
+
         {isShown &&
           !isFirstPosition && (
             <Close
               key='close'
               src={src}
-              style={{
-                position:
-                  style.position,
-                zIndex: style.zIndex,
-              }}
+              style={sharedStyle}
               isHover={isHover}
               {...handlers}
             />
           )}
+        <Checkout
+          key='checkout'
+          isFirstPosition={
+            isFirstPosition
+          }
+          isHover={isHover}
+          isParentHover={isParentHover}
+          isShown={isShown}
+          isInteraction={
+            isParentHover ||
+            isHover ||
+            !isFirstPosition
+          }
+          src={src}
+          sharedStyle={sharedStyle}
+          handlers={handlers}
+        />
       </AnimatePresence>
     </Root>
   );

@@ -5,6 +5,12 @@ export const GRADIENT = {
     'bg-gradient-to-r from-green via-emerald to-teal',
   'bg-emerald-teal-cyan':
     'bg-gradient-to-r from-emerald via-teal to-cyan',
+  'bg-red-orange-amber':
+    'bg-gradient-to-r from-red via-orange to-amber',
+  'bg-light-lighter':
+    'bg-gradient-to-r from-white to-white-9',
+  'bg-dark-darker':
+    'bg-gradient-to-r from-white to-white-9',
 } as const;
 
 export type TGradientShortcut =

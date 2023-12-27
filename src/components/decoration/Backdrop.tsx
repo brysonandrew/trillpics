@@ -30,7 +30,7 @@ export const Backdrop: FC<TProps> = ({
             y: '100%',
           }}
           animate={{
-            opacity: 0.1,
+            opacity: 0.05,
             y: '0%',
           }}
           exit={{

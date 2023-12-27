@@ -2,7 +2,10 @@ import styled from '@emotion/styled';
 import clsx from 'clsx';
 import { motion } from 'framer-motion';
 import type { FC } from 'react';
-import { TChildren, TClassValueProps } from '@t/index';
+import {
+  TChildren,
+  TClassValueProps,
+} from '@t/index';
 import { TDivMotionProps } from '@t/dom';
 import { useCursor } from '@context/cursor';
 import { CURSOR_Z } from '@constants/dom';
@@ -28,7 +31,8 @@ export const Sight: FC<TProps> = ({
   children,
   ...props
 }) => {
-  const { cursor, cursorLabel } = useCursor();
+  const { cursor, cursorLabel } =
+    useCursor();
 
   return (
     <Root
@@ -44,7 +48,7 @@ export const Sight: FC<TProps> = ({
         ...style,
       }}
       className={clsx(
-        'fixed center bg-section text-section glow-interactive pointer-events-none rounded-full cursor-default',
+        'fixed center bg-section-inversed text-section-inversed glow-interactive pointer-events-none rounded-full cursor-default',
         classValue,
       )}
       {...props}

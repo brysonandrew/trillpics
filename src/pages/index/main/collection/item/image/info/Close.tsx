@@ -33,15 +33,15 @@ export const Close: FC<TProps> = ({
     >
       <Backdrop
         id={resolveCompositeKey(
-          'add-button',
+          'exit-button',
           key,
         )}
         isShown={Boolean(isHover)}
       />
 
       <Circle
-        classValue='relative'
-        gradient='bg-emerald-teal-cyan'
+        classValue='relative zoom-out'
+        gradient='bg-fuchsia-pink-rose'
       >
         x
       </Circle>
@@ -50,7 +50,7 @@ export const Close: FC<TProps> = ({
           'relative text-lg',
         )}
       >
-        close
+        exit
       </samp>
     </B>
   );

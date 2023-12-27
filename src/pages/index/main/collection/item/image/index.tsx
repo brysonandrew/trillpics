@@ -81,6 +81,7 @@ export const Image: FC<TProps> = ({
               isAnyHover),
         )}
         isHover={isHoverAdd}
+        isParentHover={isHover}
         handlers={handlers}
         src={src}
         isFirstPosition={

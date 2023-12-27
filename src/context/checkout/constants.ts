@@ -9,5 +9,6 @@ const INIT_ITEMS: TItems = [];
 export const CONTEXT: TContext = {
   count: INIT_ITEMS.length,
   items: INIT_ITEMS,
-  onItemsUpdate: NOOP,
+  onItemsAdd: NOOP,
+  onItemsRemove: NOOP,
 };

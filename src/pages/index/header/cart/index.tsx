@@ -20,7 +20,10 @@ export const Cart = () => {
             icon='mdi:cart'
             {...ICON_CLASS_VALUE_PROPS}
           />
-          <Circle classValue='absolute top-0 right-0'>
+          <Circle
+            classValue='absolute top-0 right-0'
+            gradient='bg-red-orange-amber'
+          >
             {count.toLocaleString()}
           </Circle>
         </>
