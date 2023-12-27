@@ -2,7 +2,7 @@ import { TUseImageReturn } from '@components/image/useImage';
 import { Backdrop } from './Backdrop';
 import { FC, Fragment } from 'react';
 import { Portal } from '@components/image/Portal';
-import { Info } from './info';
+import { Container } from './container';
 import { Design } from './Design';
 import { Canvas } from './Canvas';
 import { CART_QUANTITY_CURSOR_KEY } from '@components/cursor/switch/config';
@@ -76,7 +76,7 @@ export const Image: FC<TProps> = ({
         size={size}
         imageProps={imageProps}
       />
-      <Info
+      <Container
         name={name}
         isShown={Boolean(
           !isFirstPosition ||
@@ -91,17 +91,6 @@ export const Image: FC<TProps> = ({
         }
         style={imageProps.style}
       />
-      <>
-        {!isFirstPosition && (
-          <Checkout
-            key='checkout'
-            classValue='absolute bottom-12 right-12'
-            name={name}
-            src={src}
-            style={imageProps.style}
-          />
-        )}
-      </>
     </Root>
   );
 };

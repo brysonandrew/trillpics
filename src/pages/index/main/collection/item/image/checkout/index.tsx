@@ -39,13 +39,11 @@ const Label = styled.label`
 type TProps = TClassValueProps & {
   name: string;
   src: string;
-  style: CSSProperties;
 };
 export const Checkout: FC<TProps> = ({
   name: itemName,
   src,
   classValue,
-  style,
   ...props
 }) => {
   const { form, items: allCartItems } =
@@ -74,15 +72,11 @@ export const Checkout: FC<TProps> = ({
   return (
     <motion.form
       className={clsx(
-        'column-end gap-4',
+        'absolute bottom-16 right-14 column-end gap-4',
         classValue,
       )}
       layout
       onSubmit={handleSubmit}
-      style={{
-        position: style.position,
-        zIndex: style.zIndex,
-      }}
       {...FADE_PRESENCE}
     >
       <input
