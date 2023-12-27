@@ -17,9 +17,10 @@ type TProviderProps = {
 export const Provider: FC<
   TProviderProps
 > = ({ children }) => {
-  const form = useLocalStorageForm<
-    DefaultValues<TDefaultValues>
-  >({ defaultValues: DEFAULT_VALUES });
+  const form =
+    useLocalStorageForm<TDefaultValues>(
+      { defaultValues: DEFAULT_VALUES },
+    );
 
   const [items, setItems] =
     useLocalStorage<TItems>(

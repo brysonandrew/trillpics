@@ -80,7 +80,7 @@ export const Header = () => {
         </samp>
       </motion.header>
       <Padding />
-      <motion.div className='sticky left-0 top-0 right-0 h-20 overflow-hidden z-40'>
+      <motion.div className='sticky left-0 top-0 right-0 h-19 overflow-hidden z-40'>
         <Divider
           classValue={clsx(
             'absolute left-0 bottom-0 h-full',

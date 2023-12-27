@@ -9,10 +9,8 @@ import { motion } from 'framer-motion';
 import { Add } from './Add';
 import clsx from 'clsx';
 import { FADE_PRESENCE } from '@constants/animation';
-import { useForm } from 'react-hook-form';
 import styled from '@emotion/styled';
 import {
-  DEFAULT_VALUES,
   SIZES,
   COLORS,
 } from '@context/checkout/config';
@@ -30,7 +28,7 @@ const Label = styled.label`
   }
 
   html.dark & input + div {
-    background-color: var(--gray-01);
+    background-color: var(--black-05);
   }
   html.dark & input:checked + div {
     background-color: var(--white-01);
@@ -50,10 +48,7 @@ export const Checkout: FC<TProps> = ({
   style,
   ...props
 }) => {
-  const form = useForm({
-    defaultValues: DEFAULT_VALUES,
-  });
-  const { items: allCartItems } =
+  const { form, items: allCartItems } =
     useCheckout();
   const cartItems = useMemo(
     () =>
@@ -79,7 +74,7 @@ export const Checkout: FC<TProps> = ({
   return (
     <motion.form
       className={clsx(
-        'column-end gap-4 cursor-default',
+        'column-end gap-4',
         classValue,
       )}
       layout
@@ -106,7 +101,7 @@ export const Checkout: FC<TProps> = ({
                 key={value}
                 className='w-full'
               >
-                <Label className='relative border-gray-1 cursor-pointer'>
+                <Label className='relative border-gray-1 cursor-pointer backdrop-blur-lg'>
                   <input
                     className='absolute inset-0 hidden'
                     {...form.register(

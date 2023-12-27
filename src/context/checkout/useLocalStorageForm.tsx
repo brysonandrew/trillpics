@@ -45,7 +45,7 @@ export const useLocalStorageForm = <
   return form;
 };
 
-export type TUseLocalStorageForm =
+export type TUseLocalStorageForm<T extends FieldValues> =
   ReturnType<
-    typeof useLocalStorageForm
+    typeof useLocalStorageForm<T>
   >;

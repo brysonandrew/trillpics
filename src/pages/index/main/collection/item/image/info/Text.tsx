@@ -20,7 +20,7 @@ export const Text: FC<TProps> = ({
   return (
     <motion.samp
       className={clsx(
-        'absolute pointer-events-none',
+        'absolute pointer-events-none mix-blend-difference',
         isFirstPosition
           ? 'top-6 left-6 text-2xl'
           : 'left-12 top-12 text-4xl',
@@ -30,7 +30,7 @@ export const Text: FC<TProps> = ({
         src,
       )}
       {...props}
-      {...FADE_PRESENCE}
+      // {...FADE_PRESENCE}
     >
       {kebabToTitle(name)}
     </motion.samp>

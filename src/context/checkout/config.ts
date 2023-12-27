@@ -35,7 +35,7 @@ export type TItems = TItem[];
 export type TContext = {
   count: number;
   items: TItems;
-  form: TUseLocalStorageForm;
+  form: TUseLocalStorageForm<TDefaultValues>;
   onItemsAdd: (
     next: TItem | TItems,
   ) => void;

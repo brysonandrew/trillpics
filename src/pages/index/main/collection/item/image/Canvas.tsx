@@ -1,4 +1,5 @@
 import { TUseImageReturn } from '@components/image/useImage';
+import { useCheckout } from '@context/checkout';
 import { useDarkMode } from '@context/dark-mode';
 import { resolveCompositeKey } from '@utils/keys';
 import clsx from 'clsx';
@@ -24,6 +25,9 @@ export const Canvas: FC<TProps> = ({
   isFirstPosition,
   ...imageProps
 }) => {
+  const { form } = useCheckout();
+  const colorValue =
+    form.watch('color');
   const style = imageProps.style;
   const height = style.height * SCALE;
   const paddingY = height * PADDING;
@@ -41,7 +45,18 @@ export const Canvas: FC<TProps> = ({
           : 'zoom-out',
       )}
       {...imageProps}
-
+      style={{
+        ...imageProps.style,
+        filter: isFirstPosition
+          ? 'none'
+          : `invert(${
+              colorValue === 'white'
+                ? 100
+                : 0
+            }%) brightness(${
+              dm.isDarkMode ? 100 : 100
+            }%)`,
+      }}
       key={resolveCompositeKey(
         imageProps.key,
         dm.darkKey,
