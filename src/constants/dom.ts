@@ -114,3 +114,7 @@ export const ELEMENT_TAGS = [
   'wbr',
   'webview',
 ] as const;
+
+export const FULLSCREEN_Z = 50000;
+export const NOTIFICATION_Z = 60000;
+export const CURSOR_Z = 70000;

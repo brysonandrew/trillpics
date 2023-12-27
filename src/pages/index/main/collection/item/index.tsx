@@ -16,18 +16,16 @@ export const Item: FC<TProps> = ({
   const imageConfig =
     resolveConfigFromSize({ size });
 
-  const imageReturn = useImage(
-    imageConfig,
-  );
+  const imageReturn = useImage({
+    ...imageConfig,
+    id: passedProps.src,
+  });
 
   const { boxProps, ...rest } =
     imageReturn;
- 
-  return (
-    <li
 
-      {...boxProps}
-    >
+  return (
+    <li {...boxProps}>
       <Image
         size={size}
         {...passedProps}

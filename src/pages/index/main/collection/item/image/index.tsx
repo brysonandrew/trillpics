@@ -3,10 +3,10 @@ import { Backdrop } from './Backdrop';
 import { useHoverKey } from '@hooks/cursor/useHoverKey';
 import { FC, Fragment } from 'react';
 import { Portal } from '@components/image/Portal';
-import { Info } from './Info';
+import { Info } from './info';
 import { Design } from './Design';
 import { Canvas } from './Canvas';
-
+import { CART_CURSOR_KEY } from '@components/cursor/switch/config';
 
 export type TPassedProps = {
   name?: string;
@@ -33,7 +33,14 @@ export const Image: FC<TProps> = ({
   const {
     isHover: isHoverAdd,
     handlers,
-  } = useHoverKey('none', src, 'add');
+  } = useHoverKey(
+    CART_CURSOR_KEY,
+    src,
+    'Add to shopping cart',
+  );
+
+  const isAnyHover =
+    isHover || isHoverAdd;
 
   const Root = isFirstPosition
     ? Fragment
@@ -46,7 +53,7 @@ export const Image: FC<TProps> = ({
         isFirstPosition={
           isFirstPosition
         }
-        isShown={isHover || isHoverAdd}
+        isShown={isAnyHover}
         src={src}
         fullScreenBackdropProps={
           backdropProps
@@ -71,7 +78,7 @@ export const Image: FC<TProps> = ({
         isShown={Boolean(
           !isFirstPosition ||
             (isFirstPosition &&
-              isHover),
+              isAnyHover),
         )}
         isHover={isHoverAdd}
         handlers={handlers}

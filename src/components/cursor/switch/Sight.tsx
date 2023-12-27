@@ -5,6 +5,7 @@ import type { FC } from 'react';
 import { TChildren, TClassValueProps } from '@t/index';
 import { TDivMotionProps } from '@t/dom';
 import { useCursor } from '@context/cursor';
+import { CURSOR_Z } from '@constants/dom';
 
 const resolveSize = (size: number) => {
   return {
@@ -37,12 +38,13 @@ export const Sight: FC<TProps> = ({
         originX: '50%',
         originY: '50%',
         opacity: 1,
+        zIndex: CURSOR_Z,
         ...resolveSize(size),
         ...cursorLabel,
         ...style,
       }}
       className={clsx(
-        'fixed center bg-section text-section glow-interactive pointer-events-none rounded-full cursor-default z-50',
+        'fixed center bg-section text-section glow-interactive pointer-events-none rounded-full cursor-default',
         classValue,
       )}
       {...props}

@@ -6,9 +6,9 @@ import {
   motion,
 } from 'framer-motion';
 import { FC, Fragment } from 'react';
-import { TPassedProps } from '.';
-import { Add } from '../Add';
-import { Text } from '../Text';
+import { TPassedProps } from '..';
+import { Add } from './Add';
+import { Text } from './Text';
 
 type TProps = Pick<
   TPassedProps,

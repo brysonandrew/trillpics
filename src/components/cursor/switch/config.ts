@@ -15,7 +15,7 @@ export const DARK_MODE_CURSOR_KEY =
 export const CART_CURSOR_KEY = 'cart';
 export const SOUND_CURSOR_KEY = 'sound';
 export const VIEW_CURSOR_KEY = 'view';
-export const CLOSE_CURSOR_KEY = 'close';
+export const EXIT_CURSOR_KEY = 'exit';
 
 export const TIP_CURSOR_KEYS = [
   OPEN_IN_NEW_CURSOR_KEY,
@@ -25,7 +25,7 @@ export const TIP_CURSOR_KEYS = [
   CART_CURSOR_KEY,
   SOUND_CURSOR_KEY,
   VIEW_CURSOR_KEY,
-  CLOSE_CURSOR_KEY,
+  EXIT_CURSOR_KEY,
 ] as const;
 export type TTipCursorKey =
   (typeof TIP_CURSOR_KEYS)[number];

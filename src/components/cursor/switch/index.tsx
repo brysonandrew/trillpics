@@ -6,7 +6,7 @@ import { OpenInNew as OpenInNewIcon } from '@components/icons/links/OpenInNew';
 import { Gallery } from '@components/icons/gallery/Gallery';
 import {
   CART_CURSOR_KEY,
-  CLOSE_CURSOR_KEY,
+  EXIT_CURSOR_KEY,
   DARK_MODE_CURSOR_KEY,
   GALLERY_CURSOR_KEY,
   OPEN_IN_NEW_CURSOR_KEY,
@@ -70,24 +70,18 @@ export const Switch = () => {
     case VIEW_CURSOR_KEY: {
       return (
         <Notification icon='lets-icons:view-fill'>
-          View
+          View fullscreen
         </Notification>
       );
     }
-    case CLOSE_CURSOR_KEY: {
+    case EXIT_CURSOR_KEY: {
       return (
-        <Notification
-          key={darkKey}
-          icon='material-symbols:close'
-        >
-          {`switch to ${
-            darkKey === 'dark'
-              ? 'light'
-              : 'dark'
-          } mode`}
+        <Notification icon='material-symbols:close'>
+          Exit fullscreen
         </Notification>
       );
     }
+
     case 'big': {
       return (
         <Sight

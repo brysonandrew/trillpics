@@ -33,7 +33,7 @@ export const IconWithText: FC<
         >
           {children}
         </motion.samp>
-        <Line className='absolute left-0 bottom-0 w-full bg-current' />
+        {/* <Line className='absolute left-0 bottom-0 w-full bg-current' /> */}
       </motion.div>
     </>
   );

@@ -1,12 +1,15 @@
+import {
+  EXIT_CURSOR_KEY,
+  VIEW_CURSOR_KEY,
+} from '@components/cursor/switch/config';
 import { FADE_PRESENCE } from '@constants/animation';
 import { useViewport } from '@context/viewport';
-import { useHover } from '@hooks/dom/useHover';
+import { useHoverKey } from '@hooks/cursor/useHoverKey';
 import {
   TImageDimensionsConfig,
   useImageDimensions,
 } from '@hooks/image/useImageDimensions';
 import { TDimensions } from '@t/measure';
-import clsx from 'clsx';
 import { useCycle } from 'framer-motion';
 import { useState } from 'react';
 import {
@@ -20,9 +23,11 @@ import { resolveViewportSelfCenter } from './resolveViewportSelfCenter';
 export type TUseImageConfig =
   TDimensions & {
     offsetX: number;
+    id: string;
   };
 export const useImage = ({
   offsetX,
+  id,
   ...config
 }: TUseImageConfig) => {
   const { width, height } = config;
@@ -32,14 +37,20 @@ export const useImage = ({
     useCycle<TPositionKey>(
       ...POSITIONS,
     );
-  const { isHover, ...handlers } =
-    useHover();
-  const isLayout = Boolean(isHover);
   const isFirstPosition =
     position === POSITIONS[0];
-  const handleClick = () => {
+  const { isHover, handlers } =
+    useHoverKey(
+      isFirstPosition
+        ? VIEW_CURSOR_KEY
+        : 'none',
+      id,
+    );
+  const isLayout = Boolean(isHover);
+  const handleTap = () => {
     if (isFirstPosition) {
       setZ(Z_INDICIES[1]);
+      handlers.onHoverEnd();
     }
     cyclePosition();
   };
@@ -120,7 +131,7 @@ export const useImage = ({
       },
       onLayoutAnimationComplete:
         handleLayoutAnimationComplete,
-      onTap: handleClick,
+      onTap: handleTap,
       ...handlers,
     },
     backdropProps: {
@@ -128,7 +139,7 @@ export const useImage = ({
       className:
         'backdrop-blur-lg bg-black-05 inset-0 z-60 zoom-out',
       style: backdropStyle,
-      onTap: handleClick,
+      onTap: handleTap,
     },
   };
 };
