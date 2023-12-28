@@ -16,7 +16,7 @@ const Root = styled(motion.div)``;
 type TProps = TNotificationsContext;
 export const Handler: FC<TProps> = ({
   notifications,
-  onNotificationsClear,
+  onNotificationsRemove,
 }) => {
   const [isAdding, setAdding] =
     useState<boolean>(true);
@@ -25,11 +25,7 @@ export const Handler: FC<TProps> = ({
     setAdding(false);
   };
   const terminateNotifications = () => {
-    console.log(
-      'TERMINATE',
-      notifications,
-    );
-    onNotificationsClear(notifications);
+    onNotificationsRemove(notifications);
   };
   const delayAddedFalse =
     useDelayCallback(endAdding, 200);

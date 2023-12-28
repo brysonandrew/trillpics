@@ -6,7 +6,7 @@ import { Handler } from './Handler';
 export const Cart = () => {
   const {
     notifications,
-    onNotificationsClear,
+    onNotificationsRemove,
   } = useCheckout();
   console.log(notifications);
 
@@ -16,8 +16,8 @@ export const Cart = () => {
         <Handler
           key='handler'
           notifications={notifications}
-          onNotificationsClear={
-            onNotificationsClear
+          onNotificationsRemove={
+            onNotificationsRemove
           }
         />
       )}

@@ -12,6 +12,7 @@ import {
   COLORS,
   PENDING_DELIMITER,
 } from '@constants/images';
+import { TPendingRecordId } from '@t/image';
 
 const Label = styled.label`
   html:not(.dark) & input + div {
@@ -52,20 +53,14 @@ export const Checkout: FC<TProps> = ({
   const handleSubmit =
     form.handleSubmit(
       ({ size, color }) => {
-        const id = [
-          itemName,
-          color,
-          size,
-        ].join(
-          PENDING_DELIMITER,
-        ) as TItem['id'];
-        onItemsAdd({
-          id,
-          name: itemName,
-          src,
-          color,
-          size,
-        });
+        onItemsAdd([
+          {
+            name: itemName,
+            src,
+            color,
+            size,
+          },
+        ]);
         onToggle();
       },
     );

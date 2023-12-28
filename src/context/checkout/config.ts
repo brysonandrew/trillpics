@@ -1,6 +1,9 @@
 import {
   TSpecifications,
   TPending,
+  TPendingRecordId,
+  TChosen,
+  TChosens,
 } from '@t/image';
 import { TUseLocalStorageForm } from './useLocalStorageForm';
 
@@ -12,22 +15,34 @@ export const DEFAULT_VALUES: TSpecifications =
 
 export type TNotificationsContext = {
   notifications: TItems;
-  onNotificationsClear: (
-    next: TItem | TItems,
+  onNotificationsRemove: (
+    next: TItemsConfig,
   ) => void;
 };
 
 export type TItem = TPending;
 export type TItems = TItem[];
+export type TItemRecord = Record<
+  TPendingRecordId,
+  TItems
+>;
+
+export type TChosenConfig =
+  | TChosen
+  | TChosen[];
+export type TItemsConfig =
+  | TItem
+  | TItems;
+
 export type TContext =
   TNotificationsContext & {
     count: number;
     items: TItems;
     form: TUseLocalStorageForm<TSpecifications>;
     onItemsAdd: (
-      next: TItem | TItems,
+      next: TChosenConfig,
     ) => void;
     onItemsRemove: (
-      next: TItem | TItems,
+      next: TItemsConfig,
     ) => void;
   };

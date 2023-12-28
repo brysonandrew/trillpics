@@ -16,10 +16,12 @@ export type TColor =
 
 export type TPendingDelimiter =
   typeof PENDING_DELIMITER;
-export type TItem =
+type TIndex = number;
+
+export type TPendingRecordId =
   `${TName}${TPendingDelimiter}${TColor}${TPendingDelimiter}${TSize}`;
 export type TPendingId =
-  `${TName}${TPendingDelimiter}`;
+  `${TPendingRecordId}${TPendingDelimiter}${TIndex}`;
 
 export type TSpecifications = {
   size: TSize;
@@ -40,7 +42,11 @@ export type TDisplay = {
   src: TSrc;
 };
 
-export type TPending = TSpecifications &
-  TDisplay & {
-    id: TPendingId;
-  };
+export type TChosen = TSpecifications &
+  TDisplay;
+export type TChosens = TChosen[];
+
+export type TPending = TChosen & {
+  recordId: TPendingRecordId;
+  id: TPendingId;
+};
