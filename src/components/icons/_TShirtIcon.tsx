@@ -1,5 +1,5 @@
 import { I } from '@components/Icon';
-import { TUseImageReturn } from '@components/image/useImage';
+import { TUseImageReturn } from '@components/images/useImage';
 import { useDarkMode } from '@context/dark-mode';
 import { resolveCompositeKey } from '@utils/keys';
 import { motion } from 'framer-motion';

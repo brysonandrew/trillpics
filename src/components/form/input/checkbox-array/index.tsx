@@ -112,7 +112,7 @@ export const CheckboxArray = <
         title={title}
         label={
           <HeaderMenu
-            title={title}
+            title={title} 
             buttons={[
               {
                 title: 'clear all',

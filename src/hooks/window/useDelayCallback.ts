@@ -1,4 +1,3 @@
-import { useEffect } from 'react';
 import { useTimeoutRef } from './useTimeoutRef';
 
 export const useDelayCallback = (
@@ -19,9 +18,9 @@ export const useDelayCallback = (
     );
   };
 
-  useEffect(() => {
-    handler();
-  }, []);
+  // useEffect(() => {
+  //   handler();
+  // }, []);
 
   return handler;
 };

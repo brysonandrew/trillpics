@@ -1,11 +1,7 @@
-import {
-  CART_CURSOR_KEY,
-  NONE_CURSOR_KEY,
-} from '@components/cursor/switch/config';
+import { NONE_CURSOR_KEY } from '@components/cursor/switch/config';
 import { Circle } from '@components/decoration/Circle';
 import { I } from '@components/Icon';
 import { useCheckout } from '@context/checkout';
-import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { ICON_CLASS_VALUE_PROPS } from '../config';
 import { Item } from '../Item';
@@ -17,7 +13,7 @@ export const Cart = () => {
       <Item
         cursorKey={NONE_CURSOR_KEY}
         title='Proceed to checkout'
-        icon={
+        icon={(isHover) => (
           <>
             <I
               className='relative h-6 w-6'
@@ -31,7 +27,7 @@ export const Cart = () => {
               {count.toLocaleString()}
             </Circle>
           </>
-        }
+        )}
       >
         <>Cart</>
       </Item>

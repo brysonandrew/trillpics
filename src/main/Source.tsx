@@ -5,7 +5,7 @@ import {
 import { Shell as MainShell } from '@main/shell/Shell';
 import { Index } from '@pages/index';
 import { List } from '@pages/list';
-import { Checkout } from '@pages/checkout/main';
+import { Checkout } from '@pages/checkout';
 
 const WITH_SHELL_KEY = 'with-shell';
 

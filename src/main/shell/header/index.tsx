@@ -5,24 +5,32 @@ import {
   useMotionTemplate,
   useTransform,
 } from 'framer-motion';
-import { DarkMode } from './dark-mode';
 import { useScroll as useScrollContext } from '@context/scroll';
 import { Divider } from '@components/decoration/Divider';
 import { FadeDown } from '@components/vertical-fade/FadeDown';
 import { Padding } from './Padding';
 import { SCROLL } from '@context/scroll/Provider';
 import { useDarkMode } from '@context/dark-mode';
-import { Cart } from './cart';
 import {
   FC,
   PropsWithChildren,
 } from 'react';
+import {
+  Link,
+  useLocation,
+} from 'react-router-dom';
+import { HOME_ROUTE } from '@constants/routes';
+import { Title } from './Title';
 
 type TProps = PropsWithChildren;
 export const Header: FC<TProps> = ({
   children,
 }) => {
-  const { isDarkMode } = useDarkMode();
+  const { pathname } = useLocation();
+  const isHome =
+    pathname === HOME_ROUTE;
+  const { isDarkMode, darkKey } =
+    useDarkMode();
   const { isScroll, scroll } =
     useScrollContext();
 
@@ -71,9 +79,13 @@ export const Header: FC<TProps> = ({
             )}
           >
             <div className='relative row gap-1 pl-0 h-18'>
-              <h1 className='capitalise mt-0.5 pl-0 whitespace-nowrap'>
-                {APP_TITLE}
-              </h1>
+              {isHome ? (
+                <Title />
+              ) : (
+                <Link to={HOME_ROUTE}>
+                  <Title />
+                </Link>
+              )}
             </div>
           </div>
           <div className='row shrink-0 mt-1.5 lowercase overflow-hidden'>

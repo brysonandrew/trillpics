@@ -1,10 +1,15 @@
 import { useEffect } from 'react';
 import { useLocalStorage } from '../dom/useLocalStorage';
 import { NOOP } from '@constants/functions';
-const BRYSONA_DISPLAY_MODE_KEY = 'BRYSONA_DISPLAY_MODE_KEY';
+const BRYSONA_DISPLAY_MODE_KEY =
+  'BRYSONA_DISPLAY_MODE_KEY';
 
-const MODES = ['dark', 'light'] as const;
-export type TDarkKey = (typeof MODES)[number];
+const MODES = [
+  'dark',
+  'light',
+] as const;
+export type TDarkKey =
+  (typeof MODES)[number];
 export type TUseDarkMode = {
   isDarkMode: boolean;
   darkKey: TDarkKey;
@@ -40,7 +45,6 @@ export const useDarkMode = (
   };
 
   const toggle = () => {
-    console.log(isDarkMode)
     if (isDarkMode) {
       disable();
     } else {
@@ -49,18 +53,26 @@ export const useDarkMode = (
   };
 
   useEffect(() => {
-    const darkClass = (operation: 'add' | 'remove') =>
-      document.documentElement.classList[operation]('dark');
-    darkClass(isDarkMode ? 'add' : 'remove');
+    const darkClass = (
+      operation: 'add' | 'remove',
+    ) =>
+      document.documentElement.classList[
+        operation
+      ]('dark');
+    darkClass(
+      isDarkMode ? 'add' : 'remove',
+    );
   }, [isDarkMode]);
 
   useEffect(() => {
     document.body.style.transition =
-      'color 0.9s, background-color 0.9s';
+      'color 1000ms cubic-bezier(0.4, 0, 0.2, 1), background-color 150ms cubic-bezier(0.4, 0, 0.2, 1)';
   }, []);
 
   return {
-    darkKey: isDarkMode ? 'dark' : 'light',
+    darkKey: isDarkMode
+      ? 'dark'
+      : 'light',
     isDarkMode,
     toggle,
     enable,

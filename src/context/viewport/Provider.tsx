@@ -5,6 +5,7 @@ import {
   TViewport,
   useViewport,
 } from '@hooks/window/useViewport';
+import { useSize } from './useSize';
 
 type TProviderProps = {
   children: TChildrenElement;
@@ -13,6 +14,7 @@ export const Provider: FC<
   TProviderProps
 > = ({ children }) => {
   const viewport = useViewport();
+  const size = useSize(viewport);
 
   const isVertical = (
     dimensions: TViewport,
@@ -32,6 +34,7 @@ export const Provider: FC<
     <Viewport.Provider
       value={{
         ...viewport,
+        size,
         isVertical:
           isVertical(viewport),
       }}

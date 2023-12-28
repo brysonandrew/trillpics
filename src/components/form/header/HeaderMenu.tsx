@@ -5,8 +5,9 @@ import {
 } from './shell/Button';
 import { WithPadding as Header } from '@components/form/header/shell/WithPadding';
 import { P1 } from '@components/layout/space/P1';
+import { TButtonMotionProps } from '@t/dom';
 
-type TProps = {
+type TProps = TButtonMotionProps & {
   title: string;
   buttons: TButtonProps[];
 };

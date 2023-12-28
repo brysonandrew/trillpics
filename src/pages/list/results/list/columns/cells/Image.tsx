@@ -1,8 +1,8 @@
 import type { FC } from 'react';
-import { Image as _Image } from '@components/image';
+import { Image as _Image } from '@components/images/image';
 import { motion } from 'framer-motion';
 import { TCell } from '../config';
-import { resolveConfigFromSize } from '@components/image/resolveDimensionsFromSize';
+import { resolveConfigFromSize } from '@components/images/image/resolveDimensionsFromSize';
 
 type TProps = {
   index: number;
@@ -22,6 +22,7 @@ export const Image: FC<TProps> = ({
 
   return (
     <_Image
+      id={src}
       {...resolveConfigFromSize({
         size: 320,
         colIndex: index,

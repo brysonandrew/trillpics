@@ -30,7 +30,7 @@ type TProps = Omit<
   title: string;
   cursorKey: TCursorKey;
   children: TChildren;
-  icon: TChildren;
+  icon(isHover:boolean): TChildren;
 };
 export const Item: FC<TProps> = ({
   title,
@@ -43,7 +43,7 @@ export const Item: FC<TProps> = ({
   const { darkKey } = useDarkMode();
   const { isScroll } = useScroll();
   const { isHover, handlers } =
-    useHoverKey(cursorKey, title);
+    useHoverKey(cursorKey);
 
   return (
     <Root
@@ -52,7 +52,7 @@ export const Item: FC<TProps> = ({
       {...props}
       {...handlers}
       {...SHARED_ANIMATION_PROPS}
-    >
+    > 
       <div className='row gap-2 py-0 text-sm border-1-gray-02 pointer-events-none'>
         <AnimatePresence>
           {!isScroll && (
@@ -82,7 +82,7 @@ export const Item: FC<TProps> = ({
           isShown={isHover}
         />
         <div className='center h-12 w-12 shink-0 grow-0'>
-          {icon}
+          {icon(isHover)}
         </div>
         <samp className='relative whitespace-nowrap tracking-widest'>
           {children}

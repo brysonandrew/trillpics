@@ -1,16 +1,23 @@
 import clsx, { ClassValue } from 'clsx';
-import { SVGMotionProps, motion } from 'framer-motion';
+import {
+  SVGMotionProps,
+  motion,
+} from 'framer-motion';
 import { FC } from 'react';
 
-type TProps = SVGMotionProps<SVGSVGElement> & {
-  classValue?: ClassValue;
-};
+type TProps =
+  SVGMotionProps<SVGSVGElement> & {
+    classValue?: ClassValue;
+  };
 export const Moon: FC<TProps> = ({
   classValue,
   ...props
 }) => (
   <motion.svg
-    className={clsx('shrink-0', classValue)}
+    className={clsx(
+      'shrink-0',
+      classValue,
+    )}
     width='26'
     height='26'
     viewBox='0 0 24 24'

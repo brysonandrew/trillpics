@@ -1,15 +1,14 @@
-import type { FC } from 'react';
+import { FC, useState } from 'react';
 import type { TChildrenElement } from '@t/index';
 import { Checkout } from '.';
 import { useLocalStorage } from '@hooks/dom/useLocalStorage';
 import {
   DEFAULT_VALUES,
-  TDefaultValues,
   TItem,
   TItems,
 } from './config';
-import { DefaultValues } from 'react-hook-form';
 import { useLocalStorageForm } from './useLocalStorageForm';
+import { TSpecifications } from '@t/image';
 
 type TProviderProps = {
   children: TChildrenElement;
@@ -18,25 +17,30 @@ export const Provider: FC<
   TProviderProps
 > = ({ children }) => {
   const form =
-    useLocalStorageForm<TDefaultValues>(
+    useLocalStorageForm<TSpecifications>(
       { defaultValues: DEFAULT_VALUES },
     );
-
   const [items, setItems] =
     useLocalStorage<TItems>(
       'cart-items',
       [],
     );
+  const [
+    notifications,
+    setNotificaitons,
+  ] = useState<TItems>([]);
 
   const onItemsAdd = (
     next: TItem | TItems,
   ) => {
-    setItems((prev) => [
+    const update = (prev: TItems) => [
       ...prev,
       ...(Array.isArray(next)
         ? next
         : [next]),
-    ]);
+    ];
+    setNotificaitons(update);
+    setItems(update);
   };
 
   const onItemsRemove = (
@@ -55,14 +59,24 @@ export const Provider: FC<
     );
   };
 
+  const handleNotificationsClear = (
+    next: TItem | TItems,
+  ) => {
+    console.log(next);
+    setNotificaitons([]);
+  };
+
   return (
     <Checkout.Provider
       value={{
         form,
         count: items.length,
         items,
+        notifications,
         onItemsAdd,
         onItemsRemove,
+        onNotificationsClear:
+          handleNotificationsClear,
       }}
     >
       {children}

@@ -9,3 +9,4 @@ export const List = withProvider(() => (
     <Notifications />
   </>
 ));
+ 

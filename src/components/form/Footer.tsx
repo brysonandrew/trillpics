@@ -49,7 +49,6 @@ export const Footer = <
         disabled={
           props.disabled || isErrors
         }
-        {...props}
       >
         {isErrors ? (
           <I icon={ERROR_ICON} />

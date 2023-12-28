@@ -27,6 +27,5 @@ export const SHORTCUTS: StaticShortcutMap =
     ...POSITION,
     ...INTERACTIVE,
     ...LAYOUT,
-...GRADIENT,
-
+    ...GRADIENT,
   } as const;

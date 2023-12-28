@@ -8,8 +8,10 @@ import { Moon } from './icons/Moon';
 import { Sun } from './icons/Sun';
 import { Item } from '../Item';
 import { DARK_MODE_CURSOR_KEY, NONE_CURSOR_KEY } from '@components/cursor/switch/config';
+import { useApp } from '@context/app';
 
 export const DarkMode = () => {
+  const { isInit } = useApp();
   const { isScroll } =
     useScrollContext();
   const darkMode = useDarkMode();
@@ -24,33 +26,40 @@ export const DarkMode = () => {
   };
   const iconProps = (
     origin: `${number}%`,
+    isDisabled: boolean,
   ) => ({
     key: origin,
     ...ICON_CLASS_VALUE_PROPS,
     ...resolveVerticalShiftPresence(
       origin,
     ),
+    ...(isDisabled
+      ? { transition: { duration: 0 } }
+      : {}),
   });
 
   return (
     <Item
-      cursorKey={NONE_CURSOR_KEY}
+      cursorKey={DARK_MODE_CURSOR_KEY}
       title={title}
       onTap={handleTap}
       transition={{
         delay: isScroll ? 0.1 : 0,
         ...TRANSITION,
       }}
-      icon={createElement(
-        isDarkMode ? Moon : Sun,
-        {
-          ...iconProps(
-            isDarkMode
-              ? '-100%'
-              : '100%',
-          ),
-        },
-      )}
+      icon={(isHover) =>
+        createElement(
+          isDarkMode ? Moon : Sun,
+          {
+            ...iconProps(
+              isDarkMode
+                ? '-100%'
+                : '100%',
+              !isHover,
+            ),
+          },
+        )
+      }
     >
       {darkMode.darkKey}
     </Item>

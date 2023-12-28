@@ -1,13 +1,19 @@
 import type { FC } from 'react';
-import { B } from '@components/interactive/B';
-import { TButtonProps } from '@t/dom';
+import {
+  TButtonMotionProps,
+  TClassValueProps,
+} from '@t/dom';
 import clsx from 'clsx';
 import { I } from '@components/Icon';
+import { B } from '@components/interactive/B';
+``;
 
-export type TProps = TButtonProps & {
-  title: string;
-  icon: string;
-};
+export type TProps =
+  TButtonMotionProps &
+    TClassValueProps & {
+      title: string;
+      icon: string;
+    };
 export const Button: FC<TProps> = ({
   classValue,
   icon,
@@ -19,7 +25,6 @@ export const Button: FC<TProps> = ({
         'center w-7 h-7 shrink-0',
         classValue,
       )}
-      type='button'
       {...props}
     >
       <I icon={icon} />

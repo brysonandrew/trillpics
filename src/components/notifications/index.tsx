@@ -1,5 +1,9 @@
-import { Clipboard } from './clipboard';
+import { Cart } from './cart';
 
 export const Notifications = () => {
-  return <Clipboard />;
+  return (
+    <>
+      <Cart />
+    </>
+  );
 };
