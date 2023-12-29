@@ -16,6 +16,7 @@ import { INPUTS } from '@constants/images';
 
 const Label = styled.label`
   html:not(.dark) & input + div {
+    border: 1px solid var(--black-02);
     background-color: var(--gray-05);
   }
   html:not(.dark)
@@ -27,7 +28,7 @@ const Label = styled.label`
   }
 
   html.dark & input + div {
-    border: 1px solid transparent;
+    border: 1px solid var(--white-02);
     background-color: var(--black-05);
   }
   html.dark & input:checked + div {
@@ -79,7 +80,7 @@ export const Specifications: FC<
   return (
     <motion.form
       className={clsx(
-        'absolute bottom-16 right-14 column-end gap-4',
+        'absolute bottom-16 right-14 column-end gap-4 uppercase',
         classValue,
       )}
       layout
@@ -91,13 +92,13 @@ export const Specifications: FC<
           key={name}
           className='column-end gap-2 w-full p-px'
         >
-          <ul className='row gap-px w-full'>
+          <ul className='row gap-0.5 w-full'>
             {items.map((value) => (
               <li
                 key={value}
                 className='w-full'
               >
-                <Label className='relative border-gray-1 cursor-pointer backdrop-blur-lg'>
+                <Label className='relative cursor-pointer backdrop-blur-lg'>
                   <input
                     className='absolute inset-0 hidden'
                     {...form.register(

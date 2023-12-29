@@ -10,6 +10,8 @@ import { TICK_ICON } from '@constants/icons';
 import { motion } from 'framer-motion';
 import { TNotificationsContext } from '@context/checkout/config';
 import { useDelayCallback } from '@hooks/window/useDelayCallback';
+import { CART_ICON } from '@constants/icons/cart';
+import { Loading } from './Loading';
 
 const Root = styled(motion.div)``;
 
@@ -25,7 +27,9 @@ export const Handler: FC<TProps> = ({
     setAdding(false);
   };
   const terminateNotifications = () => {
-    onNotificationsRemove(notifications);
+    onNotificationsRemove(
+      notifications,
+    );
   };
   const delayAddedFalse =
     useDelayCallback(endAdding, 200);
@@ -40,30 +44,35 @@ export const Handler: FC<TProps> = ({
     delayAddedNull();
   }, []);
 
-  if (isAdding) return null;
   return (
     <Root
       {...FADE_PRESENCE}
       onTap={terminateNotifications}
       className='cover-fixed center w-full h-full inset-0 bg-black-07 text-4xl z-50 pointer-events-none'
     >
-      <div className='column gap-8'>
-        <header className='row gap-4'>
-          <I
-            icon={
-              isAdding
-                ? 'bi:cart-check-fill'
-                : TICK_ICON
-            }
-          />
-          <samp className='tracking-widest uppercase'>
-            {isAdding
-              ? 'adding '
-              : 'added '}
-            to cart
-          </samp>
-        </header>
-      </div>
+      {isAdding ? (
+        <div className='cover center'>
+          <Loading sizeClassValue='w-24 h-24' />
+        </div>
+      ) : (
+        <div className='column gap-8'>
+          <header className='row gap-4'>
+            <I
+              icon={
+                isAdding
+                  ? CART_ICON
+                  : TICK_ICON
+              }
+            />
+            <h4 className='tracking-widest uppercase'>
+              {isAdding
+                ? 'adding '
+                : 'added '}
+              to cart
+            </h4>
+          </header>
+        </div>
+      )}
     </Root>
   );
 };

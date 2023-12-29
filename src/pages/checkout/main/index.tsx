@@ -25,11 +25,10 @@ export const Main = () => {
   const price = count * 44;
 
   return (
-    <main className='relative column w-full py-16'>
+    <main>
       {price > 0 ? (
         <>
-          <h2>checkout</h2>
-          <Collection>
+          <Collection title='checkout'>
             <Pendings
               entries={entries}
             />

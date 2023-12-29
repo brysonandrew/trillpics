@@ -22,7 +22,7 @@ export const Text: FC<TProps> = ({
   return (
     <motion.h3
       className={clsx(
-        'row gap-2 absolute pointer-events-none',
+        'row absolute gap-2 mix-blend-difference pointer-events-none',
         isFirstPosition
           ? 'top-6 left-6 text-2xl'
           : 'left-12 top-12 text-4xl',

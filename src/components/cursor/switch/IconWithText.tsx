@@ -15,7 +15,7 @@ export const IconWithText: FC<
 > = ({ icon, Icon, children }) => {
   return (
     <>
-      <motion.div className='relative row gap-4 border-1-gray z-50'>
+      <motion.div className='relative row gap-4 bg-main border-1-gray-04 z-50'>
         {Icon && (
           <Icon classValue='w-4 h-4' />
         )}

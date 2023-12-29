@@ -4,6 +4,13 @@ import { TTheme } from '../theme';
 
 export const BORDERS: Rule<TTheme>[] = [
   [
+    'border-t-1-gray',
+    {
+      'border-top':
+        '1px solid var(--gray)',
+    },
+  ],
+  [
     'border-t-1-gray-01',
     {
       'border-top':

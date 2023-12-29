@@ -27,29 +27,41 @@ export const Empty = () => {
           src='/decoration/empty-shopping-cart.png'
           alt='empty shopping cart'
         />
-        <div className='absolute column bg-black-01 backdrop-blur-lg lg:(relative column-start) gap-12 p-4 lg:p-12 lg:w-1/2 pointer-events-none'>
-          <h2 className='text-6xl leading-18'>
-            Your cart is empty
-          </h2>
-          <div className='column-start gap-12'>
-            <p className='text-2xl'>
-              Your shopping cart lives
-              to serve.
-            </p>
-            <p className='text-2xl leading-10'>
-              <motion.span className='whitespace-nowrap'>
-                <I
-                  className='inline'
-                  inline
-                  icon={ARROW_LEFT}
-                />{' '}
-                <i className='inline'>
-                  Visit {APP_TITLE}
-                </i>
-              </motion.span>{' '}
-              and fill it with as many
-              t-shirts as it can handle.
-            </p>
+        <div className='absolute p-4 pointer-events-none lg:(relative px-12 py-24 w-1/2)'>
+          <motion.div
+            style={{ opacity: 0.4 }}
+            animate={{
+              opacity: isHover
+                ? 0.8
+                : 0.4,
+            }}
+            className='cover bg-section-inverted backdrop-blur-lg'
+          />
+          <div className='relative column gap-12 lg:(column-start)'>
+            <h2 className='text-6xl leading-18'>
+              Your cart is empty
+            </h2>
+            <div className='column-start gap-12'>
+              <p className='text-2xl'>
+                Your shopping cart lives
+                to serve.
+              </p>
+              <p className='text-2xl leading-10'>
+                <motion.span className='whitespace-nowrap text-blue'>
+                  <I
+                    className='inline text-current'
+                    inline
+                    icon={ARROW_LEFT}
+                  />{' '}
+                  <i className='inline text-current'>
+                    Visit {APP_TITLE}
+                  </i>
+                </motion.span>{' '}
+                and fill it with as many
+                t-shirts as it can
+                handle.
+              </p>
+            </div>
           </div>
         </div>
       </Link>

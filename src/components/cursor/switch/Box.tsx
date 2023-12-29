@@ -34,9 +34,6 @@ export const Box: FC<TProps> = ({
       )}
       style={{
         ...cursorLabel,
-        boxShadow: isDarkMode
-          ? GLOW_TEAL_BRIGHT_4
-          : GLOW_BLACK_1_BABY_BLUE_1,
       }}
       {...resolvePresence(
         {
@@ -55,7 +52,6 @@ export const Box: FC<TProps> = ({
         },
       )}
     >
-      {/* <Metal classValue='rounded-md' /> */}
       {children}
     </motion.div>
   );

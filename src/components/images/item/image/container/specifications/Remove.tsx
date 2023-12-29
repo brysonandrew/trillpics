@@ -28,6 +28,7 @@ export const Remove: FC<TProps> = (
     <Button
       variant='remove'
       gradient='bg-fuchsia-pink-rose'
+      classValue='mix-blend-difference bg-red'
       iconChar='x'
       onTap={handleTap}
       {...props}

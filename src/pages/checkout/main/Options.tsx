@@ -8,7 +8,7 @@ import { Link } from 'react-router-dom';
 
 export const Options = () => {
   return (
-    <motion.div className='row-space sticky bottom-2 left-0 right-0 p-12 w-full border-t-1-gray-02 backdrop-blur-lg bg-black-07'>
+    <motion.div className='row-space sticky bottom-2 left-0 right-0 p-12 w-full border-t-1-gray-02 backdrop-blur-lg bg-black-07 z-60'>
       <Link
         to={HOME_ROUTE}
         className='row gap-2'

@@ -39,7 +39,7 @@ export const Button: FC<TProps> = (
   return (
     <B
       classValue={clsx(
-        'row gap-4 px-4 py-3 border-1-gray-02 overflow-hidden',
+        'row gap-4 px-4 py-3 border-1-gray-04 w-full mix-blend-difference overflow-hidden',
         classValue,
       )}
       look='neu-empty'

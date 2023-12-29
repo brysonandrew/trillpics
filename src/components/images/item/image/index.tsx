@@ -112,12 +112,12 @@ export const Image: FC<TProps> = ({
       />
       <Design
         imageProps={imageProps}
+        layoutId={`design:${uniqueId}`}
         {...config}
         size={size}
-        layoutId={`design:${uniqueId}`}
       />
       <Container
-      uniqueId={uniqueId}
+        uniqueId={uniqueId}
         isShown={Boolean(
           !isFirstPosition ||
             (isFirstPosition &&

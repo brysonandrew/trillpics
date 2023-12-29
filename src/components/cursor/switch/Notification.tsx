@@ -14,7 +14,7 @@ export const Notification = ({
         <IconWithText>
           {children}
         </IconWithText>
-      </Box>
+      </Box> 
     </Sight>
   );
 };

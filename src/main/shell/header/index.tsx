@@ -71,7 +71,7 @@ export const Header: FC<TProps> = ({
       <Padding />
       <motion.header
         className={clsx(
-          'sticky left-0 top-0 right-0 column gap-3 w-full z-60',
+          'sticky left-0 top-0 right-0 column w-full z-60',
         )}
         style={{
           color,
@@ -82,7 +82,7 @@ export const Header: FC<TProps> = ({
             'w-container row-space',
           )}
         >
-          <div className='h-18'>
+          <div className='h-22'>
             <div className='relative top-3 lg:row gap-4'>
               {isHome ? (
                 <Title />
@@ -114,7 +114,7 @@ export const Header: FC<TProps> = ({
         </motion.p>
       </motion.header>
       <Padding />
-      <motion.div className='sticky left-0 top-0 right-0 h-24 overflow-hidden z-40'>
+      <motion.div className='sticky left-0 top-0 right-0 h-22 overflow-hidden z-40'>
         <Divider
           classValue={clsx(
             'absolute left-0 bottom-0 h-full',
@@ -126,7 +126,7 @@ export const Header: FC<TProps> = ({
           originY: '100%',
           scaleY: maskScaleY,
         }}
-        className='sticky left-0 top-14 h-22 -mt-22 right-0 w-full bg-main z-60'
+        className='sticky left-0 top-14 h-20 -mt-20 right-0 w-full bg-main z-60'
       />
     </>
   );
