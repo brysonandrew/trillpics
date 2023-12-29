@@ -8,11 +8,6 @@ import {
   TAnyTheme,
   TTheme,
 } from '../theme';
-import {
-  SANS,
-  MONO,
-  CURSIVE,
-} from '../typography';
 
 export type TPresets = (
   | Preset<TTheme>
@@ -24,10 +19,12 @@ export const PRESETS: TPresets = [
   ),
   presetWebFonts({
     fonts: {
-      sans: SANS,
-      cursive: CURSIVE,
-      mono: MONO,
-      blocky: 'silkscreen'
+      sans: [
+        {
+          name: 'Switzer',
+          provider: 'fontshare',
+        },
+      ],
     },
   }),
 ];

@@ -45,21 +45,6 @@
   src: url('/fonts/nova-quinta/cursive.otf') format('opentype');
 }
 
-@font-face {
-  font-family: 'lemon-light-italic';
-  src: url('/fonts/lemon-milk/light-italic.otf') format('opentype');
-}
-
-@font-face {
-  font-family: 'lemon-light';
-  src: url('/fonts/lemon-milk/light.otf') format('opentype');
-}
-
-@font-face {
-  font-family: 'lemon-regular';
-  src: url('/fonts/lemon-milk/regular.otf') format('opentype');
-}
-
 html {
   scroll-behavior: smooth;
   font-size: 100%;
@@ -67,9 +52,10 @@ html {
 
 html,
 body {
-  font-family: lemon-light, Chakra Petch, Rubik, Noto Kufi Arabic, Noto Sans JP, -apple-system,
+  font-family: Chillax;
+  /* font-family: Chillax, Chakra Petch, Rubik, Noto Kufi Arabic, Noto Sans JP, -apple-system,
     BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans,
-    Helvetica Neue, sans-serif;
+    Helvetica Neue, sans-serif; */
   font-size: 100%;
   font-weight: 600;
   -webkit-font-smoothing: antialiased;
@@ -89,7 +75,7 @@ h4,
 h5,
 h6,
 strong {
-  font-family: Cutive Mono, Courier, Menlo, Consolas, monospace;
+  font-family: Chillax, Courier, Menlo, Consolas, monospace;
 }
 
 a,
@@ -154,15 +140,7 @@ h1 {
 figure {
   font-size: 1.4rem;
 }
-
-samp {
-  font-family: silkscreen, sans-serif;
-}
-
-i {
-  font-family: silkscreen, monospace;
-}
-
+/* 
 code,
 pre {
   font-family: sicret-mono, Courier, Menlo, Consolas, monospace;
@@ -170,4 +148,5 @@ pre {
 
 kbd {
   font-family: manti-sans-fixed, Courier, Menlo, Consolas, monospace;
-}
+} 
+*/

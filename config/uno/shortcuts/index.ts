@@ -21,6 +21,8 @@ export const SHORTCUTS: StaticShortcutMap =
       'bg-white-9 dark:bg-black-1',
     'text-main':
       'text-black-1 dark:text-white-9',
+    'text-nav':
+      'relative text-lg uppercase whitespace-nowrap tracking-widest font-sans',
     ...GRID,
     ...FLEX,
     ...INPUT,

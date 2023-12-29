@@ -92,10 +92,10 @@ export const Header: FC<TProps> = ({
             {children}
           </div>
         </div>
-        <samp className='w-container text-left opacity-40'>
+        <p className='w-container text-left opacity-40'>
           t-shirts hand printed, based
           in new zealand
-        </samp>
+        </p>
       </motion.header>
       <Padding />
       <motion.div className='sticky left-0 top-0 right-0 h-19 overflow-hidden z-40'>

@@ -43,6 +43,8 @@ export const Category: FC<TProps> = ({
           const src = `/categories/${categoryName}/${name}/0.png`;
           return (
             <Item
+              isShop
+              canvas='black'
               config={{ name, src }}
               key={resolveCompositeKey(
                 categoryName,

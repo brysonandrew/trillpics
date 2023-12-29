@@ -6,13 +6,24 @@ import { Add } from './Add';
 import clsx from 'clsx';
 import { FADE_PRESENCE } from '@constants/animation';
 import styled from '@emotion/styled';
-import { TItem } from '@context/checkout/config';
+import {
+  DEFAULT_VALUES,
+  TItem,
+} from '@context/checkout/config';
 import {
   SIZES,
   COLORS,
   PENDING_DELIMITER,
 } from '@constants/images';
-import { TPendingRecordId } from '@t/image';
+import {
+  TPendingRecordId,
+  TSpecifications,
+} from '@t/image';
+import { TPassedProps } from '../..';
+import {
+  TUseLocalStorageForm,
+  useLocalStorageForm,
+} from '@context/checkout/useLocalStorageForm';
 
 const Label = styled.label`
   html:not(.dark) & input + div {
@@ -35,32 +46,43 @@ const Label = styled.label`
   }
 `;
 
-type TProps = TClassValueProps & {
-  name: string;
-  src: string;
-  onToggle(): void;
-};
-export const Checkout: FC<TProps> = ({
+type TProps = TClassValueProps &
+  TPassedProps & {
+    name: string;
+    src: string;
+    onToggle(): void;
+    form: TUseLocalStorageForm<TSpecifications>;
+  };
+export const Specifications: FC<
+  TProps
+> = ({
   name: itemName,
   src,
   classValue,
   onToggle,
-  ...props
+  form,
+  ...passedProps
 }) => {
-  const { form, onItemsAdd } =
-    useCheckout();
+  const { onItemsAdd } = useCheckout();
 
   const handleSubmit =
     form.handleSubmit(
       ({ size, color }) => {
-        onItemsAdd([
-          {
-            name: itemName,
-            src,
-            color,
-            size,
-          },
-        ]);
+        const next = passedProps.isShop
+          ? {
+              name: itemName,
+              src,
+              color,
+              size,
+            }
+          : passedProps.copies.map(
+              (v) => ({
+                ...v,
+                size,
+                color,
+              }),
+            );
+        onItemsAdd(next);
         onToggle();
       },
     );
@@ -101,16 +123,23 @@ export const Checkout: FC<TProps> = ({
                     value={value}
                     title={`Select ${name}`}
                   />
-                  <div className='w-full px-3 py-2 text-center'>
-                    <samp>{value}</samp>
-                  </div>
+                  <samp className='w-full px-3 py-2 text-center'>
+                    {value}
+                  </samp>
                 </Label>
               </li>
             ))}
           </ul>
         </div>
       ))}
-      <Add />
+      <Add>
+        <>
+          {passedProps.isShop
+            ? 'add to'
+            : 'update'}{' '}
+          cart
+        </>
+      </Add>
     </motion.form>
   );
 };

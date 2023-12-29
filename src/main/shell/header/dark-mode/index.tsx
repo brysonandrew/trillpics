@@ -7,8 +7,9 @@ import { useDarkMode } from '@context/dark-mode';
 import { Moon } from './icons/Moon';
 import { Sun } from './icons/Sun';
 import { Item } from '../Item';
-import { DARK_MODE_CURSOR_KEY, NONE_CURSOR_KEY } from '@components/cursor/switch/config';
+import { DARK_MODE_CURSOR_KEY } from '@components/cursor/switch/config';
 import { useApp } from '@context/app';
+import { TitleNav } from '@components/layout/text/nav/TitleNav';
 
 export const DarkMode = () => {
   const { isInit } = useApp();

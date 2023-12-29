@@ -115,6 +115,7 @@ export const useImage = ({
       style: imageDimensions,
     },
     imageProps: {
+      initial: false,
       key: isLayout.toString(),
       layout: isLayout,
       style,

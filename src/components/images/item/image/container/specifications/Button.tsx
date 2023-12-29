@@ -10,13 +10,13 @@ import { resolveCompositeKey } from '@utils/keys';
 import { Circle } from '@components/decoration/Circle';
 import { TGradientShortcut } from '@uno/shortcuts/gradient';
 import { motion } from 'framer-motion';
+import { TChildren } from '@t/index';
 
 type TProps = TClassValueProps &
   TButtonMotionProps & {
     variant: 'add' | 'remove';
     gradient: TGradientShortcut;
     iconChar: 'x' | '+';
-    children: string;
     isHover?: boolean;
   };
 export const Button: FC<TProps> = (

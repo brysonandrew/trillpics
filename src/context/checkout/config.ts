@@ -26,6 +26,11 @@ export type TItemRecord = Record<
   TPendingRecordId,
   TItems
 >;
+export type TItemEntry = [
+  TPendingRecordId,
+  TPending[],
+];
+export type TItemEntries = TItemEntry[];
 
 export type TChosenConfig =
   | TChosen
@@ -37,12 +42,15 @@ export type TItemsConfig =
 export type TContext =
   TNotificationsContext & {
     count: number;
-    items: TItems;
-    form: TUseLocalStorageForm<TSpecifications>;
+    record: TItemRecord;
+    entries: TItemEntries;
     onItemsAdd: (
       next: TChosenConfig,
     ) => void;
     onItemsRemove: (
+      next: TItemsConfig,
+    ) => void;
+    onItemsRemoveLast: (
       next: TItemsConfig,
     ) => void;
   };

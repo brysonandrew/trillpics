@@ -1,8 +1,9 @@
 import { TUseImageReturn } from '@components/images/useImage';
+import { TImgMotionProps } from '@t/dom';
 import { motion } from 'framer-motion';
 import { FC } from 'react';
 
-type TProps = {
+type TProps = TImgMotionProps & {
   src: string;
   size: number;
   imageProps: TUseImageReturn['imageProps'];
@@ -11,6 +12,7 @@ export const Design: FC<TProps> = ({
   src,
   size,
   imageProps,
+  ...props
 }) => {
   const printSize = size
     ? imageProps.style.width * 0.4
@@ -33,7 +35,7 @@ export const Design: FC<TProps> = ({
           imageProps.style.left +
           printSize * 0.75,
       }}
-      layoutId={src}
+      {...props}
     />
   );
 };

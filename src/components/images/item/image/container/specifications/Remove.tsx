@@ -4,9 +4,9 @@ import { Button } from './Button';
 import { useCheckout } from '@context/checkout';
 import { CART_QUANTITY_CURSOR_KEY } from '@components/cursor/switch/config';
 import { useHoverKey } from '@hooks/cursor/useHoverKey';
-import { TPassedProps } from '../..';
+import { TCheckoutPassedProps } from '../..';
 
-type TProps = TPassedProps &
+type TProps = TCheckoutPassedProps &
   TButtonMotionProps;
 export const Remove: FC<TProps> = (
   props,
@@ -22,7 +22,7 @@ export const Remove: FC<TProps> = (
   const { onItemsRemove } =
     useCheckout();
   const handleTap = () => {
-    // onItemsRemove(props.config);
+    onItemsRemove(props.copies[props.count - 1]);
   };
   return (
     <Button

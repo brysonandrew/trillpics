@@ -1,23 +1,31 @@
 import { Item } from '@components/images/item';
-import { TPending } from '@t/image';
 import { FC } from 'react';
 import { useViewport } from '@context/viewport';
+import {
+  TItemEntries,
+  TItemRecord,
+} from '@context/checkout/config';
 
-type TProps = { pendings: TPending[] };
+type TProps = {
+  entries: TItemEntries;
+};
 export const Pendings: FC<TProps> = ({
-  pendings,
+  entries,
 }) => {
   const { size } = useViewport();
 
   return (
     <>
-      {pendings.map((pending) => {
+      {entries.map(([id, items]) => {
         return (
           <Item
-            key={pending.id}
+            key={id}
             size={size}
-            config={pending}
-            canvas={pending.color}
+            isShop={false}
+            config={items[0]}
+            canvas={items[0].color}
+            copies={items}
+            count={items.length}
           />
         );
       })}

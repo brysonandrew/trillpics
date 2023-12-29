@@ -17,6 +17,7 @@ import { useHoverKey } from '@hooks/cursor/useHoverKey';
 import { TCursorKey } from '@components/cursor/switch/config';
 import { useDarkMode } from '@context/dark-mode';
 import { resolveCompositeKey } from '@utils/keys';
+import { TitleIconNav } from '@components/layout/text/nav/TitleIconNav';
 
 type TProps = Omit<
   TButtonMotionProps &
@@ -30,7 +31,7 @@ type TProps = Omit<
   title: string;
   cursorKey: TCursorKey;
   children: TChildren;
-  icon(isHover:boolean): TChildren;
+  icon(isHover: boolean): TChildren;
 };
 export const Item: FC<TProps> = ({
   title,
@@ -52,8 +53,8 @@ export const Item: FC<TProps> = ({
       {...props}
       {...handlers}
       {...SHARED_ANIMATION_PROPS}
-    > 
-      <div className='row gap-2 py-0 text-sm border-1-gray-02 pointer-events-none'>
+    >
+      <div className='row gap-2 py-0 border-1-gray-02 pointer-events-none'>
         <AnimatePresence>
           {!isScroll && (
             <motion.div
@@ -77,16 +78,15 @@ export const Item: FC<TProps> = ({
             />
           )}
         </AnimatePresence>
-        <Backdrop 
+        <Backdrop
           id={title}
           isShown={isHover}
         />
-        <div className='center h-12 w-12 shink-0 grow-0'>
-          {icon(isHover)}
-        </div>
-        <samp className='relative whitespace-nowrap tracking-widest'>
+        <TitleIconNav
+          icon={<>{icon(isHover)}</>}
+        >
           {children}
-        </samp>
+        </TitleIconNav>
       </div>
     </Root>
   );

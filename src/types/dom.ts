@@ -70,6 +70,10 @@ export type TFormMotionProps =
 export type TImgProps =
   ImgHTMLAttributes<HTMLImageElement>;
 
+export type TImgMotionProps =
+  HTMLMotionProps<'img'> &
+    TClassValueProps;
+
 export type TClassValueProps = {
   classValue?: ClassValue;
 };

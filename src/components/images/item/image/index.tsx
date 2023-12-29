@@ -10,12 +10,30 @@ import { useCursor } from '@context/cursor';
 import {
   TDisplay,
   TPending,
+  TSpecifications,
 } from '@t/image';
+import { DEFAULT_VALUES } from '@context/checkout/config';
+import { useLocalStorageForm } from '@context/checkout/useLocalStorageForm';
+import { resolveCompositeKey } from '@utils/keys';
 
-export type TPassedProps = {
-  config: TDisplay | TPending;
-  canvas?: 'black' | 'white';
+export type TBasePassedProps = {
+  canvas: 'black' | 'white';
 };
+export type TShopPassedProps =
+  TBasePassedProps & {
+    isShop: true;
+    config: TDisplay;
+  };
+export type TCheckoutPassedProps =
+  TBasePassedProps & {
+    isShop: false;
+    copies: TPending[]; // checkout only
+    count: number;
+    config: TPending;
+  };
+export type TPassedProps =
+  | TShopPassedProps
+  | TCheckoutPassedProps;
 type TProps = Omit<
   TUseImageReturn,
   'boxProps'
@@ -26,13 +44,14 @@ type TProps = Omit<
 export const Image: FC<TProps> = ({
   isFirstPosition,
   isHover,
-  config,
-  canvas = 'black',
   size,
   imageProps,
   backdropProps,
-  onToggle
+  onToggle,
+  ...passedProps
 }) => {
+  const { config, canvas } =
+    passedProps;
   const {
     hoverKeyParts: [
       cursorKey,
@@ -48,6 +67,16 @@ export const Image: FC<TProps> = ({
   const Root = isFirstPosition
     ? Fragment
     : Portal;
+  const form =
+    useLocalStorageForm<TSpecifications>(
+      {
+        defaultValues:
+          passedProps.isShop
+            ? DEFAULT_VALUES
+            : passedProps.config,
+      },
+    );
+  const canvasSrc = `/canvas/${canvas}/b1.png`;
 
   return (
     <Root>
@@ -62,18 +91,27 @@ export const Image: FC<TProps> = ({
         {...config}
       />
       <Canvas
-        canvas={canvas}
         {...imageProps}
         {...config}
         size={size}
         isFirstPosition={
           isFirstPosition
         }
+        form={form}
+        src={canvasSrc}
+        layoutId={resolveCompositeKey(
+          canvasSrc,
+          `shop:${passedProps.isShop}`,
+        )}
       />
       <Design
         imageProps={imageProps}
         {...config}
         size={size}
+        layoutId={resolveCompositeKey(
+          config.src,
+          `shop:${passedProps.isShop}`,
+        )}
       />
       <Container
         isShown={Boolean(
@@ -88,7 +126,8 @@ export const Image: FC<TProps> = ({
         }
         style={imageProps.style}
         onToggle={onToggle}
-        {...config}
+        form={form}
+        {...passedProps}
       />
     </Root>
   );

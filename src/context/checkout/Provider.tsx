@@ -6,6 +6,7 @@ import {
   DEFAULT_VALUES,
   TChosenConfig,
   TItem,
+  TItemEntries,
   TItemRecord,
   TItems,
   TItemsConfig,
@@ -27,10 +28,6 @@ type TProviderProps = {
 export const Provider: FC<
   TProviderProps
 > = ({ children }) => {
-  const form =
-    useLocalStorageForm<TSpecifications>(
-      { defaultValues: DEFAULT_VALUES },
-    );
   const [items, setItems] =
     useLocalStorage<TItems>(
       'cart-items',
@@ -141,17 +138,39 @@ export const Provider: FC<
     );
   };
 
+  const handleNotificationsRemoveLast =
+    (next: TItemsConfig) => {
+      const arr = Array.isArray(next)
+        ? next
+        : [next];
+
+      setNotificaitons((prev) =>
+        prev.filter((value, index) => {
+          return arr.every(
+            (arrValue) =>
+              arrValue.id !== value.id,
+          );
+        }),
+      );
+    };
+
+  const entries = Object.entries(
+    record,
+  ) as TItemEntries;
+
   return (
     <Checkout.Provider
       value={{
-        form,
-        count: items.length,
-        items,
+        count: entries.length,
+        entries,
+        record,
         notifications,
         onItemsAdd,
         onItemsRemove,
         onNotificationsRemove:
           handleNotificationsRemove,
+        onItemsRemoveLast:
+          handleNotificationsRemoveLast,
       }}
     >
       {children}

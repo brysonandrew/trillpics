@@ -1,6 +1,7 @@
 import { NONE_CURSOR_KEY } from '@components/cursor/switch/config';
 import { Circle } from '@components/decoration/Circle';
 import { I } from '@components/Icon';
+import { TitleNav } from '@components/layout/text/nav/TitleNav';
 import { HOME_ROUTE } from '@constants/routes';
 import { useCheckout } from '@context/checkout';
 import { Link } from 'react-router-dom';
@@ -24,7 +25,7 @@ export const Shop = () => {
           />
         )}
       >
-        <>Shop</>
+        shop
       </Item>
     </Link>
   );

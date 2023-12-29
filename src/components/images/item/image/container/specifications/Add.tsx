@@ -3,9 +3,10 @@ import { TButtonMotionProps } from '@t/dom';
 import { Button } from './Button';
 
 type TProps = TButtonMotionProps;
-export const Add: FC<TProps> = (
-  props,
-) => {
+export const Add: FC<TProps> = ({
+  children,
+  ...props
+}) => {
   return (
     <Button
       variant='add'
@@ -13,8 +14,6 @@ export const Add: FC<TProps> = (
       iconChar='+'
       type='submit'
       {...props}
-    >
-      add to cart
-    </Button>
+    >{children}</Button>
   );
 };

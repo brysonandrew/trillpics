@@ -1,6 +1,9 @@
 import { TUseImageReturn } from '@components/images/useImage';
 import { useCheckout } from '@context/checkout';
+import { TUseLocalStorageForm } from '@context/checkout/useLocalStorageForm';
 import { useDarkMode } from '@context/dark-mode';
+import { TImgMotionProps } from '@t/dom';
+import { TSpecifications } from '@t/image';
 import { resolveCompositeKey } from '@utils/keys';
 import clsx from 'clsx';
 import { motion } from 'framer-motion';
@@ -10,31 +13,28 @@ import { TPassedProps } from '.';
 const SCALE = 0.975;
 const PADDING = (1 - SCALE) * 0.5;
 
-type TProps = Required<
-  Pick<TPassedProps, 'canvas'>
-> &
+type TProps = TImgMotionProps &
   TUseImageReturn['imageProps'] & {
     src: string;
     size: number;
     isFirstPosition: boolean;
+    form: TUseLocalStorageForm<TSpecifications>;
   };
 export const Canvas: FC<TProps> = ({
   src,
-  canvas,
   size,
   isFirstPosition,
-  ...imageProps
+  form,
+  ...props
 }) => {
-  const { form } = useCheckout();
   const colorValue =
     form.watch('color');
-  const style = imageProps.style;
+  const style = props.style;
   const height = style.height * SCALE;
   const paddingY = height * PADDING;
   const width = style.width * SCALE;
   const paddingX = width * PADDING;
 
-  const canvasSrc = `/canvas/${canvas}/b1.png`;
   const dm = useDarkMode();
   return (
     <motion.div
@@ -44,9 +44,9 @@ export const Canvas: FC<TProps> = ({
           ? 'zoom-in'
           : 'zoom-out',
       )}
-      {...imageProps}
+      {...props}
       style={{
-        ...imageProps.style,
+        ...props.style,
         filter: isFirstPosition
           ? 'none'
           : `invert(${
@@ -58,18 +58,14 @@ export const Canvas: FC<TProps> = ({
             }%)`,
       }}
       key={resolveCompositeKey(
-        imageProps.key,
+        props.key,
         dm.darkKey,
-        src,
-      )}
-      layoutId={resolveCompositeKey(
-        canvasSrc,
         src,
       )}
     >
       <motion.img
         className='relative'
-        src={canvasSrc}
+        src={src}
         alt='t-shirt'
         width={width}
         height={height}

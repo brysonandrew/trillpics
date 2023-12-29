@@ -47,6 +47,5 @@ export const PRE_FLIGHT: Preflight<TAnyTheme> =
         -webkit-text-fill-color: ${theme.colors['baby-blue']} !important;
         text-fill-color: ${theme.colors['baby-blue']} !important;
       }
-
     `,
   } as const;
