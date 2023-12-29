@@ -1,8 +1,5 @@
+import { THeader, CELL_HEAD_PROPS } from '@pages/gallery/results/list/columns/config';
 import type { FC } from 'react';
-import {
-  CELL_HEAD_PROPS,
-  THeader,
-} from '../../../pages/list/results/list/columns/config';
 
 export const RowHeader: FC<
   THeader

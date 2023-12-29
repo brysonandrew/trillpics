@@ -36,7 +36,7 @@
 }
 
 @font-face {
-  font-family: 'better-time';
+  font-family: 'Better Time';
   src: url('/fonts/better-time/cursive.otf') format('opentype');
 }
 
@@ -63,6 +63,7 @@ html,
 body,
 #root {
   width: 100%;
+  height: 100%;
 }
 
 a,
@@ -117,7 +118,7 @@ input:focus {
 
 h1,
 figure {
-  font-family: better-time, christmas-wish, cursive;
+  font-family: Better Time, cursive;
 }
 h1 {
   font-size: 1.4rem;
@@ -126,21 +127,8 @@ h1 {
 figure {
   font-size: 1.4rem;
 }
-/* h2,
-h3,
-h4,
-h5,
-h6,
-strong {
-  font-family: Author, Courier, Menlo, Consolas, monospace;
-} */
-/* 
-code,
-pre {
-  font-family: sicret-mono, Courier, Menlo, Consolas, monospace;
-}
 
-kbd {
-  font-family: manti-sans-fixed, Courier, Menlo, Consolas, monospace;
-} 
-*/
+.n {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
+    Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}

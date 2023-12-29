@@ -101,7 +101,7 @@ export const Header: FC<TProps> = ({
           </div>
         </div>
         <motion.p
-          className='w-container text-left opacity-50'
+          className='w-container text-left text-lg opacity-50'
           style={{
             color: isDarkMode
               ? color
@@ -109,7 +109,7 @@ export const Header: FC<TProps> = ({
             y: y2Scroll04,
           }}
         >
-          hand printed t-shirts based in
+          Hand printed t-shirts, based in
           New Zealand.
         </motion.p>
       </motion.header>

@@ -4,7 +4,7 @@ import {
 } from 'react-router-dom';
 import { Shell as MainShell } from '@main/shell/Shell';
 import { Index } from '@pages/index';
-import { List } from '@pages/list';
+import { Gallery } from '@pages/gallery';
 import { Checkout } from '@pages/checkout';
 
 const WITH_SHELL_KEY = 'with-shell';
@@ -19,8 +19,8 @@ const SHELL_ROUTES: any[] = [
     element: <Checkout />,
   },
   {
-    path: '/list',
-    element: <List />,
+    path: '/gallery',
+    element: <Gallery />,
   },
 ].map((v) => ({
   ...v,

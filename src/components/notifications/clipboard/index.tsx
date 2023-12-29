@@ -1,4 +1,4 @@
-import { useWorkshop } from '@pages/list/context';
+import { useWorkshop } from '@pages/gallery/context';
 import { AnimatePresence } from 'framer-motion';
 import { Handler } from './Handler';
 

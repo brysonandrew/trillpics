@@ -1,1 +1,0 @@
-{"format":"png","width":1024,"height":1024,"space":"srgb","channels":3,"depth":"uchar","density":72,"isProgressive":false,"hasProfile":false,"hasAlpha":false}

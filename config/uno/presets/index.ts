@@ -20,11 +20,15 @@ export const PRESETS: TPresets = [
   presetWebFonts({
     fonts: {
       sans: {
-        name: 'Excon', //Switzer Author Tanker
+        name: 'Author', //Switzer Author Tanker Excon
         provider: 'fontshare',
       },
-      comico: {
-        name: 'Comico',
+      slab: {
+        name: 'Hoover',
+        provider: 'fontshare',
+      },
+      display: {
+        name: 'Nippo',
         provider: 'fontshare',
       },
     },

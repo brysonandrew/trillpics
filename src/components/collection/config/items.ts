@@ -1,6 +1,6 @@
 const collectionResolverRecord =
   import.meta.glob(
-    `../assets/*500w.png`,
+    `../assets/*.png`,
   );
 import { MAX_SUFFIX } from '@ops/config';
 import { TInit } from '@t/image';
@@ -14,7 +14,7 @@ export const resolveName = (
 ) =>
   path.replace(
     new RegExp(
-      `(.*assets\/|${MAX_SUFFIX}.png)`,
+      `(.*assets\/|${MAX_SUFFIX}.png|.png)`,
       'gi',
     ),
     '',

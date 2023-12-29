@@ -9,8 +9,8 @@ import {
   AnimatePresence,
   motion,
 } from 'framer-motion';
-import { TClipboardContext } from '@pages/list/context/clipboard/useClipboardContext';
 import { Loading } from './Loading';
+import { TClipboardContext } from '@pages/gallery/context/clipboard/useClipboardContext';
 
 const Root = styled(motion.div)``;
 

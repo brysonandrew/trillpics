@@ -10,10 +10,13 @@ export const Add: FC<TProps> = ({
   return (
     <Button
       variant='add'
+      classValue='w-full'
       gradient='bg-emerald-teal-cyan'
       iconChar='+'
       type='submit'
       {...props}
-    >{children}</Button>
+    >
+      {children}
+    </Button>
   );
 };

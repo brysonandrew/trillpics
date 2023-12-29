@@ -17,11 +17,13 @@ export const Cart = () => {
         icon={(isHover) => (
           <>
             <Icon />
-            <Pill 
+            <Pill
               classValue='absolute top-0 right-0'
               gradient='bg-red-orange-amber'
             >
-              {count.toLocaleString()}
+              <span className='n'>
+                {count.toLocaleString()}
+              </span>
             </Pill>
           </>
         )}

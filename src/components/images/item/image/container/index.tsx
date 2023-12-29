@@ -22,6 +22,7 @@ import {
 import { useCheckout } from '@context/checkout';
 import { useCartItems } from './useCartItems';
 import { resolveCompositeKey } from '@utils/keys';
+import { N } from '@components/layout/text/N';
 
 type TProps = TPassedProps &
   Pick<TUseHoverKey, 'isHover'> & {
@@ -104,7 +105,7 @@ export const Container: FC<TProps> = ({
           {!isShop && (
             <>
               <I icon={TIMES_ICON} />
-              {passedProps.count}
+              <N>{passedProps.count}</N>
             </>
           )}
         </Text>

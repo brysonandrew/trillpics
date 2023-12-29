@@ -4,7 +4,7 @@ import { useViewport } from '@context/viewport';
 import { APPROX_IMAGE_SIZE } from '@constants/images';
 
 const record = import.meta.glob(
-  '../../../../../../assets/examples/in/*.png',
+  '../../../../../../src/components/collection/assets/*.png',
 );
 const count =
   Object.keys(record).length;

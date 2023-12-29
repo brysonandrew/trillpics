@@ -86,7 +86,9 @@ export const AddedItems: FC<TProps> = ({
                             TIMES_ICON
                           }
                         />{' '}
-                        {count}
+                        <span className='n'>
+                          {count}
+                        </span>
                       </>
                     </Pill>
                     <BSm

@@ -1,9 +1,9 @@
 import { FC } from 'react';
-import { useResults } from '@pages/list/results/context';
 import { Empty } from './Empty';
 import { TableInfinite } from '@components/table-infinite';
 import { useColumns } from './columns/useColumns';
-import { Header } from '@pages/list/results/header';
+import { useResults } from '../context';
+import { Header } from '../header';
 
 export const List: FC = () => {
   const { rows, size } = useResults();
@@ -16,7 +16,7 @@ export const List: FC = () => {
     return <Empty />;
   }
 
-  return (
+  return ( 
     <TableInfinite
       rows={rows}
       rowHeight={size}

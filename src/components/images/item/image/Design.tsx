@@ -22,7 +22,7 @@ export const Design: FC<TProps> = ({
 
   return (
     <motion.img
-      className='rounded-full pointer-events-none'
+      className='pointer-events-none'
       src={src}
       width={printSize}
       height={printSize}

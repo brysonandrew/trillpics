@@ -19,7 +19,7 @@ export const Shell: FC<TProps> = ({
       <Variables />
       <MotionConfig {...MOTION_CONFIG}>
         {children}
-        {isDesktop && <Cursor />}
+        {/* {isDesktop && <Cursor />} */}
       </MotionConfig>
       <Notifications />
     </Providers>

@@ -6,6 +6,7 @@ import { useHoverKey } from '@hooks/cursor/useHoverKey';
 import { SHOP_CURSOR_KEY } from '@components/cursor/switch/config';
 import { Link } from 'react-router-dom';
 import { HOME_ROUTE } from '@constants/routes';
+import { useScrollIntoView } from '@hooks/scroll/useScrollIntoView';
 
 export const Empty = () => {
   const { isHover, handlers } =
@@ -13,8 +14,10 @@ export const Empty = () => {
       SHOP_CURSOR_KEY,
       `Go to ${APP_TITLE} store`,
     );
+  const ref = useScrollIntoView<HTMLDivElement>();
   return (
     <motion.div
+      ref={ref}
       className='relative w-container -top-17'
       {...handlers}
     >

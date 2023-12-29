@@ -17,19 +17,19 @@ export const Providers: FC<TProps> = ({
   return (
     <AppProvider>
       <DarkModeProvider>
-        <CursorProvider>
-          <ScrollProvider>
-            <CheckoutProvider>
-              <UserProvider>
-                <ViewportProvider>
-                  <AuthProvider>
-                    {children}
-                  </AuthProvider>
-                </ViewportProvider>
-              </UserProvider>
-            </CheckoutProvider>
-          </ScrollProvider>
-        </CursorProvider>
+        {/* <CursorProvider> */}
+        <ScrollProvider>
+          <CheckoutProvider>
+            <UserProvider>
+              <ViewportProvider>
+                <AuthProvider>
+                  {children}
+                </AuthProvider>
+              </ViewportProvider>
+            </UserProvider>
+          </CheckoutProvider>
+        </ScrollProvider>
+        {/* </CursorProvider> */}
       </DarkModeProvider>
     </AppProvider>
   );

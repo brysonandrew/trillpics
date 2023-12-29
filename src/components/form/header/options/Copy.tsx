@@ -1,7 +1,7 @@
 import { TBaseFieldValues } from '@components/form/config';
 import { BSm } from '@components/interactive/BSm';
 import { COPY_ICON } from '@constants/icons';
-import { useWorkshop } from '@pages/list/context';
+import { useWorkshop } from '@pages/gallery/context';
 import { resolveErrorMessage } from '@utils/api/error/resolveErrorMessage';
 import { TProps } from '../config';
 
