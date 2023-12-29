@@ -1,4 +1,3 @@
-import { APP_TITLE } from '@app/index';
 import clsx from 'clsx';
 import {
   motion,
@@ -20,7 +19,7 @@ import {
   useLocation,
 } from 'react-router-dom';
 import { HOME_ROUTE } from '@constants/routes';
-import { Title } from './Title';
+import { Title } from './Title'; 
 
 type TProps = PropsWithChildren;
 export const Header: FC<TProps> = ({
@@ -92,9 +91,9 @@ export const Header: FC<TProps> = ({
             {children}
           </div>
         </div>
-        <p className='w-container text-left opacity-40'>
-          t-shirts hand printed, based
-          in new zealand
+        <p className='w-container text-left opacity-50'>
+          T-shirts hand printed, based
+          in New Zealand.
         </p>
       </motion.header>
       <Padding />

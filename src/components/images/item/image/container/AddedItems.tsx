@@ -12,14 +12,14 @@ import { useCheckout } from '@context/checkout';
 import { TPending } from '@t/image';
 import { resolvePendingRecordId } from '@utils/images/resolvePendingRecordId';
 import { I } from '@components/Icon';
-import { CART_ICON } from '@constants/icons/cart';
 import { Line } from '@components/layout/Line';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { CHECKOUT_ROUTE } from '@constants/routes';
-import { TitleNav } from '@components/layout/text/nav/TitleNav';
 import { TitleIconNav } from '@components/layout/text/nav/TitleIconNav';
 import { P2 } from '@components/layout/space/P2';
+import { Cart } from '@components/icons/Cart';
+import { TIMES_ICON } from '@constants/icons/text';
 
 type TProps = PropsWithChildren<
   Pick<TPending, 'name' | 'src'>
@@ -68,15 +68,13 @@ export const AddedItems: FC<TProps> = ({
         >
           <Link to={CHECKOUT_ROUTE}>
             <TitleIconNav
-              icon={
-                <I icon={CART_ICON} />
-              }
+              icon={<Cart />}
             >
               cart
             </TitleIconNav>
           </Link>
           <Line />
-          <P2/>
+          <P2 />
           <motion.ul
             className='column-end gap-2'
             layout
@@ -98,11 +96,17 @@ export const AddedItems: FC<TProps> = ({
                     {`${color} ${size}`}
                   </p>
                   <Circle
-                    key='enter'
                     classValue='pointer-events-none'
                     gradient='bg-green-emerald-teal'
                   >
-                    <>x {count}</>
+                    <>
+                      <I
+                        icon={
+                          TIMES_ICON
+                        }
+                      />{' '}
+                      {count}
+                    </>
                   </Circle>
                 </li>
               ),

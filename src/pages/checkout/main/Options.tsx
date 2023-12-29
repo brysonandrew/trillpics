@@ -1,4 +1,5 @@
 import { Circle } from '@components/decoration/Circle';
+import { I } from '@components/Icon';
 import { B } from '@components/interactive/B';
 import { HOME_ROUTE } from '@constants/routes';
 import { useCheckout } from '@context/checkout';
@@ -13,21 +14,19 @@ export const Options = () => {
     record,
   ) as TItemEntries;
   return (
-    <motion.div className='row-space sticky bottom-12 left-0 p-12 w-full bg-section rounded-md'>
-      <div>
-        <Link
-          to={HOME_ROUTE}
-          className='row gap-2'
+    <motion.div className='row-space sticky bottom-2 left-0 right-0 p-12 w-full backdrop-blur-lg'>
+      <Link
+        to={HOME_ROUTE}
+        className='row gap-2'
+      >
+        <Circle
+          classValue='text-main'
+          gradient='bg-green-emerald-teal'
         >
-          <Circle
-            classValue='text-main'
-            gradient='bg-green-emerald-teal'
-          >
-            {'<'}
-          </Circle>
-          Back
-        </Link>
-      </div>
+          <I icon="formkit:arrowleft"/>
+        </Circle>
+        Back
+      </Link>
 
       <div className='row'>
         {/* Checkout {entries.length}{' '} */}

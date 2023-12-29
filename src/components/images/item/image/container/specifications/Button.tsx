@@ -10,7 +10,11 @@ import { resolveCompositeKey } from '@utils/keys';
 import { Circle } from '@components/decoration/Circle';
 import { TGradientShortcut } from '@uno/shortcuts/gradient';
 import { motion } from 'framer-motion';
-import { TChildren } from '@t/index';
+import { I } from '@components/Icon';
+import {
+  PLUS_ICON,
+  TIMES_ICON,
+} from '@constants/icons/text';
 
 type TProps = TClassValueProps &
   TButtonMotionProps & {
@@ -52,7 +56,12 @@ export const Button: FC<TProps> = (
         gradient={gradient}
         classValue='relative'
       >
-        {iconChar}
+        {
+          {
+            '+': <I icon={PLUS_ICON} />,
+            x: <I icon={TIMES_ICON} />,
+          }[iconChar]
+        }
       </Circle>
       <motion.samp
         className={clsx(

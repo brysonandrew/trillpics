@@ -1,12 +1,17 @@
 import { FC } from 'react';
-import { motion } from 'framer-motion';
+import {
+  HTMLMotionProps,
+  motion,
+} from 'framer-motion';
 import { kebabToTitle } from '@utils/format';
 import clsx from 'clsx';
-import { TSampMotionProps } from '@t/dom';
+import {
+  THeadingProps,
+  TSampMotionProps,
+} from '@t/dom';
 import { resolveCompositeKey } from '@utils/keys';
-import { FADE_PRESENCE } from '@constants/animation';
 
-type TProps = TSampMotionProps & {
+type TProps = HTMLMotionProps<'h3'> & {
   src: string;
   name: string;
   isFirstPosition: boolean;
@@ -15,12 +20,13 @@ export const Text: FC<TProps> = ({
   src,
   name,
   isFirstPosition,
+  children,
   ...props
 }) => {
   return (
-    <motion.samp
+    <motion.h3
       className={clsx(
-        'absolute pointer-events-none',
+        'row gap-2 absolute pointer-events-none',
         isFirstPosition
           ? 'top-6 left-6 text-2xl'
           : 'left-12 top-12 text-4xl',
@@ -31,7 +37,10 @@ export const Text: FC<TProps> = ({
       )}
       {...props}
     >
-      {kebabToTitle(name)}
-    </motion.samp>
+      <>
+        {kebabToTitle(name)}
+        {children}
+      </>
+    </motion.h3>
   );
 };

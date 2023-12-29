@@ -17,7 +17,7 @@ export const Circle: FC<TProps> = ({
   return (
     <motion.samp
       className={clsx(
-        'h-5 text-section-inverted bg-section-inverted text-sm px-1.5 rounded-xl',
+        'center h-5 text-section-inverted bg-section-inverted text-sm px-1.5 rounded-xl',
         gradient,
         classValue,
       )}

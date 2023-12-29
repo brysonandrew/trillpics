@@ -28,6 +28,11 @@ import {
 import { resolvePendingId } from '@utils/images/resolvePendingId';
 import { resolvePendingRecordId } from '@utils/images/resolvePendingRecordId';
 import { AddedItems } from './AddedItems';
+import { I } from '@components/Icon';
+import {
+  PLUS_ICON,
+  TIMES_ICON,
+} from '@constants/icons/text';
 
 type TProps = TPassedProps &
   Pick<TUseHoverKey, 'isHover'> & {
@@ -82,17 +87,22 @@ export const Container: FC<TProps> = (
           {(isShown || !isShop) && (
             <Text
               key='text'
-              name={
-                isShop
-                  ? name
-                  : `${name} x ${passedProps.count}`
-              }
+              name={name}
               isFirstPosition={
                 isFirstPosition
               }
               src={src}
               style={sharedStyle}
-            />
+            >
+              {!isShop && (
+                <>
+                  <I
+                    icon={TIMES_ICON}
+                  />
+                  {passedProps.count}
+                </>
+              )}
+            </Text>
           )}
           {isFirstPosition && (
             <>
@@ -108,7 +118,11 @@ export const Container: FC<TProps> = (
                         classValue='absolute bottom-6 right-6 pointer-events-none'
                         gradient='bg-green-emerald-teal'
                       >
-                        +
+                        <I
+                          icon={
+                            PLUS_ICON
+                          }
+                        />
                       </Circle>
                     )}
                   </>
@@ -131,7 +145,7 @@ export const Container: FC<TProps> = (
                 classValue='absolute top-18 right-18 pointer-events-none'
                 gradient='bg-fuchsia-pink-rose'
               >
-                x
+                <I icon={TIMES_ICON} />
               </Circle>
             </>
           )}

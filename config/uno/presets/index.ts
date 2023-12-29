@@ -20,8 +20,12 @@ export const PRESETS: TPresets = [
   presetWebFonts({
     fonts: {
       sans: [
+        // {
+        //   name: 'Switzer',
+        //   provider: 'fontshare',
+        // },
         {
-          name: 'Switzer',
+          name: 'Author',
           provider: 'fontshare',
         },
       ],
