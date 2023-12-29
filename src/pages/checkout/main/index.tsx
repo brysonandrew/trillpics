@@ -28,6 +28,7 @@ export const Main = () => {
     <main className='relative column w-full py-16'>
       {price > 0 ? (
         <>
+          <h2>checkout</h2>
           <Collection>
             <Pendings
               entries={entries}

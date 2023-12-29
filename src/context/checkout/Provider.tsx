@@ -1,9 +1,12 @@
-import { FC, useState } from 'react';
+import {
+  FC,
+  useEffect,
+  useState,
+} from 'react';
 import type { TChildrenElement } from '@t/index';
 import { Checkout } from '.';
 import { useLocalStorage } from '@hooks/dom/useLocalStorage';
 import {
-  DEFAULT_VALUES,
   TChosenConfig,
   TItem,
   TItemEntries,
@@ -11,13 +14,10 @@ import {
   TItems,
   TItemsConfig,
 } from './config';
-import { useLocalStorageForm } from './useLocalStorageForm';
 import {
   TChosen,
-  TChosens,
   TPendingId,
   TPendingRecordId,
-  TSpecifications,
 } from '@t/image';
 import { resolvePendingRecordId } from '@utils/images/resolvePendingRecordId';
 import { PENDING_DELIMITER } from '@constants/images';
@@ -29,20 +29,32 @@ type TProviderProps = {
 export const Provider: FC<
   TProviderProps
 > = ({ children }) => {
-  const [items, setItems] =
-    useLocalStorage<TItems>(
-      'cart-items',
-      [],
-    );
   const [record, setRecord] =
     useLocalStorage<TItemRecord>(
-      'cart-item-record',
+      'checkout-record',
       {},
     );
   const [
     notifications,
     setNotificaitons,
   ] = useState<TItems>([]);
+
+  const entries = Object.entries(
+    record,
+  ) as TItemEntries;
+
+  useEffect(() => {
+    const nextRecord: TItemRecord = {};
+    for (const [
+      key,
+      value,
+    ] of entries) {
+      if (value.length > 0) {
+        nextRecord[key] = value;
+      }
+    }
+    setRecord(nextRecord);
+  }, []);
 
   const onItemsAdd = (
     next: TChosenConfig,
@@ -64,7 +76,7 @@ export const Provider: FC<
       ...nextItems,
     ];
     setNotificaitons(update);
-    // setItems(update);
+
     setRecord((prev) => {
       arr.forEach(
         (
@@ -99,23 +111,17 @@ export const Provider: FC<
       ? next
       : [next];
 
-    // setItems((prev) =>
-    //   prev.filter((value, index) => {
-    //     const firstIndex =
-    //       arr.indexOf(value);
-    //     return index !== firstIndex;
-    //   }),
-    // );
-
     setRecord((prev) => {
       arr.forEach((item: TItem) => {
         const curr =
           prev[item.recordId];
+
         if (curr) {
           prev[item.recordId] =
             curr.filter(
               (v) => v.id !== item.id,
             );
+          delete prev[item.recordId];
         }
       });
       return prev;
@@ -130,7 +136,7 @@ export const Provider: FC<
       : [next];
 
     setNotificaitons((prev) =>
-      prev.filter((value, index) => {
+      prev.filter((value) => {
         return arr.every(
           (arrValue) =>
             arrValue.id !== value.id,
@@ -149,16 +155,17 @@ export const Provider: FC<
         (_, i, { length }) =>
           i !== length - 1,
       );
-      return {
-        ...prev,
-        [recordId]: next,
-      };
+      if (next.length > 0) {
+        return {
+          ...prev,
+          [recordId]: next,
+        };
+      }
+      const { [recordId]: _, ...rest } =
+        prev;
+      return rest;
     });
   };
-
-  const entries = Object.entries(
-    record,
-  ) as TItemEntries;
 
   return (
     <Checkout.Provider

@@ -21,9 +21,11 @@ import {
 } from '@constants/icons/text';
 import { useCheckout } from '@context/checkout';
 import { useCartItems } from './useCartItems';
+import { resolveCompositeKey } from '@utils/keys';
 
 type TProps = TPassedProps &
   Pick<TUseHoverKey, 'isHover'> & {
+    uniqueId: string;
     isFirstPosition: boolean;
     isShown: boolean;
     style: TUseImageReturn['imageProps']['style'];
@@ -31,9 +33,10 @@ type TProps = TPassedProps &
     onToggle(): void;
     form: TUseLocalStorageForm<TSpecifications>;
   };
-export const Container: FC<TProps> = (
-  props,
-) => {
+export const Container: FC<TProps> = ({
+  uniqueId,
+  ...props
+}) => {
   const {
     isFirstPosition,
     isShown,
@@ -54,8 +57,7 @@ export const Container: FC<TProps> = (
     position: style.position,
     zIndex: style.zIndex,
   };
-  const { record, onItemsRemoveLast } =
-    useCheckout();
+  const { record } = useCheckout();
   const cartItems = useCartItems({
     name,
     src,
@@ -78,30 +80,37 @@ export const Container: FC<TProps> = (
               },
             })}
       >
-        <AnimatePresence>
-          <Text
-            key='text'
-            name={name}
-            isFirstPosition={
-              isFirstPosition
-            }
-            src={src}
-            animate={{
-              opacity:
-                isShown ||
-                cartItems.length > 0
-                  ? 1
-                  : 0.5,
-            }}
-            style={sharedStyle}
-          >
-            {!isShop && (
-              <>
-                <I icon={TIMES_ICON} />
-                {passedProps.count}
-              </>
-            )}
-          </Text>
+        <Text
+          key='text'
+          name={name}
+          isFirstPosition={
+            isFirstPosition
+          }
+          src={src}
+          initial={false}
+          animate={{
+            opacity:
+              isShown ||
+              cartItems.length > 0
+                ? 1
+                : 0.5,
+          }}
+          style={sharedStyle}
+          layoutId={resolveCompositeKey(
+            'Text',
+            uniqueId,
+          )}
+        >
+          {!isShop && (
+            <>
+              <I icon={TIMES_ICON} />
+              {passedProps.count}
+            </>
+          )}
+        </Text>
+        <AnimatePresence
+          initial={false}
+        >
           {isFirstPosition && (
             <>
               {isShop ? (
@@ -111,7 +120,9 @@ export const Container: FC<TProps> = (
                     <AddedItems
                       name={name}
                       src={src}
-                      cartItems={cartItems}
+                      cartItems={
+                        cartItems
+                      }
                       {...passedProps}
                     />
                   ) : (

@@ -3,11 +3,16 @@ import {
   SIZES,
 } from '@constants/images';
 import { TItemRecord } from '@context/checkout/config';
-import { TDisplay, TPending } from '@t/image';
+import {
+  TDisplay,
+  TPending,
+} from '@t/image';
 import { resolvePendingRecordId } from '@utils/images/resolvePendingRecordId';
 import { useMemo } from 'react';
 
-type TConfig = TDisplay & { record: TItemRecord };
+type TConfig = TDisplay & {
+  record: TItemRecord;
+};
 export const useCartItems = ({
   name,
   src,
@@ -41,6 +46,9 @@ export const useCartItems = ({
     });
     return items;
   }, [name, src, record]);
+
   return cartItems;
 };
-export type TUseCartItems = ReturnType<typeof useCartItems>
+export type TUseCartItems = ReturnType<
+  typeof useCartItems
+>;

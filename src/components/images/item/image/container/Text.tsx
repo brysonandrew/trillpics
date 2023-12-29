@@ -27,10 +27,6 @@ export const Text: FC<TProps> = ({
           ? 'top-6 left-6 text-2xl'
           : 'left-12 top-12 text-4xl',
       )}
-      layoutId={resolveCompositeKey(
-        'Text',
-        src,
-      )}
       {...props}
     >
       <>

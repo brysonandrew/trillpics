@@ -117,6 +117,7 @@ export const Image: FC<TProps> = ({
         layoutId={`design:${uniqueId}`}
       />
       <Container
+      uniqueId={uniqueId}
         isShown={Boolean(
           !isFirstPosition ||
             (isFirstPosition &&

@@ -27,11 +27,11 @@ export const Empty = () => {
           src='/decoration/empty-shopping-cart.png'
           alt='empty shopping cart'
         />
-        <div className='relative column gap-4 lg:gap-12 p-2 lg:p-12 lg:w-1/2 pointer-events-none'>
-          <h2 className='leading-18'>
+        <div className='absolute column bg-black-01 backdrop-blur-lg lg:(relative column-start) gap-12 p-4 lg:p-12 lg:w-1/2 pointer-events-none'>
+          <h2 className='text-6xl leading-18'>
             Your cart is empty
           </h2>
-          <div className='column-start gap-8 lg:gap-12'>
+          <div className='column-start gap-12'>
             <p className='text-2xl'>
               Your shopping cart lives
               to serve.

@@ -71,7 +71,7 @@ export const Header: FC<TProps> = ({
       <Padding />
       <motion.header
         className={clsx(
-          'sticky left-0 top-0 right-0 column w-full z-60',
+          'sticky left-0 top-0 right-0 column gap-3 w-full z-60',
         )}
         style={{
           color,
@@ -82,12 +82,8 @@ export const Header: FC<TProps> = ({
             'w-container row-space',
           )}
         >
-          <div
-            className={clsx(
-              'column-start lg:row-base gap-4',
-            )}
-          >
-            <div className='relative row gap-1 pl-0 h-18'>
+          <div className='h-18'>
+            <div className='relative top-3 lg:row gap-4'>
               {isHome ? (
                 <Title />
               ) : (
@@ -95,9 +91,12 @@ export const Header: FC<TProps> = ({
                   <Title />
                 </Link>
               )}
+              <h2 className='mt-2 lg:mt-8 uppercase text-lg tracking-wide'>
+                T-shirt store
+              </h2>
             </div>
           </div>
-          <div className='row shrink-0 mt-1.5 lowercase overflow-hidden'>
+          <div className='row-base shrink-0 mt-1.5 lowercase overflow-hidden'>
             {children}
           </div>
         </div>
@@ -107,15 +106,15 @@ export const Header: FC<TProps> = ({
             color: isDarkMode
               ? color
               : 'black',
-            y: y2Scroll04
+            y: y2Scroll04,
           }}
         >
-          T-shirts hand printed, based
-          in New Zealand.
+          hand printed t-shirts based in
+          New Zealand.
         </motion.p>
       </motion.header>
       <Padding />
-      <motion.div className='sticky left-0 top-0 right-0 h-19 overflow-hidden z-40'>
+      <motion.div className='sticky left-0 top-0 right-0 h-24 overflow-hidden z-40'>
         <Divider
           classValue={clsx(
             'absolute left-0 bottom-0 h-full',
@@ -127,7 +126,7 @@ export const Header: FC<TProps> = ({
           originY: '100%',
           scaleY: maskScaleY,
         }}
-        className='sticky left-0 top-14 h-17 -mt-17 right-0 w-full bg-main z-60'
+        className='sticky left-0 top-14 h-22 -mt-22 right-0 w-full bg-main z-60'
       />
     </>
   );

@@ -20,7 +20,6 @@ export const Cart = () => {
             <Pill 
               classValue='absolute top-0 right-0'
               gradient='bg-red-orange-amber'
-              layout={false}
             >
               {count.toLocaleString()}
             </Pill>

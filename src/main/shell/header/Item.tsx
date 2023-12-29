@@ -48,7 +48,7 @@ export const Item: FC<TProps> = ({
 
   return (
     <Root
-      className='relative shrink-0 w-34 p-1 overflow-hidden'
+      className='relative shrink-0 sm:w-34 p-1 overflow-hidden'
       title={title}
       {...props}
       {...handlers}
@@ -85,7 +85,9 @@ export const Item: FC<TProps> = ({
         <TitleIconNav
           icon={<>{icon(isHover)}</>}
         >
-          {children}
+          <span className='hidden sm:inline'>
+            {children}
+          </span>
         </TitleIconNav>
       </div>
     </Root>

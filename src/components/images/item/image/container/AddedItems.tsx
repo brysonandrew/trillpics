@@ -30,11 +30,10 @@ export const AddedItems: FC<TProps> = ({
   cartItems,
   children,
 }) => {
-  const { record, onItemsRemoveLast } =
+  const { onItemsRemoveLast } =
     useCheckout();
-  const handleRemove = (
-    recordId: TPendingRecordId,
-  ) => onItemsRemoveLast(recordId);
+  const handleRemove =
+    onItemsRemoveLast;
 
   return (
     <>
