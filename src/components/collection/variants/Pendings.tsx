@@ -17,6 +17,8 @@ export const Pendings: FC<TProps> = ({
   return (
     <>
       {entries.map(([id, items]) => {
+        if (items.length === 0)
+          return null;
         return (
           <Item
             key={id}

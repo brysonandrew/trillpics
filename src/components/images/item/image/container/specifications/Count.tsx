@@ -1,4 +1,4 @@
-import { Circle } from '@components/decoration/Circle';
+import { Pill } from '@components/decoration/Pill';
 import { TChildren } from '@t/index';
 import { FC } from 'react';
 type TProps = {
@@ -8,7 +8,7 @@ export const Count: FC<TProps> = ({
   children,
 }) => {
   return (
-    <Circle
+    <Pill
       key='count'
       classValue='relative'
       gradient={
@@ -18,6 +18,6 @@ export const Count: FC<TProps> = ({
       }
     >
       {children}
-    </Circle>
+    </Pill>
   );
 };

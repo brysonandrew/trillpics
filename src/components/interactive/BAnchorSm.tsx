@@ -20,7 +20,7 @@ export const BAnchorSm: FC<
 > = ({
   isActive,
   shape = 'interactive-rect-sm',
-  look = 'neu-flat-risen',
+  look,
   icon,
   ...props
 }) => {

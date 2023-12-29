@@ -1,9 +1,7 @@
 import { NONE_CURSOR_KEY } from '@components/cursor/switch/config';
-import { Circle } from '@components/decoration/Circle';
 import { I } from '@components/Icon';
-import { TitleNav } from '@components/layout/text/nav/TitleNav';
+import { SHOP_ICON } from '@constants/icons/shop';
 import { HOME_ROUTE } from '@constants/routes';
-import { useCheckout } from '@context/checkout';
 import { Link } from 'react-router-dom';
 import { ICON_CLASS_VALUE_PROPS } from '../config';
 import { Item } from '../Item';
@@ -20,7 +18,7 @@ export const Shop = () => {
         icon={(isHover) => (
           <I
             className='relative h-6 w-6'
-            icon='fa6-solid:store'
+            icon={SHOP_ICON}
             {...ICON_CLASS_VALUE_PROPS}
           />
         )}

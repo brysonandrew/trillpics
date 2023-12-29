@@ -4,8 +4,9 @@ import clsx from 'clsx';
 import { TButtonMotionProps } from '@t/dom';
 import { Backdrop } from '../../../../decoration/Backdrop';
 import { resolveCompositeKey } from '@utils/keys';
-import { Circle } from '@components/decoration/Circle';
+import { Pill } from '@components/decoration/Pill';
 import { FADE_PRESENCE } from '@constants/animation';
+import { BSm } from '@components/interactive/BSm';
 
 type TProps = TButtonMotionProps & {
   isHover: boolean | null;
@@ -22,12 +23,20 @@ export const Close: FC<TProps> = ({
     'close fullscreen',
   );
   return (
-    <B
+    <BSm
       classValue={clsx(
         'absolute row gap-4 px-4 py-3 border-1-gray-02 overflow-hidden right-12 top-12',
       )}
       look='neu-empty'
       layoutId={key}
+      icon={
+        <Pill
+          classValue='relative zoom-out'
+          gradient='bg-fuchsia-pink-rose'
+        >
+          x
+        </Pill>
+      }
       {...props}
       {...FADE_PRESENCE}
     >
@@ -39,12 +48,6 @@ export const Close: FC<TProps> = ({
         isShown={Boolean(isHover)}
       />
 
-      <Circle
-        classValue='relative zoom-out'
-        gradient='bg-fuchsia-pink-rose'
-      >
-        x
-      </Circle>
       <samp
         className={clsx(
           'relative text-lg',
@@ -52,6 +55,6 @@ export const Close: FC<TProps> = ({
       >
         exit
       </samp>
-    </B>
+    </BSm>
   );
 };

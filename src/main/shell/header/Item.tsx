@@ -63,7 +63,7 @@ export const Item: FC<TProps> = ({
                 darkKey,
                 '--rotate',
               )}
-              className='bg-main absolute -inset-4'
+              className='bg-main absolute -inset-4 transition-colors duration-1000'
               style={{ rotate: 45 }}
             />
           )}

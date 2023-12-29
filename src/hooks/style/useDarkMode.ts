@@ -4,6 +4,22 @@ import { NOOP } from '@constants/functions';
 const BRYSONA_DISPLAY_MODE_KEY =
   'BRYSONA_DISPLAY_MODE_KEY';
 
+export const TRANSITION_CLASS =
+  'duration-1000';
+export const EASE =
+  'cubic-bezier(0.4, 0, 0.2, 1)';
+export const DURATION = parseInt(
+  TRANSITION_CLASS.split('-')[1],
+);
+const TRANSITION = [
+  'color',
+  'background-color',
+]
+  .map(
+    (v) => `${v} ${DURATION}ms ${EASE}`,
+  )
+  .join(', ');
+
 const MODES = [
   'dark',
   'light',
@@ -66,7 +82,7 @@ export const useDarkMode = (
 
   useEffect(() => {
     document.body.style.transition =
-      'color 1000ms cubic-bezier(0.4, 0, 0.2, 1), background-color 150ms cubic-bezier(0.4, 0, 0.2, 1)';
+      TRANSITION;
   }, []);
 
   return {

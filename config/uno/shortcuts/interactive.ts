@@ -28,10 +28,12 @@ export const SHAPES: StaticShortcutMap =
 
 export const LOOKS: StaticShortcutMap =
   {
-    'interactive-circ':
-      'bg-black-2 border-1-gray-04',
-    'interactive-circ-light':
-      'bg-white-2 border-1-gray-04',
+    'interactive-bg-backdrop':
+      'bg-section-02 backdrop-blur-lg',
+    'interactive-bg-backdrop-border-02':
+      'interactive-bg-backdrop border-1-gray-02',
+    'interactive-bg-backdrop-border-04':
+      'interactive-bg-backdrop border-1-gray-04',
     ...(NEU_CLASSES_RECORD as TNewClassesRecord),
   } as const;
 
@@ -40,7 +42,7 @@ export const INTERACTIVE: StaticShortcutMap =
     interactive:
       'relative center hover:interactive-hover disabled:interactive-disabled',
     'interactive-active':
-      'shadow-1-teal-04 text-teal',
+      'border-1-gray-04 text-teal',
     'interactive-disabled':
       'text-gray-1 cursor-not-allowed opacity-90',
     'interactive-hover': 'opacity-90',

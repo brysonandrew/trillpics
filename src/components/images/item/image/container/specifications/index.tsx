@@ -7,23 +7,12 @@ import clsx from 'clsx';
 import { FADE_PRESENCE } from '@constants/animation';
 import styled from '@emotion/styled';
 import {
-  DEFAULT_VALUES,
-  TItem,
-} from '@context/checkout/config';
-import {
-  SIZES,
-  COLORS,
-  PENDING_DELIMITER,
-} from '@constants/images';
-import {
-  TPendingRecordId,
+  TDisplay,
   TSpecifications,
 } from '@t/image';
 import { TPassedProps } from '../..';
-import {
-  TUseLocalStorageForm,
-  useLocalStorageForm,
-} from '@context/checkout/useLocalStorageForm';
+import { TUseLocalStorageForm } from '@context/checkout/useLocalStorageForm';
+import { INPUTS } from '@constants/images';
 
 const Label = styled.label`
   html:not(.dark) & input + div {
@@ -38,6 +27,7 @@ const Label = styled.label`
   }
 
   html.dark & input + div {
+    border: 1px solid transparent;
     background-color: var(--black-05);
   }
   html.dark & input:checked + div {
@@ -47,9 +37,8 @@ const Label = styled.label`
 `;
 
 type TProps = TClassValueProps &
-  TPassedProps & {
-    name: string;
-    src: string;
+  TPassedProps &
+  TDisplay & {
     onToggle(): void;
     form: TUseLocalStorageForm<TSpecifications>;
   };
@@ -87,11 +76,6 @@ export const Specifications: FC<
       },
     );
 
-  const INPUTS = [
-    ['size', SIZES],
-    ['color', COLORS],
-  ] as const;
-
   return (
     <motion.form
       className={clsx(
@@ -123,9 +107,9 @@ export const Specifications: FC<
                     value={value}
                     title={`Select ${name}`}
                   />
-                  <samp className='w-full px-3 py-2 text-center'>
+                  <div className='w-full px-3 py-2 text-center'>
                     {value}
-                  </samp>
+                  </div>
                 </Label>
               </li>
             ))}
@@ -133,12 +117,11 @@ export const Specifications: FC<
         </div>
       ))}
       <Add>
-        <>
-          {passedProps.isShop
+        {`${
+          passedProps.isShop
             ? 'add to'
-            : 'update'}{' '}
-          cart
-        </>
+            : 'update'
+        } cart`}
       </Add>
     </motion.form>
   );

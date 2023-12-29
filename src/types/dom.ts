@@ -25,6 +25,8 @@ export type TDivProps =
   HTMLAttributes<HTMLDivElement>;
 export type TDivMotionProps =
   HTMLMotionProps<'div'>;
+export type TSpanMotionProps =
+  HTMLMotionProps<'samp'>;
 export type TSampMotionProps =
   HTMLMotionProps<'samp'>;
 export type TFigureMotionProps =

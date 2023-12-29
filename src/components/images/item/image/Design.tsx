@@ -1,5 +1,6 @@
 import { TUseImageReturn } from '@components/images/useImage';
 import { TImgMotionProps } from '@t/dom';
+import { resolveCompositeKey } from '@utils/keys';
 import { motion } from 'framer-motion';
 import { FC } from 'react';
 
@@ -12,6 +13,7 @@ export const Design: FC<TProps> = ({
   src,
   size,
   imageProps,
+  layoutId,
   ...props
 }) => {
   const printSize = size
@@ -20,7 +22,7 @@ export const Design: FC<TProps> = ({
 
   return (
     <motion.img
-      className='pointer-events-none rounded-full'
+      className='rounded-full pointer-events-none'
       src={src}
       width={printSize}
       height={printSize}
@@ -35,6 +37,11 @@ export const Design: FC<TProps> = ({
           imageProps.style.left +
           printSize * 0.75,
       }}
+      key={resolveCompositeKey(
+        imageProps.key,
+        layoutId,
+      )}
+      layoutId={layoutId}
       {...props}
     />
   );

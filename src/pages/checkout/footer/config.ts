@@ -1,4 +1,4 @@
-export const CATEGORIES = [
+export const LINES = [
   {
     title: 'Phone',
     value: '0064 204 069 8339',

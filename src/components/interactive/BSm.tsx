@@ -7,13 +7,13 @@ import { I } from '@components/Icon';
 
 type TProps = TButtonMotionProps & {
   isActive?: boolean;
-  icon: string;
+  icon: string | JSX.Element;
 } & TInteractiveProps;
 export const BSm: FC<TProps> = ({
   isActive,
   icon,
   shape = 'interactive-rect-sm',
-  look = 'neu-flat-risen',
+  look,
   classValue,
   ...props
 }) => {
@@ -28,7 +28,11 @@ export const BSm: FC<TProps> = ({
       look={look}
       {...props}
     >
-      <I icon={icon} />
+      {typeof icon === 'string' ? (
+        <I icon={icon} />
+      ) : (
+        icon
+      )}
     </B>
   );
 };

@@ -5,10 +5,6 @@ import {
 } from 'framer-motion';
 import { kebabToTitle } from '@utils/format';
 import clsx from 'clsx';
-import {
-  THeadingProps,
-  TSampMotionProps,
-} from '@t/dom';
 import { resolveCompositeKey } from '@utils/keys';
 
 type TProps = HTMLMotionProps<'h3'> & {

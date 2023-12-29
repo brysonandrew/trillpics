@@ -15,6 +15,7 @@ import {
 import { DEFAULT_VALUES } from '@context/checkout/config';
 import { useLocalStorageForm } from '@context/checkout/useLocalStorageForm';
 import { resolveCompositeKey } from '@utils/keys';
+import { useDarkMode } from '@context/dark-mode';
 
 export type TBasePassedProps = {
   canvas: 'black' | 'white';
@@ -52,6 +53,7 @@ export const Image: FC<TProps> = ({
 }) => {
   const { config, canvas } =
     passedProps;
+  const { darkKey } = useDarkMode();
   const {
     hoverKeyParts: [
       cursorKey,
@@ -76,7 +78,13 @@ export const Image: FC<TProps> = ({
             : passedProps.config,
       },
     );
-  const canvasSrc = `/canvas/${canvas}/b1.png`;
+  const canvasSrc = `/canvas/black/b1.png`;
+
+  const uniqueId = resolveCompositeKey(
+    config.src,
+    darkKey,
+    `shop:${passedProps.isShop}`,
+  );
 
   return (
     <Root>
@@ -91,27 +99,22 @@ export const Image: FC<TProps> = ({
         {...config}
       />
       <Canvas
-        {...imageProps}
-        {...config}
-        size={size}
+        imageProps={imageProps}
         isFirstPosition={
           isFirstPosition
         }
         form={form}
+        layoutId={`canvas:${uniqueId}`}
+        {...config}
         src={canvasSrc}
-        layoutId={resolveCompositeKey(
-          canvasSrc,
-          `shop:${passedProps.isShop}`,
-        )}
+        size={size}
+        canvas={canvas}
       />
       <Design
         imageProps={imageProps}
         {...config}
         size={size}
-        layoutId={resolveCompositeKey(
-          config.src,
-          `shop:${passedProps.isShop}`,
-        )}
+        layoutId={`design:${uniqueId}`}
       />
       <Container
         isShown={Boolean(

@@ -1,5 +1,5 @@
 import { NONE_CURSOR_KEY } from '@components/cursor/switch/config';
-import { Circle } from '@components/decoration/Circle';
+import { Pill } from '@components/decoration/Pill';
 import { Cart as Icon } from '@components/icons/Cart';
 import { CHECKOUT_ROUTE } from '@constants/routes';
 import { useCheckout } from '@context/checkout';
@@ -17,12 +17,13 @@ export const Cart = () => {
         icon={(isHover) => (
           <>
             <Icon />
-            <Circle
+            <Pill 
               classValue='absolute top-0 right-0'
               gradient='bg-red-orange-amber'
+              layout={false}
             >
               {count.toLocaleString()}
-            </Circle>
+            </Pill>
           </>
         )}
       >

@@ -52,10 +52,6 @@ html {
 
 html,
 body {
-  font-family: Author;
-  /* font-family: Chillax, Chakra Petch, Rubik, Noto Kufi Arabic, Noto Sans JP, -apple-system,
-    BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans,
-    Helvetica Neue, sans-serif; */
   font-size: 100%;
   font-weight: 600;
   -webkit-font-smoothing: antialiased;
@@ -69,14 +65,7 @@ body,
   width: 100%;
 }
 
-h2,
-h3,
-h4,
-h5,
-h6,
-strong {
-  font-family: Author, Courier, Menlo, Consolas, monospace;
-}
+
 
 a,
 button {
@@ -132,14 +121,25 @@ h1,
 figure {
   font-family: better-time, christmas-wish, cursive;
 }
-
 h1 {
   font-size: 1.4rem;
+}
+
+h2 {
+  font-size: 4rem;
 }
 
 figure {
   font-size: 1.4rem;
 }
+/* h2,
+h3,
+h4,
+h5,
+h6,
+strong {
+  font-family: Author, Courier, Menlo, Consolas, monospace;
+} */
 /* 
 code,
 pre {

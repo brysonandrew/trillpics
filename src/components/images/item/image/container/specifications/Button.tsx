@@ -7,7 +7,7 @@ import {
 } from '@t/dom';
 import { Backdrop } from '../../../../../decoration/Backdrop';
 import { resolveCompositeKey } from '@utils/keys';
-import { Circle } from '@components/decoration/Circle';
+import { Pill } from '@components/decoration/Pill';
 import { TGradientShortcut } from '@uno/shortcuts/gradient';
 import { motion } from 'framer-motion';
 import { I } from '@components/Icon';
@@ -52,25 +52,27 @@ export const Button: FC<TProps> = (
         )}
         isShown={Boolean(isHover)}
       />
-      <Circle
+      <Pill
         gradient={gradient}
-        classValue='relative'
+        classValue='relative aspect-square'
       >
-        {
-          {
-            '+': <I icon={PLUS_ICON} />,
-            x: <I icon={TIMES_ICON} />,
-          }[iconChar]
-        }
-      </Circle>
-      <motion.samp
+        <I
+          icon={
+            {
+              '+': PLUS_ICON,
+              x: TIMES_ICON,
+            }[iconChar]
+          }
+        />
+      </Pill>
+      <motion.span
         className={clsx(
           'relative text-lg',
         )}
         layout
       >
         {children}
-      </motion.samp>
+      </motion.span>
     </B>
   );
 };

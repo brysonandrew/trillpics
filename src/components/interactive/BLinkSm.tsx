@@ -1,26 +1,27 @@
-import clsx from 'clsx';
 import { FC } from 'react';
 import { TInteractiveProps } from '@t/css/interactive';
 import { BLink } from './BLink';
-import { TLinkProps , TClassValueProps } from '@t/dom';
+import {
+  TLinkProps,
+  TClassValueProps,
+} from '@t/dom';
 import { I } from '@components/Icon';
 import { motion } from 'framer-motion';
 import { resolveShadow } from './effects/glow';
 import { FADE_PRESENCE } from '@constants/animation';
 
-type TProps = TLinkProps & TClassValueProps & {
-  isActive: boolean;
-  to: string;
-  icon: string;
-} & TInteractiveProps;
-export const BLinkSm: FC<
-  TProps
-> = ({
+type TProps = TLinkProps &
+  TClassValueProps & {
+    isActive: boolean;
+    to: string;
+    icon: string;
+  } & TInteractiveProps;
+export const BLinkSm: FC<TProps> = ({
   isActive,
   to,
   icon,
   shape = 'interactive-rect-sm',
-  look = 'neu-flat-risen',
+  look,
   classValue,
   ...props
 }) => {

@@ -1,13 +1,13 @@
 import { Header } from './header';
 import { Footer } from './footer';
 import { Main } from './main';
-import { P72Y } from '@components/layout/space/P72Y';
+import { P24Y } from '@components/layout/space/P24Y';
 
 export const Index = () => (
   <>
     <Header />
     <Main />
-    <P72Y />
+    <P24Y />
     <Footer />
   </>
 );

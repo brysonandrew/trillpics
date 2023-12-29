@@ -3,27 +3,32 @@ import { FC } from 'react';
 import { TGradientShortcut } from '@uno/shortcuts/gradient';
 import { TChildren } from '@t/index';
 import { motion } from 'framer-motion';
+import { TSpanMotionProps } from '@t/dom';
 
-type TProps = {
+type TProps = TSpanMotionProps & {
   classValue?: ClassValue;
   gradient?: TGradientShortcut;
+  isCircle?: boolean;
   children: TChildren;
 };
-export const Circle: FC<TProps> = ({
+export const Pill: FC<TProps> = ({
+  isCircle,
   classValue,
   gradient,
   children,
+  ...props
 }) => {
   return (
-    <motion.samp
+    <motion.span
       className={clsx(
         'center h-5 text-section-inverted bg-section-inverted text-sm px-1.5 rounded-xl',
-        gradient,
+        isCircle && 'w-5',
         classValue,
+        gradient,
       )}
-      layout
+      {...props}
     >
       {children}
-    </motion.samp>
+    </motion.span>
   );
 };

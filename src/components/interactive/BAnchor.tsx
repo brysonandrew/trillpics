@@ -13,7 +13,7 @@ export const BAnchor: FC<TProps> = ({
   classValue,
   children,
   shape = 'interactive-rect',
-  look = 'neu-flat-risen',
+  look,
   target = '_blank',
   ...props
 }) => {

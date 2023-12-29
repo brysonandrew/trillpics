@@ -1,16 +1,13 @@
 import {
   FC,
   PropsWithChildren,
-  useMemo,
 } from 'react';
-import { Circle } from '@components/decoration/Circle';
-import {
-  COLORS,
-  SIZES,
-} from '@constants/images';
+import { Pill } from '@components/decoration/Pill';
 import { useCheckout } from '@context/checkout';
-import { TPending } from '@t/image';
-import { resolvePendingRecordId } from '@utils/images/resolvePendingRecordId';
+import {
+  TDisplay,
+  TPendingRecordId,
+} from '@t/image';
 import { I } from '@components/Icon';
 import { Line } from '@components/layout/Line';
 import { motion } from 'framer-motion';
@@ -20,45 +17,25 @@ import { TitleIconNav } from '@components/layout/text/nav/TitleIconNav';
 import { P2 } from '@components/layout/space/P2';
 import { Cart } from '@components/icons/Cart';
 import { TIMES_ICON } from '@constants/icons/text';
+import { BSm } from '@components/interactive/BSm';
+import { TUseCartItems } from './useCartItems';
 
 type TProps = PropsWithChildren<
-  Pick<TPending, 'name' | 'src'>
+  TDisplay & {
+    cartItems: TUseCartItems;
+  }
 >;
 export const AddedItems: FC<TProps> = ({
   name,
-  src,
+  cartItems,
   children,
 }) => {
-  const { record } = useCheckout();
+  const { record, onItemsRemoveLast } =
+    useCheckout();
+  const handleRemove = (
+    recordId: TPendingRecordId,
+  ) => onItemsRemoveLast(recordId);
 
-  const cartItems = useMemo(() => {
-    const items: {
-      count: number;
-      config: TPending;
-    }[] = [];
-    COLORS.forEach((color) => {
-      SIZES.forEach((size) => {
-        const id =
-          resolvePendingRecordId({
-            name,
-            src,
-            color,
-            size,
-          });
-        const recordItems = record[id];
-        if (
-          recordItems &&
-          recordItems.length > 0
-        ) {
-          items.push({
-            count: recordItems.length,
-            config: recordItems[0],
-          });
-        }
-      });
-    });
-    return items;
-  }, []);
   return (
     <>
       {cartItems.length > 0 ? (
@@ -83,33 +60,49 @@ export const AddedItems: FC<TProps> = ({
               ({
                 config: {
                   id,
+                  recordId,
                   color,
                   size,
                 },
                 count,
-              }) => (
-                <li
-                  key={id}
-                  className='row gap-4 whitespace-none'
-                >
-                  <p className='uppercase'>
-                    {`${color} ${size}`}
-                  </p>
-                  <Circle
-                    classValue='pointer-events-none'
-                    gradient='bg-green-emerald-teal'
+              }) => {
+                const text =
+                  `${color} ${size}` as const;
+                return (
+                  <motion.li
+                    key={id}
+                    className='row gap-4 whitespace-none'
+                    layout='position'
                   >
-                    <>
-                      <I
-                        icon={
-                          TIMES_ICON
-                        }
-                      />{' '}
-                      {count}
-                    </>
-                  </Circle>
-                </li>
-              ),
+                    <p className='uppercase'>
+                      {text}
+                    </p>
+                    <Pill
+                      classValue='pointer-events-none'
+                      gradient='bg-green-emerald-teal'
+                    >
+                      <>
+                        <I
+                          icon={
+                            TIMES_ICON
+                          }
+                        />{' '}
+                        {count}
+                      </>
+                    </Pill>
+                    <BSm
+                      classValue='text-red'
+                      icon={TIMES_ICON}
+                      title={`Remove ${name}`}
+                      onTap={() => {
+                        handleRemove(
+                          recordId,
+                        );
+                      }}
+                    />
+                  </motion.li>
+                );
+              },
             )}
           </motion.ul>
         </motion.div>

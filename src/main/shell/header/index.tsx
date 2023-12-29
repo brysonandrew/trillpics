@@ -19,7 +19,7 @@ import {
   useLocation,
 } from 'react-router-dom';
 import { HOME_ROUTE } from '@constants/routes';
-import { Title } from './Title'; 
+import { Title } from './Title';
 
 type TProps = PropsWithChildren;
 export const Header: FC<TProps> = ({
@@ -37,6 +37,14 @@ export const Header: FC<TProps> = ({
     scroll.y,
     (v) => {
       const next = Math.min(SCROLL, v);
+      return next;
+    },
+  );
+
+  const y2Scroll04 = useTransform(
+    y2Scroll,
+    (v) => {
+      const next = v * 0.14;
       return next;
     },
   );
@@ -63,9 +71,11 @@ export const Header: FC<TProps> = ({
       <Padding />
       <motion.header
         className={clsx(
-          'sticky left-0 top-0 right-0 column gap-1 w-full z-60',
+          'sticky left-0 top-0 right-0 column w-full z-60',
         )}
-        style={{ color }}
+        style={{
+          color,
+        }}
       >
         <div
           className={clsx(
@@ -91,10 +101,18 @@ export const Header: FC<TProps> = ({
             {children}
           </div>
         </div>
-        <p className='w-container text-left opacity-50'>
+        <motion.p
+          className='w-container text-left opacity-50'
+          style={{
+            color: isDarkMode
+              ? color
+              : 'black',
+            y: y2Scroll04
+          }}
+        >
           T-shirts hand printed, based
           in New Zealand.
-        </p>
+        </motion.p>
       </motion.header>
       <Padding />
       <motion.div className='sticky left-0 top-0 right-0 h-19 overflow-hidden z-40'>

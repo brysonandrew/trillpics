@@ -16,6 +16,7 @@ import {
   TChosen,
   TChosens,
   TPendingId,
+  TPendingRecordId,
   TSpecifications,
 } from '@t/image';
 import { resolvePendingRecordId } from '@utils/images/resolvePendingRecordId';
@@ -138,21 +139,22 @@ export const Provider: FC<
     );
   };
 
-  const handleNotificationsRemoveLast =
-    (next: TItemsConfig) => {
-      const arr = Array.isArray(next)
-        ? next
-        : [next];
-
-      setNotificaitons((prev) =>
-        prev.filter((value, index) => {
-          return arr.every(
-            (arrValue) =>
-              arrValue.id !== value.id,
-          );
-        }),
+  const handleItemsRemoveLast = (
+    recordId: TPendingRecordId,
+  ) => {
+    setRecord((prev) => {
+      const next = prev[
+        recordId
+      ].filter(
+        (_, i, { length }) =>
+          i !== length - 1,
       );
-    };
+      return {
+        ...prev,
+        [recordId]: next,
+      };
+    });
+  };
 
   const entries = Object.entries(
     record,
@@ -167,10 +169,10 @@ export const Provider: FC<
         notifications,
         onItemsAdd,
         onItemsRemove,
+        onItemsRemoveLast:
+          handleItemsRemoveLast,
         onNotificationsRemove:
           handleNotificationsRemove,
-        onItemsRemoveLast:
-          handleNotificationsRemoveLast,
       }}
     >
       {children}

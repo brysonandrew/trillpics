@@ -10,3 +10,8 @@ export const COLORS = [
   'black',
   'white',
 ] as const;
+
+export const INPUTS = [
+  ['size', SIZES],
+  ['color', COLORS],
+] as const;

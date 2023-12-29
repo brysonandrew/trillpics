@@ -7,18 +7,16 @@ import { Gallery } from '@components/icons/gallery/Gallery';
 import {
   CART_CURSOR_KEY,
   EXIT_CURSOR_KEY,
-  DARK_MODE_CURSOR_KEY,
   GALLERY_CURSOR_KEY,
   OPEN_IN_NEW_CURSOR_KEY,
   PROJECT_CURSOR_KEY,
+  SHOP_CURSOR_KEY,
   SOUND_CURSOR_KEY,
   VIEW_CURSOR_KEY,
 } from './config';
 import { Notification } from './Notification';
-import { useDarkMode } from '@context/dark-mode';
 
 export const Switch = () => {
-  const { darkKey } = useDarkMode();
   const { hoverKey } = useCursor();
 
   const [cursorKey, key1, key2] =
@@ -31,20 +29,13 @@ export const Switch = () => {
   const lastKey = key2 ?? key1;
 
   switch (cursorKey) {
+    case SHOP_CURSOR_KEY:
     case OPEN_IN_NEW_CURSOR_KEY: {
       return (
         <Notification
           Icon={OpenInNewIcon}
         >
           {lastKey ?? 'Open'}
-        </Notification>
-      );
-    }
-    case GALLERY_CURSOR_KEY:
-    case PROJECT_CURSOR_KEY: {
-      return (
-        <Notification Icon={Gallery}>
-          View in image gallery
         </Notification>
       );
     }
@@ -56,17 +47,17 @@ export const Switch = () => {
         </Notification>
       );
     }
-    case DARK_MODE_CURSOR_KEY: {
-      return (
-        <Notification key={darkKey}>
-          {`switch to ${
-            darkKey === 'dark'
-              ? 'light'
-              : 'dark'
-          } mode`}
-        </Notification>
-      );
-    }
+    // case DARK_MODE_CURSOR_KEY: {
+    //   return (
+    //     <Notification key={darkKey}>
+    //       {`switch to ${
+    //         darkKey === 'dark'
+    //           ? 'light'
+    //           : 'dark'
+    //       } mode`}
+    //     </Notification>
+    //   );
+    // }
     case VIEW_CURSOR_KEY: {
       return (
         <Notification icon='lets-icons:view-fill'>

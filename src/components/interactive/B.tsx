@@ -18,7 +18,7 @@ export const B: FC<TProps> = ({
   classValue,
   children,
   shape = 'interactive-rect',
-  look = 'neu-flat-risen',
+  look = 'interactive-bg-backdrop-border-04',
   ...props
 }) => {
   return (
@@ -26,7 +26,6 @@ export const B: FC<TProps> = ({
       type='button'
       className={clsx(
         'interactive',
-        'neu-basic',
         look,
         shape,
         classValue,

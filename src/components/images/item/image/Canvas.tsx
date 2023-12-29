@@ -1,5 +1,4 @@
 import { TUseImageReturn } from '@components/images/useImage';
-import { useCheckout } from '@context/checkout';
 import { TUseLocalStorageForm } from '@context/checkout/useLocalStorageForm';
 import { useDarkMode } from '@context/dark-mode';
 import { TImgMotionProps } from '@t/dom';
@@ -14,28 +13,32 @@ const SCALE = 0.975;
 const PADDING = (1 - SCALE) * 0.5;
 
 type TProps = TImgMotionProps &
-  TUseImageReturn['imageProps'] & {
+  Pick<TPassedProps, 'canvas'> & {
     src: string;
     size: number;
     isFirstPosition: boolean;
     form: TUseLocalStorageForm<TSpecifications>;
+    imageProps: TUseImageReturn['imageProps'];
   };
 export const Canvas: FC<TProps> = ({
   src,
   size,
   isFirstPosition,
   form,
+  imageProps,
+  layoutId,
+  canvas,
   ...props
 }) => {
+  const dm = useDarkMode();
   const colorValue =
     form.watch('color');
-  const style = props.style;
+  const style = imageProps.style;
   const height = style.height * SCALE;
   const paddingY = height * PADDING;
   const width = style.width * SCALE;
   const paddingX = width * PADDING;
 
-  const dm = useDarkMode();
   return (
     <motion.div
       className={clsx(
@@ -44,11 +47,18 @@ export const Canvas: FC<TProps> = ({
           ? 'zoom-in'
           : 'zoom-out',
       )}
+      {...imageProps}
       {...props}
       style={{
-        ...props.style,
+        ...style,
         filter: isFirstPosition
-          ? 'none'
+          ? `invert(${
+              canvas === 'white'
+                ? 100
+                : 0
+            }%) brightness(${
+              dm.isDarkMode ? 100 : 100
+            }%)`
           : `invert(${
               colorValue === 'white'
                 ? 100
@@ -58,10 +68,10 @@ export const Canvas: FC<TProps> = ({
             }%)`,
       }}
       key={resolveCompositeKey(
-        props.key,
-        dm.darkKey,
-        src,
+        imageProps.key,
+        layoutId,
       )}
+      layoutId={layoutId}
     >
       <motion.img
         className='relative'

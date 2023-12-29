@@ -51,6 +51,6 @@ export type TContext =
       next: TItemsConfig,
     ) => void;
     onItemsRemoveLast: (
-      next: TItemsConfig,
+      recordId: TPendingRecordId,
     ) => void;
   };

@@ -1,36 +1,53 @@
 import { BREAKPOINT_INT_RECORD } from '@constants/css';
 import { useMemo } from 'react';
 import { TViewport } from '@hooks/window/useViewport';
+import { TBreakpointKey } from '@uno/theme';
+import { GRID_CLASS_VALUE } from '@components/collection';
+
+const colSets =
+  GRID_CLASS_VALUE.split(' ');
+const colBreaks: [
+  TBreakpointKey,
+  number,
+][] = colSets.reverse().map((v) => {
+  const [bp, cols] = v.split(':');
+  const colCount = parseInt(
+    cols.replace('grid-cols-', ''),
+  );
+  return [
+    bp as TBreakpointKey,
+    colCount,
+  ];
+});
 
 export const useSize = (
   vp: TViewport,
 ) => {
   const size = useMemo(() => {
     if (vp.isDimensions) {
-      const width = vp.containerWidth;
+      const width = vp.width;
 
       const resolveColsCount = () => {
-        if (
-          width >
-          BREAKPOINT_INT_RECORD.xl
-        ) {
-          return 3;
+        for (const [
+          bp,
+          count,
+        ] of colBreaks) {
+          if (
+            width >
+            BREAKPOINT_INT_RECORD[bp]
+          ) {
+            return count;
+          }
         }
-
-        if (
-          width >
-          BREAKPOINT_INT_RECORD.md
-        ) {
-          return 2;
-        }
-
         return 1;
       };
 
       const colsCount =
         resolveColsCount();
 
-      return width / colsCount;
+      return (
+        vp.containerWidth / colsCount
+      );
     }
 
     return 0;

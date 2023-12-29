@@ -4,35 +4,23 @@ import {
   AnimatePresence,
   motion,
 } from 'framer-motion';
-import {
-  FC,
-  Fragment,
-  useMemo,
-} from 'react';
+import { FC, Fragment } from 'react';
 import { Text } from './Text';
 import { Specifications } from './specifications';
-import { Circle } from '@components/decoration/Circle';
+import { Pill } from '@components/decoration/Pill';
 import clsx from 'clsx';
 import { TPassedProps } from '..';
 import { Remove } from './specifications/Remove';
 import { TUseLocalStorageForm } from '@context/checkout/useLocalStorageForm';
-import {
-  TPending,
-  TSpecifications,
-} from '@t/image';
-import { useCheckout } from '@context/checkout';
-import {
-  COLORS,
-  SIZES,
-} from '@constants/images';
-import { resolvePendingId } from '@utils/images/resolvePendingId';
-import { resolvePendingRecordId } from '@utils/images/resolvePendingRecordId';
+import { TSpecifications } from '@t/image';
 import { AddedItems } from './AddedItems';
 import { I } from '@components/Icon';
 import {
   PLUS_ICON,
   TIMES_ICON,
 } from '@constants/icons/text';
+import { useCheckout } from '@context/checkout';
+import { useCartItems } from './useCartItems';
 
 type TProps = TPassedProps &
   Pick<TUseHoverKey, 'isHover'> & {
@@ -58,7 +46,7 @@ export const Container: FC<TProps> = (
     passedProps;
   const { name, src } = config;
   const classValue =
-    'absolute left-1/2 -translate-x-1/2 w-container';
+    'absolute left-1/2 w-container -translate-x-1/2';
   const Root = isFirstPosition
     ? Fragment
     : motion.div;
@@ -66,6 +54,13 @@ export const Container: FC<TProps> = (
     position: style.position,
     zIndex: style.zIndex,
   };
+  const { record, onItemsRemoveLast } =
+    useCheckout();
+  const cartItems = useCartItems({
+    name,
+    src,
+    record,
+  });
 
   return (
     <>
@@ -84,49 +79,59 @@ export const Container: FC<TProps> = (
             })}
       >
         <AnimatePresence>
-          {(isShown || !isShop) && (
-            <Text
-              key='text'
-              name={name}
-              isFirstPosition={
-                isFirstPosition
-              }
-              src={src}
-              style={sharedStyle}
-            >
-              {!isShop && (
-                <>
-                  <I
-                    icon={TIMES_ICON}
-                  />
-                  {passedProps.count}
-                </>
-              )}
-            </Text>
-          )}
+          <Text
+            key='text'
+            name={name}
+            isFirstPosition={
+              isFirstPosition
+            }
+            src={src}
+            animate={{
+              opacity:
+                isShown ||
+                cartItems.length > 0
+                  ? 1
+                  : 0.5,
+            }}
+            style={sharedStyle}
+          >
+            {!isShop && (
+              <>
+                <I icon={TIMES_ICON} />
+                {passedProps.count}
+              </>
+            )}
+          </Text>
           {isFirstPosition && (
             <>
               {isShop ? (
-                <AddedItems
-                  name={name}
-                  src={src}
-                >
-                  <>
-                    {isShown && (
-                      <Circle
-                        key='enter'
-                        classValue='absolute bottom-6 right-6 pointer-events-none'
-                        gradient='bg-green-emerald-teal'
-                      >
-                        <I
-                          icon={
-                            PLUS_ICON
-                          }
-                        />
-                      </Circle>
-                    )}
-                  </>
-                </AddedItems>
+                <>
+                  {cartItems.length >
+                  0 ? (
+                    <AddedItems
+                      name={name}
+                      src={src}
+                      cartItems={cartItems}
+                      {...passedProps}
+                    />
+                  ) : (
+                    <Pill
+                      key='enter'
+                      isCircle
+                      classValue='absolute bottom-6 right-6 pointer-events-none'
+                      gradient='bg-green-emerald-teal'
+                      animate={{
+                        opacity: isShown
+                          ? 1
+                          : 0.5,
+                      }}
+                    >
+                      <I
+                        icon={PLUS_ICON}
+                      />
+                    </Pill>
+                  )}
+                </>
               ) : (
                 <Remove
                   key='remove'
@@ -139,15 +144,16 @@ export const Container: FC<TProps> = (
             </>
           )}
           {!isFirstPosition && (
-            <>
-              <Circle
+            <div className='absolute inset-y-6 inset-x-3 border-1-gray-02'>
+              <Pill
                 key='exit'
-                classValue='absolute top-18 right-18 pointer-events-none'
+                classValue='absolute top-6 right-6 pointer-events-none'
                 gradient='bg-fuchsia-pink-rose'
+                isCircle
               >
                 <I icon={TIMES_ICON} />
-              </Circle>
-            </>
+              </Pill>
+            </div>
           )}
         </AnimatePresence>
       </Root>

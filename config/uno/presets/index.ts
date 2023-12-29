@@ -19,16 +19,14 @@ export const PRESETS: TPresets = [
   ),
   presetWebFonts({
     fonts: {
-      sans: [
-        // {
-        //   name: 'Switzer',
-        //   provider: 'fontshare',
-        // },
-        {
-          name: 'Author',
-          provider: 'fontshare',
-        },
-      ],
+      sans: {
+        name: 'Excon', //Switzer Author Tanker
+        provider: 'fontshare',
+      },
+      comico: {
+        name: 'Comico',
+        provider: 'fontshare',
+      },
     },
   }),
 ];
