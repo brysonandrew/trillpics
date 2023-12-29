@@ -19,11 +19,7 @@ export const Cart = () => {
         title='Proceed to checkout'
         icon={(isHover) => (
           <>
-            <I
-              className='relative h-6 w-6'
-              icon={CART_ICON}
-              {...ICON_CLASS_VALUE_PROPS}
-            />
+          
             <Circle
               classValue='absolute top-0 right-0'
               gradient='bg-red-orange-amber'
