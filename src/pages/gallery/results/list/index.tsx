@@ -11,12 +11,13 @@ export const List: FC = () => {
     rows,
     size,
   );
+  console.log(columns, rows, size);
 
   if (rows.length === 0) {
     return <Empty />;
   }
 
-  return ( 
+  return (
     <TableInfinite
       rows={rows}
       rowHeight={size}

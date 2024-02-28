@@ -1,4 +1,7 @@
-import { type FC } from 'react';
+import {
+  useEffect,
+  type FC,
+} from 'react';
 import { Workshop } from '.';
 import { TWorkshop } from './types';
 import { useClipboardContext } from './clipboard/useClipboardContext';
@@ -9,6 +12,13 @@ export function withProvider<
   const C = (props: T) => {
     const clipboardContext =
       useClipboardContext();
+    useEffect(() => {
+      const root =
+        document.getElementById('root');
+      if (root) {
+        root.style.height = '100%';
+      }
+    }, []);
 
     const value: TWorkshop = {
       clipboardContext,

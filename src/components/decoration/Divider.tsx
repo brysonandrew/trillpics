@@ -8,7 +8,7 @@ export const Divider: FC<TProps> = ({
 }) => {
   return (
     <img
-      src='/decoration/19.png'
+      src='/decoration/lines/1.png'
       className={clsx(
         'w-full bg-section',
         classValue,

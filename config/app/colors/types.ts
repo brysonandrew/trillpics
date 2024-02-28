@@ -1,5 +1,4 @@
-import { COLOR_RGB_RECORD } from '.';
-import { TColorKey } from '../../../src/types/css';
+import { COLOR_RGB_RECORD, TColorKey } from '.';
 
 export type TRgb =
   `${number}, ${number}, ${number}`;

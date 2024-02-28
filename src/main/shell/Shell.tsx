@@ -4,8 +4,6 @@ import { Variables } from '@css/Variables';
 import { Providers } from '@context/Providers';
 import { MotionConfig } from 'framer-motion';
 import { MOTION_CONFIG } from '@constants/animation';
-import { isDesktop } from 'react-device-detect';
-import { Cursor } from '@components/cursor';
 import { Notifications } from '@components/notifications';
 
 type TProps = {

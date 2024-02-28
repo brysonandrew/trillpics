@@ -3,14 +3,19 @@ import { Pill } from '@components/decoration/Pill';
 import { Cart as Icon } from '@components/icons/Cart';
 import { CHECKOUT_ROUTE } from '@constants/routes';
 import { useCheckout } from '@context/checkout';
+import { useDarkMode } from '@context/dark-mode';
 import { Link } from 'react-router-dom';
 import { Item } from '../Item';
 
 export const Cart = () => {
+  const { darkKey } = useDarkMode();
   const { count } = useCheckout();
 
   return (
-    <Link to={CHECKOUT_ROUTE}>
+    <Link
+      key={darkKey}
+      to={CHECKOUT_ROUTE}
+    >
       <Item
         cursorKey={NONE_CURSOR_KEY}
         title='Proceed to checkout'

@@ -8,7 +8,7 @@ const breakpoints = {
   md: '768px',
   lg: '900px',
   xl: '1100px',
-  xxl: '1400px',
+  xxl: '1420px',
   xxxl: '1800px',
 } as const;
 
@@ -17,7 +17,7 @@ const width = {
   md: '700px',
   lg: '890px',
   xl: '1090px',
-  xxl: '1280px',
+  xxl: '1400px',
 } as const;
 
 export const THEME = {

@@ -28,7 +28,7 @@ export const Header: FC<TProps> = ({
   const { pathname } = useLocation();
   const isHome =
     pathname === HOME_ROUTE;
-  const { isDarkMode, darkKey } =
+  const { isDarkMode } =
     useDarkMode();
   const { isScroll, scroll } =
     useScrollContext();

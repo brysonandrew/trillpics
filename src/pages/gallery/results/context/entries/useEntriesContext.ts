@@ -4,17 +4,14 @@ import { useViewport } from '@context/viewport';
 import { APPROX_IMAGE_SIZE } from '@constants/images';
 
 const record = import.meta.glob(
-  '../../../../../../src/components/collection/assets/*.png',
+  '../../../../../components/collection/assets/*.png',
 );
+const entries = Object.entries(record);
 const count =
-  Object.keys(record).length;
-const EXAMPLES = [...Array(count)].map(
-  (_, index) =>
-    `examples/in/${index}.png`,
-);
+entries.length;
 
 export type TCol =
-  (typeof EXAMPLES)[number];
+  (typeof entries)[number];
 export type TRow = {
   cols: TCol[];
 };
@@ -27,9 +24,7 @@ export const useEntriesContext = () => {
     if (!isDimensions)
       return { rows: [], size: 0 };
 
-    const sortedResults = [
-      ...EXAMPLES,
-    ].sort(sortByIndex);
+    const sortedResults = entries;
 
     const colsCount = Math.ceil(
       viewport.width /
@@ -65,11 +60,10 @@ export const useEntriesContext = () => {
       size,
     };
   }, [
-    EXAMPLES,
+    entries,
     isDimensions,
     isResizing,
   ]);
-  console.log(results);
   return results;
 };
 

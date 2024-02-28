@@ -9,10 +9,8 @@ import { Sun } from './icons/Sun';
 import { Item } from '../Item';
 import { DARK_MODE_CURSOR_KEY } from '@components/cursor/switch/config';
 import { useApp } from '@context/app';
-import { TitleNav } from '@components/layout/text/nav/TitleNav';
 
 export const DarkMode = () => {
-  const { isInit } = useApp();
   const { isScroll } =
     useScrollContext();
   const darkMode = useDarkMode();
