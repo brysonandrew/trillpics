@@ -1,4 +1,4 @@
-import { TChildrenProps } from '@t/index';
+import { TChildrenProps } from '@brysonandrew/config-types';
 import { FC } from 'react';
 
 export const TITLE_HEIGHT = 88;

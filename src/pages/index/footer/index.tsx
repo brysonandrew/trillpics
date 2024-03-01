@@ -1,13 +1,14 @@
 import { Divider } from '@components/decoration/Divider';
 import { I } from '@components/Icon';
-import { FadeUp } from '@components/vertical-fade/FadeUp';
 import { motion } from 'framer-motion';
 import { CATEGORIES } from './config';
 
 export const Footer = () => {
   return (
     <>
-      <Divider classValue='sticky left-0 bottom-0 right-0 h-3 z-50' />
+      <div className='relative h-3'>
+      <Divider classValue='sticky left-0 bottom-0 right-0 z-50' />
+      </div>
       <footer className='relative column bg-section py-16 z-50'>
         <div className='w-container row-space'>
           <div />
@@ -36,7 +37,6 @@ export const Footer = () => {
           </ul>
         </div>
       </footer>
-      <FadeUp />
     </>
   );
 };

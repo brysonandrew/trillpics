@@ -1,15 +1,15 @@
 import type { FC } from 'react';
 import styled from '@emotion/styled';
-import { VIEW_ICON } from '@constants/icons';
 import {
   useLocation,
   useNavigate,
   useSearchParams,
 } from 'react-router-dom';
-import { BCirc } from '@components/interactive/BCirc';
+import { BCirc } from '@brysonandrew/interactive';
 import { Item } from './Item';
 import { VIEW_PARAM } from './config';
 import { Close } from './Close';
+import { VIEW_ICON_1 } from '@brysonandrew/icons-keys';
 
 const Root = styled.div``;
 
@@ -48,7 +48,7 @@ export const View: FC<TProps> = ({
             title={`View details of image id:${id}`}
             classValue='text-blue'
             look='interactive-circ-light'
-            icon={VIEW_ICON}
+            icon={VIEW_ICON_1 as any}
             onClick={handleToggle}
           />
         )}

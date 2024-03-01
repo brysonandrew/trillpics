@@ -5,7 +5,7 @@ import {
   TUser,
 } from './types';
 import { useLocalStorage } from '@hooks/dom/useLocalStorage';
-import { TChildrenElement } from '@t/index';
+import { TChildrenElement } from '@brysonandrew/config-types';
 import { LOCAL_STORAGE_USER_KEY } from '@constants/keys';
 
 type TProviderProps = {

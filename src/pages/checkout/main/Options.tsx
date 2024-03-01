@@ -1,8 +1,8 @@
 import { Pill } from '@components/decoration/Pill';
 import { I } from '@components/Icon';
-import { B } from '@components/interactive/B';
-import { CHEVRON_LEFT } from '@constants/icons/directionts';
-import { HOME_ROUTE } from '@constants/routes';
+import { B } from '@brysonandrew/interactive';
+import { CHEVRON_LEFT } from '@brysonandrew/icons-keys';
+import { HOME_ROUTE } from '@config/routes';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 
@@ -15,7 +15,7 @@ export const Options = () => {
       >
         <Pill
           classValue='text-main'
-          gradient='bg-green-emerald-teal'
+          gradient='bg-green-emerald-primary'
           isCircle
         >
           <I icon={CHEVRON_LEFT} />
@@ -27,7 +27,7 @@ export const Options = () => {
           Please enter your payment
           details before confirming.
         </p>
-        <B>Confirm</B>
+        <B title='Confirm'>Confirm</B>
       </div>
     </motion.div>
   );

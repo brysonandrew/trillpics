@@ -15,9 +15,9 @@ import {
   CARET_DOWN_ICON,
   CARET_UP_ICON,
   CROSS_ICON,
-} from '@constants/icons';
+} from '@brysonandrew/icons-keys';
 import clsx from 'clsx';
-import { TClassValueProps } from '@t/dom';
+import { TClassValueProps } from '@brysonandrew/config-types';
 
 const Root = styled.div``;
 
@@ -106,6 +106,7 @@ export const Input: FC<TProps> = ({
             <ul className='row'>
               <li>
                 <Button
+                  title='close'
                   onClick={onClear}
                 >
                   <I
@@ -117,6 +118,7 @@ export const Input: FC<TProps> = ({
               {isSuggestionsCount && (
                 <li>
                   <Button
+                                    title='toggle'
                     onClick={onToggle}
                   >
                     <I

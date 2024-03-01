@@ -1,7 +1,7 @@
 import { TUseImageReturn } from '@components/images/useImage';
 import { TUseLocalStorageForm } from '@context/checkout/useLocalStorageForm';
-import { useDarkMode } from '@context/dark-mode';
-import { TImgMotionProps } from '@t/dom';
+import { useDarkMode } from '@brysonandrew/dark-mode';
+import { TImgMotionProps } from '@brysonandrew/config-types';
 import { TSpecifications } from '@t/image';
 import { resolveCompositeKey } from '@utils/keys';
 import clsx from 'clsx';
@@ -14,7 +14,7 @@ const PADDING = (1 - SCALE) * 0.5;
 
 type TProps = TImgMotionProps &
   Pick<TPassedProps, 'canvas'> & {
-    src: string;
+    // src: string;
     size: number;
     isFirstPosition: boolean;
     form: TUseLocalStorageForm<TSpecifications>;
@@ -73,7 +73,7 @@ export const Canvas: FC<TProps> = ({
       )}
       layoutId={layoutId}
     >
-      <motion.img
+      {/* <motion.img
         className='relative'
         src={src}
         alt='t-shirt'
@@ -83,7 +83,7 @@ export const Canvas: FC<TProps> = ({
           left: paddingX,
           top: paddingY,
         }}
-      />
+      /> */}
     </motion.div>
   );
 };

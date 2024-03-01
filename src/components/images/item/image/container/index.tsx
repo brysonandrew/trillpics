@@ -18,7 +18,7 @@ import { I } from '@components/Icon';
 import {
   PLUS_ICON,
   TIMES_ICON,
-} from '@constants/icons/text';
+} from '@brysonandrew/icons-keys/text';
 import { useCheckout } from '@context/checkout';
 import { useCartItems } from './useCartItems';
 import { resolveCompositeKey } from '@utils/keys';
@@ -131,7 +131,7 @@ export const Container: FC<TProps> = ({
                       key='enter'
                       isCircle
                       classValue='absolute bottom-6 right-6 pointer-events-none'
-                      gradient='bg-green-emerald-teal'
+                      gradient='bg-green-emerald-primary'
                       animate={{
                         opacity: isShown
                           ? 1
@@ -147,10 +147,11 @@ export const Container: FC<TProps> = ({
               ) : (
                 <Remove
                   key='remove'
+                  title='remove'
                   classValue='absolute bottom-6 left-6'
                   {...passedProps}
                 >
-                  {passedProps.count.toLocaleString()}
+                  {passedProps.count?.toLocaleString()}
                 </Remove>
               )}
             </>

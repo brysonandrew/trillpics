@@ -1,5 +1,5 @@
 import { FC } from 'react';
-import { TClassValueProps } from '@t/dom';
+import { TClassValueProps } from '@brysonandrew/config-types';
 import { useCheckout } from '@context/checkout';
 import { motion } from 'framer-motion';
 import { Add } from './Add';

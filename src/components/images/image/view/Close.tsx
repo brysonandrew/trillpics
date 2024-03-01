@@ -1,6 +1,6 @@
 import type { FC } from 'react';
-import { CLOSE_ICON } from '@constants/icons';
-import { B } from '@components/interactive/B';
+import { CLOSE_ICON } from '@brysonandrew/icons-keys';
+import { B } from '@brysonandrew/interactive'
 import { I } from '@components/Icon';
 import { useKey } from '@hooks/dom/useKey';
 

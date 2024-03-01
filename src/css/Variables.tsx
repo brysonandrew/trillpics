@@ -1,12 +1,15 @@
-import { COLOR_VARIABLES_CSS } from '@app/colors';
-import { Global, css } from '@emotion/react';
+import { COLOR_VARS_CSS } from '@app/color';
+import {
+  Global,
+  css,
+} from '@emotion/react';
 
 export const Variables = () => {
   return (
     <Global
       styles={css`
         :root {
-          ${COLOR_VARIABLES_CSS};
+          ${COLOR_VARS_CSS};
         }
       `}
     />

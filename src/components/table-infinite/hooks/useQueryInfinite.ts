@@ -1,7 +1,7 @@
 import {
   TError,
   TAnyRecord,
-} from '@t/index';
+} from '@brysonandrew/config-types';
 import type {
   InfiniteData,
   UseInfiniteQueryResult,

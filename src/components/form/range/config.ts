@@ -7,7 +7,7 @@ import {
   TMinMax,
   TThresholdConfig,
 } from './twin/sliders/resolveThresholds';
-import { TChildren } from '@t/index';
+import { TChildren } from '@brysonandrew/config-types';
 
 export const THUMB_SIZE = 18;
 

@@ -4,17 +4,15 @@ import { Item } from './Item';
 import {
   TChildren,
   TClassValueProps,
-} from '@t/index';
+  TElementProps,
+} from '@brysonandrew/config-types';
 import clsx from 'clsx';
-import {
-  TLiProps,
-  TUlProps,
-} from '@t/dom';
 
-export type TItemPassedProps = TLiProps;
+export type TItemPassedProps =
+  TElementProps;
 
 type TListProps = Omit<
-  TUlProps,
+  TElementProps,
   'children'
 >;
 
@@ -40,11 +38,7 @@ export const List: FC<TProps> = ({
   children,
   ...props
 }) => (
-  <div
-    className={clsx(
-      'relative row-start-space -left-2 max-h-48 overflow-y-scroll pl-2 my-1 pb-1 w-[calc(100%+0.5rem)]',
-    )}
-  >
+  <div className='relative row-start-space -left-2 max-h-48 overflow-y-scroll pl-2 my-1 pb-1 w-[calc(100%+0.5rem)]'>
     <ul
       className={clsx(
         'relative w-full',

@@ -1,4 +1,4 @@
-import { TError } from '@t/index';
+import { TError } from '@brysonandrew/config-types';
 import message from 'message-like-antd';
 
 const toMessage = (

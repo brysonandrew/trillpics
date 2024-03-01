@@ -1,7 +1,6 @@
 import { Rule } from 'unocss';
-import { TTheme } from '../theme';
 
-export const CURSORS: Rule<TTheme>[] = [
+export const CURSORS: Rule[] = [
   [
     'zoom-in',
     {

@@ -7,7 +7,7 @@ import {
   useImageDimensions,
 } from '@hooks/image/useImageDimensions';
 import { TDimensions } from '@t/measure';
-import { useCycle } from 'framer-motion';
+import { MotionStyle, useCycle } from 'framer-motion';
 import { useState } from 'react';
 import {
   TZIndexKey,
@@ -104,7 +104,7 @@ export const useImage = ({
           position: 'fixed',
           width: viewport.width,
           height: viewport.height,
-        } as const)
+        } as MotionStyle)
       : ({} as const);
 
   return {
@@ -130,7 +130,7 @@ export const useImage = ({
     backdropProps: {
       ...FADE_PRESENCE,
       className:
-        'backdrop-blur-lg bg-black-05 inset-0 z-60 zoom-out',
+        'backdrop-blur-sm bg-black-02 inset-0 z-60 zoom-out',
       style: backdropStyle,
       onTap: handleTap,
     },

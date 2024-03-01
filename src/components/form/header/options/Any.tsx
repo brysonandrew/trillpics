@@ -1,6 +1,6 @@
 import { TBaseFieldValues } from '@components/form/config';
-import { BSm } from '@components/interactive/BSm';
-import { QUESTION_MARK_ICON } from '@constants/icons';
+import { BSm } from '@brysonandrew/interactive'
+import { QUESTION_MARK_ICON } from '@brysonandrew/icons-keys';
 import { PathValue } from 'react-hook-form';
 import { TProps } from '../config';
 
@@ -14,7 +14,7 @@ export const Any = <
   const isDisabled = value === '';
   return (
     <BSm
-      classValue='text-teal-bright'
+      classValue='text-accent'
       shape='interactive-sq-sm'
       title='Use any value'
       icon={QUESTION_MARK_ICON}

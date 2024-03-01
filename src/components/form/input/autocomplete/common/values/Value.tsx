@@ -1,6 +1,6 @@
 import type { FC } from 'react';
 import { Icon } from '@iconify/react';
-import { REMOVE_DUOTONE_ICON } from '@constants/icons';
+import { REMOVE_DUOTONE_ICON } from '@brysonandrew/icons-keys';
 
 type TProps = {
   value: string;

@@ -1,6 +1,6 @@
 const collectionResolverRecord =
   import.meta.glob(
-    `../assets/best/**/*.png`,
+    `../assets/**/*.png`,
   );
 import { MAX_SUFFIX } from '@ops/config';
 import { TInit } from '@t/image';

@@ -1,6 +1,5 @@
 import { Divider } from '@components/decoration/Divider';
 import { I } from '@components/Icon';
-import { FadeUp } from '@components/vertical-fade/FadeUp';
 import { motion } from 'framer-motion';
 import { LINES } from './config';
 
@@ -36,7 +35,6 @@ export const Footer = () => {
           </ul>
         </div>
       </footer>
-      <FadeUp />
     </>
   );
 };

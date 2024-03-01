@@ -1,7 +1,7 @@
 import {
   TChildren,
   TClassValueProps,
-} from '@t/index';
+} from '@brysonandrew/config-types';
 import { Label } from '../Label';
 import {
   Path,

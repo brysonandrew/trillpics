@@ -4,9 +4,8 @@ import { motion } from 'framer-motion';
 import type { FC } from 'react';
 import {
   TChildren,
-  TClassValueProps,
-} from '@t/index';
-import { TDivMotionProps } from '@t/dom';
+  TDivMotionProps,
+} from '@brysonandrew/config-types';
 import { useCursor } from '@context/cursor';
 import { CURSOR_Z } from '@constants/dom';
 
@@ -19,11 +18,10 @@ const resolveSize = (size: number) => {
 
 const Root = styled(motion.div)``;
 
-type TProps = TDivMotionProps &
-  TClassValueProps & {
-    size?: number;
-    children?: TChildren;
-  };
+type TProps = TDivMotionProps & {
+  size?: number;
+  children?: TChildren;
+};
 export const Sight: FC<TProps> = ({
   classValue,
   style,

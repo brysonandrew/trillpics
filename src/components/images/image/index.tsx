@@ -5,7 +5,7 @@ import {
   useImage,
 } from '../useImage';
 import { motion } from 'framer-motion';
-import { TChildren } from '@t/index';
+import { TChildren } from '@brysonandrew/config-types';
 import { Portal } from '../Portal';
 
 type TProps = TUseImageConfig & {

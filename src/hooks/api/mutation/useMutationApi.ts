@@ -4,7 +4,7 @@ import {
   useFetch,
 } from '@hooks/api/useFetch';
 import { TPath } from '@t/data';
-import { TError } from '@t/index';
+import { TError } from '@brysonandrew/config-types';
 import { resolveApiBase } from '@utils/api/resolveApiBase';
 import { OPTIONS_INIT } from './config';
 

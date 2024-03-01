@@ -1,7 +1,5 @@
-import {
-  TElement,
-  TReplacedElement,
-} from '@t/dom';
+
+import { TReplacedElement, TElement } from '@t/dom';
 import { TDimensions } from '@t/measure';
 
 export const resolveDimensions = <

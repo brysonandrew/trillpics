@@ -1,16 +1,14 @@
-import { B } from '@components/interactive/B';
+import { B } from '@brysonandrew/interactive';
 import {
   FieldValues,
   FormState,
   UseFormReset,
 } from 'react-hook-form';
-import { TButtonProps } from '@t/dom';
+import { TButtonProps } from '@brysonandrew/config-types';
 import { I } from '@components/Icon';
-import {
-  ERROR_ICON,
-  GENERATE_IMAGE_ICON,
-} from '@constants/icons';
+import { ERROR_ICON } from '@brysonandrew/icons-keys';
 import clsx from 'clsx';
+import { GENERATE_IMAGE_ICON } from '@constants/icons';
 
 export type TProps<
   T extends FieldValues,
@@ -37,6 +35,7 @@ export const Footer = <
       )}
     >
       <B
+        title='Reset'
         classValue='text-red'
         onClick={() => reset()}
         disabled={!formState.isDirty}
@@ -44,8 +43,11 @@ export const Footer = <
         Reset
       </B>
       <B
+        title='Generate'
         type='submit'
-        classValue={clsx('row gap-2 text-blue')}
+        classValue={clsx(
+          'row gap-2 text-blue',
+        )}
         disabled={
           props.disabled || isErrors
         }
@@ -53,7 +55,9 @@ export const Footer = <
         {isErrors ? (
           <I icon={ERROR_ICON} />
         ) : (
-          <I icon={GENERATE_IMAGE_ICON} />
+          <I
+            icon={GENERATE_IMAGE_ICON}
+          />
         )}
         <div>Generate</div>
       </B>

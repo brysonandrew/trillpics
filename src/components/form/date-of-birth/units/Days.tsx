@@ -4,7 +4,6 @@ import {
   FieldValues,
   UseFormReturn,
 } from 'react-hook-form';
-import { TFieldKey } from '../config';
 import { Options } from '../../select/Options';
 const MAX_DAYS = 31;
 
@@ -12,7 +11,7 @@ type TProps<T extends FieldValues> = {
   form: UseFormReturn<
     T,
     any,
-    undefined
+    FieldValues
   >;
 };
 export const Days = <

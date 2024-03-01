@@ -10,7 +10,7 @@ export const Cart = () => {
 
   return (
     <AnimatePresence>
-      {notifications.length > 0 && (
+      {notifications?.length > 0 && (
         <Handler
           key='handler'
           notifications={notifications}

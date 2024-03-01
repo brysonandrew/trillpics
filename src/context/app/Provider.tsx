@@ -2,7 +2,7 @@ import {
   useState,
   type FC,
 } from 'react';
-import type { TChildrenElement } from '@t/index';
+import type { TChildrenElement } from '@brysonandrew/config-types';
 import { App } from '.';
 
 type TProviderProps = {

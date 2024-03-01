@@ -42,7 +42,7 @@ export const INTERACTIVE: StaticShortcutMap =
     interactive:
       'relative center hover:interactive-hover disabled:interactive-disabled',
     'interactive-active':
-      'border-1-gray-04 text-teal',
+      'border-1-gray-04 text-primary',
     'interactive-disabled':
       'text-gray-1 cursor-not-allowed opacity-90',
     'interactive-hover': 'opacity-90',

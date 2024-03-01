@@ -1,6 +1,6 @@
 import type { FC } from 'react';
 import styled from '@emotion/styled';
-import { TDivMotionProps , TClassValueProps } from '@t/dom';
+import { TDivMotionProps , TClassValueProps } from '@brysonandrew/config-types';
 import clsx from 'clsx';
 import { motion } from 'framer-motion';
 

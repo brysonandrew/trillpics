@@ -1,9 +1,9 @@
 import clsx from 'clsx';
 import { FC } from 'react';
 import { TInteractiveProps } from '@t/css/interactive';
-import { B } from './B';
-import { TButtonMotionProps } from '@t/dom';
+import { B } from '@brysonandrew/interactive';
 import { I } from '@components/Icon';
+import { TButtonMotionProps } from '@brysonandrew/config-types';
 
 type TProps = TButtonMotionProps & {
   isActive?: boolean;

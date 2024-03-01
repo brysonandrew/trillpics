@@ -2,10 +2,10 @@ import type { FC } from 'react';
 import {
   TButtonMotionProps,
   TClassValueProps,
-} from '@t/dom';
+} from '@brysonandrew/config-types';
 import clsx from 'clsx';
 import { I } from '@components/Icon';
-import { B } from '@components/interactive/B';
+import { B } from '@brysonandrew/interactive'
 ``;
 
 export type TProps =

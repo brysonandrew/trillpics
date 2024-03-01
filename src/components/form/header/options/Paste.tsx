@@ -1,6 +1,6 @@
 import { TBaseFieldValues } from '@components/form/config';
-import { BSm } from '@components/interactive/BSm';
-import { PASTE_ICON } from '@constants/icons';
+import { BSm } from '@brysonandrew/interactive'
+import { PASTE_ICON } from '@brysonandrew/icons-keys';
 import { PathValue } from 'react-hook-form';
 import { TProps } from '../config';
 

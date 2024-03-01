@@ -1,7 +1,7 @@
 import { P1 } from '@components/layout/space/P1';
 import { P6 } from '@components/layout/space/P6';
 import styled from '@emotion/styled';
-import { TError } from '@t/index';
+import { TError } from '@brysonandrew/config-types';
 import { FC } from 'react';
 
 const Root = styled.p``;

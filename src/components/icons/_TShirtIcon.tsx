@@ -1,6 +1,6 @@
 import { I } from '@components/Icon';
 import { TUseImageReturn } from '@components/images/useImage';
-import { useDarkMode } from '@context/dark-mode';
+import { useDarkMode } from '@brysonandrew/dark-mode';
 import { resolveCompositeKey } from '@utils/keys';
 import { motion } from 'framer-motion';
 import { FC } from 'react';

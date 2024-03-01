@@ -1,4 +1,4 @@
-import { TTitleProps } from '@t/index';
+import { TTitleProps } from '@brysonandrew/config-types';
 import clsx from 'clsx';
 import {
   FC,
@@ -17,12 +17,12 @@ export const Collection: FC<TProps> = ({
   return (
     <section className='w-full column'>
       <div className='w-container'>
-        <h2 className='relative uppercase text-6xl z-10'>
-          {title}
-        </h2>
+        {/* <h2 className='relative uppercase text-6xl z-10'>
+          {title} 
+        </h2> */}
         <ul
           className={clsx(
-            'grid grid-cols-1 py-16',
+            'grid grid-cols-1',
             GRID_CLASS_VALUE,
           )}
         >

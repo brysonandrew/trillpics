@@ -20,6 +20,4 @@ tsconfig.tsbuildinfo
 .assets/**/*
 .env
 
-invokeai/**/*
-automatic1111/**/*
 src/components/collection/assets/**/*

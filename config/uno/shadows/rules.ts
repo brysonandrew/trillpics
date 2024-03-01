@@ -1,8 +1,8 @@
 import type { Rule } from 'unocss';
 import type { TTheme } from '../theme';
 import {
-  GLOW_TEAL_2,
-  GLOW_TEAL_4,
+  GLOW_PRIMARY_2,
+  GLOW_PRIMARY_4,
   GLOW_BABY_BLUE_4,
   GLOW_CURSOR_LIGHT_4,
   GLOW_BLACK_1_BABY_BLUE_1,
@@ -13,17 +13,17 @@ export const RULES: Rule<TTheme>[] = [
   [
     'glow-interactive-dark',
     {
-      'box-shadow': GLOW_TEAL_2,
+      'box-shadow': GLOW_PRIMARY_2,
     },
   ],
   [
     'glow-interactive-dark-lg',
     {
-      'box-shadow': GLOW_TEAL_4,
+      'box-shadow': GLOW_PRIMARY_4,
     },
   ],
   [
-    'glow-baby-blue',
+    'glow-secondary',
     {
       'box-shadow': GLOW_BABY_BLUE_4,
     },

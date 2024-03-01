@@ -1,8 +1,8 @@
-import { TChildren } from '@t/index';
+import { TChildren } from '@brysonandrew/config-types';
 
 type TEntry = readonly [
   string,
-  TChildren,
+  TChildren | number,
 ];
 type TEntries = TEntry[];
 type TProps = {

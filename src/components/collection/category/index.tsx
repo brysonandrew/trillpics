@@ -1,5 +1,5 @@
 import { FC } from 'react';
-import { TClassValueProps } from '@t/index';
+import { TClassValueProps } from '@brysonandrew/config-types';
 import clsx, { ClassValue } from 'clsx';
 import { useViewport } from '@context/viewport';
 import { Item } from '../../images/item';

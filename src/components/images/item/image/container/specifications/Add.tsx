@@ -1,8 +1,8 @@
 import { FC } from 'react';
-import { TButtonMotionProps } from '@t/dom';
+import { TButtonMotionProps } from '@brysonandrew/config-types';
 import { Button } from './Button';
 
-type TProps = TButtonMotionProps;
+type TProps = Omit<TButtonMotionProps, 'title'>;
 export const Add: FC<TProps> = ({
   children,
   ...props
@@ -11,7 +11,7 @@ export const Add: FC<TProps> = ({
     <Button
       variant='add'
       classValue='w-full'
-      gradient='bg-emerald-teal-cyan'
+      gradient='bg-emerald-primary-cyan'
       iconChar='+'
       type='submit'
       {...props}

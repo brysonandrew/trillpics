@@ -1,4 +1,5 @@
-import { TClassValueProps } from '@t/index';
+import { useApp } from '@brysonandrew/app';
+import { TClassValueProps } from '@brysonandrew/config-types';
 import clsx from 'clsx';
 import { FC } from 'react';
 
@@ -6,13 +7,18 @@ type TProps = TClassValueProps;
 export const Divider: FC<TProps> = ({
   classValue,
 }) => {
+  const { BackFill } = useApp();
   return (
-    <img
-      src='/decoration/lines/1.png'
-      className={clsx(
-        'w-full bg-section',
-        classValue,
-      )}
+    <BackFill
+      classValue={clsx('bg-primary w-full bg-section', classValue)}
+ 
     />
+    // <img
+    //   src='/decoration/lines/1.png'
+    //   className={clsx(
+    //     'w-full bg-section',
+    //     classValue,
+    //   )}
+    // />
   );
 };

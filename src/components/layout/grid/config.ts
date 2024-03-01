@@ -1,4 +1,4 @@
-import { TChildren } from '@t/index';
+import { TChildren } from '@brysonandrew/config-types';
 
 export const DEFAULT_COL_COUNT = 4;
 

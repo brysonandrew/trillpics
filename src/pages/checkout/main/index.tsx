@@ -1,11 +1,6 @@
-import { Collection } from '@components/collection';
-import { Pendings } from '@components/collection/variants/Pendings';
 import { useCheckout } from '@context/checkout';
 import { TItemEntries } from '@context/checkout/config';
 import { TPending } from '@t/image';
-import { Options } from './Options';
-import { Payment } from './payment';
-import { Empty } from './payment/Empty';
 
 export const Main = () => {
   const { record } = useCheckout();
@@ -22,23 +17,25 @@ export const Main = () => {
     },
     0,
   );
-  const price = count * 44;
+  const price = 44;
+  const total = count * 44;
 
   return (
     <main>
-      {price > 0 ? (
-        <>
-          <Collection title='checkout'>
-            <Pendings
-              entries={entries}
-            />
-          </Collection>
-          <Payment price={price} />
-          <Options />
-        </>
-      ) : (
-        <Empty />
-      )}
+      <ul>
+        {entries.map(([key, value]) => (
+          <li key={key}>
+            <div>{key}</div>
+            <div>{JSON.stringify(value, null, 2)}</div>
+          </li>
+        ))}
+      </ul>
+      <ul>
+        <li>count: {count}</li>
+        <li>price: {price}</li>
+
+        <li>total: {total}</li>
+      </ul>
     </main>
   );
 };

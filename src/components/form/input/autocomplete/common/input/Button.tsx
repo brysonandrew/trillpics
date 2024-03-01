@@ -1,15 +1,12 @@
 import type { FC } from 'react';
 import styled from '@emotion/styled';
-import type { ClassValue } from 'clsx';
 import clsx from 'clsx';
-import { TButtonMotionProps } from '@t/dom';
+import { TButtonMotionProps } from '@brysonandrew/config-types';
 import { motion } from 'framer-motion';
 
 const Root = styled(motion.button)``;
 
-type TProps = TButtonMotionProps & {
-  classValue?: ClassValue;
-};
+type TProps = TButtonMotionProps;
 export const Button: FC<TProps> = ({
   children,
   classValue,

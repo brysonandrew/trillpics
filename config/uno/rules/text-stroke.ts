@@ -1,9 +1,8 @@
 import type { Rule } from 'unocss';
-import type { TTheme } from '../theme';
 
 const resolveTextStroke = (
   colors: string[],
-): Rule<TTheme>[] => {
+): Rule[] => {
   return colors.map((color: string) => {
     return [
       `text-stroke-${color}`,
@@ -18,8 +17,8 @@ const resolveTextStroke = (
 export const RULES = resolveTextStroke([
   'red-02',
   'gray',
-  'baby-blue',
-  'baby-blue-01',
-  'baby-blue-02',
-  'teal-bright-02',
+  'secondary',
+  'secondary-01',
+  'secondary-02',
+  'accent-02',
 ]);

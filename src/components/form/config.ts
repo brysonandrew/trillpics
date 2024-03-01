@@ -1,4 +1,4 @@
-import { TClassValueProps } from '@t/dom';
+import { TClassValueProps } from '@brysonandrew/config-types';
 import { PropsWithChildren } from 'react';
 import {
   FieldValues,

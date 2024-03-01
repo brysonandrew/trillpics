@@ -1,5 +1,5 @@
 import { P1 } from '@components/layout/space/P1';
-import { TDivProps } from '@t/dom';
+import { TDivProps } from '@brysonandrew/config-types';
 import { FC } from 'react';
 import { Title } from './Title';
 

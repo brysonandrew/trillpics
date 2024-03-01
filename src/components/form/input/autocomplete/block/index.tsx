@@ -7,10 +7,10 @@ import { useInputHandlers } from '../common/useInputHandlers';
 import { useSuggestions } from '../common/useSuggestions';
 import clsx from 'clsx';
 import { TIconConfigProps } from '@t/icons';
-import { TAG_ICON } from '@constants/icons';
+import { TAG_ICON } from '@brysonandrew/icons-keys';
 import { resolveCompositeKey } from '@utils/keys';
 import { Cell } from '@components/layout/cells/Cell';
-import { TChildren } from '@t/index';
+import { TChildren } from '@brysonandrew/config-types';
 import { motion } from 'framer-motion';
 
 type TProps =

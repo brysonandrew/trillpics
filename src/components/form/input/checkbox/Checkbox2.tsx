@@ -4,7 +4,7 @@ import { motion } from 'framer-motion';
 import { FC } from 'react';
 import { TBaseProps } from '../../config';
 import { TInputProps } from '@t/inputs';
-import { TDivProps } from '@t/dom';
+import { TDivProps } from '@brysonandrew/config-types';
 import { Icon } from '@iconify/react';
 
 const ADD_KEY = 'add';

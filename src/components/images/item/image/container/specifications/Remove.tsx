@@ -1,5 +1,5 @@
 import { FC } from 'react';
-import { TButtonMotionProps } from '@t/dom';
+import { TButtonMotionProps } from '@brysonandrew/config-types';
 import { Button } from './Button';
 import { useCheckout } from '@context/checkout';
 import { CART_QUANTITY_CURSOR_KEY } from '@components/cursor/switch/config';

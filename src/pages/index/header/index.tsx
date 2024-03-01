@@ -1,6 +1,6 @@
-import { DarkMode } from '@main/shell/header/dark-mode';
-import { Cart } from '@main/shell/header/cart';
-import { Header as _Header } from '@main/shell/header';
+import { DarkMode } from 'src/shell/header/dark-mode';
+import { Cart } from 'src/shell/header/cart';
+import { Header as _Header } from 'src/shell/header';
 
 export const Header = () => {
   return (

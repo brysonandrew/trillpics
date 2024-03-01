@@ -6,11 +6,10 @@ import {
 import styled from '@emotion/styled';
 import { I } from '@components/Icon';
 import { FADE_PRESENCE } from '@constants/animation';
-import { TICK_ICON } from '@constants/icons';
+import { CART_ICON, TICK_ICON } from '@brysonandrew/icons-keys';
 import { motion } from 'framer-motion';
 import { TNotificationsContext } from '@context/checkout/config';
 import { useDelayCallback } from '@hooks/window/useDelayCallback';
-import { CART_ICON } from '@constants/icons/cart';
 import { Loading } from './Loading';
 
 const Root = styled(motion.div)``;

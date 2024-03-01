@@ -4,21 +4,18 @@ import {
 } from 'react';
 import { Pill } from '@components/decoration/Pill';
 import { useCheckout } from '@context/checkout';
-import {
-  TDisplay,
-  TPendingRecordId,
-} from '@t/image';
+import { TDisplay } from '@t/image';
 import { I } from '@components/Icon';
 import { Line } from '@components/layout/Line';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
-import { CHECKOUT_ROUTE } from '@constants/routes';
 import { TitleIconNav } from '@components/layout/text/nav/TitleIconNav';
 import { P2 } from '@components/layout/space/P2';
 import { Cart } from '@components/icons/Cart';
-import { TIMES_ICON } from '@constants/icons/text';
-import { BSm } from '@components/interactive/BSm';
+import { TIMES_ICON } from '@brysonandrew/icons-keys/text';
+import { BSm } from '@brysonandrew/interactive';
 import { TUseCartItems } from './useCartItems';
+import { CHECKOUT_ROUTE } from '@constants/routes';
 
 type TProps = PropsWithChildren<
   TDisplay & {
@@ -78,7 +75,7 @@ export const AddedItems: FC<TProps> = ({
                     </p>
                     <Pill
                       classValue='pointer-events-none'
-                      gradient='bg-green-emerald-teal'
+                      gradient='bg-green-emerald-primary'
                     >
                       <>
                         <I

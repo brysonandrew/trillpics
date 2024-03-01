@@ -1,12 +1,11 @@
 import { FC } from 'react';
-import { B } from '@components/interactive/B';
+import { BSm } from '@brysonandrew/interactive';
 import clsx from 'clsx';
-import { TButtonMotionProps } from '@t/dom';
+import { TButtonMotionProps } from '@brysonandrew/config-types';
 import { Backdrop } from '../../../../decoration/Backdrop';
 import { resolveCompositeKey } from '@utils/keys';
 import { Pill } from '@components/decoration/Pill';
 import { FADE_PRESENCE } from '@constants/animation';
-import { BSm } from '@components/interactive/BSm';
 
 type TProps = TButtonMotionProps & {
   isHover: boolean | null;
@@ -39,6 +38,7 @@ export const Close: FC<TProps> = ({
       }
       {...props}
       {...FADE_PRESENCE}
+      title='exit'
     >
       <Backdrop
         id={resolveCompositeKey(

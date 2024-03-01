@@ -3,14 +3,12 @@ import { Base } from '../Base';
 import { TBaseProps } from '../../config';
 import styled from '@emotion/styled';
 import { TInputProps } from '@t/inputs';
-import { COLOR_VARIABLES_LOOKUP } from '@app/colors';
 import clsx from 'clsx';
+import { COLOR_RECORD } from '@app/color';
 
 const Input = styled.input`
   &::placeholder {
-    color: ${COLOR_VARIABLES_LOOKUP[
-      'black-7'
-    ]};
+    color: ${COLOR_RECORD['black-7']};
   }
 `;
 

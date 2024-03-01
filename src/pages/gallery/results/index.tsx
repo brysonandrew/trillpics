@@ -1,6 +1,6 @@
 import { List } from './list';
 import { withProvider } from './context/withProvider';
-import { Boundary } from '@components/boundary';
+import { Boundary } from '@brysonandrew/boundary';
 
 export const Results = withProvider(
   () => {
@@ -11,4 +11,3 @@ export const Results = withProvider(
     );
   },
 );
-  

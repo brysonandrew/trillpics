@@ -1,5 +1,5 @@
-import { BSm } from '@components/interactive/BSm';
-import { CROSS_ICON } from '@constants/icons';
+import { BSm } from '@brysonandrew/interactive'
+import { CROSS_ICON } from '@brysonandrew/icons-keys';
 import {
   Path,
   PathValue,

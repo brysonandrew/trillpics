@@ -3,7 +3,7 @@ import {
   useEffect,
   useState,
 } from 'react';
-import { TChildren } from '@t/index';
+import { TChildren } from '@brysonandrew/config-types';
 import { resolveErrorMessage } from '@utils/api/error/resolveErrorMessage';
 import {
   TResolver,

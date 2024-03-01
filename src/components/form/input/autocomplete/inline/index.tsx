@@ -11,14 +11,14 @@ import { TIconConfigProps } from '@t/icons';
 import {
   MAGNIFY_ICON,
   TAG_ICON,
-} from '@constants/icons';
+} from '@brysonandrew/icons-keys';
 import { resolveCompositeKey } from '@utils/keys';
 import { Clear } from '../common/values/Clear';
 import { Value } from '../common/values/Value';
 import clsx from 'clsx';
 import { motion } from 'framer-motion';
 import { ItemBackground } from './ItemBackground';
-import { TChildren } from '@t/index';
+import { TChildren } from '@brysonandrew/config-types';
 import { useOutsideClick } from '@hooks/dom/useOutsideClick';
 
 type TProps =

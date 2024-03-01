@@ -24,8 +24,8 @@ export const Text: FC<TProps> = ({
       className={clsx(
         'row absolute gap-2 mix-blend-difference pointer-events-none',
         isFirstPosition
-          ? 'top-6 left-6 text-2xl'
-          : 'left-12 top-12 text-4xl',
+          ? 'top-6 left-6 text-lg'
+          : 'left-12 top-12 text-xl',
       )}
       {...props}
     >

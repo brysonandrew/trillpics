@@ -1,5 +1,4 @@
 import { Rule } from 'unocss';
-import { TTheme } from '../theme';
 import { TNeuBoxConfig } from '../neu/types';
 import { resolveNeuClasses } from '../neu/resolveNeuClasses';
 
@@ -12,5 +11,5 @@ const config: TNeuBoxConfig = {
 };
 const style = resolveNeuClasses(config);
 
-export const NEU: Rule<TTheme>[] =
+export const NEU: Rule[] =
   Object.entries(style);

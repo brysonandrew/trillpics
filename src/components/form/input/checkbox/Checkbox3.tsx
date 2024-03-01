@@ -3,7 +3,7 @@ import clsx from 'clsx';
 import { FC } from 'react';
 import { TBaseProps } from '../../config';
 import { TInputProps } from '@t/inputs';
-import { TDivProps } from '@t/dom';
+import { TDivProps } from '@brysonandrew/config-types';
 import { Icon } from '@iconify/react';
 
 const ADD_KEY = 'square-outline';
@@ -68,7 +68,7 @@ export const Checkbox3: FC<TProps> = ({
                 className={clsx(
                   'w-8 h-8',
                   icon === MINUS_KEY
-                    ? 'text-teal'
+                    ? 'text-primary'
                     : 'text-white',
                 )}
                 icon={`ion:${icon}`}

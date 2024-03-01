@@ -3,7 +3,7 @@ import {
   useState,
 } from 'react';
 import type { FC } from 'react';
-import type { TChildrenElement } from '@t/index';
+import type { TChildrenElement } from '@brysonandrew/config-types';
 import { STATE } from './constants';
 import { useMotionValue } from 'framer-motion';
 import { TCursorOffset } from '@hooks/cursor/useCursorOffset';

@@ -15,7 +15,7 @@ import {
 import { DEFAULT_VALUES } from '@context/checkout/config';
 import { useLocalStorageForm } from '@context/checkout/useLocalStorageForm';
 import { resolveCompositeKey } from '@utils/keys';
-import { useDarkMode } from '@context/dark-mode';
+import { useDarkMode } from '@brysonandrew/dark-mode';
 
 export type TBasePassedProps = {
   canvas: 'black' | 'white';
@@ -78,8 +78,6 @@ export const Image: FC<TProps> = ({
             : passedProps.config,
       },
     );
-  const canvasSrc = `/canvas/black/b1.png`;
-
   const uniqueId = resolveCompositeKey(
     config.src,
     darkKey,
@@ -106,7 +104,7 @@ export const Image: FC<TProps> = ({
         form={form}
         layoutId={`canvas:${uniqueId}`}
         {...config}
-        src={canvasSrc}
+        // src={canvasSrc}
         size={size}
         canvas={canvas}
       />

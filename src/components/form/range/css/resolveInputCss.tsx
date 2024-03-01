@@ -1,4 +1,4 @@
-import { TColorKey } from '@app/colors';
+import { TColorKey } from '@app/color';
 import { css } from '@emotion/react';
 
 type TConfig = {
@@ -6,7 +6,7 @@ type TConfig = {
   secondary: TColorKey;
   shadow: TColorKey;
   thumbSize: number;
-};
+} & any;
 export const resolveInputTrackCss = ({
   primary,
   secondary,

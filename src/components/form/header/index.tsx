@@ -1,5 +1,5 @@
 import { Shell as _Header } from '@components/form/header/shell';
-import { Row } from '@components/interactive/Row';
+import { Row } from '@brysonandrew/interactive'
 import { TBaseFieldValues } from '../config';
 import {
   ALL_OPTIONS,

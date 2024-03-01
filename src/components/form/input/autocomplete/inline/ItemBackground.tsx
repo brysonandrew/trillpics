@@ -13,7 +13,7 @@ export const ItemBackground: FC =
             opacity: 0.28,
           },
         }}
-        className='absolute -left-1 -right-1 -top-0.5 -bottom-0.5 bg-teal rounded-md'
+        className='absolute -left-1 -right-1 -top-0.5 -bottom-0.5 bg-primary rounded-md'
       />
     );
   };

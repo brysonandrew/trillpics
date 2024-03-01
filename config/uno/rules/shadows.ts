@@ -1,7 +1,6 @@
 import { Rule } from 'unocss';
-import { TTheme } from '../theme';
 
-export const SHADOWS: Rule<TTheme>[] = [
+export const SHADOWS: Rule[] = [
   [
     'shadow-1-white',
     {
@@ -31,10 +30,10 @@ export const SHADOWS: Rule<TTheme>[] = [
     },
   ],
   [
-    'shadow-1-teal-04',
+    'shadow-1-primary-04',
     {
       'box-shadow':
-        '0 0 1px 2px var(--teal-04)',
+        '0 0 1px 2px var(--primary-04)',
     },
   ],
 ];

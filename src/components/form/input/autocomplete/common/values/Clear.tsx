@@ -1,6 +1,6 @@
 import type { FC } from 'react';
-import { CLEAR_ICON } from '@constants/icons';
-import { TClassValueProps } from '@t/dom';
+import { CLEAR_ICON } from '@brysonandrew/icons-keys';
+import { TClassValueProps } from '@brysonandrew/config-types';
 import clsx from 'clsx';
 import { I } from '@components/Icon';
 

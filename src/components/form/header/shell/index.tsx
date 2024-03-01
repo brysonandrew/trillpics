@@ -2,7 +2,7 @@ import type { FC } from 'react';
 import {
   TChildren,
   TClassValueProps,
-} from '@t/index';
+} from '@brysonandrew/config-types';
 import clsx from 'clsx';
 import { Title } from '../../Title';
 import { Piece } from '@components/layout/pieces/Piece';

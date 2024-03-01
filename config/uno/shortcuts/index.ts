@@ -6,9 +6,11 @@ import { GRID } from './grid';
 import { INTERACTIVE } from './interactive';
 import { LAYOUT } from './layout';
 import { GRADIENT } from './gradient';
+import { SHORTCUTS as _SHORTCUTS } from '@brysonandrew/uno-shortcuts';
 
 export const SHORTCUTS: StaticShortcutMap =
   {
+    ..._SHORTCUTS,
     'dark-mode-transition':
       'transition-colors duration-1000',
     'bg-section':
@@ -26,7 +28,7 @@ export const SHORTCUTS: StaticShortcutMap =
     'text-main':
       'text-black-1 dark:text-white-9 dark-mode-transition',
     'text-nav':
-      'relative text-lg uppercase whitespace-nowrap tracking-widest font-sans',
+      'relative text-lg uppercase whitespace-nowrap tracking-widest font-slab',
     ...GRID,
     ...FLEX,
     ...INPUT,

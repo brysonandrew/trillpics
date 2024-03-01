@@ -1,5 +1,5 @@
 import { Pill } from '@components/decoration/Pill';
-import { TChildren } from '@t/index';
+import { TChildren } from '@brysonandrew/config-types';
 import { FC } from 'react';
 type TProps = {
   children: TChildren;

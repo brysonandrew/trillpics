@@ -3,7 +3,7 @@ import {
   useEffect,
   useState,
 } from 'react';
-import type { TChildrenElement } from '@t/index';
+import type { TChildrenElement } from '@brysonandrew/config-types';
 import { Checkout } from '.';
 import { useLocalStorage } from '@hooks/dom/useLocalStorage';
 import {
@@ -26,7 +26,7 @@ import { resolvePendingId } from '@utils/images/resolvePendingId';
 type TProviderProps = {
   children: TChildrenElement;
 };
-export const Provider: FC<
+export const CheckoutProvider: FC<
   TProviderProps
 > = ({ children }) => {
   const [record, setRecord] =

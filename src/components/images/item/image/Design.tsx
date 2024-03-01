@@ -1,5 +1,5 @@
 import { TUseImageReturn } from '@components/images/useImage';
-import { TImgMotionProps } from '@t/dom';
+import { TImgMotionProps } from '@brysonandrew/config-types';
 import { resolveCompositeKey } from '@utils/keys';
 import { motion } from 'framer-motion';
 import { FC } from 'react';
@@ -17,7 +17,7 @@ export const Design: FC<TProps> = ({
   ...props
 }) => {
   const printSize = size
-    ? imageProps.style.width * 0.4
+    ? imageProps.style.width 
     : 0;
 
   return (
@@ -32,10 +32,10 @@ export const Design: FC<TProps> = ({
         zIndex: imageProps.style.zIndex,
         top:
           imageProps.style.top +
-          printSize * 0.55,
+          printSize * 0,
         left:
           imageProps.style.left +
-          printSize * 0.75,
+          printSize * 0,
       }}
       key={resolveCompositeKey(
         imageProps.key,

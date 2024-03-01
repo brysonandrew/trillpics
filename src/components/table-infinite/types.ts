@@ -23,7 +23,7 @@ import { TBaseFieldValues } from '@components/form/config';
 import {
   TChildren,
   TError,
-} from '@t/index';
+} from '@brysonandrew/config-types';
 import {
   FetchNextPageOptions,
   InfiniteQueryObserverResult,

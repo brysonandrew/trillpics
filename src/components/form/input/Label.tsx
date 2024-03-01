@@ -3,10 +3,9 @@ import styled from '@emotion/styled';
 import clsx from 'clsx';
 import {
   TChildren,
-  TClassValueProps,
-} from '@t/index';
+  TClassValueProps,TDivMotionProps
+} from '@brysonandrew/config-types';
 import { motion } from 'framer-motion';
-import { TDivMotionProps } from '@t/dom';
 
 const _Root = styled(motion.div)``;
 

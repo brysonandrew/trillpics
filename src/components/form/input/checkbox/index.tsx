@@ -1,7 +1,6 @@
-import { BLACK_RGB_RECORD } from '@app/colors/grayscale/black';
-import { varRgb } from '@app/colors/utils';
 import { P_5 } from '@components/layout/space/P_5';
-import { TChildren } from '@t/index';
+import { useApp } from '@brysonandrew/app';
+import { TChildren } from '@brysonandrew/config-types';
 import { camelToTitle } from '@utils/format';
 import clsx from 'clsx';
 import { motion } from 'framer-motion';
@@ -21,6 +20,7 @@ export const Checkbox: FC<TProps> = ({
   label,
   ...props
 }) => {
+  const { COLOR } = useApp();
   return (
     <motion.label
       className={clsx(
@@ -30,8 +30,7 @@ export const Checkbox: FC<TProps> = ({
           : 'opacity-40',
       )}
       whileHover={{
-        backgroundColor:
-          varRgb(BLACK_RGB_RECORD['black-5']),
+        backgroundColor: COLOR['black'],
       }}
     >
       <input

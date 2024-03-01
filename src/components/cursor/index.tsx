@@ -3,7 +3,7 @@ import { NOOP } from '@constants/functions';
 import { useEventListener } from '@hooks/events/useEventListener';
 import { useCursor } from '@context/cursor';
 import { useScroll as useScrollContext } from '@context/scroll';
-import type { TChildren } from '@t/index';
+import type { TChildren } from '@brysonandrew/config-types';
 import { useViewportPresence } from './useViewportPresence';
 import { Switch } from '@components/cursor/switch';
 import { useTimeoutRef } from '@hooks/window/useTimeoutRef';

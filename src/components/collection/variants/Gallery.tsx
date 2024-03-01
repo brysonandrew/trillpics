@@ -2,7 +2,7 @@ import { Item } from '@components/images/item';
 import { INITS } from '../config/items';
 import { Resolve } from '../Resolve';
 import { useViewport } from '@context/viewport';
-import { useDarkMode } from '@context/dark-mode';
+import { useDarkMode } from '@brysonandrew/dark-mode';
 
 export const Gallery = () => {
   const {isDarkMode}  = useDarkMode()

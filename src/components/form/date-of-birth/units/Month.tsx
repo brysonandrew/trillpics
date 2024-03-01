@@ -11,7 +11,7 @@ type TProps<T extends FieldValues> = {
   form: UseFormReturn<
     T,
     any,
-    undefined
+    FieldValues
   >;
 };
 export const Month = <

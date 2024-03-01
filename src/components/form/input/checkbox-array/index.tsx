@@ -17,7 +17,7 @@ import { Checkbox } from '../checkbox';
 import {
   CHECKBOX_MULTIPLE_BLANK,
   CHECKBOX_MULTIPLE_MARKED,
-} from '@constants/icons';
+} from '@brysonandrew/icons-keys';
 
 const keyName = 'id';
 type TKeyName = typeof keyName;

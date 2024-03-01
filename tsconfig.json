@@ -31,7 +31,9 @@
     "src/**/*.ts",
     "src/**/*.tsx",
     "ops/**/*.ts",
-    "ops/**/*.tsx"
+    "ops/**/*.tsx",
+    "config/**/*.ts",
+    "config/**/*.tsx"
   ],
   "extends": "./tsconfig.paths.json"
 }

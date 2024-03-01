@@ -1,5 +1,5 @@
 import type { FC } from 'react';
-import { TDivProps , TClassValueProps } from '@t/dom';
+import { TDivProps , TClassValueProps } from '@brysonandrew/config-types';
 import clsx, { ClassValue } from 'clsx';
 import {
   Background,

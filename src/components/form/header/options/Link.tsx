@@ -1,6 +1,6 @@
 import { TBaseFieldValues } from '@components/form/config';
-import { BAnchorSm } from '@components/interactive/BAnchorSm';
-import { EXTERNAL_LINK_ICON } from '@constants/icons';
+import { BAnchorSm } from '@brysonandrew/interactive'
+import { EXTERNAL_LINK_ICON } from '@brysonandrew/icons-keys';
 import { TProps } from '../config';
 
 export const Link = <

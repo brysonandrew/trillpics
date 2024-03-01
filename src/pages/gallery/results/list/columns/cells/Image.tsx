@@ -15,8 +15,6 @@ export const Image: FC<TProps> = ({
   cell,
   size,
 }) => {
-  console.log(cell);
-
   const [_, resolver] =
     cell.row.original.cols[index];
   const colsCount =
@@ -31,7 +29,6 @@ export const Image: FC<TProps> = ({
             size: 320,
             colIndex: index,
           });
-          console.log(imageConfig)
         return (
           <_Image
             id={src}

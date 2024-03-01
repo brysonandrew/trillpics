@@ -1,8 +1,6 @@
 import { Rule } from 'unocss';
 
-import { TTheme } from '../theme';
-
-export const BORDERS: Rule<TTheme>[] = [
+export const BORDERS: Rule[] = [
   [
     'border-t-1-gray',
     {

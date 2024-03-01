@@ -4,7 +4,7 @@ import { I } from '@components/Icon';
 import { P1 } from '@components/layout/space/P1';
 import { P4 } from '@components/layout/space/P4';
 import { FADE_PRESENCE } from '@constants/animation';
-import { CLIPBOARD_SUCCESS_ICON } from '@constants/icons';
+import { CLIPBOARD_SUCCESS_ICON } from '@brysonandrew/icons-keys';
 import {
   AnimatePresence,
   motion,
@@ -46,7 +46,7 @@ export const Handler: FC<TProps> = ({
                   }
                 />
               </header>
-              <h4 className='text-teal text-4xl normal-case'>"{copying.value}"</h4>
+              <h4 className='text-primary text-4xl normal-case'>"{copying.value}"</h4>
             </div>
           )}
         </Root>

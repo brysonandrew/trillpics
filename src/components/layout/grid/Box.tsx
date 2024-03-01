@@ -1,10 +1,10 @@
 import { FC } from 'react';
 import styled from '@emotion/styled';
-import { TLiProps } from '@t/dom';
+import { TElementProps } from '@brysonandrew/config-types';
 
 const Root = styled.li``;
 
-type TProps = TLiProps;
+type TProps = TElementProps;
 export const Box: FC<TProps> = ({
   children,
   ...props

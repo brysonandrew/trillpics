@@ -2,13 +2,13 @@ import { motion } from 'framer-motion';
 import { ReactNode, type FC } from 'react';
 import { resolvePresence } from '@utils/animation';
 import clsx from 'clsx';
-import { TClassValueProps } from '@t/index';
+import { TClassValueProps } from '@brysonandrew/config-types';
 import {
-  GLOW_TEAL_BRIGHT_4,
+  GLOW_PRIMARY_BRIGHT_4,
   GLOW_BLACK_1_BABY_BLUE_1,
 } from 'config/uno/shadows';
 import { useCursor } from '@context/cursor';
-import { useDarkMode } from '@context/dark-mode';
+import { useDarkMode } from '@brysonandrew/dark-mode';
 import { Metal } from '@components/metal';
 import { DURATION } from '@constants/animation';
 

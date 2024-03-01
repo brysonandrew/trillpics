@@ -3,9 +3,9 @@ import { List } from '../list';
 import { FADE_PRESENCE_WITH_DELAY } from '@constants/animation';
 import { HighlightText } from '@components/highlight-text';
 import { I } from '@components/Icon';
-import { ADD_DUOTONE_ICON } from '@constants/icons';
+import { ADD_DUOTONE_ICON } from '@brysonandrew/icons-keys';
 import { ItemBackground } from './ItemBackground';
-import { TClassValueProps } from '@t/dom';
+import { TClassValueProps } from '@brysonandrew/config-types';
 
 type TProps = TClassValueProps & {
   id?: string;

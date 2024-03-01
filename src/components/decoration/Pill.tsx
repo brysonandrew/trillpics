@@ -1,16 +1,19 @@
 import clsx, { ClassValue } from 'clsx';
 import { FC } from 'react';
 import { TGradientShortcut } from '@uno/shortcuts/gradient';
-import { TChildren } from '@t/index';
-import { motion } from 'framer-motion';
-import { TSpanMotionProps } from '@t/dom';
+import { TChildren } from '@brysonandrew/config-types';
+import {
+  HTMLMotionProps,
+  motion,
+} from 'framer-motion';
 
-type TProps = TSpanMotionProps & {
-  classValue?: ClassValue;
-  gradient?: TGradientShortcut;
-  isCircle?: boolean;
-  children: TChildren;
-};
+type TProps =
+  HTMLMotionProps<'span'> & {
+    classValue?: ClassValue;
+    gradient?: TGradientShortcut;
+    isCircle?: boolean;
+    children: TChildren;
+  };
 export const Pill: FC<TProps> = ({
   isCircle,
   classValue,

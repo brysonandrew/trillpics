@@ -5,7 +5,7 @@ import {
 } from './shell/Button';
 import { WithPadding as Header } from '@components/form/header/shell/WithPadding';
 import { P1 } from '@components/layout/space/P1';
-import { TButtonMotionProps } from '@t/dom';
+import { TButtonMotionProps } from '@brysonandrew/config-types';
 
 type TProps = TButtonMotionProps & {
   title: string;

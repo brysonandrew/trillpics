@@ -1,36 +1,15 @@
-import {
-  definePreset,
-  presetUno,
-  presetWebFonts,
-  type Preset,
-} from 'unocss';
-import {
-  TAnyTheme,
-  TTheme,
-} from '../theme';
+import { presetWebFonts, type Preset } from 'unocss';
+import { withDarkModePreset } from '@brysonandrew/uno-presets';
+import { FONTS } from '../../app/base/fonts';
+import { resolveFonts } from '@brysonandrew/uno-presets/resolveFonts';
 
-export type TPresets = (
-  | Preset<TTheme>
-  | Preset<TTheme>[]
+const fonts = resolveFonts(FONTS);
+
+export type TPresets<T extends object> = (
+  | Preset<T>
+  | Preset<T>[]
 )[];
-export const PRESETS: TPresets = [
-  definePreset<TAnyTheme>(
-    presetUno({ dark: 'class' }),
-  ),
-  presetWebFonts({
-    fonts: {
-      sans: {
-        name: 'Author', //Switzer Author Tanker Excon
-        provider: 'fontshare',
-      },
-      slab: {
-        name: 'Hoover',
-        provider: 'fontshare',
-      },
-      display: {
-        name: 'Nippo',
-        provider: 'fontshare',
-      },
-    },
-  }),
-];
+export const resolvePresets = <
+  T extends object,
+>(): TPresets<T> =>
+  withDarkModePreset([presetWebFonts({ fonts })]);

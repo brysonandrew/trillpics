@@ -3,10 +3,10 @@ import styled from '@emotion/styled';
 import { FC } from 'react';
 import { ArrowDown } from './ArrowDown';
 import clsx from 'clsx';
-import { TDivProps } from '@t/dom';
-import { TSelectProps } from '@t/inputs';
+import { TDivProps } from '@brysonandrew/config-types';
 import { TBaseProps } from '../config';
 import { Label } from '../input/Label';
+import { TSelectProps } from '@t/inputs';
 
 export const clearNativeCss = css`
   -webkit-appearance: none;
@@ -21,7 +21,7 @@ export const Root = styled.select`
 export const Option = styled.option``;
 
 type TProps = TBaseProps<TSelectProps> &
-  TDivProps;
+  TDivProps & { placeholder?: string };
 export const Select: FC<TProps> = ({
   classValue,
   children,

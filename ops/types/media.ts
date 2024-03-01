@@ -1,12 +1,4 @@
-import { TSource } from '../../src/types/dom';
 import { EXTS } from '../config';
-
-// export type TDimensions = { width: number; height: number };
-
-// export type TFilePathKey = string;
-// export type TFilePathBaseKey = string;
-
-// export type TExtKey = (typeof EXTS)[number];
 
 export type TMediaDetails = {
   key: string;
@@ -15,42 +7,11 @@ export type TMediaDetails = {
   ext: TExtKey;
 };
 
-// export type TMedia = TMediaDetails & {
-//   src: string;
-// };
-
-// export type TModuleConfig = {
-//   filePath: string;
-//   resolver: TResolver;
-// } & TMediaDetails;
-// export type TModuleEntry = [
-//   filePath: string,
-//   resolver: TResolver,
-// ];
-// export type TModuleEntries = TModuleEntry[];
-// export type TModuleRecordEntry = [string, TModuleRecord];
-
-// export type TModuleRecord = {
-//   [WEBP_EXT]: TModuleConfig;
-//   [DEFAULT_EXT]: TModuleConfig;
-// };
-
-// export type TMediaRecord = {
-//   [WEBP_EXT]: TMedia;
-//   [DEFAULT_EXT]: TMedia;
-// };
-
-// export type TMediaRecordEntry = [string, TMediaRecord];
-// export type TMediaRecordEntrys = TMediaRecordEntry[];
-
-// export type TMediaRecords = TMediaRecord[];
-
-// ---- NEW
-
 import type {
   Metadata,
   OutputInfo,
 } from 'sharp';
+import { TSource } from '@brysonandrew/config-types';
 export type TDimensions = {
   width: number;
   height: number;

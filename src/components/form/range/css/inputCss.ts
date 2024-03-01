@@ -1,26 +1,31 @@
-import { cssVar } from '@uno/theme/colors';
 import { THUMB_SIZE } from '../config';
 import {
   resolveInputThumbCss,
   resolveInputTrackCss,
 } from './resolveInputCss';
 import { css } from '@emotion/react';
+import { resolveVarCss } from '@brysonandrew/color-base';
 
-export const PRIMARY = cssVar('highlight');
+const cssVar = resolveVarCss;
+
+export const PRIMARY = cssVar(
+  'highlight',
+);
 export const SECONDARY = cssVar(
   'transparent',
 );
 export const SHADOW = cssVar('shadow');
 export const WHITE = cssVar('white');
 export const BLACK = cssVar('black');
-export const BLACK_2 = cssVar('black-2');
+export const BLACK_2 =
+  cssVar('black-2');
 
 const INPUT_CSS_CONFIG = {
   primary: PRIMARY,
   secondary: BLACK_2,
   shadow: SHADOW,
   thumbSize: THUMB_SIZE,
-};
+} as const;
 
 export const inputCss = css`
   -webkit-appearance: none; /* Hides the slider so that custom slider can be made */

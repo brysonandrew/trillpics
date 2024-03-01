@@ -1,7 +1,7 @@
 import {
   TClassValueProps,
   TDivMotionProps,
-} from '@t/dom';
+} from '@brysonandrew/config-types';
 import clsx from 'clsx';
 import {
   AnimatePresence,

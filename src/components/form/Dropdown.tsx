@@ -3,7 +3,7 @@ import { Options } from '@components/form/select/Options';
 import { TSelectProps } from '@t/inputs';
 import clsx from 'clsx';
 import { TBaseProps } from './config';
-import { TChildren } from '@t/index';
+import { TChildren } from '@brysonandrew/config-types';
 
 type TProps<T extends string | number> =
   TBaseProps<

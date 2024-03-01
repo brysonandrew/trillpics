@@ -1,10 +1,7 @@
 import { FC } from 'react';
-import { B } from '@components/interactive/B';
+import { B } from '@brysonandrew/interactive';
 import clsx from 'clsx';
-import {
-  TButtonMotionProps,
-  TClassValueProps,
-} from '@t/dom';
+import { TButtonMotionProps } from '@brysonandrew/config-types';
 import { Backdrop } from '../../../../../decoration/Backdrop';
 import { resolveCompositeKey } from '@utils/keys';
 import { Pill } from '@components/decoration/Pill';
@@ -14,15 +11,17 @@ import { I } from '@components/Icon';
 import {
   PLUS_ICON,
   TIMES_ICON,
-} from '@constants/icons/text';
+} from '@brysonandrew/icons-keys/text';
 
-type TProps = TClassValueProps &
-  TButtonMotionProps & {
-    variant: 'add' | 'remove';
-    gradient: TGradientShortcut;
-    iconChar: 'x' | '+';
-    isHover?: boolean;
-  };
+type TProps = Omit<
+  TButtonMotionProps,
+  'title'
+> & {
+  variant: 'add' | 'remove';
+  gradient: TGradientShortcut;
+  iconChar: 'x' | '+';
+  isHover?: boolean;
+};
 export const Button: FC<TProps> = (
   props,
 ) => {
@@ -44,6 +43,7 @@ export const Button: FC<TProps> = (
       )}
       look='neu-empty'
       {...rest}
+      title='Add'
     >
       <Backdrop
         id={resolveCompositeKey(

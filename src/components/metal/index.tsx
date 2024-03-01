@@ -1,9 +1,8 @@
 import styled from '@emotion/styled';
-import type { ClassValue } from 'clsx';
 import clsx from 'clsx';
 import type { FC } from 'react';
 import { motion } from 'framer-motion';
-import { TDivMotionProps } from '@t/dom';
+import { TDivMotionProps } from '@brysonandrew/config-types';
 import { metalRadialDarkCss } from '@css/metal';
 
 const DefaultRoot = styled(motion.div)`
@@ -13,9 +12,8 @@ const DefaultRoot = styled(motion.div)`
   }
 `;
 
-export type TRootProps = TDivMotionProps & {
-  classValue?: ClassValue;
-};
+export type TRootProps =
+  TDivMotionProps;
 type TProps = TRootProps & {
   Root?: FC<TRootProps>;
 };
@@ -25,7 +23,10 @@ export const Metal: FC<TProps> = ({
   ...props
 }) => (
   <Root
-    className={clsx(`absolute inset-0`, classValue)}
+    className={clsx(
+      `absolute inset-0`,
+      classValue,
+    )}
     {...props}
   />
 );

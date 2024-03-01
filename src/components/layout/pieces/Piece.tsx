@@ -1,5 +1,5 @@
 import { FADE_PRESENCE_WITH_DELAY } from '@constants/animation';
-import { TDivMotionProps } from '@t/dom';
+import { TDivMotionProps } from '@brysonandrew/config-types';
 import { motion } from 'framer-motion';
 
 export const Piece = (

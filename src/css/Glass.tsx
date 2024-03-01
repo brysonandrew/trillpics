@@ -1,6 +1,6 @@
 import { css } from '@emotion/react';
 import styled from '@emotion/styled';
-import { TDivProps } from '@t/dom';
+import { TDivProps } from '@brysonandrew/config-types';
 import { FC } from 'react';
 
 export const glassBlackCss = css`

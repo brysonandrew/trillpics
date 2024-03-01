@@ -1,4 +1,4 @@
-import { COLORS } from './colors';
+import { COLOR_VARS_RECORD } from '@app/color';
 
 const breakpoints = {
   xxxs: '280px',
@@ -23,7 +23,7 @@ const width = {
 export const THEME = {
   breakpoints,
   width,
-  colors: COLORS,
+  colors: COLOR_VARS_RECORD,
 } as const;
 
 export type TTheme = typeof THEME;

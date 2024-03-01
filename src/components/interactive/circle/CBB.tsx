@@ -1,7 +1,6 @@
 import clsx from 'clsx';
 import styled from '@emotion/styled';
-import { TClassValueProps, TTitleProps } from '@t/index';
-import { TButtonMotionProps } from '@t/dom';
+import { TButtonMotionProps,TClassValueProps, TTitleProps } from '@brysonandrew/config-types';
 import { motion } from 'framer-motion';
 import { FC } from 'react';
 import { resolveInteractiveLabels } from '@utils/attributes/resolveInteractiveLabels';
