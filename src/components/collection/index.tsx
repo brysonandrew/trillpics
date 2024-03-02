@@ -6,20 +6,17 @@ import {
 } from 'react';
 
 export const GRID_CLASS_VALUE =
-  'lg:grid-cols-2 xxl:grid-cols-3' as const;
+  'md:grid-cols-2 xl:grid-cols-3' as const;
 
-type TProps =
-  PropsWithChildren<TTitleProps>;
+type TProps = PropsWithChildren<
+  Partial<TTitleProps>
+>;
 export const Collection: FC<TProps> = ({
-  title,
   children,
 }) => {
   return (
-    <section className='w-full column'>
+    <main className='relative w-full column'>
       <div className='w-container'>
-        {/* <h2 className='relative uppercase text-6xl z-10'>
-          {title} 
-        </h2> */}
         <ul
           className={clsx(
             'grid grid-cols-1',
@@ -29,6 +26,6 @@ export const Collection: FC<TProps> = ({
           {children}
         </ul>
       </div>
-    </section>
+    </main>
   );
 };

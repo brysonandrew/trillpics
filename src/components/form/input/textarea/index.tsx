@@ -11,7 +11,7 @@ import { useState } from 'react';
 import { useAutosize } from './useAutosize';
 import clsx from 'clsx';
 import { motion } from 'framer-motion';
-import { useViewport } from '@context/viewport';
+import { useViewport } from '@shell/providers/context/viewport';
 import { resolveRegisterProps } from '@utils/form';
 import {
   TTextAreaProps,

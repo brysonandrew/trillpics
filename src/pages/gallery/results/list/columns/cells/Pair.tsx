@@ -9,6 +9,7 @@ export const Pair: FC<TDivProps> = ({
 }) => (
   <div className='inline-row'>
     <Title>{title}</Title>
-    <P1 />{children}
+    <P1 />
+    {children}
   </div>
 );

@@ -4,7 +4,7 @@ import { ICON_CLASS_VALUE_PROPS } from '@shell/header/config';
 
 export const Cart = () => (
   <I
-    className='relative h-6 w-6'
+    className='relative h-7.5 w-7.5'
     icon={CART_ICON}
     {...ICON_CLASS_VALUE_PROPS}
   />

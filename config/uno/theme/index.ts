@@ -1,6 +1,6 @@
 import { COLOR_VARS_RECORD } from '@app/color';
 
-const breakpoints = {
+const screen = {
   xxxs: '280px',
   xxs: '320px',
   xs: '375px',
@@ -9,7 +9,8 @@ const breakpoints = {
   lg: '900px',
   xl: '1100px',
   xxl: '1420px',
-  xxxl: '1800px',
+  xxxl: '1740px',
+  xxxxl: '2280px',
 } as const;
 
 const width = {
@@ -18,10 +19,12 @@ const width = {
   lg: '890px',
   xl: '1090px',
   xxl: '1400px',
+  xxxl: '1800px',
+  xxxxl: '2200px',
 } as const;
 
 export const THEME = {
-  breakpoints,
+  screen,
   width,
   colors: COLOR_VARS_RECORD,
 } as const;
@@ -29,6 +32,6 @@ export const THEME = {
 export type TTheme = typeof THEME;
 
 export type TBreakpointKey =
-  keyof typeof breakpoints;
+  keyof typeof screen;
 
 export type TAnyTheme = TTheme & any;

@@ -1,6 +1,4 @@
 export const SPACING = {
-  button: '40px',
-  icon: '24px',
   px: '1px',
   0: '0',
   '0.0625': '0.016875',

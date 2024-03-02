@@ -1,7 +1,7 @@
 import { Item } from '@components/images/item';
 import { INITS } from '../config/items';
 import { Resolve } from '../Resolve';
-import { useViewport } from '@context/viewport';
+import { useViewport } from '@shell/providers/context/viewport';
 import { useDarkMode } from '@brysonandrew/dark-mode';
 
 export const Gallery = () => {

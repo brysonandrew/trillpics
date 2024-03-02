@@ -1,6 +1,5 @@
 import type { StaticShortcutMap } from 'unocss';
 import { INPUT } from './input';
-import { FLEX } from './flex';
 import { POSITION } from './position';
 import { GRID } from './grid';
 import { INTERACTIVE } from './interactive';
@@ -11,26 +10,21 @@ import { SHORTCUTS as _SHORTCUTS } from '@brysonandrew/uno-shortcuts';
 export const SHORTCUTS: StaticShortcutMap =
   {
     ..._SHORTCUTS,
-    'dark-mode-transition':
-      'transition-colors duration-1000',
     'bg-section':
-      'bg-white-8 dark:bg-black-1 dark-mode-transition',
+      'bg-white-8 dark:bg-black-1',
     'bg-section-02':
-      'bg-white-02 dark:bg-black-02 dark-mode-transition',
+      'bg-white-02 dark:bg-black-02',
     'text-section':
-      'dark:text-white-8 text-black-1 dark-mode-transition',
+      'dark:text-white-8 text-black-1',
     'bg-section-inverted':
-      'dark:bg-black-1 bg-white-8 dark-mode-transition',
+      'dark:bg-black-1 bg-white-8',
     'text-section-inverted':
-      'dark:text-black-1 text-white-8 dark-mode-transition',
+      'dark:text-black-1 text-white-8',
     'bg-main':
-      'bg-white-9 dark:bg-black-2 dark-mode-transition',
+      'bg-white-9 dark:bg-black-2',
     'text-main':
-      'text-black-1 dark:text-white-9 dark-mode-transition',
-    'text-nav':
-      'relative text-lg uppercase whitespace-nowrap tracking-widest font-slab',
+      'text-black-1 dark:text-white-9',
     ...GRID,
-    ...FLEX,
     ...INPUT,
     ...POSITION,
     ...INTERACTIVE,

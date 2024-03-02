@@ -1,10 +1,7 @@
 import { Item } from '@components/images/item';
 import { FC } from 'react';
-import { useViewport } from '@context/viewport';
-import {
-  TItemEntries,
-  TItemRecord,
-} from '@context/checkout/config';
+import { useViewport } from '@shell/providers/context/viewport';
+import { TItemEntries } from '@shell/providers/context/checkout/config';
 
 type TProps = {
   entries: TItemEntries;

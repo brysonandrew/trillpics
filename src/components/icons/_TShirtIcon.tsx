@@ -7,12 +7,14 @@ import { FC } from 'react';
 
 export const TShirtIcon: FC<
   {
+    id: string;
     printSrc: string;
     canvasSrc: string;
   } & {
     imageProps: TUseImageReturn['imageProps'];
   }
 > = ({
+  id,
   imageProps,
   printSrc,
   canvasSrc,
@@ -22,7 +24,7 @@ export const TShirtIcon: FC<
     <motion.div
       {...imageProps}
       key={resolveCompositeKey(
-        imageProps.key,
+        id,
         dm.darkKey,
         printSrc,
       )}

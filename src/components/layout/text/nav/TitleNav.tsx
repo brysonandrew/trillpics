@@ -6,9 +6,7 @@ import {
 export const TitleNav: FC<
   PropsWithChildren
 > = ({ children }) => (
-  <span className='text-nav'>
+  <span className='relative text-sm uppercase whitespace-nowrap tracking-widest font-display'>
     {children}
   </span>
 );
-
-

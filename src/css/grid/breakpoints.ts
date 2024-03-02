@@ -2,7 +2,7 @@ import {
   TBreakpointKey,
   THEME,
 } from '@uno/theme';
-const { breakpoints } = THEME;
+const { screen } = THEME;
 
 export const formatMediaMinWidth = (
   size: `${string}px`,
@@ -11,9 +11,9 @@ export const formatMediaMinWidth = (
 export const resolveBreakpoint = (
   key: TBreakpointKey,
 ) =>
-  formatMediaMinWidth(breakpoints[key]);
+  formatMediaMinWidth(screen[key]);
 
-const { md, lg, xl } = breakpoints;
+const { md, lg, xl } = screen;
 
 export const MD =
   formatMediaMinWidth(md);

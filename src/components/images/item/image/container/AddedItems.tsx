@@ -3,7 +3,7 @@ import {
   PropsWithChildren,
 } from 'react';
 import { Pill } from '@components/decoration/Pill';
-import { useCheckout } from '@context/checkout';
+import { useCheckout } from '@shell/providers/context/checkout';
 import { TDisplay } from '@t/image';
 import { I } from '@components/Icon';
 import { Line } from '@components/layout/Line';

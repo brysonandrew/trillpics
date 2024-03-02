@@ -12,7 +12,7 @@ import {
 
 type TProps = {
   resolver: TResolver;
-  children(src: TSrc): TChildren;
+  children(src: TSrc | null): TChildren;
 };
 export const Resolve: FC<TProps> = ({
   resolver,
@@ -45,6 +45,5 @@ export const Resolve: FC<TProps> = ({
     resolve();
   }, []);
 
-  if (src === null) return null;
   return <>{children(src)}</>;
 };

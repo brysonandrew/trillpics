@@ -6,18 +6,18 @@ import {
   resolveScale,
 } from '../config';
 import { createElement } from 'react';
-import { useScroll as useScrollContext } from '@context/scroll';
+import { useScroll as useScrollContext } from '@shell/providers/context/scroll';
 import clsx from 'clsx';
 import { CB } from '@components/interactive/circle';
 import { CBB } from '@components/interactive/circle/CBB';
-import { useHoverKey } from '@hooks/cursor/useHoverKey';
-import { useApp } from '@context/app';
+import { useHoverKey } from '@brysonandrew/cursor';
+import { useBase } from '@shell/providers/context/base';
 import { Cross } from '@components/icons/gallery/Cross';
 import { Hamburger } from '@components/icons/gallery/Hamburger';
 import { TRANSITION } from '@brysonandrew/animation';
 
 export const Menu = () => {
-  const { isMenu, onMenu } = useApp();
+  const { isMenu, onMenu } = useBase();
   const { isScroll } =
     useScrollContext();
   const title = `Open menu`;

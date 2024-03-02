@@ -36,7 +36,7 @@ export const CB: FC<TProps> = ({
         'center',
         shape,
         [
-          'dark:glow-secondary group glow-interactive-lg',
+          'group',
         ],
         classValue,
       )}
@@ -46,7 +46,7 @@ export const CB: FC<TProps> = ({
         drop={1}
         isDarkest
         color='secondary'
-        classValue='rounded-full glow-secondary'
+        classValue='rounded-full'
       />
       {children}
     </Root>

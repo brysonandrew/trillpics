@@ -1,21 +1,18 @@
 import { FC } from 'react';
-import { resolveConfigFromSize } from '@components/images/image/resolveDimensionsFromSize';
+import { TResolveConfigFromSize } from '@components/images/image/resolveDimensionsFromSize';
 import { useImage } from '@components/images/useImage';
-import {
-  Image,
-  TPassedProps,
-} from './image';
+import { Image } from './image';
+import { TPassedProps } from '@components/images/item/image/config/types';
 
 type TProps = TPassedProps & {
   size: number;
+  imageConfig: TResolveConfigFromSize;
 };
 export const Item: FC<TProps> = ({
   size,
+  imageConfig,
   ...passedProps
 }) => {
-  const imageConfig =
-    resolveConfigFromSize({ size });
-
   const imageReturn = useImage({
     ...imageConfig,
     id: passedProps.config.src,

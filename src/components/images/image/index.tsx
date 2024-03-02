@@ -21,19 +21,16 @@ export const Image: FC<TProps> = ({
 }) => {
   const imageReturn = useImage(config);
   const {
-    isFirstPosition,
+    isOpen,
     boxProps,
     backdropProps,
   } = imageReturn;
-
   const c = children(imageReturn);
 
   return (
     <motion.div {...boxProps}>
       <>
-        {isFirstPosition ? (
-          c
-        ) : (
+        {isOpen ? (
           <Portal>
             <>
               <motion.div
@@ -42,6 +39,8 @@ export const Image: FC<TProps> = ({
               {c}
             </>
           </Portal>
+        ) : (
+          c
         )}
       </>
       {boxChildren}

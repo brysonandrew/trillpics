@@ -1,6 +1,6 @@
 import { FC } from 'react';
 import { TClassValueProps } from '@brysonandrew/config-types';
-import { useCheckout } from '@context/checkout';
+import { useCheckout } from '@shell/providers/context/checkout';
 import { motion } from 'framer-motion';
 import { Add } from './Add';
 import clsx from 'clsx';
@@ -10,9 +10,9 @@ import {
   TDisplay,
   TSpecifications,
 } from '@t/image';
-import { TPassedProps } from '../..';
-import { TUseLocalStorageForm } from '@context/checkout/useLocalStorageForm';
+import { TUseLocalStorageForm } from '@shell/providers/context/checkout/useLocalStorageForm';
 import { INPUTS } from '@constants/images';
+import { TPassedProps } from '@components/images/item/image/config/types';
 
 const Label = styled.label`
   html:not(.dark) & input + div {

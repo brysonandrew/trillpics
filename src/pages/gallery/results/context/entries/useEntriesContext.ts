@@ -1,6 +1,6 @@
 import { sortByIndex } from './sortByIndex';
 import { useMemo } from 'react';
-import { useViewport } from '@context/viewport';
+import { useViewport } from '@shell/providers/context/viewport';
 import { APPROX_IMAGE_SIZE } from '@constants/images';
 
 const record = import.meta.glob(

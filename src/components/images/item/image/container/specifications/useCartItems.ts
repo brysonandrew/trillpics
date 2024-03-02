@@ -1,4 +1,4 @@
-import { useCheckout } from '@context/checkout';
+import { useCheckout } from '@shell/providers/context/checkout';
 import { useMemo } from 'react';
 
 export const useCartTitles = (

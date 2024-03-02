@@ -1,4 +1,5 @@
 import packageJson from '../../../package.json';
+import { TCursorKey, THoverKey } from '@brysonandrew/cursor';
 
 type TKeyFragment =
   | string
@@ -40,9 +41,6 @@ export const resolveCompositeTitle = (
     .filter(isKeyable)
     .join(TITLE_KEY_DELIMITER);
 
-
-    import { TCursorKey } from '@components/cursor/switch/config';
-import { THoverKey } from '@hooks/cursor/config';
 
 export const HOVER_KEY_DELIMITER = '=[hover]>';
 export const resolveCompositeHoverKey = (

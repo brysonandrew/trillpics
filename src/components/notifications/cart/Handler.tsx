@@ -8,7 +8,7 @@ import { I } from '@components/Icon';
 import { FADE_PRESENCE } from '@constants/animation';
 import { CART_ICON, TICK_ICON } from '@brysonandrew/icons-keys';
 import { motion } from 'framer-motion';
-import { TNotificationsContext } from '@context/checkout/config';
+import { TNotificationsContext } from '@shell/providers/context/checkout/config';
 import { useDelayCallback } from '@hooks/window/useDelayCallback';
 import { Loading } from './Loading';
 

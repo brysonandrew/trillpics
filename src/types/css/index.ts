@@ -1,5 +1,5 @@
+import { FLEX } from '@brysonandrew/uno-shortcuts';
 import { CSSProperties } from 'react';
-import { FLEX } from '@uno/shortcuts/flex';
 
 export type TMixblendModeKey = Pick<
   CSSProperties,

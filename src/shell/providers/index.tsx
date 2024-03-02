@@ -1,5 +1,4 @@
 import { TLayoutOptionsRecord } from '@brysonandrew/app';
-import { ScrollProvider } from '@brysonandrew/scroll';
 import { DarkModeProvider } from '@brysonandrew/dark-mode';
 import { NetworkProvider } from '@brysonandrew/network';
 import { CursorProvider } from '@brysonandrew/cursor';
@@ -12,6 +11,11 @@ import {
 import { arrToNest } from '@brysonandrew/layout-utils/arrToNest';
 import { TCustomStyle } from '@app/style';
 import { App } from '@shell/providers/App';
+import { BaseProvider } from '@shell/providers/context/base';
+import { CheckoutProvider } from '@shell/providers/context/checkout';
+import { UserProvider } from '@shell/providers/context/user';
+import { ViewportProvider } from '@shell/providers/context/viewport';
+import { ScrollProvider } from '@shell/providers/context/scroll';
 
 type TLayoutOptions =
   TLayoutOptionsRecord;
@@ -28,11 +32,15 @@ export const Providers: FC<TProps> = ({
         CursorProvider,
         NetworkProvider,
         DarkModeProvider,
+        BaseProvider,
+        CheckoutProvider,
         ScrollProvider,
+        UserProvider,
+        ViewportProvider,
       ],
       <App>{_children}</App>,
       {},
-    );
+    ); 
   }, []);
 
   return <>{children}</>;

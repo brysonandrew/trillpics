@@ -13,3 +13,7 @@ export const resolveConfigFromSize = ({
   offsetX: size * colIndex, //rowIndex * size,
   offsetY: size * rowIndex, //rowIndex * size,
 });
+export type TResolveConfigFromSize =
+  ReturnType<
+    typeof resolveConfigFromSize
+  >;

@@ -1,9 +1,8 @@
 export const FONTS: any[] = [
   {
     key: 'sans',
-    name: 'Averia Sans Libre',
-    weights: ['300', '400', '700'],
-    provider: 'google',
+    name: 'FFF Forward',
+    provider: 'none'
   },
   {
     key: 'display-outline',

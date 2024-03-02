@@ -13,7 +13,6 @@ import { APP_BASE_PROPS } from '@app/base';
 import { AppInit } from '@brysonandrew/app/AppInit';
 import { arrToChainedValueNest } from '@brysonandrew/layout-utils/arrToChainedValueNest';
 import { LayoutPlaceholder } from '@brysonandrew/layout-placeholder';
-import { Providers as InternalProviders } from '@context/Providers';
 
 type TLayoutOptions =
   TLayoutOptionsRecord;
@@ -42,9 +41,7 @@ export const App: FC<TProps> = ({
               <AppProvider<TCustomStyle>
                 {...nextValue}
               >
-                <InternalProviders>
-                  {children}
-                </InternalProviders>
+                {children}
               </AppProvider>
             ),
           )(value)}

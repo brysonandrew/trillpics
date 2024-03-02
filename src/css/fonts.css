@@ -12,3 +12,8 @@
   font-family: 'GType rGX9';
   src: url('/fonts/GType-rGX9.ttf') format('truetype');
 }
+
+@font-face {
+  font-family: 'FFF Forward';
+  src: url('/fonts/fff-forward/FFFFORWA.ttf') format('truetype');
+}

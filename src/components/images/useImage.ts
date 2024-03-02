@@ -1,21 +1,23 @@
-import { NONE_CURSOR_KEY } from '@components/cursor/switch/config';
-import { FADE_PRESENCE } from '@constants/animation';
-import { useViewport } from '@context/viewport';
-import { useHoverKey } from '@hooks/cursor/useHoverKey';
+import { useViewport } from '@shell/providers/context/viewport';
+import {
+  useHoverKey,
+  NONE_CURSOR_KEY,
+} from '@brysonandrew/cursor';
 import {
   TImageDimensionsConfig,
   useImageDimensions,
 } from '@hooks/image/useImageDimensions';
 import { TDimensions } from '@t/measure';
-import { MotionStyle, useCycle } from 'framer-motion';
 import { useState } from 'react';
-import {
-  TZIndexKey,
-  Z_INDICIES,
-  TPositionKey,
-  POSITIONS,
-} from './image/config';
 import { resolveViewportSelfCenter } from './image/resolveViewportSelfCenter';
+import {
+  useLocation,
+  useNavigate,
+  useSearchParams,
+} from 'react-router-dom';
+import { FULLSCREEN_Z } from '@constants/dom';
+import { resolveCompositeKey } from '@brysonandrew/utils-key';
+export const SEARCH_PARAM_ID = 'open';
 
 export type TUseImageConfig =
   TDimensions & {
@@ -28,40 +30,48 @@ export const useImage = ({
   ...config
 }: TUseImageConfig) => {
   const { width, height } = config;
-  const [zIndex, setZ] =
-    useState<TZIndexKey>(Z_INDICIES[0]);
-  const [position, cyclePosition] =
-    useCycle<TPositionKey>(
-      ...POSITIONS,
-    );
-  const isFirstPosition =
-    position === POSITIONS[0];
+  const [isFront, setFront] =
+    useState<boolean>(false);
+  const { pathname } = useLocation();
+  const [searchParams] =
+    useSearchParams();
+  const navigate = useNavigate();
+  const idParam = searchParams.get(
+    SEARCH_PARAM_ID,
+  );
+  const isOpen = idParam === id;
   const { isHover, handlers } =
     useHoverKey(NONE_CURSOR_KEY, id);
-  const isLayout = Boolean(isHover);
-  const handleTap = () => {
-    if (isFirstPosition) {
-      setZ(Z_INDICIES[1]);
-      handlers.onHoverEnd();
+  const handleToggle = () => {
+    if (isOpen) {
+      searchParams.delete(
+        SEARCH_PARAM_ID,
+      );
+      handlers.onPointerLeave();
+    } else {
+      setFront(true);
+      searchParams.set(
+        SEARCH_PARAM_ID,
+        id,
+      );
     }
-    cyclePosition();
+    navigate(
+      `${pathname}?${searchParams}`,
+    );
   };
   const viewport = useViewport();
   const imageDimensions = {
     width,
     height,
   };
-  let boxDimensions: TImageDimensionsConfig['box'] =
-    config;
-  if (
-    !isFirstPosition &&
-    viewport.isDimensions
-  ) {
-    boxDimensions = {
-      width: viewport.width,
-      height: viewport.height,
-    };
-  }
+  const boxDimensions: TImageDimensionsConfig['box'] =
+    isOpen && viewport.isDimensions
+      ? ({
+          width: viewport.width,
+          height: viewport.height,
+        } as const)
+      : config;
+
   const dimensions = useImageDimensions(
     {
       box: boxDimensions,
@@ -71,8 +81,8 @@ export const useImage = ({
 
   const handleLayoutAnimationComplete =
     () => {
-      if (isFirstPosition) {
-        setZ(Z_INDICIES[0]);
+      if (!isOpen) {
+        setFront(false);
       }
     };
 
@@ -80,61 +90,69 @@ export const useImage = ({
     dimensions.isDimensions &&
     viewport.isDimensions;
 
-  const isReady = isDimensions;
-  const style = {
-    zIndex,
-    ...(isFirstPosition || !isReady
-      ? ({
-          position: 'absolute',
-          left: offsetX,
-          top: 0,
-          ...imageDimensions,
-        } as const)
-      : ({
-          position: 'fixed',
-          ...resolveViewportSelfCenter(
-            viewport,
-            dimensions,
-          ),
-        } as const)),
-  };
-  const backdropStyle =
-    viewport.isDimensions
-      ? ({
-          position: 'fixed',
-          width: viewport.width,
-          height: viewport.height,
-        } as MotionStyle)
-      : ({} as const);
+  const zIndex = isFront
+    ? FULLSCREEN_Z
+    : 0;
 
   return {
+    id,
     isHover,
-    isFirstPosition,
+    isOpen,
     boxProps: {
       className: 'relative',
-      style: imageDimensions,
+      style: {
+        ...imageDimensions,
+        cursor: 'zoom-in',
+      },
+      onClick: handleToggle,
     },
-    imageProps: {
+    designProps: {
       initial: false,
-      key: isLayout.toString(),
-      layout: isLayout,
-      style,
+      layout: true,
+      style: {
+        zIndex,
+        ...(isOpen && isDimensions
+          ? ({
+              position: 'fixed',
+              ...resolveViewportSelfCenter(
+                viewport,
+                dimensions,
+              ),
+            } as const)
+          : ({
+              position: 'absolute',
+              left: offsetX,
+              top: 0,
+              ...imageDimensions,
+            } as const)),
+      } as const,
       animate: {
-        opacity: isReady ? 1 : 0,
+        opacity: isDimensions ? 1 : 0,
       },
       onLayoutAnimationComplete:
         handleLayoutAnimationComplete,
-      onTap: handleTap,
       ...handlers,
     },
     backdropProps: {
-      ...FADE_PRESENCE,
       className:
-        'backdrop-blur-sm bg-black-02 inset-0 z-60 zoom-out',
-      style: backdropStyle,
-      onTap: handleTap,
+        'bg-black-02 inset-0 z-60 fade-in-animation zoom-out',
+      style: {
+        zIndex: FULLSCREEN_Z-1,
+        ...(viewport.isDimensions
+          ? ({
+
+              position: 'fixed',
+              width: viewport.width,
+              height: viewport.height,
+            } as const)
+          : ({} as const)),
+        backdropFilter:
+          'blur(40px) grayscale(100%) brightness(50%)',
+        cursor: 'zoom-out',
+      },
+      onClick: handleToggle,
     },
-    onToggle: handleTap,
+    onToggle: handleToggle,
   };
 };
 

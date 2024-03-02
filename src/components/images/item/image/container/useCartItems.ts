@@ -2,7 +2,7 @@ import {
   COLORS,
   SIZES,
 } from '@constants/images';
-import { TItemRecord } from '@context/checkout/config';
+import { TItemRecord } from '@shell/providers/context/checkout/config';
 import {
   TDisplay,
   TPending,

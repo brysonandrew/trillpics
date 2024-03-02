@@ -1,10 +1,12 @@
 import { FC } from 'react';
 import { TButtonMotionProps } from '@brysonandrew/config-types';
 import { Button } from './Button';
-import { useCheckout } from '@context/checkout';
-import { CART_QUANTITY_CURSOR_KEY } from '@components/cursor/switch/config';
-import { useHoverKey } from '@hooks/cursor/useHoverKey';
-import { TCheckoutPassedProps } from '../..';
+import { useCheckout } from '@shell/providers/context/checkout';
+import {
+  CUSTOM_CURSOR_KEY,
+  useHoverKey,
+} from '@brysonandrew/cursor';
+import { TCheckoutPassedProps } from '@components/images/item/image/config/types';
 
 type TProps = TCheckoutPassedProps &
   TButtonMotionProps;
@@ -15,14 +17,16 @@ export const Remove: FC<TProps> = (
     isHover: isHoverAdd,
     handlers,
   } = useHoverKey(
-    CART_QUANTITY_CURSOR_KEY,
+    CUSTOM_CURSOR_KEY,
     props.config.src,
     'Add to shopping cart',
   );
   const { onItemsRemove } =
     useCheckout();
   const handleTap = () => {
-    onItemsRemove(props.copies[props.count - 1]);
+    onItemsRemove(
+      props.copies[props.count - 1],
+    );
   };
   return (
     <Button

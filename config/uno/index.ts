@@ -5,9 +5,11 @@ import { TRANSFORMERS } from './transformers';
 import { resolvePresets } from './presets';
 import { resolveTheme } from '@brysonandrew/uno-theme';
 import { SPACING } from '@brysonandrew/uno-spacing';
-import { resolveRules as resolveCustomRules } from './rules';
-import { resolveRules } from '@brysonandrew/uno-rules';
-import { COLOR_VARS_RECORD, TColorKey } from '../app/color/index';
+import { resolveRules } from './rules';
+import {
+  COLOR_VARS_RECORD,
+  TColorKey,
+} from '../app/color/index';
 
 export const theme = resolveTheme({
   colors: COLOR_VARS_RECORD,
@@ -19,12 +21,15 @@ export const theme = resolveTheme({
 
 type TTheme = typeof theme;
 
-const rules = [
-  ...resolveRules<TTheme>(),
-  ...resolveCustomRules<TTheme>(),
-];
+export type TColor = Record<
+  TColorKey,
+  `var(--${string})`
+>;
 
-export type TColor = Record<TColorKey,`var(--${string})`>
+const rules = resolveRules<TTheme>();
+console.log("▁▁▁▁▂▂▂▂▃▃▃▃▄▄▄▅▅▅▅▆▆▆▆▇▇▇▇██▓▒░ 🧨 ░▒▓█▓▒░ 🧨 ░▒▓██▇▇▇▇▆▆▆▆▅▅▅▅▄▄▄▃▃▃▃▂▂▂▂▁▁▁▁");
+console.dir(rules);
+console.log("██████████████▓▒░ 🧨 ░▒ line: 29, file: index.ts ▓▒░ 🧨 ░▒██████████████");
 
 const shortcuts = SHORTCUTS;
 

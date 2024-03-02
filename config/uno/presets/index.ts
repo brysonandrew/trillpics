@@ -13,3 +13,4 @@ export const resolvePresets = <
   T extends object,
 >(): TPresets<T> =>
   withDarkModePreset([presetWebFonts({ fonts })]);
+ 

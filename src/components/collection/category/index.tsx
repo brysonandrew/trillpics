@@ -1,7 +1,7 @@
 import { FC } from 'react';
 import { TClassValueProps } from '@brysonandrew/config-types';
 import clsx, { ClassValue } from 'clsx';
-import { useViewport } from '@context/viewport';
+import { useViewport } from '@shell/providers/context/viewport';
 import { Item } from '../../images/item';
 import { resolveCompositeKey } from '@utils/keys';
 

@@ -27,9 +27,9 @@ export const Footer = () => {
                     href={href}
                   >
                     <I {...iconProps} />
-                    <samp className='tracking-widest text-sm'>
+                    <span className='tracking-widest text-sm'>
                       {value}
-                    </samp>
+                    </span>
                   </motion.a>
                 </li>
               ),
