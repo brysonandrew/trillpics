@@ -12,8 +12,6 @@ import {
 import { Title } from './Title';
 import { HOME_ROUTE } from '@constants/routes';
 import { DarkMode } from '@shell/header/item/dark-mode';
-import { Cart } from '@shell/header/item/cart';
-import { Shop } from '@shell/header/item/shop';
 
 type TProps = PropsWithChildren;
 export const Header: FC<
@@ -22,14 +20,11 @@ export const Header: FC<
   const { pathname } = useLocation();
   const isHome =
     pathname === HOME_ROUTE;
-  const { isDarkMode, darkKey } =
-    useDarkMode();
+  const { isDarkMode } = useDarkMode();
 
   const rightItems = useMemo(() => {
-    return {
-      '/': [DarkMode, Cart],
-      '/checkout': [DarkMode, Shop],
-    }[pathname];
+    return [DarkMode];
+    //RIGHT_MENU_RECORD[pathname];
   }, [pathname]);
 
   return (
@@ -48,21 +43,19 @@ export const Header: FC<
           'w-container column-end md:row-space',
         )}
       >
-        <div className='row gap-4'>
+        <div>
           {isHome ? (
-            <Title />
+            <div className='row gap-4'>
+              <Title />
+            </div>
           ) : (
-            <Link to={HOME_ROUTE}>
+            <Link
+              className='row gap-4'
+              to={HOME_ROUTE}
+            >
               <Title />
             </Link>
           )}
-          <div className='mt-1 ml-2 uppercase text-xl tracking-wide'>
-            <img
-              className='h-6 sm:h-10'
-              src={`/logo-${darkKey}.svg`}
-              alt={`Logo ${darkKey}`}
-            />
-          </div>
         </div>
         <div className='row shrink-0 lowercase overflow-hidden'>
           {rightItems?.map(

@@ -11,7 +11,7 @@ export const TShirtIcon: FC<
     printSrc: string;
     canvasSrc: string;
   } & {
-    imageProps: TUseImageReturn['imageProps'];
+    imageProps: TUseImageReturn['designProps'];
   }
 > = ({
   id,

@@ -27,6 +27,9 @@ export const THEME = {
   screen,
   width,
   colors: COLOR_VARS_RECORD,
+  // fontFamily: {
+  //   sans: ['"Poppins"', ...defaultTheme.fontFamily.sans],
+  // },
 } as const;
 
 export type TTheme = typeof THEME;

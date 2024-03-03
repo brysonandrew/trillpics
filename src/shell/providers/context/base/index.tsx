@@ -6,8 +6,11 @@ import {
   PropsWithChildren,
 } from 'react';
 import { NOOP } from '@constants/functions';
+import { INITS } from '@components/collection/config/items';
+import { shuffle } from '@utils/array/shuffle';
 
 export type TContext = {
+  inits: any[];
   isMenu: boolean;
   isInit: boolean;
   isOffline: boolean;
@@ -15,9 +18,11 @@ export type TContext = {
   onInit(): void;
   onOffline(): void;
   onOnline(): void;
+  onRandomize(): void;
 };
 
 export const CONTEXT: TContext = {
+  inits: [],
   isMenu: false,
   isOffline: false,
   isInit: true,
@@ -25,6 +30,7 @@ export const CONTEXT: TContext = {
   onInit: NOOP,
   onOffline: NOOP,
   onOnline: NOOP,
+  onRandomize: NOOP,
 };
 
 export const App =
@@ -37,9 +43,10 @@ type TProviderProps = PropsWithChildren;
 export const BaseProvider: FC<
   TProviderProps
 > = ({ children }) => {
+  const [itemRecord, setItemRecord] =
+    useState([INITS]);
   const [isMenu, setMenu] =
     useState(false);
-
   const [isOffline, setOffline] =
     useState(false);
   const [isInit, setInit] =
@@ -51,10 +58,18 @@ export const BaseProvider: FC<
     setOffline(true);
   const onOnline = () =>
     setOffline(false);
-
+  const onRandomize = () => {
+    const next = shuffle(INITS);
+    setItemRecord((prev) => {
+      return [...prev, next];
+    });
+  };
+  const last =
+    itemRecord[itemRecord.length - 1];
   return (
     <App.Provider
       value={{
+        inits: last,
         isMenu,
         onMenu,
         isInit,
@@ -62,6 +77,7 @@ export const BaseProvider: FC<
         onInit,
         onOffline,
         onOnline,
+        onRandomize,
       }}
     >
       {children}

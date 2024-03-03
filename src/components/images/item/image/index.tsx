@@ -23,14 +23,12 @@ export const Image: FC<TProps> = ({
   onToggle,
   ...passedProps
 }) => {
-  const { darkKey } = useDarkMode();
   const Root = isOpen
     ? Portal
     : Fragment;
 
   const uniqueId = resolveCompositeKey(
     passedProps.config.src,
-    darkKey,
     `shop:${passedProps.isShop}`,
   );
 

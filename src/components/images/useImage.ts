@@ -16,7 +16,6 @@ import {
   useSearchParams,
 } from 'react-router-dom';
 import { FULLSCREEN_Z } from '@constants/dom';
-import { resolveCompositeKey } from '@brysonandrew/utils-key';
 export const SEARCH_PARAM_ID = 'open';
 
 export type TUseImageConfig =

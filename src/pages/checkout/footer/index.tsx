@@ -16,7 +16,7 @@ export const Footer = () => {
           withTrunk: PHONE_WITH_TRUNK,
         }}
         classValue='gap-2'
-        className="text-xs mt-1 mr-4"
+        className="text-sm font-sans mt-1 mr-4"
       />
     </footer>
   );
