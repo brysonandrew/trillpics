@@ -34,5 +34,3 @@ export type TChildrenPartialProps =
 export type TTitleProps = {
   title: string;
 };
-
-export type { TClassValueProps } from './dom';

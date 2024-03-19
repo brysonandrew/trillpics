@@ -11,12 +11,10 @@ import {
   RefCallBack,
   UseFormRegister,
 } from 'react-hook-form';
-import {
-  TChildren,
-  TClassValueProps,
-} from '.';
+
 import { SerializedStyles } from '@emotion/react';
 import { HTMLMotionProps } from 'framer-motion';
+import { TClassValueProps, TChildren } from '@brysonandrew/config-types';
 
 export type TInputElementUnion =
   | HTMLInputElement

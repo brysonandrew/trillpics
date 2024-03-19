@@ -1,9 +1,9 @@
-import { TDimensionsReady } from '@t/measure';
+import { TDimensions } from '@t/measure';
 
 export const resolveViewportSelfCenter =
   (
-    viewport: TDimensionsReady,
-    dimensions: TDimensionsReady,
+    viewport: TDimensions,
+    dimensions: TDimensions,
     scrollY = 0,
   ) => {
     return {

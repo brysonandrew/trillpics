@@ -25,7 +25,7 @@ export default defineConfig({
   server: {
     port: 3000,
   },
-  publicDir: 'assets',
+  publicDir: 'public',
   esbuild: {
     logOverride: {
       'this-is-undefined-in-esm':

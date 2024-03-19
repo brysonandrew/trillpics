@@ -1,27 +1,26 @@
-import { TUseImageReturn } from '@components/images/useImage';
-import { TImgMotionProps } from '@brysonandrew/config-types';
-import { motion } from 'framer-motion';
-import { FC } from 'react';
+import { FC } from "react";
+import { motion } from "framer-motion";
+import { TUseImageReturn } from "@components/images/useImage";
+import { TImgMotionProps } from "@brysonandrew/config-types";
 
-type TProps = TImgMotionProps &
-  TUseImageReturn['designProps'] & {
-    src: string;
-    size: number;
-  };
+type TProps = Omit<
+  TImgMotionProps,
+  "src"
+> &
+  TUseImageReturn["designProps"];
 export const Design: FC<TProps> = ({
-  src,
-  size,
   layoutId,
   style,
+  src,
   ...props
 }) => {
-  const printSize = size
-    ? style.width
-    : 0;
+  const printSize = style.width ?? 0;
+
+  if (!src) return null;
 
   return (
     <motion.img
-      className='pointer-events-none'
+      className="pointer-events-none"
       src={src}
       width={printSize}
       height={printSize}

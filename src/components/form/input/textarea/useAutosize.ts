@@ -13,7 +13,7 @@ export const useAutosize = ({
   value,
   isResizing,
 }: TConfig) => {
-  const [isInit, setInit] =
+  const [isInit, setPic] =
     useState(false);
 
   useEffect(() => {
@@ -30,7 +30,7 @@ export const useAutosize = ({
       textarea.style.height = next;
       clone.remove();
       if (!isInit) {
-        setInit(true);
+        setPic(true);
       }
     }
   }, [textarea, value, isResizing]);

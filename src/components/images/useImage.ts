@@ -1,33 +1,42 @@
-import { useViewport } from '@shell/providers/context/viewport';
+import { useState } from "react";
+import { useViewport } from "@shell/providers/context/viewport";
 import {
   useHoverKey,
   NONE_CURSOR_KEY,
-} from '@brysonandrew/cursor';
+} from "@brysonandrew/cursor";
 import {
   TImageDimensionsConfig,
   useImageDimensions,
-} from '@hooks/image/useImageDimensions';
-import { TDimensions } from '@t/measure';
-import { useState } from 'react';
-import { resolveViewportSelfCenter } from './image/resolveViewportSelfCenter';
+} from "@hooks/image/useImageDimensions";
+import { TDimensions } from "@t/measure";
 import {
   useLocation,
   useNavigate,
   useSearchParams,
-} from 'react-router-dom';
-import { FULLSCREEN_Z } from '@constants/dom';
-export const SEARCH_PARAM_ID = 'open';
+} from "react-router-dom";
+import { FULLSCREEN_Z } from "@constants/dom";
+import { useVideoStore } from "@pages/index/video/store";
+import clsx from "clsx";
+import { resolveViewportSelfCenter } from "./image/resolveViewportSelfCenter";
+export const SEARCH_PARAM_ID = "open";
 
 export type TUseImageConfig =
   TDimensions & {
-    offsetX: number;
-    id: string;
+    name: number;
   };
 export const useImage = ({
-  offsetX,
-  id,
+  name,
   ...config
 }: TUseImageConfig) => {
+  const src = `video/originals/${name}.png`;
+  const {
+    isVideoMode,
+    addVideo,
+    removeVideo,
+    videoPics,
+  } = useVideoStore();
+  const videoOrder =
+    videoPics.indexOf(name);
   const { width, height } = config;
   const [isFront, setFront] =
     useState<boolean>(false);
@@ -36,26 +45,30 @@ export const useImage = ({
     useSearchParams();
   const navigate = useNavigate();
   const idParam = searchParams.get(
-    SEARCH_PARAM_ID,
+    SEARCH_PARAM_ID
   );
-  const isOpen = idParam === id;
+  const isOpen = idParam === src;
   const { isHover, handlers } =
-    useHoverKey(NONE_CURSOR_KEY, id);
+    useHoverKey(
+      NONE_CURSOR_KEY,
+      src ?? ""
+    );
   const handleToggle = () => {
+    if (!src) return;
     if (isOpen) {
       searchParams.delete(
-        SEARCH_PARAM_ID,
+        SEARCH_PARAM_ID
       );
       handlers.onPointerLeave();
     } else {
       setFront(true);
       searchParams.set(
         SEARCH_PARAM_ID,
-        id,
+        src
       );
     }
     navigate(
-      `${pathname}?${searchParams}`,
+      `${pathname}?${searchParams}`
     );
   };
   const viewport = useViewport();
@@ -63,7 +76,7 @@ export const useImage = ({
     width,
     height,
   };
-  const boxDimensions: TImageDimensionsConfig['box'] =
+  const boxDimensions: TImageDimensionsConfig["box"] =
     isOpen && viewport.isDimensions
       ? ({
           width: viewport.width,
@@ -75,7 +88,7 @@ export const useImage = ({
     {
       box: boxDimensions,
       image: imageDimensions,
-    },
+    }
   );
 
   const handleLayoutAnimationComplete =
@@ -94,34 +107,45 @@ export const useImage = ({
     : 0;
 
   return {
-    id,
     isHover,
     isOpen,
     boxProps: {
-      className: 'relative',
+      className: clsx("relative cursor-pointer"),
       style: {
         ...imageDimensions,
-        cursor: 'zoom-in',
+        cursor: isVideoMode
+          ? "pointer"
+          : "zoom-in",
       },
-      onClick: handleToggle,
+      onClick: isVideoMode
+        ? () =>
+            videoOrder > -1
+              ? removeVideo(name)
+              : addVideo(name)
+        : handleToggle,
+      ...handlers,
     },
     designProps: {
       initial: false,
       layout: true,
+      src,
+
       style: {
         zIndex,
         ...(isOpen && isDimensions
           ? ({
-              position: 'fixed',
+              position: "fixed",
               ...resolveViewportSelfCenter(
                 viewport,
-                dimensions,
+                dimensions
               ),
             } as const)
           : ({
-              position: 'absolute',
-              left: offsetX,
+              position: "absolute",
+              left: 0,
               top: 0,
+              bottom: 0,
+              right: 0,
               ...imageDimensions,
             } as const)),
       } as const,
@@ -130,28 +154,28 @@ export const useImage = ({
       },
       onLayoutAnimationComplete:
         handleLayoutAnimationComplete,
-      ...handlers,
     },
     backdropProps: {
       className:
-        'bg-black-02 inset-0 z-60 fade-in-animation zoom-out',
+        "bg-black-02 inset-0 z-60 fade-in-animation zoom-out",
       style: {
-        zIndex: FULLSCREEN_Z-1,
+        zIndex: FULLSCREEN_Z - 1,
         ...(viewport.isDimensions
           ? ({
-
-              position: 'fixed',
+              position: "fixed",
               width: viewport.width,
               height: viewport.height,
             } as const)
           : ({} as const)),
         backdropFilter:
-          'blur(40px) grayscale(100%) brightness(50%)',
-        cursor: 'zoom-out',
+          "blur(40px) grayscale(100%) brightness(50%)",
+        cursor: "zoom-out",
       },
       onClick: handleToggle,
     },
     onToggle: handleToggle,
+    isVideoMode,
+    videoOrder,
   };
 };
 

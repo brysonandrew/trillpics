@@ -1,5 +1,7 @@
-import { TElementProps } from "@t/dom";
-import { TClassValueProps } from "@t/index";
+import {
+  TElementProps,
+  TClassValueProps,
+} from "@brysonandrew/config-types";
 
 export type TTextProps = TElementProps &
   TClassValueProps & {

@@ -1,11 +1,10 @@
 import { IconProps } from '@iconify/react';
-import { TClassValueProps } from '.';
 
 import type { FC, SVGProps } from 'react';
 import type { SVGMotionProps } from 'framer-motion';
+import { TClassValueProps } from '@brysonandrew/config-types';
 
-export type TIconConfig = IconProps &
-  TClassValueProps;
+export type TIconConfig = IconProps
 export type TIconConfigProps = {
   iconConfig: TIconConfig;
 };

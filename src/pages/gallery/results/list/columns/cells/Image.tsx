@@ -1,9 +1,9 @@
-import type { FC } from 'react';
-import { Image as _Image } from '@components/images/image';
-import { motion } from 'framer-motion';
-import { TCell } from '../config';
-import { resolveConfigFromSize } from '@components/images/image/resolveDimensionsFromSize';
-import { Resolve } from '@components/collection/Resolve';
+import type { FC } from "react";
+import { Image as _Image } from "@components/images/image";
+import { motion } from "framer-motion";
+import { TCell } from "../config";
+import { resolveConfigFromSize } from "@components/images/image/resolveDimensionsFromSize";
+import { Resolve } from "@components/collection/Resolve";
 
 type TProps = {
   index: number;
@@ -29,13 +29,14 @@ export const Image: FC<TProps> = ({
             size: 320,
             colIndex: index,
           });
+
         return (
           <_Image
-            id={src}
+            name={index}
             {...imageConfig}
             boxChildren={
               <motion.kbd
-                className='center absolute top-0 left-0 h-8 px-3 rounded-full bg-gray-05 shadow text-black z-50'
+                className="center absolute top-0 left-0 h-8 px-3 rounded-full bg-gray-05 shadow text-black z-50"
                 style={{
                   x:
                     size * 0.05 +
@@ -48,12 +49,13 @@ export const Image: FC<TProps> = ({
               </motion.kbd>
             }
           >
-            {({ imageProps }) => {
+            {({ ...imageProps }) => {
+              if (!src) return null; //todo placeholder
               return (
                 <motion.img
+                  {...imageProps}
                   src={src}
                   alt={src}
-                  {...imageProps}
                   layoutId={src}
                 />
               );

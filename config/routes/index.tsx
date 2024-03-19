@@ -1,14 +1,15 @@
-import * as Pages from '@pages/index';
-import { Shell } from '@shell';
+import { Shell } from "@shell";
 import {
   NotFound,
   resolveRouteRecords,
   TRouteObjects,
-} from '@brysonandrew/routes';
-import { TPageTitle } from 'config/routes/config/types';
+} from "@brysonandrew/routes";
+import { TPageTitle } from "config/routes/config/types";
+import * as Pages from "@pages/index";
+import { Video } from "@pages/index/video";
 
 export const PAGE_TITLES = Object.keys(
-  Pages,
+  Pages
 ) as TPageTitle[];
 
 const PAGE_RECORDS =
@@ -19,7 +20,7 @@ const PAGE_RECORDS =
 
 const HOME_ROUTE =
   PAGE_RECORDS.record.index?.path ??
-  '/';
+  "/";
 const ROUTES: TRouteObjects = [
   {
     path: HOME_ROUTE,
@@ -27,7 +28,11 @@ const ROUTES: TRouteObjects = [
     children: [
       ...PAGE_RECORDS.routes,
       {
-        path: '*',
+        path: "/video",
+        element: <Video />,
+      },
+      {
+        path: "*",
         element: <NotFound />,
       },
     ],

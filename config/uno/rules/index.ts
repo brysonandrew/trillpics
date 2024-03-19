@@ -19,7 +19,7 @@ export const resolveRules = <
       {
         'animation-name': 'fade-in',
         'animation-delay': '0ms',
-        'animation-duration': '10000ms'
+        'animation-duration': '1000ms'
       }
     ],
     [
@@ -27,7 +27,7 @@ export const resolveRules = <
       {
         'animation-name': 'fade-out',
         'animation-delay': '0ms',
-        'animation-duration': '10000ms'
+        'animation-duration': '1000ms'
       }
     ]
   ] as Rule<T>[];

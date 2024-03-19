@@ -10,11 +10,11 @@ import { useDelayCallback } from './useDelayCallback';
 
 const RESIZE_COOLDOWN = 400;
 
-type TInit = TDimensionsInit & {
+type TPic = TDimensionsInit & {
   isResizing: boolean;
 };
 
-export const INIT: TInit = {
+export const INIT: TPic = {
   isResizing: false,
   isDimensions: false,
 } as const;
@@ -23,7 +23,7 @@ type TReady = TDimensionsReady & {
   containerWidth: number;
   isResizing: boolean;
 };
-export type TViewport = TInit | TReady;
+export type TViewport = TPic | TReady;
 
 export const useViewport =
   (): TViewport => {
@@ -33,7 +33,7 @@ export const useViewport =
       useTimeoutRef();
 
     const handleSize = (
-      next?: TInit,
+      next?: TPic,
     ) => {
       let isResizing = false;
       if (typeof next !== 'undefined') {

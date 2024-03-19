@@ -1,74 +1,64 @@
-import clsx from 'clsx';
-import { useDarkMode } from '@brysonandrew/dark-mode';
 import {
   FC,
   PropsWithChildren,
-  useMemo,
-} from 'react';
+} from "react";
+import clsx from "clsx";
+import { useDarkMode } from "@brysonandrew/dark-mode";
 import {
   Link,
   useLocation,
-} from 'react-router-dom';
-import { Title } from './Title';
-import { HOME_ROUTE } from '@constants/routes';
-import { DarkMode } from '@shell/header/item/dark-mode';
+} from "react-router-dom";
+import { HOME_ROUTE } from "@constants/routes";
+import { HeaderRight } from "@shell/header/right";
+import { useVideoStore } from "@pages/index/video/store";
+import { Title } from "./title";
 
 type TProps = PropsWithChildren;
 export const Header: FC<
   TProps
 > = () => {
+  const { isVideoMode } =
+    useVideoStore();
   const { pathname } = useLocation();
   const isHome =
     pathname === HOME_ROUTE;
   const { isDarkMode } = useDarkMode();
 
-  const rightItems = useMemo(() => {
-    return [DarkMode];
-    //RIGHT_MENU_RECORD[pathname];
-  }, [pathname]);
-
   return (
     <header
       className={clsx(
-        'sticky left-0 top-0 right-0 column w-full font-display z-60',
+        "sticky left-0 top-0 right-0 column w-full font-display z-60"
       )}
-      style={{
+      style={isVideoMode ? {} : {
         mixBlendMode: isDarkMode
-          ? 'exclusion'
-          : 'multiply',
+          ? "exclusion"
+          : "multiply",
       }}
     >
       <div
         className={clsx(
-          'w-container column-end md:row-space',
+          "w-container column-end md:row-space"
         )}
       >
-        <div>
+        <div
+          // className={clsx(
+          //   isVideoMode && "opacity-40"
+          // )}
+        >
           {isHome ? (
-            <div className='row gap-4'>
+            <div className="row gap-4">
               <Title />
             </div>
           ) : (
             <Link
-              className='row gap-4'
+              className="row gap-4"
               to={HOME_ROUTE}
             >
               <Title />
             </Link>
           )}
         </div>
-        <div className='row shrink-0 lowercase overflow-hidden'>
-          {rightItems?.map(
-            (Item, index) => (
-              <div
-                key={`${index}`}
-                className='relative w-14 h-14'
-              >
-                <Item />
-              </div>
-            ),
-          )}
-        </div>
+        <HeaderRight />
       </div>
     </header>
   );

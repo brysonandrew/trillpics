@@ -7,7 +7,7 @@ export const N: FC<TTextProps> = (
 ) => {
   return (
     <_Text
-      classValue='n -mt-1'
+      classValue='font-mono'
       element='div'
       {...props}
     />

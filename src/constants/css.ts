@@ -1,7 +1,7 @@
-import { resolveIntRecord } from '@utils/css';
-import { THEME } from '@uno/theme/index';
-export const BREAKPOINT_RECORD =
-  THEME.screen;
+import { screen } from "@uno/index";
+import { resolveIntRecord } from "@utils/css";
+
+export const BREAKPOINT_RECORD = screen;
 
 export const BREAKPOINT_INT_RECORD =
   resolveIntRecord(BREAKPOINT_RECORD);

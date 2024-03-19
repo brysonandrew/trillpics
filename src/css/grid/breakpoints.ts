@@ -1,17 +1,15 @@
 import {
   TBreakpointKey,
-  THEME,
-} from '@uno/theme';
-const { screen } = THEME;
+  screen,
+} from "@uno/index";
 
 export const formatMediaMinWidth = (
-  size: `${string}px`,
+  size: `${string}px`
 ) => `@media (min-width: ${size})`;
 
 export const resolveBreakpoint = (
-  key: TBreakpointKey,
-) =>
-  formatMediaMinWidth(screen[key]);
+  key: TBreakpointKey
+) => formatMediaMinWidth(screen[key]);
 
 const { md, lg, xl } = screen;
 

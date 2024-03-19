@@ -1,4 +1,4 @@
-import { TBreakpointKey } from '@uno/theme';
+import { TBreakpointKey } from '@uno/index';
 
 export type TCell<K extends string> =
   | K

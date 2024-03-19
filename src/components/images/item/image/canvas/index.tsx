@@ -1,5 +1,5 @@
 import { TUseImageReturn } from '@components/images/useImage';
-import { TImgMotionProps } from '@brysonandrew/config-types';
+import { TDivMotionProps, TImgMotionProps } from '@brysonandrew/config-types';
 import { resolveCompositeKey } from '@utils/keys';
 import clsx from 'clsx';
 import { motion } from 'framer-motion';
@@ -9,14 +9,13 @@ import { TPassedProps } from '@components/images/item/image/config/types';
 const SCALE = 1; // 0.975;
 const PADDING = (1 - SCALE) * 0.5;
 
-type TProps = TImgMotionProps &
+type TProps = TDivMotionProps &
   Pick<TPassedProps, 'canvas'> & {
     size: number;
     isOpen: boolean;
-    imageProps: TUseImageReturn['imageProps'];
+    imageProps: TUseImageReturn['designProps'];
   };
 export const Canvas: FC<TProps> = ({
-  src,
   size,
   isOpen,
   imageProps: {
@@ -49,6 +48,7 @@ export const Canvas: FC<TProps> = ({
 };
 {
   /* <Canvas
+  id={src}
         imageProps={imageProps}
         isOpen={isOpen}
         layoutId={`canvas:${uniqueId}`}

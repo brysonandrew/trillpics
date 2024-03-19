@@ -7,6 +7,7 @@ import ReactDOMClient from 'react-dom/client';
 window.React = React;
 window.ReactDOM = ReactDOM;
 
+
 import {
   RouterProvider,
   createBrowserRouter,

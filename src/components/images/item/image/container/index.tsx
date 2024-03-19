@@ -1,46 +1,48 @@
-import { TUseImageReturn } from '@components/images/useImage';
-import { useHoverKey } from '@brysonandrew/cursor';
+import { FC, Fragment } from "react";
 import {
   AnimatePresence,
   motion,
-} from 'framer-motion';
-import { FC, Fragment } from 'react';
-import { Text } from './Text';
-import { Pill } from '@components/decoration/Pill';
-import clsx from 'clsx';
-import { Remove } from './specifications/Remove';
-import { TUseLocalStorageForm } from '@shell/providers/context/checkout/useLocalStorageForm';
-import { TSpecifications } from '@t/image';
-import { AddedItems } from './AddedItems';
-import { I } from '@components/Icon';
+} from "framer-motion";
+import { TUseImageReturn } from "@components/images/useImage";
+import { useHoverKey } from "@brysonandrew/cursor";
+import { Pill } from "@components/decoration/Pill";
+import clsx from "clsx";
+import { TUseLocalStorageForm } from "@shell/providers/context/checkout/useLocalStorageForm";
+import { TSpecifications } from "@t/image";
+import { I } from "@components/Icon";
 import {
   PLUS_ICON,
   TIMES_ICON,
-} from '@brysonandrew/icons-keys/text';
-import { useCheckout } from '@shell/providers/context/checkout';
-import { useCartItems } from './useCartItems';
-import { resolveCompositeKey } from '@utils/keys';
-import { N } from '@components/layout/text/N';
-import { TPassedProps } from '@components/images/item/image/config/types';
+} from "@brysonandrew/icons-keys/text";
+import { useCheckout } from "@shell/providers/context/checkout";
+import { resolveCompositeKey } from "@utils/keys";
+import { N } from "@components/layout/text/N";
+import { TPassedProps } from "@components/images/item/image/config/types";
+import { Text } from "./Text";
+import { Remove } from "./specifications/Remove";
+import { AddedItems } from "./AddedItems";
+import { useCartItems } from "./useCartItems";
 
 type TProps = TPassedProps &
   Pick<
     ReturnType<typeof useHoverKey>,
-    'isHover'
+    "isHover"
   > & {
-    uniqueId: string;
+    src: string;
+    name: string;
     isFirstPosition: boolean;
     isShown: boolean;
-    style: TUseImageReturn['imageProps']['style'];
+    style: TUseImageReturn["designProps"]["style"];
     isParentHover: boolean;
     onToggle(): void;
     form: TUseLocalStorageForm<TSpecifications>;
   };
 export const Container: FC<TProps> = ({
-  uniqueId,
+  src,
   ...props
 }) => {
   const {
+    name,
     isFirstPosition,
     isShown,
     style,
@@ -48,11 +50,9 @@ export const Container: FC<TProps> = ({
     form,
     ...passedProps
   } = props;
-  const { isShop, config } =
-    passedProps;
-  const { name, src } = config;
+  const { isShop } = passedProps;
   const classValue =
-    'absolute left-1/2 w-container -translate-x-1/2';
+    "absolute left-1/2 w-container -translate-x-1/2";
   const Root = isFirstPosition
     ? Fragment
     : motion.div;
@@ -74,7 +74,7 @@ export const Container: FC<TProps> = ({
         : {
             className: clsx(
               classValue,
-              'top-0 pointer-events-none',
+              "top-0 pointer-events-none"
             ),
             style: {
               height: style.height,
@@ -82,80 +82,92 @@ export const Container: FC<TProps> = ({
             },
           })}
     >
-      <Text
-        key='text'
-        name={name}
-        isFirstPosition={
-          isFirstPosition
-        }
-        src={src}
-        initial={false}
-        animate={{
-          opacity:
-            isShown ||
-            cartItems.length > 0
-              ? 1
-              : 0.5,
-        }}
-        style={sharedStyle}
-        layoutId={resolveCompositeKey(
-          'Text',
-          uniqueId,
-        )}
-      >
-        {!isShop && (
-          <>
-            <I icon={TIMES_ICON} />
-            <N>{passedProps.count}</N>
-          </>
-        )}
-      </Text>
-      <AnimatePresence initial={false}>
-        {isFirstPosition && (
-          <>
-            {isShop ? (
-              <>
-                {cartItems.length >
-                0 ? (
-                  <AddedItems
-                    name={name}
-                    src={src}
-                    cartItems={
-                      cartItems
-                    }
-                    {...passedProps}
+      <>
+        <>
+          {src ? (
+            <Text
+              key="text"
+              name={name}
+              isFirstPosition={
+                isFirstPosition
+              }
+              src={src}
+              initial={false}
+              animate={{
+                opacity:
+                  isShown ||
+                  cartItems.length > 0
+                    ? 1
+                    : 0.5,
+              }}
+              style={sharedStyle}
+              layoutId={resolveCompositeKey(
+                "Text",
+                src
+              )}
+            >
+              {!isShop && (
+                <>
+                  <I
+                    icon={TIMES_ICON}
                   />
-                ) : (
-                  <Pill
-                    key='enter'
-                    isCircle
-                    classValue='absolute bottom-6 right-6 pointer-events-none'
-                    gradient='bg-green-emerald-primary'
-                    animate={{
-                      opacity: isShown
-                        ? 1
-                        : 0.5,
-                    }}
-                  >
-                    <I
-                      icon={PLUS_ICON}
+                  <N>
+                    {passedProps.count}
+                  </N>
+                </>
+              )}
+            </Text>
+          ) : null}
+        </>
+        <AnimatePresence
+          initial={false}
+        >
+          {isFirstPosition && (
+            <>
+              {isShop ? (
+                <>
+                  {cartItems.length >
+                  0 ? (
+                    <AddedItems
+                      name={name}
+                      src={src}
+                      cartItems={
+                        cartItems
+                      }
+                      {...passedProps}
                     />
-                  </Pill>
-                )}
-              </>
-            ) : (
-              <Remove
-                key='remove'
-                title='remove'
-                classValue='absolute bottom-6 left-6'
-                {...passedProps}
-              >
-                {passedProps.count?.toLocaleString()}
-              </Remove>
-            )}
-          </>
-        )}
-      </AnimatePresence>
+                  ) : (
+                    <Pill
+                      key="enter"
+                      isCircle
+                      classValue="absolute bottom-6 right-6 pointer-events-none"
+                      gradient="bg-green-emerald-primary"
+                      animate={{
+                        opacity: isShown
+                          ? 1
+                          : 0.5,
+                      }}
+                    >
+                      <I
+                        icon={PLUS_ICON}
+                      />
+                    </Pill>
+                  )}
+                </>
+              ) : (
+                <Remove
+                  key="remove"
+                  title="remove"
+                  classValue="absolute bottom-6 left-6"
+                  {...passedProps}
+                >
+                  {passedProps.count?.toLocaleString()}
+                </Remove>
+              )}
+            </>
+          )}
+        </AnimatePresence>
+      </>
     </Root>
   );
 };

@@ -1,36 +1,35 @@
-import { Item } from '@components/images/item';
-import { INITS } from '../config/items';
-import { Resolve } from '../Resolve';
-import { useViewport } from '@shell/providers/context/viewport';
-import { useDarkMode } from '@brysonandrew/dark-mode';
+import { Item } from "@components/images/item";
+import { useViewport } from "@shell/providers/context/viewport";
+import { useDarkMode } from "@brysonandrew/dark-mode";
+import { resolveConfigFromSize } from "@components/images/image/resolveDimensionsFromSize";
+import { PICS } from "../config/items";
 
 export const Gallery = () => {
-  const {isDarkMode}  = useDarkMode()
-  const { size } = useViewport();
+  const { isDarkMode } = useDarkMode();
+  const { size, colsCount } =
+    useViewport();
   return (
     <>
-      {INITS.map(
-        ({ name, path, resolver }) => {
-          return (
-            <Resolve
-              key={path}
-              resolver={resolver}
-            >
-              {(src) => (
-                <Item
-                  isShop
-                  canvas={isDarkMode ? 'black' : 'white'}
-                  size={size}
-                  config={{
-                    name,
-                    src,
-                  }}
-                />
-              )}
-            </Resolve>
-          );
-        },
-      )}
+      {PICS.map((name, index) => {
+        const imageConfig =
+          resolveConfigFromSize({
+            size,
+            colIndex: index % colsCount,
+          });
+
+        return (
+          <Item
+            name={name}
+            isShop
+            canvas={
+              isDarkMode
+                ? "black"
+                : "white"
+            }
+            imageConfig={imageConfig}
+          />
+        );
+      })}
     </>
   );
 };

@@ -1,42 +1,45 @@
-import defaultTheme from 'tailwindcss/defaultTheme';
-const DEFAULT_SANS =
-  defaultTheme.fontFamily.sans;
-const withDefaultSans = (
+import defaultTheme from "tailwindcss/defaultTheme";
+type TFontFamilyKey =
+  keyof typeof defaultTheme.fontFamily;
+const withDefault = (
   value: string,
-) => [`"${value}"`, ...DEFAULT_SANS];
+  key = "sans"
+) => [
+  `"${value}"`,
+  ...defaultTheme.fontFamily[
+    key as TFontFamilyKey
+  ],
+];
 
 export const FONTS: any[] = [
   {
-    key: 'sans',
-    name: withDefaultSans(
-      'FFF Forward',
+    key: "sans",
+    name: withDefault(
+      "FFF Forward"
     ),
-    provider: 'none',
+    provider: "none",
   },
   {
-    key: 'display-outline',
-    name: [
-      withDefaultSans(
-        'Saiba 45 Outline',
-      ),
-      ...DEFAULT_SANS,
-    ],
-    provider: 'none',
+    key: "display",
+    name:  withDefault(
+      "Saiba 45"
+    ),
+    provider: "none",
   },
   {
-    key: 'display',
-    name: [
-      withDefaultSans('Saiba 45'),
-      ...DEFAULT_SANS,
-    ],
-    provider: 'none',
+    key: "display-outline",
+    name:withDefault(
+      "Saiba 45 Outline"
+    ),
+    provider: "none",
   },
+ 
   {
-    key: 'slab',
-    name: [
-      withDefaultSans('GType rGX9'),
-      ...DEFAULT_SANS,
-    ],
-    provider: 'none',
+    key: "mono",
+    name: withDefault(
+      "NK57",
+      "mono"
+    ),
+    provider: "none",
   },
 ];

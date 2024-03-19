@@ -31,7 +31,7 @@ export type TSpecifications = {
 export type TResolver =
   () => Promise<unknown>;
 
-export type TInit = {
+export type TPic = {
   name: TName;
   path: TPath;
   resolver: TResolver;
@@ -39,7 +39,7 @@ export type TInit = {
 
 export type TDisplay = {
   name: TName;
-  src: TSrc;
+  src: TSrc | null;
 };
 
 export type TChosen = TSpecifications &

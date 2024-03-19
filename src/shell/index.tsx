@@ -5,7 +5,7 @@ import { withProviders } from '@shell/providers/withProviders';
 import { Global } from '@shell/global';
 import { BackScreenFill } from '@components/layout/BackScreenFill';
 import { Header } from '@shell/header';
-import { Footer } from '@pages/checkout/footer';
+import { Footer } from '@pages/index/footer';
 
 export const Shell: FC = withProviders(
   () => {
@@ -14,7 +14,6 @@ export const Shell: FC = withProviders(
         <BackScreenFill />
         <Header />
         <Outlet />
-        <Footer />
         <Notifications />
       </Global>
     );

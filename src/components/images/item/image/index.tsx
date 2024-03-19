@@ -1,23 +1,20 @@
-import { TUseImageReturn } from '@components/images/useImage';
-import { Backdrop } from './Backdrop';
-import { FC, Fragment } from 'react';
-import { Portal } from '@components/images/Portal';
-import { Design } from './Design';
-import { resolveCompositeKey } from '@utils/keys';
-import { useDarkMode } from '@brysonandrew/dark-mode';
-import { TPassedProps } from '@components/images/item/image/config/types';
+import { FC, Fragment } from "react";
+import { TUseImageReturn } from "@components/images/useImage";
+import { Portal } from "@components/images/Portal";
+import { resolveCompositeKey } from "@utils/keys";
+import { TPassedProps } from "@components/images/item/image/config/types";
+import { Backdrop } from "./Backdrop";
+import { Design } from "./Design";
 
 type TProps = Omit<
   TUseImageReturn,
-  'boxProps'
+  "boxProps"
 > &
-  TPassedProps & {
-    size: number;
-  };
+  TPassedProps & { name: number };
 export const Image: FC<TProps> = ({
+  name,
   isOpen,
   isHover,
-  size,
   designProps,
   backdropProps,
   onToggle,
@@ -28,8 +25,8 @@ export const Image: FC<TProps> = ({
     : Fragment;
 
   const uniqueId = resolveCompositeKey(
-    passedProps.config.src,
-    `shop:${passedProps.isShop}`,
+    name,
+    `shop:${passedProps.isShop}`
   );
 
   return (
@@ -40,8 +37,6 @@ export const Image: FC<TProps> = ({
       />
       <Design
         layoutId={`design:${uniqueId}`}
-        {...passedProps.config}
-        size={size}
         {...designProps}
       />
     </Root>

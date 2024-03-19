@@ -4,13 +4,14 @@ import {
   useContext as useReactContext,
   createContext,
   PropsWithChildren,
-} from 'react';
-import { NOOP } from '@constants/functions';
-import { INITS } from '@components/collection/config/items';
-import { shuffle } from '@utils/array/shuffle';
+} from "react";
+import { NOOP } from "@constants/functions";
+import { PICS } from "@components/collection/config/items";
+import { shuffle } from "@utils/array/shuffle";
+import { useVideoStore } from "@pages/index/video/store";
 
 export type TContext = {
-  inits: any[];
+  pics: number[];
   isMenu: boolean;
   isInit: boolean;
   isOffline: boolean;
@@ -19,10 +20,11 @@ export type TContext = {
   onOffline(): void;
   onOnline(): void;
   onRandomize(): void;
+  onToggleVideoPics(): void;
 };
 
 export const CONTEXT: TContext = {
-  inits: [],
+  pics: [],
   isMenu: false,
   isOffline: false,
   isInit: true,
@@ -31,6 +33,7 @@ export const CONTEXT: TContext = {
   onOffline: NOOP,
   onOnline: NOOP,
   onRandomize: NOOP,
+  onToggleVideoPics: NOOP,
 };
 
 export const App =
@@ -43,25 +46,32 @@ type TProviderProps = PropsWithChildren;
 export const BaseProvider: FC<
   TProviderProps
 > = ({ children }) => {
+  const x = useVideoStore();
+  console.log(x);
   const [itemRecord, setItemRecord] =
-    useState([INITS]);
+    useState([PICS]);
   const [isMenu, setMenu] =
     useState(false);
   const [isOffline, setOffline] =
     useState(false);
-  const [isInit, setInit] =
+  const [isInit, setPic] =
     useState(false);
   const onMenu = () =>
     setMenu((prev) => !prev);
-  const onInit = () => setInit(true);
+  const onInit = () => setPic(true);
   const onOffline = () =>
     setOffline(true);
   const onOnline = () =>
     setOffline(false);
   const onRandomize = () => {
-    const next = shuffle(INITS);
+    const next = shuffle(PICS);
     setItemRecord((prev) => {
       return [...prev, next];
+    });
+  };
+  const onToggleVideoPics = () => {
+    setItemRecord((prev) => {
+      return [...prev, x.videoPics];
     });
   };
   const last =
@@ -69,7 +79,7 @@ export const BaseProvider: FC<
   return (
     <App.Provider
       value={{
-        inits: last,
+        pics: last,
         isMenu,
         onMenu,
         isInit,
@@ -78,6 +88,7 @@ export const BaseProvider: FC<
         onOffline,
         onOnline,
         onRandomize,
+        onToggleVideoPics,
       }}
     >
       {children}
