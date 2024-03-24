@@ -46,7 +46,7 @@ export const View: FC<TProps> = ({
         ) : (
           <BCirc
             title={`View details of image id:${id}`}
-            classValue='text-blue'
+            classValue='text-pink'
             look='interactive-circ-light'
             icon={VIEW_ICON_1 as any}
             onClick={handleToggle}

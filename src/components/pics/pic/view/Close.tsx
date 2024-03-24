@@ -20,7 +20,7 @@ export const Close: FC<TProps> = ({
   return (
     <B
       title='Close'
-      classValue='text-blue gap-2'
+      classValue='text-pink gap-2'
       onClick={onClose}
     >
       <I

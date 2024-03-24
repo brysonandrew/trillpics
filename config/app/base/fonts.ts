@@ -13,9 +13,30 @@ const withDefault = (
 
 export const FONTS: any[] = [
   {
+    key: "display-led",
+    name: withDefault(
+      "led_display-7" 
+    ),
+    provider: "none",
+  },
+  {
+    key: "mono",
+    name: withDefault(
+      "DroidSansMono" 
+    ),
+    provider: "none",
+  },
+  {
+    key: "mono-pix",
+    name: withDefault(
+      "joystix" 
+    ),
+    provider: "none",
+  },
+  {
     key: "sans",
     name: withDefault(
-      "FFF Forward"
+      "FFF Forward" 
     ),
     provider: "none",
   },
@@ -35,7 +56,7 @@ export const FONTS: any[] = [
   },
  
   {
-    key: "mono",
+    key: "mono-narrow",
     name: withDefault(
       "NK57",
       "mono"

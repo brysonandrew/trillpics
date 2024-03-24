@@ -27,3 +27,21 @@
   src: url("/fonts/nk57-monospace/nk57-monospace-cd-bd.otf")
     format("opentype");
 }
+
+@font-face {
+  font-family: "led_display-7";
+  src: url("/fonts/led-display7/led_display-7.ttf")
+    format("truetype");
+}
+
+@font-face {
+  font-family: "DroidSansMono";
+  src: url("/fonts/droid-sans-mono/DroidSansMono.ttf")
+    format("truetype");
+}
+
+@font-face {
+  font-family: "joystix";
+  src: url("/fonts/joystix.monospace-regular.otf")
+    format("opentype");
+}

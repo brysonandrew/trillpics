@@ -39,19 +39,19 @@ export const VideoPlayer = () => {
           onClick: () =>
             togglePreview(false),
           className:
-            "bg-black-04 inset-0 z-60 fade-in-animation zoom-out",
+            "inset-0 z-60 fade-in-animation zoom-out",
           style: {
             zIndex: 0,
-            // ...(viewport.isDimensions
-            //   ? ({
-            //       position: "fixed",
-            //       width: viewport.width,
-            //       height:
-            //         viewport.height,
-            //     } as const)
-            //   : ({} as const)),
+            ...(viewport.isDimensions
+              ? ({
+                  position: "fixed",
+                  width: viewport.width,
+                  height:
+                    viewport.height,
+                } as const)
+              : ({} as const)),
             backdropFilter:
-              "blur(40px) grayscale(100%) brightness(50%)",
+              "blur(40px) grayscale(100%)",
             cursor: "zoom-out",
           },
         }}

@@ -11,6 +11,10 @@ import {
 } from "@brysonandrew/icons-keys";
 import { FadeV } from "@brysonandrew/fade";
 import { Pic } from "@components/pics/item/pic";
+import {
+  BORDER_GRADIENT,
+  GRADIENT_BLUE_PINK_YELLOW,
+} from "@constants/css";
 
 type TProps = TPassedProps & {
   imageConfig: TResolveConfigFromSize;
@@ -44,32 +48,48 @@ export const Item: FC<TProps> = ({
         <FadeV
           isFixed={false}
           direction="to top"
-          darkClass='fade-in-animation var(--dark-02)'
-          lightClass='fade-in-animation var(--light-02)'
+          darkEdgeColor="var(--dark-02)"
+          lightEdgeColor="var(--light-02)"
         />
       )}
-      {videoOrder > -1 && (
-        <>
-          <ActiveBackground classValue="center border-2 opacity-40">
-            <h4 className="text-11xl font-mono text-indigo">
-              {videoOrder + 1}
-            </h4>
-          </ActiveBackground>
-          {isHover && (
-            <Tip>
-              <I
-                classValue="text-red"
-                icon={CROSS_ICON}
-              />
-              <u>Remove</u> from video
-              sequence
-            </Tip>
-          )}
-        </>
-      )}
+
+      {isVideoMode &&
+        videoOrder > -1 && (
+          <>
+            <ActiveBackground classValue="center opacity-40">
+              <h4
+                className="text-11xl font-mono text-gray"
+                style={{
+                  background:
+                    GRADIENT_BLUE_PINK_YELLOW,
+                  backgroundSize:
+                    "100% 100%",
+                  WebkitBackgroundClip:
+                    "text",
+                  WebkitTextStroke:
+                    "8px transparent",
+                }}
+              >
+                {videoOrder + 1}
+              </h4>
+            </ActiveBackground>
+            {isHover && (
+              <Tip>
+                <I
+                  classValue="text-red"
+                  icon={CROSS_ICON}
+                />
+                <u>Remove</u> from video
+                sequence
+              </Tip>
+            )}
+          </>
+        )}
       {isHover && isVideoMode && (
         <>
-          <ActiveBackground classValue="border-3" />
+          <ActiveBackground
+            style={BORDER_GRADIENT}
+          />
           {videoOrder === -1 && (
             <Tip>
               <I

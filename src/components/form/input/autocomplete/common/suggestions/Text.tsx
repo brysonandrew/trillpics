@@ -38,7 +38,7 @@ export const Text: FC<TProps> = ({
             <Fragment
               key={`${suggestionIndex}`}
             >
-              <span className='text-blue'>
+              <span className='text-pink'>
                 {head}
               </span>
               {tail}

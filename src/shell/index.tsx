@@ -17,7 +17,6 @@ const C = () => {
       <Header />
       <Outlet />
       <FadeV
-
         darkEdgeColor="var(--dark-04)"
         lightEdgeColor="var(--light-04)"
       />

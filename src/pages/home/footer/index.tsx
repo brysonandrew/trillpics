@@ -3,12 +3,13 @@ import { B } from "@brysonandrew/interactive";
 import { useVideoStore } from "@pages/home/video/store";
 import { VideoPlayer } from "@pages/home/video/player";
 import { useDarkMode } from "@brysonandrew/dark-mode";
+import clsx from "clsx";
+import { BORDER_GRADIENT } from "@constants/css";
 import {
   EMAIL,
   PHONE,
   PHONE_WITH_TRUNK,
 } from "../../checkout/footer/config";
-import clsx from "clsx";
 
 export const Footer = () => {
   const { isDarkMode } = useDarkMode();
@@ -33,19 +34,22 @@ export const Footer = () => {
               <VideoPlayer />
             </div>
           )}
-          <footer className="row-space sticky left-0 bottom-0 right-0 h-20 w-full px-4">
-            {!isPreviewOpen && <div
-              className="fill bg-indigo w-full"
+          <footer className="row-space sticky left-0 bottom-0 right-0 h-20 w-full px-4 font-mono">
+            {/* {!isPreviewOpen && <div
+              className="fill bg-pink w-full"
               style={{
                 mixBlendMode: isDarkMode
                   ? "exclusion"
                   : "multiply",
               }}
-            />}
+            />} */}
             <div>
               <B
                 title="View video preview"
-                classValue={clsx("gap-2")}
+                classValue={clsx(
+                  "gap-2 border-4"
+                )}
+                style={BORDER_GRADIENT}
                 onClick={handlePreview}
               >
                 {isPreviewOpen ? (
@@ -83,7 +87,8 @@ export const Footer = () => {
             </div>
             <B
               title="Generate video"
-              classValue="gap-2"
+              classValue="gap-2 border-4 border-pink-yellow-blue"
+              style={BORDER_GRADIENT}
               onClick={handleProcess}
             >
               <svg

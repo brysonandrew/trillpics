@@ -157,7 +157,7 @@ export const useImage = ({
     },
     backdropProps: {
       className:
-        "bg-black-02 inset-0 z-60 fade-in-animation zoom-out",
+        "inset-0 z-60 fade-in-animation zoom-out",
       style: {
         zIndex: FULLSCREEN_Z - 1,
         ...(viewport.isDimensions
@@ -168,7 +168,7 @@ export const useImage = ({
             } as const)
           : ({} as const)),
         backdropFilter:
-          "blur(40px) grayscale(100%) brightness(50%)",
+          "blur(40px) grayscale(100%)",
         cursor: "zoom-out",
       },
       onClick: handleToggle,
