@@ -47,7 +47,6 @@ export const BaseProvider: FC<
   TProviderProps
 > = ({ children }) => {
   const x = useVideoStore();
-  console.log(x);
   const [itemRecord, setItemRecord] =
     useState([PICS]);
   const [isMenu, setMenu] =

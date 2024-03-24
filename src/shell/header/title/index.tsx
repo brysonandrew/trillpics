@@ -17,19 +17,17 @@ export const Title: FC = () => {
     window.scrollTo(0, 0);
   };
 
-  const appTitle = <TitleApp />;
-
   return (
-    <>
+    <div className="row-start gap-1 lg:gap-4">
       {isScroll ? (
         <button onClick={handleClick}>
-          {appTitle}
+          <TitleApp />
         </button>
       ) : (
-        appTitle
+        <TitleApp />
       )}
       <button
-        className="relative mt-1 ml-2 uppercase text-xl tracking-wide h-6 w-6 sm:(h-10 w-10)"
+        className="relative mt-4 ml-4 uppercase text-xl tracking-wide h-6 w-6 sm:(h-10 w-10 mt-5)"
         onClick={onRandomize}
       >
         <img
@@ -49,6 +47,6 @@ export const Title: FC = () => {
           />
         )}
       </button>
-    </>
+    </div>
   );
 };

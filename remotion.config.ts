@@ -11,7 +11,7 @@
 import {Config} from '@remotion/cli/config';
 import {webpackOverrideFn} from './src/pages/home/video/webpack-override';
 
-// Config.overrideWebpackConfig(webpackOverrideFn);
-// Config.setChromiumDisableWebSecurity(true);
-// Config.setVideoImageFormat('png');
-// Config.setOverwriteOutput(true);
+Config.overrideWebpackConfig(webpackOverrideFn);
+Config.setChromiumDisableWebSecurity(true);
+Config.setVideoImageFormat('png');
+Config.setOverwriteOutput(true);

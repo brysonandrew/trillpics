@@ -41,23 +41,14 @@ export const Header: FC<
     >
       <div
         className={clsx(
-          "w-container column-end md:row-space"
+          "w-container row-start-space py-4"
         )}
       >
-        <div
-        // className={clsx(
-        //   isVideoMode && "opacity-40"
-        // )}
-        >
+        <div className="w-35 shrink-0 sm:w-45 md:w-auto">
           {isHome ? (
-            <div className="row gap-4">
-              <Title />
-            </div>
+            <Title />
           ) : (
-            <Link
-              className="row gap-4"
-              to={HOME_ROUTE}
-            >
+            <Link to={HOME_ROUTE}>
               <Title />
             </Link>
           )}

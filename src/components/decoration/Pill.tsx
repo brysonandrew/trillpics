@@ -24,8 +24,8 @@ export const Pill: FC<TProps> = ({
   return (
     <motion.span
       className={clsx(
-        'center h-5 bg-main text-current border border-main text-sm px-1.5 rounded-xl',
-        isCircle && 'w-5',
+        'center h-6 bg-main text-current border-2 border-current text-sm px-1.5 rounded-xl',
+        isCircle && 'w-6',
         classValue,
         gradient,
       )}

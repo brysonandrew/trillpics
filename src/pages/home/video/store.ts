@@ -12,7 +12,7 @@ type TVideoState = {
 export const useVideoStore =
   create<TVideoState>((set) => ({
     videoPics: [
-      ...Array(~~(Math.random() * 4 + 4)),
+      ...Array(~~(Math.random() * 4 + 12)),
     ].map(
       (_) => ~~(500 * Math.random())
     ),
@@ -24,11 +24,16 @@ export const useVideoStore =
           next ?? !prev.isPreviewOpen,
       }));
     },
-    toggleVideoMode: (next?: boolean) =>
-      set((prev: TVideoState) => ({
-        isVideoMode:
-          next ?? !prev.isVideoMode,
-      })),
+    toggleVideoMode: (next?: boolean) => {
+
+      set((prev: TVideoState) => {
+        const isVideoMode = next ?? !prev.isVideoMode;
+        return {
+          isVideoMode,
+          isPreviewOpen:false
+        }
+      });
+    },
     addVideo: (next: number) =>
       set((prev: TVideoState) => ({
         videoPics: [

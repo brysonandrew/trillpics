@@ -1,19 +1,14 @@
 import { FC } from "react";
+import { motion } from "framer-motion";
 import { TResolveConfigFromSize } from "@components/pics/pic/resolveDimensionsFromSize";
 import { useImage } from "@components/pics/useImage";
 import { TPassedProps } from "@components/pics/item/pic/config/types";
 import { ActiveBackground } from "@shell/header/right/active-background";
-import { Tip } from "@components/pics/item/Tip";
-import { I } from "@brysonandrew/icons-i";
-import {
-  CROSS_ICON,
-  PLUS_ICON,
-} from "@brysonandrew/icons-keys";
 import { FadeV } from "@brysonandrew/fade";
 import { Pic } from "@components/pics/item/pic";
 import {
   BORDER_GRADIENT,
-  GRADIENT_BLUE_PINK_YELLOW,
+  TEXT_GRADIENT,
 } from "@constants/css";
 
 type TProps = TPassedProps & {
@@ -37,6 +32,7 @@ export const Item: FC<TProps> = ({
     isVideoMode,
     videoOrder,
   } = rest;
+
   return (
     <li {...boxProps}>
       <Pic
@@ -55,52 +51,41 @@ export const Item: FC<TProps> = ({
 
       {isVideoMode &&
         videoOrder > -1 && (
-          <>
-            <ActiveBackground classValue="center opacity-40">
-              <h4
-                className="text-11xl font-mono text-gray"
-                style={{
-                  background:
-                    GRADIENT_BLUE_PINK_YELLOW,
-                  backgroundSize:
-                    "100% 100%",
-                  WebkitBackgroundClip:
-                    "text",
-                  WebkitTextStroke:
-                    "8px transparent",
-                }}
-              >
-                {videoOrder + 1}
-              </h4>
-            </ActiveBackground>
-            {isHover && (
-              <Tip>
-                <I
-                  classValue="text-red"
-                  icon={CROSS_ICON}
-                />
-                <u>Remove</u> from video
-                sequence
-              </Tip>
-            )}
-          </>
+          <ActiveBackground
+            classValue="row-start opacity-60"
+            style={BORDER_GRADIENT}
+          >
+            <h4
+              className="text-5xl pl-4 font-mono text-gray"
+              style={TEXT_GRADIENT}
+            >
+              #{videoOrder + 1}
+            </h4>
+          </ActiveBackground>
         )}
       {isHover && isVideoMode && (
-        <>
-          <ActiveBackground
-            style={BORDER_GRADIENT}
-          />
-          {videoOrder === -1 && (
-            <Tip>
-              <I
-                classValue="text-green"
-                icon={PLUS_ICON}
-              />
-              <u>Add</u> to video
-              sequence
-            </Tip>
-          )}
-        </>
+        <ActiveBackground
+          classValue="center cursor-pointer"
+          style={BORDER_GRADIENT}
+        >
+          <motion.h4
+            className="absolute left-1/2 top-1/2 text-11xl font-mono text-gray"
+            style={{
+              x: "-50%",
+              y: "-50%",
+              ...TEXT_GRADIENT,
+            }}
+            initial={false}
+            animate={{
+              rotate:
+                videoOrder === -1
+                  ? 0
+                  : 45,
+            }}
+          >
+            +
+          </motion.h4>
+        </ActiveBackground>
       )}
     </li>
   );

@@ -18,11 +18,11 @@ export const HeaderRight: FC = () => {
   }, [pathname, isScroll]);
 
   return (
-    <div className="row shrink-0 lowercase">
+    <div className="column-reverse md:row-wrap shrink-0 lowercase">
       {rightItems.map((Item, index) => (
         <div
           key={`${index}`}
-          className="relative center h-14"
+          className="relative center h-14 sm:h-20"
         >
           <Item />
         </div>

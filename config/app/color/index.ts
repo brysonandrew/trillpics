@@ -4,14 +4,10 @@ import {
 } from './config/constants';
 import { TVariablesRecord } from './config/types';
 import {
-  // BASE_GLOW_RECORD,
-  // BLACK_RGBS,
   BASE_RGBS_RECORD,
   resolveColorRecords,
   TBaseColorRecord,
   TRgbSeriesRecord,
-  // resolveGlowRecord,
-  // WHITE_RGBS,
 } from '@brysonandrew/color-base';
 import {
   BLACK_RGBS,
@@ -22,7 +18,7 @@ const RGB_RECORD = {
   ...OPACITY_RANGE_RGB_RECORD,
   ...BASE_RGBS_RECORD,
   dark: BLACK_RGBS[2],
-  light: WHITE_RGBS[8],
+  light: WHITE_RGBS[2],
   primary: '45, 212, 191',
   secondary: '207, 250, 254',
   accent: '113, 174, 225',

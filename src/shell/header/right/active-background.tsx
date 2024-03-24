@@ -13,17 +13,14 @@ export const ActiveBackground: FC<
   return (
     <motion.div
       className={clsx(
-        "fill w-full h-full cursor-pointer",
-        classValue 
+        "fill-inset-1 cursor-pointer",
+        classValue
       )}
       {...props}
     >
-      <>
-        <div className="fill opacity-5" />
         <div className="relative">
           <>{children}</>
         </div>
-      </>
     </motion.div>
   );
 };

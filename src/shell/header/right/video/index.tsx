@@ -9,7 +9,7 @@ import { VideoIcon } from "@shell/header/right/video/icon";
 import { BORDER_GRADIENT } from "@constants/css";
 
 export const Video: FC = () => {
-  const { pics, onToggleVideoPics } =
+  const {onToggleVideoPics } =
     useBase();
   const {
     videoPics,
@@ -24,6 +24,7 @@ export const Video: FC = () => {
 
   const handleCountClick = () => {
     onToggleVideoPics();
+    
   };
 
   return (

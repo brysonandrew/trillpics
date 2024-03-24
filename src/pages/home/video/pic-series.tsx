@@ -41,6 +41,7 @@ export const PicSeries: FC<
             const src = staticFile(
               `video/originals/${name}.png`
             );
+            console.log(src);
 
             return (
               <Series.Sequence
@@ -66,9 +67,9 @@ export const PicSeries: FC<
             );
           })}
       </Series>
-      {/* <AudioAndVisualizer
+      <AudioAndVisualizer
         src={audioSrc}
-      /> */}
+      />
       {/* <Audio
         volume={0.5}
         src={audioSrc}
