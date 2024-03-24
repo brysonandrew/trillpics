@@ -2,7 +2,7 @@ import type { FC } from 'react';
 import { CLEAR_ICON } from '@brysonandrew/icons-keys';
 import { TClassValueProps } from '@brysonandrew/config-types';
 import clsx from 'clsx';
-import { I } from '@components/Icon';
+import { I } from '@brysonandrew/icons-i';
 
 type TProps = TClassValueProps & {
   onRemove(): void;

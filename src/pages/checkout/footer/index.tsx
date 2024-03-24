@@ -1,5 +1,5 @@
 import { Divider } from "@components/decoration/Divider";
-import { I } from "@components/Icon";
+import { I } from "@brysonandrew/icons-i";
 import { motion } from "framer-motion";
 import { CATEGORIES } from "../../home/footer/config";
 

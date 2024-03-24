@@ -2,7 +2,7 @@ import type { FC } from 'react';
 import { List } from '../list';
 import { FADE_PRESENCE_WITH_DELAY } from '@constants/animation';
 import { HighlightText } from '@components/highlight-text';
-import { I } from '@components/Icon';
+import { I } from '@brysonandrew/icons-i';
 import { ADD_DUOTONE_ICON } from '@brysonandrew/icons-keys';
 import { ItemBackground } from './ItemBackground';
 import { TClassValueProps } from '@brysonandrew/config-types';

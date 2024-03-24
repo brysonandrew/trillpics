@@ -4,7 +4,7 @@ import {
   TClassValueProps,
 } from '@brysonandrew/config-types';
 import clsx from 'clsx';
-import { I } from '@components/Icon';
+import { I } from '@brysonandrew/icons-i';
 import { B } from '@brysonandrew/interactive'
 ``;
 

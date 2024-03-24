@@ -18,23 +18,24 @@
     "noEmit": true,
     "jsx": "react-jsx",
     "noImplicitThis": false,
-    "jsxImportSource": "@emotion/react",
-    "plugins": [
-      {
-        "name": "@styled/typescript-styled-plugin"
-      }
-    ]
   },
   "include": [
-    "src/**/*.js",
-    "src/**/*.jsx",
-    "src/**/*.ts",
-    "src/**/*.tsx",
-    "ops/**/*.ts",
-    "ops/**/*.tsx",
-    "config/**/*.ts",
-    "config/**/*.tsx",
-    "remotion.config.ts",
+    "**/*.json",
+    "**/*.ts",
+    "**/*.js",
+    "**/*.jsx",
+    "**/*.tsx"
   ],
+  // "include": [
+  //   "src/**/*.js",
+  //   "src/**/*.jsx",
+  //   "src/**/*.ts",
+  //   "src/**/*.tsx",
+  //   // "ops/**/*.ts",
+  //   // "ops/**/*.tsx",
+  //   "config/**/*.ts",
+  //   "config/**/*.tsx",
+  //   "remotion.config.ts",
+  // ],
   "extends": "./tsconfig.paths.json"
 }

@@ -1,6 +1,6 @@
 import type { FC } from 'react';
 import styled from '@emotion/styled';
-import { I } from '@components/Icon';
+import { I } from '@brysonandrew/icons-i';
 import { P1 } from '@components/layout/space/P1';
 import { P4 } from '@components/layout/space/P4';
 import { FADE_PRESENCE } from '@constants/animation';

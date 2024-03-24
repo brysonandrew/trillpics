@@ -1,7 +1,7 @@
 import type { FC } from 'react';
 import { CLOSE_ICON } from '@brysonandrew/icons-keys';
 import { B } from '@brysonandrew/interactive'
-import { I } from '@components/Icon';
+import { I } from '@brysonandrew/icons-i';
 import { useKey } from '@hooks/dom/useKey';
 
 type TProps = { onClose(): void };

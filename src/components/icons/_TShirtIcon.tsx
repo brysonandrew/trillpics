@@ -1,4 +1,4 @@
-import { I } from '@components/Icon';
+import { I } from '@brysonandrew/icons-i';
 import { TUseImageReturn } from '@components/pics/useImage';
 import { useDarkMode } from '@brysonandrew/dark-mode';
 import { resolveCompositeKey } from '@utils/keys';

@@ -4,7 +4,7 @@ import {
   useState,
 } from 'react';
 import styled from '@emotion/styled';
-import { I } from '@components/Icon';
+import { I } from '@brysonandrew/icons-i';
 import { FADE_PRESENCE } from '@constants/animation';
 import { CART_ICON, TICK_ICON } from '@brysonandrew/icons-keys';
 import { motion } from 'framer-motion';

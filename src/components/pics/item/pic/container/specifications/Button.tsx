@@ -7,7 +7,7 @@ import { resolveCompositeKey } from '@utils/keys';
 import { Pill } from '@components/decoration/Pill';
 import { TGradientShortcut } from '@uno/shortcuts/gradient';
 import { motion } from 'framer-motion';
-import { I } from '@components/Icon';
+import { I } from '@brysonandrew/icons-i';
 import {
   PLUS_ICON,
   TIMES_ICON,

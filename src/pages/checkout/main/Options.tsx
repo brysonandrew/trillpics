@@ -1,5 +1,5 @@
 import { Pill } from '@components/decoration/Pill';
-import { I } from '@components/Icon';
+import { I } from '@brysonandrew/icons-i';
 import { B } from '@brysonandrew/interactive';
 import { CHEVRON_LEFT } from '@brysonandrew/icons-keys';
 import { HOME_ROUTE } from '@app/routes';

@@ -7,7 +7,7 @@ import {
 import styled from '@emotion/styled';
 import { Button } from './Button';
 import { TIconConfigProps } from '@t/icons';
-import { I } from '@components/Icon';
+import { I } from '@brysonandrew/icons-i';
 import { useTimeoutRef } from '@hooks/window/useTimeoutRef';
 import { Text } from '../../../text';
 import { TInputProps } from '@t/inputs';

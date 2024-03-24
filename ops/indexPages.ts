@@ -9,7 +9,7 @@ export const capitalize = (word: string | null) =>
     : '';
 export const kebabToPascal = <I extends string>(value: I) =>
   value.split('-').map(capitalize).join('');
-import { writeFile } from 'fs/promises';
+import { writeFile } from  "fs/promises";
 import { resolvePwd } from '@ops/pwd';
 
 const WORKSHOP_ROOT = 'src/pages';

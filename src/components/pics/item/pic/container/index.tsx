@@ -9,7 +9,7 @@ import { Pill } from "@components/decoration/Pill";
 import clsx from "clsx";
 import { TUseLocalStorageForm } from "@shell/providers/context/checkout/useLocalStorageForm";
 import { TSpecifications } from "@t/image";
-import { I } from "@components/Icon";
+import { I } from "@brysonandrew/icons-i";
 import {
   PLUS_ICON,
   TIMES_ICON,
