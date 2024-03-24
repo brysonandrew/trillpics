@@ -1,8 +1,8 @@
 import type { FC } from "react";
-import { Image as _Image } from "@components/images/image";
+import { Image as _Image } from "@components/pics/pic";
 import { motion } from "framer-motion";
 import { TCell } from "../config";
-import { resolveConfigFromSize } from "@components/images/image/resolveDimensionsFromSize";
+import { resolveConfigFromSize } from "@components/pics/pic/resolveDimensionsFromSize";
 import { Resolve } from "@components/collection/Resolve";
 
 type TProps = {

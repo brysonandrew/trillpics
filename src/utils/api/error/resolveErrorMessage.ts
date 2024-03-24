@@ -1,5 +1,5 @@
 import { TError } from '@brysonandrew/config-types';
-import message from 'message-like-antd';
+import { toast } from 'react-hot-toast';
 
 const toMessage = (
   content: string,
@@ -21,6 +21,6 @@ export const resolveErrorMessage = (
     error.message;
   content = toMessage(error, source);
   if (content) {
-    message.error(content);
+    toast.error(content);
   }
 };

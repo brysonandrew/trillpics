@@ -1,8 +1,8 @@
 import { FC } from "react";
-import { Item } from "@components/images/item";
+import { Item } from "@components/pics/item";
 import { useViewport } from "@shell/providers/context/viewport";
 import { TItemEntries } from "@shell/providers/context/checkout/config";
-import { resolveConfigFromSize } from "@components/images/image/resolveDimensionsFromSize";
+import { resolveConfigFromSize } from "@components/pics/pic/resolveDimensionsFromSize";
 
 type TProps = {
   entries: TItemEntries;

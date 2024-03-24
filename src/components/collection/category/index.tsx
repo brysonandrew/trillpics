@@ -2,9 +2,9 @@ import { FC } from "react";
 import { TClassValueProps } from "@brysonandrew/config-types";
 import clsx, { ClassValue } from "clsx";
 import { useViewport } from "@shell/providers/context/viewport";
-import { Item } from "../../images/item";
+import { Item } from "../../pics/item";
 import { resolveCompositeKey } from "@utils/keys";
-import { resolveConfigFromSize } from "@components/images/image/resolveDimensionsFromSize";
+import { resolveConfigFromSize } from "@components/pics/pic/resolveDimensionsFromSize";
 
 type TProps = TClassValueProps & {
   listClassValue: ClassValue;

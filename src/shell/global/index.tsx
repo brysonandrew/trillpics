@@ -1,15 +1,14 @@
-import Favicon from 'react-favicon';
+import Favicon from "react-favicon";
 import {
   FC,
   Fragment,
   PropsWithChildren,
-} from 'react';
-import { useApp } from '@brysonandrew/app';
-import { GlobalCss } from '@shell/global/Css';
-import { PAGE_RECORDS } from '@config/routes';
-import { useDarkMode } from '@brysonandrew/dark-mode';
-import { Helmet } from 'react-helmet-async';
-import { Variables } from '@css/Variables';
+} from "react";
+import { useApp } from "@brysonandrew/app";
+import { GlobalCss } from "@shell/global/Css";
+import { useDarkMode } from "@brysonandrew/dark-mode";
+import { Helmet } from "react-helmet-async";
+import { Variables } from "@css/Variables";
 
 export const Global: FC<
   PropsWithChildren
@@ -19,17 +18,17 @@ export const Global: FC<
   const PlaceholderClipPath =
     PLACEHOLDER?.GLOBAL.ClipPath ??
     Fragment;
-  const pageValues = Object.values(
-    PAGE_RECORDS.record,
-  );
+  // const pageValues = Object.values(
+  //   PAGE_RECORDS.record,
+  // );
 
   return (
     <>
       <Favicon
         url={
           isDarkMode
-            ? '/logo-dark.svg'
-            : '/logo-light.svg'
+            ? "/logo-dark.svg"
+            : "/logo-light.svg"
         }
       />
       <Helmet>

@@ -20,7 +20,7 @@ export default defineConfig({
   plugins: [
     tsConfigPaths(),
     react(),
-    unoCss({ inspector: true }),
+    unoCss(),
   ],
   server: {
     port: 3000,

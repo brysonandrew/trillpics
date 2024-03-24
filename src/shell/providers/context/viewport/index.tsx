@@ -7,7 +7,7 @@ import {
 import {
   TViewport,
   useViewport as useWindowViewport,
-} from "@hooks/window/useViewport";
+} from "../../../../hooks/window/useViewport";
 import {
   TUseGrid,
   useGrid,

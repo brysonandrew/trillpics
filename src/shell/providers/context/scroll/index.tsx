@@ -17,7 +17,7 @@ import {
   useNavigate,
 } from 'react-router';
 import { useSearchParams } from 'react-router-dom';
-import { SEARCH_PARAM_ID } from '@components/images/useImage';
+import { SEARCH_PARAM_ID } from '@components/pics/useImage';
 import { TMotionPoint } from '@t/animation';
 
 export const STATE: TState = {

@@ -1,6 +1,6 @@
 import type { FC } from "react";
 import { VideoCrossIcon } from "@shell/header/right/video/cross-icon";
-import { useVideoStore } from "@pages/index/video/store";
+import { useVideoStore } from "@pages/home/video/store";
 import { N } from "@components/layout/text/N";
 import clsx from "clsx";
 import { ActiveBackground } from "@shell/header/right/active-background";

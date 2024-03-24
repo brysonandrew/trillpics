@@ -1,7 +1,7 @@
 import { useMemo } from "react";
-import { BREAKPOINT_INT_RECORD } from "@constants/css";
-import { TBreakpointKey } from "@uno/index";
-import { GRID_CLASS_VALUE } from "@components/collection";
+import { BREAKPOINT_INT_RECORD } from "../../../../constants/css";
+import type { TBreakpointKey } from "@uno/index";
+import { GRID_CLASS_VALUE } from "../../../../components/collection";
 import { TViewport } from "@hooks/window/useViewport";
 
 const colSets =

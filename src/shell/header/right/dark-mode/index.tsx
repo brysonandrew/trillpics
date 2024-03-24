@@ -1,6 +1,6 @@
 import { FC } from "react";
 import { Button } from "@brysonandrew/dark-mode";
-import { useVideoStore } from "@pages/index/video/store";
+import { useVideoStore } from "@pages/home/video/store";
 import clsx from "clsx";
 import {
   Moon as MoonIcon,

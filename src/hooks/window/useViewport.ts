@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useEventListener } from '../events/useEventListener';
 import { useTimeoutRef } from './useTimeoutRef';
-import { useIsomorphicLayoutEffect } from '@hooks/life-cycle/useIsomorphicLayoutEffect';
+import { useIsomorphicLayoutEffect } from '../life-cycle/useIsomorphicLayoutEffect';
 import {
   TDimensionsInit,
   TDimensionsReady,

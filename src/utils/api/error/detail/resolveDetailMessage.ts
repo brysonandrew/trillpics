@@ -1,4 +1,4 @@
-import message from 'message-like-antd';
+import toast from 'react-hot-toast';
 import { TErrorDetail } from './config';
 
 export const resolveDetailMessage = (
@@ -16,7 +16,7 @@ export const resolveDetailMessage = (
     type: ${type}
 `;
 console.log(rows)
-      message.error(content);
+toast.error(content);
     },
   );
 };

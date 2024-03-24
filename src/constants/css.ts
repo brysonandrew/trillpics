@@ -1,5 +1,5 @@
-import { screen } from "@uno/index";
-import { resolveIntRecord } from "@utils/css";
+import { screen } from "../../config/uno/index";
+import { resolveIntRecord } from "../utils/css";
 
 export const BREAKPOINT_RECORD = screen;
 

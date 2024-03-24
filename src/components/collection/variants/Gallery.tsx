@@ -1,7 +1,7 @@
-import { Item } from "@components/images/item";
+import { Item } from "@components/pics/item";
 import { useViewport } from "@shell/providers/context/viewport";
 import { useDarkMode } from "@brysonandrew/dark-mode";
-import { resolveConfigFromSize } from "@components/images/image/resolveDimensionsFromSize";
+import { resolveConfigFromSize } from "@components/pics/pic/resolveDimensionsFromSize";
 import { PICS } from "../config/items";
 
 export const Gallery = () => {

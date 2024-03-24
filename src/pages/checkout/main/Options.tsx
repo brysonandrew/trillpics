@@ -2,7 +2,7 @@ import { Pill } from '@components/decoration/Pill';
 import { I } from '@components/Icon';
 import { B } from '@brysonandrew/interactive';
 import { CHEVRON_LEFT } from '@brysonandrew/icons-keys';
-import { HOME_ROUTE } from '@config/routes';
+import { HOME_ROUTE } from '@app/routes';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 

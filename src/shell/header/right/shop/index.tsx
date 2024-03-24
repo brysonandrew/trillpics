@@ -1,7 +1,7 @@
 import { NONE_CURSOR_KEY } from '@brysonandrew/cursor';
 import { I } from '@components/Icon';
 import { SHOP_ICON } from '@brysonandrew/icons-keys/shop';
-import { HOME_ROUTE } from '@config/routes';
+import { HOME_ROUTE } from '@app/routes';
 import { Link } from 'react-router-dom';
 import { ICON_CLASS_VALUE_PROPS } from '../../config';
 import { Item } from '../Item';

@@ -1,4 +1,4 @@
-import { useIsomorphicLayoutEffect } from '@hooks/life-cycle/useIsomorphicLayoutEffect';
+import { useIsomorphicLayoutEffect } from '../life-cycle/useIsomorphicLayoutEffect';
 import type { RefObject } from 'react';
 import { useEffect, useRef } from 'react';
 

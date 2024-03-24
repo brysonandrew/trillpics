@@ -8,7 +8,7 @@ import {
 import { NOOP } from "@constants/functions";
 import { PICS } from "@components/collection/config/items";
 import { shuffle } from "@utils/array/shuffle";
-import { useVideoStore } from "@pages/index/video/store";
+import { useVideoStore } from "@pages/home/video/store";
 
 export type TContext = {
   pics: number[];
