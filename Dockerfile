@@ -4,6 +4,7 @@ RUN apt-get update
 RUN apt-get install -y chromium
 
 # Copy everything from your project to the Docker image. Adjust if needed.
+COPY .npmrc .npmrc
 COPY package.json package*.json yarn.lock* pnpm-lock.yaml* bun.lockb* tsconfig.json* remotion.config.* .prettierrc* ./
 COPY config ./config
 COPY src ./src
@@ -13,5 +14,7 @@ COPY public ./public
 
 # Install the right package manager and dependencies. Adjust if needed.
 RUN npm i
+
+RUN rm -f .npmrc
 
 CMD ["npx", "remotion studio", "--ipv4"]

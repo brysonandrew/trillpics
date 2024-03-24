@@ -1,5 +1,5 @@
 {
-  "name": "@brysonandrew/ops",
+  "name": "@trill-pics/ops",
   "version": "3.0.0",
   "description": "Ops lib",
   "main": "./index.ts",
