@@ -35,7 +35,6 @@ export const Video: FC = () => {
       >
         {isVideoMode && (
           <ActiveBackground classValue="inset-0 border-main-inverted border-4 opacity-80" 
-          
           style={{backgroundImage: resolveGradient({name:'radial-gradient',parts: ['circle at 100%', ...GRADIENT_BLUE_PINK_YELLOW_COLORS]})}}
           />
         )}

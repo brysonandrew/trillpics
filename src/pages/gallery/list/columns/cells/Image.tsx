@@ -43,7 +43,6 @@ export const Image: FC<TProps> = ({
         const name = resolveName(
           src ?? ""
         );
-        console.log(name);
         return (
           <Pic
             name={parseInt(name)}
@@ -84,7 +83,7 @@ export const Image: FC<TProps> = ({
                       >
                         <h4 className="flex items-center gap-4 text-2xl ml-4 mt-4 px-2 border-main-inverted bg-main border-2 font-mono text-main">
                           <VideoIcon />
-                          {videoOrder +
+                          #{videoOrder +
                             1}
                         </h4>
                       </ActiveBackground>

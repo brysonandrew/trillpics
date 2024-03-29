@@ -15,3 +15,5 @@ Config.overrideWebpackConfig(webpackOverrideFn);
 Config.setChromiumDisableWebSecurity(true);
 Config.setVideoImageFormat('jpeg');
 Config.setOverwriteOutput(true);
+Config.setEntryPoint("src/pages/home/video/index.tsx");
+Config.setPublicDir("src/pages/gallery/context/entries/video");

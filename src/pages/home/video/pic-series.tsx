@@ -5,6 +5,7 @@ import {
   PIC_COUNT,
   PIC_SIZE,
   ASPECT_RATIO,
+  TOTAL_DURATION_IN_FRAMES,
 } from "@pages/home/video/constants";
 import {
   AbsoluteFill,
@@ -30,22 +31,22 @@ export const PicSeries: FC<
     frameInSecond / fps;
   const picCount = pics.length;
   const audioSrc = staticFile(
-    "video/audio/insurrection-10941.mp3"
+    "src/pages/gallery/context/entries/video/audio/insurrection-10941.mp3"
   );
-
+  console.log(audioSrc)
+console.log(pics)
   return (
     <AbsoluteFill>
       <Series>
         {picCount >= PIC_COUNT &&
-          pics.map((name) => {
+          pics.map((name, index) => {
             const src = staticFile(
-              `video/originals/${name}.png`
+              `src/pages/gallery/context/entries/video/originals/${name}.png`
             );
-            console.log(src);
 
             return (
               <Series.Sequence
-                key={`${name}`}
+                key={`${name}${index}`}
                 durationInFrames={fps}
               >
                 <AbsoluteFill

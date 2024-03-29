@@ -3,7 +3,7 @@ import { useViewport } from '@shell/providers/context/viewport';
 import { APPROX_IMAGE_SIZE } from '@constants/images';
 
 const record = import.meta.glob(
-  '../../../../../public/video/originals/*.png',
+  './video/originals/*.png',
 );
 const entries = Object.entries(record);
 const count =

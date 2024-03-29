@@ -19,6 +19,7 @@ export const LinearGradientBluePinkYellowSvg: FC =
             { length: count }
           ) => (
             <stop
+            key={`${index}`}
               offset={`${
                 (100 / (count - 1)) *
                 index

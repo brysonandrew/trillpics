@@ -15,6 +15,7 @@ export const webpackOverrideFn: WebpackOverrideFn =
       "constants",
       "utils",
       "css",
+      'store'
     ].reduce(
       (a, c) => ({
         ...a,
