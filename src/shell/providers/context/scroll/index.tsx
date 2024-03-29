@@ -1,24 +1,26 @@
 import {
-  useEffect,
   useState,
   useContext as useReactContext,
   createContext,
   PropsWithChildren,
-} from 'react';
-import type { FC } from 'react';
+  useRef,
+  MutableRefObject,
+} from "react";
+import type { FC } from "react";
 import {
   motionValue,
-  useMotionValueEvent,
   useScroll as useFMScroll,
-} from 'framer-motion';
-import { useTimeoutRef } from '@hooks/window/useTimeoutRef';
+} from "framer-motion";
+import { useTimeoutRef } from "@hooks/window/useTimeoutRef";
 import {
   useLocation,
   useNavigate,
-} from 'react-router';
-import { useSearchParams } from 'react-router-dom';
-import { SEARCH_PARAM_ID } from '@components/pics/useImage';
-import { TMotionPoint } from '@t/animation';
+} from "react-router";
+import { useSearchParams } from "react-router-dom";
+import { SEARCH_PARAM_ID } from "@components/pics/useImage";
+import { TMotionPoint } from "@t/animation";
+import { NOOP } from "@brysonandrew/utils-function";
+import { ListOnScrollProps } from "react-window";
 
 export const STATE: TState = {
   isScrolling: false,
@@ -27,6 +29,8 @@ export const STATE: TState = {
 
 export const CONTEXT: TContext = {
   ...STATE,
+  listRef: {current:null},
+  onUpdate: NOOP,
   scroll: {
     x: motionValue(0),
     y: motionValue(0),
@@ -39,7 +43,11 @@ export type TState = {
 };
 
 export type TContext = TState & {
+  listRef: MutableRefObject<any>;
   scroll: TMotionPoint;
+  onUpdate(
+    props: ListOnScrollProps
+  ): void;
 };
 
 export const SCROLL = 120;
@@ -55,6 +63,8 @@ type TProviderProps = PropsWithChildren;
 export const ScrollProvider: FC<
   TProviderProps
 > = ({ children }) => {
+  const listRef = useRef(null);
+
   const { scrollX, scrollY } =
     useFMScroll();
   const [isScroll, setScroll] =
@@ -70,17 +80,18 @@ export const ScrollProvider: FC<
 
   const startScroll = () => {
     searchParams.delete(
-      SEARCH_PARAM_ID,
+      SEARCH_PARAM_ID
     );
     navigate(
-      `${pathname}?${searchParams}`,
+      `${pathname}?${searchParams}`
     );
     setScrolling(true);
   };
 
   const handleUpdate = (
-    value: number,
+    props: ListOnScrollProps
   ) => {
+    const { scrollOffset } = props;
     if (!isScrolling) {
       startScroll();
     }
@@ -89,43 +100,51 @@ export const ScrollProvider: FC<
       () => {
         setScrolling(false);
       },
-      SCROLL_COOLDOWN,
+      SCROLL_COOLDOWN
     );
 
-    if (!isScroll && value > SCROLL) {
+    if (
+      !isScroll &&
+      scrollOffset > SCROLL
+    ) {
       setScroll(true);
     }
-    if (isScroll && value < SCROLL) {
+    if (
+      isScroll &&
+      scrollOffset < SCROLL
+    ) {
       setScroll(false);
     }
   };
-  useMotionValueEvent(
-    scrollY,
-    'change',
-    handleUpdate,
-  );
+  // useMotionValueEvent(
+  //   scrollY,
+  //   "change",
+  //   handleUpdate
+  // );
 
-  useEffect(() => {
-    const setY = () => {
-      scrollX.set(0);
-      scrollY.set(0);
-      window.scrollTo(0, 0);
-      document.documentElement.scrollTop = 0;
-      handleUpdate(0);
-    };
-    timeoutRef.current =
-      setTimeout(setY);
-  }, [pathname]);
+  // useEffect(() => {
+  //   const setY = () => {
+  //     scrollX.set(0);
+  //     scrollY.set(0);
+  //     window.scrollTo(0, 0);
+  //     document.documentElement.scrollTop = 0;
+  //     handleUpdate(0);
+  //   };
+  //   timeoutRef.current =
+  //     setTimeout(setY);
+  // }, [pathname]);
 
   return (
     <Scroll.Provider
       value={{
+        listRef,
         scroll: {
           x: scrollX,
           y: scrollY,
         },
         isScroll,
         isScrolling,
+        onUpdate: handleUpdate,
       }}
     >
       {children}

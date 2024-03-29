@@ -56,7 +56,7 @@
       "@vite": ["config/vite"],
       "@vite/*": ["config/vite/*"],
       "@icons/*": ["src/icons/*"],
-      "@logic/*": ["src/logic/*"],
+      "@store/*": ["src/store/*"],
       "@main/*": ["src/main/*"],
       "@context/*": ["src/context/*"],
       "@utils/*": ["src/utils/*"],

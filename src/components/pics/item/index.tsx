@@ -6,10 +6,7 @@ import { TPassedProps } from "@components/pics/item/pic/config/types";
 import { ActiveBackground } from "@shell/header/right/active-background";
 import { FadeV } from "@brysonandrew/fade";
 import { Pic } from "@components/pics/item/pic";
-import {
-  BORDER_GRADIENT,
-  TEXT_GRADIENT,
-} from "@constants/css";
+import { BORDER_GRADIENT, TEXT_GRADIENT } from "@constants/css/gradient";
 
 type TProps = TPassedProps & {
   imageConfig: TResolveConfigFromSize;
@@ -52,11 +49,11 @@ export const Item: FC<TProps> = ({
       {isVideoMode &&
         videoOrder > -1 && (
           <ActiveBackground
-            classValue="row-start opacity-60"
+            classValue="row-start"
             style={BORDER_GRADIENT}
           >
             <h4
-              className="text-5xl pl-4 font-mono text-gray"
+              className="text-5xl pl-4 font-mono"
               style={TEXT_GRADIENT}
             >
               #{videoOrder + 1}
@@ -69,7 +66,7 @@ export const Item: FC<TProps> = ({
           style={BORDER_GRADIENT}
         >
           <motion.h4
-            className="absolute left-1/2 top-1/2 text-11xl font-mono text-gray"
+            className="absolute left-1/2 top-1/2 text-11xl font-mono"
             style={{
               x: "-50%",
               y: "-50%",

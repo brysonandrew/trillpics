@@ -1,7 +1,7 @@
 import { TDimensions } from "@t/measure";
 import { z } from "zod";
 
-export const FPS = 30;
+export const FPS = 24;
 export const PIC_COUNT = 1;
 export const VIDEO_PICS = [
   ...Array(PIC_COUNT),

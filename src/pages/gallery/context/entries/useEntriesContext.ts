@@ -1,10 +1,9 @@
-import { sortByIndex } from './sortByIndex';
 import { useMemo } from 'react';
 import { useViewport } from '@shell/providers/context/viewport';
 import { APPROX_IMAGE_SIZE } from '@constants/images';
 
 const record = import.meta.glob(
-  '../../../../../components/collection/assets/*.png',
+  '../../../../../public/video/originals/*.png',
 );
 const entries = Object.entries(record);
 const count =

@@ -18,20 +18,22 @@ export const useColumns = (
       firstRowColsCount < 1
     )
       return [];
-
     return [
       ...Array(firstRowColsCount),
     ].map((_, index) => {
       const col = columnHelper.accessor(
         'cols',
         {
-          cell: (cell) => (
-            <Image
-              index={index}
-              cell={cell}
-              size={size}
-            />
-          ),
+          cell: (cell) => {
+            return (
+              <Image
+                colIndex={index}
+                cell={cell}
+                size={size}
+                maxColsCount={firstRowColsCount}
+              />
+            )
+          },
         },
       );
       return col;

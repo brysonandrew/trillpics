@@ -2,9 +2,10 @@ import {
   useEffect,
   type FC,
 } from 'react';
-import { Workshop } from '.';
-import { TWorkshop } from './types';
+import { Gallery } from '.';
+import { TGallery } from './types';
 import { useClipboardContext } from './clipboard/useClipboardContext';
+import { useEntriesContext } from '@pages/gallery/context/entries/useEntriesContext';
 
 export function withProvider<
   T extends object,
@@ -12,21 +13,25 @@ export function withProvider<
   const C = (props: T) => {
     const clipboardContext =
       useClipboardContext();
-    useEffect(() => {
-      const root =
-        document.getElementById('root');
-      if (root) {
-        root.style.height = '100%';
-      }
-    }, []);
+    // useEffect(() => {
+    //   const root =
+    //     document.getElementById('root');
+    //   if (root) {
+    //     root.style.height = '100%';
+    //   }
+    // }, []);
+    const entriesContext =
+      useEntriesContext();
 
-    const value: TWorkshop = {
+    const value: TGallery = {
       clipboardContext,
+      entriesContext,
+
     };
     return (
-      <Workshop.Provider value={value}>
+      <Gallery.Provider value={value}>
         <I {...props} />
-      </Workshop.Provider>
+      </Gallery.Provider>
     );
   };
   return C;

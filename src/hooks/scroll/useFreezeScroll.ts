@@ -13,7 +13,6 @@ export const useFreezeScrollBar = (
         next;
       const d =
         document.documentElement;
-      console.log('RUNNING');
 
       if (d !== null) {
         const hs =
@@ -33,7 +32,6 @@ export const useFreezeScrollBar = (
         }
       }
       const body = document.body;
-      console.log('RUNNING');
       if (body !== null) {
         const hs =
           body.scrollWidth >

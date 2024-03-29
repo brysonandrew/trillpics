@@ -40,6 +40,7 @@ const width = {
 export const theme = resolveTheme({
   colors: COLOR_VARS_RECORD,
   spacing: SPACING,
+  width,
   maxWidth: {
     shell: "1480px",
   },

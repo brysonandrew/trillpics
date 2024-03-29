@@ -1,15 +1,14 @@
 import type { FC } from "react";
 import { VideoCrossIcon } from "@shell/header/right/video/cross-icon";
-import { useVideoStore } from "@pages/home/video/store";
+import { useVideoStore } from "src/store";
 import { N } from "@components/layout/text/N";
 import { ActiveBackground } from "@shell/header/right/active-background";
 import { Pill } from "@components/decoration/Pill";
 import { useBase } from "@shell/providers/context/base";
 import { VideoIcon } from "@shell/header/right/video/icon";
-import { BORDER_GRADIENT } from "@constants/css";
 
 export const Video: FC = () => {
-  const {onToggleVideoPics } =
+  const { onToggleVideoPics } =
     useBase();
   const {
     videoPics,
@@ -24,7 +23,6 @@ export const Video: FC = () => {
 
   const handleCountClick = () => {
     onToggleVideoPics();
-    
   };
 
   return (
@@ -34,17 +32,17 @@ export const Video: FC = () => {
         onClick={handleClick}
       >
         {isVideoMode && (
-          <ActiveBackground
-            style={BORDER_GRADIENT}
-          />
+          <ActiveBackground classValue="inset-0 border-main-inverted border-4 bg-blue-yellow-pink" />
         )}
+        <div className="relative">
         {videoPicsCount > 0 ? (
-          <VideoIcon />
+          <VideoIcon  />
         ) : (
           <VideoCrossIcon />
         )}
+        </div>
       </button>
-      {videoPicsCount > 0 && (
+      {isVideoMode && videoPicsCount > 0 && (
         <button
           onClick={handleCountClick}
         >

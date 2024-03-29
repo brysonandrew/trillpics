@@ -1,25 +1,23 @@
-import styled from '@emotion/styled';
 import {
   getCoreRowModel,
   type RowModel,
   useReactTable,
   Table,
   TableOptions,
-} from '@tanstack/react-table';
-import { Body } from './body';
-import { TBaseRow } from './types';
+} from "@tanstack/react-table";
+import { Body } from "./body";
+import { TBaseRow } from "./types";
 
 type TProps = {
   rows: any[];
   columns: any;
-  header: JSX.Element;
   rowHeight: number;
 };
 export const TableInfinite = <
-  T extends TBaseRow,
+  T extends TBaseRow
 >({
   rows,
-  header,
+
   columns,
   rowHeight,
 }: TProps) => {
@@ -38,7 +36,6 @@ export const TableInfinite = <
   return (
     <Body<T>
       table={table}
-      header={header}
       rowHeight={rowHeight}
       emptyProps={{
         isEmpty: count === 0,

@@ -1,73 +1,76 @@
 import type {
   Row as TRow,
   RowModel,
-} from '@tanstack/react-table';
-import AutoSizer from 'react-virtualized-auto-sizer';
-import type { ListChildComponentProps } from 'react-window';
-import { FixedSizeList } from 'react-window';
-import { Row } from './Row';
-import { Context } from './shell';
-import { TBaseRow } from '../types';
+} from "@tanstack/react-table";
+import type { ListChildComponentProps } from "react-window";
+import { FixedSizeList } from "react-window";
+import { useScroll } from "@shell/providers/context/scroll";
+import { useViewport } from "@shell/providers/context/viewport";
+import { Row } from "./Row";
+import {
+  Context,
+  Shell,
+} from "./shell";
+import { TBaseRow } from "../types";
 
 const RenderRow = <T extends TBaseRow>(
   props: ListChildComponentProps<
     TRow<T>[]
-  >,
+  >
 ) => {
   return <Row<T> {...props} />;
 };
 
 type TProps<T> = {
   table: any;
-  header: JSX.Element;
+
   emptyProps: any;
   rowHeight: number;
 };
 export const Body = <
-  T extends TBaseRow,
+  T extends TBaseRow
 >({
   table,
-  header,
   emptyProps,
   rowHeight,
 }: TProps<T>) => {
   const rowModel: RowModel<T> =
     table.getRowModel();
   const rows: TRow<T>[] = rowModel.rows;
+  const { onUpdate, listRef } =
+    useScroll();
+  const vp = useViewport();
 
+  if (!vp.isDimensions) return null;
   return (
     <Context.Provider
       value={{
-        header,
         emptyProps,
         rowHeight,
       }}
     >
-      <AutoSizer>
-        {({ width, height }: any) => (
-          <FixedSizeList<TRow<T>[]>
-            width={width}
-            height={height}
-            innerTagName='ul'
-            itemCount={rows.length}
-            itemData={rows.map(
-              (row: TRow<T>) => row,
-            )}
-            itemSize={rowHeight}
-            itemKey={(
-              index: number,
-              data: any,
-            ) => {
-              const key =
-                data[index].id;
-              return key;
-            }}
-            layout='vertical'
-          >
-            {RenderRow}
-          </FixedSizeList>
+      <FixedSizeList<TRow<T>[]>
+        onScroll={onUpdate}
+        width={vp.width}
+        height={vp.height}
+        itemCount={rows.length}
+        itemData={rows.map(
+          (row: TRow<T>) => row
         )}
-      </AutoSizer>
+        itemSize={rowHeight}
+        itemKey={(
+          index: number,
+          data: any
+        ) => {
+          const key = data[index].id;
+          return key;
+        }}
+        outerElementType={Shell}
+        layout="vertical"
+        ref={listRef}
+      >
+        {RenderRow}
+      </FixedSizeList>
     </Context.Provider>
   );
 };

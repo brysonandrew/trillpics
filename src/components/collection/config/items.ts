@@ -1,24 +1,15 @@
 import { shuffle } from "@utils/array/shuffle";
-// const collectionResolverRecord =
-//   import.meta.glob(
-//     `../../../../public/showcase/**/*.png`
-//   );
-//   console.log(collectionResolverRecord)
 
 const MAX_W = 500;
 const MAX_SUFFIX =
   `-${MAX_W}w` as const;
-
-// const ENTRIES = Object.entries(
-//   collectionResolverRecord
-// );
 
 export const resolveName = (
   path: string
 ) =>
   path.replace(
     new RegExp(
-      `(.*assets\/|${MAX_SUFFIX}.png|.png)`,
+      `(.*originals\/|${MAX_SUFFIX}|.*pics\/.png|.png)`,
       "gi"
     ),
     ""

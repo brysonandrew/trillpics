@@ -1,7 +1,7 @@
 import { Divider } from "@components/decoration/Divider";
 import { I } from "@brysonandrew/icons-i";
 import { motion } from "framer-motion";
-import { CATEGORIES } from "../../home/footer/config";
+import { CATEGORIES } from "../../gallery/footer/config";
 
 export const Footer = () => {
   return (

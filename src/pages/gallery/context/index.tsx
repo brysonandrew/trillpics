@@ -1,16 +1,16 @@
 import {
-  useContext as useReactWorkshop,
+  useContext as useReactGallery,
   createContext,
 } from 'react';
-import { TWorkshop } from './types';
+import { TGallery } from './types';
 
-export const Workshop =
-createContext<TWorkshop>(
-    {} as TWorkshop,
+export const Gallery =
+createContext<TGallery>(
+    {} as TGallery,
   );
 
-export const useWorkshop =
-  (): TWorkshop =>
-    useReactWorkshop<TWorkshop>(
-      Workshop,
+export const useGallery =
+  (): TGallery =>
+    useReactGallery<TGallery>(
+      Gallery,
     );

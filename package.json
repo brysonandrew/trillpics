@@ -4,6 +4,7 @@
   "description": "Picture gallery",
   "main": "src/main.tsx",
   "types": "src/index.d.ts",
+  "type": "commonjs",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
@@ -114,6 +115,7 @@
     "@remotion/player": "4.0.132",
     "@remotion/shapes": "4.0.132",
     "@remotion/tailwind": "4.0.132",
+    "@remotion/transitions": "^6.24.4",
     "@remotion/zod-types": "4.0.132",
     "@tanstack/react-query": "^5.8.4",
     "@tanstack/react-table": "^8.10.7",
@@ -169,6 +171,7 @@
     "typescript": "^4.9.5",
     "unocss": "^0.53.4",
     "vite": "^4.1.4",
+    "vite-plugin-node-polyfills": "^0.21.0",
     "vite-tsconfig-paths": "^3.5.0"
   }
 }

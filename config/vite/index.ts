@@ -2,10 +2,12 @@ import { defineConfig } from "vite";
 import tsConfigPaths from "vite-tsconfig-paths";
 import react from "@vitejs/plugin-react";
 import unoCss from "unocss/vite";
+import {nodePolyfills} from "vite-plugin-node-polyfills"
 
 export default defineConfig({
   build: {
     rollupOptions: {
+      external: ['mlly','local-pkg'],
       onwarn(warning, warn) {
         if (
           warning.code ===
@@ -18,11 +20,13 @@ export default defineConfig({
     },
   },
   plugins: [
+    nodePolyfills({exclude:['fs']}),
     unoCss({ inspector: true }),
     tsConfigPaths({
       loose: true,
     }),
     react(),
+
   ],
   server: {
     port: 3000,

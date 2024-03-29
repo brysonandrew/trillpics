@@ -5,10 +5,6 @@ import type {
 import type { ListChildComponentProps } from 'react-window';
 import { Cell } from './Cell';
 import { TBaseRow } from '../types';
-import styled from '@emotion/styled';
-import { Line } from '@components/layout/Line';
-
-const Root = styled.li``;
 
 type TProps<T> =
   ListChildComponentProps<TRow<T>[]>;
@@ -20,9 +16,8 @@ export const Row = <T extends TBaseRow>(
 
   const cells = item.getVisibleCells();
   return (
-    <>
-      <Root
-        className='row w-full'
+      <div
+        className='row'
         style={{
           ...style,
         }}
@@ -42,7 +37,6 @@ export const Row = <T extends TBaseRow>(
             );
           },
         )}
-      </Root>
-    </>
+      </div>
   );
 };

@@ -1,5 +1,5 @@
 import type { FC } from "react";
-import { useVideoStore } from "@pages/home/video/store";
+import { useVideoStore } from "src/store";
 
 export const VideoFooter: FC = () => {
   const {

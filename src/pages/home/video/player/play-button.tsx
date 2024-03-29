@@ -1,8 +1,12 @@
 import type { FC } from "react";
-import { TEXT_GRADIENT } from "@constants/css";
+import { LINEAR_GRADIENT_BLUE_PINK_YELLOW_SVG_ID } from "@components/gradients/linear-gradient-blue-pink-yellow-svg";
+import { resolveUrlId } from "@brysonandrew/utils-attributes";
+import { TEXT_GRADIENT } from "@constants/css/gradient";
 
-type TProps = {isFirst:boolean}
-export const PlayButton: FC<TProps> = ({isFirst}) => {
+type TProps = { isFirst: boolean };
+export const PlayButton: FC<TProps> = ({
+  isFirst,
+}) => {
   return (
     <div>
       <div
@@ -16,36 +20,17 @@ export const PlayButton: FC<TProps> = ({isFirst}) => {
             className="w-[45px] md:w-[80px] lg:w-[100px]"
             viewBox="0 0 24 24"
           >
-            <defs>
-              <linearGradient
-                id="gradient-blue-pink-yellow"
-                x1="0"
-                x2="0"
-                y1="0"
-                y2="1"
-              >
-                <stop
-                  offset="0%"
-                  stopColor="var(--blue)"
-                />
-                <stop
-                  offset="50%"
-                  stopColor="var(--pink)"
-                />
-                <stop
-                  offset="100%"
-                  stopColor="var(--yellow)"
-                />
-              </linearGradient>
-            </defs>
             <path
-              stroke="url(#gradient-blue-pink-yellow)"
+              stroke={resolveUrlId(
+                LINEAR_GRADIENT_BLUE_PINK_YELLOW_SVG_ID
+              )}
               fill="currentColor"
               d="M10 20H8V4h2v2h2v3h2v2h2v2h-2v2h-2v3h-2z"
             />
           </svg>
           <code className="text-2xl sm:text-5xl lg:text-6xl font-mono-pix whitespace-nowrap">
-            play{isFirst ? "" : " again"}
+            play
+            {isFirst ? "" : " again"}
           </code>
         </div>
       </div>

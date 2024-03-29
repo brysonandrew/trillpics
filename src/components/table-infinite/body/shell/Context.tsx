@@ -1,7 +1,6 @@
 import { createContext } from 'react';
 
 type TContext = {
-  header: JSX.Element;
   emptyProps: {
     isEmpty: boolean;
     isFilters: boolean;

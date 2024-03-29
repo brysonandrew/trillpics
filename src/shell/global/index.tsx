@@ -9,6 +9,7 @@ import { GlobalCss } from "@shell/global/Css";
 import { useDarkMode } from "@brysonandrew/dark-mode";
 import { Helmet } from "react-helmet-async";
 import { Variables } from "@css/Variables";
+import { LinearGradientBluePinkYellowSvg } from "@components/gradients/linear-gradient-blue-pink-yellow-svg";
 
 export const Global: FC<
   PropsWithChildren
@@ -36,6 +37,7 @@ export const Global: FC<
       </Helmet>
       <Variables />
       <PlaceholderClipPath />
+      <LinearGradientBluePinkYellowSvg/>
       <GlobalCss>{children}</GlobalCss>
     </>
   );

@@ -1,4 +1,4 @@
-import { Header as _Header } from "src/shell/header";
+import { Header as _Header } from "@shell/header";
 
 export const Header = () => {
   return <_Header />;

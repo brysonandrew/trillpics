@@ -4,6 +4,7 @@ import {
   createContext,
   PropsWithChildren,
 } from "react";
+import { isVertical } from "@shell/providers/context/viewport/is-vertical";
 import {
   TViewport,
   useViewport as useWindowViewport,
@@ -32,20 +33,6 @@ export const ViewportProvider: FC<
 > = ({ children }) => {
   const viewport = useWindowViewport();
   const grid = useGrid(viewport);
-
-  const isVertical = (
-    dimensions: TViewport
-  ) => {
-    const { isDimensions } = dimensions;
-    if (isDimensions) {
-      return (
-        dimensions.width <
-          dimensions.height &&
-        dimensions.width < 700
-      );
-    }
-    return false;
-  };
 
   return (
     <CONTEXT.Provider

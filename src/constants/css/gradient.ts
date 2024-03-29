@@ -1,20 +1,18 @@
 import { resolveGradient } from "@brysonandrew/color-gradient";
-import { screen } from "../../config/uno/index";
-import { resolveIntRecord } from "../utils/css";
 
-export const BREAKPOINT_RECORD = screen;
-
-export const BREAKPOINT_INT_RECORD =
-  resolveIntRecord(BREAKPOINT_RECORD);
+export const GRADIENT_BLUE_PINK_YELLOW_COLORS =
+  [
+    "var(--blue)",
+    "var(--pink)",
+    "var(--yellow)",
+  ] as const;
 
 export const GRADIENT_BLUE_PINK_YELLOW =
   resolveGradient({
     name: "linear-gradient",
     parts: [
       "to left top",
-      "var(--blue)",
-      "var(--pink)",
-      "var(--yellow)",
+      ...GRADIENT_BLUE_PINK_YELLOW_COLORS,
     ],
   });
 export const BORDER_GRADIENT = {

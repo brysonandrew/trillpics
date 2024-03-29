@@ -13,5 +13,5 @@ import {webpackOverrideFn} from './src/pages/home/video/webpack-override';
 
 Config.overrideWebpackConfig(webpackOverrideFn);
 Config.setChromiumDisableWebSecurity(true);
-Config.setVideoImageFormat('png');
+Config.setVideoImageFormat('jpeg');
 Config.setOverwriteOutput(true);

@@ -15,7 +15,7 @@ import {
   useSearchParams,
 } from "react-router-dom";
 import { FULLSCREEN_Z } from "@constants/dom";
-import { useVideoStore } from "@pages/home/video/store";
+import { useVideoStore } from "src/store";
 import clsx from "clsx";
 import { resolveViewportSelfCenter } from "./pic/resolveViewportSelfCenter";
 export const SEARCH_PARAM_ID = "open";

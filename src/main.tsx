@@ -13,16 +13,14 @@ import {
   RouterProvider,
   createBrowserRouter,
 } from "react-router-dom";
-import {
-  QueryClient,
-  QueryClientProvider,
-} from "@tanstack/react-query";
+import { QueryClient } from "@tanstack/react-query";
 import { Boundary } from "@brysonandrew/boundary";
 import { HelmetProvider } from "react-helmet-async";
 import { MOTION_CONFIG } from "@brysonandrew/animation";
 import { Shell } from "@shell/index";
 import { Home } from "@pages/home";
 import { VideoPlayer } from "@pages/home/video/player";
+import { Gallery } from "@pages/gallery";
 
 window.React = React;
 window.ReactDOM = ReactDOM;
@@ -36,20 +34,28 @@ const ROUTES: TRouteObjects = [
     path: "/",
     Component: Shell,
     children: [
-      { path: "/", Component: Home },
+      {
+        index: true,
+        Component: Gallery,
+      },
+      {
+        path: "/home",
+        Component: Home,
+      },
+
       {
         path: "/video",
-        Component: VideoPlayer
+        Component: VideoPlayer,
       },
       {
         path: "*",
-        Component: NotFound
+        Component: NotFound,
       },
     ],
   },
 ];
 
-const queryClient = new QueryClient();
+// const queryClient = new QueryClient();
 
 const router =
   createBrowserRouter(ROUTES);
@@ -70,15 +76,11 @@ if (root) {
           <MotionConfig
             {...MOTION_CONFIG}
           >
-            <QueryClientProvider
-              client={queryClient}
-            >
-              <Suspense fallback={null}>
-                <RouterProvider
-                  router={router}
-                />
-              </Suspense>
-            </QueryClientProvider>
+            <Suspense fallback={null}>
+              <RouterProvider
+                router={router}
+              />
+            </Suspense>
           </MotionConfig>
         </Boundary>
       </HelmetProvider>
