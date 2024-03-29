@@ -53,32 +53,32 @@ export const Item: FC<TProps> = ({
             style={BORDER_GRADIENT}
           >
             <h4
-              className="text-5xl pl-4 font-mono"
+              className="text-5xl pl-4 font-mono text-main"
               style={TEXT_GRADIENT}
             >
               #{videoOrder + 1}
             </h4>
           </ActiveBackground>
         )}
-      {isHover && isVideoMode && (
+      {isVideoMode && (
         <ActiveBackground
           classValue="center cursor-pointer"
           style={BORDER_GRADIENT}
         >
           <motion.h4
-            className="absolute left-1/2 top-1/2 text-11xl font-mono"
+            className="absolute left-1/2 top-1/2 text-11xl font-mono text-red"
             style={{
               x: "-50%",
               y: "-50%",
-              ...TEXT_GRADIENT,
+              // ...TEXT_GRADIENT,
             }}
             initial={false}
-            animate={{
-              rotate:
-                videoOrder === -1
-                  ? 0
-                  : 45,
-            }}
+            // animate={{
+            //   rotate:
+            //     videoOrder === -1
+            //       ? 0
+            //       : 45,
+            // }}
           >
             +
           </motion.h4>

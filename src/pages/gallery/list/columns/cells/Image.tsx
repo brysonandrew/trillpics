@@ -6,8 +6,12 @@ import { Resolve } from "@components/collection/Resolve";
 import { resolveName } from "@components/collection/config/items";
 import { FadeV } from "@brysonandrew/fade-edge";
 import { ActiveBackground } from "@shell/header/right/active-background";
+import {
+  BORDER_GRADIENT,
+  TEXT_GRADIENT,
+} from "@constants/css/gradient";
+import { VideoIcon } from "@shell/header/right/video/icon";
 import { TCell } from "../config";
-import { BORDER_GRADIENT, TEXT_GRADIENT } from "@constants/css/gradient";
 
 type TProps = {
   colIndex: number;
@@ -73,18 +77,13 @@ export const Image: FC<TProps> = ({
                   {isVideoMode &&
                     videoOrder > -1 && (
                       <ActiveBackground
-                        classValue="row-start opacity-60"
+                        classValue="row-start"
                         style={
                           BORDER_GRADIENT
                         }
                       >
-                        <h4
-                          className="text-5xl pl-4 font-mono text-gray"
-                          style={
-                            TEXT_GRADIENT
-                          }
-                        >
-                          #
+                        <h4 className="flex items-center gap-4 text-2xl ml-4 mt-4 px-2 border-main-inverted bg-main border-2 font-mono text-main">
+                          <VideoIcon />
                           {videoOrder +
                             1}
                         </h4>
@@ -92,33 +91,24 @@ export const Image: FC<TProps> = ({
                     )}
                   {isHover &&
                     isVideoMode && (
-                      <ActiveBackground
-                        classValue="center cursor-pointer"
-                        style={
-                          BORDER_GRADIENT
-                        }
-                      >
-                        <motion.h4
-                          className="absolute left-1/2 top-1/2 text-11xl font-mono text-gray"
-                          style={{
-                            x: "-50%",
-                            y: "-50%",
-                            ...TEXT_GRADIENT,
-                          }}
-                          initial={
-                            false
-                          }
-                          animate={{
-                            rotate:
-                              videoOrder ===
-                              -1
-                                ? 0
-                                : 45,
-                          }}
-                        >
-                          +
-                        </motion.h4>
-                      </ActiveBackground>
+                      <motion.h4
+                      className="absolute right-5 top-0.5 text-6xl font-mono text-main-inverted"
+                      style={{
+                        ...TEXT_GRADIENT,
+                      }}
+                      initial={
+                        false
+                      }
+                      animate={{
+                        rotate:
+                          videoOrder ===
+                          -1
+                            ? 0
+                            : 45,
+                      }}
+                    >
+                        +
+                    </motion.h4>
                     )}
                 </>
               );

@@ -23,7 +23,8 @@ export const BORDER_GRADIENT = {
   borderImageSlice: 1,
 };
 export const TEXT_GRADIENT = {
-  background: GRADIENT_BLUE_PINK_YELLOW,
+  
+  backgroundImage: GRADIENT_BLUE_PINK_YELLOW,
   backgroundSize: "100% 100%",
   WebkitBackgroundClip: "text",
   WebkitTextStroke: "8px transparent",

@@ -5,9 +5,7 @@ import type { FC } from "react";
 
 export const VideoIcon: FC = () => {
   const {
-    videoPics,
     isVideoMode,
-    toggleVideoMode,
   } = useVideoStore();
   return (
     <svg
