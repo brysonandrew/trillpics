@@ -3,12 +3,15 @@ import { VideoPlayer } from "@pages/gallery/video/player";
 import { Button } from "@pages/gallery/footer/button";
 import { resolveUrlId } from "@brysonandrew/utils-attributes";
 import { LINEAR_GRADIENT_BLUE_PINK_YELLOW_SVG_ID } from "@components/gradients/linear-gradient-blue-pink-yellow-svg";
+import { Background } from "@components/decoration/background";
+import { GRADIENT_BLUE_PINK_YELLOW, TEXT_GRADIENT } from "@constants/css/gradient";
 
 export const Footer = () => {
   const {
     isVideoMode,
     isPreviewOpen,
     togglePreview,
+    videoPics
   } = useVideoStore();
   const handleProcess = () => {
     console.log("PROCESS");
@@ -25,7 +28,8 @@ export const Footer = () => {
               <VideoPlayer />
             </div>
           )}
-          <footer className="row-space w-container mx-auto fixed left-0 bottom-4 right-0 h-20 font-mono z-10">
+          {videoPics.length > 0 ? (
+            <footer className="row-space w-container mx-auto fixed left-0 bottom-4 right-0 h-20 font-mono z-10">
             <Button
               title="View video preview"
               onClick={handlePreview}
@@ -86,6 +90,12 @@ export const Footer = () => {
               Generate
             </Button>
           </footer>
+          ) : (
+            <div className="fixed left-1/2 -translate-x-1/2 bottom-4 text-4xl px-4 z-10 char-gap-4">
+              <Background/>
+              <div className="relative" style={TEXT_GRADIENT}>Please select some images</div></div>
+          )}
+          
         </>
       )}
     </>

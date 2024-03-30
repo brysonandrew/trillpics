@@ -7,9 +7,9 @@ import { FadeV } from "@brysonandrew/fade-edge";
 import { ActiveBackground } from "@shell/header/right/active-background";
 import {  BORDER_GRADIENT,} from "@constants/css/gradient";
 import { VideoIcon } from "@shell/header/right/video/icon";
-import { TRANSITION } from "@brysonandrew/animation";
-import { TCell } from "../config";
+import { PRESENCE_OPACITY_ANIMATE_DELAY_04, PRESENCE_OPACITY_DURATION_DELAY, TRANSITION } from "@brysonandrew/animation";
 import { Background } from "@components/decoration/background";
+import { TCell } from "../config";
 
 type TProps = {
   colIndex: number;
@@ -78,15 +78,18 @@ export const Image: FC<TProps> = ({
                         style={
                           BORDER_GRADIENT
                         }
+                        {...PRESENCE_OPACITY_DURATION_DELAY}
                       >
-                        <h4 className="relative ml-4 mt-4 px-2 font-mono text-main-inverted">
+                        <h4 className="relative ml-4 mt-4 px-2 font-mono text-white dark:text-gray-5">
                           <Background/>
-                          {/* <div className="fill border-main-inverted bg-main border opacity-20"/> */}
-                          <div className="relative flex gap-2 items-center text-xl">
+                          <motion.div className="relative flex gap-2 items-center text-xl"
+                          
+                          {...PRESENCE_OPACITY_ANIMATE_DELAY_04}
+                          >
                           <VideoIcon />
                           #{videoOrder +
                             1}
-                          </div>
+                          </motion.div>
                         </h4>
                       </ActiveBackground>
                     )}
@@ -97,9 +100,10 @@ export const Image: FC<TProps> = ({
                       <motion.h4
                       className="absolute right-5 top-0.5 text-6xl font-mono text-main"
                       initial={
-                        false
+                        {opacity: 0}
                       }
                       animate={{
+                        opacity:1,
                         scaleX:videoOrder ===
                         -1 ? 1.2 :1.2,
                         scaleY:videoOrder ===
@@ -110,7 +114,7 @@ export const Image: FC<TProps> = ({
                             ? 0
                             : 45,
                       }}
-                      transition={{...TRANSITION, dealy: 1}}
+                      transition={{...TRANSITION, delay: 0.4}}
                     >
                         +
                     </motion.h4>

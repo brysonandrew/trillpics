@@ -14,7 +14,7 @@ export const Button: FC<TProps> = ({
     <button
       className={clsx(
         'interactive interactive-rect',
-        "relative px-5 h-14 text-xl text-white",
+        "relative px-5 h-14 text-xl text-white dark:text-gray-8",
         classValue
       )}
       {...props}
