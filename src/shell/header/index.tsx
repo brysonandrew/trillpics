@@ -25,7 +25,7 @@ export const Header: FC<
           "relative top-4 h-0 w-container mx-auto row-start-space"
         )}
       >
-        <div className="relative w-35 shrink-0 sm:w-45 md:w-auto px-4">
+        <div className="relative shrink-0 px-4">
           <Background/>
           {isHome ? (
             <Title />

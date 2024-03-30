@@ -1,19 +1,7 @@
 import { FC } from "react";
 import { AudioAndVisualizer } from "@pages/gallery/video/audio";
-import {
-  SCHEMA,
-  PIC_COUNT,
-  PIC_SIZE,
-  ASPECT_RATIO,
-} from "@pages/gallery/video/constants";
-import {
-  AbsoluteFill,
-  Img,
-  Series,
-  staticFile,
-  useCurrentFrame,
-  useVideoConfig,
-} from "remotion";
+import {  SCHEMA,  PIC_COUNT,  PIC_SIZE,  ASPECT_RATIO,} from "@pages/gallery/video/constants";
+import {  AbsoluteFill,  Img,  Series,  staticFile,  useCurrentFrame,  useVideoConfig,} from "remotion";
 import { z } from "zod";
 
 export type TPicSeriesProps = z.infer<
@@ -29,7 +17,7 @@ export const PicSeries: FC<
   const progressInSecond =
     frameInSecond / fps;
   const picCount = pics.length;
-  const audioSrc = staticFile(
+  const audioSrc = (
     "src/pages/gallery/context/entries/video/audio/insurrection-10941.mp3"
   );
   return (

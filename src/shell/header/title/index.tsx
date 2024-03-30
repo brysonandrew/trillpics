@@ -18,7 +18,7 @@ export const Title: FC = () => {
   };
 
   return (
-    <div className="relative row-start gap-1 lg:gap-4">
+    <div className="relative row-start gap-4 lg:(gap-4 w-auto)">
       {isScroll ? (
         <button onClick={handleClick}>
           <TitleApp />
@@ -27,7 +27,7 @@ export const Title: FC = () => {
         <TitleApp />
       )}
       <button
-        className="relative mt-4 ml-4 uppercase text-xl tracking-wide h-6 w-6 sm:(h-10 w-10 mt-5)"
+        className="relative mt-4 uppercase text-xl tracking-wide h-6 w-6 sm:(h-10 w-10 mt-5)"
         onClick={onRandomize}
       >
         <img
