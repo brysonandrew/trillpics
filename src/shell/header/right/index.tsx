@@ -25,7 +25,7 @@ export const HeaderRight: FC = () => {
       {rightItems.map((Item, index) => (
         <div
           key={`${index}`}
-          className="relative center h-10 sm:h-20 px-4"
+          className="relative center h-20 px-4"
         >
                         
 
