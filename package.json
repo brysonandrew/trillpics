@@ -115,7 +115,7 @@
     "@remotion/player": "4.0.132",
     "@remotion/shapes": "4.0.132",
     "@remotion/tailwind": "4.0.132",
-    "@remotion/transitions": "^6.24.4",
+    "@remotion/transitions": "4.0.132",
     "@remotion/zod-types": "4.0.132",
     "@tanstack/react-query": "^5.8.4",
     "@tanstack/react-table": "^8.10.7",
