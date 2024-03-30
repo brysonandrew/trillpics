@@ -9,7 +9,7 @@ export const resolveName = (
 ) =>
   path.replace(
     new RegExp(
-      `(.*originals\/|${MAX_SUFFIX}|.*pics\/.png|.png)`,
+      `(.*pics\/|${MAX_SUFFIX}|.*pics\/.png|.png|.avif)`,
       "gi"
     ),
     ""

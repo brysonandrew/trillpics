@@ -28,7 +28,7 @@ export const useImage = ({
   name,
   ...config
 }: TUseImageConfig) => {
-  const src = `video/originals/${name}.png`;
+  const src = `video/pics/${name}.avif`;
   const {
     isVideoMode,
     addVideo,

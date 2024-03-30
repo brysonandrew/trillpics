@@ -23,7 +23,8 @@ tsconfig.tsbuildinfo
 src/components/collection/assets/**/*
 src/components/collection/assets/video/**/*
 src/components/collection/horror/**/*
-src/pages/gallery/context/entries/video/**/*
+src/pages/gallery/context/entries/video/audio/*
+src/pages/gallery/context/entries/video/originals/*
 
 out
 public/video/**/*

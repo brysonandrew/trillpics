@@ -3,7 +3,11 @@ import { LINEAR_GRADIENT_BLUE_PINK_YELLOW_SVG_ID } from "@components/gradients/l
 import { resolveUrlId } from "@brysonandrew/utils-attributes";
 import { TEXT_GRADIENT } from "@constants/css/gradient";
 
-type TProps = { isFirst: boolean };
+type TProps = { 
+  isFirst: boolean
+    playing: boolean;
+    isBuffering: boolean;
+};
 export const PlayButton: FC<TProps> = ({
   isFirst,
 }) => {

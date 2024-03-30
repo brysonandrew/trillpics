@@ -33,15 +33,13 @@ export const PicSeries: FC<
   const audioSrc = staticFile(
     "src/pages/gallery/context/entries/video/audio/insurrection-10941.mp3"
   );
-  console.log(audioSrc)
-console.log(pics)
   return (
     <AbsoluteFill>
       <Series>
         {picCount >= PIC_COUNT &&
           pics.map((name, index) => {
             const src = staticFile(
-              `src/pages/gallery/context/entries/video/originals/${name}.png`
+              `src/pages/gallery/context/entries/video/pics/${name}.avif`
             );
 
             return (
@@ -71,12 +69,6 @@ console.log(pics)
       <AudioAndVisualizer
         src={audioSrc}
       />
-      {/* <Audio
-        volume={0.5}
-        src={audioSrc}
-        startFrom={0}
-        endAt={TOTAL_DURATION_IN_FRAMES}
-      /> */}
     </AbsoluteFill>
   );
 };

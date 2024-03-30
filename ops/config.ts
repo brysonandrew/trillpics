@@ -26,11 +26,11 @@ export const MAX_SUFFIX =
 export const LOOKUP_PATH = `${COLLECTION_BASE}/lookup.json`;
 export const LOOKUP_PATH_2 = `${COLLECTION_BASE}/lookup${MAX_SUFFIX}.json`;
 
-export const PRECACHE_PATH = `${MAIN_SERVICE_WORKER}/precache.json`;
+export const PRECACHE_PATH = `src/pages/gallery/context/entries/video/precache.json`;
 
-export const IMAGES_GLOB = `${FILES_GLOB}.(${EXTS.join(
+export const IMAGES_GLOB = `src/pages/gallery/context/entries/video/originals/*.(${EXTS.join(
   "|"
-)})`;
+)})`; 
 
 export const ALL_GLOB = `${FILES_GLOB}.(${[
   ...EXTS,
@@ -48,14 +48,3 @@ export const ALL_EXCLUDE_ORIGINAL_GLOBS =
       ...PROCESS_EXTS,
     ].join("|")})`,
   ];
-
-const REPLACE_RX =
-  /public\/originals\/\d+.png/; //new RegExp("")
-const resolveNextName = (
-  prevName: string
-) => {
-  return prevName.replace(
-    REPLACE_RX,
-    (v) => v
-  );
-};

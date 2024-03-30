@@ -52,16 +52,14 @@ export const VideoPlayer = () => {
         spaceKeyToPlayOrPause
         hideControlsWhenPointerDoesntMove
         moveToBeginningWhenEnded
-        renderPlayPauseButton={({
-          playing,
-        }) => {
-          if (playing !== isPlaying) {
-            if (playing === true) {
-              isFirstRef.current = false;
-            }
-            setPlaying(Boolean(playing));
-          }
-          return null;
+        renderPlayPauseButton={(props) => {
+          // if (playing !== isPlaying) {
+          //   if (playing === true) {
+          //     isFirstRef.current = false;
+          //   }
+          //   setPlaying(Boolean(playing));
+          // }
+          return <PlayButton isFirst={isFirstRef.current} {...props} />
         }}
         component={PicSeries}
         durationInFrames={
@@ -76,9 +74,9 @@ export const VideoPlayer = () => {
         fps={FPS}
         inputProps={{ pics }}
       />
-      {isPlaying ? null : (
-        <PlayButton isFirst={isFirstRef.current} />
-      )}
+      {/* {isPlaying ? null : (
+
+      )} */}
     </>
   );
 };

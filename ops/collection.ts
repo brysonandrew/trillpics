@@ -1,9 +1,10 @@
-import fs from "fs/promises";
 import fg from "fast-glob";
-import sharp, {
-  Metadata,
-  OutputInfo,
-} from "sharp";
+import sharp, {  Metadata,  OutputInfo,} from "sharp";
+import { resolveMetaDataFile } from "@ops/utils/resolveMetaDataFile";
+import { resolveWebp } from "@ops/utils/resolveWebp";
+import { writeFileData } from "@ops/utils/writeFileData";
+import { writeAvif } from "@ops/utils/resolveAvif";
+import { resolve } from "path";
 import {
   IMAGES_GLOB,
   MAX_W,
@@ -13,147 +14,28 @@ import {
   PRECACHE_PATH,
 } from "./config";
 import { resolveFsInfo } from "./utils/resolveFsInfo";
-import { TMediaRecords } from "./types/media";
-import { resolveMediaRecord } from "./utils/resolveMediaRecord";
 import { TScreensRecord } from "./types";
 import { removePublicDir } from "./utils";
 
-const resolveSmallEntry = (
-  path: string,
-  ext = "png"
-) => `${path}${MAX_SUFFIX}.${ext}`;
-
-const writeFileData = (
-  path: string,
-  data: object
-) => {
-  fs.writeFile(
-    path,
-    JSON.stringify(data)
-  );
-};
-
-const resolveMetaDataFile = async (
-  entry: any,
-  path: string,
-  extra = {}
-): Promise<Metadata> => {
-  const result: Metadata = await sharp(
-    entry
-  ).metadata();
-  writeFileData(path, {
-    ...result,
-    ...extra,
-  });
-  return result;
-};
-
-const resolveWebp = async (
-  entry: any,
-  path: string
-) => {
-  const webpEntry = `${path}.webp`;
-  const webp: OutputInfo = await sharp(
-    entry
-  )
-    .webp({ lossless: true })
-    .toFile(webpEntry);
-  writeFileData(
-    `${path}-output-webp.md`,
-    webp
-  );
-
-  return webpEntry;
-};
-
 (async () => {
   try {
-    const projectRecord: TScreensRecord =
-      {};
-    const smallRecords: TMediaRecords =
-      [];
-
     const entries = await fg([
       IMAGES_GLOB,
     ]);
     const originals = entries.map(
       (entry) => removePublicDir(entry)
     );
-    const smalls = originals.map(
-      (entry) =>
-        resolveSmallEntry(entry, "png")
-    );
     writeFileData(PRECACHE_PATH, [
-      ...smalls,
       ...originals,
     ]);
     for await (const entry of entries) {
-      const { dir, noExt, ext } =
+      const { noExtFileName, dir } =
         resolveFsInfo(entry);
 
-      const originalMetaData =
-        await resolveMetaDataFile(
-          entry,
-          `${noExt}-meta.md`
-        );
+        const nextEntryNoExt = resolve(entry, '..', '..', 'pics',noExtFileName);
+        console.log( nextEntryNoExt)
 
-      const webpEntry =
-        await resolveWebp(entry, noExt);
-
-      const record = resolveMediaRecord(
-        {
-          entry,
-          webpEntry,
-          ...originalMetaData,
-        }
-      );
-
-      if (record) {
-        projectRecord[dir] = [
-          ...(projectRecord[dir] ?? []),
-          record,
-        ];
-      }
-      writeFileData(
-        LOOKUP_PATH,
-        projectRecord
-      );
-
-      const smallEntry =
-        resolveSmallEntry(noExt, ext);
-      const small: OutputInfo =
-        await sharp(entry)
-          .resize({ width: MAX_W })
-          .toFile(smallEntry);
-
-      const smallMeta =
-        await resolveMetaDataFile(
-          smallEntry,
-          `${noExt}-meta-output-${MAX_SUFFIX}.md`,
-          small
-        );
-
-      const webpSmallEntry =
-        await resolveWebp(
-          smallEntry,
-          `${noExt}${MAX_SUFFIX}`
-        );
-
-      const smallRecord =
-        resolveMediaRecord({
-          entry: smallEntry,
-          webpEntry: webpSmallEntry,
-          ...smallMeta,
-        });
-
-      if (smallRecord) {
-        smallRecords.push(smallRecord);
-      }
-
-      writeFileData(
-        LOOKUP_PATH_2,
-        smallRecords
-      );
+     await writeAvif(entry, nextEntryNoExt);
     }
   } catch (error) {
     console.error(error);

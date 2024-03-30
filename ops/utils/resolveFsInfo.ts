@@ -1,3 +1,4 @@
+
 import { COLLECTION_ASSETS_DIR } from '../config';
 
 type TDir = string;
@@ -9,17 +10,17 @@ type TMediaEntry =
 export const resolveFsInfo = (
   entry: TMediaEntry | string,
 ) => {
-  const [noExt, ext] = entry.split('.');
   const [fileName, name, dir] = entry
     .split('/')
     .filter(Boolean)
     .reverse();
+  const [noExtFileName, ext] = fileName.split('.');
 
   return {
     dir,
     name,
     fileName,
-    noExt,
+    noExtFileName,
     ext,
   };
 };

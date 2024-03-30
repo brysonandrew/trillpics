@@ -12,6 +12,7 @@ import {
 } from "@constants/css/gradient";
 import { VideoIcon } from "@shell/header/right/video/icon";
 import { TCell } from "../config";
+import { TRANSITION } from "@brysonandrew/animation";
 
 type TProps = {
   colIndex: number;
@@ -90,11 +91,30 @@ export const Image: FC<TProps> = ({
                     )}
                   {isHover &&
                     isVideoMode && (
+                      <>
+                      
                       <motion.h4
-                      className="absolute right-5 top-0.5 text-6xl font-mono text-main-inverted"
-                      style={{
-                        ...TEXT_GRADIENT,
+                      className="absolute right-5 top-0.5 text-6xl font-mono text-main"
+                      initial={
+                        false
+                      }
+                      animate={{
+                        scaleX:videoOrder ===
+                        -1 ? 1.2 :1.2,
+                        scaleY:videoOrder ===
+                        -1 ? 1.2 :1.2,
+                        rotate:
+                          videoOrder ===
+                          -1
+                            ? 0
+                            : 45,
                       }}
+                      transition={{...TRANSITION, dealy: 1}}
+                    >
+                        +
+                    </motion.h4>
+                    <motion.h4
+                      className="absolute right-5 top-0.5 text-6xl font-mono text-main-inverted"
                       initial={
                         false
                       }
@@ -108,6 +128,7 @@ export const Image: FC<TProps> = ({
                     >
                         +
                     </motion.h4>
+                      </>
                     )}
                 </>
               );

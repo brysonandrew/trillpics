@@ -1,0 +1,1 @@
+{"format":"heif","width":1770,"height":1772,"channels":4,"premultiplied":false,"size":12587}

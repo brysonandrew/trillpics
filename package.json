@@ -23,7 +23,7 @@
     "studio": "npx remotion studio",
     "r": "npm run rl",
     "ren": "node render.mjs",
-    "ops/collection": "esrun ops/collection",
+    "ops/collection": "esrun ops/collection.ts",
     "ops/rename": "esrun ops/rename",
     "ops/delete": "esrun ops/delete/deleteDoubleProcessed",
     "test": "echo \"Error: no test specified\" && exit 1",
