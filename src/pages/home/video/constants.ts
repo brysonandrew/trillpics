@@ -19,12 +19,12 @@ export const ASPECT_RATIO =
   WIDTH / HEIGHT;
 
 export const DIMENSIONS: TDimensions = {
-  width: WIDTH,
+  width: WIDTH, 
   height: HEIGHT,
 };
 
 export const SCHEMA = z.object({
-  pics: z.array(z.number()),
+  pics: z.array(z.string()),
 });
 // z.object({
 //   name: z.string(),

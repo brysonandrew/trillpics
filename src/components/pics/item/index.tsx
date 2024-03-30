@@ -10,15 +10,15 @@ import { BORDER_GRADIENT, TEXT_GRADIENT } from "@constants/css/gradient";
 
 type TProps = TPassedProps & {
   imageConfig: TResolveConfigFromSize;
-  name: number;
+  src: string;
 };
 export const Item: FC<TProps> = ({
-  name,
+  src,
   imageConfig,
   ...passedProps
 }) => {
   const imageReturn = useImage({
-    name,
+    src,
     ...imageConfig,
   });
 
@@ -33,7 +33,7 @@ export const Item: FC<TProps> = ({
   return (
     <li {...boxProps}>
       <Pic
-        name={name}
+        name={src}
         {...passedProps}
         {...rest}
       />

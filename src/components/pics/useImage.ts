@@ -22,13 +22,12 @@ export const SEARCH_PARAM_ID = "open";
 
 export type TUseImageConfig =
   TDimensions & {
-    name: number;
+    src: string;
   };
 export const useImage = ({
-  name,
+  src,
   ...config
 }: TUseImageConfig) => {
-  const src = `video/pics/${name}.avif`;
   const {
     isVideoMode,
     addVideo,
@@ -36,7 +35,7 @@ export const useImage = ({
     videoPics,
   } = useVideoStore();
   const videoOrder =
-    videoPics.indexOf(name);
+    videoPics.indexOf(src);
   const { width, height } = config;
   const [isFront, setFront] =
     useState<boolean>(false);
@@ -120,8 +119,8 @@ export const useImage = ({
       onClick: isVideoMode
         ? () =>
             videoOrder > -1
-              ? removeVideo(name)
-              : addVideo(name)
+              ? removeVideo(src)
+              : addVideo(src)
         : handleToggle,
       ...handlers,
     },

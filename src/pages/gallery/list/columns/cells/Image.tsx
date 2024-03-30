@@ -3,16 +3,12 @@ import { motion } from "framer-motion";
 import { Pic } from "@components/pics/pic";
 import { resolveConfigFromSize } from "@components/pics/pic/resolveDimensionsFromSize";
 import { Resolve } from "@components/collection/Resolve";
-import { resolveName } from "@components/collection/config/items";
 import { FadeV } from "@brysonandrew/fade-edge";
 import { ActiveBackground } from "@shell/header/right/active-background";
-import {
-  BORDER_GRADIENT,
-  TEXT_GRADIENT,
-} from "@constants/css/gradient";
+import {  BORDER_GRADIENT,} from "@constants/css/gradient";
 import { VideoIcon } from "@shell/header/right/video/icon";
-import { TCell } from "../config";
 import { TRANSITION } from "@brysonandrew/animation";
+import { TCell } from "../config";
 
 type TProps = {
   colIndex: number;
@@ -36,17 +32,17 @@ export const Image: FC<TProps> = ({
   return (
     <Resolve resolver={resolver}>
       {(src) => {
+      
         const imageConfig =
           resolveConfigFromSize({
             size,
             colIndex,
           });
-        const name = resolveName(
-          src ?? ""
-        );
+          if (!src) return null;
+
         return (
           <Pic
-            name={parseInt(name)}
+          src={src}
             boxChildren={null}
             {...imageConfig}
           >

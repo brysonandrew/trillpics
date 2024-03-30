@@ -69,7 +69,7 @@ export const Sliders = <
   return (
     <Root className='center w-full'>
       <input
-        css={fromSliderCss}
+        // css={fromSliderCss}
         type='range'
         onInput={onFromChange}
         {...register(
@@ -79,7 +79,7 @@ export const Sliders = <
         {...minMax}
       />
       <input
-        css={toSliderCss}
+        // css={toSliderCss}
         style={{
           backgroundImage,
         }}

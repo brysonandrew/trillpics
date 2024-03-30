@@ -11,7 +11,7 @@ import { shuffle } from "@utils/array/shuffle";
 import { useVideoStore } from "src/store";
 
 export type TContext = {
-  pics: number[];
+  pics: string[];
   isMenu: boolean;
   isInit: boolean;
   isOffline: boolean;
@@ -48,7 +48,7 @@ export const BaseProvider: FC<
 > = ({ children }) => {
   const x = useVideoStore();
   const [itemRecord, setItemRecord] =
-    useState([PICS]);
+    useState<string[][]>([PICS]);
   const [isMenu, setMenu] =
     useState(false);
   const [isOffline, setOffline] =

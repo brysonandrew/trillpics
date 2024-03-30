@@ -47,7 +47,7 @@ export const Number = <
     <Root className='relative shrink-0 w-16'>
       <input
         className='input input-text input-border'
-        css={numberInputCss}
+        // css={numberInputCss}
         type='number'
         value={value}
         onChange={handleChange}

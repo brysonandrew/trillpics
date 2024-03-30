@@ -1,10 +1,10 @@
-import { useWorkshop } from '@pages/gallery/context';
+import { useGallery } from '@pages/gallery/context';
 import { AnimatePresence } from 'framer-motion';
 import { Handler } from './Handler';
 
 export const Clipboard = () => {
   const { clipboardContext } =
-    useWorkshop();
+    useGallery();
   return (
     <AnimatePresence>
       {clipboardContext.copying !==

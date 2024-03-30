@@ -9,9 +9,11 @@ const VIDEO_COUNT = ~~(
 export const resolveState: StateCreator<
   TVideoState
 > = (set) => ({
-  videoPics: [
-    ...Array(VIDEO_COUNT),
-  ].map((_) => ~~(500 * Math.random())),
+  videoPics: [],
+  
+  // [
+  //   ...Array(VIDEO_COUNT),
+  // ].map((_) => ~~(500 * Math.random())),
   isVideoMode: false,
   isPreviewOpen: false,
   togglePreview: (next?: boolean) => {
@@ -30,7 +32,7 @@ export const resolveState: StateCreator<
       };
     });
   },
-  addVideo: (next: number) =>
+  addVideo: (next: string) =>
     set((prev: TVideoState) => ({
       videoPics: [
         ...new Set([
@@ -39,7 +41,7 @@ export const resolveState: StateCreator<
         ]),
       ],
     })),
-  removeVideo: (next: number) =>
+  removeVideo: (next: string) =>
     set((prev: TVideoState) => ({
       videoPics: [
         ...new Set([

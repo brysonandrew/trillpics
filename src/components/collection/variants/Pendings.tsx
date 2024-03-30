@@ -30,7 +30,7 @@ export const Pendings: FC<TProps> = ({
             });
           return (
             <Item
-              name={index}
+              src={src}
               key={src}
               imageConfig={imageConfig}
               isShop={false}

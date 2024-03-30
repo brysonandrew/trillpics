@@ -1,13 +1,13 @@
 import { StateCreator } from "zustand";
 
 export type TVideoState = {
-  videoPics: number[];
+  videoPics: string[];
   isVideoMode: boolean;
   isPreviewOpen: boolean;
   toggleVideoMode(next?: boolean): void;
   togglePreview(next?: boolean): void;
-  addVideo(next: number): void;
-  removeVideo(next: number): void;
+  addVideo(next: string): void;
+  removeVideo(next: string): void;
 };
 
 export type TMiddlewareParam = [

@@ -19,7 +19,7 @@ export const Gallery = () => {
 
         return (
           <Item
-            name={name}
+          src={name}
             isShop
             canvas={
               isDarkMode

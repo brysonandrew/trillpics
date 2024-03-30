@@ -5,7 +5,6 @@ import {
   PIC_COUNT,
   PIC_SIZE,
   ASPECT_RATIO,
-  TOTAL_DURATION_IN_FRAMES,
 } from "@pages/home/video/constants";
 import {
   AbsoluteFill,
@@ -24,7 +23,7 @@ export const PicSeries: FC<
   TPicSeriesProps
 > = ({ pics }) => {
   const frame = useCurrentFrame();
-  const { fps, width, height } =
+  const { fps, height } =
     useVideoConfig();
   const frameInSecond = frame % fps;
   const progressInSecond =
@@ -39,7 +38,7 @@ export const PicSeries: FC<
         {picCount >= PIC_COUNT &&
           pics.map((name, index) => {
             const src = staticFile(
-              `src/pages/gallery/context/entries/video/pics/${name}.avif`
+              name
             );
 
             return (

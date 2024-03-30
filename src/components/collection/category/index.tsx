@@ -52,7 +52,7 @@ export const Category: FC<TProps> = ({
             <Item
               isShop
               canvas="black"
-              name={index}
+              src={name}
               key={resolveCompositeKey(
                 categoryName,
                 name

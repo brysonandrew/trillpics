@@ -16,7 +16,6 @@ export const Pics = () => {
     <>
       {pics.map((name, index) => {
         
-        const key = `${name}`;
         const colIndex =
           index % colsCount;
 
@@ -28,14 +27,14 @@ export const Pics = () => {
 
         return (
           <Item
-            key={key}
+            key={name}
             isShop
             canvas={
               isDarkMode
                 ? "black"
                 : "white"
             }
-            name={name}
+            src={name}
             imageConfig={imageConfig}
           />
         );

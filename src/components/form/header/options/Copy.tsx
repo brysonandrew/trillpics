@@ -1,7 +1,7 @@
 import { TBaseFieldValues } from '@components/form/config';
 import { BSm } from '@brysonandrew/interactive'
 import { COPY_ICON } from '@brysonandrew/icons-keys';
-import { useWorkshop } from '@pages/gallery/context';
+import { useGallery } from '@pages/gallery/context';
 import { resolveErrorMessage } from '@utils/api/error/resolveErrorMessage';
 import { TProps } from '../config';
 
@@ -13,7 +13,7 @@ export const Copy = <
 }: TProps<T>) => {
   const {
     clipboardContext: { handler },
-  } = useWorkshop();
+  } = useGallery();
   return (
     <BSm
       shape='interactive-sq-sm'

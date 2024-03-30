@@ -10,7 +10,7 @@ type TProps = Omit<
   TUseImageReturn,
   "boxProps"
 > &
-  TPassedProps & { name: number };
+  TPassedProps & { name: string };
 export const Pic: FC<TProps> = ({
   name,
   isOpen,
