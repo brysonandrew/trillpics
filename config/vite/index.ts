@@ -7,7 +7,7 @@ import {nodePolyfills} from "vite-plugin-node-polyfills"
 export default defineConfig({
   build: {
     rollupOptions: {
-      external: ['mlly','local-pkg'],
+      external: ['mlly','local-pkg', 'fs'],
       onwarn(warning, warn) {
         if (
           warning.code ===
