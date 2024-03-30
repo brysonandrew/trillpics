@@ -18,7 +18,7 @@ export const Title: FC = () => {
   };
 
   return (
-    <div className="row-start gap-1 lg:gap-4">
+    <div className="relative row-start gap-1 lg:gap-4">
       {isScroll ? (
         <button onClick={handleClick}>
           <TitleApp />

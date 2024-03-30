@@ -1,11 +1,12 @@
 import clsx, { ClassValue } from 'clsx';
 import { FC } from 'react';
-import { TGradientShortcut } from '@uno/shortcuts/gradient';
+import { GRADIENT, TGradientShortcut } from '@uno/shortcuts/gradient';
 import { TChildren } from '@brysonandrew/config-types';
 import {
   HTMLMotionProps,
   motion,
 } from 'framer-motion';
+import { GRADIENT_BLUE_PINK_YELLOW } from '@constants/css/gradient';
 
 type TProps =
   HTMLMotionProps<'span'> & {
@@ -24,11 +25,12 @@ export const Pill: FC<TProps> = ({
   return (
     <motion.span
       className={clsx(
-        'center h-6 bg-main-inverted text-current border-2 border-current text-sm px-1.5 rounded-xl',
+        'center h-6 text-current text-sm px-2 rounded-xl',
         isCircle && 'w-6',
         classValue,
         gradient,
       )}
+      style={{backgroundImage:GRADIENT_BLUE_PINK_YELLOW}}
       {...props}
     >
       {children}

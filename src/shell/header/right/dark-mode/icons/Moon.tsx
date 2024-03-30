@@ -17,12 +17,14 @@ export const Moon: FC<TProps> = ({
 }) => (
   <motion.svg
     xmlns="http://www.w3.org/2000/svg"
-    width="28px"
-    height="28px"
+    width="29px"
+    height="29px"
     viewBox="0 0 24 24"
     {...props}
   >
     <path
+        stroke="white"
+        strokeWidth={.1}
       fill={resolveUrlId(
         LINEAR_GRADIENT_BLUE_PINK_YELLOW_SVG_ID
       )}

@@ -9,6 +9,7 @@ import {  BORDER_GRADIENT,} from "@constants/css/gradient";
 import { VideoIcon } from "@shell/header/right/video/icon";
 import { TRANSITION } from "@brysonandrew/animation";
 import { TCell } from "../config";
+import { Background } from "@components/decoration/background";
 
 type TProps = {
   colIndex: number;
@@ -78,10 +79,14 @@ export const Image: FC<TProps> = ({
                           BORDER_GRADIENT
                         }
                       >
-                        <h4 className="flex items-center gap-4 text-2xl ml-4 mt-4 px-2 border-main-inverted bg-main border-2 font-mono text-main">
+                        <h4 className="relative ml-4 mt-4 px-2 font-mono text-main-inverted">
+                          <Background/>
+                          {/* <div className="fill border-main-inverted bg-main border opacity-20"/> */}
+                          <div className="relative flex gap-2 items-center text-xl">
                           <VideoIcon />
                           #{videoOrder +
                             1}
+                          </div>
                         </h4>
                       </ActiveBackground>
                     )}
