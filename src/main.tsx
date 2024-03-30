@@ -13,7 +13,6 @@ import {
   RouterProvider,
   createBrowserRouter,
 } from "react-router-dom";
-import { QueryClient } from "@tanstack/react-query";
 import { Boundary } from "@brysonandrew/boundary";
 import { HelmetProvider } from "react-helmet-async";
 import { MOTION_CONFIG } from "@brysonandrew/animation";
@@ -21,6 +20,9 @@ import { Shell } from "@shell/index";
 import { Home } from "@pages/home";
 import { VideoPlayer } from "@pages/gallery/video/player";
 import { Gallery } from "@pages/gallery";
+
+import { init as initServiceWorker } from '@app/service-worker/init';
+initServiceWorker();
 
 window.React = React;
 window.ReactDOM = ReactDOM;
