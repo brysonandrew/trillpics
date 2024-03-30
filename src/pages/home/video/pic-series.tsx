@@ -32,18 +32,19 @@ export const PicSeries: FC<
   const audioSrc = staticFile(
     "src/pages/gallery/context/entries/video/audio/insurrection-10941.mp3"
   );
+  console.log(pics)
   return (
     <AbsoluteFill>
       <Series>
         {picCount >= PIC_COUNT &&
-          pics.map((name, index) => {
+          pics.map((pic, index) => {
             const src = staticFile(
-              name
+              pic
             );
 
             return (
               <Series.Sequence
-                key={`${name}${index}`}
+                key={`${src}${index}`}
                 durationInFrames={fps}
               >
                 <AbsoluteFill
