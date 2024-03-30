@@ -9,7 +9,7 @@
 // Note: When using the Node.JS APIs, the config file doesn't apply. Instead, pass options directly to the APIs
 
 import {Config} from '@remotion/cli/config';
-import {webpackOverrideFn} from './src/pages/home/video/webpack-override';
+import {webpackOverrideFn} from './src/pages/gallery/video/webpack-override';
 
 Config.overrideWebpackConfig(webpackOverrideFn);
 Config.setChromiumDisableWebSecurity(true);

@@ -1,5 +1,5 @@
 import { useVideoStore } from "src/store";
-import { VideoPlayer } from "@pages/home/video/player";
+import { VideoPlayer } from "@pages/gallery/video/player";
 import { Button } from "@pages/gallery/footer/button";
 import { resolveUrlId } from "@brysonandrew/utils-attributes";
 import { LINEAR_GRADIENT_BLUE_PINK_YELLOW_SVG_ID } from "@components/gradients/linear-gradient-blue-pink-yellow-svg";

@@ -19,7 +19,7 @@ import { HelmetProvider } from "react-helmet-async";
 import { MOTION_CONFIG } from "@brysonandrew/animation";
 import { Shell } from "@shell/index";
 import { Home } from "@pages/home";
-import { VideoPlayer } from "@pages/home/video/player";
+import { VideoPlayer } from "@pages/gallery/video/player";
 import { Gallery } from "@pages/gallery";
 
 window.React = React;

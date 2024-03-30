@@ -5,7 +5,7 @@ import {
 } from "@brysonandrew/routes";
 import { TPageTitle } from "@app/routes/config/types";
 import * as Pages from "@pages/index";
-import { VideoPlayer } from "@pages/home/video/player";
+import { VideoPlayer } from "@pages/gallery/video/player";
 import { Shell } from "@shell";
 
 export const PAGE_TITLES = Object.keys(

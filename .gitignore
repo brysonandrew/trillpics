@@ -24,6 +24,7 @@ src/components/collection/assets/**/*
 src/components/collection/assets/video/**/*
 src/components/collection/horror/**/*
 src/pages/gallery/context/entries/video/audio/*
+src/pages/gallery/context/entries/video/audio/insurrection-10941.mp4
 src/pages/gallery/context/entries/video/originals/*
 
 out

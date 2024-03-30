@@ -1,11 +1,11 @@
 import { FC } from "react";
-import { AudioAndVisualizer } from "@pages/home/video/audio";
+import { AudioAndVisualizer } from "@pages/gallery/video/audio";
 import {
   SCHEMA,
   PIC_COUNT,
   PIC_SIZE,
   ASPECT_RATIO,
-} from "@pages/home/video/constants";
+} from "@pages/gallery/video/constants";
 import {
   AbsoluteFill,
   Img,
