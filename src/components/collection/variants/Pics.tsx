@@ -10,7 +10,6 @@ export const Pics = () => {
   const { isDarkMode } = useDarkMode();
   const { size, colsCount } =
     useViewport();
-    console.log(size)
   if (size === 0) return <P86Y />;
   return (
     <>

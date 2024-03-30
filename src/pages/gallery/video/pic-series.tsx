@@ -32,7 +32,6 @@ export const PicSeries: FC<
   const audioSrc = staticFile(
     "src/pages/gallery/context/entries/video/audio/insurrection-10941.mp3"
   );
-  console.log(pics)
   return (
     <AbsoluteFill>
       <Series>
