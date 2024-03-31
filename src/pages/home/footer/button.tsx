@@ -1,11 +1,18 @@
 import { FC } from "react";
 import clsx from "clsx";
-import { BORDER_GRADIENT } from "@constants/css/gradient";
-import { TButtonProps } from "@brysonandrew/config-types";
+import {
+  TButtonProps,
+  TSvgProps,
+} from "@brysonandrew/config-types";
+import { Circle } from "@components/decoration/circle";
 import { Background } from "@components/decoration/background";
+import { BORDER_RADIUS } from "@app/style/border-radius";
 
-type TProps = TButtonProps;
+type TProps = TButtonProps & {
+  Icon: FC<TSvgProps>;
+};
 export const Button: FC<TProps> = ({
+  Icon,
   children,
   classValue,
   ...props
@@ -13,20 +20,18 @@ export const Button: FC<TProps> = ({
   return (
     <button
       className={clsx(
-        'interactive interactive-rect',
-        "relative px-5 h-14 text-xl text-white dark:text-gray-8",
+        "row relative h-14 pr-4 mr-4 text-lg text-white dark:text-gray-8",
         classValue
       )}
       {...props}
     >
-            <Background/>
-        <div
-          className="fill border-4"
-          style={BORDER_GRADIENT}
-        /> 
-        <div className="relative flex items-center gap-2">
-          {children}
-        </div>
+      <Background style={{borderRadius:BORDER_RADIUS.XL}} />
+      <Circle>
+        <Icon width={28} height={28} />
+      </Circle>
+      <div className="relative flex items-center gap-2 whitespace-nowrap">
+        {children}
+      </div>
     </button>
   );
 };

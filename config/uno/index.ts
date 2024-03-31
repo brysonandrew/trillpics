@@ -40,11 +40,10 @@ const width = {
 export const theme = resolveTheme({
   colors: COLOR_VARS_RECORD,
   spacing: SPACING,
-  width,
   maxWidth: {
     shell: "1480px",
   },
-  // width,
+  width,
   screen,
   fontSize: {
     ...THEME_FONT_SIZE,
@@ -72,6 +71,7 @@ const preflights =
   );
 
 const transformers = TRANSFORMERS;
+
 
 const config = defineConfig<TTheme>({
   theme,
