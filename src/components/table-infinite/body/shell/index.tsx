@@ -2,7 +2,7 @@ import {
   HTMLAttributes,
   forwardRef,
 } from "react";
-import { Footer } from "@pages/gallery/footer";
+import { Footer } from "@pages/home/footer";
 import { Header } from "@shell/header";
 import { Context } from "./Context";
 

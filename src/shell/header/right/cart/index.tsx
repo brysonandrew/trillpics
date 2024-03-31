@@ -7,7 +7,7 @@ import { useCheckout } from '@shell/providers/context/checkout';
 import clsx from 'clsx';
 import { FC } from 'react';
 import { Link } from 'react-router-dom';
-import { Item } from '../Item';
+import { Item } from '../../../../../.cemetary/Item';
 
 type TProps = TClassValueProps;
 export const Cart: FC<TProps> = ({

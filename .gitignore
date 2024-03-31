@@ -21,9 +21,6 @@ tsconfig.tsbuildinfo
 .env
 
 src/components/collection/assets/**/*
-src/components/collection/assets/video/**/*
-src/components/collection/horror/**/*
-src/pages/gallery/context/entries/video/originals/*
 
 out
-public/video/**/*
+assets/video/originals/*

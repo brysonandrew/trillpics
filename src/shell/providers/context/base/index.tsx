@@ -6,12 +6,8 @@ import {
   PropsWithChildren,
 } from "react";
 import { NOOP } from "@constants/functions";
-import { PICS } from "@components/collection/config/items";
-import { shuffle } from "@utils/array/shuffle";
-import { useVideoStore } from "src/store";
 
 export type TContext = {
-  pics: string[];
   isMenu: boolean;
   isInit: boolean;
   isOffline: boolean;
@@ -19,12 +15,9 @@ export type TContext = {
   onInit(): void;
   onOffline(): void;
   onOnline(): void;
-  onRandomize(): void;
-  onToggleVideoPics(): void;
 };
 
 export const CONTEXT: TContext = {
-  pics: [],
   isMenu: false,
   isOffline: false,
   isInit: true,
@@ -32,8 +25,6 @@ export const CONTEXT: TContext = {
   onInit: NOOP,
   onOffline: NOOP,
   onOnline: NOOP,
-  onRandomize: NOOP,
-  onToggleVideoPics: NOOP,
 };
 
 export const App =
@@ -46,9 +37,6 @@ type TProviderProps = PropsWithChildren;
 export const BaseProvider: FC<
   TProviderProps
 > = ({ children }) => {
-  const x = useVideoStore();
-  const [itemRecord, setItemRecord] =
-    useState<string[][]>([PICS]);
   const [isMenu, setMenu] =
     useState(false);
   const [isOffline, setOffline] =
@@ -62,23 +50,10 @@ export const BaseProvider: FC<
     setOffline(true);
   const onOnline = () =>
     setOffline(false);
-  const onRandomize = () => {
-    const next = shuffle(PICS);
-    setItemRecord((prev) => {
-      return [...prev, next];
-    });
-  };
-  const onToggleVideoPics = () => {
-    setItemRecord((prev) => {
-      return [...prev, x.videoPics];
-    });
-  };
-  const last =
-    itemRecord[itemRecord.length - 1];
+
   return (
     <App.Provider
       value={{
-        pics: last,
         isMenu,
         onMenu,
         isInit,
@@ -86,8 +61,6 @@ export const BaseProvider: FC<
         onInit,
         onOffline,
         onOnline,
-        onRandomize,
-        onToggleVideoPics,
       }}
     >
       {children}

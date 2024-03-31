@@ -41,7 +41,7 @@ export const Category: FC<TProps> = ({
         )}
       >
         {srcs.map((name, index) => {
-          const src = `/categories/${categoryName}/${name}/0.png`;
+          const src = `/categories/${categoryName}/${name}/0.avif`;
           const imageConfig =
             resolveConfigFromSize({
               size,

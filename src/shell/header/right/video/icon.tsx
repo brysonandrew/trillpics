@@ -7,7 +7,6 @@ export const VideoIcon: FC = () => {
   const {
     isVideoMode,
   } = useVideoStore();
-  console.log(isVideoMode)
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -15,9 +14,9 @@ export const VideoIcon: FC = () => {
       height="36px"
       viewBox="0 0 24 24"
     >
-      <defs>
+      {/* <defs>
         <LinearGradientBluePinkYellowSvg/>
-      </defs>
+      </defs> */}
       {isVideoMode ? (
       <path
       fill={resolveUrlId(

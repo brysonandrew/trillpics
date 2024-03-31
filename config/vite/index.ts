@@ -26,12 +26,11 @@ export default defineConfig({
       loose: true,
     }),
     react(),
-
   ],
   server: {
     port: 3000,
   },
-  publicDir: "public",
+  publicDir: "assets",
   esbuild: {
     logOverride: {
       "this-is-undefined-in-esm":

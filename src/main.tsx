@@ -17,9 +17,8 @@ import { Boundary } from "@brysonandrew/boundary";
 import { HelmetProvider } from "react-helmet-async";
 import { MOTION_CONFIG } from "@brysonandrew/animation";
 import { Shell } from "@shell/index";
+import { VideoPlayer } from "@pages/home/video/player";
 import { Home } from "@pages/home";
-import { VideoPlayer } from "@pages/gallery/video/player";
-import { Gallery } from "@pages/gallery";
 
 import { init as initServiceWorker } from '@app/service-worker/init';
 initServiceWorker();
@@ -38,13 +37,8 @@ const ROUTES: TRouteObjects = [
     children: [
       {
         index: true,
-        Component: Gallery,
-      },
-      {
-        path: "/home",
         Component: Home,
       },
-
       {
         path: "/video",
         Component: VideoPlayer,
@@ -56,8 +50,6 @@ const ROUTES: TRouteObjects = [
     ],
   },
 ];
-
-// const queryClient = new QueryClient();
 
 const router =
   createBrowserRouter(ROUTES);
