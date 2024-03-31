@@ -19,7 +19,7 @@ export const ASPECT_RATIO =
   WIDTH / HEIGHT;
 
 export const DIMENSIONS: TDimensions = {
-  width: WIDTH, 
+  width: WIDTH,
   height: HEIGHT,
 };
 

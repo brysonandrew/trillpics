@@ -13,6 +13,7 @@ import {
 } from "remotion";
 import { z } from "zod";
 import { AudioAndVisualizer } from "@pages/home/video/composition/audio";
+import { resolveSrc } from "@components/collection/config/items";
 
 export type TPicSeriesProps = z.infer<
   typeof SCHEMA
@@ -34,7 +35,7 @@ export const PicSeries: FC<
     <AbsoluteFill>
       <Series>
         {pics.map((pic) => {
-          const src = staticFile(pic);
+          const src = staticFile(resolveSrc(pic));
 
           return (
             <Series.Sequence

@@ -1,8 +1,10 @@
 import { TVideoState } from "src/store/types";
 import { StateCreator } from "zustand";
 
-import inits from "@app/precache.json";
+import precachePics from "@app/precache.json";
+const {length:picsCount} = precachePics;
 import { shuffle } from "@utils/array/shuffle";
+const inits = [...Array(picsCount)].map((_,index) => `${++index}`);
 const shuffledInits = shuffle(inits);
 
 export const initStoreState: StateCreator<
@@ -11,7 +13,7 @@ export const initStoreState: StateCreator<
   [],
   TVideoState
 > = (set, get) => ({
-  picsCount: shuffledInits.length,
+  picsCount,
   picsEntries: [shuffledInits],
   countPicsEntries: () =>
     get().picsEntries.length,
