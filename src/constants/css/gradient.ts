@@ -15,6 +15,15 @@ export const GRADIENT_BLUE_PINK_YELLOW =
       ...GRADIENT_BLUE_PINK_YELLOW_COLORS,
     ],
   });
+
+export const RADIAL_BLUE_PINK_YELLOW = resolveGradient({
+  name: "radial-gradient",
+  parts: [
+    "circle at 100%",
+    ...GRADIENT_BLUE_PINK_YELLOW_COLORS,
+  ],
+})
+
 export const BORDER_GRADIENT = {
   borderWidth: 2,
   borderStyle: "solid",

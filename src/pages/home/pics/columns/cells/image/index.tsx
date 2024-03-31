@@ -2,8 +2,11 @@ import type { FC } from "react";
 import { motion } from "framer-motion";
 import { Pic } from "@components/pics/pic";
 import { FadeV } from "@brysonandrew/fade-edge";
-import { VideoIcon } from "@shell/header/right/video/icon";
-import { PRESENCE_OPACITY_ANIMATE_DELAY_04 } from "@brysonandrew/animation";
+import { VideoIcon } from "@pages/home/footer/video/icon";
+import {
+  PRESENCE_OPACITY_ANIMATE_DELAY_04,
+  PRESENCE_OPACITY_DELAY
+} from "@brysonandrew/animation";
 import { TCell } from "../../config";
 import { resolveConfigFromSize } from "@components/pics/pic/resolveDimensionsFromSize";
 import { AddRemoveToVideoMarker } from "@pages/home/pics/columns/cells/image/hover";
@@ -68,12 +71,17 @@ export const Image: FC<TProps> = ({
                 <div className="absolute left-1/2 top-1/2 -translate-1/2 flex flex-row items-center gap-2 h-14 px-2">
                   {isAdded && (
                     <>
-                      <Background04 classValue="fade-in-animation" />
+                      <motion.div
+                        className="fill"
+                        layout
+                      >
+                        <Background04 classValue="fade-in-animation" />
+                      </motion.div>
                       <h4 className="relative px-2 font-mono text-white dark:text-gray-5">
                         <motion.div
                           className="relative flex gap-2 items-center text-xl"
                           layout
-                          {...PRESENCE_OPACITY_ANIMATE_DELAY_04}
+                          {...(isHover ? {} : PRESENCE_OPACITY_ANIMATE_DELAY_04)}
                         >
                           <VideoIcon />#
                           {videoOrder +

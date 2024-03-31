@@ -42,7 +42,7 @@ export const useViewport =
       const container =
         document.createElement('div');
       container.className =
-        'w-container';
+        'container';
       document.body.appendChild(
         container,
       );

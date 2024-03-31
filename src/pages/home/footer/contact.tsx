@@ -8,7 +8,7 @@ import {
 
 export const Contact: FC = () => {
   return (
-    <footer className="relative w-container column-end py-16 z-50">
+    <footer className="relative container column-end py-16 z-50">
       <ContactList
         isCopy
         email={EMAIL}

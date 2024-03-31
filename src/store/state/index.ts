@@ -11,6 +11,7 @@ export const initStoreState: StateCreator<
   [],
   TVideoState
 > = (set, get) => ({
+  picsCount: shuffledInits.length,
   picsEntries: [shuffledInits],
   countPicsEntries: () =>
     get().picsEntries.length,
@@ -18,8 +19,7 @@ export const initStoreState: StateCreator<
     get().picsEntries[
       get().countPicsEntries() - ++from
     ],
-  countPics: () =>
-    get().pics().length,
+  countPics: () => get().pics().length,
   updatePicsEntries: (
     next?: string[]
   ) => {
@@ -60,13 +60,21 @@ export const initStoreState: StateCreator<
       ],
     })),
   removeVideo: (next: string) =>
-    set((prev: TVideoState) => ({
-      videoPics: [
+    set((prev: TVideoState) => {
+      const nextVideoPics = [
         ...new Set([
           ...prev.videoPics.filter(
             (v) => v !== next
           ),
         ]),
-      ],
-    })),
+      ];
+      if (nextVideoPics.length === 0) {
+        get().updatePicsEntries(
+          get().picsEntries[0]
+        );
+      }
+      return {
+        videoPics: nextVideoPics,
+      };
+    }),
 });

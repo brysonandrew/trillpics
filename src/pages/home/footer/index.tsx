@@ -1,10 +1,13 @@
 import { useVideoStore } from "src/store";
 import { VideoPlayer } from "@pages/home/video/player";
 import { Button } from "@pages/home/footer/button";
-import { resolveUrlId } from "@brysonandrew/utils-attributes";
-import { LINEAR_GRADIENT_BLUE_PINK_YELLOW_SVG_ID } from "@components/gradients/linear-gradient-blue-pink-yellow-svg";
 import { IconsPlay } from "@components/icons/play";
 import { Empty } from "@pages/home/footer/empty";
+import { FooterVideo } from "@pages/home/footer/video";
+import { Circle } from "@components/decoration/circle";
+import { IconsBack } from "@components/icons/preview";
+import { IconsGenerate } from "@components/icons/generate";
+import { FooterView } from "@pages/home/footer/view";
 
 export const Footer = () => {
   const {
@@ -22,85 +25,62 @@ export const Footer = () => {
   };
   return (
     <>
-      {isVideoMode && (
-        <>
-          {isPreviewOpen && (
+      {isVideoMode &&
+        videoPics.length === 0 && (
+          <Empty />
+        )}
+      <footer className="fixed left-0 bottom-3 right-0 h-0 font-mono z-10">
+        {isVideoMode &&
+          isPreviewOpen && (
             <div className="fill-screen center text-main-inverted">
               <VideoPlayer />
             </div>
           )}
-          {videoPics.length > 0 ? (
-            <footer className="row-space w-container mx-auto fixed left-0 bottom-4 right-0 h-20 font-mono z-10">
-              <Button
-                title="View video preview"
-                onClick={handlePreview}
-              >
-                {isPreviewOpen ? (
-                  <>
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      width="40"
-                      height="40"
-                      viewBox="0 0 22 22"
+        <div className="relative row gap-4 container -translate-y-full mx-auto">
+          <Circle isGlow={isVideoMode}>
+            <FooterVideo />
+          </Circle>
+          {isVideoMode && (
+            <>
+              {videoPics.length > 0 && (
+                <div className="row-space grow h-20">
+                  <div className="column-reverse items-start gap-2 h-14">
+                    <Button
+                      title="View video preview"
+                      onClick={
+                        handlePreview
+                      }
+                      Icon={
+                        isPreviewOpen
+                          ? IconsBack
+                          : IconsPlay
+                      }
                     >
-                      <path
-                        fill={resolveUrlId(
-                          LINEAR_GRADIENT_BLUE_PINK_YELLOW_SVG_ID
-                        )}
-                        d="M5 12v-2h1V9h1V8h1V7h1V6h2v2h-1v1H9v1h9v2H9v1h1v1h1v2H9v-1H8v-1H7v-1H6v-1"
-                      />
-                    </svg>
-                    Back
-                  </>
-                ) : (
-                  <>
-                    {/* <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      width="40px"
-                      height="40px"
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        fill={resolveUrlId(
-                          LINEAR_GRADIENT_BLUE_PINK_YELLOW_SVG_ID
-                        )}
-                        d="M20 3H2v14h8v2H8v2h8v-2h-2v-2h8V3zm-6 12H4V5h16v10z"
-                      />
-                    </svg> */}
-                    <IconsPlay
-                      width="40px"
-                      height="40px"
-                      viewBox="0 0 24 24"
-                    />
-                    Preview
-                  </>
-                )}
-              </Button>
-              <Button
-                title="Generate video"
-                onClick={handleProcess}
-              >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="40px"
-                  height="40px"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    fill={resolveUrlId(
-                      LINEAR_GRADIENT_BLUE_PINK_YELLOW_SVG_ID
+                      {isPreviewOpen ? (
+                        <>Back</>
+                      ) : (
+                        <>Preview</>
+                      )}
+                    </Button>
+                    {!isPreviewOpen && (
+                      <FooterView />
                     )}
-                    d="M7 7h4v4H7zm-2 6v-2h2v2zm0 0v4H1v-4zm8 0h-2v-2h2zm4 0h-4v4h4zm2-2v2h-2v-2zm0 0h4V7h-4z"
-                  />
-                </svg>
-                Generate
-              </Button>
-            </footer>
-          ) : (
-            <Empty />
+                  </div>
+                  <Button
+                    title="Generate video"
+                    onClick={
+                      handleProcess
+                    }
+                    Icon={IconsGenerate}
+                  >
+                    Generate
+                  </Button>
+                </div>
+              )}
+            </>
           )}
-        </>
-      )}
+        </div>
+      </footer>
     </>
   );
 };

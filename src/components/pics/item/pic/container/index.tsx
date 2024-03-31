@@ -52,7 +52,7 @@ export const Container: FC<TProps> = ({
   } = props;
   const { isShop } = passedProps;
   const classValue =
-    "absolute left-1/2 w-container -translate-x-1/2";
+    "absolute left-1/2 container -translate-x-1/2";
   const Root = isFirstPosition
     ? Fragment
     : motion.div;

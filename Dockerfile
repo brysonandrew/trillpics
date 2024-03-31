@@ -6,11 +6,10 @@ COPY .npmrc .npmrc
 COPY package.json package*.json tsconfig.json* remotion.config.* .prettierrc* ./
 COPY config ./config
 COPY src ./src
-COPY public ./public
+COPY assets ./assets
 
-# Install the right package manager and dependencies. Adjust if needed.
 RUN npm i
 
 RUN rm -f .npmrc
 
-CMD ["npm", "studio"]
+CMD ["npm", "run", "studio"]
