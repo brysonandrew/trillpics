@@ -1,5 +1,7 @@
 // export const SUBSCRIBE_TO_FILE_EXISTENCE = 'https://trill-pics.fly.dev/api/subscribe-to-file-existence';//post
 
+import { useVideoStore } from "@store/index";
+
 // const p ={
 //   "file": "out/pic-series.mp4",
 //   "clientId": "0.1803158797559199"
@@ -10,15 +12,18 @@
 //       "exists": false
 //   }
 // }
-export const X =
-  "https://trill-pics.fly.dev/api/subscribe-to-file-existence";
-//https://trill-pics.fly.dev/api/unsubscribe-from-file-existence
-// https://trill-pics.fly.dev/api/can-update-default-props
-//https://trill-pics.fly.dev/api/render
-const rp = {
+export const URL =
+  // "https://trill-pics.fly.dev/api/subscribe-to-file-existence";
+  //https://trill-pics.fly.dev/api/unsubscribe-from-file-existence
+  // https://trill-pics.fly.dev/api/can-update-default-props
+  //;
+  import.meta.env.DEV
+    ? "http://localhost:3001/api/render"
+    : "https://trill-pics.fly.dev/api/render";
+const payload = {
   compositionId: "pic-series",
   type: "video",
-  outName: "out/pic-series.mp4",
+  outName: "out/vid1.mp4",
   imageFormat: "jpeg",
   jpegQuality: null,
   scale: 1,
@@ -50,7 +55,7 @@ const rp = {
   },
   envVariables: {},
   serializedInputPropsWithCustomSchema:
-    '{"pics":["video/pics/1.avif","video/pics/2.avif","video/pics/3.avif","video/pics/4.avif","video/pics/5.avif"]}',
+    '{"pics":["11","21","31","41","51"]}',
   offthreadVideoCacheSizeInBytes: null,
   colorSpace: "default",
   multiProcessOnLinux: false,
@@ -60,4 +65,32 @@ const rp = {
   repro: false,
   forSeamlessAacConcatenation: false,
   separateAudioTo: null,
+};
+export const useRender = () => {
+  const { videoPics } = useVideoStore();
+  const handler = async () => {
+    const r = await fetch(URL, {
+      body: JSON.stringify({
+        ...payload,
+      }),
+      method: "POST",
+    });
+    console.log(
+      "▁▁▁▁▂▂▂▂▃▃▃▃▄▄▄▅▅▅▅▆▆▆▆▇▇▇▇██▓▒░ 🧨 ░▒▓█▓▒░ 🧨 ░▒▓██▇▇▇▇▆▆▆▆▅▅▅▅▄▄▄▃▃▃▃▂▂▂▂▁▁▁▁"
+    );
+    console.dir(r);
+    console.log(
+      "██████████████▓▒░ 🧨 ░▒ line: 66, file: api.ts ▓▒░ 🧨 ░▒██████████████"
+    );
+
+    const re = r.json();
+    console.log(
+      "▁▁▁▁▂▂▂▂▃▃▃▃▄▄▄▅▅▅▅▆▆▆▆▇▇▇▇██▓▒░ 🧨 ░▒▓█▓▒░ 🧨 ░▒▓██▇▇▇▇▆▆▆▆▅▅▅▅▄▄▄▃▃▃▃▂▂▂▂▁▁▁▁"
+    );
+    console.dir(re);
+    console.log(
+      "██████████████▓▒░ 🧨 ░▒ line: 71, file: api.ts ▓▒░ 🧨 ░▒██████████████"
+    );
+  };
+  return handler;
 };

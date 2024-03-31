@@ -8,6 +8,7 @@ import { Circle } from "@components/decoration/circle";
 import { IconsBack } from "@components/icons/preview";
 import { IconsGenerate } from "@components/icons/generate";
 import { FooterView } from "@pages/home/footer/view";
+import { useRender } from "@constants/api";
 
 export const Footer = () => {
   const {
@@ -16,9 +17,10 @@ export const Footer = () => {
     togglePreview,
     videoPics,
   } = useVideoStore();
-
+  const handler = useRender()
   const handleProcess = () => {
     console.log("PROCESS");
+    handler()
   };
   const handlePreview = () => {
     togglePreview(!isPreviewOpen);
