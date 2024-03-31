@@ -4,13 +4,13 @@ import { Pic } from "@components/pics/pic";
 import { FadeV } from "@brysonandrew/fade-edge";
 import { VideoIcon } from "@pages/home/footer/video/icon";
 import {
-  PRESENCE_OPACITY_ANIMATE_DELAY_04,
-  PRESENCE_OPACITY_DELAY
+  PRESENCE_OPACITY_ANIMATE_DELAY_04
 } from "@brysonandrew/animation";
 import { TCell } from "../../config";
 import { resolveConfigFromSize } from "@components/pics/pic/resolveDimensionsFromSize";
 import { AddRemoveToVideoMarker } from "@pages/home/pics/columns/cells/image/hover";
 import { Background04 } from "@components/decoration/background-04";
+import { resolveSrc } from "@components/collection/config/items";
 
 type TProps = {
   colIndex: number;
@@ -27,7 +27,8 @@ export const Image: FC<TProps> = ({
   const { cols } = cell.row.original;
   const currCol = cols[colIndex];
   if (!currCol) return null;
-  const src = cols[colIndex];
+  const name = cols[colIndex];
+  const src = resolveSrc(name);
 
   const colsCount = cols.length;
   const rowIndex = cell.row.index;
@@ -39,7 +40,7 @@ export const Image: FC<TProps> = ({
     });
   return (
     <Pic
-      src={src}
+    name={name}
       boxChildren={null}
       {...imageConfig}
     >
@@ -81,7 +82,9 @@ export const Image: FC<TProps> = ({
                         <motion.div
                           className="relative flex gap-2 items-center text-xl"
                           layout
-                          {...(isHover ? {} : PRESENCE_OPACITY_ANIMATE_DELAY_04)}
+                          {...(isHover
+                            ? {}
+                            : PRESENCE_OPACITY_ANIMATE_DELAY_04)}
                         >
                           <VideoIcon />#
                           {videoOrder +

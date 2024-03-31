@@ -1,4 +1,3 @@
-import { resolveSrc } from "@components/collection/config/items";
 import { useVideoStore } from "@store/index";
 import { FC } from "react";
 import { Composition } from "remotion";
@@ -15,19 +14,19 @@ import {
 } from "./composition";
 
 export const Root: FC = () => {
-  const { videoPics } =
-    useVideoStore();
-    // ({ videoPics }) => ({ videoPics })
-    const videoPicsCount =
+  const { videoPics } = useVideoStore();
+
+  const videoPicsCount =
     videoPics.length;
   const pics =
     videoPicsCount === 0
-      ? [...Array(5)].map((_, index) =>
-          resolveSrc(`${++index}`)
+      ? [...Array(5)].map(
+          (_, index) => `${++index}`
         )
       : videoPics;
-      
 
+  const durationInFrames =
+    pics.length * FPS || 1;
   return (
     <Composition<
       typeof SCHEMA,
@@ -36,7 +35,7 @@ export const Root: FC = () => {
       id="pic-series"
       component={PicSeries}
       durationInFrames={
-        pics.length * FPS || 1
+        durationInFrames
       }
       fps={FPS}
       schema={SCHEMA}

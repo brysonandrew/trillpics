@@ -22,10 +22,10 @@ export const SEARCH_PARAM_ID = "open";
 
 export type TUseImageConfig =
   TDimensions & {
-    src: string;
+    name: string;
   };
 export const useImage = ({
-  src,
+  name,
   ...config
 }: TUseImageConfig) => {
   const {
@@ -35,7 +35,7 @@ export const useImage = ({
     videoPics,
   } = useVideoStore();
   const videoOrder =
-    videoPics.indexOf(src);
+    videoPics.indexOf(name);
   const { width, height } = config;
   const [isFront, setFront] =
     useState<boolean>(false);
@@ -46,14 +46,13 @@ export const useImage = ({
   const idParam = searchParams.get(
     SEARCH_PARAM_ID
   );
-  const isOpen = idParam === src;
+  const isOpen = idParam === name;
   const { isHover, handlers } =
     useHoverKey(
       NONE_CURSOR_KEY,
-      src ?? ""
+      name ?? ""
     );
   const handleToggle = () => {
-    if (!src) return;
     if (isOpen) {
       searchParams.delete(
         SEARCH_PARAM_ID
@@ -63,7 +62,7 @@ export const useImage = ({
       setFront(true);
       searchParams.set(
         SEARCH_PARAM_ID,
-        src
+        name
       );
     }
     navigate(
@@ -119,16 +118,14 @@ export const useImage = ({
       onClick: isVideoMode
         ? () =>
             videoOrder > -1
-              ? removeVideo(src)
-              : addVideo(src)
+              ? removeVideo(name)
+              : addVideo(name)
         : handleToggle,
       ...handlers,
     },
     designProps: {
       initial: false,
       layout: true,
-      src,
-
       style: {
         zIndex,
         ...(isOpen && isDimensions
