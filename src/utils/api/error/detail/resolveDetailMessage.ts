@@ -1,8 +1,8 @@
-import toast from 'react-hot-toast';
-import { TErrorDetail } from './config';
+import toast from "react-hot-toast";
+import { TErrorDetail } from "./config";
 
 export const resolveDetailMessage = (
-  rows: TErrorDetail[],
+  rows: TErrorDetail[]
 ) => {
   rows.forEach(
     ({
@@ -11,12 +11,11 @@ export const resolveDetailMessage = (
       type,
     }: TErrorDetail) => {
       const content = `
-    location: ${loc.join(' - ')}
+    location: ${loc.join(" - ")}
     message: ${msg}
     type: ${type}
 `;
-console.log(rows)
-toast.error(content);
-    },
+      toast.error(content);
+    }
   );
 };

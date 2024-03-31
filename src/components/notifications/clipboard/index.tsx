@@ -1,17 +1,13 @@
-import { useGallery } from '@pages/gallery/context';
-import { AnimatePresence } from 'framer-motion';
-import { Handler } from './Handler';
+import { useClipboard } from "@store/clipboard";
+import { AnimatePresence } from "framer-motion";
+import { Handler } from "./Handler";
 
 export const Clipboard = () => {
-  const { clipboardContext } =
-    useGallery();
+  const clipboard = useClipboard();
   return (
     <AnimatePresence>
-      {clipboardContext.copying !==
-        null && (
-        <Handler
-          {...clipboardContext}
-        />
+      {clipboard.copying !== null && (
+        <Handler {...clipboard} />
       )}
     </AnimatePresence>
   );

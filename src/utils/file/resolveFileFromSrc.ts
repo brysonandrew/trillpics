@@ -11,6 +11,5 @@ export const resolveFileFromSrc =
         type: 'image/png',
       },
     );
-    console.log(file);
     return file;
   };

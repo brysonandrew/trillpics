@@ -13,12 +13,5 @@ export const Divider: FC<TProps> = ({
       classValue={clsx('bg-primary w-full bg-section', classValue)}
  
     />
-    // <img
-    //   src='/decoration/lines/1.png'
-    //   className={clsx(
-    //     'w-full bg-section',
-    //     classValue,
-    //   )}
-    // />
   );
 };

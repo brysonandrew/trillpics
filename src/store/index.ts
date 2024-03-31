@@ -1,20 +1,62 @@
-import { resolveState } from "@store/resolve-state";
+import { initStoreState } from "@store/state";
 import { STORAGE } from "@store/storage";
-import {
-  TMiddlewareParam,
-  TStateCreator,
-  TVideoState,
-} from "src/store/types";
-import { create } from "zustand";
+import { TVideoState } from "src/store/types";
 import { persist } from "zustand/middleware";
+import { immer } from "zustand/middleware/immer";
+import {
+  create,
+  Mutate,
+  StateCreator,
+  StoreApi,
+  UseBoundStore,
+  useStore,
+} from "zustand";
 
-const persistState: TStateCreator<TVideoState> =
-  persist<TVideoState>(
-    resolveState,
-    STORAGE
-  );
+type TImmerStateMiddleware = [
+  ["zustand/immer", never]
+];
 
-export const useVideoStore = create<
+type TPersistStateMiddleware = [
+  ["zustand/persist", unknown]
+];
+
+type TStateMiddleware = [
+  ...TPersistStateMiddleware,
+  ...TImmerStateMiddleware
+];
+
+type TPersistStateCreator =
+  StateCreator<
+    TVideoState,
+    [],
+    TStateMiddleware
+  >;
+
+const createImmerState: StateCreator<
   TVideoState,
-  TMiddlewareParam
->(persistState);
+  [],
+  TImmerStateMiddleware
+> = immer<TVideoState>((...a) => ({
+  ...initStoreState(...a),
+  updateState: a[0],
+}));
+
+const createPersistState: TPersistStateCreator =
+  persist<
+    TVideoState,
+    [],
+    TImmerStateMiddleware
+  >(createImmerState, STORAGE);
+type TStore = UseBoundStore<
+  Mutate<
+    StoreApi<TVideoState>,
+    TStateMiddleware
+  >
+>;
+export const useVideoStore: TStore = create<
+  TVideoState,
+  TStateMiddleware
+>(createPersistState);
+
+// export const useVideoStore: TVideoState =
+//   useStore<TStore>(store);

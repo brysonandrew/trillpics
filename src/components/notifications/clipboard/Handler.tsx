@@ -10,11 +10,11 @@ import {
   motion,
 } from 'framer-motion';
 import { Loading } from './Loading';
-import { TClipboardContext } from '@pages/gallery/context/clipboard/useClipboardContext';
+import { TClipboard } from '@store/clipboard';
 
 const Root = styled(motion.div)``;
 
-type TProps = TClipboardContext;
+type TProps = TClipboard;
 export const Handler: FC<TProps> = ({
   copying,
   onEnd,

@@ -1,0 +1,35 @@
+import { Item } from "@components/pics/item";
+import { useViewport } from "@shell/providers/context/viewport";
+import { useDarkMode } from "@brysonandrew/dark-mode";
+import { resolveConfigFromSize } from "@components/pics/pic/resolveDimensionsFromSize";
+import { PICS } from "../../src/components/collection/config/items";
+
+export const Gallery = () => {
+  const { isDarkMode } = useDarkMode();
+  const { size, colsCount } =
+    useViewport();
+  return (
+    <>
+      {PICS.map((name, index) => {
+        const imageConfig =
+          resolveConfigFromSize({
+            size,
+            colIndex: index % colsCount,
+          });
+
+        return (
+          <Item
+            src={name}
+            isShop
+            canvas={
+              isDarkMode
+                ? "black"
+                : "white"
+            }
+            imageConfig={imageConfig}
+          />
+        );
+      })}
+    </>
+  );
+};

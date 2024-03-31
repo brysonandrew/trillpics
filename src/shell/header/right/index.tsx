@@ -13,9 +13,8 @@ export const HeaderRight: FC = () => {
   const rightItems = useMemo(() => {
     return [
       isScroll ? ScrollTop : null,
-      DarkMode,
       Video,
-
+      DarkMode,
     ].filter(Boolean) as FC[];
   }, [pathname, isScroll]);
 
@@ -27,8 +26,6 @@ export const HeaderRight: FC = () => {
           key={`${index}`}
           className="relative center h-20 px-4"
         >
-                        
-
           <div className="relative size-8 rounded-full bg-main"><Item /></div>
         </div>
       ))}

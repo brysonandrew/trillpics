@@ -2,13 +2,13 @@ export type TTable<T> = any;
 
 export type TSortEndHandler = (
   prevIndex: number,
-  nextIndex: number,
+  nextIndex: number
 ) => void;
 export type TPassedHeadProps = {
   onSortEnd?: TSortEndHandler;
 };
 
-export type TBaseRow = TBaseFieldValues
+export type TBaseRow = object;
 
 export type TBaseCellProps = {
   columnKey: string;
@@ -18,19 +18,17 @@ export type TBaseCellProps = {
 export type TBaseColumn = {
   accessorKey: string;
 };
-
-import { TBaseFieldValues } from '@components/form/config';
 import {
   TChildren,
   TError,
-} from '@brysonandrew/config-types';
+} from "@brysonandrew/config-types";
 import {
   FetchNextPageOptions,
   InfiniteQueryObserverResult,
   UseQueryResult,
-} from '@tanstack/react-query';
-import { MutableRefObject } from 'react';
-import { TInfiniteData } from './hooks/useQueryInfinite';
+} from "@tanstack/react-query";
+import { MutableRefObject } from "react";
+import { TInfiniteData } from "./hooks/useQueryInfinite";
 
 export type TUseQueryReturn<T> =
   UseQueryResult<T, TError> | null;
@@ -43,7 +41,7 @@ export type THandlerProps<T> =
     query: TUseQueryReturn<T>;
     children(
       data: T,
-      query: TUseQueryReturn<T>,
+      query: TUseQueryReturn<T>
     ): TChildren;
     smallIcon?: boolean;
   };
@@ -59,7 +57,7 @@ export type TSharedProps = {
   isDisabled: boolean;
   isLoading: boolean;
   onLoad: (
-    options?: FetchNextPageOptions,
+    options?: FetchNextPageOptions
   ) => Promise<
     InfiniteQueryObserverResult<
       any,
