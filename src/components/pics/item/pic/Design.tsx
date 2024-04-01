@@ -3,10 +3,7 @@ import { motion } from "framer-motion";
 import { TUseImageReturn } from "@components/pics/useImage";
 import { TImgMotionProps } from "@brysonandrew/config-types";
 
-type TProps = Omit<
-  TImgMotionProps,
-  "src"
-> &
+type TProps = TImgMotionProps &
   TUseImageReturn["designProps"];
 export const Design: FC<TProps> = ({
   layoutId,

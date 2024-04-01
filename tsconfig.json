@@ -82,6 +82,7 @@
     "**/*.ts",
     "**/*.js",
     "**/*.jsx",
-    "**/*.tsx"
-, ".cemetary/Item.tsx" ],
+    "**/*.tsx",
+    ".cemetary/Item.tsx"
+  ]
 }

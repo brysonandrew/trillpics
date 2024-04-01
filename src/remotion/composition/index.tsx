@@ -2,7 +2,7 @@ import { FC } from "react";
 import {
   SCHEMA, PIC_SIZE,
   ASPECT_RATIO
-} from "@pages/home/video/constants";
+} from "src/remotion/constants";
 import {
   AbsoluteFill,
   Img,
@@ -12,7 +12,7 @@ import {
   useVideoConfig,
 } from "remotion";
 import { z } from "zod";
-import { AudioAndVisualizer } from "@pages/home/video/composition/audio";
+import { AudioAndVisualizer } from "src/remotion/composition/audio";
 import { resolveSrc } from "@components/collection/config/items";
 
 export type TPicSeriesProps = z.infer<
