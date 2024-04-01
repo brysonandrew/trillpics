@@ -19,7 +19,6 @@ export const Footer = () => {
   } = useVideoStore();
   const handler = useRender()
   const handleProcess = () => {
-    console.log("PROCESS");
     handler()
   };
   const handlePreview = () => {

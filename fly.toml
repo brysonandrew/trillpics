@@ -15,6 +15,7 @@ primary_region = 'syd'
   auto_start_machines = true
   min_machines_running = 0
   processes = ['app']
+  http_options = { response = { headers = { Access-Control-Allow-Origin = 'https://trill.pics' } } }
 
 [[vm]]
   memory = '4gb'
