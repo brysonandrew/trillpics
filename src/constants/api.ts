@@ -12,7 +12,7 @@ import { useVideoStore } from "@store/index";
 //       "exists": false
 //   }
 // }
-export const URL =//"https://trill-pics.fly.dev/api/render";
+export const URL = //"https://trill-pics.fly.dev/api/render";
   // "https://trill-pics.fly.dev/api/subscribe-to-file-existence";
   //https://trill-pics.fly.dev/api/unsubscribe-from-file-existence
   // https://trill-pics.fly.dev/api/can-update-default-props
@@ -23,7 +23,7 @@ export const URL =//"https://trill-pics.fly.dev/api/render";
 const payload = {
   compositionId: "pic-series",
   type: "video",
-  outName: "out/vid1.mp4",
+  outName: "vid1.mp4",
   imageFormat: "jpeg",
   jpegQuality: null,
   scale: 1,
@@ -42,7 +42,7 @@ const payload = {
   videoBitrate: null,
   everyNthFrame: 1,
   numberOfGifLoops: null,
-  delayRenderTimeout: 30000,
+  delayRenderTimeout: 0,
   audioCodec: "aac",
   disallowParallelEncoding: false,
   chromiumOptions: {
@@ -66,12 +66,15 @@ const payload = {
   forSeamlessAacConcatenation: false,
   separateAudioTo: null,
 };
+
 export const useRender = () => {
   const { videoPics } = useVideoStore();
   const handler = async () => {
     const r = await fetch(URL, {
       body: JSON.stringify({
         ...payload,
+        serializedInputPropsWithCustomSchema:
+          { pics: videoPics },
       }),
       method: "POST",
     });
@@ -83,7 +86,7 @@ export const useRender = () => {
       "██████████████▓▒░ 🧨 ░▒ line: 66, file: api.ts ▓▒░ 🧨 ░▒██████████████"
     );
 
-    const re = r.json();
+    const re = await r.json();
     console.log(
       "▁▁▁▁▂▂▂▂▃▃▃▃▄▄▄▅▅▅▅▆▆▆▆▇▇▇▇██▓▒░ 🧨 ░▒▓█▓▒░ 🧨 ░▒▓██▇▇▇▇▆▆▆▆▅▅▅▅▄▄▄▃▃▃▃▂▂▂▂▁▁▁▁"
     );
