@@ -17,7 +17,7 @@ import { Boundary } from "@brysonandrew/boundary";
 import { HelmetProvider } from "react-helmet-async";
 import { MOTION_CONFIG } from "@brysonandrew/animation";
 import { Shell } from "@shell/index";
-import { VideoPlayer } from "src/remotion/player";
+import { VideoPlayer } from "@video/player";
 import { Home } from "@pages/home";
 
 import { init as initServiceWorker } from '@app/service-worker/init';
