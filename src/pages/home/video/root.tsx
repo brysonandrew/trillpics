@@ -1,8 +1,6 @@
 import { useVideoStore } from "@store/index";
 import { FC } from "react";
 import { Composition } from "remotion";
-// import { resolveViewportSelfCenter } from "../../../components/images/image/resolveViewportSelfCenter";
-// import { useImageDimensions } from "../../../hooks/image/useImageDimensions";
 import {
   DIMENSIONS,
   FPS,
