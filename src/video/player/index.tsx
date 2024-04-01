@@ -3,7 +3,7 @@ import { Player } from "@remotion/player";
 import { useVideoStore } from "src/store";
 import { Backdrop } from "@components/pics/item/pic/Backdrop";
 import { useViewport } from "@shell/providers/context/viewport";
-import { PlayButton } from "@pages/home/video/player/play-button";
+import { PlayButton } from "@video/player/play-button";
 import { Empty } from "@pages/home/pics/Empty";
 import {
   DIMENSIONS,

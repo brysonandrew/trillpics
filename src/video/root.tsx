@@ -1,6 +1,5 @@
 import { useVideoStore } from "@store/index";
 import { FC } from "react";
-import { Composition } from "remotion";
 import {
   DIMENSIONS,
   FPS,
@@ -10,6 +9,7 @@ import {
   PicSeries,
   TPicSeriesProps,
 } from "./composition";
+import { Composition } from "remotion";
 
 export const Root: FC = () => {
   const { videoPics } = useVideoStore();

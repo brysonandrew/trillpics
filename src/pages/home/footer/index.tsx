@@ -1,5 +1,5 @@
 import { useVideoStore } from "src/store";
-import { VideoPlayer } from "@pages/home/video/player";
+import { VideoPlayer } from "@video/player";
 import { Button } from "@pages/home/footer/button";
 import { IconsPlay } from "@components/icons/play";
 import { Empty } from "@pages/home/footer/empty";

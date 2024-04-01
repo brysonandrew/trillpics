@@ -2,7 +2,7 @@ import {Audio, interpolate, useCurrentFrame, useVideoConfig} from 'remotion';
 
 import {useAudioData, visualizeAudio} from '@remotion/media-utils';
 import {FC} from 'react';
-import { IAudioProps } from '@pages/home/video/composition/audio/types';
+import { IAudioProps } from '@video/composition/audio/types';
 
 export const Visualizer: FC<IAudioProps> = ({
 	src,

@@ -1,7 +1,7 @@
 import { IAudioProps } from "./types";
 import { Visualizer } from "./visualizer";
 import { FC } from "react"
-import { Audio as RemotionAudio } from "remotion";
+import { Audio as RemotionAudio } from  'remotion';
 
 export const AudioAndVisualizer: FC<
   IAudioProps

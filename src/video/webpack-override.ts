@@ -1,6 +1,5 @@
 import path from "path";
 import { WebpackOverrideFn } from "@remotion/bundler";
-import { enableTailwind } from "@remotion/tailwind";
 import { TStringRecord } from "@brysonandrew/config-types";
 
 export const webpackOverrideFn: WebpackOverrideFn =
@@ -8,6 +7,7 @@ export const webpackOverrideFn: WebpackOverrideFn =
     const initCwd =
       process.env.INIT_CWD ?? "";
     const record = [
+      "video",
       "pages",
       "shell",
       "components",
@@ -15,7 +15,7 @@ export const webpackOverrideFn: WebpackOverrideFn =
       "constants",
       "utils",
       "css",
-      'store'
+      "store",
     ].reduce(
       (a, c) => ({
         ...a,
@@ -43,7 +43,7 @@ export const webpackOverrideFn: WebpackOverrideFn =
       }),
       {} as TStringRecord
     );
-    return enableTailwind({
+    return {
       ...currentConfig,
       resolve: {
         ...currentConfig.resolve,
@@ -54,5 +54,5 @@ export const webpackOverrideFn: WebpackOverrideFn =
           ...configRecord,
         },
       },
-    });
+    };
   };

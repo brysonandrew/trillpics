@@ -9,11 +9,11 @@
 // Note: When using the Node.JS APIs, the config file doesn't apply. Instead, pass options directly to the APIs
 
 import {Config} from '@remotion/cli/config';
-import {webpackOverrideFn} from './assets/video/webpack-override';
+import {webpackOverrideFn} from './src/video/webpack-override';
 
 Config.overrideWebpackConfig(webpackOverrideFn);
 Config.setChromiumDisableWebSecurity(true);
 Config.setVideoImageFormat('jpeg');
 Config.setOverwriteOutput(true);
-Config.setEntryPoint("./src/pages/home/video/index.tsx");
+Config.setEntryPoint("./src/index.tsx");
 Config.setPublicDir("./assets");
