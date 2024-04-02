@@ -1,17 +1,12 @@
 import { useVideoStore } from "@store/index";
+import { TPicSeriesProps, PicSeries } from "@/compositions/pic-series/series";
+import { FPS, SCHEMA, DIMENSIONS } from "@video/constants";
 import { FC } from "react";
-import {
-  DIMENSIONS,
-  FPS,
-  SCHEMA,
-} from "./constants";
-import {
-  PicSeries,
-  TPicSeriesProps,
-} from "./composition";
-import { Composition } from "remotion";
+import { Composition, getInputProps } from "remotion";
 
-export const Root: FC = () => {
+const INPUT_PROPS = getInputProps();
+
+export const CompositionsPicSeries: FC = () => {
   const { videoPics } = useVideoStore();
 
   const videoPicsCount =
@@ -25,6 +20,8 @@ export const Root: FC = () => {
 
   const durationInFrames =
     pics.length * FPS || 1;
+
+  console.log(videoPics, pics, INPUT_PROPS)
   return (
     <Composition<
       typeof SCHEMA,
@@ -41,6 +38,7 @@ export const Root: FC = () => {
         pics,
       }}
       {...DIMENSIONS}
+      {...INPUT_PROPS}
     />
   );
 };

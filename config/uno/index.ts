@@ -49,6 +49,14 @@ export const theme = resolveTheme({
     ...THEME_FONT_SIZE,
     "11xl": ["14rem", "17rem"],
   },
+  keyframes: {
+    'ant-walk': {
+      to: {strokeDashoffset: '0'},
+    },
+    'spin': {
+      to: {transform: 'rotate(360deg)'},
+    },
+  },
 });
 
 type TTheme = typeof theme;
