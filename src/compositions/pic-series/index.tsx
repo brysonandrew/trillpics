@@ -21,7 +21,6 @@ export const CompositionsPicSeries: FC = () => {
   const durationInFrames =
     pics.length * FPS || 1;
 
-  console.log(videoPics, pics, INPUT_PROPS)
   return (
     <Composition<
       typeof SCHEMA,

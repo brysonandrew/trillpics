@@ -19,8 +19,9 @@ import { MOTION_CONFIG } from "@brysonandrew/animation";
 import { Shell } from "@shell/index";
 import { VideoPlayer } from "@video/player";
 import { Home } from "@pages/home";
+import { RootProvider } from "@/shell/providers/api";
 
-import { init as initServiceWorker } from '@app/service-worker/init';
+import { init as initServiceWorker } from "@app/service-worker/init";
 initServiceWorker();
 
 window.React = React;
@@ -70,11 +71,13 @@ if (root) {
           <MotionConfig
             {...MOTION_CONFIG}
           >
-            <Suspense fallback={null}>
-              <RouterProvider
-                router={router}
-              />
-            </Suspense>
+            <RootProvider>
+              <Suspense fallback={null}>
+                <RouterProvider
+                  router={router}
+                />
+              </Suspense>
+            </RootProvider>
           </MotionConfig>
         </Boundary>
       </HelmetProvider>
