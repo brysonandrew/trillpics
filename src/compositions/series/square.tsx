@@ -1,5 +1,5 @@
 import { makeRect } from "@remotion/shapes";
-import { DIMENSIONS } from "../constants";
+import { DIMENSIONS } from "@video/constants";
 
 const {
   path,

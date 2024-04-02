@@ -3,13 +3,14 @@ import { Player } from "@remotion/player";
 import { useVideoStore } from "src/store";
 import { Backdrop } from "@components/pics/item/pic/Backdrop";
 import { useViewport } from "@shell/providers/context/viewport";
-import { PlayButton } from "@video/player/play-button";
+import {  useButtons } from "@video/player/ui/index";
 import { Empty } from "@pages/home/pics/Empty";
 import {
   DIMENSIONS,
   FPS,
 } from "../constants";
-import { PicSeries } from "../composition";
+import { PicSeries } from "../../compositions/pic-series/series";
+import { usePoster } from "@video/player/ui/poster";
 
 export const VideoPlayer = () => {
   const isFirstRef = useRef(true)
@@ -20,6 +21,7 @@ export const VideoPlayer = () => {
     videoPics: pics,
     togglePreview,
   } = useVideoStore();
+  const {renderPoster} = usePoster()
   if (pics.length === 0)
     return <Empty />;
   return (
@@ -52,15 +54,21 @@ export const VideoPlayer = () => {
         spaceKeyToPlayOrPause
         hideControlsWhenPointerDoesntMove
         moveToBeginningWhenEnded
-        renderPlayPauseButton={(props) => {
-          // if (playing !== isPlaying) {
-          //   if (playing === true) {
-          //     isFirstRef.current = false;
-          //   }
-          //   setPlaying(Boolean(playing));
-          // }
-          return <PlayButton isFirst={isFirstRef.current} {...props} />
-        }}
+      //   renderPlayPauseButton={
+      //     (props) => {
+      //     // if (playing !== isPlaying) {
+      //     //   if (playing === true) {
+      //     //     isFirstRef.current = false;
+      //     //   }
+      //     //   setPlaying(Boolean(playing));
+      //     // }
+      //     return <PlayButton isFirst={isFirstRef.current} {...props} />
+      //   }
+      // }
+        renderPoster={renderPoster}
+        showPosterWhenPaused
+        showPosterWhenUnplayed
+        showPosterWhenEnded
         component={PicSeries}
         durationInFrames={
           pics.length * FPS

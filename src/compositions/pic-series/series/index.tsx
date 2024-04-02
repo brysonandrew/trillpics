@@ -12,7 +12,7 @@ import {
   useVideoConfig,
 } from "remotion";
 import { z } from "zod";
-import { AudioAndVisualizer } from "@video/composition/audio";
+import { AudioAndVisualizer } from "@/compositions/pic-series/series/audio";
 import { resolveSrc } from "@components/collection/config/items";
 
 export type TPicSeriesProps = z.infer<

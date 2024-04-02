@@ -27,6 +27,7 @@
     "noImplicitThis": false,
     "baseUrl": ".",
     "paths": {
+      "@/*": ["src/*"],
       "@components": ["src/components"],
       "@components/*": [
         "src/components/*"

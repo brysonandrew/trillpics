@@ -9,7 +9,7 @@ export const TitleApp: FC = () => {
         ...TEXT_GRADIENT,
         overflowWrap: "break-word",
       }}
-      className="font-display-outline w-34 sm:w-50 md:w-auto text-4xl xs:text-4.5xl sm:text-5xl"
+      className="font-display-outline w-34 sm:w-42 md:w-auto text-4.5xl xs:text-5xl sm:text-5.5xl"
     >
       {APP_TITLE}
     </h1>

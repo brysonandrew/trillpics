@@ -1,4 +1,4 @@
 import { registerRoot } from "remotion";
-import { Root } from "./video/root";
+import { Root } from "./Root";
 
 registerRoot(Root);

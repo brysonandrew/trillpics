@@ -43,11 +43,14 @@ export const webpackOverrideFn: WebpackOverrideFn =
       }),
       {} as TStringRecord
     );
+    const entryPath = path.resolve(initCwd, 'src');
+
     return {
       ...currentConfig,
       resolve: {
         ...currentConfig.resolve,
         alias: {
+          "@":entryPath,
           ...currentConfig.resolve
             ?.alias,
           ...record,
