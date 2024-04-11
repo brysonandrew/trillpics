@@ -2,7 +2,7 @@ import styled from '@emotion/styled';
 import {
   Checkbox2,
   resolveCheckbox2Title,
-} from '@components/form/input/checkbox/Checkbox2';
+} from '@/components/form/input/checkbox/Checkbox2';
 import { resolveRegisterProps } from '@utils/form';
 import { motion } from 'framer-motion';
 import {
