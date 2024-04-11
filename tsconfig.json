@@ -88,6 +88,6 @@
     "**/*.ts",
     "**/*.js",
     "**/*.jsx",
-    "**/*.tsx", "netlify/functions/render.ts",
+    "**/*.tsx"
   ],
 }
