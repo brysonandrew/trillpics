@@ -1,0 +1,13 @@
+[build]
+  publish = "out"
+  command = "npm run build-prod"
+[build.environment]
+  NETLIFY_NEXT_PLUGIN_SKIP = "true"
+[functions]
+  external_node_modules = ["express"]
+  node_bundler = "esbuild"
+[[redirects]]
+  force = true
+  from = "/trpc/*"
+  status = 200
+  to = "/.netlify/functions/trpc/:splat"

@@ -8,19 +8,30 @@ import { Circle } from "@components/decoration/circle";
 import { IconsBack } from "@components/icons/preview";
 import { IconsGenerate } from "@components/icons/generate";
 import { FooterView } from "@pages/home/footer/view";
-import { useRender } from "@constants/api";
+import { trpc } from "@/utils/trpc";
 
 export const Footer = () => {
+  // const handler = useRender()
   const {
     isVideoMode,
     isPreviewOpen,
     togglePreview,
     videoPics,
   } = useVideoStore();
-  const handler = useRender()
+
+  const mutation =
+    trpc.generate.useMutation<any>({
+      input: { pics: videoPics },
+    } as any);
   const handleProcess = () => {
-    handler()
+    console.log({
+      input: { pics: videoPics },
+    });
+    mutation.mutate({
+      input: { pics: videoPics },
+    } as any);
   };
+
   const handlePreview = () => {
     togglePreview(!isPreviewOpen);
   };

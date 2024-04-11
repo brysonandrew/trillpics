@@ -1,6 +1,8 @@
 import { defineConfig } from "vite";
 import tsConfigPaths from "vite-tsconfig-paths";
 import react from "@vitejs/plugin-react";
+// import react from "@vitejs/plugin-react-swc";
+
 import unoCss from "unocss/vite";
 import {nodePolyfills} from "vite-plugin-node-polyfills"
 
