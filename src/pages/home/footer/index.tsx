@@ -27,10 +27,9 @@ export const Footer = () => {
     console.log({
       input: { pics: videoPics },
     });
-    const r = mutation.mutate({
+    mutation.mutate({
       input: { pics: videoPics },
     } as any);
-    console.log(r);
   };
 
   const handlePreview = () => {

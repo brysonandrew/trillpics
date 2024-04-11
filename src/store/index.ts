@@ -9,7 +9,6 @@ import {
   StateCreator,
   StoreApi,
   UseBoundStore,
-  useStore,
 } from "zustand";
 
 type TImmerStateMiddleware = [
@@ -32,11 +31,12 @@ type TPersistStateCreator =
     TStateMiddleware
   >;
 
-const createImmerState: StateCreator<
+  export type TImmerState = StateCreator<
   TVideoState,
   [],
   TImmerStateMiddleware
-> = immer<TVideoState>((...a) => ({
+>
+const createImmerState: TImmerState = immer<any>((...a) => ({
   ...initStoreState(...a),
   updateState: a[0],
 }));

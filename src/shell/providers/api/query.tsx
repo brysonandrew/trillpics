@@ -1,5 +1,8 @@
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { ReactNode } from "react";
+import { TChildrenProps } from "@brysonandrew/config-types";
+import {
+  QueryClient,
+  QueryClientProvider,
+} from "@tanstack/react-query";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -9,9 +12,15 @@ const queryClient = new QueryClient({
   },
 });
 
-const QueryProvider = ({ children }: { children: ReactNode }) => {
+const QueryProvider = ({
+  children,
+}: TChildrenProps) => {
   return (
-    <QueryClientProvider client={queryClient}>{children}</QueryClientProvider>
+    <QueryClientProvider
+      client={queryClient}
+    >
+      {children}
+    </QueryClientProvider>
   );
 };
 

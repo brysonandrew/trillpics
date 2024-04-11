@@ -4,11 +4,11 @@ import { List } from "./pics";
  * This is the client-side code that uses the inferred types from the server
  */
 /**
- * We only import the `AppRouter` type from the server - this is not available at runtime
+ * We only import the `TAppRouter` type from the server - this is not available at runtime
  */
 
 // Initialize the tRPC client
-// const trpc = createTRPCProxyClient<AppRouter>({
+// const trpc = createTRPCProxyClient<TAppRouter>({
 //   links: [
 //     httpBatchLink({
 //       url: 'http://localhost:3000',

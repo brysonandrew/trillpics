@@ -88,7 +88,6 @@
     "**/*.ts",
     "**/*.js",
     "**/*.jsx",
-    "**/*.tsx",
+    "**/*.tsx", "netlify/functions/render.ts",
   ],
-  "references": [{ "path": "./tsconfig.node.json" }]
 }
