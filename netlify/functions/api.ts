@@ -1,7 +1,5 @@
-// YOUR_BASE_DIRECTORY/netlify/functions/api.ts
 
-import express, { Router } from "express";
-import serverless from "serverless-http";
+import express from "express";
 import cors from "cors";
 import * as trpcExpress from "@trpc/server/adapters/express";
 import {
@@ -10,7 +8,9 @@ import {
   SERVER_PORT,
 } from "@/constants/api";
 import { initTRPC } from "@trpc/server";
-import { render } from "netlify/functions/render";
+import { render } from "./render";
+import { netlifyTRPCHandler } from 'trpc-netlify-functions';
+import { createContext } from "./context";
 
 const t = initTRPC.create();
 
@@ -49,13 +49,6 @@ export type TAppRouter = typeof router;
 const api = express();
 
 
-const createContext: any = ({
-  req,
-  res,
-}: trpcExpress.CreateExpressContextOptions) => ({
-  req,
-  res,
-});
 
 
 api.use(express.json());
@@ -79,4 +72,9 @@ api.listen(SERVER_PORT, () =>
   )
 );
 
-export const handler = serverless(api);
+// export const handler = serverless(api);
+
+export const handler = netlifyTRPCHandler({
+  router,
+  createContext,
+});
