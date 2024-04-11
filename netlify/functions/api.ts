@@ -8,7 +8,7 @@ import {
   SERVER_PORT,
 } from "@/constants/api";
 import { initTRPC } from "@trpc/server";
-import { render } from "./render";
+import { render } from "@/server/render";
 import { netlifyTRPCHandler } from 'trpc-netlify-functions';
 import { createContext } from "./context";
 
