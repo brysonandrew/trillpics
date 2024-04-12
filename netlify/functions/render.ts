@@ -6,6 +6,7 @@ import {
 } from "@remotion/renderer";
 import path from "path";
 export type TRenderInput = {pics:string[]}
+
 export const render = async ({input}: any) => {
   console.log("input")
   console.log(input)

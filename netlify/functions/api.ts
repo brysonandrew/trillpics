@@ -8,7 +8,7 @@ import {
   SERVER_PORT,
 } from "@/constants/api";
 import { initTRPC } from "@trpc/server";
-// import { render } from "@/server/render";
+import { render } from "./render";
 import { netlifyTRPCHandler } from 'trpc-netlify-functions';
 import { createContext } from "./context";
 
@@ -33,7 +33,7 @@ const router = t.router({
       //   >
     ) => {
       // console.log(x);
-      // await render(x.rawInput);
+      await render(x.rawInput);
       // console.log(input);
       return {
         message: "goodbye!",
