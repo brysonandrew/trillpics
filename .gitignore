@@ -27,3 +27,5 @@ assets/video/originals/*
 
 # Local Netlify folder
 .netlify
+
+build
