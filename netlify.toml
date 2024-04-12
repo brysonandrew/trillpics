@@ -8,4 +8,4 @@
   force = true
   from = "/trpc/*"
   status = 200
-  to = "/.netlify/functions/trpc/:splat"
+  to = "/.netlify/functions/api/:splat"
