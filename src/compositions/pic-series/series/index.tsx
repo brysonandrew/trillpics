@@ -30,7 +30,7 @@ export const PicSeries: FC<
     frameInSecond / fps;
 
   const audioSrc = staticFile(
-    import.meta.env.DEV
+    false
       ? ""
       : "trillpics/" +
           "video/audio/insurrection-10941.mp3"
@@ -40,7 +40,7 @@ export const PicSeries: FC<
       <Series>
         {pics.map((pic) => {
           const src = staticFile(
-            import.meta.env.DEV
+   false
               ? ""
               : "trillpics/" +
                   resolveSrc(pic)
