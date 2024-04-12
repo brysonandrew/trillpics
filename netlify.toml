@@ -1,6 +1,10 @@
+[dev]
+  command = "npm run dev"
+  targetPort = 3001
 [build]
   command = "npm run build"
   publish = "dist"
+  targetPort  = "3001"
 [functions]
   external_node_modules = ["express", "@remotion/bundler", "@remotion/renderer"]
   node_bundler = "esbuild"
@@ -8,4 +12,15 @@
   force = true
   from = "/trpc/*"
   status = 200
-  to = "/.netlify/functions/api/:splat"
+  to = "/.netlify/functions/trpc/:splat"
+[[headers]]
+  for = "/site.webmanifest"
+  [headers.values]
+    Content-Type = "application/manifest+json"
+[[headers]]
+  for = "/assets/*"
+  [headers.values]
+    cache-control = '''
+    max-age=31536000,
+    immutable
+    '''

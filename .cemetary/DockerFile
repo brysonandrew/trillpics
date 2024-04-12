@@ -1,13 +1,20 @@
-ARG VARIANT=20-bookworm
-FROM mcr.microsoft.com/devcontainers/typescript-node:${VARIANT}
+FROM node:20-bookworm
 
-RUN apt-get update && export DEBIAN_FRONTEND=noninteractive \
-  && apt-get -y install --no-install-recommends chromium \
-  && apt-get clean
+RUN apt-get update
+RUN apt-get install -y chromium
 
-ARG PNPM_VERSION=8.15.3
-RUN su node -c "npm install -g pnpm@${PNPM_VERSION}"
-COPY . . 
-RUN pnpm i
-RUN node -e "console.log(require.resolve('@remotion/compositor-linux-arm64-gnu'))"
-RUN node render.mjs
+EXPOSE 3000
+ENV PORT="3000"
+
+COPY .npmrc .npmrc
+COPY package.json package*.json tsconfig.json* remotion.config.* .prettierrc* ./
+COPY config ./config
+COPY src ./src
+COPY server ./server
+COPY assets ./assets
+
+RUN npm i
+
+RUN rm -f .npmrc
+
+CMD ["run-p", "dev:*", "--print-label"]

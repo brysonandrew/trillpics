@@ -11,6 +11,9 @@ export const DarkMode: FC = () => {
     <Button
       Moon={MoonIcon}
       Sun={SunIcon}
+      buttonProps={{
+        classValue: clsx("rounded-full"),
+      }}
       iconProps={{
         classValue: clsx("w-18 h-18"),
       }}
