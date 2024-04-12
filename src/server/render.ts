@@ -1,10 +1,8 @@
 // import { webpackOverrideFn } from "@/video/webpack-override";
-import { bundle } from "@remotion/bundler";
 import {
   renderMedia, 
   selectComposition,
 } from "@remotion/renderer";
-import path from "path";
 export type TRenderInput = {pics:string[]}
 
 export const render = async ({input}: any) => {
@@ -15,14 +13,15 @@ export const render = async ({input}: any) => {
   const compositionId = "pic-series";
   // You only have to create a bundle once, and you may reuse it
   // for multiple renders that you can parametrize using input props.
-  const bundleLocation = await bundle({
-    publicDir: "./assets",
-    entryPoint: path.resolve(
-      "./src/index.tsx"
-    ),
-    // If you have a Webpack override, make sure to add it here
-    // webpackOverride: webpackOverrideFn,
-  });
+  const bundleLocation = 'https://brysonandrew.github.io/trillpics';
+  // await bundle({
+  //   publicDir: "./assets",
+  //   entryPoint: path.resolve(
+  //     "./src/index.tsx"
+  //   ),
+  //   // If you have a Webpack override, make sure to add it here
+  //   // webpackOverride: webpackOverrideFn,
+  // });
   console.log("bundleLocation")
   console.log(bundleLocation);
   // Parametrize the video by passing props to your component.
