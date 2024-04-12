@@ -7,7 +7,7 @@ export const CLIENT_ORIGINS = [
 ]
 
 export const SERVER_PORT = 3001;
-export const SERVER_PATH= "/trpc"
+export const SERVER_PATH= "/api"
 // const p ={
 //   "file": "out/pic-series.mp4",
 //   "clientId": "0.1803158797559199"

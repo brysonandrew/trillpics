@@ -8,9 +8,9 @@
   "scripts": {
     "build": "vite build",
     "lint": "tsc --build . & eslint . --fix --ext ts,tsx",
-    "dev:server": "tsx watch netlify/functions/trpc",
+    "dev:server": "tsx watch netlify/functions/api",
     "dev:client": "vite",
-    "build:server": "tsx watch netlify/functions/trpc",
+    "build:server": "tsx watch netlify/functions/api",
     "build:client": "npm run build",
     "dev": "run-p dev:* --print-label",
     "l": "npm run lint",

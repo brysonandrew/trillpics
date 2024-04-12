@@ -8,10 +8,9 @@ import {
   SERVER_PORT,
 } from "@/constants/api";
 import { initTRPC } from "@trpc/server";
-import { render } from "../../src/server/render";
-// import { netlifyTRPCHandler } from 'trpc-netlify-functions';
+import { render } from "../../../src/server/render";
 import serverless from "serverless-http"
-import { createContext } from "../../src/server/context";
+import { createContext } from "../../../src/server/context";
 
 const t = initTRPC.create();
 
