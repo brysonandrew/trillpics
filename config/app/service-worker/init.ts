@@ -5,5 +5,5 @@ export const init = () =>
   _init({
     path:"./service-worker.js",
     precacheEntries,
-    isDisabled: import.meta.env.DEV,
+    isDisabled: true,// import.meta.env.DEV,
   });
