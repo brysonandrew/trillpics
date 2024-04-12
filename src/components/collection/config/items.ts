@@ -1,11 +1,16 @@
-import { shuffle } from "@utils/array/shuffle";
-import precache from "@app/precache.json";
-
 export const resolveSrc = (
   name: string | number,
-  ext  = 'avif'
-) =>
-`/video/pics/${name}.${ext}`
+  dir = "pics",
+  ext = "avif"
+) => `video/${dir}/${name}.${ext}`;
+
+export const resolvePicsSrc = (
+  name: string | number
+) => resolveSrc(name);
+
+export const resolveAudioSrc = (
+  name: string | number
+) => resolveSrc(name, 'audio', 'mp3');
 
 // export const PICS_COUNT = precache.length;
 // const INIT: string[] = [

@@ -2,7 +2,7 @@ import path from "path";
 import { WebpackOverrideFn } from "@remotion/bundler";
 import { TStringRecord } from "@brysonandrew/config-types";
 
-export const webpackOverrideFn: WebpackOverrideFn =
+export const webpackOverride: WebpackOverrideFn =
   (currentConfig) => {
     const initCwd =
       process.env.INIT_CWD ?? "";

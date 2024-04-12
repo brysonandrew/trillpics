@@ -1,5 +1,5 @@
 import { useVideoStore } from "src/store";
-import { VideoPlayer } from "@video/player";
+import { VideoPlayer } from "@/remotion/player";
 import { Button } from "@pages/home/footer/button";
 import { IconsPlay } from "@components/icons/play";
 import { Empty } from "@pages/home/footer/empty";
@@ -53,7 +53,7 @@ export const Footer = () => {
             <>
               {videoPics.length > 0 && (
                 <div className="row-space grow h-20">
-                  <div className="column-reverse items-start gap-2 h-14">
+                  <div className="column-reverse items-start gap-2 h-20">
                     <Button
                       title="View video preview"
                       onClick={

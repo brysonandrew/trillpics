@@ -9,9 +9,9 @@
 // Note: When using the Node.JS APIs, the config file doesn't apply. Instead, pass options directly to the APIs
 
 import {Config} from '@remotion/cli/config';
-import {webpackOverrideFn} from './src/video/webpack-override';
+import {webpackOverride} from './src/server/remotion/webpack-override';
 
-Config.overrideWebpackConfig(webpackOverrideFn);
+Config.overrideWebpackConfig(webpackOverride);
 Config.setChromiumDisableWebSecurity(true);
 Config.setVideoImageFormat('jpeg');
 Config.setOverwriteOutput(true);

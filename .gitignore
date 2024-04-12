@@ -24,7 +24,8 @@ src/components/collection/assets/**/*
 
 out/*
 assets/video/originals/*
-
+.assets/**/*
+.assets
 # Local Netlify folder
 .netlify
 

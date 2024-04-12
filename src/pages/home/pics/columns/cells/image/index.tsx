@@ -3,14 +3,13 @@ import { motion } from "framer-motion";
 import { Pic } from "@components/pics/pic";
 import { FadeV } from "@brysonandrew/fade-edge";
 import { VideoIcon } from "@pages/home/footer/video/icon";
-import {
-  PRESENCE_OPACITY_ANIMATE_DELAY_04
-} from "@brysonandrew/animation";
-import { TCell } from "../../config";
+import { PRESENCE_OPACITY_ANIMATE_DELAY_04 } from "@brysonandrew/animation";
 import { resolveConfigFromSize } from "@components/pics/pic/resolveDimensionsFromSize";
 import { AddRemoveToVideoMarker } from "@pages/home/pics/columns/cells/image/hover";
 import { Background04 } from "@components/decoration/background-04";
 import { resolveSrc } from "@components/collection/config/items";
+import { VideoModeCounter } from "@/pages/home/pics/columns/cells/image/video-mode-counter";
+import { TCell } from "../../config";
 
 type TProps = {
   colIndex: number;
@@ -40,7 +39,7 @@ export const Image: FC<TProps> = ({
     });
   return (
     <Pic
-    name={name}
+      name={name}
       boxChildren={null}
       {...imageConfig}
     >
@@ -67,39 +66,13 @@ export const Image: FC<TProps> = ({
                 lightEdgeColor="var(--light-02)"
               />
             )}
-            {isVideoMode &&
-              (isAdded || isHover) && (
-                <div className="absolute left-1/2 top-1/2 -translate-1/2 flex flex-row items-center gap-2 h-14 px-2">
-                  {isAdded && (
-                    <>
-                      <motion.div
-                        className="fill"
-                        layout
-                      >
-                        <Background04 classValue="fade-in-animation" />
-                      </motion.div>
-                      <h4 className="relative px-2 font-mono text-white dark:text-gray-5">
-                        <motion.div
-                          className="relative flex gap-2 items-center text-xl"
-                          layout
-                          {...(isHover
-                            ? {}
-                            : PRESENCE_OPACITY_ANIMATE_DELAY_04)}
-                        >
-                          <VideoIcon />#
-                          {videoOrder +
-                            1}
-                        </motion.div>
-                      </h4>
-                    </>
-                  )}
-                  {isHover && (
-                    <AddRemoveToVideoMarker
-                      isAdded={isAdded}
-                    />
-                  )}
-                </div>
-              )}
+            {isVideoMode && (
+              <VideoModeCounter
+                isAdded={isAdded}
+                isHover={isHover}
+                videoOrder={videoOrder}
+              />
+            )}
           </>
         );
       }}
