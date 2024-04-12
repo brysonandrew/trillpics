@@ -18257,11 +18257,11 @@ const PicSeries = ({ pics }) => {
   const frameInSecond = frame % fps;
   const progressInSecond = frameInSecond / fps;
   const audioSrc = (0,cjs.staticFile)(
-    /* unsupported import.meta.env.DEV */ undefined.DEV ? "" : "trillpics/video/audio/insurrection-10941.mp3"
+     false ? 0 : "trillpics/video/audio/insurrection-10941.mp3"
   );
   return /* @__PURE__ */ React.createElement(cjs.AbsoluteFill, null, /* @__PURE__ */ React.createElement(cjs.Series, null, pics.map((pic) => {
     const src = (0,cjs.staticFile)(
-      /* unsupported import.meta.env.DEV */ undefined.DEV ? "" : "trillpics/" + resolveSrc(pic)
+       false ? 0 : "trillpics/" + resolveSrc(pic)
     );
     return /* @__PURE__ */ React.createElement(
       cjs.Series.Sequence,
