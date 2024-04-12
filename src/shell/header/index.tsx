@@ -25,8 +25,7 @@ export const Header: FC<
           "relative top-4 h-0 container mx-auto row-start-space"
         )}
       >
-        <div className="relative shrink-0 px-4">
-          <Background/>
+        <div className="relative shrink-0">
           {isHome ? (
             <Title />
           ) : (

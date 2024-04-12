@@ -24,8 +24,9 @@ export const Circle: FC<
           />
         )}
       </AnimatePresence>
-      <div className="relative size-8 rounded-full overflow-hidden bg-main">
-        {children}
+      <div className="relative size-8 rounded-full overflow-hidden">
+        <div className="absolute inset-0 bg-main opacity-50"/>
+        <div className="relative">{children}</div>
       </div>
     </div>
   );

@@ -9,7 +9,8 @@ import {
 } from "@/constants/api";
 import { initTRPC } from "@trpc/server";
 import { render } from "./render";
-import { netlifyTRPCHandler } from 'trpc-netlify-functions';
+// import { netlifyTRPCHandler } from 'trpc-netlify-functions';
+import serverless from "serverless-http"
 import { createContext } from "./context";
 
 const t = initTRPC.create();
@@ -17,20 +18,9 @@ const t = initTRPC.create();
 const publicProcedure = t.procedure;
 
 const router = t.router({
-  // Queries are the best place to fetch data
-  // hello: publicProcedure.query(() => {
-  //   return {
-  //     message: "hello world",
-  //   };
-  // }),
-
-  // Mutations are the best place to do things like updating a database
   generate: publicProcedure.mutation(
     async (
       x: any
-      //ResolveOptions<
-      // ProcedureParams<any, any>
-      //   >
     ) => {
       // console.log(x);
       await render(x.rawInput);
@@ -42,14 +32,9 @@ const router = t.router({
   ),
 });
 
-
 export type TAppRouter = typeof router;
 
-
 const api = express();
-
-
-
 
 api.use(express.json());
 api.use(
@@ -72,9 +57,9 @@ api.listen(SERVER_PORT, () =>
   )
 );
 
-// export const handler = serverless(api);
+export const handler = serverless(api);
 
-export const handler = netlifyTRPCHandler({
-  router,
-  createContext,
-});
+// export const handler = netlifyTRPCHandler({
+//   router,
+//   createContext,
+// });
