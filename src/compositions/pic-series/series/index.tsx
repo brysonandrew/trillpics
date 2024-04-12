@@ -14,7 +14,7 @@ import {
 } from "remotion";
 import { z } from "zod";
 import { AudioAndVisualizer } from "@/compositions/pic-series/series/audio";
-import { resolveSrc } from "@components/collection/config/items";
+import { resolveAudioSrc, resolvePicsSrc } from "@components/collection/config/items";
 
 export type TPicSeriesProps = z.infer<
   typeof SCHEMA
@@ -30,20 +30,16 @@ export const PicSeries: FC<
     frameInSecond / fps;
 
   const audioSrc = staticFile(
-    false
-      ? ""
-      : "trillpics/" +
-          "video/audio/insurrection-10941.mp3"
+    resolveAudioSrc(
+      "insurrection-10941"
+    )
   );
   return (
     <AbsoluteFill>
       <Series>
         {pics.map((pic) => {
           const src = staticFile(
-   false
-              ? ""
-              : "trillpics/" +
-                  resolveSrc(pic)
+            resolvePicsSrc(pic)
           );
 
           return (
