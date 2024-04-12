@@ -3,7 +3,7 @@ import {
   type inferRouterOutputs,
 } from "@trpc/server";
 import { createTRPCReact } from "@trpc/react-query";
-import { TAppRouter } from "netlify/functions/trpc";
+import { TAppRouter } from "netlify/functions/api";
 
 export const trpc =
   createTRPCReact<TAppRouter>();
