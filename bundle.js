@@ -18158,10 +18158,7 @@ const createImmerState = immer_immer((...a) => ({
 const createPersistState = persist(createImmerState, STORAGE);
 const useVideoStore = create(createPersistState);
 
-// EXTERNAL MODULE: ./node_modules/zod/lib/index.mjs
-var lib = __webpack_require__(1604);
-;// CONCATENATED MODULE: ./src/video/constants.ts
-
+;// CONCATENATED MODULE: ./src/remotion/constants.ts
 const FPS = 24;
 const PIC_COUNT = 1;
 const VIDEO_PICS = [
@@ -18178,13 +18175,10 @@ const DIMENSIONS = {
   width: WIDTH,
   height: HEIGHT
 };
-const SCHEMA = lib.z.object({
-  pics: lib.z.array(lib.z.string())
-});
 
 // EXTERNAL MODULE: ./node_modules/@remotion/media-utils/dist/index.js
 var dist = __webpack_require__(56463);
-;// CONCATENATED MODULE: ./src/compositions/pic-series/series/audio/visualizer.tsx
+;// CONCATENATED MODULE: ./src/remotion/pic-series/series/audio/visualizer.tsx
 
 
 const Visualizer = ({
@@ -18235,7 +18229,7 @@ const Visualizer = ({
   }));
 };
 
-;// CONCATENATED MODULE: ./src/compositions/pic-series/series/audio/index.tsx
+;// CONCATENATED MODULE: ./src/remotion/pic-series/series/audio/index.tsx
 
 
 const AudioAndVisualizer = (props) => {
@@ -18244,9 +18238,11 @@ const AudioAndVisualizer = (props) => {
 };
 
 ;// CONCATENATED MODULE: ./src/components/collection/config/items.ts
-const resolveSrc = (name, ext = "avif") => `/video/pics/${name}.${ext}`;
+const resolveSrc = (name, dir = "pics", ext = "avif") => `video/${dir}/${name}.${ext}`;
+const resolvePicsSrc = (name) => resolveSrc(name);
+const resolveAudioSrc = (name) => resolveSrc(name, "audio", "mp3");
 
-;// CONCATENATED MODULE: ./src/compositions/pic-series/series/index.tsx
+;// CONCATENATED MODULE: ./src/remotion/pic-series/series/index.tsx
 
 
 
@@ -18257,11 +18253,13 @@ const PicSeries = ({ pics }) => {
   const frameInSecond = frame % fps;
   const progressInSecond = frameInSecond / fps;
   const audioSrc = (0,cjs.staticFile)(
-     false ? 0 : "trillpics/video/audio/insurrection-10941.mp3"
+    resolveAudioSrc(
+      "insurrection-10941"
+    )
   );
   return /* @__PURE__ */ React.createElement(cjs.AbsoluteFill, null, /* @__PURE__ */ React.createElement(cjs.Series, null, pics.map((pic) => {
     const src = (0,cjs.staticFile)(
-       false ? 0 : "trillpics/" + resolveSrc(pic)
+      resolvePicsSrc(pic)
     );
     return /* @__PURE__ */ React.createElement(
       cjs.Series.Sequence,
@@ -18294,7 +18292,16 @@ const PicSeries = ({ pics }) => {
   ));
 };
 
-;// CONCATENATED MODULE: ./src/compositions/pic-series/index.tsx
+// EXTERNAL MODULE: ./node_modules/zod/lib/index.mjs
+var lib = __webpack_require__(1604);
+;// CONCATENATED MODULE: ./src/remotion/pic-series/schema.ts
+
+const PIC_SERIES_SCHEMA = lib.z.object({
+  pics: lib.z.array(lib.z.string())
+});
+
+;// CONCATENATED MODULE: ./src/remotion/pic-series/index.tsx
+
 
 
 
@@ -18314,7 +18321,7 @@ const CompositionsPicSeries = () => {
       component: PicSeries,
       durationInFrames,
       fps: FPS,
-      schema: SCHEMA,
+      schema: PIC_SERIES_SCHEMA,
       defaultProps: {
         pics
       },
@@ -18324,7 +18331,7 @@ const CompositionsPicSeries = () => {
   );
 };
 
-;// CONCATENATED MODULE: ./src/Root.tsx
+;// CONCATENATED MODULE: ./src/remotion/Root.tsx
 
 const Root = () => {
   return /* @__PURE__ */ React.createElement(CompositionsPicSeries, null);
