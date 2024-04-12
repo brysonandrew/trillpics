@@ -4,15 +4,15 @@
 [build]
   command = "npm run build"
   publish = "dist"
-  targetPort  = "3001"
+  targetPort  = 3001
 [functions]
   external_node_modules = ["express", "@remotion/bundler", "@remotion/renderer"]
   node_bundler = "esbuild"
 [[redirects]]
   force = true
-  from = "/trpc/*"
+  from = "/api/*"
   status = 200
-  to = "/.netlify/functions/trpc/:splat"
+  to = "/.netlify/functions/api/:splat"
 [[headers]]
   for = "/site.webmanifest"
   [headers.values]
