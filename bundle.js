@@ -18244,7 +18244,7 @@ const AudioAndVisualizer = (props) => {
 };
 
 ;// CONCATENATED MODULE: ./src/components/collection/config/items.ts
-const resolveSrc = (name, ext = "avif") => `video/pics/${name}.${ext}`;
+const resolveSrc = (name, ext = "avif") => `/video/pics/${name}.${ext}`;
 
 ;// CONCATENATED MODULE: ./src/compositions/pic-series/series/index.tsx
 
@@ -18257,10 +18257,12 @@ const PicSeries = ({ pics }) => {
   const frameInSecond = frame % fps;
   const progressInSecond = frameInSecond / fps;
   const audioSrc = (0,cjs.staticFile)(
-    "video/audio/insurrection-10941.mp3"
+    /* unsupported import.meta.env.DEV */ undefined.DEV ? "" : "trillpics/video/audio/insurrection-10941.mp3"
   );
   return /* @__PURE__ */ React.createElement(cjs.AbsoluteFill, null, /* @__PURE__ */ React.createElement(cjs.Series, null, pics.map((pic) => {
-    const src = (0,cjs.staticFile)(resolveSrc(pic));
+    const src = (0,cjs.staticFile)(
+      /* unsupported import.meta.env.DEV */ undefined.DEV ? "" : "trillpics/" + resolveSrc(pic)
+    );
     return /* @__PURE__ */ React.createElement(
       cjs.Series.Sequence,
       {
