@@ -22,5 +22,5 @@ tsconfig.tsbuildinfo
 
 src/components/collection/assets/**/*
 
-out
+out/*
 assets/video/originals/*
