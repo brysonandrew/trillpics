@@ -7,17 +7,12 @@ import { httpBatchLink } from "@trpc/client";
 import { ReactNode } from "react";
 import { queryClient } from "./query";
 
-console.log(import.meta)
-console.log(process.env)
-
 const SERVER_ORIGIN = import.meta.env
   .DEV
   ? `http://localhost:${SERVER_PORT}`
-  : "https://trill-pics.fly.dev";
+  : "https://trill.pics";
 
 const url = `${SERVER_ORIGIN}${SERVER_PATH}`;
-
-console.log(url);
 
 const trpcClient = trpc.createClient({
   links: [

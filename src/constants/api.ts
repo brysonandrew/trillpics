@@ -1,7 +1,7 @@
 // export const SUBSCRIBE_TO_FILE_EXISTENCE = 'https://trill-pics.fly.dev/api/subscribe-to-file-existence';//post
 
 export const CLIENT_ORIGINS = [
-  "https://trill-pics.fly.dev",
+  // "https://trill-pics.fly.dev",
   "https://trill.pics",
   "http://localhost:3000",
 ]
