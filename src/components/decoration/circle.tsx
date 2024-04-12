@@ -16,16 +16,15 @@ export const Circle: FC<
   }>
 > = ({ isGlow, children }) => {
   return (
-    <div className="relative center h-20 px-4 z-10">
+    <div className="relative center size-16 px-4 z-10">
       <AnimatePresence>
         {isGlow && (
           <Glow
             key="GLOW_KEY"
-    
           />
         )}
       </AnimatePresence>
-      <div className="relative size-8 rounded-full bg-main">
+      <div className="relative size-8 rounded-full overflow-hidden bg-main">
         {children}
       </div>
     </div>
