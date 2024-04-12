@@ -6,8 +6,8 @@
   command = "npm run build"
   publish = "dist"
 [functions]
-  external_node_modules = ["express", "@remotion/bundler", "@remotion/renderer"]
-  included_files = [".remotion"] 
+  external_node_modules = ["express",'@remotion/compositor-*']
+  included_files = [".remotion",'@remotion/compositor-*'] 
   node_bundler = "esbuild"
 [[redirects]]
   force = true
