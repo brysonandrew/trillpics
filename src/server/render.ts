@@ -42,7 +42,7 @@ export const render = async ({input}: any) => {
     composition,
     serveUrl: bundleLocation,
     codec: "h264",
-    outputLocation: `./x${compositionId}.mp4`,
+    outputLocation: `./out/render-${compositionId}.mp4`,
     inputProps,
   });
   console.log("Render done!");

@@ -22,7 +22,10 @@
     "ops/rename": "esrun ops/rename",
     "ops/delete": "esrun ops/delete/deleteDoubleProcessed",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "ops/indexPages": "esrun ops/indexPages"
+    "ops/indexPages": "esrun ops/indexPages",
+    "ds": "gh workflow run && gh run list --workflow=studio.yml",
+    "nd": "netlify dev",
+    "nb": "netlify build"
   },
   "repository": {
     "type": "git",

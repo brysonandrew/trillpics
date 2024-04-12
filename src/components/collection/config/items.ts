@@ -1,8 +1,8 @@
 export const resolveSrc = (
   name: string | number,
-  type = "pics",
+  dir = "pics",
   ext = "avif"
-) => `/video/${type}/${name}.${ext}`;
+) => `video/${dir}/${name}.${ext}`;
 
 export const resolvePicsSrc = (
   name: string | number
