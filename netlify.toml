@@ -7,6 +7,7 @@
   publish = "dist"
 [functions]
   external_node_modules = ["express", "@remotion/bundler", "@remotion/renderer"]
+  included_files = [".remotion"] 
   node_bundler = "esbuild"
 [[redirects]]
   force = true

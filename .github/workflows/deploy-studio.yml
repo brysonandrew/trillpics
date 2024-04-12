@@ -16,7 +16,7 @@ jobs:
       - name: install packages
         run: npm i
       - name: Bundle Studio
-        run: npx remotion bundle --public-path="./"
+        run: npx remotion bundle --public-path="./trillpics"
       - name: Deploy Studio
         uses: JamesIves/github-pages-deploy-action@v4
         with:
