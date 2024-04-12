@@ -5,7 +5,7 @@ export const resolveSrc = (
   name: string | number,
   ext  = 'avif'
 ) =>
-`video/pics/${name}.${ext}`
+`/video/pics/${name}.${ext}`
 
 // export const PICS_COUNT = precache.length;
 // const INIT: string[] = [

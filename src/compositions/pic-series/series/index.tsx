@@ -1,7 +1,8 @@
 import { FC } from "react";
 import {
-  SCHEMA, PIC_SIZE,
-  ASPECT_RATIO
+  SCHEMA,
+  PIC_SIZE,
+  ASPECT_RATIO,
 } from "@video/constants";
 import {
   AbsoluteFill,
@@ -29,13 +30,21 @@ export const PicSeries: FC<
     frameInSecond / fps;
 
   const audioSrc = staticFile(
-    "video/audio/insurrection-10941.mp3"
+    import.meta.env.DEV
+      ? ""
+      : "trillpics/" +
+          "video/audio/insurrection-10941.mp3"
   );
   return (
     <AbsoluteFill>
       <Series>
         {pics.map((pic) => {
-          const src = staticFile(resolveSrc(pic));
+          const src = staticFile(
+            import.meta.env.DEV
+              ? ""
+              : "trillpics/" +
+                  resolveSrc(pic)
+          );
 
           return (
             <Series.Sequence
