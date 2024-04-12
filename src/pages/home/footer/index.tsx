@@ -24,9 +24,6 @@ export const Footer = () => {
       input: { pics: videoPics },
     } as any);
   const handleProcess = () => {
-    console.log({
-      input: { pics: videoPics },
-    });
     mutation.mutate({
       input: { pics: videoPics },
     } as any);

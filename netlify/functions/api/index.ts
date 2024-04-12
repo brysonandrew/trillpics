@@ -17,6 +17,7 @@ const t = initTRPC.create();
 const publicProcedure = t.procedure;
 
 const router = t.router({
+  hi:publicProcedure.query(() => "hi"),
   generate: publicProcedure.mutation(
     async (
       x: any

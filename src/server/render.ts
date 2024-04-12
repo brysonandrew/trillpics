@@ -1,7 +1,7 @@
-import { webpackOverrideFn } from "@/video/webpack-override";
+// import { webpackOverrideFn } from "@/video/webpack-override";
 import { bundle } from "@remotion/bundler";
 import {
-  renderMedia,
+  renderMedia, 
   selectComposition,
 } from "@remotion/renderer";
 import path from "path";
@@ -21,10 +21,9 @@ export const render = async ({input}: any) => {
       "./src/index.tsx"
     ),
     // If you have a Webpack override, make sure to add it here
-    webpackOverride: webpackOverrideFn,
+    // webpackOverride: webpackOverrideFn,
   });
   console.log("bundleLocation")
-
   console.log(bundleLocation);
   // Parametrize the video by passing props to your component.
   const inputProps = {
@@ -41,7 +40,6 @@ export const render = async ({input}: any) => {
   // Render the video. Pass the same `inputProps` again
   // if your video is parametrized with data.
   await renderMedia({
-    
     composition,
     serveUrl: bundleLocation,
     codec: "h264",

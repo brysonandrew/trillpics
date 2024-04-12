@@ -1,3 +1,4 @@
+import { trpc } from "@/utils/trpc";
 import { Footer } from "@pages/home/footer";
 import { List } from "./pics";
 /**
@@ -24,6 +25,8 @@ import { List } from "./pics";
 // - Rename any variable and see it reflected across both frontend and backend
 
 const Home = () => {
+  const hi  =trpc.hi.useQuery();
+  console.log(hi)
   // const [queryClient] = useState(
   //   () => new QueryClient()
   // );
