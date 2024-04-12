@@ -8,7 +8,7 @@ import {
   SERVER_PORT,
 } from "@/constants/api";
 import { initTRPC } from "@trpc/server";
-import { render } from "@/server/render";
+import { render } from "@/server/remotion/render";
 import serverless from "serverless-http"
 import { createContext } from "@/server/context";
 

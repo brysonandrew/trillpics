@@ -1,9 +1,5 @@
 import { FC } from "react";
-import {
-  SCHEMA,
-  PIC_SIZE,
-  ASPECT_RATIO,
-} from "@video/constants";
+import { PIC_SIZE, ASPECT_RATIO } from "@/remotion/constants";
 import {
   AbsoluteFill,
   Img,
@@ -12,13 +8,13 @@ import {
   useCurrentFrame,
   useVideoConfig,
 } from "remotion";
-import { z } from "zod";
-import { AudioAndVisualizer } from "@/compositions/pic-series/series/audio";
-import { resolveAudioSrc, resolvePicsSrc } from "@components/collection/config/items";
+import { AudioAndVisualizer } from "@/remotion/pic-series/series/audio";
+import {
+  resolveAudioSrc,
+  resolvePicsSrc,
+} from "@components/collection/config/items";
+import { TPicSeriesProps } from "@/remotion/pic-series/types";
 
-export type TPicSeriesProps = z.infer<
-  typeof SCHEMA
->;
 export const PicSeries: FC<
   TPicSeriesProps
 > = ({ pics }) => {

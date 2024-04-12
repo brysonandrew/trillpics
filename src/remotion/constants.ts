@@ -22,7 +22,3 @@ export const DIMENSIONS: TDimensions = {
   width: WIDTH,
   height: HEIGHT,
 };
-
-export const SCHEMA = z.object({
-  pics: z.array(z.string()),
-});

@@ -3,14 +3,14 @@ import { Player } from "@remotion/player";
 import { useVideoStore } from "src/store";
 import { Backdrop } from "@components/pics/item/pic/Backdrop";
 import { useViewport } from "@shell/providers/context/viewport";
-import {  useButtons } from "@video/player/ui/index";
+import {  useButtons } from "@/remotion/player/ui/index";
 import { Empty } from "@pages/home/pics/Empty";
 import {
   DIMENSIONS,
   FPS,
 } from "../constants";
-import { PicSeries } from "../../compositions/pic-series/series";
-import { usePoster } from "@video/player/ui/poster";
+import { PicSeries } from "../pic-series/series";
+import { usePoster } from "@/remotion/player/ui/poster";
 
 export const VideoPlayer = () => {
   const isFirstRef = useRef(true)

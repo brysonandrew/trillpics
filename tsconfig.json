@@ -68,9 +68,9 @@
       "@config/*": ["config/*"],
       "@css/*": ["src/css/*"],
       "@t/*": ["src/types/*"],
-      "@video": ["src/video"],
+      "@video": ["src/remotion"],
       "@video/*": [
-        "src/video/*"
+        "src/remotion/*"
       ],
       "@pages-workshop-config-types/*": [
         "src/pages/workshop/config/types/*"

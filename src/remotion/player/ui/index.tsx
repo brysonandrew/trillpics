@@ -6,7 +6,7 @@ import {
   RenderFullscreenButton,
   RenderPlayPauseButton,
 } from "@remotion/player";
-import { Button } from "@video/player/ui/button";
+import { Button } from "@/remotion/player/ui/button";
 import { useCallback } from "react";
 
 export const useButtons = () => {
