@@ -106,7 +106,7 @@ export const getDownloadsFolder =
       // "var",
       // "task",
       cwd,
-      "downloads-cache-dir",
+      "downloads",
       destination
     );
     console.log(dl);
@@ -149,6 +149,7 @@ export const downloadBrowser = async ({
 
   const downloadsFolder =
     getDownloadsFolder();
+
   const archivePath = path.join(
     downloadsFolder,
     fileName
@@ -163,6 +164,7 @@ export const downloadBrowser = async ({
   if (await existsAsync(outputPath)) {
     return getRevisionInfo();
   }
+  console.log("downloadsFolder ", downloadsFolder);
 
   if (
     !(await existsAsync(
