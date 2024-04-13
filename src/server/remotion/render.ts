@@ -11,9 +11,6 @@ import {
 } from "@remotion/renderer";
 import { resolveAssets } from "@/server/remotion/resolve-assets";
 import { getLocalBrowserExecutable } from "@/server/remotion/browser-executable/get-local-browser-executable";
-import * as os from "node:os";
-import * as fs from "node:fs";
-import * as path from "node:path";
 
 export const render = async ({
   input,
@@ -43,8 +40,7 @@ export const render = async ({
   // getExecutablePath();
   console.log("REVISION");
   console.log(revisionInfo);
-  const browserExecutable = null;
-  //   revisionInfo?.executablePath;
+  const browserExecutable = revisionInfo?.executablePath;
   // console.log(browserExecutable);
 
   // resolveAssets(
