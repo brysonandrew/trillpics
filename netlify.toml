@@ -8,7 +8,7 @@
 [functions]
   node_bundler = "esbuild"
   external_node_modules = ["express", '@remotion/compositor-*']
-  included_files = ["./downloads/*", "./downloads"]
+  included_files = ["./downloads/**/*"]
 [[redirects]]
   force = true
   from = "/api/*"
