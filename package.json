@@ -26,8 +26,7 @@
     "ds": "gh workflow run && gh run list --workflow=studio.yml",
     "nd": "netlify dev",
     "nb": "netlify build",
-    "deploy": "netlify deploy",
-    "ndo": "netlify deploy --open"
+    "ndo": "npm run nb && netlify deploy -b -d dist -p -o"
   },
   "repository": {
     "type": "git",

@@ -37,8 +37,8 @@ export const render = async ({
       : path;
   // const browserExecutable =
   //   resolveAssets("video/bin/Chromium");
-  const openBrowserOptions = {};
-  console.log("PUPPETEER");
+  const openBrowserOptions = {onBrowserDownload,shouldDumpIo:true};
+  console.log("PUPPETEER - OPEN BROWSER");
   const puppeteerInstance =
     await openBrowser(
       "chrome",
