@@ -1,4 +1,5 @@
 import { TPicSeriesProps } from "@/remotion/pic-series/types";
+import { onBrowserLog } from "@/server/remotion/on-browser-log";
 import {
   renderMedia,
   selectComposition,
@@ -23,8 +24,9 @@ export const render = async ({
       id,
       inputProps,
       logLevel: "verbose",
-      onBrowserLog: console.log,
-      binariesDirectory: "src/server/remotion/bin/",
+      onBrowserLog,
+      // onBrowserDownload,
+      binariesDirectory: "video/bin/",
     };
 
   const composition =
