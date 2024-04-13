@@ -9,13 +9,18 @@ import {
   ensureBrowser,
   type EnsureBrowserOptions,
 } from "@remotion/renderer";
+import { resolveAssets } from "@/server/remotion/resolve-assets";
+import { getLocalBrowserExecutable } from "@/server/remotion/browser-executable/get-local-browser-executable";
+import * as os from "node:os";
+import * as fs from "node:fs";
+import * as path from "node:path";
+
 
 export const render = async ({
   input,
   fps,
 }: {
   input: TPicSeriesProps;
-
   fps: number;
 }) => {
   console.log("INIT");
@@ -29,16 +34,26 @@ export const render = async ({
       fps * input.pics.length,
   };
   console.log(input);
-  const resolveAssets = (
-    path: string
-  ) =>
-    process.env.NETLIFY_LOCAL
-      ? `assets/${path}`
-      : path;
+
   // const browserExecutable =
   //   resolveAssets("video/bin/Chromium");
-  const openBrowserOptions = {onBrowserDownload,shouldDumpIo:true};
-  console.log("PUPPETEER - OPEN BROWSER");
+  // const downloadURL = getChromeDownloadUrl({platform, version});
+  const browserExecutable =
+    getLocalBrowserExecutable(null);
+  // const executablePath =
+  // getExecutablePath();
+  console.log(browserExecutable);
+  // resolveAssets(
+  //   "chrome-headless-shell/mac_arm-123.0.6312.122/chrome-headless-shell-mac-arm64/chrome-headless-shell"
+  // );
+  const openBrowserOptions = {
+    onBrowserDownload,
+    shouldDumpIo: true,
+    browserExecutable: null,
+  };
+  console.log(
+    "PUPPETEER - OPEN BROWSER"
+  );
   const puppeteerInstance =
     await openBrowser(
       "chrome",
@@ -47,6 +62,7 @@ export const render = async ({
   const options: EnsureBrowserOptions =
     {
       onBrowserDownload,
+      browserExecutable: null,
     };
   console.log("ENSURE BROWSER");
 
