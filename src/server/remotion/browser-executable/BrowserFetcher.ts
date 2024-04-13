@@ -173,41 +173,41 @@ export const downloadBrowser = async ({
   );
   console.log("IS DL ", isDownloads);
 
-  if (isOutput) {
-    return getRevisionInfo();
-  }
+  // if (isOutput) {
+  //   return getRevisionInfo();
+  // }
   console.log(
     "downloadsFolder ",
     downloadsFolder
   );
   console.log("IS isDownloads ", isDownloads);
 
-  if (!isDownloads) {
-    console.log(
-      "MKDIR",
-      "recursive",
-      downloadsFolder
-    );
-    const x = mkdirAsync(downloadsFolder, {
-      recursive: true,
-    });
-    console.log("MKDIR", "done", x);
-  }
+  // if (!isDownloads) {
+  //   console.log(
+  //     "MKDIR",
+  //     "recursive",
+  //     downloadsFolder
+  //   );
+  //   const x = mkdirAsync(downloadsFolder, {
+  //     recursive: true,
+  //   });
+  //   console.log("MKDIR", "done", x);
+  // }
 
   // Use system Chromium builds on Linux ARM devices
-  if (
-    os.platform() !== "darwin" &&
-    os.arch() === "arm64"
-  ) {
-    throw new Error(
-      [
-        "Chrome Headless Shell is not available for Linux for arm64 architecture.",
-        "If you are on Ubuntu, you can install with:",
-        "sudo apt install chromium",
-        "sudo apt install chromium-browser",
-      ].join("\n")
-    );
-  }
+  // if (
+  //   os.platform() !== "darwin" &&
+  //   os.arch() === "arm64"
+  // ) {
+  //   throw new Error(
+  //     [
+  //       "Chrome Headless Shell is not available for Linux for arm64 architecture.",
+  //       "If you are on Ubuntu, you can install with:",
+  //       "sudo apt install chromium",
+  //       "sudo apt install chromium-browser",
+  //     ].join("\n")
+  //   );
+  // }
 
   try {
     console.log("downloadFile|",downloadURL);
