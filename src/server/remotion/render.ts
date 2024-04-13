@@ -2,6 +2,7 @@ import { TPicSeriesProps } from "@/remotion/pic-series/types";
 import {
   renderMedia,
   selectComposition,
+  type SelectCompositionOptions,
 } from "@remotion/renderer";
 
 export const render = async ({
@@ -10,18 +11,24 @@ export const render = async ({
   input: TPicSeriesProps;
 }) => {
   console.log("INIT");
-  const compositionId = "pic-series";
+  const id = "pic-series";
   const serveUrl =
     "https://brysonandrew.github.io/trillpics";
   const inputProps = input;
   console.log(input);
 
-  const composition =
-    await selectComposition({
+  const options: SelectCompositionOptions =
+    {
       serveUrl,
-      id: compositionId,
+      id,
       inputProps,
-    });
+      logLevel: "verbose",
+      onBrowserLog: console.log,
+      binariesDirectory: "src/server/remotion/bin/",
+    };
+
+  const composition =
+    await selectComposition(options);
   console.log("COMP DONE");
   console.log(composition);
 
@@ -29,7 +36,7 @@ export const render = async ({
     composition,
     serveUrl,
     codec: "h264",
-    outputLocation: `./out/render-${compositionId}.mp4`,
+    outputLocation: `./out/render-${id}.mp4`,
     inputProps,
   });
   console.log("RENDER DONE");

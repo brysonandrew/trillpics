@@ -25,7 +25,8 @@
     "ops/indexPages": "esrun ops/indexPages",
     "ds": "gh workflow run && gh run list --workflow=studio.yml",
     "nd": "netlify dev",
-    "nb": "netlify build"
+    "nb": "netlify build",
+    "deploy": "gh workflow run --workflow=studio.yml && netlify deploy"
   },
   "repository": {
     "type": "git",
