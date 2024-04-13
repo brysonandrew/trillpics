@@ -26,7 +26,8 @@
     "ds": "gh workflow run && gh run list --workflow=studio.yml",
     "nd": "netlify dev",
     "nb": "netlify build",
-    "deploy": "gh workflow run --workflow=studio.yml && netlify deploy"
+    "deploy": "netlify deploy",
+    "ndo": "netlify deploy --open"
   },
   "repository": {
     "type": "git",
@@ -124,10 +125,12 @@
     "@trpc/react-query": "^10.45.2",
     "@trpc/server": "^10.45.2",
     "@unocss/preset-web-fonts": "^0.58.5",
+    "chromium": "^3.0.3",
     "clsx": "^1.2.1",
     "framer-motion": "^10.16.4",
     "immer": "^10.0.4",
     "localforage": "^1.10.0",
+    "puppeteer": "^22.6.4",
     "react": "^18.2.0",
     "react-device-detect": "^2.2.3",
     "react-dom": "^18.2.0",

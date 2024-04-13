@@ -1,7 +1,7 @@
 import { IconsBackView } from "@components/icons/back-view";
 import { IconsForwardView } from "@components/icons/forward-view";
 import { Button } from "@pages/home/footer/button";
-import { useShow } from "@pages/home/footer/useShow";
+import { useShow } from "@/pages/home/footer/use-show";
 import type { FC } from "react";
 
 export const FooterView: FC = () => {

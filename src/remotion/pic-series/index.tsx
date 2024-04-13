@@ -1,38 +1,19 @@
 import { FC } from "react";
-import { useVideoStore } from "@store/index";
-import {
-  PicSeries,
-} from "@/remotion/pic-series/series";
-import {
-  FPS,
-  DIMENSIONS,
-} from "@/remotion/constants";
+import { PicSeries } from "@/remotion/pic-series/series";
+import { DIMENSIONS } from "@/remotion/constants";
 import {
   Composition,
-  getInputProps,
 } from "remotion";
-import { TPicSeriesSchema, TPicSeriesProps } from "@/remotion/pic-series/types";
 import { PIC_SERIES_SCHEMA } from "@/remotion/pic-series/schema";
-
-const INPUT_PROPS = getInputProps();
+import { useRemotionProps } from "@/remotion/use-props";
+import { TPicSeriesSchema, TPicSeriesProps } from "@/remotion/pic-series/types";
 
 export const CompositionsPicSeries: FC =
   () => {
-    const { videoPics } =
-      useVideoStore();
-
-    const videoPicsCount =
-      videoPics.length;
-    const pics =
-      videoPicsCount === 0
-        ? [...Array(5)].map(
-            (_, index) => `${++index}`
-          )
-        : videoPics;
-
-    const durationInFrames =
-      pics.length * FPS || 1;
-
+    const {
+      props: defaultProps,
+      ...props
+    } = useRemotionProps();
     return (
       <Composition<
         TPicSeriesSchema,
@@ -40,16 +21,10 @@ export const CompositionsPicSeries: FC =
       >
         id="pic-series"
         component={PicSeries}
-        durationInFrames={
-          durationInFrames
-        }
-        fps={FPS}
         schema={PIC_SERIES_SCHEMA}
-        defaultProps={{
-          pics,
-        }}
+        defaultProps={defaultProps}
         {...DIMENSIONS}
-        {...INPUT_PROPS}
+        {...props}
       />
     );
   };

@@ -5,7 +5,7 @@ import { N } from "@components/layout/text/N";
 import { Pill } from "@components/decoration/Pill";
 import { VideoIcon } from "@pages/home/footer/video/icon";
 import { NOOP } from "@brysonandrew/utils-function";
-import { useShow } from "@pages/home/footer/useShow";
+import { useShow } from "@/pages/home/footer/use-show";
 
 export const FooterVideo: FC = () => {
   const {

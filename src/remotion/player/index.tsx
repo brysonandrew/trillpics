@@ -3,25 +3,26 @@ import { Player } from "@remotion/player";
 import { useVideoStore } from "src/store";
 import { Backdrop } from "@components/pics/item/pic/Backdrop";
 import { useViewport } from "@shell/providers/context/viewport";
-import {  useButtons } from "@/remotion/player/ui/index";
 import { Empty } from "@pages/home/pics/Empty";
-import {
-  DIMENSIONS,
-  FPS,
-} from "../constants";
 import { PicSeries } from "../pic-series/series";
 import { usePoster } from "@/remotion/player/ui/poster";
+import { usePlayerListeners } from "@/hooks/usePlayerListeners";
+import { useRemotionPlayerProps } from "@/remotion/player/use-props";
 
 export const VideoPlayer = () => {
   const isFirstRef = useRef(true)
   const [isPlaying, setPlaying] =
     useState(false);
+    const props = useRemotionPlayerProps();
   const viewport = useViewport();
   const {
     videoPics: pics,
     togglePreview,
   } = useVideoStore();
-  const {renderPoster} = usePoster()
+  const {renderPoster} = usePoster();
+
+  usePlayerListeners();
+
   if (pics.length === 0)
     return <Empty />;
   return (
@@ -70,17 +71,7 @@ export const VideoPlayer = () => {
         showPosterWhenUnplayed
         showPosterWhenEnded
         component={PicSeries}
-        durationInFrames={
-          pics.length * FPS
-        }
-        compositionWidth={
-          DIMENSIONS.width
-        }
-        compositionHeight={
-          DIMENSIONS.height
-        }
-        fps={FPS}
-        inputProps={{ pics }}
+        {...props}
       />
 
     </>
