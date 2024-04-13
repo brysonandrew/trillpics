@@ -47,14 +47,14 @@ export const Footer = () => {
               <VideoPlayer />
             </div>
           )}
-        <div className="relative row gap-4 container -translate-y-full mx-auto">
+        <div className="relative row gap-4 container -translate-y-full bottom-4 mx-auto">
           <Circle isGlow={isVideoMode}>
             <FooterVideo />
           </Circle>
           {isVideoMode && (
             <>
               {videoPics.length > 0 && (
-                <div className="row-space grow h-20">
+                <div className="row-space grow h-0">
                   <div className="column-reverse items-start justify-center gap-2 h-20">
                     <Button
                       title="View video preview"

@@ -19,10 +19,10 @@ export const VideoModeCounter: FC<
       {isAdded && (
         <>
           <motion.div
-            className="fill"
+            className="fill rounded-full overflow-hidden"
             layout
           >
-            <Background04 classValue="fade-in-animation rounded-full" />
+            <Background04 classValue="fade-in-animation" />
           </motion.div>
           <h4 className="relative px-2 font-mono text-white dark:text-gray-5">
             <motion.div
