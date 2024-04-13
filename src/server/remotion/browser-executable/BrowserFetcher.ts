@@ -141,7 +141,10 @@ export const downloadBrowser = async ({
   const fileName = downloadURL
     .split("/")
     .pop();
-
+    console.log(
+      "fileName",
+      fileName
+    );
   if (!fileName) {
     throw new Error(
       `A malformed download URL was found: ${downloadURL}.`
@@ -207,10 +210,15 @@ export const downloadBrowser = async ({
   }
 
   try {
+    console.log("downloadFile|",downloadURL);
+    console.log("archivePath|",archivePath);
+
     await downloadFile({
       url: downloadURL,
       to: () => archivePath,
       onProgress: (progress) => {
+        console.log(progress);
+
         if (
           progress.totalSize === null ||
           progress.percent === null
