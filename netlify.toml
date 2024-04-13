@@ -8,32 +8,12 @@
 [functions]
   node_bundler = "esbuild"
   external_node_modules = ["express", '@remotion/compositor-*']
-  included_files = ["assets/var/task/downloads-cache-dir/*", "var/task/downloads-cache-dir/*", "assets/var/task/.remotion/*", "var/task/.remotion/*", "assets/.remotion", ".remotion", "assets/.remotion", ".remotion/*", "assets/.remotion/*", "assets/downloads-cache-dir/*", "downloads-cache-dir/*", "assets/downloads-cache-dir", "downloads-cache-dir"]
+  included_files = ["assets/var/task/downloads/*", "var/task/downloads/*", "assets/var/task/.remotion/*", "var/task/.remotion/*", "assets/.remotion", ".remotion", "assets/.remotion", ".remotion/*", "assets/.remotion/*", "assets/downloads/*", "downloads/*", "assets/downloads", "downloads"]
 [[redirects]]
   force = true
   from = "/api/*"
   status = 200
   to = "/.netlify/functions/api/:x"
-[[redirects]]
-  force = true
-  from = "/.remotion"
-  status = 200
-  to = "/downloads-cache-dir"
-[[redirects]]
-  force = true
-  from = "/var/task/.remotion"
-  status = 200
-  to = "/downloads-cache-dir"
-[[redirects]]
-  force = true
-  from = "/.remotion/*"
-  status = 200
-  to = "/downloads-cache-dir/*"
-[[redirects]]
-  force = true
-  from = "/var/task/.remotion/*"
-  status = 200
-  to = "/downloads-cache-dir/*"
 [[headers]]
   for = "/site.webmanifest"
   [headers.values]

@@ -31,6 +31,6 @@ assets/video/originals/*
 
 build
 
-downloads-cache-dir
-downloads-cache-dir/*
-downloads-cache-dir/**/*
+./downloads
+./downloads/*
+./downloads/**/*
