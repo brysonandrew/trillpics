@@ -11,21 +11,23 @@ import { FooterView } from "@pages/home/footer/view";
 import { trpc } from "@/utils/trpc";
 
 export const Footer = () => {
-  // const handler = useRender()
   const {
     isVideoMode,
     isPreviewOpen,
     togglePreview,
     videoPics,
+    fps
   } = useVideoStore();
 
   const mutation =
     trpc.generate.useMutation<any>({
       input: { pics: videoPics },
+
     } as any);
   const handleProcess = () => {
     mutation.mutate({
       input: { pics: videoPics },
+      fps,
     } as any);
   };
 
@@ -53,7 +55,7 @@ export const Footer = () => {
             <>
               {videoPics.length > 0 && (
                 <div className="row-space grow h-20">
-                  <div className="column-reverse items-start gap-2 h-20">
+                  <div className="column-reverse items-start justify-center gap-2 h-20">
                     <Button
                       title="View video preview"
                       onClick={

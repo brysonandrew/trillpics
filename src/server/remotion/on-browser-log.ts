@@ -2,6 +2,7 @@ import { type BrowserLog } from "@remotion/renderer";
 export const onBrowserLog = (
   info: BrowserLog
 ) => {
+console.log(  "ON BROWSER LOG")
   console.log(
     `${info.type}: ${info.text}`
   );

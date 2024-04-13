@@ -4,6 +4,7 @@ export type TPic = string;
 export type TPics = TPic[];
 
 export type TVideoState = {
+  fps: number;
   playerElement: PlayerRef | null;
   picsCount: number;
   picsEntries: TPics[];
