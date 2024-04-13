@@ -15,7 +15,6 @@ import * as os from "node:os";
 import * as fs from "node:fs";
 import * as path from "node:path";
 
-
 export const render = async ({
   input,
   fps,
@@ -49,7 +48,7 @@ export const render = async ({
   const openBrowserOptions = {
     onBrowserDownload,
     shouldDumpIo: true,
-    browserExecutable: null,
+    browserExecutable,
   };
   console.log(
     "PUPPETEER - OPEN BROWSER"
@@ -62,7 +61,7 @@ export const render = async ({
   const options: EnsureBrowserOptions =
     {
       onBrowserDownload,
-      browserExecutable: null,
+      browserExecutable,
     };
   console.log("ENSURE BROWSER");
 
