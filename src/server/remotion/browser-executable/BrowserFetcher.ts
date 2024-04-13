@@ -1,3 +1,5 @@
+import extractZip from "extract-zip";
+import { promisify } from "node:util";
 /**
  * Copyright 2017 Google Inc. All rights reserved.
  *
@@ -17,10 +19,6 @@
 import * as fs from "node:fs";
 import * as os from "node:os";
 import * as path from "node:path";
-
-import extractZip from "extract-zip";
-
-import { promisify } from "node:util";
 
 import { downloadFile } from "./download-file";
 import { makeFileExecutableIfItIsNot } from "./make-file-executable";
@@ -93,18 +91,21 @@ const getPlatform = (): Platform => {
 const destination =
   "chrome-headless-shell";
 
-export const getDownloadsFolder = () => {
-  return path.join(
-    //getDownloadsCacheDir()
-    "var",
-    "task",
-    "downloads-cache-dir",
-    destination
-  );
-};
+export const getDownloadsFolder =
+  () => {
+    const dl = path.join(
+      //getDownloadsCacheDir()
+      // "var",
+      // "task",
+      "downloads-cache-dir",
+      destination
+    );
+    console.log(dl);
+    return dl;
+  };
 
 export const downloadBrowser = async ({
-  logLevel,
+  logLevel = 'verbose',
   indent,
   onProgress,
   version,

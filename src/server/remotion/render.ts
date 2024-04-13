@@ -37,11 +37,16 @@ export const render = async ({
   // const browserExecutable =
   //   resolveAssets("video/bin/Chromium");
   // const downloadURL = getChromeDownloadUrl({platform, version});
-  const browserExecutable =
-    getLocalBrowserExecutable(null);
+  const revisionInfo =
+    await getLocalBrowserExecutable();
   // const executablePath =
   // getExecutablePath();
+  console.log("REVISION");
+  console.log(revisionInfo);
+  const browserExecutable =
+    revisionInfo?.executablePath;
   console.log(browserExecutable);
+
   // resolveAssets(
   //   "chrome-headless-shell/mac_arm-123.0.6312.122/chrome-headless-shell-mac-arm64/chrome-headless-shell"
   // );
