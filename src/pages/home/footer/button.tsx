@@ -20,7 +20,7 @@ export const Button: FC<TProps> = ({
   return (
     <button
       className={clsx(
-        "row relative h-14 pr-4 mr-4 text-lg text-white dark:text-gray-8",
+        "row relative h-18 pr-4 mr-4 text-lg text-white dark:text-gray-8",
         classValue
       )}
       {...props}

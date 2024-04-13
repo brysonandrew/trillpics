@@ -43,9 +43,9 @@ export const render = async ({
   // getExecutablePath();
   console.log("REVISION");
   console.log(revisionInfo);
-  const browserExecutable =
-    revisionInfo?.executablePath;
-  console.log(browserExecutable);
+  const browserExecutable = null;
+  //   revisionInfo?.executablePath;
+  // console.log(browserExecutable);
 
   // resolveAssets(
   //   "chrome-headless-shell/mac_arm-123.0.6312.122/chrome-headless-shell-mac-arm64/chrome-headless-shell"
