@@ -105,13 +105,13 @@ interface BrowserFetcherRevisionInfo {
 
 export const getLocalBrowserExecutable =
   async (): Promise<BrowserFetcherRevisionInfo | null> => {
-    const { onProgress, version } =
+    const { onProgress, version }  =
       onBrowserDownload();
 
-    const revisionInfo =
+    const revisionInfo = 
       await downloadBrowser({
         indent: true,
-        logLevel: "verbose",
+        logLevel: "verbose", 
         onProgress,
         version,
       });

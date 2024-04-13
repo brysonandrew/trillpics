@@ -57,6 +57,12 @@ function existsAsync(
 ): Promise<boolean> {
   return new Promise((resolve) => {
     fs.access(filePath, (err) => {
+      console.log(
+        "ACCESS ERROR URL",
+        filePath,
+        err
+      );
+
       return resolve(!err);
     });
   });
@@ -93,13 +99,13 @@ const destination =
 
 export const getDownloadsFolder =
   () => {
-		const cwd = process.cwd();
+    const cwd = process.cwd();
 
     const dl = path.join(
       //getDownloadsCacheDir()
       // "var",
       // "task",
-			cwd,
+      cwd,
       "downloads-cache-dir",
       destination
     );
@@ -108,7 +114,7 @@ export const getDownloadsFolder =
   };
 
 export const downloadBrowser = async ({
-  logLevel = 'verbose',
+  logLevel = "verbose",
   indent,
   onProgress,
   version,
@@ -121,14 +127,20 @@ export const downloadBrowser = async ({
   BrowserFetcherRevisionInfo | undefined
 > => {
   const platform = getPlatform();
+  console.log("platform URL", platform);
   const downloadURL =
     getChromeDownloadUrl({
       platform,
       version,
     });
+  console.log(
+    "DOWNLOAD URL",
+    downloadURL
+  );
   const fileName = downloadURL
     .split("/")
     .pop();
+
   if (!fileName) {
     throw new Error(
       `A malformed download URL was found: ${downloadURL}.`
@@ -141,10 +153,12 @@ export const downloadBrowser = async ({
     downloadsFolder,
     fileName
   );
+  console.log("ARCHIVE ", archivePath);
   const outputPath = getFolderPath(
     downloadsFolder,
     platform
   );
+  console.log("OUTPUT ", outputPath);
 
   if (await existsAsync(outputPath)) {
     return getRevisionInfo();
@@ -155,9 +169,15 @@ export const downloadBrowser = async ({
       downloadsFolder
     ))
   ) {
+    console.log(
+      "MKDIR",
+      "recursive",
+      downloadsFolder
+    );
     await mkdirAsync(downloadsFolder, {
       recursive: true,
     });
+    console.log("MKDIR", "done");
   }
 
   // Use system Chromium builds on Linux ARM devices
@@ -188,6 +208,7 @@ export const downloadBrowser = async ({
             "Expected totalSize and percent to be defined"
           );
         }
+        console.log(progress);
 
         onProgress({
           downloadedBytes:
@@ -251,10 +272,21 @@ const getExecutablePath = () => {
 
 export const getRevisionInfo =
   (): BrowserFetcherRevisionInfo => {
+    console.log("GET REVISION");
     const executablePath =
       getExecutablePath();
+    console.log(
+      "GET REVISION",
+      executablePath
+    );
+
     const downloadsFolder =
       getDownloadsFolder();
+    console.log(
+      "GET REVISION",
+      downloadsFolder
+    );
+
     const platform = getPlatform();
     const folderPath = getFolderPath(
       downloadsFolder,
@@ -265,6 +297,9 @@ export const getRevisionInfo =
       platform,
       version: null,
     });
+
+    console.log("GET REVISION", url);
+
     const local =
       fs.existsSync(folderPath);
     return {
