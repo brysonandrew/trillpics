@@ -30,3 +30,7 @@ assets/video/originals/*
 .netlify
 
 build
+
+downloads-cache-dir
+downloads-cache-dir/*
+downloads-cache-dir/**/*
