@@ -32,16 +32,22 @@ const getBrowserStatus = (
 
 		return {path: browserExecutablePath, type: 'user-defined-path'};
 	}
+	console.log("LOCAL BROWSER")
 
 	const localBrowser = getLocalBrowser();
+	console.log(localBrowser)
 	if (localBrowser !== null) {
 		return {path: localBrowser, type: 'local-browser'};
 	}
+	console.log("REVISION INFO")
 
 	const revision = getRevisionInfo();
+	console.log(revision)
+
 	if (revision.local && fs.existsSync(revision.executablePath)) {
 		return {path: revision.executablePath, type: 'local-puppeteer-browser'};
 	}
+	console.log("NADA")
 
 	return {type: 'no-browser'};
 };
