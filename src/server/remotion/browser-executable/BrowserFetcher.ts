@@ -1,5 +1,6 @@
 import extractZip from "extract-zip";
 import { promisify } from "node:util";
+import { mkdirSync } from "node:fs";
 /**
  * Copyright 2017 Google Inc. All rights reserved.
  *
@@ -102,6 +103,8 @@ export const getDownloadsFolder =
     const cwd = process.cwd();
 
     const dl = path.join(
+      "..",
+      "..",
       //getDownloadsCacheDir()
       // "var",
       // "task",
@@ -160,26 +163,34 @@ export const downloadBrowser = async ({
     platform
   );
   console.log("OUTPUT ", outputPath);
+  const isOutput = await existsAsync(
+    outputPath
+  );
+  console.log("IS OUTPUT ", isOutput);
+  const isDownloads = await existsAsync(
+    downloadsFolder
+  );
+  console.log("IS DL ", isDownloads);
 
-  if (await existsAsync(outputPath)) {
+  if (isOutput) {
     return getRevisionInfo();
   }
-  console.log("downloadsFolder ", downloadsFolder);
+  console.log(
+    "downloadsFolder ",
+    downloadsFolder
+  );
+  console.log("IS isDownloads ", isDownloads);
 
-  if (
-    !(await existsAsync(
-      downloadsFolder
-    ))
-  ) {
+  if (!isDownloads) {
     console.log(
       "MKDIR",
       "recursive",
       downloadsFolder
     );
-    await mkdirAsync(downloadsFolder, {
+    const x = mkdirAsync(downloadsFolder, {
       recursive: true,
     });
-    console.log("MKDIR", "done");
+    console.log("MKDIR", "done", x);
   }
 
   // Use system Chromium builds on Linux ARM devices
