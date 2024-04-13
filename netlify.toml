@@ -6,8 +6,9 @@
   command = "npm run build"
   publish = "dist"
 [functions]
-  external_node_modules = ["express",'@remotion/compositor-*']
   node_bundler = "esbuild"
+  external_node_modules = ["express", '@remotion/compositor-*']
+  included_files = [".remotion", "assets/.remotion", ".remotion/*", "assets/.remotion/*", "assets/downloads-cache-dir/*", "downloads-cache-dir/*"]
 [[redirects]]
   force = true
   from = "/api/*"
@@ -23,6 +24,16 @@
   from = "/var/task/.remotion"
   status = 200
   to = "/downloads-cache-dir"
+[[redirects]]
+  force = true
+  from = "/.remotion/*"
+  status = 200
+  to = "/downloads-cache-dir/*"
+[[redirects]]
+  force = true
+  from = "/var/task/.remotion/*"
+  status = 200
+  to = "/downloads-cache-dir/*"
 [[headers]]
   for = "/site.webmanifest"
   [headers.values]
