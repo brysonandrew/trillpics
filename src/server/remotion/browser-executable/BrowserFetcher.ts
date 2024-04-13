@@ -107,7 +107,7 @@ export const getDownloadsFolder =
       // "var",
       // "task",
       cwd,
-      "downloads",
+      "tmp",
       destination
     );
     console.log(dl);
