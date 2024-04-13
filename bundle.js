@@ -16181,6 +16181,148 @@ remotion_1.Internals.CSSUtils.injectCSS(`
 
 // EXTERNAL MODULE: ./node_modules/remotion/dist/cjs/index.js
 var cjs = __webpack_require__(27982);
+;// CONCATENATED MODULE: ./src/remotion/constants.ts
+const DEFAULT_FPS = 24;
+const PIC_COUNT = 1;
+const VIDEO_PICS = [
+  ...Array(PIC_COUNT)
+].map((_, index) => index + 1);
+const PIC_DURATION_IN_SECONDS = 1;
+const PIC_DURATION_IN_FRAMES = PIC_DURATION_IN_SECONDS * DEFAULT_FPS;
+const TOTAL_DURATION_IN_FRAMES = PIC_DURATION_IN_FRAMES * PIC_COUNT;
+const PIC_SIZE = 1024;
+const WIDTH = 1920;
+const HEIGHT = 1080;
+const ASPECT_RATIO = WIDTH / HEIGHT;
+const DIMENSIONS = {
+  width: WIDTH,
+  height: HEIGHT
+};
+
+// EXTERNAL MODULE: ./node_modules/@remotion/media-utils/dist/index.js
+var dist = __webpack_require__(56463);
+;// CONCATENATED MODULE: ./src/remotion/pic-series/series/audio/visualizer.tsx
+
+
+const Visualizer = ({
+  src,
+  barCount = 30,
+  numberOfSamples = 256,
+  ...props
+}) => {
+  const frame = (0,cjs.useCurrentFrame)();
+  const { fps } = (0,cjs.useVideoConfig)();
+  const audioData = (0,dist.useAudioData)(src);
+  if (!audioData) {
+    return null;
+  }
+  const rawVisualization = (0,dist.visualizeAudio)({
+    fps,
+    frame,
+    audioData,
+    numberOfSamples
+  });
+  const visualization = rawVisualization.slice(
+    Math.floor(numberOfSamples ** (1 / 32)),
+    Math.floor(numberOfSamples ** (1 / 32)) + barCount / 2
+  );
+  const mirroredVisualization = [
+    ...visualization.slice(1).reverse(),
+    ...visualization
+  ];
+  return /* @__PURE__ */ React.createElement(React.Fragment, null, /* @__PURE__ */ React.createElement(cjs.Audio, { src }), mirroredVisualization.map((v, i) => {
+    return /* @__PURE__ */ React.createElement(
+      "div",
+      {
+        ...props,
+        key: i,
+        style: {
+          height: `${(0,cjs.interpolate)(
+            1e3 * Math.sqrt(v),
+            [0, 500],
+            [0, 100]
+          )}%`,
+          minHeight: "1%",
+          width: `2%`,
+          backgroundColor: "orange",
+          ...props == null ? void 0 : props.style
+        }
+      }
+    );
+  }));
+};
+
+;// CONCATENATED MODULE: ./src/remotion/pic-series/series/audio/index.tsx
+
+
+const AudioAndVisualizer = (props) => {
+  const src = props.src;
+  return /* @__PURE__ */ React.createElement(React.Fragment, null, /* @__PURE__ */ React.createElement(cjs.Audio, { src }), /* @__PURE__ */ React.createElement(Visualizer, { ...props }));
+};
+
+;// CONCATENATED MODULE: ./src/components/collection/config/items.ts
+const resolveSrc = (name, dir = "pics", ext = "avif") => `video/${dir}/${name}.${ext}`;
+const resolvePicsSrc = (name) => resolveSrc(name);
+const resolveAudioSrc = (name) => resolveSrc(name, "audio", "mp3");
+
+;// CONCATENATED MODULE: ./src/remotion/pic-series/series/index.tsx
+
+
+
+
+const PicSeries = ({ pics }) => {
+  const frame = (0,cjs.useCurrentFrame)();
+  const { fps, height } = (0,cjs.useVideoConfig)();
+  const frameInSecond = frame % fps;
+  const progressInSecond = frameInSecond / fps;
+  const audioSrc = (0,cjs.staticFile)(
+    resolveAudioSrc(
+      "insurrection-10941"
+    )
+  );
+  return /* @__PURE__ */ React.createElement(cjs.AbsoluteFill, null, /* @__PURE__ */ React.createElement(cjs.Series, null, pics.map((pic) => {
+    const src = (0,cjs.staticFile)(
+      resolvePicsSrc(pic)
+    );
+    return /* @__PURE__ */ React.createElement(
+      cjs.Series.Sequence,
+      {
+        key: `${src}`,
+        durationInFrames: fps
+      },
+      /* @__PURE__ */ React.createElement(
+        cjs.AbsoluteFill,
+        {
+          style: {
+            left: 0,
+            top: (PIC_SIZE - height * ASPECT_RATIO) * progressInSecond
+          }
+        },
+        /* @__PURE__ */ React.createElement(
+          cjs.Img,
+          {
+            src,
+            alt: src
+          }
+        )
+      )
+    );
+  })), /* @__PURE__ */ React.createElement(
+    AudioAndVisualizer,
+    {
+      src: audioSrc
+    }
+  ));
+};
+
+// EXTERNAL MODULE: ./node_modules/zod/lib/index.mjs
+var lib = __webpack_require__(1604);
+;// CONCATENATED MODULE: ./src/remotion/pic-series/schema.ts
+
+const PIC_SERIES_SCHEMA = lib.z.object({
+  pics: lib.z.array(lib.z.string())
+});
+
 ;// CONCATENATED MODULE: ./src/utils/array/shuffle.ts
 const shuffle = (array) => {
   let currentIndex = array.length, randomIndex;
@@ -16205,12 +16347,14 @@ const precache_namespaceObject = {"length":973};
 ;// CONCATENATED MODULE: ./src/store/state/index.ts
 
 
+
 const { length: picsCount } = precache_namespaceObject;
 const inits = [...Array(picsCount)].map(
   (_, index) => `${++index}`
 );
 const shuffledInits = shuffle(inits);
 const initStoreState = (set, get) => ({
+  fps: DEFAULT_FPS,
   isPlaying: false,
   playerElement: null,
   picsCount,
@@ -18158,147 +18302,25 @@ const createImmerState = immer_immer((...a) => ({
 const createPersistState = persist(createImmerState, STORAGE);
 const useVideoStore = create(createPersistState);
 
-;// CONCATENATED MODULE: ./src/remotion/constants.ts
-const FPS = 24;
-const PIC_COUNT = 1;
-const VIDEO_PICS = [
-  ...Array(PIC_COUNT)
-].map((_, index) => index + 1);
-const PIC_DURATION_IN_SECONDS = 1;
-const PIC_DURATION_IN_FRAMES = PIC_DURATION_IN_SECONDS * FPS;
-const TOTAL_DURATION_IN_FRAMES = PIC_DURATION_IN_FRAMES * PIC_COUNT;
-const PIC_SIZE = 1024;
-const WIDTH = 1920;
-const HEIGHT = 1080;
-const ASPECT_RATIO = WIDTH / HEIGHT;
-const DIMENSIONS = {
-  width: WIDTH,
-  height: HEIGHT
-};
-
-// EXTERNAL MODULE: ./node_modules/@remotion/media-utils/dist/index.js
-var dist = __webpack_require__(56463);
-;// CONCATENATED MODULE: ./src/remotion/pic-series/series/audio/visualizer.tsx
+;// CONCATENATED MODULE: ./src/remotion/use-props.ts
 
 
-const Visualizer = ({
-  src,
-  barCount = 30,
-  numberOfSamples = 256,
-  ...props
-}) => {
-  const frame = (0,cjs.useCurrentFrame)();
-  const { fps } = (0,cjs.useVideoConfig)();
-  const audioData = (0,dist.useAudioData)(src);
-  if (!audioData) {
-    return null;
-  }
-  const rawVisualization = (0,dist.visualizeAudio)({
+
+const INPUT_PROPS = (0,cjs.getInputProps)();
+const useRemotionProps = () => {
+  const { videoPics, fps } = useVideoStore();
+  const videoPicsCount = videoPics.length;
+  const pics = videoPicsCount === 0 ? [...Array(5)].map(
+    (_, index) => `${++index}`
+  ) : videoPics;
+  const durationInFrames = pics.length * fps || 1;
+  return {
     fps,
-    frame,
-    audioData,
-    numberOfSamples
-  });
-  const visualization = rawVisualization.slice(
-    Math.floor(numberOfSamples ** (1 / 32)),
-    Math.floor(numberOfSamples ** (1 / 32)) + barCount / 2
-  );
-  const mirroredVisualization = [
-    ...visualization.slice(1).reverse(),
-    ...visualization
-  ];
-  return /* @__PURE__ */ React.createElement(React.Fragment, null, /* @__PURE__ */ React.createElement(cjs.Audio, { src }), mirroredVisualization.map((v, i) => {
-    return /* @__PURE__ */ React.createElement(
-      "div",
-      {
-        ...props,
-        key: i,
-        style: {
-          height: `${(0,cjs.interpolate)(
-            1e3 * Math.sqrt(v),
-            [0, 500],
-            [0, 100]
-          )}%`,
-          minHeight: "1%",
-          width: `2%`,
-          backgroundColor: "orange",
-          ...props == null ? void 0 : props.style
-        }
-      }
-    );
-  }));
+    durationInFrames,
+    props: { ...INPUT_PROPS, pics },
+    ...DIMENSIONS
+  };
 };
-
-;// CONCATENATED MODULE: ./src/remotion/pic-series/series/audio/index.tsx
-
-
-const AudioAndVisualizer = (props) => {
-  const src = props.src;
-  return /* @__PURE__ */ React.createElement(React.Fragment, null, /* @__PURE__ */ React.createElement(cjs.Audio, { src }), /* @__PURE__ */ React.createElement(Visualizer, { ...props }));
-};
-
-;// CONCATENATED MODULE: ./src/components/collection/config/items.ts
-const resolveSrc = (name, dir = "pics", ext = "avif") => `video/${dir}/${name}.${ext}`;
-const resolvePicsSrc = (name) => resolveSrc(name);
-const resolveAudioSrc = (name) => resolveSrc(name, "audio", "mp3");
-
-;// CONCATENATED MODULE: ./src/remotion/pic-series/series/index.tsx
-
-
-
-
-const PicSeries = ({ pics }) => {
-  const frame = (0,cjs.useCurrentFrame)();
-  const { fps, height } = (0,cjs.useVideoConfig)();
-  const frameInSecond = frame % fps;
-  const progressInSecond = frameInSecond / fps;
-  const audioSrc = (0,cjs.staticFile)(
-    resolveAudioSrc(
-      "insurrection-10941"
-    )
-  );
-  return /* @__PURE__ */ React.createElement(cjs.AbsoluteFill, null, /* @__PURE__ */ React.createElement(cjs.Series, null, pics.map((pic) => {
-    const src = (0,cjs.staticFile)(
-      resolvePicsSrc(pic)
-    );
-    return /* @__PURE__ */ React.createElement(
-      cjs.Series.Sequence,
-      {
-        key: `${src}`,
-        durationInFrames: fps
-      },
-      /* @__PURE__ */ React.createElement(
-        cjs.AbsoluteFill,
-        {
-          style: {
-            left: 0,
-            top: (PIC_SIZE - height * ASPECT_RATIO) * progressInSecond
-          }
-        },
-        /* @__PURE__ */ React.createElement(
-          cjs.Img,
-          {
-            src,
-            alt: src
-          }
-        )
-      )
-    );
-  })), /* @__PURE__ */ React.createElement(
-    AudioAndVisualizer,
-    {
-      src: audioSrc
-    }
-  ));
-};
-
-// EXTERNAL MODULE: ./node_modules/zod/lib/index.mjs
-var lib = __webpack_require__(1604);
-;// CONCATENATED MODULE: ./src/remotion/pic-series/schema.ts
-
-const PIC_SERIES_SCHEMA = lib.z.object({
-  pics: lib.z.array(lib.z.string())
-});
 
 ;// CONCATENATED MODULE: ./src/remotion/pic-series/index.tsx
 
@@ -18306,27 +18328,20 @@ const PIC_SERIES_SCHEMA = lib.z.object({
 
 
 
-const INPUT_PROPS = (0,cjs.getInputProps)();
 const CompositionsPicSeries = () => {
-  const { videoPics } = useVideoStore();
-  const videoPicsCount = videoPics.length;
-  const pics = videoPicsCount === 0 ? [...Array(5)].map(
-    (_, index) => `${++index}`
-  ) : videoPics;
-  const durationInFrames = pics.length * FPS || 1;
+  const {
+    props: defaultProps,
+    ...props
+  } = useRemotionProps();
   return /* @__PURE__ */ React.createElement(
     cjs.Composition,
     {
       id: "pic-series",
       component: PicSeries,
-      durationInFrames,
-      fps: FPS,
       schema: PIC_SERIES_SCHEMA,
-      defaultProps: {
-        pics
-      },
+      defaultProps,
       ...DIMENSIONS,
-      ...INPUT_PROPS
+      ...props
     }
   );
 };
