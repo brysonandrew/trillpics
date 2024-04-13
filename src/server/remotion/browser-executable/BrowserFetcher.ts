@@ -93,10 +93,13 @@ const destination =
 
 export const getDownloadsFolder =
   () => {
+		const cwd = process.cwd();
+
     const dl = path.join(
       //getDownloadsCacheDir()
       // "var",
       // "task",
+			cwd,
       "downloads-cache-dir",
       destination
     );
