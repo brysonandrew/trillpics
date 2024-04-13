@@ -7,13 +7,22 @@
   publish = "dist"
 [functions]
   external_node_modules = ["express",'@remotion/compositor-*']
-  included_files = [".remotion","assets/.remotion"] 
   node_bundler = "esbuild"
 [[redirects]]
   force = true
   from = "/api/*"
   status = 200
   to = "/.netlify/functions/api/:x"
+[[redirects]]
+  force = true
+  from = "/.remotion"
+  status = 200
+  to = "/downloads-cache-dir"
+[[redirects]]
+  force = true
+  from = "/var/task/.remotion"
+  status = 200
+  to = "/downloads-cache-dir"
 [[headers]]
   for = "/site.webmanifest"
   [headers.values]
