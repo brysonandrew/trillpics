@@ -1,10 +1,9 @@
+import { isDev } from "@/server/remotion/is-dev";
+
 export const resolveAssets = (
   path: string
 ) => {
-  console.log(process.env)
-  return process.env.npm_lifecycle_event?.includes(
-    "dev"
-  )
+  return isDev()
     ? //process.env.NETLIFY_LOCAL
       `assets/${path}`
     : path;

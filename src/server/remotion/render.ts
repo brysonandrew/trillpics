@@ -1,16 +1,17 @@
 import { TPicSeriesProps } from "@/remotion/pic-series/types";
 import { onBrowserLog } from "@/server/remotion/on-browser-log";
-import { onBrowserDownload } from "@/server/remotion/on-browser-download";
 import {
   renderMedia,
   selectComposition,
   type RenderMediaOptions,
-  openBrowser,
-  ensureBrowser,
-  type EnsureBrowserOptions,
 } from "@remotion/renderer";
 import { resolveAssets } from "@/server/remotion/resolve-assets";
-import { getLocalBrowserExecutable } from "@/server/remotion/browser-executable/get-local-browser-executable";
+import { isDev } from "@/server/remotion/is-dev";
+import { bundle } from "@remotion/bundler";
+import { webpackOverride } from "@/server/remotion/webpack-override";
+import path from "path";
+import { onProgress } from "@/server/remotion/on-progress";
+import { REMOTION_ENTRY_POINT } from "../../../remotion.config";
 
 export const render = async ({
   input,
@@ -21,52 +22,28 @@ export const render = async ({
 }) => {
   console.log("INIT");
   const id = "pic-series";
-  const serveUrl =
-    "https://brysonandrew.github.io/trillpics";
+  const isDevMode = isDev();
+  console.log("IS DEV", isDevMode);
+  const serveUrl = isDevMode
+    ? await bundle({
+      publicDir:"./assets",
+        entryPoint: path.join(
+          process.cwd(),
+          REMOTION_ENTRY_POINT
+        ),
+        onProgress,
+        webpackOverride,
+      })
+    : "https://brysonandrew.github.io/trillpics";
+  console.log(" serveUrl", serveUrl);
+
   const inputProps = {
     ...input,
     fps,
     durationInFrames:
       fps * input.pics.length,
   };
-  console.log(input);
-
-  // const browserExecutable =
-  //   resolveAssets("video/bin/Chromium");
-  // const downloadURL = getChromeDownloadUrl({platform, version});
-  const revisionInfo =
-    await getLocalBrowserExecutable();
-  // const executablePath =
-  // getExecutablePath();
-  console.log("REVISION");
-  console.log(revisionInfo);
-  const browserExecutable = revisionInfo?.executablePath;
-  // console.log(browserExecutable);
-
-  // resolveAssets(
-  //   "chrome-headless-shell/mac_arm-123.0.6312.122/chrome-headless-shell-mac-arm64/chrome-headless-shell"
-  // );
-  const openBrowserOptions = {
-    onBrowserDownload,
-    shouldDumpIo: true,
-    browserExecutable,
-  };
-  console.log(
-    "PUPPETEER - OPEN BROWSER"
-  );
-  const puppeteerInstance =
-    await openBrowser(
-      "chrome",
-      openBrowserOptions
-    );
-  const options: EnsureBrowserOptions =
-    {
-      onBrowserDownload,
-      browserExecutable,
-    };
-  console.log("ENSURE BROWSER");
-
-  await ensureBrowser(options);
+  console.log(id, serveUrl, input);
 
   const compositionOptions = {
     serveUrl,
@@ -74,10 +51,11 @@ export const render = async ({
     inputProps,
     logLevel: "verbose",
     onBrowserLog,
-    puppeteerInstance,
-    onBrowserDownload,
+    webpackOverride,
+    // puppeteerInstance,
+    // onBrowserDownload,
     binariesDirectory: resolveAssets(
-      "video/bin/"
+      "remotion/bin/"
     ),
   } as any;
   console.log("COMPOSITION");
@@ -98,8 +76,46 @@ export const render = async ({
       outputLocation: `./out/render--${id}.mp4`,
       inputProps,
     };
-
+  console.log(renderMediaOption);
+  console.log("RENDER");
   await renderMedia(renderMediaOption);
 
   console.log("RENDER DONE");
 };
+
+// const browserExecutable =
+//   resolveAssets("remotion/bin/Chromium");
+// const downloadURL = getChromeDownloadUrl({platform, version});
+// const revisionInfo =
+//   await getLocalBrowserExecutable();
+// const executablePath =
+// getExecutablePath();
+// console.log("REVISION");
+// console.log(revisionInfo);
+// const browserExecutable = revisionInfo?.executablePath;
+// console.log(browserExecutable);
+
+// resolveAssets(
+//   "chrome-headless-shell/mac_arm-123.0.6312.122/chrome-headless-shell-mac-arm64/chrome-headless-shell"
+// );
+// const openBrowserOptions = {
+//   onBrowserDownload,
+//   shouldDumpIo: true,
+//   browserExecutable,
+// };
+// console.log(
+//   "PUPPETEER - OPEN BROWSER"
+// );
+// const puppeteerInstance =
+//   await openBrowser(
+//     "chrome",
+//     openBrowserOptions
+//   );
+// const options: EnsureBrowserOptions =
+//   {
+//     onBrowserDownload,
+//     browserExecutable,
+//   };
+// console.log("ENSURE BROWSER");
+
+// await ensureBrowser(options);

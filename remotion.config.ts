@@ -10,10 +10,10 @@
 
 import {Config} from '@remotion/cli/config';
 import {webpackOverride} from './src/server/remotion/webpack-override';
-
+export const REMOTION_ENTRY_POINT = "./src/remotion/index.tsx"
 Config.overrideWebpackConfig(webpackOverride);
 Config.setChromiumDisableWebSecurity(true);
 Config.setVideoImageFormat('jpeg');
 Config.setOverwriteOutput(true);
-Config.setEntryPoint("./src/index.tsx");
+Config.setEntryPoint(REMOTION_ENTRY_POINT);
 Config.setPublicDir("./assets");

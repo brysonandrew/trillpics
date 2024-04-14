@@ -4,15 +4,17 @@
   "description": "Picture gallery",
   "main": "src/main.tsx",
   "types": "src/index.d.ts",
-  "type": "commonjs",
+  "config": {
+    "server_entry": "./src/server/api"
+  },
   "scripts": {
     "build": "vite build",
     "lint": "tsc --build . & eslint . --fix --ext ts,tsx",
-    "dev:server": "tsx watch netlify/functions/api",
+    "dev:server": "tsx watch $npm_package_config_server_entry",
     "dev:client": "vite",
-    "build:server": "tsx watch netlify/functions/api",
-    "build:client": "npm run build",
     "dev": "run-p dev:* --print-label",
+    "build:server": "tsx watch $npm_package_config_server_entry",
+    "build:client": "npm run build",
     "l": "npm run lint",
     "f": "prettier .",
     "ubs-r": "npx update-by-scope @remotion npm install",
@@ -21,12 +23,9 @@
     "ops/collection": "esrun ops/collection",
     "ops/rename": "esrun ops/rename",
     "ops/delete": "esrun ops/delete/deleteDoubleProcessed",
-    "test": "echo \"Error: no test specified\" && exit 1",
     "ops/indexPages": "esrun ops/indexPages",
     "ds": "gh workflow run && gh run list --workflow=studio.yml",
-    "nd": "netlify dev",
-    "nb": "netlify build",
-    "ndo": "npm run nb && netlify deploy -b -d dist -p -o"
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
@@ -115,6 +114,7 @@
     "@remotion/motion-blur": "4.0.141",
     "@remotion/player": "4.0.141",
     "@remotion/shapes": "4.0.141",
+    "@remotion/studio": "^4.0.141",
     "@remotion/tailwind": "4.0.141",
     "@remotion/transitions": "4.0.141",
     "@remotion/zod-types": "4.0.141",

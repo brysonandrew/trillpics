@@ -28,6 +28,7 @@
     "baseUrl": ".",
     "paths": {
       "@/*": ["src/*"],
+      "@/t/*": ["src/types/*"],
       "@components": ["src/components"],
       "@components/*": [
         "src/components/*"
@@ -52,7 +53,6 @@
       ],
       "@routes": ["config/routes"],
       "@routes/*": ["config/routes/*"],
-
       "@uno": ["config/uno"],
       "@uno/*": ["config/uno/*"],
       "@vite": ["config/vite"],
@@ -68,10 +68,6 @@
       "@config/*": ["config/*"],
       "@css/*": ["src/css/*"],
       "@t/*": ["src/types/*"],
-      "@video": ["src/remotion"],
-      "@video/*": [
-        "src/remotion/*"
-      ],
       "@pages-workshop-config-types/*": [
         "src/pages/workshop/config/types/*"
       ],
