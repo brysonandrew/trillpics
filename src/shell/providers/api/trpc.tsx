@@ -11,7 +11,7 @@ const SERVER_ORIGIN = (
   import.meta.env ?? process.env
 )._IS_LOCAL
   ? `http://localhost:${API_PORT}`
-  : "https://trill.pics";
+  : "https://trillpics-1.onrender.com";
 
 const url = `${SERVER_ORIGIN}${SERVER_PATH}`;
 

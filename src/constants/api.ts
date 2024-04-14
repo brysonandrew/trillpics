@@ -2,11 +2,14 @@
 export const CLIENT_ORIGINS = [
   // "https://trill-pics.fly.dev",
   "https://trill.pics",
+  "https://trillpics-1.onrender.com/api",
   "http://localhost:3000",
   "http://localhost:3001",
   "http://localhost:8888",
   "http://localhost:5173",
-]
+];
 
 export const API_PORT = 3002;
-export const SERVER_PATH= "/api"
+export const SERVER_PATH = "/api";
+// export const SERVER_PATH =
+//   "https://trillpics-1.onrender.com/api";
