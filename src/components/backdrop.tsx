@@ -25,7 +25,7 @@ export const Backdrop: FC<TProps> = ({
             console.log("click");
             togglePreview(false);
           }}
-          className="inset-0 z-60 fade-in-animation zoom-out"
+          className="inset-0 z-60 fade-in-animation cursor-pointer"
           style={{
             zIndex: 0,
             ...(viewport.isDimensions

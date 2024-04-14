@@ -20,7 +20,6 @@ export const render = async ({
   input: TPicSeriesProps;
   fps: number;
 }) => {
-  console.log("INIT");
   const id = "pic-series";
   const isLocalMode = isLocal();
   const serveUrl = isLocalMode
@@ -37,7 +36,6 @@ export const render = async ({
         webpackOverride,
       })
     : "https://brysonandrew.github.io/trillpics";
-  console.log("serveUrl", serveUrl);
 
   const inputProps = {
     ...input,

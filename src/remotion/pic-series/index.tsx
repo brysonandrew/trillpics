@@ -1,36 +1,68 @@
 import { FC } from "react";
-import { PicSeries } from "@/remotion/pic-series/series";
-import { DIMENSIONS } from "@/remotion/constants";
-import { Composition } from "remotion";
-import { PIC_SERIES_SCHEMA } from "@/remotion/pic-series/schema";
-import { useRemotionProps } from "@/remotion/use-props";
 import {
-  TPicSeriesSchema,
-  TPicSeriesProps,
-} from "@/remotion/pic-series/types";
+  PIC_SIZE,
+  ASPECT_RATIO,
+} from "@/remotion/constants";
+import {
+  AbsoluteFill,
+  Img,
+  Series,
+  staticFile,
+  useCurrentFrame,
+  useVideoConfig,
+} from "remotion";
+import {
+  resolveAudioSrc,
+  resolvePicSrc,
+} from "@/components/collection/config/src";
+import { TPicSeriesProps } from "@/remotion/pic-series/types";
 
-export const CompositionsPicSeries: FC =
-  () => {
-    const {
-      props: defaultProps,
-      ...props
-    } = useRemotionProps();
-    console.log(
-      "defaultProps",
-      defaultProps
-    );
-    console.log("props", props);
-    return (
-      <Composition<
-        TPicSeriesSchema,
-        TPicSeriesProps
-      >
-        id="pic-series"
-        component={PicSeries}
-        schema={PIC_SERIES_SCHEMA}
-        defaultProps={defaultProps}
-        {...DIMENSIONS}
-        {...props}
-      />
-    );
-  };
+export const PicSeries: FC<
+  TPicSeriesProps
+> = ({ pics }) => {
+  const frame = useCurrentFrame();
+  const { fps, height } =
+    useVideoConfig();
+  const frameInSecond = frame % fps;
+  const progressInSecond =
+    frameInSecond / fps;
+
+  const audioSrcPath = resolveAudioSrc(
+    "insurrection-10941"
+  );
+  const audioSrc = staticFile(
+    audioSrcPath
+  );
+  return (
+    <Series>
+      {pics.map((pic) => {
+        const srcPath =
+          resolvePicSrc(pic);
+        const src = staticFile(srcPath);
+
+        return (
+          <Series.Sequence
+            key={`${src}`}
+            durationInFrames={fps}
+          >
+            <AbsoluteFill
+              style={{
+                left: 0,
+                top:
+                  (PIC_SIZE -
+                    height *
+                      ASPECT_RATIO) *
+                  progressInSecond,
+              }}
+            >
+              <Img
+                src={src}
+                alt={src}
+              />
+            </AbsoluteFill>
+          </Series.Sequence>
+        );
+      })}
+    </Series>
+  );
+};

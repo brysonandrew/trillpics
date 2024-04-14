@@ -16,7 +16,7 @@
     "build": "vite build",
     "preview:api": "npm run api",
     "preview:client": "vite preview",
-    "preview": "run-p preview:* --print-label",
+    "preview": "_IS_LOCAL=true && run-p preview:* --print-label",
     "bp": "npm run build && npm run preview",
     "start": "npm run app:server && node ./dist/index.html",
     "l": "npm run lint",
