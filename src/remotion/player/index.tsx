@@ -1,13 +1,13 @@
 import { useRef, useState } from "react";
 import { Player } from "@remotion/player";
 import { useVideoStore } from "src/store";
-import { Backdrop } from "@components/pics/item/pic/Backdrop";
 import { useViewport } from "@shell/providers/context/viewport";
 import { Empty } from "@pages/home/pics/Empty";
 import { PicSeries } from "../pic-series/series";
 import { usePoster } from "@/remotion/player/ui/poster";
 import { usePlayerListeners } from "@/hooks/usePlayerListeners";
 import { useRemotionPlayerProps } from "@/remotion/player/use-props";
+import { Backdrop } from "@/components/backdrop";
 
 export const VideoPlayer = () => {
   const isFirstRef = useRef(true)

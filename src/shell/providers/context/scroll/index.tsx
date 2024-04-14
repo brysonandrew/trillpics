@@ -17,7 +17,7 @@ import {
   useNavigate,
 } from "react-router";
 import { useSearchParams } from "react-router-dom";
-import { SEARCH_PARAM_ID } from "@components/pics/useImage";
+import { SEARCH_PARAM_ID } from "@/components/pic/useImage";
 import { TMotionPoint } from "@t/animation";
 import { NOOP } from "@brysonandrew/utils-function";
 import { ListOnScrollProps } from "react-window";

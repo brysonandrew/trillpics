@@ -1,7 +1,7 @@
 import { useMemo } from 'react';
-import { Image } from './cells/image';
 import { createColumnHelper } from '@tanstack/react-table';
 import { TRow } from '@pages/home/pics/use-pics-table';
+import { Pic } from '@/components/pic';
 
 export const useColumns = (
   rows: TRow[],
@@ -26,7 +26,7 @@ export const useColumns = (
         {
           cell: (cell) => {
             return (
-              <Image
+              <Pic
                 colIndex={index}
                 cell={cell}
                 size={size}

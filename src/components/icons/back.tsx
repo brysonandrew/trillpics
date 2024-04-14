@@ -3,20 +3,22 @@ import { resolveUrlId } from "@brysonandrew/utils-attributes";
 import { LINEAR_GRADIENT_SVG_ID } from "@/components/gradients/linear-gradient-svg";
 import { TSvgProps } from "@brysonandrew/config-types";
 
-export const IconsGenerate: FC<TSvgProps> = (props) => {
+export const IconsBack: FC<
+  TSvgProps
+> = (props) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      width="40px"
-      height="40px"
-      viewBox="0 0 24 24"
+      width="40"
+      height="40"
+      viewBox="0 0 22 22"
       {...props}
     >
       <path
         fill={resolveUrlId(
           LINEAR_GRADIENT_SVG_ID
         )}
-        d="M7 7h4v4H7zm-2 6v-2h2v2zm0 0v4H1v-4zm8 0h-2v-2h2zm4 0h-4v4h4zm2-2v2h-2v-2zm0 0h4V7h-4z"
+        d="M5 12v-2h1V9h1V8h1V7h1V6h2v2h-1v1H9v1h9v2H9v1h1v1h1v2H9v-1H8v-1H7v-1H6v-1"
       />
     </svg>
   );

@@ -2,9 +2,7 @@ import { FC } from "react";
 import { TClassValueProps } from "@brysonandrew/config-types";
 import clsx, { ClassValue } from "clsx";
 import { useViewport } from "@shell/providers/context/viewport";
-import { Item } from "../../pics/item";
-import { resolveCompositeKey } from "@utils/keys";
-import { resolveConfigFromSize } from "@components/pics/pic/resolveDimensionsFromSize";
+import { resolveConfigFromSize } from "@/components/pic/resolveDimensionsFromSize";
 
 type TProps = TClassValueProps & {
   listClassValue: ClassValue;
@@ -49,16 +47,17 @@ export const Category: FC<TProps> = ({
                 index % vp.colsCount,
             });
           return (
-            <Item
-              isShop
-              canvas="black"
-              name={name}
-              key={resolveCompositeKey(
-                categoryName,
-                name
-              )}
-              imageConfig={imageConfig}
-            />
+            null
+            // <Item
+            //   isShop
+            //   canvas="black"
+            //   name={name}
+            //   key={resolveCompositeKey(
+            //     categoryName,
+            //     name
+            //   )}
+            //   imageConfig={imageConfig}
+            // />
           );
         })}
       </ul>

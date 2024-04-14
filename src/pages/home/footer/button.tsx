@@ -20,12 +20,18 @@ export const Button: FC<TProps> = ({
   return (
     <button
       className={clsx(
-        "row relative h-18 pr-4 mr-4 text-lg text-white dark:text-gray-8",
+        "row relative h-14 pr-4 mr-4 text-lg text-white dark:text-gray-8",
         classValue
       )}
       {...props}
     >
-      <Background style={{borderRadius:BORDER_RADIUS.XL}} />
+      {/* <Background
+        style={{
+          borderRadius:
+            BORDER_RADIUS.XL,
+        }}
+      /> */}
+      <div className="absolute inset-0 dark:bg-black bg-gray-6 opacity-50 rounded-full" />
       <Circle>
         <Icon width={28} height={28} />
       </Circle>

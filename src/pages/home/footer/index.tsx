@@ -5,7 +5,7 @@ import { IconsPlay } from "@components/icons/play";
 import { Empty } from "@pages/home/footer/empty";
 import { FooterVideo } from "@pages/home/footer/video";
 import { Circle } from "@components/decoration/circle";
-import { IconsBack } from "@components/icons/preview";
+import { IconsBack } from "@/components/icons/back";
 import { IconsGenerate } from "@components/icons/generate";
 import { FooterView } from "@pages/home/footer/view";
 import { trpc } from "@/utils/trpc";
@@ -41,7 +41,7 @@ export const Footer = () => {
         videoPics.length === 0 && (
           <Empty />
         )}
-      <footer className="fixed left-0 bottom-3 right-0 h-0 font-mono z-10">
+      <footer className="fixed left-0 bottom-6 right-0 h-0 font-mono z-10">
         {isVideoMode &&
           isPreviewOpen && (
             <div className="fill-screen center text-main-inverted">
@@ -56,7 +56,7 @@ export const Footer = () => {
             <>
               {videoPics.length > 0 && (
                 <div className="row-space grow h-0">
-                  <div className="column-reverse items-start justify-center gap-2 h-20">
+                  <div className="column-reverse items-start justify-center gap-2 h-32">
                     <Button
                       title="View video preview"
                       onClick={
@@ -80,7 +80,7 @@ export const Footer = () => {
                   </div>
                   <Button
                     title="Generate video"
-                    onClick={
+                    onClick={ 
                       handleProcess
                     }
                     Icon={IconsGenerate}

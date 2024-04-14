@@ -1,9 +1,7 @@
 import type { FC } from "react";
-import { TEXT_GRADIENT } from "@constants/css/gradient";
 import {
   TChildren,
   TClassValueProps,
-  TSvgProps,
 } from "@brysonandrew/config-types";
 
 type TProps = {
@@ -21,8 +19,7 @@ export const Button: FC<TProps> = ({
   return (
     <div>
       <div
-        className="absolute left-1/2 -translate-x-1/2 top-1/2 -translate-y-1/2 z-60 pointer-events-none"
-        style={TEXT_GRADIENT}
+        className="absolute left-1/2 -translate-x-1/2 top-1/2 -translate-y-1/2 _gradient-text z-60 pointer-events-none"
       >
         <div className="row gap-4">
           {/*           
@@ -34,7 +31,7 @@ export const Button: FC<TProps> = ({
           >
             <path
               stroke={resolveUrlId(
-                LINEAR_GRADIENT_BLUE_PINK_YELLOW_SVG_ID
+                LINEAR_GRADIENT_SVG_ID
               )}
               fill="currentColor"
               d="M10 20H8V4h2v2h2v3h2v2h2v2h-2v2h-2v3h-2z"

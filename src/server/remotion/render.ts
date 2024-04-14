@@ -6,7 +6,7 @@ import {
   type RenderMediaOptions,
 } from "@remotion/renderer";
 import { resolveAssets } from "@/server/remotion/resolve-assets";
-import { isDev } from "@/server/remotion/is-dev";
+import { isLocal } from "@/server/remotion/is-local";
 import { bundle } from "@remotion/bundler";
 import { webpackOverride } from "@/server/remotion/webpack-override";
 import path from "path";
@@ -22,11 +22,13 @@ export const render = async ({
 }) => {
   console.log("INIT");
   const id = "pic-series";
-  const isDevMode = isDev();
-  console.log("IS DEV", isDevMode);
-  const serveUrl = isDevMode
+  const isLocalMode = isLocal();
+  const serveUrl = isLocalMode
     ? await bundle({
-      publicDir:"./assets",
+        publicDir: path.join(
+          process.cwd(),
+          "./assets"
+        ),
         entryPoint: path.join(
           process.cwd(),
           REMOTION_ENTRY_POINT
@@ -35,7 +37,7 @@ export const render = async ({
         webpackOverride,
       })
     : "https://brysonandrew.github.io/trillpics";
-  console.log(" serveUrl", serveUrl);
+  console.log("serveUrl", serveUrl);
 
   const inputProps = {
     ...input,
