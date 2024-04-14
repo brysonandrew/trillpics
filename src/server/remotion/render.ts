@@ -11,8 +11,8 @@ import { bundle } from "@remotion/bundler";
 import { webpackOverride } from "@/server/remotion/webpack-override";
 import path from "path";
 import { onProgress } from "@/server/remotion/on-progress";
-import { REMOTION_ENTRY_POINT } from "../../../remotion.config";
 import { onDownload } from "@/server/remotion/on-download";
+import { REMOTION_ENTRY_POINT } from "../../../remotion.config";
 
 export const render = async ({
   input,
@@ -23,11 +23,9 @@ export const render = async ({
 }) => {
   const id = "pic-series";
   const isLocalMode = isLocal();
-  console.log("local", isLocal)
-  const serveUrl = 
-  // isLocalMode
-  //   ? 
-    await bundle({
+  console.log("local", isLocalMode);
+  const serveUrl = isLocalMode
+    ? await bundle({
         publicDir: path.join(
           process.cwd(),
           "./assets"
@@ -39,7 +37,7 @@ export const render = async ({
         onProgress,
         webpackOverride,
       })
-    // : "https://brysonandrew.github.io/trillpics";
+    : "https://brysonandrew.github.io/trillpics";
 
   const inputProps = {
     ...input,
