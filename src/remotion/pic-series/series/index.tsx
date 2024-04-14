@@ -1,5 +1,8 @@
 import { FC } from "react";
-import { PIC_SIZE, ASPECT_RATIO } from "@/remotion/constants";
+import {
+  PIC_SIZE,
+  ASPECT_RATIO,
+} from "@/remotion/constants";
 import {
   AbsoluteFill,
   Img,
@@ -11,8 +14,8 @@ import {
 import { AudioAndVisualizer } from "@/remotion/pic-series/series/audio";
 import {
   resolveAudioSrc,
-  resolvePicsSrc,
-} from "@components/collection/config/items";
+  resolvePicSrc,
+} from "@/components/collection/config/src";
 import { TPicSeriesProps } from "@/remotion/pic-series/types";
 
 export const PicSeries: FC<
@@ -25,18 +28,23 @@ export const PicSeries: FC<
   const progressInSecond =
     frameInSecond / fps;
 
-  const audioSrc = staticFile(
-    resolveAudioSrc(
-      "insurrection-10941"
-    )
+  const audioSrcPath = resolveAudioSrc(
+    "insurrection-10941"
   );
+  console.log(audioSrcPath);
+
+  const audioSrc = staticFile(
+    audioSrcPath
+  );
+  console.log(audioSrc);
   return (
     <AbsoluteFill>
       <Series>
         {pics.map((pic) => {
-          const src = staticFile(
-            resolvePicsSrc(pic)
-          );
+          const srcPath =
+            resolvePicSrc(pic);
+          const src =
+            staticFile(srcPath);
 
           return (
             <Series.Sequence

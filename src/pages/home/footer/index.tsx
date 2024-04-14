@@ -25,6 +25,7 @@ export const Footer = () => {
 
     } as any);
   const handleProcess = () => {
+    console.log("PROCESS")
     mutation.mutate({
       input: { pics: videoPics },
       fps,

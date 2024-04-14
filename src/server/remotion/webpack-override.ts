@@ -7,7 +7,6 @@ export const webpackOverride: WebpackOverrideFn =
     const initCwd =
       process.env.INIT_CWD ?? "";
     const record = [
-      "video",
       "pages",
       "shell",
       "components",
@@ -28,6 +27,7 @@ export const webpackOverride: WebpackOverrideFn =
       {} as TStringRecord
     );
     const configRecord = [
+      
       "app",
       "routes",
       "uno",

@@ -8,5 +8,5 @@ export const CLIENT_ORIGINS = [
   "http://localhost:5173",
 ]
 
-export const SERVER_PORT = 3001;
+export const SERVER_PORT = 3004;
 export const SERVER_PATH= "/api"

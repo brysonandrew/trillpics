@@ -1,5 +1,4 @@
 import {Audio, interpolate, useCurrentFrame, useVideoConfig} from 'remotion';
-
 import {useAudioData, visualizeAudio} from '@remotion/media-utils';
 import {FC} from 'react';
 import { IAudioProps } from '@/remotion/pic-series/series/audio/types';

@@ -9,7 +9,6 @@ import {
 } from "@/constants/api";
 import { initTRPC } from "@trpc/server";
 import { render } from "@/server/remotion/render";
-import serverless from "serverless-http"
 import { createContext } from "@/server/context";
 
 const t = initTRPC.create();
@@ -22,9 +21,7 @@ const router = t.router({
     async (
       x: any
     ) => {
-      // console.log(x);
       await render(x.rawInput);
-      // console.log(input);
       return {
         message: "goodbye!",
       };
@@ -56,10 +53,3 @@ api.listen(SERVER_PORT, () =>
     `Listening on port ${SERVER_PORT}.`
   )
 );
-
-export const handler = serverless(api);
-
-// export const handler = netlifyTRPCHandler({
-//   router,
-//   createContext,
-// });
