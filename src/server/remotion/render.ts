@@ -26,7 +26,10 @@ export const render = async ({
   console.log("IS DEV", isDevMode);
   const serveUrl = isDevMode
     ? await bundle({
-      publicDir:"./assets",
+        publicDir: path.join(
+          process.cwd(),
+          "./assets"
+        ),
         entryPoint: path.join(
           process.cwd(),
           REMOTION_ENTRY_POINT
@@ -35,7 +38,7 @@ export const render = async ({
         webpackOverride,
       })
     : "https://brysonandrew.github.io/trillpics";
-  console.log(" serveUrl", serveUrl);
+  console.log("serveUrl", serveUrl);
 
   const inputProps = {
     ...input,

@@ -1,4 +1,4 @@
 export const isDev = () =>
   process.env.npm_lifecycle_event?.includes(
-    "dev"
+    "app:server"
   );

@@ -5,16 +5,15 @@
   "main": "src/main.tsx",
   "types": "src/index.d.ts",
   "config": {
-    "server_entry": "./src/server/api"
+    "server_entry": ""
   },
   "scripts": {
-    "build": "vite build",
     "lint": "tsc --build . & eslint . --fix --ext ts,tsx",
-    "dev:server": "tsx watch $npm_package_config_server_entry",
-    "dev:client": "vite",
-    "dev": "run-p dev:* --print-label",
-    "build:server": "tsx watch $npm_package_config_server_entry",
-    "build:client": "npm run build",
+    "app:server": "tsx watch ./src/server/api",
+    "app:client": "vite",
+    "dev": "run-p app:* --print-label",
+    "build": "vite build",
+    "start": "npm run build && npm run app:server",
     "l": "npm run lint",
     "f": "prettier .",
     "ubs-r": "npx update-by-scope @remotion npm install",
