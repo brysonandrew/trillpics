@@ -20,8 +20,7 @@ export const HeaderRight: FC = () => {
     <div className="relative column-reverse md:row-wrap shrink-0 lowercase">
       {rightItems.map((Item, index) => (
         <Circle key={`${index}`}>
-                      <div className="absolute inset-0 dark:bg-black bg-gray-6 opacity-50 rounded-full" />
-
+          <div className="absolute inset-0 dark:bg-black bg-gray-6 opacity-50 rounded-full" />
           <Item />
         </Circle>
       ))}

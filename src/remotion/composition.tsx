@@ -19,7 +19,6 @@ export const CompositionsPicSeries: FC =
       "defaultProps",
       defaultProps
     );
-    console.log("props", props);
     return (
       <Composition<
         TPicSeriesSchema,

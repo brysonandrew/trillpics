@@ -14,21 +14,13 @@ import { PicSeries } from "../pic-series";
 import { Backdrop } from "@/components/backdrop";
 
 export const VideoPlayer = () => {
-  const isFirstRef = useRef(true);
-  const [isPlaying, setPlaying] =
-    useState(false);
   const props =
     useRemotionPlayerProps();
-  const viewport = useViewport();
   const {
     videoPics: pics,
-    isPreviewOpen,
-    togglePreview,
   } = useVideoStore();
   const { renderPoster } = usePoster();
-
   usePlayerListeners();
-  console.log(props);
   if (pics.length === 0)
     return <Empty />;
   return (
@@ -48,7 +40,7 @@ export const VideoPlayer = () => {
         //     //   setPlaying(Boolean(playing));
         //     // }
         //     return <PlayButton isFirst={isFirstRef.current} {...props} />
-        //   }
+        //   } 
         // }
         renderPoster={renderPoster}
         showPosterWhenPaused

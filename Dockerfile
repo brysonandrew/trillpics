@@ -1,4 +1,4 @@
-FROM node:20-bookworm
+FROM node:latest
 
 WORKDIR /app
 
@@ -12,17 +12,6 @@ RUN rm -f .npmrc
 
 COPY . .
 
-RUN npm run build
+EXPOSE 3002
 
-EXPOSE 3000
-
-CMD [ "npm", "run", "preview" ]
-# WORKDIR /app
-# RUN apt-get update
-# COPY index.html package.json package-lock.json .
-# COPY .npmrc .npmrc
-# RUN npm install
-# RUN rm -f .npmrc
-# COPY src/ .
-# EXPOSE 3000 3001 3002
-# CMD [ "npm", "start"]
+CMD [ "npm", "run", "api" ]
