@@ -13,7 +13,7 @@ export const ScrollTop: FC = () => {
   
   return (
     <button
-      className="center shrink-0 w-14 h-14"
+      className="relative center shrink-0 w-14 h-14"
       onClick={handleClick}
     >
       <svg
