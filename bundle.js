@@ -16260,10 +16260,10 @@ const AudioAndVisualizer = (props) => {
   return /* @__PURE__ */ React.createElement(React.Fragment, null, /* @__PURE__ */ React.createElement(cjs.Audio, { src }), /* @__PURE__ */ React.createElement(Visualizer, { ...props }));
 };
 
-;// CONCATENATED MODULE: ./src/components/collection/config/items.ts
-const resolveSrc = (name, dir = "pics", ext = "avif") => `video/${dir}/${name}.${ext}`;
-const resolvePicsSrc = (name) => resolveSrc(name);
-const resolveAudioSrc = (name) => resolveSrc(name, "audio", "mp3");
+;// CONCATENATED MODULE: ./src/components/collection/config/src.ts
+const resolveSrc = (dir, name, ext = "avif") => `remotion/${dir}/${name}.${ext}`;
+const resolvePicSrc = (name) => resolveSrc("pics", name);
+const resolveAudioSrc = (name) => resolveSrc("audio", name, "mp3");
 
 ;// CONCATENATED MODULE: ./src/remotion/pic-series/series/index.tsx
 
@@ -16275,15 +16275,17 @@ const PicSeries = ({ pics }) => {
   const { fps, height } = (0,cjs.useVideoConfig)();
   const frameInSecond = frame % fps;
   const progressInSecond = frameInSecond / fps;
-  const audioSrc = (0,cjs.staticFile)(
-    resolveAudioSrc(
-      "insurrection-10941"
-    )
+  const audioSrcPath = resolveAudioSrc(
+    "insurrection-10941"
   );
+  console.log(audioSrcPath);
+  const audioSrc = (0,cjs.staticFile)(
+    audioSrcPath
+  );
+  console.log(audioSrc);
   return /* @__PURE__ */ React.createElement(cjs.AbsoluteFill, null, /* @__PURE__ */ React.createElement(cjs.Series, null, pics.map((pic) => {
-    const src = (0,cjs.staticFile)(
-      resolvePicsSrc(pic)
-    );
+    const srcPath = resolvePicSrc(pic);
+    const src = (0,cjs.staticFile)(srcPath);
     return /* @__PURE__ */ React.createElement(
       cjs.Series.Sequence,
       {
@@ -18333,6 +18335,11 @@ const CompositionsPicSeries = () => {
     props: defaultProps,
     ...props
   } = useRemotionProps();
+  console.log(
+    "defaultProps",
+    defaultProps
+  );
+  console.log("props", props);
   return /* @__PURE__ */ React.createElement(
     cjs.Composition,
     {
@@ -18346,13 +18353,13 @@ const CompositionsPicSeries = () => {
   );
 };
 
-;// CONCATENATED MODULE: ./src/remotion/Root.tsx
+;// CONCATENATED MODULE: ./src/remotion/remotion-root.tsx
 
 const Root = () => {
   return /* @__PURE__ */ React.createElement(CompositionsPicSeries, null);
 };
 
-;// CONCATENATED MODULE: ./src/index.tsx
+;// CONCATENATED MODULE: ./src/remotion/index.tsx
 
 
 (0,cjs.registerRoot)(Root);
