@@ -15252,6 +15252,233 @@ const resolveSrc = (dir, name, ext = "avif") => `remotion/${dir}/${name}.${ext}`
 const resolvePicSrc = (name) => resolveSrc("pics", name);
 const resolveAudioSrc = (name) => resolveSrc("audio", name, "mp3");
 
+;// CONCATENATED MODULE: ./src/remotion/pic-series/index.tsx
+
+
+
+const PicSeries = ({ pics }) => {
+  const frame = (0,cjs.useCurrentFrame)();
+  const { fps, height } = (0,cjs.useVideoConfig)();
+  const frameInSecond = frame % fps;
+  const progressInSecond = frameInSecond / fps;
+  const audioSrcPath = resolveAudioSrc(
+    "insurrection-10941"
+  );
+  const audioSrc = (0,cjs.staticFile)(
+    audioSrcPath
+  );
+  return /* @__PURE__ */ React.createElement(cjs.Series, null, pics.map((pic) => {
+    const srcPath = resolvePicSrc(pic);
+    const src = (0,cjs.staticFile)(srcPath);
+    return /* @__PURE__ */ React.createElement(
+      cjs.Series.Sequence,
+      {
+        key: `${src}`,
+        durationInFrames: fps
+      },
+      /* @__PURE__ */ React.createElement(
+        cjs.AbsoluteFill,
+        {
+          style: {
+            left: 0,
+            top: (PIC_SIZE - height * ASPECT_RATIO) * progressInSecond
+          }
+        },
+        /* @__PURE__ */ React.createElement(
+          cjs.Img,
+          {
+            src,
+            alt: src
+          }
+        )
+      )
+    );
+  }));
+};
+
+// EXTERNAL MODULE: ./node_modules/zod/lib/index.mjs
+var lib = __webpack_require__(1604);
+;// CONCATENATED MODULE: ./src/remotion/pic-series/schema.ts
+
+const PIC_SERIES_SCHEMA = lib.z.object({
+  pics: lib.z.array(lib.z.string())
+});
+
+// EXTERNAL MODULE: ./node_modules/react/index.js
+var react = __webpack_require__(67294);
+;// CONCATENATED MODULE: ./src/hooks/image/useImageDimensions.ts
+
+const useImageDimensions = ({
+  box,
+  image
+}) => {
+  const dimensions = (0,react.useMemo)(() => {
+    let imageHeight = 0;
+    let imageWidth = 0;
+    if (box && image) {
+      const rectAspect = box.width / box.height;
+      const imageAspect = image.width / image.height;
+      if (imageAspect > rectAspect) {
+        imageWidth = box.width;
+        imageHeight = box.width / imageAspect;
+      } else {
+        imageWidth = box.height * imageAspect;
+        imageHeight = box.height;
+      }
+      return {
+        width: ~~imageWidth,
+        height: ~~imageHeight
+      };
+    } else {
+      return null;
+    }
+  }, [box == null ? void 0 : box.width, box == null ? void 0 : box.height, image]);
+  if (dimensions === null) {
+    return { isDimensions: false };
+  }
+  return {
+    isDimensions: true,
+    ...dimensions
+  };
+};
+
+;// CONCATENATED MODULE: ./src/hooks/life-cycle/useIsomorphicLayoutEffect.ts
+
+const useIsomorphicLayoutEffect = typeof window !== "undefined" ? react.useLayoutEffect : react.useEffect;
+
+;// CONCATENATED MODULE: ./src/hooks/events/useEventListener.ts
+
+
+function useEventListener(eventName, handler, element, options) {
+  const savedHandler = (0,react.useRef)(handler);
+  useIsomorphicLayoutEffect(() => {
+    savedHandler.current = handler;
+  }, [handler]);
+  (0,react.useEffect)(() => {
+    const targetElement = (element == null ? void 0 : element.current) || window;
+    if (!(targetElement && targetElement.addEventListener) || eventName === null) {
+      return;
+    }
+    const eventListener = (event) => savedHandler.current(event);
+    targetElement.addEventListener(
+      eventName,
+      eventListener,
+      options
+    );
+    return () => {
+      targetElement.removeEventListener(
+        eventName,
+        eventListener
+      );
+    };
+  }, [eventName, element, options]);
+}
+
+;// CONCATENATED MODULE: ./src/hooks/window/useTimeoutRef.ts
+
+const useTimeoutRef = () => {
+  const timeoutRef = (0,react.useRef)(
+    null
+  );
+  const endTimeout = () => {
+    if (timeoutRef.current !== null) {
+      clearTimeout(timeoutRef.current);
+    }
+  };
+  (0,react.useEffect)(() => endTimeout, []);
+  return { timeoutRef, endTimeout };
+};
+
+;// CONCATENATED MODULE: ./src/hooks/window/useDelayCallback.ts
+
+const useDelayCallback = (callback, delay) => {
+  const { timeoutRef, endTimeout } = useTimeoutRef();
+  const handler = () => {
+    endTimeout();
+    if (typeof delay !== "number") {
+      return;
+    }
+    timeoutRef.current = setTimeout(
+      callback,
+      delay
+    );
+  };
+  return handler;
+};
+
+;// CONCATENATED MODULE: ./src/hooks/window/useViewport.ts
+
+
+
+
+
+const RESIZE_COOLDOWN = 400;
+const INIT = {
+  isResizing: false,
+  isDimensions: false
+};
+const useViewport = () => {
+  const [viewport, setViewport] = (0,react.useState)(INIT);
+  const { timeoutRef, endTimeout } = useTimeoutRef();
+  const handleSize = (next) => {
+    let isResizing = false;
+    if (typeof next !== "undefined") {
+      isResizing = next.isResizing;
+    }
+    const container = document.createElement("div");
+    container.className = "container";
+    document.body.appendChild(
+      container
+    );
+    const containerWidth = container.clientWidth;
+    document.body.removeChild(
+      container
+    );
+    const width = document.documentElement.clientWidth;
+    const height = document.documentElement.clientHeight;
+    const isDimensions = typeof containerWidth !== "undefined" && typeof width !== "undefined" && typeof height !== "undefined";
+    if (isDimensions) {
+      const ready = {
+        ...next = INIT,
+        containerWidth,
+        width,
+        height,
+        isDimensions,
+        isResizing
+      };
+      setViewport(ready);
+      return;
+    }
+    setViewport(next ?? INIT);
+  };
+  const handleResize = () => {
+    handleSize({
+      ...INIT,
+      isResizing: true
+    });
+    endTimeout();
+    timeoutRef.current = setTimeout(
+      () => {
+        handleSize(INIT);
+      },
+      RESIZE_COOLDOWN
+    );
+  };
+  useDelayCallback(
+    handleResize,
+    1e3
+  );
+  useEventListener(
+    "resize",
+    handleResize
+  );
+  useIsomorphicLayoutEffect(
+    handleSize,
+    []
+  );
+  return viewport;
+};
+
 ;// CONCATENATED MODULE: ./src/utils/array/shuffle.ts
 const shuffle = (array) => {
   let currentIndex = array.length, randomIndex;
@@ -17164,8 +17391,6 @@ var vanilla = (createState) => {
 
 
 
-// EXTERNAL MODULE: ./node_modules/react/index.js
-var react = __webpack_require__(67294);
 // EXTERNAL MODULE: ./node_modules/use-sync-external-store/shim/with-selector.js
 var with_selector = __webpack_require__(52798);
 ;// CONCATENATED MODULE: ./node_modules/zustand/esm/index.mjs
@@ -17231,252 +17456,22 @@ const createImmerState = immer_immer((...a) => ({
 const createPersistState = persist(createImmerState, STORAGE);
 const useVideoStore = create(createPersistState);
 
-;// CONCATENATED MODULE: ./src/hooks/life-cycle/useIsomorphicLayoutEffect.ts
-
-const useIsomorphicLayoutEffect = typeof window !== "undefined" ? react.useLayoutEffect : react.useEffect;
-
-;// CONCATENATED MODULE: ./src/hooks/events/useEventListener.ts
-
-
-function useEventListener(eventName, handler, element, options) {
-  const savedHandler = (0,react.useRef)(handler);
-  useIsomorphicLayoutEffect(() => {
-    savedHandler.current = handler;
-  }, [handler]);
-  (0,react.useEffect)(() => {
-    const targetElement = (element == null ? void 0 : element.current) || window;
-    if (!(targetElement && targetElement.addEventListener) || eventName === null) {
-      return;
-    }
-    const eventListener = (event) => savedHandler.current(event);
-    targetElement.addEventListener(
-      eventName,
-      eventListener,
-      options
-    );
-    return () => {
-      targetElement.removeEventListener(
-        eventName,
-        eventListener
-      );
-    };
-  }, [eventName, element, options]);
-}
-
-;// CONCATENATED MODULE: ./src/hooks/window/useTimeoutRef.ts
-
-const useTimeoutRef = () => {
-  const timeoutRef = (0,react.useRef)(
-    null
-  );
-  const endTimeout = () => {
-    if (timeoutRef.current !== null) {
-      clearTimeout(timeoutRef.current);
-    }
-  };
-  (0,react.useEffect)(() => endTimeout, []);
-  return { timeoutRef, endTimeout };
-};
-
-;// CONCATENATED MODULE: ./src/hooks/window/useDelayCallback.ts
-
-const useDelayCallback = (callback, delay) => {
-  const { timeoutRef, endTimeout } = useTimeoutRef();
-  const handler = () => {
-    endTimeout();
-    if (typeof delay !== "number") {
-      return;
-    }
-    timeoutRef.current = setTimeout(
-      callback,
-      delay
-    );
-  };
-  return handler;
-};
-
-;// CONCATENATED MODULE: ./src/hooks/window/useViewport.ts
-
-
-
-
-
-const RESIZE_COOLDOWN = 400;
-const INIT = {
-  isResizing: false,
-  isDimensions: false
-};
-const useViewport = () => {
-  const [viewport, setViewport] = (0,react.useState)(INIT);
-  const { timeoutRef, endTimeout } = useTimeoutRef();
-  const handleSize = (next) => {
-    let isResizing = false;
-    if (typeof next !== "undefined") {
-      isResizing = next.isResizing;
-    }
-    const container = document.createElement("div");
-    container.className = "container";
-    document.body.appendChild(
-      container
-    );
-    const containerWidth = container.clientWidth;
-    document.body.removeChild(
-      container
-    );
-    const width = document.documentElement.clientWidth;
-    const height = document.documentElement.clientHeight;
-    const isDimensions = typeof containerWidth !== "undefined" && typeof width !== "undefined" && typeof height !== "undefined";
-    if (isDimensions) {
-      const ready = {
-        ...next = INIT,
-        containerWidth,
-        width,
-        height,
-        isDimensions,
-        isResizing
-      };
-      setViewport(ready);
-      return;
-    }
-    setViewport(next ?? INIT);
-  };
-  const handleResize = () => {
-    handleSize({
-      ...INIT,
-      isResizing: true
-    });
-    endTimeout();
-    timeoutRef.current = setTimeout(
-      () => {
-        handleSize(INIT);
-      },
-      RESIZE_COOLDOWN
-    );
-  };
-  useDelayCallback(
-    handleResize,
-    1e3
-  );
-  useEventListener(
-    "resize",
-    handleResize
-  );
-  useIsomorphicLayoutEffect(
-    handleSize,
-    []
-  );
-  return viewport;
-};
-
-;// CONCATENATED MODULE: ./src/components/backdrop.tsx
-
-
-
-const Backdrop = ({
-  isOpen,
-  backdropProps
-}) => {
-  const {
-    isPreviewOpen,
-    togglePreview
-  } = useVideoStore();
-  const viewport = useViewport();
-  return /* @__PURE__ */ React.createElement(React.Fragment, null, isPreviewOpen ? /* @__PURE__ */ React.createElement(
-    "div",
-    {
-      onClick: () => {
-        console.log("click");
-        togglePreview(false);
-      },
-      className: "inset-0 z-60 fade-in-animation zoom-out",
-      style: {
-        zIndex: 0,
-        ...viewport.isDimensions ? {
-          position: "fixed",
-          width: viewport.width,
-          height: viewport.height
-        } : {},
-        backdropFilter: "blur(40px) grayscale(100%)",
-        cursor: "zoom-out"
-      },
-      ...backdropProps
-    }
-  ) : /* @__PURE__ */ React.createElement(react.Fragment, null));
-};
-
-;// CONCATENATED MODULE: ./src/remotion/pic-series/series/index.tsx
-
-
-
-
-
-const PicSeries = ({ pics }) => {
-  const {
-    isPreviewOpen,
-    togglePreview
-  } = useVideoStore();
-  const frame = (0,cjs.useCurrentFrame)();
-  const { fps, height } = (0,cjs.useVideoConfig)();
-  const frameInSecond = frame % fps;
-  const progressInSecond = frameInSecond / fps;
-  const audioSrcPath = resolveAudioSrc(
-    "insurrection-10941"
-  );
-  console.log(audioSrcPath);
-  const audioSrc = (0,cjs.staticFile)(
-    audioSrcPath
-  );
-  console.log(audioSrc);
-  return /* @__PURE__ */ React.createElement(cjs.Series, null, /* @__PURE__ */ React.createElement(
-    cjs.Series.Sequence,
-    {
-      durationInFrames: fps * pics.length
-    },
-    /* @__PURE__ */ React.createElement(Backdrop, null)
-  ), pics.map((pic) => {
-    const srcPath = resolvePicSrc(pic);
-    const src = (0,cjs.staticFile)(srcPath);
-    return /* @__PURE__ */ React.createElement(
-      cjs.Series.Sequence,
-      {
-        key: `${src}`,
-        durationInFrames: fps
-      },
-      /* @__PURE__ */ React.createElement(
-        cjs.AbsoluteFill,
-        {
-          style: {
-            left: 0,
-            top: (PIC_SIZE - height * ASPECT_RATIO) * progressInSecond
-          }
-        },
-        /* @__PURE__ */ React.createElement(
-          cjs.Img,
-          {
-            src,
-            alt: src
-          }
-        )
-      )
-    );
-  }));
-};
-
-// EXTERNAL MODULE: ./node_modules/zod/lib/index.mjs
-var lib = __webpack_require__(1604);
-;// CONCATENATED MODULE: ./src/remotion/pic-series/schema.ts
-
-const PIC_SERIES_SCHEMA = lib.z.object({
-  pics: lib.z.array(lib.z.string())
-});
-
 ;// CONCATENATED MODULE: ./src/remotion/use-props.ts
+
+
 
 
 
 const INPUT_PROPS = (0,cjs.getInputProps)();
 const useRemotionProps = () => {
   const { videoPics, fps } = useVideoStore();
+  const viewport = useViewport();
+  const dimensions = useImageDimensions(
+    {
+      box: viewport.isDimensions ? viewport : null,
+      image: DIMENSIONS
+    }
+  );
   const videoPicsCount = videoPics.length;
   const pics = videoPicsCount === 0 ? [...Array(5)].map(
     (_, index) => `${++index}`
@@ -17486,11 +17481,11 @@ const useRemotionProps = () => {
     fps,
     durationInFrames,
     props: { ...INPUT_PROPS, pics },
-    ...DIMENSIONS
+    ...dimensions.isDimensions ? dimensions : DIMENSIONS
   };
 };
 
-;// CONCATENATED MODULE: ./src/remotion/pic-series/index.tsx
+;// CONCATENATED MODULE: ./src/remotion/composition.tsx
 
 
 
