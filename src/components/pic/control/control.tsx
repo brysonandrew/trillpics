@@ -6,7 +6,7 @@ import {
 } from '../useImage';
 import { motion } from 'framer-motion';
 import { TChildren } from '@brysonandrew/config-types';
-import { Portal } from '../Portal';
+import { Portal } from './Portal';
 
 type TProps = TUseImageConfig & {
   boxChildren?: TChildren;
@@ -14,7 +14,7 @@ type TProps = TUseImageConfig & {
     imageReturn: TUseImageReturn,
   ): TChildren;
 };
-export const Pic: FC<TProps> = ({
+export const Control: FC<TProps> = ({
   boxChildren,
   children,
   ...config

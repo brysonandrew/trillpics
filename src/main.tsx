@@ -19,6 +19,7 @@ import { MOTION_CONFIG } from "@brysonandrew/animation";
 import { Shell } from "@shell/index";
 import { VideoPlayer } from "@/remotion/player";
 import { Home } from "@pages/home";
+
 import { RootProvider } from "@/shell/providers/api";
 
 import { init as initServiceWorker } from "@app/service-worker/init";

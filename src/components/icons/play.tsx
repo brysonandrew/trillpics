@@ -3,7 +3,7 @@ import {
   TSvgProps
 } from "@brysonandrew/config-types/dom";
 import { resolveUrlId } from "@brysonandrew/utils-attributes";
-import { LINEAR_GRADIENT_BLUE_PINK_YELLOW_SVG_ID } from "@components/gradients/linear-gradient-blue-pink-yellow-svg";
+import { LINEAR_GRADIENT_SVG_ID } from "@/components/gradients/linear-gradient-svg";
 import clsx from "clsx";
 
 export const IconsPlay: FC<
@@ -19,7 +19,7 @@ export const IconsPlay: FC<
     >
       <path
         fill={resolveUrlId(
-          LINEAR_GRADIENT_BLUE_PINK_YELLOW_SVG_ID
+          LINEAR_GRADIENT_SVG_ID
         )}
       //  fill="currentColor"
         d="M10 20H8V4h2v2h2v3h2v2h2v2h-2v2h-2v3h-2z"

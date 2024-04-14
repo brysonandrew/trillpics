@@ -1,5 +1,5 @@
 import { resolveUrlId } from "@brysonandrew/utils-attributes";
-import { LINEAR_GRADIENT_BLUE_PINK_YELLOW_SVG_ID } from "@components/gradients/linear-gradient-blue-pink-yellow-svg";
+import { LINEAR_GRADIENT_SVG_ID } from "@/components/gradients/linear-gradient-svg";
 import type { FC } from "react";
 
 export const VideoCrossIcon: FC = () => (
@@ -12,7 +12,7 @@ export const VideoCrossIcon: FC = () => (
   >
     <path
 fill={resolveUrlId(
-  LINEAR_GRADIENT_BLUE_PINK_YELLOW_SVG_ID
+  LINEAR_GRADIENT_SVG_ID
 )}
       d="M4 5H2v14h14v-4h2v2h2v2h2V5h-2v2h-2v2h-2V5zm10 12H4V7h10zm-4-6H8V9H6v2h2v2H6v2h2v-2h2v2h2v-2h-2zm0 0V9h2v2z"
     />

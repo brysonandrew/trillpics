@@ -5,7 +5,7 @@ import * as trpcExpress from "@trpc/server/adapters/express";
 import {
   CLIENT_ORIGINS,
   SERVER_PATH,
-  SERVER_PORT,
+  API_PORT,
 } from "@/constants/api";
 import { initTRPC } from "@trpc/server";
 import { render } from "../../../src/server/render";
@@ -50,9 +50,9 @@ api.use(
   })
 );
 
-api.listen(SERVER_PORT, () =>
+api.listen(API_PORT, () =>
   console.log(
-    `Listening on port ${SERVER_PORT}.`
+    `Listening on port ${API_PORT}.`
   )
 );
 

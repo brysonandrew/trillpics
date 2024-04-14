@@ -1,4 +1,4 @@
-import { TUseImageReturn } from '@components/pics/useImage';
+import { TUseImageReturn } from '@/components/pic/useImage';
 import { FC, Fragment } from 'react';
 
 type TProps = {

@@ -50,11 +50,13 @@ export const theme = resolveTheme({
     "11xl": ["14rem", "17rem"],
   },
   keyframes: {
-    'ant-walk': {
-      to: {strokeDashoffset: '0'},
+    "ant-walk": {
+      to: { strokeDashoffset: "0" },
     },
-    'spin': {
-      to: {transform: 'rotate(360deg)'},
+    spin: {
+      to: {
+        transform: "rotate(360deg)",
+      },
     },
   },
 });
@@ -79,7 +81,6 @@ const preflights =
   );
 
 const transformers = TRANSFORMERS;
-
 
 const config = defineConfig<TTheme>({
   theme,

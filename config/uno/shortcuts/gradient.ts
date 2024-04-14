@@ -1,4 +1,10 @@
 export const GRADIENT = {
+  "_radial-gradient":
+    "dark:_dark-radial-gradient _light-radial-gradient",
+  "_gradient-border":
+    "dark:_dark-gradient-border _light-gradient-border",
+  "_gradient-text":
+    "dark:_dark-gradient-text _light-gradient-text",
   "bg-fuchsia-pink-rose":
     "bg-gradient-to-r from-fuchsia via-pink to-rose",
   "bg-green-emerald-primary":

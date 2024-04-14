@@ -1,21 +1,16 @@
-import { FC, useRef } from "react";
+import { FC } from "react";
 import { VideoCrossIcon } from "@pages/home/footer/video/cross-icon";
 import { useVideoStore } from "src/store";
 import { N } from "@components/layout/text/N";
 import { Pill } from "@components/decoration/Pill";
-import { VideoIcon } from "@pages/home/footer/video/icon";
+import { IconsVideo } from "@/components/icons/video";
 import { NOOP } from "@brysonandrew/utils-function";
 import { useShow } from "@/pages/home/footer/use-show";
 
 export const FooterVideo: FC = () => {
   const {
-    picsCount,
-    picsEntries,
-    videoPics,
-    countPics,
     isVideoMode,
     toggleVideoMode,
-    updatePicsEntries,
   } = useVideoStore();
 
   const handleClick = () =>
@@ -23,13 +18,15 @@ export const FooterVideo: FC = () => {
   const {isViewingOnlyVideoPics, videoPicsCount,onToggleShow} = useShow()
   return (
     <div className="relative shrink-0 w-14 h-14">
+            <div className="absolute inset-0 dark:bg-black bg-gray-6 opacity-50 rounded-full" />
+
       <button
         className="fill center"
         onClick={handleClick}
       >
         <div className="relative">
           {videoPicsCount > 0 ? (
-            <VideoIcon />
+            <IconsVideo />
           ) : (
             <VideoCrossIcon />
           )}
@@ -40,7 +37,7 @@ export const FooterVideo: FC = () => {
           className={
             isVideoMode
               ? "pointer-events-none"
-              : ""
+              : undefined
           }
           onClick={
             isVideoMode

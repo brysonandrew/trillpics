@@ -1,8 +1,10 @@
-FROM alpine:3.18
-RUN mkdir -p /opt/app
-WORKDIR /opt/app
-COPY package.json package-lock.json .
+FROM node:20-bookworm
+WORKDIR /app
+RUN apt-get update
+COPY index.html package.json package-lock.json .
+COPY .npmrc .npmrc
 RUN npm install
+RUN rm -f .npmrc
 COPY src/ .
 EXPOSE 3000 3001 3002
 CMD [ "npm", "start"]

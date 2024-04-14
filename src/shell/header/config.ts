@@ -1,7 +1,6 @@
 import { TClassValueProps } from '@brysonandrew/config-types';
 import { Cart } from '@components/notifications/cart';
 import { DarkMode } from '@shell/header/right/dark-mode';
-import { Shop } from '@shell/header/right/shop';
 
 export const ICON_CLASS_VALUE_PROPS: TClassValueProps =
   {
@@ -26,8 +25,3 @@ export const resolveScale = ({
   isScroll,
 }: TConfig) =>
   isScroll && !isHover ? 0.6 : 1;
-
-export const RIGHT_MENU_RECORD = {
-  '/': [DarkMode, Cart],
-  '/checkout': [DarkMode, Shop],
-} as const;

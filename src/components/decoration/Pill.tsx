@@ -6,7 +6,7 @@ import {
   HTMLMotionProps,
   motion,
 } from "framer-motion";
-import { GRADIENT_BLUE_PINK_YELLOW } from "@constants/css/gradient";
+import { GRADIENT_BLUE_PINK_YELLOW } from "@app/color/gradient";
 import { Glow } from "@components/decoration/glow";
 
 type TProps =
@@ -28,15 +28,11 @@ export const Pill: FC<TProps> = ({
   return (
     <motion.div
       className={clsx(
-        "center h-6 text-current text-sm px-2 rounded-xl",
+        "center h-6 text-current text-sm px-2 rounded-xl _radial-gradient",
         isCircle && "w-6",
         classValue,
         gradient
       )}
-      style={{
-        backgroundImage:
-          GRADIENT_BLUE_PINK_YELLOW,
-      }}
       {...props}
     >
       {isActive && (

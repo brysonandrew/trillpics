@@ -1,15 +1,16 @@
+import { ReactNode } from "react";
 import {
   SERVER_PATH,
-  SERVER_PORT,
+  API_PORT,
 } from "@/constants/api";
 import { trpc } from "@/utils/trpc";
 import { httpBatchLink } from "@trpc/client";
-import { ReactNode } from "react";
 import { queryClient } from "./query";
 
-const SERVER_ORIGIN = import.meta.env
-  .DEV
-  ? `http://localhost:${SERVER_PORT}`
+const SERVER_ORIGIN = (
+  import.meta.env ?? process.env
+)._IS_LOCAL
+  ? `http://localhost:${API_PORT}`
   : "https://trill.pics";
 
 const url = `${SERVER_ORIGIN}${SERVER_PATH}`;

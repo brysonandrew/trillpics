@@ -19,7 +19,7 @@ export const SparkleButton: FC = () => {
 
   return (
     <button
-      className="relative mt-4 uppercase text-xl tracking-wide h-8 w-7 sm:(h-10 w-10 mt-3)"
+      className="relative mt-4 uppercase text-xl tracking-wide h-8 w-7 sm:(h-10 w-10 mt-4)"
       onClick={randomizePics}
     >
       <img

@@ -1,17 +1,15 @@
 import type { FC } from "react";
 import { motion } from "framer-motion";
 import { TRANSITION } from "@brysonandrew/animation";
-import { TEXT_GRADIENT } from "@constants/css/gradient";
 
 type TProps = { isAdded: boolean };
 export const AddRemoveToVideoMarker: FC<
-  TProps 
+  TProps
 > = ({ isAdded }) => {
   const rotate = isAdded ? 45 : 0;
   return (
     <motion.h4
-      className="relative text-6xl font-mono text-main-inverted origin-center"
-      style={TEXT_GRADIENT}
+      className="relative text-6xl font-mono text-main-inverted origin-center dark:text-black-08 text-white-09 _gradient-text"
       initial={{
         opacity: 0,
         scale: 0,
@@ -23,8 +21,9 @@ export const AddRemoveToVideoMarker: FC<
       }}
       transition={{
         ...TRANSITION,
-        duration: 0.28,
+        duration: 0.2,
       }}
+      layout
     >
       +
     </motion.h4>

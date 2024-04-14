@@ -3,7 +3,6 @@ import clsx from "clsx";
 import {  Link,  useLocation,} from "react-router-dom";
 import { HOME_ROUTE } from "@constants/routes";
 import { HeaderRight } from "@shell/header/right";
-import { Background } from "@components/decoration/background";
 import { Title } from "./title";
 
 type TProps = PropsWithChildren;

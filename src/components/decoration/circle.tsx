@@ -1,10 +1,5 @@
-import { PRESENCE_OPACITY } from "@brysonandrew/animation";
 import { Glow } from "@components/decoration/glow";
-import { RADIAL_BLUE_PINK_YELLOW } from "@constants/css/gradient";
-import {
-  AnimatePresence,
-  motion,
-} from "framer-motion";
+import { AnimatePresence } from "framer-motion";
 import type {
   FC,
   PropsWithChildren,
@@ -25,7 +20,6 @@ export const Circle: FC<
         )}
       </AnimatePresence>
       <div className="relative size-8">
-        <div className="absolute inset-0 bg-main opacity-50  rounded-full"/>
         <div className="relative">{children}</div>
       </div>
     </div>
