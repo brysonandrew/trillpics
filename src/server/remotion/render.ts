@@ -78,6 +78,7 @@ export const render = async ({
       onDownload,
       outputLocation: `./out/render--${id}.mp4`,
       inputProps,
+      logLevel:'verbose'
     };
   console.log(renderMediaOption);
   console.log("RENDER");

@@ -47,6 +47,7 @@ export const webpackOverride: WebpackOverrideFn =
 
     return {
       ...currentConfig,
+      devtool: 'source-map',
       resolve: {
         ...currentConfig.resolve,
         alias: {
