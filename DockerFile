@@ -1,10 +1,28 @@
 FROM node:20-bookworm
+
 WORKDIR /app
-RUN apt-get update
-COPY index.html package.json package-lock.json .
+
+COPY package.json .
+
 COPY .npmrc .npmrc
+
 RUN npm install
+
 RUN rm -f .npmrc
-COPY src/ .
-EXPOSE 3000 3001 3002
-CMD [ "npm", "start"]
+
+COPY . .
+
+RUN npm run build
+
+EXPOSE 3000
+
+CMD [ "npm", "run", "preview" ]
+# WORKDIR /app
+# RUN apt-get update
+# COPY index.html package.json package-lock.json .
+# COPY .npmrc .npmrc
+# RUN npm install
+# RUN rm -f .npmrc
+# COPY src/ .
+# EXPOSE 3000 3001 3002
+# CMD [ "npm", "start"]
