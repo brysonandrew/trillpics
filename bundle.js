@@ -17500,7 +17500,6 @@ const CompositionsPicSeries = () => {
     "defaultProps",
     defaultProps
   );
-  console.log("props", props);
   return /* @__PURE__ */ React.createElement(
     cjs.Composition,
     {
