@@ -11,7 +11,7 @@ export const AudioAndVisualizer: FC<
   return (
     <>
       <RemotionAudio src={src} />
-      <Visualizer {...props} />
+      {/* <Visualizer {...props} /> */}
     </>
   );
 };

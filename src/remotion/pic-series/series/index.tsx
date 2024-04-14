@@ -17,10 +17,16 @@ import {
   resolvePicSrc,
 } from "@/components/collection/config/src";
 import { TPicSeriesProps } from "@/remotion/pic-series/types";
+import { useVideoStore } from "@/store";
+import { Backdrop } from "@/components/backdrop";
 
 export const PicSeries: FC<
   TPicSeriesProps
 > = ({ pics }) => {
+  const {
+    isPreviewOpen,
+    togglePreview,
+  } = useVideoStore();
   const frame = useCurrentFrame();
   const { fps, height } =
     useVideoConfig();
@@ -38,41 +44,46 @@ export const PicSeries: FC<
   );
   console.log(audioSrc);
   return (
-    <AbsoluteFill>
-      <Series>
-        {pics.map((pic) => {
-          const srcPath =
-            resolvePicSrc(pic);
-          const src =
-            staticFile(srcPath);
+    <Series>
+      <Series.Sequence
+        durationInFrames={
+          fps * pics.length
+        }
+      >
+        <Backdrop />
+        {/* <AudioAndVisualizer
+          src={audioSrc}
+        /> */}
+      </Series.Sequence>
 
-          return (
-            <Series.Sequence
-              key={`${src}`}
-              durationInFrames={fps}
+      {pics.map((pic) => {
+        const srcPath =
+          resolvePicSrc(pic);
+        const src = staticFile(srcPath);
+
+        return (
+          <Series.Sequence
+            key={`${src}`}
+            durationInFrames={fps}
+          >
+            <AbsoluteFill
+              style={{
+                left: 0,
+                top:
+                  (PIC_SIZE -
+                    height *
+                      ASPECT_RATIO) *
+                  progressInSecond,
+              }}
             >
-              <AbsoluteFill
-                style={{
-                  left: 0,
-                  top:
-                    (PIC_SIZE -
-                      height *
-                        ASPECT_RATIO) *
-                    progressInSecond,
-                }}
-              >
-                <Img
-                  src={src}
-                  alt={src}
-                />
-              </AbsoluteFill>
-            </Series.Sequence>
-          );
-        })}
-      </Series>
-      <AudioAndVisualizer
-        src={audioSrc}
-      />
-    </AbsoluteFill>
+              <Img
+                src={src}
+                alt={src}
+              />
+            </AbsoluteFill>
+          </Series.Sequence>
+        );
+      })}
+    </Series>
   );
 };

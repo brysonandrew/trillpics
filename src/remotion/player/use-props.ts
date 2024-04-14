@@ -8,7 +8,6 @@ export const useRemotionPlayerProps =
       playerElement,
       updateState,
     } = useVideoStore();
-
     const {
       width,
       height,
