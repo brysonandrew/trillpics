@@ -1,1 +1,1 @@
-export * from "../pic-series/series"
+export * from "../pic-series"
