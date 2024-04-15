@@ -1,15 +1,16 @@
-import Favicon from "react-favicon";
 import {
   FC,
   Fragment,
   PropsWithChildren,
 } from "react";
+import Favicon from "react-favicon";
 import { useApp } from "@brysonandrew/app";
 import { GlobalCss } from "@shell/global/Css";
 import { useDarkMode } from "@brysonandrew/dark-mode";
 import { Helmet } from "react-helmet-async";
 import { Variables } from "@css/Variables";
 import { LinearGradientBluePinkYellowSvg } from "@/components/gradients/linear-gradient-svg";
+import { AURA } from "@brysonandrew/svg-filter";
 
 export const Global: FC<
   PropsWithChildren
@@ -37,7 +38,10 @@ export const Global: FC<
       </Helmet>
       <Variables />
       <PlaceholderClipPath />
-      <LinearGradientBluePinkYellowSvg isDarkMode={isDarkMode}/>
+      <LinearGradientBluePinkYellowSvg
+        isDarkMode={isDarkMode}
+      />
+      <AURA.GLOBAL.Filter />
       <GlobalCss>{children}</GlobalCss>
     </>
   );

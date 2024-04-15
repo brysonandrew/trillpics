@@ -5,6 +5,7 @@ import {
 } from "@/remotion/constants";
 import {
   AbsoluteFill,
+  Audio,
   Img,
   Series,
   staticFile,
@@ -34,35 +35,39 @@ export const PicSeries: FC<
     audioSrcPath
   );
   return (
-    <Series>
-      {pics.map((pic) => {
-        const srcPath =
-          resolvePicSrc(pic);
-        const src = staticFile(srcPath);
+    <>
+      <Audio src={audioSrc} />
+      <Series>
+        {pics.map((pic) => {
+          const srcPath =
+            resolvePicSrc(pic);
+          const src =
+            staticFile(srcPath);
 
-        return (
-          <Series.Sequence
-            key={`${src}`}
-            durationInFrames={fps}
-          >
-            <AbsoluteFill
-              style={{
-                left: 0,
-                top:
-                  (PIC_SIZE -
-                    height *
-                      ASPECT_RATIO) *
-                  progressInSecond,
-              }}
+          return (
+            <Series.Sequence
+              key={`${src}`}
+              durationInFrames={fps}
             >
-              <Img
-                src={src}
-                alt={src}
-              />
-            </AbsoluteFill>
-          </Series.Sequence>
-        );
-      })}
-    </Series>
+              <AbsoluteFill
+                style={{
+                  left: 0,
+                  top:
+                    (PIC_SIZE -
+                      height *
+                        ASPECT_RATIO) *
+                    progressInSecond,
+                }}
+              >
+                <Img
+                  src={src}
+                  alt={src}
+                />
+              </AbsoluteFill>
+            </Series.Sequence>
+          );
+        })}
+      </Series>
+    </>
   );
 };

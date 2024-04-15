@@ -94,6 +94,7 @@
     "@brysonandrew/scroll": "^6.24.4",
     "@brysonandrew/service-worker": "^6.24.4",
     "@brysonandrew/space": "^6.24.4",
+    "@brysonandrew/svg-filter": "^6.24.4",
     "@brysonandrew/uno-preflights": "^6.24.4",
     "@brysonandrew/uno-presets": "^6.24.4",
     "@brysonandrew/uno-rules": "^6.24.4",
