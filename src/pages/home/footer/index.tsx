@@ -6,9 +6,11 @@ import { Empty } from "@pages/home/footer/empty";
 import { FooterVideo } from "@pages/home/footer/video";
 import { Circle } from "@components/decoration/circle";
 import { IconsBack } from "@/components/icons/back";
-import { IconsGenerate } from "@components/icons/generate";
 import { FooterView } from "@pages/home/footer/view";
 import { trpc } from "@/utils/trpc";
+import { TGenerateConfig } from "@/server/remotion/generate";
+import { downloadMedia } from "@/pages/home/footer/download-media";
+import { Generate } from "@/pages/home/footer/generate";
 
 export const Footer = () => {
   const {
@@ -16,25 +18,29 @@ export const Footer = () => {
     isPreviewOpen,
     togglePreview,
     videoPics,
-    fps
+    fps,
   } = useVideoStore();
-
-  const mutation =
-    trpc.generate.useMutation<any>({
-      input: { pics: videoPics },
-
-    } as any);
-  const handleProcess = () => {
-    console.log("PROCESS")
-    mutation.mutate({
-      input: { pics: videoPics },
-      fps,
-    } as any);
+  const config: TGenerateConfig = {
+    input: { pics: videoPics },
+    fps,
   };
-
+  const mutation =
+    trpc.generate.useMutation();
+  const handleGenerate = async () => {
+    const result =
+      await mutation.mutateAsync(
+        config as any
+      );
+    const arr = new Uint8Array(
+      result.buffer?.data ?? []
+    );
+    const blob = new Blob([arr]);
+    await downloadMedia(blob);
+  };
   const handlePreview = () => {
     togglePreview(!isPreviewOpen);
   };
+
   return (
     <>
       {isVideoMode &&
@@ -78,15 +84,7 @@ export const Footer = () => {
                       <FooterView />
                     )}
                   </div>
-                  <Button
-                    title="Generate video"
-                    onClick={ 
-                      handleProcess
-                    }
-                    Icon={IconsGenerate}
-                  >
-                    Generate
-                  </Button>
+                  <Generate />
                 </div>
               )}
             </>

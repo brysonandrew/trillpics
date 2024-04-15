@@ -1,10 +1,9 @@
 import { TVideoState } from "src/store/types";
-import { StateCreator } from "zustand";
 import { shuffle } from "@utils/array/shuffle";
 import { TImmerState } from "@/store";
+import { DEFAULT_FPS } from "@/remotion/constants";
 
 import precachePics from "@app/precache.json";
-import { DEFAULT_FPS } from "@/remotion/constants";
 const { length: picsCount } =
   precachePics;
 const inits = [...Array(picsCount)].map(
@@ -15,7 +14,7 @@ const shuffledInits = shuffle(inits);
 export const initStoreState: TImmerState =
   (set, get) => ({
     fps: DEFAULT_FPS,
-    isPlaying:false,
+    isPlaying: false,
     playerElement: null,
     picsCount,
     picsEntries: [shuffledInits],
@@ -34,7 +33,7 @@ export const initStoreState: TImmerState =
       const currPics = get().pics();
       set({
         picsEntries: [
-          ...get().picsEntries,
+          ...get().picsEntries, 
           next ??
             shuffle([...currPics]),
         ],

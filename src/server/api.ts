@@ -1,31 +1,32 @@
-
 import express from "express";
 import cors from "cors";
-import * as trpcExpress from "@trpc/server/adapters/express";
 import {
   CLIENT_ORIGINS,
   SERVER_PATH,
   API_PORT,
 } from "@/constants/api";
 import { initTRPC } from "@trpc/server";
-import { render } from "@/server/remotion/render";
-import { createContext } from "@/server/context"; 
-import 'dotenv/config'
+import {
+  generate,
+  TRenderMediaResult,
+} from "@/server/remotion/generate";
+import { createContext } from "@/server/context";
+
+import * as trpcExpress from "@trpc/server/adapters/express";
+import "dotenv/config";
 
 const t = initTRPC.create();
 
 const publicProcedure = t.procedure;
 
 const router = t.router({
-  hi:publicProcedure.query(() => "hi"),
+  hi: publicProcedure.query(() => "hi"),
   generate: publicProcedure.mutation(
-    async (
-      x: any
-    ) => {
-      await render(x.rawInput);
-      return {
-        message: "goodbye!",
-      };
+    async (x: any) => {
+      const result: TRenderMediaResult =
+        await generate(x.rawInput);
+
+      return result;
     }
   ),
 });
@@ -40,7 +41,6 @@ api.use(
     origin: CLIENT_ORIGINS,
   })
 );
-
 
 api.use(
   SERVER_PATH,

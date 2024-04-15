@@ -2,10 +2,11 @@ import {Audio, interpolate, useCurrentFrame, useVideoConfig} from 'remotion';
 import {useAudioData, visualizeAudio} from '@remotion/media-utils';
 import {FC} from 'react';
 import { IAudioProps } from '@/remotion/pic-series/series/audio/types';
+import { DEFAULT_FPS } from '@/remotion/constants';
 
 export const Visualizer: FC<IAudioProps> = ({
 	src,
-	barCount = 30,
+	barCount = DEFAULT_FPS,
 	numberOfSamples = 256,
 	...props
 }) => {

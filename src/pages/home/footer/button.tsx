@@ -4,15 +4,20 @@ import {
   TButtonProps,
   TSvgProps,
 } from "@brysonandrew/config-types";
-import { Circle } from "@components/decoration/circle";
-import { Background } from "@components/decoration/background";
-import { BORDER_RADIUS } from "@app/style/border-radius";
+import {
+  Circle,
+  TCircleProps,
+} from "@components/decoration/circle";
 
 type TProps = TButtonProps & {
   Icon: FC<TSvgProps>;
+  iconProps?: TSvgProps;
+  circleProps?: TCircleProps;
 };
 export const Button: FC<TProps> = ({
   Icon,
+  iconProps,
+  circleProps,
   children,
   classValue,
   ...props
@@ -25,15 +30,13 @@ export const Button: FC<TProps> = ({
       )}
       {...props}
     >
-      {/* <Background
-        style={{
-          borderRadius:
-            BORDER_RADIUS.XL,
-        }}
-      /> */}
       <div className="absolute inset-0 dark:bg-black bg-gray-6 opacity-50 rounded-full" />
-      <Circle>
-        <Icon width={28} height={28} />
+      <Circle {...circleProps}>
+        <Icon
+          width={28}
+          height={28}
+          {...(iconProps ?? {})}
+        />
       </Circle>
       <div className="relative flex items-center gap-2 whitespace-nowrap">
         {children}

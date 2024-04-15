@@ -57,6 +57,3 @@ export const useVideoStore: TStore = create<
   TVideoState,
   TStateMiddleware
 >(createPersistState);
-
-// export const useVideoStore: TVideoState =
-//   useStore<TStore>(store);
