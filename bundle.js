@@ -15267,7 +15267,7 @@ const PicSeries = ({ pics }) => {
   const audioSrc = (0,cjs.staticFile)(
     audioSrcPath
   );
-  return /* @__PURE__ */ React.createElement(cjs.Series, null, pics.map((pic) => {
+  return /* @__PURE__ */ React.createElement(React.Fragment, null, /* @__PURE__ */ React.createElement(cjs.Audio, { src: audioSrc }), /* @__PURE__ */ React.createElement(cjs.Series, null, pics.map((pic) => {
     const srcPath = resolvePicSrc(pic);
     const src = (0,cjs.staticFile)(srcPath);
     return /* @__PURE__ */ React.createElement(
@@ -15293,7 +15293,7 @@ const PicSeries = ({ pics }) => {
         )
       )
     );
-  }));
+  })));
 };
 
 // EXTERNAL MODULE: ./node_modules/zod/lib/index.mjs
