@@ -6,12 +6,27 @@ import { Global } from "@shell/global";
 import { FadeV } from "@brysonandrew/fade-edge/pairs/FadeV";
 import { useVideoStore } from "@store/index";
 import { Header } from "@shell/header";
+import { resolveGradient } from "@brysonandrew/color-gradient";
 
 const C = () => {
   const { isPreviewOpen } =
     useVideoStore();
   return (
     <Global>
+      <div
+        className="fill"
+        style={{
+          backgroundImage:
+            resolveGradient({
+              name: "repeating-conic-gradient",
+              parts: [
+                "rgba(0,0,0,0)",
+                "black",
+              ],
+            }),
+          backgroundSize: "2px 2px",
+        }}
+      />
       <Outlet />
       {!isPreviewOpen && (
         <FadeV
@@ -20,7 +35,6 @@ const C = () => {
           lightEdgeColor="var(--light-04)"
         />
       )}
-      <Header />
       <Notifications />
     </Global>
   );

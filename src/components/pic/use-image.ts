@@ -15,8 +15,9 @@ import {
   useSearchParams,
 } from "react-router-dom";
 import { FULLSCREEN_Z } from "@constants/dom";
-import { useVideoStore } from "src/store";
 import clsx from "clsx";
+import { useVideoStore } from "@/store";
+import { PRESENCE_OPACITY } from "@brysonandrew/animation";
 import { resolveViewportSelfCenter } from "../../utils/dimensions/resolveViewportSelfCenter";
 export const SEARCH_PARAM_ID = "open";
 
@@ -103,12 +104,13 @@ export const useImage = ({
   const zIndex = isFront
     ? FULLSCREEN_Z
     : 0;
-
   return {
     isHover,
     isOpen,
     boxProps: {
-      className: clsx("relative cursor-pointer"),
+      className: clsx(
+        "relative cursor-pointer"
+      ),
       style: {
         ...imageDimensions,
         cursor: isVideoMode
@@ -121,11 +123,10 @@ export const useImage = ({
               ? removeVideo(name)
               : addVideo(name)
         : handleToggle,
+
       ...handlers,
     },
     designProps: {
-      initial: false,
-      layout: true,
       style: {
         zIndex,
         ...(isOpen && isDimensions
@@ -148,6 +149,11 @@ export const useImage = ({
       animate: {
         opacity: isDimensions ? 1 : 0,
       },
+      ...(isDimensions && !isOpen && !isFront
+        ? {
+            ...PRESENCE_OPACITY,
+          }
+        : {}),
       onLayoutAnimationComplete:
         handleLayoutAnimationComplete,
     },

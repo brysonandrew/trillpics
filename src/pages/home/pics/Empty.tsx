@@ -1,4 +1,4 @@
-import { Delay } from "@components/layout/pieces/Piece";
+import { Delay } from "@/components/layout/layout-animaters";
 
 export const Empty = () => {
   return (

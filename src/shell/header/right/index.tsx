@@ -31,8 +31,10 @@ export const HeaderRight: FC = () => {
         {rightItems.map((Item) => (
           <Circle
             key={Item.name}
+            isGlow
             {...PRESENCE_OPACITY}
           >
+            
             <Item {...style} />
           </Circle>
         ))}

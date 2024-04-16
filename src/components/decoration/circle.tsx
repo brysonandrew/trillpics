@@ -28,6 +28,7 @@ export const Circle: FC<
   return (
     <motion.div
       className="relative z-10"
+      whileHover="hover"
       {...props}
     >
       <AnimatePresence>

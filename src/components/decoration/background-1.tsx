@@ -12,14 +12,19 @@ export const Background1: FC<
   const props = {
     style: {
       borderRadius: BORDER_RADIUS.XL,
+      ...style,
     },
     ..._props,
   };
+
   return (
     <motion.div
-      className="fill opacity-40"
-      layout
-      {...props}
+      className="fill pointer-events-none"
+      style={{ ...props.style, opacity: 0.6 }}
+      variants={{
+        hover: { opacity: 0.8 },
+      }}
+      {..._props}
     >
       <motion.div
         className={clsx(
@@ -29,7 +34,7 @@ export const Background1: FC<
       />
       <motion.div
         className={clsx(
-          "fill bg-black-2 border-white-02 border opacity-dark"
+          "fill bg-black border-white-02 border opacity-dark"
         )}
         {...props}
       />

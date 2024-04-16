@@ -1,9 +1,10 @@
 import type { FC } from "react";
 import { IconsBack } from "@/components/icons/back";
 import { IconsPlay } from "@/components/icons/play";
-import { FooterView } from "@/pages/home/footer/show";
+import { FooterShow } from "@/pages/home/footer/show";
 import { BPill } from "@/components/interactive/b-pill";
 import { useVideoStore } from "@/store";
+import { IconsBack1 } from "@/components/icons/back1";
 
 export const FooterPlayer: FC = () => {
   const {
@@ -16,23 +17,24 @@ export const FooterPlayer: FC = () => {
   };
 
   return (
-    <div className="column-reverse items-start justify-center gap-2 h-32">
       <BPill
-        title={isPreviewOpen ? "Exit video preview"  : "View video preview"}
+        title={
+          isPreviewOpen
+            ? "Exit video preview"
+            : "View video preview"
+        }
         onClick={handlePreview}
         Icon={
           isPreviewOpen
-            ? IconsBack
+            ? IconsBack1
             : IconsPlay
         }
       >
-        {isPreviewOpen ? (
-          <>Back</>
+      {isPreviewOpen ? (
+          <>Exit Preview</>
         ) : (
           <>Preview</>
         )}
       </BPill>
-      {!isPreviewOpen && <FooterView />}
-    </div>
   );
 };

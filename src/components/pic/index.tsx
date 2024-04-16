@@ -8,8 +8,9 @@ import { FadeV } from "@brysonandrew/fade-edge";
 import { resolveConfigFromSize } from "@/utils/dimensions/resolveDimensionsFromSize";
 import { VideoModeCounter } from "@/components/pic/video-mode-counter";
 import { resolvePicSrc } from "@/components/collection/config/src";
-import { PRESENCE_OPACITY } from "@brysonandrew/animation";
+import { PRESENCE_OPACITY, PRESENCE_OPACITY_ANIMATE_DELAY_04, PRESENCE_OPACITY_DELAY, PRESENCE_OPACITY_DURATION_DELAY } from "@brysonandrew/animation";
 import { TCell } from "../../pages/home/pics/columns/config";
+import { PRESENCE_OPACITY_ANIMATE_DELAY_02 } from "@/constants/animation";
 
 type TProps = {
   colIndex: number;
@@ -55,16 +56,17 @@ export const Pic: FC<TProps> = ({
               layoutId={src}
             />
             <AnimatePresence>
-              {isHover && (
+              {(isHover||isAdded) && (
                 <motion.div
-                  {...PRESENCE_OPACITY}
+                  {...PRESENCE_OPACITY_DURATION_DELAY}
                 >
                   <FadeV
                     key="ImageFadeV"
                     isFixed={false}
-                    direction="to top"
-                    darkEdgeColor="var(--dark-02)"
-                    lightEdgeColor="var(--light-02)"
+                    direction="to top left"
+                    darkEdgeColor="var(--dark-06)"
+                    midColor="var(--gray-05)"
+                    lightEdgeColor="var(--light-06)"
                   />
                 </motion.div>
               )}

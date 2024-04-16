@@ -4,11 +4,13 @@ import { LINEAR_GRADIENT_SVG_ID } from "@/components/gradients/linear-gradient-s
 import { TSvgProps } from "@brysonandrew/config-types";
 import { resolveDimensions } from "@/utils/dimensions/resolve-dimensions";
 
-export const IconsGenerate: FC<TSvgProps> = (props) => {
+export const IconsGenerate: FC<
+  TSvgProps
+> = (props) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
-{...resolveDimensions(40)}
+      {...resolveDimensions(40)}
       viewBox="0 0 24 24"
       {...props}
     >

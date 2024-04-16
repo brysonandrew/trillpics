@@ -2,8 +2,8 @@ import type { FC } from "react";
 import { useDarkMode } from "@brysonandrew/dark-mode";
 import { HOME_ROUTE } from "@constants/routes";
 import { useLocation } from "react-router";
-import { useVideoStore } from "@/store";
 import { Glow } from "@/components/decoration/glow";
+import { resolvePresence } from "@utils/animation";
 
 export const SparkleButton: FC = () => {
   const { pathname } = useLocation();
@@ -12,18 +12,15 @@ export const SparkleButton: FC = () => {
     pathname === HOME_ROUTE;
   const { darkKey } = useDarkMode();
 
-  const { updatePicsEntries } =
-    useVideoStore();
-  const randomizePics = () => {
-    updatePicsEntries();
-  };
-
   return (
-    <button
-      className="relative uppercase text-xl tracking-wide h-8 w-7 sm:(h-10 w-10)"
-      onClick={randomizePics}
-    >
-      <Glow classValue="-inset-4" />
+    <div className="relative uppercase text-xl tracking-wide h-8 w-7 sm:(h-10 w-10)">
+      <Glow
+        classValue="-inset-4"
+        {...resolvePresence(
+          { opacity: 0 },
+          { opacity: 0.2 }
+        )}
+      />
 
       <img
         className="fill h-full"
@@ -41,6 +38,6 @@ export const SparkleButton: FC = () => {
           }}
         />
       )}
-    </button>
+    </div>
   );
 };

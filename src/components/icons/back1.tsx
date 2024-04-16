@@ -1,24 +1,24 @@
 import type { FC } from "react";
 import { LINEAR_GRADIENT_SVG_ID } from "@/components/gradients/linear-gradient-svg";
-import { resolveDimensions } from "@/utils/dimensions/resolve-dimensions";
 import { TSvgProps } from "@brysonandrew/config-types";
 import { resolveUrlId } from "@brysonandrew/utils-attributes";
 
-export const IconsShuffle: FC<
+export const IconsBack1: FC<
   TSvgProps
 > = (props) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      {...resolveDimensions(24)}
-      viewBox="0 0 24 24"
+      width="40"
+      height="40"
+      viewBox="0 0 22 22"
       {...props}
     >
       <path
         fill={resolveUrlId(
           LINEAR_GRADIENT_SVG_ID
         )}
-        d="M18 5h-2v2h2v2h-6v2h-2v6H2v2h8v-2h2v-6h6v2h-2v2h2v-2h2v-2h2V9h-2V7h-2zM2 9h6v2H2zm20 10v-2h-8v2z"
+        d="M11 7h10v2H11zm-8 4h2V9h2v2h14v2H7v2H5v-2H3zm4 4v2h2v-2zm0-6V7h2v2zm14 6H11v2h10z"
       />
     </svg>
   );

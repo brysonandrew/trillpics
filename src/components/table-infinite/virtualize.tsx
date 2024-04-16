@@ -7,7 +7,6 @@ import { FixedSizeList } from "react-window";
 import { useScroll } from "@shell/providers/context/scroll";
 import { useViewport } from "@shell/providers/context/viewport";
 import { Row } from "./row";
-import { TableInfiniteShell } from "./shell";
 import {
   TBaseRow,
   TTable,
@@ -56,9 +55,6 @@ export const Virtualize = <
         const key = data[index].id;
         return key;
       }}
-      outerElementType={
-        TableInfiniteShell
-      }
       layout="vertical"
       ref={listRef}
     >

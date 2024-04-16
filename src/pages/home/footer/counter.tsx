@@ -1,12 +1,13 @@
 import type { FC } from "react";
 import { Pill } from "@/components/decoration/Pill";
-import { N } from "@/components/layout/text/N";
 import { useShow } from "@/pages/home/footer/show/use-show";
 import { useVideoStore } from "@/store";
 import clsx from "clsx";
+import { N } from "@/components/layout/N";
 
-export const FooterCounter: FC =
-  () => {
+export const FooterCounterInline = () => <FooterCounter isInline/>
+export const FooterCounter: FC<{isInline?:boolean}> =
+  ({isInline}) => {
     const { isVideoMode } =
       useVideoStore();
     const {
@@ -18,9 +19,9 @@ export const FooterCounter: FC =
         layoutId="FooterCounter"
         classValue={clsx(
           "z-20",
-          isVideoMode
-            ? "relative ml-1 pointer-events-none"
-            : 'absolute -top-2 -right-2'
+          isInline
+            ? "relative pointer-events-none"
+            : 'absolute -top-2.5 -right-2.5'
         )}
         isActive={
           !isVideoMode &&

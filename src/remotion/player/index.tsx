@@ -1,11 +1,5 @@
-import {
-  Fragment,
-  useRef,
-  useState,
-} from "react";
 import { Player } from "@remotion/player";
 import { useVideoStore } from "src/store";
-import { useViewport } from "@shell/providers/context/viewport";
 import { Empty } from "@pages/home/pics/Empty";
 import { usePoster } from "@/remotion/player/ui/poster";
 import { usePlayerListeners } from "@/hooks/usePlayerListeners";

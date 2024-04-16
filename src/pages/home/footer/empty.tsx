@@ -2,13 +2,16 @@ import type { FC } from "react";
 import { resolveUrlId } from "@brysonandrew/utils-attributes";
 import { LINEAR_GRADIENT_SVG_ID } from "@/components/gradients/linear-gradient-svg";
 import { Alert } from "@components/icons/alert";
-import { Background } from "@components/decoration/background";
 import { Line } from "@brysonandrew/layout-line";
+import { Background1 } from "@/components/decoration/background-1";
 
 export const Empty: FC = () => {
   return (
-    <div className="fixed column-stretch grow-0 shrink gap-2 pointer-events-none left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 px-4 py-2 z-10 char-gap-6">
-      <Background />
+    <div className="fixed column-stretch dark:text-white-5 grow-0 shrink gap-4 pointer-events-none left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 px-6 pt-4 pb-6 z-10 char-gap-6">
+      <Background1 />
+      <Background1 />
+      <Background1 />
+
       <div className="relative flex flex-row items-center gap-2 lg:gap-4 shrink-0">
         <Alert
           width={40}
@@ -17,16 +20,12 @@ export const Empty: FC = () => {
             LINEAR_GRADIENT_SVG_ID
           )}
         />
-        <h4
-          className="whitespace-nowrap font-mono-pix text-2xl md:text-4xl _gradient-text"
-        >
+        <h4 className="whitespace-nowrap font-display text-2xl md:text-4xl">
           Select images
         </h4>
       </div>
       <Line />
-      <p
-        className="relative font-mono-pix text-lg text-main"
-      >
+      <p className="relative font-mono text-lg">
         Click on the images you'd like
         to add to your video
       </p>

@@ -9,13 +9,17 @@ import {
 } from "react-router-dom";
 import { HOME_ROUTE } from "@constants/routes";
 import { HeaderRight } from "@shell/header/right";
+import { useVideoStore } from "@/store";
 import { Title } from "./title";
 
 type TProps = PropsWithChildren;
 export const Header: FC<
   TProps
 > = () => {
+  const { isPreviewOpen } =
+    useVideoStore();
   const { pathname } = useLocation();
+  if (isPreviewOpen) return null;
   const isHome =
     pathname === HOME_ROUTE;
 

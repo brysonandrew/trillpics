@@ -3,14 +3,26 @@ import { IconsViewBack } from "@/components/icons/view/back";
 import { IconsViewForward } from "@/components/icons/view/forward";
 import { BPill } from "@/components/interactive/b-pill";
 import { useShow } from "@/pages/home/footer/show/use-show";
-import { FooterCounter } from "@/pages/home/footer/counter";
 
-export const FooterView: FC = () => {
+import {
+  NONE_CURSOR_KEY,
+  useHoverKey,
+} from "@brysonandrew/cursor";
+import { IconsVisible } from "@/components/icons/visible";
+
+export const FooterShow: FC = () => {
   const {
     isViewingOnlyVideoPics,
     videoPicsCount,
     onToggleShow,
+    isPreviewOpen,
+    isVideoMode,
   } = useShow();
+  const { isHover, handlers } =
+    useHoverKey(
+      NONE_CURSOR_KEY,
+      "FooterShow"
+    );
 
   return (
     <BPill
@@ -21,16 +33,23 @@ export const FooterView: FC = () => {
       }
       onClick={onToggleShow}
       Icon={
-        isViewingOnlyVideoPics
-          ? IconsViewBack
-          : IconsViewForward
+        IconsVisible
+        // isViewingOnlyVideoPics
+        //   ? IconsViewBack
+        //   : IconsViewForward
       }
+      {...(isVideoMode && !isPreviewOpen
+        ? {}
+        : {})}
+      {...handlers}
     >
-      {isViewingOnlyVideoPics ? (
-        <>Show all</>
-      ) : (
+      {isHover && (
         <>
-          Show <FooterCounter />
+          {isViewingOnlyVideoPics ? (
+            <>Show all</>
+          ) : (
+            <>Show</>
+          )}
         </>
       )}
     </BPill>

@@ -1,16 +1,20 @@
 import { FC } from "react";
-import { motion } from "framer-motion";
 import { VideoCrossIcon } from "@pages/home/footer/video/cross-icon";
 import { useVideoStore } from "src/store";
-import { N } from "@components/layout/text/N";
-import { Pill } from "@components/decoration/Pill";
 import { IconsVideo } from "@/components/icons/video";
-import { NOOP } from "@brysonandrew/utils-function";
 import { useShow } from "@/pages/home/footer/show/use-show";
 import { Circle } from "@/components/decoration/circle";
-import clsx from "clsx";
 import { useCircleButtonStyle } from "@/components/interactive/use-circle-button-style";
 import { FooterCounter } from "@/pages/home/footer/counter";
+import {
+  NONE_CURSOR_KEY,
+  resolveHoverKeyParts,
+  useCursor,
+  useHoverKey,
+} from "@brysonandrew/cursor";
+import { BPill } from "@/components/interactive/b-pill";
+import { resolveInteractiveLabels } from "@brysonandrew/utils-attributes";
+import { IconsGallery } from "@/components/icons/gallery";
 
 export const FooterVideo: FC = () => {
   const {
@@ -21,30 +25,40 @@ export const FooterVideo: FC = () => {
 
   const handleClick = () =>
     toggleVideoMode();
+  const { videoPicsCount } = useShow();
   const {
-    isViewingOnlyVideoPics,
-    videoPicsCount,
-    onToggleShow,
-  } = useShow();
+    hoverKeyParts: [_, hoverKey],
+    onHoverKey,
+  } = useCursor();
+  const title = isVideoMode
+    ? "Gallery Mode"
+    : "Video Mode";
+
+  const { isHover, handlers } =
+    useHoverKey(NONE_CURSOR_KEY, "v");
+
   return (
-    <Circle>
-      <button
-        className="center"
-        style={style}
-        onClick={handleClick}
-      >
-        <div className="relative">
-          {videoPicsCount > 0 ? (
-            <IconsVideo />
-          ) : (
-            <VideoCrossIcon />
-          )}
-        </div>
-      </button>
-      {videoPicsCount > 0 &&
+    <BPill
+      {...resolveInteractiveLabels(
+        title
+      )}
+      outerCircle={
+        videoPicsCount > 0 &&
         !isVideoMode && (
           <FooterCounter />
-        )}
-    </Circle>
+        )
+      }
+      onClick={handleClick}
+      Icon={
+        isVideoMode
+          ? IconsGallery
+          : videoPicsCount > 0
+          ? IconsVideo
+          : VideoCrossIcon
+      }
+      {...handlers}
+    >
+      {isHover && title}
+    </BPill>
   );
 };
