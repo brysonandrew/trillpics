@@ -12,16 +12,17 @@ export const Title: FC = () => {
   };
 
   return (
-    <div className="relative row-start gap-0 md:(gap-4 w-auto)">
-      <Glow/> 
-      {isScroll ? (
-        <button onClick={handleClick}>
+    <div className="relative row gap-0 md:(gap-4 w-auto)">
+      <div className="relative">
+        <Glow classValue="-inset-1" />
+        {isScroll ? (
+          <button onClick={handleClick}>
+            <TitleText />
+          </button>
+        ) : (
           <TitleText />
-        </button>
-      ) : (
-        <TitleText />
-      )}
-
+        )}
+      </div>
       <SparkleButton />
     </div>
   );

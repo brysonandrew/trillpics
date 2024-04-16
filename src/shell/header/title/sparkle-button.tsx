@@ -3,6 +3,7 @@ import { useDarkMode } from "@brysonandrew/dark-mode";
 import { HOME_ROUTE } from "@constants/routes";
 import { useLocation } from "react-router";
 import { useVideoStore } from "@/store";
+import { Glow } from "@/components/decoration/glow";
 
 export const SparkleButton: FC = () => {
   const { pathname } = useLocation();
@@ -19,9 +20,11 @@ export const SparkleButton: FC = () => {
 
   return (
     <button
-      className="relative mt-4 uppercase text-xl tracking-wide h-8 w-7 sm:(h-10 w-10 mt-4)"
+      className="relative uppercase text-xl tracking-wide h-8 w-7 sm:(h-10 w-10)"
       onClick={randomizePics}
     >
+      <Glow classValue="-inset-4" />
+
       <img
         className="fill h-full"
         src={`/logo-${darkKey}.svg`}

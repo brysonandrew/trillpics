@@ -1,19 +1,19 @@
+import type { FC } from "react";
 import { TSvgProps } from "@brysonandrew/config-types";
 import { resolveUrlId } from "@brysonandrew/utils-attributes";
-import {
-  LINEAR_GRADIENT_SVG_ID
-} from "@/components/gradients/linear-gradient-svg";
+import { LINEAR_GRADIENT_SVG_ID } from "@/components/gradients/linear-gradient-svg";
 import { useVideoStore } from "@store/index";
-import type { FC } from "react";
+import { resolveDimensions } from "@/utils/dimensions/resolve-dimensions";
 
-export const IconsVideo: FC<TSvgProps> = (props) => {
+export const IconsVideo: FC<
+  TSvgProps
+> = (props) => {
   const { isVideoMode } =
     useVideoStore();
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      width="36px"
-      height="36px"
+      {...resolveDimensions(24)}
       viewBox="0 0 24 24"
       {...props}
     >

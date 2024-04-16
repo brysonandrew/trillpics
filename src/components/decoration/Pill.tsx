@@ -6,7 +6,6 @@ import {
   HTMLMotionProps,
   motion,
 } from "framer-motion";
-import { GRADIENT_BLUE_PINK_YELLOW } from "@app/color/gradient";
 import { Glow } from "@components/decoration/glow";
 
 type TProps =

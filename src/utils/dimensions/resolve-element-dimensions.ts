@@ -2,7 +2,7 @@
 import { TElement, TReplacedElement } from '@t/dom';
 import { TDimensions } from '@t/measure';
 
-export const resolveDimensions = <
+export const resolveElementDimensions = <
   T extends
     | TReplacedElement
     | TElement

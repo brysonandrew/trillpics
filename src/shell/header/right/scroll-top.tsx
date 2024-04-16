@@ -1,25 +1,29 @@
+import type { CSSProperties, FC } from "react";
 import { resolveUrlId } from "@brysonandrew/utils-attributes";
 import { LINEAR_GRADIENT_SVG_ID } from "@/components/gradients/linear-gradient-svg";
 import { useScroll } from "@shell/providers/context/scroll";
-import type { FC } from "react";
+import { resolveDimensions } from "@/utils/dimensions/resolve-dimensions";
+import { TButtonMotionProps, TButtonProps } from "@brysonandrew/config-types";
 
-export const ScrollTop: FC = () => {
+export const ScrollTop: FC<
+  CSSProperties
+> = (props) => {
   const { listRef } = useScroll();
 
   const handleClick = () => {
     window.scrollTo(0, 0);
     listRef?.current?.scrollToItem?.(0);
   };
-  
+
   return (
     <button
-      className="relative center shrink-0 w-14 h-14"
+      className="relative center shrink-0"
       onClick={handleClick}
+      style={props}
     >
       <svg
         xmlns="http://www.w3.org/2000/svg"
-        width="28"
-        height="28"
+        {...resolveDimensions(24)}
         viewBox="0 0 22 22"
       >
         <path

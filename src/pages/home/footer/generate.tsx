@@ -3,7 +3,7 @@ import {
   motion,
 } from "framer-motion";
 import { useVideoStore } from "src/store";
-import { Button } from "@pages/home/footer/button";
+import { BPill } from "@/components/interactive/b-pill";
 import { IconsGenerate } from "@components/icons/generate";
 import { trpc } from "@/utils/trpc";
 import { TGenerateConfig } from "@/server/remotion/generate";
@@ -13,8 +13,19 @@ import {
   useHoverKey,
 } from "@brysonandrew/cursor";
 import { AURA } from "@brysonandrew/svg-filter";
-import { resolvePresence } from "@brysonandrew/animation";
+import {
+  PRESENCE_OPACITY,
+  PRESENCE_OPACITY_DELAY,
+  resolvePresence,
+  TRANSITION_02_EASEIN_008,
+} from "@brysonandrew/animation";
 import { resolveCompositeKey } from "@brysonandrew/utils-key";
+import { Background1 } from "@/components/decoration/background-1";
+import { Background04 } from "@/components/decoration/background-04";
+import { Metal } from "@/components/metal";
+import { MetalDark } from "@/components/metal/MetalDark";
+import { MetalDarkest } from "@/components/metal/MetalDarkest";
+import { useApp } from "@brysonandrew/app";
 
 export const Generate = () => {
   const { videoPics, fps } =
@@ -36,6 +47,7 @@ export const Generate = () => {
     isSuccess,
     mutateAsync,
   } = trpc.generate.useMutation();
+  const { BORDER_RADIUS } = useApp();
   const handleGenerate = async () => {
     const result = await mutateAsync(
       config as any
@@ -46,65 +58,74 @@ export const Generate = () => {
     const blob = new Blob([arr]);
     await downloadMedia(blob);
   };
+  const isAura = isHover || isLoading;
+  const AURA_TRANSITION = {
+    transition: {
+      duration: 0.6,
+      ease: "easeInOut",
+    },
+    ...resolvePresence(
+      { opacity: 0 },
+      {
+        opacity: 0.9,
+      }
+    ),
+  };
   return (
-    <div
-      className="relative"
-      style={{
-        mixBlendMode: "exclusion",
-      }}
-    >
+    <div className="relative">
       <AnimatePresence>
-        {(isHover || isLoading) && (
-          <motion.div
-            key={resolveCompositeKey(
-              isHover.toString(),
-              isLoading.toString()
-            )}
-            className="fill rounded-full absolute -inset-y-4 mt-1.5 -ml-4 _radial-gradient"
-            style={{
-              filter: AURA.GLOBAL.value,
-            }}
-            transition={{
-              duration: 0.8,
-              ease: "easeInOut",
-            }}
-            {...resolvePresence(
-              { opacity: 0 },
-              {
-                opacity: 0.5,
-                scale: 1,
-              }
-            )}
-          />
+        {isAura && (
+          <>
+            <motion.div
+              key={resolveCompositeKey(
+                isHover.toString(),
+                isLoading.toString()
+              )}
+              className="fill absolute -inset-y-1.5 -inset-x-1.5 ml-1 mt-0.25 _radial-gradient"
+              style={{
+                borderRadius:
+                  BORDER_RADIUS.XL,
+                filter:
+                  AURA.GLOBAL.value,
+              }}
+              {...AURA_TRANSITION}
+            />
+            <Metal
+              key="background"
+              className="fill h-10"
+              style={{
+                borderRadius:
+                  BORDER_RADIUS.XL,
+              }}
+              {...AURA_TRANSITION}
+            />
+          </>
         )}
-        <motion.div>
-          <Button
-            key={`${isLoading}`}
-            title="Generate video"
-            circleProps={{
-              isGlow: isSuccess,
-              ...{
-                transition: {
-                  repeat: Infinity,
-                  repeatDelay: 0.8,
-                  duration: isHover
-                    ? 0.8
-                    : 0,
-                },
-                ...resolvePresence(
-                  { opacity: 0 },
-                  { opacity: [0, 1] }
-                ),
-              },
-            }}
-            Icon={IconsGenerate}
-            onClick={handleGenerate}
-            {...handlers}
-          >
-            Generate
-          </Button>
-        </motion.div>
       </AnimatePresence>
+      <BPill
+        title="Generate video"
+        circleProps={{
+          isGlow: isSuccess,
+          ...{
+            transition: {
+              repeat: Infinity,
+              repeatDelay: 0.8,
+              duration: isHover
+                ? 0.8
+                : 0,
+            },
+            ...resolvePresence(
+              { opacity: 0 },
+              { opacity: [0, 1] }
+            ),
+          },
+        }}
+        Icon={IconsGenerate}
+        onClick={handleGenerate}
+        {...handlers}
+      >
+        Generate
+      </BPill>
     </div>
   );
 };

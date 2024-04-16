@@ -15,7 +15,7 @@ const C = () => {
       <Outlet />
       {!isPreviewOpen && (
         <FadeV
-classValue='z-4x0'
+          classValue="z-4x0"
           darkEdgeColor="var(--dark-04)"
           lightEdgeColor="var(--light-04)"
         />

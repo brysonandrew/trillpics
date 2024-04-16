@@ -1,6 +1,12 @@
-import {  FC,  PropsWithChildren,} from "react";
+import {
+  FC,
+  PropsWithChildren,
+} from "react";
 import clsx from "clsx";
-import {  Link,  useLocation,} from "react-router-dom";
+import {
+  Link,
+  useLocation,
+} from "react-router-dom";
 import { HOME_ROUTE } from "@constants/routes";
 import { HeaderRight } from "@shell/header/right";
 import { Title } from "./title";
@@ -28,7 +34,10 @@ export const Header: FC<
           {isHome ? (
             <Title />
           ) : (
-            <Link className="relative" to={HOME_ROUTE}> 
+            <Link
+              className="relative"
+              to={HOME_ROUTE}
+            >
               <Title />
             </Link>
           )}

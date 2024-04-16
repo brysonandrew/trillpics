@@ -3,8 +3,8 @@ import type {
   Cell as TCell,
 } from '@tanstack/react-table';
 import type { ListChildComponentProps } from 'react-window';
-import { Cell } from './Cell';
-import { TBaseRow } from '../types';
+import { Cell } from './cell';
+import { TBaseRow } from './types';
 
 type TProps<T> =
   ListChildComponentProps<TRow<T>[]>;

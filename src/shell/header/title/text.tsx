@@ -1,6 +1,5 @@
 import type { FC } from "react";
 import { APP_TITLE } from "@app/base";
-import { Glow } from "@/components/decoration/glow";
 
 export const TitleText: FC = () => {
   return (
@@ -8,9 +7,8 @@ export const TitleText: FC = () => {
       style={{
         overflowWrap: "break-word",
       }}
-      className="relative font-display w-50 md:w-auto text-4.5xl xs:text-5xl sm:text-5.5xl"
+      className="relative font-display text-left w-32 text-4xl sm:(text-4.5xl w-44) md:(text-5xl w-auto)"
     >
-      
       {APP_TITLE}
     </h1>
   );

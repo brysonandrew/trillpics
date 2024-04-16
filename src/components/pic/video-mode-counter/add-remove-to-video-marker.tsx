@@ -1,22 +1,24 @@
 import type { FC } from "react";
 import { motion } from "framer-motion";
 import { TRANSITION } from "@brysonandrew/animation";
+import { IconsCross } from "@/components/icons/cross";
 
 type TProps = { isAdded: boolean };
 export const AddRemoveToVideoMarker: FC<
   TProps
 > = ({ isAdded }) => {
-  const rotate = isAdded ? 45 : 0;
+  const rotate = isAdded ? 0 : 45;
   return (
     <motion.h4
-      className="relative text-6xl font-mono text-main-inverted origin-center dark:text-black-08 text-white-09 _gradient-text"
+      className="relative origin-center"
       initial={{
         opacity: 0,
         scale: 0,
+        rotate: 45
       }}
       animate={{
         opacity: 1,
-        scale: isAdded ? 0.8 : 1.4,
+        scale: isAdded ? 1 : 2.8,
         rotate,
       }}
       transition={{
@@ -25,7 +27,7 @@ export const AddRemoveToVideoMarker: FC<
       }}
       layout
     >
-      +
+      <IconsCross />
     </motion.h4>
   );
 };

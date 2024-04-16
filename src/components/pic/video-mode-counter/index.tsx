@@ -1,4 +1,4 @@
-import type { FC } from "react";
+import { FC, Fragment } from "react";
 import { motion } from "framer-motion";
 import { Background04 } from "@/components/decoration/background-04";
 import { AddRemoveToVideoMarker } from "@/components/pic/video-mode-counter/add-remove-to-video-marker";
@@ -13,6 +13,7 @@ import {
   FADE_PRESENCE_05_DELAY_04,
   FADE_PRESENCE_DELAY_04,
 } from "@/constants/animation";
+import { BPill } from "@/components/interactive/b-pill";
 
 type TProps = {
   isAdded: boolean;
@@ -31,7 +32,31 @@ export const VideoModeCounter: FC<
       {(isAdded || isHover) && (
         <motion.div
           key="VideoModeCounter"
-          className="flex flex-row items-center gap-2 h-14 px-2"
+          className="flex flex-row items-center gap-2 h-12 px-2"
+          {...FADE_PRESENCE}
+        >
+          {isAdded && (
+            <BPill
+              title="Remove from video"
+              Icon={IconsVideo}
+              layout
+            >
+              <span className="font-mono">{`#${
+                videoOrder + 1
+              }`}</span>
+            </BPill>
+          )}
+          {isHover && (
+            <AddRemoveToVideoMarker
+              isAdded={isAdded}
+            />
+          )}
+        </motion.div>
+      )}
+      {/* {(isAdded || isHover) && (
+        <motion.div
+          key="VideoModeCounter"
+          className="flex flex-row items-center gap-2 h-12 px-2"
           {...FADE_PRESENCE}
         >
           <>
@@ -45,6 +70,7 @@ export const VideoModeCounter: FC<
                   className="fill overflow-hidden"
                 >
                   <div className="absolute inset-0 dark:bg-black bg-gray-6 opacity-50 rounded-full" />
+                  {`#${videoOrder + 1}`}
                 </motion.div>
                 <motion.h4
                   layout
@@ -56,8 +82,8 @@ export const VideoModeCounter: FC<
                       ? {}
                       : FADE_PRESENCE_DELAY_04)}
                   >
-                    <IconsVideo />#
-                    {videoOrder + 1}
+                    <IconsVideo />
+                    {`#${videoOrder + 1}`}
                   </motion.div>
                 </motion.h4>
               </>
@@ -69,7 +95,7 @@ export const VideoModeCounter: FC<
             />
           )}
         </motion.div>
-      )}
+      )} */}
     </>
   );
 };

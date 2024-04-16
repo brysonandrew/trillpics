@@ -8,34 +8,42 @@ import {
 } from "framer-motion";
 import { Glow } from "@components/decoration/glow";
 import { TDivMotionProps } from "@brysonandrew/config-types";
+import { Background1 } from "@/components/decoration/background-1";
+
 export type TCircleProps =
   PropsWithChildren<
     TDivMotionProps & {
       isGlow?: boolean;
+      isDouble?: boolean;
     }
   >;
 export const Circle: FC<
   TCircleProps
 > = ({
+  isDouble,
   isGlow,
   children,
   ...props
 }) => {
   return (
     <motion.div
-      className="relative center size-16 px-4 z-10"
+      className="relative z-10"
       {...props}
     >
       <AnimatePresence>
+        {isDouble && (
+          <Background1 key="double" />
+        )}
         {isGlow && (
           <Glow key="GLOW_KEY" />
         )}
-      </AnimatePresence>
-      <div className="relative size-8">
         <div className="relative">
-          {children}
+          <Background1 />
+          <div className="relative">
+            {children}
+          </div>
         </div>
-      </div>
+      </AnimatePresence>
     </motion.div>
   );
 };

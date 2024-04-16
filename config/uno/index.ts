@@ -45,8 +45,9 @@ export const theme = resolveTheme({
   },
   width,
   screen,
-  fontSize: {
+  fontSize: { 
     ...THEME_FONT_SIZE,
+    '4.5xl': ['2.5rem', '3.25rem'],
     "11xl": ["14rem", "17rem"],
   },
   keyframes: {

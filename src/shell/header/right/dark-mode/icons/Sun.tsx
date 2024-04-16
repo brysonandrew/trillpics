@@ -6,6 +6,7 @@ import {
 import { ClassValue } from "clsx";
 import { resolveUrlId } from "@brysonandrew/utils-attributes";
 import { LINEAR_GRADIENT_SVG_ID } from "@/components/gradients/linear-gradient-svg";
+import { resolveDimensions } from "@/utils/dimensions/resolve-dimensions";
 
 type TProps =
   SVGMotionProps<SVGSVGElement> & {
@@ -17,8 +18,7 @@ export const Sun: FC<TProps> = ({
 }) => (
   <motion.svg
     xmlns="http://www.w3.org/2000/svg"
-    width="28px"
-    height="28px"
+    {...resolveDimensions(24)}
     viewBox="0 0 24 24"
     {...props}
   >

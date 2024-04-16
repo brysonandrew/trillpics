@@ -17,7 +17,7 @@ import {
 import { FULLSCREEN_Z } from "@constants/dom";
 import { useVideoStore } from "src/store";
 import clsx from "clsx";
-import { resolveViewportSelfCenter } from "./resolveViewportSelfCenter";
+import { resolveViewportSelfCenter } from "../../utils/dimensions/resolveViewportSelfCenter";
 export const SEARCH_PARAM_ID = "open";
 
 export type TUseImageConfig =

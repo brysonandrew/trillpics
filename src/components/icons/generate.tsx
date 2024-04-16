@@ -2,13 +2,13 @@ import type { FC } from "react";
 import { resolveUrlId } from "@brysonandrew/utils-attributes";
 import { LINEAR_GRADIENT_SVG_ID } from "@/components/gradients/linear-gradient-svg";
 import { TSvgProps } from "@brysonandrew/config-types";
+import { resolveDimensions } from "@/utils/dimensions/resolve-dimensions";
 
 export const IconsGenerate: FC<TSvgProps> = (props) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      width="40px"
-      height="40px"
+{...resolveDimensions(40)}
       viewBox="0 0 24 24"
       {...props}
     >

@@ -27,7 +27,6 @@ export const VideoPlayer = () => {
     <>
       <Backdrop />
       <Player
-        controls
         spaceKeyToPlayOrPause
         hideControlsWhenPointerDoesntMove
         moveToBeginningWhenEnded

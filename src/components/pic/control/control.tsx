@@ -3,7 +3,7 @@ import {
   TUseImageReturn,
   TUseImageConfig,
   useImage,
-} from '../useImage';
+} from '../use-image';
 import { motion } from 'framer-motion';
 import { TChildren } from '@brysonandrew/config-types';
 import { Portal } from './Portal';

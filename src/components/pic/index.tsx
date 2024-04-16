@@ -5,7 +5,7 @@ import {
 } from "framer-motion";
 import { Control } from "@/components/pic/control/control";
 import { FadeV } from "@brysonandrew/fade-edge";
-import { resolveConfigFromSize } from "@/components/pic/resolveDimensionsFromSize";
+import { resolveConfigFromSize } from "@/utils/dimensions/resolveDimensionsFromSize";
 import { VideoModeCounter } from "@/components/pic/video-mode-counter";
 import { resolvePicSrc } from "@/components/collection/config/src";
 import { PRESENCE_OPACITY } from "@brysonandrew/animation";

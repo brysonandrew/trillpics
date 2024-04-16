@@ -1,5 +1,5 @@
 import { I } from '@brysonandrew/icons-i';
-import { TUseImageReturn } from '@/components/pic/useImage';
+import { TUseImageReturn } from '@/components/pic/use-image';
 import { useDarkMode } from '@brysonandrew/dark-mode';
 import { resolveCompositeKey } from '@utils/keys';
 import { motion } from 'framer-motion';
