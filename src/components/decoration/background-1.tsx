@@ -6,7 +6,11 @@ import { useApp } from "@brysonandrew/app";
 
 export const Background1: FC<
   TDivMotionProps
-> = ({ style, ..._props }) => {
+> = ({
+  style,
+  classValue,
+  ..._props
+}) => {
   const { BORDER_RADIUS } = useApp();
 
   const props = {
@@ -19,8 +23,14 @@ export const Background1: FC<
 
   return (
     <motion.div
-      className="fill pointer-events-none"
-      style={{ ...props.style, opacity: 0.6 }}
+      className={clsx(
+        "fill pointer-events-none",
+        classValue
+      )}
+      style={{
+        opacity: 0.6,
+        ...props.style,
+      }}
       variants={{
         hover: { opacity: 0.8 },
       }}
@@ -28,13 +38,15 @@ export const Background1: FC<
     >
       <motion.div
         className={clsx(
-          "fill bg-gray-6 border-black-02 border opacity-light"
+          "fill bg-gray-2 border-black-02 border opacity-light",
+          classValue
         )}
         {...props}
       />
       <motion.div
         className={clsx(
-          "fill bg-black border-white-02 border opacity-dark"
+          "fill bg-black border-white-02 border opacity-dark",
+          classValue
         )}
         {...props}
       />

@@ -3,11 +3,11 @@ import {
   motion,
 } from "framer-motion";
 import { useVideoStore } from "src/store";
-import { BPill } from "@/components/interactive/b-pill";
+import { PillB } from "@/components/interactive/pill/b";
 import { IconsGenerate } from "@components/icons/generate";
 import { trpc } from "@/utils/trpc";
 import { TGenerateConfig } from "@/server/remotion/generate";
-import { downloadMedia } from "@/pages/home/footer/download-media";
+import { downloadMedia } from "@/pages/home/controls/generate/download-media";
 import {
   NONE_CURSOR_KEY,
   useHoverKey,
@@ -102,7 +102,7 @@ export const Generate = () => {
           </>
         )}
       </AnimatePresence>
-      <BPill
+      <PillB
         title="Generate video"
         circleProps={{
           isGlow: isSuccess,
@@ -125,7 +125,7 @@ export const Generate = () => {
         {...handlers}
       >
         Generate
-      </BPill>
+      </PillB>
     </div>
   );
 };

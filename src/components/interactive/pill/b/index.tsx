@@ -12,17 +12,18 @@ import {
 import { resolveDimensions } from "@/utils/dimensions/resolve-dimensions";
 import { Background1 } from "@/components/decoration/background-1";
 import { Glow } from "@/components/decoration/glow";
+import { resolveInteractiveLabels } from "@brysonandrew/utils-attributes";
 
-type TProps = TButtonMotionProps & {
+export type TPillBProps = TButtonMotionProps & {
   Icon: FC<TSvgProps>;
   iconProps?: TSvgProps;
   circleProps?: TCircleProps;
   outerCircle?: ReactNode;
   isFlat?: boolean;
-  
 };
-export const BPill: FC<TProps> = ({
+export const PillB: FC<TPillBProps> = ({
   Icon,
+  title,
   iconProps,
   circleProps,
   children,
@@ -39,10 +40,11 @@ export const BPill: FC<TProps> = ({
         classValue
       )}
       layout
+      {...resolveInteractiveLabels(title)}
       {...props}
     >
       {isFlat ? null : <Glow />}
-      {outerCircle}
+      {outerCircle} 
       <Background1 layout />
       <motion.div
         className="row p-1 gap-1"

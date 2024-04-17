@@ -8,9 +8,17 @@ import { FadeV } from "@brysonandrew/fade-edge";
 import { resolveConfigFromSize } from "@/utils/dimensions/resolveDimensionsFromSize";
 import { VideoModeCounter } from "@/components/pic/video-mode-counter";
 import { resolvePicSrc } from "@/components/collection/config/src";
-import { PRESENCE_OPACITY, PRESENCE_OPACITY_ANIMATE_DELAY_04, PRESENCE_OPACITY_DELAY, PRESENCE_OPACITY_DURATION_DELAY } from "@brysonandrew/animation";
+import {
+  PRESENCE_OPACITY,
+  PRESENCE_OPACITY_ANIMATE_DELAY_04,
+  PRESENCE_OPACITY_DELAY,
+  PRESENCE_OPACITY_DURATION_DELAY,
+} from "@brysonandrew/animation";
+import {
+  FADE_PRESENCE,
+  PRESENCE_OPACITY_ANIMATE_DELAY_02,
+} from "@/constants/animation";
 import { TCell } from "../../pages/home/pics/columns/config";
-import { PRESENCE_OPACITY_ANIMATE_DELAY_02 } from "@/constants/animation";
 
 type TProps = {
   colIndex: number;
@@ -37,7 +45,7 @@ export const Pic: FC<TProps> = ({
   return (
     <Control
       name={name}
-      boxChildren={null} 
+      boxChildren={null}
       {...imageConfig}
     >
       {({
@@ -56,9 +64,9 @@ export const Pic: FC<TProps> = ({
               layoutId={src}
             />
             <AnimatePresence>
-              {(isHover||isAdded) && (
+              {(isHover || isAdded) && (
                 <motion.div
-                  {...PRESENCE_OPACITY_DURATION_DELAY}
+                  {...FADE_PRESENCE}
                 >
                   <FadeV
                     key="ImageFadeV"

@@ -21,7 +21,7 @@ export const FONTS: any[] = [
   },
   {
     key: "mono",
-    name: withDefault( 
+    name: withDefault(  
       "DroidSansMono" 
     ),
     provider: "none",

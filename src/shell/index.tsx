@@ -5,7 +5,7 @@ import { withProviders } from "@shell/providers/withProviders";
 import { Global } from "@shell/global";
 import { FadeV } from "@brysonandrew/fade-edge/pairs/FadeV";
 import { useVideoStore } from "@store/index";
-import { Header } from "@shell/header";
+import { Header } from "@/pages/home/header";
 import { resolveGradient } from "@brysonandrew/color-gradient";
 
 const C = () => {

@@ -1,6 +1,6 @@
 import { TClassValueProps } from '@brysonandrew/config-types';
 import { Cart } from '@components/notifications/cart';
-import { DarkMode } from '@shell/header/right/dark-mode';
+import { DarkMode } from '@/pages/home/header/right/dark-mode';
 
 export const ICON_CLASS_VALUE_PROPS: TClassValueProps =
   {
@@ -25,3 +25,6 @@ export const resolveScale = ({
   isScroll,
 }: TConfig) =>
   isScroll && !isHover ? 0.6 : 1;
+
+
+  export type TCooldownProps = {isCooldown:boolean}

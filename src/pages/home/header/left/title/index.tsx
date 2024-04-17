@@ -1,7 +1,7 @@
 import type { FC } from "react";
 import { useScroll } from "@shell/providers/context/scroll";
-import { TitleText } from "@/shell/header/title/text";
-import { SparkleButton } from "@/shell/header/title/sparkle-button";
+import { TitleText } from "@/pages/home/header/left/title/text";
+import { SparkleButton } from "@/pages/home/header/left/title/sparkle-button";
 import { Glow } from "@/components/decoration/glow";
 import { resolvePresence } from "@utils/animation";
 

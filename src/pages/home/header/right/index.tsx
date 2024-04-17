@@ -4,8 +4,8 @@ import {
   useMemo,
 } from "react";
 import { AnimatePresence } from "framer-motion";
-import { DarkMode } from "@shell/header/right/dark-mode";
-import { ScrollTop } from "@/shell/header/right/scroll-top";
+import { DarkMode } from "@/pages/home/header/right/dark-mode";
+import { ScrollTop } from "@/pages/home/header/right/scroll-top";
 import { useLocation } from "react-router";
 import { useScroll } from "@shell/providers/context/scroll";
 import { Circle } from "@components/decoration/circle";

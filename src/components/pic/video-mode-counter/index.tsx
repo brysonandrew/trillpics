@@ -6,11 +6,7 @@ import {
 } from "framer-motion";
 import { AddRemoveToVideoMarker } from "@/components/pic/video-mode-counter/add-remove-to-video-marker";
 import { IconsVideo } from "@/components/icons/video";
-import { FADE_PRESENCE } from "@/constants/animation";
-import { BPill } from "@/components/interactive/b-pill";
-import { Background1 } from "@/components/decoration/background-1";
-import { Metal } from "@/components/metal";
-import { PRESENCE_OPACITY_DURATION_DELAY } from "@brysonandrew/animation";
+import { PillB } from "@/components/interactive/pill/b";
 
 type TProps = {
   isAdded: boolean;
@@ -38,15 +34,15 @@ export const VideoModeCounter: FC<
             className="flex flex-row items-center gap-2 h-12 px-2"
           >
             {isAdded && (
-              <BPill
+              <PillB
                 title="Remove from video"
                 Icon={IconsVideo}
                 isFlat
               >
-                <span className="font-mono">{`#${
+                <span className="font-display-led">{`#${
                   videoOrder + 1
                 }`}</span>
-              </BPill>
+              </PillB>
             )}
             {isHover && (
               <AddRemoveToVideoMarker

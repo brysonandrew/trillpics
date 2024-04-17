@@ -10,8 +10,6 @@ export const Empty: FC = () => {
     <div className="fixed column-stretch dark:text-white-5 grow-0 shrink gap-4 pointer-events-none left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 px-6 pt-4 pb-6 z-10 char-gap-6">
       <Background1 />
       <Background1 />
-      <Background1 />
-
       <div className="relative flex flex-row items-center gap-2 lg:gap-4 shrink-0">
         <Alert
           width={40}
@@ -25,7 +23,7 @@ export const Empty: FC = () => {
         </h4>
       </div>
       <Line />
-      <p className="relative font-mono text-lg">
+      <p className="relative font-display-led text-lg">
         Click on the images you'd like
         to add to your video
       </p>

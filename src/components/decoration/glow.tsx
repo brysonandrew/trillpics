@@ -2,11 +2,10 @@ import type { FC } from "react";
 import { motion } from "framer-motion";
 import { TDivMotionProps } from "@brysonandrew/config-types";
 import clsx from "clsx";
-import { FADE_PRESENCE_05} from "@/constants/animation";
 
 export const Glow: FC<
   TDivMotionProps
-> = ({ classValue, ...props }) => {
+> = ({ classValue, style, ...props }) => {
   return (
     <motion.div
       className={clsx(
@@ -15,6 +14,7 @@ export const Glow: FC<
       )}
       style={{
         filter: "blur(14px)",
+        ...style
       }}
       {...props}
     />
