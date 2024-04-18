@@ -1,4 +1,4 @@
-import { COLOR_VARS_CSS } from '@app/color';
+import { COLOR_VARS_CSS } from '~/app/color';
 import {
   Global,
   css,

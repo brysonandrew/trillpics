@@ -1,4 +1,4 @@
-import { TPxRecord, TPxEntries, TPxEntry, TIntRecord } from '@t/shapes';
+import { TPxRecord, TPxEntries, TPxEntry, TIntRecord } from '@/types/shapes';
 import { stripPx } from './stripPx';
 
 export const resolveIntRecord = (pxRecord: TPxRecord) => {

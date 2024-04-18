@@ -11,7 +11,7 @@ import { webpackOverride } from "@/server/remotion/webpack-override";
 import path from "path";
 import { onProgress } from "@/server/remotion/on-progress";
 import { onDownload } from "@/server/remotion/on-download";
-import { REMOTION_ENTRY_POINT } from "../../../remotion.config";
+import { REMOTION_ENTRY_POINT } from "~root/remotion.config";
 
 export type SlowFrame = {
   frame: number;

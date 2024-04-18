@@ -5,16 +5,22 @@ import clsx from "clsx";
 
 export const Glow: FC<
   TDivMotionProps
-> = ({ classValue, style, ...props }) => {
+> = ({
+  classValue,
+  style,
+  ...props
+}) => {
   return (
     <motion.div
       className={clsx(
         "absolute bg-gray rounded-full _radial-gradient",
-        classValue ?? "inset-1"
+        classValue ??
+          "inset-1 opacity-50"
       )}
+      layout
       style={{
         filter: "blur(14px)",
-        ...style
+        ...style,
       }}
       {...props}
     />

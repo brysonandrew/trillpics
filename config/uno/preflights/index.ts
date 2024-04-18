@@ -10,24 +10,24 @@ export const resolvePreflights = <
     inputConfig: {
       textColor: colors["black-1"],
       inputBackgroundColor:
-        colors["white-7"],
-      textColorDark: colors['light'],
+        colors["white-5"],
+      textColorDark: colors['white-5'],
       inputBackgroundColorDark:
         colors["black-4"],
     },
     scrollbarConfig: {
-      thumb: colors["dark"],
+      thumb: colors["white-5"],
       thumbBorder: colors["black"],
-      thumbHover: colors["gray"],
+      thumbHover: colors["black"],
       backgroundColor:
-        colors["dark"],
-      thumbDark: colors["light"],
-      thumbBorderDark: colors["white"],
-      thumbHoverDark: colors["gray"],
+        colors["white-5"],
+      thumbDark: colors["black"],
+      thumbBorderDark: colors["white-5"],
+      thumbHoverDark: colors["white-5"],
       backgroundColorDark:
-        colors["dark"],
-      borderWidth: 1,
-      width: 10,
+        colors["black"],
+      borderWidth: 2,
+      width: 12,
     },
   }),
 ];

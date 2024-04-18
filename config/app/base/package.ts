@@ -1,4 +1,4 @@
-import packageJson from '@pkg';
+import packageJson from '~root/package.json';
 import { kebabToTitle } from '@brysonandrew/utils-format';
 import { TAppPackageProps } from '@brysonandrew/app';
 

@@ -1,4 +1,5 @@
 import { FC } from "react";
+import { motion } from "framer-motion";
 import {
   PIC_SIZE,
   ASPECT_RATIO,
@@ -12,11 +13,12 @@ import {
   useCurrentFrame,
   useVideoConfig,
 } from "remotion";
+import { TPicSeriesProps } from "@/remotion/pic-series/types";
 import {
   resolveAudioSrc,
   resolvePicSrc,
-} from "@/components/collection/config/src";
-import { TPicSeriesProps } from "@/remotion/pic-series/types";
+} from "@/utils/src";
+import { FADE_PRESENCE } from "@/constants/animation";
 
 export const PicSeries: FC<
   TPicSeriesProps
@@ -35,7 +37,7 @@ export const PicSeries: FC<
     audioSrcPath
   );
   return (
-    <>
+    <motion.div {...FADE_PRESENCE}>
       <Audio src={audioSrc} />
       <Series>
         {pics.map((pic) => {
@@ -68,6 +70,6 @@ export const PicSeries: FC<
           );
         })}
       </Series>
-    </>
+    </motion.div>
   );
 };

@@ -1,5 +1,9 @@
-import { PRESENCE_OPACITY, TRANSITION_02_EASE_IN_02, TRANSITION_02_EASE_IN_04 } from "@brysonandrew/animation";
-import { resolvePresence } from "@utils/animation";
+import {
+  PRESENCE_OPACITY,
+  TRANSITION_02_EASE_IN_02,
+  TRANSITION_02_EASE_IN_04,
+} from "@brysonandrew/animation";
+import { resolvePresence } from "@/utils/animation";
 
 export const DURATION = 0.2;
 
@@ -56,11 +60,17 @@ export const FADE_PRESENCE_05_DELAY_04 =
     },
   };
 
+export const PRESENCE_OPACITY_ANIMATE_DELAY_02 =
+  {
+    ...PRESENCE_OPACITY,
+    animate: {
+      ...PRESENCE_OPACITY.animate,
+      transition:
+        TRANSITION_02_EASE_IN_02,
+    },
+  };
 
-export const PRESENCE_OPACITY_ANIMATE_DELAY_02 = {
-  ...PRESENCE_OPACITY,
-  animate: {
-    ...PRESENCE_OPACITY.animate,
-    transition: TRANSITION_02_EASE_IN_02,
-  },
+export const FADE_PRESENCE_DELAY_02 = {
+  ...FADE_PRESENCE,
+  transition: TRANSITION_02_EASE_IN_02,
 };

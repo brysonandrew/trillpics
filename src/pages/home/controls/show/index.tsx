@@ -1,14 +1,14 @@
 import type { FC } from "react";
 import { useShow } from "@/pages/home/controls/show/use-show";
-import { IconsVisible } from "@/components/icons/visible";
-import { PillBHover } from "@/components/interactive/pill/b/hover";
+import { IconsGroup } from "@/components/icons/group";
+import { PillBHover } from "@/components/buttons/pill/b/hover";
 
 export const ControlsShow: FC = () => {
   const {
     isViewingOnlyVideoPics,
     videoPicsCount,
     onToggleShow,
-    isPreviewOpen,
+    isPlayerOpen,
     isVideoMode,
   } = useShow();
 
@@ -20,8 +20,8 @@ export const ControlsShow: FC = () => {
           : `Show only ${videoPicsCount} pics added to video`
       }
       onClick={onToggleShow}
-      Icon={IconsVisible}
-      {...(isVideoMode && !isPreviewOpen
+      Icon={IconsGroup}
+      {...(isVideoMode && !isPlayerOpen
         ? {}
         : {})}
     >

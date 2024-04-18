@@ -1,11 +1,7 @@
 import type { FC } from "react";
 import { motion } from "framer-motion";
-import {
-  PRESENCE_OPACITY_ANIMATE_DELAY_04,
-  TRANSITION,
-} from "@brysonandrew/animation";
-import { IconsCross } from "@/components/icons/cross";
-import { PRESENCE_OPACITY_ANIMATE_DELAY_02 } from "@/constants/animation";
+import { TRANSITION } from "@brysonandrew/animation";
+import { IconsCross2 } from "@/components/icons/cross/2";
 
 type TProps = { isAdded: boolean };
 export const AddRemoveToVideoMarker: FC<
@@ -26,17 +22,18 @@ export const AddRemoveToVideoMarker: FC<
         rotate,
         transition: {
           ...TRANSITION,
-          duration:0.2,
-          delay:isAdded ? 0.6 : 0
-        }
+          duration: 0.2,
+          delay: isAdded ? 0.6 : 0,
+        },
       }}
       transition={{
         ...TRANSITION,
         duration: 0.2,
+        ease: "easeOut",
       }}
       layout
     >
-      <IconsCross />
+      <IconsCross2 />
     </motion.h4>
   );
 };

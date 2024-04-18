@@ -34,3 +34,5 @@ build
 ./downloads
 ./downloads/*
 ./downloads/**/*
+
+.cemetary/collection/**/*

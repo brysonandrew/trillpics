@@ -1,10 +1,6 @@
 import type { FC } from "react";
 import { ContactList } from "@brysonandrew/contact-list";
-import {
-  EMAIL,
-  PHONE,
-  PHONE_WITH_TRUNK,
-} from "@pages/checkout/footer/config";
+import { EMAIL, PHONE, PHONE_WITH_TRUNK } from "@/pages/home/footer/config";
 
 export const Contact: FC = () => {
   return (

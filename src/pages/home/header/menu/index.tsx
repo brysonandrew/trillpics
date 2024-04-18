@@ -1,4 +1,4 @@
-import { resolveVerticalShiftPresence } from '@utils/animation';
+import { resolveVerticalShiftPresence } from '@/utils/animation';
 import { motion } from 'framer-motion';
 import {
   ICON_CLASS_VALUE_PROPS,
@@ -6,15 +6,15 @@ import {
   resolveScale,
 } from '../config';
 import { createElement } from 'react';
-import { useScroll as useScrollContext } from '@shell/providers/context/scroll';
+import { useScroll as useScrollContext } from '@/shell/providers/context/scroll';
 import clsx from 'clsx';
-import { CB } from '@components/interactive/circle';
-import { CBB } from '@components/interactive/circle/CBB';
+import { CB } from '@/components/buttons/circle';
+import { CBB } from '@/components/buttons/circle/CBB';
 import { useHoverKey } from '@brysonandrew/cursor';
-import { useBase } from '@shell/providers/context/base';
-import { Cross } from '@components/icons/gallery/Cross';
-import { Hamburger } from '@components/icons/gallery/Hamburger';
+import { useBase } from '@/shell/providers/context/base';
 import { TRANSITION } from '@brysonandrew/animation';
+import { IconsCross } from '@/components/icons/cross';
+import { IconsGallery } from '@/components/icons/pic/gallery';
 
 export const Menu = () => {
   const { isMenu, onMenu } = useBase();
@@ -65,8 +65,8 @@ export const Menu = () => {
           <div className='absolute -inset-2 center overflow-hidden rounded-full'>
             {createElement(
               isMenu
-                ? Cross
-                : Hamburger,
+                ? IconsCross
+                : IconsGallery,
               {
                 ...iconProps(
                   isMenu

@@ -1,15 +1,14 @@
 import { type FC } from "react";
-import { Notifications } from "@components/notifications";
+import { Notifications } from "@/components/notifications";
 import { Outlet } from "react-router";
-import { withProviders } from "@shell/providers/withProviders";
-import { Global } from "@shell/global";
+import { withProviders } from "@/shell/providers/withProviders";
+import { Global } from "@/shell/global";
 import { FadeV } from "@brysonandrew/fade-edge/pairs/FadeV";
-import { useVideoStore } from "@store/index";
-import { Header } from "@/pages/home/header";
+import { useVideoStore } from "@/store/index";
 import { resolveGradient } from "@brysonandrew/color-gradient";
 
 const C = () => {
-  const { isPreviewOpen } =
+  const { isPlayerOpen } =
     useVideoStore();
   return (
     <Global>
@@ -28,7 +27,7 @@ const C = () => {
         }}
       />
       <Outlet />
-      {!isPreviewOpen && (
+      {!isPlayerOpen && (
         <FadeV
           classValue="z-4x0"
           darkEdgeColor="var(--dark-04)"

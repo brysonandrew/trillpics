@@ -1,5 +1,5 @@
 import type { FC } from "react";
-import { APP_TITLE } from "@app/base";
+import { APP_TITLE } from "~/app/base";
 import { motion } from "framer-motion";
 
 export const TitleText: FC = () => {

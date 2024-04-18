@@ -18,6 +18,7 @@ export const useRemotionPlayerProps =
       instance: PlayerRef | null
     ) => {
       if (instance && !playerElement) {
+        console.log(instance, playerElement)
         updateState({
           playerElement: instance,
         });
@@ -25,7 +26,7 @@ export const useRemotionPlayerProps =
     };
 
     return {
-      resolveRef,
+      ref:resolveRef,
       inputProps,
       compositionWidth: width,
       compositionHeight: height,

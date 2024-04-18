@@ -2,13 +2,13 @@ import type {
   FC,
   PropsWithChildren,
 } from 'react';
-import { useLocalStorage } from '@hooks/dom/useLocalStorage';
-import { LOCAL_STORAGE_USER_KEY } from '@constants/keys';
+import { useLocalStorage } from '@/hooks/dom/useLocalStorage';
+import { LOCAL_STORAGE_USER_KEY } from '@/constants/keys';
 import {
   useContext as useReactContext,
   createContext,
 } from 'react';
-import { NOOP } from '@constants/functions';
+import { NOOP } from '@/constants/functions';
 
 
 export type TUser = {

@@ -1,6 +1,6 @@
-import { initStoreState } from "@store/state";
-import { STORAGE } from "@store/storage";
-import { TVideoState } from "src/store/types";
+import { initStoreState } from "@/store/state";
+import { STORAGE } from "@/store/storage";
+import { TPics, TVideoState } from "src/store/types";
 import { persist } from "zustand/middleware";
 import { immer } from "zustand/middleware/immer";
 import {
@@ -31,19 +31,19 @@ type TPersistStateCreator =
     TStateMiddleware
   >;
 
-  export type TImmerState = StateCreator<
+export type TImmerState = StateCreator<
   TVideoState,
   [],
   TImmerStateMiddleware
->
-const createImmerState: TImmerState = immer<any>((...a) => ({
-  ...initStoreState(...a),
-  updateState: a[0],
-}));
+>;
+const createImmerState: TImmerState =
+  immer<any>((...a) => ({
+    ...initStoreState(...a),
+  }));
 
 const createPersistState: TPersistStateCreator =
   persist<
-    TVideoState,
+    any,
     [],
     TImmerStateMiddleware
   >(createImmerState, STORAGE);
@@ -53,7 +53,20 @@ type TStore = UseBoundStore<
     TStateMiddleware
   >
 >;
-export const useVideoStore: TStore = create<
-  TVideoState,
-  TStateMiddleware
->(createPersistState);
+
+export const useVideoStore: TStore =
+  create<TVideoState, TStateMiddleware>(
+    createPersistState
+  );
+
+  // useVideoStore.subscribe(
+  //   (state) => state.videoPics,
+  //   (videoPics: TPics) => {
+  //     const durationInFrames = videoPics.length
+  //     useEditorStore.setState({
+  //       durationInFrames,
+  //     });
+  //   },
+  //   {fireImmediately: true}
+  // );
+  

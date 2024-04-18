@@ -1,5 +1,5 @@
 import { TClassValueProps } from '@brysonandrew/config-types';
-import { Cart } from '@components/notifications/cart';
+import { Cart } from '@/components/notifications/cart';
 import { DarkMode } from '@/pages/home/header/right/dark-mode';
 
 export const ICON_CLASS_VALUE_PROPS: TClassValueProps =

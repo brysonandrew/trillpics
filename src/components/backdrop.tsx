@@ -1,7 +1,7 @@
 import { FC, Fragment } from "react";
 import { TUseImageReturn } from "@/components/pic/use-image";
-import { useViewport } from "@/hooks/window/useViewport";
 import { useVideoStore } from "@/store";
+import { useViewport } from "@/shell/providers/context/viewport";
 
 type TProps = {
   backdropProps?: TUseImageReturn["backdropProps"];
@@ -11,17 +11,17 @@ export const Backdrop: FC<TProps> = ({
   backdropProps,
 }) => {
   const {
-    isPreviewOpen,
-    togglePreview,
+    isPlayerOpen,
+    togglePlayer,
   } = useVideoStore();
   const viewport = useViewport();
 
   return (
     <>
-      {isPreviewOpen ? (
+      {isPlayerOpen ? (
         <div
           onClick={() => {
-            togglePreview(false);
+            togglePlayer(false);
           }}
           className="inset-0 z-60 fade-in-animation cursor-pointer"
           style={{

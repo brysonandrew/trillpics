@@ -16,21 +16,21 @@ import {
 import { Boundary } from "@brysonandrew/boundary";
 import { HelmetProvider } from "react-helmet-async";
 import { MOTION_CONFIG } from "@brysonandrew/animation";
-import { Shell } from "@shell/index";
+import { Shell } from "@/shell/index";
 import { VideoPlayer } from "@/remotion/player";
-import { Home } from "@pages/home";
+import { Home } from "@/pages/home";
 
 import { RootProvider } from "@/shell/providers/api";
 
-import { init as initServiceWorker } from "@app/service-worker/init";
+import { init as initServiceWorker } from "~/app/service-worker/init";
 initServiceWorker();
 
 window.React = React;
 window.ReactDOM = ReactDOM;
 
 import "virtual:uno.css";
-import "@css/fonts.css";
-import "@css/global.css";
+import "@/css/fonts.css";
+import "@/css/global.css";
 
 const ROUTES: TRouteObjects = [
   {

@@ -1,9 +1,9 @@
 import type { FC } from "react";
-import { useScroll } from "@shell/providers/context/scroll";
+import { useScroll } from "@/shell/providers/context/scroll";
 import { TitleText } from "@/pages/home/header/left/title/text";
 import { SparkleButton } from "@/pages/home/header/left/title/sparkle-button";
 import { Glow } from "@/components/decoration/glow";
-import { resolvePresence } from "@utils/animation";
+import { resolvePresence } from "@/utils/animation";
 
 export const Title: FC = () => {
   const { isScroll } = useScroll();

@@ -2,7 +2,7 @@ import { FC } from "react";
 import { motion } from "framer-motion";
 import { useVideoStore } from "src/store";
 import { VideoPlayer } from "@/remotion/player";
-import { Empty } from "@/pages/home/controls/empty";
+import { ControlsEmpty } from "@/pages/home/controls/empty";
 import { ControlsVideo } from "@/pages/home/controls/video";
 import { Generate } from "@/pages/home/controls/generate/generate";
 import { ControlsPlayer } from "@/pages/home/controls/player";
@@ -11,7 +11,8 @@ import { resolvePresence } from "@brysonandrew/animation";
 import { ControlsClear } from "@/pages/home/controls/clear";
 import { ControlsCounterInline } from "@/pages/home/controls/counter";
 import { TCooldownProps } from "@/pages/home/header/config";
-import { Background1 } from "@/components/decoration/background-1";
+import { PlayerPlayback } from "@/remotion/player/playback";
+import { ControlsFullscreen } from "@/pages/home/controls/fullscreen";
 
 type TProps = TCooldownProps;
 export const Controls: FC<TProps> = ({
@@ -19,7 +20,7 @@ export const Controls: FC<TProps> = ({
 }) => {
   const {
     isVideoMode,
-    isPreviewOpen,
+    isPlayerOpen,
     videoPics,
   } = useVideoStore();
   const isVideoPicsCount =
@@ -33,19 +34,23 @@ export const Controls: FC<TProps> = ({
             { opacity: 0 },
             {
               opacity: isCooldown
-                ? 0.2
+                ? 0.8
                 : 1,
             }
           )}
-          className="fixed left-0 bottom-0 right-0 h-0 font-display-led z-10"
+          className="fixed left-0 bottom-0 right-0 h-0 font-display-led z-20"
         >
           {isVideoMode &&
-            isPreviewOpen && (
+            isPlayerOpen && (
               <div className="fill-screen center text-main-inverted">
                 <VideoPlayer />
+                <div className="absolute row-space container top-4 left-1/2 -translate-x-1/2">
+                  <PlayerPlayback />
+                  <Generate />
+                </div>
               </div>
             )}
-          {!isPreviewOpen && (
+          {!isPlayerOpen && (
             <div className="absolute bottom-0 left-0 w-0 h-screen">
               {/* <div className="absolute bottom-1/2 left-0 w-screen h-[1px] bg-transparent">
                 <div className="absolute bottom-0 h-0 left-1/2 -translate-1/2 container">
@@ -55,8 +60,7 @@ export const Controls: FC<TProps> = ({
                 </div>
               </div> */}
               {isVideoMode &&
-                videoPics.length >
-                  0 && (
+                isVideoPicsCount && (
                   <div className="absolute bottom-1/12 w-screen h-0 bg-transparent">
                     <div className="absolute bottom-0 h-0 left-1/2 -translate-x-1/2 container">
                       <div className="absolute left-0 bottom-0 column-start gap-2">
@@ -76,32 +80,38 @@ export const Controls: FC<TProps> = ({
                 )}
             </div>
           )}
-
-          <div className="relative row-space container h-0 mx-auto">
-            <div className="relative bottom-8 row-space w-full h-0">
-           
-              <ControlsVideo
-                inlineCounter={
-                  <div className="absolute left-0 bottom-6 w-10 h-10">
-                    <ControlsCounterInline />
-
-                    
-                  </div>
-
-                }
-              />
-              {isVideoMode && (
-                <>
-                  {videoPics.length >
-                    0 && <Generate />}
-                </>
-              )}
-            </div>
-          </div>
         </motion.div>
       ) : (
-        <>{isVideoMode && <Empty />}</>
+        <>
+          {isVideoMode && (
+            <ControlsEmpty />
+          )}
+        </>
       )}
+      <motion.div
+        {...resolvePresence(
+          { opacity: 0 },
+          {
+            opacity: isCooldown
+              ? 0.8
+              : 1,
+          }
+        )}
+        className="relative row-space container h-0 mx-auto z-30"
+      >
+        <div className="relative bottom-8 row-space w-full h-0">
+          <ControlsVideo
+            inlineCounter={
+              <div className="absolute left-0 bottom-6 w-10 h-10">
+                <ControlsCounterInline />
+              </div>
+            }
+          />
+          {isPlayerOpen && (
+            <ControlsFullscreen />
+          )}
+        </div>
+      </motion.div>
     </>
   );
 };

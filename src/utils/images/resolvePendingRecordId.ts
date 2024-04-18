@@ -1,8 +1,8 @@
-import { PENDING_DELIMITER } from '@constants/images';
+import { PENDING_DELIMITER } from '@/constants/images';
 import {
   TChosen,
   TPendingRecordId,
-} from '@t/image';
+} from '@/types/image';
 
 type TConfig = TChosen;
 export const resolvePendingRecordId = ({

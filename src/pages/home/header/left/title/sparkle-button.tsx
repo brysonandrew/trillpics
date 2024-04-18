@@ -1,9 +1,9 @@
 import type { FC } from "react";
 import { useDarkMode } from "@brysonandrew/dark-mode";
-import { HOME_ROUTE } from "@constants/routes";
+import { HOME_ROUTE } from "@/constants/routes";
 import { useLocation } from "react-router";
 import { Glow } from "@/components/decoration/glow";
-import { resolvePresence } from "@utils/animation";
+import { resolvePresence } from "@/utils/animation";
 
 export const SparkleButton: FC = () => {
   const { pathname } = useLocation();

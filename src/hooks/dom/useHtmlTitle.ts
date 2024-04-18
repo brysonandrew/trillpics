@@ -3,7 +3,7 @@ import {
   useEffect,
   useRef,
 } from 'react';
-import { APP_TITLE } from '@app/base';
+import { APP_TITLE } from '~/app/base';
 
 const TITLE_FROM_PATHNAME_LOOKUP: Record<
   string,

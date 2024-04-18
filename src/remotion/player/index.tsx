@@ -1,45 +1,41 @@
 import { Player } from "@remotion/player";
-import { useVideoStore } from "src/store";
-import { Empty } from "@pages/home/pics/Empty";
-import { usePoster } from "@/remotion/player/ui/poster";
-import { usePlayerListeners } from "@/hooks/usePlayerListeners";
+import { usePoster } from "@/remotion/player/ui/use-poster";
+import { usePlayerListeners } from "@/remotion/hooks/use-player-listeners";
 import { useRemotionPlayerProps } from "@/remotion/player/use-props";
-import { PicSeries } from "../pic-series";
 import { Backdrop } from "@/components/backdrop";
+import { PIC_SERIES_SCHEMA } from "@/remotion/pic-series/schema";
+import {
+  TPicSeriesSchema,
+  TPicSeriesProps,
+} from "@/remotion/pic-series/types";
+import { useLoading } from "@/remotion/player/ui/use-loading";
+import { PicSeries } from "../pic-series";
 
 export const VideoPlayer = () => {
   const props =
     useRemotionPlayerProps();
-  const {
-    videoPics: pics,
-  } = useVideoStore();
-  const { renderPoster } = usePoster();
+  const renderPoster = usePoster();
+  const renderLoading = useLoading();
   usePlayerListeners();
-  if (pics.length === 0)
-    return <Empty />;
   return (
     <>
       <Backdrop />
-      <Player
+      <Player<
+        TPicSeriesSchema,
+        TPicSeriesProps
+      >
         spaceKeyToPlayOrPause
+        clickToPlay
+        doubleClickToFullscreen
         hideControlsWhenPointerDoesntMove
         moveToBeginningWhenEnded
-        //   renderPlayPauseButton={
-        //     (props) => {
-        //     // if (playing !== isPlaying) {
-        //     //   if (playing === true) {
-        //     //     isFirstRef.current = false;
-        //     //   }
-        //     //   setPlaying(Boolean(playing));
-        //     // }
-        //     return <PlayButton isFirst={isFirstRef.current} {...props} />
-        //   } 
-        // }
         renderPoster={renderPoster}
+        renderLoading={renderLoading}
         showPosterWhenPaused
         showPosterWhenUnplayed
         showPosterWhenEnded
         component={PicSeries}
+        schema={PIC_SERIES_SCHEMA}
         {...props}
       />
     </>

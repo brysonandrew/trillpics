@@ -15,14 +15,14 @@ type TProps =
 export const Header: FC<
   TProps
 > = ({isCooldown}) => {
-  const { isPreviewOpen } =
+  const { isPlayerOpen } =
     useVideoStore();
 
-  if (isPreviewOpen) return null;
+  if (isPlayerOpen) return null;
 
   return (
     <motion.header
-  {...resolvePresence({opacity:0},{opacity:isCooldown ? 0.2 :1})}
+  {...resolvePresence({opacity:0},{opacity:isCooldown ? 0.8 :1})}
       className={clsx(
         "fixed left-0 top-0 right-0 column w-full h-0 font-display z-50"
       )}

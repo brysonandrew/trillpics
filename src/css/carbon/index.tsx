@@ -1,6 +1,6 @@
 import type { FC } from 'react';
 import styled from '@emotion/styled';
-import { carbonFiberCss } from '@css/carbon/textures';
+import { carbonFiberCss } from '@/css/carbon/textures';
 const textureCss = carbonFiberCss;
 
 const Root = styled.div``;

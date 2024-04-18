@@ -8,7 +8,7 @@ export const resolveConfigFromSize = ({
   colIndex = 0,
   rowIndex = 0,
 }: TConfig) => ({
-  width: size - 3,
+  width: size,
   height: size,
   offsetX: size * colIndex, //rowIndex * size,
   offsetY: size * rowIndex, //rowIndex * size,

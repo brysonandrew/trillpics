@@ -9,13 +9,13 @@ import {
   useMemo,
 } from 'react';
 import { arrToNest } from '@brysonandrew/layout-utils/arrToNest';
-import { TCustomStyle } from '@app/style';
-import { App } from '@shell/providers/App';
-import { BaseProvider } from '@shell/providers/context/base';
-import { CheckoutProvider } from '@shell/providers/context/checkout';
-import { UserProvider } from '@shell/providers/context/user';
-import { ViewportProvider } from '@shell/providers/context/viewport';
-import { ScrollProvider } from '@shell/providers/context/scroll';
+import { TCustomStyle } from '~/app/style';
+import { App } from '@/shell/providers/App';
+import { BaseProvider } from '@/shell/providers/context/base';
+import { CheckoutProvider } from '@/shell/providers/context/checkout';
+import { UserProvider } from '@/shell/providers/context/user';
+import { ViewportProvider } from '@/shell/providers/context/viewport';
+import { ScrollProvider } from '@/shell/providers/context/scroll';
 
 type TLayoutOptions =
   TLayoutOptionsRecord;
@@ -33,7 +33,6 @@ export const Providers: FC<TProps> = ({
         NetworkProvider,
         DarkModeProvider,
         BaseProvider,
-        CheckoutProvider,
         ScrollProvider,
         UserProvider,
         ViewportProvider,

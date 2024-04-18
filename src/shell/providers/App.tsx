@@ -8,8 +8,8 @@ import { FC } from 'react';
 import {
   CUSTOM_STYLE,
   TCustomStyle,
-} from '@app/style';
-import { APP_BASE_PROPS } from '@app/base';
+} from '~/app/style';
+import { APP_BASE_PROPS } from '~/app/base';
 import { AppInit } from '@brysonandrew/app/AppInit';
 import { arrToChainedValueNest } from '@brysonandrew/layout-utils/arrToChainedValueNest';
 import { LayoutPlaceholder } from '@brysonandrew/layout-placeholder';

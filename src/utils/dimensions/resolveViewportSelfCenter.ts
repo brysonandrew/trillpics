@@ -1,4 +1,4 @@
-import { TDimensions } from '@t/measure';
+import { TDimensions } from '@brysonandrew/measure';
 
 export const resolveViewportSelfCenter =
   (

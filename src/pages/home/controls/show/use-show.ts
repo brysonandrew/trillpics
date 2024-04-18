@@ -1,5 +1,5 @@
 import { useRef } from "react";
-import { useVideoStore } from "@store/index";
+import { useVideoStore } from "@/store/index";
 
 export const useShow = () => {
   const {
@@ -7,7 +7,7 @@ export const useShow = () => {
     videoPics,
     countPics,
     updatePicsEntries,
-    isPreviewOpen,
+    isPlayerOpen,
     isVideoMode,
   } = useVideoStore();
 
@@ -42,7 +42,7 @@ export const useShow = () => {
     isViewingOnlyVideoPics,
     videoPicsCount,
     onToggleShow,
-    isPreviewOpen,
+    isPlayerOpen,
     isVideoMode,
   };
 };

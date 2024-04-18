@@ -1,4 +1,4 @@
-import { writeFileData } from "@ops/utils/writeFileData";
+import { writeFileData } from "~ops/utils/writeFileData";
 import sharp, { OutputInfo } from "sharp";
 
 export const writeAvif = async (

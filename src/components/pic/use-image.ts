@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useViewport } from "@shell/providers/context/viewport";
+import { useViewport } from "@/shell/providers/context/viewport";
 import {
   useHoverKey,
   NONE_CURSOR_KEY,
@@ -7,18 +7,18 @@ import {
 import {
   TImageDimensionsConfig,
   useImageDimensions,
-} from "@hooks/image/useImageDimensions";
-import { TDimensions } from "@t/measure";
+} from "@/hooks/image/useImageDimensions";
+import { TDimensions } from "@brysonandrew/measure";
 import {
   useLocation,
   useNavigate,
   useSearchParams,
 } from "react-router-dom";
-import { FULLSCREEN_Z } from "@constants/dom";
+import { FULLSCREEN_Z } from "@/constants/dom";
 import clsx from "clsx";
 import { useVideoStore } from "@/store";
 import { PRESENCE_OPACITY } from "@brysonandrew/animation";
-import { resolveViewportSelfCenter } from "../../utils/dimensions/resolveViewportSelfCenter";
+import { resolveViewportSelfCenter } from "@/utils/dimensions/resolveViewportSelfCenter";
 export const SEARCH_PARAM_ID = "open";
 
 export type TUseImageConfig =

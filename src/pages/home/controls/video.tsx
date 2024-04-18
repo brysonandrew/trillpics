@@ -1,20 +1,19 @@
 import {
   FC,
   ReactNode,
+  useRef,
   useState,
 } from "react";
 import { useVideoStore } from "src/store";
-import { IconsVideo } from "@/components/icons/video";
+import { IconsVideo } from "@/components/icons/video/video";
 import { ControlsCounter } from "@/pages/home/controls/counter";
-import { IconsGallery } from "@/components/icons/gallery";
-import { IconsVideoCross } from "@/components/icons/video-cross";
-import { IconsBack1 } from "@/components/icons/back1";
+import { IconsVideoCross } from "@/components/icons/video/video-cross";
 import {
   useHoverKey,
   NONE_CURSOR_KEY,
 } from "@brysonandrew/cursor";
-import { PillB } from "@/components/interactive/pill/b";
-import { Background1 } from "@/components/decoration/background-1";
+import { PillB } from "@/components/buttons/pill/b";
+import { IconsArrowsLeft } from "@/components/icons/arrows/left";
 
 type TProps = {
   inlineCounter: ReactNode;
@@ -22,37 +21,58 @@ type TProps = {
 export const ControlsVideo: FC<
   TProps
 > = ({ inlineCounter }) => {
+  const prevHoverRef = useRef<
+    null | string
+  >(null);
   const [
     isHoverFromVideo,
     setHoverFromVideo,
   ] = useState(false);
   const {
     isVideoMode,
-    isPreviewOpen,
+    isPlayerOpen,
     toggleVideoMode,
-    togglePreview,
+    togglePlayer,
     videoPics,
   } = useVideoStore();
   const isVideoPicsCount =
     videoPics.length > 0;
   const handleClick = () => {
-    if (isPreviewOpen) {
-      togglePreview(false);
+    if (isPlayerOpen) {
+      togglePlayer(false);
     } else {
       setHoverFromVideo(isVideoMode);
       toggleVideoMode();
     }
   };
-  const title = isPreviewOpen
+  const title = isPlayerOpen
     ? "Exit Preview"
     : isVideoMode
     ? "Exit Video Mode"
-    : "Video Mode";
-  const { isHover, handlers } =
-    useHoverKey(NONE_CURSOR_KEY, title);
+    : isVideoPicsCount
+    ? "Continue Video"
+    : "Create Video";
+  const {
+    isHover,
+    handlers: {
+      onMouseLeave,
+      ...handlers
+    },
+  } = useHoverKey(
+    NONE_CURSOR_KEY,
+    title
+  );
+  const isCounter =
+    isVideoPicsCount && !isPlayerOpen;
   const isInlineCounter =
-    isVideoMode ||
-    (!isHoverFromVideo && isHover);
+    isCounter &&
+    (isVideoMode ||
+      (!isHoverFromVideo && isHover));
+
+  const handleMouseLeave = () => {
+    prevHoverRef.current = title;
+    onMouseLeave();
+  };
 
   return (
     <>
@@ -64,18 +84,17 @@ export const ControlsVideo: FC<
         title={title}
         outerCircle={
           <>
-            {isVideoPicsCount &&
+            {isCounter &&
               !isInlineCounter && (
                 <ControlsCounter />
               )}
           </>
         }
         onClick={handleClick}
+        onMouseLeave={handleMouseLeave}
         Icon={
-          isPreviewOpen
-            ? IconsBack1
-            : isVideoMode
-            ? IconsBack1
+          isPlayerOpen || isVideoMode
+            ? IconsArrowsLeft
             : isVideoPicsCount
             ? IconsVideo
             : IconsVideoCross
@@ -83,8 +102,10 @@ export const ControlsVideo: FC<
         {...handlers}
       >
         {!isHoverFromVideo &&
-          isHover &&
-          title}
+        isHover &&
+        (title === prevHoverRef.current || prevHoverRef.current === null)
+          ? title
+          : ""}
       </PillB>
     </>
   );

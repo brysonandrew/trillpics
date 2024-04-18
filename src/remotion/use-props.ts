@@ -1,8 +1,8 @@
-import { useImageDimensions } from "@/hooks/image/useImageDimensions";
-import { useViewport } from "@/hooks/window/useViewport";
+import { useImageDimensions } from "@brysonandrew/measure";
 import { DIMENSIONS } from "@/remotion/constants";
 import { useVideoStore } from "@/store";
 import { getInputProps } from "remotion";
+import { useViewport } from "@/shell/providers/context/viewport";
 
 const INPUT_PROPS = getInputProps();
 

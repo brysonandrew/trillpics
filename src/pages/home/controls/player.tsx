@@ -1,16 +1,16 @@
 import type { FC } from "react";
-import { IconsPlay } from "@/components/icons/play";
+import { IconsPlay } from "@/components/icons/playback/play";
 import { useVideoStore } from "@/store";
-import { PillBHover } from "@/components/interactive/pill/b/hover";
+import { PillBHover } from "@/components/buttons/pill/b/hover";
 
 export const ControlsPlayer: FC = () => {
   const {
-    isPreviewOpen,
-    togglePreview,
+    isPlayerOpen,
+    togglePlayer,
   } = useVideoStore();
 
   const handlePreview = () => {
-    togglePreview(!isPreviewOpen);
+    togglePlayer(!isPlayerOpen);
   };
 
   return (
@@ -19,7 +19,7 @@ export const ControlsPlayer: FC = () => {
       onClick={handlePreview}
       Icon={IconsPlay}
     >
-      Preview
+      Preview Video
     </PillBHover>
   );
 };

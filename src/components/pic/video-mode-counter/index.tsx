@@ -5,8 +5,8 @@ import {
   MotionConfig,
 } from "framer-motion";
 import { AddRemoveToVideoMarker } from "@/components/pic/video-mode-counter/add-remove-to-video-marker";
-import { IconsVideo } from "@/components/icons/video";
-import { PillB } from "@/components/interactive/pill/b";
+import { IconsVideo } from "@/components/icons/video/video";
+import { PillB } from "@/components/buttons/pill/b";
 
 type TProps = {
   isAdded: boolean;
@@ -39,9 +39,9 @@ export const VideoModeCounter: FC<
                 Icon={IconsVideo}
                 isFlat
               >
-                <span className="font-display-led">{`#${
+                <motion.span layout className="font-display-led">{`#${
                   videoOrder + 1
-                }`}</span>
+                }`}</motion.span>
               </PillB>
             )}
             {isHover && (

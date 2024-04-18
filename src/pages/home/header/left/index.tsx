@@ -4,7 +4,7 @@ import {
   Link,
   useLocation,
 } from "react-router-dom";
-import { HOME_ROUTE } from "@constants/routes";
+import { HOME_ROUTE } from "@/constants/routes";
 import { Title } from "@/pages/home/header/left/title";
 
 export const HeaderLeft: FC = () => {
@@ -13,7 +13,7 @@ export const HeaderLeft: FC = () => {
     pathname === HOME_ROUTE;
 
   return (
-    <div className="column-start gap-6 h-0">
+    <div className="column-start gap-4 h-0">
       <div className="relative shrink-0">
         {isHome ? (
           <Title />
@@ -26,7 +26,9 @@ export const HeaderLeft: FC = () => {
           </Link>
         )}
       </div>
-      <ControlsShuffle />
+      <div className="relative shrink-0">
+        <ControlsShuffle />
+      </div>
     </div>
   );
 };

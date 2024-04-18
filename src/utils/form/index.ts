@@ -1,4 +1,4 @@
-import { titleToKebab } from '@utils/format';
+import { titleToKebab } from '@/utils/format';
 import {
   Path,
   FieldValues,

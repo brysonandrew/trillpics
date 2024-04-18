@@ -1,11 +1,11 @@
 import { useMemo } from "react";
-import { useViewport } from "@shell/providers/context/viewport";
-import { APPROX_IMAGE_SIZE } from "@constants/images";
-import { useVideoStore } from "@store/index";
+import { useViewport } from "@/shell/providers/context/viewport";
+import { APPROX_IMAGE_SIZE } from "@/constants/images";
+import { useVideoStore } from "@/store/index";
 import {
   TPic,
   TPics,
-} from "@store/types";
+} from "@/store/types";
 
 export type TRow = {
   cols: TPic[];
@@ -49,13 +49,17 @@ export const usePicsTable = () => {
       };
     });
 
+
     const size = Math.floor(
       viewport.width / colsCount
     );
 
+    const isVerticalScroll = size * rowsCount > viewport.height;
+
     return {
       rows,
       size,
+      isVerticalScroll
     };
   }, [
     count,

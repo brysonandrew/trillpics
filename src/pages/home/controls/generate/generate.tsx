@@ -3,8 +3,8 @@ import {
   motion,
 } from "framer-motion";
 import { useVideoStore } from "src/store";
-import { PillB } from "@/components/interactive/pill/b";
-import { IconsGenerate } from "@components/icons/generate";
+import { PillB } from "@/components/buttons/pill/b";
+import { IconsGenerate } from "@/components/icons/video/generate";
 import { trpc } from "@/utils/trpc";
 import { TGenerateConfig } from "@/server/remotion/generate";
 import { downloadMedia } from "@/pages/home/controls/generate/download-media";
@@ -20,8 +20,8 @@ import {
   TRANSITION_02_EASEIN_008,
 } from "@brysonandrew/animation";
 import { resolveCompositeKey } from "@brysonandrew/utils-key";
-import { Background1 } from "@/components/decoration/background-1";
-import { Background04 } from "@/components/decoration/background-04";
+import { Background1 } from "@/components/decoration/background/1";
+import { Background04 } from "@/components/decoration/background/background-04";
 import { Metal } from "@/components/metal";
 import { MetalDark } from "@/components/metal/MetalDark";
 import { MetalDarkest } from "@/components/metal/MetalDarkest";

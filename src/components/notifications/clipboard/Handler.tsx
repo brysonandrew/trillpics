@@ -1,16 +1,16 @@
 import type { FC } from 'react';
 import styled from '@emotion/styled';
 import { I } from '@brysonandrew/icons-i';
-import { P1 } from '@components/layout/space/P1';
-import { P4 } from '@components/layout/space/P4';
-import { FADE_PRESENCE } from '@constants/animation';
+import { P1 } from '@/components/layout/space/P1';
+import { P4 } from '@/components/layout/space/P4';
+import { FADE_PRESENCE } from '@/constants/animation';
 import { CLIPBOARD_SUCCESS_ICON } from '@brysonandrew/icons-keys';
 import {
   AnimatePresence,
   motion,
 } from 'framer-motion';
 import { Loading } from './Loading';
-import { TClipboard } from '@store/clipboard';
+import { TClipboard } from '@/hooks/use-clipboard';
 
 const Root = styled(motion.div)``;
 
