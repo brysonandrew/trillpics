@@ -1,10 +1,10 @@
 # FROM node:current-buster
 # FROM node:latest
-# FROM node:20-bookworm
-FROM nvidia/cudagl@11.4.0-devel-ubuntu18.04
+FROM node:20-bookworm
+# FROM nvidia/cudagl@11.4.0-devel-ubuntu18.04
 
 RUN apt-get update
-RUN apt-get install -y node
+# RUN apt-get install -y node
 RUN apt-get install -y chromium
 
 WORKDIR /app

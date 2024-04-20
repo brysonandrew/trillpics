@@ -1,4 +1,4 @@
-import { useClipboard } from "@store/clipboard";
+import { useClipboard } from "~/hooks/use-clipboard";
 import { AnimatePresence } from "framer-motion";
 import { Handler } from "./Handler";
 

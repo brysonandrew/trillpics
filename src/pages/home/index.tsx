@@ -1,76 +1,48 @@
-import { trpc } from "@/utils/trpc";
-import { Footer } from "@pages/home/footer";
+import { AnimatePresence } from "framer-motion";
+import { Header } from "~/pages/home/header";
+import { Controls } from "~/pages/home/controls";
+import { useVideoStore } from "~/store";
+import { useShallow } from "zustand/react/shallow";
+import { useIdleStatus } from "~/hooks/window/use-idle";
+import { SEARCH_PARAM_ID } from "~/components/pic/use-image";
+import {
+  useLocation,
+  useNavigate,
+} from "react-router";
+import { useSearchParams } from "react-router-dom";
 import { List } from "./pics";
-/**
- * This is the client-side code that uses the inferred types from the server
- */
-/**
- * We only import the `TAppRouter` type from the server - this is not available at runtime
- */
-
-// Initialize the tRPC client
-// const trpc = createTRPCProxyClient<TAppRouter>({
-//   links: [
-//     httpBatchLink({
-//       url: 'http://localhost:3000',
-//     }),
-//   ],
-// });
-
-// Call procedure functions
-
-// 💡 Tip, try to:
-// - hover any types below to see the inferred types
-// - Cmd/Ctrl+click on any function to jump to the definition
-// - Rename any variable and see it reflected across both frontend and backend
 
 const Home = () => {
-  const hi  =trpc.hi.useQuery();
-  console.log(hi)
-  // const [queryClient] = useState(
-  //   () => new QueryClient()
-  // );
-  // const [trpcClient] = useState(() =>
-  //   trpc.createClient({
-  //     url: "http://localhost:3000/trpc",
-  //   })
-  // );
-
-  // console.log(queryClient,trpcClient)
-  // useEffect(() => {
-  //   const x = async () => {
-  //     const users =
-  //       await trpc.hello.query();
-  //     //    ^?
-  //     console.log("Users:", users);
-
-  //     const createdUser =
-  //       await trpc.goodbye.mutate();
-  //     //    ^?
-  //     console.log(
-  //       "Created user:",
-  //       createdUser
-  //     );
-  //   };
-  //   x();
-  // }, []);
+  const { pathname } = useLocation();
+  const [searchParams] =
+    useSearchParams();
+  const navigate = useNavigate();
+  const searchParam = searchParams.get(
+    SEARCH_PARAM_ID
+  );
+  const isImageZoomed = Boolean(
+    searchParam
+  );
+  useIdleStatus();
+  const { isControls } = useVideoStore(
+    useShallow(({ isControls }) => ({
+      isControls,
+    }))
+  );
 
   return (
     <>
       <List />
-      <Footer />
+      <AnimatePresence>
+        {isControls &&
+          !isImageZoomed && (
+            <>
+              <Header key="header" />
+              <Controls key="controls" />
+            </>
+          )}
+      </AnimatePresence>
     </>
-    // <trpc.Provider
-    //   client={trpcClient}
-    //   queryClient={queryClient}
-    // >
-    //   <QueryClientProvider
-    //     client={queryClient}
-    //   >
-
-    //   </QueryClientProvider>
-    // </trpc.Provider>
   );
 };
-// const Home = trpc.withTRPC(_Home);
 export { Home };

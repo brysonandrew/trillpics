@@ -2,7 +2,7 @@ import {
   SIZES,
   COLORS,
   PENDING_DELIMITER,
-} from '@constants/images';
+} from '~/constants/images';
 
 export type TName = string;
 export type TSrc = string;

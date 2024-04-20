@@ -1,4 +1,4 @@
-import { useEventListener } from '@hooks/events/useEventListener';
+import { useEventListener } from '~/hooks/events/useEventListener';
 import {
   useEffect,
   useRef,

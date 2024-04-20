@@ -1,37 +1,28 @@
-// import * as Pages from "@pages/index";
-// import { Shell } from "@shell";
-
-// export const PAGE_TITLES = Object.keys(
-//   Pages
-// ) as TPageTitle[];
-
-// const PAGE_RECORDS =
-//   resolveRouteRecords<
-//     TPageTitle,
-//     typeof Pages
-//   >(PAGE_TITLES, Pages);
+import { NotFound } from "@brysonandrew/not-found";
+import { TRouteObjects } from "@brysonandrew/routes";
+import { Home } from "~/pages/home";
+import { VideoPlayer } from "~/remotion/player";
+import { Shell } from "~/shell";
 
 export const HOME_ROUTE = "/";
-// const ROUTES: TRouteObjects = [
-//   {
-//     path: HOME_ROUTE,
-//     Component: Shell,
-//     // children: [
-//     //   ...PAGE_RECORDS.routes,
-//     //   {
-//     //     path: "/video",
-//     //     element: <VideoPlayer />,
-//     //   },
-//     //   {
-//     //     path: "*",
-//     //     element: <NotFound />,
-//     //   },
-//     // ],
-//   },
-// ];
 
-// export {
-//   PAGE_RECORDS,
-//   ROUTES,
-//   HOME_ROUTE,
-// };
+export const ROUTES: TRouteObjects = [
+  {
+    path: "/",
+    Component: Shell,
+    children: [
+      {
+        index: true,
+        Component: Home,
+      },
+      {
+        path: "/video",
+        Component: VideoPlayer,
+      },
+      {
+        path: "*",
+        Component: NotFound,
+      },
+    ],
+  },
+];

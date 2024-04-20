@@ -27,57 +27,11 @@
     "noImplicitThis": false,
     "baseUrl": ".",
     "paths": {
-      "@/*": ["src/*"],
-      "@/t/*": ["src/types/*"],
-      "@/vite": ["vite.config.ts"],
-      "@components": ["src/components"],
-      "@components/*": [
-        "src/components/*"
-      ],
-      "@hooks/": ["src/hooks/"],
-      "@hooks/*": ["src/hooks/*"],
-      "@ops/": ["ops/"],
-      "@ops/*": ["ops/*"],
-      "@pages": ["src/pages/index.tsx"],
-      "@pages/": ["src/pages/"],
-      "@pages/*": ["src/pages/*"],
-      "@constants/": ["src/constants/"],
-      "@constants/*": [
-        "src/constants/*"
-      ],
-      "@pkg": ["package.json"],
-      "@shell": ["src/shell"],
-      "@shell/*": ["src/shell/*"],
-      "@ts": ["tsconfig.json"],
-      "@ts/paths": [
-        "tsconfig.paths.json"
-      ],
-      "@routes": ["config/routes"],
-      "@routes/*": ["config/routes/*"],
-      "@uno": ["config/uno"],
-      "@uno/*": ["config/uno/*"],
-      "@vite": ["config/vite"],
-      "@vite/*": ["config/vite/*"],
-      "@icons/*": ["src/icons/*"],
-      "@store/*": ["src/store/*"],
-      "@main/*": ["src/main/*"],
-      "@context/*": ["src/context/*"],
-      "@utils/*": ["src/utils/*"],
-      "@app/*": ["config/app/*"],
-      "@app/": ["config/app/"],
-      "@config": ["config"],
-      "@config/*": ["config/*"],
-      "@css/*": ["src/css/*"],
-      "@t/*": ["src/types/*"],
-      "@pages-workshop-config-types/*": [
-        "src/pages/workshop/config/types/*"
-      ],
-      "@pages-workshop-results-list-item-images-form-list-item": [
-        "src/pages/workshop/results/list/item/images/form/list/item/*"
-      ],
-      "@mocks/*": [
-        "src/pages/workshop/config/mocks/*"
-      ]
+      "~/*": ["src/*"],
+      "~app/*": ["config/app/*"],
+      "~uno/*": ["config/uno/*"],
+      "~ops/*": ["ops/*"],
+      "~root/*": ["*"]
     }
   },
   "include": [

@@ -2,21 +2,26 @@ import type { FC } from "react";
 import { motion } from "framer-motion";
 import { TDivMotionProps } from "@brysonandrew/config-types";
 import clsx from "clsx";
-import { FADE_PRESENCE_05 } from "@/constants/animation";
 
 export const Glow: FC<
   TDivMotionProps
-> = ({ classValue, ...props }) => {
+> = ({
+  classValue,
+  style,
+  ...props
+}) => {
   return (
     <motion.div
       className={clsx(
         "absolute bg-gray rounded-full _radial-gradient",
-        classValue ?? "inset-1"
+        classValue ??
+          "inset-1 dark:opacity-50 opacity-20"
       )}
+      layout
       style={{
         filter: "blur(14px)",
+        ...style,
       }}
-      {...FADE_PRESENCE_05}
       {...props}
     />
   );

@@ -1,5 +1,5 @@
-import { useEventListener } from '@hooks/events/useEventListener';
-import { useTimeoutRef } from '@hooks/window/useTimeoutRef';
+import { useEventListener } from '~/hooks/events/useEventListener';
+import { useTimeoutRef } from '~/hooks/window/useTimeoutRef';
 import { useRef } from 'react';
 
 export const useLongPress = (callback: () => any) => {

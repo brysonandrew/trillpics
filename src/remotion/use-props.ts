@@ -1,10 +1,7 @@
-import { useImageDimensions } from "@/hooks/image/useImageDimensions";
-import { useViewport } from "@/hooks/window/useViewport";
-import { DIMENSIONS } from "@/remotion/constants";
-import { useVideoStore } from "@/store";
-import { getInputProps } from "remotion";
-
-const INPUT_PROPS = getInputProps();
+import { useImageDimensions } from "@brysonandrew/measure";
+import { DIMENSIONS } from "~/remotion/constants";
+import { useVideoStore } from "~/store";
+import { useViewport } from "~/shell/providers/context/viewport";
 
 export const useRemotionProps = () => {
   const { videoPics, fps } =
@@ -34,7 +31,7 @@ export const useRemotionProps = () => {
   return {
     fps,
     durationInFrames,
-    props: { ...INPUT_PROPS, pics },
+    props: { pics },
     ...(dimensions.isDimensions
       ? dimensions
       : DIMENSIONS),

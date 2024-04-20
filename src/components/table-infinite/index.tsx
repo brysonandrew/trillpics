@@ -1,26 +1,26 @@
 import {
   getCoreRowModel,
-  type RowModel,
   useReactTable,
   Table,
   TableOptions,
+  ColumnDef,
 } from "@tanstack/react-table";
-import { Body } from "./body";
+import { TRow } from "~/pages/home/pics/config";
+import { Virtualize } from "./virtualize";
 import { TBaseRow } from "./types";
 
-type TProps = {
-  rows: any[];
-  columns: any;
+type TProps<T extends TBaseRow> = {
+  rows: TRow[];
+  columns: ColumnDef<T, any>[];
   rowHeight: number;
 };
 export const TableInfinite = <
   T extends TBaseRow
 >({
   rows,
-
   columns,
   rowHeight,
-}: TProps) => {
+}: TProps<T>) => {
   const options: TableOptions<T> = {
     data: rows,
     columns,
@@ -28,18 +28,11 @@ export const TableInfinite = <
   };
   const table: Table<T> =
     useReactTable<T>(options);
-  const rowModel: RowModel<T> =
-    table.getRowModel();
-  const count: number =
-    rowModel.rows.length;
 
   return (
-    <Body<T>
+    <Virtualize<T>
       table={table}
       rowHeight={rowHeight}
-      emptyProps={{
-        isEmpty: count === 0,
-      }}
     />
   );
 };

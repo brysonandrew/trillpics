@@ -4,13 +4,13 @@ import {
   CLIENT_ORIGINS,
   SERVER_PATH,
   API_PORT,
-} from "@/constants/api";
+} from "~/constants/api";
 import { initTRPC } from "@trpc/server";
 import {
   generate,
   TRenderMediaResult,
-} from "@/server/remotion/generate";
-import { createContext } from "@/server/context";
+} from "~/server/remotion/generate";
+import { createContext } from "~/server/context";
 
 import * as trpcExpress from "@trpc/server/adapters/express";
 import "dotenv/config";

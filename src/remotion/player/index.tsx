@@ -1,52 +1,39 @@
-import {
-  Fragment,
-  useRef,
-  useState,
-} from "react";
 import { Player } from "@remotion/player";
-import { useVideoStore } from "src/store";
-import { useViewport } from "@shell/providers/context/viewport";
-import { Empty } from "@pages/home/pics/Empty";
-import { usePoster } from "@/remotion/player/ui/poster";
-import { usePlayerListeners } from "@/hooks/usePlayerListeners";
-import { useRemotionPlayerProps } from "@/remotion/player/use-props";
+import { usePoster } from "~/remotion/player/ui/use-poster";
+import { usePlayerListeners } from "~/remotion/hooks/use-player-listeners";
+import { useRemotionPlayerProps } from "~/remotion/player/use-props";
+import { Backdrop } from "~/components/backdrop";
+import { PIC_SERIES_SCHEMA } from "~/remotion/pic-series/schema";
+import {
+  TPicSeriesSchema,
+  TPicSeriesProps,
+} from "~/remotion/pic-series/types";
+import { useLoading } from "~/remotion/player/ui/use-loading";
 import { PicSeries } from "../pic-series";
-import { Backdrop } from "@/components/backdrop";
 
 export const VideoPlayer = () => {
   const props =
     useRemotionPlayerProps();
-  const {
-    videoPics: pics,
-  } = useVideoStore();
-  const { renderPoster } = usePoster();
+  const renderPoster = usePoster();
+  const renderLoading = useLoading();
   usePlayerListeners();
-  if (pics.length === 0)
-    return <Empty />;
   return (
     <>
       <Backdrop />
-      <Player
-        controls
+      <Player<
+        TPicSeriesSchema,
+        TPicSeriesProps
+      >
         spaceKeyToPlayOrPause
-        hideControlsWhenPointerDoesntMove
-        moveToBeginningWhenEnded
-        //   renderPlayPauseButton={
-        //     (props) => {
-        //     // if (playing !== isPlaying) {
-        //     //   if (playing === true) {
-        //     //     isFirstRef.current = false;
-        //     //   }
-        //     //   setPlaying(Boolean(playing));
-        //     // }
-        //     return <PlayButton isFirst={isFirstRef.current} {...props} />
-        //   } 
-        // }
+        clickToPlay
+        doubleClickToFullscreen
         renderPoster={renderPoster}
+        renderLoading={renderLoading}
         showPosterWhenPaused
         showPosterWhenUnplayed
-        showPosterWhenEnded
+        // showPosterWhenEnded
         component={PicSeries}
+        schema={PIC_SERIES_SCHEMA}
         {...props}
       />
     </>

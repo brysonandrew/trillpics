@@ -1,4 +1,4 @@
-import { TDimensions } from "@/t/measure";
+import { TDimensions } from "@brysonandrew/measure";
 
 export const DEFAULT_FPS = 24;
 export const PIC_COUNT = 1;

@@ -2,7 +2,7 @@ import {
   TDimensionsInit,
   TDimensionsReady,
   TDimensions,
-} from '@t/measure';
+} from '@brysonandrew/measure';
 import { useMemo } from 'react';
 
 export type TImageDimensions =

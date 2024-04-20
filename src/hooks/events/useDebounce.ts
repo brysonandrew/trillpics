@@ -1,4 +1,4 @@
-import { useTimeoutRef } from '@hooks/window/useTimeoutRef';
+import { useTimeoutRef } from '~/hooks/window/useTimeoutRef';
 import { useEffect } from 'react';
 
 export const useDebounce = () => {

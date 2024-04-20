@@ -1,10 +1,6 @@
 import type { FC } from "react";
 import { ContactList } from "@brysonandrew/contact-list";
-import {
-  EMAIL,
-  PHONE,
-  PHONE_WITH_TRUNK,
-} from "@pages/checkout/footer/config";
+import { EMAIL, PHONE, PHONE_WITH_TRUNK } from "~/pages/home/footer/config";
 
 export const Contact: FC = () => {
   return (
@@ -17,7 +13,7 @@ export const Contact: FC = () => {
           withTrunk: PHONE_WITH_TRUNK,
         }}
         classValue="gap-2"
-        className="text-sm font-sans mt-1 mr-4"
+        className="text-sm mt-1 mr-4"
       />
     </footer>
   );

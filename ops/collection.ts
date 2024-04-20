@@ -1,6 +1,6 @@
 import fg from "fast-glob";
-import { writeFileData } from "@ops/utils/writeFileData";
-import { writeAvif } from "@ops/utils/resolveAvif";
+import { writeFileData } from "~ops/utils/writeFileData";
+import { writeAvif } from "~ops/utils/resolveAvif";
 import { resolve } from "path";
 import { IMAGES_GLOB, PRECACHE_PATH } from "./config";
 import { resolveFsInfo } from "./utils/resolveFsInfo";

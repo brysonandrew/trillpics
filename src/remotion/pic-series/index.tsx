@@ -1,26 +1,34 @@
 import { FC } from "react";
+import { motion } from "framer-motion";
 import {
   PIC_SIZE,
   ASPECT_RATIO,
-} from "@/remotion/constants";
+} from "~/remotion/constants";
 import {
   AbsoluteFill,
   Audio,
+  getInputProps,
   Img,
   Series,
   staticFile,
   useCurrentFrame,
   useVideoConfig,
 } from "remotion";
+import { TPicSeriesProps } from "~/remotion/pic-series/types";
 import {
   resolveAudioSrc,
   resolvePicSrc,
-} from "@/components/collection/config/src";
-import { TPicSeriesProps } from "@/remotion/pic-series/types";
+} from "~/utils/src";
+import { FADE_PRESENCE } from "~/constants/animation";
+const INPUT_PROPS = getInputProps();
 
 export const PicSeries: FC<
   TPicSeriesProps
-> = ({ pics }) => {
+> = (props) => {
+  const { pics } = {
+    ...props,
+    ...INPUT_PROPS,
+  };
   const frame = useCurrentFrame();
   const { fps, height } =
     useVideoConfig();
@@ -35,7 +43,7 @@ export const PicSeries: FC<
     audioSrcPath
   );
   return (
-    <>
+    <motion.div {...FADE_PRESENCE}>
       <Audio src={audioSrc} />
       <Series>
         {pics.map((pic) => {
@@ -68,6 +76,6 @@ export const PicSeries: FC<
           );
         })}
       </Series>
-    </>
+    </motion.div>
   );
 };

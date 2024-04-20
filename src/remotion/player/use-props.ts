@@ -1,5 +1,5 @@
-import { useRemotionProps } from "@/remotion/use-props";
-import { useVideoStore } from "@/store";
+import { useRemotionProps } from "~/remotion/use-props";
+import { useVideoStore } from "~/store";
 import { PlayerRef } from "@remotion/player";
 
 export const useRemotionPlayerProps =
@@ -25,10 +25,11 @@ export const useRemotionPlayerProps =
     };
 
     return {
-      resolveRef,
+      ref:resolveRef,
       inputProps,
       compositionWidth: width,
       compositionHeight: height,
+      style: {cursor:"pointer"},
       ...props,
     };
   };

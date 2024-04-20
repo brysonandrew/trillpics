@@ -2,7 +2,8 @@ import {
   INTERACTIVE,
   SHAPES,
   LOOKS,
-} from '@uno/shortcuts/interactive';
+} from "@brysonandrew/uno-shortcuts";
+
 export type TInteractiveShortcuts =
   keyof typeof INTERACTIVE;
 export type TInteractiveShape =

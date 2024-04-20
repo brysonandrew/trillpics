@@ -1,17 +1,17 @@
-import { TPicSeriesProps } from "@/remotion/pic-series/types";
-import { onBrowserLog } from "@/server/remotion/on-browser-log";
+import { TPicSeriesProps } from "~/remotion/pic-series/types";
+import { onBrowserLog } from "~/server/remotion/on-browser-log";
 import {
   renderMedia,
   selectComposition,
   type RenderMediaOptions,
 } from "@remotion/renderer";
-import { isLocal } from "@/server/remotion/is-local";
+import { isLocal } from "~/server/remotion/is-local";
 import { bundle } from "@remotion/bundler";
-import { webpackOverride } from "@/server/remotion/webpack-override";
+import { webpackOverride } from "~/server/remotion/webpack-override";
 import path from "path";
-import { onProgress } from "@/server/remotion/on-progress";
-import { onDownload } from "@/server/remotion/on-download";
-import { REMOTION_ENTRY_POINT } from "../../../remotion.config";
+import { onProgress } from "~/server/remotion/on-progress";
+import { onDownload } from "~/server/remotion/on-download";
+import { REMOTION_ENTRY_POINT } from "~root/remotion.config";
 
 export type SlowFrame = {
   frame: number;

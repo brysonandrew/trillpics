@@ -1,4 +1,4 @@
-import { REGEX_ILLEGAL_CHARS_G } from '@utils/regex/patterns';
+import { REGEX_ILLEGAL_CHARS_G } from '~/utils/regex/patterns';
 
 export const getParsedSearchParam = (key: string, searchParams: URLSearchParams) => {
   let value = searchParams.get(key);

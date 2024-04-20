@@ -1,4 +1,4 @@
-import { writeFileData } from "@ops/utils/writeFileData";
+import { writeFileData } from "~ops/utils/writeFileData";
 import sharp, { Metadata } from "sharp";
 
 export const resolveMetaDataFile = async (

@@ -1,15 +1,13 @@
-import styled from '@emotion/styled';
-import clsx from 'clsx';
-import type { FC } from 'react';
-import { motion } from 'framer-motion';
-import { TDivMotionProps } from '@brysonandrew/config-types';
-import { metalRadialDarkCss } from '@css/metal';
+import type { FC } from "react";
+import { motion } from "framer-motion";
+import styled from "@emotion/styled";
+import clsx from "clsx";
+import { TDivMotionProps } from "@brysonandrew/config-types";
+import { metalRadialDarkCss } from "~/css/metal";
+import { useApp } from "@brysonandrew/app";
 
 const DefaultRoot = styled(motion.div)`
-  background-color: var(--white-6);
-  html.dark & {
-    ${metalRadialDarkCss}
-  }
+  ${metalRadialDarkCss}
 `;
 
 export type TRootProps =
@@ -20,13 +18,21 @@ type TProps = TRootProps & {
 export const Metal: FC<TProps> = ({
   Root = DefaultRoot,
   classValue,
+  style,
   ...props
-}) => (
-  <Root
-    className={clsx(
-      `absolute inset-0`,
-      classValue,
-    )}
-    {...props}
-  />
-);
+}) => {
+  const { BORDER_RADIUS } = useApp();
+  return (
+    <Root
+      className={clsx(
+        `absolute inset-1`,
+        classValue
+      )}
+      style={{
+        borderRadius: BORDER_RADIUS.XL,
+        ...style,
+      }}
+      {...props}
+    />
+  );
+};
