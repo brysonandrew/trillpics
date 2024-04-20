@@ -6,18 +6,18 @@ import {
   AnimatePresence,
   motion,
 } from "framer-motion";
-import { Glow } from "@/components/decoration/glow";
+import { Glow } from "~/components/decoration/glow";
 import { TDivMotionProps } from "@brysonandrew/config-types";
-import { Background1 } from "@/components/decoration/background/1";
-import { TFlatProps } from "@/types/ui";
-import { Background1Rounded } from "@/components/decoration/background/1/rounded";
+import { Background1Rounded } from "~/components/decoration/background/1/rounded";
+import { TFlatProps } from "~/types/ui";
 
 export type TCircleProps =
   PropsWithChildren<
-    TDivMotionProps & TFlatProps & {
-      isGlow?: boolean;
-      isDouble?: boolean;
-    }
+    TDivMotionProps &
+      TFlatProps & {
+        isGlow?: boolean;
+        isDouble?: boolean;
+      }
   >;
 export const Circle: FC<
   TCircleProps
@@ -37,7 +37,7 @@ export const Circle: FC<
       <AnimatePresence>
         {isDouble && (
           <Background1Rounded
-          layout
+            layout
             key="double"
             style={style}
           />
@@ -46,7 +46,6 @@ export const Circle: FC<
           <Glow key="GLOW_KEY" />
         )}
         <div className="relative">
-          {/* <Background1Rounded style={style} isFlat={isFlat} layout/> */}
           <div className="relative">
             {children}
           </div>

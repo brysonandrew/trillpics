@@ -1,5 +1,5 @@
-import { APPROX_IMAGE_SIZE } from '@/constants/images';
-import { TRow } from '@/pages/home/pics/use-pics-table';
+import { APPROX_IMAGE_SIZE } from '~/constants/images';
+import { TRow } from '~/pages/home/pics/use-pics-table';
 import {
   CellContext,
   HeaderContext,

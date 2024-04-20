@@ -1,7 +1,7 @@
 import type { FC } from "react";
-import { IconsPlay } from "@/components/icons/playback/play";
-import { useVideoStore } from "@/store";
-import { PillBHover } from "@/components/buttons/pill/b/hover";
+import { IconsPlay } from "~/components/icons/playback/play";
+import { useVideoStore } from "~/store";
+import { PillBHover } from "~/components/buttons/pill/b/hover";
 
 export const ControlsPlayer: FC = () => {
   const {

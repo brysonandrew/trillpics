@@ -2,9 +2,9 @@ import {
   useRef,
   useState,
 } from "react";
-import { useViewportPresence } from "@brysonandrew/cursor/hooks/useViewportPresence";
+import { useViewportPresence } from "@brysonandrew/motion-cursor/hooks/useViewportPresence";
 import { useTimeoutRef } from "@brysonandrew/hooks-window";
-import { useVideoStore } from "@/store";
+import { useVideoStore } from "~/store";
 
 export const useIdleStatus = () => {
   const { timeoutRef, endTimeout } =

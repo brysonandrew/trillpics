@@ -4,11 +4,11 @@ import {
   createContext,
   PropsWithChildren,
 } from "react";
-import { isVertical } from "@/shell/providers/context/viewport/is-vertical";
+import { isVertical } from "~/shell/providers/context/viewport/is-vertical";
 import {
   TViewport,
   useContainerMeasure,
-} from "@/hooks/window/use-container-measure";
+} from "~/hooks/window/use-container-measure";
 
 import {
   TUseGrid,

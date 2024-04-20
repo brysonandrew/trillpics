@@ -5,11 +5,11 @@ import {
 } from 'react';
 import styled from '@emotion/styled';
 import { I } from '@brysonandrew/icons-i';
-import { FADE_PRESENCE } from '@/constants/animation';
+import { FADE_PRESENCE } from '~/constants/animation';
 import { CART_ICON, TICK_ICON } from '@brysonandrew/icons-keys';
 import { motion } from 'framer-motion';
-import { TNotificationsContext } from '@/shell/providers/context/checkout/config';
-import { useDelayCallback } from '@/hooks/window/useDelayCallback';
+import { TNotificationsContext } from '~/shell/providers/context/checkout/config';
+import { useDelayCallback } from '~/hooks/window/useDelayCallback';
 import { Loading } from './Loading';
 
 const Root = styled(motion.div)``;

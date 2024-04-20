@@ -1,12 +1,11 @@
 import { FC } from "react";
 import { useShallow } from "zustand/react/shallow";
-import { useVideoStore } from "@/store";
-import { MonoChars } from "@/remotion/player/playback/timer/numbers";
+import { useVideoStore } from "~/store";
+import { MonoChars } from "~/remotion/player/playback/timer/numbers";
 
-type Props = { frame: number };
-
+type TProps = { frame: number };
 export const TimerDisplay: FC<
-  Props
+  TProps
 > = ({ frame }) => {
   const { fps } = useVideoStore(
     useShallow(({ fps }) => ({
@@ -25,14 +24,10 @@ export const TimerDisplay: FC<
   ).padStart(2, "0");
 
   return (
-    <>
-      <span className="flex shrink-0 grow-0 text-left">
-        <MonoChars>{m}</MonoChars>:
-        <MonoChars>{s}</MonoChars>
-      </span>
-      <span className="flex shrink-0 grow-0 text-left">
-        .<MonoChars>{ms}</MonoChars>
-      </span>
-    </>
+    <span className="flex shrink-0 grow-0 text-left">
+      <MonoChars>{m}</MonoChars>:
+      <MonoChars>{s}</MonoChars>.
+      <MonoChars>{ms}</MonoChars>
+    </span>
   );
 };

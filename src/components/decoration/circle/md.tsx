@@ -2,14 +2,13 @@ import type { FC } from "react";
 import {
   Circle,
   TCircleProps,
-} from "@/components/decoration/circle/circle";
-import { useCircleButtonStyleMd } from "@/components/buttons/use-circle-button-style/md";
+} from "~/components/decoration/circle/circle";
+import { useBorderStyleSm } from "~/components/buttons/use-border-style/sm";
 
 export const CircleSm: FC<
   TCircleProps
 > = ({ ...props }) => {
-  const style =
-    useCircleButtonStyleMd();
+  const style = useBorderStyleSm();
   return (
     <Circle style={style} {...props} />
   );

@@ -7,17 +7,14 @@ import { useDarkMode } from "@brysonandrew/dark-mode";
 import {
   PRESENCE_ROTATE_FROM_TOP,
   PRESENCE_ROTATE_FROM_BOTTOM,
-} from "@brysonandrew/animation";
-import { PillBHover } from "@/components/buttons/pill/b/hover";
-import { Moon } from "@/pages/home/header/right/dark-mode/icons/Moon";
-import { Sun } from "@/pages/home/header/right/dark-mode/icons/Sun";
-import { useCircleButtonStyleMd } from "@/components/buttons/use-circle-button-style/md";
+} from "@brysonandrew/motion-core";
+import { PillBHover } from "~/components/buttons/pill/b/hover";
+import { Moon } from "~/pages/home/header/right/dark-mode/icons/Moon";
+import { Sun } from "~/pages/home/header/right/dark-mode/icons/Sun";
 
-export const DarkMode: FC = memo(() => {
+export const _DarkMode: FC = () => {
   const { isDarkMode, toggle } =
     useDarkMode();
-  const { width, ...style } =
-    useCircleButtonStyleMd();
 
   const key = isDarkMode
     ? "light"
@@ -31,9 +28,8 @@ export const DarkMode: FC = memo(() => {
     <PillBHover
       title={title}
       onClick={handleTap}
-      style={style}
       Icon={() => (
-        <div className="relative preserve-3d perspective-1000 -mt-0.5 center overflow-hidden">
+        <div className="relative overflow-hidden preserve-3d perspective-1000 -mt-0.5 center">
           {createElement(
             isDarkMode ? Moon : Sun,
             {
@@ -51,4 +47,7 @@ export const DarkMode: FC = memo(() => {
       {title}
     </PillBHover>
   );
-});
+};
+
+export const DarkMode: FC =
+  memo(_DarkMode);

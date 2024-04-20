@@ -4,7 +4,7 @@ type Props = {children: string; width?: number} & HTMLAttributes<HTMLElement>;
 
 export const MonoChars: FC<Props> = ({
   children,
-  width = 11,
+  width = 14,
   style,
   ...props
 }) => {

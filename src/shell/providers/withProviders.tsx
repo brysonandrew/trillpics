@@ -1,4 +1,4 @@
-import { Providers } from '@/shell/providers';
+import { Providers } from '~/shell/providers';
 import { FC } from 'react';
 
 export function withProviders<T extends object>(I: FC<T>) {

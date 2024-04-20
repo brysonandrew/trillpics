@@ -1,7 +1,7 @@
 import type { FC } from "react";
-import { useVideoStore } from "@/store";
-import { PillBHover } from "@/components/buttons/pill/b/hover";
-import { IconsFullscreen } from "@/components/icons/playback/fullscreen";
+import { useVideoStore } from "~/store";
+import { PillBHover } from "~/components/buttons/pill/b/hover";
+import { IconsFullscreen } from "~/components/icons/playback/fullscreen";
 
 export const ControlsFullscreen: FC =
   () => {
@@ -20,7 +20,6 @@ export const ControlsFullscreen: FC =
         onClick={handleClick}
         Icon={IconsFullscreen}
         disabled={!playerElement}
-        isRtl
       >
         {title}
       </PillBHover>

@@ -1,4 +1,3 @@
-import { resolveVerticalShiftPresence } from '@/utils/animation';
 import { motion } from 'framer-motion';
 import {
   ICON_CLASS_VALUE_PROPS,
@@ -6,15 +5,16 @@ import {
   resolveScale,
 } from '../config';
 import { createElement } from 'react';
-import { useScroll as useScrollContext } from '@/shell/providers/context/scroll';
+import { useScroll as useScrollContext } from '~/shell/providers/context/scroll';
 import clsx from 'clsx';
-import { CB } from '@/components/buttons/circle';
-import { CBB } from '@/components/buttons/circle/CBB';
-import { useHoverKey } from '@brysonandrew/cursor';
-import { useBase } from '@/shell/providers/context/base';
-import { TRANSITION } from '@brysonandrew/animation';
-import { IconsCross } from '@/components/icons/cross';
-import { IconsGallery } from '@/components/icons/pic/gallery';
+import { CB } from '~/components/buttons/circle';
+import { CBB } from '~/components/buttons/circle/CBB';
+import { useHoverKey } from '@brysonandrew/motion-cursor';
+import { useBase } from '~/shell/providers/context/base';
+import { TRANSITION } from '@brysonandrew/motion-core';
+import { IconsCross } from '~/components/icons/cross';
+import { IconsGallery } from '~/components/icons/pic/gallery';
+import { resolveVerticalShiftPresence } from '~/utils/animation';
 
 export const Menu = () => {
   const { isMenu, onMenu } = useBase();
@@ -62,7 +62,7 @@ export const Menu = () => {
           title={title}
           onTap={handleTap}
         >
-          <div className='absolute -inset-2 center overflow-hidden rounded-full'>
+          <div className='absolute -inset-2 center rounded-full'>
             {createElement(
               isMenu
                 ? IconsCross

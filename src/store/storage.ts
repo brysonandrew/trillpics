@@ -1,4 +1,4 @@
-import { TVideoState } from "@/store/types";
+import { TVideoState } from "~/store/types";
 import { createJSONStorage } from "zustand/middleware";
 import localforage from "localforage";
 
@@ -13,6 +13,7 @@ export const STORAGE = {
     picsCount: state.picsCount,
     picsEntries: state.picsEntries,
     videoPics: state.videoPics,
+    milestones: state.milestones,
   }),
   storage:
     createJSONStorage<TVideoState>(

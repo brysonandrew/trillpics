@@ -1,7 +1,7 @@
 import type { FC } from "react";
-import { useShow } from "@/pages/home/controls/show/use-show";
-import { IconsGroup } from "@/components/icons/group";
-import { PillBHover } from "@/components/buttons/pill/b/hover";
+import { useShow } from "~/pages/home/controls/show/use-show";
+import { IconsGroup } from "~/components/icons/group";
+import { PillBHover } from "~/components/buttons/pill/b/hover";
 
 export const ControlsShow: FC = () => {
   const {

@@ -3,10 +3,6 @@ import React, {
   Suspense,
 } from "react";
 import { MotionConfig } from "framer-motion";
-import {
-  NotFound,
-  TRouteObjects,
-} from "@brysonandrew/routes";
 import ReactDOM from "react-dom";
 import { createRoot } from "react-dom/client";
 import {
@@ -15,43 +11,19 @@ import {
 } from "react-router-dom";
 import { Boundary } from "@brysonandrew/boundary";
 import { HelmetProvider } from "react-helmet-async";
-import { MOTION_CONFIG } from "@brysonandrew/animation";
-import { Shell } from "@/shell/index";
-import { VideoPlayer } from "@/remotion/player";
-import { Home } from "@/pages/home";
+import { MOTION_CONFIG } from "@brysonandrew/motion-core";
+import { RootProvider } from "~/shell/providers/api";
+import { ROUTES } from "~app/routes";
+import { init as initServiceWorker } from "~app/service-worker/init";
 
-import { RootProvider } from "@/shell/providers/api";
-
-import { init as initServiceWorker } from "~/app/service-worker/init";
 initServiceWorker();
 
 window.React = React;
 window.ReactDOM = ReactDOM;
 
 import "virtual:uno.css";
-import "@/css/fonts.css";
-import "@/css/global.css";
-
-const ROUTES: TRouteObjects = [
-  {
-    path: "/",
-    Component: Shell,
-    children: [
-      {
-        index: true,
-        Component: Home,
-      },
-      {
-        path: "/video",
-        Component: VideoPlayer,
-      },
-      {
-        path: "*",
-        Component: NotFound,
-      },
-    ],
-  },
-];
+import "~/css/fonts.css";
+import "~/css/global.css";
 
 const router =
   createBrowserRouter(ROUTES);

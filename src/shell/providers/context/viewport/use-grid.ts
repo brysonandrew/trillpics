@@ -1,7 +1,7 @@
 import { useMemo } from "react";
 import { BREAKPOINT_INT_RECORD } from "../../../../constants/css";
-import type { TBreakpointKey } from "~/uno/index";
-import { TViewport } from "@/hooks/window/use-container-measure";
+import type { TBreakpointKey } from "~uno/index";
+import { TViewport } from "~/hooks/window/use-container-measure";
 export const GRID_CLASS_VALUE =
   "sm:grid-cols-2 xl:grid-cols-3" as const;
 

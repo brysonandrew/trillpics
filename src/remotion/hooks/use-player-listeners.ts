@@ -1,30 +1,62 @@
-import {useEffect} from 'react';
-import {useShallow} from 'zustand/react/shallow';
-import { useVideoStore } from '@/store';
+import { useEffect } from "react";
+import { useShallow } from "zustand/react/shallow";
+import { useVideoStore } from "~/store";
 
-export const usePlayerListeners = () => {
-  const {playerElement, updateState} = useVideoStore(
-    useShallow(({playerElement, updateState}) => ({
+export const usePlayerListeners =
+  () => {
+    const {
       playerElement,
       updateState,
-    }))
-  );
+    } = useVideoStore(
+      useShallow(
+        ({
+          playerElement,
+          updateState,
+        }) => ({
+          playerElement,
+          updateState,
+        })
+      )
+    );
 
-  useEffect(() => {
-    playerElement?.addEventListener('play', () => {
-      updateState({isPlaying: true});
-    });
-    playerElement?.addEventListener('pause', () => {
-      updateState({isPlaying: false});
-    });
-
-    return () => {
-      playerElement?.removeEventListener('play', () => {
-        updateState({isPlaying: true});
-      });
-      playerElement?.removeEventListener('pause', () => {
-        updateState({isPlaying: false});
+    const handlePlay = (
+      isPlaying = true
+    ) => {
+      updateState({
+        isPlaying,
       });
     };
-  }, [playerElement, updateState]);
-};
+
+    const handlePlaying = () =>
+      handlePlay(true);
+    const handlePause = () =>
+      handlePlay(false);
+
+    useEffect(() => {
+      if (playerElement) {
+        playerElement.seekTo(0);
+
+        playerElement.addEventListener(
+          "play",
+          handlePlaying
+        );
+        playerElement.addEventListener(
+          "pause",
+          handlePause
+        );
+      }
+
+      return () => {
+        if (playerElement) {
+          playerElement.removeEventListener(
+            "play",
+            handlePlaying
+          );
+          playerElement.removeEventListener(
+            "pause",
+            handlePause
+          );
+        }
+      };
+    }, [playerElement, updateState]);
+  };

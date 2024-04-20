@@ -2,7 +2,7 @@ import type { FC } from "react";
 import {
   GRADIENT_BLUE_PINK_YELLOW_COLORS,
   GRADIENT_TEAL_YELLOW_PINK_COLORS,
-} from "~/app/color/gradient";
+} from "~app/color/gradient";
 export const LINEAR_GRADIENT_SVG_ID =
   "linear-gradient-blue-pink-yellow-svg";
 type TProps = { isDarkMode: boolean };

@@ -1,7 +1,7 @@
 import type { FC } from "react";
-import { useVideoStore } from "@/store";
-import { IconsTrash } from "@/components/icons/trash";
-import { PillBHover } from "@/components/buttons/pill/b/hover";
+import { useVideoStore } from "~/store";
+import { IconsTrash } from "~/components/icons/video/trash1";
+import { PillBHover } from "~/components/buttons/pill/b/hover";
 
 export const ControlsClear: FC = () => {
   const { removeVideo } =
@@ -10,7 +10,7 @@ export const ControlsClear: FC = () => {
     removeVideo();
   };
   const title =
-    "Remove all pics from video";
+    "Clear pics from video";
 
   return (
     <PillBHover

@@ -1,8 +1,8 @@
 import { type FC } from "react";
 import { useShallow } from "zustand/react/shallow";
-import { useVideoStore } from "@/store";
-import { PlaybackButtonsB } from "@/remotion/player/playback/buttons/b";
-import { IconsPlaybackBack } from "@/components/icons/playback/back";
+import { useVideoStore } from "~/store";
+import { PlaybackButtonsB } from "~/remotion/player/playback/buttons/b";
+import { IconsPlaybackBack } from "~/components/icons/playback/back";
 import { useCurrentFrame } from "remotion/dist/cjs/use-current-frame";
 
 export const PlaybackButtonsBack: FC =

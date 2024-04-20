@@ -1,9 +1,9 @@
 import { type FC } from "react";
 import { useShallow } from "zustand/react/shallow";
-import { useVideoStore } from "@/store";
-import { SEEK_BACKWARD_SECONDS } from "@/remotion/player/playback/constants";
-import { IconsChevronsLeft } from "@/components/icons/chevrons/left";
-import { PlaybackButtonsB } from "@/remotion/player/playback/buttons/b";
+import { useVideoStore } from "~/store";
+import { SEEK_BACKWARD_SECONDS } from "~/remotion/player/playback/constants";
+import { IconsChevronsLeft } from "~/components/icons/chevrons/left";
+import { PlaybackButtonsB } from "~/remotion/player/playback/buttons/b";
 
 export const PlaybackButtonsBackward: FC =
   () => {

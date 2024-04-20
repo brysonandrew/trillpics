@@ -1,18 +1,34 @@
 import { useMemo } from "react";
-import { useViewport } from "@/shell/providers/context/viewport";
-import { APPROX_IMAGE_SIZE } from "@/constants/images";
-import { useVideoStore } from "@/store/index";
+import { useViewport } from "~/shell/providers/context/viewport";
+import { APPROX_IMAGE_SIZE } from "~/constants/images";
+import { useVideoStore } from "~/store/index";
 import {
   TPic,
   TPics,
-} from "@/store/types";
+} from "~/store/types";
+import { useShallow } from "zustand/react/shallow";
 
 export type TRow = {
-  cols: TPic[];
+  cols: TPics;
 };
 export const usePicsTable = () => {
-  const { pics, countPicsEntries, countPics } =
-    useVideoStore();
+  const {
+    pics,
+    countPicsEntries,
+    countPics,
+  } = useVideoStore(
+    useShallow(
+      ({
+        pics,
+        countPicsEntries,
+        countPics,
+      }) => ({
+        pics,
+        countPicsEntries,
+        countPics,
+      })
+    )
+  );
   const viewport = useViewport();
   const { isDimensions, isResizing } =
     viewport;
@@ -49,17 +65,18 @@ export const usePicsTable = () => {
       };
     });
 
-
     const size = Math.floor(
       viewport.width / colsCount
     );
 
-    const isVerticalScroll = size * rowsCount > viewport.height;
+    const isVerticalScroll =
+      size * rowsCount >
+      viewport.height;
 
     return {
       rows,
       size,
-      isVerticalScroll
+      isVerticalScroll,
     };
   }, [
     count,

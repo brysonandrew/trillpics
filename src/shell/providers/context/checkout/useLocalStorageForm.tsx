@@ -4,7 +4,7 @@ import {
   FieldValues,
   useForm,
 } from 'react-hook-form';
-import { useLocalStorage } from '@/hooks/dom/useLocalStorage';
+import { useLocalStorage } from '~/hooks/dom/useLocalStorage';
 
 type TProps<T extends FieldValues> = {
   defaultValues: DefaultValues<T>;

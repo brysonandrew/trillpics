@@ -1,4 +1,4 @@
-import { isLocal } from "@/server/remotion/is-local";
+import { isLocal } from "~/server/remotion/is-local";
 
 export const resolveAssets = (
   path: string

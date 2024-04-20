@@ -1,5 +1,5 @@
-import { useRemotionProps } from "@/remotion/use-props";
-import { useVideoStore } from "@/store";
+import { useRemotionProps } from "~/remotion/use-props";
+import { useVideoStore } from "~/store";
 import { PlayerRef } from "@remotion/player";
 
 export const useRemotionPlayerProps =
@@ -18,7 +18,6 @@ export const useRemotionPlayerProps =
       instance: PlayerRef | null
     ) => {
       if (instance && !playerElement) {
-        console.log(instance, playerElement)
         updateState({
           playerElement: instance,
         });
@@ -30,6 +29,7 @@ export const useRemotionPlayerProps =
       inputProps,
       compositionWidth: width,
       compositionHeight: height,
+      style: {cursor:"pointer"},
       ...props,
     };
   };

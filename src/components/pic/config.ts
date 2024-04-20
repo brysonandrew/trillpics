@@ -1,4 +1,4 @@
-import { FULLSCREEN_Z } from "@/constants/dom";
+import { FULLSCREEN_Z } from "~/constants/dom";
 
 export const POSITIONS = [
   'absolute cursor-zoom-in',

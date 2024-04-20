@@ -37,8 +37,8 @@ export const CATEGORIES = [
   },
   {
     title: 'Email',
-    value: 'andrewbryson12@/gmail.com',
-    href: 'mailto:andrewbryson12@/gmail.com',
+    value: 'andrewbryson12~/gmail.com',
+    href: 'mailto:andrewbryson12~/gmail.com',
     iconProps: {
       icon: 'dashicons:email',
     },

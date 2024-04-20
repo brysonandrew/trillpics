@@ -1,0 +1,3 @@
+export const READ_ADD_PIC_TO_VIDEO_INFO =
+  "READ_ADD_PIC_TO_VIDEO_INFO";
+export const MILESTONES = [READ_ADD_PIC_TO_VIDEO_INFO] as const

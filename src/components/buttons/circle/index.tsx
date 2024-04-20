@@ -6,8 +6,8 @@ import {
 import clsx from 'clsx';
 import { motion } from 'framer-motion';
 import { FC } from 'react';
-import { MetalGlow } from '@/components/metal/MetalGlow';
-import { TInteractiveShape } from '@/types/css/interactive';
+import { MetalGlow } from '~/components/metal/MetalGlow';
+import { TInteractiveShape } from '~/types/css/interactive';
 
 const Root = styled(motion.div)``;
 

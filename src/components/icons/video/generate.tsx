@@ -1,6 +1,6 @@
 import type { FC } from "react";
-import { TIconsSvgProps } from "@/components/icons/svg";
-import { IconsSvgGradient24 } from "@/components/icons/svg/gradient/24";
+import { TIconsSvgProps } from "~/components/icons/svg";
+import { IconsSvgGradient24 } from "~/components/icons/svg/gradient/24";
 
 export const IconsGenerate: FC<
   TIconsSvgProps

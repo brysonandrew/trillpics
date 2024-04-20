@@ -3,7 +3,7 @@ import styled from '@emotion/styled';
 import { TButtonMotionProps,TClassValueProps, TTitleProps } from '@brysonandrew/config-types';
 import { motion } from 'framer-motion';
 import { FC } from 'react';
-import { resolveInteractiveLabels } from '@/utils/attributes/resolveInteractiveLabels';
+import { resolveInteractiveLabels } from '~/utils/attributes/resolveInteractiveLabels';
 
 const Root = styled(motion.button)``;
 

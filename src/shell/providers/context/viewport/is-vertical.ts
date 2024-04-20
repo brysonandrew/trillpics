@@ -1,4 +1,4 @@
-import { TViewport } from "@/hooks/window/use-container-measure";
+import { TViewport } from "~/hooks/window/use-container-measure";
 
 export const isVertical = (
   dimensions: TViewport

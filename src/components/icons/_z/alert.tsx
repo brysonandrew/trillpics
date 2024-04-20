@@ -1,5 +1,5 @@
 import { FC } from "react";
-import { IconsSvgGradient40 } from "@/components/icons/svg/gradient/40";
+import { IconsSvgGradient40 } from "~/components/icons/svg/gradient/40";
 import { TSvgProps } from "@brysonandrew/config-types";
 
 export const Alert: FC<TSvgProps> = ({

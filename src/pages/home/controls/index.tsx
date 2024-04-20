@@ -1,18 +1,19 @@
 import { FC } from "react";
 import { motion } from "framer-motion";
 import { useVideoStore } from "src/store";
-import { VideoPlayer } from "@/remotion/player";
-import { ControlsEmpty } from "@/pages/home/controls/empty";
-import { ControlsVideo } from "@/pages/home/controls/video";
-import { Generate } from "@/pages/home/controls/generate/generate";
-import { ControlsPlayer } from "@/pages/home/controls/player";
-import { ControlsShow } from "@/pages/home/controls/show";
-import { resolvePresence } from "@brysonandrew/animation";
-import { ControlsClear } from "@/pages/home/controls/clear";
-import { ControlsCounterInline } from "@/pages/home/controls/counter";
-import { TCooldownProps } from "@/pages/home/header/config";
-import { PlayerPlayback } from "@/remotion/player/playback";
-import { ControlsFullscreen } from "@/pages/home/controls/fullscreen";
+import { VideoPlayer } from "~/remotion/player";
+import { ControlsEmpty } from "~/pages/home/controls/empty";
+import { ControlsVideo } from "~/pages/home/controls/video";
+import { Generate } from "~/pages/home/controls/generate/generate";
+import { ControlsPlayer } from "~/pages/home/controls/player";
+import { ControlsShow } from "~/pages/home/controls/show";
+import { resolvePresence } from "@brysonandrew/motion-core";
+import { ControlsClear } from "~/pages/home/controls/clear";
+import { ControlsCounterInline } from "~/pages/home/controls/counter";
+import { TCooldownProps } from "~/pages/home/header/config";
+import { PlayerPlayback } from "~/remotion/player/playback";
+import { ControlsFullscreen } from "~/pages/home/controls/fullscreen";
+import { PlaybackProgressSeeker } from "~/remotion/player/playback/progress/seeker";
 
 type TProps = TCooldownProps;
 export const Controls: FC<TProps> = ({
@@ -33,12 +34,10 @@ export const Controls: FC<TProps> = ({
           {...resolvePresence(
             { opacity: 0 },
             {
-              opacity: isCooldown
-                ? 0.8
-                : 1,
+              opacity: 1,
             }
           )}
-          className="fixed left-0 bottom-0 right-0 h-0 font-display-led z-20"
+          className="fixed left-0 bottom-0 right-0 h-0 z-20"
         >
           {isVideoMode &&
             isPlayerOpen && (
@@ -47,6 +46,9 @@ export const Controls: FC<TProps> = ({
                 <div className="absolute row-space container top-4 left-1/2 -translate-x-1/2">
                   <PlayerPlayback />
                   <Generate />
+                </div>
+                <div className="absolute bottom-8 left-0 w-full h-5">
+                  <PlaybackProgressSeeker />
                 </div>
               </div>
             )}
@@ -61,9 +63,9 @@ export const Controls: FC<TProps> = ({
               </div> */}
               {isVideoMode &&
                 isVideoPicsCount && (
-                  <div className="absolute bottom-1/12 w-screen h-0 bg-transparent">
+                  <div className="absolute bottom-25 w-screen h-0 bg-transparent">
                     <div className="absolute bottom-0 h-0 left-1/2 -translate-x-1/2 container">
-                      <div className="absolute left-0 bottom-0 column-start gap-2">
+                      <div className="absolute left-0 bottom-0 column-start gap-4">
                         <ControlsClear />
                         <ControlsShow />
                         <ControlsPlayer />
@@ -90,16 +92,15 @@ export const Controls: FC<TProps> = ({
       )}
       <motion.div
         {...resolvePresence(
-          { opacity: 0 },
+          { opacity: 0, y: "100%" },
           {
-            opacity: isCooldown
-              ? 0.8
-              : 1,
+            opacity: 1,
+            y: 0,
           }
         )}
         className="relative row-space container h-0 mx-auto z-30"
       >
-        <div className="relative bottom-8 row-space w-full h-0">
+        <div className="relative bottom-15 row-space w-full h-0">
           <ControlsVideo
             inlineCounter={
               <div className="absolute left-0 bottom-6 w-10 h-10">

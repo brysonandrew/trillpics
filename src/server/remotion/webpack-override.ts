@@ -18,7 +18,7 @@ export const webpackOverride: WebpackOverrideFn =
     ].reduce(
       (a, c) => ({
         ...a,
-        [`@/${c}`]: path.resolve(
+        [`~/${c}`]: path.resolve(
           initCwd,
           "src",
           c
@@ -35,7 +35,7 @@ export const webpackOverride: WebpackOverrideFn =
     ].reduce(
       (a, c) => ({
         ...a,
-        [`@/${c}`]: path.resolve(
+        [`~/${c}`]: path.resolve(
           initCwd,
           "config",
           c
@@ -51,7 +51,7 @@ export const webpackOverride: WebpackOverrideFn =
       resolve: {
         ...currentConfig.resolve,
         alias: {
-          "@/":entryPath,
+          "~/":entryPath,
           ...currentConfig.resolve
             ?.alias,
           ...record,

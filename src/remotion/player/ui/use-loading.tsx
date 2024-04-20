@@ -1,7 +1,7 @@
 import { useCallback } from "react";
 import { RenderLoading } from "@remotion/player";
-import { IconsLoader } from "@/components/icons/loader";
-import { Button } from "@/remotion/player/ui/button";
+import { IconsLoader } from "~/components/icons/loader";
+import { Button } from "~/remotion/player/ui/button";
 
 export const useLoading = () => {
   const renderLoading: RenderLoading =

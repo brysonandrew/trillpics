@@ -7,7 +7,7 @@ export const N: FC<TTextProps> = (
 ) => {
   return (
     <_Text
-      classValue='relative font-display-led text-main-inverted'
+      classValue='relative text-main-inverted'
       element='div'
       {...props}
     />

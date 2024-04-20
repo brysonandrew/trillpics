@@ -3,29 +3,21 @@ import {
   motion,
 } from "framer-motion";
 import { useVideoStore } from "src/store";
-import { PillB } from "@/components/buttons/pill/b";
-import { IconsGenerate } from "@/components/icons/video/generate";
-import { trpc } from "@/utils/trpc";
-import { TGenerateConfig } from "@/server/remotion/generate";
-import { downloadMedia } from "@/pages/home/controls/generate/download-media";
+import { PillB } from "~/components/buttons/pill/b";
+import { IconsGenerate } from "~/components/icons/video/generate";
+import { trpc } from "~/utils/trpc";
+import { TGenerateConfig } from "~/server/remotion/generate";
+import { downloadMedia } from "~/pages/home/controls/generate/download-media";
 import {
   NONE_CURSOR_KEY,
   useHoverKey,
-} from "@brysonandrew/cursor";
+} from "@brysonandrew/motion-cursor";
 import { AURA } from "@brysonandrew/svg-filter";
-import {
-  PRESENCE_OPACITY,
-  PRESENCE_OPACITY_DELAY,
-  resolvePresence,
-  TRANSITION_02_EASEIN_008,
-} from "@brysonandrew/animation";
+import { resolvePresence } from "@brysonandrew/motion-core";
 import { resolveCompositeKey } from "@brysonandrew/utils-key";
-import { Background1 } from "@/components/decoration/background/1";
-import { Background04 } from "@/components/decoration/background/background-04";
-import { Metal } from "@/components/metal";
-import { MetalDark } from "@/components/metal/MetalDark";
-import { MetalDarkest } from "@/components/metal/MetalDarkest";
+import { Metal } from "~/components/metal";
 import { useApp } from "@brysonandrew/app";
+import { useBorderStyleMd } from "~/components/buttons/use-border-style/md";
 
 export const Generate = () => {
   const { videoPics, fps } =
@@ -71,8 +63,9 @@ export const Generate = () => {
       }
     ),
   };
+  const borderStyle = useBorderStyleMd();
   return (
-    <div className="relative">
+    <div className="relative h-0">
       <AnimatePresence>
         {isAura && (
           <>
@@ -81,22 +74,18 @@ export const Generate = () => {
                 isHover.toString(),
                 isLoading.toString()
               )}
-              className="fill absolute -inset-y-1.5 -inset-x-1.5 ml-1 mt-0.25 _radial-gradient"
+              className="fill ml-1 mt-0.25 _radial-gradient"
               style={{
-                borderRadius:
-                  BORDER_RADIUS.XL,
                 filter:
                   AURA.GLOBAL.value,
+                ...borderStyle,
               }}
               {...AURA_TRANSITION}
             />
             <Metal
               key="background"
               className="fill h-10"
-              style={{
-                borderRadius:
-                  BORDER_RADIUS.XL,
-              }}
+              style={borderStyle}
               {...AURA_TRANSITION}
             />
           </>

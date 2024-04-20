@@ -1,5 +1,5 @@
 import { useRef } from "react";
-import { useVideoStore } from "@/store/index";
+import { useVideoStore } from "~/store/index";
 
 export const useShow = () => {
   const {

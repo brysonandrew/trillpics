@@ -1,4 +1,4 @@
-import { useVideoStore } from "@/store";
+import { useVideoStore } from "~/store";
 import { useShallow } from "zustand/react/shallow";
 
 export const useUpdateStateHandler =

@@ -5,7 +5,7 @@ import {
   createContext,
   PropsWithChildren,
 } from "react";
-import { NOOP } from "@/constants/functions";
+import { NOOP } from "~/constants/functions";
 
 export type TContext = {
   isMenu: boolean;

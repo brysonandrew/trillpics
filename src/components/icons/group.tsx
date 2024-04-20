@@ -1,5 +1,5 @@
 import type { FC } from "react";
-import { IconsSvgGradient } from "@/components/icons/svg/gradient";
+import { IconsSvgGradient } from "~/components/icons/svg/gradient";
 
 export const IconsGroup: FC = (props) => {
   return (

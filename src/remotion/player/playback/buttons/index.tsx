@@ -1,8 +1,8 @@
 import { type FC } from "react";
-import { PlaybackButtonsBackward } from "@/remotion/player/playback/buttons/backward";
-import { PlaybackButtonsForward } from "@/remotion/player/playback/buttons/forward";
-import { PlaybackButtonsPlay } from "@/remotion/player/playback/buttons/play";
-import { PlaybackButtonsBack } from "@/remotion/player/playback/buttons/back";
+import { PlaybackButtonsBackward } from "~/remotion/player/playback/buttons/backward";
+import { PlaybackButtonsForward } from "~/remotion/player/playback/buttons/forward";
+import { PlaybackButtonsPlay } from "~/remotion/player/playback/buttons/play";
+import { PlaybackButtonsBack } from "~/remotion/player/playback/buttons/back";
 
 export const PlaybackButtons: FC =
   () => {

@@ -1,7 +1,7 @@
 import { TLayoutOptionsRecord } from '@brysonandrew/app';
 import { DarkModeProvider } from '@brysonandrew/dark-mode';
 import { NetworkProvider } from '@brysonandrew/network';
-import { CursorProvider } from '@brysonandrew/cursor';
+import { CursorProvider } from '@brysonandrew/motion-cursor';
 import { TChildrenProps } from '@brysonandrew/config-types/dom';
 import {
   FC,
@@ -9,13 +9,13 @@ import {
   useMemo,
 } from 'react';
 import { arrToNest } from '@brysonandrew/layout-utils/arrToNest';
-import { TCustomStyle } from '~/app/style';
-import { App } from '@/shell/providers/App';
-import { BaseProvider } from '@/shell/providers/context/base';
-import { CheckoutProvider } from '@/shell/providers/context/checkout';
-import { UserProvider } from '@/shell/providers/context/user';
-import { ViewportProvider } from '@/shell/providers/context/viewport';
-import { ScrollProvider } from '@/shell/providers/context/scroll';
+import { TCustomStyle } from '~app/style';
+import { App } from '~/shell/providers/App';
+import { BaseProvider } from '~/shell/providers/context/base';
+import { CheckoutProvider } from '~/shell/providers/context/checkout';
+import { UserProvider } from '~/shell/providers/context/user';
+import { ViewportProvider } from '~/shell/providers/context/viewport';
+import { ScrollProvider } from '~/shell/providers/context/scroll';
 
 type TLayoutOptions =
   TLayoutOptionsRecord;

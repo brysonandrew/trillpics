@@ -1,4 +1,4 @@
-import { APPROX_IMAGE_SIZE } from "@/constants/images";
+import { APPROX_IMAGE_SIZE } from "~/constants/images";
 const MIN_WIDTH = APPROX_IMAGE_SIZE;
 
 export const resolveColumnWidth = ({

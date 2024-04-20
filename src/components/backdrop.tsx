@@ -1,7 +1,7 @@
 import { FC, Fragment } from "react";
-import { TUseImageReturn } from "@/components/pic/use-image";
-import { useVideoStore } from "@/store";
-import { useViewport } from "@/shell/providers/context/viewport";
+import { TUseImageReturn } from "~/components/pic/use-image";
+import { useVideoStore } from "~/store";
+import { useViewport } from "~/shell/providers/context/viewport";
 
 type TProps = {
   backdropProps?: TUseImageReturn["backdropProps"];
@@ -10,10 +10,8 @@ type TProps = {
 export const Backdrop: FC<TProps> = ({
   backdropProps,
 }) => {
-  const {
-    isPlayerOpen,
-    togglePlayer,
-  } = useVideoStore();
+  const { isPlayerOpen, togglePlayer } =
+    useVideoStore();
   const viewport = useViewport();
 
   return (
@@ -39,10 +37,11 @@ export const Backdrop: FC<TProps> = ({
             cursor: "zoom-out",
           }}
           {...backdropProps}
-        />
+        ></div>
       ) : (
         <Fragment />
       )}
+
     </>
   );
 };

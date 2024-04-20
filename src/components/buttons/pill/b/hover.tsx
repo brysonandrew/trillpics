@@ -2,11 +2,11 @@ import type { FC } from "react";
 import {
   PillB,
   TPillBProps,
-} from "@/components/buttons/pill/b";
+} from "~/components/buttons/pill/b";
 import {
   useHoverKey,
   NONE_CURSOR_KEY,
-} from "@brysonandrew/cursor";
+} from "@brysonandrew/motion-cursor";
 
 type TProps = TPillBProps;
 export const PillBHover: FC<TProps> = ({

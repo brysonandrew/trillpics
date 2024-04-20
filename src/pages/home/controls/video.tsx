@@ -5,15 +5,15 @@ import {
   useState,
 } from "react";
 import { useVideoStore } from "src/store";
-import { IconsVideo } from "@/components/icons/video/video";
-import { ControlsCounter } from "@/pages/home/controls/counter";
-import { IconsVideoCross } from "@/components/icons/video/video-cross";
+import { IconsVideo } from "~/components/icons/video/video";
+import { ControlsCounter } from "~/pages/home/controls/counter";
+import { IconsVideoCross } from "~/components/icons/video/video-cross";
 import {
   useHoverKey,
   NONE_CURSOR_KEY,
-} from "@brysonandrew/cursor";
-import { PillB } from "@/components/buttons/pill/b";
-import { IconsArrowsLeft } from "@/components/icons/arrows/left";
+} from "@brysonandrew/motion-cursor";
+import { PillB } from "~/components/buttons/pill/b";
+import { IconsArrowsLeft } from "~/components/icons/arrows/left";
 
 type TProps = {
   inlineCounter: ReactNode;
@@ -76,7 +76,7 @@ export const ControlsVideo: FC<
 
   return (
     <>
-      {isVideoPicsCount &&
+      {isCounter &&
         isInlineCounter &&
         inlineCounter}
       <PillB
@@ -103,7 +103,9 @@ export const ControlsVideo: FC<
       >
         {!isHoverFromVideo &&
         isHover &&
-        (title === prevHoverRef.current || prevHoverRef.current === null)
+        (title ===
+          prevHoverRef.current ||
+          prevHoverRef.current === null)
           ? title
           : ""}
       </PillB>

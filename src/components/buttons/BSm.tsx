@@ -1,6 +1,6 @@
 import clsx from 'clsx';
 import { FC } from 'react';
-import { TInteractiveProps } from '@/types/css/interactive';
+import { TInteractiveProps } from '~/types/css/interactive';
 import { B } from '@brysonandrew/interactive';
 import { I } from '@brysonandrew/icons-i';
 import { TButtonMotionProps } from '@brysonandrew/config-types';

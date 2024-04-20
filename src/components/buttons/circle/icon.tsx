@@ -1,6 +1,6 @@
 import { FC } from "react";
-import { TPillBProps } from "@/components/buttons/pill/b";
-import { CircleSm } from "@/components/decoration/circle/sm";
+import { TPillBProps } from "~/components/buttons/pill/b";
+import { CircleSm } from "~/components/decoration/circle/sm";
 
 type TProps = Pick<
   TPillBProps,

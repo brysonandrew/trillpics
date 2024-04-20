@@ -1,9 +1,11 @@
+import { TMilestones } from "~/types/milestones";
 import { PlayerRef } from "@remotion/player";
 
 export type TPic = string;
 export type TPics = TPic[];
 
 export type TVideoState = {
+  milestones: TMilestones;
   isControls: boolean;
   fps: number;
   durationInFrames: number;
@@ -23,8 +25,12 @@ export type TVideoState = {
   countPicsEntries(): number;
   countPics(): number;
   pics(from?: number): string[];
-  seekBySeconds: (seconds: number) => void;
-  setCurrentFrame: (nextCurrentFrame: number) => void;
+  seekBySeconds: (
+    seconds: number
+  ) => void;
+  setCurrentFrame: (
+    nextCurrentFrame: number
+  ) => void;
   updateState(
     state: Partial<TVideoState>
   ): void;

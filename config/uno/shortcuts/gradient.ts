@@ -1,4 +1,6 @@
 export const GRADIENT = {
+  "_net-gradient":
+    "dark:_dark-gradient-net _light-gradient-net",
   "_radial-gradient":
     "dark:_dark-radial-gradient _light-radial-gradient",
   "_gradient-border":

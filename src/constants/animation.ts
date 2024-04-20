@@ -2,8 +2,8 @@ import {
   PRESENCE_OPACITY,
   TRANSITION_02_EASE_IN_02,
   TRANSITION_02_EASE_IN_04,
-} from "@brysonandrew/animation";
-import { resolvePresence } from "@/utils/animation";
+} from "@brysonandrew/motion-core";
+import { resolvePresence } from "~/utils/animation";
 
 export const DURATION = 0.2;
 

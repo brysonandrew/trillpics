@@ -1,24 +1,24 @@
 import { useState } from "react";
-import { useViewport } from "@/shell/providers/context/viewport";
+import { useViewport } from "~/shell/providers/context/viewport";
 import {
   useHoverKey,
   NONE_CURSOR_KEY,
-} from "@brysonandrew/cursor";
+} from "@brysonandrew/motion-cursor";
 import {
   TImageDimensionsConfig,
   useImageDimensions,
-} from "@/hooks/image/useImageDimensions";
+} from "~/hooks/image/useImageDimensions";
 import { TDimensions } from "@brysonandrew/measure";
 import {
   useLocation,
   useNavigate,
   useSearchParams,
 } from "react-router-dom";
-import { FULLSCREEN_Z } from "@/constants/dom";
+import { FULLSCREEN_Z } from "~/constants/dom";
 import clsx from "clsx";
-import { useVideoStore } from "@/store";
-import { PRESENCE_OPACITY } from "@brysonandrew/animation";
-import { resolveViewportSelfCenter } from "@/utils/dimensions/resolveViewportSelfCenter";
+import { useVideoStore } from "~/store";
+import { PRESENCE_OPACITY } from "@brysonandrew/motion-core";
+import { resolveViewportSelfCenter } from "~/utils/dimensions/resolveViewportSelfCenter";
 export const SEARCH_PARAM_ID = "open";
 
 export type TUseImageConfig =
@@ -27,7 +27,7 @@ export type TUseImageConfig =
   };
 export const useImage = ({
   name,
-  ...config
+  ...imageDimensions
 }: TUseImageConfig) => {
   const {
     isVideoMode,
@@ -37,7 +37,6 @@ export const useImage = ({
   } = useVideoStore();
   const videoOrder =
     videoPics.indexOf(name);
-  const { width, height } = config;
   const [isFront, setFront] =
     useState<boolean>(false);
   const { pathname } = useLocation();
@@ -65,23 +64,20 @@ export const useImage = ({
         SEARCH_PARAM_ID,
         name
       );
+
     }
     navigate(
       `${pathname}?${searchParams}`
     );
   };
   const viewport = useViewport();
-  const imageDimensions = {
-    width,
-    height,
-  };
   const boxDimensions: TImageDimensionsConfig["box"] =
     isOpen && viewport.isDimensions
       ? ({
           width: viewport.width,
           height: viewport.height,
         } as const)
-      : config;
+      : imageDimensions;
 
   const dimensions = useImageDimensions(
     {
@@ -149,19 +145,19 @@ export const useImage = ({
       animate: {
         opacity: isDimensions ? 1 : 0,
       },
-      ...(isDimensions && !isOpen && !isFront
-        ? {
-            ...PRESENCE_OPACITY,
-          }
+      ...(isDimensions &&
+      !isOpen &&
+      !isFront
+        ? PRESENCE_OPACITY
         : {}),
       onLayoutAnimationComplete:
         handleLayoutAnimationComplete,
     },
     backdropProps: {
       className:
-        "inset-0 z-60 fade-in-animation zoom-out",
+        "inset-0 zoom-out",
       style: {
-        zIndex: FULLSCREEN_Z - 1,
+        zIndex: zIndex - 1,
         ...(viewport.isDimensions
           ? ({
               position: "fixed",

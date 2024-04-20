@@ -5,7 +5,7 @@ import { MetalDark } from './MetalDark';
 import { TClassValueProps } from '@brysonandrew/config-types';
 import { useDarkMode } from '@brysonandrew/dark-mode';
 import { Glow } from '@brysonandrew/layout-effects';
-import { TPartialGlowConfigOptions } from '@brysonandrew/filter-animate';
+import { TPartialGlowConfigOptions } from '@brysonandrew/motion-filter';
 
 type TProps = {
   isDarkest?: boolean;

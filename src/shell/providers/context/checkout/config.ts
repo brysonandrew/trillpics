@@ -3,7 +3,7 @@ import {
   TPending,
   TPendingRecordId,
   TChosen,
-} from '@/types/image';
+} from '~/types/image';
 
 export const DEFAULT_VALUES: TSpecifications =
   {

@@ -1,9 +1,9 @@
 import { TVideoState } from "src/store/types";
-import { shuffle } from "@/utils/array/shuffle";
-import { TImmerState } from "@/store";
-import { DEFAULT_FPS } from "@/remotion/constants";
-import { clampNumbers } from "@/utils/number/clamp-numbers";
-import precachePics from "~/app/precache.json";
+import { shuffle } from "~/utils/array/shuffle";
+import { TImmerState } from "~/store";
+import { DEFAULT_FPS } from "~/remotion/constants";
+import { clampNumbers } from "~/utils/number/clamp-numbers";
+import precachePics from "~app/precache.json";
 const { length: picsCount } =
   precachePics;
 const inits = [...Array(picsCount)].map(
@@ -13,6 +13,7 @@ const shuffledInits = shuffle(inits);
 
 export const initStoreState: TImmerState =
   (set, get) => ({
+    milestones: [],
     isControls: true,
     fps: DEFAULT_FPS,
     durationInFrames: 1,
@@ -53,10 +54,14 @@ export const initStoreState: TImmerState =
     isVideoMode: false,
     isPlayerOpen: false,
     togglePlayer: (next?: boolean) => {
-      set((prev: TVideoState) => ({
-        isPlayerOpen:
-          next ?? !prev.isPlayerOpen,
-      }));
+      set((prev: TVideoState) => {
+        const isPlayerOpen =
+          next ?? !prev.isPlayerOpen;
+
+        return {
+          isPlayerOpen,
+        };
+      });
     },
     toggleVideoMode: (
       next?: boolean
@@ -120,9 +125,7 @@ export const initStoreState: TImmerState =
           "player-element-not-defined"
         );
       }
-      const min =
-        state.playerElement?.getCurrentFrame?.() +
-        state.fps * seconds;
+      const min = state.fps * seconds;
       const max =
         state.durationInFrames;
 

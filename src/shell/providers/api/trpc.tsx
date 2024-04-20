@@ -2,8 +2,8 @@ import { ReactNode } from "react";
 import {
   SERVER_PATH,
   API_PORT,
-} from "@/constants/api";
-import { trpc } from "@/utils/trpc";
+} from "~/constants/api";
+import { trpc } from "~/utils/trpc";
 import { httpBatchLink } from "@trpc/client";
 import { queryClient } from "./query";
 

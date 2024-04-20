@@ -1,7 +1,7 @@
 import { FC } from "react";
-import { TableInfinite } from "@/components/table-infinite";
-import { usePicsTable } from "@/pages/home/pics/use-pics-table";
-import { Empty } from "@/pages/home/pics/empty";
+import { TableInfinite } from "~/components/table-infinite";
+import { usePicsTable } from "~/pages/home/pics/use-pics-table";
+import { Empty } from "~/pages/home/pics/empty";
 import { useColumns } from "./columns/useColumns";
 
 export const List: FC = () => {

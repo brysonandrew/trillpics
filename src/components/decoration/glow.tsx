@@ -15,7 +15,7 @@ export const Glow: FC<
       className={clsx(
         "absolute bg-gray rounded-full _radial-gradient",
         classValue ??
-          "inset-1 opacity-50"
+          "inset-1 dark:opacity-50 opacity-20"
       )}
       layout
       style={{

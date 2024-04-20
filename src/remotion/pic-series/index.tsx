@@ -3,26 +3,32 @@ import { motion } from "framer-motion";
 import {
   PIC_SIZE,
   ASPECT_RATIO,
-} from "@/remotion/constants";
+} from "~/remotion/constants";
 import {
   AbsoluteFill,
   Audio,
+  getInputProps,
   Img,
   Series,
   staticFile,
   useCurrentFrame,
   useVideoConfig,
 } from "remotion";
-import { TPicSeriesProps } from "@/remotion/pic-series/types";
+import { TPicSeriesProps } from "~/remotion/pic-series/types";
 import {
   resolveAudioSrc,
   resolvePicSrc,
-} from "@/utils/src";
-import { FADE_PRESENCE } from "@/constants/animation";
+} from "~/utils/src";
+import { FADE_PRESENCE } from "~/constants/animation";
+const INPUT_PROPS = getInputProps();
 
 export const PicSeries: FC<
   TPicSeriesProps
-> = ({ pics }) => {
+> = (props) => {
+  const { pics } = {
+    ...props,
+    ...INPUT_PROPS,
+  };
   const frame = useCurrentFrame();
   const { fps, height } =
     useVideoConfig();

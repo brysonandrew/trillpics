@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 import styled from "@emotion/styled";
 import clsx from "clsx";
 import { TDivMotionProps } from "@brysonandrew/config-types";
-import { metalRadialDarkCss } from "@/css/metal";
+import { metalRadialDarkCss } from "~/css/metal";
 import { useApp } from "@brysonandrew/app";
 
 const DefaultRoot = styled(motion.div)`

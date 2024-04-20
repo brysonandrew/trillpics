@@ -4,8 +4,8 @@ import type {
 } from "@tanstack/react-table";
 import type { ListChildComponentProps } from "react-window";
 import { FixedSizeList } from "react-window";
-import { useScroll } from "@/shell/providers/context/scroll";
-import { useViewport } from "@/shell/providers/context/viewport";
+import { useScroll } from "~/shell/providers/context/scroll";
+import { useViewport } from "~/shell/providers/context/viewport";
 import { Row } from "./row";
 import {
   TBaseRow,

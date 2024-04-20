@@ -5,8 +5,8 @@ import {
   useContext as useReactContext,
   createContext,
   PropsWithChildren,
-} from 'react';
-import { useLocalStorage } from '@/hooks/dom/useLocalStorage';
+} from "react";
+import { useLocalStorage } from "~/hooks/dom/useLocalStorage";
 import {
   TChosenConfig,
   TContext,
@@ -15,19 +15,19 @@ import {
   TItemRecord,
   TItems,
   TItemsConfig,
-} from './config';
+} from "./config";
 import {
   TChosen,
   TPendingId,
   TPendingRecordId,
-} from '@/types/image';
-import { resolvePendingRecordId } from '@/utils/images/resolvePendingRecordId';
-import { PENDING_DELIMITER } from '@/constants/images';
-import { resolvePendingId } from '@/utils/images/resolvePendingId';
+} from "~/types/image";
+import { resolvePendingRecordId } from "~/utils/images/resolvePendingRecordId";
+import { PENDING_DELIMITER } from "~/constants/images";
+import { resolvePendingId } from "~/utils/images/resolvePendingId";
 
 export const Checkout =
   createContext<TContext>(
-    {} as TContext,
+    {} as TContext
   );
 
 export const useCheckout =
@@ -40,8 +40,8 @@ export const CheckoutProvider: FC<
 > = ({ children }) => {
   const [record, setRecord] =
     useLocalStorage<TItemRecord>(
-      'checkout-record',
-      {},
+      "checkout-record",
+      {}
     );
   const [
     notifications,
@@ -49,7 +49,7 @@ export const CheckoutProvider: FC<
   ] = useState<TItems>([]);
 
   const entries = Object.entries(
-    record,
+    record
   ) as TItemEntries;
 
   useEffect(() => {
@@ -66,7 +66,7 @@ export const CheckoutProvider: FC<
   }, []);
 
   const onItemsAdd = (
-    next: TChosenConfig,
+    next: TChosenConfig
   ) => {
     const arr = Array.isArray(next)
       ? next
@@ -78,7 +78,7 @@ export const CheckoutProvider: FC<
           index,
           ...v,
         }) as TPendingId,
-      }),
+      })
     ) as TItems;
     const update = (prev: TItems) => [
       ...prev,
@@ -90,11 +90,11 @@ export const CheckoutProvider: FC<
       arr.forEach(
         (
           item: TChosen,
-          index: number,
+          index: number
         ) => {
           const id =
             resolvePendingRecordId(
-              item,
+              item
             );
           const curr = prev[id];
           const nextItem = {
@@ -107,14 +107,14 @@ export const CheckoutProvider: FC<
           } else {
             prev[id] = [nextItem];
           }
-        },
+        }
       );
       return record;
     });
   };
 
   const onItemsRemove = (
-    next: TItemsConfig,
+    next: TItemsConfig
   ) => {
     const arr = Array.isArray(next)
       ? next
@@ -128,7 +128,7 @@ export const CheckoutProvider: FC<
         if (curr) {
           prev[item.recordId] =
             curr.filter(
-              (v) => v.id !== item.id,
+              (v) => v.id !== item.id
             );
           delete prev[item.recordId];
         }
@@ -138,7 +138,7 @@ export const CheckoutProvider: FC<
   };
 
   const handleNotificationsRemove = (
-    next: TItemsConfig,
+    next: TItemsConfig
   ) => {
     const arr = Array.isArray(next)
       ? next
@@ -148,21 +148,21 @@ export const CheckoutProvider: FC<
       prev.filter((value) => {
         return arr.every(
           (arrValue) =>
-            arrValue.id !== value.id,
+            arrValue.id !== value.id
         );
-      }),
+      })
     );
   };
 
   const handleItemsRemoveLast = (
-    recordId: TPendingRecordId,
+    recordId: TPendingRecordId
   ) => {
     setRecord((prev) => {
       const next = prev[
         recordId
       ].filter(
         (_, i, { length }) =>
-          i !== length - 1,
+          i !== length - 1
       );
       if (next.length > 0) {
         return {

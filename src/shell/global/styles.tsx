@@ -1,4 +1,4 @@
-import { COLOR_VARS_CSS } from "~/app/color";
+import { COLOR_VARS_CSS } from "~app/color";
 import { TPropsWithChildren } from "@brysonandrew/config-types";
 import { useBaseGlobalCss } from "@brysonandrew/css-base";
 import { Global } from "@emotion/react";

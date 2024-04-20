@@ -5,7 +5,7 @@ import {
   TableOptions,
   ColumnDef,
 } from "@tanstack/react-table";
-import { TRow } from "@/pages/home/pics/config";
+import { TRow } from "~/pages/home/pics/config";
 import { Virtualize } from "./virtualize";
 import { TBaseRow } from "./types";
 

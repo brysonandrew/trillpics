@@ -1,5 +1,5 @@
 import { css } from '@emotion/react';
-import { TBreakpointKey } from '~/uno/index';
+import { TBreakpointKey } from '~uno/index';
 import { resolveBreakpoint } from './breakpoints';
 import {
   BASE_CSS,

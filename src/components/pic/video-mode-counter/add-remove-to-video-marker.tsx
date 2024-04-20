@@ -1,7 +1,7 @@
 import type { FC } from "react";
 import { motion } from "framer-motion";
-import { TRANSITION } from "@brysonandrew/animation";
-import { IconsCross2 } from "@/components/icons/cross/2";
+import { TRANSITION } from "@brysonandrew/motion-core";
+import { IconsCross24 } from "~/components/icons/cross/24";
 
 type TProps = { isAdded: boolean };
 export const AddRemoveToVideoMarker: FC<
@@ -18,7 +18,7 @@ export const AddRemoveToVideoMarker: FC<
       }}
       animate={{
         opacity: 1,
-        scale: isAdded ? 1 : 2,
+        scale: isAdded ? 1.2 : 2.4,
         rotate,
         transition: {
           ...TRANSITION,
@@ -33,7 +33,7 @@ export const AddRemoveToVideoMarker: FC<
       }}
       layout
     >
-      <IconsCross2 />
+      <IconsCross24 />
     </motion.h4>
   );
 };

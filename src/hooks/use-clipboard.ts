@@ -1,4 +1,4 @@
-import { useDelayCallback } from '@/hooks/window/useDelayCallback';
+import { useDelayCallback } from '~/hooks/window/useDelayCallback';
 import { useState } from 'react';
 
 type THandlerConfig = {

@@ -1,4 +1,4 @@
-import { IconsSvgGradient24 } from "@/components/icons/svg/gradient/24";
+import { IconsSvgGradient24 } from "~/components/icons/svg/gradient/24";
 import type { FC } from "react";
 
 export const IconsPlaybackBack: FC = () => {

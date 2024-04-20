@@ -1,9 +1,10 @@
 import type { FC } from "react";
-import { Pill } from "@/components/decoration/Pill";
-import { useShow } from "@/pages/home/controls/show/use-show";
-import { useVideoStore } from "@/store";
+import { Pill } from "~/components/decoration/Pill";
+import { useShow } from "~/pages/home/controls/show/use-show";
+import { useVideoStore } from "~/store";
 import clsx from "clsx";
-import { N } from "@/components/layout/N";
+import { N } from "~/components/layout/N";
+import { Glow } from "~/components/decoration/glow";
 
 export const ControlsCounterInline =
   () => <ControlsCounter isInline />;
@@ -37,6 +38,7 @@ export const ControlsCounter: FC<{
           : `Show [${videoPicsCount}]`
       }
     >
+      <Glow />
       <N>{videoPicsCount}</N>
     </Pill>
   );

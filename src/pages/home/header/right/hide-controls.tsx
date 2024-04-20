@@ -1,11 +1,7 @@
-import type {
-  CSSProperties,
-  FC,
-} from "react";
-import { PillBHover } from "@/components/buttons/pill/b/hover";
-import { IconsHide } from "@/components/icons/hide";
-import { useVideoStore } from "@/store";
-import { useEventListener } from "@/hooks/events/useEventListener";
+import type { FC } from "react";
+import { PillBHover } from "~/components/buttons/pill/b/hover";
+import { IconsHide } from "~/components/icons/hide";
+import { useVideoStore } from "~/store";
 
 export const HideControls: FC = () => {
   const { isControls, toggleControls } =
@@ -16,8 +12,6 @@ export const HideControls: FC = () => {
   const handleShow = () => {
     toggleControls(true);
   };
-
-
   const title = "Hide controls";
 
   return (

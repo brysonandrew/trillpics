@@ -11,7 +11,7 @@ import clsx from "clsx";
 
 export type TIconsSvgProps = Omit<
   TSvgProps,
-   "fill" | "d"
+  "fill" | "d"
 > &
   TClassValueProps & {
     svgProps?: TSvgProps;
@@ -25,6 +25,7 @@ export const IconsSvg: FC<
 > = ({
   svgProps,
   pathProps,
+  className,
   classValue,
   size,
   fill,
@@ -34,7 +35,10 @@ export const IconsSvg: FC<
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      className={clsx(classValue)}
+      className={clsx(
+        className,
+        classValue
+      )}
       {...resolveSquare(size ?? 24)}
       viewBox="0 0 24 24"
       {...svgProps}

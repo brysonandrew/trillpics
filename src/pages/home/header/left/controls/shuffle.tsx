@@ -1,7 +1,7 @@
 import type { FC } from "react";
-import { IconsShuffle } from "@/components/icons/pic/shuffle";
-import { useVideoStore } from "@/store";
-import { PillBHover } from "@/components/buttons/pill/b/hover";
+import { IconsShuffle } from "~/components/icons/pic/shuffle";
+import { useVideoStore } from "~/store";
+import { PillBHover } from "~/components/buttons/pill/b/hover";
 
 export const ControlsShuffle: FC =
   () => {

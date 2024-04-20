@@ -5,14 +5,13 @@ import {
   TButtonMotionProps,
   TSvgProps,
 } from "@brysonandrew/config-types";
-import { TCircleProps } from "@/components/decoration/circle/circle";
-import { Glow } from "@/components/decoration/glow";
+import { TCircleProps } from "~/components/decoration/circle/circle";
 import { resolveInteractiveLabels } from "@brysonandrew/utils-attributes";
-import { CircleIcon } from "@/components/buttons/circle/icon";
-import { FADE_PRESENCE_DELAY_02 } from "@/constants/animation";
-import { useApp } from "@brysonandrew/app";
-import { Background1Rounded } from "@/components/decoration/background/1/rounded";
-import { TFlatProps } from "@/types/ui";
+import { TFlatProps } from "~/types/ui";
+import { FADE_PRESENCE_DELAY_02 } from "~/constants/animation";
+import { DecorationNet } from "~/components/decoration/background/net";
+import { Glow } from "~/components/decoration/glow";
+import { useBorderStyleMd } from "~/components/buttons/use-border-style/md";
 
 export type TPillBProps =
   TButtonMotionProps &
@@ -21,7 +20,6 @@ export type TPillBProps =
       iconProps?: TSvgProps;
       circleProps?: TCircleProps;
       outerCircle?: ReactNode;
-      isRtl?: boolean;
     };
 export const PillB: FC<TPillBProps> = ({
   Icon,
@@ -32,64 +30,62 @@ export const PillB: FC<TPillBProps> = ({
   classValue,
   outerCircle,
   isFlat,
-  isRtl,
   style,
   ...props
 }) => {
+  const circleStyle =
+    useBorderStyleMd(isFlat);
+  const {
+    minHeight,
+    minWidth,
+    ...smCircleStyle
+  } = circleStyle;
 
   return (
     <motion.button
-      className={clsx(
-        "relative h-10 text-lg text-white dark:text-gray-8",
-        "btn-disabled",
-        classValue
-      )}
-      style={{
-        ...style,
-      }}
-      whileHover="hover"
       {...resolveInteractiveLabels(
         title
       )}
+      className={clsx(
+        "relative",
+        "row shrink-0 gap-2 px-1",
+        "btn-disabled",
+        "text-main",
+        isFlat
+          ? "background-flat"
+          : "background",
+        classValue
+      )}
+      layout
+      style={{
+        ...circleStyle,
+        ...style,
+      }}
       {...props}
     >
-      {isFlat ? null : <Glow  />}
-      {outerCircle}
+      {outerCircle && (
+        <>{outerCircle}</>
+      )}
+      {!isFlat && (
+        <Glow classValue="-inset-1 opacity-30" />
+      )}
       <motion.div
-        className={clsx(
-          "relative row p-1 gap-3",
-          "overflow-hidden",
-
-          children &&
-            (isRtl ? "pl-4" : "pr-4"),
-          isRtl
-            ? "row-reverse right-0"
-            : "row left-0"
-        )}
         layout
+        className="center relative p-1 _net-gradient"
+        style={smCircleStyle}
       >
-        <Background1Rounded
-          isFlat={isFlat}
-        />
-        <CircleIcon
-          circleProps={{
-            layout: true,
-            isFlat,
-            ...circleProps,
-          }}
-          iconProps={iconProps}
-          Icon={Icon}
-        />
+        <Icon />
+      </motion.div>
+      <>
         {children && (
           <motion.div
-            layout="size"
-            className="relative flex items-center gap-2 whitespace-nowrap font-display-led"
+            className="relative row gap-2 mr-2 -mb-0.75 whitespace-nowrap"
             {...FADE_PRESENCE_DELAY_02}
           >
             {children}
           </motion.div>
         )}
-      </motion.div>
+      </>
     </motion.button>
   );
 };

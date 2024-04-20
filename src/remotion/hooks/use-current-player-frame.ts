@@ -4,7 +4,7 @@ import {
 } from "react";
 import { type CallbackListener } from "@remotion/player";
 import { useShallow } from "zustand/react/shallow";
-import { useVideoStore } from "@/store";
+import { useVideoStore } from "~/store";
 
 export const useCurrentPlayerFrame =
   () => {
