@@ -1,7 +1,6 @@
 import { FC } from "react";
 import { TableInfinite } from "~/components/table-infinite";
 import { usePicsTable } from "~/pages/home/pics/use-pics-table";
-import { Empty } from "~/pages/home/pics/empty";
 import { useColumns } from "./columns/useColumns";
 
 export const List: FC = () => {
@@ -15,8 +14,9 @@ export const List: FC = () => {
     rows,
     size
   );
-  if (rows.length === 0)
-    return <Empty />;
+  if (rows.length === 0) {
+    return <div>no pics</div>;
+  }
 
   return (
     <>
