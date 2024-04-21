@@ -56,7 +56,7 @@ export const webpackOverride: WebpackOverrideFn =
       "config",
       "app"
     );
-console.log(appEntry)
+    console.log(appEntry);
     return {
       ...currentConfig,
       devtool: "source-map",

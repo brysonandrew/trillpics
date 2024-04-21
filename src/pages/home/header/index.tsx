@@ -9,8 +9,6 @@ import { useVideoStore } from "~/store";
 import { TCooldownProps } from "~/pages/home/header/config";
 import { HeaderLeft } from "~/pages/home/header/left";
 import { resolvePresence, TRANSITION_02_EASE_IN_04 } from "@brysonandrew/motion-core";
-import { MOTION_BLUR_ID_2 } from "@brysonandrew/svg-filter";
-import { resolveUrlId } from "@brysonandrew/utils";
 
 type TProps =
   PropsWithChildren<TCooldownProps>;

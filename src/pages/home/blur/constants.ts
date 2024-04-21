@@ -1,4 +1,4 @@
-import { resolveUrlId } from "@brysonandrew/utils";
+import { resolveUrlId } from "@brysonandrew/utils-attributes";
 
 export const MOTION_BLUR_FILTER_X_ID =
   "MOTION_BLUR_FILTER_X_ID";

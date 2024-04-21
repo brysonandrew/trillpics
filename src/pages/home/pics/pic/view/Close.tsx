@@ -1,8 +1,8 @@
-import type { FC } from 'react';
-import { CLOSE_ICON } from '@brysonandrew/icons-keys';
-import { B } from '@brysonandrew/interactive'
-import { I } from '@brysonandrew/icons-i';
-import { useKey } from '@brysonandrew/hooks';
+import type { FC } from "react";
+import { CLOSE_ICON } from "@brysonandrew/icons-keys";
+import { B } from "@brysonandrew/interactive";
+import { I } from "@brysonandrew/icons-i";
+import { useKey } from "@brysonandrew/hooks-dom";
 
 type TProps = { onClose(): void };
 export const Close: FC<TProps> = ({
@@ -11,7 +11,7 @@ export const Close: FC<TProps> = ({
   useKey({
     handlers: {
       onKeyDown: ({ key }) => {
-        if (key === 'Escape') {
+        if (key === "Escape") {
           onClose();
         }
       },
@@ -19,12 +19,12 @@ export const Close: FC<TProps> = ({
   });
   return (
     <B
-      title='Close'
-      classValue='text-pink gap-2'
+      title="Close"
+      classValue="text-pink gap-2"
       onClick={onClose}
     >
       <I
-        className='w-5 h-5'
+        className="w-5 h-5"
         icon={CLOSE_ICON}
       />
       <>Close</>

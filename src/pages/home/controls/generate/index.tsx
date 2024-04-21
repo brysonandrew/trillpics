@@ -6,7 +6,7 @@ import { useVideoStore } from "src/store";
 import { PillB } from "~/components/buttons/pill/b";
 import { IconsGenerate } from "~/components/icons/video/generate";
 import { trpc } from "~/utils/trpc";
-import { TGenerateConfig } from "~/server/remotion/generate";
+import { TGenerateProps } from "~/server/generate";
 import { downloadMedia } from "~/pages/home/controls/generate/download-media";
 import {
   NONE_CURSOR_KEY,
@@ -15,9 +15,8 @@ import {
 import { AURA } from "@brysonandrew/svg-filter";
 import { resolvePresence } from "@brysonandrew/motion-core";
 import { resolveCompositeKey } from "@brysonandrew/utils-key";
-import { Metal } from "~/components/metal";
-import { useApp } from "@brysonandrew/app";
 import { useBorderStyleMd } from "~/components/buttons/use-border-style/md";
+import { Metal } from "@brysonandrew/texture-metal";
 
 export const Generate = () => {
   const { videoPics, fps } =
@@ -27,7 +26,7 @@ export const Generate = () => {
       NONE_CURSOR_KEY,
       "generate"
     );
-  const config: TGenerateConfig = {
+  const config: TGenerateProps = {
     input: { pics: videoPics },
     fps,
   };
@@ -38,17 +37,19 @@ export const Generate = () => {
     isPaused,
     isSuccess,
     mutateAsync,
-  } = trpc.generate.useMutation();
-  const { BORDER_RADIUS } = useApp();
+  } = trpc.generate.useMutation({
+    g: "hi",
+  });
   const handleGenerate = async () => {
-    const result = await mutateAsync(
-      config as any
-    );
-    const arr = new Uint8Array(
-      result.buffer?.data ?? []
-    );
-    const blob = new Blob([arr]);
-    await downloadMedia(blob);
+    const result = await mutateAsync({
+      x: "bye",
+    });
+    if (!result) return;
+    // const arr = new Uint8Array(
+    //   result.buffer?.data ?? []
+    // );
+    // const blob = new Blob([arr]);
+    // await downloadMedia(blob);
   };
   const isAura = isHover || isLoading;
   const AURA_TRANSITION = {
@@ -63,7 +64,8 @@ export const Generate = () => {
       }
     ),
   };
-  const borderStyle = useBorderStyleMd();
+  const borderStyle =
+    useBorderStyleMd();
   return (
     <div className="relative h-0">
       <AnimatePresence>

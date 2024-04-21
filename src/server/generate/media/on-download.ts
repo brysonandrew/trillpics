@@ -1,4 +1,7 @@
 import { RenderMediaOnDownload } from "@remotion/renderer";
 
 export const onDownload: RenderMediaOnDownload =
-  console.log
+  (...args) => {
+    console.log("DOWNLOAD.RenderMediaOnDownload");
+    console.log(...args);
+  };

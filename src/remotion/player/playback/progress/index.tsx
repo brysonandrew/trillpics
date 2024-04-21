@@ -1,5 +1,4 @@
 import { FC, memo } from "react";
-import { Waveform } from "~/remotion/player/playback/progress/waveform";
 import { useCurrentPlayerFrame } from "~/remotion/hooks/use-current-player-frame";
 import { TDurationInFramesProps } from "~/types/props";
 import { Glow } from "~/components/decoration/glow";

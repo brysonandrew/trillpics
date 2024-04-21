@@ -14,7 +14,7 @@ export const BlurY: FC = () => {
       gaussianBlurMotionProps={{}}
       morphologyProps={{}}
       intensity={0.0001}
-      mRadius={0.00001}
+      mRadius={10}
       displacementProps={{}}
       turbulenceMotionProps={{
         type: "turbulence",

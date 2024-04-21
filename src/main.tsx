@@ -12,9 +12,13 @@ import {
 import { Boundary } from "@brysonandrew/boundary";
 import { HelmetProvider } from "react-helmet-async";
 import { MOTION_CONFIG } from "@brysonandrew/motion-core";
-import { RootProvider } from "~/shell/providers/api";
+import {
+  ProvidersApi,
+  RootProvider,
+} from "~/shell/providers/api";
 import { ROUTES } from "~app/routes";
 import { init as initServiceWorker } from "~app/service-worker/init";
+import { AppProvider } from "@brysonandrew/app";
 
 initServiceWorker();
 
@@ -44,13 +48,13 @@ if (root) {
           <MotionConfig
             {...MOTION_CONFIG}
           >
-            <RootProvider>
+            <ProvidersApi>
               <Suspense fallback={null}>
                 <RouterProvider
                   router={router}
                 />
               </Suspense>
-            </RootProvider>
+            </ProvidersApi>
           </MotionConfig>
         </Boundary>
       </HelmetProvider>

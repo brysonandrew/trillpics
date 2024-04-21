@@ -1,10 +1,17 @@
-import {QueryProvider} from "./query";
-import {TrpcProvider} from "./trpc";
+import { ReactNode } from "react";
+import { ProvidersApiQuery } from "./query";
+import { ProvidersApiTrpc } from "./trpc";
 
-export const RootProvider = ({ children }: { children: React.ReactNode }) => {
+export const ProvidersApi = ({
+  children,
+}: {
+  children: ReactNode;
+}) => {
   return (
-    <QueryProvider>
-      <TrpcProvider>{children}</TrpcProvider>
-    </QueryProvider>
+    <ProvidersApiQuery>
+      <ProvidersApiTrpc>
+        {children}
+      </ProvidersApiTrpc>
+    </ProvidersApiQuery>
   );
 };

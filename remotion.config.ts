@@ -9,7 +9,7 @@
 // Note: When using the Node.JS APIs, the config file doesn't apply. Instead, pass options directly to the APIs
 
 import {Config} from '@remotion/cli/config';
-import {webpackOverride} from './src/server/remotion/webpack-override';
+import {webpackOverride} from './src/server/generate/webpack/override';
 export const REMOTION_ENTRY_POINT = "./src/remotion/index.tsx"
 Config.overrideWebpackConfig(webpackOverride);
 Config.setChromiumDisableWebSecurity(true);

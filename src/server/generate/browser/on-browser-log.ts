@@ -1,8 +1,9 @@
 import { type BrowserLog } from "@remotion/renderer";
 export const onBrowserLog = (
-  info: BrowserLog
+  ...args: [BrowserLog, ...any[]]
 ) => {
-console.log(  "ON BROWSER LOG")
+  const [info] = args;
+  console.log("ON BROWSER LOG");
   console.log(
     `${info.type}: ${info.text}`
   );
@@ -13,4 +14,6 @@ console.log(  "ON BROWSER LOG")
       })
       .join("\n")
   );
+
+  console.log(...args);
 };

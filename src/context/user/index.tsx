@@ -1,15 +1,14 @@
 import type {
   FC,
   PropsWithChildren,
-} from 'react';
-import { LOCAL_STORAGE_USER_KEY } from '~/constants/keys';
+} from "react";
+import { LOCAL_STORAGE_USER_KEY } from "~/constants/keys";
 import {
   useContext as useReactContext,
   createContext,
-} from 'react';
-import { NOOP } from '~/constants/functions';
-import { useLocalStorage } from '@brysonandrew/hooks-dom';
-
+} from "react";
+import { NOOP } from "~/constants/functions";
+import { useLocalStorage } from "@brysonandrew/hooks-dom";
 
 export type TUser = {
   email: string;
@@ -19,15 +18,12 @@ export type TUser = {
 export type TContext = {
   user: TUser;
   onUpdateUser(user: TUser): void;
-
 };
-
 
 export const CONTEXT: TContext = {
   user: null,
   onUpdateUser: NOOP,
 };
-
 
 export const Context =
   createContext<TContext>(CONTEXT);
@@ -43,7 +39,7 @@ export const UserProvider: FC<
   const [user, setUser] =
     useLocalStorage<TUser>(
       LOCAL_STORAGE_USER_KEY,
-      null,
+      null
     );
 
   const value: TContext = {

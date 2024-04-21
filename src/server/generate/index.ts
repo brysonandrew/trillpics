@@ -1,35 +1,28 @@
 import { TPicSeriesProps } from "~/remotion/pic-series/types";
-import { onBrowserLog } from "~/server/remotion/on-browser-log";
+import { onBrowserLog } from "~/server/generate/browser/on-browser-log";
 import {
   renderMedia,
   selectComposition,
   type RenderMediaOptions,
+  type SelectCompositionOptions,
 } from "@remotion/renderer";
-import { isLocal } from "~/server/remotion/is-local";
+import { isLocal } from "~/server/generate/is-local";
 import { bundle } from "@remotion/bundler";
-import { webpackOverride } from "~/server/remotion/webpack-override";
+import { webpackOverride } from "~/server/generate/webpack/override";
 import path from "path";
-import { onProgress } from "~/server/remotion/on-progress";
-import { onDownload } from "~/server/remotion/on-download";
+import { onProgress } from "~/server/generate/webpack/on-progress";
+import { onDownload } from "~/server/generate/media/on-download";
+import { TRenderMediaResult } from "~/types/trpc/generate";
 import { REMOTION_ENTRY_POINT } from "~root/remotion.config";
 
-export type SlowFrame = {
-  frame: number;
-  time: number;
-};
-export type TRenderMediaResult = {
-  buffer: Buffer | null;
-  slowestFrames: SlowFrame[];
-};
-
-export type TGenerateConfig = {
+export type TGenerateProps = {
   input: TPicSeriesProps;
   fps: number;
 };
 export const generate = async ({
   input,
   fps,
-}: TGenerateConfig) => {
+}: TGenerateProps) => {
   const id = "pic-series";
   const isLocalMode = isLocal();
   const serveUrl = isLocalMode
@@ -47,22 +40,23 @@ export const generate = async ({
       })
     : "https://brysonandrew.github.io/trillpics";
 
+  const durationInFrames =
+    fps * input.pics.length;
+
   const inputProps = {
     ...input,
     fps,
-    durationInFrames:
-      fps * input.pics.length,
+    durationInFrames,
   };
-  console.log(id, serveUrl, input);
-
-  const compositionOptions = {
-    serveUrl,
-    id,
-    inputProps,
-    logLevel: "verbose",
-    onBrowserLog,
-    webpackOverride,
-  } as any;
+  const compositionOptions: SelectCompositionOptions =
+    {
+      serveUrl,
+      id,
+      inputProps,
+      logLevel: "verbose",
+      onBrowserLog,
+      // webpackOverride,
+    };
 
   const composition =
     await selectComposition(
