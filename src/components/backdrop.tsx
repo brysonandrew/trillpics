@@ -1,10 +1,10 @@
+import { useViewport } from "@brysonandrew/viewport";
 import { FC, Fragment } from "react";
-import { TUseImageReturn } from "~/components/pic/use-image";
+import { TUsePicReturn } from "~/components/pic/use-pic";
 import { useVideoStore } from "~/store";
-import { useViewport } from "~/shell/providers/context/viewport";
 
 type TProps = {
-  backdropProps?: TUseImageReturn["backdropProps"];
+  backdropProps?: TUsePicReturn["backdropProps"];
   isOpen?: boolean;
 };
 export const Backdrop: FC<TProps> = ({

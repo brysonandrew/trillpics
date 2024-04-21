@@ -7,40 +7,43 @@ import {
   MutableRefObject,
 } from "react";
 import type { FC } from "react";
-import {
-  motionValue,
-  useScroll as useFMScroll,
-} from "framer-motion";
-import { useTimeoutRef } from "~/hooks/window/useTimeoutRef";
+import { useScroll as useFMScroll } from "framer-motion";
 import {
   useLocation,
-  useNavigate,
+useNavigate,
 } from "react-router";
 import { useSearchParams } from "react-router-dom";
-import { SEARCH_PARAM_ID } from "~/components/pic/use-image";
+import { SEARCH_PARAM_ID } from "~/components/pic/use-pic";
 import { TMotionPoint } from "~/types/animation";
-import { NOOP } from "@brysonandrew/utils-function";
-import { ListOnScrollProps } from "react-window";
-
-export const STATE: TState = {
-  isScrolling: false,
-  isScroll: false,
-};
-
-export const CONTEXT: TContext = {
-  ...STATE,
-  listRef: {current:null},
-  onUpdate: NOOP,
-  scroll: {
-    x: motionValue(0),
-    y: motionValue(0),
-  },
-};
-
+import type {
+  ListOnScrollProps,
+  FixedSizeList,
+} from "react-window";
+import { useTimeoutRef } from "@brysonandrew/hooks-window";
 export type TState = {
   isScrolling: boolean;
   isScroll: boolean;
+  isTransitioningGallery:boolean
 };
+export const STATE: TState = {
+  isScrolling: false,
+  isScroll: false,
+  isTransitioningGallery:false
+};
+
+export const CONTEXT: TContext = {
+  // ...STATE,
+  // listRef: { current: null },
+  // onUpdate: NOOP,
+  // scroll: {
+  //   x: motionValue(0),
+  //   y: motionValue(0),
+  // },
+  // onMotionBlurStart:(): void;
+  // onMotionBlurEnd:(): void;
+} as TContext;
+
+
 
 export type TContext = TState & {
   listRef: MutableRefObject<any>;
@@ -48,6 +51,8 @@ export type TContext = TState & {
   onUpdate(
     props: ListOnScrollProps
   ): void;
+  onMotionBlurStart(): void;
+  onMotionBlurEnd(): void;
 };
 
 export const SCROLL = 120;
@@ -63,7 +68,18 @@ type TProviderProps = PropsWithChildren;
 export const ScrollProvider: FC<
   TProviderProps
 > = ({ children }) => {
-  const listRef = useRef(null);
+  const [
+    isTransitioningGallery,
+    setTransitioningGallery,
+  ] = useState(false);
+  //const onDrag = setTransitioningGallery;
+  const onMotionBlurStart = () =>
+    setTransitioningGallery(true);
+  const onMotionBlurEnd = () =>
+    setTransitioningGallery(false);
+  const listRef = useRef<
+    typeof FixedSizeList | null
+  >(null);
 
   const { scrollX, scrollY } =
     useFMScroll();
@@ -91,6 +107,7 @@ export const ScrollProvider: FC<
   const handleUpdate = (
     props: ListOnScrollProps
   ) => {
+    console.log(props)
     const { scrollOffset } = props;
     if (!isScrolling) {
       startScroll();
@@ -145,6 +162,9 @@ export const ScrollProvider: FC<
         isScroll,
         isScrolling,
         onUpdate: handleUpdate,
+        onMotionBlurStart,
+        onMotionBlurEnd,
+        isTransitioningGallery,
       }}
     >
       {children}

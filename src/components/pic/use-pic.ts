@@ -3,12 +3,13 @@ import { useViewport } from "~/shell/providers/context/viewport";
 import {
   useHoverKey,
   NONE_CURSOR_KEY,
+  resolveCompositeHoverKey,
 } from "@brysonandrew/motion-cursor";
 import {
+  TDimensions,
   TImageDimensionsConfig,
   useImageDimensions,
-} from "~/hooks/image/useImageDimensions";
-import { TDimensions } from "@brysonandrew/measure";
+} from "@brysonandrew/measure";
 import {
   useLocation,
   useNavigate,
@@ -19,16 +20,18 @@ import clsx from "clsx";
 import { useVideoStore } from "~/store";
 import { PRESENCE_OPACITY } from "@brysonandrew/motion-core";
 import { resolveViewportSelfCenter } from "~/utils/dimensions/resolveViewportSelfCenter";
+import { resolveCompositeKey } from "@brysonandrew/utils-key";
+
 export const SEARCH_PARAM_ID = "open";
 
-export type TUseImageConfig =
+export type TUsePicConfig =
   TDimensions & {
     name: string;
   };
-export const useImage = ({
+export const usePic = ({
   name,
   ...imageDimensions
-}: TUseImageConfig) => {
+}: TUsePicConfig) => {
   const {
     isVideoMode,
     addVideo,
@@ -64,7 +67,6 @@ export const useImage = ({
         SEARCH_PARAM_ID,
         name
       );
-
     }
     navigate(
       `${pathname}?${searchParams}`
@@ -122,7 +124,17 @@ export const useImage = ({
 
       ...handlers,
     },
-    designProps: {
+    picProps: {
+      key: resolveCompositeKey(
+        isFront || isHover
+          ? "up"
+          : "down",
+        name
+      ),
+      layoutId:
+        isFront || isHover
+          ? name
+          : undefined,
       style: {
         zIndex,
         ...(isOpen && isDimensions
@@ -143,19 +155,21 @@ export const useImage = ({
             } as const)),
       } as const,
       animate: {
-        opacity: isDimensions ? 1 : 0,
+        opacity: isDimensions ? 1 : 0.8,
       },
       ...(isDimensions &&
       !isOpen &&
       !isFront
-        ? PRESENCE_OPACITY
+        ? {
+            initial: { opacity: 0.8 },
+            exit: { opacity: 1 },
+          }
         : {}),
       onLayoutAnimationComplete:
         handleLayoutAnimationComplete,
     },
     backdropProps: {
-      className:
-        "inset-0 zoom-out",
+      className: "inset-0 zoom-out",
       style: {
         zIndex: zIndex - 1,
         ...(viewport.isDimensions
@@ -177,5 +191,6 @@ export const useImage = ({
   };
 };
 
-export type TUseImageReturn =
-  ReturnType<typeof useImage>;
+export type TUsePicReturn = ReturnType<
+  typeof usePic
+>;

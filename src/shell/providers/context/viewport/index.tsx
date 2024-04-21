@@ -4,16 +4,14 @@ import {
   createContext,
   PropsWithChildren,
 } from "react";
-import { isVertical } from "~/shell/providers/context/viewport/is-vertical";
-import {
-  TViewport,
-  useContainerMeasure,
-} from "~/hooks/window/use-container-measure";
-
 import {
   TUseGrid,
+  TViewport,
+  useViewportMeasure,
   useGrid,
-} from "./use-grid";
+} from "@brysonandrew/viewport";
+import { isVertical } from "~/shell/providers/context/viewport/is-vertical";
+import { BREAKPOINT_RECORD } from "~/constants/css";
 
 export type TContext = TViewport &
   TUseGrid & {
@@ -32,9 +30,13 @@ type TProviderProps = PropsWithChildren;
 export const ViewportProvider: FC<
   TProviderProps
 > = ({ children }) => {
-  const viewport =
-    useContainerMeasure();
-  const grid = useGrid(viewport);
+  const viewport = useViewportMeasure({
+    isContainer: true,
+  });
+  const grid = useGrid(
+    viewport,
+    BREAKPOINT_RECORD
+  );
 
   return (
     <CONTEXT.Provider

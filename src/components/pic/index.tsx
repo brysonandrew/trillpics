@@ -11,14 +11,8 @@ import { TCell } from "~/pages/home/pics/columns/config";
 import { resolveConfigFromSize } from "~/utils/dimensions/resolveDimensionsFromSize";
 import { resolvePicSrc } from "~/utils/src";
 import { PillB } from "~/components/buttons/pill/b";
-import {
-  IconsPicZoom2 as IconsPicZoom,
-  IconsPicZoom2,
-} from "~/components/icons/pic/zoom2";
 import clsx from "clsx";
 import { IconsPicZoomIn24 } from "~/components/icons/pic/zoom-in/24";
-import { IconsPicZoomIn40 } from "~/components/icons/pic/zoom-in/40";
-import { PillBHover } from "~/components/buttons/pill/b/hover";
 
 type TProps = {
   colIndex: number;
@@ -49,7 +43,7 @@ export const Pic: FC<TProps> = ({
       {...imageConfig}
     >
       {({
-        designProps,
+        picProps,
         isHover,
         isVideoMode,
         videoOrder,
@@ -59,11 +53,11 @@ export const Pic: FC<TProps> = ({
         return (
           <>
             <motion.img
-              {...designProps}
               src={src}
               alt={src}
-              layoutId={src}
               draggable={false}
+              {...picProps}
+
             />
             <AnimatePresence>
               {isHover && (
