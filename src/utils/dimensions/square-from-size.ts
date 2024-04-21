@@ -1,19 +1,21 @@
+import { resolveSquare } from "@brysonandrew/measure";
+
 type TConfig = {
   size: number;
   colIndex?: number;
   rowIndex?: number;
 };
-export const resolveConfigFromSize = ({
+export const squareFromSize = ({
   size,
   colIndex = 0,
   rowIndex = 0,
 }: TConfig) => ({
-  width: size,
-  height: size,
+  ...resolveSquare(size),
   offsetX: size * colIndex, //rowIndex * size,
   offsetY: size * rowIndex, //rowIndex * size,
 });
-export type TResolveConfigFromSize =
-  ReturnType<
-    typeof resolveConfigFromSize
-  >;
+export type TSquareFromSize =
+  ReturnType<typeof squareFromSize>;
+
+export type TSquareFromSizeConfig =
+  TConfig;

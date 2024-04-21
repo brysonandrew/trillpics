@@ -5,12 +5,12 @@ import {
   resolveScale,
 } from '../config';
 import { createElement } from 'react';
-import { useScroll as useScrollContext } from '~/shell/providers/context/scroll';
+import { useScroll as useScrollContext } from '~/context/scroll';
 import clsx from 'clsx';
 import { CB } from '~/components/buttons/circle';
 import { CBB } from '~/components/buttons/circle/CBB';
 import { useHoverKey } from '@brysonandrew/motion-cursor';
-import { useBase } from '~/shell/providers/context/base';
+import { useBase } from '~/context/base';
 import { TRANSITION } from '@brysonandrew/motion-core';
 import { IconsCross } from '~/components/icons/cross';
 import { IconsGallery } from '~/components/icons/pic/gallery';

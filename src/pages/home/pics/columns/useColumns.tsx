@@ -1,7 +1,7 @@
 import { useMemo } from 'react';
 import { createColumnHelper } from '@tanstack/react-table';
 import { TRow } from '~/pages/home/pics/use-pics-table';
-import { Pic } from '~/components/pic';
+import { Pic } from '~/pages/home/pics/pic';
 
 export const useColumns = (
   rows: TRow[],

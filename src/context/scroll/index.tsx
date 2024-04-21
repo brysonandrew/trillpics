@@ -7,13 +7,18 @@ import {
   MutableRefObject,
 } from "react";
 import type { FC } from "react";
-import { useScroll as useFMScroll } from "framer-motion";
+import {
+  useMotionValue,
+  MotionValue,
+  animate,
+  AnimationPlaybackControls,
+} from "framer-motion";
 import {
   useLocation,
-useNavigate,
+  useNavigate,
 } from "react-router";
 import { useSearchParams } from "react-router-dom";
-import { SEARCH_PARAM_ID } from "~/components/pic/use-pic";
+import { SEARCH_PARAM_ID } from "~/pages/home/pics/pic/use-pic";
 import { TMotionPoint } from "~/types/animation";
 import type {
   ListOnScrollProps,
@@ -23,13 +28,13 @@ import { useTimeoutRef } from "@brysonandrew/hooks-window";
 export type TState = {
   isScrolling: boolean;
   isScroll: boolean;
-  isTransitioningGallery:boolean
+  isTransitioningGallery: boolean;
 };
-export const STATE: TState = {
+export const STATE = {
   isScrolling: false,
   isScroll: false,
-  isTransitioningGallery:false
-};
+  isTransitioningGallery: false,
+} as TState;
 
 export const CONTEXT: TContext = {
   // ...STATE,
@@ -43,11 +48,13 @@ export const CONTEXT: TContext = {
   // onMotionBlurEnd:(): void;
 } as TContext;
 
-
-
 export type TContext = TState & {
   listRef: MutableRefObject<any>;
-  scroll: TMotionPoint;
+  blurXRef: MutableRefObject<any>;
+  blurYRef: MutableRefObject<any>;
+  blurX: MotionValue<number>;
+  blurY: MotionValue<number>;
+
   onUpdate(
     props: ListOnScrollProps
   ): void;
@@ -68,6 +75,17 @@ type TProviderProps = PropsWithChildren;
 export const ScrollProvider: FC<
   TProviderProps
 > = ({ children }) => {
+  const blurXRef =
+    useRef<AnimationPlaybackControls | null>(
+      null
+    );
+  const blurYRef =
+    useRef<AnimationPlaybackControls | null>(
+      null
+    );
+  const blurX = useMotionValue(0);
+  const blurY = useMotionValue(0);
+
   const [
     isTransitioningGallery,
     setTransitioningGallery,
@@ -81,8 +99,6 @@ export const ScrollProvider: FC<
     typeof FixedSizeList | null
   >(null);
 
-  const { scrollX, scrollY } =
-    useFMScroll();
   const [isScroll, setScroll] =
     useState(false);
   const [isScrolling, setScrolling] =
@@ -94,23 +110,28 @@ export const ScrollProvider: FC<
   const navigate = useNavigate();
   const { pathname } = useLocation();
 
-  const startScroll = () => {
-    searchParams.delete(
-      SEARCH_PARAM_ID
-    );
-    navigate(
-      `${pathname}?${searchParams}`
-    );
-    setScrolling(true);
-  };
-
   const handleUpdate = (
     props: ListOnScrollProps
   ) => {
-    console.log(props)
+    // animate(
+    //   scrollY,
+    //   props.scrollOffset * 0.001,
+    //   {
+    //     // type: "spring",
+    //     // duration: 1,
+    //     type: "tween",
+    //   }
+    // );
+
     const { scrollOffset } = props;
     if (!isScrolling) {
-      startScroll();
+      searchParams.delete(
+        SEARCH_PARAM_ID
+      );
+      navigate(
+        `${pathname}?${searchParams}`
+      );
+      setScrolling(true);
     }
     endTimeout();
     timeoutRef.current = setTimeout(
@@ -133,32 +154,15 @@ export const ScrollProvider: FC<
       setScroll(false);
     }
   };
-  // useMotionValueEvent(
-  //   scrollY,
-  //   "change",
-  //   handleUpdate
-  // );
-
-  // useEffect(() => {
-  //   const setY = () => {
-  //     scrollX.set(0);
-  //     scrollY.set(0);
-  //     window.scrollTo(0, 0);
-  //     document.documentElement.scrollTop = 0;
-  //     handleUpdate(0);
-  //   };
-  //   timeoutRef.current =
-  //     setTimeout(setY);
-  // }, [pathname]);
 
   return (
     <Scroll.Provider
       value={{
         listRef,
-        scroll: {
-          x: scrollX,
-          y: scrollY,
-        },
+        blurXRef,
+        blurYRef,
+        blurX,
+        blurY,
         isScroll,
         isScrolling,
         onUpdate: handleUpdate,

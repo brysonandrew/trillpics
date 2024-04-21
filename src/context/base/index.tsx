@@ -41,11 +41,11 @@ export const BaseProvider: FC<
     useState(false);
   const [isOffline, setOffline] =
     useState(false);
-  const [isInit, setPic] =
+  const [isInit, setInit] =
     useState(false);
   const onMenu = () =>
     setMenu((prev) => !prev);
-  const onInit = () => setPic(true);
+  const onInit = () => setInit(true);
   const onOffline = () =>
     setOffline(true);
   const onOnline = () =>

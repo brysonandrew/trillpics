@@ -15,6 +15,8 @@ export const webpackOverride: WebpackOverrideFn =
       "utils",
       "css",
       "store",
+      "remotion",
+      "context",
     ].reduce(
       (a, c) => ({
         ...a,
@@ -26,36 +28,53 @@ export const webpackOverride: WebpackOverrideFn =
       }),
       {} as TStringRecord
     );
-    const configRecord = [
-      
-      "app",
-      "routes",
-      "uno",
-      "vite",
-    ].reduce(
-      (a, c) => ({
-        ...a,
-        [`~/${c}`]: path.resolve(
-          initCwd,
-          "config",
-          c
-        ),
-      }),
-      {} as TStringRecord
-    );
-    const entryPath = path.resolve(initCwd, 'src');
+    // const configRecord = [
+    //   "app",
+    //   "routes",
+    //   "uno",
+    //   "vite",
+    // ].reduce(
+    //   (a, c) => ({
+    //     ...a,
+    //     [`~/${c}`]: path.resolve(
+    //       initCwd,
+    //       "config",
+    //       c
+    //     ),
+    //   }),
+    //   {} as TStringRecord
+    // );
+    // const entryPath = path.resolve(
+    //   initCwd,
+    //   "src"
+    // );
 
+    const entry = (...args: string[]) =>
+      path.resolve(initCwd, ...args);
+
+    const appEntry = entry(
+      "config",
+      "app"
+    );
+console.log(appEntry)
     return {
       ...currentConfig,
-      devtool: 'source-map',
+      devtool: "source-map",
       resolve: {
         ...currentConfig.resolve,
         alias: {
-          "~/":entryPath,
+          "~": entry("src"),
+          "~app": appEntry,
+          "~uno/": entry(
+            "config",
+            "uno"
+          ),
+          "~ops/": entry("ops"),
+          "~root/": entry("."),
           ...currentConfig.resolve
             ?.alias,
           ...record,
-          ...configRecord,
+          // ...configRecord,
         },
       },
     };

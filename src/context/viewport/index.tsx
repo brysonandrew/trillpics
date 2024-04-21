@@ -10,7 +10,7 @@ import {
   useViewportMeasure,
   useGrid,
 } from "@brysonandrew/viewport";
-import { isVertical } from "~/shell/providers/context/viewport/is-vertical";
+import { isVertical } from "~/context/viewport/is-vertical";
 import { BREAKPOINT_RECORD } from "~/constants/css";
 
 export type TContext = TViewport &

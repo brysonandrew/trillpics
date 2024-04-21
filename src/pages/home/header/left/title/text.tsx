@@ -10,7 +10,7 @@ export const TitleText: FC = () => {
         overflowWrap: "break-word",
       }}
       whileHover={{ opacity: 0.9 }}
-      className="relative font-display text-main-inverted text-left w-32 text-4xl sm:(text-4.5xl w-44) md:(text-5xl w-auto)"
+      className="relative font-display text-main-inverted text-left w-30 text-4xl sm:(text-4.5xl w-32) md:(text-5xl w-auto)"
     >
       {APP_TITLE}
     </motion.h1>

@@ -11,6 +11,10 @@ import {
 import { PillBHover } from "~/components/buttons/pill/b/hover";
 import { Moon } from "~/pages/home/header/right/dark-mode/icons/Moon";
 import { Sun } from "~/pages/home/header/right/dark-mode/icons/Sun";
+import {
+  useHoverKey,
+  NONE_CURSOR_KEY,
+} from "@brysonandrew/motion-cursor";
 
 export const _DarkMode: FC = () => {
   const { isDarkMode, toggle } =
@@ -21,9 +25,9 @@ export const _DarkMode: FC = () => {
     : "dark";
   const title = `Use ${key} mode`;
 
-  const handleTap = () => {
-    toggle();
-  };
+  const handleTap = toggle;
+  const { isHover, handlers } =
+    useHoverKey(NONE_CURSOR_KEY, title);
   return (
     <PillBHover
       title={title}
@@ -38,13 +42,17 @@ export const _DarkMode: FC = () => {
                 ...(isDarkMode
                   ? PRESENCE_ROTATE_FROM_TOP
                   : PRESENCE_ROTATE_FROM_BOTTOM),
+                ...(isHover
+                  ? {}
+                  : { initial: false }),
               },
             }
           )}
         </div>
       )}
+      {...handlers}
     >
-      {title}
+      {isHover && title}
     </PillBHover>
   );
 };

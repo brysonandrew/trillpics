@@ -31,13 +31,16 @@ export const Controls: FC<TProps> = ({
       {isVideoPicsCount ? (
         <motion.div
           key="CONTROLS"
-          {...resolvePresence(
-            { opacity: 0 },
-            {
-              opacity: 1,
-            }
-          )}
-          className="fixed left-0 bottom-0 right-0 h-0 z-20"
+          // {...resolvePresence(
+          //   { opacity: 0 },
+          //   {
+          //     opacity: 1,
+          //   }
+          // )}
+          // style={{
+          //  ...MOTION_BLUR_FILTER_PROPS,
+          // }}
+          className="fixed left-0 bottom-0 right-0 h-0 z-50"
         >
           {isVideoMode &&
             isPlayerOpen && (
@@ -90,15 +93,17 @@ export const Controls: FC<TProps> = ({
           )}
         </>
       )}
-      <motion.div
-        {...resolvePresence(
-          { opacity: 0, y: "100%" },
-          {
-            opacity: 1,
-            y: 0,
-          }
-        )}
-        className="relative row-space container h-0 mx-auto z-30"
+      <div
+        // {...resolvePresence(
+        //   { opacity: 0 },
+        //   {
+        //     opacity: 1,
+        //   }
+        // )}
+        className="fixed left-1/2 -translate-1/2 bottom-0 container h-0 z-50"
+        // style={{
+        //  ...MOTION_BLUR_FILTER_PROPS,
+        // }}
       >
         <div className="relative bottom-15 row-space w-full h-0">
           <ControlsVideo
@@ -112,7 +117,7 @@ export const Controls: FC<TProps> = ({
             <ControlsFullscreen />
           )}
         </div>
-      </motion.div>
+      </div>
     </>
   );
 };

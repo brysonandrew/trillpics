@@ -1,20 +1,28 @@
+import { resolveVarCss } from "@brysonandrew/color-base";
 import { resolveGradient } from "@brysonandrew/color-gradient";
 import {
   DARK_LOGO,
   LIGHT_LOGO,
+  TValues,
 } from "../color/config/constants";
 
 export const GRADIENT_NET_DARK = {
   "background-image": resolveGradient({
     name: "repeating-conic-gradient",
-    parts: ["rgba(0,0,0,0)", "black"],
+    parts: [
+      "rgba(0,0,0,0)",
+      resolveVarCss("black"),
+    ],
   }),
 };
 
 export const GRADIENT_NET_LIGHT = {
   "background-image": resolveGradient({
     name: "repeating-conic-gradient",
-    parts: ["rgba(0,0,0,0)", "black-8"],
+    parts: [
+      "rgba(0,0,0,0)",
+      resolveVarCss("black-8"),
+    ],
   }),
 };
 
@@ -26,7 +34,7 @@ export const GRADIENT_BLUE_PINK_YELLOW_COLORS =
   [
     ...(Object.values(
       DARK_LOGO
-    ) as (keyof typeof DARK_LOGO)[]),
+    ) as TValues<typeof DARK_LOGO>),
     // "var(--blue)",
     // "var(--pink)",
     // "var(--yellow)",
@@ -36,7 +44,7 @@ export const GRADIENT_TEAL_YELLOW_PINK_COLORS =
   [
     ...(Object.values(
       LIGHT_LOGO
-    ) as (keyof typeof LIGHT_LOGO)[]),
+    ) as TValues<typeof LIGHT_LOGO>),
     // "var(--pink1)",
     // "var(--teal)",
     // "var(--yellow1)",

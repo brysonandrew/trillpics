@@ -11,7 +11,7 @@ import {
   TICK_ICON,
 } from "@brysonandrew/icons-keys";
 import { motion } from "framer-motion";
-import { TNotificationsContext } from "~/shell/providers/context/checkout/config";
+import { TNotificationsContext } from "~/context/checkout/config";
 import { Loading } from "./Loading";
 import { useDelayCallback } from "@brysonandrew/hooks-window";
 

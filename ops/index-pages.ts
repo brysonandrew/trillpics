@@ -36,8 +36,6 @@ const DEPTH = 1;
       },
     );
 
-    console.log(paths);
-
     const file = paths.reduce(
       (a: string, path) => {
         const { base } = parse(path);

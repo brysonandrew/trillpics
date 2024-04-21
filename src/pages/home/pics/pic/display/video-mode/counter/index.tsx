@@ -4,7 +4,7 @@ import {
   motion,
   MotionConfig,
 } from "framer-motion";
-import { AddRemoveToVideoMarker } from "~/components/pic/video-mode-counter/add-remove-to-video-marker";
+import { AddRemoveToVideoMarker } from "~/pages/home/pics/pic/display/video-mode/counter/add-remove-to-video-marker";
 import { IconsVideo } from "~/components/icons/video/video";
 import { PillB } from "~/components/buttons/pill/b";
 

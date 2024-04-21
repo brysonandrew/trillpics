@@ -16,7 +16,7 @@ const C = () => {
       <Outlet />
       {!isPlayerOpen && (
         <FadeV
-          classValue="z-4x0"
+          classValue="z-40"
           darkEdgeColor="var(--dark-06)"
           lightEdgeColor="var(--light-02)"
         />

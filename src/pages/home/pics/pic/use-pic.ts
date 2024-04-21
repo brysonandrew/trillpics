@@ -1,12 +1,10 @@
 import { useState } from "react";
-import { useViewport } from "~/shell/providers/context/viewport";
+import { useViewport } from "~/context/viewport";
 import {
   useHoverKey,
   NONE_CURSOR_KEY,
-  resolveCompositeHoverKey,
 } from "@brysonandrew/motion-cursor";
 import {
-  TDimensions,
   TImageDimensionsConfig,
   useImageDimensions,
 } from "@brysonandrew/measure";
@@ -18,26 +16,36 @@ import {
 import { FULLSCREEN_Z } from "~/constants/dom";
 import clsx from "clsx";
 import { useVideoStore } from "~/store";
-import { PRESENCE_OPACITY } from "@brysonandrew/motion-core";
-import { resolveViewportSelfCenter } from "~/utils/dimensions/resolveViewportSelfCenter";
+import { centerInViewport } from "~/utils/dimensions/center-in-viewport";
 import { resolveCompositeKey } from "@brysonandrew/utils-key";
+import { resolvePicSrc } from "~/utils/src";
+import { squareFromSize } from "~/utils/dimensions/square-from-size";
+import { TPicProps } from "~/pages/home/pics/pic";
 
 export const SEARCH_PARAM_ID = "open";
 
-export type TUsePicConfig =
-  TDimensions & {
-    name: string;
-  };
+export type TUsePicConfig = TPicProps;
 export const usePic = ({
-  name,
-  ...imageDimensions
+  cell,
+  size,
+  colIndex,
 }: TUsePicConfig) => {
+  const { cols } = cell.row.original;
+  const name = cols[colIndex];
+
+  const imageDimensions =
+    squareFromSize({
+      size,
+      colIndex,
+    });
   const {
+    isControls,
     isVideoMode,
     addVideo,
     removeVideo,
     videoPics,
   } = useVideoStore();
+  const src = resolvePicSrc(name);
   const videoOrder =
     videoPics.indexOf(name);
   const [isFront, setFront] =
@@ -99,12 +107,21 @@ export const usePic = ({
     dimensions.isDimensions &&
     viewport.isDimensions;
 
-  const zIndex = isFront
-    ? FULLSCREEN_Z
-    : 0;
+  const zIndex =
+    isOpen || isFront
+      ? FULLSCREEN_Z
+      : 0;
+
+  const isAdded = videoOrder > -1;
+
   return {
+    isVideoMode,
+    videoOrder,
+    isControls,
+    isAdded,
     isHover,
     isOpen,
+    onToggle: handleToggle,
     boxProps: {
       className: clsx(
         "relative cursor-pointer"
@@ -121,26 +138,29 @@ export const usePic = ({
               ? removeVideo(name)
               : addVideo(name)
         : handleToggle,
-
       ...handlers,
     },
     picProps: {
       key: resolveCompositeKey(
+        name,
         isFront || isHover
           ? "up"
-          : "down",
-        name
+          : "down"
       ),
       layoutId:
         isFront || isHover
           ? name
           : undefined,
+      src,
+      alt: `░▒▓█ pic #${name} █▓▒░`,
+      draggable: false,
       style: {
         zIndex,
+        textAlign: "center",
         ...(isOpen && isDimensions
           ? ({
               position: "fixed",
-              ...resolveViewportSelfCenter(
+              ...centerInViewport(
                 viewport,
                 dimensions
               ),
@@ -175,8 +195,7 @@ export const usePic = ({
         ...(viewport.isDimensions
           ? ({
               position: "fixed",
-              width: viewport.width,
-              height: viewport.height,
+              ...boxDimensions,
             } as const)
           : ({} as const)),
         backdropFilter:
@@ -185,12 +204,9 @@ export const usePic = ({
       },
       onClick: handleToggle,
     },
-    onToggle: handleToggle,
-    isVideoMode,
-    videoOrder,
   };
 };
 
-export type TUsePicReturn = ReturnType<
+export type TUsePic = ReturnType<
   typeof usePic
 >;

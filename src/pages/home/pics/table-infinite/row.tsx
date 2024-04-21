@@ -19,8 +19,10 @@ export const Row = <T extends TBaseRow>(
       <div
         className='row'
         style={{
+    //      filter: resolveUrlId(MOTION_BLUR_ID),
           ...style,
         }}
+        
       >
         {cells.map(
           (

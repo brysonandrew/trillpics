@@ -1,10 +1,10 @@
-import { useViewport } from "@brysonandrew/viewport";
 import { FC, Fragment } from "react";
-import { TUsePicReturn } from "~/components/pic/use-pic";
+import { useViewport } from "@brysonandrew/viewport";
+import { TUsePic } from "~/pages/home/pics/pic/use-pic";
 import { useVideoStore } from "~/store";
 
 type TProps = {
-  backdropProps?: TUsePicReturn["backdropProps"];
+  backdropProps?: TUsePic["backdropProps"];
   isOpen?: boolean;
 };
 export const Backdrop: FC<TProps> = ({
@@ -37,11 +37,10 @@ export const Backdrop: FC<TProps> = ({
             cursor: "zoom-out",
           }}
           {...backdropProps}
-        ></div>
+        />
       ) : (
         <Fragment />
       )}
-
     </>
   );
 };

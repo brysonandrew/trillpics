@@ -1,5 +1,5 @@
 import { useMemo } from "react";
-import { useViewport } from "~/shell/providers/context/viewport";
+import { useViewport } from "~/context/viewport";
 import { APPROX_IMAGE_SIZE } from "~/constants/images";
 import { useVideoStore } from "~/store/index";
 import {

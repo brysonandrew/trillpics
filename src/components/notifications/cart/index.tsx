@@ -1,4 +1,4 @@
-import { useCheckout } from '~/shell/providers/context/checkout';
+import { useCheckout } from '~/context/checkout';
 import { AnimatePresence } from 'framer-motion';
 import { Handler } from './Handler';
 

@@ -11,10 +11,10 @@ import {
 import { arrToNest } from '@brysonandrew/layout-utils/arrToNest';
 import { TCustomStyle } from '~app/style';
 import { App } from '~/shell/providers/App';
-import { BaseProvider } from '~/shell/providers/context/base';
-import { UserProvider } from '~/shell/providers/context/user';
-import { ViewportProvider } from '~/shell/providers/context/viewport';
-import { ScrollProvider } from '~/shell/providers/context/scroll';
+import { BaseProvider } from '~/context/base';
+import { UserProvider } from '~/context/user';
+import { ViewportProvider } from '~/context/viewport';
+import { ScrollProvider } from '~/context/scroll';
 
 type TLayoutOptions =
   TLayoutOptionsRecord;
