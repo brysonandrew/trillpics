@@ -6,7 +6,6 @@ import {
   createContext,
   PropsWithChildren,
 } from "react";
-import { useLocalStorage } from "~/hooks/dom/useLocalStorage";
 import {
   TChosenConfig,
   TContext,
@@ -24,6 +23,7 @@ import {
 import { resolvePendingRecordId } from "~/utils/images/resolvePendingRecordId";
 import { PENDING_DELIMITER } from "~/constants/images";
 import { resolvePendingId } from "~/utils/images/resolvePendingId";
+import { useLocalStorage } from "@brysonandrew/hooks-dom";
 
 export const Checkout =
   createContext<TContext>(

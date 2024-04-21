@@ -40,6 +40,7 @@ export const Virtualize = <
   if (!vp.isDimensions) return null;
   return (
     <FixedSizeList<TRow<T>[]>
+    // onItemsRendered={console.log}
       onScroll={onUpdate}
       width={vp.width}
       height={vp.height}
@@ -57,6 +58,7 @@ export const Virtualize = <
       }}
       layout="vertical"
       ref={listRef}
+      direction='ltr'
     >
       {RenderRow}
     </FixedSizeList>

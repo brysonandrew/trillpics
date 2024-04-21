@@ -3,16 +3,16 @@ import { motion } from "framer-motion";
 import { TChildren } from "@brysonandrew/config-types";
 import { IconsPicZoomOut } from "~/components/icons/pic/zoom-out";
 import {
-  TUseImageReturn,
-  TUseImageConfig,
-  useImage,
-} from "../use-image";
+  TUsePicReturn,
+  TUsePicConfig,
+  usePic,
+} from "../use-pic";
 import { Portal } from "./Portal";
 
-type TProps = TUseImageConfig & {
+type TProps = TUsePicConfig & {
   boxChildren?: TChildren;
   children(
-    imageReturn: TUseImageReturn
+    imageReturn: TUsePicReturn
   ): TChildren;
 };
 export const Control: FC<TProps> = ({
@@ -20,7 +20,7 @@ export const Control: FC<TProps> = ({
   children,
   ...config
 }) => {
-  const imageReturn = useImage(config);
+  const imageReturn = usePic(config);
   const {
     isOpen,
     boxProps,

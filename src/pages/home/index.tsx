@@ -3,20 +3,13 @@ import { Header } from "~/pages/home/header";
 import { Controls } from "~/pages/home/controls";
 import { useVideoStore } from "~/store";
 import { useShallow } from "zustand/react/shallow";
-import { useIdleStatus } from "~/hooks/window/use-idle";
-import { SEARCH_PARAM_ID } from "~/components/pic/use-image";
-import {
-  useLocation,
-  useNavigate,
-} from "react-router";
+import { useIdleStatus } from "~/hooks/use-idle";
+import { SEARCH_PARAM_ID } from "~/components/pic/use-pic";
 import { useSearchParams } from "react-router-dom";
 import { List } from "./pics";
-
 const Home = () => {
-  const { pathname } = useLocation();
   const [searchParams] =
     useSearchParams();
-  const navigate = useNavigate();
   const searchParam = searchParams.get(
     SEARCH_PARAM_ID
   );
