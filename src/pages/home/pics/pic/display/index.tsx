@@ -27,8 +27,12 @@ export const PicDisplay: FC<TProps> = ({
 }) => {
   return (
     <>
-      <motion.img {...picProps} />
       <AnimatePresence>
+        <motion.img
+          key={picProps.src}
+          {...picProps}
+        />
+
         {isHover && (
           <>
             <PicDisplayHover

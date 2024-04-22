@@ -7,7 +7,6 @@ export const PicDisplayHoverFade: FC =
   () => {
     return (
       <motion.div
-        key="fadev"
         {...FADE_PRESENCE}
       >
         <FadeV

@@ -1,6 +1,6 @@
 import type { FC } from "react";
 import { motion } from "framer-motion";
-import { Portal } from "~/components/portal";
+import { PortalBody } from "@brysonandrew/layout-portal";
 import { TCell } from "~/pages/home/pics/columns/config";
 import { PicBackdrop } from "~/pages/home/pics/pic/backdrop";
 import { PicDisplay } from "~/pages/home/pics/pic/display";
@@ -23,10 +23,10 @@ export const Pic: FC<TPicProps> = (
     isControls,
   } = pic;
   return (
-    <motion.div {...boxProps}>
+    <div {...boxProps}>
       <>
         {isOpen ? (
-          <Portal>
+          <PortalBody>
             <>
               {isControls && (
                 <PicBackdrop
@@ -35,11 +35,11 @@ export const Pic: FC<TPicProps> = (
               )}
               <PicDisplay {...pic} />
             </>
-          </Portal>
+          </PortalBody>
         ) : (
           <PicDisplay {...pic} />
         )}
       </>
-    </motion.div>
+    </div>
   );
 };

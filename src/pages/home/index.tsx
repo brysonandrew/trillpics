@@ -10,8 +10,9 @@ import {
   MOTION_BLUR_FILTER_X_PROPS,
   MOTION_BLUR_FILTER_Y_PROPS,
 } from "~/pages/home/blur/constants";
-import { BlurX } from "~/pages/home/blur/x";
-import { BlurY } from "~/pages/home/blur/y";
+import { BlurX } from "~/pages/home/blur/filter/x";
+import { BlurY } from "~/pages/home/blur/filter/y";
+import { BlurXy } from "~/pages/home/blur/xy";
 import { List } from "./pics";
 
 const Home = () => {
@@ -60,23 +61,9 @@ const Home = () => {
 
   return (
     <>
-      <BlurX />
-      <BlurY />
-      <motion.div
-        className="fill z-0"
-        style={{
-          ...MOTION_BLUR_FILTER_X_PROPS,
-        }}
-      >
-        <motion.div
-          className="fill"
-          style={{
-            ...MOTION_BLUR_FILTER_Y_PROPS,
-          }}
-        >
-          <List />
-        </motion.div>
-      </motion.div>
+      <BlurXy>
+        <List />
+      </BlurXy>
       <>
         {isControls &&
           !isImageZoomed && (

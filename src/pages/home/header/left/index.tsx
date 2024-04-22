@@ -7,17 +7,29 @@ import {
 import { HOME_ROUTE } from "~/constants/routes";
 import { Title } from "~/pages/home/header/left/title";
 import { ScrollTop } from "~/pages/home/header/left/controls/scroll-top";
+import { useScrollTopHandler } from "~/pages/home/header/left/controls/scroll-top/use-scroll-top-handler";
 
 export const HeaderLeft: FC = () => {
   const { pathname } = useLocation();
+  const { handler, isScroll } =
+    useScrollTopHandler();
+
   const isHome =
     pathname === HOME_ROUTE;
 
   return (
-    <div className="column-start gap-2 h-0">
+    <div className="column-start gap-4 h-0">
       <div className="relative shrink-0">
         {isHome ? (
-          <Title />
+          <>
+            {isScroll ? (
+              <button onClick={handler}>
+                <Title />
+              </button>
+            ) : (
+              <Title />
+            )}
+          </>
         ) : (
           <Link
             className="relative"

@@ -6,6 +6,7 @@ import { READ_ADD_PIC_TO_VIDEO_INFO } from "~/constants/milestones";
 import { TMilestones } from "~/types/milestones";
 import clsx from "clsx";
 import { useBorderStyleMd } from "~/components/buttons/use-border-style/md";
+import { DecorationNet } from "~/components/decoration/background/net";
 
 export const ControlsEmpty: FC = () => {
   const { milestones, updateState } =
@@ -51,13 +52,15 @@ export const ControlsEmpty: FC = () => {
         to add to your video
       </p>
       <div className="p-2">
-        <div className="border border-gray w-full" />
+        <div className="border border-main w-full" />
       </div>
       <div className="row-space">
-        <div className="px-4 py-2.5 border border-gray hover:_radial-gradient">
+        <div className="relative px-4 py-2.5 border border-main hover:_radial-gradient">
+          <DecorationNet classValue="inset-2" />
           Cancel
         </div>
-        <div className="px-4 py-2.5 border border-gray hover:_radial-gradient">
+        <div className="relative px-4 py-2.5 border border-main hover:_radial-gradient">
+          <DecorationNet classValue="inset-2"  />
           Ok
         </div>
       </div>

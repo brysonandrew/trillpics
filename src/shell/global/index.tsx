@@ -11,6 +11,8 @@ import { Helmet } from "react-helmet-async";
 import { Variables } from "~/css/Variables";
 import { LinearGradientBluePinkYellowSvg } from "~/components/gradients/linear-gradient-svg";
 import { AURA } from "@brysonandrew/svg-filter";
+import { BlurX } from "~/pages/home/blur/filter/x";
+import { BlurY } from "~/pages/home/blur/filter/y";
 
 export const Global: FC<
   PropsWithChildren
@@ -38,6 +40,8 @@ export const Global: FC<
       <LinearGradientBluePinkYellowSvg
         isDarkMode={isDarkMode}
       />
+      <BlurX />
+      <BlurY />
       <AURA.GLOBAL.Filter />
       <GlobalCss>{children}</GlobalCss>
     </>

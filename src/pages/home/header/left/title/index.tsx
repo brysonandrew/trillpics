@@ -6,15 +6,10 @@ import { Glow } from "~/components/decoration/glow";
 import { resolvePresence } from "~/utils/animation";
 
 export const Title: FC = () => {
-  const { isScroll } = useScroll();
-
-  const handleClick = () => {
-    window.scrollTo(0, 0);
-  };
 
   return (
     <div className="relative row gap-0 md:(gap-4 w-auto)">
-      <div className="relative">
+      <div className="relative h-18">
         <Glow
           classValue="-inset-1"
           {...resolvePresence(
@@ -22,13 +17,11 @@ export const Title: FC = () => {
             { opacity: 0.2 }
           )}
         />
-        {isScroll ? (
-          <button onClick={handleClick}>
             <TitleText />
-          </button>
-        ) : (
-          <TitleText />
-        )}
+
+        <h2 className="text-lg px-1 char-gap-7">
+          AI Art Gallery
+        </h2>
       </div>
       <SparkleButton />
     </div>

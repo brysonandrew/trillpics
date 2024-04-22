@@ -12,8 +12,8 @@ import { webpackOverride } from "~/server/generate/webpack/override";
 import path from "path";
 import { onProgress } from "~/server/generate/webpack/on-progress";
 import { onDownload } from "~/server/generate/media/on-download";
-import { TRenderMediaResult } from "~/types/trpc/generate";
 import { REMOTION_ENTRY_POINT } from "~root/remotion.config";
+import { TGenerateOutput } from "~/types/trpc/generate";
 
 export type TGenerateProps = {
   input: TPicSeriesProps;
@@ -72,7 +72,7 @@ export const generate = async ({
       inputProps,
       logLevel: "verbose",
     };
-  const result: TRenderMediaResult =
+  const result: TGenerateOutput =
     await renderMedia(
       renderMediaOption
     );

@@ -11,9 +11,9 @@ export const SHORTCUTS: StaticShortcutMap =
   {
     ..._SHORTCUTS,
     "border-main":
-      "border-white dark:border-black",
+      "border-gray-8 dark:border-gray-2",
     "border-main-inverted":
-      "border-black dark:border-white",
+      "border-gray-2 dark:border-gray-8",
     "bg-main": "bg-white dark:bg-black",
     "bg-main-inverted":
       "bg-black dark:bg-white",

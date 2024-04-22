@@ -21,6 +21,7 @@ import { resolveCompositeKey } from "@brysonandrew/utils-key";
 import { resolvePicSrc } from "~/utils/src";
 import { squareFromSize } from "~/utils/dimensions/square-from-size";
 import { TPicProps } from "~/pages/home/pics/pic";
+import { resolvePresence } from "@brysonandrew/motion-core";
 
 export const SEARCH_PARAM_ID = "open";
 
@@ -30,8 +31,8 @@ export const usePic = ({
   size,
   colIndex,
 }: TUsePicConfig) => {
-  const { cols } = cell.row.original;
-  const name = cols[colIndex];
+  const name =
+    cell.row.original.cols[colIndex];
 
   const imageDimensions =
     squareFromSize({
@@ -63,7 +64,7 @@ export const usePic = ({
       NONE_CURSOR_KEY,
       name ?? ""
     );
-  const handleToggle = () => {
+  const onToggle = () => {
     if (isOpen) {
       searchParams.delete(
         SEARCH_PARAM_ID
@@ -95,6 +96,13 @@ export const usePic = ({
       image: imageDimensions,
     }
   );
+  if (isOpen) {
+    console.log(
+      boxDimensions,
+      imageDimensions,
+      dimensions
+    );
+  }
 
   const handleLayoutAnimationComplete =
     () => {
@@ -114,6 +122,42 @@ export const usePic = ({
 
   const isAdded = videoOrder > -1;
 
+  const onClick = isVideoMode
+    ? () =>
+        videoOrder > -1
+          ? removeVideo(name)
+          : addVideo(name)
+    : onToggle;
+
+  const style = {
+    zIndex,
+    textAlign: "center",
+    ...(isOpen && isDimensions
+      ? ({
+          position: "fixed",
+          ...centerInViewport(
+            dimensions,
+            viewport
+          ),
+        } as const)
+      : ({
+          position: "absolute",
+          left: 0,
+          top: 0,
+          bottom: 0,
+          right: 0,
+          ...imageDimensions,
+        } as const)),
+  } as const;
+
+  if (isOpen) {
+    console.log(
+      style,
+      isDimensions,
+      isOpen
+    );
+  }
+
   return {
     isVideoMode,
     videoOrder,
@@ -121,7 +165,7 @@ export const usePic = ({
     isAdded,
     isHover,
     isOpen,
-    onToggle: handleToggle,
+    onToggle,
     boxProps: {
       className: clsx(
         "relative cursor-pointer"
@@ -132,58 +176,34 @@ export const usePic = ({
           ? "pointer"
           : "zoom-in",
       },
-      onClick: isVideoMode
-        ? () =>
-            videoOrder > -1
-              ? removeVideo(name)
-              : addVideo(name)
-        : handleToggle,
+      onClick,
       ...handlers,
     },
     picProps: {
-      key: resolveCompositeKey(
-        name,
-        isFront || isHover
-          ? "up"
-          : "down"
-      ),
-      layoutId:
-        isFront || isHover
-          ? name
-          : undefined,
+      // key: resolveCompositeKey(
+      //   name,
+      //   isFront || isHover
+      //     ? "up"
+      //     : "down"
+      // ),
+      layoutId: isDimensions
+        ? name
+        : undefined,
+      // layoutId:
+      //   isFront || isHover
+      //     ? name
+      //     : undefined,
       src,
       alt: `░▒▓█ pic #${name} █▓▒░`,
       draggable: false,
-      style: {
-        zIndex,
-        textAlign: "center",
-        ...(isOpen && isDimensions
-          ? ({
-              position: "fixed",
-              ...centerInViewport(
-                viewport,
-                dimensions
-              ),
-            } as const)
-          : ({
-              position: "absolute",
-              left: 0,
-              top: 0,
-              bottom: 0,
-              right: 0,
-              ...imageDimensions,
-            } as const)),
-      } as const,
-      animate: {
-        opacity: isDimensions ? 1 : 0.8,
-      },
+      style,
       ...(isDimensions &&
       !isOpen &&
       !isFront
-        ? {
-            initial: { opacity: 0.8 },
-            exit: { opacity: 1 },
-          }
+        ? resolvePresence(
+            { opacity: 0.9 },
+            { opacity: 1 }
+          )
         : {}),
       onLayoutAnimationComplete:
         handleLayoutAnimationComplete,
@@ -202,7 +222,7 @@ export const usePic = ({
           "blur(40px) grayscale(100%)",
         cursor: "zoom-out",
       },
-      onClick: handleToggle,
+      onClick: onToggle,
     },
   };
 };

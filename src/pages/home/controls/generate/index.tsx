@@ -17,6 +17,15 @@ import { resolvePresence } from "@brysonandrew/motion-core";
 import { resolveCompositeKey } from "@brysonandrew/utils-key";
 import { useBorderStyleMd } from "~/components/buttons/use-border-style/md";
 import { Metal } from "@brysonandrew/texture-metal";
+import { TGenerateInput } from "~/types/trpc/generate";
+import { z } from "zod";
+
+const DEFAULT: TGenerateInput = {
+  input: {
+    pics: [],
+  },
+  fps: 3,
+};
 
 export const Generate = () => {
   const { videoPics, fps } =
@@ -30,27 +39,46 @@ export const Generate = () => {
     input: { pics: videoPics },
     fps,
   };
+
+  // const dl = async (blob: Blob) => {};
+
+  // const mutationFn: MutationFunction<
+  //   TRenderMediaResult,
+  //   TGenerateInput
+  // > = async (input) => {
+  //   return null as any;
+  // };
+
   const {
     isError,
     isIdle,
     isLoading,
     isPaused,
     isSuccess,
-    mutateAsync,
+    mutate,
   } = trpc.generate.useMutation({
-    g: "hi",
+    onSuccess: async (result) => {
+      console.log(result);
+      if (!result) return;
+      if (
+        result.buffer &&
+        "data" in result.buffer &&
+        Array.isArray(result.buffer.data)
+      ) {
+        const arr = new Uint8Array(
+          result.buffer.data ?? []
+        );
+        const blob = new Blob([arr]);
+        await downloadMedia(blob);
+      }
+    },
   });
-  const handleGenerate = async () => {
-    const result = await mutateAsync({
-      x: "bye",
-    });
-    if (!result) return;
-    // const arr = new Uint8Array(
-    //   result.buffer?.data ?? []
-    // );
-    // const blob = new Blob([arr]);
-    // await downloadMedia(blob);
+  const handleGenerate = () => {
+    console.log(config);
+
+    mutate(config);
   };
+
   const isAura = isHover || isLoading;
   const AURA_TRANSITION = {
     transition: {

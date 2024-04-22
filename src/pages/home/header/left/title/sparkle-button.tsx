@@ -13,7 +13,7 @@ export const SparkleButton: FC = () => {
   const { darkKey } = useDarkMode();
 
   return (
-    <div className="relative uppercase text-xl tracking-wide h-8 w-7 sm:(h-10 w-10)">
+    <div className="relative uppercase h-8 w-7 sm:(h-10 w-10)">
       <Glow
         classValue="-inset-4"
         {...resolvePresence(

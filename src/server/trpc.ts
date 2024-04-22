@@ -10,10 +10,10 @@ export type TApiContext =
   >;
 
 const t = initTRPC
-  .context<TApiContext>()
+  // .context<TApiContext>()
   .create();
 
 export const middleware = t.middleware;
 export const publicProcedure =
   t.procedure;
-export const router = t.router;
+export const router = t.router
