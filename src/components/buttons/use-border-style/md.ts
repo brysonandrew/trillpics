@@ -9,8 +9,6 @@ export const useBorderStyleMd = (
   const { BORDER_RADIUS } = useApp();
   return {
     borderRadius: BORDER_RADIUS.XL,
-    // width: size,
-    // height: size,
     minWidth: size,
     minHeight: size,
     ...(isFlat
@@ -19,7 +17,7 @@ export const useBorderStyleMd = (
         }
       : {
           boxShadow:
-            "0 0 1px 1px rgba(255,255,255,0.1)",
+            "0 0 1px 1px rgba(255,255,255,0.2)",
         }),
   };
 };

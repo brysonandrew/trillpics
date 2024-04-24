@@ -1,6 +1,6 @@
 import { inferReactQueryProcedureOptions } from "@trpc/react-query";
 import { renderMedia } from "@remotion/renderer";
-import { TPicSeriesProps } from "~/remotion/pic-series/types";
+import { TPicSeriesProps } from "~/components/remotion/pic-series/types";
 import { TRouter } from "~/server/router";
 import {
   TRouterInputs,

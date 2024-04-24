@@ -45,16 +45,14 @@ export const GRADIENTS: Rule[] = [
   [
     "_dark-gradient-border",
     {
-      "border-image":
-        GRADIENT_BLUE_PINK_YELLOW,
+      "border-image": `${GRADIENT_BLUE_PINK_YELLOW} 20`,
       ...GRADIENT_BORDER_COMMON,
     },
   ],
   [
     "_light-gradient-border",
     {
-      "border-image":
-        GRADIENT_TEAL_YELLOW_PINK,
+      "border-image": `${GRADIENT_TEAL_YELLOW_PINK} 20`,
       ...GRADIENT_BORDER_COMMON,
     },
   ],

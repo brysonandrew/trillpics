@@ -1,5 +1,5 @@
 import type { FC } from "react";
-import { LINEAR_GRADIENT_SVG_ID } from "~/components/gradients/linear-gradient-svg";
+import { LINEAR_GRADIENT_SVG_ID } from "~/components/gradients/blue-pink-yellow";
 import { TSvgProps } from "@brysonandrew/config-types";
 import { resolveUrlId } from "@brysonandrew/utils-attributes";
 import { IconsSvgGradient24 } from "~/components/icons/svg/gradient/24";

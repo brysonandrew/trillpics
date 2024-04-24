@@ -81,6 +81,7 @@
     "@brysonandrew/placeholder": "^7.0.27",
     "@brysonandrew/routes": "^7.0.27",
     "@brysonandrew/service-worker": "^7.0.27",
+    "@brysonandrew/svg": "^7.0.27",
     "@brysonandrew/svg-filter": "^7.0.27",
     "@brysonandrew/svg-icon": "^7.0.27",
     "@brysonandrew/texture-metal": "^7.0.27",

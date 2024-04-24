@@ -13,10 +13,8 @@ export type TVideoState = {
   picsEntries: TPics[];
   videoPics: TPics;
   isPlaying: boolean;
-  isVideoMode: boolean;
   isPlayerOpen: boolean;
   playerElement: PlayerRef | null;
-  toggleVideoMode(next?: boolean): void;
   toggleControls(next?: boolean): void;
   togglePlayer(next?: boolean): void;
   updatePicsEntries(next?: TPics): void;

@@ -9,10 +9,10 @@ import { GlobalCss } from "~/shell/global/styles";
 import { useDarkMode } from "@brysonandrew/dark-mode";
 import { Helmet } from "react-helmet-async";
 import { Variables } from "~/css/Variables";
-import { LinearGradientBluePinkYellowSvg } from "~/components/gradients/linear-gradient-svg";
+import { GradientsBluePinkYellow } from "~/components/gradients/blue-pink-yellow";
 import { AURA } from "@brysonandrew/svg-filter";
-import { BlurX } from "~/pages/home/blur/filter/x";
-import { BlurY } from "~/pages/home/blur/filter/y";
+import { BlurX } from "~/components/blur/x";
+import { BlurY } from "~/components/blur/y";
 
 export const Global: FC<
   PropsWithChildren
@@ -37,7 +37,7 @@ export const Global: FC<
       </Helmet>
       <Variables />
       <PlaceholderClipPath />
-      <LinearGradientBluePinkYellowSvg
+      <GradientsBluePinkYellow
         isDarkMode={isDarkMode}
       />
       <BlurX />

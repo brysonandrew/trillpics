@@ -10,7 +10,6 @@ import type { FC } from "react";
 import {
   useMotionValue,
   MotionValue,
-  animate,
   AnimationPlaybackControls,
 } from "framer-motion";
 import {
@@ -18,13 +17,12 @@ import {
   useNavigate,
 } from "react-router";
 import { useSearchParams } from "react-router-dom";
-import { SEARCH_PARAM_ID } from "~/pages/home/pics/pic/use-pic";
-import { TMotionPoint } from "~/types/animation";
 import type {
   ListOnScrollProps,
   FixedSizeList,
 } from "react-window";
 import { useTimeoutRef } from "@brysonandrew/hooks-window";
+import { SEARCH_PARAM_ID } from "~/shell/pics/pic/directors-mode/use-pic-directors-mode";
 export type TState = {
   isScrolling: boolean;
   isScroll: boolean;

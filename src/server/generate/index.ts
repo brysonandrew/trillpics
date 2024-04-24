@@ -1,4 +1,4 @@
-import { TPicSeriesProps } from "~/remotion/pic-series/types";
+import { TPicSeriesProps } from "~/components/remotion/pic-series/types";
 import { onBrowserLog } from "~/server/generate/browser/on-browser-log";
 import {
   renderMedia,

@@ -1,7 +1,8 @@
 import { NotFound } from "@brysonandrew/not-found";
 import { TRouteObjects } from "@brysonandrew/routes";
+import { DirectorsMode } from "~/pages/directors-mode";
 import { Home } from "~/pages/home";
-import { VideoPlayer } from "~/remotion/player";
+import { VideoPlayer } from "~/pages/video-player";
 import { Shell } from "~/shell";
 
 export const HOME_ROUTE = "/";
@@ -16,7 +17,11 @@ export const ROUTES: TRouteObjects = [
         Component: Home,
       },
       {
-        path: "/video",
+        path: "/directors-mode",
+        Component: DirectorsMode,
+      },
+      {
+        path: "/video-player",
         Component: VideoPlayer,
       },
       {

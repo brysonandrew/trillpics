@@ -9,11 +9,10 @@ export const STORAGE = {
     durationInFrames:
       state.durationInFrames,
     isPlayerOpen: state.isPlayerOpen,
-    isVideoMode: state.isVideoMode,
     picsCount: state.picsCount,
     picsEntries: state.picsEntries,
     videoPics: state.videoPics,
-    milestones: state.milestones,
+    // milestones: state.milestones,
   }),
   storage:
     createJSONStorage<TVideoState>(

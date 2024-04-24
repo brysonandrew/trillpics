@@ -1,7 +1,7 @@
 import { TVideoState } from "src/store/types";
 import { shuffle } from "~/utils/array/shuffle";
 import { TImmerState } from "~/store";
-import { DEFAULT_FPS } from "~/remotion/constants";
+import { DEFAULT_FPS } from "~/constants/remotion";
 import { clampNumbers } from "~/utils/number/clamp-numbers";
 import precachePics from "~app/precache.json";
 const { length: picsCount } =
@@ -51,7 +51,6 @@ export const initStoreState: TImmerState =
       }));
     },
     videoPics: [],
-    isVideoMode: false,
     isPlayerOpen: false,
     togglePlayer: (next?: boolean) => {
       set((prev: TVideoState) => {
@@ -60,18 +59,6 @@ export const initStoreState: TImmerState =
 
         return {
           isPlayerOpen,
-        };
-      });
-    },
-    toggleVideoMode: (
-      next?: boolean
-    ) => {
-      set((prev: TVideoState) => {
-        const isVideoMode =
-          next ?? !prev.isVideoMode;
-        return {
-          isVideoMode,
-          isPlayerOpen: false,
         };
       });
     },

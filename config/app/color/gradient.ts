@@ -89,7 +89,7 @@ export const RADIAL_TEAL_YELLOW_PINK =
   });
 
 export const GRADIENT_BORDER_COMMON = {
-  "border-width": 2,
+  "border-width": "2px",
   "border-style": "solid",
   "border-image-slice": 1,
 };
@@ -100,3 +100,13 @@ export const GRADIENT_TEXT_COMMON = {
   "-webkit-text-stroke":
     "8px transparent",
 };
+export const GRADIENT_ZEBRA = resolveGradient({
+  name: "repeating-linear-gradient",
+  parts: [
+    "to top left",
+    "black",
+    "black 40px",
+    "white 40px",
+    "white 80px",
+  ],
+});

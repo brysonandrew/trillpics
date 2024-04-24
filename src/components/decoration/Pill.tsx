@@ -9,7 +9,7 @@ import { TChildren } from "@brysonandrew/config-types";
 import { Glow } from "~/components/decoration/glow";
 import { DecorationNet } from "~/components/decoration/background/net";
 
-type TProps =
+export type TPillProps =
   HTMLMotionProps<"span"> & {
     classValue?: ClassValue;
     gradient?: TGradientShortcut;
@@ -17,7 +17,7 @@ type TProps =
     isActive?: boolean;
     children: TChildren;
   };
-export const Pill: FC<TProps> = ({
+export const Pill: FC<TPillProps> = ({
   isCircle,
   classValue,
   gradient,

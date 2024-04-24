@@ -1,4 +1,4 @@
-import type { FC } from "react";
+import { FC, useRef } from "react";
 import {
   PillB,
   TPillBProps,
@@ -14,16 +14,23 @@ export const PillBHover: FC<TProps> = ({
   children = title,
   ...props
 }) => {
+  const hasLeftRef =
+    useRef(false);
   const { isHover, handlers } =
     useHoverKey(NONE_CURSOR_KEY, title);
-
+  const handleMouseLeave = () => {
+    hasLeftRef.current = true;
+  };
   return (
     <PillB
       title={title}
+      onMouseOut={handleMouseLeave}
       {...handlers}
       {...props}
     >
-      {isHover ? children : ""}
+      {isHover && hasLeftRef.current
+        ? children
+        : ""}
     </PillB>
   );
 };

@@ -9,9 +9,9 @@ import { TCircleProps } from "~/components/decoration/circle/circle";
 import { resolveInteractiveLabels } from "@brysonandrew/utils-attributes";
 import { TFlatProps } from "~/types/ui";
 import { FADE_PRESENCE_DELAY_02 } from "~/constants/animation";
-import { DecorationNet } from "~/components/decoration/background/net";
 import { Glow } from "~/components/decoration/glow";
 import { useBorderStyleMd } from "~/components/buttons/use-border-style/md";
+import { resolvePresence } from "@brysonandrew/motion-core";
 
 export type TPillBProps =
   TButtonMotionProps &
@@ -38,7 +38,8 @@ export const PillB: FC<TPillBProps> = ({
   const {
     minHeight,
     minWidth,
-    ...smCircleStyle
+    boxShadow,
+    borderRadius,
   } = circleStyle;
 
   return (
@@ -58,7 +59,9 @@ export const PillB: FC<TPillBProps> = ({
       )}
       layout
       style={{
-        ...circleStyle,
+        minHeight,
+        minWidth,
+        borderRadius,
         ...style,
       }}
       {...props}
@@ -70,11 +73,31 @@ export const PillB: FC<TPillBProps> = ({
         <Glow classValue="-inset-1 opacity-30" />
       )}
       <motion.div
-        layout
         className="center relative p-1 _net-gradient"
-        style={smCircleStyle}
+        layout
+        style={{
+          borderRadius,
+        }}
       >
         <Icon />
+        <motion.div
+          layout
+          style={{
+            boxShadow,
+            borderRadius,
+          }}
+          className="fill"
+          {...resolvePresence(
+            { opacity: 0 },
+            {
+              opacity: [0, 0.6, 0.2],
+              transition: {
+                duration: 1,
+                ease: "linear",
+              },
+            }
+          )}
+        />
       </motion.div>
       <>
         {children && (
