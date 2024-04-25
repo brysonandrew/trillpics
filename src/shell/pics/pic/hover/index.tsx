@@ -4,26 +4,26 @@ import clsx from "clsx";
 import { PillB } from "~/components/buttons/pill/b";
 import { IconsPicZoomIn24 } from "~/components/icons/pic/zoom-in/24";
 import { FADE_PRESENCE } from "~/constants/animation";
-import { TUseBox } from "~/shell/pics/pic/box";
+import { TUseBoxChildProps } from "~/shell/pics/pic/box/use-box";
 import {
   TUsePicHoverConfig,
   usePicHover,
 } from "~/shell/pics/pic/hover/use-pic-hover";
+import { TPropsWithChildren } from "@brysonandrew/config-types";
 
 export type TPicHoverProps =
   TUsePicHoverConfig &
     Pick<
-      TUseBox,
+      TUseBoxChildProps,
       | "isHover"
-      | "isDirectorsMode"
       | "onToggle"
     >;
 export const PicHover: FC<
-  TPicHoverProps
+  TPropsWithChildren<TPicHoverProps>
 > = ({
   isHover,
-  isDirectorsMode,
   onToggle,
+  children,
   ...props
 }) => {
   const { isControls } =
@@ -39,16 +39,7 @@ export const PicHover: FC<
           )}
           {...FADE_PRESENCE}
         >
-          {isDirectorsMode ? (
-            <PillB
-              isFlat
-              title="Zoom pic"
-              Icon={IconsPicZoomIn24}
-              onClick={onToggle}
-            />
-          ) : (
-            <IconsPicZoomIn24 />
-          )}
+          {children}
         </motion.div>
       )}
     </>

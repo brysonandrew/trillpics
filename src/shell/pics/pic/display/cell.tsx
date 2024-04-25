@@ -1,21 +1,25 @@
 import type { FC } from "react";
 import { resolvePresence } from "@brysonandrew/motion-core";
-import {
-  PicDisplay,
-  TPicDisplayProps,
-} from "~/shell/pics/pic/display";
+import { PicDisplay } from "~/shell/pics/pic/display";
 import { FULLSCREEN_Z } from "~/constants/dom";
-import { TUseBox } from "~/shell/pics/pic/box";
-import { useVideoStore } from "~/store";
+import { TUseBoxChildProps } from "~/shell/pics/pic/box/use-box";
+import { TImgMotionProps } from "@brysonandrew/config-types";
 
 export const PicDisplayCell: FC<
-  TPicDisplayProps & TUseBox
+  TUseBoxChildProps &
+    Pick<TImgMotionProps, "onTap">
 > = (props) => {
   const {
-    frontCheckState: [isFront],
+    frontCheckState: [
+      isFront,
+      setFront,
+    ],
   } = props;
-  const { removeVideo, addVideo } =
-    useVideoStore();
+
+  const handleLayoutAnimationComplete =
+    () => {
+      setFront(false);
+    };
   return (
     <PicDisplay
       style={{
@@ -35,15 +39,8 @@ export const PicDisplayCell: FC<
             { opacity: 0.9 },
             { opacity: 1 }
           ))}
-      onTap={
-        props.isDirectorsMode
-          ? () =>
-              props.videoOrder > -1
-                ? removeVideo(
-                    props.name
-                  )
-                : addVideo(props.name)
-          : props.onToggle
+      onLayoutAnimationComplete={
+        handleLayoutAnimationComplete
       }
       {...props}
     />

@@ -11,7 +11,6 @@ export const VideoPlayer = () => {
   const {
     Header,
     Footer,
-    FooterLeft,
     Screen,
   } =
     useOutletContext<TOutletContext>();

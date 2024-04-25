@@ -1,18 +1,10 @@
 import { animate } from "framer-motion";
-import { useTimeoutRef } from "@brysonandrew/hooks-window";
 import { useScroll } from "~/context/scroll";
 
 export const useScrollTopHandler =
   () => {
-    const {
-      isScrolling,
-      isScroll,
-      listRef,
-      onMotionBlurEnd,
-      onMotionBlurStart,
-    } = useScroll();
-    const { timeoutRef, endTimeout } =
-      useTimeoutRef();
+    const { isScroll, listRef } =
+      useScroll();
     const { blurY, blurYRef } =
       useScroll();
 
@@ -37,5 +29,5 @@ export const useScrollTopHandler =
       );
     };
 
-    return {handler,isScroll};
+    return { handler, isScroll };
   };

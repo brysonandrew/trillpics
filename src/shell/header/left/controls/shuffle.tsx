@@ -17,8 +17,6 @@ export const ControlsShuffle: FC =
         blurX,
         100,
         {
-          // type: "spring",
-          // duration: 1,
           type: "tween",
           onComplete: () =>
             blurX.set(prev),

@@ -3,18 +3,16 @@ import { motion } from "framer-motion";
 import { IconsPicZoomOut } from "~/components/icons/pic/zoom-out";
 import {
   TUsePicBackdrop,
-  TUsePicBackdropConfig,
   usePicBackdrop,
 } from "~/shell/pics/pic/backdrop/use-backdrop";
 import { FULLSCREEN_Z } from "~/constants/dom";
-import { TUseBox } from "~/shell/pics/pic/box";
+import { TUseBoxChildProps } from "~/shell/pics/pic/box/use-box";
 
-type TProps = TUseBox &
-  TUsePicBackdropConfig & {
-    children(
-      props: TUsePicBackdrop
-    ): JSX.Element;
-  };
+type TProps = TUseBoxChildProps & {
+  children(
+    props: TUsePicBackdrop
+  ): JSX.Element;
+};
 export const PicBackdrop: FC<
   TProps
 > = ({

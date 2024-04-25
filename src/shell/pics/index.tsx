@@ -1,19 +1,28 @@
 import { FC } from "react";
 import { ScrollbarSeam } from "~/components/layout/scrollbar-seam";
+import { TPicProps } from "~/shell/pics/pic";
 import { TableInfinite } from "~/shell/pics/table-infinite";
-import { usePicsTable } from "~/shell/pics/use-pics-table";
-import { useColumns } from "./columns/useColumns";
+import { TPicsTable } from "~/shell/pics/use-pics-table";
+import { usePicsColumns } from "./columns";
 
-export const List: FC = () => {
+type TProps = {
+  PicFc?: FC<TPicProps>;
+  picsTable: TPicsTable;
+};
+export const Pics: FC<TProps> = ({
+  picsTable,
+  PicFc
+}) => {
   const {
     rows,
     size: _size,
     isVerticalScroll,
-  } = usePicsTable();
+  } = picsTable;
   const size = _size - 4;
-  const columns = useColumns(
+  const columns = usePicsColumns(
     rows,
-    size
+    size,
+    PicFc
   );
   if (rows.length === 0) {
     return <div>no pics</div>;

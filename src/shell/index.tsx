@@ -5,7 +5,7 @@ import { withProviders } from "~/shell/providers/withProviders";
 import { Global } from "~/shell/global";
 import { DecorationNet } from "~/components/decoration/background/net";
 import { Header } from "~/shell/header";
-import { List } from "~/shell/pics";
+import { Pics } from "~/shell/pics";
 import { BlurXy } from "~/components/blur/xy";
 import { Footer } from "~/shell/footer";
 import { FooterLeft } from "~/shell/footer/left";
@@ -14,6 +14,10 @@ import { HeaderLeft } from "~/shell/header/left";
 import { HeaderRight } from "~/shell/header/right";
 import { Screen } from "~/shell/screen";
 import { FadeV } from "@brysonandrew/fade-edge";
+import {
+  TPicsTable,
+  usePicsTable,
+} from "~/shell/pics/use-pics-table";
 
 const OUTLET_CONTEXT = {
   Header,
@@ -21,24 +25,31 @@ const OUTLET_CONTEXT = {
   HeaderRight,
   Screen,
   Footer,
+  Pics,
   FooterLeft,
 } as const;
 export type TOutletContext =
-  typeof OUTLET_CONTEXT;
+  typeof OUTLET_CONTEXT & {
+    picsTable: TPicsTable;
+  };
 const C = () => {
+  const picsTable = usePicsTable();
   useOnscreenRef();
   return (
     <Global>
       <DecorationNet />
-      <BlurXy/>
-      <List />
+      <BlurXy />
       <FadeV
         classValue="z-0"
         darkEdgeColor="var(--dark-06)"
         lightEdgeColor="var(--light-02)"
       />
+      <Pics picsTable={picsTable} />
       <Outlet
-        context={OUTLET_CONTEXT}
+        context={{
+          ...OUTLET_CONTEXT,
+          picsTable,
+        }}
       />
       <Notifications />
     </Global>

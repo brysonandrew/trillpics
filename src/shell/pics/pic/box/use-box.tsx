@@ -1,4 +1,4 @@
-import { FC, useState } from "react";
+import { useState } from "react";
 import {
   useHoverKey,
   NONE_CURSOR_KEY,
@@ -8,13 +8,11 @@ import {
   useNavigate,
 } from "react-router";
 import { useSearchParams } from "react-router-dom";
-import { DIRECTORS_MODE_PATH_VALUE } from "~/constants/params";
-import { useNavigationControls } from "~/hooks/use-navigation/controls";
 import { TPicProps } from "~/shell/pics/pic";
 import { useVideoStore } from "~/store";
 import { squareFromSize } from "~/utils/dimensions/square-from-size";
 import { usePicZoomedCheck } from "~/shell/pics/pic/hooks/zoomed-check";
-import { SEARCH_PARAM_ID } from "~/shell/pics/pic/display/use-display";
+import { SEARCH_PARAM_ID } from "~/shell/pics/pic/display";
 
 type TConfig = TPicProps;
 export const useBox = ({
@@ -25,12 +23,7 @@ export const useBox = ({
   const { videoPics } = useVideoStore();
   const frontCheckState =
     useState<boolean>(false);
-  const [isFront, setFront] =
-    frontCheckState;
-  const { isActive: isDirectorsMode } =
-    useNavigationControls(
-      DIRECTORS_MODE_PATH_VALUE
-    );
+  const [_, setFront] = frontCheckState;
 
   const name =
     cell.row.original.cols[colIndex];
@@ -90,7 +83,6 @@ export const useBox = ({
     onToggle,
     onZoomIn,
     onZoomOut,
-    isDirectorsMode,
     videoOrder,
     isHover,
     isPicZoomed,
@@ -99,3 +91,10 @@ export const useBox = ({
     frontCheckState,
   };
 };
+export type TUseBox = ReturnType<
+  typeof useBox
+>;
+export type TUseBoxChildProps = Omit<
+  TUseBox,
+  "isPicZoomed"
+>;

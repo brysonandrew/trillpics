@@ -32,7 +32,6 @@ export const Providers: FC<TProps> = ({
         NetworkProvider,
         DarkModeProvider,
         BaseProvider,
-        ScrollProvider,
         UserProvider,
         ViewportProvider,
       ],
@@ -41,5 +40,5 @@ export const Providers: FC<TProps> = ({
     ); 
   }, []);
 
-  return <>{children}</>;
+  return <ScrollProvider>{children}</ScrollProvider>;
 };

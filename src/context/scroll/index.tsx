@@ -22,7 +22,7 @@ import type {
   FixedSizeList,
 } from "react-window";
 import { useTimeoutRef } from "@brysonandrew/hooks-window";
-import { SEARCH_PARAM_ID } from "~/shell/pics/pic/directors-mode/use-pic-directors-mode";
+import { SEARCH_PARAM_ID } from "~/shell/pics/pic/directors-mode/controls/use-pic-directors-mode";
 export type TState = {
   isScrolling: boolean;
   isScroll: boolean;
@@ -48,8 +48,8 @@ export const CONTEXT: TContext = {
 
 export type TContext = TState & {
   listRef: MutableRefObject<any>;
-  blurXRef: MutableRefObject<any>;
-  blurYRef: MutableRefObject<any>;
+  blurXRef: MutableRefObject<AnimationPlaybackControls | null>;
+  blurYRef: MutableRefObject<AnimationPlaybackControls | null>;
   blurX: MotionValue<number>;
   blurY: MotionValue<number>;
 

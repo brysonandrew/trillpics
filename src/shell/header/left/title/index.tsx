@@ -1,5 +1,4 @@
 import type { FC } from "react";
-import { useScroll } from "~/context/scroll";
 import { TitleText } from "~/shell/header/left/title/text";
 import { SparkleButton } from "~/shell/header/left/title/sparkle-button";
 import { Glow } from "~/components/decoration/glow";

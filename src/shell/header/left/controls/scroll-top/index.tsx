@@ -20,17 +20,8 @@ export const ScrollTop: FC<
       title={title}
       onClick={handler}
       Icon={IconsArrowsUp2}
-      // style={{ filter }}
     >
       {title}
     </PillBHover>
-    // <SelfDestruct<TBlurPresenceProps>
-    //   filterProps={{ id: "scrolltop" }}
-    //   Filter={BlurPresence}
-    // >
-    //   {(filter) => (
-
-    //   )}
-    // </SelfDestruct>
   );
 };

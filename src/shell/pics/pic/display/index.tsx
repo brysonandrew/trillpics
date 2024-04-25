@@ -1,28 +1,31 @@
 import type { FC } from "react";
 import { motion } from "framer-motion";
-import {
-  TUsePicDisplayConfig,
-  usePicDisplay,
-} from "~/shell/pics/pic/display/use-display";
 import { TUsePicBackdrop } from "~/shell/pics/pic/backdrop/use-backdrop";
-import { TUseBox } from "~/shell/pics/pic/box";
+import { TUseBoxChildProps } from "~/shell/pics/pic/box/use-box";
 import { TImgMotionProps } from "@brysonandrew/config-types";
+import { resolvePicSrc } from "~/utils/src";
+export const SEARCH_PARAM_ID = "open";
 
 export type TPicDisplayProps = Pick<
   TImgMotionProps,
-  "style" | "onTap"
+  | "style"
+  | "onTap"
+  | "onLayoutAnimationComplete"
 > &
-  TUsePicDisplayConfig &
-  Pick<TUseBox, "cellDimensions"> &
+  Pick<
+    TUseBoxChildProps,
+    "cellDimensions" | "name"
+  > &
   Partial<TUsePicBackdrop>;
 export const PicDisplay: FC<
   TPicDisplayProps
-> = ({ style, onTap, ...props }) => {
-  const {
-    src,
-    onLayoutAnimationComplete,
-  } = usePicDisplay(props);
-  const { name } = props;
+> = ({
+  style,
+  onTap,
+  onLayoutAnimationComplete,
+  name,
+}) => {
+  const src = resolvePicSrc(name);
   return (
     <motion.img
       key={src}

@@ -1,10 +1,10 @@
-import { TUseBox } from "~/shell/pics/pic/box";
+import { TUseBoxChildProps } from "~/shell/pics/pic/box/use-box";
 import { useVideoStore } from "~/store";
 
 export const SEARCH_PARAM_ID = "open";
 
 export type TUsePicHoverConfig = Pick<
-  TUseBox,
+  TUseBoxChildProps,
   "videoOrder"
 >;
 export const usePicHover = ({

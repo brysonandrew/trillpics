@@ -12,34 +12,32 @@ export type TRow = {
   cols: TPics;
 };
 export const usePicsTable = () => {
-  const {
-    pics,
-    countPicsEntries,
-    countPics,
-  } = useVideoStore(
-    useShallow(
-      ({
-        pics,
-        countPicsEntries,
-        countPics,
-      }) => ({
-        pics,
-        countPicsEntries,
-        countPics,
-      })
-    )
-  );
+  const { pics, countPics } =
+    useVideoStore(
+      useShallow(
+        ({ pics, countPics }) => ({
+          pics,
+          countPics,
+        })
+      )
+    );
   const viewport = useViewport();
   const { isDimensions, isResizing } =
     viewport;
-
-  const count = countPicsEntries();
-  const currPics = pics();
-  const picsCount = countPics();
-
   const results = useMemo(() => {
+    console.log(
+      "usePicsTable MEMOTRIGGERED"
+    );
     if (!isDimensions)
       return { rows: [], size: 0 };
+    const currPics = pics();
+    const picsCount = currPics.length;
+
+    console.log(
+      "usePicsTable MEMOTRIGGERED CALC"
+    );
+
+    // const count = countPicsEntries();
 
     const colsCount = Math.ceil(
       viewport.width / APPROX_IMAGE_SIZE
@@ -60,6 +58,7 @@ export const usePicsTable = () => {
 
         return item;
       });
+
       return {
         cols,
       };
@@ -78,13 +77,7 @@ export const usePicsTable = () => {
       size,
       isVerticalScroll,
     };
-  }, [
-    count,
-    currPics,
-    picsCount,
-    isDimensions,
-    isResizing,
-  ]);
+  }, [pics, isDimensions, isResizing]);
   return results;
 };
 

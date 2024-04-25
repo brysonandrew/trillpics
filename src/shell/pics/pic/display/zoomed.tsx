@@ -1,7 +1,7 @@
 import type { FC } from "react";
 import { FULLSCREEN_Z } from "~/constants/dom";
 import { TUsePicBackdrop } from "~/shell/pics/pic/backdrop/use-backdrop";
-import { TUseBox } from "~/shell/pics/pic/box";
+import { TUseBoxChildProps } from "~/shell/pics/pic/box/use-box";
 import {
   PicDisplay,
   TPicDisplayProps,
@@ -11,7 +11,7 @@ import { centerInViewport } from "~/utils/dimensions/center-in-viewport";
 export const PicDisplayZoomed: FC<
   TPicDisplayProps &
     TUsePicBackdrop &
-    TUseBox
+    TUseBoxChildProps
 > = (props) => {
   return (
     <PicDisplay
