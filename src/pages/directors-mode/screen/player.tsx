@@ -1,28 +1,33 @@
 import type { FC } from "react";
 import { IconsPlay } from "~/components/icons/playback/play";
-import { useVideoStore } from "~/store";
 import { PillBHover } from "~/components/buttons/pill/b/hover";
 import { useNavigationControls } from "~/hooks/use-navigation/controls";
 import { VIDEO_PLAYER_PATH_VALUE } from "~/constants/params";
+import { TDirectorsModeFooterProps } from "~/pages/directors-mode/footer/types";
 
-export const ControlsPlayer: FC =
-  () => {
-    const {} = useVideoStore();
-
-    const { togglePathValue } =
-      useNavigationControls(
-        VIDEO_PLAYER_PATH_VALUE
-      );
-    const handleClick = () => {
-      togglePathValue();
-    };
-    return (
-      <PillBHover
-        title={"View video preview"}
-        onClick={handleClick}
-        Icon={IconsPlay}
-      >
-        Preview Video
-      </PillBHover>
+export const ControlsPlayer: FC<
+  TDirectorsModeFooterProps
+> = ({
+  Button = PillBHover,
+  title,
+  ...props
+}) => {
+  const { togglePathValue } =
+    useNavigationControls(
+      VIDEO_PLAYER_PATH_VALUE
     );
+  const handleClick = () => {
+    togglePathValue();
   };
+  return (
+    <Button
+      title={title ?? "View video preview"}
+      onClick={handleClick}
+      Icon={IconsPlay}
+      {...props}
+    >
+     
+      {title ?? "Preview Video"}
+    </Button>
+  );
+};

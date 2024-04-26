@@ -1,9 +1,9 @@
 import type { FC } from "react";
-import { resolvePresence } from "@brysonandrew/motion-core";
 import { PicDisplay } from "~/shell/pics/pic/display";
 import { FULLSCREEN_Z } from "~/constants/dom";
 import { TUseBoxChildProps } from "~/shell/pics/pic/box/use-box";
 import { TImgMotionProps } from "@brysonandrew/config-types";
+import { resolvePresence } from "@brysonandrew/motion-core";
 
 export const PicDisplayCell: FC<
   TUseBoxChildProps &

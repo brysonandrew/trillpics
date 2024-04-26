@@ -17,7 +17,7 @@ export const useBorderStyleMd = (
         }
       : {
           boxShadow:
-            "0 0 1px 1px rgba(255,255,255,0.2)",
+            "0 0 1px 1px rgba(255,255,255,0.4)",
         }),
   };
 };

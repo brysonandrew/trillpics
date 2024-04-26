@@ -1,27 +1,13 @@
-import type {
-  CSSProperties,
-  FC,
-} from "react";
+import type { FC } from "react";
+import { TPillBProps } from "~/components/buttons/pill/b";
 import { PillBHover } from "~/components/buttons/pill/b/hover";
-import { IconsArrowsUp2 } from "~/components/icons/arrows/up2";
-import { useScrollTopHandler } from "~/shell/header/left/controls/scroll-top/use-scroll-top-handler";
 
 export const ScrollTop: FC<
-  CSSProperties
-> = () => {
-  const { isScroll, handler } =
-    useScrollTopHandler();
-
-  const title = "Go back";
-
-  if (!isScroll) return null;
+  TPillBProps
+> = ({ children, ...props }) => {
   return (
-    <PillBHover
-      title={title}
-      onClick={handler}
-      Icon={IconsArrowsUp2}
-    >
-      {title}
+    <PillBHover {...props}>
+      {children}
     </PillBHover>
   );
 };

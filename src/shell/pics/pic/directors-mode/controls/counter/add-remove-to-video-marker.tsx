@@ -1,7 +1,7 @@
 import type { FC } from "react";
 import { motion } from "framer-motion";
-import { TRANSITION } from "@brysonandrew/motion-core";
 import { IconsCross24 } from "~/components/icons/cross/24";
+import { TRANSITION } from "@brysonandrew/motion-config-constants";
 
 type TProps = { isAdded: boolean };
 export const AddRemoveToVideoMarker: FC<

@@ -6,26 +6,23 @@ import { TPicsTable } from "~/shell/pics/use-pics-table";
 import { usePicsColumns } from "./columns";
 
 type TProps = {
-  PicFc?: FC<TPicProps>;
   picsTable: TPicsTable;
 };
 export const Pics: FC<TProps> = ({
   picsTable,
-  PicFc
 }) => {
   const {
     rows,
     size: _size,
     isVerticalScroll,
   } = picsTable;
-  const size = _size - 4;
+  const size = _size - 6;
   const columns = usePicsColumns(
     rows,
     size,
-    PicFc
   );
   if (rows.length === 0) {
-    return <div>no pics</div>;
+    return <div className='px-4'>no pics</div>;
   }
 
   return (

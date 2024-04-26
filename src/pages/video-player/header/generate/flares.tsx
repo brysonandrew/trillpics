@@ -1,6 +1,6 @@
 import type { FC } from "react";
 import { Glow } from "~/components/decoration/glow";
-import { resolvePresence } from "@brysonandrew/motion-core";
+import { resolvePresence } from "~/utils/animation";
 
 const COUNT = 4;
 

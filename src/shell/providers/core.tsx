@@ -2,24 +2,24 @@ import {
   AppProvider,
   TAppProviderProps,
   TLayoutOptionsRecord,
-} from '@brysonandrew/app';
-import { TChildrenProps } from '@brysonandrew/config-types/dom';
-import { FC } from 'react';
+} from "@brysonandrew/app";
+import { TChildrenProps } from "@brysonandrew/config-types/dom";
+import { FC } from "react";
 import {
   CUSTOM_STYLE,
   TCustomStyle,
-} from '~app/style';
-import { APP_BASE_PROPS } from '~app/base';
-import { AppInit } from '@brysonandrew/app/AppInit';
-import { arrToChainedValueNest } from '@brysonandrew/layout-utils/arrToChainedValueNest';
-import { LayoutPlaceholder } from '@brysonandrew/layout-placeholder';
+} from "~app/style";
+import { APP_BASE_PROPS } from "~app/base";
+import { AppInit } from "@brysonandrew/app/AppInit";
+import { arrToChainedValueNest } from "@brysonandrew/layout-utils/arrToChainedValueNest";
+import { LayoutPlaceholder } from "@brysonandrew/layout-placeholder";
 
 type TLayoutOptions =
   TLayoutOptionsRecord;
-export type TApp = TCustomStyle &
+export type TCore = TCustomStyle &
   TLayoutOptions;
 type TProps = TChildrenProps;
-export const App: FC<TProps> = ({
+export const Core: FC<TProps> = ({
   children,
 }) => {
   return (
@@ -28,7 +28,7 @@ export const App: FC<TProps> = ({
       {...APP_BASE_PROPS}
     >
       {(
-        value: TAppProviderProps<TCustomStyle>,
+        value: TAppProviderProps<TCustomStyle>
       ) => (
         <>
           {arrToChainedValueNest<
@@ -36,14 +36,14 @@ export const App: FC<TProps> = ({
           >(
             [LayoutPlaceholder],
             (
-              nextValue: TAppProviderProps<TCustomStyle>,
+              nextValue: TAppProviderProps<TCustomStyle>
             ) => (
               <AppProvider<TCustomStyle>
                 {...nextValue}
               >
                 {children}
               </AppProvider>
-            ),
+            )
           )(value)}
         </>
       )}

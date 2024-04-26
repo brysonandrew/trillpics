@@ -1,5 +1,5 @@
 import { useRef } from "react";
-import { useViewportPresence } from "@brysonandrew/motion-cursor/hooks/useViewportPresence";
+import { useViewportPresence } from "~/hooks/use-viewport-presence";
 import { useVideoStore } from "~/store";
 
 export const useOnscreenRef = () => {

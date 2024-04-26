@@ -1,29 +1,34 @@
 import { NotFound } from "@brysonandrew/not-found";
-import { TRouteObjects } from "@brysonandrew/routes";
-import { DirectorsMode } from "~/pages/directors-mode";
-import { Home } from "~/pages/home";
-import { VideoPlayer } from "~/pages/video-player";
+import {
+  TRouteObjects,
+  resolveRouteRecords,
+} from "@brysonandrew/routes";
 import { Shell } from "~/shell";
+import * as Pages from "~/pages";
 
-export const HOME_ROUTE = "/";
-
+export const routeRecords =
+  resolveRouteRecords<
+    keyof typeof Pages,
+    typeof Pages
+  >(
+    [
+      "Index",
+      "DirectorsMode",
+      "VideoPlayer",
+    ],
+    Pages
+  );
+export const {
+  record,
+  routes,
+  values,
+} = routeRecords;
 export const ROUTES: TRouteObjects = [
   {
     path: "/",
     Component: Shell,
     children: [
-      {
-        index: true,
-        Component: Home,
-      },
-      {
-        path: "/directors-mode",
-        Component: DirectorsMode,
-      },
-      {
-        path: "/video-player",
-        Component: VideoPlayer,
-      },
+      ...routes,
       {
         path: "*",
         Component: NotFound,
@@ -31,3 +36,4 @@ export const ROUTES: TRouteObjects = [
     ],
   },
 ];
+export const HOME_ROUTE = record.index;

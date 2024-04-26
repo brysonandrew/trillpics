@@ -1,7 +1,6 @@
 import { type FC } from "react";
 import { Notifications } from "~/components/notifications";
 import { Outlet } from "react-router";
-import { withProviders } from "~/shell/providers/withProviders";
 import { Global } from "~/shell/global";
 import { DecorationNet } from "~/components/decoration/background/net";
 import { Header } from "~/shell/header";
@@ -18,6 +17,7 @@ import {
   TPicsTable,
   usePicsTable,
 } from "~/shell/pics/use-pics-table";
+import { withProviders } from "~/shell/providers/with-providers";
 
 const OUTLET_CONTEXT = {
   Header,
@@ -25,9 +25,9 @@ const OUTLET_CONTEXT = {
   HeaderRight,
   Screen,
   Footer,
-  Pics,
   FooterLeft,
 } as const;
+
 export type TOutletContext =
   typeof OUTLET_CONTEXT & {
     picsTable: TPicsTable;
@@ -37,7 +37,7 @@ const C = () => {
   useOnscreenRef();
   return (
     <Global>
-      <DecorationNet />
+      <DecorationNet opacityClassValue='opacity-100' />
       <BlurXy />
       <FadeV
         classValue="z-0"

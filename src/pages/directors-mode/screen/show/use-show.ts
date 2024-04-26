@@ -2,6 +2,7 @@ import { useRef } from "react";
 import { animate } from "framer-motion";
 import { useScroll } from "~/context/scroll";
 import { useVideoStore } from "~/store/index";
+import { useShallow } from "zustand/react/shallow";
 
 export const useShow = () => {
   const {
@@ -10,7 +11,23 @@ export const useShow = () => {
     countPics,
     updatePicsEntries,
     isPlayerOpen,
-  } = useVideoStore();
+  } = useVideoStore(
+    useShallow(
+      ({
+        picsEntries,
+        videoPics,
+        countPics,
+        updatePicsEntries,
+        isPlayerOpen,
+      }) => ({
+        picsEntries,
+        videoPics,
+        countPics,
+        updatePicsEntries,
+        isPlayerOpen,
+      })
+    )
+  );
   const showAllIndexRef = useRef<
     number | null
   >(null);
@@ -26,8 +43,6 @@ export const useShow = () => {
       blurX,
       100,
       {
-        // type: "spring",
-        // duration: 1,
         type: "tween",
         onComplete: () =>
           blurX.set(prev),

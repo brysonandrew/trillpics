@@ -25,19 +25,10 @@ export const usePicsTable = () => {
   const { isDimensions, isResizing } =
     viewport;
   const results = useMemo(() => {
-    console.log(
-      "usePicsTable MEMOTRIGGERED"
-    );
     if (!isDimensions)
       return { rows: [], size: 0 };
     const currPics = pics();
     const picsCount = currPics.length;
-
-    console.log(
-      "usePicsTable MEMOTRIGGERED CALC"
-    );
-
-    // const count = countPicsEntries();
 
     const colsCount = Math.ceil(
       viewport.width / APPROX_IMAGE_SIZE

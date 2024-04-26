@@ -8,17 +8,13 @@ import { IconsGenerate } from "~/components/icons/video/generate";
 import { trpc } from "~/utils/trpc";
 import { TGenerateProps } from "~/server/generate";
 import { downloadMedia } from "~/pages/video-player/header/generate/download-media";
-import {
-  NONE_CURSOR_KEY,
-  useHoverKey,
-} from "@brysonandrew/motion-cursor";
 import { AURA } from "@brysonandrew/svg-filter";
-import { resolvePresence } from "@brysonandrew/motion-core";
+import { resolvePresence } from "~/utils/animation";
 import { resolveCompositeKey } from "@brysonandrew/utils-key";
 import { useBorderStyleMd } from "~/components/buttons/use-border-style/md";
 import { Metal } from "@brysonandrew/texture-metal";
 import { TGenerateInput } from "~/types/trpc/generate";
-import { z } from "zod";
+import { useHoverKey } from "~/hooks/use-hover-key";
 
 const DEFAULT: TGenerateInput = {
   input: {
@@ -30,15 +26,13 @@ const DEFAULT: TGenerateInput = {
 export const Generate = () => {
   const { videoPics, fps } =
     useVideoStore();
-  const { isHover, handlers } =
-    useHoverKey(
-      NONE_CURSOR_KEY,
-      "generate"
-    );
+  const { handlers, isHover } =
+    useHoverKey();
   const config: TGenerateProps = {
     input: { pics: videoPics },
     fps,
   };
+  const title = "Generate";
 
   // const dl = async (blob: Blob) => {};
 
@@ -63,7 +57,9 @@ export const Generate = () => {
       if (
         result.buffer &&
         "data" in result.buffer &&
-        Array.isArray(result.buffer.data)
+        Array.isArray(
+          result.buffer.data
+        )
       ) {
         const arr = new Uint8Array(
           result.buffer.data ?? []
@@ -79,7 +75,8 @@ export const Generate = () => {
     mutate(config);
   };
 
-  const isAura = isHover || isLoading;
+  const isAura =
+    isHover(title) || isLoading;
   const AURA_TRANSITION = {
     transition: {
       duration: 0.6,
@@ -129,7 +126,7 @@ export const Generate = () => {
             transition: {
               repeat: Infinity,
               repeatDelay: 0.8,
-              duration: isHover
+              duration: isHover(title)
                 ? 0.8
                 : 0,
             },
@@ -141,7 +138,7 @@ export const Generate = () => {
         }}
         Icon={IconsGenerate}
         onClick={handleGenerate}
-        {...handlers}
+        {...handlers(title)}
       >
         Generate
       </PillB>

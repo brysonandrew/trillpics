@@ -11,17 +11,19 @@ import { TFlatProps } from "~/types/ui";
 import { FADE_PRESENCE_DELAY_02 } from "~/constants/animation";
 import { Glow } from "~/components/decoration/glow";
 import { useBorderStyleMd } from "~/components/buttons/use-border-style/md";
-import { resolvePresence } from "@brysonandrew/motion-core";
+import { resolvePresence } from "~/utils/animation";
 
 export type TPillBProps =
   TButtonMotionProps &
     TFlatProps & {
+      Root?: FC<TButtonMotionProps>;
       Icon: FC<TSvgProps>;
       iconProps?: TSvgProps;
       circleProps?: TCircleProps;
       outerCircle?: ReactNode;
     };
 export const PillB: FC<TPillBProps> = ({
+  Root = motion.button,
   Icon,
   title,
   iconProps,
@@ -43,7 +45,7 @@ export const PillB: FC<TPillBProps> = ({
   } = circleStyle;
 
   return (
-    <motion.button
+    <Root
       {...resolveInteractiveLabels(
         title
       )}
@@ -66,9 +68,6 @@ export const PillB: FC<TPillBProps> = ({
       }}
       {...props}
     >
-      {outerCircle && (
-        <>{outerCircle}</>
-      )}
       {!isFlat && (
         <Glow classValue="-inset-1 opacity-30" />
       )}
@@ -99,16 +98,19 @@ export const PillB: FC<TPillBProps> = ({
           )}
         />
       </motion.div>
+      {outerCircle && (
+        <>{outerCircle}</>
+      )}
       <>
         {children && (
           <motion.div
-            className="relative row gap-2 mr-2 -mb-0.75 whitespace-nowrap"
+            className="relative row gap-2 mr-1 -mt-0.25 whitespace-nowrap"
             {...FADE_PRESENCE_DELAY_02}
           >
             {children}
           </motion.div>
         )}
       </>
-    </motion.button>
+    </Root>
   );
 };

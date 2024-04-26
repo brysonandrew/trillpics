@@ -1,8 +1,5 @@
-import {
-  PRESENCE_OPACITY,
-  TRANSITION_02_EASE_IN_02,
-  TRANSITION_02_EASE_IN_04,
-} from "@brysonandrew/motion-core";
+
+import { TRANSITION_02_EASE_IN_04, PRESENCE_OPACITY, TRANSITION_02_EASE_IN_02 } from "@brysonandrew/motion-config-constants";
 import { resolvePresence } from "~/utils/animation";
 
 export const DURATION = 0.2;

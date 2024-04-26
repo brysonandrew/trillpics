@@ -1,5 +1,5 @@
 import { initStoreState } from "~/store/state";
-import { STORAGE } from "~/store/storage";
+import { STORAGE } from "~/store/persist/storage";
 import { TPics, TVideoState } from "src/store/types";
 import { persist } from "zustand/middleware";
 import { immer } from "zustand/middleware/immer";

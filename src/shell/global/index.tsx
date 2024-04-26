@@ -3,17 +3,18 @@ import {
   Fragment,
   PropsWithChildren,
 } from "react";
-import Favicon from "react-favicon";
 import { useApp } from "@brysonandrew/app";
 import { GlobalCss } from "~/shell/global/styles";
 import { useDarkMode } from "@brysonandrew/dark-mode";
-import { Helmet } from "react-helmet-async";
 import { Variables } from "~/css/Variables";
 import { GradientsBluePinkYellow } from "~/components/gradients/blue-pink-yellow";
 import { AURA } from "@brysonandrew/svg-filter";
 import { BlurX } from "~/components/blur/x";
 import { BlurY } from "~/components/blur/y";
-
+import { Helmet } from "react-helmet-async";
+import { Dark } from "~/shell/global/favicon/dark";
+import { Light } from "~/shell/global/favicon/light";
+//
 export const Global: FC<
   PropsWithChildren
 > = ({ children }) => {
@@ -23,18 +24,35 @@ export const Global: FC<
     PLACEHOLDER?.GLOBAL.ClipPath ??
     Fragment;
 
+  const Favicon = isDarkMode
+    ? Dark
+    : Light;
+
   return (
     <>
-      <Favicon
+      {/* <MonoHead.Head
+        pageValues={values}
+        prefix={
+          isDarkMode
+            ? "/logo-dark.svg"
+            : "/logo-light.svg"
+        }
+      /> */}
+      {/* <Favicon
         url={
           isDarkMode
             ? "/logo-dark.svg"
             : "/logo-light.svg"
         }
-      />
-      <Helmet>
-        <title>ᴛʀɪʟʟ ᴘɪᴄs</title>
-      </Helmet>
+      /> */}
+      <Favicon />
+      {/* <Helmet>
+        <link
+          rel="icon"
+          type="image/x-icon"
+          href="/dark/favicon.ico"
+        />
+      </Helmet> */}
       <Variables />
       <PlaceholderClipPath />
       <GradientsBluePinkYellow

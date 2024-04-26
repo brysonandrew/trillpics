@@ -1,15 +1,11 @@
 import {
-  FC,
   useEffect,
   useMemo,
 } from "react";
 import { animate } from "framer-motion";
 import { createColumnHelper } from "@tanstack/react-table";
 import { TRow } from "~/shell/pics/use-pics-table";
-import {
-  Pic as PicHome,
-  TPicProps,
-} from "~/shell/pics/pic";
+import { Pic as PicHome } from "~/shell/pics/pic";
 import { useLocation } from "react-router";
 import { DIRECTORS_MODE_PATH_VALUE } from "~/constants/params";
 import { PicDirectorsMode } from "~/shell/pics/pic/directors-mode";
@@ -17,8 +13,7 @@ import { useScroll } from "~/context/scroll";
 
 export const usePicsColumns = (
   rows: TRow[],
-  size: number,
-  PicFc?: FC<TPicProps>
+  size: number
 ) => {
   const columnHelper =
     createColumnHelper<TRow>();

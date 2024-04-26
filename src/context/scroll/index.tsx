@@ -28,6 +28,24 @@ export type TState = {
   isScroll: boolean;
   isTransitioningGallery: boolean;
 };
+
+export type TContext = TState & {
+  listRef: MutableRefObject<any>;
+  blurXRef: MutableRefObject<AnimationPlaybackControls | null>;
+  blurYRef: MutableRefObject<AnimationPlaybackControls | null>;
+  blurX: MotionValue<number>;
+  blurY: MotionValue<number>;
+  scroll: {
+    x: MotionValue<number>;
+    y: MotionValue<number>;
+  };
+  onUpdate(
+    props: ListOnScrollProps
+  ): void;
+  onMotionBlurStart(): void;
+  onMotionBlurEnd(): void;
+};
+
 export const STATE = {
   isScrolling: false,
   isScroll: false,
@@ -46,22 +64,8 @@ export const CONTEXT: TContext = {
   // onMotionBlurEnd:(): void;
 } as TContext;
 
-export type TContext = TState & {
-  listRef: MutableRefObject<any>;
-  blurXRef: MutableRefObject<AnimationPlaybackControls | null>;
-  blurYRef: MutableRefObject<AnimationPlaybackControls | null>;
-  blurX: MotionValue<number>;
-  blurY: MotionValue<number>;
-
-  onUpdate(
-    props: ListOnScrollProps
-  ): void;
-  onMotionBlurStart(): void;
-  onMotionBlurEnd(): void;
-};
-
-export const SCROLL = 120;
-export const SCROLL_COOLDOWN = 80;
+export const SCROLL = 240;
+export const SCROLL_COOLDOWN = 120;
 
 export const Scroll =
   createContext<TContext>(CONTEXT);
@@ -83,6 +87,8 @@ export const ScrollProvider: FC<
     );
   const blurX = useMotionValue(0);
   const blurY = useMotionValue(0);
+  const scrollX = useMotionValue(0);
+  const scrollY = useMotionValue(0);
 
   const [
     isTransitioningGallery,
@@ -111,17 +117,13 @@ export const ScrollProvider: FC<
   const handleUpdate = (
     props: ListOnScrollProps
   ) => {
-    // animate(
-    //   scrollY,
-    //   props.scrollOffset * 0.001,
-    //   {
-    //     // type: "spring",
-    //     // duration: 1,
-    //     type: "tween",
-    //   }
-    // );
 
     const { scrollOffset } = props;
+    if (!isScroll) {
+      const nextScrollY =
+        1 - scrollOffset * 0.0006;
+      scrollY.set(nextScrollY);
+    }
     if (!isScrolling) {
       searchParams.delete(
         SEARCH_PARAM_ID
@@ -156,6 +158,10 @@ export const ScrollProvider: FC<
   return (
     <Scroll.Provider
       value={{
+        scroll: {
+          x: scrollX,
+          y: scrollY,
+        },
         listRef,
         blurXRef,
         blurYRef,

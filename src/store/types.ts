@@ -3,8 +3,17 @@ import { PlayerRef } from "@remotion/player";
 
 export type TPic = string;
 export type TPics = TPic[];
+export type THoverKey = string | number;
 
 export type TVideoState = {
+  hoverKeys: THoverKey[];
+  isHover: (
+    hoverKey: THoverKey
+  ) => boolean;
+  hover: (hoverKey: THoverKey) => void;
+  unhover: (
+    hoverKey: THoverKey
+  ) => void;
   milestones: TMilestones;
   isControls: boolean;
   fps: number;
@@ -19,6 +28,8 @@ export type TVideoState = {
   togglePlayer(next?: boolean): void;
   updatePicsEntries(next?: TPics): void;
   addVideo(next: string): void;
+  countVideoPics(): number
+  isVideoPics(): boolean
   removeVideo(next?: string): void;
   countPicsEntries(): number;
   countPics(): number;

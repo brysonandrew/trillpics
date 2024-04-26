@@ -1,8 +1,11 @@
-import { TVideoState } from "src/store/types";
 import { shuffle } from "~/utils/array/shuffle";
 import { TImmerState } from "~/store";
 import { DEFAULT_FPS } from "~/constants/remotion";
 import { clampNumbers } from "~/utils/number/clamp-numbers";
+import {
+  THoverKey,
+  TVideoState,
+} from "~/store/types";
 import precachePics from "~app/precache.json";
 const { length: picsCount } =
   precachePics;
@@ -10,9 +13,9 @@ const inits = [...Array(picsCount)].map(
   (_, index) => `${++index}`
 );
 const shuffledInits = shuffle(inits);
-
 export const initStoreState: TImmerState =
   (set, get) => ({
+    hoverKeys: [],
     milestones: [],
     isControls: true,
     fps: DEFAULT_FPS,
@@ -21,6 +24,29 @@ export const initStoreState: TImmerState =
     playerElement: null,
     picsCount,
     picsEntries: [shuffledInits],
+    isHover: (hoverKey: THoverKey) => {
+      return get().hoverKeys.includes(
+        hoverKey
+      );
+    },
+    hover: (hoverKey: THoverKey) => {
+      const hoverKeys = [
+        ...get().hoverKeys,
+        hoverKey,
+      ];
+      set({
+        hoverKeys,
+      });
+    },
+    unhover: (hoverKey: THoverKey) => {
+      const hoverKeys =
+        get().hoverKeys.filter(
+          (v) => v !== hoverKey
+        );
+      set({
+        hoverKeys,
+      });
+    },
     countPicsEntries: () =>
       get().picsEntries.length,
     pics: (from = 0) =>
@@ -51,6 +77,10 @@ export const initStoreState: TImmerState =
       }));
     },
     videoPics: [],
+    countVideoPics: () =>
+      get().videoPics.length,
+    isVideoPics: () =>
+      Boolean(get().countVideoPics()),
     isPlayerOpen: false,
     togglePlayer: (next?: boolean) => {
       set((prev: TVideoState) => {
