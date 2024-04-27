@@ -4,13 +4,27 @@ import { useTrillPicsStore } from "~/store";
 import { useViewport } from "~/context/viewport";
 
 export const useRemotionProps = () => {
-  const { videoPics, fps } =
-    useTrillPicsStore(
-      ({ videoPics, fps }) => ({
-        videoPics,
-        fps,
-      })
-    );
+  const {
+    videoPics,
+    fps,
+    countVideoPics,
+    picsCount,
+    addVideoPic,
+  } = useTrillPicsStore(
+    ({
+      videoPics,
+      fps,
+      countVideoPics,
+      picsCount,
+      addVideoPic,
+    }) => ({
+      videoPics,
+      fps,
+      countVideoPics,
+      picsCount,
+      addVideoPic,
+    })
+  );
   const viewport = useViewport();
   const dimensions = useImageDimensions(
     {
@@ -22,11 +36,14 @@ export const useRemotionProps = () => {
   );
 
   const videoPicsCount =
-    videoPics.length;
+    countVideoPics();
   const pics =
     videoPicsCount === 0
-      ? [...Array(5)].map(
-          (_, index) => `${++index}`
+      ? [...Array(picsCount)].map(
+          () =>
+            `${Math.floor(
+              picsCount * Math.random()
+            )}`
         )
       : videoPics;
 

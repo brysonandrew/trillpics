@@ -1,4 +1,4 @@
-import { FC, useRef } from "react";
+import { FC } from "react";
 import { motion } from "framer-motion";
 import {
   PillB,
@@ -7,11 +7,13 @@ import {
 import { FADE_PRESENCE_DELAY_02 } from "~/constants/animation";
 import { useHoverKey } from "~/hooks/use-hover-key";
 import { isDefined } from "~/utils/validation/is/defined";
+import { resolveCompositeKey } from "@brysonandrew/utils-key";
 
 type TProps = TPillBProps;
 export const PillBHover: FC<TProps> = ({
   title,
   children = title,
+  disabled,
   ...props
 }) => {
   const { handlers, isHover } =
@@ -21,9 +23,14 @@ export const PillBHover: FC<TProps> = ({
   //   hasLeftRef.current = true;
   // };
   const isHovering =
-    isDefined<typeof title>(title) && isHover(title);
+    isDefined<typeof title>(title) &&
+    isHover(title);
   return (
     <PillB
+      key={resolveCompositeKey(
+        `${isHovering}`,
+        title
+      )}
       title={title}
       // onMouseOut={handleMouseLeave}
       {...handlers(title)}

@@ -1,29 +1,42 @@
 import { ZundoOptions } from "zundo";
-import isDeepEqual from "fast-deep-equal";
-import { THoverState } from "~/store/slices/hover/types";
 import { TStateWithPlayerState } from "~/store/types";
+import { TDirectorState } from "~/store/slices/director/types";
+import { persist } from "zustand/middleware";
+import { debounce } from "~/utils/debounce";
 
 export type TPartialZundoState = Pick<
-  THoverState,
-  "hover"
+  TDirectorState,
+  "videoPics"
 >;
 
 const equality = (
   prev: TPartialZundoState,
   curr: TPartialZundoState
-) => isDeepEqual(prev, curr);
+) => {
+  const isVideoPicsCountEqual =
+    prev.videoPics.length ===
+    curr.videoPics.length;
+  return isVideoPicsCountEqual;
+};
 
 export const OPTIONS_UNDO_REDO: ZundoOptions<
   TStateWithPlayerState,
   TStateWithPlayerState
 > = {
+  wrapTemporal: (storeInitializer) =>
+    persist(storeInitializer, {
+      name: "temporal-persist",
+    }),
   limit: 100,
   equality,
-  // partialize: (state: TCombinedSlices) =>
-  //   ({
-  //   } as TCombinedSlices),
-  // handleSet: (handleSet) =>
-  //   debounce<typeof handleSet>((state) => {
-  //     handleSet(state);
-  //   }, 600),
+  partialize: (
+    state: TStateWithPlayerState
+  ) =>
+    ({
+      videoPics: state.videoPics,
+    } as TStateWithPlayerState),
+  handleSet: (handleSet) =>
+    debounce((state) => {
+      handleSet(state);
+    }, 600),
 };

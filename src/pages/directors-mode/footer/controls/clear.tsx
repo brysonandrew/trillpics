@@ -10,14 +10,14 @@ export const ControlsClear: FC<
   Button = PillBHover,
   ...props
 }) => {
-  const { removeVideo } =
+  const { removeVideoPic } =
     useTrillPicsStore(
-      ({ removeVideo }) => ({
-        removeVideo,
+      ({ removeVideoPic }) => ({
+        removeVideoPic,
       })
     );
   const handleClear = () => {
-    removeVideo();
+    removeVideoPic();
   };
   const title = "Clear pics from video";
   return (

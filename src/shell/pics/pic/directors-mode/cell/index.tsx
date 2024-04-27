@@ -17,11 +17,11 @@ export const PicDirectorsModeCell: FC<
   children,
   ...boxChildProps
 }) => {
-  const { removeVideo, addVideo } =
+  const { removeVideoPic, addVideoPic } =
     useTrillPicsStore(
-      ({ removeVideo, addVideo }) => ({
-        removeVideo,
-        addVideo,
+      ({ removeVideoPic, addVideoPic }) => ({
+        removeVideoPic,
+        addVideoPic,
       })
     );
   return (
@@ -30,10 +30,10 @@ export const PicDirectorsModeCell: FC<
         key="PicDisplayCell"
         onTap={() =>
           boxChildProps.videoOrder > -1
-            ? removeVideo(
+            ? removeVideoPic(
                 boxChildProps.name
               )
-            : addVideo(
+            : addVideoPic(
                 boxChildProps.name
               )
         }

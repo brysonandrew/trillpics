@@ -7,7 +7,7 @@ export type THoverState = {
   isHover: (
     hoverKey: THoverKey
   ) => boolean;
-  hover: (hoverKey: THoverKey) => void;
+  hover: (hoverKey?: THoverKey) => void;
   unhover: (
     hoverKey: THoverKey
   ) => void;

@@ -5,15 +5,15 @@ import { IconsFullscreen } from "~/components/icons/playback/fullscreen";
 
 export const PlayerFooterButtonsFullscreen: FC =
   () => {
-    const { playerElementRef } =
+    const { playerInstance } =
       useTrillPicsStore(
-        ({ playerElementRef }) => ({
-          playerElementRef,
+        ({ playerInstance }) => ({
+          playerInstance,
         })
       );
     const handleClick = async () => {
-      if (playerElementRef.current) {
-        playerElementRef.current.requestFullscreen();
+      if (playerInstance) {
+        playerInstance.requestFullscreen();
       }
     };
     const title = "Fullscreen";
@@ -23,7 +23,7 @@ export const PlayerFooterButtonsFullscreen: FC =
         title={title}
         onClick={handleClick}
         Icon={IconsFullscreen}
-        disabled={!playerElementRef}
+        disabled={!playerInstance}
       >
         {title}
       </PillBHover>

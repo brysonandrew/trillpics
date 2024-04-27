@@ -4,14 +4,14 @@ import { useTrillPicsStore } from "~/store";
 export const usePlayerListeners =
   () => {
     const {
-      playerElementRef,
+      playerInstance,
       updatePlayerState,
     } = useTrillPicsStore(
       ({
-        playerElementRef,
+        playerInstance,
         updatePlayerState,
       }) => ({
-        playerElementRef,
+        playerInstance,
         updatePlayerState,
       })
     );
@@ -30,32 +30,32 @@ export const usePlayerListeners =
       handlePlay(false);
 
     useEffect(() => {
-      if (playerElementRef.current) {
-        playerElementRef.current.seekTo(
+      if (playerInstance) {
+        playerInstance.seekTo(
           0
         );
 
-        playerElementRef.current.addEventListener(
+        playerInstance.addEventListener(
           "play",
           handlePlaying
         );
-        playerElementRef.current.addEventListener(
+        playerInstance.addEventListener(
           "pause",
           handlePause
         );
       }
 
       return () => {
-        if (playerElementRef.current) {
-          playerElementRef.current.removeEventListener(
+        if (playerInstance) {
+          playerInstance.removeEventListener(
             "play",
             handlePlaying
           );
-          playerElementRef.current.removeEventListener(
+          playerInstance.removeEventListener(
             "pause",
             handlePause
           );
         }
       };
-    }, [playerElementRef, updatePlayerState]);
+    }, [playerInstance, updatePlayerState]);
   };

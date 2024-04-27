@@ -18,6 +18,7 @@ import {
   StateCreator,
   StoreApi,
   UseBoundStore,
+  useStore,
 } from "zustand";
 import { playerState } from "~/store/slices/player/state";
 import { coreState } from "~/store/slices/core/state";
@@ -31,7 +32,6 @@ import {
 } from "zundo";
 import { OPTIONS_UNDO_REDO } from "~/store/undo-redo";
 import { useShallow } from "zustand/react/shallow";
-import { key } from "localforage";
 
 enableMapSet();
 
@@ -41,21 +41,19 @@ type TStateMiddleware = [
   ["zustand/immer", never]
 ];
 
-export type TStateCreator =
-  StateCreator<
-    TState,
-    [],
-    TStateMiddleware,
-    TState
-  >;
-const createImmerState: TStateCreator =
+type TAllStateCreator = StateCreator<
+  TState,
+  [],
+  TStateMiddleware,
+  TState
+>;
+const createImmerState: TAllStateCreator =
   immer<TState>((...a) => ({
     ...directorState(...a),
     ...coreState(...a),
     ...picsState(...a),
     ...hoverState(...a),
     updateState: a[0],
-
   }));
 
 // 2. subscribe
@@ -165,9 +163,11 @@ const createZundoState = temporal<
 type TStore = UseBoundStore<
   Mutate<
     StoreApi<TStateWithPlayerState>,
-    TDevtoolsStateMiddleware
+    TZundoStateMiddleware
   >
 >;
+// : UseBoundStore<
+//   Mutate<StoreApi<TCombinedSlices>, TZundoStateMiddleware>
 export const _useTrillPicsStore: TStore =
   create<TStateWithPlayerState>()<TZundoStateMiddleware>(
     createZundoState
@@ -197,3 +197,6 @@ export const useTrillPicsStore = <
 //   },
 //   {fireImmediately: true}
 // );
+export const useTemporalStore = <T>(
+  selector: (state: TemporalState<TState>) => T
+) => useStore(_useTrillPicsStore.temporal, selector);

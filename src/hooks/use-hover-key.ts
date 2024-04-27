@@ -30,11 +30,14 @@ export const useHoverKey = () => {
     onMouseLeave: () => unhover(key),
   });
 
+  const clear = hover;
+
   return {
     hoverKeys,
     isNoHover: hoverKeys.length === 0,
     isHover,
     handlers,
+    clear,
   };
 };
 export type THoverKeyConfig =

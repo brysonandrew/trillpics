@@ -1,8 +1,8 @@
 import { FC } from "react";
 import { useTrillPicsStore } from "src/store";
-import { ControlsPlayer } from "~/pages/directors-mode/screen/player";
-import { ControlsShow } from "~/pages/directors-mode/screen/show";
-import { ControlsClear } from "~/pages/directors-mode/screen/clear";
+import { ControlsPlayer } from "~/pages/directors-mode/footer/player";
+import { ControlsShow } from "~/pages/directors-mode/footer/controls/show";
+import { ControlsClear } from "~/pages/directors-mode/footer/controls/clear";
 import { withControlsCheck } from "~/store/hocs/with-controls-check";
 
 export const DirectorsModeScreen: FC =

@@ -1,5 +1,4 @@
 import { FC } from "react";
-import { AnimatePresence } from "framer-motion";
 import { TPropsWithChildren } from "@brysonandrew/config-types";
 import { DirectorsModeFooterExit } from "~/pages/directors-mode/footer/exit";
 import { DirectorsModeFooterControls } from "~/pages/directors-mode/footer/controls";
@@ -11,11 +10,9 @@ export const DirectorsModeFooter: FC<
 > = () => {
   return (
     <>
-      <AnimatePresence>
-        <DirectorsModeFooterControls
-          {...PRESENCE_OPACITY}
-        />
-      </AnimatePresence>
+      <DirectorsModeFooterControls
+        {...PRESENCE_OPACITY}
+      />
       <DirectorsModeFooterExit />
     </>
   );

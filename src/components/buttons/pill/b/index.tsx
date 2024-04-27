@@ -52,7 +52,8 @@ export const PillB: FC<TPillBProps> = ({
       className={clsx(
         "relative",
         "row shrink-0 gap-2 px-1",
-        "btn-disabled",
+       // "btn-disabled",
+        "disabled:grayscale-100",
         "text-main",
         isFlat
           ? "background-flat"

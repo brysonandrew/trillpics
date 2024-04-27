@@ -1,8 +1,4 @@
-import {
-  TState,
-  TStateWithPlayerState,
-  TPartialState,
-} from "~/store/types";
+import { TStateWithPlayerState } from "~/store/types";
 import { PersistOptions } from "zustand/middleware";
 import { STORAGE_JSON } from "~/store/persist/json";
 import {

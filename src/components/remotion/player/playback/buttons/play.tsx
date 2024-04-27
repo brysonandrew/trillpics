@@ -10,16 +10,16 @@ export const PlaybackButtonsPlay: FC =
   () => {
     const {
       durationInFrames,
-      playerElementRef,
+      playerInstance,
       isPlaying,
     } = useTrillPicsStore(
       ({
         durationInFrames,
-        playerElementRef,
+        playerInstance,
         isPlaying,
       }) => ({
         durationInFrames,
-        playerElementRef,
+        playerInstance,
         isPlaying,
       })
     );
@@ -34,7 +34,7 @@ export const PlaybackButtonsPlay: FC =
         )}
         onClick={() =>
           !isDisabled &&
-          playerElementRef.current?.toggle()
+          playerInstance?.toggle()
         }
         disabled={isDisabled}
         Icon={

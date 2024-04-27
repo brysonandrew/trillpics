@@ -10,6 +10,7 @@ export const TimerCurrentProgress: FC<TProps> =
       useCurrentPlayerFrame();
     const progress =
       currentFrame / durationInFrames;
+    console.log(progress);
     return (
       <div
         style={{

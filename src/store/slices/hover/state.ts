@@ -3,6 +3,7 @@ import {
   THoverState,
 } from "~/store/slices/hover/types";
 import { TStateHandler } from "~/store/types";
+import { isDefined } from "~/utils/validation/is/defined";
 
 export const hoverState: TStateHandler<
   THoverState
@@ -13,11 +14,12 @@ export const hoverState: TStateHandler<
       hoverKey
     );
   },
-  hover: (hoverKey: THoverKey) => {
-    const hoverKeys = [
-      ...get().hoverKeys,
-      hoverKey,
-    ];
+  hover: (hoverKey?: THoverKey) => {
+    const hoverKeys = isDefined(
+      hoverKey
+    )
+      ? [...get().hoverKeys, hoverKey]
+      : [];
     set({
       hoverKeys,
     });

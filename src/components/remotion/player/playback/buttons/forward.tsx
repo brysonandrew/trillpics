@@ -7,14 +7,14 @@ import { PlaybackButtonsB } from "~/components/remotion/player/playback/buttons/
 export const PlaybackButtonsForward: FC =
   () => {
     const {
-      seekBySeconds,
+      seekSeconds,
       durationInFrames,
     } = useTrillPicsStore(
       ({
-        seekBySeconds,
+        seekSeconds,
         durationInFrames,
       }) => ({
-        seekBySeconds,
+        seekSeconds,
         durationInFrames,
       })
     );
@@ -24,7 +24,7 @@ export const PlaybackButtonsForward: FC =
       <PlaybackButtonsB
         title="seek backward"
         onClick={() =>
-          seekBySeconds(
+          seekSeconds(
             SEEK_FORWARD_SECONDS
           )
         }

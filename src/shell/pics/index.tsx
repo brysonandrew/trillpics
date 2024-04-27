@@ -1,15 +1,28 @@
 import { FC } from "react";
+import { FixedSizeListProps } from "react-window";
 import { ScrollbarSeam } from "~/components/layout/scrollbar-seam";
-import { TPicProps } from "~/shell/pics/pic";
 import { TableInfinite } from "~/shell/pics/table-infinite";
-import { TPicsTable } from "~/shell/pics/use-pics-table";
+import {
+  TPicsTable,
+  TRow,
+} from "~/shell/pics/use-pics-table";
+import type {
+  Row as TTanstackRow,
+} from "@tanstack/react-table";
 import { usePicsColumns } from "./columns";
-
-type TProps = {
-  picsTable: TPicsTable;
-};
+export type TPartialFixedTableProps =
+  Partial<
+    FixedSizeListProps<
+      TTanstackRow<TRow>[]
+    >
+  >;
+type TProps =
+  TPartialFixedTableProps & {
+    picsTable: TPicsTable;
+  };
 export const Pics: FC<TProps> = ({
   picsTable,
+  ...props
 }) => {
   const {
     rows,
@@ -19,10 +32,14 @@ export const Pics: FC<TProps> = ({
   const size = _size - 6;
   const columns = usePicsColumns(
     rows,
-    size,
+    size
   );
   if (rows.length === 0) {
-    return <div className='px-4'>no pics</div>;
+    return (
+      <div className="px-4">
+        no pics
+      </div>
+    );
   }
 
   return (
@@ -30,10 +47,11 @@ export const Pics: FC<TProps> = ({
       {isVerticalScroll && (
         <ScrollbarSeam />
       )}
-      <TableInfinite
-        rows={rows}
+      <TableInfinite<TRow>
         rowHeight={size}
         columns={columns}
+        {...picsTable}
+        rows={rows}
       />
     </>
   );

@@ -18,7 +18,22 @@ import {
   usePicsTable,
 } from "~/shell/pics/use-pics-table";
 import { withProviders } from "~/shell/providers/with-providers";
-
+import { useHoverKey } from "~/hooks/use-hover-key";
+import { TDivProps } from "@brysonandrew/config-types";
+const Outer = ({
+  children,
+  ...props
+}: TDivProps) => {
+  const { clear, isNoHover } = useHoverKey();
+  return (
+    <div
+      onMouseEnter={() => !isNoHover && clear()}
+      {...props}
+    >
+      {children}
+    </div>
+  );
+};
 const OUTLET_CONTEXT = {
   Header,
   HeaderLeft,
@@ -37,14 +52,17 @@ const C = () => {
   useOnscreenRef();
   return (
     <Global>
-      <DecorationNet opacityClassValue='opacity-100' />
+      <DecorationNet opacityClassValue="opacity-100" />
       <BlurXy />
       <FadeV
         classValue="z-0"
         darkEdgeColor="var(--dark-06)"
         lightEdgeColor="var(--light-02)"
       />
-      <Pics picsTable={picsTable} />
+      <Pics
+        picsTable={picsTable}
+        outerElementType={Outer}
+      />
       <Outlet
         context={{
           ...OUTLET_CONTEXT,

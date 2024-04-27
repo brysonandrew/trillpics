@@ -8,7 +8,6 @@ import { PillBHover } from "~/components/buttons/pill/b/hover";
 import { useHoverKey } from "~/hooks/use-hover-key";
 import { PRESENCE_OPACITY } from "@brysonandrew/motion-config-constants";
 import { DirectorsModeFooterControls } from "~/pages/directors-mode/footer/controls";
-import { PillB } from "~/components/buttons/pill/b";
 import { PillBStill } from "~/components/buttons/pill/b/still";
 import { NOOP } from "@brysonandrew/utils-function";
 
@@ -34,10 +33,6 @@ export const HomeFooterDirectorsMode: FC =
 
     return (
       <motion.div className="relative row-reverse">
-        {/* {true && (
-          // isHover(title) &&
-         
-        )} */}
         <PillBHover
           key={title}
           title={title}
@@ -49,7 +44,7 @@ export const HomeFooterDirectorsMode: FC =
           Icon={IconsVideo}
           outerCircle={
             <>
-              {isHovering && (
+              {isHovering ? (
                 <DirectorsModeFooterControls
                   Button={PillBStill}
                   {...PRESENCE_OPACITY}
@@ -57,8 +52,9 @@ export const HomeFooterDirectorsMode: FC =
                     DirectorsModeFooterControlsHoverKey
                   )}
                 />
+              ) : (
+                <VideoPicCounterFloating />
               )}
-              <VideoPicCounterFloating />
             </>
           }
         >

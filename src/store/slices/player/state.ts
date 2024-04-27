@@ -1,50 +1,14 @@
-import { DEFAULT_FPS } from "~/constants/remotion";
-import { TPlayerHander } from "~/store/slices/player/types";
-import { clampNumbers } from "~/utils/number/clamp-numbers";
-import { isNull } from "~/utils/validation/is/null";
+import { playerSeekFramesState } from "~/store/slices/player/seek/frames";
+import { playerSeekSecondsState } from "~/store/slices/player/seek/seconds";
+import { TPlayerState } from "~/store/slices/player/types";
+import { TStateWithPlayerStateHandler } from "~/store/types";
 
-export const playerState: TPlayerHander =
-  (...args) => {
-    const [_, get] = args;
-    return {
-      playerElementRef: {
-        current: null,
-      },
-      seekBySeconds: (
-        seconds: number
-      ) => {
-        const state = get();
-        if (
-          !isNull(
-            state.playerElementRef
-              .current
-          )
-        ) {
-          const min =
-            (state.playerElementRef.current.getCurrentFrame() ??
-              0) +
-            state.fps * seconds;
-          const max =
-            state.durationInFrames;
-
-          state.playerElementRef.current?.seekTo(
-            clampNumbers({
-              min,
-              max,
-            })
-          );
-        }
-      },
-      setCurrentFrame: (
-        nextCurrentFrame
-      ) => {
-        const { playerElementRef } =
-          get();
-        if (!playerElementRef.current)
-          return;
-        playerElementRef.current.seekTo(
-          nextCurrentFrame
-        );
-      },
-    };
+export const playerState: TStateWithPlayerStateHandler<
+  TPlayerState
+> = (...args) => {
+  return {
+    playerInstance: null,
+    ...playerSeekFramesState(...args),
+    ...playerSeekSecondsState(...args),
   };
+};

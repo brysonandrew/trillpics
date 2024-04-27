@@ -8,10 +8,10 @@ import { isNull } from "~/utils/validation/is/null";
 
 export const useCurrentPlayerFrame =
   () => {
-    const { playerElementRef } =
+    const { playerInstance } =
       useTrillPicsStore(
-        ({ playerElementRef }) => ({
-          playerElementRef,
+        ({ playerInstance }) => ({
+          playerInstance,
         })
       );
 
@@ -23,7 +23,7 @@ export const useCurrentPlayerFrame =
       ) => {
         if (
           isNull(
-            playerElementRef.current
+            playerInstance
           )
         ) {
           return () => undefined;
@@ -33,32 +33,32 @@ export const useCurrentPlayerFrame =
         > = ({ detail }) => {
           onStoreChange(detail.frame);
         };
-        playerElementRef.current.addEventListener(
+        playerInstance.addEventListener(
           "frameupdate",
           updater
         );
         return () => {
           if (
             isNull(
-              playerElementRef.current
+              playerInstance
             )
           ) {
             return;
           }
-          playerElementRef.current.removeEventListener(
+          playerInstance.removeEventListener(
             "frameupdate",
             updater
           );
         };
       },
-      [playerElementRef]
+      [playerInstance]
     );
 
     const data =
       useSyncExternalStore<number>(
         subscribe,
         () =>
-          playerElementRef.current?.getCurrentFrame?.() ??
+          playerInstance?.getCurrentFrame?.() ??
           0,
         () => 0
       );

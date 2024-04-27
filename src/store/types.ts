@@ -38,3 +38,18 @@ export type TPartialStateWithPlayerState =
   Partial<TStateWithPlayerState>;
 export type TStateWithPlayerStateKey =
   keyof TStateWithPlayerState;
+
+export type TStateWithPlayerStateCreator =
+  StateCreator<
+    TStateWithPlayerState,
+    [],
+    [],
+    TPlayerState
+  >;
+export type TStateWithPlayerStateCreatorParameters =
+  Parameters<TStateWithPlayerStateCreator>;
+export type TStateWithPlayerStateHandler<
+  T extends object
+> = (
+  ...args: TStateWithPlayerStateCreatorParameters
+) => T;

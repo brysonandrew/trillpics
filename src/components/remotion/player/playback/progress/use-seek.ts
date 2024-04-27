@@ -5,16 +5,16 @@ export const useSeek = () => {
   const {
     fps,
     durationInFrames,
-    seekBySeconds,
+    seekSeconds,
   } = useTrillPicsStore(
     ({
       fps,
       durationInFrames,
-      seekBySeconds,
+      seekSeconds,
     }) => ({
       fps,
       durationInFrames,
-      seekBySeconds,
+      seekSeconds,
     })
   );
   const handleSeek = (
@@ -26,7 +26,7 @@ export const useSeek = () => {
 
     const progressInSeconds =
       secondsDuration * progress;
-    seekBySeconds(progressInSeconds);
+    seekSeconds(progressInSeconds);
   };
 
   const handler: PointerEventHandler<

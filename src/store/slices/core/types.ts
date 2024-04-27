@@ -4,7 +4,14 @@ import { TMilestones } from "~/types/milestones";
 export type TCoreKey = string | number;
 
 export type TCoreState = {
-  borderRadiusXl: number;
+  borderRadius: number;
+  floating: {
+    boxShadow: string;
+  };
+  flat: {
+    boxShadow: string;
+  };
+  size: '2.5rem',
   milestones: TMilestones;
   isControls: boolean;
   toggleControls(next?: boolean): void;
