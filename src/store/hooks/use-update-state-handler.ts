@@ -1,15 +1,12 @@
-import { useVideoStore } from "~/store";
-import { useShallow } from "zustand/react/shallow";
+import { useTrillPicsStore } from "~/store";
 
 export const useUpdateStateHandler =
   () => {
     const { updateState } =
-      useVideoStore(
-        useShallow(
-          ({ updateState }) => ({
-            updateState,
-          })
-        )
+      useTrillPicsStore(
+        ({ updateState }) => ({
+          updateState,
+        })
       );
     return updateState;
   };

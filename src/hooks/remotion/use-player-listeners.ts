@@ -1,28 +1,25 @@
 import { useEffect } from "react";
-import { useShallow } from "zustand/react/shallow";
-import { useVideoStore } from "~/store";
+import { useTrillPicsStore } from "~/store";
 
 export const usePlayerListeners =
   () => {
     const {
-      playerElement,
-      updateState,
-    } = useVideoStore(
-      useShallow(
-        ({
-          playerElement,
-          updateState,
-        }) => ({
-          playerElement,
-          updateState,
-        })
-      )
+      playerElementRef,
+      updatePlayerState,
+    } = useTrillPicsStore(
+      ({
+        playerElementRef,
+        updatePlayerState,
+      }) => ({
+        playerElementRef,
+        updatePlayerState,
+      })
     );
 
     const handlePlay = (
       isPlaying = true
     ) => {
-      updateState({
+      updatePlayerState({
         isPlaying,
       });
     };
@@ -33,30 +30,32 @@ export const usePlayerListeners =
       handlePlay(false);
 
     useEffect(() => {
-      if (playerElement) {
-        playerElement.seekTo(0);
+      if (playerElementRef.current) {
+        playerElementRef.current.seekTo(
+          0
+        );
 
-        playerElement.addEventListener(
+        playerElementRef.current.addEventListener(
           "play",
           handlePlaying
         );
-        playerElement.addEventListener(
+        playerElementRef.current.addEventListener(
           "pause",
           handlePause
         );
       }
 
       return () => {
-        if (playerElement) {
-          playerElement.removeEventListener(
+        if (playerElementRef.current) {
+          playerElementRef.current.removeEventListener(
             "play",
             handlePlaying
           );
-          playerElement.removeEventListener(
+          playerElementRef.current.removeEventListener(
             "pause",
             handlePause
           );
         }
       };
-    }, [playerElement, updateState]);
+    }, [playerElementRef, updatePlayerState]);
   };

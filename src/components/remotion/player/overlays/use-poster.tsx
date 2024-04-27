@@ -1,22 +1,11 @@
 import { useCallback } from "react";
 import { Loading } from "@brysonandrew/loading";
-import {
-  IconsPlay,
-  IconsPlayLarge,
-} from "~/components/icons/playback/play";
+import { IconsPlayLarge } from "~/components/icons/playback/play";
 import { RenderPoster } from "@remotion/player";
-import { useVideoStore } from "~/store";
-import { useShallow } from "zustand/react/shallow";
-import { Button } from "./button";
-import { Background } from "@brysonandrew/interactive";
 import { Background1 } from "~/components/decoration/background/1";
+import { Button } from "./button";
 
 export const usePoster = () => {
-  const { isVideoPics } = useVideoStore(
-    useShallow(({ isVideoPics }) => ({
-      isVideoPics,
-    }))
-  );
   const renderPoster: RenderPoster =
     useCallback(({ isBuffering }) => {
       if (isBuffering) {
@@ -24,7 +13,7 @@ export const usePoster = () => {
       }
       return (
         <div className="column-center p-2 md:p-8">
-          <Background1/>
+          <Background1 />
           <h4 className="relative text-4xl">
             Pics are random, go back to
             the gallery if you would

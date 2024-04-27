@@ -1,14 +1,21 @@
 import type { FC } from "react";
 import { PillBHover } from "~/components/buttons/pill/b/hover";
-import { IconsHide } from "~/components/icons/hide";
-import { IconsInfo } from "~/components/icons/info";
 import { IconsVisible } from "~/components/icons/video/visible";
 import { HideControlsModal } from "~/shell/header/right/zen-mode/modal";
-import { useVideoStore } from "~/store";
+import { useTrillPicsStore } from "~/store";
 
 export const HideControls: FC = () => {
   const { isControls, toggleControls } =
-    useVideoStore();
+    useTrillPicsStore(
+      ({
+        isControls,
+        toggleControls,
+      }) => ({
+        isControls,
+        toggleControls,
+      })
+    );
+
   const handleClick = () => {
     toggleControls(false);
   };

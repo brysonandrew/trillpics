@@ -1,24 +1,21 @@
 import { PointerEventHandler } from "react";
-import { useVideoStore } from "~/store";
-import { useShallow } from "zustand/react/shallow";
+import { useTrillPicsStore } from "~/store";
 
 export const useSeek = () => {
   const {
     fps,
     durationInFrames,
     seekBySeconds,
-  } = useVideoStore(
-    useShallow(
-      ({
-        fps,
-        durationInFrames,
-        seekBySeconds,
-      }) => ({
-        fps,
-        durationInFrames,
-        seekBySeconds,
-      })
-    )
+  } = useTrillPicsStore(
+    ({
+      fps,
+      durationInFrames,
+      seekBySeconds,
+    }) => ({
+      fps,
+      durationInFrames,
+      seekBySeconds,
+    })
   );
   const handleSeek = (
     progress: number

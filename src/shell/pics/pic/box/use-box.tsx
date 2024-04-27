@@ -9,10 +9,10 @@ import {
 } from "react-router";
 import { useSearchParams } from "react-router-dom";
 import { TPicProps } from "~/shell/pics/pic";
-import { useVideoStore } from "~/store";
 import { squareFromSize } from "~/utils/dimensions/square-from-size";
 import { usePicZoomedCheck } from "~/shell/pics/pic/hooks/zoomed-check";
 import { SEARCH_PARAM_ID } from "~/shell/pics/pic/display";
+import { useTrillPicsStore } from "~/store";
 
 type TConfig = TPicProps;
 export const useBox = ({
@@ -20,7 +20,10 @@ export const useBox = ({
   size,
   colIndex,
 }: TConfig) => {
-  const { videoPics } = useVideoStore();
+  const { videoPics } =
+    useTrillPicsStore(
+      ({ videoPics }) => ({ videoPics })
+    );
   const frontCheckState =
     useState<boolean>(false);
   const [_, setFront] = frontCheckState;

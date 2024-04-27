@@ -3,18 +3,16 @@ import {
   useSyncExternalStore,
 } from "react";
 import { type CallbackListener } from "@remotion/player";
-import { useShallow } from "zustand/react/shallow";
-import { useVideoStore } from "~/store";
+import { useTrillPicsStore } from "~/store";
+import { isNull } from "~/utils/validation/is/null";
 
 export const useCurrentPlayerFrame =
   () => {
-    const { playerElement } =
-      useVideoStore(
-        useShallow(
-          ({ playerElement }) => ({
-            playerElement,
-          })
-        )
+    const { playerElementRef } =
+      useTrillPicsStore(
+        ({ playerElementRef }) => ({
+          playerElementRef,
+        })
       );
 
     const subscribe = useCallback(
@@ -23,7 +21,11 @@ export const useCurrentPlayerFrame =
           newVal: number
         ) => void
       ) => {
-        if (!playerElement) {
+        if (
+          isNull(
+            playerElementRef.current
+          )
+        ) {
           return () => undefined;
         }
         const updater: CallbackListener<
@@ -31,25 +33,32 @@ export const useCurrentPlayerFrame =
         > = ({ detail }) => {
           onStoreChange(detail.frame);
         };
-        playerElement.addEventListener(
+        playerElementRef.current.addEventListener(
           "frameupdate",
           updater
         );
         return () => {
-          playerElement.removeEventListener(
+          if (
+            isNull(
+              playerElementRef.current
+            )
+          ) {
+            return;
+          }
+          playerElementRef.current.removeEventListener(
             "frameupdate",
             updater
           );
         };
       },
-      [playerElement]
+      [playerElementRef]
     );
 
     const data =
       useSyncExternalStore<number>(
         subscribe,
         () =>
-          playerElement?.getCurrentFrame?.() ??
+          playerElementRef.current?.getCurrentFrame?.() ??
           0,
         () => 0
       );

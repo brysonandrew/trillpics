@@ -1,18 +1,16 @@
 import { FC } from "react";
-import { useShallow } from "zustand/react/shallow";
-import { useVideoStore } from "~/store";
+import { useTrillPicsStore } from "~/store";
 import { TimerDisplay } from "~/components/remotion/player/playback/timer/display";
 import { TimerCurrent } from "~/components/remotion/player/playback/timer/current";
 
 export const PlaybackTimer: FC = () => {
   const { durationInFrames } =
-    useVideoStore(
-      useShallow(
-        ({ durationInFrames }) => ({
-          durationInFrames,
-        })
-      )
+    useTrillPicsStore(
+      ({ durationInFrames }) => ({
+        durationInFrames,
+      })
     );
+
   return (
     <div className="relative flex shrink-0 grow-0 items-center text-left">
       <TimerCurrent />

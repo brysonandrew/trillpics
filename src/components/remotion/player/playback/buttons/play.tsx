@@ -1,6 +1,6 @@
 import { type FC } from "react";
 import { useShallow } from "zustand/react/shallow";
-import { useVideoStore } from "~/store";
+import { useTrillPicsStore } from "~/store";
 import { IconsPause } from "~/components/icons/playback/pause";
 import { IconsPlay } from "~/components/icons/playback/play";
 import { resolveInteractiveLabels } from "@brysonandrew/utils-attributes";
@@ -10,20 +10,18 @@ export const PlaybackButtonsPlay: FC =
   () => {
     const {
       durationInFrames,
-      playerElement,
+      playerElementRef,
       isPlaying,
-    } = useVideoStore(
-      useShallow(
-        ({
-          durationInFrames,
-          playerElement,
-          isPlaying,
-        }) => ({
-          durationInFrames,
-          playerElement,
-          isPlaying,
-        })
-      )
+    } = useTrillPicsStore(
+      ({
+        durationInFrames,
+        playerElementRef,
+        isPlaying,
+      }) => ({
+        durationInFrames,
+        playerElementRef,
+        isPlaying,
+      })
     );
 
     const isDisabled =
@@ -36,7 +34,7 @@ export const PlaybackButtonsPlay: FC =
         )}
         onClick={() =>
           !isDisabled &&
-          playerElement?.toggle()
+          playerElementRef.current?.toggle()
         }
         disabled={isDisabled}
         Icon={

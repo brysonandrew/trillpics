@@ -5,7 +5,7 @@ import { PicDisplayCell } from "~/shell/pics/pic/display/cell";
 import { TPropsWithChildren } from "@brysonandrew/config-types";
 import { TUseBoxChildProps } from "~/shell/pics/pic/box/use-box";
 import { PicDirectorsModeControls } from "~/shell/pics/pic/directors-mode/controls";
-import { useVideoStore } from "~/store";
+import { useTrillPicsStore } from "~/store";
 import { PillB } from "~/components/buttons/pill/b";
 import { IconsPicZoomIn24 } from "~/components/icons/pic/zoom-in/24";
 
@@ -18,7 +18,12 @@ export const PicDirectorsModeCell: FC<
   ...boxChildProps
 }) => {
   const { removeVideo, addVideo } =
-    useVideoStore();
+    useTrillPicsStore(
+      ({ removeVideo, addVideo }) => ({
+        removeVideo,
+        addVideo,
+      })
+    );
   return (
     <AnimatePresence>
       <PicDisplayCell

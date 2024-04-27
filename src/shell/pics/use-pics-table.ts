@@ -1,25 +1,22 @@
 import { useMemo } from "react";
 import { useViewport } from "~/context/viewport";
 import { APPROX_IMAGE_SIZE } from "~/constants/images";
-import { useVideoStore } from "~/store/index";
+import { useTrillPicsStore } from "~/store/index";
 import {
   TPic,
   TPics,
-} from "~/store/types";
-import { useShallow } from "zustand/react/shallow";
+} from "~/store/slices/pics/types";
 
 export type TRow = {
   cols: TPics;
 };
 export const usePicsTable = () => {
   const { pics, countPics } =
-    useVideoStore(
-      useShallow(
-        ({ pics, countPics }) => ({
-          pics,
-          countPics,
-        })
-      )
+    useTrillPicsStore(
+      ({ pics, countPics }) => ({
+        pics,
+        countPics,
+      })
     );
   const viewport = useViewport();
   const { isDimensions, isResizing } =

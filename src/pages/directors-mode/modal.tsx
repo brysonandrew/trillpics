@@ -1,6 +1,6 @@
 import type { FC } from "react";
 import { IconsInfo } from "~/components/icons/info";
-import { useVideoStore } from "~/store";
+import { useTrillPicsStore } from "~/store";
 import { READ__DIRECTORS__INFO } from "~/constants/milestones";
 import { TMilestones } from "~/types/milestones";
 import { ModalOverlay } from "~/components/layout/modal/overlay";
@@ -8,7 +8,15 @@ import { ModalOverlay } from "~/components/layout/modal/overlay";
 export const DirectorsModal: FC =
   () => {
     const { milestones, updateState } =
-      useVideoStore();
+      useTrillPicsStore(
+        ({
+          milestones,
+          updateState,
+        }) => ({
+          milestones,
+          updateState,
+        })
+      );
     if (
       milestones.includes(
         READ__DIRECTORS__INFO

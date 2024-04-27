@@ -1,16 +1,13 @@
 import { FC } from "react";
-import { useShallow } from "zustand/react/shallow";
-import { useVideoStore } from "~/store";
+import { useTrillPicsStore } from "~/store";
 import { MonoChars } from "~/components/remotion/player/playback/timer/numbers";
 
 type TProps = { frame: number };
 export const TimerDisplay: FC<
   TProps
 > = ({ frame }) => {
-  const { fps } = useVideoStore(
-    useShallow(({ fps }) => ({
-      fps,
-    }))
+  const { fps } = useTrillPicsStore(
+    ({ fps }) => ({ fps })
   );
   const totalSeconds = frame / fps;
   const m = String(

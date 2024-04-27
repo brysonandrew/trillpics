@@ -5,7 +5,9 @@ import { TPillBProps } from "~/components/buttons/pill/b";
 
 export type TDirectorsModeFooterProps =
   TAnimationProps &
-    LayoutProps & {
+    LayoutProps &
+    Partial<
+      Pick<TPillBProps, "title">
+    > & {
       Button?: FC<TPillBProps>;
-      title?: string | null;
     };

@@ -33,27 +33,17 @@ export const Background1: FC<
           "fill opacity-light",
           isFlat
             ? clsx(
-                "bg-black-05",
+                "bg-black-05"
                 // "neu-flat-sunken"
               )
             : clsx(
-                "bg-gray",
+                "bg-gray"
                 // "border border-white-04"
               ),
           classValue
         )}
         {...props}
       />
-      {/* <motion.div
-        className={clsx(
-          "fill opacity-dark",
-          isFlat
-            ? "bg-black-04 neu-empty-flat-sunken"
-            : "bg-black-2 border border-gray",
-          classValue
-        )}
-        {...props}
-      /> */}
     </>
   );
 };

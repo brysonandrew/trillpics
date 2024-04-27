@@ -6,6 +6,7 @@ import {
 } from "~/components/buttons/pill/b";
 import { FADE_PRESENCE_DELAY_02 } from "~/constants/animation";
 import { useHoverKey } from "~/hooks/use-hover-key";
+import { isDefined } from "~/utils/validation/is/defined";
 
 type TProps = TPillBProps;
 export const PillBHover: FC<TProps> = ({
@@ -19,6 +20,8 @@ export const PillBHover: FC<TProps> = ({
   // const handleMouseLeave = () => {
   //   hasLeftRef.current = true;
   // };
+  const isHovering =
+    isDefined<typeof title>(title) && isHover(title);
   return (
     <PillB
       title={title}
@@ -26,7 +29,7 @@ export const PillBHover: FC<TProps> = ({
       {...handlers(title)}
       {...props}
     >
-      {isHover(title) ? (
+      {isHovering ? (
         //&&
         // hasLeftRef.current
         <>

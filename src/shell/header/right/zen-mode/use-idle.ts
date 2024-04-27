@@ -1,10 +1,18 @@
 import { useRef } from "react";
 import { useViewportPresence } from "~/hooks/use-viewport-presence";
-import { useVideoStore } from "~/store";
+import { useTrillPicsStore } from "~/store";
 
 export const useOnscreenRef = () => {
   const { isControls, toggleControls } =
-    useVideoStore();
+    useTrillPicsStore(
+      ({
+        isControls,
+        toggleControls,
+      }) => ({
+        isControls,
+        toggleControls,
+      })
+    );
   const isOnscreenRef = useRef(false);
   const handleShow = () => {
     toggleControls(true);

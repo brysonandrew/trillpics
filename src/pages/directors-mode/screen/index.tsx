@@ -1,5 +1,5 @@
 import { FC } from "react";
-import { useVideoStore } from "src/store";
+import { useTrillPicsStore } from "src/store";
 import { ControlsPlayer } from "~/pages/directors-mode/screen/player";
 import { ControlsShow } from "~/pages/directors-mode/screen/show";
 import { ControlsClear } from "~/pages/directors-mode/screen/clear";
@@ -8,7 +8,11 @@ import { withControlsCheck } from "~/store/hocs/with-controls-check";
 export const DirectorsModeScreen: FC =
   withControlsCheck(() => {
     const { videoPics } =
-      useVideoStore();
+      useTrillPicsStore(
+        ({ videoPics }) => ({
+          videoPics,
+        })
+      );
     const isVideoPicsCount =
       videoPics.length > 0;
     return (

@@ -1,13 +1,21 @@
 import { useRemotionProps } from "~/hooks/remotion/use-props";
-import { useVideoStore } from "~/store";
+import { useTrillPicsStore } from "~/store";
 import { PlayerRef } from "@remotion/player";
 
 export const useRemotionPlayerProps =
   () => {
     const {
-      playerElement,
-      updateState,
-    } = useVideoStore();
+      playerElementRef,
+      updatePlayerState,
+    } = useTrillPicsStore(
+      ({
+        playerElementRef,
+        updatePlayerState,
+      }) => ({
+        playerElementRef,
+        updatePlayerState,
+      })
+    );
     const {
       width,
       height,
@@ -17,19 +25,24 @@ export const useRemotionPlayerProps =
     const resolveRef = (
       instance: PlayerRef | null
     ) => {
-      if (instance && !playerElement) {
-        updateState({
-          playerElement: instance,
+      if (
+        instance &&
+        !playerElementRef.current
+      ) {
+        updatePlayerState({
+          playerElementRef: {
+            current: instance,
+          },
         });
       }
     };
 
     return {
-      ref:resolveRef,
+      ref: resolveRef,
       inputProps,
       compositionWidth: width,
       compositionHeight: height,
-      style: {cursor:"pointer"},
+      style: { cursor: "pointer" },
       ...props,
     };
   };

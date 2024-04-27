@@ -1,8 +1,7 @@
 import { useRef } from "react";
 import { animate } from "framer-motion";
 import { useScroll } from "~/context/scroll";
-import { useVideoStore } from "~/store/index";
-import { useShallow } from "zustand/react/shallow";
+import { useTrillPicsStore } from "~/store/index";
 
 export const useShow = () => {
   const {
@@ -10,23 +9,18 @@ export const useShow = () => {
     videoPics,
     countPics,
     updatePicsEntries,
-    isPlayerOpen,
-  } = useVideoStore(
-    useShallow(
-      ({
-        picsEntries,
-        videoPics,
-        countPics,
-        updatePicsEntries,
-        isPlayerOpen,
-      }) => ({
-        picsEntries,
-        videoPics,
-        countPics,
-        updatePicsEntries,
-        isPlayerOpen,
-      })
-    )
+  } = useTrillPicsStore(
+    ({
+      picsEntries,
+      videoPics,
+      countPics,
+      updatePicsEntries,
+    }) => ({
+      picsEntries,
+      videoPics,
+      countPics,
+      updatePicsEntries,
+    })
   );
   const showAllIndexRef = useRef<
     number | null
@@ -70,6 +64,5 @@ export const useShow = () => {
     isViewingOnlyVideoPics,
     videoPicsCount,
     onToggleShow,
-    isPlayerOpen,
   };
 };

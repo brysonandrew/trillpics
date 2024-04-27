@@ -1,5 +1,4 @@
 import { IAudioProps } from "./types";
-import { Visualizer } from "./visualizer";
 import { FC } from "react"
 import { Audio as RemotionAudio } from  'remotion';
 

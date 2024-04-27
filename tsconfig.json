@@ -40,5 +40,5 @@
     "**/*.js",
     "**/*.jsx",
     "**/*.tsx"
-, ".cemetary/footer.tsx", ".cemetary/backdrop.tsx" ],
+  ]
 }

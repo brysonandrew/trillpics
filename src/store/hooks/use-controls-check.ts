@@ -1,11 +1,12 @@
-import { useVideoStore } from "~/store";
-import { useShallow } from "zustand/react/shallow";
+import { useTrillPicsStore } from "~/store";
 
 export const useControlsCheck = () => {
-  const { isControls } = useVideoStore(
-    useShallow(({ isControls }) => ({
-      isControls,
-    }))
-  );
+  const { isControls } =
+    useTrillPicsStore(
+      ({ isControls }) => ({
+        isControls,
+      })
+    );
+
   return isControls;
 };

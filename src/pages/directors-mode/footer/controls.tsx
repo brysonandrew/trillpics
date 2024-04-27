@@ -4,8 +4,7 @@ import { ControlsPlayer } from "~/pages/directors-mode/screen/player";
 import { ControlsShow } from "~/pages/directors-mode/screen/show";
 import { TDirectorsModeFooterProps } from "~/pages/directors-mode/footer/types";
 import { PillBHover } from "~/components/buttons/pill/b/hover";
-import { useVideoStore } from "~/store";
-import { useShallow } from "zustand/react/shallow";
+import { useTrillPicsStore } from "~/store";
 
 export const DirectorsModeFooterControls: FC<
   TDirectorsModeFooterProps
@@ -13,14 +12,15 @@ export const DirectorsModeFooterControls: FC<
   Button = PillBHover,
   ..._props
 }) => {
-  const { isVideoPics } = useVideoStore(
-    useShallow(({ isVideoPics }) => ({
-      isVideoPics,
-    }))
-  );
+  const { isVideoPics } =
+    useTrillPicsStore(
+      ({ isVideoPics }) => ({
+        isVideoPics,
+      })
+    );
   const props = { Button, ..._props };
   const title = isVideoPics()
-    ? null
+    ? undefined
     : "Random Video";
   return (
     <>

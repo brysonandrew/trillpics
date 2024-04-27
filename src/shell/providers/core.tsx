@@ -12,7 +12,6 @@ import {
 import { APP_BASE_PROPS } from "~app/base";
 import { AppInit } from "@brysonandrew/app/AppInit";
 import { arrToChainedValueNest } from "@brysonandrew/layout-utils/arrToChainedValueNest";
-import { LayoutPlaceholder } from "@brysonandrew/layout-placeholder";
 
 type TLayoutOptions =
   TLayoutOptionsRecord;
@@ -34,7 +33,7 @@ export const Core: FC<TProps> = ({
           {arrToChainedValueNest<
             typeof value
           >(
-            [LayoutPlaceholder],
+            [],
             (
               nextValue: TAppProviderProps<TCustomStyle>
             ) => (

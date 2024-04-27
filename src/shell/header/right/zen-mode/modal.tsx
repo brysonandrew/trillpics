@@ -3,11 +3,8 @@ import {
   ModalOverlay,
   TModalOverlayConfig,
 } from "~/components/layout/modal/overlay";
-import {
-  READ__DIRECTORS__INFO,
-  READ__ZEN__INFO,
-} from "~/constants/milestones";
-import { useVideoStore } from "~/store";
+import { READ__ZEN__INFO } from "~/constants/milestones";
+import { useTrillPicsStore } from "~/store";
 import { TMilestones } from "~/types/milestones";
 
 type TProps = TModalOverlayConfig;
@@ -15,7 +12,15 @@ export const HideControlsModal: FC<
   TProps
 > = (props) => {
   const { milestones, updateState } =
-    useVideoStore();
+    useTrillPicsStore(
+      ({
+        milestones,
+        updateState,
+      }) => ({
+        milestones,
+        updateState,
+      })
+    );
 
   if (
     milestones.includes(READ__ZEN__INFO)

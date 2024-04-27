@@ -1,34 +1,30 @@
 import { type FC } from "react";
-import { useShallow } from "zustand/react/shallow";
-import { useVideoStore } from "~/store";
+import { useTrillPicsStore } from "~/store";
 import { PlaybackButtonsB } from "~/components/remotion/player/playback/buttons/b";
 import { IconsPlaybackBack } from "~/components/icons/playback/back";
-import { useCurrentFrame } from "remotion/dist/cjs/use-current-frame";
 
 export const PlaybackButtonsBack: FC =
   () => {
     const {
       durationInFrames,
-      playerElement,
+      playerElementRef,
       isPlaying,
-    } = useVideoStore(
-      useShallow(
-        ({
-          durationInFrames,
-          playerElement,
-          isPlaying,
-        }) => ({
-          durationInFrames,
-          playerElement,
-          isPlaying,
-        })
-      )
+    } = useTrillPicsStore(
+      ({
+        durationInFrames,
+        playerElementRef,
+        isPlaying,
+      }) => ({
+        durationInFrames,
+        playerElementRef,
+        isPlaying,
+      })
     );
     const isDisabled = !isPlaying;
 
     const handleClick = async () => {
-      if (playerElement) {
-        playerElement.pauseAndReturnToPlayStart();
+      if (playerElementRef.current) {
+        playerElementRef.current.pauseAndReturnToPlayStart();
       }
     };
     return (

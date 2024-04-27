@@ -1,5 +1,5 @@
 import { TUseBoxChildProps } from "~/shell/pics/pic/box/use-box";
-import { useVideoStore } from "~/store";
+import { useTrillPicsStore } from "~/store";
 
 export const SEARCH_PARAM_ID = "open";
 
@@ -11,7 +11,11 @@ export const usePicHover = ({
   videoOrder,
 }: TUsePicHoverConfig) => {
   const { isControls } =
-    useVideoStore();
+    useTrillPicsStore(
+      ({ isControls }) => ({
+        isControls,
+      })
+    );
 
   const isAdded = videoOrder > -1;
 

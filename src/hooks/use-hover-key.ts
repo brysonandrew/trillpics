@@ -1,5 +1,5 @@
-import { useVideoStore } from "~/store";
-import { THoverKey } from "~/store/types";
+import { THoverKey } from "@brysonandrew/hooks-dom";
+import { useTrillPicsStore } from "~/store";
 
 export const useHoverKey = () => {
   const {
@@ -7,7 +7,19 @@ export const useHoverKey = () => {
     isHover,
     hover,
     unhover,
-  } = useVideoStore();
+  } = useTrillPicsStore(
+    ({
+      hoverKeys,
+      isHover,
+      hover,
+      unhover,
+    }) => ({
+      hoverKeys,
+      isHover,
+      hover,
+      unhover,
+    })
+  );
 
   const handlers = (
     key: THoverKey

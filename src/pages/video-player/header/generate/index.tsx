@@ -2,7 +2,7 @@ import {
   AnimatePresence,
   motion,
 } from "framer-motion";
-import { useVideoStore } from "src/store";
+import { useTrillPicsStore } from "src/store";
 import { PillB } from "~/components/buttons/pill/b";
 import { IconsGenerate } from "~/components/icons/video/generate";
 import { trpc } from "~/utils/trpc";
@@ -25,7 +25,12 @@ const DEFAULT: TGenerateInput = {
 
 export const Generate = () => {
   const { videoPics, fps } =
-    useVideoStore();
+    useTrillPicsStore(
+      ({ videoPics, fps }) => ({
+        videoPics,
+        fps,
+      })
+    );
   const { handlers, isHover } =
     useHoverKey();
   const config: TGenerateProps = {

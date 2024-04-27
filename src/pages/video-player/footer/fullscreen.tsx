@@ -1,15 +1,19 @@
 import type { FC } from "react";
-import { useVideoStore } from "~/store";
+import { useTrillPicsStore } from "~/store";
 import { PillBHover } from "~/components/buttons/pill/b/hover";
 import { IconsFullscreen } from "~/components/icons/playback/fullscreen";
 
 export const PlayerFooterButtonsFullscreen: FC =
   () => {
-    const { playerElement } =
-      useVideoStore();
+    const { playerElementRef } =
+      useTrillPicsStore(
+        ({ playerElementRef }) => ({
+          playerElementRef,
+        })
+      );
     const handleClick = async () => {
-      if (playerElement) {
-        playerElement.requestFullscreen();
+      if (playerElementRef.current) {
+        playerElementRef.current.requestFullscreen();
       }
     };
     const title = "Fullscreen";
@@ -19,7 +23,7 @@ export const PlayerFooterButtonsFullscreen: FC =
         title={title}
         onClick={handleClick}
         Icon={IconsFullscreen}
-        disabled={!playerElement}
+        disabled={!playerElementRef}
       >
         {title}
       </PillBHover>

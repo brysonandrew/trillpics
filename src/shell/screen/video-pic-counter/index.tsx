@@ -6,17 +6,17 @@ import {
 import clsx from "clsx";
 import { N } from "~/components/layout/N";
 import { Glow } from "~/components/decoration/glow";
-import { useVideoStore } from "~/store";
-import { useShallow } from "zustand/react/shallow";
+import { useTrillPicsStore } from "~/store";
 
 export const VideoPicsCounter: FC<
   Partial<TPillProps>
-> = ({classValue, ...props}) => {
-  const { videoPics } = useVideoStore(
-    useShallow(({ videoPics }) => ({
-      videoPics,
-    }))
-  );
+> = ({ classValue, ...props }) => {
+  const { videoPics } =
+    useTrillPicsStore(
+      ({ videoPics }) => ({
+        videoPics,
+      })
+    );
   const videoPicsCount =
     videoPics.length;
   const isVideoPicsCount =
@@ -27,7 +27,7 @@ export const VideoPicsCounter: FC<
       layoutId="ControlsCounter"
       classValue={clsx(
         "pointer-events-none",
-        classValue ?? 'relative'
+        classValue ?? "relative"
       )}
       {...props}
     >
