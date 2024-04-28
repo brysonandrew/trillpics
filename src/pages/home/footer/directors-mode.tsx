@@ -10,17 +10,18 @@ import { PRESENCE_OPACITY } from "@brysonandrew/motion-config-constants";
 import { DirectorsModeFooterControls } from "~/pages/directors-mode/footer/controls";
 import { PillBStill } from "~/components/buttons/pill/b/still";
 import { NOOP } from "@brysonandrew/utils-function";
+import { SeperatorVertical } from "~/pages/directors-mode/footer/controls/seperator/vertical";
 
 export const HomeFooterDirectorsMode: FC =
   () => {
     const { isHover, handlers } =
       useHoverKey();
     const { togglePathValue } =
-      useNavigationControls(
+      useNavigationControls();
+    const handleClick = () => {
+      togglePathValue(
         DIRECTORS_MODE_PATH_VALUE
       );
-    const handleClick = () => {
-      togglePathValue();
     };
     const title = "Director's Mode";
     const isHovering = isHover(title);
@@ -30,7 +31,6 @@ export const HomeFooterDirectorsMode: FC =
       isHover(
         DirectorsModeFooterControlsHoverKey
       );
-
     return (
       <motion.div className="relative row-reverse">
         <PillBHover
@@ -47,6 +47,9 @@ export const HomeFooterDirectorsMode: FC =
               {isHovering ? (
                 <DirectorsModeFooterControls
                   Button={PillBStill}
+                  Seperator={
+                    SeperatorVertical
+                  }
                   {...PRESENCE_OPACITY}
                   {...handlers(
                     DirectorsModeFooterControlsHoverKey

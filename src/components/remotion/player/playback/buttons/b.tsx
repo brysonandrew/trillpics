@@ -3,7 +3,7 @@ import { CircleIcon } from "~/components/buttons/circle/icon";
 import {  TButtonProps,  TSvgProps,} from "@brysonandrew/config-types";
 import clsx from "clsx";
 import { Glow } from "~/components/decoration/glow";
-import { useBorderStyleMd } from "~/components/buttons/use-border-style/md";
+import { useBoxStyle } from "~/store/hooks/core/box/use-box-style";
 
 export const PlaybackButtonsB: FC<
   TButtonProps & { Icon: FC<TSvgProps> }
@@ -13,7 +13,7 @@ export const PlaybackButtonsB: FC<
   style,
   ...props
 }) => {
-  const { ...borderStyle} = useBorderStyleMd();
+  const borderStyle = useBoxStyle({layer:'flat',borderRadius:'borderRadius',size:'md'})
   return (
     <button
       className={clsx(

@@ -5,21 +5,21 @@ export const usePlayerListeners =
   () => {
     const {
       playerInstance,
-      updatePlayerState,
+      updateState,
     } = useTrillPicsStore(
       ({
         playerInstance,
-        updatePlayerState,
+        updateState,
       }) => ({
         playerInstance,
-        updatePlayerState,
+        updateState,
       })
     );
 
     const handlePlay = (
       isPlaying = true
     ) => {
-      updatePlayerState({
+      updateState({
         isPlaying,
       });
     };
@@ -31,9 +31,7 @@ export const usePlayerListeners =
 
     useEffect(() => {
       if (playerInstance) {
-        playerInstance.seekTo(
-          0
-        );
+        playerInstance.seekTo(0);
 
         playerInstance.addEventListener(
           "play",
@@ -57,5 +55,5 @@ export const usePlayerListeners =
           );
         }
       };
-    }, [playerInstance, updatePlayerState]);
+    }, [playerInstance, updateState]);
   };

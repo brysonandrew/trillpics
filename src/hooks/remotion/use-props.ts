@@ -1,35 +1,33 @@
 import { useImageDimensions } from "@brysonandrew/measure";
 import { DIMENSIONS } from "~/constants/remotion";
 import { useTrillPicsStore } from "~/store";
-import { useViewport } from "~/context/viewport";
 
 export const useRemotionProps = () => {
   const {
+    screen,
     videoPics,
     fps,
     countVideoPics,
     picsCount,
-    addVideoPic,
   } = useTrillPicsStore(
     ({
+      screen,
       videoPics,
       fps,
       countVideoPics,
       picsCount,
-      addVideoPic,
     }) => ({
+      screen,
       videoPics,
       fps,
       countVideoPics,
       picsCount,
-      addVideoPic,
     })
   );
-  const viewport = useViewport();
   const dimensions = useImageDimensions(
     {
-      box: viewport.isDimensions
-        ? viewport
+      box: screen.isDimensions
+        ? screen
         : null,
       image: DIMENSIONS,
     }

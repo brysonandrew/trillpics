@@ -4,15 +4,15 @@ import { resolveUrlId } from "@brysonandrew/utils-attributes";
 type TDoneProps = {
   onDone?(event: Event): void;
 };
-export type TBaseProps =
+export type TSelfDestrucTPicsBaseRow =
   Required<TIdProps> & TDoneProps;
-type TProps<T extends TBaseProps> = {
+type TProps<T extends TSelfDestrucTPicsBaseRow> = {
   filterProps: T;
   Filter: FC<T>;
   children(filter?: string): void;
 };
 export const SelfDestruct = <
-  T extends TBaseProps
+  T extends TSelfDestrucTPicsBaseRow
 >({
   filterProps,
   Filter,

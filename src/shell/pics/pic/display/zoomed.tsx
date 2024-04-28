@@ -6,7 +6,7 @@ import {
   PicDisplay,
   TPicDisplayProps,
 } from "~/shell/pics/pic/display";
-import { centerInViewport } from "~/utils/dimensions/center-in-viewport";
+import { centerInScreen } from "~/utils/dimensions/center-in-viewport";
 
 export const PicDisplayZoomed: FC<
   TPicDisplayProps &
@@ -19,10 +19,10 @@ export const PicDisplayZoomed: FC<
         position: "fixed",
         ...(props.zoomDimensions
           .isDimensions &&
-        props.viewport.isDimensions
-          ? centerInViewport(
+        props.screen.isDimensions
+          ? centerInScreen(
               props.zoomDimensions,
-              props.viewport
+              props.screen
             )
           : {}),
         zIndex: FULLSCREEN_Z,

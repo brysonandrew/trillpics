@@ -17,7 +17,7 @@ import {
 } from "@brysonandrew/config-types";
 import { useEventListener } from "@brysonandrew/hooks-events";
 import { SvgWrap } from "@brysonandrew/svg";
-import { TBaseProps } from "~/components/blur/presence/self-destruct";
+import { TSelfDestrucTPicsBaseRow } from "~/components/blur/presence/self-destruct";
 
 const DUR = 0.6;
 const TURBULENCE_ANIMATION = {
@@ -60,7 +60,7 @@ type TElementProps = TSvgPropsAttr &
   TDisplacementPropsAttr &
   TTurbulencePropsAttr;
 export type TBlurPresenceProps =
-  TBaseProps &
+  TSelfDestrucTPicsBaseRow &
     Partial<TElementProps> &
     TIdProps &
     TDirectionProps & {

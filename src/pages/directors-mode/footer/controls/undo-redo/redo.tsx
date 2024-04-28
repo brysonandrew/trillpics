@@ -1,9 +1,9 @@
 import { FC } from "react";
 import { NOOP } from "@brysonandrew/utils-function";
-import { useTemporalStore } from "~/store";
 import { TDirectorsModeFooterProps } from "~/pages/directors-mode/footer/types";
 import { PillBHover } from "~/components/buttons/pill/b/hover";
 import { IconsRedo } from "~/components/icons/redo";
+import { useTemporalStore } from "~/store/middleware/temporal/store";
 
 export const ControlsRedo: FC<
   TDirectorsModeFooterProps
@@ -16,7 +16,9 @@ export const ControlsRedo: FC<
   const isNoFuture =
     futureStates.length === 0;
 
-  const title = `Redo${isNoFuture ? " [disabled]":''}`;
+  const title = `Redo${
+    isNoFuture ? " [disabled]" : ""
+  }`;
   return (
     <Button
       disabled={isNoFuture}
@@ -26,6 +28,8 @@ export const ControlsRedo: FC<
       {...props}
       title={title}
       Icon={IconsRedo}
-    >{title}</Button>
+    >
+      {title}
+    </Button>
   );
 };

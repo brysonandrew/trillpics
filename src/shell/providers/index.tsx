@@ -10,7 +10,6 @@ import { TChildrenProps } from "@brysonandrew/config-types/dom";
 import { arrToNest } from "@brysonandrew/layout-utils/arrToNest";
 import { TCustomStyle } from "~app/style";
 import { Core } from "~/shell/providers/core";
-import { ViewportProvider } from "~/context/viewport";
 import { ScrollProvider } from "~/context/scroll";
 
 type TLayoutOptions =
@@ -27,7 +26,6 @@ export const Providers: FC<TProps> = ({
       [
         NetworkProvider,
         DarkModeProvider,
-        ViewportProvider,
       ],
       <Core>{_children}</Core>,
       {}

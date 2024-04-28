@@ -2,37 +2,26 @@ import type {
   Row as TTanstackRow,
   RowModel,
 } from "@tanstack/react-table";
-import type {
-  FixedSizeListProps,
-  ListChildComponentProps,
-} from "react-window";
 import { FixedSizeList } from "react-window";
 import { BlurXy } from "~/components/blur/xy";
 import { useScroll } from "~/context/scroll";
-import { useViewport } from "~/context/viewport";
-import { TPartialFixedTableProps } from "~/shell/pics";
-import { TRow } from "~/shell/pics/use-pics-table";
-import { Row } from "./row";
+import { RenderRow } from "~/shell/pics/table-infinite/render-row";
 import {
-  TBaseRow,
-  TTable,
-} from "./types";
+  TPicsBaseRow,
+  TPicsTableTanstack,
+  TPartialFixedTableProps,
+  TPicsTableRows,
+} from "~/store/slices/table/types";
+import { TDimensions } from "@brysonandrew/config-types";
 
-const RenderRow = <T extends TBaseRow>(
-  props: ListChildComponentProps<
-    TTanstackRow<T>[]
-  >
-) => {
-  return <Row<T> {...props} />;
-};
-
-type TProps<T extends TBaseRow> =
-  TPartialFixedTableProps & {
-    table: TTable<T>;
-    rowHeight: number;
-  };
+type TProps<T extends TPicsBaseRow> =
+  TPartialFixedTableProps<T> &
+    TDimensions & {
+      table: TPicsTableTanstack<T>;
+      rowHeight: number;
+    };
 export const Virtualize = <
-  T extends TBaseRow
+  T extends TPicsBaseRow
 >({
   table,
   rowHeight,
@@ -44,20 +33,12 @@ export const Virtualize = <
     rowModel.rows;
   const { onUpdate, listRef } =
     useScroll();
-  const vp = useViewport();
 
-  if (!vp.isDimensions) return null;
   return (
-    <FixedSizeList<TTanstackRow<T>[]>
-      // onItemsRendered={console.log}
-
+    <FixedSizeList<TPicsTableRows<T>>
       onScroll={onUpdate}
-      width={vp.width}
-      height={vp.height}
       itemCount={rows.length}
-      itemData={rows.map(
-        (row: TTanstackRow<T>) => row
-      )}
+      itemData={rows.map((row) => row)}
       itemSize={rowHeight}
       itemKey={(
         index: number,
@@ -68,8 +49,8 @@ export const Virtualize = <
       }}
       layout="vertical"
       ref={listRef}
-      innerElementType={BlurXy}
       direction="ltr"
+      {...props}
     >
       {RenderRow}
     </FixedSizeList>

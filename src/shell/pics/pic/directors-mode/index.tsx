@@ -1,13 +1,12 @@
 import type { FC } from "react";
-import { TCell } from "~/shell/pics/columns/config";
 import { Box } from "~/shell/pics/pic/box";
 import { PicZoomed } from "~/shell/pics/pic/zoomed";
-import { PicCell } from "~/shell/pics/pic/cell";
 import { PicDirectorsModeCell } from "~/shell/pics/pic/directors-mode/cell";
+import { TPicCell } from "~/store/slices/table/types";
 
 export type TPicProps = {
   colIndex: number;
-  cell: TCell;
+  cell: TPicCell;
   size: number;
   maxColsCount: number;
 };

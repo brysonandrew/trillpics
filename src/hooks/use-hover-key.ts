@@ -1,7 +1,19 @@
 import { THoverKey } from "@brysonandrew/hooks-dom";
+import { config } from "localforage";
 import { useTrillPicsStore } from "~/store";
 
-export const useHoverKey = () => {
+type THandler = (
+  key: THoverKey
+) => void;
+type TConfig = {
+  handlers?: {
+    start?: THandler;
+    stop?: THandler;
+  };
+};
+export const useHoverKey = (
+  config?: TConfig
+) => {
   const {
     hoverKeys,
     isHover,
@@ -21,13 +33,26 @@ export const useHoverKey = () => {
     })
   );
 
+  const onStart: THandler = (key) => {
+    if (config?.handlers?.start) {
+      config.handlers.start?.(key);
+    }
+    hover(key);
+  };
+  const onStop: THandler = (key) => {
+    if (config?.handlers?.stop) {
+      config.handlers.stop?.(key);
+    }
+    unhover(key);
+  };
+
   const handlers = (
     key: THoverKey
   ) => ({
-    onHoverStart: () => hover(key),
-    onHoverEnd: () => unhover(key),
-    onPointerLeave: () => unhover(key),
-    onMouseLeave: () => unhover(key),
+    onHoverStart: () => onStart(key),
+    onHoverEnd: () => onStop(key),
+    onPointerLeave: () => onStop(key),
+    onMouseLeave: () => onStop(key),
   });
 
   const clear = hover;

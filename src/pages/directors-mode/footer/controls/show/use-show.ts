@@ -8,29 +8,38 @@ export const useShow = () => {
     picsEntries,
     videoPics,
     countPics,
+    countVideoPics,
     updatePicsEntries,
   } = useTrillPicsStore(
     ({
       picsEntries,
       videoPics,
       countPics,
+      countVideoPics,
       updatePicsEntries,
     }) => ({
       picsEntries,
       videoPics,
       countPics,
+      countVideoPics,
       updatePicsEntries,
     })
   );
   const showAllIndexRef = useRef<
     number | null
   >(null);
-  const videoPicsCount =
-    videoPics.length;
+  const picsCount =countPics();
+
+    const videoPicsCount =countVideoPics();
+console.log("▁▁▁▁▂▂▂▂▃▃▃▃▄▄▄▅▅▅▅▆▆▆▆▇▇▇▇██▓▒░ 🧨 ░▒▓█▓▒░ 🧨 ░▒▓██▇▇▇▇▆▆▆▆▅▅▅▅▄▄▄▃▃▃▃▂▂▂▂▁▁▁▁");
+console.log(picsCount,'vid', videoPicsCount);
+console.log("██████████████▓▒░ 🧨 ░▒ line: 31, file: use-show.ts ▓▒░ 🧨 ░▒██████████████");
+    
   const isViewingOnlyVideoPics =
-    videoPicsCount === countPics();
+  picsCount === videoPicsCount
   const { blurX, blurXRef } =
     useScroll();
+
   const onToggleShow = () => {
     const prev = blurX.get();
     blurXRef.current = animate(
@@ -42,6 +51,7 @@ export const useShow = () => {
           blurX.set(prev),
       }
     );
+
     if (isViewingOnlyVideoPics) {
       updatePicsEntries(
         picsEntries[

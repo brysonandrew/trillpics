@@ -1,13 +1,13 @@
 import type { FC } from "react";
 import { IconsInfo } from "~/components/icons/info";
 import clsx from "clsx";
-import { useBorderStyleMd } from "~/components/buttons/use-border-style/md";
 import { DecorationNet } from "~/components/decoration/background/net";
 import {
   TDivProps,
   TSvgProps,
 } from "@brysonandrew/config-types";
 import { PortalBody } from "@brysonandrew/layout-portal";
+import { useBoxStyle } from "~/store/hooks/core/box/use-box-style";
 
 export type TModalOverlayConfig =
   TDivProps & {
@@ -26,8 +26,8 @@ export const ModalOverlay: FC<
   classValue,
   ...props
 }) => {
-  const borderStyle =
-    useBorderStyleMd();
+  const borderStyle = useBoxStyle({layer:'flat',borderRadius:'borderRadius',size:'md'})
+
   return (
     <PortalBody>
       <div

@@ -1,9 +1,9 @@
 import type { FC } from "react";
-import { useTemporalStore } from "~/store";
 import { PillBHover } from "~/components/buttons/pill/b/hover";
 import { TDirectorsModeFooterProps } from "~/pages/directors-mode/footer/types";
 import { NOOP } from "@brysonandrew/utils-function";
 import { IconsUndo } from "~/components/icons/undo";
+import { useTemporalStore } from "~/store/middleware/temporal/store";
 
 export const ControlsUndo: FC<
   TDirectorsModeFooterProps
@@ -27,6 +27,8 @@ export const ControlsUndo: FC<
       {...props}
       title={title}
       Icon={IconsUndo}
-    >{title}</Button>
+    >
+      {title}
+    </Button>
   );
 };

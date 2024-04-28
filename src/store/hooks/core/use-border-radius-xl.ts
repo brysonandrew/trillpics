@@ -1,11 +1,6 @@
-import { useTrillPicsStore } from "~/store";
+import { useBoxStyleConfig } from "~/store/hooks/core";
 
 export const useBorderRadiusXl = () => {
-  const { borderRadius } = useTrillPicsStore(
-    ({ borderRadius }) => ({
-      borderRadius,
-    })
-  );
-
-  return borderRadius;
+  const box = useBoxStyleConfig();
+  return box.borderRadius;
 };

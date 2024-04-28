@@ -29,7 +29,7 @@ export const useBox = ({
   const [_, setFront] = frontCheckState;
 
   const name =
-    cell.row.original.cols[colIndex];
+    cell.row.original.columns[colIndex];
 
   const { pathname } = useLocation();
   const [searchParams] =

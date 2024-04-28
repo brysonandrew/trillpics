@@ -6,11 +6,11 @@ export const resolveGridTemplateConfig =
   ) => {
     const stats: {
       prevColCellCount: number | null;
-      cols: number[];
+      columns: number[];
       rowCount: number;
     } = {
       prevColCellCount: null,
-      cols: [],
+      columns: [],
       rowCount: 0,
     };
     let areaRows: string[] = [];
@@ -45,7 +45,7 @@ export const resolveGridTemplateConfig =
       }
       stats.prevColCellCount = count;
 
-      stats.cols.push(count);
+      stats.columns.push(count);
       stats.rowCount++;
       areaRows = [
         ...areaRows,

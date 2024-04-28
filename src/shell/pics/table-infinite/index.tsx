@@ -1,3 +1,4 @@
+import { TDimensions } from "@brysonandrew/config-types";
 import {
   getCoreRowModel,
   useReactTable,
@@ -5,23 +6,24 @@ import {
   TableOptions,
   ColumnDef,
 } from "@tanstack/react-table";
-import { TRow } from "~/shell/pics/config";
-import { FixedSizeListProps } from "react-window";
-import { TPartialFixedTableProps } from "~/shell/pics";
+import {
+  TPartialFixedTableProps,
+  TPicsBaseRow,
+} from "~/store/slices/table/types";
 import { Virtualize } from "./virtualize";
-import { TBaseRow } from "./types";
-type TProps<T extends TBaseRow> =
-  TPartialFixedTableProps & {
-    rows: TRow[];
-    columns: ColumnDef<T, any>[];
-    rowHeight: number;
-  };
+
+type TProps<T extends TPicsBaseRow> =
+  TPartialFixedTableProps<T> &
+    TDimensions & {
+      rows: T[];
+      columns: ColumnDef<T, any>[];
+      rowHeight: number;
+    };
 export const TableInfinite = <
-  T extends TBaseRow
+  T extends TPicsBaseRow
 >({
   rows,
   columns,
-  rowHeight,
   ...props
 }: TProps<T>) => {
   const options: TableOptions<T> = {
@@ -35,7 +37,6 @@ export const TableInfinite = <
   return (
     <Virtualize<T>
       table={table}
-      rowHeight={rowHeight}
       {...props}
     />
   );

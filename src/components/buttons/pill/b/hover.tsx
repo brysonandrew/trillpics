@@ -7,7 +7,6 @@ import {
 import { FADE_PRESENCE_DELAY_02 } from "~/constants/animation";
 import { useHoverKey } from "~/hooks/use-hover-key";
 import { isDefined } from "~/utils/validation/is/defined";
-import { resolveCompositeKey } from "@brysonandrew/utils-key";
 
 type TProps = TPillBProps;
 export const PillBHover: FC<TProps> = ({
@@ -27,10 +26,6 @@ export const PillBHover: FC<TProps> = ({
     isHover(title);
   return (
     <PillB
-      key={resolveCompositeKey(
-        `${isHovering}`,
-        title
-      )}
       title={title}
       // onMouseOut={handleMouseLeave}
       {...handlers(title)}

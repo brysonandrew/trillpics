@@ -1,10 +1,18 @@
-import { PlayerRef } from "@remotion/player";
+import {
+  PlayerMethods,
+} from "@remotion/player";
+import { PlayerEmitter } from "@remotion/player/dist/cjs/event-emitter";
 
 export type TPlayerKey =
   | string
   | number;
 export type TPlayerInstance =
-  PlayerRef | null;
+  | (PlayerMethods &
+      Omit<
+        PlayerEmitter,
+        "dispatchEvent"
+      >)
+  | null;
 
 export type TPlayerSeekFramesState = {
   seekFrames: (

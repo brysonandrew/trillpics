@@ -22,7 +22,7 @@ export const PicBackdrop: FC<
 }) => {
   const backdropResult =
     usePicBackdrop(props);
-  const { viewportDimensions } =
+  const { screenDimensions } =
     backdropResult;
   return (
     <>
@@ -31,18 +31,15 @@ export const PicBackdrop: FC<
         style={{
           position: "fixed",
           zIndex: FULLSCREEN_Z,
-          ...(viewportDimensions ?? {}),
+          ...(screenDimensions ?? {}),
           backdropFilter:
             "blur(28px) grayscale(80%)",
           cursor: "zoom-out",
         }}
         onClick={onToggle}
-      >
-        <div className="absolute top-4 left-6">
-          <IconsPicZoomOut />
-        </div>
-      </motion.div>
+      />
       {children(backdropResult)}
+
     </>
   );
 };

@@ -1,20 +1,20 @@
 import { WritableDraft } from "immer/src/internal";
 import {
-  TPartialStateWithPlayerState,
-  TStateWithPlayerState,
+  TPartialState,
+  TState,
 } from "~/store/types";
 
 export type TStoreState =
-  | TStateWithPlayerState
-  | TPartialStateWithPlayerState;
+  | TState
+  | TPartialState;
 
 type TStoreDraftUpdater = (
-  state: WritableDraft<TStateWithPlayerState>
+  state: WritableDraft<TState>
 ) => void;
 // nextStateOrUpdater: TCombinedSlices | Partial<TCombinedSlices> | ((state: WritableDraft<TCombinedSlices>) => void), shouldReplace?: boolean | undefined
 
 type TStoreUpdater = (
-  state: TStateWithPlayerState
+  state: TState
 ) => TStoreState;
 export type TUpdaterPlayerState = {
   updatePlayerState(
@@ -24,8 +24,8 @@ export type TUpdaterPlayerState = {
     replace?: boolean | undefined
   ): void;
 };
-// TStateWithPlayerState | Partial<TStateWithPlayerState> | ((state: TStateWithPlayerState) => TStateWithPlayerState | Partial
+// TState | Partial<TState> | ((state: TState) => TState | Partial
 
-// | Partial<TStateWithPlayerState>)
+// | Partial<TState>)
 
 //  | Partial<...>), replace?: boolean | undefined) => void

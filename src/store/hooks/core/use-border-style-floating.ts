@@ -1,8 +1,8 @@
-import { useBorderStyle } from "~/store/hooks/core/use-border-style";
+import { useBoxStyle } from "~/store/hooks/core/box/use-box-style";
 
-export const useBorderStyleFloating =
+export const useBoxStyleFloating =
   () => {
-    const flat = useBorderStyle({
+    const flat = useBoxStyle({
       layer: "flat",
     });
     return flat;

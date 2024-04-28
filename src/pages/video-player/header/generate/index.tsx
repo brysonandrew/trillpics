@@ -11,10 +11,10 @@ import { downloadMedia } from "~/pages/video-player/header/generate/download-med
 import { AURA } from "@brysonandrew/svg-filter";
 import { resolvePresence } from "~/utils/animation";
 import { resolveCompositeKey } from "@brysonandrew/utils-key";
-import { useBorderStyleMd } from "~/components/buttons/use-border-style/md";
 import { Metal } from "@brysonandrew/texture-metal";
 import { TGenerateInput } from "~/types/trpc/generate";
 import { useHoverKey } from "~/hooks/use-hover-key";
+import { useBoxStyle } from "~/store/hooks/core/box/use-box-style";
 
 const DEFAULT: TGenerateInput = {
   input: {
@@ -37,6 +37,8 @@ export const Generate = () => {
     input: { pics: videoPics },
     fps,
   };
+  const borderStyle = useBoxStyle({layer:'flat',borderRadius:'borderRadius',size:'md'})
+
   const title = "Generate";
 
   // const dl = async (blob: Blob) => {};
@@ -94,8 +96,7 @@ export const Generate = () => {
       }
     ),
   };
-  const borderStyle =
-    useBorderStyleMd();
+
   return (
     <div className="relative h-0">
       <AnimatePresence>

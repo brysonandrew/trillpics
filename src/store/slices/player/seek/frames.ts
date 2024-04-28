@@ -1,7 +1,7 @@
 import { TPlayerSeekFramesState } from "~/store/slices/player/types";
-import { TStateWithPlayerStateHandler } from "~/store/types";
+import { TStateHandler } from "~/store/types";
 
-export const playerSeekFramesState: TStateWithPlayerStateHandler<
+export const playerSeekFramesState: TStateHandler<
   TPlayerSeekFramesState
 > = (...args) => {
   const [_, get] = args;

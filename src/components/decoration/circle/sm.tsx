@@ -3,12 +3,13 @@ import {
   Circle,
   TCircleProps,
 } from "~/components/decoration/circle/circle";
-import { useBorderStyleMd } from "~/components/buttons/use-border-style/md";
+import { useBoxStyle } from "~/store/hooks/core/box/use-box-style";
 
 export const CircleSm: FC<
   TCircleProps
 > = ({ ...props }) => {
-  const style = useBorderStyleMd();
+  const style = useBoxStyle({layer:'flat',borderRadius:'borderRadius',size:'sm'})
+
   return (
     <Circle style={style} {...props} />
   );

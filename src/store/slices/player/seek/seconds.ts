@@ -1,9 +1,9 @@
 import { TPlayerSeekSecondsState } from "~/store/slices/player/types";
-import { TStateWithPlayerStateHandler } from "~/store/types";
+import { TStateHandler } from "~/store/types";
 import { clampNumbers } from "~/utils/number/clamp-numbers";
 import { isNull } from "~/utils/validation/is/null";
 
-export const playerSeekSecondsState: TStateWithPlayerStateHandler<
+export const playerSeekSecondsState: TStateHandler<
   TPlayerSeekSecondsState
 > = (...args) => {
   const [_, get] = args;

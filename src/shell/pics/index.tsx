@@ -1,58 +1,79 @@
 import { FC } from "react";
-import { FixedSizeListProps } from "react-window";
 import { ScrollbarSeam } from "~/components/layout/scrollbar-seam";
-import { TableInfinite } from "~/shell/pics/table-infinite";
+import { useTrillPicsStore } from "~/store";
 import {
-  TPicsTable,
-  TRow,
-} from "~/shell/pics/use-pics-table";
-import type {
-  Row as TTanstackRow,
+  TPartialFixedTableProps,
+  TPicsRow,
+} from "~/store/slices/table/types";
+import {
+  getCoreRowModel,
+  useReactTable,
+  Table,
+  TableOptions,
 } from "@tanstack/react-table";
+import { Virtualize } from "~/shell/pics/table-infinite/virtualize";
+import {
+  TScreen,
+  useScreenMeasure,
+} from "~/context/screen/measure";
+import { useOnscreen } from "~/shell/header/right/zen-mode/use-onscreen";
 import { usePicsColumns } from "./columns";
-export type TPartialFixedTableProps =
-  Partial<
-    FixedSizeListProps<
-      TTanstackRow<TRow>[]
-    >
-  >;
+
 type TProps =
-  TPartialFixedTableProps & {
-    picsTable: TPicsTable;
-  };
+  TPartialFixedTableProps<TPicsRow>;
 export const Pics: FC<TProps> = ({
-  picsTable,
   ...props
 }) => {
+  const { table, screen, updateState } =
+    useTrillPicsStore(
+      ({
+        table,
+        screen,
+        updateState,
+      }) => ({
+        table,
+        screen,
+        updateState,
+      })
+    );
   const {
     rows,
     size: _size,
     isVerticalScroll,
-  } = picsTable;
+  } = table;
+
   const size = _size - 6;
   const columns = usePicsColumns(
     rows,
     size
   );
-  if (rows.length === 0) {
-    return (
-      <div className="px-4">
-        no pics
-      </div>
-    );
-  }
+
+  const options: TableOptions<TPicsRow> =
+    {
+      data: rows,
+      columns,
+      getCoreRowModel:
+        getCoreRowModel(),
+    };
+  const tableConfig: Table<TPicsRow> =
+    useReactTable<TPicsRow>(options);
+  // if (rows.length === 0)
+  //   return <NoPics />;
 
   return (
     <>
       {isVerticalScroll && (
         <ScrollbarSeam />
       )}
-      <TableInfinite<TRow>
-        rowHeight={size}
-        columns={columns}
-        {...picsTable}
-        rows={rows}
-      />
+      {screen.isDimensions && (
+        <Virtualize
+          rowHeight={size}
+          table={tableConfig}
+          {...props}
+          width={screen.width}
+          height={screen.height}
+        />
+      )}
     </>
   );
 };

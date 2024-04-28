@@ -5,7 +5,7 @@ import { TCoreState } from "~/store/slices/core/types";
 import { TPicsState } from "~/store/slices/pics/types";
 import { TDirectorState } from "~/store/slices/director/types";
 import { TUpdaterState } from "~/store/slices/updater/types";
-import { TUpdaterPlayerState } from "~/store/slices/updater/types/player";
+import { TTableState } from "~/store/slices/table/types";
 
 export type TStateCreator<
   T extends object
@@ -23,33 +23,12 @@ export type TStateHandler<
 ) => T;
 
 export type TState = TCoreState &
+  TTableState &
   TPicsState &
   TDirectorState &
   THoverState &
-  TUpdaterState;
+  TUpdaterState &
+  TPlayerState;
 
 export type TStateKey = keyof TState;
-export type TStateWithPlayerState =
-  TState &
-    TPlayerState &
-    TUpdaterPlayerState;
 
-export type TPartialStateWithPlayerState =
-  Partial<TStateWithPlayerState>;
-export type TStateWithPlayerStateKey =
-  keyof TStateWithPlayerState;
-
-export type TStateWithPlayerStateCreator =
-  StateCreator<
-    TStateWithPlayerState,
-    [],
-    [],
-    TPlayerState
-  >;
-export type TStateWithPlayerStateCreatorParameters =
-  Parameters<TStateWithPlayerStateCreator>;
-export type TStateWithPlayerStateHandler<
-  T extends object
-> = (
-  ...args: TStateWithPlayerStateCreatorParameters
-) => T;

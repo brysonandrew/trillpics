@@ -1,21 +1,18 @@
-import {
-  useLocation,
-  useNavigate,
-} from "react-router";
+import { useNavigate } from "react-router";
 import { useSearchParams } from "react-router-dom";
+import { HOME_PATH_VALUE } from "~/constants/params";
+import { useNavigationActive } from "~/hooks/use-navigation/active";
 import { TPathValue } from "~/types/params";
 
 export const useNavigationControls = (
-  pathValue: TPathValue = "/"
+  pathValue: TPathValue = HOME_PATH_VALUE
 ) => {
-  const location = useLocation();
   const [searchParams] =
     useSearchParams();
   const navigate = useNavigate();
   const isActive =
-    location.pathname.includes(
-      pathValue
-    );
+    useNavigationActive();
+
   const togglePathValue = (
     nextPathValue?: TPathValue
   ) => {
@@ -25,7 +22,6 @@ export const useNavigationControls = (
         nextPathValue ?? pathValue;
     }
     const nextPathWithParams = `${nextPath}?${searchParams}`;
-    console.log(nextPathWithParams);
 
     navigate(nextPathWithParams);
   };

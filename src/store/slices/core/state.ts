@@ -1,31 +1,17 @@
-import {
-  BOX_SHADOW_FLAT,
-  BOX_SHADOW_FLOATING,
-} from "~/components/buttons/use-border-style/md";
+import { coreBoxState } from "~/store/slices/core/box";
+import { coreControlsState } from "~/store/slices/core/controls";
+import { coreScreenState } from "~/store/slices/core/screen";
 import { TCoreState } from "~/store/slices/core/types";
-import {
-  TState,
-  TStateHandler,
-} from "~/store/types";
-import { BORDER_RADIUS } from "~app/style/border-radius";
+import { TStateHandler } from "~/store/types";
 
 export const coreState: TStateHandler<
   TCoreState
-> = (set, get): TCoreState => ({
-  borderRadius: BORDER_RADIUS.XL,
-  floating: {
-    boxShadow: BOX_SHADOW_FLOATING,
-  },
-  flat: {
-    boxShadow: BOX_SHADOW_FLAT,
-  },
-  size: "2.5rem",
-  milestones: [],
-  isControls: true,
-  toggleControls: (next?: boolean) => {
-    set((prev: TState) => ({
-      isControls:
-        next ?? !prev.isControls,
-    }));
-  },
-});
+> = (...args): TCoreState => {
+  const [set, get] = args;
+  return {
+    ...coreScreenState(...args),
+    ...coreBoxState(...args),
+    ...coreControlsState(...args),
+    milestones: [],
+  };
+};

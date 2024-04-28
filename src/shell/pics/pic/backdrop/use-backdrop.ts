@@ -1,6 +1,6 @@
-import { useViewport } from "~/context/viewport";
 import { useImageDimensions } from "@brysonandrew/measure";
 import { TUseBoxChildProps } from "~/shell/pics/pic/box/use-box";
+import { useTrillPicsStore } from "~/store";
 
 export const SEARCH_PARAM_ID = "open";
 
@@ -12,22 +12,24 @@ export type TUsePicBackdropConfig =
 export const usePicBackdrop = ({
   cellDimensions,
 }: TUsePicBackdropConfig) => {
-  const viewport = useViewport();
-  const viewportDimensions =
-    viewport.isDimensions
+  const { screen } = useTrillPicsStore(
+    ({ screen }) => ({ screen })
+  );
+  const screenDimensions =
+    screen.isDimensions
       ? {
-          width: viewport.width,
-          height: viewport.height,
+          width: screen.width,
+          height: screen.height,
         }
       : null;
   const zoomDimensions =
     useImageDimensions({
-      box: viewportDimensions,
+      box: screenDimensions,
       image: cellDimensions,
     });
   return {
-    viewportDimensions,
-    viewport,
+    screenDimensions,
+    screen,
     zoomDimensions,
   };
 };

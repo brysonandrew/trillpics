@@ -10,4 +10,5 @@ export type TDirectorsModeFooterProps =
       Pick<TPillBProps, "title">
     > & {
       Button?: FC<TPillBProps>;
+      Seperator?: FC;
     };

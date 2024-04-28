@@ -2,6 +2,7 @@ import {
   createElement,
   FC,
   memo,
+  useState,
 } from "react";
 import { useDarkMode } from "@brysonandrew/dark-mode";
 import { PillBHover } from "~/components/buttons/pill/b/hover";
@@ -16,15 +17,27 @@ import {
 export const _DarkMode: FC = () => {
   const { isDarkMode, toggle } =
     useDarkMode();
+  const [initial, setInitial] =
+    useState<boolean>(false);
 
   const key = isDarkMode
     ? "light"
     : "dark";
   const title = `Use ${key} mode`;
 
-  const handleTap = toggle;
+  const handleTap = () => {
+    setInitial(true);
+
+    toggle();
+  };
+  const stop = () => {
+    setInitial(false);
+  };
+
   const { isHover, handlers } =
-    useHoverKey();
+    useHoverKey({
+      handlers: { stop },
+    });
   return (
     <PillBHover
       title={title}
@@ -35,11 +48,11 @@ export const _DarkMode: FC = () => {
             isDarkMode ? Moon : Sun,
             {
               ...{
-                key: "title",
+                key,
                 ...(isDarkMode
                   ? PRESENCE_ROTATE_FROM_TOP
                   : PRESENCE_ROTATE_FROM_BOTTOM),
-                ...(isHover(title)
+                ...(initial
                   ? {}
                   : { initial: false }),
               },

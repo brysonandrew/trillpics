@@ -1,11 +1,4 @@
-import { hoverState } from "~/store/slices/hover/state";
-import { STORAGE } from "~/store/persist/storage";
-import {
-  TState,
-  TStateKey,
-  TStateWithPlayerState,
-  TStateWithPlayerStateKey,
-} from "src/store/types";
+import { STORAGE } from "~/store/middleware/persist/storage";
 import {
   devtools,
   persist,
@@ -15,188 +8,142 @@ import { immer } from "zustand/middleware/immer";
 import {
   create,
   Mutate,
-  StateCreator,
   StoreApi,
   UseBoundStore,
-  useStore,
 } from "zustand";
-import { playerState } from "~/store/slices/player/state";
-import { coreState } from "~/store/slices/core/state";
-import { picsState } from "~/store/slices/pics/state";
-import { directorState } from "~/store/slices/director/state";
-import { TPersistState } from "~/store/persist/types";
 import { enableMapSet } from "immer";
-import {
-  TemporalState,
-  temporal,
-} from "zundo";
-import { OPTIONS_UNDO_REDO } from "~/store/undo-redo";
+import { temporal } from "zundo";
+import { OPTIONS_UNDO_REDO } from "~/store/middleware/temporal";
 import { useShallow } from "zustand/react/shallow";
+import { TPartialAtLeastOne } from "~/types/object";
+import { TPersistState } from "~/store/middleware/persist/types";
+import {
+  TTemporalPartializedState,
+  TTemporalState,
+} from "~/store/middleware/temporal/types";
+import { TState } from "~/store/types";
+import { coreState } from "~/store/slices/core/state";
+import { directorState } from "~/store/slices/director/state";
+import { hoverState } from "~/store/slices/hover/state";
+import { picsState } from "~/store/slices/pics/state";
+import { playerState } from "~/store/slices/player/state";
+import { tableState } from "~/store/slices/table/state";
 
 enableMapSet();
 
 // 1. immer
 
-type TStateMiddleware = [
-  ["zustand/immer", never]
-];
-
-type TAllStateCreator = StateCreator<
+const createImmerState = immer<
   TState,
-  [],
-  TStateMiddleware,
-  TState
->;
-const createImmerState: TAllStateCreator =
-  immer<TState>((...a) => ({
-    ...directorState(...a),
+  [
+    [
+      "zustand/subscribeWithSelector",
+      never
+    ]
+  ],
+  []
+>((...a) => {
+  return {
     ...coreState(...a),
+    ...tableState(...a),
+    ...directorState(...a),
     ...picsState(...a),
     ...hoverState(...a),
+    ...playerState(...a),
     updateState: a[0],
-  }));
+  };
+});
 
 // 2. subscribe
-type TSubscribeStateMiddleware = [
-  [
-    "zustand/subscribeWithSelector",
-    never
-  ],
-  ["zustand/immer", never]
-];
 
-const createSubscribeState: StateCreator<
-  TStateWithPlayerState,
-  [],
-  TSubscribeStateMiddleware,
-  TStateWithPlayerState
-> = subscribeWithSelector<
-  TStateWithPlayerState,
-  [],
-  TStateMiddleware
->((...a) => ({
-  ...createImmerState(...a),
-  ...playerState(...a),
-  updatePlayerState: a[0],
-}));
+const createSubscribeState =
+  subscribeWithSelector<
+    TState,
+    [["zustand/persist", unknown]],
+    [["zustand/immer", never]]
+  >(createImmerState);
 
 // 3. persist
-// type TPersistStateMiddleware = [
-//   ["zustand/persist", unknown]
-// ];
-
-type TPersistStateMiddleware = [
-  ["zustand/persist", unknown],
+const createPersistState = persist<
+  TState,
+  [["zustand/devtools", never]],
   [
-    "zustand/subscribeWithSelector",
-    never
+    [
+      "zustand/subscribeWithSelector",
+      never
+    ],
+    ["zustand/immer", never]
   ],
-  ["zustand/immer", never]
-];
-
-// type TStateMiddleware = [
-//   ...TPersistStateMiddleware,
-//   ...TSubscribeStateMiddleware,
-//   ...TStateMiddleware
-// ];
-
-type TPersistStateCreator =
-  StateCreator<
-    TStateWithPlayerState,
-    [],
-    TPersistStateMiddleware,
-    TStateWithPlayerState
-  >;
-
-const createPersistState: TPersistStateCreator =
-  persist<
-    TStateWithPlayerState,
-    [],
-    TSubscribeStateMiddleware,
-    TPersistState
-  >(createSubscribeState, STORAGE);
+  TPersistState
+>(createSubscribeState, STORAGE);
 
 // 4. devtools
-export type TDevtoolsStateMiddleware =
-  | [
-      ["zustand/devtools", never],
-      [
-        "zustand/subscribeWithSelector",
-        never
-      ],
-      ["zustand/immer", never]
-    ]
-  | [
-      ["zustand/devtools", never],
-      ...TPersistStateMiddleware
-    ];
 
-// // type TPrevDevtoolsStateMiddleware =
-// // | TSubscribeStateMiddleware
-// | TPersistStateMiddleware;
 const createDevtoolsState = devtools<
-  TStateWithPlayerState,
-  [],
-  TPersistStateMiddleware
+  TState,
+  [["temporal", unknown]],
+  [
+    ["zustand/persist", TPersistState],
+    [
+      "zustand/subscribeWithSelector",
+      never
+    ],
+    ["zustand/immer", never]
+  ]
 >(createPersistState);
 
 // 4. zundo (undo redo)
-export type TZundoStateMiddleware = [
-  [
-    "temporal",
-    StoreApi<
-      TemporalState<TStateWithPlayerState>
-    >
-  ],
-  ...TDevtoolsStateMiddleware
-];
+
 const createZundoState = temporal<
-  TStateWithPlayerState,
+  TState,
   [],
-  TDevtoolsStateMiddleware,
-  TStateWithPlayerState
+  [
+    ["zustand/devtools", never],
+    ["zustand/persist", TPersistState],
+    [
+      "zustand/subscribeWithSelector",
+      never
+    ],
+    ["zustand/immer", never]
+  ],
+  TTemporalPartializedState
 >(
   createDevtoolsState,
   OPTIONS_UNDO_REDO
 );
 
+type TMiddlewares = [
+  [
+    "temporal",
+    StoreApi<TTemporalState>
+  ],
+  ["zustand/devtools", never],
+  ["zustand/persist", TPersistState],
+  [
+    "zustand/subscribeWithSelector",
+    never
+  ],
+  ["zustand/immer", never]
+];
+
 type TStore = UseBoundStore<
-  Mutate<
-    StoreApi<TStateWithPlayerState>,
-    TZundoStateMiddleware
-  >
+  Mutate<StoreApi<TState>, TMiddlewares>
 >;
-// : UseBoundStore<
-//   Mutate<StoreApi<TCombinedSlices>, TZundoStateMiddleware>
-export const _useTrillPicsStore: TStore =
-  create<TStateWithPlayerState>()<TZundoStateMiddleware>(
+
+export const useTrillPicsStoreBase: TStore =
+  create<TState>()<TMiddlewares>(
     createZundoState
   );
 
 export const useTrillPicsStore = <
-  T extends Partial<TStateWithPlayerState>
+  T extends TPartialAtLeastOne<TState>
 >(
-  resolvePartial: (
-    state: TStateWithPlayerState
-  ) => T
+  selector: (state: TState) => T
 ) => {
-  const result = useShallow<
-    TStateWithPlayerState,
-    T
-  >(resolvePartial);
-  return _useTrillPicsStore(result);
+  const shallow = useShallow<TState, T>(
+    selector
+  );
+  const result =
+    useTrillPicsStoreBase(shallow);
+  return result;
 };
-
-// useTrillPicsStore.subscribe(
-//   (state) => state.videoPics,
-//   (videoPics: TPics) => {
-//     const durationInFrames = videoPics.length
-//     useEditorStore.setState({
-//       durationInFrames,
-//     });
-//   },
-//   {fireImmediately: true}
-// );
-export const useTemporalStore = <T>(
-  selector: (state: TemporalState<TState>) => T
-) => useStore(_useTrillPicsStore.temporal, selector);

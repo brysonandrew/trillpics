@@ -1,17 +1,17 @@
-import { TDimensions } from "@brysonandrew/measure";
+import { TDimensions } from "@brysonandrew/config-types";
 
-export const centerInViewport = (
+export const centerInScreen = (
   dimensions: TDimensions,
-  viewport: TDimensions,
+  screen: TDimensions,
   scrollY = 0
 ) => {
   return {
     left:
-      (viewport.width -
+      (screen.width -
         dimensions.width) *
       0.5,
     top:
-      (viewport.height -
+      (screen.height -
         dimensions.height) *
         0.5 +
       scrollY,

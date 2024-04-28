@@ -7,12 +7,13 @@ import { PillBHover } from "~/components/buttons/pill/b/hover";
 import { useTrillPicsStore } from "~/store";
 import { ControlsUndo } from "~/pages/directors-mode/footer/controls/undo-redo/undo";
 import { ControlsRedo } from "~/pages/directors-mode/footer/controls/undo-redo/redo";
-import { Seperator } from "~/pages/directors-mode/footer/controls/seperator";
+import { SeperatorHorizontal } from "~/pages/directors-mode/footer/controls/seperator/horizontal";
 
 export const DirectorsModeFooterControls: FC<
   TDirectorsModeFooterProps
 > = ({
   Button = PillBHover,
+  Seperator = SeperatorHorizontal,
   ..._props
 }) => {
   const { isVideoPics: _isVideoPics } =
@@ -50,8 +51,7 @@ export const DirectorsModeFooterControls: FC<
           />
         </>
       )}
-          <Seperator />
-
+      <Seperator />
       <ControlsPlayer
         layoutId="ControlsPlayer"
         title={title}

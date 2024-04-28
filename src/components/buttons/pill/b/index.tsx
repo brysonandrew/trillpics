@@ -10,8 +10,8 @@ import { resolveInteractiveLabels } from "@brysonandrew/utils-attributes";
 import { TFlatProps } from "~/types/ui";
 import { FADE_PRESENCE_DELAY_02 } from "~/constants/animation";
 import { Glow } from "~/components/decoration/glow";
-import { useBorderStyleMd } from "~/components/buttons/use-border-style/md";
 import { resolvePresence } from "~/utils/animation";
+import { useBoxStyle } from "~/store/hooks/core/box/use-box-style";
 
 export type TPillBProps =
   TButtonMotionProps &
@@ -35,8 +35,11 @@ export const PillB: FC<TPillBProps> = ({
   style,
   ...props
 }) => {
-  const circleStyle =
-    useBorderStyleMd(isFlat);
+  const circleStyle = useBoxStyle({
+    layer: "flat",
+    borderRadius: "borderRadius",
+    size: "md",
+  });
   const {
     minHeight,
     minWidth,
@@ -52,7 +55,7 @@ export const PillB: FC<TPillBProps> = ({
       className={clsx(
         "relative",
         "row shrink-0 gap-2 px-1",
-       // "btn-disabled",
+        // "btn-disabled",
         "disabled:grayscale-100",
         "text-main",
         isFlat

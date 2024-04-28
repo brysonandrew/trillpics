@@ -1,59 +1,46 @@
-import {
-  useEffect,
-  useMemo,
-} from "react";
-import { animate } from "framer-motion";
+import { useMemo } from "react";
 import { createColumnHelper } from "@tanstack/react-table";
-import { TRow } from "~/shell/pics/use-pics-table";
-import { Pic as PicHome } from "~/shell/pics/pic";
-import { useLocation } from "react-router";
+import { Pic } from "~/shell/pics/pic";
 import { DIRECTORS_MODE_PATH_VALUE } from "~/constants/params";
 import { PicDirectorsMode } from "~/shell/pics/pic/directors-mode";
-import { useScroll } from "~/context/scroll";
+import { useNavigationActive } from "~/hooks/use-navigation/active";
+import {
+  TPicsRow,
+  TPicsRows,
+} from "~/store/slices/table/types";
 
 export const usePicsColumns = (
-  rows: TRow[],
+  rows: TPicsRows,
   size: number
 ) => {
   const columnHelper =
-    createColumnHelper<TRow>();
-  const { pathname } = useLocation();
-  const { blurX, blurXRef } =
-    useScroll();
-  useEffect(() => {
-    blurXRef.current = animate(
-      blurX,
-      60,
-      {
-        duration: 0.4,
-        type: "tween",
-        onComplete: () => blurX.set(0),
-      }
-    );
-  }, [pathname]);
-  const results = useMemo(() => {
-    const isD = pathname.includes(
+    createColumnHelper<TPicsRow>();
+  const isDirectorsMode =
+    useNavigationActive(
       DIRECTORS_MODE_PATH_VALUE
     );
-    const Pic = isD
-      ? PicDirectorsMode
-      : PicHome;
+  const results = useMemo(() => {
     const firstRowColsCount =
-      rows[0]?.cols.length ?? null;
+      rows[0]?.columns.length ?? null;
     if (
       firstRowColsCount === null ||
       firstRowColsCount < 1
     )
       return [];
+
+    const PicFc = isDirectorsMode
+      ? PicDirectorsMode
+      : Pic;
+
     return [
       ...Array(firstRowColsCount),
     ].map((_, index) => {
       const col = columnHelper.accessor(
-        "cols",
+        "columns",
         {
           cell: (cell) => {
             return (
-              <Pic
+              <PicFc
                 colIndex={index}
                 cell={cell}
                 size={size}
@@ -67,7 +54,7 @@ export const usePicsColumns = (
       );
       return col;
     });
-  }, [rows, pathname]);
+  }, [rows, isDirectorsMode]);
 
   return results;
 };
