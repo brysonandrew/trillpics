@@ -9,9 +9,9 @@ import { TCircleProps } from "~/components/decoration/circle/circle";
 import { resolveInteractiveLabels } from "@brysonandrew/utils-attributes";
 import { TFlatProps } from "~/types/ui";
 import { FADE_PRESENCE_DELAY_02 } from "~/constants/animation";
-import { Glow } from "~/components/decoration/glow";
+import { LightingGlow } from "~/components/decoration/lighting/glow";
 import { resolvePresence } from "~/utils/animation";
-import { useBoxStyle } from "~/store/hooks/core/box/use-box-style";
+import { boxStyle } from "~/constants/box/style";
 
 export type TPillBProps =
   TButtonMotionProps &
@@ -35,7 +35,7 @@ export const PillB: FC<TPillBProps> = ({
   style,
   ...props
 }) => {
-  const circleStyle = useBoxStyle({
+  const box = boxStyle({
     layer: "flat",
     borderRadius: "borderRadius",
     size: "md",
@@ -45,7 +45,7 @@ export const PillB: FC<TPillBProps> = ({
     minWidth,
     boxShadow,
     borderRadius,
-  } = circleStyle;
+  } = box;
 
   return (
     <Root
@@ -55,7 +55,6 @@ export const PillB: FC<TPillBProps> = ({
       className={clsx(
         "relative",
         "row shrink-0 gap-2 px-1",
-        // "btn-disabled",
         "disabled:grayscale-100",
         "text-main",
         isFlat
@@ -73,10 +72,12 @@ export const PillB: FC<TPillBProps> = ({
       {...props}
     >
       {!isFlat && (
-        <Glow classValue="-inset-1 opacity-30" />
+        <LightingGlow classValue="-inset-1 opacity-30" />
       )}
       <motion.div
-        className="center relative p-1 _net-gradient"
+        className={clsx(
+          "center relative p-1 _weave-gradient"
+        )}
         layout
         style={{
           borderRadius,

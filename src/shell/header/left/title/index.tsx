@@ -1,25 +1,34 @@
 import type { FC } from "react";
 import { TitleText } from "~/shell/header/left/title/text";
 import { SparkleButton } from "~/shell/header/left/title/sparkle-button";
-import { Glow } from "~/components/decoration/glow";
+import { LightingGlow } from "~/components/decoration/lighting/glow";
 import { resolvePresence } from "~/utils/animation";
+import { LightingShadow } from "~/components/decoration/lighting/shadow";
 
 export const Title: FC = () => {
-
   return (
     <div className="relative row gap-0 md:(gap-4 w-auto)">
       <div className="relative h-18">
-        <Glow
+
+   
+        <LightingGlow
           classValue="-inset-1"
           {...resolvePresence(
             { opacity: 0 },
             { opacity: 0.2 }
           )}
         />
-            <TitleText />
+        <TitleText />
 
-        <h2 className="text-lg px-1 char-gap-7">
+        <h2 className="relative text-lg text-main-inverted px-1 char-gap-7">
           AI Art Gallery
+          <LightingShadow
+          classValue="-inset-4"
+          {...resolvePresence(
+            { opacity: 0 },
+            { opacity: 0.4 }
+          )}
+        />
         </h2>
       </div>
       <SparkleButton />

@@ -1,9 +1,12 @@
 import { type FC } from "react";
-import { CircleIcon } from "~/components/buttons/circle/icon";
-import {  TButtonProps,  TSvgProps,} from "@brysonandrew/config-types";
+import {
+  TButtonProps,
+  TSvgProps,
+} from "@brysonandrew/config-types";
 import clsx from "clsx";
-import { Glow } from "~/components/decoration/glow";
-import { useBoxStyle } from "~/store/hooks/core/box/use-box-style";
+import { LightingGlow } from "~/components/decoration/lighting/glow";
+import { boxStyle } from "~/constants/box/style";
+import { CircleIcon } from "~/components/decoration/circle/icon";
 
 export const PlaybackButtonsB: FC<
   TButtonProps & { Icon: FC<TSvgProps> }
@@ -13,14 +16,18 @@ export const PlaybackButtonsB: FC<
   style,
   ...props
 }) => {
-  const borderStyle = useBoxStyle({layer:'flat',borderRadius:'borderRadius',size:'md'})
+  const borderStyle = boxStyle({
+    layer: "flat",
+    borderRadius: "borderRadius",
+    size: "md",
+  });
   return (
     <button
       className={clsx(
         "relative",
         "center",
         "btn-disabled",
-        "_net-gradient",
+        "_weave-gradient",
         // "_gradient-border",
         classValue
       )}
@@ -30,7 +37,7 @@ export const PlaybackButtonsB: FC<
       }}
       {...props}
     >
-      <Glow />
+      <LightingGlow />
       <CircleIcon Icon={Icon} />
     </button>
   );

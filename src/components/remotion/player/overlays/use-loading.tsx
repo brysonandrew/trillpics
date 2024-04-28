@@ -1,7 +1,6 @@
 import { useCallback } from "react";
 import { RenderLoading } from "@remotion/player";
-import { IconsLoader } from "~/components/icons/loader";
-import { Button } from "~/components/remotion/player/overlays/button";
+import { OverlaysContent } from "~/components/remotion/player/overlays/content";
 
 export const useLoading = () => {
   const renderLoading: RenderLoading =
@@ -13,17 +12,17 @@ export const useLoading = () => {
       }) => {
         if (true) {
           return (
-            <div
-              className="fill center z-50"
-              style={{ width, height }}
-            >
-              <Button
-                classValue="spin1"
-                Icon={IconsLoader}
+            <OverlaysContent>
+              <div
+                className="spin1"
+                style={{
+                  width,
+                  height,
+                }}
               >
                 Loading
-              </Button>
-            </div>
+              </div>
+            </OverlaysContent>
           );
         }
         return null;

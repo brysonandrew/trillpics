@@ -1,13 +1,15 @@
 import { FC } from "react";
 import {
+  AnimatePresence,
   HTMLMotionProps,
   motion,
 } from "framer-motion";
 import clsx, { ClassValue } from "clsx";
-import { TGradientShortcut } from "~uno/shortcuts/gradient";
+import { TGradientShortcut } from "~uno/shortcuts/box/gradient";
 import { TChildren } from "@brysonandrew/config-types";
-import { Glow } from "~/components/decoration/glow";
-import { DecorationNet } from "~/components/decoration/background/net";
+import { LightingGlow } from "~/components/decoration/lighting/glow";
+import { TexturesWeaveRounded } from "~/components/textures/weave/rounded";
+import { boxRadius } from "~/constants/box/style/radius";
 
 export type TPillProps =
   HTMLMotionProps<"span"> & {
@@ -23,26 +25,30 @@ export const Pill: FC<TPillProps> = ({
   gradient,
   isActive,
   children,
+  style,
   ...props
 }) => {
+  const borderRadius = boxRadius();
   return (
     <motion.div
       className={clsx(
-        "center h-6 text-current text-sm px-2 rounded-xl _radial-gradient",
+        "center h-6 text-current text-sm px-2 _radial-gradient",
         isCircle && "w-6",
         classValue,
-        gradient
       )}
+      style={{ borderRadius, ...style }}
       layout
       {...props}
     >
-      {isActive && (
-        <Glow
-          key="GLOW_KEY"
-          classValue="-inset-2"
-        />
-      )}
-      <DecorationNet classValue="rounded-xl" />
+      <AnimatePresence>
+        {isActive && (
+          <LightingGlow
+            key="GLOW_KEY"
+            classValue="-inset-2"
+          />
+        )}
+      </AnimatePresence>
+      <TexturesWeaveRounded />
       {children}
     </motion.div>
   );

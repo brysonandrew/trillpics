@@ -29,7 +29,6 @@ export const picsState: TStateHandler<
     const nextPics: TPics =
       config?.cells ??
       shuffle([...prev]);
-    console.log(prev, config);
     set({
       picsEntries: [
         ...get().picsEntries,

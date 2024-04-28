@@ -13,7 +13,6 @@ export const Outer = forwardRef<
   const { clear, isNoHover } =
     useHoverKey();
   const handleMouseEnter = () => {
-    console.log("ENTER ");
     if (!isNoHover) clear();
   };
   return (

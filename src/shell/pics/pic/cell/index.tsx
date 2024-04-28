@@ -3,11 +3,13 @@ import { AnimatePresence } from "framer-motion";
 import { PicHover } from "~/shell/pics/pic/hover";
 import { PicDisplayCell } from "~/shell/pics/pic/display/cell";
 import { TPropsWithChildren } from "@brysonandrew/config-types";
-import { TUseBoxChildProps } from "~/shell/pics/pic/box/use-box";
+import { TBoxChildProps } from "~/shell/pics/pic/box";
 import { IconsPicZoomIn24 } from "~/components/icons/pic/zoom-in/24";
+import { TPicHoverResult } from "~/shell/pics/pic/use-hover";
 
 type TProps =
-  TPropsWithChildren<TUseBoxChildProps>;
+  TPropsWithChildren<TBoxChildProps> &
+    TPicHoverResult;
 export const PicCell: FC<TProps> = ({
   ...boxChildProps
 }) => {

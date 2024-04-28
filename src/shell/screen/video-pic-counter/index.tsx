@@ -5,8 +5,9 @@ import {
 } from "~/components/decoration/Pill";
 import clsx from "clsx";
 import { N } from "~/components/layout/N";
-import { Glow } from "~/components/decoration/glow";
+import { LightingGlow } from "~/components/decoration/lighting/glow";
 import { useTrillPicsStore } from "~/store";
+import { RADIAL_BLUE_PINK_YELLOW } from "~app/color/gradient";
 
 export const VideoPicsCounter: FC<
   Partial<TPillProps>
@@ -29,9 +30,13 @@ export const VideoPicsCounter: FC<
         "pointer-events-none",
         classValue ?? "relative"
       )}
+      style={{
+        backgroundImage:
+          RADIAL_BLUE_PINK_YELLOW,
+      }}
       {...props}
     >
-      <Glow />
+      <LightingGlow />
       <N>{videoPicsCount}</N>
     </Pill>
   );

@@ -1,9 +1,9 @@
 import type { FC } from "react";
 import { motion } from "framer-motion";
 import { TUsePicBackdrop } from "~/shell/pics/pic/backdrop/use-backdrop";
-import { TUseBoxChildProps } from "~/shell/pics/pic/box/use-box";
 import { TImgMotionProps } from "@brysonandrew/config-types";
 import { resolvePicSrc } from "~/utils/src";
+import { TPicProps } from "~/shell/pics/pic";
 export const SEARCH_PARAM_ID = "open";
 
 export type TPicDisplayProps = Pick<
@@ -12,10 +12,7 @@ export type TPicDisplayProps = Pick<
   | "onTap"
   | "onLayoutAnimationComplete"
 > &
-  Pick<
-    TUseBoxChildProps,
-    "cellDimensions" | "name"
-  > &
+  TPicProps &
   Partial<TUsePicBackdrop>;
 export const PicDisplay: FC<
   TPicDisplayProps

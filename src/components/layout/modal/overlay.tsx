@@ -1,13 +1,13 @@
 import type { FC } from "react";
 import { IconsInfo } from "~/components/icons/info";
 import clsx from "clsx";
-import { DecorationNet } from "~/components/decoration/background/net";
+import { TexturesWeave } from "~/components/textures/weave";
 import {
   TDivProps,
   TSvgProps,
 } from "@brysonandrew/config-types";
 import { PortalBody } from "@brysonandrew/layout-portal";
-import { useBoxStyle } from "~/store/hooks/core/box/use-box-style";
+import { boxStyle } from "~/constants/box/style";
 
 export type TModalOverlayConfig =
   TDivProps & {
@@ -26,7 +26,7 @@ export const ModalOverlay: FC<
   classValue,
   ...props
 }) => {
-  const borderStyle = useBoxStyle({layer:'flat',borderRadius:'borderRadius',size:'md'})
+  const borderStyle = boxStyle({layer:'flat',borderRadius:'borderRadius',size:'md'})
 
   return (
     <PortalBody>
@@ -38,7 +38,7 @@ export const ModalOverlay: FC<
         className={clsx(
           "fixed column-stretch dark:text-white-5 grow-0 shrink gap-4 left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 px-6 pt-4 pb-6 z-10 char-gap-6 z-50",
           "background",
-          "_net-gradient",
+          "_weave-gradient",
           classValue
         )}
         style={borderStyle}
@@ -63,14 +63,14 @@ export const ModalOverlay: FC<
             onClick={onCancel}
             className="relative px-4 py-2.5 border border-main hover:_radial-gradient"
           >
-            <DecorationNet classValue="inset-2" />
+            <TexturesWeave classValue="inset-2" />
             Cancel
           </button>
           <button
             onClick={onOk}
             className="relative px-4 py-2.5 border border-main hover:_radial-gradient"
           >
-            <DecorationNet classValue="inset-2" />
+            <TexturesWeave classValue="inset-2" />
             Ok
           </button>
         </div>

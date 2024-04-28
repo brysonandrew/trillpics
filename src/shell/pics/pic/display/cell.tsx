@@ -1,12 +1,14 @@
 import type { FC } from "react";
 import { PicDisplay } from "~/shell/pics/pic/display";
 import { FULLSCREEN_Z } from "~/constants/dom";
-import { TUseBoxChildProps } from "~/shell/pics/pic/box/use-box";
-import { TImgMotionProps } from "@brysonandrew/config-types";
 import { resolvePresence } from "@brysonandrew/motion-core";
+import { TPicHoverResult } from "~/shell/pics/pic/use-hover";
+import { TImgMotionProps } from "@brysonandrew/config-types";
+import { TBoxChildProps } from "~/shell/pics/pic/box";
 
 export const PicDisplayCell: FC<
-  TUseBoxChildProps &
+  Partial<TPicHoverResult> &
+    TBoxChildProps &
     Pick<TImgMotionProps, "onTap">
 > = (props) => {
   const {
@@ -31,7 +33,7 @@ export const PicDisplayCell: FC<
         ...(isFront
           ? { zIndex: FULLSCREEN_Z }
           : { zIndex: 0 }),
-        ...props.cellDimensions,
+        ...props,
       }}
       {...(isFront
         ? {}
@@ -42,6 +44,7 @@ export const PicDisplayCell: FC<
       onLayoutAnimationComplete={
         handleLayoutAnimationComplete
       }
+      {...props.handlers}
       {...props}
     />
   );

@@ -21,13 +21,13 @@ export const GRADIENT_NET_LIGHT = {
     name: "repeating-conic-gradient",
     parts: [
       "rgba(0,0,0,0)",
-      resolveVarCss("black-8"),
+      resolveVarCss("black-08"),
     ],
   }),
 };
 
 export const GRADIENT_NET_COMMON = {
-  "background-size": "2px 2px",
+  "background-size": "4px 4px",
 };
 
 export const GRADIENT_BLUE_PINK_YELLOW_COLORS =

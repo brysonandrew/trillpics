@@ -14,7 +14,7 @@ import { resolveCompositeKey } from "@brysonandrew/utils-key";
 import { Metal } from "@brysonandrew/texture-metal";
 import { TGenerateInput } from "~/types/trpc/generate";
 import { useHoverKey } from "~/hooks/use-hover-key";
-import { useBoxStyle } from "~/store/hooks/core/box/use-box-style";
+import { boxStyle } from "~/constants/box/style";
 
 const DEFAULT: TGenerateInput = {
   input: {
@@ -37,7 +37,7 @@ export const Generate = () => {
     input: { pics: videoPics },
     fps,
   };
-  const borderStyle = useBoxStyle({layer:'flat',borderRadius:'borderRadius',size:'md'})
+  const borderStyle = boxStyle({layer:'flat',borderRadius:'borderRadius',size:'md'})
 
   const title = "Generate";
 

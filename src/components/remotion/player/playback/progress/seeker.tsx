@@ -1,9 +1,9 @@
 import { type FC } from "react";
 import { useSeek } from "~/components/remotion/player/playback/progress/use-seek";
 import { TimerCurrentProgress } from "~/components/remotion/player/playback/progress";
-import { Glow } from "~/components/decoration/glow";
-import { DecorationNet } from "~/components/decoration/background/net";
+import { LightingGlow } from "~/components/decoration/lighting/glow";
 import clsx from "clsx";
+import { TexturesWeaveRounded } from "~/components/textures/weave/rounded";
 
 export const PlaybackProgressSeeker: FC =
   () => {
@@ -14,12 +14,12 @@ export const PlaybackProgressSeeker: FC =
     return (
       <div
         className={clsx(
-          "absolute top-full translate-y-2 flex grow w-full h-4 background rounded-lg"
+          "absolute top-full translate-y-2 flex grow w-full h-4 background"
         )}
         onPointerDown={handler}
       >
-        <Glow classValue="fill opacity-20" />
-        <DecorationNet classValue="rounded-lg" />
+        <LightingGlow classValue="fill opacity-20" />
+        <TexturesWeaveRounded/>
         <TimerCurrentProgress
           durationInFrames={
             durationInFrames

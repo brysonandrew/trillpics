@@ -1,5 +1,5 @@
 import type { FC } from "react";
-import { Glow } from "~/components/decoration/glow";
+import { LightingGlow } from "~/components/decoration/lighting/glow";
 import { resolvePresence } from "~/utils/animation";
 
 const COUNT = 4;
@@ -12,8 +12,8 @@ export const Flares: FC<TProps> = ({
     <>
       {[...Array(COUNT)].map(
         (_, index) => (
-          <Glow
-            key={`Glow${index}`}
+          <LightingGlow
+            key={`LightingGlow${index}`}
             transition={{
               repeat: Infinity,
               repeatDelay: 0.2,

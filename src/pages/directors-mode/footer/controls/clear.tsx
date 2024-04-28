@@ -22,16 +22,16 @@ export const ControlsClear: FC<
     useScroll();
 
   const handleClear = () => {
-    const prev = blurX.get();
-    blurXRef.current = animate(
-      blurX,
-      100,
-      {
-        type: "tween",
-        onComplete: () =>
-          blurX.set(prev),
-      }
-    );
+    // const prev = blurX.get();
+    // blurXRef.current = animate(
+    //   blurX,
+    //   100,
+    //   {
+    //     type: "tween",
+    //     onComplete: () =>
+    //       blurX.set(prev),
+    //   }
+    // );
 
     removeVideoPic();
   };

@@ -2,7 +2,7 @@ import type { FC } from "react";
 import { useDarkMode } from "@brysonandrew/dark-mode";
 import { HOME_ROUTE } from "~/constants/routes";
 import { useLocation } from "react-router";
-import { Glow } from "~/components/decoration/glow";
+import { LightingGlow } from "~/components/decoration/lighting/glow";
 import { resolvePresence } from "~/utils/animation";
 
 export const SparkleButton: FC = () => {
@@ -14,7 +14,7 @@ export const SparkleButton: FC = () => {
 
   return (
     <div className="relative uppercase h-8 w-7 sm:(h-10 w-10)">
-      <Glow
+      <LightingGlow
         classValue="-inset-4"
         {...resolvePresence(
           { opacity: 0 },

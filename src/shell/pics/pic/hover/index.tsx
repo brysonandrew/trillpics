@@ -2,19 +2,17 @@ import type { FC } from "react";
 import { motion } from "framer-motion";
 import clsx from "clsx";
 import { FADE_PRESENCE } from "~/constants/animation";
-import { TUseBoxChildProps } from "~/shell/pics/pic/box/use-box";
-import {
-  TUsePicHoverConfig,
-  usePicHover,
-} from "~/shell/pics/pic/hover/use-pic-hover";
+import { TBoxChildProps } from "~/shell/pics/pic/box";
 import { TPropsWithChildren } from "@brysonandrew/config-types";
+import { boxRadius } from "~/constants/box/style/radius";
+import { useTrillPicsStore } from "~/store";
+import { TPicHoverResult } from "~/shell/pics/pic/use-hover";
 
-export type TPicHoverProps =
-  TUsePicHoverConfig &
-    Pick<
-      TUseBoxChildProps,
-      "isHovering" | "onToggle"
-    >;
+export type TPicHoverProps = Pick<
+  TPicHoverResult,
+  "isHovering"
+> &
+  Pick<TBoxChildProps, "onToggle">;
 export const PicHover: FC<
   TPropsWithChildren<TPicHoverProps>
 > = ({
@@ -24,16 +22,23 @@ export const PicHover: FC<
   ...props
 }) => {
   const { isControls } =
-    usePicHover(props);
+    useTrillPicsStore(
+      ({ isControls }) => ({
+        isControls,
+      })
+    );
+  const borderRadius = boxRadius();
+
   return (
     <>
       {isHovering && isControls && (
         <motion.div
           key="zoom"
           className={clsx(
-            "absolute cursor-pointer z-50 rounded-full center",
+            "fixed cursor-pointer z-50 center aspect-square p-2 backdrop-blur-lg bg-white-01",
             "top-3 right-3"
           )}
+          style={{ borderRadius }}
           {...FADE_PRESENCE}
         >
           {children}

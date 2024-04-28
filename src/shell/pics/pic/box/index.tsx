@@ -1,29 +1,66 @@
 import { FC } from "react";
-import { TPicProps } from "~/shell/pics/pic";
+import { resolveSquare } from "@brysonandrew/measure";
 import {
   TUseBox,
   useBox,
 } from "~/shell/pics/pic/box/use-box";
-type TProps = TPicProps & {
-  cursor: "pointer" | "zoom-in";
-  children(props: TUseBox): JSX.Element;
-};
+import { useTrillPicsStore } from "~/store";
+import { TDimensions } from "@brysonandrew/config-types";
+import { TPicProps } from "~/shell/pics/pic";
+import { TPicHoverResult } from "~/shell/pics/pic/use-hover";
+
+type TOmitUseBox = Omit<
+  TUseBox,
+  "isPicZoomed"
+>;
+type TBaseBoxChildProps = TPicProps &
+  TOmitUseBox &
+  TDimensions;
+export type TBoxChildProps =
+  TBaseBoxChildProps;
+type TProps = Partial<TPicHoverResult> &
+  TPicProps & {
+    cursor: "pointer" | "zoom-in";
+    children(
+      props: Partial<TPicHoverResult> &
+        TBoxChildProps,
+      isPicZoomed: boolean
+    ): JSX.Element;
+  };
 export const Box: FC<TProps> = ({
   children,
   cursor,
   ...props
 }) => {
-  const box = useBox(props);
+  const { isPicZoomed, ...box } =
+    useBox(props);
+  const { table } = useTrillPicsStore(
+    ({ table }) => ({
+      table,
+    })
+  );
+  const dimensions: TDimensions =
+    resolveSquare(table.size);
   return (
     <div
       style={{
-        position: "relative",
-        ...box.cellDimensions,
+        position: "absolute",
+        ...dimensions,
+        left:
+          props.columnIndex *
+          table.size,
         cursor,
       }}
-      {...box.handlers}
+      {...props.handlers}
     >
-      {children(box)}
+      {children(
+        {
+          ...dimensions,
+          ...box,
+          ...props,
+        },
+        isPicZoomed
+      )}
     </div>
   );
 };

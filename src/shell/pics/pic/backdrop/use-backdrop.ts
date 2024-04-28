@@ -1,16 +1,15 @@
 import { useImageDimensions } from "@brysonandrew/measure";
-import { TUseBoxChildProps } from "~/shell/pics/pic/box/use-box";
+import { TBoxChildProps } from "~/shell/pics/pic/box";
+import { TPicHoverResult } from "~/shell/pics/pic/use-hover";
 import { useTrillPicsStore } from "~/store";
 
 export const SEARCH_PARAM_ID = "open";
 
 export type TUsePicBackdropConfig =
-  Pick<
-    TUseBoxChildProps,
-    "cellDimensions" | "frontCheckState"
-  >;
+  TBoxChildProps & TPicHoverResult;
 export const usePicBackdrop = ({
-  cellDimensions,
+  width,
+  height,
 }: TUsePicBackdropConfig) => {
   const { screen } = useTrillPicsStore(
     ({ screen }) => ({ screen })
@@ -25,7 +24,7 @@ export const usePicBackdrop = ({
   const zoomDimensions =
     useImageDimensions({
       box: screenDimensions,
-      image: cellDimensions,
+      image: { width, height },
     });
   return {
     screenDimensions,

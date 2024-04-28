@@ -1,11 +1,19 @@
 import { TTableSizeConfig } from "~/store/slices/table/types";
-
+import {
+  SCROLLBAR_BORDER_WIDTH,
+  SCROLLBAR_WIDTH,
+} from "~uno/preflights";
+const SCROLLBAR_X =
+  SCROLLBAR_WIDTH +
+  SCROLLBAR_BORDER_WIDTH * 2;
+  
 export const tableUpdateSize = ({
   columnsCount,
   ...screen
 }: TTableSizeConfig) => {
   const nextSize = Math.floor(
-    screen.width / columnsCount
+    (screen.width - SCROLLBAR_X) / // adjust for scroll bar)
+      columnsCount
   );
   return nextSize;
 };

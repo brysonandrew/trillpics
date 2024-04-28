@@ -4,47 +4,24 @@ import {
   useNavigate,
 } from "react-router";
 import { useSearchParams } from "react-router-dom";
-import { TPicProps } from "~/shell/pics/pic";
-import { squareFromSize } from "~/utils/dimensions/square-from-size";
 import { usePicZoomedCheck } from "~/shell/pics/pic/hooks/zoomed-check";
 import { SEARCH_PARAM_ID } from "~/shell/pics/pic/display";
-import { useTrillPicsStore } from "~/store";
-import { useHoverKey } from "~/hooks/use-hover-key";
+import { TPicProps } from "~/shell/pics/pic";
 
 type TConfig = TPicProps;
-export const useBox = ({
-  cell,
-  size,
-  colIndex,
-}: TConfig) => {
-  const { videoPics } =
-    useTrillPicsStore(
-      ({ videoPics }) => ({ videoPics })
-    );
+export const useBox = (
+  props: TConfig
+) => {
+  const name = props.name;
   const frontCheckState =
     useState<boolean>(false);
   const [_, setFront] = frontCheckState;
 
-  const name =
-    cell.row.original.columns[colIndex];
-
   const { pathname } = useLocation();
   const [searchParams] =
     useSearchParams();
-  const navigate = useNavigate();
-  const { isHover, handlers } =
-    useHoverKey();
-  const isHovering = isHover(name);
-  const hoverHandlers = handlers(name);
-  const videoOrder =
-    videoPics.indexOf(name);
 
-  const cellDimensions = squareFromSize(
-    {
-      size,
-      colIndex,
-    }
-  );
+  const navigate = useNavigate();
 
   const isPicZoomed =
     usePicZoomedCheck(name);
@@ -64,7 +41,6 @@ export const useBox = ({
     searchParams.delete(
       SEARCH_PARAM_ID
     );
-    hoverHandlers.onPointerOut();
     navigate(
       `${pathname}?${searchParams}`
     );
@@ -78,22 +54,13 @@ export const useBox = ({
     }
   };
   return {
-    name,
     onToggle,
     onZoomIn,
     onZoomOut,
-    videoOrder,
-    isHovering,
     isPicZoomed,
-    handlers: hoverHandlers,
-    cellDimensions,
     frontCheckState,
   };
 };
 export type TUseBox = ReturnType<
   typeof useBox
->;
-export type TUseBoxChildProps = Omit<
-  TUseBox,
-  "isPicZoomed"
 >;

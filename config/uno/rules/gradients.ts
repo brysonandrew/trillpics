@@ -13,14 +13,14 @@ import {
 
 export const GRADIENTS: Rule[] = [
   [
-    "_dark-gradient-net",
+    "_dark-gradient-weave",
     {
       ...GRADIENT_NET_DARK,
       ...GRADIENT_NET_COMMON,
     },
   ],
   [
-    "_light-gradient-net",
+    "_light-gradient-weave",
     {
       ...GRADIENT_NET_LIGHT,
       ...GRADIENT_NET_COMMON,

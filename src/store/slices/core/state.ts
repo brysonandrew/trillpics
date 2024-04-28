@@ -1,4 +1,3 @@
-import { coreBoxState } from "~/store/slices/core/box";
 import { coreControlsState } from "~/store/slices/core/controls";
 import { coreScreenState } from "~/store/slices/core/screen";
 import { TCoreState } from "~/store/slices/core/types";
@@ -10,7 +9,6 @@ export const coreState: TStateHandler<
   const [set, get] = args;
   return {
     ...coreScreenState(...args),
-    ...coreBoxState(...args),
     ...coreControlsState(...args),
     milestones: [],
   };

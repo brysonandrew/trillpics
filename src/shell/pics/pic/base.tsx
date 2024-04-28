@@ -2,28 +2,24 @@ import type { FC } from "react";
 import { Box } from "~/shell/pics/pic/box";
 import { PicZoomed } from "~/shell/pics/pic/zoomed";
 import { PicCell } from "~/shell/pics/pic/cell";
-import { TPicCell } from "~/store/slices/table/types";
+import { TPicProps } from "~/shell/pics/pic";
+import { useHover } from "~/shell/pics/pic/use-hover";
 
-export type TPicProps = {
-  colIndex: number;
-  cell: TPicCell;
-  size: number;
-  maxColsCount: number;
-};
 export const PicBase: FC<TPicProps> = (
   props
 ) => {
+  const hover = useHover(props);
   return (
-    <Box cursor="zoom-in" {...props}>
-      {({
-        isPicZoomed,
-        ...boxChildProps
-      }) => {
+    <Box cursor="zoom-in" {...props} {...hover}>
+      {(boxChildProps, isPicZoomed) => {
         const Child = isPicZoomed
           ? PicZoomed
           : PicCell;
         return (
-          <Child {...boxChildProps} />
+          <Child
+            {...boxChildProps}
+            {...hover}
+          />
         );
       }}
     </Box>

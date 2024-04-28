@@ -22,7 +22,7 @@ import type {
   FixedSizeList,
 } from "react-window";
 import { useTimeoutRef } from "@brysonandrew/hooks-window";
-import { SEARCH_PARAM_ID } from "~/shell/pics/pic/directors-mode/controls/use-pic-directors-mode";
+import { SEARCH_PARAM_ID } from "~/pages/directors-mode/pic/controls/use-pic-directors-mode";
 export type TState = {
   isScrolling: boolean;
   isScroll: boolean;

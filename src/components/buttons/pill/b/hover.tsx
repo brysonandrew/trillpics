@@ -17,23 +17,16 @@ export const PillBHover: FC<TProps> = ({
 }) => {
   const { motionHandlers, isHover } =
     useHoverKey();
-  // const hasLeftRef = useRef(false);
-  // const handleMouseLeave = () => {
-  //   hasLeftRef.current = true;
-  // };
   const isHovering =
     isDefined<typeof title>(title) &&
     isHover(title);
   return (
     <PillB
       title={title}
-      // onMouseOut={handleMouseLeave}
       {...motionHandlers(title)}
       {...props}
     >
       {isHovering ? (
-        //&&
-        // hasLeftRef.current
         <>
           <motion.div
             className="relative row gap-2 mr-2 -mb-0.75 whitespace-nowrap"

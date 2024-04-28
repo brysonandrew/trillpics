@@ -1,18 +1,9 @@
-import { FC } from "react";
 import { TDimensionsReady } from "@brysonandrew/config-types";
-import {
-  Row,
-  CellContext,
-  Table,
-  HeaderContext,
-  ColumnDef,
-} from "@tanstack/react-table";
 import { FixedSizeListProps } from "react-window";
-import { TPicProps } from "~/shell/pics/pic";
-import { TPics } from "~/store/slices/pics/types";
 import { TStateCreator } from "~/store/types";
 import { TTableUpdateCountResult } from "~/store/slices/table/update/count";
 import { TScreen } from "~/shell/init/measure";
+import { TPics } from "~/store/slices/pics/types";
 
 export type TTableRowsConfig =
   TTableUpdateCountResult & {
@@ -24,10 +15,7 @@ export type TTableCountConfig = Pick<
 >;
 export type TTableSetConfig = Pick<
   TPicsTable,
-  | "rows"
-  | "size"
-  | "columns"
-  | "isVerticalScroll"
+  "rows" | "size" | "isVerticalScroll"
 >;
 
 export type TTableSizeConfig =
@@ -45,66 +33,65 @@ export type TTableVerticalScrollConfig =
 export type TPicsRow = {
   columns: TPics;
 };
-export type TPicsColumn = ColumnDef<
-  TPicsRow,
-  any
->;
+export type TPicsColumn = any;
+// ColumnDef<
+//   TPicsRow,
+//   any
+// >;
 export type TPicsColumns =
   TPicsColumn[];
 
-export type TPicCell = CellContext<
-  TPicsRow,
-  any
->;
+export type TPicCell = any;
+// CellContext<
+//   TPicsRow,
+//   any
+// >;
 
-export type TPicHeader = HeaderContext<
-  TPicsRow,
-  any
->;
+export type TPicHeader = any;
+// HeaderContext<
+//   TPicsRow,
+//   any
+// >;
 
 export type TPicsRows = TPicsRow[];
 
 export type TPicsBaseRow = object;
 
-export type TPicsTableTanstack<
-  T extends TPicsBaseRow
-> = Table<T>;
+// export type TPicsTableTanstack<
+//   T extends TPicsBaseRow
+// > = Table<T>;
 
-export type TPicsTableRow<
-  T extends TPicsBaseRow
-> = Row<T>;
-export type TPicsTableRows<
-  T extends TPicsBaseRow
-> = TPicsTableRow<T>[];
+// export type TPicsTableRow<
+//   T extends TPicsBaseRow
+// > = Row<T>;
+// export type TPicsTableRows<
+//   T extends TPicsBaseRow
+// > = TPicsTableRow<T>[];
 
-export type TCellString = CellContext<
-  TPicsRow,
-  string
->;
+// export type TCellString = CellContext<
+//   TPicsRow,
+//   string
+// >;
 
 export type TTableCreateConfig = {
   cells: TPics;
   screen: TScreen;
-  PicFc?: FC<TPicProps>;
 };
-export type TTableColumnsConfig = Pick<
-  TPicsTable,
-  "rows" | "size"
-> &
-  Pick<TTableCreateConfig, "PicFc">;
-
+export type TTableColumnsConfig =
+  TTableUpdateCountResult &
+    Pick<TPicsTable, "rows" | "size">;
 export type TTableUpdateState = {
   update: {
     screen(
       config: Pick<
         TTableCreateConfig,
-        "screen" | "PicFc"
+        "screen"
       >
     ): void;
     cells(
       cells: Pick<
         TTableCreateConfig,
-        "cells" | "PicFc"
+        "cells"
       >
     ): void;
     count(
@@ -116,9 +103,9 @@ export type TTableUpdateState = {
     rows(
       config: TTableRowsConfig
     ): TPicsRows;
-    columns(
-      config: TTableColumnsConfig
-    ): TPicsColumns;
+    // columns(
+    //   config: TTableColumnsConfig
+    // ): TPicsColumns;
     size(
       config: TTableSizeConfig
     ): number;
@@ -132,7 +119,6 @@ export type TPicsTable =
   TTableUpdateState & {
     size: number;
     rows: TPicsRows;
-    columns: TPicsColumns;
     isVerticalScroll: boolean;
   };
 export type TTableState = {
@@ -140,8 +126,7 @@ export type TTableState = {
 };
 export type TTableStateCreator =
   TStateCreator<TTableState>;
-export type TPartialFixedTableProps<
-  T extends TPicsBaseRow
-> = Partial<
-  FixedSizeListProps<TPicsTableRows<T>>
->;
+export type TPartialFixedTableProps =
+  Partial<
+    FixedSizeListProps<TPicsRows>
+  >;

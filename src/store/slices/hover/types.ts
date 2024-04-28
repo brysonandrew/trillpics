@@ -1,8 +1,20 @@
+import { TPicProps } from "~/shell/pics/pic";
 import { TStateCreator } from "~/store/types";
 
 export type THoverKey = string | number;
+export type THoverPicKey = string;
 
-export type THoverState = {
+export type THoverPicState = {
+  hoverPicKey: THoverPicKey | null;
+  hoverPicProps: TPicProps | null;
+  hoverPic: (
+    hoverKey: THoverPicKey
+  ) => void;
+  unhoverPic: (
+    hoverKey: THoverPicKey
+  ) => void;
+};
+export type THoverMultiState = {
   hoverKeys: THoverKey[];
   isHover: (
     hoverKey: THoverKey
@@ -12,6 +24,9 @@ export type THoverState = {
     hoverKey: THoverKey
   ) => void;
 };
+
+export type THoverState =
+  THoverPicState & THoverMultiState;
 
 export type THoverStateCreator =
   TStateCreator<THoverState>;

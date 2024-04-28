@@ -5,20 +5,17 @@ import {
   usePicBackdrop,
 } from "~/shell/pics/pic/backdrop/use-backdrop";
 import { FULLSCREEN_Z } from "~/constants/dom";
-import { TUseBoxChildProps } from "~/shell/pics/pic/box/use-box";
+import { TBoxChildProps } from "~/shell/pics/pic/box";
+import { TPicHoverResult } from "~/shell/pics/pic/use-hover";
 
-type TProps = TUseBoxChildProps & {
+type TProps = TBoxChildProps & TPicHoverResult & {
   children(
     props: TUsePicBackdrop
   ): JSX.Element;
 };
 export const PicBackdrop: FC<
   TProps
-> = ({
-  children,
-  onToggle,
-  ...props
-}) => {
+> = ({ children, ...props }) => {
   const backdropResult =
     usePicBackdrop(props);
   const { screenDimensions } =
@@ -35,7 +32,7 @@ export const PicBackdrop: FC<
             "blur(28px) grayscale(80%)",
           cursor: "zoom-out",
         }}
-        onClick={onToggle}
+        onClick={props.onToggle}
       />
       {children(backdropResult)}
     </>

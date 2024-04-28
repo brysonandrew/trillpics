@@ -1,36 +1,11 @@
-import {
-  THoverKey,
-  THoverState,
-} from "~/store/slices/hover/types";
+import { hoverMultiState } from "~/store/slices/hover/multi";
+import { hoverPicState } from "~/store/slices/hover/pic";
+import { THoverState } from "~/store/slices/hover/types";
 import { TStateHandler } from "~/store/types";
-import { isDefined } from "~/utils/validation/is/defined";
 
 export const hoverState: TStateHandler<
   THoverState
-> = (set, get): THoverState => ({
-  hoverKeys: [],
-  isHover: (hoverKey: THoverKey) => {
-    return get().hoverKeys.includes(
-      hoverKey
-    );
-  },
-  hover: (hoverKey?: THoverKey) => {
-    const hoverKeys = isDefined(
-      hoverKey
-    )
-      ? [...get().hoverKeys, hoverKey]
-      : [];
-    set({
-      hoverKeys,
-    });
-  },
-  unhover: (hoverKey: THoverKey) => {
-    const hoverKeys =
-      get().hoverKeys.filter(
-        (v) => v !== hoverKey
-      );
-    set({
-      hoverKeys,
-    });
-  },
+> = (...args): THoverState => ({
+  ...hoverPicState(...args),
+  ...hoverMultiState(...args),
 });

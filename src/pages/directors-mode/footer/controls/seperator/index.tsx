@@ -1,33 +1,41 @@
 import type { FC } from "react";
-import { TUseBoxSize } from "~/store/hooks/core/box/use-box-size";
-import { useBoxStyle } from "~/store/hooks/core/box/use-box-style";
+import { TBoxSize } from "~/constants/box/style/size";
+import { boxStyle } from "~/constants/box/style";
+import clsx from "clsx";
 
 type TProps = {
-  sizeKey: NonNullable<keyof TUseBoxSize>;
+  sizeKey: NonNullable<keyof TBoxSize>;
 };
 export const Seperator: FC<TProps> = ({
   sizeKey,
 }) => {
   const {
-    borderRadius, 
+    borderRadius,
     boxShadow,
+    backgroundColor,
+    backgroundImage,
     ...sizeStyle
-  } = useBoxStyle({
+  } = boxStyle({
     layer: "floating",
     borderRadius: "borderRadius",
+    backgroundImage: "_weave-gradient",
+    backgroundColor: "background-flat",
     size: "md",
   });
   return (
     <div
-      className="center"
+      className={clsx(
+        "center background-flat"
+      )}
       style={{
         borderRadius,
-        mixBlendMode: "difference",
         [sizeKey]: sizeStyle[sizeKey],
       }}
     >
       <div
-        className="w-4 h-4 rounded-full bg-gray _net-gradient opacity-50"
+        className={clsx(
+          "w-4 h-4 opacity-20 _weave-gradient"
+        )}
         style={{
           borderRadius,
         }}

@@ -1,7 +1,7 @@
 import { Notifications } from "~/components/notifications";
 import { Outlet } from "react-router";
 import { Global } from "~/shell/global";
-import { DecorationNet } from "~/components/decoration/background/net";
+import { TexturesWeave } from "~/components/textures/weave";
 import { Header } from "~/shell/header";
 import { Pics } from "~/shell/pics";
 import { BlurXy } from "~/components/blur/xy";
@@ -34,7 +34,7 @@ export const Shell = withProviders(
     useInit();
     return (
       <Global>
-        <DecorationNet opacityClassValue="opacity-100" />
+        <TexturesWeave opacityClassValue="opacity-100" />
         <FadeV
           classValue="z-0"
           darkEdgeColor="var(--dark-02)"

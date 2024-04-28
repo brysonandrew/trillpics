@@ -2,6 +2,7 @@ import { useRef } from "react";
 import { animate } from "framer-motion";
 import { useScroll } from "~/context/scroll";
 import { useTrillPicsStore } from "~/store/index";
+import { useScrollTopHandler } from "~/shell/header/left/controls/scroll-top/use-scroll-top-handler";
 
 export const useShow = () => {
   const {
@@ -25,6 +26,8 @@ export const useShow = () => {
       updatePicsEntries,
     })
   );
+  const { handler } =
+    useScrollTopHandler();
   const showAllIndexRef = useRef<
     number | null
   >(null);
@@ -68,6 +71,7 @@ export const useShow = () => {
       updatePicsEntries({
         cells: videoPics,
       });
+      handler();
     }
   };
 

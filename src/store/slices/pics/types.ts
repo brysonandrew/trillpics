@@ -1,4 +1,6 @@
-import { TTableCreateConfig } from "~/store/slices/table/types";
+import {
+  TTableCreateConfig,
+} from "~/store/slices/table/types";
 import { TStateCreator } from "~/store/types";
 
 export type TPic = string | number;
@@ -13,7 +15,7 @@ export type TPicsState = {
   updatePicsEntries(
     config?: Pick<
       TTableCreateConfig,
-      "cells" | "PicFc"
+      "cells"
     >
   ): void;
 };

@@ -2,11 +2,7 @@ import {
   TPic,
   TPics,
 } from "~/store/slices/pics/types";
-import {
-  TPicsRow,
-  TPicsRows,
-  TTableRowsConfig,
-} from "~/store/slices/table/types";
+import { TPicsRows, TTableRowsConfig } from "~/store/slices/table/types";
 import { isDefined } from "~/utils/validation/is/defined";
 
 export const tableUpdateRows = ({
@@ -14,7 +10,7 @@ export const tableUpdateRows = ({
   rowsCount,
   columnsCount,
 }: TTableRowsConfig): TPicsRows => {
-  const rows: TPicsRow[] = [
+  const rows: TPicsRows = [
     ...Array(rowsCount),
   ].map((_, ri) => {
     const columns: TPics = [

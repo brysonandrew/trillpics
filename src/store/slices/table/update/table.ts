@@ -9,7 +9,6 @@ import {
 import { tableUpdateSize } from "~/store/slices/table/update/size";
 import { tableUpdateCount } from "~/store/slices/table/update/count";
 import { tableUpdateRows } from "./rows";
-import { tableUpdateColumns } from "./columns";
 import { tableUpdateVerticalScrollCheck } from "./vertical-scroll-check";
 
 export const tableUpdateState: TStateHandler<
@@ -31,11 +30,7 @@ export const tableUpdateState: TStateHandler<
       });
     },
     count: tableUpdateCount,
-    create: ({
-      screen,
-      cells,
-      PicFc,
-    }) => {
+    create: ({ screen, cells }) => {
       if (screen.isDimensions) {
         const update =
           get().table.update;
@@ -52,11 +47,11 @@ export const tableUpdateState: TStateHandler<
           ...screen,
           ...countResult,
         });
-        const columns = update.columns({
-          rows,
-          size,
-          PicFc,
-        });
+        // const columns = update.columns({
+        //   rows,
+        //   size,
+        //   ...countResult
+        // });
         const isVerticalScroll =
           update.verticalScrollCheck({
             size,
@@ -65,27 +60,23 @@ export const tableUpdateState: TStateHandler<
           });
         get().table.update.set({
           rows,
-          columns,
           size,
           isVerticalScroll,
         });
       }
     },
     rows: tableUpdateRows,
-    columns: tableUpdateColumns,
     size: tableUpdateSize,
     verticalScrollCheck:
       tableUpdateVerticalScrollCheck,
     set: ({
       rows,
-      columns,
       size,
       isVerticalScroll,
     }: TTableSetConfig) => {
       get().updateState(
         (draft: TState) => {
           draft.table.rows = rows;
-          draft.table.columns = columns;
           draft.table.size = size;
           draft.table.isVerticalScroll =
             isVerticalScroll;

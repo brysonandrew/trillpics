@@ -8,6 +8,7 @@ import { useTrillPicsStore } from "~/store";
 import { ControlsUndo } from "~/pages/directors-mode/footer/controls/undo-redo/undo";
 import { ControlsRedo } from "~/pages/directors-mode/footer/controls/undo-redo/redo";
 import { SeperatorHorizontal } from "~/pages/directors-mode/footer/controls/seperator/horizontal";
+import { PRESENCE_OPACITY_ANIMATE_DELAY_02 } from "~/constants/animation";
 
 export const DirectorsModeFooterControls: FC<
   TDirectorsModeFooterProps
@@ -16,14 +17,14 @@ export const DirectorsModeFooterControls: FC<
   Seperator = SeperatorHorizontal,
   ..._props
 }) => {
-  const { isVideoPics: _isVideoPics } =
+  const { videoPics } =
     useTrillPicsStore(
-      ({ isVideoPics }) => ({
-        isVideoPics,
+      ({ videoPics }) => ({
+        videoPics,
       })
     );
   const props = { Button, ..._props };
-  const isVideoPics = _isVideoPics();
+  const isVideoPics = videoPics.length > 0;
   const title = isVideoPics
     ? undefined
     : "Random Video";
@@ -32,22 +33,29 @@ export const DirectorsModeFooterControls: FC<
       <Seperator />
       <ControlsUndo
         layoutId="ControlsUndo"
+
         {...props}
+
+
       />
       <ControlsRedo
         layoutId="ControlsRedo"
         {...props}
+
+
       />
       {isVideoPics && (
         <>
           <Seperator />
-          <ControlsClear 
-            layoutId="ControlsClear" 
+          <ControlsClear
+            layoutId="ControlsClear"
             {...props}
           />
           <ControlsShow
             layoutId="ControlsShow"
             {...props}
+
+
           />
         </>
       )}

@@ -8,8 +8,4 @@ export const LAYOUT: StaticShortcutMap =
       "overflow-x-auto overflow-y-hidden",
     "text-main":
       "text-lg text-white dark:text-gray-8",
-    "background-flat":
-      "dark:bg-black-02 bg-gray-02",
-    background:
-      "dark:bg-black-08 bg-gray-09",
   };
