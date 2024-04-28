@@ -11,7 +11,7 @@ import {
 } from "@brysonandrew/config-types";
 import { useScroll } from "~/context/scroll";
 import { isValue } from "~/utils/validation/is/value";
-import { measureContainer } from "~/context/screen/container";
+import { measureContainer } from "~/shell/init/container";
 
 const RESIZE_COOLDOWN = 400;
 
@@ -58,7 +58,7 @@ export const useScreenMeasure = (
   const handleSize = (
     next?: TScreen
   ) => {
-    console.log("DSIE")
+    console.log("DSIE");
     let isResizing = false;
     if (typeof next !== "undefined") {
       isResizing = next.isResizing;

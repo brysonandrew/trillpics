@@ -7,8 +7,8 @@ import {
   TGenerateInput,
   TGenerateOutput,
 } from "~/types/trpc/generate";
-import { ResolveOptions } from "@trpc/server/dist/core/internals/utils";
 import { z } from "zod";
+import { PIC_SERIES_SCHEMA } from "~/components/remotion/pic-series/schema";
 
 const DEFAULT: TGenerateInput = {
   input: {
@@ -19,9 +19,7 @@ const DEFAULT: TGenerateInput = {
 
 export const SCHEMA_INPUT = z
   .object({
-    input: z.object({
-      pics: z.array(z.string()),
-    }),
+    input: PIC_SERIES_SCHEMA,
     fps: z.number(),
   })
   .optional();

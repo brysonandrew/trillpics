@@ -31,11 +31,11 @@ export type TSpecifications = {
 export type TResolver =
   () => Promise<unknown>;
 
-export type TPic = {
-  name: TName;
-  path: TPath;
-  resolver: TResolver;
-};
+// export type TPic = {
+//   name: TName;
+//   path: TPath;
+//   resolver: TResolver;
+// };
 
 export type TDisplay = {
   name: TName;

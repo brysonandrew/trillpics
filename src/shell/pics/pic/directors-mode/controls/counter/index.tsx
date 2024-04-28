@@ -12,12 +12,12 @@ import { TUseBoxChildProps } from "~/shell/pics/pic/box/use-box";
 
 export type TDirectorsModeControlsCounterProps =
   TUsePicDirectorsModeControls &
-    Pick<TUseBoxChildProps, "isHover">;
+    Pick<TUseBoxChildProps, "isHovering">;
 export const DirectorsModeControlsCounter: FC<
   TDirectorsModeControlsCounterProps
 > = ({
   isAdded,
-  isHover,
+  isHovering,
   videoOrder,
   isControls,
 }) => {
@@ -29,7 +29,7 @@ export const DirectorsModeControlsCounter: FC<
       }}
     >
       <AnimatePresence>
-        {(isAdded || isHover) && (
+        {(isAdded || isHovering) && (
           <motion.div
             key="DirectorsModeControlsCounter"
             className="flex flex-row items-center gap-2 h-12 px-2"
@@ -47,7 +47,7 @@ export const DirectorsModeControlsCounter: FC<
                 }`}</motion.span>
               </PillB>
             )}
-            {isHover && isControls && (
+            {isHovering  && isControls && (
               <AddRemoveToVideoMarker
                 isAdded={isAdded}
               />

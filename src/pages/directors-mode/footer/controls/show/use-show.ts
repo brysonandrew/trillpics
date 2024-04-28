@@ -28,17 +28,15 @@ export const useShow = () => {
   const showAllIndexRef = useRef<
     number | null
   >(null);
-  const picsCount =countPics();
-
-    const videoPicsCount =countVideoPics();
-console.log("▁▁▁▁▂▂▂▂▃▃▃▃▄▄▄▅▅▅▅▆▆▆▆▇▇▇▇██▓▒░ 🧨 ░▒▓█▓▒░ 🧨 ░▒▓██▇▇▇▇▆▆▆▆▅▅▅▅▄▄▄▃▃▃▃▂▂▂▂▁▁▁▁");
-console.log(picsCount,'vid', videoPicsCount);
-console.log("██████████████▓▒░ 🧨 ░▒ line: 31, file: use-show.ts ▓▒░ 🧨 ░▒██████████████");
-    
-  const isViewingOnlyVideoPics =
-  picsCount === videoPicsCount
   const { blurX, blurXRef } =
     useScroll();
+  const picsCount = countPics();
+
+  const videoPicsCount =
+    countVideoPics();
+
+  const isViewingOnlyVideoPics =
+    picsCount === videoPicsCount;
 
   const onToggleShow = () => {
     const prev = blurX.get();
@@ -53,11 +51,12 @@ console.log("██████████████▓▒░ 🧨 ░▒ lin
     );
 
     if (isViewingOnlyVideoPics) {
-      updatePicsEntries(
-        picsEntries[
-          showAllIndexRef.current ?? 0
-        ]
-      );
+      updatePicsEntries({
+        cells:
+          picsEntries[
+            showAllIndexRef.current ?? 0
+          ],
+      });
       showAllIndexRef.current = null;
     } else {
       if (
@@ -66,7 +65,9 @@ console.log("██████████████▓▒░ 🧨 ░▒ lin
         showAllIndexRef.current =
           picsEntries.length - 1;
       }
-      updatePicsEntries(videoPics);
+      updatePicsEntries({
+        cells: videoPics,
+      });
     }
   };
 

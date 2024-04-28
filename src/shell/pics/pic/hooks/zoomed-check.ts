@@ -1,9 +1,10 @@
 import { useSearchParams } from "react-router-dom";
 import { SEARCH_PARAM_ID } from "~/shell/pics/pic/directors-mode/controls/use-pic-directors-mode";
+import { TPic } from "~/store/slices/pics/types";
 import { isDefined } from "~/utils/validation/is/defined";
 
 export const usePicZoomedCheck = (
-  name?: string
+  name?: TPic
 ) => {
   const [searchParams] =
     useSearchParams();

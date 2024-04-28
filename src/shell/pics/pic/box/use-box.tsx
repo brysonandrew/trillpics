@@ -1,9 +1,5 @@
 import { useState } from "react";
 import {
-  useHoverKey,
-  NONE_CURSOR_KEY,
-} from "@brysonandrew/motion-cursor";
-import {
   useLocation,
   useNavigate,
 } from "react-router";
@@ -13,6 +9,7 @@ import { squareFromSize } from "~/utils/dimensions/square-from-size";
 import { usePicZoomedCheck } from "~/shell/pics/pic/hooks/zoomed-check";
 import { SEARCH_PARAM_ID } from "~/shell/pics/pic/display";
 import { useTrillPicsStore } from "~/store";
+import { useHoverKey } from "~/hooks/use-hover-key";
 
 type TConfig = TPicProps;
 export const useBox = ({
@@ -36,10 +33,9 @@ export const useBox = ({
     useSearchParams();
   const navigate = useNavigate();
   const { isHover, handlers } =
-    useHoverKey(
-      NONE_CURSOR_KEY,
-      name ?? ""
-    );
+    useHoverKey();
+  const isHovering = isHover(name);
+  const hoverHandlers = handlers(name);
   const videoOrder =
     videoPics.indexOf(name);
 
@@ -57,7 +53,7 @@ export const useBox = ({
     setFront(true);
     searchParams.set(
       SEARCH_PARAM_ID,
-      name
+      String(name)
     );
     navigate(
       `${pathname}?${searchParams}`
@@ -68,7 +64,7 @@ export const useBox = ({
     searchParams.delete(
       SEARCH_PARAM_ID
     );
-    handlers.onPointerLeave();
+    hoverHandlers.onPointerOut();
     navigate(
       `${pathname}?${searchParams}`
     );
@@ -87,9 +83,9 @@ export const useBox = ({
     onZoomIn,
     onZoomOut,
     videoOrder,
-    isHover,
+    isHovering,
     isPicZoomed,
-    handlers,
+    handlers: hoverHandlers,
     cellDimensions,
     frontCheckState,
   };

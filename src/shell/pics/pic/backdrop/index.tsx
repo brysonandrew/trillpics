@@ -1,6 +1,5 @@
 import type { FC } from "react";
 import { motion } from "framer-motion";
-import { IconsPicZoomOut } from "~/components/icons/pic/zoom-out";
 import {
   TUsePicBackdrop,
   usePicBackdrop,
@@ -39,7 +38,6 @@ export const PicBackdrop: FC<
         onClick={onToggle}
       />
       {children(backdropResult)}
-
     </>
   );
 };

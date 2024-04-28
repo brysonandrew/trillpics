@@ -1,4 +1,7 @@
-import { TPicsState } from "~/store/slices/pics/types";
+import {
+  TPics,
+  TPicsState,
+} from "~/store/slices/pics/types";
 import { shuffle } from "~/utils/array/shuffle";
 import { TStateHandler } from "~/store/types";
 import precachePics from "~app/precache.json";
@@ -21,15 +24,21 @@ export const picsState: TStateHandler<
       get().countPicsEntries() - ++from
     ],
   countPics: () => get().pics().length,
-  updatePicsEntries: (
-    next?: string[]
-  ) => {
-    const currPics = get().pics();
+  updatePicsEntries: (config) => {
+    const prev = get().pics();
+    const nextPics: TPics =
+      config?.cells ??
+      shuffle([...prev]);
+    console.log(prev, config);
     set({
       picsEntries: [
         ...get().picsEntries,
-        next ?? shuffle([...currPics]),
+        nextPics,
       ],
+    });
+    get().table.update.cells({
+      ...config,
+      cells: nextPics,
     });
   },
 });

@@ -4,7 +4,7 @@ import { PicBackdrop } from "~/shell/pics/pic/backdrop";
 import { TUseBoxChildProps } from "~/shell/pics/pic/box/use-box";
 import { PicDisplayZoomed } from "~/shell/pics/pic/display/zoomed";
 import { IconsPicZoomOut } from "~/components/icons/pic/zoom-out";
-import { zIndex } from "tailwindcss/defaultTheme";
+import { PicZoomedExitIcon } from "~/shell/pics/pic/zoomed/exit-icon";
 
 export const PicZoomed: FC<
   TUseBoxChildProps
@@ -18,7 +18,7 @@ export const PicZoomed: FC<
               {...boxChildProps}
               {...backdropChildProps}
             />
-        
+            <PicZoomedExitIcon />
           </>
         )}
       </PicBackdrop>

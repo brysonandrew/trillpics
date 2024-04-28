@@ -1,4 +1,4 @@
-import { TScreen } from "~/context/screen/measure";
+import { TScreen } from "~/shell/init/measure";
 import { TStateCreator } from "~/store/types";
 import { TMilestones } from "~/types/milestones";
 

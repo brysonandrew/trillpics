@@ -15,7 +15,7 @@ export const PillBHover: FC<TProps> = ({
   disabled,
   ...props
 }) => {
-  const { handlers, isHover } =
+  const { motionHandlers, isHover } =
     useHoverKey();
   // const hasLeftRef = useRef(false);
   // const handleMouseLeave = () => {
@@ -28,7 +28,7 @@ export const PillBHover: FC<TProps> = ({
     <PillB
       title={title}
       // onMouseOut={handleMouseLeave}
-      {...handlers(title)}
+      {...motionHandlers(title)}
       {...props}
     >
       {isHovering ? (

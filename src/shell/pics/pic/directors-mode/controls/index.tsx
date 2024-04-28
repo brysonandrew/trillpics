@@ -10,7 +10,7 @@ import { TUseBoxChildProps } from "~/shell/pics/pic/box/use-box";
 
 export type TPicDirectorsModeControlsProps =
   TUsePicDirectorsModeControlsConfig &
-  Pick<TUseBoxChildProps, "isHover" | 'videoOrder'> ;
+  Pick<TUseBoxChildProps, "isHovering" | 'videoOrder'> ;
 export const PicDirectorsModeControls: FC<
   TPicDirectorsModeControlsProps
 > = ({ videoOrder, ...props }) => {

@@ -1,22 +1,56 @@
+import { FC } from "react";
 import { TDimensionsReady } from "@brysonandrew/config-types";
 import {
   Row,
   CellContext,
   Table,
   HeaderContext,
+  ColumnDef,
 } from "@tanstack/react-table";
 import { FixedSizeListProps } from "react-window";
-import { TScreen } from "~/context/screen/measure";
+import { TPicProps } from "~/shell/pics/pic";
 import { TPics } from "~/store/slices/pics/types";
 import { TStateCreator } from "~/store/types";
+import { TTableUpdateCountResult } from "~/store/slices/table/update/count";
+import { TScreen } from "~/shell/init/measure";
 
-export type TTableCalcConfig =
-  TDimensionsReady & {
+export type TTableRowsConfig =
+  TTableUpdateCountResult & {
     cells: TPics;
   };
+export type TTableCountConfig = Pick<
+  TDimensionsReady,
+  "width"
+>;
+export type TTableSetConfig = Pick<
+  TPicsTable,
+  | "rows"
+  | "size"
+  | "columns"
+  | "isVerticalScroll"
+>;
+
+export type TTableSizeConfig =
+  TTableUpdateCountResult &
+    Pick<TDimensionsReady, "width">;
+export type TTableVerticalScrollConfig =
+  Pick<TPicsTable, "size"> & {
+    rowsCount: number;
+  } & Pick<TDimensionsReady, "width">;
+
+// {
+//   rows: TPicsRow[];
+//   columns: TPics;
+// };
 export type TPicsRow = {
   columns: TPics;
 };
+export type TPicsColumn = ColumnDef<
+  TPicsRow,
+  any
+>;
+export type TPicsColumns =
+  TPicsColumn[];
 
 export type TPicCell = CellContext<
   TPicsRow,
@@ -48,19 +82,57 @@ export type TCellString = CellContext<
   string
 >;
 
+export type TTableCreateConfig = {
+  cells: TPics;
+  screen: TScreen;
+  PicFc?: FC<TPicProps>;
+};
+export type TTableColumnsConfig = Pick<
+  TPicsTable,
+  "rows" | "size"
+> &
+  Pick<TTableCreateConfig, "PicFc">;
+
 export type TTableUpdateState = {
   update: {
-    dimensions(screen: TScreen): void;
-    count(cells: TPics): void;
-    calc(
-      config: TTableCalcConfig
+    screen(
+      config: Pick<
+        TTableCreateConfig,
+        "screen" | "PicFc"
+      >
     ): void;
+    cells(
+      cells: Pick<
+        TTableCreateConfig,
+        "cells" | "PicFc"
+      >
+    ): void;
+    count(
+      config: TTableCountConfig
+    ): TTableUpdateCountResult;
+    create(
+      config: TTableCreateConfig
+    ): void;
+    rows(
+      config: TTableRowsConfig
+    ): TPicsRows;
+    columns(
+      config: TTableColumnsConfig
+    ): TPicsColumns;
+    size(
+      config: TTableSizeConfig
+    ): number;
+    verticalScrollCheck(
+      config: TTableVerticalScrollConfig
+    ): boolean;
+    set(config: TTableSetConfig): void;
   };
 };
 export type TPicsTable =
   TTableUpdateState & {
     size: number;
-    rows: TPicsRow[];
+    rows: TPicsRows;
+    columns: TPicsColumns;
     isVerticalScroll: boolean;
   };
 export type TTableState = {

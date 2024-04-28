@@ -1,5 +1,4 @@
 import { THoverKey } from "@brysonandrew/hooks-dom";
-import { config } from "localforage";
 import { useTrillPicsStore } from "~/store";
 
 type THandler = (
@@ -45,8 +44,15 @@ export const useHoverKey = (
     }
     unhover(key);
   };
-
   const handlers = (
+    key: THoverKey
+  ) => ({
+    onPointerEnter: () => onStart(key),
+    onPointerOut: () => onStop(key),
+    onPointerLeave: () => onStop(key),
+    onMouseLeave: () => onStop(key),
+  });
+  const motionHandlers = (
     key: THoverKey
   ) => ({
     onHoverStart: () => onStart(key),
@@ -62,6 +68,7 @@ export const useHoverKey = (
     isNoHover: hoverKeys.length === 0,
     isHover,
     handlers,
+    motionHandlers,
     clear,
   };
 };

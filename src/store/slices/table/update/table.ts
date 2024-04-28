@@ -1,86 +1,94 @@
 import {
-  TPicsRow,
-  TTableCalcConfig,
+  TTableSetConfig,
   TTableUpdateState,
 } from "~/store/slices/table/types";
 import {
   TState,
   TStateHandler,
 } from "~/store/types";
-import { APPROX_IMAGE_SIZE } from "~/constants/images";
-import {
-  TPic,
-  TPics,
-} from "~/store/slices/pics/types";
-import { TScreen } from "~/context/screen/measure";
-import precacheTable from "~app/precache.json";
-
-const { length: tableCount } =
-  precacheTable;
+import { tableUpdateSize } from "~/store/slices/table/update/size";
+import { tableUpdateCount } from "~/store/slices/table/update/count";
+import { tableUpdateRows } from "./rows";
+import { tableUpdateColumns } from "./columns";
+import { tableUpdateVerticalScrollCheck } from "./vertical-scroll-check";
 
 export const tableUpdateState: TStateHandler<
   TTableUpdateState
 > = (set, get) => ({
   update: {
-    dimensions: (screen: TScreen) => {
-      if (screen.isDimensions) {
-        get().table.update.calc({
-          cells: get().pics(),
-          ...screen,
-        });
-      }
+    screen: (config) => {
+      const cells = get().pics();
+      get().table.update.create({
+        cells,
+        ...config,
+      });
     },
-    count: (cells: TPics) => {
+    cells: (config) => {
       const screen = get().screen;
+      get().table.update.create({
+        screen,
+        ...config,
+      });
+    },
+    count: tableUpdateCount,
+    create: ({
+      screen,
+      cells,
+      PicFc,
+    }) => {
       if (screen.isDimensions) {
-        get().table.update.calc({
+        const update =
+          get().table.update;
+        const countResult =
+          update.count({
+            ...screen,
+          });
+        const rows = update.rows({
           cells,
           ...screen,
+          ...countResult,
+        });
+        const size = update.size({
+          ...screen,
+          ...countResult,
+        });
+        const columns = update.columns({
+          rows,
+          size,
+          PicFc,
+        });
+        const isVerticalScroll =
+          update.verticalScrollCheck({
+            size,
+            ...countResult,
+            ...screen,
+          });
+        get().table.update.set({
+          rows,
+          columns,
+          size,
+          isVerticalScroll,
         });
       }
     },
-    calc: ({
-      cells,
-      ...screen
-    }: TTableCalcConfig) => {
-      const columnsCount = Math.ceil(
-        screen.width / APPROX_IMAGE_SIZE
-      );
-      const rowsCount = Math.ceil(
-        tableCount / columnsCount
-      );
-      const rows: TPicsRow[] = [
-        ...Array(rowsCount),
-      ].map((_, ri) => {
-        const columns: TPics = [
-          ...Array(columnsCount),
-        ].map((__, ci) => {
-          const index =
-            ri * columnsCount + ci;
-          const item: TPic =
-            cells[index] ??
-            `${index + 1}`;
-
-          return item;
-        });
-
-        return {
-          columns,
-        };
-      });
+    rows: tableUpdateRows,
+    columns: tableUpdateColumns,
+    size: tableUpdateSize,
+    verticalScrollCheck:
+      tableUpdateVerticalScrollCheck,
+    set: ({
+      rows,
+      columns,
+      size,
+      isVerticalScroll,
+    }: TTableSetConfig) => {
       get().updateState(
         (draft: TState) => {
-          const nextSize = Math.floor(
-            screen.width / columnsCount
-          );
-          draft.table.size = nextSize;
-
-          draft.table.isVerticalScroll =
-            nextSize * rowsCount >
-            screen.height;
-
           draft.table.rows = rows;
-
+          draft.table.columns = columns;
+          draft.table.size = size;
+          draft.table.isVerticalScroll =
+            isVerticalScroll;
         }
       );
     },

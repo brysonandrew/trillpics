@@ -26,10 +26,26 @@ export const PicDisplay: FC<
   name,
 }) => {
   const src = resolvePicSrc(name);
+  const isVacant =
+    typeof name === "number";
+  if (isVacant)
+    return (
+      <motion.div
+        layoutId={String(name)}
+        style={{
+          textAlign: "center",
+          ...style,
+        }}
+        onTap={onTap}
+        onLayoutAnimationComplete={
+          onLayoutAnimationComplete
+        }
+      />
+    );
   return (
     <motion.img
       key={src}
-      layoutId={name}
+      layoutId={String(name)}
       src={src}
       alt={`░▒▓█ pic #${name} █▓▒░`}
       draggable={false}

@@ -1,8 +1,6 @@
 import type { FC } from "react";
 import { motion } from "framer-motion";
 import clsx from "clsx";
-import { PillB } from "~/components/buttons/pill/b";
-import { IconsPicZoomIn24 } from "~/components/icons/pic/zoom-in/24";
 import { FADE_PRESENCE } from "~/constants/animation";
 import { TUseBoxChildProps } from "~/shell/pics/pic/box/use-box";
 import {
@@ -15,13 +13,12 @@ export type TPicHoverProps =
   TUsePicHoverConfig &
     Pick<
       TUseBoxChildProps,
-      | "isHover"
-      | "onToggle"
+      "isHovering" | "onToggle"
     >;
 export const PicHover: FC<
   TPropsWithChildren<TPicHoverProps>
 > = ({
-  isHover,
+  isHovering,
   onToggle,
   children,
   ...props
@@ -30,7 +27,7 @@ export const PicHover: FC<
     usePicHover(props);
   return (
     <>
-      {isHover && isControls && (
+      {isHovering && isControls && (
         <motion.div
           key="zoom"
           className={clsx(

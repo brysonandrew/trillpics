@@ -34,7 +34,7 @@ export const _DarkMode: FC = () => {
     setInitial(false);
   };
 
-  const { isHover, handlers } =
+  const { isHover, motionHandlers } =
     useHoverKey({
       handlers: { stop },
     });
@@ -60,7 +60,7 @@ export const _DarkMode: FC = () => {
           )}
         </div>
       )}
-      {...handlers(title)}
+      {...motionHandlers(title)}
     >
       {isHover(title) && title}
     </PillBHover>

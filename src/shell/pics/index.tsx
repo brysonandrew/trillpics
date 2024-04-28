@@ -12,19 +12,13 @@ import {
   TableOptions,
 } from "@tanstack/react-table";
 import { Virtualize } from "~/shell/pics/table-infinite/virtualize";
-import {
-  TScreen,
-  useScreenMeasure,
-} from "~/context/screen/measure";
-import { useOnscreen } from "~/shell/header/right/zen-mode/use-onscreen";
-import { usePicsColumns } from "./columns";
 
 type TProps =
   TPartialFixedTableProps<TPicsRow>;
 export const Pics: FC<TProps> = ({
   ...props
 }) => {
-  const { table, screen, updateState } =
+  const { table, screen } =
     useTrillPicsStore(
       ({
         table,
@@ -38,16 +32,11 @@ export const Pics: FC<TProps> = ({
     );
   const {
     rows,
-    size: _size,
+    columns,
+    size,
     isVerticalScroll,
   } = table;
-
-  const size = _size - 6;
-  const columns = usePicsColumns(
-    rows,
-    size
-  );
-
+ // console.log(rows, columns);
   const options: TableOptions<TPicsRow> =
     {
       data: rows,

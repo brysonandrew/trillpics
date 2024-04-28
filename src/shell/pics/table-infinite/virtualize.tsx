@@ -3,7 +3,6 @@ import type {
   RowModel,
 } from "@tanstack/react-table";
 import { FixedSizeList } from "react-window";
-import { BlurXy } from "~/components/blur/xy";
 import { useScroll } from "~/context/scroll";
 import { RenderRow } from "~/shell/pics/table-infinite/render-row";
 import {
@@ -33,7 +32,6 @@ export const Virtualize = <
     rowModel.rows;
   const { onUpdate, listRef } =
     useScroll();
-
   return (
     <FixedSizeList<TPicsTableRows<T>>
       onScroll={onUpdate}

@@ -14,7 +14,7 @@ import { SeperatorVertical } from "~/pages/directors-mode/footer/controls/sepera
 
 export const HomeFooterDirectorsMode: FC =
   () => {
-    const { isHover, handlers } =
+    const { isHover, motionHandlers } =
       useHoverKey();
     const { togglePathValue } =
       useNavigationControls();
@@ -51,7 +51,7 @@ export const HomeFooterDirectorsMode: FC =
                     SeperatorVertical
                   }
                   {...PRESENCE_OPACITY}
-                  {...handlers(
+                  {...motionHandlers(
                     DirectorsModeFooterControlsHoverKey
                   )}
                 />

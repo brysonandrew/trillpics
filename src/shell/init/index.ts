@@ -1,8 +1,6 @@
-import {
-  TScreen,
-  useScreenMeasure,
-} from "~/context/screen/measure";
+
 import { useOnscreen } from "~/shell/header/right/zen-mode/use-onscreen";
+import { TScreen, useScreenMeasure } from "~/shell/init/measure";
 import { useTrillPicsStore } from "~/store";
 
 export const useInit = () => {
@@ -19,7 +17,7 @@ export const useInit = () => {
     updateState((draft) => {
       draft.screen = screen;
     });
-    table.update.dimensions(screen);
+    table.update.screen({ screen });
   };
   useScreenMeasure({
     isContainer: true,

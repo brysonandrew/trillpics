@@ -1,3 +1,4 @@
+import { PicDirectorsMode } from "~/shell/pics/pic/directors-mode";
 import { TDirectorRemoveState } from "~/store/slices/director/types";
 import { TPics } from "~/store/slices/pics/types";
 import { TStateHandler } from "~/store/types";
@@ -39,9 +40,10 @@ export const directorRemoveState: TStateHandler<
     }
 
     if (videoPics.length === 0) {
-      get().updatePicsEntries(
-        get().picsEntries[0]
-      );
+      get().updatePicsEntries({
+        cells: get().picsEntries[0],
+        PicFc: PicDirectorsMode,
+      });
     }
     const durationInFrames =
       videoPics.length * get().fps;

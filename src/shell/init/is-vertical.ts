@@ -1,4 +1,4 @@
-import { TScreen } from "~/context/screen/measure";
+import { TScreen } from "~/shell/init/measure";
 
 export const isVertical = (
   dimensions: TScreen

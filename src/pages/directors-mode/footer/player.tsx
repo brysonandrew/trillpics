@@ -13,20 +13,21 @@ export const ControlsPlayer: FC<
   ...props
 }) => {
   const { togglePathValue } =
-    useNavigationControls(
+    useNavigationControls();
+  const handleClick = () => {
+    togglePathValue(
       VIDEO_PLAYER_PATH_VALUE
     );
-  const handleClick = () => {
-    togglePathValue();
   };
   return (
     <Button
-      title={title ?? "View video preview"}
+      title={
+        title ?? "View video preview"
+      }
       onClick={handleClick}
       Icon={IconsPlay}
       {...props}
     >
-     
       {title ?? "Preview Video"}
     </Button>
   );

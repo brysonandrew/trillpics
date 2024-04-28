@@ -1,4 +1,4 @@
-import { INIT_SCREEN } from "~/context/screen/measure";
+import { INIT_SCREEN } from "~/shell/init/measure";
 import { TCoreScreenState } from "~/store/slices/core/types";
 import { TStateHandler } from "~/store/types";
 import { isDefined } from "~/utils/validation/is/defined";

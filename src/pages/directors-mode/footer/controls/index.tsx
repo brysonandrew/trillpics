@@ -41,8 +41,8 @@ export const DirectorsModeFooterControls: FC<
       {isVideoPics && (
         <>
           <Seperator />
-          <ControlsClear
-            layoutId="ControlsClear"
+          <ControlsClear 
+            layoutId="ControlsClear" 
             {...props}
           />
           <ControlsShow

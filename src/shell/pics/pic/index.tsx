@@ -1,8 +1,9 @@
 import type { FC } from "react";
-import { Box } from "~/shell/pics/pic/box";
-import { PicZoomed } from "~/shell/pics/pic/zoomed";
-import { PicCell } from "~/shell/pics/pic/cell";
 import { TPicCell } from "~/store/slices/table/types";
+import { useNavigationActive } from "~/hooks/use-navigation/active";
+import { DIRECTORS_MODE_PATH_VALUE } from "~/constants/params";
+import { PicDirectorsMode } from "~/shell/pics/pic/directors-mode";
+import { PicBase } from "~/shell/pics/pic/base";
 
 export type TPicProps = {
   colIndex: number;
@@ -13,19 +14,12 @@ export type TPicProps = {
 export const Pic: FC<TPicProps> = (
   props
 ) => {
-  return (
-    <Box cursor="zoom-in" {...props}>
-      {({
-        isPicZoomed,
-        ...boxChildProps
-      }) => {
-        const Child = isPicZoomed
-          ? PicZoomed
-          : PicCell;
-        return (
-          <Child {...boxChildProps} />
-        );
-      }}
-    </Box>
-  );
+  const isDirectorsMode =
+    useNavigationActive(
+      DIRECTORS_MODE_PATH_VALUE
+    );
+  const Component = isDirectorsMode
+    ? PicDirectorsMode
+    : PicBase;
+  return <Component {...props} />;
 };
