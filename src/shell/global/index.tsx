@@ -14,21 +14,13 @@ import { Light } from "~/shell/global/favicon/light";
 export const Global: FC<
   PropsWithChildren
 > = ({ children }) => {
-  const { isDarkMode } = useDarkMode();
-
-  const Favicon = isDarkMode
-    ? Dark
-    : Light;
-
+ 
   return (
     <>
-      <Favicon />
-      <GradientsBluePinkYellow
-        isDarkMode={isDarkMode}
-      />
-      <BlurX />
-      <BlurY />
-      <AURA.GLOBAL.Filter />
+
+
+      {/* <BlurX />
+      <BlurY /> */}
       <GlobalCss>{children}</GlobalCss>
     </>
   );

@@ -1,9 +1,9 @@
 import { BOX } from "~/constants/box";
-import { TBoxStyleConfig } from "~/constants/box/style/types";
+import { TBoxStyleTheme } from "~/constants/box/style/types";
 import { isDefined } from "~/utils/validation/is/defined";
 
 type TConfig = {
-  size?: keyof TBoxStyleConfig["size"];
+  size?: keyof TBoxStyleTheme["size"];
 };
 export const boxSize = ({
   size,

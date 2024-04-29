@@ -1,19 +1,23 @@
 import { APPROX_IMAGE_SIZE } from "~/constants/images";
 import { TTableCountConfig } from "~/store/slices/table/types";
 import precacheTable from "~app/precache.json";
-const { length: tableCount } =
+const { length: cellsCount } =
   precacheTable;
 
 export const tableUpdateCount = ({
   width,
 }: TTableCountConfig) => {
+  console.log(cellsCount, width);
   const columnsCount = Math.ceil(
     width / APPROX_IMAGE_SIZE
   );
   const rowsCount = Math.ceil(
-    tableCount / columnsCount
+    (cellsCount ?? 0) / columnsCount
   );
-  return { rowsCount, columnsCount };
+  return {
+    rows: rowsCount,
+    columns: columnsCount,
+  };
 };
 export type TTableUpdateCountResult =
   ReturnType<typeof tableUpdateCount>;

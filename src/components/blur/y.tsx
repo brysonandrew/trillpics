@@ -1,11 +1,11 @@
 import type { FC } from "react";
 import { BlurMotion2 } from "@brysonandrew/svg-filter";
 import { MOTION_BLUR_FILTER_Y_ID } from "~/components/blur/constants";
-import { useScroll } from "~/context/scroll";
+import { useVirtualizeScroll } from "~/shell/pics/virtualize/use-scroll";
 
 export const BlurY: FC = () => {
   const { blurY, isScrolling } =
-    useScroll();
+    useVirtualizeScroll();
 
   return (
     <BlurMotion2

@@ -1,4 +1,4 @@
-export type TBoxStyleConfig = {
+export type TBoxStyleTheme = {
   borderRadius: number;
   floating: {
     boxShadow: string;

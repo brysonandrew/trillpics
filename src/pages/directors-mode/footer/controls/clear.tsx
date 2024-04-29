@@ -3,7 +3,7 @@ import { useTrillPicsStore } from "~/store";
 import { IconsTrash } from "~/components/icons/video/trash1";
 import { PillBHover } from "~/components/buttons/pill/b/hover";
 import { TDirectorsModeFooterProps } from "~/pages/directors-mode/footer/types";
-import { useScroll } from "~/context/scroll";
+import { useVirtualizeScroll } from "~/shell/pics/virtualize/use-scroll";
 import { animate } from "framer-motion";
 
 export const ControlsClear: FC<
@@ -19,7 +19,7 @@ export const ControlsClear: FC<
       })
     );
   const { blurX, blurXRef } =
-    useScroll();
+    useVirtualizeScroll();
 
   const handleClear = () => {
     // const prev = blurX.get();

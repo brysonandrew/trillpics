@@ -1,13 +1,13 @@
 import { useEffect } from "react";
 import { animate } from "framer-motion";
-import { useScroll } from "~/context/scroll";
+import { useVirtualizeScroll } from "~/shell/pics/virtualize/use-scroll";
 
 type TConfig = { dependency: string };
 export const useBlurXEffect = (
   config: TConfig
 ) => {
   const { blurX, blurXRef } =
-    useScroll();
+    useVirtualizeScroll();
   useEffect(() => {
     blurXRef.current = animate(
       blurX,

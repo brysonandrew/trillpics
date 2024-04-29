@@ -8,7 +8,7 @@ import { FULLSCREEN_Z } from "~/constants/dom";
 import { TBoxChildProps } from "~/shell/pics/pic/box";
 import { TPicHoverResult } from "~/shell/pics/pic/use-hover";
 
-type TProps = TBoxChildProps & TPicHoverResult & {
+type TProps = TBoxChildProps & {
   children(
     props: TUsePicBackdrop
   ): JSX.Element;

@@ -14,7 +14,6 @@ export const usePicDirectorsModeControls =
           isControls,
         })
       );
-    const isAdded = videoOrder > -1;
 
     return {
       videoOrder,

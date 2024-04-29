@@ -6,14 +6,14 @@ import {
 const SCROLLBAR_X =
   SCROLLBAR_WIDTH +
   SCROLLBAR_BORDER_WIDTH * 2;
-  
+
 export const tableUpdateSize = ({
-  columnsCount,
+  count,
   ...screen
 }: TTableSizeConfig) => {
   const nextSize = Math.floor(
     (screen.width - SCROLLBAR_X) / // adjust for scroll bar)
-      columnsCount
+      count.columns
   );
   return nextSize;
 };

@@ -1,9 +1,15 @@
-
+import { useTimeoutRef } from "@brysonandrew/hooks-window";
 import { useOnscreen } from "~/shell/header/right/zen-mode/use-onscreen";
-import { TScreen, useScreenMeasure } from "~/shell/init/measure";
+import {
+  RESIZE_COOLDOWN,
+  TScreen,
+  useScreenMeasure,
+} from "~/shell/init/measure";
 import { useTrillPicsStore } from "~/store";
 
 export const useInit = () => {
+  const { timeoutRef, endTimeout } =
+    useTimeoutRef();
   const { table, updateState } =
     useTrillPicsStore(
       ({ table, updateState }) => ({
@@ -14,10 +20,22 @@ export const useInit = () => {
   const handleScreenReady = (
     screen: TScreen
   ) => {
-    updateState((draft) => {
-      draft.screen = screen;
-    });
-    table.update.screen({ screen });
+    endTimeout();
+    timeoutRef.current = setTimeout(
+      () => {
+        updateState((draft) => {
+          draft.screen = screen;
+        });
+        if (screen.isDimensions) {
+          table.update.screen({
+            screen,
+          });
+        }
+      },
+      screen.isResizing
+        ? RESIZE_COOLDOWN * 2
+        : 0
+    );
   };
   useScreenMeasure({
     isContainer: true,

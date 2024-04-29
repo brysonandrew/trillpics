@@ -1,10 +1,10 @@
 import {
-  useState,
-  useContext as useReactContext,
-  createContext,
   PropsWithChildren,
   useRef,
   MutableRefObject,
+  createContext,
+  useState,
+  useContext,
 } from "react";
 import type { FC } from "react";
 import {
@@ -17,66 +17,69 @@ import {
   useNavigate,
 } from "react-router";
 import { useSearchParams } from "react-router-dom";
-import type {
-  ListOnScrollProps,
-  FixedSizeList,
-} from "react-window";
+import type { ListOnScrollProps } from "react-window";
 import { useTimeoutRef } from "@brysonandrew/hooks-window";
-import { SEARCH_PARAM_ID } from "~/pages/directors-mode/pic/controls/use-pic-directors-mode";
-export type TState = {
-  isScrolling: boolean;
-  isScroll: boolean;
-  isTransitioningGallery: boolean;
-};
+import { useTrillPicsStore } from "~/store";
+import {
+  SCROLL_COOLDOWN,
+  SCROLL,
+} from "~/store/slices/scroll";
+import { TScrollState } from "~/store/slices/scroll/types";
+import { SEARCH_PARAM_ID } from "~/shell/pics/pic/display";
 
-export type TContext = TState & {
-  listRef: MutableRefObject<any>;
+export type TVirtualizeList = any;
+// FixedSizeList<
+//   FixedSizeListProps<TPicsRow>
+// >;
+export type TContext = TScrollState & {
+  virtualizeList: TVirtualizeList | null;
+  setVirtualizeList: (
+    instance: TVirtualizeList | null
+  ) => void;
   blurXRef: MutableRefObject<AnimationPlaybackControls | null>;
   blurYRef: MutableRefObject<AnimationPlaybackControls | null>;
   blurX: MotionValue<number>;
   blurY: MotionValue<number>;
   scroll: {
-    x: MotionValue<number>;
     y: MotionValue<number>;
+    yOffset: MotionValue<number>;
   };
   onUpdate(
     props: ListOnScrollProps
   ): void;
-  onMotionBlurStart(): void;
-  onMotionBlurEnd(): void;
 };
 
-export const STATE = {
-  isScrolling: false,
-  isScroll: false,
-  isTransitioningGallery: false,
-} as TState;
+const VirtualizeScrollContext =
+  createContext({} as TContext);
 
-export const CONTEXT: TContext = {
-  // ...STATE,
-  // listRef: { current: null },
-  // onUpdate: NOOP,
-  // scroll: {
-  //   x: motionValue(0),
-  //   y: motionValue(0),
-  // },
-  // onMotionBlurStart:(): void;
-  // onMotionBlurEnd:(): void;
-} as TContext;
-
-export const SCROLL = 240;
-export const SCROLL_COOLDOWN = 120;
-
-export const Scroll =
-  createContext<TContext>(CONTEXT);
-
-export const useScroll = (): TContext =>
-  useReactContext<TContext>(Scroll);
+export const useVirtualizeScroll = () =>
+  useContext(VirtualizeScrollContext);
 
 type TProviderProps = PropsWithChildren;
-export const ScrollProvider: FC<
+export const VirtualizeScrollProvider: FC<
   TProviderProps
 > = ({ children }) => {
+  const [
+    virtualizeList,
+    setVirtualizeList,
+  ] = useState<TVirtualizeList | null>(
+    null
+  );
+  const {
+    isScroll,
+    isScrolling,
+    updateState,
+  } = useTrillPicsStore(
+    ({
+      isScroll,
+      isScrolling,
+      updateState,
+    }) => ({
+      isScroll,
+      isScrolling,
+      updateState,
+    })
+  );
   const blurXRef =
     useRef<AnimationPlaybackControls | null>(
       null
@@ -87,26 +90,10 @@ export const ScrollProvider: FC<
     );
   const blurX = useMotionValue(0);
   const blurY = useMotionValue(0);
-  const scrollX = useMotionValue(0);
+  const scrollYOffset =
+    useMotionValue(0);
   const scrollY = useMotionValue(0);
 
-  const [
-    isTransitioningGallery,
-    setTransitioningGallery,
-  ] = useState(false);
-  //const onDrag = setTransitioningGallery;
-  const onMotionBlurStart = () =>
-    setTransitioningGallery(true);
-  const onMotionBlurEnd = () =>
-    setTransitioningGallery(false);
-  const listRef = useRef<
-    typeof FixedSizeList | null
-  >(null);
-
-  const [isScroll, setScroll] =
-    useState(false);
-  const [isScrolling, setScrolling] =
-    useState(false);
   const { timeoutRef, endTimeout } =
     useTimeoutRef();
   const [searchParams] =
@@ -117,13 +104,15 @@ export const ScrollProvider: FC<
   const handleUpdate = (
     props: ListOnScrollProps
   ) => {
-
     const { scrollOffset } = props;
     if (!isScroll) {
       const nextScrollY =
         1 - scrollOffset * 0.0006;
       scrollY.set(nextScrollY);
     }
+    console.log(scrollOffset);
+    scrollYOffset.set(-scrollOffset);
+
     if (!isScrolling) {
       searchParams.delete(
         SEARCH_PARAM_ID
@@ -131,12 +120,16 @@ export const ScrollProvider: FC<
       navigate(
         `${pathname}?${searchParams}`
       );
-      setScrolling(true);
+      updateState({
+        isScrolling: true,
+      });
     }
     endTimeout();
     timeoutRef.current = setTimeout(
       () => {
-        setScrolling(false);
+        updateState({
+          isScrolling: false,
+        });
       },
       SCROLL_COOLDOWN
     );
@@ -145,24 +138,25 @@ export const ScrollProvider: FC<
       !isScroll &&
       scrollOffset > SCROLL
     ) {
-      setScroll(true);
+      updateState({ isScroll: true });
     }
     if (
       isScroll &&
       scrollOffset < SCROLL
     ) {
-      setScroll(false);
+      updateState({ isScroll: false });
     }
   };
 
   return (
-    <Scroll.Provider
+    <VirtualizeScrollContext.Provider
       value={{
         scroll: {
-          x: scrollX,
           y: scrollY,
+          yOffset: scrollYOffset,
         },
-        listRef,
+        virtualizeList,
+        setVirtualizeList,
         blurXRef,
         blurYRef,
         blurX,
@@ -170,12 +164,9 @@ export const ScrollProvider: FC<
         isScroll,
         isScrolling,
         onUpdate: handleUpdate,
-        onMotionBlurStart,
-        onMotionBlurEnd,
-        isTransitioningGallery,
       }}
     >
       {children}
-    </Scroll.Provider>
+    </VirtualizeScrollContext.Provider>
   );
 };

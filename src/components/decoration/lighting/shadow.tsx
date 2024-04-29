@@ -4,11 +4,7 @@ import { LightingBase } from "~/components/decoration/lighting/base";
 
 export const LightingShadow: FC<
   TDivMotionProps
-> = ({
-  classValue,
-  style,
-  ...props
-}) => {
+> = ({ ...props }) => {
   return (
     <LightingBase
       lightingClassValue="shadow"

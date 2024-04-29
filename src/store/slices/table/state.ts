@@ -11,6 +11,7 @@ export const tableState: TStateHandler<
       size: 0,
       rows: [],
       columns: [],
+      count: { rows: 0, columns: 0 },
       ...tableUpdateState(...args),
     },
   };

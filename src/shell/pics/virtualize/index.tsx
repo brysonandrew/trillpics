@@ -1,12 +1,11 @@
 import { FixedSizeList } from "react-window";
-import { useScroll } from "~/context/scroll";
-import { RenderRow } from "~/shell/pics/virtualize/render-row";
+import { Row } from "~/shell/pics/virtualize/row";
 import {
   TPartialFixedTableProps,
   TPicsRows,
-  TPicsRow,
 } from "~/store/slices/table/types";
 import { TDimensions } from "@brysonandrew/config-types";
+import { useVirtualizeScroll } from "~/shell/pics/virtualize/use-scroll";
 
 type TProps = TPartialFixedTableProps &
   TDimensions & {
@@ -18,8 +17,11 @@ export const Virtualize = ({
   rows,
   ...props
 }: TProps) => {
-  const { onUpdate, listRef } =
-    useScroll();
+  const {
+    onUpdate,
+    setVirtualizeList,
+    virtualizeList,
+  } = useVirtualizeScroll();
   return (
     <FixedSizeList<TPicsRows>
       onScroll={onUpdate}
@@ -35,11 +37,18 @@ export const Virtualize = ({
         return key;
       }}
       layout="vertical"
-      ref={listRef}
       direction="ltr"
+      ref={(instance) => {
+        if (
+          instance &&
+          !virtualizeList
+        ) {
+          setVirtualizeList(instance);
+        }
+      }}
       {...props}
     >
-      {RenderRow}
+      {Row}
     </FixedSizeList>
   );
 };

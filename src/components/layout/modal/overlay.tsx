@@ -50,7 +50,7 @@ export const ModalOverlay: FC<
             {props.title}
           </h4>
         </div>
-        <div className="relative _radial-gradient w-full h-1" />
+        <div className="relative _gradient-radial w-full h-1" />
 
         <p className="relative text-lg">
           {children}
@@ -61,14 +61,14 @@ export const ModalOverlay: FC<
         <div className="row-space">
           <button
             onClick={onCancel}
-            className="relative px-4 py-2.5 border border-main hover:_radial-gradient"
+            className="relative px-4 py-2.5 border border-main hover:_gradient-radial"
           >
             <TexturesWeave classValue="inset-2" />
             Cancel
           </button>
           <button
             onClick={onOk}
-            className="relative px-4 py-2.5 border border-main hover:_radial-gradient"
+            className="relative px-4 py-2.5 border border-main hover:_gradient-radial"
           >
             <TexturesWeave classValue="inset-2" />
             Ok

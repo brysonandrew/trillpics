@@ -1,10 +1,10 @@
 import type { FC } from "react";
 import { PicDisplay } from "~/shell/pics/pic/display";
 import { FULLSCREEN_Z } from "~/constants/dom";
-import { resolvePresence } from "@brysonandrew/motion-core";
 import { TPicHoverResult } from "~/shell/pics/pic/use-hover";
 import { TImgMotionProps } from "@brysonandrew/config-types";
 import { TBoxChildProps } from "~/shell/pics/pic/box";
+import { resolvePresence } from "~/utils/animation";
 
 export const PicDisplayCell: FC<
   Partial<TPicHoverResult> &

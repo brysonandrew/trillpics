@@ -17,65 +17,78 @@ export const tableUpdateState: TStateHandler<
   update: {
     screen: (config) => {
       const cells = get().pics();
-      get().table.update.create({
+      const update = get().table.update;
+      const count = update.count({
+        width: config.screen.width,
+      });
+      console.log(
+        `update table with screen`,
+        config
+      );
+      update.create({
         cells,
+        count,
         ...config,
       });
     },
     cells: (config) => {
       const screen = get().screen;
+      if (!screen.isDimensions) return;
+      console.log(
+        `update table with cells`,
+        config
+      );
+
       get().table.update.create({
         screen,
+        count: get().table.count,
         ...config,
       });
     },
     count: tableUpdateCount,
-    create: ({ screen, cells }) => {
-      if (screen.isDimensions) {
-        const update =
-          get().table.update;
-        const countResult =
-          update.count({
-            ...screen,
-          });
-        const rows = update.rows({
-          cells,
-          ...screen,
-          ...countResult,
-        });
-        const size = update.size({
-          ...screen,
-          ...countResult,
-        });
-        // const columns = update.columns({
-        //   rows,
-        //   size,
-        //   ...countResult
-        // });
-        const isVerticalScroll =
-          update.verticalScrollCheck({
-            size,
-            ...countResult,
-            ...screen,
-          });
-        get().table.update.set({
-          rows,
+    create: ({
+      screen,
+      cells,
+      count,
+    }) => {
+      console.log("CREATE TABLE");
+      const update = get().table.update;
+
+      const rows = update.rows({
+        cells,
+        count,
+        ...screen,
+      });
+      const size = update.size({
+        count,
+        ...screen,
+      });
+      const isVerticalScroll =
+        update.verticalScrollCheck({
+          rowsCount: count.rows,
           size,
-          isVerticalScroll,
+          ...screen,
         });
-      }
+      get().table.update.set({
+        count,
+        rows,
+        size,
+        isVerticalScroll,
+      });
     },
     rows: tableUpdateRows,
     size: tableUpdateSize,
     verticalScrollCheck:
       tableUpdateVerticalScrollCheck,
     set: ({
+      count,
       rows,
       size,
       isVerticalScroll,
     }: TTableSetConfig) => {
       get().updateState(
         (draft: TState) => {
+          draft.table.count = count;
           draft.table.rows = rows;
           draft.table.size = size;
           draft.table.isVerticalScroll =

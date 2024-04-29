@@ -3,19 +3,14 @@ import {
   PropsWithChildren,
   useMemo,
 } from "react";
-import { TLayoutOptionsRecord } from "@brysonandrew/app";
 import { DarkModeProvider } from "@brysonandrew/dark-mode";
 import { NetworkProvider } from "@brysonandrew/network";
 import { TChildrenProps } from "@brysonandrew/config-types/dom";
 import { arrToNest } from "@brysonandrew/layout-utils/arrToNest";
 import { TCustomStyle } from "~app/style";
-import { Core } from "~/shell/providers/core";
-import { ScrollProvider } from "~/context/scroll";
+import { VirtualizeScrollProvider } from "~/shell/pics/virtualize/use-scroll";
 
-type TLayoutOptions =
-  TLayoutOptionsRecord;
-export type TApp = TCustomStyle &
-  TLayoutOptions;
+export type TApp = TCustomStyle;
 
 type TProps = TChildrenProps;
 export const Providers: FC<TProps> = ({
@@ -27,14 +22,14 @@ export const Providers: FC<TProps> = ({
         NetworkProvider,
         DarkModeProvider,
       ],
-      <Core>{_children}</Core>,
+      <>{_children}</>,
       {}
     );
   }, []);
 
   return (
-    <ScrollProvider>
+    <VirtualizeScrollProvider>
       {children}
-    </ScrollProvider>
+    </VirtualizeScrollProvider>
   );
 };

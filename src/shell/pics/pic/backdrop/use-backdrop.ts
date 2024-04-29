@@ -6,7 +6,7 @@ import { useTrillPicsStore } from "~/store";
 export const SEARCH_PARAM_ID = "open";
 
 export type TUsePicBackdropConfig =
-  TBoxChildProps & TPicHoverResult;
+  TBoxChildProps;
 export const usePicBackdrop = ({
   width,
   height,

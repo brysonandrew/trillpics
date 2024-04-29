@@ -1,8 +1,8 @@
 import { useRef } from "react";
 import { animate } from "framer-motion";
-import { useScroll } from "~/context/scroll";
+import { useVirtualizeScroll } from "~/shell/pics/virtualize/use-scroll";
 import { useTrillPicsStore } from "~/store/index";
-import { useScrollTopHandler } from "~/shell/header/left/controls/scroll-top/use-scroll-top-handler";
+import { useVirtualizeScrollTopHandler } from "~/shell/header/left/controls/scroll-top/use-scroll-top-handler";
 
 export const useShow = () => {
   const {
@@ -27,12 +27,12 @@ export const useShow = () => {
     })
   );
   const { handler } =
-    useScrollTopHandler();
+    useVirtualizeScrollTopHandler();
   const showAllIndexRef = useRef<
     number | null
   >(null);
   const { blurX, blurXRef } =
-    useScroll();
+    useVirtualizeScroll();
   const picsCount = countPics();
 
   const videoPicsCount =

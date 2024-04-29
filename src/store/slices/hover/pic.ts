@@ -12,7 +12,6 @@ export const hoverPicState: TStateHandler<
   hoverPic: (
     hoverPicKey: THoverPicKey
   ) => {
-    console.log(hoverPicKey);
     set({
       hoverPicKey,
       hoverPicProps: JSON.parse(

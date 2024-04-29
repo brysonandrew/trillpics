@@ -2,7 +2,7 @@ export const SHORTCUTS_BOX_BACKGROUND_IMAGE =
   {
     "_weave-gradient":
       "dark:_dark-gradient-weave _light-gradient-weave",
-    "_radial-gradient":
+    "_gradient-radial":
       "dark:_dark-radial-gradient _light-radial-gradient",
   };
 

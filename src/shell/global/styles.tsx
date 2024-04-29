@@ -18,6 +18,7 @@ export const GlobalCss: FC<
   return (
     <>
       <Global styles={globalCss} />
+      
       {children}
     </>
   );

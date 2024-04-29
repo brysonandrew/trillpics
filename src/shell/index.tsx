@@ -1,10 +1,8 @@
-import { Notifications } from "~/components/notifications";
 import { Outlet } from "react-router";
 import { Global } from "~/shell/global";
 import { TexturesWeave } from "~/components/textures/weave";
 import { Header } from "~/shell/header";
 import { Pics } from "~/shell/pics";
-import { BlurXy } from "~/components/blur/xy";
 import { Footer } from "~/shell/footer";
 import { FooterLeft } from "~/shell/footer/left";
 import { HeaderLeft } from "~/shell/header/left";
@@ -15,6 +13,15 @@ import { withProviders } from "~/shell/providers/with-providers";
 import { TTableState } from "~/store/slices/table/types";
 import { Outer } from "~/shell/outer";
 import { useInit } from "~/shell/init";
+import { AURA } from "@brysonandrew/svg-filter";
+import { GradientsBluePinkYellow } from "~/components/gradients/blue-pink-yellow";
+import { GlobalCss } from "~/shell/global/styles";
+import { useDarkMode } from "@brysonandrew/dark-mode";
+import { BlurX } from "~/components/blur/x";
+import { BlurY } from "~/components/blur/y";
+import { Dark } from "~/shell/global/favicon/dark";
+import { Light } from "~/shell/global/favicon/light";
+//
 
 const OUTLET_CONTEXT = {
   Header,
@@ -23,8 +30,8 @@ const OUTLET_CONTEXT = {
   Screen,
   Footer,
   FooterLeft,
+  Pics,
 } as const;
-
 export type TOutletContext =
   typeof OUTLET_CONTEXT & {
     picsTable: TTableState;
@@ -32,24 +39,45 @@ export type TOutletContext =
 export const Shell = withProviders(
   () => {
     useInit();
+    const { isDarkMode } =
+      useDarkMode();
+
+    const Favicon = isDarkMode
+      ? Dark
+      : Light;
+
     return (
-      <Global>
+      <GlobalCss>
+        <Favicon />
+        <GradientsBluePinkYellow
+          isDarkMode={isDarkMode}
+        />
+        <AURA.GLOBAL.Filter />
+        <BlurX />
+        <BlurY />
         <TexturesWeave opacityClassValue="opacity-100" />
         <FadeV
-          classValue="z-0"
           darkEdgeColor="var(--dark-02)"
           lightEdgeColor="var(--light-02)"
         />
         <Pics
           outerElementType={Outer}
         />
+        <Header>
+          <HeaderLeft />
+        </Header>
         <Outlet
           context={{
-            ...OUTLET_CONTEXT,
+            Header,
+            HeaderLeft,
+            HeaderRight,
+            Screen,
+            Footer,
+            FooterLeft,
+            Pics,
           }}
         />
-        <Notifications />
-      </Global>
+      </GlobalCss>
     );
   }
 );

@@ -6,27 +6,27 @@ import {
   TValues,
 } from "../color/config/constants";
 
-export const GRADIENT_NET_DARK = {
+export const GRADIENT_WEAVE_DARK = {
   "background-image": resolveGradient({
     name: "repeating-conic-gradient",
     parts: [
       "rgba(0,0,0,0)",
-      resolveVarCss("black"),
+      resolveVarCss("black-06"),
     ],
   }),
 };
 
-export const GRADIENT_NET_LIGHT = {
+export const GRADIENT_WEAVE_LIGHT = {
   "background-image": resolveGradient({
     name: "repeating-conic-gradient",
     parts: [
       "rgba(0,0,0,0)",
-      resolveVarCss("black-08"),
+      resolveVarCss("black-04"),
     ],
   }),
 };
 
-export const GRADIENT_NET_COMMON = {
+export const GRADIENT_WEAVE_COMMON = {
   "background-size": "4px 4px",
 };
 

@@ -3,6 +3,7 @@ import {
   GRADIENT_BLUE_PINK_YELLOW_COLORS,
   GRADIENT_TEAL_YELLOW_PINK_COLORS,
 } from "~app/color/gradient";
+import { SvgWrap } from "@brysonandrew/svg";
 export const LINEAR_GRADIENT_SVG_ID =
   "linear-gradient-blue-pink-yellow-svg";
 type TProps = { isDarkMode: boolean };
@@ -11,11 +12,7 @@ export const GradientsBluePinkYellow: FC<
   TProps
 > = ({ isDarkMode }) => {
   return (
-    <svg
-      width="100%"
-      height="100%"
-      className="absolute"
-    >
+    <SvgWrap className="absolute">
       <linearGradient
         id={LINEAR_GRADIENT_SVG_ID}
         x1="0"
@@ -43,6 +40,6 @@ export const GradientsBluePinkYellow: FC<
           )
         )}
       </linearGradient>
-    </svg>
+    </SvgWrap>
   );
 };

@@ -7,6 +7,8 @@ import { TPropsWithChildren } from "@brysonandrew/config-types";
 import { boxRadius } from "~/constants/box/style/radius";
 import { useTrillPicsStore } from "~/store";
 import { TPicHoverResult } from "~/shell/pics/pic/use-hover";
+import { FULLSCREEN_Z } from "~/constants/dom";
+import { Floating } from "~/shell/pics/pic/floating";
 
 export type TPicHoverProps = Pick<
   TPicHoverResult,
@@ -27,22 +29,11 @@ export const PicHover: FC<
         isControls,
       })
     );
-  const borderRadius = boxRadius();
 
   return (
     <>
       {isHovering && isControls && (
-        <motion.div
-          key="zoom"
-          className={clsx(
-            "fixed cursor-pointer z-50 center aspect-square p-2 backdrop-blur-lg bg-white-01",
-            "top-3 right-3"
-          )}
-          style={{ borderRadius }}
-          {...FADE_PRESENCE}
-        >
-          {children}
-        </motion.div>
+        <Floating>{children}</Floating>
       )}
     </>
   );

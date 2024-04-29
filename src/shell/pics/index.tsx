@@ -21,7 +21,6 @@ export const Pics: FC<TProps> = ({
       })
     );
 
-
   return (
     <>
       {table.isVerticalScroll && (
@@ -29,7 +28,6 @@ export const Pics: FC<TProps> = ({
       )}
       {screen.isDimensions && (
         <Virtualize
-
           {...table}
           {...props}
           {...screen}

@@ -5,26 +5,34 @@ import { TTableUpdateCountResult } from "~/store/slices/table/update/count";
 import { TScreen } from "~/shell/init/measure";
 import { TPics } from "~/store/slices/pics/types";
 
-export type TTableRowsConfig =
-  TTableUpdateCountResult & {
-    cells: TPics;
-  };
-export type TTableCountConfig = Pick<
+export type TTableRowsConfig = {
+  count: TTableUpdateCountResult;
+  cells: TPics;
+};
+
+type TWidthProps = Pick<
   TDimensionsReady,
   "width"
 >;
+export type TTableCountConfig =
+  TWidthProps;
 export type TTableSetConfig = Pick<
   TPicsTable,
-  "rows" | "size" | "isVerticalScroll"
+  | "rows"
+  | "size"
+  | "isVerticalScroll"
+  | "count"
 >;
 
 export type TTableSizeConfig =
-  TTableUpdateCountResult &
-    Pick<TDimensionsReady, "width">;
+  TWidthProps & {
+    count: TTableUpdateCountResult;
+  };
 export type TTableVerticalScrollConfig =
-  Pick<TPicsTable, "size"> & {
-    rowsCount: number;
-  } & Pick<TDimensionsReady, "width">;
+  TWidthProps &
+    Pick<TPicsTable, "size"> & {
+      rowsCount: number;
+    };
 
 // {
 //   rows: TPicsRow[];
@@ -75,7 +83,8 @@ export type TPicsBaseRow = object;
 
 export type TTableCreateConfig = {
   cells: TPics;
-  screen: TScreen;
+  screen: TDimensionsReady;
+  count: TTableUpdateCountResult;
 };
 export type TTableColumnsConfig =
   TTableUpdateCountResult &
@@ -117,6 +126,7 @@ export type TTableUpdateState = {
 };
 export type TPicsTable =
   TTableUpdateState & {
+    count: TTableUpdateCountResult;
     size: number;
     rows: TPicsRows;
     isVerticalScroll: boolean;

@@ -6,6 +6,7 @@ import { TPicsState } from "~/store/slices/pics/types";
 import { TDirectorState } from "~/store/slices/director/types";
 import { TUpdaterState } from "~/store/slices/updater/types";
 import { TTableState } from "~/store/slices/table/types";
+import { TScrollState } from "~/store/slices/scroll/types";
 
 export type TStateCreator<
   T extends object
@@ -23,6 +24,7 @@ export type TStateHandler<
 ) => T;
 
 export type TState = TCoreState &
+  TScrollState &
   TTableState &
   TPicsState &
   TDirectorState &
@@ -31,4 +33,3 @@ export type TState = TCoreState &
   TPlayerState;
 
 export type TStateKey = keyof TState;
-

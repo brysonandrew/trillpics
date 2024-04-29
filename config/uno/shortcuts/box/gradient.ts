@@ -6,7 +6,7 @@ export const SHORTCUTS_BOX_GRADIENT: StaticShortcutMap =
       "dark:_dark-gradient-border _light-gradient-border",
     "_gradient-text":
       "dark:_dark-gradient-text _light-gradient-text",
-    "_radial-gradient":
+    "_gradient-radial":
       "dark:_dark-radial-gradient _light-radial-gradient",
   } as const;
 

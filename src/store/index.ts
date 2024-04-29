@@ -28,6 +28,7 @@ import { hoverState } from "~/store/slices/hover/state";
 import { picsState } from "~/store/slices/pics/state";
 import { playerState } from "~/store/slices/player/state";
 import { tableState } from "~/store/slices/table/state";
+import { scrollState } from "~/store/slices/scroll";
 
 enableMapSet();
 
@@ -45,6 +46,7 @@ const createImmerState = immer<
 >((...a) => {
   return {
     ...coreState(...a),
+    ...scrollState(...a),
     ...tableState(...a),
     ...directorState(...a),
     ...picsState(...a),

@@ -20,11 +20,9 @@ export const useHoverPicKey = (
     })
   );
   const onStart = () => {
-    console.log("mouse ENTER");
     hoverPic(picKey);
   };
   const onStop = () => {
-    console.log("exit");
     unhoverPic(picKey);
   };
   const handlers = {

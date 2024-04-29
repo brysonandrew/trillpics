@@ -7,18 +7,24 @@ import {
 import { IconsVideo } from "~/components/icons/video/video";
 import { PillB } from "~/components/buttons/pill/b";
 import { AddRemoveToVideoMarker } from "~/pages/directors-mode/pic/controls/counter/add-remove-to-video-marker";
-import { TUsePicDirectorsModeControls } from "~/pages/directors-mode/pic/controls/use-pic-directors-mode";
-import { TBoxChildProps } from "~/shell/pics/pic/box";
+import { useTrillPicsStore } from "~/store";
+import { TPicProps } from "~/shell/pics/pic";
 
-export type TDirectorsModeControlsCounterProps =
-  TUsePicDirectorsModeControls 
 export const DirectorsModeControlsCounter: FC<
-  TDirectorsModeControlsCounterProps
-> = ({
-  isAdded,
-  videoOrder,
-  isControls,
-}) => {
+  TPicProps
+> = (props) => {
+  const { videoPics, isControls } =
+    useTrillPicsStore(
+      ({ videoPics, isControls }) => ({
+        videoPics,
+        isControls,
+      })
+    );
+  const videoOrder = videoPics.indexOf(
+    props.name
+  );
+  const isAdded = videoOrder > -1;
+
   return (
     <MotionConfig
       transition={{
@@ -27,10 +33,10 @@ export const DirectorsModeControlsCounter: FC<
       }}
     >
       <AnimatePresence>
-        {(isAdded ) && (
+        {isAdded && (
           <motion.div
             key="DirectorsModeControlsCounter"
-            className="flex flex-row items-center gap-2 h-12 px-2"
+            className="row gap-2 h-12 px-2"
           >
             {isAdded && (
               <PillB

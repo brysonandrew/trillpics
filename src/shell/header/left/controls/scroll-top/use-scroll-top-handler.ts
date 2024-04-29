@@ -1,22 +1,22 @@
 import { animate } from "framer-motion";
-import { useScroll } from "~/context/scroll";
+import { useVirtualizeScroll } from "~/shell/pics/virtualize/use-scroll";
 
-export const useScrollTopHandler =
+export const useVirtualizeScrollTopHandler =
   () => {
     const {
       isScroll,
-      listRef,
+      virtualizeList,
       blurY,
       blurYRef,
       scroll,
-    } = useScroll();
-
+    } = useVirtualizeScroll();
     const handler = () => {
+      if (!virtualizeList) return;
       const scrollOffset =
-        listRef.current.state
+        virtualizeList.state
           .scrollOffset;
 
-      listRef.current.scrollToItem(0);
+      virtualizeList.scrollToItem(0);
       if (blurYRef.current) {
         blurYRef.current.stop();
       }

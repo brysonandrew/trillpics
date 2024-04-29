@@ -9,8 +9,6 @@ export const Title: FC = () => {
   return (
     <div className="relative row gap-0 md:(gap-4 w-auto)">
       <div className="relative h-18">
-
-   
         <LightingGlow
           classValue="-inset-1"
           {...resolvePresence(
@@ -19,16 +17,15 @@ export const Title: FC = () => {
           )}
         />
         <TitleText />
-
         <h2 className="relative text-lg text-main-inverted px-1 char-gap-7">
           AI Art Gallery
           <LightingShadow
-          classValue="-inset-4"
-          {...resolvePresence(
-            { opacity: 0 },
-            { opacity: 0.4 }
-          )}
-        />
+            classValue="-inset-y-3 -inset-x-6"
+            {...resolvePresence(
+              { opacity: 0 },
+              { opacity: 0.2 }
+            )}
+          />
         </h2>
       </div>
       <SparkleButton />

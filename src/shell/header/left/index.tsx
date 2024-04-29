@@ -2,7 +2,6 @@ import { FC } from "react";
 import {
   AnimatePresence,
   motion,
-  useTransform,
 } from "framer-motion";
 import { ControlsShuffle } from "~/shell/header/left/controls/shuffle";
 import {
@@ -12,18 +11,14 @@ import {
 import { HOME_ROUTE } from "~/constants/routes";
 import { Title } from "~/shell/header/left/title";
 import { ScrollTop } from "~/shell/header/left/controls/scroll-top";
-import { useScrollTopHandler } from "~/shell/header/left/controls/scroll-top/use-scroll-top-handler";
-import {
-  PRESENCE_OPACITY,
-  PRESENCE_OPACITY_DELAY,
-} from "@brysonandrew/motion-config-constants";
+import { useVirtualizeScrollTopHandler } from "~/shell/header/left/controls/scroll-top/use-scroll-top-handler";
 import { IconsArrowsUp2 } from "~/components/icons/arrows/up2";
 import { resolvePresence } from "~/utils/animation";
 
 export const HeaderLeft: FC = () => {
   const { pathname } = useLocation();
   const { handler, isScroll, scroll } =
-    useScrollTopHandler();
+    useVirtualizeScrollTopHandler();
 
   const isHome =
     pathname === HOME_ROUTE;

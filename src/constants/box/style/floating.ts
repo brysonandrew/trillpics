@@ -1,9 +1,17 @@
-import { boxStyle } from "~/constants/box/style";
+import {
+  boxStyle,
+  TBoxStyleConfig,
+} from "~/constants/box/style";
 
-export const boxStyleFloating =
-  () => {
-    const flat = boxStyle({
-      layer: "flat",
-    });
-    return flat;
-  };
+export const boxStyleFloating = (
+  config?: Omit<
+    TBoxStyleConfig,
+    "layer"
+  >
+) => {
+  const floating = boxStyle({
+    layer: "floating",
+    ...config,
+  });
+  return floating;
+};

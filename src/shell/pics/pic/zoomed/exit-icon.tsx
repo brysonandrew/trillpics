@@ -1,12 +1,8 @@
 import type { FC } from "react";
-import {
-  AnimatePresence,
-  motion,
-} from "framer-motion";
+import { AnimatePresence } from "framer-motion";
 import { IconsPicZoomOut } from "~/components/icons/pic/zoom-out";
-import { FULLSCREEN_Z } from "~/constants/dom";
 import { useTrillPicsStore } from "~/store";
-import { PRESENCE_OPACITY } from "@brysonandrew/motion-config-constants";
+import { Floating } from "~/shell/pics/pic/floating";
 
 export const PicZoomedExitIcon: FC =
   () => {
@@ -19,16 +15,19 @@ export const PicZoomedExitIcon: FC =
     return (
       <AnimatePresence>
         {isOnscreen && (
-          <motion.div
-            key="IconsPicZoomOut"
-            className="fixed top-4 left-6"
-            style={{
-              zIndex: FULLSCREEN_Z,
-            }}
-            {...PRESENCE_OPACITY}
-          >
+          <Floating position="fixed" key="floating">
             <IconsPicZoomOut />
-          </motion.div>
+          </Floating>
+          // <motion.div
+          //   key="IconsPicZoomOut"
+          //   className="fixed top-4 left-6"
+          //   style={{
+          //     zIndex: FULLSCREEN_Z,
+          //   }}
+          //   {...PRESENCE_OPACITY}
+          // >
+          //   <IconsPicZoomOut />
+          // </motion.div>
         )}
       </AnimatePresence>
     );

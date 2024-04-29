@@ -107,7 +107,7 @@ export const Generate = () => {
                 isHover.toString(),
                 isLoading.toString()
               )}
-              className="absolute -inset-1 ml-1 mt-0 _radial-gradient"
+              className="absolute -inset-1 ml-1 mt-0 _gradient-radial"
               style={{
                 filter:
                   AURA.GLOBAL.value,

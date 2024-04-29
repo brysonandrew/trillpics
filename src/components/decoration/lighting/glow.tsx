@@ -4,7 +4,7 @@ import { LightingBase } from "~/components/decoration/lighting/base";
 
 export const LightingGlow: FC<
   TDivMotionProps
-> = ({ classValue, ...props }) => {
+> = ({ ...props }) => {
   return (
     <LightingBase
       lightingClassValue="_gradient_radial"

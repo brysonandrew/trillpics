@@ -18,7 +18,7 @@ export const TimerCurrentProgress: FC<TProps> =
           width: `${progress * 100}%`,
           borderRadius,
         }}
-        className="fill _radial-gradient pointer-events-none m-1"
+        className="fill _gradient-radial pointer-events-none m-1"
       >
         <LightingGlow classValue="fill" />
       </div>

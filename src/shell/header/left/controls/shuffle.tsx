@@ -3,12 +3,12 @@ import { animate } from "framer-motion";
 import { IconsShuffle } from "~/components/icons/pic/shuffle";
 import { useTrillPicsStore } from "~/store";
 import { PillBHover } from "~/components/buttons/pill/b/hover";
-import { useScroll } from "~/context/scroll";
+import { useVirtualizeScroll } from "~/shell/pics/virtualize/use-scroll";
 
 export const ControlsShuffle: FC =
   () => {
     const { blurX, blurXRef } =
-      useScroll();
+      useVirtualizeScroll();
     const { updatePicsEntries } =
       useTrillPicsStore(
         ({ updatePicsEntries }) => ({

@@ -1,47 +1,34 @@
 import type { FC } from "react";
 import { motion } from "framer-motion";
-import { Box } from "~/shell/pics/pic/box";
-import { PicDirectorsModeCell } from "~/pages/directors-mode/pic/cell";
 import { TPicProps } from "~/shell/pics/pic";
-import { useTrillPicsStore } from "~/store";
-import { resolveSquare } from "@brysonandrew/measure";
+import { PicDirectorsModeControls } from "~/pages/directors-mode/pic/controls";
+import { AddRemoveToVideoMarker } from "~/pages/directors-mode/pic/controls/counter/add-remove-to-video-marker";
+import { TDivMotionProps } from "@brysonandrew/config-types";
+import { TDirectorState } from "~/store/slices/director/types";
 
-type TProps = TPicProps;
+type TProps = TPicProps &
+  TDivMotionProps & Pick<TDirectorState,'videoPics'>;
 export const DirectorsModePic: FC<
   TProps
-> = (props) => {
-  const {
-    videoPics,
-    removeVideoPic,
-    addVideoPic,
-    table,
-  } = useTrillPicsStore(
-    ({
-      videoPics,
-      removeVideoPic,
-      addVideoPic,
-      table,
-    }) => ({
-      videoPics,
-      removeVideoPic,
-      addVideoPic,
-      table,
-    })
+> = ({ style, videoPics, ...props }) => {
+  const videoOrder = videoPics.indexOf(
+    props.name
   );
+  const isAdded = videoOrder > -1;
+
   return (
     <motion.div
-      className="fixed bg-black-01 border pointer-events-none"
+      className="absolute bg-black-01 center shadow pointer-events-none"
       layoutId="Directors mode hover"
       style={{
-        left:
-          props.columnIndex *
-          table.size,
-        top:
-          props.rowIndex * table.size,
-        ...resolveSquare(table.size),
+        backdropFilter: "blur(14px)",
+        ...style,
       }}
     >
-      <PicDirectorsModeCell
+      <AddRemoveToVideoMarker
+        isAdded={isAdded}
+      /> 
+      <PicDirectorsModeControls
         {...props}
       />
     </motion.div>
