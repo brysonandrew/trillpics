@@ -1,7 +1,7 @@
 import { useRef } from "react";
 import { animate } from "framer-motion";
 import { useTrillPicsStore } from "~/store/index";
-import { useScrollTopHandler } from "~/shell/pics/virtualize/scroll/top-handler";
+import { useScrollTopHandler } from "~/shell/pics/virtualize/scroll/handlers/top";
 import { useVirtualizeContext } from "~/shell/pics/virtualize/context";
 
 export const useShow = () => {
@@ -31,7 +31,7 @@ export const useShow = () => {
   const showAllIndexRef = useRef<
     number | null
   >(null);
-  const { blurX, blurXRef } =
+  const { blurRef } =
     useVirtualizeContext();
   const picsCount = countPics();
 
@@ -42,14 +42,14 @@ export const useShow = () => {
     picsCount === videoPicsCount;
 
   const onToggleShow = () => {
-    const prev = blurX.get();
-    blurXRef.current = animate(
-      blurX,
+    const prev = blurRef.current.value.x.get();
+    blurRef.current.control.x = animate(
+      blurRef.current.value.x,
       100,
       {
         type: "tween",
         onComplete: () =>
-          blurX.set(prev),
+          blurRef.current.value.x.set(prev),
       }
     );
 

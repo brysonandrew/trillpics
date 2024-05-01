@@ -48,7 +48,7 @@ type TConfig = {
 export const useScreenMeasure = (
   config: TConfig = {}
 ) => {
-  const { blurX, blurXRef } =
+  const { blurRef } =
     useVirtualizeContext();
   const [screen, setScreen] =
     useState<TScreen>(INIT_SCREEN);
@@ -106,17 +106,17 @@ export const useScreenMeasure = (
       ...INIT_SCREEN,
       isResizing: true,
     });
-    if (isValue(blurXRef.current)) {
-      blurXRef.current.cancel();
+    if (isValue(blurRef.current.control.x)) {
+      blurRef.current.control.x.cancel();
     }
-    blurXRef.current = animate(
-      blurX,
+    blurRef.current.control.x = animate(
+      blurRef.current.value.x,
       100,
       {
         duration:
           (RESIZE_COOLDOWN / 1000) * 2,
         type: "tween",
-        onComplete: () => blurX.set(0),
+        onComplete: () => blurRef.current.value.x.set(0),
       }
     );
     endTimeout();

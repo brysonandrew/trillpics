@@ -1,9 +1,9 @@
 export const MODE_PARAM_KEY = "mode";
 export const HOME_PATH_VALUE = "/";
 export const DIRECTORS_MODE_PATH_VALUE =
-  "/directors-mode";
+  "/video/";
 export const VIDEO_PLAYER_PATH_VALUE =
-  "/video-player";
+  "/video";
 export const PATH_VALUES = {
   [HOME_PATH_VALUE]: HOME_PATH_VALUE,
   [DIRECTORS_MODE_PATH_VALUE]:

@@ -4,9 +4,8 @@ import { MOTION_BLUR_FILTER_X_ID } from "~/components/blur/constants";
 import { useVirtualizeContext } from "~/shell/pics/virtualize/context";
 
 export const BlurX: FC = () => {
-  const { blurX } =
+  const { blurRef } =
     useVirtualizeContext();
-
   return (
     <BlurMotion2
       axis="x"
@@ -15,11 +14,11 @@ export const BlurX: FC = () => {
       morphologyProps={{}}
       intensity={0.0001}
       mRadius={0.00001}
-      displacementProps={{}}
+      displacementProps={{}} 
       turbulenceMotionProps={{
         type: "turbulence",
       }}
-      motionValue={blurX}
+      motionValue={blurRef.current.value.x}
     />
   );
 };

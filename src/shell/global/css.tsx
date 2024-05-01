@@ -1,8 +1,8 @@
+import { FC } from "react";
 import { COLOR_VARS_CSS } from "~app/color";
 import { TPropsWithChildren } from "@brysonandrew/config-types";
 import { useBaseGlobalCss } from "@brysonandrew/css-base";
 import { Global } from "@emotion/react";
-import { FC } from "react";
 
 export const GlobalCss: FC<
   TPropsWithChildren
@@ -18,7 +18,7 @@ export const GlobalCss: FC<
   return (
     <>
       <Global styles={globalCss} />
-      
+
       {children}
     </>
   );

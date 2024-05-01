@@ -19,7 +19,7 @@ import { NotFound } from "@brysonandrew/not-found";
   
 
   
-export const Home_ROUTE = "/home";
-export const Video_ROUTE = "/video";
-export const Video_Player_ROUTE = "/video/player";
-export const Video_Scheduler_ROUTE = "/video/scheduler";
+export const HOME_ROUTE = "/home";
+export const VIDEO_ROUTE = "/video";
+export const VIDEO_PLAYER_ROUTE = "/video/player";
+export const VIDEO_SCHEDULER_ROUTE = "/video/scheduler";

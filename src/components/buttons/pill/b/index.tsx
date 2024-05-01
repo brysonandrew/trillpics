@@ -9,7 +9,6 @@ import { TCircleProps } from "~/components/layout/circle/circle";
 import { resolveInteractiveLabels } from "@brysonandrew/utils-attributes";
 import { TFlatProps } from "~/types/ui";
 import { FADE_PRESENCE_DELAY_02 } from "~/constants/animation";
-import { LightingGlow } from "~/components/layout/lighting/glow";
 import { boxStyle } from "~/constants/box/style";
 import { boxSize } from "~/constants/box/style/size";
 

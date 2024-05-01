@@ -20,6 +20,9 @@ export const capitalize = (
         .toLowerCase()
         .slice(1)}`
     : "";
+export const capslock = (
+  word: string | null
+) => (word ? word.toUpperCase() : "");
 export const dirToSnake = <
   I extends string
 >(
@@ -27,7 +30,7 @@ export const dirToSnake = <
 ) =>
   value
     .split("/")
-    .map(capitalize)
+    .map(capslock)
     .join("_");
 export const dirToPascal = <
   I extends string

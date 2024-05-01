@@ -13,7 +13,7 @@ import { Outer } from "~/shell/pics/virtualize/outer";
 import { useInit } from "~/shell/init";
 import { AURA } from "@brysonandrew/svg-filter";
 import { GradientsBluePinkYellow } from "~/components/gradients/blue-pink-yellow";
-import { GlobalCss } from "~/shell/global/styles";
+import { GlobalCss } from "~/shell/global/css";
 import { useDarkMode } from "@brysonandrew/dark-mode";
 import { BlurX } from "~/components/blur/x";
 import { BlurY } from "~/components/blur/y";

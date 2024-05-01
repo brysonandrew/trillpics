@@ -4,53 +4,52 @@ import { useVirtualizeContext } from "~/shell/pics/virtualize/context";
 export const useScrollTopHandler =
   () => {
     const {
-      blurY,
-      blurYRef,
-      scroll,
+      blurRef,
+      scrollY,
       ref,
     } = useVirtualizeContext();
     console.log(ref);
     const handler = () => {
       console.log(ref);
       if (!ref.current) return;
-      const scrollY = scroll.y.get();
+      const y = scrollY.get();
       // const scrollOffset =
       // virtualizeHandle.state
       //     .scrollOffset;
 
       ref.current.scrollTop();
-      if (blurYRef.current) {
-        blurYRef.current.stop();
+      if (blurRef.current.control.y) {
+        blurRef.current.control.y.stop();
       }
 
-      blurYRef.current = animate(
-        blurY,
-        scrollY * 0.008,
+      blurRef.current.control.y = animate(
+        blurRef.current.value.y,
+        y * 0.008,
         {
           type: "inertia",
           restDelta: 0,
           restSpeed: 1,
-          velocity: scrollY * 0.02,
+          velocity: y * 0.02,
           onComplete: () => {
-            blurY.set(0);
-            scroll.y.set(0);
+            blurRef.current.value.y.set(0);
+        //    scrollY.set(0);
           },
         }
       );
 
-      blurYRef.current = animate(
-        scroll.y,
-        1,
-        {
-          type: "tween",
-          restDelta: 0,
-          restSpeed: 1,
-          velocity: scrollY * 0.02,
-          onComplete: () => {
-            scroll.y.set(1);
-          },
-        }
-      );
+      // blurYRef.current = animate(
+      //   scrollY,
+      //   1,
+      //   {
+      //     type: "tween",
+      //     restDelta: 0,
+      //     restSpeed: 1,
+      //     velocity: y * 0.02,
+      //     onComplete: () => {
+      //       scrollY.set(1);
+      //     },
+      //   }
+      // );
     };
 
     return {

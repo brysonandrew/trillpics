@@ -6,16 +6,16 @@ type TConfig = { dependency: string };
 export const useBlurXEffect = (
   config: TConfig
 ) => {
-  const { blurX, blurXRef } =
+  const { blurRef } =
     useVirtualizeContext();
   useEffect(() => {
-    blurXRef.current = animate(
-      blurX,
+    blurRef.current.control.x = animate(
+      blurRef.current.value.x,
       60,
       {
         duration: 0.4,
         type: "tween",
-        onComplete: () => blurX.set(0),
+        onComplete: () => blurRef.current.value.x.set(0),
       }
     );
   }, [config.dependency]);

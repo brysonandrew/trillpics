@@ -1,5 +1,5 @@
 import { useTimeoutRef } from "@brysonandrew/hooks-window";
-import { useOnscreen } from "~/shell/header/right/zen-mode/use-onscreen";
+import { useOnscreen } from "~/shell/pics/virtualize/use-onscreen";
 import {
   RESIZE_COOLDOWN,
   TScreen,

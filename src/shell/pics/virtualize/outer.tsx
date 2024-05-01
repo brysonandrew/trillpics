@@ -2,47 +2,63 @@ import {
   forwardRef,
   PropsWithChildren,
 } from "react";
-import { BlurXy } from "~/components/blur/xy";
-import { useHoverKey } from "~/hooks/use-hover-key";
+import clsx from "clsx";
+import { MOTION_BLUR_FILTER_X_PROPS } from "~/components/blur/constants";
 
 export const Outer = forwardRef<
   HTMLDivElement,
-  PropsWithChildren
->(({ children, ...props }, ref) => {
-  const { clear, isNoHover } =
-    useHoverKey();
-  const handleMouseEnter = () => {
-    if (!isNoHover) clear();
-  };
-  // const {
-  //   onUpdate,
-  //   setVirtualizeList,
-  //   virtualizeList,
-  // } = useVirtualizeContext();
-  // console.log(
-  //   "virtualizeList",
-  //   virtualizeList
-  // );
-  return (
-    <div
-      ref={ref}
-      // ref={(instance) => {
-      //   if (
-      //     instance &&
-      //     !virtualizeList
-      //   ) {
-      //     console.log(virtualizeList);
+  PropsWithChildren<any>
+>(
+  (
+    {
+      children,
+      className,
+      style,
+      ...props
+    },
+    ref
+  ) => {
+    // const {
+    //   onUpdate,
+    //   setVirtualizeList,
+    //   virtualizeList,
+    // } = useVirtualizeContext();
+    // console.log(
+    //   "virtualizeList",
+    //   virtualizeList
+    // );
+    console.log(props);
+    return (
+      <div
+        className={clsx(
+          "fill",
+          className
+        )}
+        style={{
+          ...style,
+          ...MOTION_BLUR_FILTER_X_PROPS,
+        }}
+        ref={ref}
+        // ref={(instance) => {
+        //   if (
+        //     instance &&
+        //     !virtualizeList
+        //   ) {
+        //     console.log(virtualizeList);
 
-      //     //    console.log(instance);
-      //     setVirtualizeList(
-      //       virtualizeList
-      //     );
-      //   }
-      // }}
-      onMouseEnter={handleMouseEnter}
-      {...props}
-    >
-      <BlurXy>{children}</BlurXy>
-    </div>
-  );
-});
+        //     //    console.log(instance);
+        //     setVirtualizeList(
+        //       virtualizeList
+        //     );
+        //   }
+        // }}
+
+        {...props}
+      >
+        {/* <BlurXy> */}
+        {children}
+        {/* </BlurXy> */}
+      </div>
+    );
+  }
+);

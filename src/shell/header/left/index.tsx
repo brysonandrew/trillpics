@@ -1,9 +1,5 @@
 import { FC } from "react";
-import {
-  AnimatePresence,
-  motion,
-  useTransform,
-} from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 import { ControlsShuffle } from "~/shell/header/left/controls/shuffle";
 import {
   Link,
@@ -12,42 +8,28 @@ import {
 import { HOME_ROUTE } from "~/constants/routes";
 import { Title } from "~/shell/header/left/title";
 import { ScrollTop } from "~/shell/header/left/controls/scroll-top";
-import { useScrollTopHandler } from "~/shell/pics/virtualize/scroll/top-handler";
+import { useScrollTopHandler } from "~/shell/pics/virtualize/scroll/handlers/top";
 import { IconsArrowsUp2 } from "~/components/icons/arrows/up2";
 import { resolvePresence } from "~/utils/animation";
 import { useTrillPicsStore } from "~/store";
 
 export const HeaderLeft: FC = () => {
   const { pathname } = useLocation();
-  const { handler, scroll } =
+  const { handler } =
     useScrollTopHandler();
-  const { isScroll, isScrolling } =
+  const { isScroll } =
     useTrillPicsStore(
-      ({ isScroll, isScrolling }) => ({
+      ({ isScroll }) => ({
         isScroll,
-        isScrolling,
       })
     );
   const isHome =
     pathname === HOME_ROUTE;
 
-  // const scale = useTransform(
-  //   scroll.y,
-  //   (v) => {
-  //     if (v < 1) {
-  //       v = 1 - v * 0.0006;
-  //     }
-  //     return v;
-  //   }
-  // );
-
   const title = "Go back";
   return (
     <div className="column-start gap-4 h-0">
-      <motion.div
-        //style={{ scale }}
-        className="relative shrink-0 origin-top-left"
-      >
+      <motion.div className="relative shrink-0 origin-top-left">
         {isHome ? (
           <>
             {isScroll ? (

@@ -15,10 +15,10 @@ import { TVirtualizeContext } from "~/shell/pics/virtualize/context";
 
 type TConfig = Pick<
   TVirtualizeContext,
-  "scroll"
+  "scrollY"
 >;
 export const useScrollUpdateHandler = ({
-  scroll,
+  scrollY,
 }: TConfig) => {
   const {
     isScroll,
@@ -48,7 +48,7 @@ export const useScrollUpdateHandler = ({
     console.log(props);
     const { scrollOffset } = props;
 
-    scroll.y.set(-scrollOffset);
+    scrollY.set(-scrollOffset);
 
     if (!isScrolling) {
       searchParams.delete(

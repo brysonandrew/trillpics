@@ -4,21 +4,26 @@ import {
   MutableRefObject,
   createContext,
   useContext,
-  ForwardedRef,
   FC,
+  useState,
 } from "react";
 import {
   useMotionValue,
   MotionValue,
   AnimationPlaybackControls,
+  motionValue,
+  animationControls,
 } from "framer-motion";
 import type {
   FixedSizeList,
   ListOnScrollProps,
 } from "react-window";
 import { TPicsRows } from "~/store/state/table/types";
-import { useScrollUpdateHandler } from "~/shell/pics/virtualize/scroll/update";
+import { useScrollUpdateHandler } from "~/shell/pics/virtualize/scroll/handlers/update";
 import { TRefMutable } from "~/hoc/ref/mutable";
+import { useEventListener } from "@brysonandrew/hooks-events";
+import { useTimeoutRef } from "@brysonandrew/hooks-window";
+import { useOnscreen } from "~/shell/pics/virtualize/use-onscreen";
 
 export type TVirtualizeListProps =
   TPicsRows;
@@ -29,26 +34,23 @@ export type TVirtualizeContextHandle = {
   scrollTop: () => void;
 };
 
-// export type TRefForwarded =
-//   ForwardedRef<TVirtualizeContextHandle>;
-
-export type TVirtualizeContext = {
-  // virtualizeList: TVirtualizeList | null;
-  // setVirtualizeList: (
-  //   instance: TVirtualizeList | null
-  // ) => void;
-  ref: TRefMutable<TVirtualizeContextHandle>;
-  blurXRef: MutableRefObject<AnimationPlaybackControls | null>;
-  blurYRef: MutableRefObject<AnimationPlaybackControls | null>;
-  blurX: MotionValue<number>;
-  blurY: MotionValue<number>;
-  scroll: {
-    y: MotionValue<number>;
+type TBlurAnimation = {
+  control: {
+    x: AnimationPlaybackControls | null;
+    y: AnimationPlaybackControls | null;
   };
-  cursor: {
+  value: {
     x: MotionValue<number>;
     y: MotionValue<number>;
   };
+};
+export type TVirtualizeContext = {
+  isOnscreen: boolean;
+  ref: TRefMutable<TVirtualizeContextHandle>;
+  blurRef: MutableRefObject<TBlurAnimation>;
+  cursorX: MotionValue<number>;
+  cursorY: MotionValue<number>;
+  scrollY: MotionValue<number>;
   onScroll(
     props: ListOnScrollProps
   ): void;
@@ -66,41 +68,86 @@ export type TVirtualizeContextProviderProps =
 export const VirtualizeContextProvider: FC<
   TVirtualizeContextProviderProps
 > = ({ children }) => {
-  const blurXRef =
-    useRef<AnimationPlaybackControls | null>(
-      null
-    );
-  const blurYRef =
-    useRef<AnimationPlaybackControls | null>(
-      null
-    );
+  const { timeoutRef, endTimeout } =
+    useTimeoutRef();
+
+  const isOnscreen = useOnscreen();
+
+  const blurX = useMotionValue(0);
+  const blurY = useMotionValue(0);
+  const blurRef =
+    useRef<TBlurAnimation>({
+      control: {
+        x: null,
+        y: null,
+      },
+      value: {
+        x: blurX,
+        y: blurY,
+      },
+    });
   const ref: TRefMutable<TVirtualizeContextHandle> =
     useRef<TVirtualizeContextHandle | null>(
       null
     );
-  const blurX = useMotionValue(0);
-  const blurY = useMotionValue(0);
-  const cx = useMotionValue(0);
-  const cy = useMotionValue(0);
-  const sy = useMotionValue(0);
+
+  const cursorX = useMotionValue(0);
+  const cursorY = useMotionValue(0);
+  const scrollY = useMotionValue(0);
+
+  const [isCursorMove, setCursorMove] =
+    useState(false);
+  const handleDown = () => {
+    console.log("CLICK");
+  };
+  const handleMove = (
+    event: PointerEvent
+  ) => {
+    const nextX = event.pageX; // - scrollX.get();
+    const nextY =
+      event.pageY - scrollY.get();
+    cursorX.set(nextX);
+    cursorY.set(nextY);
+
+    endTimeout();
+    timeoutRef.current = setTimeout(
+      () => {
+        cursorX.set(nextX);
+        cursorY.set(nextY);
+      },
+      200
+    );
+
+    if (isOnscreen && !isCursorMove) {
+      setCursorMove(true);
+    }
+  };
+
+  useEventListener<"pointermove">(
+    "pointermove",
+    handleMove
+  );
+
+  useEventListener(
+    "pointerdown",
+    handleDown
+  );
 
   const handleScroll =
     useScrollUpdateHandler({
-      scroll: { y: sy },
+      scrollY,
     });
 
+    console.log(ref)
   return (
     <VirtualizeContext.Provider
       value={{
-        scroll: {
-          y: sy,
-        },
+        scrollY,
+        isOnscreen,
         ref,
-        blurXRef,
-        blurYRef,
-        blurX,
-        blurY,
-        cursor: { x: cx, y: cy },
+        blurRef,
+        cursorX,
+        cursorY,
         onScroll: handleScroll,
       }}
     >

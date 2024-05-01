@@ -38,48 +38,60 @@ export const Virtualize = forwardRef<
     useImperativeHandle(
       handleRef,
       () => {
-        const h = innerRef.current;
-        console.log(h);
+        //   const { clear, isNoHover } =
+        //   useHoverKey();
+        // const handleMouseEnter = () => {
+        //   if (!isNoHover) clear();
+        // };
+        const fixedSizeList =
+          innerRef.current;
+        console.log(fixedSizeList);
+        //   if (!fixedSizeList) return;
         return {
           scrollTop: () => {
-            h?.scrollToItem(0);
+            fixedSizeList?.scrollToItem(
+              0
+            );
           },
         };
       },
       []
     );
     return (
-      <FixedSizeList<TPicsRows>
-        itemCount={rows.length}
-        itemData={rows}
-        itemSize={size}
-        itemKey={(
-          index: number,
-          data: TPicsRows
-        ) => {
-          const key =
-            data[index].columns.join(
-              "-"
-            );
-          return key;
-        }}
-        layout="vertical"
-        direction="ltr"
-        ref={(instance) => {
-          if (
-            instance &&
-            !innerRef.current
-          ) {
-            console.log("update");
-            innerRef.current = instance;
-          }
-        }}
-        innerElementType={Inner}
-        outerElementType={Outer}
-        {...props}
-      >
-        {Row}
-      </FixedSizeList>
+      <>
+        <FixedSizeList<TPicsRows>
+          itemCount={rows.length}
+          itemData={rows}
+          itemSize={size}
+          itemKey={(
+            index: number,
+            data: TPicsRows
+          ) => {
+            const key =
+              data[index].columns.join(
+                "-"
+              );
+            return key;
+          }}
+          layout="vertical"
+          direction="ltr"
+          ref={(instance) => {
+            if (
+              instance &&
+              !innerRef.current
+            ) {
+              console.log("update");
+              innerRef.current =
+                instance;
+            }
+          }}
+          innerElementType={Inner}
+          outerElementType={Outer}
+          {...props}
+        >
+          {Row}
+        </FixedSizeList>
+      </>
     );
   }
 );
