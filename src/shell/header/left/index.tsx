@@ -31,21 +31,21 @@ export const HeaderLeft: FC = () => {
   const isHome =
     pathname === HOME_ROUTE;
 
-  const scale = useTransform(
-    scroll.y,
-    (v) => {
-      if (v < 1) {
-        v = 1 - v * 0.0006;
-      }
-      return v;
-    }
-  );
+  // const scale = useTransform(
+  //   scroll.y,
+  //   (v) => {
+  //     if (v < 1) {
+  //       v = 1 - v * 0.0006;
+  //     }
+  //     return v;
+  //   }
+  // );
 
   const title = "Go back";
   return (
     <div className="column-start gap-4 h-0">
       <motion.div
-        style={{ scale }}
+        //style={{ scale }}
         className="relative shrink-0 origin-top-left"
       >
         {isHome ? (

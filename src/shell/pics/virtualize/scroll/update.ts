@@ -45,6 +45,7 @@ export const useScrollUpdateHandler = ({
   const handler = (
     props: ListOnScrollProps
   ) => {
+    console.log(props);
     const { scrollOffset } = props;
 
     scroll.y.set(-scrollOffset);

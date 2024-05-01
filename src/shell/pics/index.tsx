@@ -3,11 +3,14 @@ import { ScrollbarSeam } from "~/components/layout/scrollbar-seam";
 import { useTrillPicsStore } from "~/store";
 import { TPartialFixedTableProps } from "~/store/state/table/types";
 import { Virtualize } from "~/shell/pics/virtualize";
+import { useVirtualizeContext } from "~/shell/pics/virtualize/context";
 
 type TProps = TPartialFixedTableProps;
 export const Pics: FC<TProps> = ({
   ...props
 }) => {
+  const { onScroll, ref } =
+    useVirtualizeContext();
   const { table, screen } =
     useTrillPicsStore(
       ({
@@ -31,6 +34,8 @@ export const Pics: FC<TProps> = ({
           {...table}
           {...props}
           {...screen}
+          onScroll={onScroll}
+          ref={ref}
         />
       )}
     </>

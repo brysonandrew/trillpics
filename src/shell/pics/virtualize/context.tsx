@@ -18,6 +18,7 @@ import type {
 } from "react-window";
 import { TPicsRows } from "~/store/state/table/types";
 import { useScrollUpdateHandler } from "~/shell/pics/virtualize/scroll/update";
+import { TRefMutable } from "~/hoc/ref/mutable";
 
 export type TVirtualizeListProps =
   TPicsRows;
@@ -36,7 +37,7 @@ export type TVirtualizeContext = {
   // setVirtualizeList: (
   //   instance: TVirtualizeList | null
   // ) => void;
-  virtualizeHandle: TVirtualizeContextHandle;
+  ref: TRefMutable<TVirtualizeContextHandle>;
   blurXRef: MutableRefObject<AnimationPlaybackControls | null>;
   blurYRef: MutableRefObject<AnimationPlaybackControls | null>;
   blurX: MotionValue<number>;
@@ -48,7 +49,7 @@ export type TVirtualizeContext = {
     x: MotionValue<number>;
     y: MotionValue<number>;
   };
-  onUpdate(
+  onScroll(
     props: ListOnScrollProps
   ): void;
 };
@@ -73,19 +74,17 @@ export const VirtualizeContextProvider: FC<
     useRef<AnimationPlaybackControls | null>(
       null
     );
-  const virtualizeHandle: TVirtualizeContextHandle =
-    { scrollTop: console.log };
-  // useRef<TVirtualizeContextHandle | null>(
-  //   null
-  // );
-  console.log(virtualizeHandle);
+  const ref: TRefMutable<TVirtualizeContextHandle> =
+    useRef<TVirtualizeContextHandle | null>(
+      null
+    );
   const blurX = useMotionValue(0);
   const blurY = useMotionValue(0);
   const cx = useMotionValue(0);
   const cy = useMotionValue(0);
   const sy = useMotionValue(0);
 
-  const handleUpdate =
+  const handleScroll =
     useScrollUpdateHandler({
       scroll: { y: sy },
     });
@@ -96,13 +95,13 @@ export const VirtualizeContextProvider: FC<
         scroll: {
           y: sy,
         },
-        virtualizeHandle,
+        ref,
         blurXRef,
         blurYRef,
         blurX,
         blurY,
         cursor: { x: cx, y: cy },
-        onUpdate: handleUpdate,
+        onScroll: handleScroll,
       }}
     >
       {children}
