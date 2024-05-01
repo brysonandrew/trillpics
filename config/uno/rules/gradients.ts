@@ -6,24 +6,24 @@ import {
   GRADIENT_BORDER_COMMON,
   RADIAL_BLUE_PINK_YELLOW,
   RADIAL_TEAL_YELLOW_PINK,
-  GRADIENT_WEAVE_COMMON,
-  GRADIENT_WEAVE_DARK,
-  GRADIENT_WEAVE_LIGHT,
+  GRADIENT_MESH_COMMON,
+  GRADIENT_MESH_DARK,
+  GRADIENT_MESH_LIGHT,
 } from "../../app/color/gradient";
 
 export const GRADIENTS: Rule[] = [
   [
-    "_dark-gradient-weave",
+    "_dark-gradient-mesh",
     {
-      ...GRADIENT_WEAVE_DARK,
-      ...GRADIENT_WEAVE_COMMON,
+      ...GRADIENT_MESH_DARK,
+      ...GRADIENT_MESH_COMMON,
     },
   ],
   [
-    "_light-gradient-weave",
+    "_light-gradient-mesh",
     {
-      ...GRADIENT_WEAVE_LIGHT,
-      ...GRADIENT_WEAVE_COMMON,
+      ...GRADIENT_MESH_LIGHT,
+      ...GRADIENT_MESH_COMMON,
     },
   ],
   [

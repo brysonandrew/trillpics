@@ -2,20 +2,21 @@ import type { FC } from "react";
 import { FULLSCREEN_Z } from "~/constants/dom";
 import { TUsePicBackdrop } from "~/shell/pics/pic/backdrop/use-backdrop";
 import { TBoxChildProps } from "~/shell/pics/pic/box";
-import {
+import { 
   PicDisplay,
   TPicDisplayProps,
 } from "~/shell/pics/pic/display";
 import { centerInScreen } from "~/utils/dimensions/center-in-viewport";
 
 export const PicDisplayZoomed: FC<
-  TPicDisplayProps &
+  Omit<TPicDisplayProps, "style"> &
     TUsePicBackdrop &
     TBoxChildProps
-> = (props) => {
+> = ({ style, ...props }) => {
   return (
     <PicDisplay
       style={{
+        ...style,
         position: "fixed",
         ...(props.zoomDimensions
           .isDimensions &&

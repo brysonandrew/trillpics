@@ -18,10 +18,10 @@ export const useMode = () => {
   const navigate = useNavigate();
   const modeParamValue =
     searchParams.get(MODE_PARAM_KEY);
-  const isDirectorsMode =
+  const isVideo =
     modeParamValue ===
     DIRECTORS_MODE_PATH_VALUE;
-  const toggleDirectorsMode = (
+  const toggleVideo = (
     nextMode?: TPagePathValue
   ) => {
     if (nextMode) {
@@ -30,7 +30,7 @@ export const useMode = () => {
         nextMode
       );
     } else {
-      if (isDirectorsMode) {
+      if (isVideo) {
         searchParams.delete(
           MODE_PARAM_KEY
         );
@@ -47,7 +47,7 @@ export const useMode = () => {
   };
 
   return {
-    isDirectorsMode,
-    toggleDirectorsMode,
+    isVideo,
+    toggleVideo,
   };
 };

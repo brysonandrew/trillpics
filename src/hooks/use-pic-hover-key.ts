@@ -1,5 +1,5 @@
 import { useTrillPicsStore } from "~/store";
-import { THoverPicKey } from "~/store/slices/hover/types";
+import { THoverPicKey } from "~/store/state/hover/types";
 
 export const useHoverPicKey = (
   picKey: THoverPicKey

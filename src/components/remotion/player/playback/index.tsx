@@ -1,13 +1,17 @@
 import type { FC } from "react";
 import { PlaybackButtons } from "~/components/remotion/player/playback/buttons";
 import { PlaybackTimer } from "~/components/remotion/player/playback/timer";
-import { LightingGlow } from "~/components/decoration/lighting/glow";
+import { LightingGlow } from "~/components/layout/lighting/glow";
 import clsx from "clsx";
 import { boxStyle } from "~/constants/box/style";
 
 export const PlayerPlayback: FC =
   () => {
-    const borderStyle = boxStyle({layer:'flat',borderRadius:'borderRadius',size:'md'})
+    const {boxShadow, ...borderStyle} = boxStyle({
+      layer: "flat",
+      borderRadius: "XL",
+      size: "md",
+    });
 
     return (
       <div className="relative inline-flex flex-col gap-2 text-white h-0 w-full">
@@ -21,7 +25,7 @@ export const PlayerPlayback: FC =
             style={borderStyle}
           />
           <div
-            className="absolute -inset-1 background opacity-80 _weave-gradient"
+            className="absolute -inset-1 background opacity-80  _gradient-radial"
             style={borderStyle}
           />
           <PlaybackButtons />

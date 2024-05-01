@@ -1,5 +1,8 @@
 import type { FC } from "react";
-import { PicDisplay } from "~/shell/pics/pic/display";
+import {
+  PicDisplay,
+  TPicDisplayProps,
+} from "~/shell/pics/pic/display";
 import { FULLSCREEN_Z } from "~/constants/dom";
 import { TPicHoverResult } from "~/shell/pics/pic/use-hover";
 import { TImgMotionProps } from "@brysonandrew/config-types";
@@ -8,9 +11,13 @@ import { resolvePresence } from "~/utils/animation";
 
 export const PicDisplayCell: FC<
   Partial<TPicHoverResult> &
+    TPicDisplayProps &
     TBoxChildProps &
     Pick<TImgMotionProps, "onTap">
-> = (props) => {
+> = ({
+  style: { left, width, height },
+  ...props
+}) => {
   const {
     frontCheckState: [
       isFront,
@@ -26,14 +33,15 @@ export const PicDisplayCell: FC<
     <PicDisplay
       style={{
         position: "absolute",
-        left: 0,
+        left,
         top: 0,
         bottom: 0,
         right: 0,
+        width,
+        height,
         ...(isFront
           ? { zIndex: FULLSCREEN_Z }
           : { zIndex: 0 }),
-        ...props,
       }}
       {...(isFront
         ? {}

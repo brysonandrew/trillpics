@@ -1,7 +1,7 @@
 import { FC } from "react";
 import type { ListChildComponentProps } from "react-window";
-import { TPic } from "~/store/slices/pics/types";
-import { TPicsRows } from "~/store/slices/table/types";
+import { TPic } from "~/store/state/pics/types";
+import { TPicsRows } from "~/store/state/table/types";
 import { Cell } from "./cell";
 
 type TProps =
@@ -11,8 +11,7 @@ export const Row: FC<TProps> = (
 ) => {
   const pics = props.data[props.index];
   return (
-    <div
-      className="row"
+    <li
       style={{
         ...props.style,
       }}
@@ -29,6 +28,6 @@ export const Row: FC<TProps> = (
           );
         }
       )}
-    </div>
+    </li>
   );
 };

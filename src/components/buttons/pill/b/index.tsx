@@ -5,13 +5,13 @@ import {
   TButtonMotionProps,
   TSvgProps,
 } from "@brysonandrew/config-types";
-import { TCircleProps } from "~/components/decoration/circle/circle";
+import { TCircleProps } from "~/components/layout/circle/circle";
 import { resolveInteractiveLabels } from "@brysonandrew/utils-attributes";
 import { TFlatProps } from "~/types/ui";
 import { FADE_PRESENCE_DELAY_02 } from "~/constants/animation";
-import { LightingGlow } from "~/components/decoration/lighting/glow";
-import { resolvePresence } from "~/utils/animation";
+import { LightingGlow } from "~/components/layout/lighting/glow";
 import { boxStyle } from "~/constants/box/style";
+import { boxSize } from "~/constants/box/style/size";
 
 export type TPillBProps =
   TButtonMotionProps &
@@ -37,7 +37,7 @@ export const PillB: FC<TPillBProps> = ({
 }) => {
   const box = boxStyle({
     layer: "flat",
-    borderRadius: "borderRadius",
+    borderRadius: "XL",
     size: "md",
   });
   const {
@@ -45,7 +45,9 @@ export const PillB: FC<TPillBProps> = ({
     minWidth,
     boxShadow,
     borderRadius,
+    padding,
   } = box;
+  const sm = boxSize({ size: "sm" });
 
   return (
     <Root
@@ -54,9 +56,10 @@ export const PillB: FC<TPillBProps> = ({
       )}
       className={clsx(
         "relative",
-        "row shrink-0 gap-2 px-1",
+        "row shrink-0 gap-2",
         "disabled:grayscale-100",
-        "text-main",
+        "text-black",
+        " _gradient-radial",
         isFlat
           ? "background-flat"
           : "background",
@@ -71,37 +74,31 @@ export const PillB: FC<TPillBProps> = ({
       }}
       {...props}
     >
-      {!isFlat && (
-        <LightingGlow classValue="-inset-1 opacity-30" />
-      )}
-      <motion.div
+      {/* {!isFlat && (
+        <LightingGlow classValue="-inset-1 opacity-50" />
+      )} */}
+      {/* <motion.div
         className={clsx(
-          "center relative p-1 _weave-gradient"
+          "center absolute -inset-0.5 opacity-20"
         )}
         layout
         style={{
           borderRadius,
         }}
+      /> */}
+      <motion.div
+        className={clsx(
+          "center relative _gradient-mesh bg-black-06 z-10"
+        )}
+        layout
+        style={{
+          minHeight: sm.minHeight,
+          minWidth: sm.minWidth,
+          borderRadius,
+          marginLeft: padding,
+        }}
       >
         <Icon />
-        <motion.div
-          layout
-          style={{
-            boxShadow,
-            borderRadius,
-          }}
-          className="fill"
-          {...resolvePresence(
-            { opacity: 0 },
-            {
-              opacity: [0, 0.6, 0.2],
-              transition: {
-                duration: 1,
-                ease: "linear",
-              },
-            }
-          )}
-        />
       </motion.div>
       {outerCircle && (
         <>{outerCircle}</>

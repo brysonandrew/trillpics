@@ -6,7 +6,7 @@ import {
   TValues,
 } from "../color/config/constants";
 
-export const GRADIENT_WEAVE_DARK = {
+export const GRADIENT_MESH_DARK = {
   "background-image": resolveGradient({
     name: "repeating-conic-gradient",
     parts: [
@@ -16,7 +16,7 @@ export const GRADIENT_WEAVE_DARK = {
   }),
 };
 
-export const GRADIENT_WEAVE_LIGHT = {
+export const GRADIENT_MESH_LIGHT = {
   "background-image": resolveGradient({
     name: "repeating-conic-gradient",
     parts: [
@@ -26,7 +26,7 @@ export const GRADIENT_WEAVE_LIGHT = {
   }),
 };
 
-export const GRADIENT_WEAVE_COMMON = {
+export const GRADIENT_MESH_COMMON = {
   "background-size": "4px 4px",
 };
 

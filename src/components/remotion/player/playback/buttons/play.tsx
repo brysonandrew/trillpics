@@ -5,6 +5,7 @@ import { IconsPause } from "~/components/icons/playback/pause";
 import { IconsPlay } from "~/components/icons/playback/play";
 import { resolveInteractiveLabels } from "@brysonandrew/utils-attributes";
 import { PlaybackButtonsB } from "~/components/remotion/player/playback/buttons/b";
+import { PillB } from "~/components/buttons/pill/b";
 
 export const PlaybackButtonsPlay: FC =
   () => {
@@ -28,7 +29,7 @@ export const PlaybackButtonsPlay: FC =
       durationInFrames === 0;
 
     return (
-      <PlaybackButtonsB
+      <PillB
         {...resolveInteractiveLabels(
           isPlaying ? "pause" : "play"
         )}

@@ -1,44 +1,72 @@
-import type { FC } from "react";
-import { motion } from "framer-motion";
+import type {
+  CSSProperties,
+  FC,
+} from "react";
+import {
+  motion,
+  MotionProps,
+} from "framer-motion";
 import { TUsePicBackdrop } from "~/shell/pics/pic/backdrop/use-backdrop";
-import { TImgMotionProps } from "@brysonandrew/config-types";
+import {
+  TDimensions,
+  TImgMotionProps,
+} from "@brysonandrew/config-types";
 import { resolvePicSrc } from "~/utils/src";
 import { TPicProps } from "~/shell/pics/pic";
+import { NOOP } from "@brysonandrew/utils-function";
+import {
+  HP,
+  P,
+} from "~/shell/pics/pic/constants";
 export const SEARCH_PARAM_ID = "open";
 
 export type TPicDisplayProps = Pick<
   TImgMotionProps,
-  | "style"
-  | "onTap"
-  | "onLayoutAnimationComplete"
+  "onTap" | "onLayoutAnimationComplete"
 > &
   TPicProps &
-  Partial<TUsePicBackdrop>;
+  Partial<TUsePicBackdrop> & {
+    style: CSSProperties &
+      TDimensions & { left: number };
+  };
 export const PicDisplay: FC<
   TPicDisplayProps
 > = ({
-  style,
+  style: {
+    width,
+    height,
+    left,
+    ...style
+  },
   onTap,
   onLayoutAnimationComplete,
   name,
 }) => {
+  const styleProps: MotionProps = {
+    onTap,
+    onLayoutAnimationComplete:
+      onLayoutAnimationComplete,
+    style: {
+      textAlign: "center",
+      left: left - HP,
+      width: width + P,
+      height: height + P,
+      top: -HP,
+      ...style,
+    },
+  };
   const src = resolvePicSrc(name);
   const isVacant =
     typeof name === "number";
-  if (isVacant)
+  if (isVacant) {
     return (
       <motion.div
         layoutId={String(name)}
-        style={{
-          textAlign: "center",
-          ...style,
-        }}
-        onTap={onTap}
-        onLayoutAnimationComplete={
-          onLayoutAnimationComplete
-        }
+        {...styleProps}
       />
     );
+  }
+
   return (
     <motion.img
       key={src}
@@ -46,13 +74,16 @@ export const PicDisplay: FC<
       src={src}
       alt={`░▒▓█ pic #${name} █▓▒░`}
       draggable={false}
-      style={{
-        textAlign: "center",
-        ...style,
-      }}
-      onTap={onTap}
-      onLayoutAnimationComplete={
-        onLayoutAnimationComplete
+      {...styleProps}
+      onError={
+        name === "11"
+          ? console.log
+          : NOOP
+      }
+      onLoad={
+        name === "11"
+          ? console.log
+          : NOOP
       }
     />
   );

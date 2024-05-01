@@ -2,10 +2,10 @@ import type { FC } from "react";
 import {
   Pill,
   TPillProps,
-} from "~/components/decoration/Pill";
+} from "~/components/layout/counter";
 import clsx from "clsx";
 import { N } from "~/components/layout/N";
-import { LightingGlow } from "~/components/decoration/lighting/glow";
+import { LightingGlow } from "~/components/layout/lighting/glow";
 import { useTrillPicsStore } from "~/store";
 import { RADIAL_BLUE_PINK_YELLOW } from "~app/color/gradient";
 

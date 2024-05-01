@@ -22,13 +22,13 @@ import {
   TTemporalState,
 } from "~/store/middleware/temporal/types";
 import { TState } from "~/store/types";
-import { coreState } from "~/store/slices/core/state";
-import { directorState } from "~/store/slices/director/state";
-import { hoverState } from "~/store/slices/hover/state";
-import { picsState } from "~/store/slices/pics/state";
-import { playerState } from "~/store/slices/player/state";
-import { tableState } from "~/store/slices/table/state";
-import { scrollState } from "~/store/slices/scroll";
+import { coreState } from "~/store/state/core/state";
+import { directorState } from "~/store/state/director/state";
+import { hoverState } from "~/store/state/hover/state";
+import { picsState } from "~/store/state/pics/state";
+import { playerState } from "~/store/state/player/state";
+import { tableState } from "~/store/state/table/state";
+import { scrollState } from "~/store/state/scroll";
 
 enableMapSet();
 

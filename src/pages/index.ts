@@ -1,3 +1,4 @@
-export { DirectorsMode } from "./directors-mode";
-export { Home as Index } from "./home";
-export { VideoPlayer } from "./video-player";
+export { Home as Index } from '~/pages/home';
+export { Video } from '~/pages/video';
+export { VideoPlayer } from '~/pages/video/player';
+export { VideoScheduler } from '~/pages/video/scheduler';

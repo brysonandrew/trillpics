@@ -3,7 +3,7 @@ import { withDarkModePreset } from '@brysonandrew/uno-presets';
 import { FONTS } from '../../app/base/fonts';
 import { resolveFonts } from '@brysonandrew/uno-presets/resolveFonts';
 
-const fonts = resolveFonts(FONTS);
+const fonts = (resolveFonts as any)(FONTS);
 
 export type TPresets<T extends object> = (
   | Preset<T>

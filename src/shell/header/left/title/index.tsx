@@ -1,9 +1,10 @@
 import type { FC } from "react";
 import { TitleText } from "~/shell/header/left/title/text";
 import { SparkleButton } from "~/shell/header/left/title/sparkle-button";
-import { LightingGlow } from "~/components/decoration/lighting/glow";
+import { LightingGlow } from "~/components/layout/lighting/glow";
 import { resolvePresence } from "~/utils/animation";
-import { LightingShadow } from "~/components/decoration/lighting/shadow";
+import { LightingShadow } from "~/components/layout/lighting/shadow";
+import { LightingLamp } from "~/components/layout/lighting/lamp";
 
 export const Title: FC = () => {
   return (
@@ -19,7 +20,7 @@ export const Title: FC = () => {
         <TitleText />
         <h2 className="relative text-lg text-main-inverted px-1 char-gap-7">
           AI Art Gallery
-          <LightingShadow
+          <LightingLamp
             classValue="-inset-y-3 -inset-x-6"
             {...resolvePresence(
               { opacity: 0 },

@@ -1,6 +1,6 @@
 import { useSearchParams } from "react-router-dom";
 import { SEARCH_PARAM_ID } from "~/shell/pics/pic/display";
-import { TPic } from "~/store/slices/pics/types";
+import { TPic } from "~/store/state/pics/types";
 import { isDefined } from "~/utils/validation/is/defined";
 
 export const usePicZoomedCheck = (

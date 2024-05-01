@@ -1,8 +1,12 @@
 import { BOX } from "~/constants/box";
+import {
+  boxRadius,
+  TBoxRadiusKey,
+} from "~/constants/box/style/radius";
 
 type TConfig = {
   layer: "flat" | "floating";
-  borderRadius?: "borderRadius";
+  borderRadius?: TBoxRadiusKey;
 };
 export const boxBorder = ({
   layer,
@@ -13,8 +17,9 @@ export const boxBorder = ({
     ...box[layer],
     ...(borderRadius
       ? {
-          [borderRadius]:
-            box[borderRadius],
+          borderRadius: boxRadius(
+            borderRadius
+          ),
         }
       : {}),
   };

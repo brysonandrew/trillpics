@@ -1,6 +1,9 @@
 import type { FC } from "react";
-import { PicBase } from "~/shell/pics/pic/base";
-import { TPic } from "~/store/slices/pics/types";
+import { Box } from "~/shell/pics/pic/box";
+import { PicZoomed } from "~/shell/pics/pic/zoomed";
+import { PicCell } from "~/shell/pics/pic/cell";
+import { useHover } from "~/shell/pics/pic/use-hover";
+import { TPic } from "~/store/state/pics/types";
 
 export type TPicProps = {
   name: TPic;
@@ -10,10 +13,26 @@ export type TPicProps = {
 export const Pic: FC<TPicProps> = (
   props
 ) => {
+  const hover = useHover(props);
   return (
-    <PicBase
-      key={props.name}
+    <>
+    <Box
+      cursor="zoom-in"
       {...props}
-    />
+      {...hover}
+    >
+      {(boxChildProps, isPicZoomed) => {
+        const Child = isPicZoomed
+          ? PicZoomed
+          : PicCell;
+        return (
+          <Child
+            {...boxChildProps}
+            {...hover}
+          />
+        );
+      }}
+    </Box>
+    </>
   );
 };

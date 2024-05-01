@@ -8,7 +8,7 @@ import { NetworkProvider } from "@brysonandrew/network";
 import { TChildrenProps } from "@brysonandrew/config-types/dom";
 import { arrToNest } from "@brysonandrew/layout-utils/arrToNest";
 import { TCustomStyle } from "~app/style";
-import { VirtualizeScrollProvider } from "~/shell/pics/virtualize/use-scroll";
+import { VirtualizeContextProvider } from "~/shell/pics/virtualize/context";
 
 export type TApp = TCustomStyle;
 
@@ -28,8 +28,8 @@ export const Providers: FC<TProps> = ({
   }, []);
 
   return (
-    <VirtualizeScrollProvider>
+    <VirtualizeContextProvider>
       {children}
-    </VirtualizeScrollProvider>
+    </VirtualizeContextProvider>
   );
 };

@@ -1,7 +1,7 @@
 import { FC } from "react";
 import { ScrollbarSeam } from "~/components/layout/scrollbar-seam";
 import { useTrillPicsStore } from "~/store";
-import { TPartialFixedTableProps } from "~/store/slices/table/types";
+import { TPartialFixedTableProps } from "~/store/state/table/types";
 import { Virtualize } from "~/shell/pics/virtualize";
 
 type TProps = TPartialFixedTableProps;

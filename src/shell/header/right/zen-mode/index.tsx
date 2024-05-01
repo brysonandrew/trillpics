@@ -22,7 +22,7 @@ export const HideControls: FC = () => {
   const handleShow = () => {
     toggleControls(true);
   };
-  const title = "Zen Mode"; // "Hide controls";
+  const title = "Hide Controls"; // "Hide controls";
 
   return (
     <>

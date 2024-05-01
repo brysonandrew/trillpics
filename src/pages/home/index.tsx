@@ -1,7 +1,7 @@
 import { FC } from "react";
 import { useOutletContext } from "react-router";
 import { TOutletContext } from "~/shell";
-import { HomeFooter } from "~/pages/home/footer";
+import { HomeFooter } from "~/pages/home/_footer";
 
 export const Home: FC = () => {
   const {

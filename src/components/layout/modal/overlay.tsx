@@ -1,7 +1,7 @@
 import type { FC } from "react";
 import { IconsInfo } from "~/components/icons/info";
 import clsx from "clsx";
-import { TexturesWeave } from "~/components/textures/weave";
+import { TexturesMesh } from "~/components/textures/mesh";
 import {
   TDivProps,
   TSvgProps,
@@ -26,7 +26,7 @@ export const ModalOverlay: FC<
   classValue,
   ...props
 }) => {
-  const borderStyle = boxStyle({layer:'flat',borderRadius:'borderRadius',size:'md'})
+  const borderStyle = boxStyle({layer:'flat',borderRadius:'XL',size:'md'})
 
   return (
     <PortalBody>
@@ -38,7 +38,7 @@ export const ModalOverlay: FC<
         className={clsx(
           "fixed column-stretch dark:text-white-5 grow-0 shrink gap-4 left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 px-6 pt-4 pb-6 z-10 char-gap-6 z-50",
           "background",
-          "_weave-gradient",
+          "_gradient-mesh",
           classValue
         )}
         style={borderStyle}
@@ -63,14 +63,14 @@ export const ModalOverlay: FC<
             onClick={onCancel}
             className="relative px-4 py-2.5 border border-main hover:_gradient-radial"
           >
-            <TexturesWeave classValue="inset-2" />
+            <TexturesMesh classValue="inset-2" />
             Cancel
           </button>
           <button
             onClick={onOk}
             className="relative px-4 py-2.5 border border-main hover:_gradient-radial"
           >
-            <TexturesWeave classValue="inset-2" />
+            <TexturesMesh classValue="inset-2" />
             Ok
           </button>
         </div>

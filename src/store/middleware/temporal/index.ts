@@ -3,6 +3,17 @@ import { TState } from "~/store/types";
 import { TTemporalPartializedState } from "~/store/middleware/temporal/types";
 import { persist } from "zustand/middleware";
 import { debounce } from "~/utils/debounce";
+import { resolveCompositeKey } from "@brysonandrew/utils-key";
+import packageJson from "~root/package.json";
+const version = packageJson.version;
+const name = packageJson.name;
+const temporalPersistKey =
+  resolveCompositeKey(
+    version,
+    name,
+    "temporal",
+    "persist"
+  );
 
 const equality = (
   prev: TTemporalPartializedState,
@@ -20,7 +31,7 @@ export const OPTIONS_UNDO_REDO: ZundoOptions<
 > = {
   wrapTemporal: (storeInitializer) =>
     persist(storeInitializer, {
-      name: "temporal-persist",
+      name: temporalPersistKey,
     }),
   limit: 100,
   equality,

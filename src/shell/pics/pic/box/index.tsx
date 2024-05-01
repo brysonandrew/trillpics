@@ -8,6 +8,10 @@ import { useTrillPicsStore } from "~/store";
 import { TDimensions } from "@brysonandrew/config-types";
 import { TPicProps } from "~/shell/pics/pic";
 import { TPicHoverResult } from "~/shell/pics/pic/use-hover";
+import {
+  P,
+  HP,
+} from "~/shell/pics/pic/constants";
 
 type TOmitUseBox = Omit<
   TUseBox,
@@ -15,7 +19,11 @@ type TOmitUseBox = Omit<
 >;
 type TBaseBoxChildProps = TPicProps &
   TOmitUseBox &
-  TDimensions;
+  TDimensions & {
+    style: TDimensions & {
+      left: number;
+    };
+  };
 export type TBoxChildProps =
   TBaseBoxChildProps;
 type TProps = Partial<TPicHoverResult> &
@@ -39,28 +47,38 @@ export const Box: FC<TProps> = ({
       table,
     })
   );
+
   const dimensions: TDimensions =
-    resolveSquare(table.size);
+    resolveSquare(table.size - P);
+  const left =
+    props.columnIndex * table.size;
   return (
-    <div
-      style={{
-        position: "absolute",
-        ...dimensions,
-        left:
-          props.columnIndex *
-          table.size,
-        cursor,
-      }}
-      {...props.handlers}
-    >
-      {children(
-        {
+    <>
+      <div
+        className="_gradient-mesh"
+        style={{
+          position: "absolute",
           ...dimensions,
-          ...box,
-          ...props,
-        },
-        isPicZoomed
-      )}
-    </div>
+          left: left + HP,
+          top: HP,
+          cursor,
+        }}
+        {...props.handlers}
+      ></div>
+      <>
+        {children(
+          {
+            ...dimensions,
+            ...box,
+            ...props,
+            style: {
+              left,
+              ...dimensions,
+            },
+          },
+          isPicZoomed
+        )}
+      </>
+    </>
   );
 };

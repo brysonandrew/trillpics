@@ -9,7 +9,7 @@ import {
   TDimensionsInit,
   TDimensionsReady,
 } from "@brysonandrew/config-types";
-import { useVirtualizeScroll } from "~/shell/pics/virtualize/use-scroll";
+import { useVirtualizeContext } from "~/shell/pics/virtualize/context";
 import { isValue } from "~/utils/validation/is/value";
 import { measureContainer } from "~/shell/init/container";
 
@@ -49,7 +49,7 @@ export const useScreenMeasure = (
   config: TConfig = {}
 ) => {
   const { blurX, blurXRef } =
-    useVirtualizeScroll();
+    useVirtualizeContext();
   const [screen, setScreen] =
     useState<TScreen>(INIT_SCREEN);
   const { timeoutRef, endTimeout } =

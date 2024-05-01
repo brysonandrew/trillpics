@@ -5,13 +5,23 @@ import {
   TPersistKey,
   TPersistState,
 } from "~/store/middleware/persist/types";
+import { resolveCompositeKey } from "@brysonandrew/utils-key";
+import packageJson from "~root/package.json";
+const version = packageJson.version;
+const name = packageJson.name;
+const persistKey = resolveCompositeKey(
+  version,
+  name,
+  "temporal",
+  "persist"
+);
 
 export const PERSIST_STATE_RECORD = {
   fps: "fps",
   durationInFrames: "durationInFrames",
   picsCount: "picsCount",
   picsEntries: "picsEntries",
-  videoPics: "videoPics"
+  videoPics: "videoPics",
 } as const;
 
 const KEYS = Object.keys(
@@ -22,7 +32,7 @@ export const STORAGE: PersistOptions<
   TState,
   TPersistState
 > = {
-  name: "PERSIST_STORE_KEY",
+  name: persistKey,
   partialize: (state: TState) =>
     KEYS.reduce(
       (a, key: TPersistKey) => {

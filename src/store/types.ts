@@ -1,12 +1,12 @@
 import { StateCreator } from "zustand";
-import { THoverState } from "~/store/slices/hover/types";
-import { TPlayerState } from "~/store/slices/player/types";
-import { TCoreState } from "~/store/slices/core/types";
-import { TPicsState } from "~/store/slices/pics/types";
-import { TDirectorState } from "~/store/slices/director/types";
-import { TUpdaterState } from "~/store/slices/updater/types";
-import { TTableState } from "~/store/slices/table/types";
-import { TScrollState } from "~/store/slices/scroll/types";
+import { THoverState } from "~/store/state/hover/types";
+import { TPlayerState } from "~/store/state/player/types";
+import { TCoreState } from "~/store/state/core/types";
+import { TPicsState } from "~/store/state/pics/types";
+import { TDirectorState } from "~/store/state/director/types";
+import { TUpdaterState } from "~/store/state/updater/types";
+import { TTableState } from "~/store/state/table/types";
+import { TScrollState } from "~/store/state/scroll/types";
 
 export type TStateCreator<
   T extends object

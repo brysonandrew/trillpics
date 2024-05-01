@@ -1,0 +1,10 @@
+import { FC } from "react";
+import { TPropsWithChildren } from "@brysonandrew/config-types";
+import { HomeFooterVideo } from "~/pages/home/_footer/directors-mode";
+
+type TProps = TPropsWithChildren;
+export const HomeFooter: FC<
+  TProps
+> = () => {
+  return <HomeFooterVideo />;
+};

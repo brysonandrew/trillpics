@@ -1,3 +1,7 @@
+import {
+  LegacyRef,
+  useImperativeHandle,
+} from "react";
 import { useRemotionProps } from "~/hooks/remotion/use-props";
 import { useTrillPicsStore } from "~/store";
 import { PlayerRef } from "@remotion/player";
@@ -22,7 +26,10 @@ export const useRemotionPlayerProps =
       props: inputProps,
       ...props
     } = useRemotionProps();
-    const resolveRef = (
+
+    const resolveRef: LegacyRef<
+      PlayerRef | null
+    > = (
       instance: PlayerRef | null
     ) => {
       if (instance && !playerInstance) {
@@ -31,6 +38,8 @@ export const useRemotionPlayerProps =
         });
       }
     };
+
+
 
     return {
       ref: resolveRef,

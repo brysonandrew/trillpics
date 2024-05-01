@@ -4,7 +4,7 @@ export const boxStyleFlat =
   () => {
     const flat = boxStyle({
       layer: "flat",
-      borderRadius: "borderRadius",
+      borderRadius: "XL",
     });
     return flat;
   };

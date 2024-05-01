@@ -4,9 +4,10 @@ import {
   TSvgProps,
 } from "@brysonandrew/config-types";
 import clsx from "clsx";
-import { LightingGlow } from "~/components/decoration/lighting/glow";
+import { LightingGlow } from "~/components/layout/lighting/glow";
 import { boxStyle } from "~/constants/box/style";
-import { CircleIcon } from "~/components/decoration/circle/icon";
+import { CircleIcon } from "~/components/layout/circle/icon";
+import { Metal } from "@brysonandrew/texture-metal";
 
 export const PlaybackButtonsB: FC<
   TButtonProps & { Icon: FC<TSvgProps> }
@@ -16,29 +17,48 @@ export const PlaybackButtonsB: FC<
   style,
   ...props
 }) => {
-  const borderStyle = boxStyle({
+  const { boxShadow, ...borderStyle } =
+    boxStyle({
+      layer: "flat",
+      borderRadius: "XL",
+      size: "md",
+    });
+  const sm = boxStyle({
     layer: "flat",
-    borderRadius: "borderRadius",
-    size: "md",
+    borderRadius: "XL",
+    size: "sm",
   });
   return (
     <button
       className={clsx(
         "relative",
-        "center",
+        "row",
         "btn-disabled",
-        "_weave-gradient",
-        // "_gradient-border",
+        // "_gradient-mesh",
+        "_gradient-radial",
         classValue
       )}
       style={{
+        boxShadow,
         ...borderStyle,
         ...style,
+
       }}
       {...props}
     >
-      <LightingGlow />
-      <CircleIcon Icon={Icon} />
+      {/* <LightingGlow /> */}
+      <div
+        className="center _gradient-mesh bg-black-04"
+        style={{
+          minHeight: sm.minHeight,
+          minWidth: sm.minWidth,
+          borderRadius:
+            borderStyle.borderRadius,
+          marginLeft: sm.padding,
+        }}
+      >
+        <CircleIcon Icon={Icon} />
+      </div>
     </button>
   );
 };

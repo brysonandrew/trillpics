@@ -1,7 +1,7 @@
 import { FC, memo } from "react";
 import { useCurrentPlayerFrame } from "~/hooks/remotion/use-current-player-frame";
 import { TDurationInFramesProps } from "~/types/props";
-import { LightingGlow } from "~/components/decoration/lighting/glow";
+import { LightingGlow } from "~/components/layout/lighting/glow";
 import { boxRadius } from "~/constants/box/style/radius";
 
 type TProps = TDurationInFramesProps;

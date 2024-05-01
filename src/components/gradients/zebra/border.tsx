@@ -14,11 +14,11 @@ export const GradientsZebraBorder: FC<
         classValue
       )}
       style={{
-        borderWidth: "6rem",
-        borderStyle: "solid",
-        // borderImageRepeat: "repeat",
+            // borderImageRepeat: "repeat",
         // borderImageOutset:'',
         // borderImageSlice:'revert',
+        borderWidth: "6rem",
+        borderStyle: "solid",
         borderImage: `${GRADIENT_ZEBRA} 40`,
       }}
       {...props}

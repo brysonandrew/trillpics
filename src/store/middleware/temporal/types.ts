@@ -1,6 +1,6 @@
 import { TemporalState } from "zundo";
 import { StoreApi } from "zustand";
-import { TDirectorState } from "~/store/slices/director/types";
+import { TDirectorState } from "~/store/state/director/types";
 
 export type TTemporalPartializedState =
   Pick<TDirectorState, "videoPics">;

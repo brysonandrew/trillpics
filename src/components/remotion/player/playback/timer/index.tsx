@@ -12,9 +12,9 @@ export const PlaybackTimer: FC = () => {
     );
 
   return (
-    <div className="relative flex shrink-0 grow-0 items-center text-left">
+    <div className="relative flex shrink-0 grow-0 items-center text-left text-black">
       <TimerCurrent />
-      <div className="flex text-gray-9">
+      <div className="flex text-black-9">
         <span className="px-1">/</span>
         <TimerDisplay
           frame={durationInFrames}

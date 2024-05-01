@@ -3,6 +3,7 @@ import { useTrillPicsStore } from "~/store";
 import { SEEK_FORWARD_SECONDS } from "~/components/remotion/player/playback/constants";
 import { IconsChevronsRight } from "~/components/icons/chevrons/right";
 import { PlaybackButtonsB } from "~/components/remotion/player/playback/buttons/b";
+import { PillB } from "~/components/buttons/pill/b";
 
 export const PlaybackButtonsForward: FC =
   () => {
@@ -21,7 +22,7 @@ export const PlaybackButtonsForward: FC =
     const isDisabled =
       durationInFrames === 0;
     return (
-      <PlaybackButtonsB
+      <PillB
         title="seek backward"
         onClick={() =>
           seekSeconds(
