@@ -6,7 +6,7 @@ import { TStateHandler } from "~/store/types";
 
 export const hoverPicState: TStateHandler<
   THoverPicState
-> = (set, get): THoverPicState => ({
+> = (set, get) => ({
   hoverPicKey: null,
   hoverPicProps: null,
   hoverPic: (

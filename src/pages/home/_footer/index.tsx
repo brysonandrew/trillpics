@@ -1,6 +1,6 @@
 import { FC } from "react";
 import { TPropsWithChildren } from "@brysonandrew/config-types";
-import { HomeFooterVideo } from "~/pages/home/_footer/directors-mode";
+import { HomeFooterVideo } from "~/pages/home/_footer/video";
 
 type TProps = TPropsWithChildren;
 export const HomeFooter: FC<

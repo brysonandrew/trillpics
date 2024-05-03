@@ -20,20 +20,23 @@ export const PAGES_INDEX = [
   cwd,
   "/index.ts",
 ].join("");
-export const ROUTES_PAGE = [
+export const ROUTES_DIR = [
   pwd,
-  "/config/app/routes/pages.ts",
+  "/src/shell/routes",
+].join("");
+export const ROUTES_PAGE = [
+  ROUTES_DIR,
+  "/pages.ts",
 ].join("");
 export const ROUTES_INDEX = [
-  pwd,
-  "/config/app/routes/index.ts",
+  ROUTES_DIR,
+  "/index.ts",
 ].join("");
 
 export const PAGES_LOOKUP = {
   pagesIndex: PAGES_INDEX,
   routesPages: ROUTES_PAGE,
   routesIndex: ROUTES_INDEX,
-
 } as const;
 
 (async () => {

@@ -23,17 +23,16 @@ export const useScrollUpdateHandler = ({
 }: TConfig) => {
   const {
     isScroll,
-    isScrolling,
-    updateState,
+    set,
   } = useTrillPicsStore(
     ({
       isScroll,
       isScrolling,
-      updateState,
+      set,
     }) => ({
       isScroll,
       isScrolling,
-      updateState,
+      set,
     })
   );
   const { timeoutRef, endTimeout } =
@@ -56,14 +55,14 @@ export const useScrollUpdateHandler = ({
       navigate(
         `${pathname}?${searchParams}`
       );
-      updateState({
+      set({
         isScrolling: true,
       });
     }
     endTimeout();
     timeoutRef.current = setTimeout(
       () => {
-        updateState({
+        set({
           isScrolling: false,
         });
       },
@@ -74,13 +73,13 @@ export const useScrollUpdateHandler = ({
       !isScroll &&
       scrollOffset > SCROLL
     ) {
-      updateState({ isScroll: true });
+      set({ isScroll: true });
     }
     if (
       isScroll &&
       scrollOffset < SCROLL
     ) {
-      updateState({
+      set({
         isScroll: false,
       });
     }

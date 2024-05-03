@@ -1,5 +1,4 @@
 import { TPicProps } from "~/shell/pics/pic";
-import { TStateCreator } from "~/store/types";
 
 export type THoverKey = string | number;
 export type THoverPicKey = string;
@@ -27,6 +26,3 @@ export type THoverMultiState = {
 
 export type THoverState =
   THoverPicState & THoverMultiState;
-
-export type THoverStateCreator =
-  TStateCreator<THoverState>;

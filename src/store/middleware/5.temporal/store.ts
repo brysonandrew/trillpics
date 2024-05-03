@@ -1,7 +1,7 @@
 import { TemporalState } from "zundo";
 import { useStore } from "zustand";
 import { useTrillPicsStoreBase } from "~/store";
-import { TTemporalPartializedState } from "~/store/middleware/temporal/types";
+import { TTemporalPartializedState } from "~/store/middleware/5.temporal/types";
 
 export const useTemporalStore = <T>(
   selector: (

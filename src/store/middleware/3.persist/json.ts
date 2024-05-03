@@ -1,6 +1,6 @@
 import localForage from "localforage";
 import { createJSONStorage } from "zustand/middleware";
-import { TPersistState } from "~/store/middleware/persist/types";
+import { TPersistPartializedState } from "~/store/middleware/3.persist/types";
 
 // export type TMapValue =
 //   | TTrack
@@ -36,7 +36,7 @@ const JSON_STORAGE_OPTIONS: JsonStorageOptions =
   };
 
 export const STORAGE_JSON =
-  createJSONStorage<TPersistState>(
+  createJSONStorage<TPersistPartializedState>(
     () => localForage,
     JSON_STORAGE_OPTIONS
   );

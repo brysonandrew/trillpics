@@ -7,7 +7,7 @@ import { Home } from '~/pages/home';
 export const PAGE_ROUTES: RouteObject[] = [{
     index: true,
     Component: Home,
-    path: "/",
+    path: "/home",
   },
 {
     Component: Video,

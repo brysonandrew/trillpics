@@ -86,7 +86,7 @@ export const tableUpdateState: TStateHandler<
       size,
       isVerticalScroll,
     }: TTableSetConfig) => {
-      get().updateState(
+      get().set(
         (draft: TState) => {
           draft.table.count = count;
           draft.table.rows = rows;

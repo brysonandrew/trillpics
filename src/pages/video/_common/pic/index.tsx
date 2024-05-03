@@ -4,10 +4,10 @@ import { TPicProps } from "~/shell/pics/pic";
 import { PicVideoControls } from "~/pages/video/_common/pic/controls";
 import { AddRemoveToVideoMarker } from "~/pages/video/_common/pic/controls/counter/add-remove-to-video-marker";
 import { TDivMotionProps } from "@brysonandrew/config-types";
-import { TDirectorState } from "~/store/state/director/types";
+import { TVideoState } from "~/store/state/video/types";
 
 type TProps = TPicProps &
-  TDivMotionProps & Pick<TDirectorState,'videoPics'>;
+  TDivMotionProps & Pick<TVideoState,'videoPics'>;
 export const VideoPic: FC<
   TProps
 > = ({ style, videoPics, ...props }) => {
@@ -19,7 +19,7 @@ export const VideoPic: FC<
   return (
     <motion.div
       className="absolute bg-black-01 center shadow pointer-events-none"
-      layoutId="Directors mode hover"
+      layoutId="Videos mode hover"
       style={{
         backdropFilter: "blur(14px)",
         ...style,

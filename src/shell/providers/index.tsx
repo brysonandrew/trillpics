@@ -17,7 +17,6 @@ import {
 import { FONTS } from "~app/base/fonts";
 
 export type TApp = TCustomStyle;
-const Back = () => <div />;
 type TProps = TChildrenProps;
 export const Providers: FC<TProps> = ({
   children,

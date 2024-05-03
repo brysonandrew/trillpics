@@ -5,21 +5,21 @@ export const usePlayerListeners =
   () => {
     const {
       playerInstance,
-      updateState,
+      set,
     } = useTrillPicsStore(
       ({
         playerInstance,
-        updateState,
+        set,
       }) => ({
         playerInstance,
-        updateState,
+        set,
       })
     );
 
     const handlePlay = (
       isPlaying = true
     ) => {
-      updateState({
+      set({
         isPlaying,
       });
     };
@@ -55,5 +55,5 @@ export const usePlayerListeners =
           );
         }
       };
-    }, [playerInstance, updateState]);
+    }, [playerInstance, set]);
   };

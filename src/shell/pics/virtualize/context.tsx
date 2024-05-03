@@ -135,10 +135,9 @@ export const VirtualizeContextProvider: FC<
     if (isHovering) {
       handleClick(cursorRef.current);
     }
-    ref.current?.scrollTrue();
-    const isScrolling =
-      ref.current?.checkScrolling();
-      console.log(isScrolling)
+    // ref.current?.scrollTrue();
+    // const isScrolling =
+    //   ref.current?.checkScrolling();
   };
 
   const [isCursorMove, setCursorMove] =

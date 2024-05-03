@@ -1,8 +1,6 @@
 import { TDimensionsReady } from "@brysonandrew/config-types";
 import { FixedSizeListProps } from "react-window";
-import { TStateCreator } from "~/store/types";
 import { TTableUpdateCountResult } from "~/store/state/table/update/count";
-import { TScreen } from "~/shell/init/measure";
 import { TPics } from "~/store/state/pics/types";
 
 export type TTableRowsConfig = {
@@ -124,6 +122,7 @@ export type TTableUpdateState = {
     set(config: TTableSetConfig): void;
   };
 };
+
 export type TPicsTable =
   TTableUpdateState & {
     count: TTableUpdateCountResult;
@@ -131,11 +130,11 @@ export type TPicsTable =
     rows: TPicsRows;
     isVerticalScroll: boolean;
   };
+
 export type TTableState = {
   table: TPicsTable;
 };
-export type TTableStateCreator =
-  TStateCreator<TTableState>;
+
 export type TPartialFixedTableProps =
   Partial<
     FixedSizeListProps<TPicsRows>

@@ -1,7 +1,6 @@
 import {
   TTableCreateConfig,
 } from "~/store/state/table/types";
-import { TStateCreator } from "~/store/types";
 
 export type TPic = string | number;
 export type TPics = TPic[];
@@ -19,6 +18,3 @@ export type TPicsState = {
     >
   ): void;
 };
-
-export type TPicsStateCreator =
-  TStateCreator<TPicsState>;

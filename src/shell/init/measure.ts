@@ -12,8 +12,6 @@ import {
 import { useVirtualizeContext } from "~/shell/pics/virtualize/context";
 import { isValue } from "~/utils/validation/is/value";
 import { measureContainer } from "~/shell/init/container";
-import { useImageDimensions } from "@brysonandrew/measure";
-import { width, height } from "tailwindcss/defaultTheme";
 
 export const RESIZE_COOLDOWN = 400;
 

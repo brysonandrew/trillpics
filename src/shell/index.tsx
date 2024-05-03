@@ -17,6 +17,11 @@ import { BlurX } from "~/components/blur/x";
 import { BlurY } from "~/components/blur/y";
 import { Dark } from "~/shell/global/favicon/dark";
 import { Light } from "~/shell/global/favicon/light";
+import { TexturesMeshInset } from "~/components/textures/mesh/inset";
+import {
+  MOTION_BLUR_FILTER_X_PROPS,
+  MOTION_BLUR_FILTER_Y_PROPS,
+} from "~/components/blur/constants";
 
 const OUTLET_CONTEXT = {
   Header,
@@ -25,7 +30,6 @@ const OUTLET_CONTEXT = {
   Screen,
   Footer,
   FooterLeft,
-  Pics,
 } as const;
 export type TOutletContext =
   typeof OUTLET_CONTEXT & {
@@ -44,33 +48,49 @@ export const Shell = withProviders(
     return (
       <GlobalCss>
         <Favicon />
-        <GradientsBluePinkYellow
-          isDarkMode={isDarkMode}
-        />
         <AURA.GLOBAL.Filter />
         <BlurX />
         <BlurY />
-        {/* <TexturesMesh opacityClassValue="opacity-100" /> */}
-        {/* <FadeV
-          darkEdgeColor="var(--dark-02)"
-          lightEdgeColor="var(--light-02)"
-        /> */}
-        <Pics />
-        <Header>
-          <HeaderLeft />
-        </Header>
-        <Outlet
-          context={{
-            Header,
-            HeaderLeft,
-            HeaderRight,
-            Screen,
-            Footer,
-            FooterLeft,
-            Pics,
+        <div
+          style={{
+            ...MOTION_BLUR_FILTER_X_PROPS,
           }}
-        />
+        >
+          <div
+            style={{
+              ...MOTION_BLUR_FILTER_Y_PROPS,
+            }}
+          >
+            <GradientsBluePinkYellow
+              isDarkMode={isDarkMode}
+            />
+            <TexturesMeshInset />
+            <Outlet
+              context={{
+                ...OUTLET_CONTEXT,
+              }}
+            />
+          </div>
+        </div>
       </GlobalCss>
     );
   }
 );
+{
+  /* <GradientsZebraBackground/> */
+}
+{
+  /* <Mesh materialColor="#000" gapShade="rgba(0,0,0,0.5)" classValue='opacity-50'/> */
+}
+{
+  /* <Root className="fill"/> */
+}
+{
+  /* <TexturesMesh opacityClassValue="opacity-100" /> */
+}
+{
+  /* <FadeV
+          darkEdgeColor="var(--dark-02)"
+          lightEdgeColor="var(--light-02)"
+        /> */
+}

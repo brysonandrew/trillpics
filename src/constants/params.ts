@@ -1,4 +1,4 @@
-export const HOME_ROUTE = "/home";
+export const HOME_ROUTE = "/";
 export const VIDEO_ROUTE = "/video";
 export const VIDEO_PLAYER_ROUTE =
   "/video/player";

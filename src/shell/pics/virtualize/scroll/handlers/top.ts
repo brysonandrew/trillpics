@@ -27,7 +27,6 @@ export const useScrollTopHandler =
           velocity: y * 0.02,
           onComplete: () => {
             blurRef.current.value.y.set(0);
-        //    scrollY.set(0);
           },
         }
       );

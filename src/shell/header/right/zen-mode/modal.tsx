@@ -11,14 +11,14 @@ type TProps = TModalOverlayConfig;
 export const HideControlsModal: FC<
   TProps
 > = (props) => {
-  const { milestones, updateState } =
+  const { milestones, set } =
     useTrillPicsStore(
       ({
         milestones,
-        updateState,
+        set,
       }) => ({
         milestones,
-        updateState,
+        set,
       })
     );
 
@@ -32,7 +32,7 @@ export const HideControlsModal: FC<
       ...milestones,
       READ__ZEN__INFO,
     ];
-    updateState({
+    set({
       milestones: next,
     });
   };

@@ -38,13 +38,19 @@ export const VideoPlayer = () => {
         {/* <RemotionPlayer /> */}
       </Screen>
       <Header>
-        <PlayerHeader isPlayerInstance={isPlayerInstance}/>
+        <PlayerHeader
+          isPlayerInstance={
+            isPlayerInstance
+          }
+        />
       </Header>
       <Footer>
         <>
           <div className="absolute left-0 bottom-0 row-space w-full">
             <PlayerFooterButtonsExit />
-            <PlayerFooterButtonsFullscreen />
+            {isPlayerInstance && (
+              <PlayerFooterButtonsFullscreen />
+            )}
           </div>
         </>
         <PlayerFooter />

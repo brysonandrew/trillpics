@@ -1,9 +1,9 @@
 import { ZundoOptions } from "zundo";
 import { TState } from "~/store/types";
-import { TTemporalPartializedState } from "~/store/middleware/temporal/types";
 import { persist } from "zustand/middleware";
 import { debounce } from "~/utils/debounce";
 import { resolveCompositeKey } from "@brysonandrew/utils-key";
+import { TTemporalPartializedState } from "~/store/middleware/5.temporal/types";
 import packageJson from "~root/package.json";
 const version = packageJson.version;
 const name = packageJson.name;

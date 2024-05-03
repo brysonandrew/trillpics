@@ -2,24 +2,23 @@ import {
   TPic,
   TPics,
 } from "~/store/state/pics/types";
-import { TStateCreator } from "~/store/types";
 
-export type TDirectorKey =
+export type TVideoKey =
   | string
   | number;
-export type TDirectorAddState = {
+export type TVideoAddState = {
   addVideoPic(nextPic: TPic): void;
   addVideoPics(nextPics: TPics): void;
 };
-export type TDirectorRemoveState = {
+export type TVideoRemoveState = {
   removeVideoPic(next?: TPic): void;
   removeVideoPics(
     nextPics: TPics | null
   ): void;
 };
-export type TDirectorState =
-  TDirectorAddState &
-    TDirectorRemoveState & {
+export type TVideoState =
+  TVideoAddState &
+    TVideoRemoveState & {
       isPlaying: boolean;
       fps: number;
       durationInFrames: number;
@@ -27,6 +26,3 @@ export type TDirectorState =
       countVideoPics(): number;
       isVideoPics(): boolean;
     };
-
-export type TDirectorStateCreator =
-  TStateCreator<TDirectorState>;

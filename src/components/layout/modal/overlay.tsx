@@ -11,7 +11,7 @@ import { boxStyle } from "~/constants/box/style";
 
 export type TModalOverlayConfig =
   TDivProps & {
-    Icon: FC<TSvgProps>;
+    Icon?: FC<TSvgProps>;
     onCancel?(): void;
     onOk?(): void;
     title: string;
@@ -19,14 +19,18 @@ export type TModalOverlayConfig =
 export const ModalOverlay: FC<
   TModalOverlayConfig
 > = ({
-  Icon,
+  Icon  = IconsInfo,
   onCancel,
   onOk,
   children,
   classValue,
   ...props
 }) => {
-  const borderStyle = boxStyle({layer:'flat',borderRadius:'XL',size:'md'})
+  const {padding, ...borderStyle} = boxStyle({
+    layer: "floating",
+    borderRadius: "XL",
+    size: "md",
+  });
 
   return (
     <PortalBody>
@@ -36,7 +40,8 @@ export const ModalOverlay: FC<
       />
       <div
         className={clsx(
-          "fixed column-stretch dark:text-white-5 grow-0 shrink gap-4 left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 px-6 pt-4 pb-6 z-10 char-gap-6 z-50",
+          "absolute column-stretch dark:text-white-5 grow-0 shrink left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-10 char-gap-6 z-50",
+          "py-2 px-3",
           "background",
           "_gradient-mesh",
           classValue
@@ -44,36 +49,46 @@ export const ModalOverlay: FC<
         style={borderStyle}
         {...props}
       >
-        <div className="relative flex flex-row items-center gap-2 lg:gap-4 shrink-0">
-          <IconsInfo />
-          <h4 className="whitespace-nowrap text-2.5xl mt-1 md:text-4.5xl">
+        <div className="relative flex flex-row items-center p-4 lg:gap-4 shrink-0">
+          <Icon />
+          <h4 className="whitespace-nowrap text-2.5xl md:text-4.5xl">
             {props.title}
           </h4>
         </div>
         <div className="relative _gradient-radial w-full h-1" />
-
-        <p className="relative text-lg">
+        <p className="relative p-4 text-lg">
           {children}
         </p>
-        <div className="p-2">
-          <div className="border border-main w-full" />
-        </div>
-        <div className="row-space">
-          <button
-            onClick={onCancel}
-            className="relative px-4 py-2.5 border border-main hover:_gradient-radial"
-          >
-            <TexturesMesh classValue="inset-2" />
-            Cancel
-          </button>
-          <button
-            onClick={onOk}
-            className="relative px-4 py-2.5 border border-main hover:_gradient-radial"
-          >
-            <TexturesMesh classValue="inset-2" />
-            Ok
-          </button>
-        </div>
+
+        {onCancel || onOk ? (
+          <>
+            <div className="p-2">
+              <div className="border border-main w-full" />
+            </div>
+            <div className="row-space">
+              {onCancel && (
+                <button
+                  onClick={onCancel}
+                  className="relative px-4 py-2.5 border border-main hover:_gradient-radial"
+                >
+                  <TexturesMesh classValue="inset-2" />
+                  Cancel
+                </button>
+              )}
+              {onOk && (
+                <button
+                  onClick={onOk}
+                  className="relative px-4 py-2.5 border border-main hover:_gradient-radial"
+                >
+                  <TexturesMesh classValue="inset-2" />
+                  Ok
+                </button>
+              )}
+            </div>
+          </>
+        ) : (
+          <div className="p-0" />
+        )}
       </div>
     </PortalBody>
   );

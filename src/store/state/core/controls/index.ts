@@ -1,17 +1,18 @@
 import { TCoreControlsState } from "~/store/state/core/types";
-import {
-  TState,
-  TStateHandler,
-} from "~/store/types";
+import { TStateHandler } from "~/store/types";
 
 export const coreControlsState: TStateHandler<
   TCoreControlsState
-> = (set, get): TCoreControlsState => ({
+> = (set) => ({
   isControls: true,
   toggleControls: (next?: boolean) => {
-    set((prev: TState) => ({
-      isControls:
-        next ?? !prev.isControls,
-    }));
+    set(
+      (prev: {
+        isControls: boolean;
+      }) => ({
+        isControls:
+          next ?? !prev.isControls,
+      })
+    );
   },
 });

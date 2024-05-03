@@ -3,7 +3,7 @@ export const upperCase = <
 >(
   value: I
 ): Uppercase<I> =>
-  value.toUpperCase() as Uppercase<I>;
+  value?.toUpperCase() as Uppercase<I>;
 export const titleToUpperSnake = <
   I extends string
 >(

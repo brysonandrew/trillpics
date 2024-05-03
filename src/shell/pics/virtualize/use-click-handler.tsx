@@ -5,7 +5,7 @@ import {
 } from "react-router";
 import { useSearchParams } from "react-router-dom";
 import { SEARCH_PARAM_ID } from "~/shell/pics/pic/display";
-import { usePicZoomedCheckHandler } from "~/shell/pics/pic/hooks/zoomed-check-handler";
+import { usePicZoomedCheckHandler } from "~/shell/pics/pic/hooks/zoomed/check-handler";
 import { resolveResolvePicKey } from "~/shell/pics/pic/hooks/resolve-pic-key";
 import { TCursor } from "~/shell/pics/virtualize/context";
 

@@ -12,6 +12,12 @@ export const INDEX_PAGES = [
   "home",
 ];
 
+export const isIndex = (p: string) =>
+  INDEX_PAGES.some(
+    (v) => v === p.toLowerCase()
+  );
+
+
 export type TRoutePages = {
   pagesIndex: string;
   routesIndex: string

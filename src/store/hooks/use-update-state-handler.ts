@@ -2,11 +2,11 @@ import { useTrillPicsStore } from "~/store";
 
 export const useUpdateStateHandler =
   () => {
-    const { updateState } =
+    const { set } =
       useTrillPicsStore(
-        ({ updateState }) => ({
-          updateState,
+        ({ set }) => ({
+          set,
         })
       );
-    return updateState;
+    return set;
   };

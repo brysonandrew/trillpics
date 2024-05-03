@@ -5,11 +5,11 @@ import { isDefined } from "~/utils/validation/is/defined";
 
 export const coreScreenState: TStateHandler<
   TCoreScreenState
-> = (_, get) => ({
+> = (set, get) => ({
   screen: INIT_SCREEN,
   isOnscreen: false,
   toggleOnscreen: (next?: boolean) => {
-    get().updateState((draft) => {
+    set((draft: { isControls: boolean; isOnscreen: boolean; }) => {
       const nextOnscreenCheck =
         isDefined(next)
           ? next

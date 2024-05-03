@@ -1,25 +1,25 @@
 import type { FC } from "react";
 import { IconsInfo } from "~/components/icons/info";
 import { useTrillPicsStore } from "~/store";
-import { READ__DIRECTORS__INFO } from "~/constants/milestones";
+import { READ__VIDEOS__INFO } from "~/constants/milestones";
 import { TMilestones } from "~/types/milestones";
 import { ModalOverlay } from "~/components/layout/modal/overlay";
 
-export const DirectorsModal: FC =
+export const VideosModal: FC =
   () => {
-    const { milestones, updateState } =
+    const { milestones, set } =
       useTrillPicsStore(
         ({
           milestones,
-          updateState,
+          set,
         }) => ({
           milestones,
-          updateState,
+          set,
         })
       );
     if (
       milestones.includes(
-        READ__DIRECTORS__INFO
+        READ__VIDEOS__INFO
       )
     )
       return null;
@@ -27,9 +27,9 @@ export const DirectorsModal: FC =
     const handleClick = () => {
       const next: TMilestones = [
         ...milestones,
-        READ__DIRECTORS__INFO,
+        READ__VIDEOS__INFO,
       ];
-      updateState({
+      set({
         milestones: next,
       });
     };
@@ -39,7 +39,7 @@ export const DirectorsModal: FC =
         onOk={handleClick}
         onCancel={handleClick}
         Icon={IconsInfo}
-        title="Director's mode"
+        title="Video's mode"
       >
         Click on the images you'd like
         to add to your video

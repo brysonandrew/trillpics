@@ -1,5 +1,4 @@
 import { FULLSCREEN_Z } from "~/constants/dom";
-import { TPic } from "~/store/state/pics/types";
 
 export const POSITIONS = [
   'absolute cursor-zoom-in',

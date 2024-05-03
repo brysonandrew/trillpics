@@ -9,7 +9,6 @@ import {
   P,
   HP,
 } from "~/shell/pics/pic/constants";
-import { Carbon } from "~/css/carbon";
 
 type TBaseBoxChildProps = TPicProps & {
   style: TDimensions & {
@@ -44,8 +43,8 @@ export const Box: FC<TProps> = ({
   const left = cell.column * table.size;
   return (
     <>
-      <Carbon
-        // className="_gradient-mesh"
+      <div
+        className="_gradient-mesh"
         style={{
           position: "absolute",
           ...dimensions,

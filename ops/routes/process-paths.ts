@@ -1,13 +1,13 @@
 import { parse } from "path";
 import { RouteObject } from "react-router";
 import {
+  isIndex,
   PAGES_VARIABLE_NAME,
   REACT_ROUTER_IMPORT_ROW,
   ROUTES_INDEX_FILE,
   TRoutePages,
 } from "~ops/routes/config";
 import {
-  isIndex,
   resolveRoute,
 } from "~ops/routes/resolve-route";
 import { endTemplateArray } from "~ops/template";
@@ -16,13 +16,13 @@ export const capitalize = (
   word: string | null
 ) =>
   word
-    ? `${word[0].toUpperCase()}${word
+    ? `${word[0]?.toUpperCase()}${word
         .toLowerCase()
         .slice(1)}`
     : "";
 export const capslock = (
   word: string | null
-) => (word ? word.toUpperCase() : "");
+) => (word ? word?.toUpperCase() : "");
 export const dirToSnake = <
   I extends string
 >(
@@ -78,6 +78,7 @@ export const processPaths = (
         a.routesPages += `
 export const ${PAGES_VARIABLE_NAME}: RouteObject[] = [`;
       }
+      // const pathDir = isIndex(dir) ? "" : dir
 
       const nextRoute: RouteObject =
         resolveRoute(dir);

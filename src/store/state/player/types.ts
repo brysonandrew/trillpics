@@ -1,6 +1,4 @@
-import {
-  PlayerMethods,
-} from "@remotion/player";
+import { PlayerMethods } from "@remotion/player";
 import { PlayerEmitter } from "@remotion/player/dist/cjs/event-emitter";
 
 export type TPlayerInstance =
@@ -12,9 +10,7 @@ export type TPlayerInstance =
   | null;
 
 export type TPlayerSeekFramesState = {
-  seekFrames: (
-    nextCurrentFrame: number
-  ) => void;
+  seekFrames: (frames: number) => void;
 };
 
 export type TPlayerSeekSecondsState = {

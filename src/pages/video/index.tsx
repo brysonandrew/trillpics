@@ -68,7 +68,7 @@ export const Video = () => {
           <VideoFooter />
         </FooterLeft>
       </Footer>
-      {/* <DirectorsModal /> */}
+      {/* <VideosModal /> */}
     </>
   );
 };

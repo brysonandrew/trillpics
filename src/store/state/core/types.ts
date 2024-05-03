@@ -1,5 +1,4 @@
 import { TScreen } from "~/shell/init/measure";
-import { TStateCreator } from "~/store/types";
 import { TMilestones } from "~/types/milestones";
 
 export type TCoreKey = string | number;
@@ -18,6 +17,3 @@ export type TCoreState =
     TCoreScreenState & {
       milestones: TMilestones;
     };
-
-export type TCoreStateCreator =
-  TStateCreator<TCoreState>;

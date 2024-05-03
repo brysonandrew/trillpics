@@ -1,10 +1,10 @@
 import { TState } from "~/store/types";
-import { PERSIST_STATE_RECORD } from "~/store/middleware/persist/storage";
+import { PERSIST_STATE_RECORD } from "~/store/middleware/3.persist/storage";
 
 export type TPersistKey =
   keyof typeof PERSIST_STATE_RECORD;
 
-export type TPersistState = Pick<
+export type TPersistPartializedState = Pick<
   TState,
   TPersistKey
 >;
@@ -17,10 +17,10 @@ export type TPersistRecord = Record<
 >;
 export type TPersistInitMiddleware = [
   "zustand/persist",
-  TPersistState
+  TPersistPartializedState
 ];
 
 export type TPersistMiddleware = [
   "zustand/persist",
-  TPersistState
+  TPersistPartializedState
 ];

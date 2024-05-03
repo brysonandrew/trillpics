@@ -7,14 +7,14 @@ export const useRemotionPlayerProps =
   () => {
     const {
       playerInstance,
-      updateState,
+      set,
     } = useTrillPicsStore(
       ({
         playerInstance,
-        updateState,
+        set,
       }) => ({
         playerInstance,
-        updateState,
+        set,
       })
     );
     const {
@@ -30,7 +30,7 @@ export const useRemotionPlayerProps =
       instance: PlayerRef | null
     ) => {
       if (instance && !playerInstance) {
-        updateState({
+        set({
           playerInstance: instance,
         });
       }

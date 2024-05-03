@@ -6,7 +6,6 @@ import { TStateHandler } from "~/store/types";
 export const coreState: TStateHandler<
   TCoreState
 > = (...args): TCoreState => {
-  const [set, get] = args;
   return {
     ...coreScreenState(...args),
     ...coreControlsState(...args),

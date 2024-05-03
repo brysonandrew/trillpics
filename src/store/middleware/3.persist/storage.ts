@@ -1,10 +1,10 @@
 import { TState } from "~/store/types";
 import { PersistOptions } from "zustand/middleware";
-import { STORAGE_JSON } from "~/store/middleware/persist/json";
+import { STORAGE_JSON } from "~/store/middleware/3.persist/json";
 import {
   TPersistKey,
-  TPersistState,
-} from "~/store/middleware/persist/types";
+  TPersistPartializedState,
+} from "~/store/middleware/3.persist/types";
 import { resolveCompositeKey } from "@brysonandrew/utils-key";
 import packageJson from "~root/package.json";
 const version = packageJson.version;
@@ -28,9 +28,9 @@ const KEYS = Object.keys(
   PERSIST_STATE_RECORD
 ) as TPersistKey[];
 
-export const STORAGE: PersistOptions<
+export const PERSIST_STORAGE: PersistOptions<
   TState,
-  TPersistState
+  TPersistPartializedState
 > = {
   name: persistKey,
   partialize: (state: TState) =>
@@ -41,7 +41,7 @@ export const STORAGE: PersistOptions<
           [key]: state[key],
         };
       },
-      {} as TPersistState
+      {} as TPersistPartializedState
     ),
   storage: STORAGE_JSON,
 };

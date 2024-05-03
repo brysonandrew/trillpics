@@ -1,9 +1,4 @@
 import {
-  OPACITY_RANGE_RGB_RECORD,
-  VARIABLES_RECORD,
-} from "./config/constants";
-import { TVariablesRecord } from "./config/types";
-import {
   BASE_RGBS_RECORD,
   resolveColorRecords,
   TBaseColorRecord,
@@ -13,28 +8,29 @@ import {
   BLACK_RGBS,
   WHITE_RGBS,
 } from "@brysonandrew/color-grayscale";
+import {
+  OPACITY_RANGE_RGB_RECORD,
+  VARIABLES_RECORD,
+} from "./config/constants";
+import { TVariablesRecord } from "./config/types";
 
 const RGB_RECORD = {
   ...OPACITY_RANGE_RGB_RECORD,
   ...BASE_RGBS_RECORD,
   dark: BLACK_RGBS[2],
   light: WHITE_RGBS[2],
-  primary: "2, 2, 2",
-  secondary: "1, 1, 1",
-  accent: "0, 0, 0",
+  // primary: "#f4ba37",
+  // secondary: "#d94c9a",
+  // accent: "#29abe2",
 } as const;
 
 type TRgbRecord = typeof RGB_RECORD;
 
-const {
-  colorRecord,
-  colorCssVariablesRecord,
-  colorVarsCss,
-  opacityRangeColorRecord,
-} = resolveColorRecords<
-  TRgbRecord,
-  TVariablesRecord
->(RGB_RECORD, VARIABLES_RECORD);
+const colorRecords =
+  resolveColorRecords<
+    TRgbRecord,
+    TVariablesRecord
+  >(RGB_RECORD, VARIABLES_RECORD);
 type TColorRecord = TVariablesRecord &
   typeof opacityRangeColorRecord &
   TBaseColorRecord &
@@ -44,9 +40,15 @@ type TColorRecord = TVariablesRecord &
 export type TColorKey =
   | keyof TColorRecord;
 
+const {
+  colorRecord,
+  colorCssVariablesRecord,
+  colorVarsCss,
+  opacityRangeColorRecord,
+} = colorRecords;
+
 // export type Record<TColorKey, string>;
-export const COLOR_RECORD =
-  colorRecord as TColorRecord;
+export const COLOR_RECORD = colorRecord;
 export const COLOR_VARS_RECORD =
   colorCssVariablesRecord;
 export const COLOR_VARS_CSS =

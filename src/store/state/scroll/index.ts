@@ -6,7 +6,7 @@ export const SCROLL_COOLDOWN = 120;
 
 export const scrollState: TStateHandler<
   TScrollState
-> = (...args): TScrollState => ({
+> = () => ({
   isScrolling: false,
   isScroll: false,
   // scroll: scrollUpdateState(...args),

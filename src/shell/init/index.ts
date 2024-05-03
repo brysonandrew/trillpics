@@ -6,15 +6,16 @@ import {
   useScreenMeasure,
 } from "~/shell/init/measure";
 import { useTrillPicsStore } from "~/store";
+import { TSet } from "~/store/state/set/types";
 
 export const useInit = () => {
   const { timeoutRef, endTimeout } =
     useTimeoutRef();
-  const { table, updateState } =
+  const { table, set } =
     useTrillPicsStore(
-      ({ table, updateState }) => ({
+      ({ table, set }) => ({
         table,
-        updateState,
+        set,
       })
     );
   const handleScreenReady = (
@@ -23,7 +24,7 @@ export const useInit = () => {
     endTimeout();
     timeoutRef.current = setTimeout(
       () => {
-        updateState((draft) => {
+        set((draft: { screen: TScreen; }) => {
           draft.screen = screen;
         });
         if (screen.isDimensions) {

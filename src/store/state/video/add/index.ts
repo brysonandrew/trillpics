@@ -1,13 +1,13 @@
-import { TDirectorAddState } from "~/store/state/director/types";
+import { TVideoAddState } from "~/store/state/video/types";
 import { TPics } from "~/store/state/pics/types";
 import {
   TState,
   TStateHandler,
 } from "~/store/types";
 
-export const directorAddState: TStateHandler<
-  TDirectorAddState
-> = (set, get): TDirectorAddState => ({
+export const videoAddState: TStateHandler<
+  TVideoAddState
+> = (set, get): TVideoAddState => ({
   addVideoPic: (next: string) => {
     get().addVideoPics([next]);
   },
