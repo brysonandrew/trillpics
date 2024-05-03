@@ -7,7 +7,10 @@ import { boxStyle } from "~/constants/box/style";
 
 export const PlayerPlayback: FC =
   () => {
-    const {boxShadow, ...borderStyle} = boxStyle({
+    const {
+      boxShadow,
+      ...borderStyle
+    } = boxStyle({
       layer: "flat",
       borderRadius: "XL",
       size: "md",

@@ -59,7 +59,6 @@ export const Generate = () => {
     mutate,
   } = trpc.generate.useMutation({
     onSuccess: async (result) => {
-      console.log(result);
       if (!result) return;
       if (
         result.buffer &&

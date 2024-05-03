@@ -1,5 +1,5 @@
 import { makeRect } from "@remotion/shapes";
-import { DIMENSIONS } from "../../../../constants/remotion";
+import { DIMENSIONS } from "~/constants/remotion";
 
 const {
   path,

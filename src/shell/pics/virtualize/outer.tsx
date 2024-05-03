@@ -1,12 +1,17 @@
 import {
   forwardRef,
   PropsWithChildren,
+  useImperativeHandle,
+  useRef,
 } from "react";
 import clsx from "clsx";
 import { MOTION_BLUR_FILTER_X_PROPS } from "~/components/blur/constants";
 
-export const Outer = forwardRef<
-  HTMLDivElement,
+export type TOuterHandle = {
+  isHovering: () => boolean;
+};
+const Outer = forwardRef<
+  TOuterHandle,
   PropsWithChildren<any>
 >(
   (
@@ -18,47 +23,57 @@ export const Outer = forwardRef<
     },
     ref
   ) => {
-    // const {
-    //   onUpdate,
-    //   setVirtualizeList,
-    //   virtualizeList,
-    // } = useVirtualizeContext();
-    // console.log(
-    //   "virtualizeList",
-    //   virtualizeList
-    // );
-    console.log(props);
+    const eventRef = useRef<{
+      isHovering: boolean;
+    }>({ isHovering: false });
+
+    const sourceRef =
+      useRef<null | HTMLDivElement>(
+        null
+      );
+    const source = sourceRef.current;
+    useImperativeHandle(
+      ref,
+      () => {
+        return {
+          isHovering: () => {
+            return eventRef.current
+              .isHovering;
+          },
+        };
+      },
+      []
+    );
     return (
       <div
-        className={clsx(
-          "fill",
-          className
-        )}
+        className={clsx(className)}
         style={{
           ...style,
           ...MOTION_BLUR_FILTER_X_PROPS,
         }}
-        ref={ref}
-        // ref={(instance) => {
-        //   if (
-        //     instance &&
-        //     !virtualizeList
-        //   ) {
-        //     console.log(virtualizeList);
+        //  ref={ref}
+        ref={(instance) => {
+          if (instance && !source) {
+            sourceRef.current =
+              instance;
+          }
+        }}
+        onPointerEnter={() => {
+          eventRef.current.isHovering =
+            true;
+          // if (!isNoHover) clear();
+        }}
+        onPointerLeave={() => {
+          eventRef.current.isHovering =
+            false;
 
-        //     //    console.log(instance);
-        //     setVirtualizeList(
-        //       virtualizeList
-        //     );
-        //   }
-        // }}
-
+        }}
         {...props}
       >
-        {/* <BlurXy> */}
         {children}
-        {/* </BlurXy> */}
       </div>
     );
   }
 );
+Outer.displayName = "Outer";
+export { Outer };

@@ -3,7 +3,7 @@ import {
   GRADIENT_BLUE_PINK_YELLOW_COLORS,
   GRADIENT_TEAL_YELLOW_PINK_COLORS,
 } from "~app/color/gradient";
-import { SvgWrap } from "@brysonandrew/svg";
+import { SvgWrap } from "@brysonandrew/svg-dimensionless";
 export const LINEAR_GRADIENT_SVG_ID =
   "linear-gradient-blue-pink-yellow-svg";
 type TProps = { isDarkMode: boolean };

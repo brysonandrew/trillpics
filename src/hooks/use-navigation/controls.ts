@@ -1,11 +1,11 @@
 import { useNavigate } from "react-router";
 import { useSearchParams } from "react-router-dom";
-import { HOME_PATH_VALUE } from "~/constants/params";
 import { useNavigationActive } from "~/hooks/use-navigation/active";
 import { TPathValue } from "~/types/params";
+import { HOME_ROUTE } from "~/constants/params";
 
 export const useNavigationControls = (
-  pathValue: TPathValue = HOME_PATH_VALUE
+  pathValue: TPathValue = HOME_ROUTE
 ) => {
   const [searchParams] =
     useSearchParams();

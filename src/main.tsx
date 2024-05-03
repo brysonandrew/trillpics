@@ -12,9 +12,7 @@ import {
 import { Boundary } from "@brysonandrew/boundary";
 import { HelmetProvider } from "react-helmet-async";
 import { ProvidersApi } from "~/shell/providers/api";
-import { ROUTES } from "~app/routes";
-import { init as initServiceWorker } from "~app/service-worker/init";
-initServiceWorker();
+import { ROUTES } from "~/shell/routes";
 import { MOTION_CONFIG } from "@brysonandrew/motion-config-constants";
 
 window.React = React;

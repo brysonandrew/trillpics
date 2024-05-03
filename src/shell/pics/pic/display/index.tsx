@@ -6,7 +6,6 @@ import {
   motion,
   MotionProps,
 } from "framer-motion";
-import { TUsePicBackdrop } from "~/shell/pics/pic/backdrop/use-backdrop";
 import {
   TDimensions,
   TImgMotionProps,
@@ -24,8 +23,7 @@ export type TPicDisplayProps = Pick<
   TImgMotionProps,
   "onTap" | "onLayoutAnimationComplete"
 > &
-  TPicProps &
-  Partial<TUsePicBackdrop> & {
+  Pick<TPicProps, "name"> & {
     style: CSSProperties &
       TDimensions & { left: number };
   };

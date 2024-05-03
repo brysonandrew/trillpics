@@ -1,6 +1,5 @@
 import {
   AnimatePresence,
-  useTransform,
 } from "framer-motion";
 import { useOutletContext } from "react-router";
 import { TOutletContext } from "~/shell";
@@ -22,9 +21,6 @@ export const Video = () => {
     useOutletContext<TOutletContext>();
   const { scrollY } =
     useVirtualizeContext();
-  // console.log("▁▁▁▁▂▂▂▂▃▃▃▃▄▄▄▅▅▅▅▆▆▆▆▇▇▇▇██▓▒░ 🧨 ░▒▓█▓▒░ 🧨 ░▒▓██▇▇▇▇▆▆▆▆▅▅▅▅▄▄▄▃▃▃▃▂▂▂▂▁▁▁▁");
-  // console.dir(d);
-  // console.log("██████████████▓▒░ 🧨 ░▒ line: 23, file: index.tsx ▓▒░ 🧨 ░▒██████████████");
   const {
     table,
     hoverPicProps,
@@ -50,10 +46,10 @@ export const Video = () => {
             style={{
               y: scrollY,
               left:
-                hoverPicProps.columnIndex *
-                table.size,
+                hoverPicProps.cell
+                  .column * table.size,
               top:
-                hoverPicProps.rowIndex *
+                hoverPicProps.cell.row *
                 table.size,
               ...resolveSquare(
                 table.size

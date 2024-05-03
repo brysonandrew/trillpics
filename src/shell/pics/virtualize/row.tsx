@@ -22,8 +22,10 @@ export const Row: FC<TProps> = (
             <Cell
               key={`${pic}`}
               name={pic}
-              columnIndex={columnIndex}
-              rowIndex={props.index}
+              cell={{
+                column: columnIndex,
+                row: props.index,
+              }}
             />
           );
         }

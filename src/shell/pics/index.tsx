@@ -6,9 +6,9 @@ import { Virtualize } from "~/shell/pics/virtualize";
 import { useVirtualizeContext } from "~/shell/pics/virtualize/context";
 
 type TProps = TPartialFixedTableProps;
-export const Pics: FC<TProps> = ({
-  ...props
-}) => {
+export const Pics: FC<TProps> = (
+  props
+) => {
   const { onScroll, ref } =
     useVirtualizeContext();
   const { table, screen } =
@@ -31,11 +31,13 @@ export const Pics: FC<TProps> = ({
       )}
       {screen.isDimensions && (
         <Virtualize
-          {...table}
-          {...props}
-          {...screen}
+          rows={table.rows}
+          size={table.size}
           onScroll={onScroll}
           ref={ref}
+          {...props}
+          width={screen.width}
+          height={screen.height}
         />
       )}
     </>

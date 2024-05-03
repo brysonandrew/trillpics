@@ -5,11 +5,11 @@ export const resolveGridTemplateConfig =
     cells: TGrid<K>,
   ) => {
     const stats: {
-      prevColCellCount: number | null;
+      prevColumnCellCount: number | null;
       columns: number[];
       rowCount: number;
     } = {
-      prevColCellCount: null,
+      prevColumnCellCount: null,
       columns: [],
       rowCount: 0,
     };
@@ -33,17 +33,17 @@ export const resolveGridTemplateConfig =
       }
       const count = currCells.length;
       if (
-        typeof stats.prevColCellCount ===
+        typeof stats.prevColumnCellCount ===
           'number' &&
-        stats.prevColCellCount !== count
+        stats.prevColumnCellCount !== count
       ) {
         console.error(
-          'Invalid col cell count ',
-          `prev: ${stats.prevColCellCount}`,
+          'Invalid column cell count ',
+          `prev: ${stats.prevColumnCellCount}`,
           `next: ${count}`,
         );
       }
-      stats.prevColCellCount = count;
+      stats.prevColumnCellCount = count;
 
       stats.columns.push(count);
       stats.rowCount++;
@@ -57,7 +57,7 @@ export const resolveGridTemplateConfig =
 
     return {
       gridTempateAreas,
-      colCount: stats.prevColCellCount,
+      columnCount: stats.prevColumnCellCount,
       rowCount: stats.rowCount,
     };
   };

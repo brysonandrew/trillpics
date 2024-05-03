@@ -1,6 +1,5 @@
 import { BOX_RADIUS } from "~/constants/box/style/radius";
 import { BOX_SIZE } from "~/constants/box/style/size";
-import { BORDER_RADIUS } from "~app/style/border-radius";
 import {
   SHORTCUTS_BOX_BACKGROUND_COLOR,
   SHORTCUTS_BOX_BACKGROUND_IMAGE,

@@ -1,7 +1,7 @@
-import type { FC } from 'react';
-import styled from '@emotion/styled';
-import { carbonFiberCss } from '~/css/carbon/textures';
-const textureCss = carbonFiberCss;
+import type { FC } from "react";
+import styled from "@emotion/styled";
+import { carbonFiberCss } from "~/css/carbon/textures";
+import { TDivProps } from "@brysonandrew/config-types";
 
 const Root = styled.div``;
 const Dark = styled.div`
@@ -11,16 +11,20 @@ const Light = styled.div`
   background-color: var(--white);
 `;
 const Texture = styled.div`
-  ${textureCss}
-  /* opacity: 0.4; */
+  ${carbonFiberCss}/* opacity: 0.4; */
 `;
 
-export const Carbon: FC = () => {
+export const Carbon: FC<TDivProps> = (
+  props
+) => {
   return (
-    <Root className='fill-screen'>
-      <Dark className='fill opacity-dark' />
-      <Light className='fill opacity-light' />
-      {/* <Texture className='fill' /> */}
-    </Root>
+    <>
+      <Root
+        className="_gradient-mesh"
+        {...props}
+      />
+      {/* <Metal {...props} /> */}
+      <Texture {...props} />
+    </>
   );
 };

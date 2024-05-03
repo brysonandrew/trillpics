@@ -8,20 +8,20 @@ export const useRemotionProps = () => {
     videoPics,
     fps,
     countVideoPics,
-    picsCount,
+    countPics,
   } = useTrillPicsStore(
     ({
       screen,
       videoPics,
       fps,
       countVideoPics,
-      picsCount,
+      countPics,
     }) => ({
       screen,
       videoPics,
       fps,
       countVideoPics,
-      picsCount,
+      countPics,
     })
   );
   const dimensions = useImageDimensions(
@@ -32,12 +32,13 @@ export const useRemotionProps = () => {
       image: DIMENSIONS,
     }
   );
+  const picsCount = countPics();
 
   const videoPicsCount =
     countVideoPics();
   const pics =
     videoPicsCount === 0
-      ? [...Array(picsCount)].map(
+      ? [...Array(5)].map(
           () =>
             `${Math.floor(
               picsCount * Math.random()
@@ -47,7 +48,7 @@ export const useRemotionProps = () => {
 
   const durationInFrames =
     pics.length * fps || 1;
-
+console.log(durationInFrames,pics,fps)
   return {
     fps,
     durationInFrames,

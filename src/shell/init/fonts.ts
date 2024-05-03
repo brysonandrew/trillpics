@@ -1,6 +1,6 @@
 import { useEffect } from "react";
-import { FONTS } from "~app/base";
 import FontFaceObserver from "fontfaceobserver";
+import { FONTS } from "~app/base/fonts";
 
 type TConfig = any;
 export const useFonts = (

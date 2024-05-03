@@ -22,7 +22,11 @@ export const VideoFooterControls: FC<
         videoPics,
       })
     );
-  const props = { Button, ..._props };
+  const props = {
+    Button,
+    ..._props,
+    style: { zIndex: 99 },
+  };
   const isVideoPics =
     videoPics.length > 0;
   const title = isVideoPics
@@ -58,8 +62,7 @@ export const VideoFooterControls: FC<
         title={title}
         {...props}
       />
-            <Seperator />
-
+      <Seperator />
     </>
   );
 };

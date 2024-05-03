@@ -16,7 +16,7 @@ import {
   TSvgElementProps,
 } from "@brysonandrew/config-types";
 import { useEventListener } from "@brysonandrew/hooks-events";
-import { SvgWrap } from "@brysonandrew/svg";
+import { SvgWrap } from "@brysonandrew/svg-dimensionless";
 import { TSelfDestrucTPicsBaseRow } from "~/components/blur/presence/self-destruct";
 
 const DUR = 0.6;

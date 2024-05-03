@@ -14,8 +14,14 @@ import {
   TVirtualizeContextHandle,
   TVirtualizeList,
 } from "~/shell/pics/virtualize/context";
-import { Inner } from "~/shell/pics/virtualize/inner";
-import { Outer } from "~/shell/pics/virtualize/outer";
+import {
+  Inner,
+  TInnerHandle,
+} from "~/shell/pics/virtualize/inner";
+import {
+  Outer,
+  TOuterHandle,
+} from "~/shell/pics/virtualize/outer";
 
 type TProps = TPartialFixedTableProps &
   TDimensions & {
@@ -30,28 +36,48 @@ export const Virtualize = forwardRef<
     { size, rows, ...props }: TProps,
     handleRef
   ) => {
-    const innerRef =
+    // const { clear, isNoHover } =
+    // useHoverKey();
+    const outerHandle =
+      useRef<TOuterHandle | null>(null);
+    const innerHandle =
+      useRef<TInnerHandle | null>(null);
+    const sourceRef =
       useRef<TVirtualizeList | null>(
         null
       );
-    console.log(props);
+    const fixedSizeList =
+      sourceRef.current;
     useImperativeHandle(
       handleRef,
       () => {
-        //   const { clear, isNoHover } =
-        //   useHoverKey();
-        // const handleMouseEnter = () => {
-        //   if (!isNoHover) clear();
-        // };
-        const fixedSizeList =
-          innerRef.current;
+        console.log("fixedSizeList");
         console.log(fixedSizeList);
-        //   if (!fixedSizeList) return;
         return {
           scrollTop: () => {
             fixedSizeList?.scrollToItem(
               0
             );
+          },
+          isHovering: () =>
+            Boolean(
+              outerHandle.current?.isHovering()
+            ),
+          scrollTrue: () => {
+            console.log(fixedSizeList);
+          },
+          checkScrolling: () => {
+            const isScrolling = (
+              fixedSizeList?.state as any
+            )?.isScrolling;
+            return isScrolling;
+          },
+          // stateX: fixedSizeList?.state,
+          onPointerEnter: () => {
+            console.log("Virtualize.onPointerEnter");
+          },
+          onPointerLeave: () => {
+            console.log("Virtualize.onPointerLeave");
           },
         };
       },
@@ -78,15 +104,16 @@ export const Virtualize = forwardRef<
           ref={(instance) => {
             if (
               instance &&
-              !innerRef.current
+              !sourceRef.current
             ) {
-              console.log("update");
-              innerRef.current =
+              sourceRef.current =
                 instance;
             }
           }}
           innerElementType={Inner}
           outerElementType={Outer}
+          innerRef={innerHandle}
+          outerRef={outerHandle}
           {...props}
         >
           {Row}

@@ -1,6 +1,6 @@
 import { FC, useState } from "react";
-import { TIdProps } from "@brysonandrew/svg";
 import { resolveUrlId } from "@brysonandrew/utils-attributes";
+import { TIdProps } from "@brysonandrew/svg-filter";
 type TDoneProps = {
   onDone?(event: Event): void;
 };

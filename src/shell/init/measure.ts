@@ -12,6 +12,8 @@ import {
 import { useVirtualizeContext } from "~/shell/pics/virtualize/context";
 import { isValue } from "~/utils/validation/is/value";
 import { measureContainer } from "~/shell/init/container";
+import { useImageDimensions } from "@brysonandrew/measure";
+import { width, height } from "tailwindcss/defaultTheme";
 
 export const RESIZE_COOLDOWN = 400;
 
@@ -54,7 +56,6 @@ export const useScreenMeasure = (
     useState<TScreen>(INIT_SCREEN);
   const { timeoutRef, endTimeout } =
     useTimeoutRef();
-
   const handleSize = (
     next?: TScreen
   ) => {
@@ -106,7 +107,9 @@ export const useScreenMeasure = (
       ...INIT_SCREEN,
       isResizing: true,
     });
-    if (isValue(blurRef.current.control.x)) {
+    if (
+      isValue(blurRef.current.control.x)
+    ) {
       blurRef.current.control.x.cancel();
     }
     blurRef.current.control.x = animate(
@@ -116,7 +119,10 @@ export const useScreenMeasure = (
         duration:
           (RESIZE_COOLDOWN / 1000) * 2,
         type: "tween",
-        onComplete: () => blurRef.current.value.x.set(0),
+        onComplete: () =>
+          blurRef.current.value.x.set(
+            0
+          ),
       }
     );
     endTimeout();

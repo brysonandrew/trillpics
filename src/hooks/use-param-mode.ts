@@ -4,12 +4,11 @@ import {
 } from "react-router";
 import { useSearchParams } from "react-router-dom";
 import {
-  DIRECTORS_MODE_PATH_VALUE,
-  MODE_PARAM_KEY,
+  MODE_PARAM_KEY, VIDEO_ROUTE,
 } from "~/constants/params";
 
 type TPagePathValue =
-  | typeof DIRECTORS_MODE_PATH_VALUE
+  | typeof VIDEO_ROUTE
   | null;
 export const useMode = () => {
   const location = useLocation();
@@ -20,7 +19,7 @@ export const useMode = () => {
     searchParams.get(MODE_PARAM_KEY);
   const isVideo =
     modeParamValue ===
-    DIRECTORS_MODE_PATH_VALUE;
+    VIDEO_ROUTE;
   const toggleVideo = (
     nextMode?: TPagePathValue
   ) => {
@@ -37,7 +36,7 @@ export const useMode = () => {
       } else {
         searchParams.set(
           MODE_PARAM_KEY,
-          DIRECTORS_MODE_PATH_VALUE
+          VIDEO_ROUTE
         );
       }
     }

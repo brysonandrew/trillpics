@@ -1,9 +1,6 @@
 import { FC } from "react";
 import { resolveSquare } from "@brysonandrew/measure";
-import {
-  TUseBox,
-  useBox,
-} from "~/shell/pics/pic/box/use-box";
+import { useBox } from "~/shell/pics/pic/box/use-box";
 import { useTrillPicsStore } from "~/store";
 import { TDimensions } from "@brysonandrew/config-types";
 import { TPicProps } from "~/shell/pics/pic";
@@ -12,18 +9,13 @@ import {
   P,
   HP,
 } from "~/shell/pics/pic/constants";
+import { Carbon } from "~/css/carbon";
 
-type TOmitUseBox = Omit<
-  TUseBox,
-  "isPicZoomed"
->;
-type TBaseBoxChildProps = TPicProps &
-  TOmitUseBox &
-  TDimensions & {
-    style: TDimensions & {
-      left: number;
-    };
+type TBaseBoxChildProps = TPicProps & {
+  style: TDimensions & {
+    left: number;
   };
+};
 export type TBoxChildProps =
   TBaseBoxChildProps;
 type TProps = Partial<TPicHoverResult> &
@@ -38,24 +30,22 @@ type TProps = Partial<TPicHoverResult> &
 export const Box: FC<TProps> = ({
   children,
   cursor,
+  cell,
   ...props
 }) => {
-  const { isPicZoomed, ...box } =
-    useBox(props);
+  const isPicZoomed = useBox({ cell });
   const { table } = useTrillPicsStore(
     ({ table }) => ({
       table,
     })
   );
-
   const dimensions: TDimensions =
     resolveSquare(table.size - P);
-  const left =
-    props.columnIndex * table.size;
+  const left = cell.column * table.size;
   return (
     <>
-      <div
-        className="_gradient-mesh"
+      <Carbon
+        // className="_gradient-mesh"
         style={{
           position: "absolute",
           ...dimensions,
@@ -64,13 +54,12 @@ export const Box: FC<TProps> = ({
           cursor,
         }}
         {...props.handlers}
-      ></div>
+      />
       <>
         {children(
           {
-            ...dimensions,
-            ...box,
             ...props,
+            cell,
             style: {
               left,
               ...dimensions,

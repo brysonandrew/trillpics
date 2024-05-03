@@ -8,14 +8,9 @@ export const useScrollTopHandler =
       scrollY,
       ref,
     } = useVirtualizeContext();
-    console.log(ref);
     const handler = () => {
-      console.log(ref);
       if (!ref.current) return;
       const y = scrollY.get();
-      // const scrollOffset =
-      // virtualizeHandle.state
-      //     .scrollOffset;
 
       ref.current.scrollTop();
       if (blurRef.current.control.y) {

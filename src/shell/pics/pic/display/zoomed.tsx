@@ -1,34 +1,40 @@
 import type { FC } from "react";
 import { FULLSCREEN_Z } from "~/constants/dom";
-import { TUsePicBackdrop } from "~/shell/pics/pic/backdrop/use-backdrop";
 import { TBoxChildProps } from "~/shell/pics/pic/box";
-import { 
-  PicDisplay,
-  TPicDisplayProps,
-} from "~/shell/pics/pic/display";
+import { PicDisplay } from "~/shell/pics/pic/display";
 import { centerInScreen } from "~/utils/dimensions/center-in-viewport";
+import { useTrillPicsStore } from "~/store";
 
 export const PicDisplayZoomed: FC<
-  Omit<TPicDisplayProps, "style"> &
-    TUsePicBackdrop &
     TBoxChildProps
 > = ({ style, ...props }) => {
+  const { screen } = useTrillPicsStore(
+    ({ screen }) => ({ screen })
+  );
+  if (!screen.isDimensions) return null;
+  const shortest = Math.min(
+    screen.width,
+    screen.height
+  );
+  const zoomDimensions = {
+    width: shortest,
+    height: shortest,
+  };
+  const screenDimensions = {
+    width: screen.width,
+    height: screen.height,
+  };
   return (
     <PicDisplay
       style={{
         ...style,
         position: "fixed",
-        ...(props.zoomDimensions
-          .isDimensions &&
-        props.screen.isDimensions
-          ? centerInScreen(
-              props.zoomDimensions,
-              props.screen
-            )
-          : {}),
+        ...centerInScreen(
+          zoomDimensions,
+          screenDimensions
+        ),
         zIndex: FULLSCREEN_Z,
       }}
-      onTap={props.onZoomOut}
       {...props}
     />
   );

@@ -7,7 +7,6 @@ const { length: cellsCount } =
 export const tableUpdateCount = ({
   width,
 }: TTableCountConfig) => {
-  console.log(cellsCount, width);
   const columnsCount = Math.ceil(
     width / APPROX_IMAGE_SIZE
   );

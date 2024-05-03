@@ -1,18 +1,19 @@
 import { resolveSquare } from "@brysonandrew/measure";
+import {
+  TCursor,
+  TCursorCell,
+} from "~/shell/pics/virtualize/context";
 
-type TConfig = {
+type TConfig = TCursorCell & {
   size: number;
-  colIndex?: number;
-  rowIndex?: number;
 };
 export const squareFromSize = ({
   size,
-  colIndex = 0,
-  rowIndex = 0,
+  cell,
 }: TConfig) => ({
   ...resolveSquare(size),
-  offsetX: size * colIndex, //rowIndex * size,
-  offsetY: size * rowIndex, //rowIndex * size,
+  offsetX: size * cell.column, 
+  offsetY: size * cell.row,
 });
 export type TSquareFromSize =
   ReturnType<typeof squareFromSize>;

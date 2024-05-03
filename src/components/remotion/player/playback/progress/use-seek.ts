@@ -38,7 +38,6 @@ export const useSeek = () => {
     const progress =
       (pageX - left) / width;
 
-    console.log(progress);
     handleSeek(progress);
   };
 

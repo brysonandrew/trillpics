@@ -1,6 +1,6 @@
 import type { FC } from "react";
 import { useDarkMode } from "@brysonandrew/dark-mode";
-import { HOME_ROUTE } from "~/constants/routes";
+import { HOME_ROUTE } from "~/constants/params";
 import { useLocation } from "react-router";
 import { LightingGlow } from "~/components/layout/lighting/glow";
 import { resolvePresence } from "~/utils/animation";

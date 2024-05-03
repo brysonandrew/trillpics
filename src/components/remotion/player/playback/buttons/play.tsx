@@ -1,10 +1,8 @@
 import { type FC } from "react";
-import { useShallow } from "zustand/react/shallow";
 import { useTrillPicsStore } from "~/store";
 import { IconsPause } from "~/components/icons/playback/pause";
 import { IconsPlay } from "~/components/icons/playback/play";
 import { resolveInteractiveLabels } from "@brysonandrew/utils-attributes";
-import { PlaybackButtonsB } from "~/components/remotion/player/playback/buttons/b";
 import { PillB } from "~/components/buttons/pill/b";
 
 export const PlaybackButtonsPlay: FC =

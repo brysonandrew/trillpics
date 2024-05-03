@@ -3,6 +3,7 @@ import { Loading } from "@brysonandrew/loading";
 import { RenderPoster } from "@remotion/player";
 import { OverlaysContent } from "~/components/remotion/player/overlays/content";
 import { IconsPlayLarge } from "~/components/icons/playback/play";
+
 export const OVERLAYS_POSTER_PROPS = {
   children: `Pics are random, go back to
   the gallery if you would
@@ -13,6 +14,7 @@ export const OVERLAYS_POSTER_PROPS = {
     Icon: IconsPlayLarge,
   },
 };
+
 export const usePoster = () => {
   const renderPoster: RenderPoster =
     useCallback(({ isBuffering }) => {

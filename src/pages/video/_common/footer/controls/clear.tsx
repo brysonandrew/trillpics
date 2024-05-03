@@ -4,7 +4,6 @@ import { IconsTrash } from "~/components/icons/video/trash1";
 import { PillBHover } from "~/components/buttons/pill/b/hover";
 import { TVideoFooterProps } from "~/pages/video/_common/footer/types";
 import { useVirtualizeContext } from "~/shell/pics/virtualize/context";
-import { animate } from "framer-motion";
 
 export const ControlsClear: FC<
   TVideoFooterProps

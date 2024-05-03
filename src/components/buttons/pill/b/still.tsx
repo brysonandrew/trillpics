@@ -22,7 +22,6 @@ export const PillBStill: FC<TProps> = ({
   const handleClick = (
     e: MouseEvent<HTMLButtonElement>
   ) => {
-    console.log(e);
     if (props.onClick) {
       props.onClick(e);
     }

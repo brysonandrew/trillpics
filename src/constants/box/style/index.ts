@@ -1,9 +1,6 @@
 import { boxBackground } from "~/constants/box/class";
 import { boxBorder } from "~/constants/box/style/border";
-import {
-  boxRadius,
-  TBoxRadiusKey,
-} from "~/constants/box/style/radius";
+import { TBoxRadiusKey } from "~/constants/box/style/radius";
 import { boxSize } from "~/constants/box/style/size";
 import { TBoxStyleTheme } from "~/constants/box/style/types";
 import {

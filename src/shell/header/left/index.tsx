@@ -5,7 +5,7 @@ import {
   Link,
   useLocation,
 } from "react-router-dom";
-import { HOME_ROUTE } from "~/constants/routes";
+import { HOME_ROUTE } from "~/constants/params";
 import { Title } from "~/shell/header/left/title";
 import { ScrollTop } from "~/shell/header/left/controls/scroll-top";
 import { useScrollTopHandler } from "~/shell/pics/virtualize/scroll/handlers/top";

@@ -1,25 +1,23 @@
-import type { FC } from "react";
+import type {
+  FC,
+  PropsWithChildren,
+} from "react";
 import { motion } from "framer-motion";
-import {
-  TUsePicBackdrop,
-  usePicBackdrop,
-} from "~/shell/pics/pic/backdrop/use-backdrop";
 import { FULLSCREEN_Z } from "~/constants/dom";
-import { TBoxChildProps } from "~/shell/pics/pic/box";
-import { TPicHoverResult } from "~/shell/pics/pic/use-hover";
+import { useTrillPicsStore } from "~/store";
 
-type TProps = TBoxChildProps & {
-  children(
-    props: TUsePicBackdrop
-  ): JSX.Element;
-};
+type TProps = PropsWithChildren;
 export const PicBackdrop: FC<
   TProps
-> = ({ children, ...props }) => {
-  const backdropResult =
-    usePicBackdrop(props);
-  const { screenDimensions } =
-    backdropResult;
+> = ({ children }) => {
+  const { screen } = useTrillPicsStore(
+    ({ screen }) => ({ screen })
+  );
+  if (!screen.isDimensions) return null;
+  const screenDimensions = {
+    width: screen.width,
+    height: screen.height,
+  };
   return (
     <>
       <motion.div
@@ -32,9 +30,8 @@ export const PicBackdrop: FC<
             "blur(28px) grayscale(80%)",
           cursor: "zoom-out",
         }}
-        onClick={props.onToggle}
       />
-      {children(backdropResult)}
+      {children}
     </>
   );
 };

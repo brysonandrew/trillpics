@@ -7,19 +7,16 @@ import { PicZoomedExitIcon } from "~/shell/pics/pic/zoomed/exit-icon";
 
 export const PicZoomed: FC<
   TBoxChildProps
-> = (boxChildProps) => {
+> = ({ name, cell, style }) => {
   return (
     <PortalBody>
-      <PicBackdrop {...boxChildProps}>
-        {(backdropChildProps) => (
-          <>
-            <PicDisplayZoomed
-              {...boxChildProps}
-              {...backdropChildProps}
-            />
-            <PicZoomedExitIcon />
-          </>
-        )}
+      <PicBackdrop>
+        <PicDisplayZoomed
+          name={name}
+          style={style}
+          cell={cell}
+        />
+        <PicZoomedExitIcon />
       </PicBackdrop>
     </PortalBody>
   );

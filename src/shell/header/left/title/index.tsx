@@ -3,7 +3,6 @@ import { TitleText } from "~/shell/header/left/title/text";
 import { SparkleButton } from "~/shell/header/left/title/sparkle-button";
 import { LightingGlow } from "~/components/layout/lighting/glow";
 import { resolvePresence } from "~/utils/animation";
-import { LightingShadow } from "~/components/layout/lighting/shadow";
 import { LightingLamp } from "~/components/layout/lighting/lamp";
 
 export const Title: FC = () => {

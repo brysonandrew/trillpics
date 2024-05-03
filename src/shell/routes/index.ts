@@ -1,4 +1,4 @@
-import { NotFound } from "@brysonandrew/not-found";
+import { NotFound } from "@brysonandrew/routes-not-found";
   import { RouteObject } from "react-router";
   import { Shell } from "~/shell";
   import { PAGE_ROUTES } from "./pages"
@@ -18,8 +18,3 @@ import { NotFound } from "@brysonandrew/not-found";
   ];
   
 
-  
-export const HOME_ROUTE = "/home";
-export const VIDEO_ROUTE = "/video";
-export const VIDEO_PLAYER_ROUTE = "/video/player";
-export const VIDEO_SCHEDULER_ROUTE = "/video/scheduler";

@@ -8,7 +8,7 @@ import {
   TPicSeriesSchema,
   TPicSeriesProps,
 } from "~/components/remotion/pic-series/types";
-import { PicSeries } from "../pic-series";
+import { PicSeries } from "~/components/remotion/pic-series";
 
 export const RemotionPlayer = () => {
   const props =

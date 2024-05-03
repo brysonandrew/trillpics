@@ -1,16 +1,13 @@
 import { FC } from "react";
-import { DIRECTORS_MODE_PATH_VALUE } from "~/constants/params";
 import { IconsArrowsLeft } from "~/components/icons/arrows/left";
 import { useNavigationExit } from "~/hooks/use-navigation/exit";
 import { PillBHover } from "~/components/buttons/pill/b/hover";
-import { title } from "process";
+import { VIDEO_ROUTE } from "~/constants/params";
 
 export const PlayerFooterButtonsExit: FC =
   () => {
     const togglePathValue =
-      useNavigationExit(
-        DIRECTORS_MODE_PATH_VALUE
-      );
+      useNavigationExit(VIDEO_ROUTE);
 
     const handleClick = () => {
       togglePathValue();

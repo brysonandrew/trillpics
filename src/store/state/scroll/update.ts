@@ -7,7 +7,6 @@ export const scrollUpdateState: TStateHandler<
   update: (
     ...args: Parameters<TScrollUpdateHandler>
   ) => {
-    console.log(args);
     const [scrollOffset] = args;
   },
   // if (!get().isScroll) {

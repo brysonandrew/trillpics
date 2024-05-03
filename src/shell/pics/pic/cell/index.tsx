@@ -2,14 +2,10 @@ import type { FC } from "react";
 import { AnimatePresence } from "framer-motion";
 import { PicHover } from "~/shell/pics/pic/hover";
 import { PicDisplayCell } from "~/shell/pics/pic/display/cell";
-import { TPropsWithChildren } from "@brysonandrew/config-types";
 import { TBoxChildProps } from "~/shell/pics/pic/box";
 import { IconsPicZoomIn24 } from "~/components/icons/pic/zoom-in/24";
-import { TPicHoverResult } from "~/shell/pics/pic/use-hover";
 
-type TProps =
-  TPropsWithChildren<TBoxChildProps> &
-    TPicHoverResult;
+type TProps = TBoxChildProps;
 export const PicCell: FC<TProps> = ({
   ...boxChildProps
 }) => {
@@ -17,10 +13,10 @@ export const PicCell: FC<TProps> = ({
     <AnimatePresence>
       <PicDisplayCell
         key="PicDisplayCell"
-        onTap={boxChildProps.onToggle}
         {...boxChildProps}
       />
       <PicHover
+        isHovering={false}
         key="PicHover"
         {...boxChildProps}
       >

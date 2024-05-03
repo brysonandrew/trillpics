@@ -1,9 +1,9 @@
 import { useLocation } from "react-router";
-import { HOME_PATH_VALUE } from "~/constants/params";
 import { TPathValue } from "~/types/params";
+import { HOME_ROUTE } from "~/constants/params";
 
 export const useNavigationActive = (
-  pathValue: TPathValue = HOME_PATH_VALUE
+  pathValue: TPathValue = HOME_ROUTE
 ) => {
   const location = useLocation();
   const isActive =

@@ -38,7 +38,6 @@ export const tableUpdateState: TStateHandler<
         `update table with cells`,
         config
       );
-
       get().table.update.create({
         screen,
         count: get().table.count,
@@ -63,6 +62,7 @@ export const tableUpdateState: TStateHandler<
         count,
         ...screen,
       });
+      
       const isVerticalScroll =
         update.verticalScrollCheck({
           rowsCount: count.rows,

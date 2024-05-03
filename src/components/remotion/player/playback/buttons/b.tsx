@@ -4,10 +4,8 @@ import {
   TSvgProps,
 } from "@brysonandrew/config-types";
 import clsx from "clsx";
-import { LightingGlow } from "~/components/layout/lighting/glow";
 import { boxStyle } from "~/constants/box/style";
 import { CircleIcon } from "~/components/layout/circle/icon";
-import { Metal } from "@brysonandrew/texture-metal";
 
 export const PlaybackButtonsB: FC<
   TButtonProps & { Icon: FC<TSvgProps> }
@@ -42,7 +40,6 @@ export const PlaybackButtonsB: FC<
         boxShadow,
         ...borderStyle,
         ...style,
-
       }}
       {...props}
     >
