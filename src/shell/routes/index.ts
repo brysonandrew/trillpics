@@ -26,7 +26,7 @@ export const ROUTES: RouteObject[] = [
 
 export const HOME_ROUTE = "/home";
 export const VIDEO_ROUTE = "/video";
-export const VIDEO_PLAYER_ROUTE =
-  "/video/player";
 export const VIDEO_SCHEDULER_ROUTE =
   "/video/scheduler";
+export const VIDEO_PLAYER_ROUTE =
+  "/video/player";

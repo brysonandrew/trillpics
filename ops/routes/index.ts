@@ -4,6 +4,7 @@ import { resolvePwd } from "~ops/pwd";
 import { routesPages } from "~ops/routes/pages";
 import { writeFile } from "fs/promises";
 import { TRoutePagesKey } from "~ops/routes/types";
+import * as prettier from "prettier";
 
 const IGNORE_UNDERSCORE_DIR_FIND_INDEX =
   "[!_]**/index*";
@@ -12,7 +13,7 @@ const IGNORE_UNDERSCORE_DIR_FIND_INDEX_2 =
 
 const pwd = resolvePwd();
 
-const SRC = "/src"
+const SRC = "/src";
 
 const PAGES_DIR =
   `${pwd}${SRC}${"/pages"}` as const;
@@ -54,13 +55,23 @@ const WRITE_TO_PATH_LOOKUP = {
     const entries = Object.entries(
       pageRecord
     ) as [TRoutePagesKey, string][];
+
     for await (const [
       name,
       file,
     ] of entries) {
       const pagePath =
         WRITE_TO_PATH_LOOKUP[name];
-      await writeFile(pagePath, file);
+      const formattedFile =
+        await prettier.format(file, {
+          semi: true,
+          printWidth: 40,
+          babel: false,
+        });
+      await writeFile(
+        pagePath,
+        formattedFile
+      );
     }
   } catch (error: TError) {
     throw new Error(error);

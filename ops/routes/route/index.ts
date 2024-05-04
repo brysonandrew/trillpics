@@ -1,16 +1,12 @@
 import { templateAssignmentColon } from "~ops/template/assignment/colon";
 import { symmetryQuote } from "~ops/template/symmetry/quote";
 
-// export const pathParts = (
-//   value: string
-// ) => value.split(/[/-]/g);
-
 export const resolveRoute = <
   P extends string,
-  T extends string,
+  T extends string
 >(
   path: P,
-  Component: T,
+  Component: T
 ) => {
   const pathPair =
     templateAssignmentColon(
@@ -22,13 +18,8 @@ export const resolveRoute = <
       "Component",
       Component
     );
-  // const rows = [
-  //   pathPair,
-  //   componentPair,
-  // ] as const;
 
-  const result = 
-`${pathPair},
+  const result = `${pathPair},
 ${componentPair}` as const;
 
   return result;

@@ -15,10 +15,11 @@ const SHELL_VALUE =
 export const SHELL_IMPORT_ROW =
   resolveModuleNamedImport(
     SHELL_NAME,
-    SHELL_VALUE 
+    SHELL_VALUE
   );
 
-const SHELL_CHILDREN = `${symmetryBracesCurly(PICS_ROUTE)},
+const SHELL_CHILDREN =
+  `${symmetryBracesCurly(PICS_ROUTE)},
     ${NOT_FOUND.ROWS}` as const;
 
 export const SHELL_ROUTE =

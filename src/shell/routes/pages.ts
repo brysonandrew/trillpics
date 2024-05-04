@@ -1,19 +1,22 @@
 import { RouteObject } from "react-router";
-import { VideoScheduler } from "~/pages/video/scheduler";
 import { VideoPlayer } from "~/pages/video/player";
+import { VideoScheduler } from "~/pages/video/scheduler";
 import { Video } from "~/pages/video";
 import { Home } from "~/pages/home";
 
 export const SHELL_ROUTES_PAGES: RouteObject[] =
   [
-    { path: "home", Component: Home },
-    { path: "video", Component: Video },
+    { path: "/", Component: Home },
     {
-      path: "video/player",
-      Component: VideoPlayer,
+      path: "/video",
+      Component: Video,
     },
     {
-      path: "video/scheduler",
+      path: "/video/scheduler",
       Component: VideoScheduler,
+    },
+    {
+      path: "/video/player",
+      Component: VideoPlayer,
     },
   ];

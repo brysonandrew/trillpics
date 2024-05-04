@@ -1,5 +1,4 @@
 import { parse } from "path";
-import { RouteObject } from "react-router";
 import {
   REACT_ROUTER_IMPORT_ROW,
   ROUTES_INDEX_FILE,
@@ -69,7 +68,7 @@ export const routesPages = (
         ${MAIN}`;
       }
 
-      const nextRoute =
+      const nextRoute = 
         resolveRouteFromPath(dir);
       a.routesPages += `${nextRoute},`;
 
