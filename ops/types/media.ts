@@ -6,7 +6,6 @@ export type TMediaDetails = {
   name: string;
   ext: TExtKey;
 };
-
 import type {
   Metadata,
   OutputInfo,

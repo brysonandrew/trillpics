@@ -1,6 +1,6 @@
 import { Outlet } from "react-router";
 import { Header } from "~/shell/header";
-import { Pics } from "~/shell/pics";
+import { Pics } from "~/pics";
 import { Footer } from "~/shell/footer";
 import { FooterLeft } from "~/shell/footer/left";
 import { HeaderLeft } from "~/shell/header/left";

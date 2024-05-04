@@ -1,8 +1,8 @@
+import { NotFound } from "@brysonandrew/routes-not-found";
 import { RouteObject } from "react-router";
 import { Shell } from "~/shell";
-import { Pics } from "~/shell/pics";
-import { NotFound } from "~/shell/routes/not-found";
-import { PAGE_ROUTES } from "~/shell/routes/pages";
+import { Pics } from "~/pics";
+import { SHELL_ROUTES_PAGES } from "~/shell/routes/pages";
 
 export const ROUTES: RouteObject[] = [
   {
@@ -12,7 +12,9 @@ export const ROUTES: RouteObject[] = [
       {
         path: "/",
         Component: Pics,
-        children: [...PAGE_ROUTES],
+        children: [
+          ...SHELL_ROUTES_PAGES,
+        ],
       },
       {
         path: "*",
@@ -21,3 +23,10 @@ export const ROUTES: RouteObject[] = [
     ],
   },
 ];
+
+export const HOME_ROUTE = "/home";
+export const VIDEO_ROUTE = "/video";
+export const VIDEO_PLAYER_ROUTE =
+  "/video/player";
+export const VIDEO_SCHEDULER_ROUTE =
+  "/video/scheduler";

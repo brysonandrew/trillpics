@@ -1,8 +1,8 @@
 import { useRef } from "react";
 import { animate } from "framer-motion";
 import { useTrillPicsStore } from "~/store/index";
-import { useScrollTopHandler } from "~/shell/pics/virtualize/scroll/handlers/top";
-import { useVirtualizeContext } from "~/shell/pics/virtualize/context";
+import { useScrollTopHandler } from "~/pics/virtualize/scroll/handlers/top";
+import { useVirtualizeContext } from "~/pics/virtualize/context";
 
 export const useShow = () => {
   const {

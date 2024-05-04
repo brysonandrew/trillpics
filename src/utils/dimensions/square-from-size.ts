@@ -2,7 +2,7 @@ import { resolveSquare } from "@brysonandrew/measure";
 import {
   TCursor,
   TCursorCell,
-} from "~/shell/pics/virtualize/context";
+} from "~/pics/virtualize/context";
 
 type TConfig = TCursorCell & {
   size: number;

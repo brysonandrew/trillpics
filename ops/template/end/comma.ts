@@ -1,2 +1,2 @@
-export const commaTrail = (v: string) =>
+export const endComma = (v: string) =>
   `${v},`;

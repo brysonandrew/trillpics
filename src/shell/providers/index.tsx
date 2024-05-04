@@ -6,7 +6,7 @@ import {
   CUSTOM_STYLE,
   TCustomStyle,
 } from "~app/style";
-import { VirtualizeContextProvider } from "~/shell/pics/virtualize/context";
+import { VirtualizeContextProvider } from "~/pics/virtualize/context";
 import { AppProvider } from "@brysonandrew/app";
 import { AppInit } from "@brysonandrew/app/AppInit";
 import {

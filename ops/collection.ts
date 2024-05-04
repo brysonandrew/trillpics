@@ -18,7 +18,7 @@ import { removePublicDir } from "./utils";
       ...originals,
     ]);
     for await (const entry of entries) {
-      const { noExtFileName, dir } =
+      const { noExtFileName } =
         resolveFsInfo(entry);
 
         const nextEntryNoExt = resolve(entry, 

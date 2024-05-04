@@ -1,5 +1,5 @@
 import { useTimeoutRef } from "@brysonandrew/hooks-window";
-import { useOnscreen } from "~/shell/pics/virtualize/use-onscreen";
+import { useOnscreen } from "~/pics/virtualize/use-onscreen";
 import {
   RESIZE_COOLDOWN,
   TScreen,

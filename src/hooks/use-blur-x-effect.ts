@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { animate } from "framer-motion";
-import { useVirtualizeContext } from "~/shell/pics/virtualize/context";
+import { useVirtualizeContext } from "~/pics/virtualize/context";
 
 type TConfig = { dependency: string };
 export const useBlurXEffect = (

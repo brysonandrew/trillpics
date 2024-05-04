@@ -1,3 +1,7 @@
-export const resolveTypeDeclaration = <T extends string>(
+import { templateAssignmentColon } from "~ops/template/assignment/colon";
+
+export const resolveTypeDeclaration = <
+  T extends string
+>(
   name: T
-) => `: ${name}` as const;
+) => templateAssignmentColon("", name);

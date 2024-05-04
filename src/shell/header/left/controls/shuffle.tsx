@@ -3,7 +3,7 @@ import { animate } from "framer-motion";
 import { IconsShuffle } from "~/components/icons/pic/shuffle";
 import { useTrillPicsStore } from "~/store";
 import { PillBHover } from "~/components/buttons/pill/b/hover";
-import { useVirtualizeContext } from "~/shell/pics/virtualize/context";
+import { useVirtualizeContext } from "~/pics/virtualize/context";
 
 export const ControlsShuffle: FC =
   () => {

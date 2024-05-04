@@ -8,7 +8,7 @@ import { IconsVideo } from "~/components/icons/video/video";
 import { PillB } from "~/components/buttons/pill/b";
 import { AddRemoveToVideoMarker } from "~/pages/video/_common/pic/controls/counter/add-remove-to-video-marker";
 import { useTrillPicsStore } from "~/store";
-import { TPicProps } from "~/shell/pics/pic";
+import { TPicProps } from "~/pics/pic";
 
 export const VideoControlsCounter: FC<
   TPicProps

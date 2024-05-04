@@ -1,8 +1,8 @@
 import { TModuleDeclarationKey } from "~ops/template/declarations/types";
-import { templateEnd } from "~ops/template/end";
+import { endSemiColon } from "~ops/template/end/semi-colon";
 import { resolveModuleNamedImport } from "~ops/template/module/named/import";
-import { wrapModuleNamed } from "~ops/template/wrap/named";
-import { wrapQuote } from "~ops/template/wrap/quote";
+import { symmetryModuleNamed } from "~ops/template/symmetry/named";
+import { symmetryQuote } from "~ops/template/symmetry/quote";
 
 export const resolveModuleNamed = <
   D extends TModuleDeclarationKey,
@@ -13,10 +13,10 @@ export const resolveModuleNamed = <
   name: N,
   source: S
 ) =>
-  `${declaration} ${wrapModuleNamed(
+  `${declaration} ${symmetryModuleNamed(
     name
-  )} from ${templateEnd(
-    wrapQuote(source)
+  )} from ${endSemiColon(
+    symmetryQuote(source)
   )}` as const;
 
 export const resolveModuleNamedImports =

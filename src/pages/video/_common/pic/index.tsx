@@ -1,6 +1,6 @@
 import type { FC } from "react";
 import { motion } from "framer-motion";
-import { TPicProps } from "~/shell/pics/pic";
+import { TPicProps } from "~/pics/pic";
 import { PicVideoControls } from "~/pages/video/_common/pic/controls";
 import { AddRemoveToVideoMarker } from "~/pages/video/_common/pic/controls/counter/add-remove-to-video-marker";
 import { TDivMotionProps } from "@brysonandrew/config-types";

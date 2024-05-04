@@ -9,7 +9,7 @@ import {
   TDimensionsInit,
   TDimensionsReady,
 } from "@brysonandrew/config-types";
-import { useVirtualizeContext } from "~/shell/pics/virtualize/context";
+import { useVirtualizeContext } from "~/pics/virtualize/context";
 import { isValue } from "~/utils/validation/is/value";
 import { measureContainer } from "~/shell/init/container";
 
