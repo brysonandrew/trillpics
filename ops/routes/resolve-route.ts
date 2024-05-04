@@ -10,7 +10,6 @@ export const resolveRoute = <
   path: T
 ) => {
   const parts = pathParts(path);
-  const key = parts.join("-");
   const Component = parts
     .map(
       (v) =>

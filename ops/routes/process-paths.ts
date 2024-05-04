@@ -8,49 +8,28 @@ import {
   TRoutePages,
 } from "~ops/routes/config";
 import {
-  resolveRoute,
-} from "~ops/routes/resolve-route";
-import { endTemplateArray } from "~ops/template";
+  dirToPascal,
+  dirToSnake,
+} from "~ops/routes/format";
+import { resolveRoute } from "~ops/routes/resolve-route";
+import { endTemplateArray } from "~ops/template/array/end";
+import { resolveModuleNamedExport } from "~ops/template/module/named/export";
+import { resolveModuleNamedExportConst } from "~ops/template/module/named/export/const";
+import { resolveModuleNamedImport } from "~ops/template/module/named/import";
+import { SOURCE_PREFIX_INTERNAL } from "~ops/template/module/prefix/internal";
 
-export const capitalize = (
-  word: string | null
-) =>
-  word
-    ? `${word[0]?.toUpperCase()}${word
-        .toLowerCase()
-        .slice(1)}`
-    : "";
-export const capslock = (
-  word: string | null
-) => (word ? word?.toUpperCase() : "");
-export const dirToSnake = <
-  I extends string
->(
-  value: I
-) =>
-  value
-    .split("/")
-    .map(capslock)
-    .join("_");
-export const dirToPascal = <
-  I extends string
->(
-  value: I
-) =>
-  value
-    .split("/")
-    .map(capitalize)
-    .join("");
+const EXPORT = {
+  NAME: `${PAGES_VARIABLE_NAME}_ROUTE`,
+  TYPE: `: RouteObject[]`,
+  DECLARATION: `export const`,
+  ASSIGNMENT: "=",
+  VARIABLE: "[",
+} as const;
 
-export const dirToKebab = <
-  I extends string
->(
-  value: I
-) =>
-  value
-    .split("/")
-    .map((v) => v.toLowerCase())
-    .join("-");
+type TPascal = string;
+
+const MAIN =
+  `${EXPORT.DECLARATION} ${EXPORT.NAME}${EXPORT.TYPE} ${EXPORT.ASSIGNMENT} ${EXPORT.VARIABLE}` as const;
 
 export const processPaths = (
   paths: string[]
@@ -65,34 +44,48 @@ export const processPaths = (
       isLast = index === count - 1
     ) => {
       const { dir } = parse(path);
-      const pascal = dirToPascal(dir);
+      const pascal: TPascal =
+        dirToPascal(dir);
       const snake = dirToSnake(dir);
 
-      a.pagesIndex += `export { ${pascal}${
-        isIndex(dir) ? " as Index" : ""
-      } } from '~/pages/${dir}';\n`;
+      const exportRow =
+        resolveModuleNamedExport(
+          `${pascal}${
+            isIndex(dir)
+              ? " as Index"
+              : ""
+          }`,
+          `${SOURCE_PREFIX_INTERNAL}pages/${dir}`
+        );
+      a.pagesIndex += exportRow;
 
-      a.routesPages = `import { ${pascal} } from '~/pages/${dir}';\n${a.routesPages}`;
+      const importRow =
+        resolveModuleNamedImport(
+          pascal,
+          `${SOURCE_PREFIX_INTERNAL}pages/${dir}`
+        );
+      a.routesPages = `${importRow}${a.routesPages}`;
 
       if (isFirst) {
-        a.routesPages += `
-export const ${PAGES_VARIABLE_NAME}: RouteObject[] = [`;
+        a.routesPages += MAIN;
       }
-      // const pathDir = isIndex(dir) ? "" : dir
 
       const nextRoute: RouteObject =
         resolveRoute(dir);
       a.routesPages += nextRoute;
 
       if (isLast) {
-        a.routesPages = `${REACT_ROUTER_IMPORT_ROW}
-${a.routesPages}`;
+        a.routesPages = `${REACT_ROUTER_IMPORT_ROW}${a.routesPages}`;
         a.routesPages +=
           endTemplateArray();
       }
+      const exportConstRow =
+        resolveModuleNamedExportConst(
+          `${snake}_ROUTE`,
+          dir
+        );
 
-      a.routesIndex = `${a.routesIndex}
-export const ${snake}_ROUTE = "/${dir}";`;
+      a.routesIndex = `${a.routesIndex}${exportConstRow}`;
 
       return a;
     },
@@ -102,3 +95,9 @@ export const ${snake}_ROUTE = "/${dir}";`;
       routesIndex: ROUTES_INDEX_FILE,
     }
   );
+
+//export const ${exportConstRow} = "/${dir}";`;
+// resolveModuleNamedExport(
+//   `${snake}_ROUTE`,
+//   dir
+// );
