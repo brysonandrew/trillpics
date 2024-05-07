@@ -2,7 +2,7 @@ import { resolveCompositeKey } from "@brysonandrew/utils-key";
 import { TCursorCell } from "~/pics/virtualize/context";
 
 type TConfig = TCursorCell;
-export const resolveResolvePicKey = ({
+export const resolvePicKey = ({
   cell,
 }: TConfig) => {
   return resolveCompositeKey(
@@ -14,7 +14,7 @@ export const resolveResolvePicKey = ({
     ).padStart(2, "0")
   );
 };
-export type TResolveResolvePicKeyResult =
+export type TresolvePicKeyResult =
   ReturnType<
-    typeof resolveResolvePicKey
+    typeof resolvePicKey
   >;

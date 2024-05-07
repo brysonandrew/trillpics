@@ -8,7 +8,5 @@ export type TScrollUpdateState = {
 };
 
 export type TScrollState = {
-  isScrolling: boolean;
   isScroll: boolean;
-  // scroll: TScrollUpdateState 
 };

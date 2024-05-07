@@ -6,7 +6,6 @@ import {
   useScreenMeasure,
 } from "~/shell/init/measure";
 import { useTrillPicsStore } from "~/store";
-import { TSet } from "~/store/state/set/types";
 
 export const useInit = () => {
   const { timeoutRef, endTimeout } =

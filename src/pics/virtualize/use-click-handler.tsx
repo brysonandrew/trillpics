@@ -6,7 +6,7 @@ import {
 import { useSearchParams } from "react-router-dom";
 import { SEARCH_PARAM_ID } from "~/pics/pic/display";
 import { usePicZoomedCheckHandler } from "~/pics/pic/hooks/zoomed/check-handler";
-import { resolveResolvePicKey } from "~/pics/pic/hooks/resolve-pic-key";
+import { resolvePicKey } from "~/pics/pic/hooks/resolve-pic-key";
 import { TCursor } from "~/pics/virtualize/context";
 
 export type TClickHandlerConfig =
@@ -14,36 +14,42 @@ export type TClickHandlerConfig =
 export const useClickHandler = () => {
   const frontCheckState =
     useState<boolean>(false);
-  const [_, setFront] = frontCheckState;
+  const [isFront, setFront] =
+    frontCheckState;
   const { pathname } = useLocation();
   const [searchParams] =
     useSearchParams();
   const navigate = useNavigate();
   const checkPicZoomed =
     usePicZoomedCheckHandler();
+
+  const paramValue = searchParams.get(
+    SEARCH_PARAM_ID
+  );
+
   const handler = (
     cursor: TClickHandlerConfig
   ) => {
-    const key =
-      resolveResolvePicKey(cursor);
+    const key = resolvePicKey(cursor);
 
-    if (checkPicZoomed(key)) {
+    if (paramValue) {
       searchParams.set(
         SEARCH_PARAM_ID,
-        `${String(key)}--closing`
+        `${paramValue}--closing`
       );
       navigate(
         `${pathname}?${searchParams}`
       );
     } else {
-      setFront(true);
       searchParams.set(
         SEARCH_PARAM_ID,
         String(key)
       );
+
       navigate(
         `${pathname}?${searchParams}`
       );
+      setFront(true);
     }
   };
   return handler;

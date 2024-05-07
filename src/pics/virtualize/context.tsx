@@ -132,12 +132,10 @@ export const VirtualizeContextProvider: FC<
   ) => {
     const isHovering =
       ref.current?.isHovering();
+      
     if (isHovering) {
       handleClick(cursorRef.current);
     }
-    // ref.current?.scrollTrue();
-    // const isScrolling =
-    //   ref.current?.checkScrolling();
   };
 
   const [isCursorMove, setCursorMove] =
@@ -165,6 +163,16 @@ export const VirtualizeContextProvider: FC<
       setCursorMove(true);
     }
   };
+
+  useEventListener<"pointerenter">(
+    "pointerenter",
+    handleMove
+  );
+
+  useEventListener<"pointerover">(
+    "pointerover",
+    handleMove
+  );
 
   useEventListener<"pointermove">(
     "pointermove",

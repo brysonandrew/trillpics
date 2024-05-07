@@ -9,7 +9,7 @@ import { TPicHoverResult } from "~/pics/pic/use-hover";
 import { TImgMotionProps } from "@brysonandrew/config-types";
 import { TBoxChildProps } from "~/pics/pic/box";
 import { resolvePresence } from "~/utils/animation";
-import { resolveResolvePicKey } from "~/pics/pic/hooks/resolve-pic-key";
+import { resolvePicKey } from "~/pics/pic/hooks/resolve-pic-key";
 import {
   useLocation,
   useNavigate,
@@ -28,7 +28,7 @@ export const PicDisplayCell: FC<
   cell,
   ...props
 }) => {
-  const key = resolveResolvePicKey({
+  const key = resolvePicKey({
     cell,
   });
   const { pathname } = useLocation();

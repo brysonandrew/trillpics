@@ -5,38 +5,27 @@ import {
 import { useSearchParams } from "react-router-dom";
 import type { ListOnScrollProps } from "react-window";
 import { useTimeoutRef } from "@brysonandrew/hooks-window";
-import {
-  SCROLL_COOLDOWN,
-  SCROLL,
-} from "~/store/state/scroll";
+import { SCROLL } from "~/store/state/scroll";
 import { SEARCH_PARAM_ID } from "~/pics/pic/display";
 import { useTrillPicsStore } from "~/store";
 import { TVirtualizeContext } from "~/pics/virtualize/context";
 
 type TConfig = Pick<
   TVirtualizeContext,
-  "scrollY"|"ref"
+  "scrollY" | "ref"
 >;
 export const useScrollUpdateHandler = ({
   scrollY,
-  ref:handle
+  ref: handle,
 }: TConfig) => {
-  const {
-    isScroll,
-    set,
-  } = useTrillPicsStore(
-    ({
-      isScroll,
-      isScrolling,
-      set,
-    }) => ({
-      isScroll,
-      isScrolling,
-      set,
-    })
-  );
-  const { timeoutRef, endTimeout } =
-    useTimeoutRef();
+  const { isScroll, set } =
+    useTrillPicsStore(
+      ({ isScroll, set }) => ({
+        isScroll,
+        set,
+      })
+    );
+
   const [searchParams] =
     useSearchParams();
   const navigate = useNavigate();
@@ -45,29 +34,30 @@ export const useScrollUpdateHandler = ({
     props: ListOnScrollProps
   ) => {
     const { scrollOffset } = props;
-
     scrollY.set(-scrollOffset);
 
-    if (!handle.current?.checkScrolling()) {
+    if (
+      !handle.current?.checkScrolling()
+    ) {
       searchParams.delete(
         SEARCH_PARAM_ID
       );
       navigate(
         `${pathname}?${searchParams}`
       );
-      set({
-        isScrolling: true,
-      });
+      // set({
+      //   isScrolling: true,
+      // });
     }
-    endTimeout();
-    timeoutRef.current = setTimeout(
-      () => {
-        set({
-          isScrolling: false,
-        });
-      },
-      SCROLL_COOLDOWN
-    );
+    // endTimeout();
+    // timeoutRef.current = setTimeout(
+    //   () => {
+    //     set({
+    //       isScrolling: false,
+    //     });
+    //   },
+    //   SCROLL_COOLDOWN
+    // );
 
     if (
       !isScroll &&

@@ -43,9 +43,7 @@ export const Virtualize = forwardRef<
     const innerHandle =
       useRef<TInnerHandle | null>(null);
     const sourceRef =
-      useRef<TVirtualizeList | null>(
-        null
-      );
+      useRef<TVirtualizeList | null>();
     const fixedSizeList =
       sourceRef.current;
     useImperativeHandle(
@@ -72,12 +70,15 @@ export const Virtualize = forwardRef<
             )?.isScrolling;
             return isScrolling;
           },
-          // stateX: fixedSizeList?.state,
           onPointerEnter: () => {
-            console.log("Virtualize.onPointerEnter");
+            console.log(
+              "Virtualize.onPointerEnter"
+            );
           },
           onPointerLeave: () => {
-            console.log("Virtualize.onPointerLeave");
+            console.log(
+              "Virtualize.onPointerLeave"
+            );
           },
         };
       },
