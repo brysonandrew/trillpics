@@ -5,18 +5,18 @@ import { Link } from "react-router-dom";
 import { useVirtualizeContext } from "~/pics/virtualize/context";
 
 export const NotFound: FC = () => {
-  const { blurRef } =
+  const { main } =
     useVirtualizeContext();
   const blur = () => {
     const prev =
-      blurRef.current.value.x.get();
-    blurRef.current.control.x = animate(
-      blurRef.current.value.x,
+      main.blur.value.x.get();
+    main.blur.control.x = animate(
+      main.blur.value.x,
       100,
       {
         type: "tween",
         onComplete: () =>
-          blurRef.current.value.x.set(
+          main.blur.value.x.set(
             prev
           ),
       }

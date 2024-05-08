@@ -1,7 +1,7 @@
 import type { FC } from "react";
 import { TButtonProps, TSvgProps } from "@brysonandrew/config-types";
 import clsx from "clsx";
-import { resolveInteractiveLabels } from "@brysonandrew/utils-attributes";
+import { resolveAccessibilityTitles } from "@brysonandrew/utils-attributes";
 
 type TProps = TButtonProps & {
   Icon: FC<TSvgProps>;
@@ -18,7 +18,7 @@ export const Button: FC<TProps> = ({
       <button
         className="row gap-6"
         {...props}
-        {...resolveInteractiveLabels(
+        {...resolveAccessibilityTitles(
           title
         )}
       >

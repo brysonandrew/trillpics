@@ -46,10 +46,10 @@ export const Video = () => {
             style={{
               y: scrollY,
               left:
-                hoverPicProps.cell
+                hoverPicProps
                   .column * table.size,
               top:
-                hoverPicProps.cell.row *
+                hoverPicProps.row *
                 table.size,
               ...resolveSquare(
                 table.size

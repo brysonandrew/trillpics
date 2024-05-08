@@ -17,7 +17,7 @@ export const ControlsClear: FC<
         removeVideoPic,
       })
     );
-  const { blurRef } =
+  const { main } =
     useVirtualizeContext();
 
   const handleClear = () => {

@@ -6,7 +6,7 @@ import {
   TSvgProps,
 } from "@brysonandrew/config-types";
 import { TCircleProps } from "~/components/layout/circle/circle";
-import { resolveInteractiveLabels } from "@brysonandrew/utils-attributes";
+import { resolveAccessibilityTitles } from "@brysonandrew/utils-attributes";
 import { TFlatProps } from "~/types/ui";
 import { FADE_PRESENCE_DELAY_02 } from "~/constants/animation";
 import { boxStyle } from "~/constants/box/style";
@@ -50,7 +50,7 @@ export const PillB: FC<TPillBProps> = ({
 
   return (
     <Root
-      {...resolveInteractiveLabels(
+      {...resolveAccessibilityTitles(
         title
       )}
       className={clsx(

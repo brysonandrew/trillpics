@@ -1,6 +1,5 @@
 import { Outlet } from "react-router";
 import { Header } from "~/shell/header";
-import { Pics } from "~/pics";
 import { Footer } from "~/shell/footer";
 import { FooterLeft } from "~/shell/footer/left";
 import { HeaderLeft } from "~/shell/header/left";
@@ -22,6 +21,7 @@ import {
   MOTION_BLUR_FILTER_X_PROPS,
   MOTION_BLUR_FILTER_Y_PROPS,
 } from "~/components/blur/constants";
+import { SCROLLBAR_WIDTH } from "~uno/preflights";
 
 const OUTLET_CONTEXT = {
   Header,
@@ -51,6 +51,9 @@ export const Shell = withProviders(
         <AURA.GLOBAL.Filter />
         <BlurX />
         <BlurY />
+        <GradientsBluePinkYellow
+          isDarkMode={isDarkMode}
+        />
         <div
           style={{
             ...MOTION_BLUR_FILTER_X_PROPS,
@@ -61,10 +64,7 @@ export const Shell = withProviders(
               ...MOTION_BLUR_FILTER_Y_PROPS,
             }}
           >
-            <GradientsBluePinkYellow
-              isDarkMode={isDarkMode}
-            />
-            <TexturesMeshInset />
+            <TexturesMeshInset style={{right:`calc(0.5rem + ${SCROLLBAR_WIDTH}px)` }} />
             <Outlet
               context={{
                 ...OUTLET_CONTEXT,

@@ -3,9 +3,12 @@ import { Box } from "~/pics/pic/box";
 import { PicZoomed } from "~/pics/pic/zoomed";
 import { PicCell } from "~/pics/pic/cell";
 import { TPic } from "~/store/state/pics/types";
-import { TCursorCell } from "~/pics/virtualize/context";
 
-export type TPicProps = TCursorCell & {
+export type TCell = {
+  row: number;
+  column: number;
+};
+export type TPicProps = TCell & {
   name: TPic;
 };
 export const Pic: FC<TPicProps> = (

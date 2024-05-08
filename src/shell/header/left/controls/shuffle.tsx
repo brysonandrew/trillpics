@@ -7,7 +7,7 @@ import { useVirtualizeContext } from "~/pics/virtualize/context";
 
 export const ControlsShuffle: FC =
   () => {
-    const { blurRef } =
+    const { main } =
       useVirtualizeContext();
     const { updatePicsEntries } =
       useTrillPicsStore(
@@ -16,14 +16,14 @@ export const ControlsShuffle: FC =
         })
       );
     const randomizePics = () => {
-      const prev = blurRef.current.value.x.get();
-      blurRef.current.control.x = animate(
-        blurRef.current.value.x,
+      const prev = main.blur.value.x.get();
+      main.blur.control.x = animate(
+        main.blur.value.x,
         100,
         {
           type: "tween",
           onComplete: () =>
-            blurRef.current.value.x.set(prev),
+            main.blur.value.x.set(prev),
         }
       );
       updatePicsEntries();

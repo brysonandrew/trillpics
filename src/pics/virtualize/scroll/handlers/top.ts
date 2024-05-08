@@ -4,7 +4,7 @@ import { useVirtualizeContext } from "~/pics/virtualize/context";
 export const useScrollTopHandler =
   () => {
     const {
-      blurRef,
+      main,
       scrollY,
       ref,
     } = useVirtualizeContext();
@@ -13,12 +13,12 @@ export const useScrollTopHandler =
       const y = scrollY.get();
 
       ref.current.scrollTop();
-      if (blurRef.current.control.y) {
-        blurRef.current.control.y.stop();
+      if (main.blur.control.y) {
+        main.blur.control.y.stop();
       }
 
-      blurRef.current.control.y = animate(
-        blurRef.current.value.y,
+      main.blur.control.y = animate(
+        main.blur.value.y,
         y * 0.008,
         {
           type: "inertia",
@@ -26,7 +26,7 @@ export const useScrollTopHandler =
           restSpeed: 1,
           velocity: y * 0.02,
           onComplete: () => {
-            blurRef.current.value.y.set(0);
+            main.blur.value.y.set(0);
           },
         }
       );

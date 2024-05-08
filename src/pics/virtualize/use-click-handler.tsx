@@ -7,7 +7,7 @@ import { useSearchParams } from "react-router-dom";
 import { SEARCH_PARAM_ID } from "~/pics/pic/display";
 import { usePicZoomedCheckHandler } from "~/pics/pic/hooks/zoomed/check-handler";
 import { resolvePicKey } from "~/pics/pic/hooks/resolve-pic-key";
-import { TCursor } from "~/pics/virtualize/context";
+import { TCursor } from "~/pics/virtualize/cursor";
 
 export type TClickHandlerConfig =
   TCursor;

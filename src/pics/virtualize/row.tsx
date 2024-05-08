@@ -1,8 +1,8 @@
 import { FC } from "react";
 import type { ListChildComponentProps } from "react-window";
+import { Pic } from "~/pics/pic";
 import { TPic } from "~/store/state/pics/types";
 import { TPicsRows } from "~/store/state/table/types";
-import { Cell } from "./cell";
 
 type TProps =
   ListChildComponentProps<TPicsRows>;
@@ -19,10 +19,10 @@ export const Row: FC<TProps> = (
       {pics.columns.map(
         (pic: TPic, columnIndex) => {
           return (
-            <Cell
+            <Pic
               key={`${pic}`}
               name={pic}
-              cell={{
+              {...{
                 column: columnIndex,
                 row: props.index,
               }}

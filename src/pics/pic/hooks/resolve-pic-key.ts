@@ -1,16 +1,16 @@
 import { resolveCompositeKey } from "@brysonandrew/utils-key";
-import { TCursorCell } from "~/pics/virtualize/context";
+import { TCursorCell } from "~/pics/virtualize/cursor";
 
 type TConfig = TCursorCell;
 export const resolvePicKey = ({
-  cell,
+  column,row,
 }: TConfig) => {
   return resolveCompositeKey(
     String(
-      Math.floor(cell.column)
+      Math.floor(column)
     ).padStart(2, "0"),
     String(
-      Math.floor(cell.row)
+      Math.floor(row)
     ).padStart(2, "0")
   );
 };

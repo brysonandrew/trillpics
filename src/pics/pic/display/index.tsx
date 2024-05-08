@@ -13,15 +13,11 @@ import {
 import { resolvePicSrc } from "~/utils/src";
 import { TPicProps } from "~/pics/pic";
 import { NOOP } from "@brysonandrew/utils-function";
-import {
-  HP,
-  P,
-} from "~/pics/pic/constants";
 export const SEARCH_PARAM_ID = "open";
 
 export type TPicDisplayProps = Pick<
   TImgMotionProps,
-  "onTap" | "onLayoutAnimationComplete"
+  "onLayoutAnimationComplete"
 > &
   Pick<TPicProps, "name"> & {
     style: CSSProperties &
@@ -30,26 +26,15 @@ export type TPicDisplayProps = Pick<
 export const PicDisplay: FC<
   TPicDisplayProps
 > = ({
-  style: {
-    width,
-    height,
-    left,
-    ...style
-  },
-  onTap,
+  style,
   onLayoutAnimationComplete,
   name,
 }) => {
-  const styleProps: MotionProps = {
-    onTap,
+  const imgMotionProps: MotionProps = {
     onLayoutAnimationComplete:
       onLayoutAnimationComplete,
     style: {
       textAlign: "center",
-      left: left - HP,
-      width: width + P,
-      height: height + P,
-      top: -HP,
       ...style,
     },
   };
@@ -60,7 +45,7 @@ export const PicDisplay: FC<
     return (
       <motion.div
         layoutId={String(name)}
-        {...styleProps}
+        {...imgMotionProps}
       />
     );
   }
@@ -72,7 +57,7 @@ export const PicDisplay: FC<
       src={src}
       alt={`░▒▓█ pic #${name} █▓▒░`}
       draggable={false}
-      {...styleProps}
+      {...imgMotionProps}
       onError={
         name === "11"
           ? console.log

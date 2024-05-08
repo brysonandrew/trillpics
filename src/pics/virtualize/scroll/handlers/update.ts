@@ -45,20 +45,7 @@ export const useScrollUpdateHandler = ({
       navigate(
         `${pathname}?${searchParams}`
       );
-      // set({
-      //   isScrolling: true,
-      // });
     }
-    // endTimeout();
-    // timeoutRef.current = setTimeout(
-    //   () => {
-    //     set({
-    //       isScrolling: false,
-    //     });
-    //   },
-    //   SCROLL_COOLDOWN
-    // );
-
     if (
       !isScroll &&
       scrollOffset > SCROLL

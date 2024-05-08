@@ -2,7 +2,7 @@ import { type FC } from "react";
 import { useTrillPicsStore } from "~/store";
 import { IconsPause } from "~/components/icons/playback/pause";
 import { IconsPlay } from "~/components/icons/playback/play";
-import { resolveInteractiveLabels } from "@brysonandrew/utils-attributes";
+import { resolveAccessibilityTitles } from "@brysonandrew/utils-attributes";
 import { PillB } from "~/components/buttons/pill/b";
 
 export const PlaybackButtonsPlay: FC =
@@ -28,7 +28,7 @@ export const PlaybackButtonsPlay: FC =
 
     return (
       <PillB
-        {...resolveInteractiveLabels(
+        {...resolveAccessibilityTitles(
           isPlaying ? "pause" : "play"
         )}
         onClick={() =>

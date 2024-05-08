@@ -31,7 +31,7 @@ export const useShow = () => {
   const showAllIndexRef = useRef<
     number | null
   >(null);
-  const { blurRef } =
+  const { main } =
     useVirtualizeContext();
   const picsCount = countPics();
 
@@ -42,14 +42,14 @@ export const useShow = () => {
     picsCount === videoPicsCount;
 
   const onToggleShow = () => {
-    const prev = blurRef.current.value.x.get();
-    blurRef.current.control.x = animate(
-      blurRef.current.value.x,
+    const prev = main.blur.value.x.get();
+    main.blur.control.x = animate(
+      main.blur.value.x,
       100,
       {
         type: "tween",
         onComplete: () =>
-          blurRef.current.value.x.set(prev),
+          main.blur.value.x.set(prev),
       }
     );
 

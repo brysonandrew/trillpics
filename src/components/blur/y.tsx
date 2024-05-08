@@ -4,7 +4,7 @@ import { MOTION_BLUR_FILTER_Y_ID } from "~/components/blur/constants";
 import { useVirtualizeContext } from "~/pics/virtualize/context";
 
 export const BlurY: FC = () => {
-  const { blurRef } =
+  const { main } =
     useVirtualizeContext();
 
   return (
@@ -19,9 +19,7 @@ export const BlurY: FC = () => {
       turbulenceMotionProps={{
         type: "turbulence",
       }}
-      motionValue={
-        blurRef.current.value.y
-      }
+      motionValue={main.blur.value.y}
     />
   );
 };

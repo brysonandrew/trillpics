@@ -15,7 +15,7 @@ import {
   useNavigate,
   useSearchParams,
 } from "react-router-dom";
-import { TCursorCell } from "~/pics/virtualize/context";
+import { TCursorCell } from "~/pics/virtualize/cursor";
 
 export const PicDisplayCell: FC<
   Partial<TPicHoverResult> &
@@ -24,12 +24,14 @@ export const PicDisplayCell: FC<
     TBoxChildProps &
     Pick<TImgMotionProps, "onTap">
 > = ({
-  style: { left, width, height },
-  cell,
+  style,
+  column,
+  row,
   ...props
 }) => {
   const key = resolvePicKey({
-    cell,
+    row,
+    column,
   });
   const { pathname } = useLocation();
   const navigate = useNavigate();
@@ -57,12 +59,10 @@ export const PicDisplayCell: FC<
     <PicDisplay
       style={{
         position: "absolute",
-        left,
         top: 0,
         bottom: 0,
         right: 0,
-        width,
-        height,
+        ...style,
         ...(isFront
           ? { zIndex: FULLSCREEN_Z }
           : { zIndex: 0 }),

@@ -11,7 +11,7 @@ import { downloadMedia } from "~/pages/video/player/_header/generate/download-me
 import { AURA } from "@brysonandrew/svg-filter";
 import { resolvePresence } from "~/utils/animation";
 import { resolveCompositeKey } from "@brysonandrew/utils-key";
-import { Metal } from "@brysonandrew/texture-metal";
+import { TextureMetal } from "@brysonandrew/texture-metal";
 import { TGenerateInput } from "~/types/trpc/generate";
 import { useHoverKey } from "~/hooks/use-hover-key";
 import { boxStyle } from "~/constants/box/style";
@@ -114,7 +114,7 @@ export const Generate = () => {
               }}
               {...AURA_TRANSITION}
             />
-            <Metal
+            <TextureMetal
               key="background"
               className="fill h-10"
               style={borderStyle}

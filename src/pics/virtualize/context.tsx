@@ -1,16 +1,15 @@
 import {
   PropsWithChildren,
   useRef,
-  MutableRefObject,
   createContext,
   useContext,
   FC,
   useState,
+  useMemo,
 } from "react";
 import {
   useMotionValue,
   MotionValue,
-  AnimationPlaybackControls,
 } from "framer-motion";
 import type {
   FixedSizeList,
@@ -23,21 +22,15 @@ import { useEventListener } from "@brysonandrew/hooks-events";
 import { useOnscreen } from "~/pics/virtualize/use-onscreen";
 import { useTrillPicsStore } from "~/store";
 import { useClickHandler } from "~/pics/virtualize/use-click-handler";
+import {
+  TBlur,
+  useBlur,
+} from "~/pics/virtualize/blur";
+import {
+  TCursor,
+  useCursor,
+} from "~/pics/virtualize/cursor";
 
-type TCursorPosition = {
-  x: MotionValue<number>;
-  y: MotionValue<number>;
-};
-const CURSOR_INIT = {
-  cell: {
-    row: 0,
-    column: 0,
-  },
-};
-export type TCursorCell =
-  typeof CURSOR_INIT;
-export type TCursor = TCursorCell &
-  TCursorPosition;
 export type TVirtualizeListProps =
   TPicsRows;
 export type TVirtualizeList =
@@ -46,19 +39,8 @@ export type TVirtualizeList =
 export type TVirtualizeContextHandle = {
   scrollTop: () => void;
   checkScrolling: () => boolean;
-  scrollTrue: () => void;
+  readInstance: () => void;
   isHovering: () => boolean;
-};
-
-type TBlur = {
-  control: {
-    x: AnimationPlaybackControls | null;
-    y: AnimationPlaybackControls | null;
-  };
-  value: {
-    x: MotionValue<number>;
-    y: MotionValue<number>;
-  };
 };
 type TMain = {
   blur: TBlur;
@@ -67,9 +49,7 @@ type TMain = {
 export type TVirtualizeContext = {
   isOnscreen: boolean;
   ref: TRefMutable<TVirtualizeContextHandle>;
-  blurRef: MutableRefObject<TBlur>;
-  cursorRef: MutableRefObject<TCursor>;
-  mainRef: MutableRefObject<TMain>;
+  main: TMain;
   scrollY: MotionValue<number>;
   onScroll(
     props: ListOnScrollProps
@@ -91,53 +71,34 @@ export const VirtualizeContextProvider: FC<
   const { table } = useTrillPicsStore(
     ({ table }) => ({ table })
   );
-
   const isOnscreen = useOnscreen();
-
-  const blurX = useMotionValue(0);
-  const blurY = useMotionValue(0);
-  const blurRef = useRef<TBlur>({
-    control: {
-      x: null,
-      y: null,
-    },
-    value: {
-      x: blurX,
-      y: blurY,
-    },
-  });
   const ref: TRefMutable<TVirtualizeContextHandle> =
     useRef<TVirtualizeContextHandle | null>(
       null
     );
+  const blur = useBlur();
+  const cursor = useCursor();
+  const main = useMemo<TMain>(() => {
+    return {
+      cursor,
+      blur,
+    };
+  }, []);
 
-  const cursorX = useMotionValue(0);
-  const cursorY = useMotionValue(0);
   const scrollY = useMotionValue(0);
-  const cursorRef = useRef<TCursor>({
-    cell: { column: 0, row: 0 },
-    x: cursorX,
-    y: cursorY,
-  });
-
-  const mainRef = useRef<TMain>({
-    cursor: cursorRef.current,
-    blur: blurRef.current,
-  });
-
   const handleClick = useClickHandler();
-
   const handlePointerDown = (
     event: PointerEvent
   ) => {
     const isHovering =
       ref.current?.isHovering();
-      
+
     if (isHovering) {
-      handleClick(cursorRef.current);
+      handleClick(
+        main.cursor
+      );
     }
   };
-
   const [isCursorMove, setCursorMove] =
     useState(false);
 
@@ -149,15 +110,17 @@ export const VirtualizeContextProvider: FC<
     const nextY =
       event.pageY - scrollY.get();
 
-    cursorX.set(nextX);
-    cursorY.set(nextY);
+    main.cursor.x.set(
+      nextX
+    );
+    main.cursor.x.set(
+      nextY
+    );
 
-    cursorRef.current.cell.column = ~~(
-      nextX / size
-    );
-    cursorRef.current.cell.row = ~~(
-      nextY / size
-    );
+    main.cursor.column =
+      ~~(nextX / size);
+    main.cursor.row =
+      ~~(nextY / size);
 
     if (isOnscreen && !isCursorMove) {
       setCursorMove(true);
@@ -196,9 +159,7 @@ export const VirtualizeContextProvider: FC<
         scrollY,
         isOnscreen,
         ref,
-        blurRef,
-        cursorRef,
-        mainRef,
+        main,
         onScroll: handleScroll,
       }}
     >

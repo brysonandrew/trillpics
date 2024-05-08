@@ -61,7 +61,7 @@ export const Virtualize = forwardRef<
             Boolean(
               outerHandle.current?.isHovering()
             ),
-          scrollTrue: () => {
+          readInstance: () => {
             console.log(fixedSizeList);
           },
           checkScrolling: () => {
