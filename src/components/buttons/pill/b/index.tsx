@@ -11,6 +11,8 @@ import { TFlatProps } from "~/types/ui";
 import { FADE_PRESENCE_DELAY_02 } from "~/constants/animation";
 import { boxStyle } from "~/constants/box/style";
 import { boxSize } from "~/constants/box/style/size";
+import { useReady } from "~/hooks/use-ready";
+import { LightingGlow } from "~/components/layout/lighting/glow";
 
 export type TPillBProps =
   TButtonMotionProps &
@@ -47,6 +49,7 @@ export const PillB: FC<TPillBProps> = ({
     padding,
   } = box;
   const sm = boxSize({ size: "sm" });
+  const isReady = useReady();
 
   return (
     <Root
@@ -64,7 +67,7 @@ export const PillB: FC<TPillBProps> = ({
           : "background",
         classValue
       )}
-      layout
+      layout={isReady}
       style={{
         minHeight,
         minWidth,
@@ -73,23 +76,23 @@ export const PillB: FC<TPillBProps> = ({
       }}
       {...props}
     >
-      {/* {!isFlat && (
+      {!isFlat && (
         <LightingGlow classValue="-inset-1 opacity-50" />
-      )} */}
-      {/* <motion.div
+      )}
+      <motion.div
         className={clsx(
           "center absolute -inset-0.5 opacity-20"
         )}
-        layout
+        layout={isReady}
         style={{
           borderRadius,
         }}
-      /> */}
+      />
       <motion.div
         className={clsx(
           "center relative _gradient-mesh bg-black-06 z-10"
         )}
-        layout
+        layout={isReady}
         style={{
           minHeight: sm.minHeight,
           minWidth: sm.minWidth,
@@ -106,7 +109,9 @@ export const PillB: FC<TPillBProps> = ({
         {children && (
           <motion.div
             className="relative row gap-2 mr-1 -mt-0.25 whitespace-nowrap"
-            {...FADE_PRESENCE_DELAY_02}
+            {...(isReady
+              ? FADE_PRESENCE_DELAY_02
+              : {})}
           >
             {children}
           </motion.div>

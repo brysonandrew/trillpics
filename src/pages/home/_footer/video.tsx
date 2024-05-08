@@ -31,7 +31,7 @@ export const HomeFooterVideo: FC =
         VideoFooterControlsHoverKey
       );
     return (
-      <motion.div className="relative row-reverse">
+      <motion.div className="relative row-reverse bg-red h-5 w-full">
         <PillBHover
           key={title}
           title={title}
@@ -43,7 +43,9 @@ export const HomeFooterVideo: FC =
           Icon={IconsVideo}
           outerCircle={
             <>
-              {isHovering ? (
+        <div className="w-10 h-10 bg-red"/>
+
+              {/* {isHovering ? (
                 <>
                   <VideoFooterControls
                     Button={PillBStill}
@@ -58,7 +60,7 @@ export const HomeFooterVideo: FC =
                 </>
               ) : (
                 <VideoPicCounterFloating />
-              )}
+              )} */}
             </>
           }
         >

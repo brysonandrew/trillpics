@@ -36,7 +36,7 @@ export type TVirtualizeListProps =
 export type TVirtualizeList =
   FixedSizeList<TVirtualizeListProps>;
 
-export type TVirtualizeContextHandle = {
+export type TVirtualizeListHandle = {
   scrollTop: () => void;
   checkScrolling: () => boolean;
   readInstance: () => void;
@@ -48,7 +48,7 @@ type TMain = {
 };
 export type TVirtualizeContext = {
   isOnscreen: boolean;
-  ref: TRefMutable<TVirtualizeContextHandle>;
+  ref: TRefMutable<TVirtualizeListHandle>;
   main: TMain;
   scrollY: MotionValue<number>;
   onScroll(
@@ -72,8 +72,8 @@ export const VirtualizeContextProvider: FC<
     ({ table }) => ({ table })
   );
   const isOnscreen = useOnscreen();
-  const ref: TRefMutable<TVirtualizeContextHandle> =
-    useRef<TVirtualizeContextHandle | null>(
+  const ref: TRefMutable<TVirtualizeListHandle> =
+    useRef<TVirtualizeListHandle | null>(
       null
     );
   const blur = useBlur();
@@ -92,6 +92,9 @@ export const VirtualizeContextProvider: FC<
   ) => {
     const isHovering =
       ref.current?.isHovering();
+
+      console.log(ref.current?.isHovering())
+      console.log(ref.current)
 
     if (isHovering) {
       handleClick(
@@ -152,6 +155,7 @@ export const VirtualizeContextProvider: FC<
       scrollY,
       ref,
     });
+    console.log(ref.current)
 
   return (
     <VirtualizeContext.Provider

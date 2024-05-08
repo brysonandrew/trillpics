@@ -1,12 +1,13 @@
 import {
   forwardRef,
   PropsWithChildren,
+  useImperativeHandle,
+  useRef,
 } from "react";
 import clsx from "clsx";
 
 export type TInnerHandle = {
-  onEnter: () => void;
-  onLeave: () => void;
+  isHovering: () => boolean;
 };
 
 const Inner = forwardRef<
@@ -22,13 +23,43 @@ const Inner = forwardRef<
     },
     ref
   ) => {
+    const eventRef = useRef<{
+      isHovering: boolean;
+    }>({ isHovering: false });
+    useImperativeHandle(
+      ref,
+      () => {
+        return {
+          isHovering: () => {
+            return eventRef.current
+              .isHovering;
+          },
+        };
+      },
+      []
+    );
     return (
       <ul
         ref={ref}
         className={clsx(className)}
+        onPointerOver={() => {
+          eventRef.current.isHovering =
+            true;
+        }}
+        onPointerEnter={() => {
+          eventRef.current.isHovering =
+            true;
+        }}
+        onPointerLeave={() => {
+          eventRef.current.isHovering =
+            false;
+        }}
+        onPointerOut={() => {
+          eventRef.current.isHovering =
+            false;
+        }}
         style={{
           ...style,
-          // ...MOTION_BLUR_FILTER_Y_PROPS,
         }}
         {...props}
       >

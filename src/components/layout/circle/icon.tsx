@@ -4,8 +4,11 @@ import { CircleSm } from "~/components/layout/circle/sm";
 
 type TProps = Pick<
   TPillBProps,
-  "Icon" | "iconProps" | "circleProps"
->;
+  "Icon"
+> & Partial<Pick<
+TPillBProps,
+"iconProps" | "circleProps"
+>>;
 export const CircleIcon: FC<TProps> = ({
   Icon,
   iconProps,

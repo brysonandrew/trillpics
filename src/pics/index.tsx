@@ -45,9 +45,6 @@ export const Pics: FC<TProps> = (
 
   return (
     <>
-      {/* {table.isVerticalScroll && (
-        <ScrollbarSeam />
-      )} */}
       {screen.isDimensions && (
         <Virtualize
           rows={table.rows}

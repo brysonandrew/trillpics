@@ -6,6 +6,9 @@ import {
 import clsx from "clsx";
 import { boxStyle } from "~/constants/box/style";
 import { CircleIcon } from "~/components/layout/circle/icon";
+import { resolveNeuShadow } from "@brysonandrew/uno-shortcuts";
+import { colors } from "tailwindcss/defaultTheme";
+import { SCROLLBAR_BORDER_WIDTH } from "~uno/preflights";
 
 export const PlaybackButtonsB: FC<
   TButtonProps & { Icon: FC<TSvgProps> }
@@ -37,7 +40,15 @@ export const PlaybackButtonsB: FC<
         classValue
       )}
       style={{
-        boxShadow,
+        boxShadow:resolveNeuShadow({
+          size: 2,
+          color: {
+            fill: 'red',
+            back: 'blue'
+          },
+          blur:
+            4
+        }).emptyFill,
         ...borderStyle,
         ...style,
       }}
@@ -54,7 +65,7 @@ export const PlaybackButtonsB: FC<
           marginLeft: sm.padding,
         }}
       >
-        <CircleIcon Icon={Icon} />
+        <CircleIcon Icon={Icon} iconProps={undefined} circleProps={undefined} />
       </div>
     </button>
   );

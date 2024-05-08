@@ -5,6 +5,7 @@ import { PicVideoControls } from "~/pages/video/_common/pic/controls";
 import { AddRemoveToVideoMarker } from "~/pages/video/_common/pic/controls/counter/add-remove-to-video-marker";
 import { TDivMotionProps } from "@brysonandrew/config-types";
 import { TVideoState } from "~/store/state/video/types";
+import { useReady } from "~/hooks/use-ready";
 
 type TProps = TPicProps &
   TDivMotionProps & Pick<TVideoState,'videoPics'>;
@@ -15,6 +16,7 @@ export const VideoPic: FC<
     props.name
   );
   const isAdded = videoOrder > -1;
+  const isReady = useReady();
 
   return (
     <motion.div

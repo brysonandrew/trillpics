@@ -1,5 +1,8 @@
 import { FC } from "react";
-import { AnimatePresence, motion } from "framer-motion";
+import {
+  AnimatePresence,
+  motion,
+} from "framer-motion";
 import { ControlsShuffle } from "~/shell/header/left/controls/shuffle";
 import {
   Link,
@@ -12,6 +15,7 @@ import { useScrollTopHandler } from "~/pics/virtualize/scroll/handlers/top";
 import { IconsArrowsUp2 } from "~/components/icons/arrows/up2";
 import { resolvePresence } from "~/utils/animation";
 import { useTrillPicsStore } from "~/store";
+import { useReady } from "~/hooks/use-ready";
 
 export const HeaderLeft: FC = () => {
   const { pathname } = useLocation();
@@ -23,6 +27,7 @@ export const HeaderLeft: FC = () => {
         isScroll,
       })
     );
+  const isReady = useReady();
   const isHome =
     pathname === HOME_ROUTE;
 
@@ -55,16 +60,21 @@ export const HeaderLeft: FC = () => {
       <div className="column-start gap-4 relative shrink-0">
         <ControlsShuffle />
         <AnimatePresence>
-          {isScroll && (
+          {true && (
             <ScrollTop
               key={title}
               title={title}
               onClick={handler}
               Icon={IconsArrowsUp2}
-              {...resolvePresence(
-                { opacity: 0, y: 10 },
-                { opacity: 1, y: 0 }
-              )}
+              {...(isReady
+                ? resolvePresence(
+                    {
+                      opacity: 0,
+                      y: 10,
+                    },
+                    { opacity: 1, y: 0 }
+                  )
+                : {})}
             >
               {title}
             </ScrollTop>

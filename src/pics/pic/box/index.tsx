@@ -62,7 +62,7 @@ export const Box: FC<TProps> = ({
                 left,
                 value: 0,
               }),
-              left: left + SCROLLBAR_BORDER_WIDTH * column,
+              left,
             },
             row,
             column,

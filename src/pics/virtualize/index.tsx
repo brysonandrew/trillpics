@@ -11,7 +11,7 @@ import {
 } from "~/store/state/table/types";
 import { TDimensions } from "@brysonandrew/config-types";
 import {
-  TVirtualizeContextHandle,
+  TVirtualizeListHandle,
   TVirtualizeList,
 } from "~/pics/virtualize/context";
 import {
@@ -22,6 +22,8 @@ import {
   Outer,
   TOuterHandle,
 } from "~/pics/virtualize/outer";
+import { isVirtualizeListCheck } from "~/pics/virtualize/validation";
+import { isOuterCheck } from "~/pics/virtualize/validation/outer";
 
 type TProps = TPartialFixedTableProps &
   TDimensions & {
@@ -29,97 +31,89 @@ type TProps = TPartialFixedTableProps &
     size: number;
   };
 export const Virtualize = forwardRef<
-  TVirtualizeContextHandle,
+  TVirtualizeListHandle,
   TProps
 >(
   (
     { size, rows, ...props }: TProps,
     handleRef
   ) => {
-    // const { clear, isNoHover } =
-    // useHoverKey();
-    const outerHandle =
-      useRef<TOuterHandle | null>(null);
+    // const outerHandle =
+    //   useRef<TOuterHandle | null>(null);
     const innerHandle =
       useRef<TInnerHandle | null>(null);
     const sourceRef =
-      useRef<TVirtualizeList | null>();
+      useRef<TVirtualizeList | null>(
+        null
+      );
+
     const fixedSizeList =
       sourceRef.current;
+console.log(fixedSizeList)
     useImperativeHandle(
       handleRef,
       () => {
-        console.log("fixedSizeList");
-        console.log(fixedSizeList);
         return {
           scrollTop: () => {
-            fixedSizeList?.scrollToItem(
-              0
-            );
+            if (sourceRef.current) {
+              sourceRef.current.scrollTo(
+                0
+              );
+            }
           },
-          isHovering: () =>
-            Boolean(
-              outerHandle.current?.isHovering()
-            ),
+          isHovering: () => {
+            if (innerHandle.current?.isHovering()) return true 
+            return false;
+          },
           readInstance: () => {
             console.log(fixedSizeList);
           },
           checkScrolling: () => {
-            const isScrolling = (
-              fixedSizeList?.state as any
-            )?.isScrolling;
-            return isScrolling;
-          },
-          onPointerEnter: () => {
-            console.log(
-              "Virtualize.onPointerEnter"
-            );
-          },
-          onPointerLeave: () => {
-            console.log(
-              "Virtualize.onPointerLeave"
-            );
+            console.log("scrolling");
+
+            console.log(sourceRef.current?.state)
+            if (sourceRef.current?.state.isScrolling) return true
+            return false;
           },
         };
       },
       []
     );
     return (
-      <>
-        <FixedSizeList<TPicsRows>
-          itemCount={rows.length}
-          itemData={rows}
-          itemSize={size}
-          itemKey={(
-            index: number,
-            data: TPicsRows
-          ) => {
-            const key =
-              data[index].columns.join(
-                "-"
-              );
-            return key;
-          }}
-          layout="vertical"
-          direction="ltr"
-          ref={(instance) => {
-            if (
-              instance &&
-              !sourceRef.current
-            ) {
-              sourceRef.current =
-                instance;
-            }
-          }}
-          innerElementType={Inner}
-          outerElementType={Outer}
-          innerRef={innerHandle}
-          outerRef={outerHandle}
-          {...props}
-        >
-          {Row}
-        </FixedSizeList>
-      </>
+      <FixedSizeList<TPicsRows>
+        useIsScrolling
+        itemCount={rows.length}
+        itemData={rows}
+        itemSize={size}
+        itemKey={(
+          index: number,
+          data: TPicsRows
+        ) => {
+          const key =
+            data[index].columns.join(
+              "-"
+            );
+          return key;
+        }}
+        layout="vertical"
+        direction="ltr"
+        ref={(instance) => {
+          if (
+            instance &&
+            !sourceRef.current
+          ) {
+            sourceRef.current =
+              instance;
+          }
+        }}
+        innerElementType={Inner}
+        // outerElementType={Outer}
+        innerRef={innerHandle}
+        // outerRef={outerHandle}
+        {...props}
+      >
+        {Row}
+      </FixedSizeList>
     );
   }
 );

@@ -56,6 +56,10 @@ const Outer = forwardRef<
               instance;
           }
         }}
+        onPointerOver={() => {
+          eventRef.current.isHovering =
+            true;
+        }}
         onPointerEnter={() => {
           eventRef.current.isHovering =
             true;
@@ -63,8 +67,8 @@ const Outer = forwardRef<
         onPointerLeave={() => {
           eventRef.current.isHovering =
             false;
-
         }}
+        
         {...props}
       >
         {children}

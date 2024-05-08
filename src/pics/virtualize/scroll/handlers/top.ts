@@ -11,25 +11,25 @@ export const useScrollTopHandler =
     const handler = () => {
       if (!ref.current) return;
       const y = scrollY.get();
+console.log(ref.current, y)
+     ref.current.scrollTop();
+      // if (main.blur.control.y) {
+      //   main.blur.control.y.stop();
+      // }
 
-      ref.current.scrollTop();
-      if (main.blur.control.y) {
-        main.blur.control.y.stop();
-      }
-
-      main.blur.control.y = animate(
-        main.blur.value.y,
-        y * 0.008,
-        {
-          type: "inertia",
-          restDelta: 0,
-          restSpeed: 1,
-          velocity: y * 0.02,
-          onComplete: () => {
-            main.blur.value.y.set(0);
-          },
-        }
-      );
+      // main.blur.control.y = animate(
+      //   main.blur.value.y,
+      //   y * 0.008,
+      //   {
+      //     type: "inertia",
+      //     restDelta: 0,
+      //     restSpeed: 1,
+      //     velocity: y * 0.02,
+      //     onComplete: () => {
+      //       main.blur.value.y.set(0);
+      //     },
+      //   }
+      // );
 
       // blurYRef.current = animate(
       //   scrollY,

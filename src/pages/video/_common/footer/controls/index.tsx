@@ -8,6 +8,7 @@ import { useTrillPicsStore } from "~/store";
 import { ControlsUndo } from "~/pages/video/_common/footer/controls/undo-redo/undo";
 import { ControlsRedo } from "~/pages/video/_common/footer/controls/undo-redo/redo";
 import { SeperatorHorizontal } from "~/pages/video/_common/footer/controls/seperator/horizontal";
+import { useReady } from "~/hooks/use-ready";
 
 export const VideoFooterControls: FC<
   TVideoFooterProps
@@ -22,6 +23,8 @@ export const VideoFooterControls: FC<
         videoPics,
       })
     );
+  const isReady = useReady();
+
   const props = {
     Button,
     ..._props,
@@ -32,33 +35,57 @@ export const VideoFooterControls: FC<
   const title = isVideoPics
     ? undefined
     : "Random Video";
+
   return (
     <>
       <Seperator />
       <ControlsUndo
-        layoutId="ControlsUndo"
+        {...(isReady
+          ? {
+              layoutId: "ControlsUndo",
+            }
+          : {})}
         {...props}
       />
       <ControlsRedo
-        layoutId="ControlsRedo"
+        {...(isReady
+          ? {
+              layoutId: "ControlsRedo",
+            }
+          : {})}
         {...props}
       />
       {isVideoPics && (
         <>
           <Seperator />
           <ControlsClear
-            layoutId="ControlsClear"
+            {...(isReady
+              ? {
+                  layoutId:
+                    "ControlsClear",
+                }
+              : {})}
             {...props}
           />
           <ControlsShow
-            layoutId="ControlsShow"
+            {...(isReady
+              ? {
+                  layoutId:
+                    "ControlsShow",
+                }
+              : {})}
             {...props}
           />
         </>
       )}
       <Seperator />
       <ControlsPlayer
-        layoutId="ControlsPlayer"
+        {...(isReady
+          ? {
+              layoutId:
+                "ControlsPlayer",
+            }
+          : {})}
         title={title}
         {...props}
       />

@@ -20,7 +20,7 @@ const resolveScrollBarCssConfig = (
       style: 'solid',
       width: `${SCROLLBAR_BORDER_WIDTH}px`,
       image: `${GRADIENT_TEAL_YELLOW_PINK} 2`,
-      imageSlice: 1,
+      imageSlice: 4,
     })
   )
     .map((entry) => entry.join(": "))
@@ -31,7 +31,7 @@ const resolveScrollBarCssConfig = (
       style: 'solid',
       width: `${SCROLLBAR_BORDER_WIDTH}px`,
       image: `${GRADIENT_BLUE_PINK_YELLOW} 2`,
-      imageSlice: 1,
+      imageSlice: 4,
     })
   )
     .map((entry) => entry.join(": "))
@@ -39,20 +39,19 @@ const resolveScrollBarCssConfig = (
 
   const result = {
     scrollbar: `width: ${SCROLLBAR_WIDTH + SCROLLBAR_BORDER_WIDTH * 2}px;\n${boxBackgroundColorCss(
-      colors["black-9"]
+      colors["black-6"]
     )}`,
     thumb: {
-      idle: `background-color:${colors['black-4']};\n${thumbCss};\n`,
+      idle: `background-color:${colors['black-2']};\n${thumbCss};\n`,
       hover: `box-shadow: ${
         resolveNeuShadow({
-          size: SCROLLBAR_BORDER_WIDTH,
+          size: 4,
           color: {
-            fill: colors["light"],
-            back: colors["light"],
+            fill: colors["white"],
+            back: colors["white"],
           },
-          blur:
-            SCROLLBAR_BORDER_WIDTH / 2,
-        }).emptyFill
+          blur: 8,
+        }).fill
       };
       `,
     },
@@ -66,10 +65,10 @@ const resolveScrollBarCssConfig = (
           resolveNeuShadow({
             size: 4,
             color: {
-              fill: colors["dark"],
-              back: colors["dark"],
+              fill: colors["white"],
+              back: colors["white"],
             },
-            blur: 2,
+            blur: 8,
           }).fill
         };
         `,
