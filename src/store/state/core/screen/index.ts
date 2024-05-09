@@ -14,12 +14,6 @@ export const coreScreenState: TStateHandler<
         isDefined(next)
           ? next
           : !get().isOnscreen;
-      if (
-        nextOnscreenCheck &&
-        !get().isControls
-      ) {
-        draft.isControls = true;
-      }
       draft.isOnscreen =
         nextOnscreenCheck;
     });

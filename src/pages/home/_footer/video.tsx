@@ -18,11 +18,9 @@ export const HomeFooterVideo: FC =
     const { togglePathValue } =
       useNavigationControls();
     const handleClick = () => {
-      togglePathValue(
-        VIDEO_ROUTE
-      );
+      togglePathValue(VIDEO_ROUTE);
     };
-    const title = "Make a video";
+    const title = "Video mode";
     const isHovering = isHover(title);
     const VideoFooterControlsHoverKey =
       "VideoFooterControlsHoverKey";
@@ -31,7 +29,7 @@ export const HomeFooterVideo: FC =
         VideoFooterControlsHoverKey
       );
     return (
-      <motion.div className="relative row-reverse bg-red h-5 w-full">
+      <motion.div className="relative row-reverse">
         <PillBHover
           key={title}
           title={title}
@@ -43,16 +41,13 @@ export const HomeFooterVideo: FC =
           Icon={IconsVideo}
           outerCircle={
             <>
-        <div className="w-10 h-10 bg-red"/>
-
-              {/* {isHovering ? (
+              {isHovering ? (
                 <>
                   <VideoFooterControls
                     Button={PillBStill}
                     Seperator={
                       SeperatorVertical
                     }
-                    // {...PRESENCE_OPACITY_DELAY}
                     {...motionHandlers(
                       VideoFooterControlsHoverKey
                     )}
@@ -60,11 +55,13 @@ export const HomeFooterVideo: FC =
                 </>
               ) : (
                 <VideoPicCounterFloating />
-              )} */}
+              )}
             </>
           }
         >
-          {title}
+          <div className="px-1">
+            {title}
+          </div>
           <SeperatorVertical />
         </PillBHover>
       </motion.div>

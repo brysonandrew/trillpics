@@ -1,6 +1,6 @@
 import { useTrillPicsStore } from "~/store";
 
-export const SEARCH_PARAM_ID = "open";
+export const SEARCH_PARAM_KEY = "open";
 
 export type TUsePicVideoControlsConfig =
   { videoOrder: number };

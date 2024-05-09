@@ -15,9 +15,9 @@ export const ControlsUndo: FC<
     useTemporalStore((state) => state);
   const isNoPast =
     pastStates.length === 0;
-  const title = `Undo ${
-    isNoPast ? "[disabled]" : ""
-  }`;
+  const title = `${
+    isNoPast ? "Nothing to " : ""
+  }Undo`;
   return (
     <Button
       disabled={isNoPast}

@@ -9,4 +9,10 @@ export type TScrollUpdateState = {
 
 export type TScrollState = {
   isScroll: boolean;
+  isScrolling: boolean;
+  scrollDirection:
+    | "forward"
+    | "backward"
+    | null;
+  scrollDelta: number | null;
 };

@@ -3,7 +3,7 @@ import { animate } from "framer-motion";
 import { IconsShuffle } from "~/components/icons/pic/shuffle";
 import { useTrillPicsStore } from "~/store";
 import { PillBHover } from "~/components/buttons/pill/b/hover";
-import { useVirtualizeContext } from "~/pics/virtualize/context";
+import { useVirtualizeContext } from "~/context";
 
 export const ControlsShuffle: FC =
   () => {
@@ -16,7 +16,8 @@ export const ControlsShuffle: FC =
         })
       );
     const randomizePics = () => {
-      const prev = main.blur.value.x.get();
+      const prev =
+        main.blur.value.x.get();
       main.blur.control.x = animate(
         main.blur.value.x,
         100,
@@ -31,6 +32,7 @@ export const ControlsShuffle: FC =
     const title = "Randomize Pics";
     return (
       <PillBHover
+        key={title}
         classValue="font-display-led"
         title={title}
         onClick={randomizePics}

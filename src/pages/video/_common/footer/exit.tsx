@@ -15,7 +15,7 @@ export const VideoFooterExit: FC =
       togglePathValue();
     };
     const title =
-      "Exit Video's Mode";
+      "Exit Video Mode";
 
     return (
       <PillBHover

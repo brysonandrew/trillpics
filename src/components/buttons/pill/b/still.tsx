@@ -9,8 +9,8 @@ const Root =
   motion.div as FC<TButtonMotionProps>;
 const FakeButton: FC<
   TButtonMotionProps
-> = ({ ...props }) => (
-  <Root {...props} />
+> = ({ children, ...props }) => (
+  <Root {...props}>{children}</Root>
 );
 
 type TProps = TPillBProps;

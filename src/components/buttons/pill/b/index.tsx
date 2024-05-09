@@ -12,7 +12,9 @@ import { FADE_PRESENCE_DELAY_02 } from "~/constants/animation";
 import { boxStyle } from "~/constants/box/style";
 import { boxSize } from "~/constants/box/style/size";
 import { useReady } from "~/hooks/use-ready";
-import { LightingGlow } from "~/components/layout/lighting/glow";
+import { TexturesMesh } from "~/components/textures/mesh";
+import { GRADIENT_MESH_DARK } from "~app/color/gradient/mesh";
+import { resolveCompositeKey } from "@brysonandrew/utils-key";
 
 export type TPillBProps =
   TButtonMotionProps &
@@ -34,6 +36,7 @@ export const PillB: FC<TPillBProps> = ({
   outerCircle,
   isFlat,
   style,
+  disabled,
   ...props
 }) => {
   const box = boxStyle({
@@ -53,13 +56,19 @@ export const PillB: FC<TPillBProps> = ({
 
   return (
     <Root
+    key={resolveCompositeKey(
+      'PillB',
+      title,
+      `${isReady}`
+    )}
       {...resolveAccessibilityTitles(
         title
       )}
+      disabled={disabled}
       className={clsx(
         "relative",
         "row shrink-0 gap-2",
-        "disabled:grayscale-100",
+        "disabled:(grayscale-100 brightness-60 opacity-80 cursor-not-allowed)",
         "text-black",
         " _gradient-radial",
         isFlat
@@ -67,6 +76,10 @@ export const PillB: FC<TPillBProps> = ({
           : "background",
         classValue
       )}
+    
+      {...(isReady
+        ? { layout: true }
+        : {})}
       layout={isReady}
       style={{
         minHeight,
@@ -77,30 +90,33 @@ export const PillB: FC<TPillBProps> = ({
       {...props}
     >
       {!isFlat && (
-        <LightingGlow classValue="-inset-1 opacity-50" />
+        <motion.div
+          style={{
+            borderRadius,
+            filter: "blur(28px)",
+          }}
+          className="absolute -inset-2 _gradient-radial opacity-30"
+        />
       )}
+
       <motion.div
         className={clsx(
-          "center absolute -inset-0.5 opacity-20"
+          "center relative bg-black-04 z-10"
         )}
-        layout={isReady}
-        style={{
-          borderRadius,
-        }}
-      />
-      <motion.div
-        className={clsx(
-          "center relative _gradient-mesh bg-black-06 z-10"
-        )}
-        layout={isReady}
+        {...(isReady
+          ? { layout: true }
+          : {})}
         style={{
           minHeight: sm.minHeight,
           minWidth: sm.minWidth,
           borderRadius,
           marginLeft: padding,
+          ...GRADIENT_MESH_DARK,
+          backgroundSize: "4px 4px",
         }}
       >
         <Icon />
+        <TexturesMesh />
       </motion.div>
       {outerCircle && (
         <>{outerCircle}</>

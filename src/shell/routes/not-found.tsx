@@ -2,7 +2,7 @@ import type { FC } from "react";
 import { animate } from "framer-motion";
 import { ModalOverlay } from "~/components/layout/modal/overlay";
 import { Link } from "react-router-dom";
-import { useVirtualizeContext } from "~/pics/virtualize/context";
+import { useVirtualizeContext } from "~/context";
 
 export const NotFound: FC = () => {
   const { main } =

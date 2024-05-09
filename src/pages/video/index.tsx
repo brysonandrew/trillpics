@@ -6,7 +6,7 @@ import { TOutletContext } from "~/shell";
 import { VideoFooter } from "~/pages/video/_common/footer";
 import { useTrillPicsStore } from "~/store";
 import { VideoPic } from "~/pages/video/_common/pic";
-import { useVirtualizeContext } from "~/pics/virtualize/context";
+import { useVirtualizeContext } from "~/context";
 import { resolveSquare } from "@brysonandrew/measure";
 import { PRESENCE_OPACITY_ANIMATE_DELAY_02 } from "~/constants/animation";
 

@@ -38,8 +38,9 @@ export const VideoFooterControls: FC<
 
   return (
     <>
-      <Seperator />
+      <Seperator key="Seperator0" />
       <ControlsUndo
+        key="ControlsUndo"
         {...(isReady
           ? {
               layoutId: "ControlsUndo",
@@ -48,6 +49,7 @@ export const VideoFooterControls: FC<
         {...props}
       />
       <ControlsRedo
+        key="ControlsRedo"
         {...(isReady
           ? {
               layoutId: "ControlsRedo",
@@ -59,6 +61,7 @@ export const VideoFooterControls: FC<
         <>
           <Seperator />
           <ControlsClear
+            key="ControlsClear"
             {...(isReady
               ? {
                   layoutId:
@@ -68,6 +71,7 @@ export const VideoFooterControls: FC<
             {...props}
           />
           <ControlsShow
+            key="ControlsShow"
             {...(isReady
               ? {
                   layoutId:
@@ -80,6 +84,7 @@ export const VideoFooterControls: FC<
       )}
       <Seperator />
       <ControlsPlayer
+        key="ControlsPlayer"
         {...(isReady
           ? {
               layoutId:

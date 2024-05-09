@@ -8,7 +8,8 @@ export const GRADIENT_MESH_DARK =
       name: "repeating-conic-gradient",
       parts: [
         "rgba(0,0,0,0)",
-        resolveVarCss("black-06"),
+        resolveVarCss("black"),
+        resolveVarCss("black-7"),
       ],
     }),
   });

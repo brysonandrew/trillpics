@@ -4,12 +4,6 @@ import { carbonFiberCss } from "~/css/carbon/textures";
 import { TDivProps } from "@brysonandrew/config-types";
 
 const Root = styled.div``;
-const Dark = styled.div`
-  background-color: var(--black);
-`;
-const Light = styled.div`
-  background-color: var(--white);
-`;
 const Texture = styled.div`
   ${carbonFiberCss}/* opacity: 0.4; */
 `;

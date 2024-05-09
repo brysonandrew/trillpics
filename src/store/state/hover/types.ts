@@ -1,4 +1,4 @@
-import { TPicProps } from "~/pics/pic";
+import { TPicProps } from "~/pics/grid/pic";
 
 export type THoverKey = string | number;
 export type THoverPicKey = string;

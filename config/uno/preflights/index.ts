@@ -2,6 +2,7 @@ import { resolvePreflights as _resolvePreflights } from "@brysonandrew/uno-prefl
 import { resolveNeuShadow } from "@brysonandrew/uno-shortcuts";
 import {
   boxBackgroundColorCss,
+  boxBackgroundCssStr,
   boxBorderCss,
 } from "@brysonandrew/utils-box";
 import {
@@ -9,6 +10,8 @@ import {
   GRADIENT_TEAL_YELLOW_PINK,
 } from "../../app/color/gradient";
 import { TColor } from "../index";
+import { resolveVarCss } from "@brysonandrew/color-base";
+import { resolveGradient } from "@brysonandrew/color-gradient";
 export const SCROLLBAR_WIDTH = 10;
 export const SCROLLBAR_BORDER_WIDTH = 2;
 
@@ -17,7 +20,7 @@ const resolveScrollBarCssConfig = (
 ) => {
   const thumbCss = Object.entries(
     boxBorderCss({
-      style: 'solid',
+      style: "solid",
       width: `${SCROLLBAR_BORDER_WIDTH}px`,
       image: `${GRADIENT_TEAL_YELLOW_PINK} 2`,
       imageSlice: 4,
@@ -28,7 +31,7 @@ const resolveScrollBarCssConfig = (
 
   const thumbDarkCss = Object.entries(
     boxBorderCss({
-      style: 'solid',
+      style: "solid",
       width: `${SCROLLBAR_BORDER_WIDTH}px`,
       image: `${GRADIENT_BLUE_PINK_YELLOW} 2`,
       imageSlice: 4,
@@ -38,11 +41,24 @@ const resolveScrollBarCssConfig = (
     .join(";\n");
 
   const result = {
-    scrollbar: `width: ${SCROLLBAR_WIDTH + SCROLLBAR_BORDER_WIDTH * 2}px;\n${boxBackgroundColorCss(
+    scrollbar: `width: ${
+      SCROLLBAR_WIDTH +
+      SCROLLBAR_BORDER_WIDTH * 2
+    }px;\n${boxBackgroundColorCss(
       colors["black-6"]
-    )}`,
+    )}${boxBackgroundCssStr({
+      image: resolveGradient({
+        name: "repeating-conic-gradient",
+        parts: [
+          "rgba(0,0,0,0)",
+          resolveVarCss("black"),
+          resolveVarCss("black-9"),
+        ],
+      }),
+      size: '4px 4px'
+    })}`,
     thumb: {
-      idle: `background-color:${colors['black-2']};\n${thumbCss};\n`,
+      idle: `background-color:${colors["black-2"]};\n${thumbCss};\n`,
       hover: `box-shadow: ${
         resolveNeuShadow({
           size: 4,
@@ -60,7 +76,7 @@ const resolveScrollBarCssConfig = (
         colors["black-6"]
       )}`,
       thumb: {
-        idle: `${thumbDarkCss};\nbackground-color:${colors['black']};\n`,
+        idle: `${thumbDarkCss};\nbackground-color:${colors["black"]};\n`,
         hover: `box-shadow: ${
           resolveNeuShadow({
             size: 4,
@@ -75,6 +91,7 @@ const resolveScrollBarCssConfig = (
       },
     },
   };
+  console.log(result);
   return result;
 };
 

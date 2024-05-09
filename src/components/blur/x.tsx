@@ -1,7 +1,7 @@
 import type { FC } from "react";
 import { BlurMotion2 } from "@brysonandrew/svg-filter";
 import { MOTION_BLUR_FILTER_X_ID } from "~/components/blur/constants";
-import { useVirtualizeContext } from "~/pics/virtualize/context";
+import { useVirtualizeContext } from "~/context";
 
 export const BlurX: FC = () => {
   const { main } =
@@ -10,7 +10,10 @@ export const BlurX: FC = () => {
     <BlurMotion2
       axis="x"
       id={MOTION_BLUR_FILTER_X_ID}
-      gaussianBlurMotionProps={{}}
+      gaussianBlurMotionProps={{
+        baseFrequency: "0.001",
+        // stdDeviation: "0.1",
+      }}
       morphologyProps={{}}
       intensity={0.0001}
       mRadius={0.00001}

@@ -16,9 +16,9 @@ export const ControlsRedo: FC<
   const isNoFuture =
     futureStates.length === 0;
 
-  const title = `Redo${
-    isNoFuture ? " [disabled]" : ""
-  }`;
+  const title = `${
+    isNoFuture ? "Nothing to " : ""
+  }Redo`;
   return (
     <Button
       disabled={isNoFuture}
@@ -27,7 +27,7 @@ export const ControlsRedo: FC<
       }
       {...props}
       title={title}
-      Icon={IconsRedo}
+      Icon={IconsRedo} 
     >
       {title}
     </Button>

@@ -1,5 +1,5 @@
 import { resolveSquare } from "@brysonandrew/measure";
-import { TCursorCell } from "~/pics/virtualize/cursor";
+import { TCursorCell } from "~/context/cursor";
 
 type TConfig = TCursorCell & {
   size: number;

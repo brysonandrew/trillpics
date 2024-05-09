@@ -6,13 +6,8 @@ export const coreControlsState: TStateHandler<
 > = (set) => ({
   isControls: true,
   toggleControls: (next?: boolean) => {
-    set(
-      (prev: {
-        isControls: boolean;
-      }) => ({
-        isControls:
-          next ?? !prev.isControls,
-      })
-    );
+    set({
+      isControls: next,
+    });
   },
 });

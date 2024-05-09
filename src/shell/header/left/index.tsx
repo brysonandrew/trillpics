@@ -11,7 +11,7 @@ import {
 import { HOME_ROUTE } from "~/constants/params";
 import { Title } from "~/shell/header/left/title";
 import { ScrollTop } from "~/shell/header/left/controls/scroll-top";
-import { useScrollTopHandler } from "~/pics/virtualize/scroll/handlers/top";
+import { useScrollTopHandler } from "~/context/scroll/top";
 import { IconsArrowsUp2 } from "~/components/icons/arrows/up2";
 import { resolvePresence } from "~/utils/animation";
 import { useTrillPicsStore } from "~/store";
@@ -58,11 +58,14 @@ export const HeaderLeft: FC = () => {
         )}
       </motion.div>
       <div className="column-start gap-4 relative shrink-0">
-        <ControlsShuffle />
+        <ControlsShuffle 
+                      key="ControlsShuffle"
+
+        />
         <AnimatePresence>
-          {true && (
+          {isScroll && (
             <ScrollTop
-              key={title}
+              key={`ScrollTop ${title}`}
               title={title}
               onClick={handler}
               Icon={IconsArrowsUp2}

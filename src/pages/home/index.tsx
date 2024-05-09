@@ -15,10 +15,10 @@ export const Home: FC = () => {
 
   return (
     <>
-      {/* <Header>
+      <Header>
         <HeaderLeft />
         <HeaderRight />
-      </Header> */}
+      </Header>
       <Footer>
         <FooterLeft>
           <HomeFooter />
