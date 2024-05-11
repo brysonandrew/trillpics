@@ -2,18 +2,6 @@ import localForage from "localforage";
 import { createJSONStorage } from "zustand/middleware";
 import { TPersistPartializedState } from "~/store/middleware/3.persist/types";
 
-// export type TMapValue =
-//   | TTrack
-//   | TTimelineRow;
-// export type TMapEntry = [
-//   string,
-//   unknown
-// ];
-// export type TMapEntries = TMapEntry[];
-
-// export type TStorageKey =
-//   keyof TState;
-
 export type TStorageHandler<T = any> = (
   key: string,
   value: T

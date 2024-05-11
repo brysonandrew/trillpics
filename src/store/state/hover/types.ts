@@ -4,6 +4,7 @@ export type THoverKey = string | number;
 export type THoverPicKey = string;
 
 export type THoverPicState = {
+
   hoverPicKey: THoverPicKey | null;
   hoverPicProps: TPicProps | null;
   hoverPic: (
@@ -14,6 +15,8 @@ export type THoverPicState = {
   ) => void;
 };
 export type THoverMultiState = {
+  hoverKeyCooldown: THoverKey | null;
+
   hoverKeys: THoverKey[];
   isHover: (
     hoverKey: THoverKey
@@ -25,4 +28,4 @@ export type THoverMultiState = {
 };
 
 export type THoverState =
-  THoverPicState & THoverMultiState;
+THoverMultiState;

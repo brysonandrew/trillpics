@@ -4,12 +4,16 @@ import type {
 } from "react";
 import { motion } from "framer-motion";
 import { FULLSCREEN_Z } from "~/constants/dom";
-import { useTrillPicsStore } from "~/store";
+import { useTrillPicsStore } from "~/store/middleware";
+import { TDivMotionProps } from "@brysonandrew/config-types";
+import { GRADIENT_MESH_DARK } from "~app/color/gradient/mesh";
+import clsx from "clsx";
 
-type TProps = PropsWithChildren;
+type TProps =
+  PropsWithChildren<TDivMotionProps>;
 export const PicBackdrop: FC<
   TProps
-> = ({ children }) => {
+> = ({ children, style, ...props }) => {
   const { screen } = useTrillPicsStore(
     ({ screen }) => ({ screen })
   );
@@ -19,19 +23,28 @@ export const PicBackdrop: FC<
     height: screen.height,
   };
   return (
-    <>
-      <motion.div
-        className="inset-0 zoom-out"
-        style={{
-          position: "fixed",
-          zIndex: FULLSCREEN_Z,
-          ...(screenDimensions ?? {}),
-          backdropFilter:
-            "blur(28px) grayscale(80%)",
-          cursor: "zoom-out",
-        }}
-      />
-      {children}
-    </>
+    <motion.div
+      className={clsx("inset-0")}
+      style={{
+        position: "fixed",
+        zIndex: FULLSCREEN_Z,
+        ...(screenDimensions ?? {}),
+        backdropFilter:
+          "blur(28px) grayscale(80%)",
+        cursor: "zoom-out",
+        ...style,
+      }}
+      {...props}
+    >
+      {children ?? (
+        <div
+          className="fill-screen"
+          style={{
+            ...GRADIENT_MESH_DARK,
+            backgroundSize: "4px 4px",
+          }}
+        />
+      )}
+    </motion.div>
   );
 };

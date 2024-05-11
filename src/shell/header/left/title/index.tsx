@@ -2,8 +2,11 @@ import type { FC } from "react";
 import { motion } from "framer-motion";
 import { TitleText } from "~/shell/header/left/title/text";
 import { SparkleButton } from "~/shell/header/left/title/sparkle-button";
-import { SvgWrap } from "@brysonandrew/svg-dimensionless";
 import { resolveUrlId } from "@brysonandrew/utils-attributes";
+import {
+  FILTERS_FAT_SVG_ID,
+  FILTERS_FAT_SVG_PROPS,
+} from "~/shell/global/svg/filters/fat";
 
 export const Title: FC = () => {
   return (
@@ -19,33 +22,15 @@ export const Title: FC = () => {
         }}
         className="relative text-lg text-black char-gap-8"
       >
-        <SvgWrap
-          style={{
-            width: 0,
-            height: 0,
-          }}
-        >
-          <filter id="fat">
-            <feMorphology
-              operator="dilate"
-              //in="t"
-              in="SourceGraphic"
-              radius={0.8}
-              result="m"
-            />
-          </filter>
-        </SvgWrap>
         <motion.span
           className="fill text-gray-9"
           style={{
-            filter: resolveUrlId("fat"),
+            ...FILTERS_FAT_SVG_PROPS,
           }}
         >
           AI Art Gallery
         </motion.span>
-        <span
-          className="relative text-black"
-        >
+        <span className="relative text-black">
           AI Art Gallery
         </span>
       </h2>

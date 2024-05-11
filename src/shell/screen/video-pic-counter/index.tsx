@@ -6,23 +6,15 @@ import {
 import clsx from "clsx";
 import { N } from "~/components/layout/N";
 import { LightingGlow } from "~/components/layout/lighting/glow";
-import { useTrillPicsStore } from "~/store";
 import { RADIAL_BLUE_PINK_YELLOW } from "~app/color/gradient";
+import { usePicVideo } from "~/hooks/pic/video";
 
 export const VideoPicsCounter: FC<
   Partial<TPillProps>
 > = ({ classValue, ...props }) => {
-  const { videoPics } =
-    useTrillPicsStore(
-      ({ videoPics }) => ({
-        videoPics,
-      })
-    );
-  const videoPicsCount =
-    videoPics.length;
-  const isVideoPicsCount =
-    videoPicsCount > 0;
-  if (!isVideoPicsCount) return null;
+  const { count, isVideoPics } =
+    usePicVideo();
+  if (!isVideoPics) return null;
   return (
     <Pill
       layoutId="ControlsCounter"
@@ -37,7 +29,7 @@ export const VideoPicsCounter: FC<
       {...props}
     >
       <LightingGlow />
-      <N>{videoPicsCount}</N>
+      <N>{count}</N>
     </Pill>
   );
 };

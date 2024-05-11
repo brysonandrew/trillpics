@@ -25,7 +25,7 @@ const INPUT_PROPS = getInputProps();
 export const PicSeries: FC<
   TPicSeriesProps
 > = (props) => {
-  const { pics } = {
+  const { pics, seconds } = {
     ...props,
     ...INPUT_PROPS,
   };
@@ -55,7 +55,7 @@ export const PicSeries: FC<
           return (
             <Series.Sequence
               key={`${src}`}
-              durationInFrames={fps}
+              durationInFrames={pics.length & seconds * fps}
             >
               <AbsoluteFill
                 style={{
@@ -69,7 +69,7 @@ export const PicSeries: FC<
               >
                 <Img
                   src={src}
-                  alt={src}
+                  alt={`${pic}`}
                 />
               </AbsoluteFill>
             </Series.Sequence>

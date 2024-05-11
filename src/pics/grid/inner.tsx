@@ -5,6 +5,7 @@ import {
   useRef,
 } from "react";
 import clsx from "clsx";
+import { useTrillPicsStore } from "~/store/middleware";
 
 export type TInnerHandle = {
   isHovering: () => boolean;
@@ -23,6 +24,14 @@ const Inner = forwardRef<
     },
     ref
   ) => {
+    const { hoverKeys, set } =
+      useTrillPicsStore(
+        ({ hoverKeys, set }) => ({
+          hoverKeys,
+          set,
+        })
+      );
+
     const eventRef = useRef<{
       isHovering: boolean;
     }>({ isHovering: false });
@@ -38,18 +47,19 @@ const Inner = forwardRef<
       },
       []
     );
+    const handleEnter = () => {
+      if (hoverKeys.length > 0) {
+        set({ hoverKeys: [] });
+      }
+      eventRef.current.isHovering =
+        true;
+    };
     return (
       <ul
         ref={ref}
         className={clsx(className)}
-        onPointerOver={() => {
-          eventRef.current.isHovering =
-            true;
-        }}
-        onPointerEnter={() => {
-          eventRef.current.isHovering =
-            true;
-        }}
+        onPointerOver={handleEnter}
+        onPointerEnter={handleEnter}
         onPointerLeave={() => {
           eventRef.current.isHovering =
             false;

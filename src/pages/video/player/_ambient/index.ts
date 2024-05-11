@@ -1,4 +1,4 @@
-import { useTrillPicsStore } from "~/store";
+import { useTrillPicsStore } from "~/store/middleware";
 
 export const useVideoPlayerAmbient =
   () => {

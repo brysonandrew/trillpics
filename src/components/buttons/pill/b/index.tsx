@@ -56,11 +56,11 @@ export const PillB: FC<TPillBProps> = ({
 
   return (
     <Root
-    key={resolveCompositeKey(
-      'PillB',
-      title,
-      `${isReady}`
-    )}
+      key={resolveCompositeKey(
+        "PillB",
+        title,
+        `${isReady}`
+      )}
       {...resolveAccessibilityTitles(
         title
       )}
@@ -76,7 +76,6 @@ export const PillB: FC<TPillBProps> = ({
           : "background",
         classValue
       )}
-    
       {...(isReady
         ? { layout: true }
         : {})}
@@ -89,17 +88,23 @@ export const PillB: FC<TPillBProps> = ({
       }}
       {...props}
     >
-      {!isFlat && (
+      {!disabled && !isFlat && (
         <motion.div
+          layout
           style={{
             borderRadius,
-            filter: "blur(28px)",
+            filter: "blur(12px)",
           }}
-          className="absolute -inset-2 _gradient-radial opacity-30"
+          className="absolute -inset-2 _gradient-radial opacity-20"
         />
       )}
 
       <motion.div
+         key={resolveCompositeKey(
+          "PillB.motion.div.Icon",
+          title,
+          `${isReady}`
+        )}
         className={clsx(
           "center relative bg-black-04 z-10"
         )}

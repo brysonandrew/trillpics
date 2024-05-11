@@ -2,6 +2,7 @@ import { FC } from "react";
 import { useOutletContext } from "react-router";
 import { TOutletContext } from "~/shell";
 import { HomeFooter } from "~/pages/home/_footer";
+import { HomeCursor } from "~/pages/home/cursor";
 
 export const Home: FC = () => {
   const {
@@ -15,6 +16,7 @@ export const Home: FC = () => {
 
   return (
     <>
+      <HomeCursor />
       <Header>
         <HeaderLeft />
         <HeaderRight />
@@ -27,3 +29,26 @@ export const Home: FC = () => {
     </>
   );
 };
+{
+  /* <AnimatePresence>
+        {hoverPicProps && (
+          <VideoPic
+            {...hoverPicProps}
+            videoPics={videoPics}
+            style={{
+              y: scrollY,
+              left:
+                hoverPicProps
+                  .column * table.size,
+              top:
+                hoverPicProps.row *
+                table.size,
+              ...resolveSquare(
+                table.size
+              ),
+            }}
+            {...PRESENCE_OPACITY_ANIMATE_DELAY_02}
+          />
+        )}
+      </AnimatePresence> */
+}

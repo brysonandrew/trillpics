@@ -4,16 +4,15 @@ import {
   useMotionValue,
 } from "framer-motion";
 
-export type TCursorCell = {
-  row: number;
-  column: number;
-};
 export type TCursorPosition = {
   x: MotionValue<number>;
   y: MotionValue<number>;
+  prev: {
+    column: null | number;
+    row: null | number;
+  };
 };
-export type TCursor = TCursorCell &
-  TCursorPosition;
+export type TCursor = TCursorPosition;
 export const useCursor = () => {
   const cursorX = useMotionValue(0);
   const cursorY = useMotionValue(0);
@@ -21,10 +20,12 @@ export const useCursor = () => {
   const cursor =
     useMemo<TCursor>(() => {
       return {
-        row: 0,
-        column: 0,
         x: cursorX,
         y: cursorY,
+        prev: {
+          column: null,
+          row: null,
+        },
       };
     }, []);
   return cursor;

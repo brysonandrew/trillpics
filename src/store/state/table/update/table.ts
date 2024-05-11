@@ -16,7 +16,7 @@ export const tableUpdateState: TStateHandler<
 > = (set, get) => ({
   update: {
     screen: (config) => {
-      const cells = get().pics();
+      const cells = get().pics;
       const update = get().table.update;
       const count = update.count({
         width: config.screen.width,
@@ -25,11 +25,12 @@ export const tableUpdateState: TStateHandler<
         `update table with screen`,
         config
       );
-      update.create({
+      const result = update.create({
         cells,
         count,
         ...config,
       });
+      return result;
     },
     cells: (config) => {
       const screen = get().screen;
@@ -62,7 +63,7 @@ export const tableUpdateState: TStateHandler<
         count,
         ...screen,
       });
-      
+
       const isVerticalScroll =
         update.verticalScrollCheck({
           rowsCount: count.rows,
@@ -75,6 +76,8 @@ export const tableUpdateState: TStateHandler<
         size,
         isVerticalScroll,
       });
+
+      return { size, ...count };
     },
     rows: tableUpdateRows,
     size: tableUpdateSize,
@@ -86,15 +89,13 @@ export const tableUpdateState: TStateHandler<
       size,
       isVerticalScroll,
     }: TTableSetConfig) => {
-      get().set(
-        (draft: TState) => {
-          draft.table.count = count;
-          draft.table.rows = rows;
-          draft.table.size = size;
-          draft.table.isVerticalScroll =
-            isVerticalScroll;
-        }
-      );
+      get().set((draft: TState) => {
+        draft.table.count = count;
+        draft.table.rows = rows;
+        draft.table.size = size;
+        draft.table.isVerticalScroll =
+          isVerticalScroll;
+      });
     },
   },
 });

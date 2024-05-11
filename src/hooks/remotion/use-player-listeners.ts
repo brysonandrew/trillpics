@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { useTrillPicsStore } from "~/store";
+import { useTrillPicsStore } from "~/store/middleware";
 
 export const usePlayerListeners =
   () => {

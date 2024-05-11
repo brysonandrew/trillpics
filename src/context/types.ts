@@ -7,6 +7,7 @@ import { TRefMutable } from "~/hoc/ref/mutable";
 import { TBlur } from "~/context/blur";
 import { TCursor } from "~/context/cursor";
 import { TPicsRows } from "~/store/state/table/types";
+import { TCell } from "~/pics/grid/pic";
 
 export type TVirtualizeListProps =
   TPicsRows;

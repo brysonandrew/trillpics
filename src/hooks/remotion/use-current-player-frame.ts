@@ -3,7 +3,7 @@ import {
   useSyncExternalStore,
 } from "react";
 import { type CallbackListener } from "@remotion/player";
-import { useTrillPicsStore } from "~/store";
+import { useTrillPicsStore } from "~/store/middleware";
 import { isNull } from "~/utils/validation/is/null";
 
 export const useCurrentPlayerFrame =

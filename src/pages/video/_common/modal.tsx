@@ -1,6 +1,6 @@
 import type { FC } from "react";
 import { IconsInfo } from "~/components/icons/info";
-import { useTrillPicsStore } from "~/store";
+import { useTrillPicsStore } from "~/store/middleware";
 import { READ__VIDEOS__INFO } from "~/constants/milestones";
 import { TMilestones } from "~/types/milestones";
 import { ModalOverlay } from "~/components/layout/modal/overlay";

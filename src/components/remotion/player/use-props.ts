@@ -1,6 +1,6 @@
 import { LegacyRef } from "react";
 import { useRemotionProps } from "~/hooks/remotion/use-props";
-import { useTrillPicsStore } from "~/store";
+import { useTrillPicsStore } from "~/store/middleware";
 import { PlayerRef } from "@remotion/player";
 
 export const useRemotionPlayerProps =

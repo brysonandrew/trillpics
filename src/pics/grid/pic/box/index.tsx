@@ -1,5 +1,5 @@
 import { FC } from "react";
-import { useTrillPicsStore } from "~/store";
+import { useTrillPicsStore } from "~/store/middleware";
 import { TDimensions } from "@brysonandrew/config-types";
 import {
   TCell,
@@ -34,8 +34,8 @@ export const Box: FC<TProps> = ({
       table,
     })
   );
-
   const left = column * table.size;
+
   return (
     <>
       <div

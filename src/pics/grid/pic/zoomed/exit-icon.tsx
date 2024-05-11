@@ -1,7 +1,7 @@
 import type { FC } from "react";
 import { AnimatePresence } from "framer-motion";
 import { IconsPicZoomOut } from "~/components/icons/pic/zoom-out";
-import { useTrillPicsStore } from "~/store";
+import { useTrillPicsStore } from "~/store/middleware";
 import { Floating } from "~/pics/grid/pic/floating";
 
 export const PicZoomedExitIcon: FC =

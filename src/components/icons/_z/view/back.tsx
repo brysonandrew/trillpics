@@ -1,7 +1,7 @@
 import type { FC } from "react";
 import { TSvgProps } from "@brysonandrew/config-types/dom";
 import { resolveUrlId } from "@brysonandrew/utils-attributes";
-import { LINEAR_GRADIENT_SVG_ID } from "~/components/gradients/blue-pink-yellow";
+import { LINEAR_GRADIENT_SVG_ID } from "~/shell/global/svg/gradients/blue-pink-yellow";
 import { resolveSquare } from "@brysonandrew/measure";
 
 export const IconsViewBack: FC<

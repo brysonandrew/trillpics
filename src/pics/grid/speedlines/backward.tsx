@@ -1,16 +1,12 @@
 import { FC, useRef } from "react";
-import {
-  animate,
-  useMotionValueEvent,
-} from "framer-motion";
 import { BlurMotion2 } from "@brysonandrew/svg-filter";
-import { MOTION_BLUR_FILTER_SPEEDLINES_ID } from "~/components/blur/constants";
-import { useVirtualizeContext } from "~/context";
+import { MOTION_BLUR_FILTER_SPEEDLINES_ID } from "~/shell/global/svg/filters/blur/constants";
+import { useContextGrid } from "~/context";
 
 export const SpeedlinesBackward: FC =
   () => {
     const { scrollY, main } =
-      useVirtualizeContext();
+      useContextGrid();
     const prevScrollOffsetRef =
       useRef<number>(0);
 

@@ -7,8 +7,6 @@ export const useNavigationActive = (
 ) => {
   const location = useLocation();
   const isActive =
-    location.pathname.includes(
-      pathValue
-    );
+    location.pathname === pathValue;
   return isActive;
 };

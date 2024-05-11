@@ -5,7 +5,7 @@ import type {
 import {
   MOTION_BLUR_FILTER_X_PROPS,
   MOTION_BLUR_FILTER_Y_PROPS,
-} from "~/components/blur/constants";
+} from "~/shell/global/svg/filters/blur/constants";
 
 export const BlurXy: FC<
   PropsWithChildren

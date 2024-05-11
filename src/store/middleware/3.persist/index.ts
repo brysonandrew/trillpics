@@ -20,15 +20,3 @@ export type TPersistStateResult =
 export const middlewarePersist: TPersistState =
   persist;
 
-// <
-//   TState,
-//   [["zustand/devtools", never]],
-//   [
-//     [
-//       "zustand/subscribeWithSelector",
-//       never
-//     ],
-//     ["zustand/immer", never]
-//   ],
-//   TPersistPartializedState
-// >;

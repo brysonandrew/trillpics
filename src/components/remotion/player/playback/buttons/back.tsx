@@ -1,5 +1,5 @@
 import { type FC } from "react";
-import { useTrillPicsStore } from "~/store";
+import { useTrillPicsStore } from "~/store/middleware";
 import { PillB } from "~/components/buttons/pill/b";
 import { IconsPlaybackBack } from "~/components/icons/playback/back";
 

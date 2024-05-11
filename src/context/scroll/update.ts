@@ -4,14 +4,14 @@ import {
   SCROLL,
   SCROLL_COOLDOWN,
 } from "~/store/state/scroll";
-import { useTrillPicsStore } from "~/store";
+import { useTrillPicsStore } from "~/store/middleware";
 import { useTimeoutRef } from "@brysonandrew/hooks-window";
 import { TVirtualizeContext } from "~/context/types";
 
 type TConfig = Pick<
   TVirtualizeContext,
   "scrollY" | "ref"
->;
+> 
 export const useScrollUpdateHandler = ({
   scrollY,
   ref: handle,
@@ -41,12 +41,21 @@ export const useScrollUpdateHandler = ({
       scrollDirection,
       scrollUpdateWasRequested,
     } = props;
+
     scrollY.set(-scrollOffset);
+
     const scrollDelta = Math.abs(
       prevScrollOffsetRef.current -
         scrollOffset
     );
-    if (!isScrolling) {
+    if (
+      !isScrolling &&
+      scrollDelta > 0
+    ) {
+      console.log(
+        "start scrolling",
+        scrollDelta
+      );
       set({
         isScrolling: true,
         scrollDirection,
@@ -54,19 +63,23 @@ export const useScrollUpdateHandler = ({
       });
     }
     endTimeout();
+    if (!isScrolling) return;
     timeoutRef.current = setTimeout(
       () => {
-        if (isScrolling) {
-          set({
-            isScrolling: false,
-            scrollDirection: null,
-            scrollDelta,
-          });
-        }
+        console.log(
+          "stop scrolling",
+          scrollDelta
+        );
+      
+        set({
+          isScrolling: false,
+          scrollDirection: null,
+          scrollDelta,
+        });
+     
       },
       SCROLL_COOLDOWN
     );
-
     if (
       !isScroll &&
       scrollOffset > SCROLL
@@ -85,7 +98,7 @@ export const useScrollUpdateHandler = ({
     prevScrollOffsetRef.current =
       scrollOffset;
   };
-  return handler;
+  return {handler,isScroll,isScrolling};
 };
 export type TUseUseScrollUpdateHandlerResult =
   ReturnType<

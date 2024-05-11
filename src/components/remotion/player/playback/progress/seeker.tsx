@@ -4,6 +4,7 @@ import { TimerCurrentProgress } from "~/components/remotion/player/playback/prog
 import { LightingGlow } from "~/components/layout/lighting/glow";
 import clsx from "clsx";
 import { TexturesMeshRounded } from "~/components/textures/mesh/rounded";
+import { usePicVideo } from "~/hooks/pic/video";
 
 export const PlaybackProgressSeeker: FC =
   () => {
@@ -19,7 +20,7 @@ export const PlaybackProgressSeeker: FC =
         onPointerDown={handler}
       >
         <LightingGlow classValue="fill opacity-20" />
-        <TexturesMeshRounded/>
+        <TexturesMeshRounded />
         <TimerCurrentProgress
           durationInFrames={
             durationInFrames

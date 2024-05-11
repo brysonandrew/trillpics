@@ -1,8 +1,6 @@
 export const SEEK_BACKWARD_SECONDS = -5;
 export const SEEK_FORWARD_SECONDS = 5;
 
-export const PERSIST_STORE_KEY = 'remotion-editor-v2';
-
 export const DEFAULT_CANVAS_COLOR = '#141322';
 
 export const DEFAULT_FPS = 30;
@@ -67,5 +65,3 @@ export const TIMELINE_CATEGORIES = {
   text: ['text', 'subtitles'],
   decorations: ['progressBar', 'waveform'],
 } as const;
-
-const durationInFrames = 4 * DEFAULT_FPS;

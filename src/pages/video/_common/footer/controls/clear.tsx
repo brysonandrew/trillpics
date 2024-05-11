@@ -1,9 +1,12 @@
 import type { FC } from "react";
-import { useTrillPicsStore } from "~/store";
+import { animate } from "framer-motion";
 import { IconsTrash } from "~/components/icons/video/trash1";
 import { PillBHover } from "~/components/buttons/pill/b/hover";
 import { TVideoFooterProps } from "~/pages/video/_common/footer/types";
-import { useVirtualizeContext } from "~/context";
+import { useContextGrid } from "~/context";
+import { usePicVideo } from "~/hooks/pic/video";
+import { useNavigationControls } from "~/hooks/use-navigation/controls";
+import { VIDEO_ROUTE, VIDEO_SCHEDULER_ROUTE } from "~/constants/params";
 
 export const ControlsClear: FC<
   TVideoFooterProps
@@ -11,30 +14,36 @@ export const ControlsClear: FC<
   Button = PillBHover,
   ...props
 }) => {
-  const { removeVideoPic } =
-    useTrillPicsStore(
-      ({ removeVideoPic }) => ({
-        removeVideoPic,
-      })
-    );
-  const { main } =
-    useVirtualizeContext();
+  const { clear } = usePicVideo();
+  const { main } = useContextGrid();
+  const { togglePathValue, isActive } =
+  useNavigationControls(
+    VIDEO_ROUTE
+  );
+
 
   const handleClear = () => {
-    // const prev = blurX.get();
-    // blurXRef.current = animate(
-    //   blurX,
-    //   100,
-    //   {
-    //     type: "tween",
-    //     onComplete: () =>
-    //       blurX.set(prev),
-    //   }
-    // );
 
-    removeVideoPic();
+    const prev =
+      main.blur.value.x.get();
+    main.blur.control.x = animate(
+      main.blur.value.x,
+      100,
+      {
+        type: "tween",
+        onComplete: () =>
+          main.blur.value.x.set(prev),
+      }
+    );
+
+    if (!isActive) {
+      togglePathValue(VIDEO_ROUTE);
+
+    }
+    clear();
+
   };
-  const title = "Clear pics from video";
+  const title = "Clear video pics";
   return (
     <Button
       onClick={handleClear}

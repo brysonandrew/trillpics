@@ -94,7 +94,9 @@ export type TTableUpdateState = {
         TTableCreateConfig,
         "screen"
       >
-    ): void;
+    ): {
+      size: number;
+    } & TTableUpdateCountResult;
     cells(
       cells: Pick<
         TTableCreateConfig,
@@ -106,7 +108,9 @@ export type TTableUpdateState = {
     ): TTableUpdateCountResult;
     create(
       config: TTableCreateConfig
-    ): void;
+    ): {
+      size: number;
+    } & TTableUpdateCountResult;
     rows(
       config: TTableRowsConfig
     ): TPicsRows;

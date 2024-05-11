@@ -1,6 +1,6 @@
 import { useRef } from "react";
 import { useScreenPresence } from "~/hooks/use-screen-presence";
-import { useTrillPicsStore } from "~/store";
+import { useTrillPicsStore } from "~/store/middleware";
 
 export const useOnscreen = () => {
   const pointerLeaveWhileNoControlsCheck =

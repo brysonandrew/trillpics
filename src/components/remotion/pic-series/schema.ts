@@ -5,4 +5,6 @@ export const PIC_SERIES_SCHEMA =
     pics: z.array(
       z.string().or(z.number())
     ),
+    seconds: z.number(),
+    count: z.number(),
   });

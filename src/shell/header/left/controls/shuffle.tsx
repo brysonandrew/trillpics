@@ -1,18 +1,18 @@
 import type { FC } from "react";
 import { animate } from "framer-motion";
 import { IconsShuffle } from "~/components/icons/pic/shuffle";
-import { useTrillPicsStore } from "~/store";
+import { useTrillPicsStore } from "~/store/middleware";
 import { PillBHover } from "~/components/buttons/pill/b/hover";
-import { useVirtualizeContext } from "~/context";
+import { useContextGrid } from "~/context";
+import { PRESENCE_OPACITY } from "@brysonandrew/motion-config-constants";
 
 export const ControlsShuffle: FC =
   () => {
-    const { main } =
-      useVirtualizeContext();
-    const { updatePicsEntries } =
+    const { main } = useContextGrid();
+    const { updatePics } =
       useTrillPicsStore(
-        ({ updatePicsEntries }) => ({
-          updatePicsEntries,
+        ({ updatePics }) => ({
+          updatePics,
         })
       );
     const randomizePics = () => {
@@ -27,7 +27,7 @@ export const ControlsShuffle: FC =
             main.blur.value.x.set(prev),
         }
       );
-      updatePicsEntries();
+      updatePics();
     };
     const title = "Randomize Pics";
     return (
@@ -37,6 +37,7 @@ export const ControlsShuffle: FC =
         title={title}
         onClick={randomizePics}
         Icon={IconsShuffle}
+        {...PRESENCE_OPACITY}
       >
         Shuffle
       </PillBHover>

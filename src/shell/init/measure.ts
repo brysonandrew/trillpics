@@ -9,7 +9,7 @@ import {
   TDimensionsInit,
   TDimensionsReady,
 } from "@brysonandrew/config-types";
-import { useVirtualizeContext } from "~/context";
+import { useContextGrid } from "~/context";
 import { isValue } from "~/utils/validation/is/value";
 import { measureContainer } from "~/shell/init/container";
 
@@ -49,11 +49,12 @@ export const useScreenMeasure = (
   config: TConfig = {}
 ) => {
   const { main } =
-    useVirtualizeContext();
+    useContextGrid();
   const [screen, setScreen] =
     useState<TScreen>(INIT_SCREEN);
   const { timeoutRef, endTimeout } =
     useTimeoutRef();
+    
   const handleSize = (
     next?: TScreen
   ) => {

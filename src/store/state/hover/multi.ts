@@ -9,6 +9,7 @@ export const hoverMultiState: TStateHandler<
   THoverMultiState
 > = (set, get) => ({
   hoverKeys: [],
+  hoverKeyCooldown: null,
   isHover: (hoverKey: THoverKey) => {
     return get().hoverKeys.includes(
       hoverKey
@@ -25,12 +26,18 @@ export const hoverMultiState: TStateHandler<
     });
   },
   unhover: (hoverKey: THoverKey) => {
+    const prevHoverKeys =
+      get().hoverKeys;
+    if (prevHoverKeys.length === 0)
+      return;
     const hoverKeys =
-      get().hoverKeys.filter(
+      prevHoverKeys.filter(
         (v) => v !== hoverKey
       );
     set({
       hoverKeys,
+      hoverKeyCooldown:
+        prevHoverKeys + "",
     });
   },
 });

@@ -1,11 +1,12 @@
 import { useTimeoutRef } from "@brysonandrew/hooks-window";
 import { useOnscreen } from "~/context/hooks/onscreen";
+import { usePicTable } from "~/hooks/pic/table";
 import {
   RESIZE_COOLDOWN,
   TScreen,
   useScreenMeasure,
 } from "~/shell/init/measure";
-import { useTrillPicsStore } from "~/store";
+import { useTrillPicsStore } from "~/store/middleware";
 
 export const useInit = () => {
   const { timeoutRef, endTimeout } =
@@ -17,6 +18,7 @@ export const useInit = () => {
         set,
       })
     );
+    const {update} = usePicTable()
   const handleScreenReady = (
     screen: TScreen
   ) => {
@@ -27,9 +29,11 @@ export const useInit = () => {
           draft.screen = screen;
         });
         if (screen.isDimensions) {
-          table.update.screen({
+          const size = table.update.screen({
             screen,
           });
+          console.log('update')
+          update(size)
         }
       },
       screen.isResizing

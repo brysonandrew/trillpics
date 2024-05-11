@@ -1,13 +1,13 @@
 import { useEffect } from "react";
 import { animate } from "framer-motion";
-import { useVirtualizeContext } from "~/context";
+import { useContextGrid } from "~/context";
 
 type TConfig = { dependency: string };
 export const useBlurXEffect = (
   config: TConfig
 ) => {
   const { main } =
-    useVirtualizeContext();
+    useContextGrid();
   useEffect(() => {
     main.blur.control.x = animate(
       main.blur.value.x,

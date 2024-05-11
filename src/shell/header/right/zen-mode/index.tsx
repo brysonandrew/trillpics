@@ -2,7 +2,7 @@ import type { FC } from "react";
 import { PillBHover } from "~/components/buttons/pill/b/hover";
 import { IconsVisible } from "~/components/icons/video/visible";
 import { HideControlsModal } from "~/shell/header/right/zen-mode/modal";
-import { useTrillPicsStore } from "~/store";
+import { useTrillPicsStore } from "~/store/middleware";
 
 export const HideControls: FC = () => {
   const { isControls, toggleControls } =

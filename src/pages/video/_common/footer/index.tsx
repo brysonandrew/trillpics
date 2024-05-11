@@ -9,9 +9,7 @@ export const VideoFooter: FC<
 > = () => {
   return (
     <>
-      <VideoFooterControls
-        // {...PRESENCE_OPACITY_ANIMATE_DELAY_02}
-      />
+      <VideoFooterControls />
       <VideoFooterExit />
     </>
   );

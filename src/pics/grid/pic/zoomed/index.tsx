@@ -9,9 +9,8 @@ export const PicZoomed: FC<
 > = (props) => {
   return (
     <PortalBody>
-      <PicBackdrop>
-        <PicZoomedDisplay {...props} />
-      </PicBackdrop>
+      <PicBackdrop />
+      <PicZoomedDisplay {...props} />
     </PortalBody>
   );
 };

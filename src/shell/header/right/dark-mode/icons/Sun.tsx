@@ -5,7 +5,7 @@ import {
 } from "framer-motion";
 import { ClassValue } from "clsx";
 import { resolveUrlId } from "@brysonandrew/utils-attributes";
-import { LINEAR_GRADIENT_SVG_ID } from "~/components/gradients/blue-pink-yellow";
+import { LINEAR_GRADIENT_SVG_ID } from "~/shell/global/svg/gradients/blue-pink-yellow";
 import { resolveSquare } from "@brysonandrew/measure";
 
 type TProps =

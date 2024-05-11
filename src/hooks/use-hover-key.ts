@@ -1,5 +1,6 @@
 import { THoverKey } from "@brysonandrew/hooks-dom";
-import { useTrillPicsStore } from "~/store";
+import { useTimebomb } from "~/hooks/use-time-bomb";
+import { useTrillPicsStore } from "~/store/middleware";
 
 type THandler = (
   key: THoverKey
@@ -18,19 +19,30 @@ export const useHoverKey = (
     isHover,
     hover,
     unhover,
+    set,
   } = useTrillPicsStore(
     ({
       hoverKeys,
       isHover,
       hover,
       unhover,
+      set,
     }) => ({
       hoverKeys,
       isHover,
       hover,
       unhover,
+      set,
     })
   );
+
+  const { isCountdown, trigger } =
+    useTimebomb({
+      countdown: 1000,
+      target: () => {
+        set({ hoverKeyCooldown: null });
+      },
+    });
 
   const onStart: THandler = (key) => {
     if (config?.handlers?.start) {
@@ -43,6 +55,7 @@ export const useHoverKey = (
       config.handlers.stop?.(key);
     }
     unhover(key);
+    trigger();
   };
   const handlers = (
     key: THoverKey
@@ -70,6 +83,7 @@ export const useHoverKey = (
     handlers,
     motionHandlers,
     clear,
+    isCooldown: isCountdown,
   };
 };
 export type THoverKeyConfig =

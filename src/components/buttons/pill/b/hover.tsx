@@ -26,12 +26,13 @@ export const PillBHover: FC<TProps> = ({
       {...props}
     >
       {isHovering ? (
-          <motion.div
-            className="relative row gap-2 mr-2 -mb-0.75 whitespace-nowrap"
-            {...FADE_PRESENCE_DELAY_02}
-          >
-            {children}
-          </motion.div>
+        <motion.div
+          layout
+          className="relative row gap-2 mr-2 -mb-0.75 whitespace-nowrap"
+          {...FADE_PRESENCE_DELAY_02}
+        >
+          {children}
+        </motion.div>
       ) : (
         ""
       )}

@@ -1,31 +1,22 @@
 import { PointerEventHandler } from "react";
-import { useTrillPicsStore } from "~/store";
+import { usePicVideo } from "~/hooks/pic/video";
+import { useTrillPicsStore } from "~/store/middleware";
 
 export const useSeek = () => {
-  const {
-    fps,
-    durationInFrames,
-    seekSeconds,
-  } = useTrillPicsStore(
-    ({
-      fps,
-      durationInFrames,
-      seekSeconds,
-    }) => ({
-      fps,
-      durationInFrames,
-      seekSeconds,
-    })
-  );
+  const { fps, seekSeconds } =
+    useTrillPicsStore(
+      ({ fps, seekSeconds }) => ({
+        fps,
+        seekSeconds,
+      })
+    );
+  const { seconds } = usePicVideo();
+
   const handleSeek = (
     progress: number
   ) => {
-    const secondsDuration = Math.floor(
-      durationInFrames / fps
-    );
-
     const progressInSeconds =
-      secondsDuration * progress;
+      seconds * progress;
     seekSeconds(progressInSeconds);
   };
 
@@ -41,5 +32,8 @@ export const useSeek = () => {
     handleSeek(progress);
   };
 
-  return { handler, durationInFrames };
+  return {
+    handler,
+    durationInFrames: seconds * fps,
+  };
 };

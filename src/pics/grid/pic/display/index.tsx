@@ -1,61 +1,38 @@
-import type {
-  CSSProperties,
-  FC,
-} from "react";
-import {
-  motion,
-  MotionProps,
-} from "framer-motion";
-import {
-  TDimensions,
-  TImgMotionProps,
-} from "@brysonandrew/config-types";
+import type { FC } from "react";
+import { motion } from "framer-motion";
 import { resolvePicSrc } from "~/utils/src";
 import { TPicProps } from "~/pics/grid/pic";
 import { NOOP } from "@brysonandrew/utils-function";
-
-export type TPicDisplayProps = Pick<
+import {
+  TDivMotionProps,
   TImgMotionProps,
-  "onLayoutAnimationComplete"
-> &
-  Pick<TPicProps, "name"> & {
-    style: CSSProperties &
-      TDimensions & { left: number };
-  };
+} from "@brysonandrew/config-types";
+
+export type TPicDisplayProps =
+  TDivMotionProps &
+    TImgMotionProps &
+    Pick<TPicProps, "name">;
 export const PicDisplay: FC<
   TPicDisplayProps
-> = ({
-  style,
-  onLayoutAnimationComplete,
-  name,
-}) => {
-  const imgMotionProps: MotionProps = {
-    onLayoutAnimationComplete,
-    style: {
-      textAlign: "center",
-      ...style,
-    },
-  };
-  const src = resolvePicSrc(name);
+> = ({ name, src = resolvePicSrc(name), ...props }) => {
   const isVacant =
     typeof name === "number";
   if (isVacant) {
     return (
       <motion.div
         layoutId={String(name)}
-        {...imgMotionProps}
+        {...props}
       />
     );
   }
 
   return (
     <motion.img
-      key={src}
-      layoutId={String(name)}
+      key={name}
+      layoutId={name}
       src={src}
       alt={`░▒▓█ pic #${name} █▓▒░`}
       draggable={false}
-      {...imgMotionProps}
       onError={
         name === "11"
           ? console.log
@@ -66,6 +43,7 @@ export const PicDisplay: FC<
           ? console.log
           : NOOP
       }
+      {...props}
     />
   );
 };

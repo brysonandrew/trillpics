@@ -3,19 +3,9 @@ import {
   publicProcedure,
 } from "~/server/trpc";
 import { generate } from "~/server/generate";
-import {
-  TGenerateInput,
-  TGenerateOutput,
-} from "~/types/trpc/generate";
+import { TGenerateOutput } from "~/types/trpc/generate";
 import { z } from "zod";
 import { PIC_SERIES_SCHEMA } from "~/components/remotion/pic-series/schema";
-
-const DEFAULT: TGenerateInput = {
-  input: {
-    pics: [],
-  },
-  fps: 3,
-};
 
 export const SCHEMA_INPUT = z
   .object({

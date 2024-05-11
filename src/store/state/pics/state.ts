@@ -7,33 +7,23 @@ import { TStateHandler } from "~/store/types";
 import precachePics from "~app/precache.json";
 const { length: picsCount } =
   precachePics;
-const inits = [...Array(picsCount)].map(
-  (_, index) => `${++index}`
-);
-const shuffledInits = shuffle(inits);
+const INIT_PICS = [
+  ...Array(picsCount),
+].map((_, index) => `${++index}`);
+const shuffledPics = shuffle(INIT_PICS);
 
 export const picsState: TStateHandler<
   TPicsState
 > = (set, get): TPicsState => ({
   picsCount,
-  picsEntries: [shuffledInits],
-  countPicsEntries: () =>
-    get().picsEntries.length,
-  pics: (from = 0) =>
-    get().picsEntries[
-      get().countPicsEntries() - ++from
-    ],
-  countPics: () => get().pics().length,
-  updatePicsEntries: (config) => {
-    const prev = get().pics();
+  pics: shuffledPics,
+  updatePics: (config) => {
+    const prev = get().pics;
     const nextPics: TPics =
-      config?.cells ??
+      config?.pics ??
       shuffle([...prev]);
     set({
-      picsEntries: [
-        ...get().picsEntries,
-        nextPics,
-      ],
+      pics: nextPics,
     });
     get().table.update.cells({
       ...config,

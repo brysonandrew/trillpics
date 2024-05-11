@@ -1,14 +1,14 @@
 import type { FC } from "react";
 import { ControlsClear } from "~/pages/video/_common/footer/controls/clear";
 import { ControlsPlayer } from "~/pages/video/_common/footer/player";
-import { ControlsShow } from "~/pages/video/_common/footer/controls/show";
 import { TVideoFooterProps } from "~/pages/video/_common/footer/types";
 import { PillBHover } from "~/components/buttons/pill/b/hover";
-import { useTrillPicsStore } from "~/store";
 import { ControlsUndo } from "~/pages/video/_common/footer/controls/undo-redo/undo";
 import { ControlsRedo } from "~/pages/video/_common/footer/controls/undo-redo/redo";
 import { SeperatorHorizontal } from "~/pages/video/_common/footer/controls/seperator/horizontal";
 import { useReady } from "~/hooks/use-ready";
+import { usePicVideo } from "~/hooks/pic/video";
+import { ControlsShow } from "~/pages/video/_common/footer/controls/show";
 
 export const VideoFooterControls: FC<
   TVideoFooterProps
@@ -17,12 +17,7 @@ export const VideoFooterControls: FC<
   Seperator = SeperatorHorizontal,
   ..._props
 }) => {
-  const { videoPics } =
-    useTrillPicsStore(
-      ({ videoPics }) => ({
-        videoPics,
-      })
-    );
+  const { isVideoPics } = usePicVideo();
   const isReady = useReady();
 
   const props = {
@@ -30,8 +25,7 @@ export const VideoFooterControls: FC<
     ..._props,
     style: { zIndex: 99 },
   };
-  const isVideoPics =
-    videoPics.length > 0;
+
   const title = isVideoPics
     ? undefined
     : "Random Video";

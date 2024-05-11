@@ -1,5 +1,5 @@
 import { FC } from "react";
-import { useTrillPicsStore } from "~/store";
+import { useTrillPicsStore } from "~/store/middleware";
 import { MonoChars } from "~/components/remotion/player/playback/timer/numbers";
 
 type TProps = { frame: number };

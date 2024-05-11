@@ -2,11 +2,11 @@ import type { FC } from "react";
 import { animate } from "framer-motion";
 import { ModalOverlay } from "~/components/layout/modal/overlay";
 import { Link } from "react-router-dom";
-import { useVirtualizeContext } from "~/context";
+import { useContextGrid } from "~/context";
 
 export const NotFound: FC = () => {
   const { main } =
-    useVirtualizeContext();
+    useContextGrid();
   const blur = () => {
     const prev =
       main.blur.value.x.get();

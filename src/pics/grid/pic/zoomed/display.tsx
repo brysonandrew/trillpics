@@ -3,7 +3,7 @@ import { FULLSCREEN_Z } from "~/constants/dom";
 import { TBoxChildProps } from "~/pics/grid/pic/box";
 import { PicDisplay } from "~/pics/grid/pic/display";
 import { centerInScreen } from "~/utils/dimensions/center-in-viewport";
-import { useTrillPicsStore } from "~/store";
+import { useTrillPicsStore } from "~/store/middleware";
 
 export const PicZoomedDisplay: FC<
     TBoxChildProps

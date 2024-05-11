@@ -1,29 +1,23 @@
 import { useImageDimensions } from "@brysonandrew/measure";
 import { DIMENSIONS } from "~/constants/remotion";
-import { useTrillPicsStore } from "~/store";
+import { usePicVideo } from "~/hooks/pic/video";
+import { useTrillPicsStore } from "~/store/middleware";
 
 export const useRemotionProps = () => {
   const {
-    screen,
-    videoPics,
-    fps,
-    countVideoPics,
-    countPics,
-  } = useTrillPicsStore(
-    ({
-      screen,
-      videoPics,
-      fps,
-      countVideoPics,
-      countPics,
-    }) => ({
-      screen,
-      videoPics,
-      fps,
-      countVideoPics,
-      countPics,
-    })
-  );
+    names,
+    isVideoPics,
+    count,
+    seconds,
+  } = usePicVideo();
+  const { screen, fps, picsCount } =
+    useTrillPicsStore(
+      ({ screen, fps, picsCount }) => ({
+        screen,
+        fps,
+        picsCount,
+      })
+    );
   const dimensions = useImageDimensions(
     {
       box: screen.isDimensions
@@ -32,27 +26,31 @@ export const useRemotionProps = () => {
       image: DIMENSIONS,
     }
   );
-  const picsCount = countPics();
 
-  const videoPicsCount =
-    countVideoPics();
-  const pics =
-    videoPicsCount === 0
-      ? [...Array(5)].map(
-          () =>
-            `${Math.floor(
-              picsCount * Math.random()
-            )}`
-        )
-      : videoPics;
+  const videoPics = isVideoPics
+    ? names
+    : [...Array(5)].map(
+        () =>
+          `${Math.floor(
+            picsCount * Math.random()
+          )}`
+      );
 
   const durationInFrames =
-    pics.length * fps || 1;
-console.log(durationInFrames,pics,fps)
+    count * fps || 1;
+  console.log(
+    durationInFrames,
+    videoPics,
+    fps
+  );
   return {
     fps,
     durationInFrames,
-    props: { pics },
+    props: {
+      pics: videoPics,
+      count,
+      seconds,
+    },
     ...(dimensions.isDimensions
       ? dimensions
       : DIMENSIONS),

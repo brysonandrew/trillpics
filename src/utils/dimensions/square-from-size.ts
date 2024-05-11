@@ -1,7 +1,7 @@
 import { resolveSquare } from "@brysonandrew/measure";
-import { TCursorCell } from "~/context/cursor";
+import { TCell } from "~/pics/grid/pic";
 
-type TConfig = TCursorCell & {
+type TConfig = TCell & {
   size: number;
 };
 export const squareFromSize = ({

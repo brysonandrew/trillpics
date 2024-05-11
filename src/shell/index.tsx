@@ -9,19 +9,23 @@ import { withProviders } from "~/shell/providers/with-providers";
 import { TTableState } from "~/store/state/table/types";
 import { useInit } from "~/shell/init";
 import { AURA } from "@brysonandrew/svg-filter";
-import { GradientsBluePinkYellow } from "~/components/gradients/blue-pink-yellow";
+import { GradientsBluePinkYellow } from "~/shell/global/svg/gradients/blue-pink-yellow";
 import { GlobalCss } from "~/shell/global/css";
 import { useDarkMode } from "@brysonandrew/dark-mode";
-import { BlurX } from "~/components/blur/x";
-import { BlurY } from "~/components/blur/y";
+import { BlurX } from "~/shell/global/svg/filters/blur/x";
+import { BlurY } from "~/shell/global/svg/filters/blur/y";
 import { Dark } from "~/shell/global/favicon/dark";
 import { Light } from "~/shell/global/favicon/light";
-import { TexturesMeshInset } from "~/components/textures/mesh/inset";
 import {
   MOTION_BLUR_FILTER_X_PROPS,
   MOTION_BLUR_FILTER_Y_PROPS,
-} from "~/components/blur/constants";
-import { SCROLLBAR_WIDTH } from "~uno/preflights";
+} from "~/shell/global/svg/filters/blur/constants";
+import {
+  SCROLLBAR_BORDER_WIDTH,
+  SCROLLBAR_WIDTH,
+} from "~uno/preflights";
+import { GRADIENT_MESH_LIGHT } from "~app/color/gradient/mesh";
+import { SvgFiltersFat } from "~/shell/global/svg/filters/fat";
 
 const OUTLET_CONTEXT = {
   Header,
@@ -46,7 +50,7 @@ export const Shell = withProviders(
       : Light;
 
     return (
-      <GlobalCss>
+      <>
         <Favicon />
         <AURA.GLOBAL.Filter />
         <BlurX />
@@ -54,6 +58,8 @@ export const Shell = withProviders(
         <GradientsBluePinkYellow
           isDarkMode={isDarkMode}
         />
+        <GlobalCss />
+        <SvgFiltersFat />
         <div
           style={{
             ...MOTION_BLUR_FILTER_X_PROPS,
@@ -64,7 +70,42 @@ export const Shell = withProviders(
               ...MOTION_BLUR_FILTER_Y_PROPS,
             }}
           >
-            <TexturesMeshInset style={{right:`calc(0.5rem + ${SCROLLBAR_WIDTH}px)` }} />
+            <div
+              className="fill"
+              style={{
+                minHeight: "100vh",
+                ...GRADIENT_MESH_LIGHT,
+
+                backgroundSize:
+                  "4px 4px",
+              }}
+            >
+              <div
+                className="fill inset-3"
+                style={{
+                  right: `calc(0.75rem + ${
+                    SCROLLBAR_WIDTH +
+                    SCROLLBAR_BORDER_WIDTH *
+                      2
+                  }px)`,
+                  ...GRADIENT_MESH_LIGHT,
+
+                  backgroundSize:
+                    "4px 4px",
+                  borderRadius: 4,
+                }}
+              >
+                <img
+                  className="w-full h-full opacity-10 grayscale-100 p-6"
+                  src={`logo-${
+                    isDarkMode
+                      ? "dark"
+                      : "light"
+                  }.svg`}
+                />
+              </div>
+            </div>
+
             <Outlet
               context={{
                 ...OUTLET_CONTEXT,
@@ -72,7 +113,7 @@ export const Shell = withProviders(
             />
           </div>
         </div>
-      </GlobalCss>
+      </>
     );
   }
 );

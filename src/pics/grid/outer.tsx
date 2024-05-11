@@ -7,7 +7,7 @@ import {
 import clsx from "clsx";
 import { SpeedlinesBackward } from "~/pics/grid/speedlines/backward";
 import { SpeedlinesForward } from "~/pics/grid/speedlines/forward";
-import { MOTION_BLUR_FILTER_SPEEDLINES_PROPS } from "~/components/blur/constants";
+import { MOTION_BLUR_FILTER_SPEEDLINES_PROPS } from "~/shell/global/svg/filters/blur/constants";
 
 export type TOuterHandle = {
   isHovering: () => boolean;

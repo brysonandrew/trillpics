@@ -4,13 +4,13 @@ import {
   useMotionValueEvent,
 } from "framer-motion";
 import { ScrollbarSeam } from "~/components/layout/scrollbar-seam";
-import { useTrillPicsStore } from "~/store";
+import { useTrillPicsStore } from "~/store/middleware";
 import {
   TPartialFixedTableProps,
   TTableState,
 } from "~/store/state/table/types";
 import { Grid } from "~/pics/grid";
-import { useVirtualizeContext } from "~/context";
+import { useContextGrid } from "~/context";
 import { Outlet } from "react-router";
 import { Header } from "~/shell/header";
 import { Footer } from "~/shell/footer";
@@ -41,26 +41,18 @@ export const Pics: FC<TProps> = (
   const {
     onScroll,
     ref,
-    scrollY,
-    main,
-  } = useVirtualizeContext();
+  } = useContextGrid();
   const {
     table,
-    scrollDirection,
-    scrollDelta,
     screen,
   } = useTrillPicsStore(
     ({
       table,
       screen,
-      scrollDirection,
-      scrollDelta,
       set,
     }) => ({
       table,
       screen,
-      scrollDirection,
-      scrollDelta,
       set,
     })
   );

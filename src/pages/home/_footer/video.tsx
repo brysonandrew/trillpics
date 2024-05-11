@@ -42,17 +42,15 @@ export const HomeFooterVideo: FC =
           outerCircle={
             <>
               {isHovering ? (
-                <>
-                  <VideoFooterControls
-                    Button={PillBStill}
-                    Seperator={
-                      SeperatorVertical
-                    }
-                    {...motionHandlers(
-                      VideoFooterControlsHoverKey
-                    )}
-                  />
-                </>
+                <VideoFooterControls
+                  Button={PillBStill}
+                  Seperator={
+                    SeperatorVertical
+                  }
+                  {...motionHandlers(
+                    VideoFooterControlsHoverKey
+                  )}
+                />
               ) : (
                 <VideoPicCounterFloating />
               )}

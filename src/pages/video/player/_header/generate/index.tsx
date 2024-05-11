@@ -2,7 +2,7 @@ import {
   AnimatePresence,
   motion,
 } from "framer-motion";
-import { useTrillPicsStore } from "src/store";
+import { useTrillPicsStore } from "~/store/middleware";
 import { PillB } from "~/components/buttons/pill/b";
 import { IconsGenerate } from "~/components/icons/video/generate";
 import { trpc } from "~/utils/trpc";
@@ -15,29 +15,40 @@ import { TextureMetal } from "@brysonandrew/texture-metal";
 import { TGenerateInput } from "~/types/trpc/generate";
 import { useHoverKey } from "~/hooks/use-hover-key";
 import { boxStyle } from "~/constants/box/style";
+import { usePicVideo } from "~/hooks/pic/video";
 
 const DEFAULT: TGenerateInput = {
   input: {
     pics: [],
+    count: 0,
+    seconds: 1,
   },
   fps: 3,
 };
 
 export const Generate = () => {
-  const { videoPics, fps } =
-    useTrillPicsStore(
-      ({ videoPics, fps }) => ({
-        videoPics,
-        fps,
-      })
-    );
+  const { fps } = useTrillPicsStore(
+    ({ fps }) => ({
+      fps,
+    })
+  );
+  const { names, seconds, count } =
+    usePicVideo();
   const { handlers, isHover } =
     useHoverKey();
   const config: TGenerateProps = {
-    input: { pics: videoPics },
+    input: {
+      pics:names,
+      seconds,
+      count,
+    },
     fps,
   };
-  const borderStyle = boxStyle({layer:'flat',borderRadius:'XL',size:'md'})
+  const borderStyle = boxStyle({
+    layer: "flat",
+    borderRadius: "XL",
+    size: "md",
+  });
 
   const title = "Generate";
 

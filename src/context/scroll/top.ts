@@ -1,5 +1,6 @@
 import { animate } from "framer-motion";
-import { useVirtualizeContext } from "~/context";
+import { useContextGrid } from "~/context";
+import { useTrillPicsStore } from "~/store/middleware";
 
 export const useScrollTopHandler =
   () => {
@@ -7,7 +8,16 @@ export const useScrollTopHandler =
       main,
       scrollY,
       ref,
-    } = useVirtualizeContext();
+    } = useContextGrid();
+    const {
+      set
+    } = useTrillPicsStore(
+      ({
+        set
+      }) => ({
+        set
+      })
+    );
     const handler = () => {
       if (!ref.current) return;
       const y = scrollY.get();
@@ -16,6 +26,8 @@ console.log(ref.current, y)
       if (main.blur.control.y) {
         main.blur.control.y.stop();
       }
+
+      set({isScroll: false})
 
       // main.blur.control.y = animate(
       //   main.blur.value.y,
@@ -32,15 +44,16 @@ console.log(ref.current, y)
       // );
 
       main.blur.control.y = animate(
-        scrollY,
-        1,
+        main.blur.value.y,
+        y * 0.008,
         {
           type: "tween",
           restDelta: 0,
           restSpeed: 1,
           velocity: y * 0.02,
           onComplete: () => {
-            scrollY.set(1);
+            main.blur.value.y.set(0);
+            scrollY.set(0)
           },
         }
       );

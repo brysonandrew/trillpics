@@ -18,7 +18,9 @@ export const playerSeekSecondsState: TStateHandler<
             0) +
           state.fps * seconds;
         const max =
-          state.durationInFrames;
+          state.fps *
+          seconds *
+          Infinity;
 
         state.playerInstance?.seekTo(
           clampNumbers({

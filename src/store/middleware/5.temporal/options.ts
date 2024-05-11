@@ -19,10 +19,12 @@ const equality = (
   prev: TTemporalPartializedState,
   curr: TTemporalPartializedState
 ) => {
-  const isVideoPicsCountEqual =
-    prev.videoPics.length ===
-    curr.videoPics.length;
-  return isVideoPicsCountEqual;
+  const isFpsSame =
+    prev.fps === curr.fps;
+  const isPicsSame =
+    prev.pics.toString() ===
+    curr.pics.toString();
+  return isFpsSame && isPicsSame;
 };
 
 export const OPTIONS_UNDO_REDO: ZundoOptions<
@@ -35,10 +37,10 @@ export const OPTIONS_UNDO_REDO: ZundoOptions<
     }),
   limit: 100,
   equality,
-  partialize: (state: TState) =>
-    ({
-      videoPics: state.videoPics,
-    } as TState),
+  partialize: (state: TState) => ({
+    fps: state.fps,
+    pics: state.pics,
+  }),
   handleSet: (handleSet) =>
     debounce((state) => {
       handleSet(state);
