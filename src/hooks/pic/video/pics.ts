@@ -1,15 +1,11 @@
 import { useMemo } from "react";
 import { TCell } from "~/pics/grid/pic";
-import { cellDecrypt } from "~/hooks/pic/cell/decrypt";
-import {
-  COLUMNS_COUNT_PARAM_KEY,
-  DELIMITER_VIDEO_PICS,
-  VIDEO_PARAM_KEY,
-} from "~/hooks/pic/constants";
 import { useTrillPicsStore } from "~/store/middleware";
-import { TPics } from "~/store/state/pics/types";
+import {
+  TPic,
+  TPics,
+} from "~/store/state/pics/types";
 import { isNull } from "~/utils/validation/is/null";
-import { isString } from "~/utils/validation/is/string";
 import { cellEncrypt } from "~/hooks/pic/cell/encrypt";
 
 type TPicsResult = {
@@ -20,45 +16,40 @@ type TPicsResult = {
 };
 
 type TConfig = {
-  searchParams: URLSearchParams;
-  currKey: string | null;
+  isVideoPics: boolean;
+  paramValues: string[];
+  currName: TPic | null;
+  columnsCount: number;
 };
 export const useVideoPicsResult = ({
-  searchParams,
-  currKey,
+  isVideoPics,
+  columnsCount,
+  currName,
+  paramValues,
 }: TConfig) => {
   const { pics } = useTrillPicsStore(
     ({ pics }) => ({
       pics,
     })
   );
-  const paramValue = searchParams.get(
-    VIDEO_PARAM_KEY
-  );
-  const isVideoPics =
-    isString(paramValue);
-  const columnsCount = Number(
-    searchParams.get(
-      COLUMNS_COUNT_PARAM_KEY
-    )
-  );
+
   const picsResult = useMemo(() => {
     const result = [
-      ...new Set<string>([
-        ...(isVideoPics
-          ? paramValue.split(
-              DELIMITER_VIDEO_PICS
-            )
+      ...new Set<TPic>([
+        ...(Array.isArray(paramValues)
+          ? paramValues
           : []),
-        ...(currKey ? [currKey] : []),
+        ...(currName ? [currName] : []),
       ]),
     ].reduce<TPicsResult>(
-      (a, name: string) => {
+      (a, name: TPic) => {
         const index =
           pics.indexOf(name);
         const cell = {
-          row: Math.floor(index / 3),
-          column: index % 3,
+          row: Math.floor(
+            index / columnsCount
+          ),
+          column: index % columnsCount,
         };
         const key = cellEncrypt(cell);
         // const cell = cellDecrypt(key);
@@ -85,11 +76,11 @@ export const useVideoPicsResult = ({
 
     return { count, ...result };
   }, [
-    paramValue,
     isVideoPics,
-    currKey,
     columnsCount,
+    currName,
     pics.toString(),
+    paramValues.toString(),
   ]);
 
   return picsResult;

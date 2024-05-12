@@ -8,47 +8,39 @@ import { useTrillPicsStore } from "~/store/middleware";
 import { useContextGrid } from "~/context";
 import { useReady } from "~/hooks/use-ready";
 import { resolveCompositeKey } from "@brysonandrew/utils-key";
-import { resolveSquare } from "@brysonandrew/measure";
 import { CursorCorners } from "~/pics/grid/pic/cursor/corners";
 import { TPropsWithChildren } from "@brysonandrew/config-types";
 import { PRESENCE_OPACITY } from "@brysonandrew/motion-config-constants";
 import { useCellOver } from "~/hooks/pic/cell/over/hook";
-import { PicCursorTitle } from "~/pics/grid/pic/cursor/title";
 import { resolvePositionFromCell } from "~/pics/grid/pic/cursor/position-from-cell";
+import { usePicVideo } from "~/hooks/pic/video";
 
 export const PicCursor: FC<
   TPropsWithChildren<{
     isDisabled?: boolean;
-    title: string;
   }>
-> = ({
-  title,
-  children,
-  isDisabled,
-}) => {
+> = ({ children, isDisabled }) => {
   const cellOverResult = useCellOver();
   const { scrollY } = useContextGrid();
   const {
     isScrolling,
     isOnscreen,
     isControls,
-    hoverKeys,
-    hoverKeyCooldown,
+    hoverDoneCheck,
   } = useTrillPicsStore(
     ({
       isScrolling,
       isOnscreen,
       isControls,
-      hoverKeys,
-      hoverKeyCooldown,
+      hoverDoneCheck,
     }) => ({
       isScrolling,
       isOnscreen,
       isControls,
-      hoverKeys,
-      hoverKeyCooldown,
+      hoverDoneCheck,
     })
   );
+  const props = usePicVideo();
 
   const isReady = useReady();
   const position =
@@ -61,10 +53,6 @@ export const PicCursor: FC<
     scale: 1.2,
     ...position,
   };
-  const isHoverKey =
-    Boolean(hoverKeyCooldown) ||
-    hoverKeys.length > 0;
-
   return (
     <MotionConfig
       transition={{
@@ -74,7 +62,7 @@ export const PicCursor: FC<
     >
       <motion.div
         key={resolveCompositeKey(
-          "scoller",
+          "scroller",
           `${isReady}`
         )}
         className="absolute text-3xl"
@@ -96,7 +84,8 @@ export const PicCursor: FC<
       >
         <AnimatePresence>
           <>
-            {!isDisabled &&
+            {hoverDoneCheck() &&
+              !isDisabled &&
               !isScrolling &&
               isOnscreen &&
               isControls && (
@@ -105,16 +94,14 @@ export const PicCursor: FC<
                   {...PRESENCE_OPACITY}
                 >
                   <CursorCorners />
-                  <>
-                    {!isHoverKey && (
-                      <>
-                        {children}
-                        <PicCursorTitle key="PicCursorTitle">
-                          {title}
-                        </PicCursorTitle>
-                      </>
-                    )}
-                  </>
+
+                  <motion.div
+                    key="display"
+                    className="center fill"
+                    {...PRESENCE_OPACITY}
+                  >
+                    {children}
+                  </motion.div>
                 </motion.div>
               )}
           </>

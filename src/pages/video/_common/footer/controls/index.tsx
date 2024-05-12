@@ -1,14 +1,13 @@
 import type { FC } from "react";
 import { ControlsClear } from "~/pages/video/_common/footer/controls/clear";
-import { ControlsPlayer } from "~/pages/video/_common/footer/player";
 import { TVideoFooterProps } from "~/pages/video/_common/footer/types";
 import { PillBHover } from "~/components/buttons/pill/b/hover";
-import { ControlsUndo } from "~/pages/video/_common/footer/controls/undo-redo/undo";
-import { ControlsRedo } from "~/pages/video/_common/footer/controls/undo-redo/redo";
 import { SeperatorHorizontal } from "~/pages/video/_common/footer/controls/seperator/horizontal";
 import { useReady } from "~/hooks/use-ready";
 import { usePicVideo } from "~/hooks/pic/video";
-import { ControlsShow } from "~/pages/video/_common/footer/controls/show";
+import { LinesVertical } from "~/pages/video/_common/footer/nav/lines/vertical";
+import { VideoPicsCounter } from "~/shell/screen/video-pic-counter";
+import { BOX_SIZE_MD } from "~/constants/box/style/size";
 
 export const VideoFooterControls: FC<
   TVideoFooterProps
@@ -26,14 +25,47 @@ export const VideoFooterControls: FC<
     style: { zIndex: 99 },
   };
 
-  const title = isVideoPics
-    ? undefined
-    : "Random Video";
-
+  if (!isVideoPics) return null;
   return (
-    <>
-      <Seperator key="Seperator0" />
-      <ControlsUndo
+    <div
+      className="column-start absolute left-0 gap-4 w-0"
+      style={{
+        height: "14vh",
+        bottom: "12vh",
+      }}
+    >
+      <div className="column-start">
+        <VideoPicsCounter>
+          {(count) => (
+            <div className="whitespace-nowrap">
+              {`${count} pics`}
+            </div>
+          )}
+        </VideoPicsCounter>
+      </div>
+      <LinesVertical
+        style={{
+          marginLeft: BOX_SIZE_MD / 2,
+        }}
+      />
+      <ControlsClear
+        key="ControlsClear"
+        {...(isReady
+          ? {
+              layoutId: "ControlsClear",
+            }
+          : {})}
+        {...props}
+      />
+    </div>
+  );
+};
+
+{
+  /* <Seperator key="Seperator0" /> */
+}
+{
+  /* <ControlsUndo
         key="ControlsUndo"
         {...(isReady
           ? {
@@ -50,21 +82,11 @@ export const VideoFooterControls: FC<
             }
           : {})}
         {...props}
-      />
-      {isVideoPics && (
-        <>
-          <Seperator />
-          <ControlsClear
-            key="ControlsClear"
-            {...(isReady
-              ? {
-                  layoutId:
-                    "ControlsClear",
-                }
-              : {})}
-            {...props}
-          />
-          <ControlsShow
+      /> */
+}
+
+{
+  /* <ControlsShow
             key="ControlsShow"
             {...(isReady
               ? {
@@ -73,10 +95,10 @@ export const VideoFooterControls: FC<
                 }
               : {})}
             {...props}
-          />
-        </>
-      )}
-      <Seperator />
+          /> */
+}
+{
+  /* <Seperator />
       <ControlsPlayer
         key="ControlsPlayer"
         {...(isReady
@@ -87,8 +109,5 @@ export const VideoFooterControls: FC<
           : {})}
         title={title}
         {...props}
-      />
-      <Seperator />
-    </>
-  );
-};
+      /> */
+}

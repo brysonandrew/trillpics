@@ -7,7 +7,7 @@ import {
   MOTION_BLUR_FILTER_Y_PROPS,
 } from "~/shell/global/svg/filters/blur/constants";
 
-export const BlurXy: FC<
+export const BlurXyWrap: FC<
   PropsWithChildren
 > = ({ children }) => {
   return (

@@ -4,14 +4,13 @@ import { IconsCross24 } from "~/components/icons/cross/24";
 import { TRANSITION } from "@brysonandrew/motion-config-constants";
 
 type TProps = { isAdded: boolean };
-export const AddRemoveToVideoMarker: FC<
+export const AddRemoveIcon: FC<
   TProps
 > = ({ isAdded }) => {
   const rotate = isAdded ? 0 : 45;
   return (
     <motion.h4
-      className="absolute origin-center"
-      style={{ top: '3rem', right: '3rem' }}
+      className="relative origin-center"
       initial={{
         opacity: 0,
         scale: 0,
@@ -19,12 +18,11 @@ export const AddRemoveToVideoMarker: FC<
       }}
       animate={{
         opacity: 1,
-        scale: isAdded ? 1.6 : 1.7,
+        scale: isAdded ? 1.6 : 1.6,
         rotate,
         transition: {
           ...TRANSITION,
           duration: 0.2,
-          // delay: isAdded ? 0.2 : 0,
         },
       }}
       transition={{

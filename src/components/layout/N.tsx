@@ -1,14 +1,14 @@
-import type { FC } from 'react';
-import { TTextProps } from './config';
-import { Text as _Text } from './index';
+import type { FC } from "react";
+import { TTextProps } from "./config";
+import { Text as _Text } from "./index";
 
 export const N: FC<TTextProps> = (
-  props,
+  props
 ) => {
   return (
     <_Text
-      classValue='relative text-main-inverted'
-      element='div'
+      classValue="relative text-main"
+      element="div"
       {...props}
     />
   );

@@ -5,6 +5,5 @@ import { TStateHandler } from "~/store/types";
 export const hoverState: TStateHandler<
   THoverState
 > = (...args): THoverState => ({
-  // ...hoverPicState(...args),
   ...hoverMultiState(...args),
 });

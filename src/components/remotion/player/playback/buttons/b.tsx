@@ -7,8 +7,6 @@ import clsx from "clsx";
 import { boxStyle } from "~/constants/box/style";
 import { CircleIcon } from "~/components/layout/circle/icon";
 import { resolveNeuShadow } from "@brysonandrew/uno-shortcuts";
-import { colors } from "tailwindcss/defaultTheme";
-import { SCROLLBAR_BORDER_WIDTH } from "~uno/preflights";
 
 export const PlaybackButtonsB: FC<
   TButtonProps & { Icon: FC<TSvgProps> }
@@ -35,28 +33,17 @@ export const PlaybackButtonsB: FC<
         "relative",
         "row",
         "btn-disabled",
-        // "_gradient-mesh",
         "_gradient-radial",
         classValue
       )}
       style={{
-        boxShadow:resolveNeuShadow({
-          size: 2,
-          color: {
-            fill: 'red',
-            back: 'blue'
-          },
-          blur:
-            4
-        }).emptyFill,
         ...borderStyle,
         ...style,
       }}
       {...props}
     >
-      {/* <LightingGlow /> */}
       <div
-        className="center _gradient-mesh bg-black-04"
+        className="center dark:bg-black-04 bg-white-04"
         style={{
           minHeight: sm.minHeight,
           minWidth: sm.minWidth,
@@ -65,7 +52,11 @@ export const PlaybackButtonsB: FC<
           marginLeft: sm.padding,
         }}
       >
-        <CircleIcon Icon={Icon} iconProps={undefined} circleProps={undefined} />
+        <CircleIcon
+          Icon={Icon}
+          iconProps={undefined}
+          circleProps={undefined}
+        />
       </div>
     </button>
   );

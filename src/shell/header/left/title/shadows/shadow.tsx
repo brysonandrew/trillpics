@@ -11,8 +11,8 @@ export const TitleShadow: FC<{
 }> = memo(({ color }) => {
   const offset = useMemo(
     () => ({
-      x: -Math.random() * 5,
-      y: -Math.random() * 2,
+      x: (Math.random()-0.5) * 5,
+      y: (Math.random()-0.5) * 2,
     }),
     []
   );
@@ -27,7 +27,7 @@ export const TitleShadow: FC<{
       }}
       animate={{
         ...offset,
-        scaleX: 1.02,
+        scaleX: 1.05,
         scaleY: 1.02,
         opacity: 0.7,
       }}
@@ -36,7 +36,7 @@ export const TitleShadow: FC<{
 
         mixBlendMode: "lighten",
       }}
-      className="fill font-display char-gap-2 _gradient-text text-left w-30 text-4xl sm:(text-4.5xl w-32) md:(text-4.5xl w-auto) whitespace-nowrap"
+      className="fill font-display _gradient-text text-left w-30 text-4xl sm:(text-4.5xl w-32) md:(text-4.5xl w-auto)"
     >
       {APP_TITLE}
     </motion.div>

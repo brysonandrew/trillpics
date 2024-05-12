@@ -27,11 +27,10 @@ export const PicBackdrop: FC<
       className={clsx("inset-0")}
       style={{
         position: "fixed",
-        zIndex: FULLSCREEN_Z,
         ...(screenDimensions ?? {}),
         backdropFilter:
           "blur(28px) grayscale(80%)",
-        cursor: "zoom-out",
+        cursor: "pointer",
         ...style,
       }}
       {...props}

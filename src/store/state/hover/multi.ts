@@ -1,3 +1,4 @@
+import { hoverDoneCheck } from "~/store/state/hover/done-check";
 import {
   THoverKey,
   THoverMultiState,
@@ -8,6 +9,7 @@ import { isDefined } from "~/utils/validation/is/defined";
 export const hoverMultiState: TStateHandler<
   THoverMultiState
 > = (set, get) => ({
+  hoverDoneCheck: hoverDoneCheck(get),
   hoverKeys: [],
   hoverKeyCooldown: null,
   isHover: (hoverKey: THoverKey) => {
@@ -25,6 +27,7 @@ export const hoverMultiState: TStateHandler<
       hoverKeys,
     });
   },
+
   unhover: (hoverKey: THoverKey) => {
     const prevHoverKeys =
       get().hoverKeys;

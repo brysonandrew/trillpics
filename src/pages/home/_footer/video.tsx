@@ -10,6 +10,7 @@ import { PillBStill } from "~/components/buttons/pill/b/still";
 import { NOOP } from "@brysonandrew/utils-function";
 import { SeperatorVertical } from "~/pages/video/_common/footer/controls/seperator/vertical";
 import { VIDEO_ROUTE } from "~/constants/params";
+import { TexturesMesh } from "~/components/textures/mesh";
 
 export const HomeFooterVideo: FC =
   () => {
@@ -20,47 +21,24 @@ export const HomeFooterVideo: FC =
     const handleClick = () => {
       togglePathValue(VIDEO_ROUTE);
     };
-    const title = "Video mode";
+    const title = "Create Video";
     const isHovering = isHover(title);
-    const VideoFooterControlsHoverKey =
-      "VideoFooterControlsHoverKey";
-    const isVideoFooterControlsHover =
-      isHover(
-        VideoFooterControlsHoverKey
-      );
+
     return (
-      <motion.div className="relative row-reverse">
+      <motion.div
+        layoutId="VideoButton"
+        className="relative row-reverse"
+      >
         <PillBHover
           key={title}
           title={title}
-          onClick={
-            isVideoFooterControlsHover
-              ? NOOP
-              : handleClick
-          }
+          onClick={handleClick}
           Icon={IconsVideo}
           outerCircle={
-            <>
-              {isHovering ? (
-                <VideoFooterControls
-                  Button={PillBStill}
-                  Seperator={
-                    SeperatorVertical
-                  }
-                  {...motionHandlers(
-                    VideoFooterControlsHoverKey
-                  )}
-                />
-              ) : (
-                <VideoPicCounterFloating />
-              )}
-            </>
+            <VideoPicCounterFloating />
           }
         >
-          <div className="px-1">
-            {title}
-          </div>
-          <SeperatorVertical />
+          {isHovering && title}
         </PillBHover>
       </motion.div>
     );

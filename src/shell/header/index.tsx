@@ -12,7 +12,7 @@ export const Header: FC<TProps> =
     return (
       <motion.header
         className={clsx(
-          "fixed left-0 top-0 right-0 column w-full h-0 z-0"
+          "fixed left-0 top-0 right-0 column w-full h-0 z-0 z-10"
         )}
       >
         <div

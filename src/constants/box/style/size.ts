@@ -2,18 +2,22 @@ import { BOX } from "~/constants/box";
 import { TBoxStyleTheme } from "~/constants/box/style/types";
 import { isDefined } from "~/utils/validation/is/defined";
 
+const GAP = 4;
 export const BOX_SIZE_MD = 44;
-export const BOX_SIZE_SM = 40;
+export const BOX_SIZE_SM =
+  BOX_SIZE_MD - GAP;
+export const BOX_SIZE_XS =
+  BOX_SIZE_SM - GAP;
 export const DEFAULT_SIZE_BOX_SIZE =
   BOX_SIZE_MD;
 
 export const BOX_SIZE = {
   md: DEFAULT_SIZE_BOX_SIZE,
   sm: BOX_SIZE_SM,
+  xs: BOX_SIZE_XS,
   minWidth: DEFAULT_SIZE_BOX_SIZE,
   minHeight: DEFAULT_SIZE_BOX_SIZE,
-  padding:
-    (BOX_SIZE_MD - BOX_SIZE_SM) * 0.5,
+  padding: GAP,
 } as const;
 
 type TConfig = {

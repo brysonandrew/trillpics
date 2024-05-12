@@ -1,13 +1,13 @@
 import type { FC } from "react";
 import { PillBHover } from "~/components/buttons/pill/b/hover";
-import { VideoPicCounterFloating } from "~/shell/screen/video-pic-counter/floating";
 import { TVideoFooterProps } from "~/pages/video/_common/footer/types";
-import { IconsReel } from "~/components/icons/reel";
 import { useNavigationControls } from "~/hooks/use-navigation/controls";
 import {
   VIDEO_ROUTE,
   VIDEO_SCHEDULER_ROUTE,
 } from "~/constants/params";
+import { IconsEdit } from "~/components/icons/edit";
+import { HoverText } from "~/pages/video/_common/footer/nav/hover-text";
 
 export const ControlsShow: FC<
   TVideoFooterProps
@@ -35,14 +35,11 @@ export const ControlsShow: FC<
   return (
     <Button
       title={title}
-      outerCircle={
-        <VideoPicCounterFloating />
-      }
       onClick={handleClick}
-      Icon={IconsReel}
+      Icon={IconsEdit}
       {...props}
     >
-      {title}
+      <HoverText>{title}</HoverText>
     </Button>
   );
 };

@@ -1,5 +1,6 @@
-import { useRef } from "react";
+import { useEffect } from "react";
 import {
+  animate,
   motion,
   Reorder,
   useScroll,
@@ -19,6 +20,7 @@ import {
 import { useNavigationControls } from "~/hooks/use-navigation/controls";
 import { isDefined } from "~/utils/validation/is/defined";
 import { useTrillPicsStore } from "~/store/middleware";
+import { useBodyStyle } from "~/context/use-body-style";
 
 export const VideoSchedulerReorder =
   () => {
@@ -28,18 +30,20 @@ export const VideoSchedulerReorder =
       count,
       reorder,
     } = usePicVideo();
-    const scrollRange = count * size;
+
+    useBodyStyle(
+      `overflow-x: hidden; overflow-y: scroll; overscroll-behavior: none; -ms-overflow-style: none;`
+    );
+
+    const padding = 2 * size;
+    const scrollRange =
+      count * size + padding;
     const { screen } =
       useTrillPicsStore(
         ({ screen }) => ({ screen })
       );
     const { scrollYProgress } =
       useScroll();
-    const scrollRef = useRef<{
-      scrollWidth: number;
-    }>({ scrollWidth: 0 });
-    // const { ref, main, scrollY } =
-    //   useContextGrid();
     const {
       togglePathValue,
       isActive,
@@ -53,80 +57,105 @@ export const VideoSchedulerReorder =
           : VIDEO_ROUTE
       );
     };
-
-    const screenWidth =
-      (isDefined(screen) &&
-        "isDimensions" in screen &&
-        screen.isDimensions &&
-        screen.width) ||
-      0;
-    console.log(screenWidth);
-    const transform = useTransform(
-      scrollYProgress,
-      [0, 1],
-      [0, -scrollRange + screenWidth]
-    );
     const physics = {
       damping: 15,
       mass: 0.27,
       stiffness: 55,
     };
+    useEffect(() => {
+      scrollYProgress.set(1);
+      animate(scrollYProgress, 0, {
+        type: "spring",
+        ...physics,
+      });
+    }, []);
+
+    const isScreenReady =
+      isDefined(screen) &&
+      "isDimensions" in screen &&
+      screen.isDimensions;
+    const screenWidth =
+      (isScreenReady && screen.width) ||
+      0;
+    const screenHeight =
+      (isScreenReady && screen.width) ||
+      0;
+    const transform = useTransform(
+      scrollYProgress,
+      [0, 1],
+      [0, -scrollRange + screenWidth]
+    );
+
     const spring = useSpring(
       transform,
       physics
     );
-
-    console.log(names);
     return (
-      <div className="fill-screen row">
-        <PicBackdrop
-          onTap={handleClick}
-        />
-        <div>
+      <>
+        <div className="fixed left-0 top-0 bg-black-5">
+          <PicBackdrop
+            onTap={handleClick}
+          />
           <motion.div
-            className="relative"
+            className="relative center"
             style={{
-              height: size,
+              height: screenHeight,
               zIndex: FULLSCREEN_Z,
               x: spring,
             }}
           >
-            <Reorder.Group
-              axis="x"
-              values={names}
-              className="row gap-4"
-              onReorder={reorder}
+            <motion.div
+              className="relative row"
+              style={{
+                height: size,
+                top: "0%",
+                left: size, //padding
+                width: "100vw",
+                y: "-50%",
+              }}
             >
-              {names.map(
-                (name, index) => (
+              <Reorder.Group
+                axis="x"
+                className="relative row"
+                values={names}
+                onReorder={reorder}
+              >
+                {names.map((name) => (
                   <Reorder.Item
                     key={name}
                     value={name}
+                    style={resolveSquare(
+                      size
+                    )}
                   >
                     <PicDisplay
                       name={name}
                       src={resolvePicSrc(
                         name
                       )}
+                      whileTap={{
+                        cursor:
+                          "grabbing",
+                      }}
                       style={{
                         ...resolveSquare(
                           size
                         ),
+                        cursor: "grab",
                       }}
                     />
                   </Reorder.Item>
-                )
-              )}
-            </Reorder.Group>
+                ))}
+              </Reorder.Group>
+            </motion.div>
           </motion.div>
         </div>
         <div
-          // ref={ghostRef}
           style={{
+            width: "100%",
             height: scrollRange,
           }}
-          className="ghost bg-red"
         />
-      </div>
+      </>
     );
   };

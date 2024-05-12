@@ -8,7 +8,7 @@ const CORNER_SIZE = 10;
 export const CursorCorners: FC = () => {
   return (
     <svg
-    className="pointer-events-none"
+      className="pointer-events-none"
       viewBox={`0 0 ${SIZE} ${SIZE}`}
       width="100%"
       height="100%"
@@ -18,9 +18,7 @@ export const CursorCorners: FC = () => {
         size={SIZE}
         corner={{
           size: CORNER_SIZE,
-          thickness:
-            1.5,
-            
+          thickness: 1.5,
         }}
         stroke={resolveUrlId(
           LINEAR_GRADIENT_SVG_ID
@@ -28,14 +26,12 @@ export const CursorCorners: FC = () => {
         inset={2}
         strokeLinecap="round"
         strokeLinejoin="round"
-        
       />
       <CursorCornersSet
         size={SIZE}
         corner={{
           size: CORNER_SIZE,
-          thickness:
-           0.75
+          thickness: 0.75,
         }}
         stroke="#ffffff"
         inset={2}

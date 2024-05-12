@@ -2,11 +2,7 @@ import type { FC } from "react";
 import { motion } from "framer-motion";
 import { TitleText } from "~/shell/header/left/title/text";
 import { SparkleButton } from "~/shell/header/left/title/sparkle-button";
-import { resolveUrlId } from "@brysonandrew/utils-attributes";
-import {
-  FILTERS_FAT_SVG_ID,
-  FILTERS_FAT_SVG_PROPS,
-} from "~/shell/global/svg/filters/fat";
+import { FILTERS_FAT_SVG_PROPS } from "~/shell/global/svg/filters/fat";
 
 export const Title: FC = () => {
   return (
@@ -20,7 +16,7 @@ export const Title: FC = () => {
           mixBlendMode: "difference",
           backgroundClip: "text",
         }}
-        className="relative text-lg text-black char-gap-8"
+        className="relative text-lg text-main char-gap-8"
       >
         <motion.span
           className="fill text-gray-9"
@@ -30,7 +26,7 @@ export const Title: FC = () => {
         >
           AI Art Gallery
         </motion.span>
-        <span className="relative text-black">
+        <span className="relative text-main-inverted">
           AI Art Gallery
         </span>
       </h2>

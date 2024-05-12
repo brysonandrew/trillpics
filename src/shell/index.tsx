@@ -26,10 +26,14 @@ import {
 } from "~uno/preflights";
 import { GRADIENT_MESH_LIGHT } from "~app/color/gradient/mesh";
 import { SvgFiltersFat } from "~/shell/global/svg/filters/fat";
+import { HeaderLeftControls } from "~/shell/header/left/controls";
+import { ShellBackground } from "~/shell/background";
+import { BlurXyWrap } from "~/components/blur/xy";
 
 const OUTLET_CONTEXT = {
   Header,
   HeaderLeft,
+  HeaderLeftControls,
   HeaderRight,
   Screen,
   Footer,
@@ -60,59 +64,14 @@ export const Shell = withProviders(
         />
         <GlobalCss />
         <SvgFiltersFat />
-        <div
-          style={{
-            ...MOTION_BLUR_FILTER_X_PROPS,
-          }}
-        >
-          <div
-            style={{
-              ...MOTION_BLUR_FILTER_Y_PROPS,
+        <BlurXyWrap>
+          <ShellBackground isDarkMode={isDarkMode} />
+          <Outlet
+            context={{
+              ...OUTLET_CONTEXT,
             }}
-          >
-            <div
-              className="fill"
-              style={{
-                minHeight: "100vh",
-                ...GRADIENT_MESH_LIGHT,
-
-                backgroundSize:
-                  "4px 4px",
-              }}
-            >
-              <div
-                className="fill inset-3"
-                style={{
-                  right: `calc(0.75rem + ${
-                    SCROLLBAR_WIDTH +
-                    SCROLLBAR_BORDER_WIDTH *
-                      2
-                  }px)`,
-                  ...GRADIENT_MESH_LIGHT,
-
-                  backgroundSize:
-                    "4px 4px",
-                  borderRadius: 4,
-                }}
-              >
-                <img
-                  className="w-full h-full opacity-10 grayscale-100 p-6"
-                  src={`logo-${
-                    isDarkMode
-                      ? "dark"
-                      : "light"
-                  }.svg`}
-                />
-              </div>
-            </div>
-
-            <Outlet
-              context={{
-                ...OUTLET_CONTEXT,
-              }}
-            />
-          </div>
-        </div>
+          />
+        </BlurXyWrap>
       </>
     );
   }

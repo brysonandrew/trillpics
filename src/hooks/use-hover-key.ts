@@ -1,10 +1,21 @@
+import {
+  MouseEventHandler,
+  PointerEventHandler,
+} from "react";
 import { THoverKey } from "@brysonandrew/hooks-dom";
 import { useTimebomb } from "~/hooks/use-time-bomb";
 import { useTrillPicsStore } from "~/store/middleware";
 
+type TEventCallback = (
+  event: Event
+) => void;
 type THandler = (
   key: THoverKey
-) => void;
+) =>
+  | TEventCallback
+  | MouseEventHandler<HTMLButtonElement>
+  | PointerEventHandler<HTMLButtonElement>
+  | undefined;
 type TConfig = {
   handlers?: {
     start?: THandler;
@@ -44,35 +55,46 @@ export const useHoverKey = (
       },
     });
 
-  const onStart: THandler = (key) => {
-    if (config?.handlers?.start) {
-      config.handlers.start?.(key);
-    }
-    hover(key);
-  };
-  const onStop: THandler = (key) => {
-    if (config?.handlers?.stop) {
-      config.handlers.stop?.(key);
-    }
-    unhover(key);
-    trigger();
-  };
-  const handlers = (
-    key: THoverKey
-  ) => ({
-    onPointerEnter: () => onStart(key),
-    onPointerOut: () => onStop(key),
-    onPointerLeave: () => onStop(key),
-    onMouseLeave: () => onStop(key),
-  });
+  const onStart: THandler =
+    (key: THoverKey) =>
+    (event: Event) => {
+      console.log(event);
+      if (config?.handlers?.start) {
+        config.handlers.start?.(key);
+      }
+      hover(key);
+    };
+  const onStop: THandler =
+    (key: THoverKey) =>
+    (event: Event) => {
+      console.log(event);
+
+      if (config?.handlers?.stop) {
+        config.handlers.stop?.(key);
+      }
+      unhover(key);
+      trigger();
+    };
+  const handlers = (key: THoverKey) =>
+    ({
+      onPointerEnter: onStart(key),
+      onPointerOut: onStop(key),
+      onPointerLeave: onStop(key),
+      onMouseLeave: onStop(key),
+      onMouseDown: onStop(key),
+      onPointerDown: onStop(key),
+    } as const);
   const motionHandlers = (
     key: THoverKey
-  ) => ({
-    onHoverStart: () => onStart(key),
-    onHoverEnd: () => onStop(key),
-    onPointerLeave: () => onStop(key),
-    onMouseLeave: () => onStop(key),
-  });
+  ) =>
+    ({
+      onHoverStart: onStart(key),
+      onHoverEnd: onStop(key),
+      onPointerLeave: onStop(key),
+      onMouseLeave: onStop(key),
+      onPointerDown: onStop(key),
+      onTap: onStop(key),
+    } as const);
 
   const clear = hover;
 

@@ -4,6 +4,7 @@ import { PillBHover } from "~/components/buttons/pill/b/hover";
 import { useNavigationControls } from "~/hooks/use-navigation/controls";
 import { TVideoFooterProps } from "~/pages/video/_common/footer/types";
 import { VIDEO_PLAYER_ROUTE } from "~/constants/params";
+import { HoverText } from "~/pages/video/_common/footer/nav/hover-text";
 
 export const ControlsPlayer: FC<
   TVideoFooterProps
@@ -17,6 +18,10 @@ export const ControlsPlayer: FC<
   const handleClick = () => {
     togglePathValue(VIDEO_PLAYER_ROUTE);
   };
+
+  // const title = isVideoPics
+  //   ? undefined
+  //   : "Random Video";
   return (
     <Button
       title={
@@ -26,7 +31,7 @@ export const ControlsPlayer: FC<
       Icon={IconsPlay}
       {...props}
     >
-      {title ?? "Preview Video"}
+      <HoverText>{title}</HoverText>
     </Button>
   );
 };

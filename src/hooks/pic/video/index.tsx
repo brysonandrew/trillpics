@@ -4,17 +4,23 @@ import {
   useSearchParams,
 } from "react-router-dom";
 import {
+  CELL_PARAM_KEY,
   COLUMNS_COUNT_PARAM_KEY,
   DELIMITER_VIDEO_PICS,
   SECONDS_PARAM_KEY,
   VIDEO_PARAM_KEY,
 } from "~/hooks/pic/constants";
 import { useVideoPicsResult } from "~/hooks/pic/video/pics";
-import { TPics } from "~/store/state/pics/types";
+import {
+  TPic,
+  TPics,
+} from "~/store/state/pics/types";
 import { isValue } from "~/utils/validation/is/value";
 import { useTrillPicsStore } from "~/store/middleware";
 import { resolveCellOverDetails } from "~/hooks/pic/cell/over/details";
-import { resolveVideoPicAddedRx } from "~/hooks/pic/video/pic-added-rx";
+import { paramsMoveToEnd } from "~/utils/params/move-to-end";
+import { resolveSetArray } from "~/utils/params/set-array";
+import { isNull } from "~/utils/validation/is/null";
 
 export const usePicVideo = () => {
   const { pics } = useTrillPicsStore(
@@ -54,27 +60,45 @@ export const usePicVideo = () => {
 
   const picsResult = useVideoPicsResult(
     {
-      searchParams,
-      currKey,
+      isVideoPics,
+      paramValues,
+      currName,
+      columnsCount,
     }
   );
 
+  const addedCheck = (
+    currName: TPic | null
+  ) => {
+    return (
+      !isNull(currName) &&
+      isVideoPics &&
+      isCurrName &&
+      paramValues.includes(
+        `${currName}`
+      )
+    );
+  };
+
   const isCurrAdded =
-    isVideoPics &&
-    isCurrName &&
-    paramValues.includes(`${currName}`);
-  console.log(
-    isCurrAdded,
-    isVideoPics,
-    isCurrName,
-    paramValues,
-    currName
-  );
+    addedCheck(currName);
+
+  // console.log(
+  //   isCurrAdded,
+  //   isVideoPics,
+  //   isCurrName,
+  //   currName,
+  //   paramValues
+  // );
   const add = () => {
     if (isCurrName) {
       searchParams.append(
         VIDEO_PARAM_KEY,
         `${currName}`
+      );
+      paramsMoveToEnd(
+        searchParams,
+        CELL_PARAM_KEY
       );
       navigate(
         `${pathname}?${searchParams}`
@@ -87,23 +111,21 @@ export const usePicVideo = () => {
       Array.isArray(paramValues) &&
       isCurrName
     ) {
-      const rx =
-        resolveVideoPicAddedRx(
-          currName
-        );
       const nextValues =
         paramValues.filter(
           (v) => v !== currName
         );
-      searchParams.delete(
-        VIDEO_PARAM_KEY
+
+      resolveSetArray(
+        searchParams,
+        VIDEO_PARAM_KEY,
+        nextValues
       );
-      nextValues.forEach((value) => {
-        searchParams.append(
-          VIDEO_PARAM_KEY,
-          `${value}`
-        );
-      });
+
+      paramsMoveToEnd(
+        searchParams,
+        CELL_PARAM_KEY
+      );
 
       navigate(
         `${pathname}?${searchParams}`
@@ -136,10 +158,20 @@ export const usePicVideo = () => {
       DELIMITER_VIDEO_PICS
     );
     console.log(nextValue);
-    searchParams.set(
+    resolveSetArray(
+      searchParams,
       VIDEO_PARAM_KEY,
-      nextValue
+      nextPics.map((v) => v.toString())
     );
+
+    paramsMoveToEnd(
+      searchParams,
+      CELL_PARAM_KEY
+    );
+    // searchParams.set(
+    //   VIDEO_PARAM_KEY,
+    //   nextValue
+    // );
     navigate(
       `${pathname}?${searchParams}`
     );
@@ -150,6 +182,7 @@ export const usePicVideo = () => {
     isCurrAdded,
     isCurrName,
     seconds,
+    addedCheck,
     toggle,
     add,
     remove,

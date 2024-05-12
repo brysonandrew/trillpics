@@ -5,31 +5,35 @@ import {
 } from "~/components/layout/counter";
 import clsx from "clsx";
 import { N } from "~/components/layout/N";
-import { LightingGlow } from "~/components/layout/lighting/glow";
-import { RADIAL_BLUE_PINK_YELLOW } from "~app/color/gradient";
 import { usePicVideo } from "~/hooks/pic/video";
 
 export const VideoPicsCounter: FC<
-  Partial<TPillProps>
-> = ({ classValue, ...props }) => {
+  Partial<
+    Omit<TPillProps, "children"> & {
+      children?: (
+        count: number
+      ) => JSX.Element;
+    }
+  >
+> = ({
+  classValue,
+  children = (count: number) =>
+    `${count}`,
+  ...props
+}) => {
   const { count, isVideoPics } =
     usePicVideo();
   if (!isVideoPics) return null;
   return (
     <Pill
-      layoutId="ControlsCounter"
+      layoutId="VideoPicsCounter"
       classValue={clsx(
-        "pointer-events-none",
+        "pointer-events-none font-display-led text-black dark:text-white",
         classValue ?? "relative"
       )}
-      style={{
-        backgroundImage:
-          RADIAL_BLUE_PINK_YELLOW,
-      }}
       {...props}
     >
-      <LightingGlow />
-      <N>{count}</N>
+      <>{children(count)}</>
     </Pill>
   );
 };

@@ -25,12 +25,13 @@ export type TStateKey = keyof TState;
 export type TPartialState =
   Partial<TState>;
 
+export type TGet = () => TState;
 type TStore =
   Parameters<TStateWithMiddleware>[2];
 
 export type TStateCreatorParameters = [
   TSet,
-  () => TState,
+  TGet,
   TStore
 ];
 

@@ -35,7 +35,7 @@ export const Pill: FC<TPillProps> = ({
   return (
     <motion.div
       className={clsx(
-        "center h-6 text-current text-sm px-2 _gradient-radial",
+        "center h-6 text-sm px-2 _gradient-radial z-20",
         isCircle && "w-6",
         classValue
       )}

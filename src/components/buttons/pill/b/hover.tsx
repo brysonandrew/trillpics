@@ -1,10 +1,8 @@
 import { FC } from "react";
-import { motion } from "framer-motion";
 import {
   PillB,
   TPillBProps,
 } from "~/components/buttons/pill/b";
-import { FADE_PRESENCE_DELAY_02 } from "~/constants/animation";
 import { useHoverKey } from "~/hooks/use-hover-key";
 import { isDefined } from "~/utils/validation/is/defined";
 
@@ -25,17 +23,7 @@ export const PillBHover: FC<TProps> = ({
       {...motionHandlers(title)}
       {...props}
     >
-      {isHovering ? (
-        <motion.div
-          layout
-          className="relative row gap-2 mr-2 -mb-0.75 whitespace-nowrap"
-          {...FADE_PRESENCE_DELAY_02}
-        >
-          {children}
-        </motion.div>
-      ) : (
-        ""
-      )}
+      {isHovering && children}
     </PillB>
   );
 };

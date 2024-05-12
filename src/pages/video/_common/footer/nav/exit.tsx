@@ -1,30 +1,30 @@
 import { FC } from "react";
-import { IconsArrowsLeft } from "~/components/icons/arrows/left";
 import { useNavigationExit } from "~/hooks/use-navigation/exit";
 import { PillBHover } from "~/components/buttons/pill/b/hover";
 import { HOME_ROUTE } from "~/constants/params";
+import { IconsHome } from "~/components/icons/home";
+import { PRESENCE_OPACITY_ANIMATE_DELAY_02 } from "~/constants/animation";
+import { HoverText } from "~/pages/video/_common/footer/nav/hover-text";
 
 export const VideoFooterExit: FC =
   () => {
     const togglePathValue =
-      useNavigationExit(
-        HOME_ROUTE
-      );
+      useNavigationExit(HOME_ROUTE);
 
     const handleClick = () => {
       togglePathValue();
     };
-    const title =
-      "Exit Video Mode";
+    const title = "Go Home";
 
     return (
       <PillBHover
         key={title}
         title={title}
         onClick={handleClick}
-        Icon={IconsArrowsLeft}
+        Icon={IconsHome}
+        {...PRESENCE_OPACITY_ANIMATE_DELAY_02}
       >
-        {title}
+        <HoverText>{title}</HoverText>
       </PillBHover>
     );
   };

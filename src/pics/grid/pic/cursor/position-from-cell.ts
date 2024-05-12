@@ -10,7 +10,7 @@ export const resolvePositionFromCell =
     isNull(cell)
       ? {}
       : {
-          left: cell.column * size,
+          x: cell.column * size,
           top: cell.row * size,
           ...resolveSquare(size),
         };

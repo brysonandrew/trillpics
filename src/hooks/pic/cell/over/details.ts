@@ -26,14 +26,11 @@ export const resolveCellOverDetails = ({
     currCell.row * columnsCount +
       currCell.column;
 
-    console.log(currIndex)
   const currName = isNumberFinite(
     currIndex
   )
     ? pics[currIndex]
     : null;
-    console.log(currName)
-
 
   return {
     currName,

@@ -3,6 +3,7 @@ import { useOutletContext } from "react-router";
 import { TOutletContext } from "~/shell";
 import { HomeFooter } from "~/pages/home/_footer";
 import { HomeCursor } from "~/pages/home/cursor";
+import { HeaderLeftControls } from "~/shell/header/left/controls";
 
 export const Home: FC = () => {
   const {
@@ -13,12 +14,13 @@ export const Home: FC = () => {
     FooterLeft,
   } =
     useOutletContext<TOutletContext>();
-
   return (
     <>
       <HomeCursor />
       <Header>
-        <HeaderLeft />
+        <HeaderLeft>
+          <HeaderLeftControls />
+        </HeaderLeft>
         <HeaderRight />
       </Header>
       <Footer>

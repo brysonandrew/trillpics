@@ -1,48 +1,46 @@
 import type { FC } from "react";
-import {  AnimatePresence,  motion,  MotionConfig,} from "framer-motion";
-import { FADE_PRESENCE } from "~/constants/animation";
+import {
+  motion,
+  MotionConfig,
+} from "framer-motion";
+import { PRESENCE_OPACITY_ANIMATE_DELAY_02 } from "~/constants/animation";
 import { TUsePicVideoResult } from "~/hooks/pic/video";
 import { TPropsWithChildren } from "@brysonandrew/config-types";
-import { PillB } from "~/components/buttons/pill/b";
-import { IconsVideo } from "~/components/icons/video/video";
-import { resolveUrlId } from "@brysonandrew/utils-attributes";
-import { FILTERS_FAT_SVG_ID, FILTERS_FAT_SVG_PROPS } from "~/shell/global/svg/filters/fat";
+import { FILTERS_FAT_SVG_PROPS } from "~/shell/global/svg/filters/fat";
+import { PRESENCE_OPACITY } from "@brysonandrew/motion-config-constants";
 
 export type TPicVideoControlsProps =
   TPropsWithChildren<TUsePicVideoResult>;
 export const PicVideoControls: FC<
   TPicVideoControlsProps
 > = (props) => {
-  const {
-    isCurrAdded: isAdded,
-    children,
-  } = props;
+  const { isCurrAdded, children } =
+    props;
   return (
     <motion.div
-      key="video mode counter"
-      className="fill"
-      {...FADE_PRESENCE}
+      key={
+        isCurrAdded
+          ? "added"
+          : "VideoControlsCounter"
+      }
+      className="relative row gap-2 h-12 mx-2 text-gray-9"
+      transition={{
+        duration: 0.1,
+        delay: 0.1,
+      }}
+      {...PRESENCE_OPACITY}
     >
-      <MotionConfig
-        transition={{
-          duration: 0.2,
-          delay: 0.6,
+      <div
+        className="fill"
+        style={{
+          ...FILTERS_FAT_SVG_PROPS,
         }}
       >
-        <AnimatePresence>
-          {isAdded && (
-            <motion.div
-              key="VideoControlsCounter"
-              className="row gap-2 h-12 px-2 text-gray-9"
-              style={{
-                ...FILTERS_FAT_SVG_PROPS,
-              }}
-            >
-              {children}
-            </motion.div>
-          )}
-        </AnimatePresence>
-      </MotionConfig>
+        {children}
+      </div>
+      <div className="relative text-white">
+        {children}
+      </div>
     </motion.div>
   );
 };

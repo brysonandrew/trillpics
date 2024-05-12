@@ -1,4 +1,4 @@
-import type { FC } from "react";
+import { FC, memo } from "react";
 import {
   GRADIENT_BLUE_PINK_YELLOW_COLORS,
   GRADIENT_TEAL_YELLOW_PINK_COLORS,
@@ -7,7 +7,7 @@ import { useDarkMode } from "@brysonandrew/dark-mode";
 import { TitleShadow } from "~/shell/header/left/title/shadows/shadow";
 import { resolveCompositeKey } from "@brysonandrew/utils-key";
 
-export const TitleShadows: FC = () => {
+export const TitleShadows: FC = memo(() => {
   const { isDarkMode } = useDarkMode();
   return (
     <>
@@ -27,4 +27,4 @@ export const TitleShadows: FC = () => {
       })}
     </>
   );
-};
+});

@@ -2,7 +2,7 @@ import { FULLSCREEN_Z } from "~/constants/dom";
 
 export const POSITIONS = [
   'absolute cursor-zoom-in',
-  'fixed left-0 top-0 cursor-zoom-out',
+  'fixed left-0 top-0',
 ] as const;
 
 export type TPositionKey =

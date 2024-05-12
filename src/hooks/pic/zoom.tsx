@@ -12,6 +12,7 @@ import {
   ZOOM_PARAM_CLOSING_VALUE,
   ZOOM_PARAM_OPEN_VALUE,
 } from "~/hooks/pic/constants";
+import { paramsMoveToEnd } from "~/utils/params/move-to-end";
 
 export const usePicZoom = (
   cell?: TCell
@@ -45,17 +46,21 @@ export const usePicZoom = (
     isClosing;
 
   const zoom = () => {
-    searchParams.set(
+    searchParams.append(
       ZOOM_PARAM_KEY,
       ZOOM_PARAM_OPEN_VALUE
     );
+
+    paramsMoveToEnd(
+      searchParams,
+      CELL_PARAM_KEY
+    );
+
     navigate(
       `${pathname}?${searchParams}`
     );
   };
   const close = () => {
-    console.log("close");
-
     searchParams.set(
       ZOOM_PARAM_KEY,
       ZOOM_PARAM_CLOSING_VALUE
@@ -65,8 +70,6 @@ export const usePicZoom = (
     );
   };
   const clear = () => {
-    console.log("clear");
-
     if (isCellClosing) {
       searchParams.delete(
         ZOOM_PARAM_KEY

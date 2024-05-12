@@ -7,9 +7,8 @@ export const HomeCursor: FC = () => {
   const isDisabled = useClickZoom();
   useMove();
   return (
-    <PicCursor
-      title="Fullscreen"
-      isDisabled={isDisabled}
-    />
+    <PicCursor isDisabled={isDisabled}>
+      Fullscreen
+    </PicCursor>
   );
 };

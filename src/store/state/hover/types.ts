@@ -1,31 +1,17 @@
-import { TPicProps } from "~/pics/grid/pic";
-
 export type THoverKey = string | number;
-export type THoverPicKey = string;
 
-export type THoverPicState = {
+export type THoverHandler = (
+  hoverKey: THoverKey
+) => void;
 
-  hoverPicKey: THoverPicKey | null;
-  hoverPicProps: TPicProps | null;
-  hoverPic: (
-    hoverKey: THoverPicKey
-  ) => void;
-  unhoverPic: (
-    hoverKey: THoverPicKey
-  ) => void;
-};
 export type THoverMultiState = {
   hoverKeyCooldown: THoverKey | null;
-
   hoverKeys: THoverKey[];
-  isHover: (
-    hoverKey: THoverKey
-  ) => boolean;
-  hover: (hoverKey?: THoverKey) => void;
-  unhover: (
-    hoverKey: THoverKey
-  ) => void;
+  hoverDoneCheck(): boolean;
+  isHover(hoverKey: THoverKey): boolean;
+  hover(hoverKey?: THoverKey): void;
+  unhover(hoverKey: THoverKey): void;
 };
 
 export type THoverState =
-THoverMultiState;
+  THoverMultiState;
