@@ -1,21 +1,19 @@
-import {
-  MouseEventHandler,
-  PointerEventHandler,
-} from "react";
 import { THoverKey } from "@brysonandrew/hooks-dom";
 import { useTimebomb } from "~/hooks/use-time-bomb";
 import { useTrillPicsStore } from "~/store/middleware";
-
+type TEventUnion = any;
 type TEventCallback = (
-  event: Event
+  event: TEventUnion
 ) => void;
+type TEventHandler = (
+  key: THoverKey
+) => TEventCallback;
+
 type THandler = (
   key: THoverKey
-) =>
-  | TEventCallback
-  | MouseEventHandler<HTMLButtonElement>
-  | PointerEventHandler<HTMLButtonElement>
-  | undefined;
+) => void;
+
+
 type TConfig = {
   handlers?: {
     start?: THandler;
@@ -30,44 +28,45 @@ export const useHoverKey = (
     isHover,
     hover,
     unhover,
-    set,
+    cooldownEnd
   } = useTrillPicsStore(
     ({
       hoverKeys,
       isHover,
       hover,
       unhover,
-      set,
+      cooldownEnd
     }) => ({
       hoverKeys,
       isHover,
       hover,
       unhover,
-      set,
+      cooldownEnd
     })
   );
 
   const { isCountdown, trigger } =
     useTimebomb({
       countdown: 1000,
-      target: () => {
-        set({ hoverKeyCooldown: null });
-      },
+      target: cooldownEnd,
     });
 
-  const onStart: THandler =
+  const onStart: TEventHandler =
     (key: THoverKey) =>
-    (event: Event) => {
-      console.log(event);
+    (event: TEventUnion) => {
+      console.log('start', event.type);
+
+      // console.log(event);
       if (config?.handlers?.start) {
         config.handlers.start?.(key);
       }
       hover(key);
     };
-  const onStop: THandler =
+  const onStop: TEventHandler =
     (key: THoverKey) =>
-    (event: Event) => {
-      console.log(event);
+    (event: TEventUnion) => {
+      console.log('stop',event.type);
+      // console.log(event);
 
       if (config?.handlers?.stop) {
         config.handlers.stop?.(key);
@@ -81,8 +80,8 @@ export const useHoverKey = (
       onPointerOut: onStop(key),
       onPointerLeave: onStop(key),
       onMouseLeave: onStop(key),
-      onMouseDown: onStop(key),
-      onPointerDown: onStop(key),
+      // onMouseDown: onStop(key),
+      // onPointerDown: onStop(key),
     } as const);
   const motionHandlers = (
     key: THoverKey
@@ -92,7 +91,7 @@ export const useHoverKey = (
       onHoverEnd: onStop(key),
       onPointerLeave: onStop(key),
       onMouseLeave: onStop(key),
-      onPointerDown: onStop(key),
+      // onPointerDown: onStop(key),
       onTap: onStop(key),
     } as const);
 

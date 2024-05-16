@@ -34,13 +34,17 @@ export const useVideoPicsResult = ({
   );
 
   const picsResult = useMemo(() => {
+    const paramVideoPics = [
+      ...(Array.isArray(paramValues)
+        ? paramValues
+        : []),
+    ];
+    const uniqueVideoPics =
+      new Set<TPic>(paramVideoPics);
+
     const result = [
-      ...new Set<TPic>([
-        ...(Array.isArray(paramValues)
-          ? paramValues
-          : []),
-        ...(currName ? [currName] : []),
-      ]),
+      ...uniqueVideoPics,
+      ...(currName ? [currName] : []),
     ].reduce<TPicsResult>(
       (a, name: TPic) => {
         const index =

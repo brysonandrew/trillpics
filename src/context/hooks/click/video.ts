@@ -1,21 +1,7 @@
-import { useEventListener } from "@brysonandrew/hooks-events";
-import { useContextGrid } from "~/context";
+import { useClickGrid } from "~/context/hooks/click";
 
 export const useClickVideo = (
   toggle: () => void
 ) => {
-  const { ref } = useContextGrid();
-
-  const handleClick = () => {
-    const isHovering =
-      ref.current?.isHovering();
-    console.log(isHovering);
-    if (isHovering) {
-      toggle();
-    }
-  };
-  useEventListener(
-    "click",
-    handleClick
-  );
+  useClickGrid(toggle);
 };

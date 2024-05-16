@@ -5,6 +5,7 @@ import {
   useContext,
   FC,
   useMemo,
+  useState,
 } from "react";
 import { useMotionValue } from "framer-motion";
 import { TRefMutable } from "~/hoc/ref/mutable";
@@ -16,6 +17,8 @@ import {
   TGridHandle,
 } from "~/context/types";
 import { useScrollUpdateHandler } from "~/context/scroll/update";
+import { useFonts } from "~/context/fonts";
+import { useUi } from "~/context/ui";
 
 const VirtualizeContext = createContext(
   {} as TVirtualizeContext
@@ -32,13 +35,19 @@ export const VirtualizeContextProvider: FC<
   const isOnscreen = useOnscreen();
   const ref: TRefMutable<TGridHandle> =
     useRef<TGridHandle | null>(null);
+
+  // console.log(container);
+  const fonts = useFonts();
+  // console.log(record, bounds);
   const blur = useBlur();
   const cursor = useCursor();
+  const ui = useUi();
   const scrollY = useMotionValue(0);
   const main = useMemo(() => {
     return {
       cursor,
       blur,
+      ui,
     };
   }, []);
   const { handler: handleScroll } =
@@ -53,6 +62,7 @@ export const VirtualizeContextProvider: FC<
         isOnscreen,
         ref,
         main,
+        fonts,
         onScroll: handleScroll,
       }}
     >

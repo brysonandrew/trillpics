@@ -1,6 +1,6 @@
 import { FC } from "react";
 import { IconsArrowsLeft } from "~/components/icons/arrows/left";
-import { useNavigationExit } from "~/hooks/use-navigation/exit";
+import { useNavigationExit } from "~/hooks/navigation/exit";
 import { PillBHover } from "~/components/buttons/pill/b/hover";
 import { VIDEO_ROUTE } from "~/constants/params";
 

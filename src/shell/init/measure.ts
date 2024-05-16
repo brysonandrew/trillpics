@@ -15,12 +15,6 @@ import { measureContainer } from "~/shell/init/container";
 
 export const RESIZE_COOLDOWN = 400;
 
-export type TContainerState = {
-  container?:
-    | TDimensionsInit
-    | TDimensionsReady;
-};
-
 type TInit = TDimensionsInit & {
   isResizing: boolean;
 };
@@ -36,10 +30,11 @@ type TReady = TDimensionsReady & {
   halfWidth: number;
   halfHeight: number;
   isVertical: boolean;
+  container: ReturnType<
+    typeof measureContainer
+  >;
 };
-export type TScreen =
-  | TInit
-  | (TReady & TContainerState);
+export type TScreen = TInit | TReady;
 type TConfig = {
   isContainer?: boolean;
 } & {
@@ -48,13 +43,12 @@ type TConfig = {
 export const useScreenMeasure = (
   config: TConfig = {}
 ) => {
-  const { main } =
-    useContextGrid();
+  const { main } = useContextGrid();
   const [screen, setScreen] =
     useState<TScreen>(INIT_SCREEN);
   const { timeoutRef, endTimeout } =
     useTimeoutRef();
-    
+
   const handleSize = (
     next?: TScreen
   ) => {
@@ -74,16 +68,15 @@ export const useScreenMeasure = (
       typeof width !== "undefined" &&
       typeof height !== "undefined";
     if (isDimensions) {
-      const ready = {
-        ...(next = INIT_SCREEN),
-        ...(config.isContainer
-          ? {
-              container:
-                measureContainer(),
-            }
-          : {}),
+      const dimensions = {
         width,
         height,
+      }
+      const ready = {
+        ...(next = INIT_SCREEN),
+        container:
+          measureContainer(dimensions),
+     ...dimensions,
         halfWidth: width * 0.5,
         halfHeight: height * 0.5,
         isVertical:
@@ -106,9 +99,7 @@ export const useScreenMeasure = (
       ...INIT_SCREEN,
       isResizing: true,
     });
-    if (
-      isValue(main.blur.control.x)
-    ) {
+    if (isValue(main.blur.control.x)) {
       main.blur.control.x.cancel();
     }
     main.blur.control.x = animate(
@@ -119,9 +110,7 @@ export const useScreenMeasure = (
           (RESIZE_COOLDOWN / 1000) * 2,
         type: "tween",
         onComplete: () =>
-          main.blur.value.x.set(
-            0
-          ),
+          main.blur.value.x.set(0),
       }
     );
     endTimeout();

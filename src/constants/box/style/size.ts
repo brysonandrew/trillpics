@@ -15,6 +15,7 @@ export const BOX_SIZE = {
   md: DEFAULT_SIZE_BOX_SIZE,
   sm: BOX_SIZE_SM,
   xs: BOX_SIZE_XS,
+  size: DEFAULT_SIZE_BOX_SIZE,
   minWidth: DEFAULT_SIZE_BOX_SIZE,
   minHeight: DEFAULT_SIZE_BOX_SIZE,
   padding: GAP,
@@ -31,6 +32,7 @@ export const boxSize = ({
     ...(box.size && isDefined(size)
       ? {
           ...box.size,
+          size: box.size[size],
           minWidth: box.size[size],
           minHeight: box.size[size],
           padding: BOX_SIZE.padding,

@@ -10,10 +10,12 @@ import { useReady } from "~/hooks/use-ready";
 import { resolveCompositeKey } from "@brysonandrew/utils-key";
 import { CursorCorners } from "~/pics/grid/pic/cursor/corners";
 import { TPropsWithChildren } from "@brysonandrew/config-types";
-import { PRESENCE_OPACITY } from "@brysonandrew/motion-config-constants";
+import {
+  PRESENCE_OPACITY,
+  PRESENCE_OPACITY_DELAY,
+} from "@brysonandrew/motion-config-constants";
 import { useCellOver } from "~/hooks/pic/cell/over/hook";
 import { resolvePositionFromCell } from "~/pics/grid/pic/cursor/position-from-cell";
-import { usePicVideo } from "~/hooks/pic/video";
 
 export const PicCursor: FC<
   TPropsWithChildren<{
@@ -26,21 +28,20 @@ export const PicCursor: FC<
     isScrolling,
     isOnscreen,
     isControls,
-    hoverDoneCheck,
+    isActiveHover,
   } = useTrillPicsStore(
     ({
       isScrolling,
       isOnscreen,
       isControls,
-      hoverDoneCheck,
+      isActiveHover,
     }) => ({
       isScrolling,
       isOnscreen,
       isControls,
-      hoverDoneCheck,
+      isActiveHover,
     })
   );
-  const props = usePicVideo();
 
   const isReady = useReady();
   const position =
@@ -65,11 +66,10 @@ export const PicCursor: FC<
           "scroller",
           `${isReady}`
         )}
-        className="absolute text-3xl"
+        className="absolute text-2xl"
         style={{
           y: scrollY,
           pointerEvents: "none",
-          ...position,
         }}
         whileInView={{
           opacity: 1,
@@ -83,28 +83,25 @@ export const PicCursor: FC<
         exit={io}
       >
         <AnimatePresence>
-          <>
-            {hoverDoneCheck() &&
-              !isDisabled &&
-              !isScrolling &&
-              isOnscreen &&
-              isControls && (
+          {!isActiveHover &&
+            !isDisabled &&
+            !isScrolling &&
+            isOnscreen &&
+            isControls && (
+              <motion.div
+                key="display"
+                {...PRESENCE_OPACITY}
+              >
+                <CursorCorners />
                 <motion.div
-                  key="display"
-                  {...PRESENCE_OPACITY}
+                  key="children"
+                  className="center fill"
+                  {...PRESENCE_OPACITY_DELAY}
                 >
-                  <CursorCorners />
-
-                  <motion.div
-                    key="display"
-                    className="center fill"
-                    {...PRESENCE_OPACITY}
-                  >
-                    {children}
-                  </motion.div>
+                  {children}
                 </motion.div>
-              )}
-          </>
+              </motion.div>
+            )}
         </AnimatePresence>
       </motion.div>
     </MotionConfig>

@@ -1,6 +1,7 @@
 import { useTimeoutRef } from "@brysonandrew/hooks-window";
 import { useOnscreen } from "~/context/hooks/onscreen";
 import { usePicTable } from "~/hooks/pic/table";
+import { useFonts } from "~/context/fonts";
 import {
   RESIZE_COOLDOWN,
   TScreen,
@@ -18,22 +19,26 @@ export const useInit = () => {
         set,
       })
     );
-    const {update} = usePicTable()
+  const { update } = usePicTable();
   const handleScreenReady = (
     screen: TScreen
   ) => {
     endTimeout();
     timeoutRef.current = setTimeout(
       () => {
-        set((draft: { screen: TScreen; }) => {
-          draft.screen = screen;
-        });
+        set(
+          (draft: {
+            screen: TScreen;
+          }) => {
+            draft.screen = screen;
+          }
+        );
         if (screen.isDimensions) {
-          const size = table.update.screen({
-            screen,
-          });
-          console.log('update')
-          update(size)
+          const size =
+            table.update.screen({
+              screen,
+            });
+          update(size);
         }
       },
       screen.isResizing
@@ -42,8 +47,8 @@ export const useInit = () => {
     );
   };
   useScreenMeasure({
-    isContainer: true,
     onReady: handleScreenReady,
   });
   useOnscreen();
+  useFonts();
 };

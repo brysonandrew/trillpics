@@ -2,9 +2,8 @@ import type { FC } from "react";
 import {
   Pill,
   TPillProps,
-} from "~/components/layout/counter";
+} from "~/components/layout/pill";
 import clsx from "clsx";
-import { N } from "~/components/layout/N";
 import { usePicVideo } from "~/hooks/pic/video";
 
 export const VideoPicsCounter: FC<
@@ -28,7 +27,7 @@ export const VideoPicsCounter: FC<
     <Pill
       layoutId="VideoPicsCounter"
       classValue={clsx(
-        "pointer-events-none font-display-led text-black dark:text-white",
+        "pointer-events-none font-display-led text-main-inverted",
         classValue ?? "relative"
       )}
       {...props}

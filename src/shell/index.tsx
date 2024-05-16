@@ -1,9 +1,6 @@
 import { Outlet } from "react-router";
-import { Header } from "~/shell/header";
 import { Footer } from "~/shell/footer";
 import { FooterLeft } from "~/shell/footer/left";
-import { HeaderLeft } from "~/shell/header/left";
-import { HeaderRight } from "~/shell/header/right";
 import { Screen } from "~/shell/screen";
 import { withProviders } from "~/shell/providers/with-providers";
 import { TTableState } from "~/store/state/table/types";
@@ -16,25 +13,13 @@ import { BlurX } from "~/shell/global/svg/filters/blur/x";
 import { BlurY } from "~/shell/global/svg/filters/blur/y";
 import { Dark } from "~/shell/global/favicon/dark";
 import { Light } from "~/shell/global/favicon/light";
-import {
-  MOTION_BLUR_FILTER_X_PROPS,
-  MOTION_BLUR_FILTER_Y_PROPS,
-} from "~/shell/global/svg/filters/blur/constants";
-import {
-  SCROLLBAR_BORDER_WIDTH,
-  SCROLLBAR_WIDTH,
-} from "~uno/preflights";
-import { GRADIENT_MESH_LIGHT } from "~app/color/gradient/mesh";
 import { SvgFiltersFat } from "~/shell/global/svg/filters/fat";
-import { HeaderLeftControls } from "~/shell/header/left/controls";
 import { ShellBackground } from "~/shell/background";
 import { BlurXyWrap } from "~/components/blur/xy";
+import { PicsHeaderScrollTop } from "~/pics/header/scroll-top";
 
 const OUTLET_CONTEXT = {
-  Header,
-  HeaderLeft,
-  HeaderLeftControls,
-  HeaderRight,
+  PicsHeaderScrollTop,
   Screen,
   Footer,
   FooterLeft,
@@ -65,7 +50,9 @@ export const Shell = withProviders(
         <GlobalCss />
         <SvgFiltersFat />
         <BlurXyWrap>
-          <ShellBackground isDarkMode={isDarkMode} />
+          <ShellBackground
+            isDarkMode={isDarkMode}
+          />
           <Outlet
             context={{
               ...OUTLET_CONTEXT,

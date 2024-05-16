@@ -14,16 +14,16 @@ export const Video_RootCursor: FC =
     const {
       isControls,
       isScrolling,
-      hoverDoneCheck,
+      isActiveHover,
     } = useTrillPicsStore(
       ({
         isControls,
         isScrolling,
-        hoverDoneCheck,
+        isActiveHover,
       }) => ({
         isControls,
         isScrolling,
-        hoverDoneCheck,
+        isActiveHover,
       })
     );
     useClickVideo(props.toggle);
@@ -34,7 +34,7 @@ export const Video_RootCursor: FC =
     const isSelectedVisible =
       isControls &&
       !isScrolling &&
-      hoverDoneCheck();
+      !isActiveHover
     const title = isCurrName
       ? isCurrAdded
         ? "remove"

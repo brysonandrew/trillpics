@@ -1,8 +1,8 @@
-@font-face {
+/* @font-face {
   font-family: "Saiba 45 Outline";
   src: url("/fonts/saiba-45/SAIBA-45-Outline.ttf")
     format("truetype");
-}
+} */
 
 @font-face {
   font-family: "Saiba 45";
@@ -11,6 +11,13 @@
 }
 
 @font-face {
+  font-family: "led_display-7";
+  src: url("/fonts/led-display7/led_display-7.ttf")
+    format("truetype");
+}
+
+
+/* @font-face {
   font-family: "GType rGX9";
   src: url("/fonts/GType-rGX9.ttf")
     format("truetype");
@@ -20,21 +27,16 @@
   font-family: "FFF Forward";
   src: url("/fonts/fff-forward/FFFFORWA.ttf")
     format("truetype");
-}
+} */
 
-@font-face {
+/* @font-face {
   font-family: "NK57";
   src: url("/fonts/nk57-monospace/nk57-monospace-cd-bd.otf")
     format("opentype");
-}
+} */
 
-@font-face {
-  font-family: "led_display-7";
-  src: url("/fonts/led-display7/led_display-7.ttf")
-    format("truetype");
-}
 
-@font-face {
+/* @font-face {
   font-family: "DroidSansMono";
   src: url("/fonts/droid-sans-mono/DroidSansMono.ttf")
     format("truetype");
@@ -44,4 +46,4 @@
   font-family: "joystix";
   src: url("/fonts/joystix.monospace-regular.otf")
     format("opentype");
-}
+} */

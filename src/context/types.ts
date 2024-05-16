@@ -8,6 +8,8 @@ import { TBlur } from "~/context/blur";
 import { TCursor } from "~/context/cursor";
 import { TPicsRows } from "~/store/state/table/types";
 import { TCell } from "~/pics/grid/pic";
+import { TFontsResult } from "~/context/fonts";
+import { TUseUiResult } from "~/context/ui";
 
 export type TVirtualizeListProps =
   TPicsRows;
@@ -29,11 +31,13 @@ export type TGridHandle = {
 type TMain = {
   blur: TBlur;
   cursor: TCursor;
+  ui: TUseUiResult;
 };
 export type TVirtualizeContext = {
   isOnscreen: boolean;
   ref: TRefMutable<TGridHandle>;
   main: TMain;
+  fonts: TFontsResult;
   scrollY: MotionValue<number>;
   onScroll(
     props: ListOnScrollProps

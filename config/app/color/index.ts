@@ -47,7 +47,6 @@ const {
   opacityRangeColorRecord,
 } = colorRecords;
 
-// export type Record<TColorKey, string>;
 export const COLOR_RECORD = colorRecord;
 export const COLOR_VARS_RECORD =
   colorCssVariablesRecord;

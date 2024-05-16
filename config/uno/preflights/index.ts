@@ -5,13 +5,13 @@ import {
   boxBackgroundCssStr,
   boxBorderCss,
 } from "@brysonandrew/utils-box";
+import { resolveVarCss } from "@brysonandrew/color-base";
+import { resolveGradient } from "@brysonandrew/color-gradient";
 import {
   GRADIENT_BLUE_PINK_YELLOW,
   GRADIENT_TEAL_YELLOW_PINK,
 } from "../../app/color/gradient";
 import { TColor } from "../index";
-import { resolveVarCss } from "@brysonandrew/color-base";
-import { resolveGradient } from "@brysonandrew/color-gradient";
 export const SCROLLBAR_WIDTH = 10;
 export const SCROLLBAR_BORDER_WIDTH = 2;
 
@@ -55,7 +55,7 @@ const resolveScrollBarCssConfig = (
           resolveVarCss("black-9"),
         ],
       }),
-      size: '4px 4px'
+      size: "4px 4px",
     })}`,
     thumb: {
       idle: `background-color:${colors["black-2"]};\n${thumbCss};\n`,
@@ -91,7 +91,6 @@ const resolveScrollBarCssConfig = (
       },
     },
   };
-  console.log(result);
   return result;
 };
 

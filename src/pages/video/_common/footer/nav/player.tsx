@@ -1,7 +1,7 @@
 import type { FC } from "react";
 import { IconsPlay } from "~/components/icons/playback/play";
 import { PillBHover } from "~/components/buttons/pill/b/hover";
-import { useNavigationControls } from "~/hooks/use-navigation/controls";
+import { useNavigationControls } from "~/hooks/navigation/controls";
 import { TVideoFooterProps } from "~/pages/video/_common/footer/types";
 import { VIDEO_PLAYER_ROUTE } from "~/constants/params";
 import { HoverText } from "~/pages/video/_common/footer/nav/hover-text";

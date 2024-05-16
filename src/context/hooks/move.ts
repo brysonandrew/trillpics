@@ -3,7 +3,6 @@ import { useEventListener } from "@brysonandrew/hooks-events";
 import { useContextGrid } from "~/context";
 import { useTrillPicsStore } from "~/store/middleware";
 import { usePicCell } from "~/hooks/pic/cell";
-import { useBodyStyle } from "~/context/use-body-style";
 
 export const useMove = () => {
   const { main, scrollY, isOnscreen } =
@@ -35,8 +34,6 @@ export const useMove = () => {
       }
     }
   };
-
-  useBodyStyle(`overflow: hidden;`);
 
   useEventListener<"pointerenter">(
     "pointerenter",

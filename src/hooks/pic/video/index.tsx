@@ -53,7 +53,7 @@ export const usePicVideo = () => {
       columnsCount,
     });
 
-  const { currName, currKey } =
+  const { currName } =
     cellOverDetailsResult;
 
   const isCurrName = isValue(currName);
@@ -80,16 +80,15 @@ export const usePicVideo = () => {
     );
   };
 
+  const maybeCheck = (name: TPic) => {
+    return (
+      name === currName && !isCurrAdded
+    );
+  };
+
   const isCurrAdded =
     addedCheck(currName);
 
-  // console.log(
-  //   isCurrAdded,
-  //   isVideoPics,
-  //   isCurrName,
-  //   currName,
-  //   paramValues
-  // );
   const add = () => {
     if (isCurrName) {
       searchParams.append(
@@ -133,11 +132,6 @@ export const usePicVideo = () => {
     }
   };
   const toggle = () => {
-    console.log(currName, currKey);
-
-    console.log(
-      `toggle.isCurrAdded ${isCurrAdded}`
-    );
     if (isCurrAdded) {
       return remove();
     }
@@ -153,25 +147,15 @@ export const usePicVideo = () => {
   };
 
   const reorder = (nextPics: TPics) => {
-    console.log("reorder", nextPics);
-    const nextValue = nextPics.join(
-      DELIMITER_VIDEO_PICS
-    );
-    console.log(nextValue);
     resolveSetArray(
       searchParams,
       VIDEO_PARAM_KEY,
       nextPics.map((v) => v.toString())
     );
-
     paramsMoveToEnd(
       searchParams,
       CELL_PARAM_KEY
     );
-    // searchParams.set(
-    //   VIDEO_PARAM_KEY,
-    //   nextValue
-    // );
     navigate(
       `${pathname}?${searchParams}`
     );
@@ -182,6 +166,7 @@ export const usePicVideo = () => {
     isCurrAdded,
     isCurrName,
     seconds,
+    maybeCheck,
     addedCheck,
     toggle,
     add,

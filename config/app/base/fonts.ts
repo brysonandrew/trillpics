@@ -26,38 +26,37 @@ export const FONTS =
       provider: "none",
     },
     {
-      key: "mono",
-      name: withDefault(
-        "DroidSansMono"
-      ),
-      provider: "none",
-    },
-    {
-      key: "mono-pix",
-      name: withDefault("joystix"),
-      provider: "none",
-    },
-    {
-      key: "sans",
-      name: withDefault("FFF Forward"),
-      provider: "none",
-    },
-    {
       key: "display",
       name: withDefault("Saiba 45"),
       provider: "none",
     },
-    {
-      key: "display-outline",
-      name: withDefault(
-        "Saiba 45 Outline"
-      ),
-      provider: "none",
-    },
-
-    {
-      key: "mono-narrow",
-      name: withDefault("NK57", "mono"),
-      provider: "none",
-    },
-  ] as const;
+    // {
+    //   key: "mono",
+    //   name: withDefault(
+    //     "DroidSansMono"
+    //   ),
+    //   provider: "none",
+    // },
+    // {
+    //   key: "mono-pix",
+    //   name: withDefault("joystix"),
+    //   provider: "none",
+    // },
+    // {
+    //   key: "sans",
+    //   name: withDefault("FFF Forward"),
+    //   provider: "none",
+    // },
+    // {
+    //   key: "display-outline",
+    //   name: withDefault(
+    //     "Saiba 45 Outline"
+    //   ),
+    //   provider: "none",
+    // },
+    // {
+    //   key: "mono-narrow",
+    //   name: withDefault("NK57", "mono"),
+    //   provider: "none",
+    // },
+  ] as const //satisfies readonly TFontShareConfig[];

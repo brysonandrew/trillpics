@@ -9,6 +9,7 @@ export const IconsSvgGradient: FC<
   return (
     <IconsSvg
       size={24}
+      viewBox="0 0 24 24"
       fill={resolveUrlId(
         LINEAR_GRADIENT_SVG_ID
       )}

@@ -1,7 +1,7 @@
 import type { FC } from "react";
 import { PillBHover } from "~/components/buttons/pill/b/hover";
 import { TVideoFooterProps } from "~/pages/video/_common/footer/types";
-import { useNavigationControls } from "~/hooks/use-navigation/controls";
+import { useNavigationControls } from "~/hooks/navigation/controls";
 import {
   VIDEO_ROUTE,
   VIDEO_SCHEDULER_ROUTE,

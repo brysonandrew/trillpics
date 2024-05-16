@@ -1,5 +1,5 @@
 import { FC } from "react";
-import { useNavigationExit } from "~/hooks/use-navigation/exit";
+import { useNavigationExit } from "~/hooks/navigation/exit";
 import { PillBHover } from "~/components/buttons/pill/b/hover";
 import { HOME_ROUTE } from "~/constants/params";
 import { IconsHome } from "~/components/icons/home";

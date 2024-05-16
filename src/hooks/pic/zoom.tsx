@@ -46,7 +46,7 @@ export const usePicZoom = (
     isClosing;
 
   const zoom = () => {
-    searchParams.append(
+    searchParams.set(
       ZOOM_PARAM_KEY,
       ZOOM_PARAM_OPEN_VALUE
     );

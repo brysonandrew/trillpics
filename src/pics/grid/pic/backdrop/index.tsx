@@ -3,7 +3,6 @@ import type {
   PropsWithChildren,
 } from "react";
 import { motion } from "framer-motion";
-import { FULLSCREEN_Z } from "~/constants/dom";
 import { useTrillPicsStore } from "~/store/middleware";
 import { TDivMotionProps } from "@brysonandrew/config-types";
 import { GRADIENT_MESH_DARK } from "~app/color/gradient/mesh";

@@ -17,7 +17,7 @@ import {
   VIDEO_SCHEDULER_ROUTE,
   VIDEO_ROUTE,
 } from "~/constants/params";
-import { useNavigationControls } from "~/hooks/use-navigation/controls";
+import { useNavigationControls } from "~/hooks/navigation/controls";
 import { isDefined } from "~/utils/validation/is/defined";
 import { useTrillPicsStore } from "~/store/middleware";
 import { useBodyStyle } from "~/context/use-body-style";

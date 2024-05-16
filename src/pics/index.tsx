@@ -1,8 +1,4 @@
 import { FC } from "react";
-import {
-  animate,
-  useMotionValueEvent,
-} from "framer-motion";
 import { ScrollbarSeam } from "~/components/layout/scrollbar-seam";
 import { useTrillPicsStore } from "~/store/middleware";
 import {
@@ -12,15 +8,13 @@ import {
 import { Grid } from "~/pics/grid";
 import { useContextGrid } from "~/context";
 import { Outlet } from "react-router";
-import { Header } from "~/shell/header";
 import { Footer } from "~/shell/footer";
 import { FooterLeft } from "~/shell/footer/left";
-import { HeaderLeft } from "~/shell/header/left";
-import { HeaderRight } from "~/shell/header/right";
+import { HeaderLeft } from "~/pics/header/left";
+import { HeaderRight } from "~/pics/header/right";
 import { Screen } from "~/shell/screen";
-import { SpeedlinesBackward } from "~/pics/grid/speedlines/backward";
-import { SpeedlinesForward } from "~/pics/grid/speedlines/forward";
-import { TexturesMesh } from "~/components/textures/mesh";
+import { Header } from "~/pics/header";
+import { Hud } from "~/pics/hud";
 
 const OUTLET_CONTEXT = {
   Header,
@@ -38,24 +32,20 @@ type TProps = TPartialFixedTableProps;
 export const Pics: FC<TProps> = (
   props
 ) => {
-  const {
-    onScroll,
-    ref,
-  } = useContextGrid();
-  const {
-    table,
-    screen,
-  } = useTrillPicsStore(
-    ({
-      table,
-      screen,
-      set,
-    }) => ({
-      table,
-      screen,
-      set,
-    })
-  );
+  const { onScroll, ref } =
+    useContextGrid();
+  const { table, screen, isControls } =
+    useTrillPicsStore(
+      ({
+        table,
+        screen,
+        isControls,
+      }) => ({
+        table,
+        screen,
+        isControls,
+      })
+    );
 
   return (
     <>
@@ -89,6 +79,23 @@ export const Pics: FC<TProps> = (
           ...OUTLET_CONTEXT,
         }}
       />
+      {screen.isDimensions &&
+        screen.container
+          .isDimensions && (
+          <Hud
+            dimensions={{
+              container:
+                screen.container,
+              screen: {
+                width: screen.width,
+                height: screen.height,
+              },
+            }}
+            isVerticalScroll={
+              table.isVerticalScroll
+            }
+          />
+        )}
     </>
   );
 };

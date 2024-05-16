@@ -1,14 +1,14 @@
 import { FC } from "react";
 import { motion } from "framer-motion";
-import { useNavigationControls } from "~/hooks/use-navigation/controls";
+import { useNavigationControls } from "~/hooks/navigation/controls";
 import { IconsVideo } from "~/components/icons/video/video";
 import { VideoPicCounterFloating } from "~/shell/screen/video-pic-counter/floating";
 import { PillBHover } from "~/components/buttons/pill/b/hover";
 import { useHoverKey } from "~/hooks/use-hover-key";
-import { VideoFooterControls } from "~/pages/video/_common/footer/controls";
+import { VideoFooterLeft } from "~/pages/video/_common/footer/left";
 import { PillBStill } from "~/components/buttons/pill/b/still";
 import { NOOP } from "@brysonandrew/utils-function";
-import { SeperatorVertical } from "~/pages/video/_common/footer/controls/seperator/vertical";
+import { SeperatorVertical } from "~/pages/video/_common/footer/left/seperator/vertical";
 import { VIDEO_ROUTE } from "~/constants/params";
 import { TexturesMesh } from "~/components/textures/mesh";
 

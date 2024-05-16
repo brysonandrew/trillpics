@@ -1,5 +1,5 @@
 import { FC } from "react";
-import { useNavigationControls } from "~/hooks/use-navigation/controls";
+import { useNavigationControls } from "~/hooks/navigation/controls";
 import { IconsVideo } from "~/components/icons/video/video";
 import { useHoverKey } from "~/hooks/use-hover-key";
 import { NOOP } from "@brysonandrew/utils-function";

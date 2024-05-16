@@ -1,8 +1,13 @@
-import glob from "fast-glob";
 import { TError } from "@brysonandrew/config-types";
-import { resolvePwd } from "~ops/pwd";
-import { routesPages } from "~ops/routes/pages";
+import glob from "fast-glob";
 import { writeFile } from "fs/promises";
+import {
+  PAGES_INDEX,
+  ROUTES_INDEX,
+  ROUTES_PAGE,
+  PAGES_DIR,
+} from "~ops/fs";
+import { routesPages } from "~ops/routes/pages";
 import { TRoutePagesKey } from "~ops/routes/types";
 import * as prettier from "prettier";
 
@@ -10,25 +15,6 @@ const IGNORE_UNDERSCORE_DIR_FIND_INDEX =
   "[!_]**/index*";
 const IGNORE_UNDERSCORE_DIR_FIND_INDEX_2 =
   "[!_]**/[!_]**/index*";
-
-const pwd = resolvePwd();
-
-const SRC = "/src";
-
-const PAGES_DIR =
-  `${pwd}${SRC}${"/pages"}` as const;
-
-const PAGES_INDEX =
-  `${PAGES_DIR}${"/index.ts"}` as const;
-
-const ROUTES_DIR =
-  `${pwd}${SRC}${"/shell/routes"}` as const;
-
-const ROUTES_PAGE =
-  `${ROUTES_DIR}${"/pages.ts"}` as const;
-
-const ROUTES_INDEX =
-  `${ROUTES_DIR}${"/index.ts"}` as const;
 
 const WRITE_TO_PATH_LOOKUP = {
   pagesIndex: PAGES_INDEX,
