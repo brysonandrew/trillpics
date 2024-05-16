@@ -31,7 +31,7 @@ export const ControlsPlayer: FC<
       Icon={IconsPlay}
       {...props}
     >
-      <HoverText>{title}</HoverText>
+{title}
     </Button>
   );
 };

@@ -8,16 +8,16 @@ type TProps = TPropsWithChildren;
 export const HomeFooter: FC<
   TProps
 > = () => {
-  const { main } = useContextGrid();
-  console.log(main)
+  const { footerValue } =
+    useContextGrid();
 
-  if (!main.ui.footer) return null;
   return (
     <>
-      {createPortal(
-        <HomeFooterVideo />,
-        main.ui.footer
-      )}
+      {footerValue &&
+        createPortal(
+          <HomeFooterVideo />,
+          footerValue
+        )}
     </>
   );
 };

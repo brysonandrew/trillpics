@@ -18,13 +18,7 @@ type TFontShareConfig = {
 };
 export const FONTS =
   [
-    {
-      key: "display-led",
-      name: withDefault(
-        "led_display-7"
-      ),
-      provider: "none",
-    },
+
     {
       key: "display",
       name: withDefault("Saiba 45"),
@@ -42,11 +36,18 @@ export const FONTS =
     //   name: withDefault("joystix"),
     //   provider: "none",
     // },
-    // {
-    //   key: "sans",
-    //   name: withDefault("FFF Forward"),
-    //   provider: "none",
-    // },
+    {
+      key: "sans",
+      name: withDefault("GType rGX9"),
+      provider: "none",
+    },
+    {
+      key: "mono",
+      name: withDefault(
+        "led_display-7"
+      ),
+      provider: "none",
+    },
     // {
     //   key: "display-outline",
     //   name: withDefault(

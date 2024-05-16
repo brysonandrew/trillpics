@@ -1,33 +1,12 @@
 import { FC } from "react";
 import { ScrollbarSeam } from "~/components/layout/scrollbar-seam";
 import { useTrillPicsStore } from "~/store/middleware";
-import {
-  TPartialFixedTableProps,
-  TTableState,
-} from "~/store/state/table/types";
+import { TPartialFixedTableProps } from "~/store/state/table/types";
 import { Grid } from "~/pics/grid";
 import { useContextGrid } from "~/context";
 import { Outlet } from "react-router";
-import { Footer } from "~/shell/footer";
-import { FooterLeft } from "~/shell/footer/left";
-import { HeaderLeft } from "~/pics/header/left";
-import { HeaderRight } from "~/pics/header/right";
-import { Screen } from "~/shell/screen";
-import { Header } from "~/pics/header";
 import { Hud } from "~/pics/hud";
 
-const OUTLET_CONTEXT = {
-  Header,
-  HeaderLeft,
-  HeaderRight,
-  Screen,
-  Footer,
-  FooterLeft,
-} as const;
-export type TOutletContext =
-  typeof OUTLET_CONTEXT & {
-    picsTable: TTableState;
-  };
 type TProps = TPartialFixedTableProps;
 export const Pics: FC<TProps> = (
   props
@@ -74,23 +53,14 @@ export const Pics: FC<TProps> = (
           height={screen.height}
         />
       )}
-      <Outlet
-        context={{
-          ...OUTLET_CONTEXT,
-        }}
-      />
+      <Outlet />
       {screen.isDimensions &&
         screen.container
           .isDimensions && (
           <Hud
-            dimensions={{
-              container:
-                screen.container,
-              screen: {
-                width: screen.width,
-                height: screen.height,
-              },
-            }}
+            dimensions={
+              screen.container
+            }
             isVerticalScroll={
               table.isVerticalScroll
             }

@@ -88,7 +88,8 @@ export const usePicCell = (main: {
                 key
               );
               navigate(
-                `${pathname}?${searchParams}`
+                `${pathname}?${searchParams}`,
+                { replace: true }
               );
             }
           },

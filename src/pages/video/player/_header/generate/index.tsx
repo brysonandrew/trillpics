@@ -46,8 +46,8 @@ export const Generate = () => {
   };
   const borderStyle = boxStyle({
     layer: "flat",
-    borderRadius: "XL",
-    size: "md",
+    borderRadius: "xl",
+    size: "m",
   });
 
   const title = "Generate";

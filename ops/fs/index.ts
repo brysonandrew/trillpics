@@ -4,6 +4,8 @@ const pwd = resolvePwd();
 
 const SRC = "/src";
 
+export const TEST_SCREENS_DIR = `${pwd}/test/screens/prev`
+
 export const PAGES_DIR =
   `${pwd}${SRC}${"/pages"}` as const;
 

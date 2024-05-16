@@ -10,7 +10,7 @@ import { resolveAccessibilityTitles } from "@brysonandrew/utils-attributes";
 import { TFlatProps } from "~/types/ui";
 import { FADE_PRESENCE_DELAY_02 } from "~/constants/animation";
 import { boxStyle } from "~/constants/box/style";
-import { boxSize } from "~/constants/box/style/size";
+import { boxSize } from "~/constants/box/size";
 import { useReady } from "~/hooks/use-ready";
 import {
   GRADIENT_MESH_DARK,
@@ -18,7 +18,7 @@ import {
 } from "~app/color/gradient/mesh";
 import { resolveCompositeKey } from "@brysonandrew/utils-key";
 import { isString } from "~/utils/validation/is/string";
-import { TBoxStyleTheme } from "~/constants/box/style/types";
+import { TBoxSizesKey } from "~/constants/box/size/constants";
 
 export type TPillBProps =
   TButtonMotionProps &
@@ -28,7 +28,7 @@ export type TPillBProps =
       iconProps?: TSvgProps;
       circleProps?: TCircleProps;
       outerCircle?: ReactNode;
-      size?: keyof TBoxStyleTheme["size"];
+      size?: TBoxSizesKey;
     };
 export const PillB: FC<TPillBProps> = ({
   Root = motion.button,
@@ -41,13 +41,13 @@ export const PillB: FC<TPillBProps> = ({
   outerCircle,
   isFlat,
   style,
-  size = "sm",
+  size = "s",
   disabled,
   ...props
 }) => {
   const box = boxStyle({
     layer: "flat",
-    borderRadius: "XL",
+    borderRadius: "xl",
     size,
   });
   const {
@@ -56,7 +56,7 @@ export const PillB: FC<TPillBProps> = ({
     boxShadow,
     borderRadius,
   } = box;
-  const sm = boxSize({ size: "sm" });
+  const sm = boxSize(size);
   const isReady = useReady();
 
   return (
@@ -72,7 +72,7 @@ export const PillB: FC<TPillBProps> = ({
       disabled={disabled}
       className={clsx(
         "relative",
-        "row shrink-0",
+        "center shrink-0",
         "disabled:(grayscale-100 brightness-60 opacity-80 cursor-not-allowed)",
         "text-white dark:text-white-1",
         isFlat
@@ -96,7 +96,7 @@ export const PillB: FC<TPillBProps> = ({
       {...props}
     >
       <>
-        <motion.div
+        {/* <motion.div
           className="fill bg-gray-04 dark:bg-black-04 border-transparent border-3"
           layout
           style={{
@@ -106,7 +106,7 @@ export const PillB: FC<TPillBProps> = ({
             backgroundClip:
               "padding-box",
           }}
-        />
+        /> */}
         {!disabled && !isFlat && (
           <motion.div
             layout
@@ -126,7 +126,7 @@ export const PillB: FC<TPillBProps> = ({
             `${isReady}`
           )}
           className={clsx(
-            "center relative bg-black-04 z-0",
+            "center relative bg-black-04",
             isFlat
               ? ""
               : "_gradient-radial"
@@ -142,13 +142,13 @@ export const PillB: FC<TPillBProps> = ({
           }}
         >
           <div
-            className="center relative shrink-0 bg-white-4 dark:bg-black-04 border-3 border-transparent"
+            className="center relative shrink-0 bg-black-04 border-2 border-transparent"
             style={{
               borderRadius,
               height: sm.minHeight,
               width: sm.minWidth,
               ...GRADIENT_MESH_DARK,
-              backgroundSize: "4px 4px",
+              backgroundSize: "2px 2px",
               backgroundClip:
                 "padding-box",
             }}
@@ -171,7 +171,7 @@ export const PillB: FC<TPillBProps> = ({
               ? FADE_PRESENCE_DELAY_02
               : {})}
           >
-            <motion.div className="relative px-2">
+            <motion.div className="relative">
               {children}
             </motion.div>
           </motion.div>

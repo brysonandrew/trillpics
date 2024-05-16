@@ -5,12 +5,7 @@ import { IconsVideo } from "~/components/icons/video/video";
 import { VideoPicCounterFloating } from "~/shell/screen/video-pic-counter/floating";
 import { PillBHover } from "~/components/buttons/pill/b/hover";
 import { useHoverKey } from "~/hooks/use-hover-key";
-import { VideoFooterLeft } from "~/pages/video/_common/footer/left";
-import { PillBStill } from "~/components/buttons/pill/b/still";
-import { NOOP } from "@brysonandrew/utils-function";
-import { SeperatorVertical } from "~/pages/video/_common/footer/left/seperator/vertical";
 import { VIDEO_ROUTE } from "~/constants/params";
-import { TexturesMesh } from "~/components/textures/mesh";
 
 export const HomeFooterVideo: FC =
   () => {
@@ -27,10 +22,9 @@ export const HomeFooterVideo: FC =
     return (
       <motion.div
         layoutId="VideoButton"
-        className="relative row-reverse"
+        className="relative"
       >
         <PillBHover
-          key={title}
           title={title}
           onClick={handleClick}
           Icon={IconsVideo}

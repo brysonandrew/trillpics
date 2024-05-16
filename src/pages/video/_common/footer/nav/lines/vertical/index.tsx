@@ -7,13 +7,14 @@ import { Lines_Line } from "~/pages/video/_common/footer/nav/lines/_line";
 type TProps = TDivProps & TLineProps;
 export const LinesVertical: FC<
   TProps
-> = ({ classValue, ...props }) => {
+> = ({ classValue, style, ...props }) => {
   return (
     <Lines_Line
       className={clsx(
         "border-l h-full w-0",
         classValue
       )}
+      style={style}
       {...props}
     />
   );

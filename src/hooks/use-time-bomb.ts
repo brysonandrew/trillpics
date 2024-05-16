@@ -1,33 +1,11 @@
 
 import {useMemo, useState} from 'react';
-import { isNumber } from "@brysonandrew/utils-validation/is/number";
-import { isDefined } from "@brysonandrew/utils-validation/is/defined";
-
-export type TTimeout = ReturnType<Window['setTimeout']>;
-export const isTimeout = (value?: unknown | TTimeout): value is TTimeout => {
-  if (isDefined(value) && isNumber(value)) return true;
-  return false;
-};
-
-
-export const isNumberFinite = (value?: unknown | number): value is number => {
-  if (isNumber(value) && isFinite(value)) return true;
-  return false;
-};
+import { TTimeout, isTimeout, isNumberFinite } from '~/utils/validation/is/timeout';
 
 
 type TBomb = {fuse: TTimeout | null};
-
-type TBase = {
-  target?: (...args: any[]) => any;
-};
-type TPrimed = TBase & {
-  countdown: number;
-};
-type TDisarmed = TBase;
-type TConfig = TPrimed | TDisarmed;
-export const useTimebomb = (config: TConfig) => {
-  const [isCountdown, setCountdown] = useState(false);
+export const useTimebomb = (countdown = 1000, target?: (...args: any[]) => any) => {
+  const [isArmed, arm] = useState(false);
   const bomb = useMemo<TBomb>(() => ({fuse: null}), []);
 
   const cancel = () => {
@@ -38,22 +16,22 @@ export const useTimebomb = (config: TConfig) => {
 
   const disarm = () => {
     cancel();
-    setCountdown(false);
+    arm(false);
   };
 
-  const trigger = () => {
+  const trigger = (...args:any[]) => {
     cancel();
-    const isPrimed = 'countdown' in config && isNumberFinite(config.countdown);
+    const isPrimed = isNumberFinite(countdown);
     if (isPrimed) {
       bomb.fuse = window.setTimeout(() => {
-        if (config.target) {
-          config.target();
+        if (target) {
+          target(...args);
         }
-        setCountdown(false);
-      }, config.countdown);
+        arm(false);
+      }, countdown);
     }
-    setCountdown(isPrimed);
+    arm(isPrimed);
   };
 
-  return {isCountdown, trigger, disarm};
+  return {isArmed, trigger, disarm};
 };

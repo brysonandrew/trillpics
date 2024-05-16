@@ -12,8 +12,8 @@ export const PlayerPlayback: FC =
       ...borderStyle
     } = boxStyle({
       layer: "flat",
-      borderRadius: "XL",
-      size: "md",
+      borderRadius: "xl",
+      size: "m",
     });
 
     return (

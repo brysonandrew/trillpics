@@ -18,7 +18,7 @@ export const Floating: FC<TProps> = ({
 }) => {
   const { borderRadius } =
     boxStyleFloating({
-      borderRadius: "XL",
+      borderRadius: "xl",
     });
 
   return (

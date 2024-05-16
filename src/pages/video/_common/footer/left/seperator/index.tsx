@@ -1,5 +1,5 @@
 import type { FC } from "react";
-import { TBoxSize } from "~/constants/box/style/size";
+import { TBoxSize } from "~/constants/box/size";
 import { boxStyle } from "~/constants/box/style";
 import clsx from "clsx";
 
@@ -17,10 +17,10 @@ export const Seperator: FC<TProps> = ({
     ...sizeStyle
   } = boxStyle({
     layer: "floating",
-    borderRadius: "XL",
+    borderRadius: "xl",
     backgroundImage: "_gradient-mesh",
     backgroundColor: "background-flat",
-    size: "md",
+    size: "m",
   });
   return (
     <div

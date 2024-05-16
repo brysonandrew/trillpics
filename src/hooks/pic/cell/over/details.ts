@@ -1,8 +1,8 @@
 import { cellEncrypt } from "~/hooks/pic/cell/encrypt";
 import { TUseCellOverResult } from "~/hooks/pic/cell/over/hook";
 import { resolveCellOver } from "~/hooks/pic/cell/over/resolver";
-import { isNumberFinite } from "~/hooks/use-time-bomb";
 import { TPics } from "~/store/state/pics/types";
+import { isNumberFinite } from "~/utils/validation/is/timeout";
 import { isValue } from "~/utils/validation/is/value";
 
 type TConfig = {

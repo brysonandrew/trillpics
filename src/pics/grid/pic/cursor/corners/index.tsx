@@ -14,7 +14,7 @@ export const CursorCorners: FC = () => {
       height="100%"
       fill="none"
     >
-      <CursorCornersSet
+      {/* <CursorCornersSet
         size={SIZE}
         corner={{
           size: CORNER_SIZE,
@@ -24,31 +24,31 @@ export const CursorCorners: FC = () => {
           LINEAR_GRADIENT_SVG_ID
         )}
         inset={2}
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
+        // strokeLinecap="round"
+        // strokeLinejoin="round"
+      /> */}
       <CursorCornersSet
         size={SIZE}
         corner={{
           size: CORNER_SIZE,
-          thickness: 0.75,
+          thickness: 0.6,
         }}
         stroke="#ffffff"
         inset={2}
-        strokeLinecap="round"
-        strokeLinejoin="round"
+        // strokeLinecap="round"
+        // strokeLinejoin="round"
       />
-      <CursorCornersSet
+      {/* <CursorCornersSet
         size={SIZE}
         corner={{
           size: CORNER_SIZE,
-          thickness: 0.5,
+          thickness: 1,
         }}
         stroke="#000000"
         inset={2}
         strokeLinecap="round"
         strokeLinejoin="round"
-      />
+      /> */}
     </svg>
   );
 };

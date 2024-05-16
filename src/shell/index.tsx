@@ -17,6 +17,8 @@ import { SvgFiltersFat } from "~/shell/global/svg/filters/fat";
 import { ShellBackground } from "~/shell/background";
 import { BlurXyWrap } from "~/components/blur/xy";
 import { PicsHeaderScrollTop } from "~/pics/header/scroll-top";
+import { SvgFiltersFat1 } from "~/shell/global/svg/filters/fat/1";
+import { SvgFiltersFat2 } from "~/shell/global/svg/filters/fat/2";
 
 const OUTLET_CONTEXT = {
   PicsHeaderScrollTop,
@@ -24,10 +26,6 @@ const OUTLET_CONTEXT = {
   Footer,
   FooterLeft,
 } as const;
-export type TOutletContext =
-  typeof OUTLET_CONTEXT & {
-    picsTable: TTableState;
-  };
 export const Shell = withProviders(
   () => {
     useInit();
@@ -49,6 +47,9 @@ export const Shell = withProviders(
         />
         <GlobalCss />
         <SvgFiltersFat />
+        <SvgFiltersFat1 />
+        <SvgFiltersFat2 />
+
         <BlurXyWrap>
           <ShellBackground
             isDarkMode={isDarkMode}

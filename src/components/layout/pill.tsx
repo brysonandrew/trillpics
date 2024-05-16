@@ -23,14 +23,14 @@ export const Pill: FC<TPillProps> = ({
   isCircle,
   classValue,
   gradient,
-  isActive,
+  isActive, 
   children,
   style,
   ...props
 }) => {
-  const {borderRadius} = boxStyle({
+  const { borderRadius } = boxStyle({
     layer: "floating",
-    borderRadius: "XL",
+    borderRadius: "xl",
   });
   return (
     <motion.div

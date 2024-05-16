@@ -14,7 +14,7 @@ export const LeftButtonsClear: FC<
   Button = PillBHover,
   ...props
 }) => {
-  const { clear } = usePicVideo();
+  const { clear, count } = usePicVideo();
   const { main } = useContextGrid();
   const { togglePathValue, isActive } =
     useNavigationControls(VIDEO_ROUTE);
@@ -37,11 +37,12 @@ export const LeftButtonsClear: FC<
     }
     clear();
   };
-  const title = "Delete";
+  const title = "Delete all";
   return (
     <Button
       onClick={handleClear}
       Icon={IconsTrash}
+      subtitle={`Delete all ${count} of the pics you have added.`}
       {...props}
       title={title}
     >

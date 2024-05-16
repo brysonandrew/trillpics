@@ -5,7 +5,6 @@ import { useHoverKey } from "~/hooks/use-hover-key";
 import { NOOP } from "@brysonandrew/utils-function";
 import { VIDEO_ROUTE } from "~/constants/params";
 import { PillBHover } from "~/components/buttons/pill/b/hover";
-import { HoverText } from "~/pages/video/_common/footer/nav/hover-text";
 
 export const FooterNavVideo: FC =
   () => {
@@ -34,7 +33,7 @@ export const FooterNavVideo: FC =
         }
         Icon={IconsVideo}
       >
-        <HoverText>{title}</HoverText>
+        {title}
       </PillBHover>
     );
   };

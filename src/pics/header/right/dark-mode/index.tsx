@@ -1,9 +1,8 @@
+import { FC, useState } from "react";
 import {
-  createElement,
-  FC,
-  memo,
-  useState,
-} from "react";
+  AnimatePresence,
+  motion,
+} from "framer-motion";
 import { useDarkMode } from "@brysonandrew/dark-mode";
 import { PillBHover } from "~/components/buttons/pill/b/hover";
 import { Moon } from "~/pics/header/right/dark-mode/icons/Moon";
@@ -14,7 +13,7 @@ import {
   PRESENCE_ROTATE_FROM_BOTTOM,
 } from "@brysonandrew/motion-config-constants";
 
-export const _DarkMode: FC = () => {
+export const DarkMode: FC = () => {
   const { isDarkMode, toggle } =
     useDarkMode();
   const [initial, setInitial] =
@@ -27,7 +26,6 @@ export const _DarkMode: FC = () => {
 
   const handleTap = () => {
     setInitial(true);
-
     toggle();
   };
   const stop = () => {
@@ -38,28 +36,13 @@ export const _DarkMode: FC = () => {
     useHoverKey({
       handlers: { stop },
     });
+  const Icon = isDarkMode ? Moon : Sun;
+
   return (
     <PillBHover
       title={title}
       onClick={handleTap}
-      Icon={() => (
-        <div className="relative overflow-hidden preserve-3d perspective-1000 -mt-0.5 center">
-          {createElement(
-            isDarkMode ? Moon : Sun,
-            {
-              ...{
-                key,
-                ...(isDarkMode
-                  ? PRESENCE_ROTATE_FROM_TOP
-                  : PRESENCE_ROTATE_FROM_BOTTOM),
-                ...(initial
-                  ? {}
-                  : { initial: false }),
-              },
-            }
-          )}
-        </div>
-      )}
+      Icon={Icon}
       {...motionHandlers(title)}
     >
       {isHover(title) && title}
@@ -67,5 +50,18 @@ export const _DarkMode: FC = () => {
   );
 };
 
-export const DarkMode: FC =
-  memo(_DarkMode);
+// <div className="relative overflow-hidden preserve-3d perspective-1000 -mt-0.5 center">
+//   <AnimatePresence mode="wait">
+//     <motion.div
+//       {...(isDarkMode
+//         ? PRESENCE_ROTATE_FROM_TOP
+//         : PRESENCE_ROTATE_FROM_BOTTOM)}
+//       {...(initial
+//         ? {}
+//         : { initial: false })}
+//     >
+//       <Icon />
+//     </motion.div>
+//   </AnimatePresence>
+// </div>
+// )}

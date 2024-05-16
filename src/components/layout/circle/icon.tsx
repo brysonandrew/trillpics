@@ -1,6 +1,6 @@
 import { FC } from "react";
 import { TPillBProps } from "~/components/buttons/pill/b";
-import { CircleSm } from "~/components/layout/circle/sm";
+import { Circle } from "~/components/layout/circle/circle";
 
 type TProps = Pick<
   TPillBProps,
@@ -15,10 +15,10 @@ export const CircleIcon: FC<TProps> = ({
   circleProps,
 }) => {
   return (
-    <CircleSm {...circleProps} layout>
+    <Circle {...circleProps} layout>
       <div className="p-1">
         <Icon {...(iconProps ?? {})} />
       </div>
-    </CircleSm>
+    </Circle>
   );
 };

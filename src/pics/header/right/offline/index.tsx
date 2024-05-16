@@ -10,9 +10,9 @@ import { LinesVertical } from "~/pages/video/_common/footer/nav/lines/vertical";
 export const Offline: FC = () => {
   const { borderRadius, size } =
     boxStyle({
-      size: "md",
+      size: "m",
       layer: "floating",
-      borderRadius: "XL",
+      borderRadius: "xl",
     });
   return (
     <>

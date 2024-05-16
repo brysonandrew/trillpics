@@ -6,7 +6,6 @@ import {
 import {
   CELL_PARAM_KEY,
   COLUMNS_COUNT_PARAM_KEY,
-  DELIMITER_VIDEO_PICS,
   SECONDS_PARAM_KEY,
   VIDEO_PARAM_KEY,
 } from "~/hooks/pic/constants";
@@ -95,7 +94,7 @@ export const usePicVideo = () => {
         VIDEO_PARAM_KEY,
         `${currName}`
       );
-      paramsMoveToEnd(
+      const r = paramsMoveToEnd(
         searchParams,
         CELL_PARAM_KEY
       );
@@ -115,28 +114,29 @@ export const usePicVideo = () => {
           (v) => v !== currName
         );
 
-      resolveSetArray(
+      const r = resolveSetArray(
         searchParams,
         VIDEO_PARAM_KEY,
         nextValues
       );
 
-      paramsMoveToEnd(
+      const r1 = paramsMoveToEnd(
         searchParams,
         CELL_PARAM_KEY
       );
-
       navigate(
         `${pathname}?${searchParams}`
       );
     }
   };
+  
   const toggle = () => {
     if (isCurrAdded) {
       return remove();
     }
     return add();
   };
+
   const clear = () => {
     searchParams.delete(
       VIDEO_PARAM_KEY

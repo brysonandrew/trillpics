@@ -2,17 +2,12 @@ import type {
   FC,
   PropsWithChildren,
 } from "react";
-import { boxSize } from "~/constants/box/style/size";
-import { LinesHorizontal } from "~/pages/video/_common/footer/nav/lines/horizontal";
-import { LinesVertical } from "~/pages/video/_common/footer/nav/lines/vertical";
-import { PicsFloatingShuffle } from "~/pics/floating/shuffle";
+import { boxSize } from "~/constants/box/size";
 
 export const PicsFloating: FC<
   PropsWithChildren
 > = ({ children }) => {
-  const { size } = boxSize({
-    size: "sm",
-  });
+  const { size } = boxSize("s");
   return (
     <div className="absolute left-1/2 top-0 container -translate-x-1/2 h-0 bg-white">
       <div className="absolute left-0 top-4 w-full h-0 row-start justify-center bg-white">
@@ -23,7 +18,6 @@ export const PicsFloating: FC<
           {children}
         </div>
       </div>
-  
     </div>
   );
 };

@@ -1,24 +1,26 @@
 import { boxBackground } from "~/constants/box/class";
-import { boxBorder } from "~/constants/box/style/border";
-import { TBoxRadiusKey } from "~/constants/box/style/radius";
-import { boxSize } from "~/constants/box/style/size";
-import { TBoxStyleTheme } from "~/constants/box/style/types";
+import { boxBorder } from "~/constants/box/border/border";
+import { TBoxRadiusKey } from "~/constants/box/radius";
+import {
+  boxSize,
+} from "~/constants/box/size";
 import {
   TBackgroundColorShortcut,
   TBackgroundImageShortcut,
 } from "~uno/shortcuts/box/background";
+import { TBoxSizesKey } from "~/constants/box/size/constants";
 
 export type TBoxStyleConfig = {
   layer: "flat" | "floating";
   borderRadius?: TBoxRadiusKey;
   backgroundImage?: TBackgroundImageShortcut;
   backgroundColor?: TBackgroundColorShortcut;
-  size?: keyof TBoxStyleTheme["size"];
+  size?: TBoxSizesKey;
 };
 export const boxStyle = ({
   layer,
   borderRadius,
-  size,
+  size = 'm',
   backgroundColor,
   backgroundImage,
 }: TBoxStyleConfig) => {
@@ -29,9 +31,9 @@ export const boxStyle = ({
     }),
     ...boxBorder({
       layer,
-      borderRadius
+      borderRadius,
     }),
-    ...boxSize({ size }),
+    ...boxSize(size),
   };
 };
 export type TBoxStyle = ReturnType<

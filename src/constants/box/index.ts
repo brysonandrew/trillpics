@@ -1,5 +1,5 @@
-import { BOX_RADIUS } from "~/constants/box/style/radius";
-import { BOX_SIZE } from "~/constants/box/style/size";
+import { BOX_RADIUS } from "~/constants/box/radius";
+import { BOX_SIZE } from "~/constants/box/size/constants";
 import {
   SHORTCUTS_BOX_BACKGROUND_COLOR,
   SHORTCUTS_BOX_BACKGROUND_IMAGE,

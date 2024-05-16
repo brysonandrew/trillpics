@@ -28,8 +28,8 @@ export const ModalOverlay: FC<
 }) => {
   const {padding, ...borderStyle} = boxStyle({
     layer: "floating",
-    borderRadius: "XL",
-    size: "md",
+    borderRadius: "xl",
+    size: "m",
   });
 
   return (

@@ -27,7 +27,6 @@ export const PicsHeaderScrollTop: FC =
         {isScroll && (
           <>
             <LinesVertical classValue="flex opacity-50" />
-
             <PillBHover
               key={resolveCompositeKey(
                 "scroll-top",
@@ -35,6 +34,7 @@ export const PicsHeaderScrollTop: FC =
                 `${isReady}`
               )}
               title={title}
+              subtitle="Return to the start of the page."
               onClick={handler}
               Icon={IconsArrowsUp2}
               {...(isReady

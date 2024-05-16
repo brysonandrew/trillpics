@@ -7,7 +7,7 @@ import { useHoverKey } from "~/hooks/use-hover-key";
 import { isDefined } from "~/utils/validation/is/defined";
 
 type TProps = TPillBProps;
-export const PillBHover: FC<TProps> = ({
+export const PillBHoverSm: FC<TProps> = ({
   title,
   children = title,
   ...props

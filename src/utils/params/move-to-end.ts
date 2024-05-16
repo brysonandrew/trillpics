@@ -9,4 +9,5 @@ export const paramsMoveToEnd = (
   if (!value) return;
   searchParams.delete(key);
   searchParams.append(key, value);
+  return true;
 };

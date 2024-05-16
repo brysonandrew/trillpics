@@ -7,6 +7,7 @@ import { Video_RootCursorSelected } from "~/pages/video/_root/cursor/selected";
 import { useClickVideo } from "~/context/hooks/click/video";
 import { useMove } from "~/context/hooks/move";
 import { usePicVideo } from "~/hooks/pic/video";
+import { TypographyBordered } from "~/components/typography/bordered";
 
 export const Video_RootCursor: FC =
   () => {
@@ -34,7 +35,7 @@ export const Video_RootCursor: FC =
     const isSelectedVisible =
       isControls &&
       !isScrolling &&
-      !isActiveHover
+      !isActiveHover;
     const title = isCurrName
       ? isCurrAdded
         ? "remove"
@@ -57,7 +58,9 @@ export const Video_RootCursor: FC =
               <PicVideoControls
                 {...props}
               >
-                {title}
+                <TypographyBordered classValue="text-2xl text-main">
+                  {title}
+                </TypographyBordered>
               </PicVideoControls>
             </header>
           </div>

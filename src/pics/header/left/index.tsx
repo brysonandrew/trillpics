@@ -1,8 +1,4 @@
-import {
-  FC,
-  memo,
-  PropsWithChildren,
-} from "react";
+import { FC, memo } from "react";
 import { motion } from "framer-motion";
 import {
   Link,

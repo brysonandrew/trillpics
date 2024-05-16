@@ -26,7 +26,7 @@
     "@b": "npm run erase && npm run @brysonandrew && npm run lint",
     "ops/collection": "esrun ops/collection",
     "ops/routes": "esrun ops/routes",
-    "ops/routes": "esrun ops/test/screens",
+    "test/screens": "esrun test/screens",
     "ops/favicons": "esrun ops/favicons",
     "ds": "gh workflow run && gh run list --workflow=studio.yml",
     "test": "echo \"Error: no test specified\" && exit 1"

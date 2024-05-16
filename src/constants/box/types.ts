@@ -1,3 +1,4 @@
+
 export type TBoxStyleTheme = {
   borderRadius: number;
   floating: {
@@ -7,8 +8,8 @@ export type TBoxStyleTheme = {
     boxShadow: string;
   };
   size: {
-    md: string;
-    sm: string;
+    s: string;
+    m: string;
     minWidth: string;
     minHeight: string;
   };

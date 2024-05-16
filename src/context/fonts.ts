@@ -6,9 +6,12 @@ import {
 import WebFont from "webfontloader";
 import { produce } from "immer";
 
-const FAMILIES = [
+export const FAMILIES = [
   "Saiba 45",
   "led_display-7",
+  "joystix",
+  "FFF Forward",
+  "Saiba 45 Outline",
 ] as const;
 
 type TFamilies = typeof FAMILIES;
@@ -16,6 +19,9 @@ type TFamily = TFamilies[number];
 const URLS = [
   "/fonts/saiba-45/SAIBA-45.ttf",
   "/fonts/led-display7/led_display-7.ttf",
+  "/fonts/joystix.monospace-regular.otf",
+  "/fonts/fff-forward/FFFFORWA.ttf",
+  "/fonts/saiba-45/SAIBA-45-Outline.ttf",
 ] as const;
 
 const LOADER_RECORD = {

@@ -1,5 +1,4 @@
 import { useOutletContext } from "react-router";
-import { TOutletContext } from "~/shell";
 import { PlayerFooter } from "~/pages/video/player/_footer";
 import { PlayerFooterButtonsExit } from "~/pages/video/player/_footer/exit";
 import { PlayerFooterButtonsFullscreen } from "~/pages/video/player/_footer/fullscreen";
@@ -8,8 +7,6 @@ import { PlayerHeader } from "~/pages/video/player/_header";
 import { PicBackdrop } from "~/pics/grid/pic/backdrop";
 
 export const VideoPlayer = () => {
-  const {  Footer, Screen } =
-    useOutletContext<TOutletContext>();
   const {
     isPlayerInstance,
     isPlaying,
@@ -17,9 +14,7 @@ export const VideoPlayer = () => {
   return (
     <>
       <PicBackdrop/>
-      <Screen>
         {/* <RemotionPlayer /> */}
-      </Screen>
       <div>
         <PlayerHeader
           isPlayerInstance={
@@ -27,7 +22,7 @@ export const VideoPlayer = () => {
           }
         />
       </div>
-      <Footer>
+      <>
         <>
           <div className="absolute left-0 bottom-0 row-space w-full">
             <PlayerFooterButtonsExit />
@@ -37,7 +32,7 @@ export const VideoPlayer = () => {
           </div>
         </>
         <PlayerFooter />
-      </Footer>
+      </>
     </>
   );
 };

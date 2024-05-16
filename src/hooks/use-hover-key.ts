@@ -13,7 +13,6 @@ type THandler = (
   key: THoverKey
 ) => void;
 
-
 type TConfig = {
   handlers?: {
     start?: THandler;
@@ -28,33 +27,30 @@ export const useHoverKey = (
     isHover,
     hover,
     unhover,
-    cooldownEnd
+    cooldownEnd,
   } = useTrillPicsStore(
     ({
       hoverKeys,
       isHover,
       hover,
       unhover,
-      cooldownEnd
+      cooldownEnd,
     }) => ({
       hoverKeys,
       isHover,
       hover,
       unhover,
-      cooldownEnd
+      cooldownEnd,
     })
   );
 
-  const { isCountdown, trigger } =
-    useTimebomb({
-      countdown: 1000,
-      target: cooldownEnd,
-    });
+  const { isArmed, trigger } =
+    useTimebomb(1000, cooldownEnd);
 
   const onStart: TEventHandler =
     (key: THoverKey) =>
     (event: TEventUnion) => {
-      console.log('start', event.type);
+      console.log("start", event.type);
 
       // console.log(event);
       if (config?.handlers?.start) {
@@ -65,7 +61,7 @@ export const useHoverKey = (
   const onStop: TEventHandler =
     (key: THoverKey) =>
     (event: TEventUnion) => {
-      console.log('stop',event.type);
+      console.log("stop", event.type);
       // console.log(event);
 
       if (config?.handlers?.stop) {
@@ -104,7 +100,7 @@ export const useHoverKey = (
     handlers,
     motionHandlers,
     clear,
-    isCooldown: isCountdown,
+    isCooldown: isArmed,
   };
 };
 export type THoverKeyConfig =

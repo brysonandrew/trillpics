@@ -2,7 +2,7 @@ import { BOX } from "~/constants/box";
 import {
   boxRadius,
   TBoxRadiusKey,
-} from "~/constants/box/style/radius";
+} from "~/constants/box/radius";
 
 type TConfig = {
   layer: "flat" | "floating";

@@ -16,6 +16,7 @@ export const resolveSetArray = (
       `${value}`
     );
   });
+  return true
 };
 export type TResolveSetArrayResult =
   ReturnType<typeof resolveSetArray>;

@@ -36,3 +36,4 @@ build
 ./downloads/**/*
 
 .cemetary/collection/**/*
+test/screens/prev/*

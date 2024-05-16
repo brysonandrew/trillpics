@@ -2,11 +2,11 @@ import type {
   FC,
   PropsWithChildren,
 } from "react";
-import { TClassValueProps } from "@brysonandrew/config-types";
+import { TClassValueProps, TElementProps } from "@brysonandrew/config-types";
 import { FILTERS_FAT_SVG_PROPS } from "~/shell/global/svg/filters/fat";
 import clsx from "clsx";
 
-type TConfig = TClassValueProps & {
+type TConfig = TElementProps & TClassValueProps & {
   shadow: TClassValueProps;
 };
 type TProps =Partial<TConfig>
@@ -16,21 +16,23 @@ export const TypographyBordered: FC<
   classValue,
   shadow,
   children,
+  style
 }) => {
   return (
     <div
       className={clsx(
         "relative",
-        classValue ?? 'text-main-inverted'
+        classValue ?? 'text-main-inverted text-4xl'
       )}
     >
       <div
         className={clsx(
           "fill",
-          shadow?.classValue ?? 'text-main'
+          shadow?.classValue ?? classValue ?? 'text-main text-4xl'
         )}
         style={{
           ...FILTERS_FAT_SVG_PROPS,
+          ...style
         }}
       >
         {children}

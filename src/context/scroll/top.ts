@@ -21,7 +21,6 @@ export const useScrollTopHandler =
     const handler = () => {
       if (!ref.current) return;
       const y = scrollY.get();
-console.log(ref.current, y)
      ref.current.scrollTop();
       if (main.blur.control.y) {
         main.blur.control.y.stop();

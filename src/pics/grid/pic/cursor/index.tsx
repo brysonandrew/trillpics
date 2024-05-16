@@ -95,11 +95,11 @@ export const PicCursor: FC<
                 <CursorCorners />
                 <motion.div
                   key="children"
-                  className="center fill"
+                  className="center fill font-sans"
                   {...PRESENCE_OPACITY_DELAY}
                 >
                   {children}
-                </motion.div>
+                </motion.div> 
               </motion.div>
             )}
         </AnimatePresence>

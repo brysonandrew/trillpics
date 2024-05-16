@@ -2,7 +2,7 @@ import { FC, memo } from "react";
 import { useCurrentPlayerFrame } from "~/hooks/remotion/use-current-player-frame";
 import { TDurationInFramesProps } from "~/types/props";
 import { LightingGlow } from "~/components/layout/lighting/glow";
-import { boxRadius } from "~/constants/box/style/radius";
+import { boxRadius } from "~/constants/box/radius";
 
 type TProps = TDurationInFramesProps;
 export const TimerCurrentProgress: FC<TProps> =

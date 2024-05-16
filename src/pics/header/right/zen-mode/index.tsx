@@ -25,21 +25,15 @@ export const HideControls: FC = () => {
   const title = "Hide Controls"; // "Hide controls";
 
   return (
-    <>
-      <PillBHover
-        title={title}
-        onClick={handleClick}
-        Icon={IconsVisible}
-      >
-        {title}
-      </PillBHover>
-      {!isControls && (
-        <HideControlsModal
-          Icon={IconsVisible}
-          title={title}
-          onCancel={handleShow}
-        />
-      )}
-    </>
+    <PillBHover
+      title={title}
+      onClick={handleClick}
+      Icon={IconsVisible}
+      subtitle={`Move your mouse or pointer off and
+        then on the page to bring the
+        controls back.`}
+    >
+      {title}
+    </PillBHover>
   );
 };

@@ -51,10 +51,11 @@ export const usePicZoom = (
       ZOOM_PARAM_OPEN_VALUE
     );
 
-    paramsMoveToEnd(
+   const r = paramsMoveToEnd(
       searchParams,
       CELL_PARAM_KEY
     );
+    console.log(r)
 
     navigate(
       `${pathname}?${searchParams}`

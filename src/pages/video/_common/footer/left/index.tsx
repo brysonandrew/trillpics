@@ -7,7 +7,10 @@ import { useReady } from "~/hooks/use-ready";
 import { usePicVideo } from "~/hooks/pic/video";
 import { LinesVertical } from "~/pages/video/_common/footer/nav/lines/vertical";
 import { VideoPicsCounter } from "~/shell/screen/video-pic-counter";
-import { BOX_SIZE_MD } from "~/constants/box/style/size";
+import { boxSize } from "~/constants/box/size";
+import { TypographyBordered } from "~/components/typography/bordered";
+import { FILTERS_FAT_1_SVG_PROPS } from "~/shell/global/svg/filters/fat/1";
+import { LinesHorizontal } from "~/pages/video/_common/footer/nav/lines/horizontal";
 
 export const VideoFooterLeft: FC<
   TVideoFooterProps
@@ -16,7 +19,8 @@ export const VideoFooterLeft: FC<
   Seperator = SeperatorHorizontal,
   ..._props
 }) => {
-  const { isVideoPics } = usePicVideo();
+  const { isVideoPics, count } =
+    usePicVideo();
   const isReady = useReady();
 
   const props = {
@@ -24,32 +28,41 @@ export const VideoFooterLeft: FC<
     ..._props,
     style: { zIndex: 99 },
   };
+  const bSize = boxSize();
 
   if (!isVideoPics) return null;
   return (
     <div
-      className="column-start absolute left-0 gap-4 w-0"
+      className="row absolute left-0 gap-4 w-0 h-0"
       style={{
-        height: "14vh",
-        bottom: "12vh",
+        width: 200,
+        left: bSize.m,
+        bottom: bSize.m,
       }}
     >
-      <div className="column-start">
-        <VideoPicsCounter>
-          {(count) => (
-            <div className="whitespace-nowrap">
-              {`${count} pic${
-                count === 1 ? "" : "s"
-              }`}
-            </div>
-          )}
-        </VideoPicsCounter>
-      </div>
-      <LinesVertical
-        style={{
-          marginLeft: BOX_SIZE_MD / 2,
+      <VideoPicsCounter>
+        {(count) => (
+          <>
+            {count}
+
+            {/* {`${count} `} */}
+          </>
+        )}
+      </VideoPicsCounter>
+      <LinesHorizontal />
+      <TypographyBordered
+        classValue="text-sm mt-0.5"
+        shadow={{
+          classValue:
+            "text-sm text-gray",
         }}
-      />
+        style={FILTERS_FAT_1_SVG_PROPS}
+      >
+        <div className="whitespace-nowrap font-mono">
+          {`pic${count === 1 ? "" : "s"}`}
+        </div>
+      </TypographyBordered>
+      <LinesHorizontal />
       <LeftButtonsClear
         key="LeftButtonsClear"
         {...(isReady

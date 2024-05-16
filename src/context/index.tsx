@@ -15,10 +15,14 @@ import { useCursor } from "~/context/cursor";
 import {
   TVirtualizeContext,
   TGridHandle,
+  TOriginValue,
 } from "~/context/types";
 import { useScrollUpdateHandler } from "~/context/scroll/update";
 import { useFonts } from "~/context/fonts";
-import { useUi } from "~/context/ui";
+import {
+  TUiValue,
+  useUi,
+} from "~/context/ui";
 
 const VirtualizeContext = createContext(
   {} as TVirtualizeContext
@@ -32,13 +36,16 @@ export type TVirtualizeContextProviderProps =
 export const VirtualizeContextProvider: FC<
   TVirtualizeContextProviderProps
 > = ({ children }) => {
+  const [originValue, updateOrigin] =
+    useState<TOriginValue>(null);
+  const [footerValue, updateFooter] =
+    useState<TUiValue>(null);
+
   const isOnscreen = useOnscreen();
   const ref: TRefMutable<TGridHandle> =
     useRef<TGridHandle | null>(null);
 
-  // console.log(container);
   const fonts = useFonts();
-  // console.log(record, bounds);
   const blur = useBlur();
   const cursor = useCursor();
   const ui = useUi();
@@ -48,8 +55,18 @@ export const VirtualizeContextProvider: FC<
       cursor,
       blur,
       ui,
+      origin: {
+        value: originValue,
+        update: updateOrigin,
+      },
     };
   }, []);
+  if (
+    main.origin.value === null &&
+    originValue !== null
+  ) {
+    main.origin.value = originValue;
+  }
   const { handler: handleScroll } =
     useScrollUpdateHandler({
       scrollY,
@@ -64,6 +81,8 @@ export const VirtualizeContextProvider: FC<
         main,
         fonts,
         onScroll: handleScroll,
+        footerValue,
+        updateFooter,
       }}
     >
       {children}

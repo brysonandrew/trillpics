@@ -6,7 +6,6 @@ import {
 import clsx from "clsx";
 import { boxStyle } from "~/constants/box/style";
 import { CircleIcon } from "~/components/layout/circle/icon";
-import { resolveNeuShadow } from "@brysonandrew/uno-shortcuts";
 
 export const PlaybackButtonsB: FC<
   TButtonProps & { Icon: FC<TSvgProps> }
@@ -19,13 +18,13 @@ export const PlaybackButtonsB: FC<
   const { boxShadow, ...borderStyle } =
     boxStyle({
       layer: "flat",
-      borderRadius: "XL",
-      size: "md",
+      borderRadius: "xl",
+      size: "m",
     });
   const sm = boxStyle({
     layer: "flat",
-    borderRadius: "XL",
-    size: "sm",
+    borderRadius: "xl",
+    size: "s",
   });
   return (
     <button

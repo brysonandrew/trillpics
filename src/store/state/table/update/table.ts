@@ -51,7 +51,6 @@ export const tableUpdateState: TStateHandler<
       cells,
       count,
     }) => {
-      console.log("CREATE TABLE");
       const update = get().table.update;
 
       const rows = update.rows({

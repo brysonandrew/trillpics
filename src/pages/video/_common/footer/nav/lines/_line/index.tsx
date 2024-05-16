@@ -6,7 +6,6 @@ import { TLineProps } from "~/pages/video/_common/footer/nav/lines/types";
 type TProps = TDivProps & TLineProps;
 export const Lines_Line: FC<TProps> = ({
   colorClass,
-  sizeClass,
   classValue,
   style,
   ...props
@@ -16,7 +15,6 @@ export const Lines_Line: FC<TProps> = ({
       className={clsx(
         "relative grow",
         colorClass ?? "border-current",
-        sizeClass ?? "border-px",
         classValue
       )}
       style={{ ...style }}

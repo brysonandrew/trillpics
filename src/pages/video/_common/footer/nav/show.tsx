@@ -39,7 +39,7 @@ export const ControlsShow: FC<
       Icon={IconsEdit}
       {...props}
     >
-      <HoverText>{title}</HoverText>
+{title}
     </Button>
   );
 };

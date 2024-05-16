@@ -3,20 +3,11 @@ import { HomeFooter } from "~/pages/home/_footer";
 import { HomeCursor } from "~/pages/home/cursor";
 
 export const Home: FC = () => {
-  // const {
-  //   Footer,
-  //   FooterLeft,
-  // } =
-  //   useOutletContext<TOutletContext>();
   return (
     <>
       <HomeCursor />
       <HomeFooter />
-      {/* <Footer>
-        <FooterLeft>
-          <HomeFooter />
-        </FooterLeft>
-      </Footer> */}
+ 
     </>
   );
 };

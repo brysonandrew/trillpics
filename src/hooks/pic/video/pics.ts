@@ -35,16 +35,18 @@ export const useVideoPicsResult = ({
 
   const picsResult = useMemo(() => {
     const paramVideoPics = [
-      ...(Array.isArray(paramValues)
-        ? paramValues
-        : []),
+      ...[
+        ...(Array.isArray(paramValues)
+          ? paramValues
+          : []),
+        ...(currName ? [currName] : []),
+      ],
     ];
     const uniqueVideoPics =
       new Set<TPic>(paramVideoPics);
 
     const result = [
       ...uniqueVideoPics,
-      ...(currName ? [currName] : []),
     ].reduce<TPicsResult>(
       (a, name: TPic) => {
         const index =
@@ -56,13 +58,9 @@ export const useVideoPicsResult = ({
           column: index % columnsCount,
         };
         const key = cellEncrypt(cell);
-        // const cell = cellDecrypt(key);
         if (isNull(cell) || isNull(key))
           return a;
-        // const index =
-        //   cell.row * columnsCount +
-        //   (cell.column + 1);
-        // const name = pics[index];
+
         a.indicies.push(index);
         a.names.push(name);
         a.keys.push(key);

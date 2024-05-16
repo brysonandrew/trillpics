@@ -1,3 +1,7 @@
+import {
+  Dispatch,
+  SetStateAction,
+} from "react";
 import { MotionValue } from "framer-motion";
 import {
   FixedSizeList,
@@ -7,7 +11,6 @@ import { TRefMutable } from "~/hoc/ref/mutable";
 import { TBlur } from "~/context/blur";
 import { TCursor } from "~/context/cursor";
 import { TPicsRows } from "~/store/state/table/types";
-import { TCell } from "~/pics/grid/pic";
 import { TFontsResult } from "~/context/fonts";
 import { TUseUiResult } from "~/context/ui";
 
@@ -28,12 +31,27 @@ export type TGridHandle = {
   isScrolling: () => boolean;
   isHovering: () => boolean;
 };
+export type TOriginValue =
+  DOMRect | null;
+
+export type TOrigin = {
+  value: TOriginValue;
+  update: Dispatch<
+    SetStateAction<TOriginValue>
+  >;
+};
+
 type TMain = {
   blur: TBlur;
   cursor: TCursor;
   ui: TUseUiResult;
+  origin: TOrigin;
 };
 export type TVirtualizeContext = {
+  footerValue: HTMLElement|null;
+  updateFooter: Dispatch<
+    SetStateAction<HTMLElement|null>
+  >;
   isOnscreen: boolean;
   ref: TRefMutable<TGridHandle>;
   main: TMain;

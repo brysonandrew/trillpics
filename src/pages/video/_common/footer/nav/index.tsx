@@ -7,10 +7,10 @@ import { ControlsShow } from "~/pages/video/_common/footer/nav/show";
 import { ControlsPlayer } from "~/pages/video/_common/footer/nav/player";
 import { FooterNavVideo } from "~/pages/video/_common/footer/nav/video";
 import { VideoFooterExit } from "~/pages/video/_common/footer/nav/exit";
-import { boxSize } from "~/constants/box/style/size";
+import { boxSize } from "~/constants/box/size";
 import { useReady } from "~/hooks/use-ready";
 import { LinesHorizontal } from "~/pages/video/_common/footer/nav/lines/horizontal";
-import { boxRadius } from "~/constants/box/style/radius";
+import { boxRadius } from "~/constants/box/radius";
 import { PRESENCE_OPACITY } from "@brysonandrew/motion-config-constants";
 import clsx from "clsx";
 
@@ -27,7 +27,7 @@ export const VideoFooterNav: FC =
       useHoverKey();
     const isReady = useReady();
     const { minHeight, minWidth } =
-      boxSize({ size: "md" });
+      boxSize();
 
     const title = "Video mode";
     const isHovering = isHover(title);
@@ -39,7 +39,7 @@ export const VideoFooterNav: FC =
       );
 
     return (
-      <div className="absolute bottom-6 row justify-between gap-4 h-0 w-full text-main">
+      <div className="absolute bottom-0 row justify-between gap-4 h-0 w-full text-main z-50">
         <VideoFooterExit />
         <div className="hidden md:row justify-between gap-4">
           <LinesHorizontal classValue="opacity-50" />
@@ -49,11 +49,11 @@ export const VideoFooterNav: FC =
         <motion.div
           className={clsx(
             "relative row justify-between gap-4 p-4 w-3/4 shrink-0 border-current border-2",
-            "backdrop-blur-lg"
+            "backdrop-blur-sm"
           )}
           style={{
             borderRadius:
-              boxRadius("XL"),
+              boxRadius("xl"),
           }}
           {...motionHandlers(HOVER_KEY)}
           {...PRESENCE_OPACITY}
@@ -87,7 +87,7 @@ export const VideoFooterNav: FC =
                     "ControlsPlayer",
                 }
               : {})}
-            title={"title"}
+            title={title}
           />
         </motion.div>
       </div>

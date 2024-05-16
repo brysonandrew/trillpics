@@ -14,7 +14,7 @@ export const Button: FC<TProps> = ({
   ...props
 }) => {
   return (
-    <div className="absolute left-1/2 -translate-x-1/2 top-1/2 -translate-y-1/2 _gradient-text z-60 pointer-events-none">
+    <div className="absolute left-1/2 -translate-x-1/2 top-1/2 -translate-y-1/2 _gradient-text z-50 pointer-events-none">
       <button
         className="row gap-6"
         {...props}
