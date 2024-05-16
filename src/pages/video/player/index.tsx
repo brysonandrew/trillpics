@@ -5,16 +5,22 @@ import { PlayerFooterButtonsFullscreen } from "~/pages/video/player/_footer/full
 import { useVideoPlayerAmbient } from "~/pages/video/player/_ambient";
 import { PlayerHeader } from "~/pages/video/player/_header";
 import { PicBackdrop } from "~/pics/grid/pic/backdrop";
+import { createPortal } from "react-dom";
+import { useContextGrid } from "~/context";
+import { VideoFooterLeft } from "~/pages/video/_root/left";
+import { VideoFooterNav } from "~/pages/video/_common/footer/nav";
 
 export const VideoPlayer = () => {
   const {
     isPlayerInstance,
     isPlaying,
   } = useVideoPlayerAmbient();
+  const { footerValue } =
+    useContextGrid();
   return (
     <>
-      <PicBackdrop/>
-        {/* <RemotionPlayer /> */}
+      <PicBackdrop />
+      {/* <RemotionPlayer /> */}
       <div>
         <PlayerHeader
           isPlayerInstance={
@@ -32,6 +38,16 @@ export const VideoPlayer = () => {
           </div>
         </>
         <PlayerFooter />
+      </>
+      <>
+        {footerValue &&
+          createPortal(
+            <>
+              <VideoFooterNav />
+              <VideoFooterLeft />
+            </>,
+            footerValue
+          )}
       </>
     </>
   );

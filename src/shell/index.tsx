@@ -19,6 +19,7 @@ import { BlurXyWrap } from "~/components/blur/xy";
 import { PicsHeaderScrollTop } from "~/pics/header/scroll-top";
 import { SvgFiltersFat1 } from "~/shell/global/svg/filters/fat/1";
 import { SvgFiltersFat2 } from "~/shell/global/svg/filters/fat/2";
+import { Hud } from "~/pics/hud";
 
 const OUTLET_CONTEXT = {
   PicsHeaderScrollTop,
@@ -28,7 +29,7 @@ const OUTLET_CONTEXT = {
 } as const;
 export const Shell = withProviders(
   () => {
-    useInit();
+    const { screen, table } = useInit();
     const { isDarkMode } =
       useDarkMode();
 
@@ -60,6 +61,18 @@ export const Shell = withProviders(
             }}
           />
         </BlurXyWrap>
+        {screen.isDimensions &&
+          screen.container
+            .isDimensions && (
+            <Hud
+              dimensions={
+                screen.container
+              }
+              isVerticalScroll={
+                table.isVerticalScroll
+              }
+            />
+          )}
       </>
     );
   }

@@ -13,8 +13,8 @@ export const ControlsPlayer: FC<
   title,
   ...props
 }) => {
-  const { togglePathValue } =
-    useNavigationControls();
+  const { togglePathValue, isActive } =
+    useNavigationControls(VIDEO_PLAYER_ROUTE);
   const handleClick = () => {
     togglePathValue(VIDEO_PLAYER_ROUTE);
   };
@@ -29,9 +29,10 @@ export const ControlsPlayer: FC<
       }
       onClick={handleClick}
       Icon={IconsPlay}
+      isSelected={isActive}
       {...props}
     >
-{title}
+      {title}
     </Button>
   );
 };

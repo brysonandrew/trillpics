@@ -1,8 +1,8 @@
 import type { FC } from "react";
-import { LeftButtonsClear } from "~/pages/video/_common/footer/left/buttons/clear";
+import { LeftButtonsClear } from "~/pages/video/_root/left/buttons/clear";
 import { TVideoFooterProps } from "~/pages/video/_common/footer/types";
 import { PillBHover } from "~/components/buttons/pill/b/hover";
-import { SeperatorHorizontal } from "~/pages/video/_common/footer/left/seperator/horizontal";
+import { SeperatorHorizontal } from "~/pages/video/_root/left/seperator/horizontal";
 import { useReady } from "~/hooks/use-ready";
 import { usePicVideo } from "~/hooks/pic/video";
 import { LinesVertical } from "~/pages/video/_common/footer/nav/lines/vertical";
@@ -33,37 +33,14 @@ export const VideoFooterLeft: FC<
   if (!isVideoPics) return null;
   return (
     <div
-      className="row absolute left-0 gap-4 w-0 h-0"
+      className="column-start absolute bottom-0 left-0 gap-4 w-0 h-0"
       style={{
-        width: 200,
+        height: 200,
         left: bSize.m,
         bottom: bSize.m,
       }}
     >
-      <VideoPicsCounter>
-        {(count) => (
-          <>
-            {count}
-
-            {/* {`${count} `} */}
-          </>
-        )}
-      </VideoPicsCounter>
-      <LinesHorizontal />
-      <TypographyBordered
-        classValue="text-sm mt-0.5"
-        shadow={{
-          classValue:
-            "text-sm text-gray",
-        }}
-        style={FILTERS_FAT_1_SVG_PROPS}
-      >
-        <div className="whitespace-nowrap font-mono">
-          {`pic${count === 1 ? "" : "s"}`}
-        </div>
-      </TypographyBordered>
-      <LinesHorizontal />
-      <LeftButtonsClear
+          <LeftButtonsClear
         key="LeftButtonsClear"
         {...(isReady
           ? {
@@ -73,6 +50,30 @@ export const VideoFooterLeft: FC<
           : {})}
         {...props}
       />
+    
+    <LinesVertical style={{marginLeft: bSize.s05}} />
+      <TypographyBordered
+        classValue="text-sm"
+        shadow={{
+          classValue:
+            "text-sm text-gray",
+        }}
+        style={FILTERS_FAT_1_SVG_PROPS}
+      >
+        <div className="whitespace-nowrap font-mono">
+          {`delete`}
+           {/* pic${count === 1 ? "" : "s"}`} */}
+        </div>
+      </TypographyBordered>
+      <LinesVertical style={{marginLeft: bSize.s05}} />
+      <VideoPicsCounter>
+        {(count) => (
+          <>
+            {count}
+            {/* {`${count} `} */}
+          </>
+        )}
+      </VideoPicsCounter>
     </div>
   );
 };

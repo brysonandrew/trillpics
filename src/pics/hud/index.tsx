@@ -23,20 +23,27 @@ export const Hud: FC<TProps> = ({
   dimensions,
   isVerticalScroll,
 }) => {
-  const { main } = useContextGrid();
+  const {
+    main,
+    headerValue,
+    updateHeader,
+  } = useContextGrid();
   return (
     <div
-      className="absolute w-0"
+      className="fixed w-0 z-10"
       style={{
         left: dimensions.left,
         top: dimensions.top,
         height: dimensions.height,
+        
       }}
+     
     >
       <div
         className={clsx(
-          "absolute top-0 left-0 h-0 row gap-6 bg-red"
+          "absolute top-0 left-0 h-0 row gap-6"
         )}
+     
         style={{
           width: dimensions.width,
         }}
@@ -59,6 +66,7 @@ export const Hud: FC<TProps> = ({
                         dimensions
                       }
                     />
+                  
                     <PicsHudLeft
                       key="PicsHudLeft"
                       dimensions={

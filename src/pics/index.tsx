@@ -11,7 +11,7 @@ type TProps = TPartialFixedTableProps;
 export const Pics: FC<TProps> = (
   props
 ) => {
-  const { onScroll, ref } =
+  const { onScroll, ref,headerValue,updateFooter,updateHeader } =
     useContextGrid();
   const { table, screen, isControls } =
     useTrillPicsStore(
@@ -28,7 +28,17 @@ export const Pics: FC<TProps> = (
 
   return (
     <>
-      <div style={{ height: 0 }}>
+ 
+      <div style={{ height: 0 }}
+       ref={(instance) => {
+        if (
+          instance &&
+          headerValue === null
+        ) {
+          updateHeader(instance);
+        }
+      }}
+      >
         {/* <SpeedlinesBackward /> */}
         {/* {scrollDirection ===
           "forward" && (
@@ -54,18 +64,8 @@ export const Pics: FC<TProps> = (
         />
       )}
       <Outlet />
-      {screen.isDimensions &&
-        screen.container
-          .isDimensions && (
-          <Hud
-            dimensions={
-              screen.container
-            }
-            isVerticalScroll={
-              table.isVerticalScroll
-            }
-          />
-        )}
+   
+            
     </>
   );
 };

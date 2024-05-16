@@ -1,16 +1,19 @@
+import { createPortal } from "react-dom";
 import { useContextGrid } from "~/context";
-import { VideoFooter } from "~/pages/video/_common/footer";
 import { Video_RootCursor } from "~/pages/video/_root/cursor";
+import { VideoFooterLeft } from "~/pages/video/_root/left";
 
 export const Video = () => {
   const { footerValue } =
     useContextGrid();
-
   return (
     <>
-      {footerValue && <VideoFooter />}
       <Video_RootCursor />
-
+      {footerValue &&
+        createPortal(
+          <VideoFooterLeft />,
+          footerValue
+        )}
     </>
   );
 };

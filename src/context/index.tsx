@@ -20,7 +20,6 @@ import {
 import { useScrollUpdateHandler } from "~/context/scroll/update";
 import { useFonts } from "~/context/fonts";
 import {
-  TUiValue,
   useUi,
 } from "~/context/ui";
 
@@ -39,12 +38,13 @@ export const VirtualizeContextProvider: FC<
   const [originValue, updateOrigin] =
     useState<TOriginValue>(null);
   const [footerValue, updateFooter] =
-    useState<TUiValue>(null);
-
+    useState<HTMLElement | null>(null);
+    const [headerValue, updateHeader] =
+    useState<HTMLElement | null>(null);
   const isOnscreen = useOnscreen();
   const ref: TRefMutable<TGridHandle> =
     useRef<TGridHandle | null>(null);
-
+console.log(headerValue)
   const fonts = useFonts();
   const blur = useBlur();
   const cursor = useCursor();
@@ -75,6 +75,8 @@ export const VirtualizeContextProvider: FC<
   return (
     <VirtualizeContext.Provider
       value={{
+        headerValue,
+        updateHeader,
         scrollY,
         isOnscreen,
         ref,

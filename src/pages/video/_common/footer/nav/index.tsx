@@ -13,6 +13,7 @@ import { LinesHorizontal } from "~/pages/video/_common/footer/nav/lines/horizont
 import { boxRadius } from "~/constants/box/radius";
 import { PRESENCE_OPACITY } from "@brysonandrew/motion-config-constants";
 import clsx from "clsx";
+import { TypographyBorderedSm } from "~/components/typography/bordered/sm";
 
 const HOVER_KEY = "VideoFooterNav";
 
@@ -41,10 +42,10 @@ export const VideoFooterNav: FC =
     return (
       <div className="absolute bottom-0 row justify-between gap-4 h-0 w-full text-main z-50">
         <VideoFooterExit />
-        <div className="hidden md:row justify-between gap-4">
-          <LinesHorizontal classValue="opacity-50" />
+        <LinesHorizontal classValue="opacity-50" />
+        <TypographyBorderedSm>
           create
-        </div>
+        </TypographyBorderedSm>
         <LinesHorizontal classValue="opacity-50" />
         <motion.div
           className={clsx(
@@ -59,11 +60,10 @@ export const VideoFooterNav: FC =
           {...PRESENCE_OPACITY}
         >
           <FooterNavVideo />
-          <div className="hidden md:row justify-between gap-4">
-            <LinesHorizontal />
+          <LinesHorizontal />
+          <TypographyBorderedSm>
             edit
-          </div>
-
+          </TypographyBorderedSm>
           <LinesHorizontal />
           <ControlsShow
             key="ControlsShow"
@@ -74,10 +74,10 @@ export const VideoFooterNav: FC =
                 }
               : {})}
           />
-          <div className="hidden md:row justify-between gap-4">
-            <LinesHorizontal />
+          <LinesHorizontal />
+          <TypographyBorderedSm>
             play
-          </div>
+          </TypographyBorderedSm>
           <LinesHorizontal />
           <ControlsPlayer
             key="ControlsPlayer"

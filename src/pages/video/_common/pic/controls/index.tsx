@@ -2,7 +2,6 @@ import type { FC } from "react";
 import { motion } from "framer-motion";
 import { TUsePicVideoResult } from "~/hooks/pic/video";
 import { TPropsWithChildren } from "@brysonandrew/config-types";
-import { FILTERS_FAT_SVG_PROPS } from "~/shell/global/svg/filters/fat";
 import { PRESENCE_OPACITY } from "@brysonandrew/motion-config-constants";
 import { TypographyBordered } from "~/components/typography/bordered";
 

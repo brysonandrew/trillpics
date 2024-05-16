@@ -12,10 +12,11 @@ import { useTrillPicsStore } from "~/store/middleware";
 export const useInit = () => {
   const { timeoutRef, endTimeout } =
     useTimeoutRef();
-  const { table, set } =
+  const { table, set,screen } =
     useTrillPicsStore(
-      ({ table, set }) => ({
+      ({ table,screen, set }) => ({
         table,
+        screen,
         set,
       })
     );
@@ -51,4 +52,6 @@ export const useInit = () => {
   });
   useOnscreen();
   useFonts();
+
+  return {table,screen};
 };

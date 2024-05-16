@@ -48,6 +48,10 @@ type TMain = {
   origin: TOrigin;
 };
 export type TVirtualizeContext = {
+  headerValue: HTMLElement|null;
+  updateHeader: Dispatch<
+    SetStateAction<HTMLElement|null>
+  >;
   footerValue: HTMLElement|null;
   updateFooter: Dispatch<
     SetStateAction<HTMLElement|null>

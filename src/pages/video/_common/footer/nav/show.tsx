@@ -37,9 +37,10 @@ export const ControlsShow: FC<
       title={title}
       onClick={handleClick}
       Icon={IconsEdit}
+      isSelected={isActive}
       {...props}
     >
-{title}
+      {title}
     </Button>
   );
 };

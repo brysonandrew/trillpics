@@ -19,6 +19,11 @@ import {
 import { resolveCompositeKey } from "@brysonandrew/utils-key";
 import { isString } from "~/utils/validation/is/string";
 import { TBoxSizesKey } from "~/constants/box/size/constants";
+import {
+  GRADIENT_BORDER_COMMON,
+  GRADIENT_ZEBRA,
+} from "~app/color/gradient";
+import { PRESENCE_OPACITY } from "@brysonandrew/motion-config-constants";
 
 export type TPillBProps =
   TButtonMotionProps &
@@ -29,9 +34,11 @@ export type TPillBProps =
       circleProps?: TCircleProps;
       outerCircle?: ReactNode;
       size?: TBoxSizesKey;
+      isSelected?: boolean;
     };
 export const PillB: FC<TPillBProps> = ({
   Root = motion.button,
+  isSelected,
   Icon,
   title,
   iconProps,
@@ -96,17 +103,27 @@ export const PillB: FC<TPillBProps> = ({
       {...props}
     >
       <>
-        {/* <motion.div
-          className="fill bg-gray-04 dark:bg-black-04 border-transparent border-3"
-          layout
-          style={{
-            borderRadius,
-            ...GRADIENT_MESH_LIGHT,
-            backgroundSize: "4px 4px",
-            backgroundClip:
-              "padding-box",
-          }}
-        /> */}
+        {isSelected && (
+          <motion.div
+            className="fill -inset-2 _gradient-radial"
+            layoutId="PillB_SELECTED"
+            style={{
+              borderRadius,
+            }}
+            initial={{
+              scale: 1,
+              opacity: 1,
+            }}
+            animate={{
+              scale: [1, 0.5, 1],
+              opacity: [1, 0.5, 1],
+            }}
+            exit={{
+              scale: 1,
+              opacity: 1,
+            }}
+          />
+        )}
         {!disabled && !isFlat && (
           <motion.div
             layout
@@ -149,8 +166,9 @@ export const PillB: FC<TPillBProps> = ({
               width: sm.minWidth,
               ...GRADIENT_MESH_DARK,
               backgroundSize: "2px 2px",
-              backgroundClip:
-                "padding-box",
+              backgroundClip: isSelected
+                ? "border-box"
+                : "padding-box",
             }}
           >
             <Icon />

@@ -21,6 +21,10 @@ import { useNavigationControls } from "~/hooks/navigation/controls";
 import { isDefined } from "~/utils/validation/is/defined";
 import { useTrillPicsStore } from "~/store/middleware";
 import { useBodyStyle } from "~/context/use-body-style";
+import { createPortal } from "react-dom";
+import { useContextGrid } from "~/context";
+import { VideoFooterLeft } from "~/pages/video/_root/left";
+import { VideoFooterNav } from "~/pages/video/_common/footer/nav";
 
 export const VideoSchedulerReorder =
   () => {
@@ -30,7 +34,8 @@ export const VideoSchedulerReorder =
       count,
       reorder,
     } = usePicVideo();
-
+    const { footerValue } =
+      useContextGrid();
     useBodyStyle(
       `overflow-x: hidden; overflow-y: scroll; overscroll-behavior: none; -ms-overflow-style: none;`
     );
