@@ -3,7 +3,7 @@ import { z } from "zod";
 export const PIC_SERIES_SCHEMA =
   z.object({
     pics: z.array(
-      z.string().or(z.number())
+      z.string()
     ),
     seconds: z.number(),
     count: z.number(),

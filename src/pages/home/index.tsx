@@ -1,6 +1,7 @@
 import { FC } from "react";
 import { HomeFooter } from "~/pages/home/_footer";
 import { HomeCursor } from "~/pages/home/cursor";
+import { RemotionPlayer } from "~/components/remotion/player";
 
 export const Home: FC = () => {
   return (

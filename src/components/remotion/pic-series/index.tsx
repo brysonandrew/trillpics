@@ -1,33 +1,22 @@
 import { FC } from "react";
-import { motion } from "framer-motion";
 import {
   PIC_SIZE,
   ASPECT_RATIO,
 } from "~/constants/remotion";
-import {
-  AbsoluteFill,
-  Audio,
-  getInputProps,
-  Img,
-  Series,
-  staticFile,
-  useCurrentFrame,
-  useVideoConfig,
-} from "remotion";
 import { TPicSeriesProps } from "~/components/remotion/pic-series/types";
 import {
   resolveAudioSrc,
   resolvePicSrc,
 } from "~/utils/src";
-import { FADE_PRESENCE } from "~/constants/animation";
-const INPUT_PROPS = getInputProps();
+import { getInputProps, useCurrentFrame, useVideoConfig, staticFile, AbsoluteFill, Series, Img, Audio } from "remotion";
+// const INPUT_PROPS = getInputProps();
 
 export const PicSeries: FC<
   TPicSeriesProps
 > = (props) => {
-  const { pics, seconds } = {
+  const { pics, seconds, count } = {
     ...props,
-    ...INPUT_PROPS,
+    // ...INPUT_PROPS,
   };
   const frame = useCurrentFrame();
   const { fps, height } =
@@ -43,9 +32,9 @@ export const PicSeries: FC<
     audioSrcPath
   );
   return (
-    <motion.div {...FADE_PRESENCE}>
-      <Audio src={audioSrc} />
-      <Series>
+    <>
+      <Audio src={audioSrc} /> 
+   <Series>
         {pics.map((pic) => {
           const srcPath =
             resolvePicSrc(pic);
@@ -55,7 +44,7 @@ export const PicSeries: FC<
           return (
             <Series.Sequence
               key={`${src}`}
-              durationInFrames={pics.length & seconds * fps}
+              durationInFrames={pics.length / seconds * fps}
             >
               <AbsoluteFill
                 style={{
@@ -63,8 +52,8 @@ export const PicSeries: FC<
                   top:
                     (PIC_SIZE -
                       height *
-                        ASPECT_RATIO) *
-                    progressInSecond,
+                        ASPECT_RATIO) *1
+                    // progressInSecond,
                 }}
               >
                 <Img
@@ -76,6 +65,6 @@ export const PicSeries: FC<
           );
         })}
       </Series>
-    </motion.div>
+    </>
   );
 };

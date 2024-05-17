@@ -44,7 +44,6 @@ export const VirtualizeContextProvider: FC<
   const isOnscreen = useOnscreen();
   const ref: TRefMutable<TGridHandle> =
     useRef<TGridHandle | null>(null);
-console.log(headerValue)
   const fonts = useFonts();
   const blur = useBlur();
   const cursor = useCursor();

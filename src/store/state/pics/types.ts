@@ -1,4 +1,4 @@
-export type TPic = string | number;
+export type TPic = string;// | number;
 export type TPics = TPic[];
 
 export type TPicsState = {

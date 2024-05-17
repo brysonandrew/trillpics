@@ -4,7 +4,6 @@ import { TimerCurrentProgress } from "~/components/remotion/player/playback/prog
 import { LightingGlow } from "~/components/layout/lighting/glow";
 import clsx from "clsx";
 import { TexturesMeshRounded } from "~/components/textures/mesh/rounded";
-import { usePicVideo } from "~/hooks/pic/video";
 
 export const PlaybackProgressSeeker: FC =
   () => {

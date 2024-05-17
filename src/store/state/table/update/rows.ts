@@ -25,7 +25,7 @@ export const tableUpdateRows = ({
       const isReady = isDefined(name);
       const item: TPic = isReady
         ? name
-        : index;
+        : `${index}`;
 
       return item;
     });

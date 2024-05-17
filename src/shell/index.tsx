@@ -20,6 +20,7 @@ import { PicsHeaderScrollTop } from "~/pics/header/scroll-top";
 import { SvgFiltersFat1 } from "~/shell/global/svg/filters/fat/1";
 import { SvgFiltersFat2 } from "~/shell/global/svg/filters/fat/2";
 import { Hud } from "~/pics/hud";
+import { RemotionPlayer } from "~/components/remotion/player";
 
 const OUTLET_CONTEXT = {
   PicsHeaderScrollTop,
@@ -39,6 +40,8 @@ export const Shell = withProviders(
 
     return (
       <>
+    <RemotionPlayer/>
+
         <Favicon />
         <AURA.GLOBAL.Filter />
         <BlurX />
@@ -50,6 +53,7 @@ export const Shell = withProviders(
         <SvgFiltersFat />
         <SvgFiltersFat1 />
         <SvgFiltersFat2 />
+
 
         <BlurXyWrap>
           <ShellBackground

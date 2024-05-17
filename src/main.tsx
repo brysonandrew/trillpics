@@ -17,6 +17,7 @@ import { MOTION_CONFIG } from "@brysonandrew/motion-config-constants";
 
 window.React = React;
 window.ReactDOM = ReactDOM;
+// window['development'] = 'test';
 
 import "virtual:uno.css";
 import "~/css/fonts.css";
