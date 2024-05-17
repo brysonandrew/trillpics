@@ -26,10 +26,12 @@ export const PicVideoControls: FC<
       }}
       {...PRESENCE_OPACITY}
     >
-      <TypographyBordered  classValue="text-main-inverted"
-          shadow={{
-            classValue: "text-gray-9",
-          }}>
+      <TypographyBordered
+        classValue="text-main-inverted"
+        shadow={{
+          classValue: "text-gray-9",
+        }}
+      >
         {children}
       </TypographyBordered>
     </motion.div>

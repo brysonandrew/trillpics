@@ -29,89 +29,96 @@ export const Hud: FC<TProps> = ({
     updateHeader,
   } = useContextGrid();
   return (
-    <div
-      className="fixed w-0 z-10"
-      style={{
-        left: dimensions.left,
-        top: dimensions.top,
-        height: dimensions.height,
-        
-      }}
-     
-    >
+    <>
       <div
-        className={clsx(
-          "absolute top-0 left-0 h-0 row gap-6"
-        )}
-     
+        className="fixed w-0 z-0"
         style={{
-          width: dimensions.width,
+          left: dimensions.left,
+          top: dimensions.top,
+          height: dimensions.height,
         }}
       >
-        <AnimatePresence>
-          {dimensions.isDimensions && (
-            <>
-              <PicsHudHeader
-                key="PicsHudHeader"
-                dimensions={dimensions}
-              >
-                {main.origin.value && (
-                  <>
-                    <PicsHudHeaderRight
-                      origin={
-                        main.origin
-                          .value
-                      }
-                      dimensions={
-                        dimensions
-                      }
-                    />
-                  
-                    <PicsHudLeft
-                      key="PicsHudLeft"
-                      dimensions={
-                        dimensions
-                      }
-                      origin={
-                        main.origin
-                          .value
-                      }
-                    />
-                    <PicsHudFooter
-                      key="PicsHudFooter"
-                      origin={
-                        main.origin
-                          .value
-                      }
-                      dimensions={
-                        dimensions
-                      }
-                    />
-                    <PicsHudRight
-                      key="PicsHudRight"
-                      origin={
-                        main.origin
-                          .value
-                      }
-                      dimensions={
-                        dimensions
-                      }
-                    >
-                      {isVerticalScroll && (
-                        <PicsHeaderScrollTop />
-                      )}
-                    </PicsHudRight>
-                  </>
-                )}
-              </PicsHudHeader>
-              <PicsHudCenter
-                key="PicsHudCenter"
-                {...dimensions}
-              />
-            </>
-          )}
-        </AnimatePresence>
+        {main.origin.value && (
+          <PicsHudLeft
+            key="PicsHudLeft"
+            dimensions={dimensions}
+            origin={main.origin.value}
+          />
+        )}
       </div>
-    </div>
+      <div
+        className="fixed w-0 z-10"
+        style={{
+          left: dimensions.left,
+          top: dimensions.top,
+          height: dimensions.height,
+        }}
+      >
+        <div
+          className={clsx(
+            "absolute top-0 left-0 h-0 row gap-6"
+          )}
+          style={{
+            width: dimensions.width,
+          }}
+        >
+          <AnimatePresence>
+            {dimensions.isDimensions && (
+              <>
+                <PicsHudHeader
+                  key="PicsHudHeader"
+                  dimensions={
+                    dimensions
+                  }
+                >
+                  {main.origin
+                    .value && (
+                    <>
+                      <PicsHudHeaderRight
+                        origin={
+                          main.origin
+                            .value
+                        }
+                        dimensions={
+                          dimensions
+                        }
+                      />
+                      <PicsHudFooter
+                        key="PicsHudFooter"
+                        origin={
+                          main.origin
+                            .value
+                        }
+                        dimensions={
+                          dimensions
+                        }
+                      />
+                      <PicsHudRight
+                        key="PicsHudRight"
+                        origin={
+                          main.origin
+                            .value
+                        }
+                        dimensions={
+                          dimensions
+                        }
+                      >
+                        {isVerticalScroll && (
+                          <PicsHeaderScrollTop />
+                        )}
+                      </PicsHudRight>
+                    </>
+                  )}
+                </PicsHudHeader>
+                <PicsHudCenter
+                  key="PicsHudCenter"
+                  {...dimensions}
+                />
+              </>
+            )}
+          </AnimatePresence>
+        </div>
+      </div>
+    </>
   );
 };

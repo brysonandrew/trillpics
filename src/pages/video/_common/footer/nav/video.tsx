@@ -15,7 +15,9 @@ export const FooterNavVideo: FC<Partial<TPillBProps>> =
     const handleClick = () => {
       togglePathValue(VIDEO_ROUTE);
     };
-    const title = "Video mode";
+    const title = "Add your pics";
+
+    const subtitle = "Click on the pics you want to make into a video.";
     const VideoFooterControlsHoverKey =
       "VideoFooterControlsHoverKey";
     const isVideoFooterControlsHover =
@@ -26,6 +28,7 @@ export const FooterNavVideo: FC<Partial<TPillBProps>> =
       <PillBHover
         key={title}
         title={title}
+        subtitle={subtitle}
         layoutId="VideoButton"
         onClick={
           isVideoFooterControlsHover

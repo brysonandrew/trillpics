@@ -18,7 +18,7 @@ export const PicsHudFooter: FC<
   const s = boxSize();
   return (
     <footer
-      className="absolute row h-0 z-0"
+      className="absolute row h-0 z-10"
       style={{
         top: height - s.m05+s.padding/2,
         left: s.padding/2,

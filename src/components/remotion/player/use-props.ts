@@ -2,7 +2,6 @@ import { LegacyRef } from "react";
 import { useRemotionProps } from "~/hooks/remotion/use-props";
 import { useTrillPicsStore } from "~/store/middleware";
 import { PlayerRef } from "@remotion/player";
-import { set } from "zod";
 // // // //
 export const useRemotionPlayerProps =
   () => {

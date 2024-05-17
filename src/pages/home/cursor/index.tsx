@@ -4,17 +4,19 @@ import { useClickZoom } from "~/context/hooks/click/zoom";
 import { useMove } from "~/context/hooks/move";
 import { IconsOpen } from "~/components/icons/open";
 import { TypographyBordered } from "~/components/typography/bordered";
+import { FILTERS_FAT_2_SVG_PROPS } from "~/shell/global/svg/filters/fat/2";
+import { TypographyBorderedMd } from "~/components/typography/bordered/md";
 
 export const HomeCursor: FC = () => {
   const isDisabled = useClickZoom();
   useMove();
   return (
     <PicCursor isDisabled={isDisabled}>
-      <div className="row gap-2 mix-blend-difference">
+      <div className="row gap-2">
         <IconsOpen />
-        <TypographyBordered classValue="text-2xl text-main">
+        <TypographyBorderedMd>
           Fullscreen
-        </TypographyBordered>
+        </TypographyBorderedMd>
       </div>
     </PicCursor>
   );

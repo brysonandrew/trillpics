@@ -14,30 +14,21 @@ import { boxRadius } from "~/constants/box/radius";
 import { PRESENCE_OPACITY } from "@brysonandrew/motion-config-constants";
 import clsx from "clsx";
 import { TypographyBorderedSm } from "~/components/typography/bordered/sm";
-
-const HOVER_KEY = "VideoFooterNav";
+import { PlaybackTimer } from "~/components/remotion/player/playback/timer";
+import { PlaybackProgressSeeker } from "~/components/remotion/player/playback/progress/seeker";
+import { useTrillPicsStore } from "~/store/middleware";
+import { PlaybackButtonsBackward } from "~/components/remotion/player/playback/buttons/backward";
+import { PlaybackButtonsForward } from "~/components/remotion/player/playback/buttons/forward";
 
 export const VideoFooterNav: FC =
   () => {
-    const { togglePathValue } =
-      useNavigationControls();
-    const handleClick = () => {
-      togglePathValue(VIDEO_ROUTE);
-    };
-    const { isHover, motionHandlers } =
-      useHoverKey();
-    const isReady = useReady();
-    const { minHeight, minWidth } =
-      boxSize();
-
-    const title = "Video mode";
-    const isHovering = isHover(title);
-    const VideoFooterControlsHoverKey =
-      "VideoFooterControlsHoverKey";
-    const isVideoFooterControlsHover =
-      isHover(
-        VideoFooterControlsHoverKey
+    const { isPlaying } =
+      useTrillPicsStore(
+        ({ isPlaying }) => ({
+          isPlaying,
+        })
       );
+    const isReady = useReady();
 
     return (
       <div className="absolute bottom-0 row justify-between gap-4 h-0 w-full text-main z-50">
@@ -56,29 +47,41 @@ export const VideoFooterNav: FC =
             borderRadius:
               boxRadius("xl"),
           }}
-          {...motionHandlers(HOVER_KEY)}
           {...PRESENCE_OPACITY}
         >
-          <FooterNavVideo />
-          <LinesHorizontal />
-          <TypographyBorderedSm>
-            edit
-          </TypographyBorderedSm>
-          <LinesHorizontal />
-          <ControlsShow
-            key="ControlsShow"
-            {...(true
-              ? {
-                  layoutId:
-                    "ControlsShow",
-                }
-              : {})}
-          />
-          <LinesHorizontal />
-          <TypographyBorderedSm>
-            play
-          </TypographyBorderedSm>
-          <LinesHorizontal />
+          {isPlaying ? (
+            <>
+              <PlaybackButtonsBackward />
+              <PlaybackProgressSeeker />
+              <PlaybackButtonsForward />
+            </>
+          ) : (
+            <>
+              <FooterNavVideo />
+              <LinesHorizontal />
+              <TypographyBorderedSm>
+                edit
+              </TypographyBorderedSm>
+              <LinesHorizontal />
+              <ControlsShow
+                key="ControlsShow"
+                {...(true
+                  ? {
+                      layoutId:
+                        "ControlsShow",
+                    }
+                  : {})}
+              />
+              <LinesHorizontal />
+              <TypographyBorderedSm>
+                play
+              </TypographyBorderedSm>
+              <LinesHorizontal />
+            </>
+          )}
+          <div className="row gap-2 absolute bottom-full right-0 -translate-y-1/4 bg-white-0 dark:bg-black-0 backdrop-blur-sm rounded-xl border-current border py-1 px-4 text-current pointer-events-nont">
+            <PlaybackTimer />
+          </div> 
           <ControlsPlayer
             key="ControlsPlayer"
             {...(isReady
@@ -87,7 +90,6 @@ export const VideoFooterNav: FC =
                     "ControlsPlayer",
                 }
               : {})}
-            title={title}
           />
         </motion.div>
       </div>

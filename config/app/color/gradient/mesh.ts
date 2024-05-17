@@ -20,7 +20,7 @@ export const GRADIENT_MESH_LIGHT =
       name: "repeating-conic-gradient",
       parts: [
         "rgba(0,0,0,0)",
-        resolveVarCss("black-01"),
+        resolveVarCss("gray"),
       ],
     }),
   });

@@ -7,7 +7,6 @@ export const useRemotionProps = () => {
   const {
     names,
     isVideoPics,
-    count,
     seconds,
   } = usePicVideo();
   const secs = seconds || 10;
@@ -38,17 +37,13 @@ export const useRemotionProps = () => {
       );
 
   const durationInFrames = secs * fps;
-  console.log(
-    durationInFrames,
-    videoPics,
-    fps
-  );
+
   return {
     fps,
     durationInFrames,
     props: {
       pics: videoPics as string[],
-      count,
+      count: videoPics.length,
       seconds: secs,
     },
     ...(dimensions.isDimensions

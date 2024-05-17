@@ -21,6 +21,7 @@ import { useNavigationControls } from "~/hooks/navigation/controls";
 import { isDefined } from "~/utils/validation/is/defined";
 import { useTrillPicsStore } from "~/store/middleware";
 import { useBodyStyle } from "~/context/use-body-style";
+import { PIC_SIZE } from "~/constants/remotion";
 
 export const VideoSchedulerReorder =
   () => {
@@ -110,7 +111,7 @@ export const VideoSchedulerReorder =
                 top: "0%",
                 left: size, //padding
                 width: "100vw",
-                y: "-50%",
+                y: PIC_SIZE/2 - screenHeight/2,
               }}
             >
               <Reorder.Group

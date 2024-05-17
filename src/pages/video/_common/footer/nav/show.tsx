@@ -7,7 +7,6 @@ import {
   VIDEO_SCHEDULER_ROUTE,
 } from "~/constants/params";
 import { IconsEdit } from "~/components/icons/edit";
-import { HoverText } from "~/pages/video/_common/footer/nav/hover-text";
 
 export const ControlsShow: FC<
   TVideoFooterProps
@@ -28,13 +27,12 @@ export const ControlsShow: FC<
     );
   };
 
-  const title = isActive
-    ? "Show All"
-    : `Show Selected`;
+  const title = "Sequencer"
 
   return (
     <Button
       title={title}
+      subtitle="Drag and drop your pics to put them in the order you wish to see them in your video."
       onClick={handleClick}
       Icon={IconsEdit}
       isSelected={isActive}

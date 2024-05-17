@@ -30,7 +30,8 @@ export const usePicZoom = (
     cell ??
     cellDecrypt(cellKeyParamValue);
   const currKey = cellEncrypt(currCell);
-
+  const isZoomDisabled =
+    !searchParams.has(CELL_PARAM_KEY);
   const isZoomed =
     paramValue ===
     ZOOM_PARAM_OPEN_VALUE;
@@ -46,16 +47,17 @@ export const usePicZoom = (
     isClosing;
 
   const zoom = () => {
+    if (isZoomDisabled) return;
     searchParams.set(
       ZOOM_PARAM_KEY,
       ZOOM_PARAM_OPEN_VALUE
     );
 
-   const r = paramsMoveToEnd(
+    const r = paramsMoveToEnd(
       searchParams,
       CELL_PARAM_KEY
     );
-    console.log(r)
+    console.log(r);
 
     navigate(
       `${pathname}?${searchParams}`

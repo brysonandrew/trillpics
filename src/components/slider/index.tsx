@@ -4,18 +4,21 @@ import { UiInputsSliderRow } from "~/components/slider/row";
 import { usePicVideo } from "~/hooks/pic/video";
 
 export const Slider: FC = () => {
-  const {} = usePicVideo;
+  const {
+    seconds,
+    setDurationInSeconds,
+  } = usePicVideo();
   const handleValueChange = ([value]: [
     number
   ]) => {
+    setDurationInSeconds(value);
     console.log(value);
   };
-  const value = 0;
 
   return (
     <UiInputsSliderRow
-      name={"name"}
-      value={[value]}
+      name={"seconds"}
+      value={[seconds]}
       onValueChange={handleValueChange}
       {...MIN_MAX_10_RANGE}
     />

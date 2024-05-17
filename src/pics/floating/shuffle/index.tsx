@@ -34,7 +34,7 @@ export const PicsFloatingShuffle: FC =
         <PillBHover
           key={title}
           title={title}
-          subtitle="Arrange the pics in random order."
+          subtitle="Re-arrange the pics randomly."
 
           onClick={randomizePics}
           Icon={IconsShuffle}

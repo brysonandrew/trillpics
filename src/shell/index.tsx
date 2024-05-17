@@ -40,7 +40,6 @@ export const Shell = withProviders(
 
     return (
       <>
-    <RemotionPlayer/>
 
         <Favicon />
         <AURA.GLOBAL.Filter />

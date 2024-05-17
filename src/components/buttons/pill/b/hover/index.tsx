@@ -12,6 +12,7 @@ import { TypographyBordered } from "~/components/typography/bordered";
 import { isString } from "~/utils/validation/is/string";
 import { LinesHorizontal } from "~/pages/video/_common/footer/nav/lines/horizontal";
 import clsx from "clsx";
+import { TypographyBorderedLg } from "~/components/typography/bordered/lg";
 
 type TProps = TPillBProps & {
   subtitle?: string;
@@ -37,25 +38,20 @@ export const PillBHover: FC<TProps> = ({
           <>
             {isString(children) ? (
               <div className="relative">
-                <motion.div className="absolute -inset-y-2 -inset-x-4 bg-white-01 dark:bg-black-06 backdrop-blur-sm rounded-lg"/>
-                <TypographyBordered
+                <motion.div className="absolute -inset-y-2 -inset-x-4 bg-white-01 dark:bg-black-06 backdrop-blur-sm rounded-lg" />
+                <TypographyBorderedLg
                   classValue={clsx(
-                    "text-6xl text-main font-sans",
                     !subtitle &&
                       "text-center"
                   )}
-                  shadow={{
-                    classValue:
-                      "text-main-inverted",
-                  }}
                 >
                   {children}
-                </TypographyBordered>
+                </TypographyBorderedLg>
                 {subtitle && (
                   <>
                     <LinesHorizontal />
-                    <div className="h-2"/>
-                    <p className="relative text-4xl font-mono">
+                    <div className="h-2" />
+                    <p className="relative text-4xl dark:text-gray-4 text-white-8 font-mono">
                       {subtitle}
                     </p>
                   </>

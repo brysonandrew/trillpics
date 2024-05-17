@@ -6,7 +6,10 @@ import {
   TSvgProps,
 } from "@brysonandrew/config-types";
 import { TCircleProps } from "~/components/layout/circle/circle";
-import { resolveAccessibilityTitles } from "@brysonandrew/utils-attributes";
+import {
+  resolveAccessibilityTitles,
+  resolveUrlId,
+} from "@brysonandrew/utils-attributes";
 import { TFlatProps } from "~/types/ui";
 import { FADE_PRESENCE_DELAY_02 } from "~/constants/animation";
 import { boxStyle } from "~/constants/box/style";
@@ -20,10 +23,15 @@ import { resolveCompositeKey } from "@brysonandrew/utils-key";
 import { isString } from "~/utils/validation/is/string";
 import { TBoxSizesKey } from "~/constants/box/size/constants";
 import {
+  GRADIENT_BLUE_PINK_YELLOW,
   GRADIENT_BORDER_COMMON,
+  GRADIENT_TEAL_YELLOW_PINK,
   GRADIENT_ZEBRA,
+  RADIAL_TEAL_YELLOW_PINK,
 } from "~app/color/gradient";
 import { PRESENCE_OPACITY } from "@brysonandrew/motion-config-constants";
+import { useDarkMode } from "@brysonandrew/dark-mode";
+import { LINEAR_GRADIENT_SVG_ID } from "~/shell/global/svg/gradients/blue-pink-yellow";
 
 export type TPillBProps =
   TButtonMotionProps &
@@ -65,7 +73,7 @@ export const PillB: FC<TPillBProps> = ({
   } = box;
   const sm = boxSize(size);
   const isReady = useReady();
-
+  const { isDarkMode } = useDarkMode();
   return (
     <Root
       key={resolveCompositeKey(
@@ -159,19 +167,47 @@ export const PillB: FC<TPillBProps> = ({
           }}
         >
           <div
-            className="center relative shrink-0 bg-black-04 border-2 border-transparent"
+            className="center relative shrink-0 border-2 border-transparent"
             style={{
               borderRadius,
               height: sm.minHeight,
               width: sm.minWidth,
-              ...GRADIENT_MESH_DARK,
-              backgroundSize: "2px 2px",
+              ...(isDarkMode
+                ? {
+                    ...GRADIENT_MESH_DARK,
+                    backgroundSize:
+                      "2px 2px",
+                  }
+                : {
+                    ...GRADIENT_MESH_LIGHT,
+                    backgroundSize:
+                      "2px 2px",
+                    backgroundColor:
+                      "rgba(0,0,0,0)",
+                  }),
+
               backgroundClip: isSelected
                 ? "border-box"
                 : "padding-box",
             }}
           >
-            <Icon />
+            <Icon
+              {...(isDarkMode
+                ? {
+                    fill: resolveUrlId(
+                      LINEAR_GRADIENT_SVG_ID
+                    ),
+                    stroke: "none",
+                  }
+                : {
+                    fill: "#ffffff",
+                    stroke:
+                      resolveUrlId(
+                        LINEAR_GRADIENT_SVG_ID
+                      ),
+                    strokeWidth: 1,
+                  })}
+            />
           </div>
         </motion.div>
         <>

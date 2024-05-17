@@ -31,7 +31,7 @@ export const PicsHudHeaderRight: FC<
       }}
     >
       <LinesHorizontal classValue="hidden lg:flex opacity-50" />
-      <HeaderSubtitle classValue="hidden lg:flex opacity-50" />
+      <HeaderSubtitle classValue="hidden lg:flex" />
       <LinesTopRight />
     </div>
   );

@@ -25,7 +25,7 @@ export const PicsHudLeft: FC<
   return (
     <motion.div
       key="main-left"
-      className="absolute column w-0 top-0 z-0"
+      className="absolute column w-0 top-0"
       style={{
         left: bSize.m05,
         gap: bSize.m05,
@@ -33,6 +33,7 @@ export const PicsHudLeft: FC<
         height:
           dimensions.height -
           origin.height - bSize.m05,
+          zIndex:-10
       }}
       {...PRESENCE_OPACITY}
     >

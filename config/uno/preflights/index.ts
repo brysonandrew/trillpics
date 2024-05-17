@@ -45,26 +45,26 @@ const resolveScrollBarCssConfig = (
       SCROLLBAR_WIDTH +
       SCROLLBAR_BORDER_WIDTH * 2
     }px;\n${boxBackgroundColorCss(
-      colors["black-6"]
+      colors["white-6"]
     )}${boxBackgroundCssStr({
       image: resolveGradient({
         name: "repeating-conic-gradient",
         parts: [
           "rgba(0,0,0,0)",
-          resolveVarCss("black"),
-          resolveVarCss("black-9"),
+          resolveVarCss("white-4"),
+          resolveVarCss("white-9"),
         ],
       }),
       size: "4px 4px",
     })}`,
     thumb: {
-      idle: `background-color:${colors["black-2"]};\n${thumbCss};\n`,
+      idle: `background-color:${colors["white"]};\n${thumbCss};\n`,
       hover: `box-shadow: ${
         resolveNeuShadow({
           size: 4,
           color: {
-            fill: colors["white"],
-            back: colors["white"],
+            fill: colors["black"],
+            back: colors["black"],
           },
           blur: 8,
         }).fill
@@ -73,8 +73,18 @@ const resolveScrollBarCssConfig = (
     },
     dark: {
       scrollbar: `${boxBackgroundColorCss(
-        colors["black-6"]
-      )}`,
+        colors["black"]
+      )}${boxBackgroundCssStr({
+        image: resolveGradient({
+          name: "repeating-conic-gradient",
+          parts: [
+            "rgba(0,0,0,0)",
+            resolveVarCss("black"),
+            resolveVarCss("black-9"),
+          ],
+        }),
+        size: "4px 4px",
+      })}`,
       thumb: {
         idle: `${thumbDarkCss};\nbackground-color:${colors["black"]};\n`,
         hover: `box-shadow: ${

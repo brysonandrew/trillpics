@@ -10,7 +10,7 @@ export const ScrollbarSeam: FC = () => {
         right: SCROLLBAR_WIDTH + SCROLLBAR_BORDER_WIDTH * 2,
       }}
       className={clsx(
-        "fixed bg-black-7 dark:bg-black-4 h-screen top-0 bottom-0 pointer-events-none"
+        "fixed bg-white-05 dark:bg-black-4 h-screen top-0 bottom-0 pointer-events-none"
       )}
     />
   );
