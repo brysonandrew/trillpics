@@ -23,27 +23,17 @@ export const RemotionPlayer = () => {
       TPicSeriesSchema,
       TPicSeriesProps
     >
-      // {/* durationInFrames={24}
-      // fps={24} */}
-      // {/* inputProps={{pics:['0'],seconds:1,count:1}} */}
+            spaceKeyToPlayOrPause
+      clickToPlay
+      doubleClickToFullscreen
+      renderPoster={renderPoster}
+      renderLoading={renderLoading}
+      showPosterWhenPaused
+      showPosterWhenUnplayed
+      showPosterWhenEnded 
       component={PicSeries}
       schema={PIC_SERIES_SCHEMA}
       {...props}
     />
   );
 };
-{/* // component={Empty}
-        // durationInFrames={120}
-        // compositionWidth={1920}
-        // compositionHeight={1080}
-        // fps={30}
-         compositionWidth={100}
-         compositionHeight={100}
-      // spaceKeyToPlayOrPause
-      // clickToPlay
-      // doubleClickToFullscreen
-      // renderPoster={renderPoster}
-      // renderLoading={renderLoading}
-      // showPosterWhenPaused
-      // showPosterWhenUnplayed
-      // showPosterWhenEnded */}

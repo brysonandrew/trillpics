@@ -160,6 +160,16 @@ export const usePicVideo = () => {
       `${pathname}?${searchParams}`
     );
   };
+  // const setDurationInSeconds = (value:number) => {
+  //   searchParams.set(SECONDS_PARAM_KEY,`${value}`)
+  //   paramsMoveToEnd(
+  //     searchParams,
+  //     CELL_PARAM_KEY
+  //   );
+  //   navigate(
+  //     `${pathname}?${searchParams}`
+  //   );
+  // }
 
   return {
     isVideoPics,
@@ -173,6 +183,7 @@ export const usePicVideo = () => {
     remove,
     clear,
     reorder,
+    // setDurationInSeconds,
     ...cellOverDetailsResult,
     ...picsResult,
   };
