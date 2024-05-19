@@ -1,5 +1,8 @@
 import { FC, ReactNode } from "react";
-import { motion } from "framer-motion";
+import {
+  AnimatePresence,
+  motion,
+} from "framer-motion";
 import clsx from "clsx";
 import {
   TButtonMotionProps,
@@ -15,23 +18,15 @@ import { FADE_PRESENCE_DELAY_02 } from "~/constants/animation";
 import { boxStyle } from "~/constants/box/style";
 import { boxSize } from "~/constants/box/size";
 import { useReady } from "~/hooks/use-ready";
-import {
-  GRADIENT_MESH_DARK,
-  GRADIENT_MESH_LIGHT,
-} from "~app/color/gradient/mesh";
+import { GRADIENT_MESH_DARK } from "~app/color/gradient/mesh";
 import { resolveCompositeKey } from "@brysonandrew/utils-key";
 import { isString } from "~/utils/validation/is/string";
 import { TBoxSizesKey } from "~/constants/box/size/constants";
-import {
-  GRADIENT_BLUE_PINK_YELLOW,
-  GRADIENT_BORDER_COMMON,
-  GRADIENT_TEAL_YELLOW_PINK,
-  GRADIENT_ZEBRA,
-  RADIAL_TEAL_YELLOW_PINK,
-} from "~app/color/gradient";
-import { PRESENCE_OPACITY } from "@brysonandrew/motion-config-constants";
 import { useDarkMode } from "@brysonandrew/dark-mode";
 import { LINEAR_GRADIENT_SVG_ID } from "~/shell/global/svg/gradients/blue-pink-yellow";
+import { GLITCH_FILTER_SVG_PROPS } from "~/shell/global/svg/filters/glitch";
+// declare type MotionStyle = MotionCSS & MotionTransform & MakeMotion<SVGPathProperties> & MakeCustomValueType<CustomStyles>;
+//augment validate.js
 
 export type TPillBProps =
   TButtonMotionProps &
@@ -66,8 +61,8 @@ export const PillB: FC<TPillBProps> = ({
     size,
   });
   const {
-    minHeight,
-    minWidth,
+    height,
+    width,
     boxShadow,
     borderRadius,
   } = box;
@@ -89,25 +84,22 @@ export const PillB: FC<TPillBProps> = ({
         "relative",
         "center shrink-0",
         "disabled:(grayscale-100 brightness-60 opacity-80 cursor-not-allowed)",
-        "text-white dark:text-white-1",
-        isFlat
-          ? ""
-          : "_gradient-radial",
         classValue
       )}
       {...(isReady
         ? { layout: true }
         : {})}
       layout={isReady}
-      style={{
-        ...(isFlat
-          ? { boxShadow }
-          : {}),
-        minHeight,
-        minWidth,
-        borderRadius,
-        ...style,
-      }}
+      style={
+        {
+          ...(isFlat
+            ? { boxShadow }
+            : {}),
+          height,
+          borderRadius,
+          ...style,
+        } as any
+      }
       {...props}
     >
       <>
@@ -115,9 +107,11 @@ export const PillB: FC<TPillBProps> = ({
           <motion.div
             className="fill -inset-2 _gradient-radial"
             layoutId="PillB_SELECTED"
-            style={{
-              borderRadius,
-            }}
+            style={
+              {
+                borderRadius,
+              } as any
+            }
             initial={{
               scale: 1,
               opacity: 1,
@@ -132,18 +126,7 @@ export const PillB: FC<TPillBProps> = ({
             }}
           />
         )}
-        {!disabled && !isFlat && (
-          <motion.div
-            layout
-            style={{
-              borderRadius,
-              filter: "blur(12px)",
-            }}
-            className={clsx(
-              "absolute -inset-2 _gradient-radial opacity-20"
-            )}
-          />
-        )}
+
         <motion.div
           key={resolveCompositeKey(
             "PillB.motion.div.Icon",
@@ -151,7 +134,7 @@ export const PillB: FC<TPillBProps> = ({
             `${isReady}`
           )}
           className={clsx(
-            "center relative bg-black-04",
+            "center relative bg-white dark:bg-black",
             isFlat
               ? ""
               : "_gradient-radial"
@@ -159,33 +142,28 @@ export const PillB: FC<TPillBProps> = ({
           {...(isReady
             ? { layout: true }
             : {})}
-          style={{
-            height: minHeight,
-            width: minWidth,
-            borderRadius,
-            marginLeft: 0,
-          }}
+          style={
+            {
+              height,
+              borderRadius,
+              marginLeft: 0,
+            } as any
+          }
         >
           <div
-            className="center relative shrink-0 border-2 border-transparent"
+            className="center relative shrink-0 border-1 border-transparent bg-gray dark:bg-black"
             style={{
               borderRadius,
-              height: sm.minHeight,
-              width: sm.minWidth,
+              height: sm.height,
+              width: sm.width,
               ...(isDarkMode
                 ? {
                     ...GRADIENT_MESH_DARK,
-                    backgroundSize:
-                      "2px 2px",
                   }
                 : {
-                    ...GRADIENT_MESH_LIGHT,
-                    backgroundSize:
-                      "2px 2px",
-                    backgroundColor:
-                      "rgba(0,0,0,0)",
+                    ...GRADIENT_MESH_DARK,
                   }),
-
+              backgroundSize: "2px 2px",
               backgroundClip: isSelected
                 ? "border-box"
                 : "padding-box",
@@ -197,15 +175,9 @@ export const PillB: FC<TPillBProps> = ({
                     fill: resolveUrlId(
                       LINEAR_GRADIENT_SVG_ID
                     ),
-                    stroke: "none",
                   }
                 : {
                     fill: "#ffffff",
-                    stroke:
-                      resolveUrlId(
-                        LINEAR_GRADIENT_SVG_ID
-                      ),
-                    strokeWidth: 1,
                   })}
             />
           </div>
@@ -215,23 +187,36 @@ export const PillB: FC<TPillBProps> = ({
             <>{outerCircle}</>
           )}
         </>
-        {isString(children) ? (
-          <motion.div
-            className="relative row gap-2 px-2 px-0 whitespace-nowrap"
-            style={{
-              height: sm.minHeight,
-            }}
-            {...(isReady
-              ? FADE_PRESENCE_DELAY_02
-              : {})}
-          >
-            <motion.div className="relative">
-              {children}
+        <AnimatePresence>
+          {isString(children) ? (
+            <motion.div
+              key={`${title}`}
+              className="relative row px-2 px-0 text-left text-sm"
+              style={{
+                height: sm.minHeight,
+                ...GLITCH_FILTER_SVG_PROPS,
+              }}
+              {...(isReady
+                ? FADE_PRESENCE_DELAY_02
+                : {})}
+            >
+              <div className="uppercase font-sans _outline-filter lg:(text-sm whitespace-nowrap)">
+                <div
+                  className="absolute -inset-y-4 -inset-x-1 _gradient-radial opacity-20 filter-blur-md"
+                  style={{
+                    borderRadius,
+                  }}
+                />
+                <span className="relative">
+                  {children}
+                </span>
+              </div>
+              <motion.div />
             </motion.div>
-          </motion.div>
-        ) : (
-          <>{children}</>
-        )}
+          ) : (
+            <>{children}</>
+          )}
+        </AnimatePresence>
       </>
     </Root>
   );

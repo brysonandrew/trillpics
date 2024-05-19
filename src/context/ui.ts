@@ -4,7 +4,7 @@ export type TUiValue =
 TElement | null;
 
 export type TUi = {
-  origin: TUiValue;
+  foundation: TUiValue;
   header: TUiValue;
   center: TUiValue;
   footer: TUiValue;
@@ -12,7 +12,7 @@ export type TUi = {
 export const useUi = () => {
   const ui = useMemo<TUi>(() => {
     return {
-      origin: null,
+      foundation: null,
       header: null,
       center: null,
       footer: null,

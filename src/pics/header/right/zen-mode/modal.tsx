@@ -13,10 +13,7 @@ export const HideControlsModal: FC<
 > = (props) => {
   const { milestones, set } =
     useTrillPicsStore(
-      ({
-        milestones,
-        set,
-      }) => ({
+      ({ milestones, set }) => ({
         milestones,
         set,
       })
@@ -41,9 +38,9 @@ export const HideControlsModal: FC<
       onClick={handleClick}
       {...props}
     >
-      Move your mouse or pointer off and
-      then on the page to bring the
-      controls back.
+      To show the controls again move
+      your mouse or pointer device off
+      and then back onto the page.
     </ModalOverlay>
   );
 };

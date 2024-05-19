@@ -7,7 +7,7 @@ export const IconsSvgGradient24: FC<
 > = (props) => {
   return (
     <IconsSvgGradient
-      size={16}
+      size={24}
       viewBox="0 0 24 24"
       {...props}
     />

@@ -1,6 +1,9 @@
+import { useRef } from "react";
 import { THoverKey } from "@brysonandrew/hooks-dom";
+import { resolveCompositeKey } from "@brysonandrew/utils-key";
 import { useTimebomb } from "~/hooks/use-time-bomb";
 import { useTrillPicsStore } from "~/store/middleware";
+import { useContextGrid } from "~/context";
 type TEventUnion = any;
 type TEventCallback = (
   event: TEventUnion
@@ -22,6 +25,7 @@ type TConfig = {
 export const useHoverKey = (
   config?: TConfig
 ) => {
+  const { main } = useContextGrid();
   const {
     hoverKeys,
     isHover,
@@ -44,26 +48,39 @@ export const useHoverKey = (
     })
   );
 
+  const coords = (event: any) =>
+    resolveCompositeKey(
+      (~~event.pageX / 10) * 10,
+      (~~event.pageY / 10) * 10
+    );
+
   const { isArmed, trigger } =
     useTimebomb(1000, cooldownEnd);
 
   const onStart: TEventHandler =
     (key: THoverKey) =>
     (event: TEventUnion) => {
-      console.log("start", event.type);
+      const nextCoords = coords(event);
 
-      // console.log(event);
+      console.log(
+        "start",
+        event.type,
+        nextCoords,
+        main.cursor.isHoverIdle
+      );
+      if (main.cursor.isHoverIdle) {
+        console.log("IDOL");
+        return;
+      }
       if (config?.handlers?.start) {
         config.handlers.start?.(key);
       }
+
       hover(key);
     };
   const onStop: TEventHandler =
     (key: THoverKey) =>
     (event: TEventUnion) => {
-      console.log("stop", event.type);
-      // console.log(event);
-
       if (config?.handlers?.stop) {
         config.handlers.stop?.(key);
       }
@@ -76,8 +93,6 @@ export const useHoverKey = (
       onPointerOut: onStop(key),
       onPointerLeave: onStop(key),
       onMouseLeave: onStop(key),
-      // onMouseDown: onStop(key),
-      // onPointerDown: onStop(key),
     } as const);
   const motionHandlers = (
     key: THoverKey
@@ -87,8 +102,6 @@ export const useHoverKey = (
       onHoverEnd: onStop(key),
       onPointerLeave: onStop(key),
       onMouseLeave: onStop(key),
-      // onPointerDown: onStop(key),
-      onTap: onStop(key),
     } as const);
 
   const clear = hover;

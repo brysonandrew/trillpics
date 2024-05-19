@@ -1,20 +1,20 @@
 import type { FC } from "react";
 import { motion } from "framer-motion";
-import { IconsCross24 } from "~/components/icons/cross/24";
 import { TRANSITION } from "@brysonandrew/motion-config-constants";
+import { IconsPlus } from "~/components/icons/plus";
 
 type TProps = { isAdded: boolean };
 export const AddRemoveIcon: FC<
   TProps
 > = ({ isAdded }) => {
-  const rotate = isAdded ? 0 : 45;
+  const rotate = isAdded ? -45 : 0;
   return (
     <motion.h4
       className="relative origin-center"
       initial={{
         opacity: 0,
         scale: 0,
-        rotate: 45,
+        rotate,
       }}
       animate={{
         opacity: 1,
@@ -32,19 +32,11 @@ export const AddRemoveIcon: FC<
       }}
       layout
     >
-      <IconsCross24
-        classValue="fill"
+      <IconsPlus
         strokeWidth={0.4}
         style={{
           transform: "scale(1.2)",
         }}
-      />
-      <IconsCross24
-        classValue="relative"
-        fill="black"
-        stroke="white"
-        className="opacity-50"
-        strokeWidth={0.4}
       />
     </motion.h4>
   );

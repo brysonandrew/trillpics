@@ -13,6 +13,7 @@ import { TCursor } from "~/context/cursor";
 import { TPicsRows } from "~/store/state/table/types";
 import { TFontsResult } from "~/context/fonts";
 import { TUseUiResult } from "~/context/ui";
+import { TCell } from "~/pics/grid/pic";
 
 export type TVirtualizeListProps =
   TPicsRows;
@@ -28,33 +29,38 @@ export type TGrid =
 
 export type TGridHandle = {
   scrollTop: () => void;
+  scrollToRandom: () => TCell | void;
   isScrolling: () => boolean;
   isHovering: () => boolean;
 };
-export type TOriginValue =
+export type TFoundationValue =
   DOMRect | null;
 
-export type TOrigin = {
-  value: TOriginValue;
-  update: Dispatch<
-    SetStateAction<TOriginValue>
-  >;
-};
+export type TElementValue =
+  HTMLElement | null;
 
-type TMain = {
+export type TMain = {
   blur: TBlur;
   cursor: TCursor;
   ui: TUseUiResult;
-  origin: TOrigin;
 };
 export type TVirtualizeContext = {
-  headerValue: HTMLElement|null;
-  updateHeader: Dispatch<
-    SetStateAction<HTMLElement|null>
+  isIdle: boolean;
+  foundationValue: TFoundationValue;
+  updateFoundation: Dispatch<
+    SetStateAction<TFoundationValue>
   >;
-  footerValue: HTMLElement|null;
+  centerValue: TElementValue;
+  updateCenter: Dispatch<
+    SetStateAction<TElementValue>
+  >;
+  headerValue: TElementValue;
+  updateHeader: Dispatch<
+    SetStateAction<TElementValue>
+  >;
+  footerValue: TElementValue;
   updateFooter: Dispatch<
-    SetStateAction<HTMLElement|null>
+    SetStateAction<TElementValue>
   >;
   isOnscreen: boolean;
   ref: TRefMutable<TGridHandle>;
@@ -64,4 +70,5 @@ export type TVirtualizeContext = {
   onScroll(
     props: ListOnScrollProps
   ): void;
+  resetLayout(): void;
 };

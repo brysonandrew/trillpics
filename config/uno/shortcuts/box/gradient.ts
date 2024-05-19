@@ -2,6 +2,7 @@ import { StaticShortcutMap } from "unocss";
 
 export const SHORTCUTS_BOX_GRADIENT: StaticShortcutMap =
   {
+    "_outline-filter":"dark:_dark-outline-filter _light-outline-filter",
     "_gradient-border":
       "dark:_dark-gradient-border _light-gradient-border",
     "_gradient-text":

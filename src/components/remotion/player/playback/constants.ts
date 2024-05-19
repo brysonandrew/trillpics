@@ -58,10 +58,3 @@ export const COLLAPSE_THRESHOLD_PX = 50; // how much to drag on resizable sideba
 export const PRESIGNED_UPLOAD_URL_VALIDITY_IN_SECONDS = 60 * 2; // 2 Minutes
 export const PRESIGNED_GET_URL_VALIDITY_IN_SECONDS = 60 * 120; // 120 Minutes
 export const MAX_UPLOAD_FILE_SIZE_IN_MB = 500;
-
-export const TIMELINE_CATEGORIES = {
-  visualMedia: ['image', 'video', 'background'],
-  audioMedia: ['audio'],
-  text: ['text', 'subtitles'],
-  decorations: ['progressBar', 'waveform'],
-} as const;

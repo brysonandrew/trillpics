@@ -3,6 +3,7 @@ import {
   boxBackgroundCss,
   boxBorderCss,
 } from "@brysonandrew/utils-box";
+
 import {
   GRADIENT_MESH_DARK,
   GRADIENT_MESH_COMMON,
@@ -16,8 +17,19 @@ import {
   RADIAL_BLUE_PINK_YELLOW,
   RADIAL_TEAL_YELLOW_PINK,
 } from "../../app/color/gradient";
+import { OUTLINE_FILTER_SVG_PROPS,OUTLINE_FILTER_SVG_DARK_PROPS } from "./filters/outline";
 
 export const GRADIENTS: Rule[] = [
+  [
+    "_dark-outline-filter",
+    {
+      ...OUTLINE_FILTER_SVG_DARK_PROPS,
+    },
+  ],
+  [
+    "_light-outline-filter",
+    { ...OUTLINE_FILTER_SVG_PROPS },
+  ],
   [
     "_dark-gradient-mesh",
     {

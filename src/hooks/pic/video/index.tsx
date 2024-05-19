@@ -8,6 +8,7 @@ import {
   COLUMNS_COUNT_PARAM_KEY,
   SECONDS_PARAM_KEY,
   VIDEO_PARAM_KEY,
+  ZOOM_PARAM_CLOSING_VALUE,
 } from "~/hooks/pic/constants";
 import { useVideoPicsResult } from "~/hooks/pic/video/pics";
 import {
@@ -16,10 +17,13 @@ import {
 } from "~/store/state/pics/types";
 import { isValue } from "~/utils/validation/is/value";
 import { useTrillPicsStore } from "~/store/middleware";
-import { resolveCellOverDetails } from "~/hooks/pic/cell/over/details";
 import { paramsMoveToEnd } from "~/utils/params/move-to-end";
 import { resolveSetArray } from "~/utils/params/set-array";
 import { isNull } from "~/utils/validation/is/null";
+import { detailsFromSearchParams } from "~/hooks/pic/cell/over/details/from-search-params";
+import { TCell } from "~/pics/grid/pic";
+import { isDefined } from "~/utils/validation/is/defined";
+import { detailsFromCell } from "~/hooks/pic/cell/over/details/from-cell";
 
 export const usePicVideo = () => {
   const { pics } = useTrillPicsStore(
@@ -46,7 +50,7 @@ export const usePicVideo = () => {
     searchParams.get(SECONDS_PARAM_KEY)
   );
   const cellOverDetailsResult =
-    resolveCellOverDetails({
+    detailsFromSearchParams({
       searchParams,
       pics,
       columnsCount,
@@ -67,17 +71,20 @@ export const usePicVideo = () => {
   );
 
   const addedCheck = (
-    currName: TPic | null
+    nextName: TPic | null
   ) => {
     return (
-      !isNull(currName) &&
+      !isNull(nextName) &&
+      isValue(nextName) &&
       isVideoPics &&
-      isCurrName &&
       paramValues.includes(
-        `${currName}`
+        `${nextName}`
       )
     );
   };
+
+  const isCurrAdded =
+    addedCheck(currName);
 
   const maybeCheck = (name: TPic) => {
     return (
@@ -85,14 +92,30 @@ export const usePicVideo = () => {
     );
   };
 
-  const isCurrAdded =
-    addedCheck(currName);
-
-  const add = () => {
-    if (isCurrName) {
+  const add = (cell?: TCell) => {
+    let nextName = currName;
+    if (isDefined(cell)) {
+      const d = detailsFromCell({
+        cell,
+        columnsCount,
+        pics,
+      });
+      nextName = d.currName;
+    }
+    if (isValue(nextName)) {
+      if (searchParams.size === 5) {
+        const r = resolveSetArray(
+          searchParams,
+          VIDEO_PARAM_KEY,
+          [
+            ...paramValues.slice(1),
+            nextName,
+          ]
+        );
+      }
       searchParams.append(
         VIDEO_PARAM_KEY,
-        `${currName}`
+        `${nextName}`
       );
       const r = paramsMoveToEnd(
         searchParams,
@@ -104,14 +127,48 @@ export const usePicVideo = () => {
     }
   };
 
+  const removingCheck = (
+    name: string
+  ) =>
+    paramValues.some(
+      (v) =>
+        v ===
+        `${name}${ZOOM_PARAM_CLOSING_VALUE}`
+    );
+
+  const clearRemoving = () => {
+    const nextValues =
+      paramValues.filter(
+        (v) =>
+          !v.endsWith(
+            ZOOM_PARAM_CLOSING_VALUE
+          )
+      );
+    const r = resolveSetArray(
+      searchParams,
+      VIDEO_PARAM_KEY,
+      nextValues
+    );
+
+    const r1 = paramsMoveToEnd(
+      searchParams,
+      CELL_PARAM_KEY
+    );
+    navigate(
+      `${pathname}?${searchParams}`
+    );
+  };
+
   const remove = () => {
     if (
       Array.isArray(paramValues) &&
       isCurrName
     ) {
       const nextValues =
-        paramValues.filter(
-          (v) => v !== currName
+        paramValues.map((v) =>
+          v === currName
+            ? `${v}${ZOOM_PARAM_CLOSING_VALUE}`
+            : v
         );
 
       const r = resolveSetArray(
@@ -129,7 +186,7 @@ export const usePicVideo = () => {
       );
     }
   };
-  
+
   const toggle = () => {
     if (isCurrAdded) {
       return remove();
@@ -160,8 +217,13 @@ export const usePicVideo = () => {
       `${pathname}?${searchParams}`
     );
   };
-  const setDurationInSeconds = (value:number) => {
-    searchParams.set(SECONDS_PARAM_KEY,`${value}`)
+  const setDurationInSeconds = (
+    value: number
+  ) => {
+    searchParams.set(
+      SECONDS_PARAM_KEY,
+      `${value}`
+    );
     paramsMoveToEnd(
       searchParams,
       CELL_PARAM_KEY
@@ -169,13 +231,14 @@ export const usePicVideo = () => {
     navigate(
       `${pathname}?${searchParams}`
     );
-  }
+  };
 
   return {
     isVideoPics,
     isCurrAdded,
     isCurrName,
     seconds,
+    clearRemoving,
     maybeCheck,
     addedCheck,
     toggle,
@@ -184,6 +247,7 @@ export const usePicVideo = () => {
     clear,
     reorder,
     setDurationInSeconds,
+    removingCheck,
     ...cellOverDetailsResult,
     ...picsResult,
   };

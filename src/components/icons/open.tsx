@@ -1,6 +1,7 @@
 import type { FC } from "react";
 import { TSvgProps } from "@brysonandrew/config-types";
-import { IconsSvgGradient24 } from "~/components/icons/svg/gradient/24";
+import { IconsSvgGradient16vb24 } from "~/components/icons/svg/gradient/16vb24";
+
 import { IconsSvgGradient28 } from "~/components/icons/svg/gradient/28";
 
 export const IconsOpen: FC<TSvgProps> = (

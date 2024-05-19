@@ -36,11 +36,11 @@ export const PicBackdrop: FC<
     >
       {children ?? (
         <div
-          className="fill-screen"
-          style={{
-            ...GRADIENT_MESH_DARK,
-            backgroundSize: "4px 4px",
-          }}
+          className="fill-screen _gradient-mesh"
+          // style={{
+          //   ...GRADIENT_MESH_DARK,
+          //   backgroundSize: "4px 4px",
+          // }}
         />
       )}
     </motion.div>

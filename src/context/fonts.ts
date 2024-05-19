@@ -7,21 +7,29 @@ import WebFont from "webfontloader";
 import { produce } from "immer";
 
 export const FAMILIES = [
-  "Saiba 45",
-  "led_display-7",
-  "joystix",
-  "FFF Forward",
-  "Saiba 45 Outline",
+  "Dragon",
+  "Conthrax",
+  // "Saiba 45",
+  // "led_display-7",
+  // "joystix",
+  // "FFF Forward",
+  // "Saiba 45 Outline",
+
 ] as const;
 
 type TFamilies = typeof FAMILIES;
 type TFamily = TFamilies[number];
 const URLS = [
-  "/fonts/saiba-45/SAIBA-45.ttf",
-  "/fonts/led-display7/led_display-7.ttf",
-  "/fonts/joystix.monospace-regular.otf",
-  "/fonts/fff-forward/FFFFORWA.ttf",
-  "/fonts/saiba-45/SAIBA-45-Outline.ttf",
+  // "/fonts/saiba-45/SAIBA-45.ttf",
+  // "/fonts/led-display7/led_display-7.ttf",
+  // "/fonts/joystix.monospace-regular.otf",
+  // "/fonts/fff-forward/FFFFORWA.ttf",
+  // "/fonts/saiba-45/SAIBA-45-Outline.ttf",
+  "/fonts/armstrong3/regular.otf",
+  "/fonts/conthrax/regular.otf",
+  "/fonts/dragon/regular.otf",
+  "/fonts/neuropolitical/regular.otf",
+  "/fonts/toxigenesis/regular.otf"
 ] as const;
 
 const LOADER_RECORD = {

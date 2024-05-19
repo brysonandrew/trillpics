@@ -36,7 +36,7 @@ export const TitleShadow: FC<{
 
         mixBlendMode: "lighten",
       }}
-      className="fill font-display _gradient-text text-left w-30 text-4xl sm:(text-4.5xl w-32) md:(text-4.5xl w-auto)"
+      className="fill font-title _gradient-text text-left w-30 text-4xl sm:(text-4.5xl w-32) md:(text-4.5xl w-auto)"
     >
       {APP_TITLE}
     </motion.div>

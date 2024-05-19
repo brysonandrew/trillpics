@@ -26,11 +26,9 @@ export const HeaderLeft: FC = memo(
       pathname === HOME_ROUTE;
 
     const title = "Go back";
-    const { motionHandlers, isHover } =
+    const { motionHandlers } =
       useHoverKey();
-    const isHovering =
-      isDefined<typeof title>(title) &&
-      isHover(title);
+
     return (
       <div className="relative -top-1 left-2 shrink-0 grow-0">
         {isHome ? (

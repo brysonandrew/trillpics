@@ -6,22 +6,25 @@ import { TClassValueProps } from "@brysonandrew/config-types";
 import clsx from "clsx";
 import { TypographyBordered } from "~/components/typography/bordered";
 import { FILTERS_FAT_2_SVG_PROPS } from "~/shell/global/svg/filters/fat/2";
+import { FILTERS_FAT_4_SVG_PROPS } from "~/shell/global/svg/filters/fat/4";
 
 export const TypographyBorderedLg: FC<
   PropsWithChildren<TClassValueProps>
 > = ({ children, classValue }) => {
   return (
+
     <TypographyBordered
       classValue={clsx(
-        "text-6xl dark:text-black-9 text-white-5 font-sans char-gap-6",
+        "text-8xl dark:text-black text-white-8 char-gap-6 font-title",
         classValue
       )}
-      style={FILTERS_FAT_2_SVG_PROPS}
+      style={FILTERS_FAT_4_SVG_PROPS}
       shadow={{
-        classValue: "dark:text-black-5 text-white-9",
+        classValue: "dark:text-white-7 text-black-4",
       }}
     >
       {children}
     </TypographyBordered>
+
   );
 };

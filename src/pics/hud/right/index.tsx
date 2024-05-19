@@ -2,18 +2,18 @@ import {
   FC,
   PropsWithChildren,
 } from "react";
-import { motion } from "framer-motion";
-import { TDimensions } from "@brysonandrew/config-types";
-import { LinesVertical } from "~/pages/video/_common/footer/nav/lines/vertical";
-import { TMeasureContainerResult } from "~/shell/init/container";
-import { PRESENCE_OPACITY } from "@brysonandrew/motion-config-constants";
-import { boxSize } from "~/constants/box/size";
 import {
-  Network,
-  Offline,
-} from "@brysonandrew/network";
+  LayoutGroup,
+  motion,
+} from "framer-motion";
+import { TDimensions } from "@brysonandrew/config-types";
+import { LinesVertical } from "~/pages/video/_common/footer/left/lines/vertical";
+import {
+  PADDING_Y,
+  TMeasureContainerResult,
+} from "~/shell/init/container";
+import { boxSize } from "~/constants/box/size";
 import { HideControls } from "~/pics/header/right/zen-mode";
-import { PicsHeaderScrollTop } from "~/pics/header/scroll-top";
 import { DarkMode } from "~/pics/header/right/dark-mode";
 
 export type THudContainer = Extract<
@@ -21,41 +21,61 @@ export type THudContainer = Extract<
   { isDimensions: true }
 >;
 type TProps = {
-  origin: DOMRect;
+  foundation: DOMRect;
   dimensions: TDimensions;
+  isIdle: boolean;
 };
 export const PicsHudRight: FC<
   PropsWithChildren<TProps>
 > = ({
   children,
-  origin,
+  foundation,
   dimensions,
+  isIdle,
 }) => {
-  const bSize = boxSize();
+  const s = boxSize();
+
+  const ptop =
+    dimensions.height / 8 + s.m025 / 2;
+  const pheight =
+    dimensions.height / 4 + s.m025;
+
+  const top =
+    ptop +
+    pheight -
+    PADDING_Y -
+    foundation.height +
+    s.m05;
+
   return (
-    <motion.div
-      key="main-right"
-      className="absolute w-0"
-      style={{
-        height:
-          dimensions.height -
-          origin.height,
-        top: origin.height + bSize.m,
-        right: 0,
-        gap: bSize.m05,
-      }}
-      {...PRESENCE_OPACITY}
-    >
-      <div
-        className="absolute column-end gap-2 w-0 right-0"
-        style={{ right: bSize.m05 }}
+    <LayoutGroup>
+      <motion.div
+        className="absolute flex flex-col items-star justify-evenly w-0 bg-red"
+        style={{
+          right: s.m,
+          top,
+          gap: s.m05,
+          height:
+            dimensions.height - top,
+        }}
       >
-        <DarkMode />
-        <LinesVertical classValue="opacity-50" />
-        <HideControls />
-        {children}
-        <Network OfflineFC={Offline} />
-      </div>
-    </motion.div>
+        <div
+          className="flex flex-col items-end justify-evenly shrink-0 w-0"
+          style={{
+            gap: s.m05,
+            height: s.m4,
+            right:0
+          }}
+        >
+          <DarkMode isLabel={isIdle} />
+          <LinesVertical />
+          <HideControls
+            isLabel={isIdle}
+          />
+          {children}
+        </div>
+        <LinesVertical />
+      </motion.div>
+    </LayoutGroup>
   );
 };

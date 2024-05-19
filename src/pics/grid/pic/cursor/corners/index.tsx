@@ -31,24 +31,12 @@ export const CursorCorners: FC = () => {
         size={SIZE}
         corner={{
           size: CORNER_SIZE,
-          thickness: 0.6,
+          thickness: 0.4,
         }}
-        stroke="#ffffff"
+        className="stroke-white dark:stroke-black"
+        stroke="currentColor"
         inset={2}
-        // strokeLinecap="round"
-        // strokeLinejoin="round"
       />
-      {/* <CursorCornersSet
-        size={SIZE}
-        corner={{
-          size: CORNER_SIZE,
-          thickness: 1,
-        }}
-        stroke="#000000"
-        inset={2}
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      /> */}
     </svg>
   );
 };

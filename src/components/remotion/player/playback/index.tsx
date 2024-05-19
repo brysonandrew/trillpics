@@ -17,10 +17,9 @@ export const PlayerPlayback: FC =
     });
 
     return (
-      <div className="relative inline-flex flex-col gap-2 text-white h-0 w-full">
         <div
           className={clsx(
-            "absolute flex items-center gap-6 py-1 pl-1 pr-4 z-10"
+            "relative flex items-center gap-6 z-10"
           )}
         >
           <LightingGlow
@@ -34,6 +33,5 @@ export const PlayerPlayback: FC =
           <PlaybackButtons />
           <PlaybackTimer />
         </div>
-      </div>
     );
   };

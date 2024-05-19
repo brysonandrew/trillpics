@@ -6,12 +6,14 @@ import {
 import { useEventListener } from "@brysonandrew/hooks-events";
 import { useTimeoutRef } from "@brysonandrew/hooks-window";
 import {
+  TDimensions,
   TDimensionsInit,
   TDimensionsReady,
 } from "@brysonandrew/config-types";
 import { useContextGrid } from "~/context";
 import { isValue } from "~/utils/validation/is/value";
 import { measureContainer } from "~/shell/init/container";
+import { useBlurXAnimate } from "~/hooks/blur/animate";
 
 export const RESIZE_COOLDOWN = 400;
 
@@ -71,12 +73,15 @@ export const useScreenMeasure = (
       const dimensions = {
         width,
         height,
-      }
+      };
       const ready = {
         ...(next = INIT_SCREEN),
-        container:
-          measureContainer(dimensions),
-     ...dimensions,
+        container: {
+          ...measureContainer(
+            dimensions
+          ),
+        },
+        ...dimensions,
         halfWidth: width * 0.5,
         halfHeight: height * 0.5,
         isVertical:
@@ -93,26 +98,15 @@ export const useScreenMeasure = (
 
     setScreen(next ?? INIT_SCREEN);
   };
+  const handler = useBlurXAnimate();
 
   const handleResize = () => {
     handleSize({
       ...INIT_SCREEN,
       isResizing: true,
     });
-    if (isValue(main.blur.control.x)) {
-      main.blur.control.x.cancel();
-    }
-    main.blur.control.x = animate(
-      main.blur.value.x,
-      100,
-      {
-        duration:
-          (RESIZE_COOLDOWN / 1000) * 2,
-        type: "tween",
-        onComplete: () =>
-          main.blur.value.x.set(0),
-      }
-    );
+  
+    handler()
     endTimeout();
     timeoutRef.current = setTimeout(
       () => {

@@ -1,26 +1,13 @@
 import type { FC } from "react";
-import { animate } from "framer-motion";
 import { ModalOverlay } from "~/components/layout/modal/overlay";
 import { Link } from "react-router-dom";
-import { useContextGrid } from "~/context";
+import { useBlurXAnimate } from "~/hooks/blur/animate";
 
 export const NotFound: FC = () => {
-  const { main } =
-    useContextGrid();
+  const handler = useBlurXAnimate();
+
   const blur = () => {
-    const prev =
-      main.blur.value.x.get();
-    main.blur.control.x = animate(
-      main.blur.value.x,
-      100,
-      {
-        type: "tween",
-        onComplete: () =>
-          main.blur.value.x.set(
-            prev
-          ),
-      }
-    );
+    handler();
   };
   return (
     <Link to="/" onClick={blur}>

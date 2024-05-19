@@ -1,32 +1,40 @@
-import type { FC } from "react";
+import { FC, useState } from "react";
 import { motion } from "framer-motion";
-import { TypographyBordered } from "~/components/typography/bordered";
-import { useContextGrid } from "~/context";
 import { TClassValueProps } from "@brysonandrew/config-types";
 import clsx from "clsx";
-import { FILTERS_FAT_2_SVG_PROPS } from "~/shell/global/svg/filters/fat/2";
-import { TypographyBorderedMd } from "~/components/typography/bordered/md";
+import { boxRadius } from "~/constants/box/radius";
+import { isNull } from "~/utils/validation/is/null";
 
 type TProps = TClassValueProps;
 export const HeaderSubtitle: FC<
   TProps
 > = ({ classValue }) => {
-  const { fonts } = useContextGrid();
+  const [title, setTitle] = useState<
+    string | null
+  >(document.title);
 
+  if (isNull(title)) return null;
   return (
     <motion.div
       key="header-right"
       className={clsx(
-        "relative gap-4",
+        "relative",
         classValue
       )}
     >
-      {fonts["led_display-7"]
-        .active && (
-        <TypographyBorderedMd>
-          AI Art Gallery
-        </TypographyBorderedMd>
-      )}
+      <div
+        className="absolute -inset-x-2 inset-0 opacity-100"
+        style={{
+          borderRadius: boxRadius(),
+        }}
+      />
+
+      <div className="relative text-main-inverted  _outline-filter font-sans text-sm uppercase whitespace-nowrap">
+        {title.replace(
+          "Trill Pics | ",
+          ""
+        )}
+      </div>
     </motion.div>
   );
 };

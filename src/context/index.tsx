@@ -15,13 +15,13 @@ import { useCursor } from "~/context/cursor";
 import {
   TVirtualizeContext,
   TGridHandle,
-  TOriginValue,
+  TFoundationValue,
+  TElementValue,
 } from "~/context/types";
 import { useScrollUpdateHandler } from "~/context/scroll/update";
 import { useFonts } from "~/context/fonts";
-import {
-  useUi,
-} from "~/context/ui";
+import { useUi } from "~/context/ui";
+import { useMove } from "~/context/hooks/move";
 
 const VirtualizeContext = createContext(
   {} as TVirtualizeContext
@@ -35,12 +35,14 @@ export type TVirtualizeContextProviderProps =
 export const VirtualizeContextProvider: FC<
   TVirtualizeContextProviderProps
 > = ({ children }) => {
-  const [originValue, updateOrigin] =
-    useState<TOriginValue>(null);
+  const [foundationValue, updateFoundation] =
+    useState<TFoundationValue>(null);
   const [footerValue, updateFooter] =
-    useState<HTMLElement | null>(null);
-    const [headerValue, updateHeader] =
-    useState<HTMLElement | null>(null);
+    useState<TElementValue>(null);
+  const [centerValue, updateCenter] =
+    useState<TElementValue>(null);
+  const [headerValue, updateHeader] =
+    useState<TElementValue>(null);
   const isOnscreen = useOnscreen();
   const ref: TRefMutable<TGridHandle> =
     useRef<TGridHandle | null>(null);
@@ -49,41 +51,47 @@ export const VirtualizeContextProvider: FC<
   const cursor = useCursor();
   const ui = useUi();
   const scrollY = useMotionValue(0);
+
   const main = useMemo(() => {
     return {
       cursor,
       blur,
       ui,
-      origin: {
-        value: originValue,
-        update: updateOrigin,
-      },
     };
   }, []);
-  if (
-    main.origin.value === null &&
-    originValue !== null
-  ) {
-    main.origin.value = originValue;
-  }
+
+  const resetLayout = () => {
+    updateFoundation(null);
+    updateHeader(null);
+    updateFooter(null);
+  };
+
   const { handler: handleScroll } =
     useScrollUpdateHandler({
       scrollY,
       ref,
     });
+  const isIdle = useMove({main,isOnscreen,scrollY});
+
   return (
     <VirtualizeContext.Provider
       value={{
-        headerValue,
-        updateHeader,
+        isIdle,
         scrollY,
         isOnscreen,
         ref,
         main,
         fonts,
         onScroll: handleScroll,
+        headerValue,
+        updateHeader,
+        centerValue,
+        updateCenter,
+        foundationValue,
+        updateFoundation,
         footerValue,
         updateFooter,
+        resetLayout,
       }}
     >
       {children}

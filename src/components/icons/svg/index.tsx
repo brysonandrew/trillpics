@@ -19,6 +19,7 @@ export type TIconsSvgProps = Omit<
     size?: number;
     fill?: string;
     d?: string;
+    children?: any
   };
 export const IconsSvg: FC<
   TIconsSvgProps
@@ -30,6 +31,7 @@ export const IconsSvg: FC<
   size,
   fill,
   d,
+  children,
   ...props
 }) => {
   return (
@@ -49,6 +51,8 @@ export const IconsSvg: FC<
         fill={fill}
         {...pathProps}
       />
+
+      {children}
     </svg>
   );
 };

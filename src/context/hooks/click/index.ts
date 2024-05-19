@@ -4,18 +4,21 @@ import { useContextGrid } from "~/context";
 export const useClickGrid = (
   trigger: () => void
 ) => {
-  const { ref } = useContextGrid();
+  const { ref, main } =
+    useContextGrid();
 
   const handleClick = () => {
+    main.cursor.isHoverIdle = true;
     const isHovering =
       ref.current?.isHovering();
-    if (isHovering) {
-      console.log("CLICKED")
+    if (
+      isHovering &&
+      !main.cursor.isDragging
+    ) {
       trigger();
-    } else {
-      console.log("CLICKED FAIL")
-
     }
+    main.cursor.isDragging = false;
+
   };
   useEventListener(
     "click",

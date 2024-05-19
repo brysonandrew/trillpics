@@ -17,7 +17,7 @@ export const boxSize = (
           minWidth: boxSize[key],
           minHeight: boxSize[key],
           padding: BOX_SIZE.padding,
-        }
+        } as const
       : boxSize),
   };
 };

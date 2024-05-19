@@ -16,48 +16,35 @@ type TFontShareConfig = {
   provider: "none";
   name: string;
 };
-export const FONTS =
-  [
-
-    {
-      key: "display",
-      name: withDefault("Saiba 45"),
-      provider: "none",
-    },
-    // {
-    //   key: "mono",
-    //   name: withDefault(
-    //     "DroidSansMono"
-    //   ),
-    //   provider: "none",
-    // },
-    // {
-    //   key: "mono-pix",
-    //   name: withDefault("joystix"),
-    //   provider: "none",
-    // },
-    {
-      key: "sans",
-      name: withDefault("GType rGX9"),
-      provider: "none",
-    },
-    {
-      key: "mono",
-      name: withDefault(
-        "led_display-7"
-      ),
-      provider: "none",
-    },
-    // {
-    //   key: "display-outline",
-    //   name: withDefault(
-    //     "Saiba 45 Outline"
-    //   ),
-    //   provider: "none",
-    // },
-    // {
-    //   key: "mono-narrow",
-    //   name: withDefault("NK57", "mono"),
-    //   provider: "none",
-    // },
-  ] as const //satisfies readonly TFontShareConfig[];
+export const FONTS = [
+  // {
+  //   key: "title",
+  //   name: withDefault("Saiba45"),
+  //   provider: "none",
+  // },
+  {
+    key: "title",
+    name: withDefault("Dragon"),
+    provider: "none",
+  },
+  {
+    key: "display",
+    name: withDefault("Conthrax"),
+    provider: "none",
+  },
+  {
+    key: "slab",
+    name: withDefault("Armstrong3"),
+    provider: "none",
+  },
+  {
+    key: "sans",
+    name: withDefault("Toxigenesis"),
+    provider: "none",
+  },
+  {
+    key: "mono",
+    name: withDefault("Led Display 7"),
+    provider: "none",
+  },
+] as const; //satisfies readonly TFontShareConfig[];

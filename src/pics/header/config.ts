@@ -9,8 +9,8 @@ export const ICON_CLASS_VALUE_PROPS: TClassValueProps =
 export const SHARED_ANIMATION_PROPS = {
   initial: false,
   style: {
-    originX: "50%",
-    originY: "50%",
+    foundationX: "50%",
+    foundationY: "50%",
   },
 };
 

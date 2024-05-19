@@ -1,38 +1,40 @@
 import { FC } from "react";
 import { boxSize } from "~/constants/box/size";
 import { TDimensions } from "@brysonandrew/config-types";
-import { LinesHorizontal } from "~/pages/video/_common/footer/nav/lines/horizontal";
-import { LinesTopRight } from "~/pages/video/_common/footer/nav/lines/top-right";
+import { LinesHorizontal } from "~/pages/video/_common/footer/left/lines/horizontal";
+import { LinesTopRight } from "~/pages/video/_common/footer/left/lines/top-right";
 import { HeaderSubtitle } from "~/pics/header/subtitle";
 
 type TProps = {
+  isIdle: boolean
   dimensions: TDimensions;
-  origin: DOMRect;
+  foundation: DOMRect;
 };
 
 export const PicsHudHeaderRight: FC<
   TProps
 > = ({
-  origin,
-  dimensions: { width },
+  foundation,
+  dimensions,
 }) => {
-  const bSize = boxSize("s");
+  const s = boxSize();
   return (
     <div
       key="header-right"
-      className="absolute row gap-6 h-0"
+      className="absolute row h-0"
       style={{
-        left: origin.width + bSize.m05,
+        left: foundation.width + s.m,
         width:
-          width -
-          origin.width -
-          bSize.m,
-        top: bSize.m05,
+        dimensions.width -
+          foundation.width -
+          s.m * 1.5,
+        top: s.m05,
+        gap: s.m05,
       }}
     >
-      <LinesHorizontal classValue="hidden lg:flex opacity-50" />
+      <LinesHorizontal classValue="hidden lg:flex" />
       <HeaderSubtitle classValue="hidden lg:flex" />
-      <LinesTopRight />
+      <LinesTopRight dimensions={dimensions} />
     </div>
   );
 };

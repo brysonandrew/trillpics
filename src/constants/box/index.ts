@@ -1,4 +1,4 @@
-import { BOX_RADIUS } from "~/constants/box/radius";
+import { BORDER_RADIUS } from "~/constants/box/radius";
 import { BOX_SIZE } from "~/constants/box/size/constants";
 import {
   SHORTCUTS_BOX_BACKGROUND_COLOR,
@@ -20,7 +20,7 @@ export const BOX_CLASS_VALUE = {
 
 export const BOX = {
   ...BOX_CLASS_VALUE,
-  borderRadius: BOX_RADIUS,
+  borderRadius: BORDER_RADIUS,
   floating: {
     boxShadow: BOX_SHADOW_FLOATING,
   },

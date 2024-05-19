@@ -6,5 +6,5 @@ export const VideoScheduler = () => {
     <PortalBody>
       <VideoSchedulerReorder />,
     </PortalBody>
-  );
+  ); 
 };

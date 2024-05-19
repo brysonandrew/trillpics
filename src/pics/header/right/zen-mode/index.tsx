@@ -1,10 +1,12 @@
 import type { FC } from "react";
-import { PillBHover } from "~/components/buttons/pill/b/hover";
+import { PillBHover, TPillBHoverProps } from "~/components/buttons/pill/b/hover";
 import { IconsVisible } from "~/components/icons/video/visible";
-import { HideControlsModal } from "~/pics/header/right/zen-mode/modal";
+import { useContextGrid } from "~/context";
 import { useTrillPicsStore } from "~/store/middleware";
 
-export const HideControls: FC = () => {
+export const HideControls: FC<Partial<TPillBHoverProps>> = (props) => {
+  const { resetLayout } =
+    useContextGrid();
   const { isControls, toggleControls } =
     useTrillPicsStore(
       ({
@@ -17,21 +19,26 @@ export const HideControls: FC = () => {
     );
 
   const handleClick = () => {
+    resetLayout();
     toggleControls(false);
   };
   const handleShow = () => {
     toggleControls(true);
   };
-  const title = "Hide Controls"; // "Hide controls";
+  const title = "Zen Mode"; // "Hide controls";
 
   return (
     <PillBHover
       title={title}
       onClick={handleClick}
       Icon={IconsVisible}
-      subtitle={`Move your mouse or pointer off and
-        then on the page to bring the
-        controls back.`}
+      subtitle={
+        <div className="column-start gap-2">
+          <p>{`This temporarily removes the page's default display.`}</p>
+          <p>{`When you wish to return, simply move your mouse or pointer device on and off the page.`}</p>
+        </div>
+      }
+      {...props}
     >
       {title}
     </PillBHover>

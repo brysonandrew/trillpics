@@ -39,7 +39,7 @@ export const useVideoPicsResult = ({
         ...(Array.isArray(paramValues)
           ? paramValues
           : []),
-        ...(currName ? [currName] : []),
+        // ...(currName ? [currName] : []), // maybes
       ],
     ];
     const uniqueVideoPics =

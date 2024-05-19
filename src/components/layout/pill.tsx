@@ -10,6 +10,7 @@ import { TChildren } from "@brysonandrew/config-types";
 import { LightingGlow } from "~/components/layout/lighting/glow";
 import { TexturesMeshRounded } from "~/components/textures/mesh/rounded";
 import { boxStyle } from "~/constants/box/style";
+import { TypographyBorderedXs } from "~/components/typography/bordered/xs";
 
 export type TPillProps =
   HTMLMotionProps<"span"> & {
@@ -23,7 +24,7 @@ export const Pill: FC<TPillProps> = ({
   isCircle,
   classValue,
   gradient,
-  isActive, 
+  isActive,
   children,
   style,
   ...props
@@ -35,8 +36,8 @@ export const Pill: FC<TPillProps> = ({
   return (
     <motion.div
       className={clsx(
-        "center h-6 text-sm px-2 _gradient-radial z-20",
-        isCircle && "w-6",
+        "center h-5 text-sx px-1.5 _gradient-radial z-20",
+        isCircle && "w-5",
         classValue
       )}
       style={{ borderRadius, ...style }}
@@ -52,7 +53,9 @@ export const Pill: FC<TPillProps> = ({
         )}
       </AnimatePresence>
       <TexturesMeshRounded />
-      {children}
+      <TypographyBorderedXs>
+        {children}
+      </TypographyBorderedXs>
     </motion.div>
   );
 };

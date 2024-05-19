@@ -5,12 +5,13 @@ import { IconsArrowsUp2 } from "~/components/icons/arrows/up2";
 import { useScrollTopHandler } from "~/context/scroll/top";
 import { useTrillPicsStore } from "~/store/middleware";
 import { useReady } from "~/hooks/use-ready";
-import { PillBHover } from "~/components/buttons/pill/b/hover";
+import { PillBHover, TPillBHoverProps } from "~/components/buttons/pill/b/hover";
 import { resolveCompositeKey } from "@brysonandrew/utils-key";
-import { LinesVertical } from "~/pages/video/_common/footer/nav/lines/vertical";
+import { LinesVertical } from "~/pages/video/_common/footer/left/lines/vertical";
+import { TPillBProps } from "~/components/buttons/pill/b";
 
-export const PicsHeaderScrollTop: FC =
-  () => {
+export const PicsHeaderScrollTop: FC<Partial<TPillBHoverProps>> =
+  ({ ...props}) => {
     const { handler } =
       useScrollTopHandler();
     const { isScroll } =
@@ -26,7 +27,7 @@ export const PicsHeaderScrollTop: FC =
       <AnimatePresence>
         {isScroll && (
           <>
-            <LinesVertical classValue="flex opacity-50" />
+            <LinesVertical />
             <PillBHover
               key={resolveCompositeKey(
                 "scroll-top",
@@ -52,6 +53,7 @@ export const PicsHeaderScrollTop: FC =
                     }
                   )
                 : {})}
+                {...props}
             >
               {title}
             </PillBHover>

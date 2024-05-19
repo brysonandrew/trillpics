@@ -1,9 +1,11 @@
-import {
-  type OnBrowserDownload,
-  type DownloadBrowserProgressFn,
-} from "@remotion/renderer";
+// import {
+//   type OnBrowserDownload,
+//   type DownloadBrowserProgressFn,
+// } from "@remotion/renderer";
 
-const onProgress: DownloadBrowserProgressFn =
+const onProgress
+// : DownloadBrowserProgressFn
+ =
   (...args: any) => {
     console.log("ON BROWSER PROGRESS");
 
@@ -23,7 +25,10 @@ const onProgress: DownloadBrowserProgressFn =
     console.log(args);
   };
 
-export const onBrowserDownload: OnBrowserDownload =
+export const onBrowserDownload
+//: OnBrowserDownload
+
+=
   () => {
     console.log("ON BROWSER DOWNLOAD");
 

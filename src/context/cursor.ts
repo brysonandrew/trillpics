@@ -7,6 +7,8 @@ import {
 export type TCursorPosition = {
   x: MotionValue<number>;
   y: MotionValue<number>;
+  isDragging: boolean;
+  isHoverIdle: boolean;
   prev: {
     column: null | number;
     row: null | number;
@@ -22,6 +24,8 @@ export const useCursor = () => {
       return {
         x: cursorX,
         y: cursorY,
+        isDragging: false,
+        isHoverIdle: false,
         prev: {
           column: null,
           row: null,

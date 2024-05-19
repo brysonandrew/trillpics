@@ -2,15 +2,11 @@ import { useEffect } from "react";
 import {
   animate,
   motion,
-  Reorder,
   useScroll,
   useSpring,
   useTransform,
 } from "framer-motion";
-import { resolveSquare } from "@brysonandrew/measure";
-import { PicDisplay } from "~/pics/grid/pic/display";
 import { usePicVideo } from "~/hooks/pic/video";
-import { resolvePicSrc } from "~/utils/src";
 import { PicBackdrop } from "~/pics/grid/pic/backdrop";
 import { FULLSCREEN_Z } from "~/constants/dom";
 import {
@@ -22,15 +18,12 @@ import { isDefined } from "~/utils/validation/is/defined";
 import { useTrillPicsStore } from "~/store/middleware";
 import { useBodyStyle } from "~/context/use-body-style";
 import { PIC_SIZE } from "~/constants/remotion";
+import { _CommonReorder } from "~/pages/video/_common/reorder";
 
 export const VideoSchedulerReorder =
   () => {
-    const {
-      size,
-      names,
-      count,
-      reorder,
-    } = usePicVideo();
+    const { size, count } =
+      usePicVideo();
     useBodyStyle(
       `overflow-x: hidden; overflow-y: scroll; overscroll-behavior: none; -ms-overflow-style: none;`
     );
@@ -111,42 +104,14 @@ export const VideoSchedulerReorder =
                 top: "0%",
                 left: size, //padding
                 width: "100vw",
-                y: PIC_SIZE/2 - screenHeight/2,
+                y:
+                  PIC_SIZE / 2 -
+                  screenHeight / 2,
               }}
             >
-              <Reorder.Group
-                axis="x"
-                className="relative row"
-                values={names}
-                onReorder={reorder}
-              >
-                {names.map((name) => (
-                  <Reorder.Item
-                    key={name}
-                    value={name}
-                    style={resolveSquare(
-                      size
-                    )}
-                  >
-                    <PicDisplay
-                      name={name}
-                      src={resolvePicSrc(
-                        name
-                      )}
-                      whileTap={{
-                        cursor:
-                          "grabbing",
-                      }}
-                      style={{
-                        ...resolveSquare(
-                          size
-                        ),
-                        cursor: "grab",
-                      }}
-                    />
-                  </Reorder.Item>
-                ))}
-              </Reorder.Group>
+              {screen.isDimensions && (
+                <_CommonReorder />
+              )}
             </motion.div>
           </motion.div>
         </div>

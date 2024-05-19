@@ -20,6 +20,7 @@ export const useTimebomb = (countdown = 1000, target?: (...args: any[]) => any) 
   };
 
   const trigger = (...args:any[]) => {
+    console.log("TRIGGER")
     cancel();
     const isPrimed = isNumberFinite(countdown);
     if (isPrimed) {

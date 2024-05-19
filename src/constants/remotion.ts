@@ -11,6 +11,10 @@ export const PIC_DURATION_IN_FRAMES =
 export const TOTAL_DURATION_IN_FRAMES =
   PIC_DURATION_IN_FRAMES * PIC_COUNT;
 export const PIC_SIZE = 1024;
+export const PIC_SIZE_05 = PIC_SIZE * 0.5;
+export const PIC_SIZE_025 = PIC_SIZE * 0.25;
+
+export const PIC_SIZE_0125 = PIC_SIZE * 0.125;
 
 export const WIDTH = 1920;
 export const HEIGHT = 1080;

@@ -53,11 +53,12 @@ export const usePicCell = (main: {
     return key === paramValue;
   };
 
-  const move = () => {
+  const move = (
+    mx = main.cursor.x.get(),
+    my = main.cursor.y.get()
+  ) => {
     if (zoomParamValue || size === 0)
       return;
-    const mx = main.cursor.x.get();
-    const my = main.cursor.y.get();
 
     const column = ~~(mx / size);
     const row = ~~(my / size);

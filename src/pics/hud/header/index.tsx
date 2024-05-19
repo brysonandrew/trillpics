@@ -4,7 +4,7 @@ import {
 } from "react";
 import clsx from "clsx";
 import { TDimensions } from "@brysonandrew/config-types";
-import { PicsHudHeaderOrigin } from "~/pics/hud/header/origin";
+import { PicsHudHeaderFoundation } from "~/pics/hud/header/foundation";
 import { boxSize } from "~/constants/box/size";
 
 type TProps = {
@@ -20,9 +20,9 @@ export const PicsHudHeader: FC<
       className={clsx(
         "row-start-space"
       )}
-      style={{ gap: bSize.m05 }}
-    >
-      <PicsHudHeaderOrigin
+      style={{ gap: bSize.m05, height:0 }}
+    > 
+      <PicsHudHeaderFoundation
         dimensions={dimensions}
       />
       {children}

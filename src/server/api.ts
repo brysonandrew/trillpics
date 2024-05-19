@@ -29,6 +29,6 @@ api.use(
 api.listen(API_PORT, () =>
   console.log(
     `Listening on port ${API_PORT}.`,
-    `Allowed origins: ${CLIENT_ORIGINS}`
+    `Allowed foundations: ${CLIENT_ORIGINS}`
   )
 );

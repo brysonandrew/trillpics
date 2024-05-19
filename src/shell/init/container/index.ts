@@ -1,6 +1,6 @@
 import { TDimensionsReady } from "@brysonandrew/config-types";
 
-const PADDING_Y = 48;
+export const PADDING_Y = 48;
 const PADDING_TOP = PADDING_Y / 2;
 export const PADDING_Y_BOUNDS = {
   top: PADDING_TOP,
@@ -13,29 +13,24 @@ export const measureContainer = (
     "isDimensions"
   >
 ) => {
-  const container =
-    document.createElement("div");
-  container.className = "container";
-  document.body.appendChild(container);
-  const width = container.clientWidth;
-  const isDimensions =
-    typeof width !== "undefined";
+  // const container =
+  //   document.createElement("div");
+  // container.className = "container";
+  // document.body.appendChild(container);
+  const width = Math.min(
+    screen.width,
+    1024
+  );
   const paddingX = screen.width - width;
   const paddingXHalf = paddingX / 2;
-  document.body.removeChild(container);
-  return isDimensions
-    ? ({
-        isDimensions: true,
-        width,
-        height:
-          screen.height - PADDING_Y,
-        left: paddingXHalf,
-        right: paddingXHalf,
-        ...PADDING_Y_BOUNDS,
-      } as const)
-    : ({
-        isDimensions: false,
-      } as const);
+  return {
+    isDimensions: true,
+    width,
+    height: screen.height - PADDING_Y,
+    left: paddingXHalf,
+    right: paddingXHalf,
+    ...PADDING_Y_BOUNDS,
+  } as const;
 };
 
 export type TMeasureContainerResult =

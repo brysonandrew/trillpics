@@ -4,13 +4,11 @@ import { useContextGrid } from "~/context";
 import { boxSize } from "~/constants/box/size";
 
 type TProps = {
-  origin: DOMRect;
   dimensions: TDimensions;
 };
 export const PicsHudFooter: FC<
   TProps
 > = ({
-  origin,
   dimensions: { width, height },
 }) => {
   const { updateFooter, footerValue } =
@@ -18,17 +16,33 @@ export const PicsHudFooter: FC<
   const s = boxSize();
   return (
     <footer
-      className="absolute row h-0 z-10"
+      className="absolute row gap-4 h-0 z-10"
       style={{
-        top: height - s.m05+s.padding/2,
-        left: s.padding/2,
+        top:
+          height -
+          s.m05 +
+          s.padding / 2,
+        left: s.m05,
         width: width,
+        height: 2,
       }}
-      ref={(instance) => {
-        if (instance && !footerValue) {
-          updateFooter(instance);
-        }
-      }}
-    />
+    >
+      <div
+        style={{
+          top: 0,
+          left: s.m * 2,
+          width: width - s.m*2,
+          height: 0,
+        }}
+        ref={(instance) => {
+          if (
+            instance &&
+            !footerValue
+          ) {
+            updateFooter(instance);
+          }
+        }}
+      ></div>
+    </footer>
   );
 };

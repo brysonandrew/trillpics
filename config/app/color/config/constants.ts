@@ -10,9 +10,9 @@ export const DARK_LOGO = {
 } as const;
 
 export const LIGHT_LOGO = {
-  pink1: "#ffe54d",
+  yellow1: "#ffe54d",
   teal: "#6adbc6",
-  yellow1: "#ff73c0",
+  pink1: "#ff73c0",
 } as const;
 
 export const VARIABLES_RECORD = {

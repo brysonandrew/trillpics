@@ -68,7 +68,7 @@ export const Video_RootCursorSelected: FC<
                   FILTERS_FAT_1_SVG_PROPS
                 }
               >
-                <div className="whitespace-nowrap font-mono">
+                <div className="whitespace-nowrap font-sans">
                   {isMaybe
                     ? ""
                     : `#${index + 1}`}

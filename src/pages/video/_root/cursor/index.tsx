@@ -5,12 +5,13 @@ import { PicCursor } from "~/pics/grid/pic/cursor";
 import { useTrillPicsStore } from "~/store/middleware";
 import { Video_RootCursorSelected } from "~/pages/video/_root/cursor/selected";
 import { useClickVideo } from "~/context/hooks/click/video";
-import { useMove } from "~/context/hooks/move";
 import { usePicVideo } from "~/hooks/pic/video";
-import { TypographyBordered } from "~/components/typography/bordered";
+import { TypographyBorderedMd } from "~/components/typography/bordered/md";
+import { useContextGrid } from "~/context";
 
 export const Video_RootCursor: FC =
   () => {
+    const { main } = useContextGrid();
     const props = usePicVideo();
     const {
       isControls,
@@ -28,20 +29,19 @@ export const Video_RootCursor: FC =
       })
     );
     useClickVideo(props.toggle);
-    useMove();
-
     const { isCurrAdded, isCurrName } =
       props;
     const isSelectedVisible =
+      main.cursor.isHoverIdle &&
       isControls &&
       !isScrolling &&
       !isActiveHover;
     const title = isCurrName
       ? isCurrAdded
-        ? "remove"
-        : "add"
+        ? "Remove from video"
+        : "Add to video"
       : "";
-
+ 
     return (
       <>
         {isSelectedVisible && (
@@ -58,9 +58,9 @@ export const Video_RootCursor: FC =
               <PicVideoControls
                 {...props}
               >
-                <TypographyBordered classValue="text-2xl text-main">
+                <TypographyBorderedMd>
                   {title}
-                </TypographyBordered>
+                </TypographyBorderedMd>
               </PicVideoControls>
             </header>
           </div>

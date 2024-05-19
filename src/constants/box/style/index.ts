@@ -1,6 +1,6 @@
 import { boxBackground } from "~/constants/box/class";
 import { boxBorder } from "~/constants/box/border/border";
-import { TBoxRadiusKey } from "~/constants/box/radius";
+import { boxRadius, TBoxRadiusKey } from "~/constants/box/radius";
 import {
   boxSize,
 } from "~/constants/box/size";
@@ -33,6 +33,7 @@ export const boxStyle = ({
       layer,
       borderRadius,
     }),
+    borderRadius:boxRadius(),
     ...boxSize(size),
   };
 };

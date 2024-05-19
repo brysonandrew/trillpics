@@ -1,22 +1,54 @@
 @font-face {
-  font-family: "Saiba 45 Outline";
-  src: url("/fonts/saiba-45/SAIBA-45-Outline.ttf")
+  font-family: "Saira";
+  src: url("/fonts/saira/regular.ttf")
     format("truetype");
 }
 
 @font-face {
-  font-family: "Saiba 45";
-  src: url("/fonts/saiba-45/SAIBA-45.ttf")
+  font-family: "Dragon";
+  src: url("/fonts/dragon/regular.otf")
+    format("opentype");
+}
+
+@font-face {
+  font-family: "Armstrong3";
+  src: url("/fonts/armstrong3/regular.otf")
+    format("opentype");
+}
+@font-face {
+  font-family: "Conthrax";
+  src: url("/fonts/conthrax/regular.otf")
+    format("opentype");
+}
+
+@font-face {
+  font-family: "Toxigenesis";
+  src: url("/fonts/toxigenesis/regular.otf")
+    format("opentype");
+}
+
+@font-face {
+  font-family: "Neuropolitical";
+  src: url("/fonts/neuropolitical/regular.otf")
+    format("opentype");
+}
+
+/* * {
+  font-family: "Dragon";
+} */
+
+@font-face {
+  font-family: "Saiba45";
+  src: url("/fonts/saiba45/regular.ttf")
     format("truetype");
 }
 
 @font-face {
-  font-family: "led_display-7";
-  src: url("/fonts/led-display7/led_display-7.ttf")
+  font-family: "Led Display 7";
+  src: url("/fonts/leddisplay7/regular.ttf")
     format("truetype");
 }
-
-
+/* 
 @font-face {
   font-family: "GType rGX9";
   src: url("/fonts/GType-rGX9.ttf")
@@ -27,7 +59,7 @@
   font-family: "FFF Forward";
   src: url("/fonts/fff-forward/FFFFORWA.ttf")
     format("truetype");
-} 
+}
 
 @font-face {
   font-family: "NK57";
@@ -35,15 +67,11 @@
     format("opentype");
 }
 
-
-
-
 @font-face {
   font-family: "joystix";
   src: url("/fonts/joystix.monospace-regular.otf")
     format("opentype");
-}
-
+} */
 
 /* @font-face {
   font-family: "DroidSansMono";

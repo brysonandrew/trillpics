@@ -9,25 +9,23 @@ import { PicsHudLeft } from "~/pics/hud/left";
 import { PicsHudRight } from "~/pics/hud/right";
 import { PicsHudHeaderRight } from "~/pics/hud/header/right";
 import { PicsHeaderScrollTop } from "~/pics/header/scroll-top";
-import { PicsHudCenter } from "~/pics/hud/center";
+import { boxSize } from "~/constants/box/size";
+
 export type THudContainer = Extract<
   TMeasureContainerResult,
   { isDimensions: true }
 >;
 type TProps = {
   dimensions: THudContainer;
-
   isVerticalScroll: boolean;
 };
 export const Hud: FC<TProps> = ({
   dimensions,
   isVerticalScroll,
 }) => {
-  const {
-    main,
-    headerValue,
-    updateHeader,
-  } = useContextGrid();
+  const { foundationValue, isIdle } =
+    useContextGrid();
+  const s = boxSize();
   return (
     <>
       <div
@@ -38,14 +36,22 @@ export const Hud: FC<TProps> = ({
           height: dimensions.height,
         }}
       >
-        {main.origin.value && (
+        {foundationValue && (
           <PicsHudLeft
             key="PicsHudLeft"
             dimensions={dimensions}
-            origin={main.origin.value}
-          />
+            foundation={foundationValue}
+            isIdle={isIdle}
+          >
+            {isVerticalScroll && (
+              <PicsHeaderScrollTop
+                isLabel={isIdle}
+              />
+            )}
+          </PicsHudLeft>
         )}
       </div>
+
       <div
         className="fixed w-0 z-10"
         style={{
@@ -56,10 +62,11 @@ export const Hud: FC<TProps> = ({
       >
         <div
           className={clsx(
-            "absolute top-0 left-0 h-0 row gap-6"
+            "absolute top-0 left-0 h-0 row"
           )}
           style={{
             width: dimensions.width,
+            gap: s.m05,
           }}
         >
           <AnimatePresence>
@@ -71,13 +78,22 @@ export const Hud: FC<TProps> = ({
                     dimensions
                   }
                 >
-                  {main.origin
-                    .value && (
+                  {foundationValue && (
                     <>
                       <PicsHudHeaderRight
-                        origin={
-                          main.origin
-                            .value
+                        foundation={
+                          foundationValue
+                        }
+                        dimensions={
+                          dimensions
+                        }
+                        isIdle={isIdle}
+                      />
+                      <PicsHudRight
+                        key="PicsHudRight"
+                        isIdle={isIdle}
+                        foundation={
+                          foundationValue
                         }
                         dimensions={
                           dimensions
@@ -85,35 +101,13 @@ export const Hud: FC<TProps> = ({
                       />
                       <PicsHudFooter
                         key="PicsHudFooter"
-                        origin={
-                          main.origin
-                            .value
-                        }
                         dimensions={
                           dimensions
                         }
                       />
-                      <PicsHudRight
-                        key="PicsHudRight"
-                        origin={
-                          main.origin
-                            .value
-                        }
-                        dimensions={
-                          dimensions
-                        }
-                      >
-                        {isVerticalScroll && (
-                          <PicsHeaderScrollTop />
-                        )}
-                      </PicsHudRight>
                     </>
                   )}
                 </PicsHudHeader>
-                <PicsHudCenter
-                  key="PicsHudCenter"
-                  {...dimensions}
-                />
               </>
             )}
           </AnimatePresence>
@@ -122,3 +116,16 @@ export const Hud: FC<TProps> = ({
     </>
   );
 };
+{
+  /* <SpeedlinesBackward /> */
+}
+{
+  /* {scrollDirection ===
+          "forward" && (
+          <SpeedlinesForward />
+        )}
+        {scrollDirection ===
+          "backward" && (
+          <SpeedlinesBackward />
+        )} */
+}

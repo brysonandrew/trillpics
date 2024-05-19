@@ -10,7 +10,7 @@ export const TypographyBorderedMd: FC<
 > = ({ children }) => {
   return (
     <TypographyBordered
-      classValue="text-white dark:text-black whitespace-nowrap font-mono"
+      classValue="text-white uppercase dark:text-black whitespace-nowrap font-sans"
       shadow={{
         classValue:
           "text-gray-4 dark:text-gray-8 whitespace-nowrap",

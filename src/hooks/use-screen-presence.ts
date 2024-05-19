@@ -3,6 +3,7 @@ import {
   useRef,
 } from "react";
 import { useEventListener } from "@brysonandrew/hooks-events";
+import { TElementValue } from "~/context/types";
 
 export type TConfig = {
   onPointerEnter(
@@ -17,7 +18,7 @@ export const useScreenPresence = ({
   onPointerEnter,
 }: TConfig) => {
   const docRef =
-    useRef<HTMLElement | null>(null);
+    useRef<TElementValue>(null);
 
   useEffect(() => {
     docRef.current =

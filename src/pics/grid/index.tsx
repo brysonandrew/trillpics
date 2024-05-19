@@ -5,10 +5,7 @@ import {
 } from "react";
 import { FixedSizeList } from "react-window";
 import { Row } from "~/pics/grid/row";
-import {
-  TPartialFixedTableProps,
-  TPicsRows,
-} from "~/store/state/table/types";
+import { TPartialFixedTableProps, TPicsRows } from "~/store/state/table/types";
 import { TDimensions } from "@brysonandrew/config-types";
 import {
   Inner,
@@ -22,18 +19,25 @@ import {
   TGridHandle,
   TGrid,
 } from "~/context/types";
+import { TTableUpdateCountResult } from "~/store/state/table/update/count";
 
 type TProps = TPartialFixedTableProps &
   TDimensions & {
     rows: TPicsRows;
     size: number;
+    count: TTableUpdateCountResult
   };
 export const Grid = forwardRef<
   TGridHandle,
   TProps
 >(
   (
-    { size, rows, ...props }: TProps,
+    {
+      size,
+      rows,
+      count,
+      ...props
+    }: TProps,
     handleRef
   ) => {
     const outerHandle =
@@ -41,9 +45,7 @@ export const Grid = forwardRef<
     const innerHandle =
       useRef<TInnerHandle | null>(null);
     const sourceRef =
-      useRef<TGrid | null>(
-        null
-      );
+      useRef<TGrid | null>(null);
 
     useImperativeHandle(
       handleRef,
@@ -54,6 +56,25 @@ export const Grid = forwardRef<
               sourceRef.current.scrollTo(
                 0
               );
+            }
+          },
+          scrollToRandom: () => {
+            if (sourceRef.current) {
+              const randomColIndex = ~~(
+                Math.random() *
+                count.columns
+              );
+              const randomRowIndex = ~~(
+                Math.random() *
+                count.rows
+              );
+              sourceRef.current.scrollToItem(
+                randomRowIndex
+              );
+              return {
+                column: randomColIndex,
+                row: randomRowIndex,
+              };
             }
           },
           isHovering: () => {
@@ -105,7 +126,7 @@ export const Grid = forwardRef<
         outerElementType={Outer}
         innerRef={innerHandle}
         outerRef={outerHandle}
-        overscanCount={40}
+        overscanCount={20}
         {...props}
       >
         {Row}

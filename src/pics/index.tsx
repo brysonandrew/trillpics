@@ -5,67 +5,62 @@ import { TPartialFixedTableProps } from "~/store/state/table/types";
 import { Grid } from "~/pics/grid";
 import { useContextGrid } from "~/context";
 import { Outlet } from "react-router";
-import { Hud } from "~/pics/hud";
+import { PicsCenter } from "~/pics/center";
 
 type TProps = TPartialFixedTableProps;
 export const Pics: FC<TProps> = (
   props
 ) => {
-  const { onScroll, ref,headerValue,updateFooter,updateHeader } =
-    useContextGrid();
-  const { table, screen, isControls } =
+  const {
+    onScroll,
+    ref,
+    headerValue,
+    updateHeader,
+  } = useContextGrid();
+  const { table, screen } =
     useTrillPicsStore(
-      ({
+      ({ table, screen }) => ({
         table,
         screen,
-        isControls,
-      }) => ({
-        table,
-        screen,
-        isControls,
       })
     );
 
   return (
     <>
- 
-      <div style={{ height: 0 }}
-       ref={(instance) => {
-        if (
-          instance &&
-          headerValue === null
-        ) {
-          updateHeader(instance);
-        }
-      }}
+      <div
+        style={{ height: 0 }}
+        ref={(instance) => {
+          if (
+            instance &&
+            headerValue === null
+          ) {
+            updateHeader(instance);
+          }
+        }}
       >
-        {/* <SpeedlinesBackward /> */}
-        {/* {scrollDirection ===
-          "forward" && (
-          <SpeedlinesForward />
-        )}
-        {scrollDirection ===
-          "backward" && (
-          <SpeedlinesBackward />
-        )} */}
         {table.isVerticalScroll && (
           <ScrollbarSeam />
         )}
       </div>
       {screen.isDimensions && (
-        <Grid
-          rows={table.rows}
-          size={table.size}
-          onScroll={onScroll}
-          ref={ref}
-          {...props}
-          width={screen.width}
-          height={screen.height}
-        />
+        <>
+          <Grid
+            rows={table.rows}
+            count={table.count}
+            size={table.size}
+            onScroll={onScroll}
+            ref={ref}
+            {...props}
+            width={screen.width}
+            height={screen.height}
+          />
+          <PicsCenter
+            width={screen.width}
+            height={screen.height}
+          />
+        </>
       )}
       <Outlet />
-   
-            
     </>
   );
 };
