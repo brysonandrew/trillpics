@@ -2,21 +2,28 @@ import { animate } from "framer-motion";
 import { useContextGrid } from "~/context";
 import { isValue } from "~/utils/validation/is/value";
 
-export const useBlurXAnimate = (axis:'x'|'y' ='x') => {
+export const useBlurInertia = (
+  axis: "x" | "y" = "x",
+  source: number
+) => {
   const { main } = useContextGrid();
   const handler = () => {
-    if (isValue(main.blur.control[axis])) {
+    if (
+      isValue(main.blur.control[axis])
+    ) {
       main.blur.control[axis]?.cancel();
     }
-    const prev =
-      main.blur.value[axis].get();
     main.blur.control[axis] = animate(
       main.blur.value[axis],
-      100,
+      source * 0.008,
       {
-        type: "tween",
-        onComplete: () =>
-          main.blur.value[axis].set(prev),
+        type: "inertia",
+        restDelta: 0,
+        restSpeed: 1,
+        velocity: source * 0.02,
+        onComplete: () => {
+          main.blur.value.y.set(0);
+        },
       }
     );
   };

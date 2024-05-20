@@ -16,7 +16,7 @@ export const PicsHudFooter: FC<
   const s = boxSize();
   return (
     <footer
-      className="absolute row gap-4 h-0 z-10"
+      className="fill h-0"
       style={{
         top:
           height -
@@ -26,23 +26,11 @@ export const PicsHudFooter: FC<
         width: width,
         height: 2,
       }}
-    >
-      <div
-        style={{
-          top: 0,
-          left: s.m * 2,
-          width: width - s.m*2,
-          height: 0,
-        }}
-        ref={(instance) => {
-          if (
-            instance &&
-            !footerValue
-          ) {
-            updateFooter(instance);
-          }
-        }}
-      ></div>
-    </footer>
+      ref={(instance) => {
+        if (instance && !footerValue) {
+          updateFooter(instance);
+        }
+      }}
+    ></footer>
   );
 };

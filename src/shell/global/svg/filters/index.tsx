@@ -10,6 +10,7 @@ import { AntiCamoFilter } from "~/shell/global/svg/filters/anti-camo";
 import { OutlineDarkFilter } from "~/shell/global/svg/filters/outline/dark";
 import { OutlineFilter } from "~/shell/global/svg/filters/outline";
 import { InlineFilter } from "~/shell/global/svg/filters/inline";
+import { GlowFilter } from "~/shell/global/svg/filters/glow";
 
 export const SvgFilters: FC = () => {
   return (
@@ -22,9 +23,10 @@ export const SvgFilters: FC = () => {
       <SvgFiltersFat2 />
       <SvgFiltersFat4 />
       <AntiCamoFilter />
-      <InlineFilter/>
+      <InlineFilter />
       <OutlineFilter />
       <OutlineDarkFilter />
+      <GlowFilter />
     </>
   );
 };

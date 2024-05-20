@@ -1,15 +1,19 @@
-import { TSvgFilterMorphologyProps, TSvgDisplacementProps } from "@brysonandrew/config-types";
+import { FC } from "react";
+import {
+  TSvgFilterMorphologyProps,
+  TSvgDisplacementProps,
+} from "@brysonandrew/config-types";
 import { SvgWrap } from "@brysonandrew/svg-dimensionless";
 import { resolveUrlId } from "@brysonandrew/utils-attributes";
-import { FC } from "react";
 
 export const GLITCH_FILTER_2_ID =
   "GLITCH_FILTER_2_ID";
-export const GLITCH_FILTER_2_SVG_PROPS = {
-  filter: resolveUrlId(
-    GLITCH_FILTER_2_ID
-  ),
-};
+export const GLITCH_FILTER_2_SVG_PROPS =
+  {
+    filter: resolveUrlId(
+      GLITCH_FILTER_2_ID
+    ),
+  };
 type TProps = {
   id?: string;
   radius?: number;
@@ -18,17 +22,18 @@ type TProps = {
   morphProps?: TSvgFilterMorphologyProps;
   displacementProps?: TSvgDisplacementProps;
 };
-export const GlitchFilter2 :FC<TProps>= ({id=GLITCH_FILTER_2_ID}) => {
+export const GlitchFilter2: FC<
+  TProps
+> = ({ id = GLITCH_FILTER_2_ID }) => {
   return (
     <SvgWrap>
-      <filter 
-      
-      id={id}
-      x="-100%"
-      y="-20%"
-      width="300%"
-      height="140%"
-      colorInterpolationFilters="sRGB"
+      <filter
+        id={id}
+        x="-100%"
+        y="-20%"
+        width="300%"
+        height="140%"
+        colorInterpolationFilters="sRGB"
       >
         <feFlood
           floodColor="black"
@@ -138,7 +143,7 @@ export const GlitchFilter2 :FC<TProps>= ({id=GLITCH_FILTER_2_ID}) => {
         </feMerge>
 
         <feMerge>
-          <feMergeNode in="SourceGraphic" />
+          {/* <feMergeNode in="SourceGraphic" /> */}
 
           <feMergeNode in="merge1" />
           <feMergeNode in="merge2" />

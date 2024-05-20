@@ -2,7 +2,6 @@
 import {useMemo, useState} from 'react';
 import { TTimeout, isTimeout, isNumberFinite } from '~/utils/validation/is/timeout';
 
-
 type TBomb = {fuse: TTimeout | null};
 export const useTimebomb = (countdown = 1000, target?: (...args: any[]) => any) => {
   const [isArmed, arm] = useState(false);
@@ -20,7 +19,6 @@ export const useTimebomb = (countdown = 1000, target?: (...args: any[]) => any) 
   };
 
   const trigger = (...args:any[]) => {
-    console.log("TRIGGER")
     cancel();
     const isPrimed = isNumberFinite(countdown);
     if (isPrimed) {

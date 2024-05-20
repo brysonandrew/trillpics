@@ -6,14 +6,14 @@ import {
   TPillBHoverProps,
 } from "~/components/buttons/pill/b/hover";
 import { usePicVideo } from "~/hooks/pic/video";
-import { useBlurXAnimate } from "~/hooks/blur/animate";
+import { useBlurAnimate } from "~/hooks/animate/blur/animate";
 
 export const HudLeftAddRandom: FC<
   Partial<TPillBHoverProps>
 > = (props) => {
   const { ref } = useContextGrid();
   const { add } = usePicVideo();
-  const handleBlur = useBlurXAnimate();
+  const handleBlur = useBlurAnimate();
 
   const handleClick = () => {
     if (!ref.current) return;

@@ -7,9 +7,10 @@ export const ROWS_COUNT_PARAM_KEY = "y";
 export const CELL_PARAM_KEY = "xy";
 
 export const ZOOM_PARAM_KEY = "z";
-export const ZOOM_PARAM_OPEN_VALUE =
+
+export const PARAM_OPEN_VALUE =
   "+";
-export const ZOOM_PARAM_CLOSING_VALUE =
+export const PARAM_CLOSING_VALUE =
   "-";
 
 export const VIDEO_PARAM_KEY = "$";

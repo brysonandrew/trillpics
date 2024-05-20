@@ -8,7 +8,7 @@ import {
   COLUMNS_COUNT_PARAM_KEY,
   SECONDS_PARAM_KEY,
   VIDEO_PARAM_KEY,
-  ZOOM_PARAM_CLOSING_VALUE,
+  PARAM_CLOSING_VALUE,
 } from "~/hooks/pic/constants";
 import { useVideoPicsResult } from "~/hooks/pic/video/pics";
 import {
@@ -19,11 +19,13 @@ import { isValue } from "~/utils/validation/is/value";
 import { useTrillPicsStore } from "~/store/middleware";
 import { paramsMoveToEnd } from "~/utils/params/move-to-end";
 import { resolveSetArray } from "~/utils/params/set-array";
-import { isNull } from "~/utils/validation/is/null";
 import { detailsFromSearchParams } from "~/hooks/pic/cell/over/details/from-search-params";
 import { TCell } from "~/pics/grid/pic";
 import { isDefined } from "~/utils/validation/is/defined";
 import { detailsFromCell } from "~/hooks/pic/cell/over/details/from-cell";
+import { MAX_COUNT } from "~/pages/video/_common/reorder";
+import { videoPicsCheck } from "~/hooks/pic/video/read/video-pics-check";
+import { videoReadEntries } from "~/hooks/pic/video/read/entries";
 
 export const usePicVideo = () => {
   const { pics } = useTrillPicsStore(
@@ -37,9 +39,15 @@ export const usePicVideo = () => {
     searchParams.getAll(
       VIDEO_PARAM_KEY
     );
-  const isVideoPics =
-    Array.isArray(paramValues) &&
-    paramValues.length > 0;
+  const isVideoPics = videoPicsCheck(
+    paramValues
+  );
+
+  const {
+    encryptRemoving,
+    addedCheck,
+    removingCheck,
+  } = videoReadEntries(paramValues);
 
   const columnsCount = Number(
     searchParams.get(
@@ -70,19 +78,6 @@ export const usePicVideo = () => {
     }
   );
 
-  const addedCheck = (
-    nextName: TPic | null
-  ) => {
-    return (
-      !isNull(nextName) &&
-      isValue(nextName) &&
-      isVideoPics &&
-      paramValues.includes(
-        `${nextName}`
-      )
-    );
-  };
-
   const isCurrAdded =
     addedCheck(currName);
 
@@ -102,20 +97,20 @@ export const usePicVideo = () => {
       });
       nextName = d.currName;
     }
+
     if (isValue(nextName)) {
-      if (searchParams.size === 5) {
-        const r = resolveSetArray(
-          searchParams,
-          VIDEO_PARAM_KEY,
-          [
-            ...paramValues.slice(1),
-            nextName,
-          ]
+      if (
+        paramValues.length > MAX_COUNT
+      ) {
+        console.log(
+          "ecceeded limit",
+          paramValues,
+          paramValues.length
         );
       }
       searchParams.append(
         VIDEO_PARAM_KEY,
-        `${nextName}`
+        nextName
       );
       const r = paramsMoveToEnd(
         searchParams,
@@ -127,27 +122,13 @@ export const usePicVideo = () => {
     }
   };
 
-  const removingCheck = (
-    name: string
-  ) =>
-    paramValues.some(
-      (v) =>
-        v ===
-        `${name}${ZOOM_PARAM_CLOSING_VALUE}`
-    );
-
-  const clearRemoving = () => {
-    const nextValues =
-      paramValues.filter(
-        (v) =>
-          !v.endsWith(
-            ZOOM_PARAM_CLOSING_VALUE
-          )
-      );
+  const setPics = (
+    nextNames: TPics
+  ) => {
     const r = resolveSetArray(
       searchParams,
       VIDEO_PARAM_KEY,
-      nextValues
+      nextNames
     );
 
     const r1 = paramsMoveToEnd(
@@ -159,31 +140,36 @@ export const usePicVideo = () => {
     );
   };
 
-  const remove = () => {
+  const clearRemoving = () => {
+    const nextValues =
+      paramValues.filter(
+        (v) => !removingCheck(v)
+      );
+    setPics(nextValues);
+  };
+
+  const remove = (cell?: TCell) => {
+    let nextName = currName;
+    if (isDefined(cell)) {
+      const d = detailsFromCell({
+        cell,
+        columnsCount,
+        pics,
+      });
+      nextName = d.currName;
+    }
     if (
-      Array.isArray(paramValues) &&
-      isCurrName
+      isVideoPics &&
+      isValue(nextName)
     ) {
       const nextValues =
         paramValues.map((v) =>
-          v === currName
-            ? `${v}${ZOOM_PARAM_CLOSING_VALUE}`
+          v === nextName
+            ? encryptRemoving(v)
             : v
         );
 
-      const r = resolveSetArray(
-        searchParams,
-        VIDEO_PARAM_KEY,
-        nextValues
-      );
-
-      const r1 = paramsMoveToEnd(
-        searchParams,
-        CELL_PARAM_KEY
-      );
-      navigate(
-        `${pathname}?${searchParams}`
-      );
+      setPics(nextValues);
     }
   };
 
@@ -204,18 +190,7 @@ export const usePicVideo = () => {
   };
 
   const reorder = (nextPics: TPics) => {
-    resolveSetArray(
-      searchParams,
-      VIDEO_PARAM_KEY,
-      nextPics.map((v) => v.toString())
-    );
-    paramsMoveToEnd(
-      searchParams,
-      CELL_PARAM_KEY
-    );
-    navigate(
-      `${pathname}?${searchParams}`
-    );
+    setPics(nextPics);
   };
   const setDurationInSeconds = (
     value: number
@@ -248,6 +223,8 @@ export const usePicVideo = () => {
     reorder,
     setDurationInSeconds,
     removingCheck,
+    encryptRemoving,
+    setPics,
     ...cellOverDetailsResult,
     ...picsResult,
   };

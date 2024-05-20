@@ -1,5 +1,4 @@
 import { FC } from "react";
-import { useTrillPicsStore } from "~/store/middleware";
 import { TDimensions } from "@brysonandrew/config-types";
 import {
   TCell,
@@ -7,6 +6,7 @@ import {
 } from "~/pics/grid/pic";
 import { padBox } from "~/pics/grid/pic/pad-box";
 import { GRADIENT_MESH_DARK } from "~app/color/gradient/mesh";
+import { usePicTableReadSize } from "~/hooks/pic/table/read/size";
 
 type TBaseBoxChildProps = TPicProps & {
   style: TDimensions & {
@@ -20,7 +20,7 @@ type TProps = TCell &
     cursor: "pointer" | "zoom-in";
     children(
       props: TBoxChildProps
-    ): JSX.Element;
+    ): JSX.Element | null;
   };
 export const Box: FC<TProps> = ({
   children,
@@ -29,12 +29,8 @@ export const Box: FC<TProps> = ({
   row,
   ...props
 }) => {
-  const { table } = useTrillPicsStore(
-    ({ table }) => ({
-      table,
-    })
-  );
-  const left = column * table.size;
+  const size = usePicTableReadSize();
+  const left = column * size;
 
   return (
     <>
@@ -44,7 +40,7 @@ export const Box: FC<TProps> = ({
           backgroundSize: "2px 2px",
           position: "absolute",
           ...padBox({
-            size: table.size,
+            size: size,
             left,
           }),
           cursor,
@@ -55,7 +51,7 @@ export const Box: FC<TProps> = ({
           ...props,
           style: {
             ...padBox({
-              size: table.size,
+              size: size,
               left,
               value: 0,
             }),

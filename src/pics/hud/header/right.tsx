@@ -23,11 +23,11 @@ export const PicsHudHeaderRight: FC<
       key="header-right"
       className="absolute row h-0"
       style={{
-        left: foundation.width + s.m,
+        left: foundation.width + s.m05,
         width:
         dimensions.width -
           foundation.width -
-          s.m * 1.5,
+          s.m05,
         top: s.m05,
         gap: s.m05,
       }}

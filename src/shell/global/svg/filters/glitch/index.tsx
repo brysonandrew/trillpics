@@ -41,11 +41,11 @@ export const GlitchFilter: FC<
     <SvgWrap>
       <filter
         id={id}
-        x="-100%"
+        x="-20%"
         y="-20%"
-        width="300%"
+        width="140%"
         height="140%"
-        colorInterpolationFilters="sRGB"
+        // colorInterpolationFilters="sRGB"
       >
         <feOffset
           in="SourceGraphic"
@@ -93,53 +93,53 @@ export const GlitchFilter: FC<
       </filter>
     </SvgWrap>
   );
-  return (
-    <SvgWrap>
-      <filter
-        id={id}
-        x="-100%"
-        y="-20%"
-        width="300%"
-        height="140%"
-        colorInterpolationFilters="sRGB"
-      >
-        <feTurbulence
-          type="turbulence"
-          in="SourceGraphic"
-          stdDeviation="0.0 1.0"
-          baseFrequency="0.0 1.0"
-          numOctaves="2"
-          result="turbulence"
-        />
-        <feMorphology
-          operator="dilate"
-          in="turbulence"
-          radius={fmRadius}
-          result={MORPH_KEY}
-          {...morphProps}
-        />
-        <feDisplacementMap
-          in="turbulence"
-          in2={MORPH_KEY}
-          scale={dmScale}
-          xChannelSelector="B"
-          yChannelSelector="G"
-          result={DISPLACEMENT_KEY}
-          {...displacementProps}
-        />
+  // return (
+  //   <SvgWrap>
+  //     <filter
+  //       id={id}
+  //       x="-100%"
+  //       y="-20%"
+  //       width="300%"
+  //       height="140%"
+  //       colorInterpolationFilters="sRGB"
+  //     >
+  //       <feTurbulence
+  //         type="turbulence"
+  //         in="SourceGraphic"
+  //         stdDeviation="0.0 1.0"
+  //         baseFrequency="0.0 1.0"
+  //         numOctaves="2"
+  //         result="turbulence"
+  //       />
+  //       <feMorphology
+  //         operator="dilate"
+  //         in="turbulence"
+  //         radius={fmRadius}
+  //         result={MORPH_KEY}
+  //         {...morphProps}
+  //       />
+  //       <feDisplacementMap
+  //         in="turbulence"
+  //         in2={MORPH_KEY}
+  //         scale={dmScale}
+  //         xChannelSelector="B"
+  //         yChannelSelector="G"
+  //         result={DISPLACEMENT_KEY}
+  //         {...displacementProps}
+  //       />
 
-        <feMerge>
-          {/* <feMergeNode in="SourceGraphic" /> */}
+  //       <feMerge>
+  //         {/* <feMergeNode in="SourceGraphic" /> */}
 
-          {/* <feMergeNode in={DISPLACEMENT_KEY}/> */}
-          <feMergeNode
-            in={DISPLACEMENT_KEY}
-          />
-          {/* <feMergeNode in={MORPH_KEY}/> */}
-        </feMerge>
-      </filter>
-    </SvgWrap>
-  );
+  //         {/* <feMergeNode in={DISPLACEMENT_KEY}/> */}
+  //         <feMergeNode
+  //           in={DISPLACEMENT_KEY}
+  //         />
+  //         {/* <feMergeNode in={MORPH_KEY}/> */}
+  //       </feMerge>
+  //     </filter>
+  //   </SvgWrap>
+  // );
 };
 /** 
 <feMorphology in="turbulence" operator="dilate" radius="1" result="fatty" />

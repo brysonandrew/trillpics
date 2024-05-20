@@ -10,12 +10,9 @@ import { useReady } from "~/hooks/use-ready";
 import { resolveCompositeKey } from "@brysonandrew/utils-key";
 import { CursorCorners } from "~/pics/grid/pic/cursor/corners";
 import { TPropsWithChildren } from "@brysonandrew/config-types";
-import {
-  PRESENCE_OPACITY,
-  PRESENCE_OPACITY_DELAY,
-} from "@brysonandrew/motion-config-constants";
 import { useCellOver } from "~/hooks/pic/cell/over/hook";
 import { resolvePositionFromCell } from "~/pics/grid/pic/cursor/position-from-cell";
+import { DELAY_TRANSITION_PROPS } from "~/constants/animation";
 
 export const PicCursor: FC<
   TPropsWithChildren<{
@@ -51,7 +48,7 @@ export const PicCursor: FC<
 
   const io = {
     opacity: 0,
-    scale: 1.2,
+    scale: 1,
     ...position,
   };
   return (
@@ -66,7 +63,7 @@ export const PicCursor: FC<
           "scroller",
           `${isReady}`
         )}
-        className="absolute text-2xl"
+        className="fill center text-2xl cursor-pointer pointer-events-none"
         style={{
           y: scrollY,
           pointerEvents: "none",
@@ -76,7 +73,6 @@ export const PicCursor: FC<
         }}
         initial={io}
         animate={{
-          scale: 1,
           opacity: 0,
           ...position,
         }}
@@ -89,17 +85,24 @@ export const PicCursor: FC<
             isOnscreen &&
             isControls && (
               <motion.div
-                key="display"
-                {...PRESENCE_OPACITY}
+                className="fill center"
+                key={resolveCompositeKey(
+                  "display",
+                  cellOverResult.cell
+                    ?.column,
+                  cellOverResult.cell
+                    ?.row
+                )}
+                initial={{
+                  scale: 0.8,
+                }}
+                animate={{
+                  scale: [0.84, 0.9],
+                }}
+                {...DELAY_TRANSITION_PROPS}
               >
                 <CursorCorners />
-                <motion.div
-                  key="children"
-                  className="center fill font-sans"
-                  {...PRESENCE_OPACITY_DELAY}
-                >
-                  {children}
-                </motion.div> 
+                {children}
               </motion.div>
             )}
         </AnimatePresence>

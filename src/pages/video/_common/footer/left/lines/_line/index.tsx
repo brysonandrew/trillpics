@@ -1,10 +1,10 @@
 import type { FC } from "react";
 import { TDivMotionProps } from "@brysonandrew/config-types";
 import clsx from "clsx";
-import { TLineProps } from "~/pages/video/_common/footer/left/lines/types";
+import { TLinesOptions } from "~/pages/video/_common/footer/left/lines/types";
 import { motion } from "framer-motion";
 
-export type TLines_LineProps =TDivMotionProps & TLineProps;
+export type TLines_LineProps =TLinesOptions;
 export const Lines_Line: FC<TLines_LineProps> = ({
   colorClass,
   classValue,

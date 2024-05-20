@@ -9,6 +9,7 @@ export type TCoreScreenState = {
   toggleOnscreen(next?: boolean): void;
 };
 export type TCoreControlsState = {
+  isIdle: boolean
   isControls: boolean;
   toggleControls(next?: boolean): void;
 };

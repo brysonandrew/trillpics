@@ -2,7 +2,6 @@ import { Helmet } from "react-helmet-async";
 
 export const Light = () => (
   <Helmet>
-    <title>ᴛʀɪʟʟ ᴘɪᴄs</title>
     <link
       rel="icon"
       type="image/x-icon"

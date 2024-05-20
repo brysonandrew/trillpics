@@ -8,16 +8,21 @@ import {
   HOME_ROUTE,
   VIDEO_ROUTE,
 } from "~/constants/params";
+import { HudLeftAddRandom } from "~/pics/hud/left/add-random";
+import { LeftButtonsClear } from "~/pics/hud/left/clear";
+import { VideoPicsCounter } from "~/shell/screen/video-pic-counter";
+import { useVideoPicsCheck } from "~/hooks/pic/video/read/video-pics-check/hook";
+import { PicsHudLeftLine } from "~/pics/hud/left/line";
+import { boxSize } from "~/constants/box/size";
 
 type TProps = {
   isLabel: boolean;
-  children(
-    isActive: boolean
-  ): JSX.Element | null;
 };
 export const HudLeftVideo: FC<
   TProps
-> = ({ isLabel, children }) => {
+> = ({ isLabel }) => {
+  const isVideoPics =
+    useVideoPicsCheck();
   const { togglePathValue, isActive } =
     useNavigationControls(VIDEO_ROUTE);
   const handleClick = () => {
@@ -27,36 +32,56 @@ export const HudLeftVideo: FC<
         : VIDEO_ROUTE
     );
   };
+  const s = boxSize();
   const title = isActive
     ? "Exit Video Maker"
     : "Video Maker";
 
   return (
     <>
-      {children(isActive)}
-      <motion.div
-        layoutId="VideoButton"
-        className="relative"
+      {isActive && isVideoPics && (
+        <>
+          <LeftButtonsClear
+            isLabel={isLabel}
+          />
+          <PicsHudLeftLine />
+          <motion.div
+            layout
+            className="center"
+            style={{ width: s.m }}
+          >
+            <VideoPicsCounter />
+          </motion.div>
+          <PicsHudLeftLine />
+        </>
+      )}
+      <PillBHover
+        title={title}
+        subtitle={
+          isActive
+            ? ""
+            : "Make a short video clip composed of the pics you see here."
+        }
+        onClick={handleClick}
+        isLabel={isLabel}
+        Icon={IconsVideo}
+        outerCircle={
+          !isActive &&
+          isVideoPics && (
+            <VideoPicCounterFloating />
+          )
+        }
       >
-        <PillBHover
-          title={title}
-          subtitle={
-            isActive
-              ? ""
-              : "Make a short video clip composed of the pics you see here."
-          }
-          onClick={handleClick}
-          isLabel={isLabel}
-          Icon={IconsVideo}
-          outerCircle={
-            !isActive && (
-              <VideoPicCounterFloating />
-            )
-          }
-        >
-          {title}
-        </PillBHover>
-      </motion.div>
+        {title}
+      </PillBHover>
+      {isActive && (
+        <>
+          <PicsHudLeftLine />
+          <HudLeftAddRandom
+            isLabel={isLabel}
+          />
+        </>
+      )}
     </>
   );
 };

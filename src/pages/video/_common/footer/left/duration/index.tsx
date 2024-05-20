@@ -16,8 +16,6 @@ export const _RootLeftDuration: FC<
   Seperator = SeperatorHorizontal,
   ..._props
 }) => {
-  const { isVideoPics, count } =
-    usePicVideo();
   const isReady = useReady();
 
   const props = {

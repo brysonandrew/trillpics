@@ -3,7 +3,7 @@ import { IconsShuffle } from "~/components/icons/pic/shuffle";
 import { useTrillPicsStore } from "~/store/middleware";
 import { PillBHover } from "~/components/buttons/pill/b/hover";
 import { PRESENCE_OPACITY } from "@brysonandrew/motion-config-constants";
-import { useBlurXAnimate } from "~/hooks/blur/animate";
+import { useBlurAnimate } from "~/hooks/animate/blur/animate";
 
 export const HudLeftShuffle: FC<{
   isLabel: boolean;
@@ -14,7 +14,7 @@ export const HudLeftShuffle: FC<{
         updatePics,
       })
     );
-  const handler = useBlurXAnimate();
+  const handler = useBlurAnimate();
 
   const randomizePics = () => {
     handler();

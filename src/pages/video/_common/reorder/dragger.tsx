@@ -1,8 +1,10 @@
-import type {
+import {
   FC,
   PointerEventHandler,
+  useEffect,
 } from "react";
 import {
+  animate,
   motion,
   MotionValue,
   useMotionValue,
@@ -10,65 +12,109 @@ import {
 } from "framer-motion";
 import { useTrillPicsStore } from "~/store/middleware";
 import { useContextGrid } from "~/context";
+import { useHoverKey } from "~/hooks/use-hover-key";
+import clsx from "clsx";
+import { resolveAccessibilityTitles } from "@brysonandrew/utils-attributes";
+import { boxSize } from "~/constants/box/size";
+import { TDimensions } from "@brysonandrew/config-types";
 
 type TProps = {
+  container: TDimensions;
+  width: number;
+  height: number;
   children(
     x: MotionValue,
     y: MotionValue
   ): JSX.Element;
 };
 export const Dragger: FC<TProps> = ({
+  container,
+  height,
+  width,
   children,
 }) => {
   const x = useMotionValue(0);
-  const y = useMotionValue(0);
+  const y = useMotionValue(height);
 
   const { screen } = useTrillPicsStore(
     ({ screen }) => ({ screen })
   );
   const { main } = useContextGrid();
 
+  const title = "Drag video pics";
+
+  useEffect(() => {
+    animate<number>(
+      y,
+      -container.height / 6 + s.m,
+      {
+        ease: "easeIn",
+        duration: 1,
+      }
+    );
+  }, []);
+
+  const { isHover, motionHandlers } =
+    useHoverKey();
+
   const handlePointerDown: PointerEventHandler<
     HTMLButtonElement
   > = (event) => {
     main.cursor.isDragging = true;
   };
+  const s = boxSize();
 
   const tx = useTransform(
     x,
-    (v) => v / 1.4
+    (v) => v / 1.6
   );
   const ty = useTransform(
     y,
-    (v) => v / 1.4
+    (v) => v / 1.6
   );
 
-  if (!screen.isDimensions) return null;
-
+  const left = width / 2 - s.m;
   return (
     <>
-      <motion.div
+      {children(tx, ty)}
+      <motion.button
         drag
         dragConstraints={{
           left: 0,
-          bottom: 40,
+          bottom: s.m,
           right: 0,
           top:
-            -screen.container.height /
-              4 +
-            40,
+            -container.height / 2 + s.m,
         }}
-        className="absolute left-1/2 -translate-x-1/2 bottom-full center rounded-md mb-4 w-12 h-12 _gradient-radial"
-        style={{ x, y }}
+        className={clsx(
+          "absolute bottom-full center rounded-md mb-4 _gradient-radial",
+          isHover(title)
+            ? "grayscale-100"
+            : ""
+        )}
+        style={{
+          x,
+          y,
+          left,
+          width: s.m2,
+          height: s.m2,
+        }}
+        {...resolveAccessibilityTitles(
+          title
+        )}
+        onPointerDown={
+          handlePointerDown
+        }
+        {...motionHandlers(title)}
       >
-        <button
-          className="w-11 h-11 rounded-md _r-dots cursor-grab focus:cursor-grabbing"
-          onPointerDown={
-            handlePointerDown
-          }
+        <div
+          className="rounded-md _r-dots cursor-grab focus:cursor-grabbing"
+          style={{
+            width: s.m2 - s.m025,
+            height: s.m2 - s.m025,
+          }}
         />
-      </motion.div>
-      {children(tx, ty)}
+      </motion.button>
     </>
   );
 };

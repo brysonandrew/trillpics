@@ -1,10 +1,10 @@
 import type { FC } from "react";
 import { ModalOverlay } from "~/components/layout/modal/overlay";
 import { Link } from "react-router-dom";
-import { useBlurXAnimate } from "~/hooks/blur/animate";
+import { useBlurAnimate } from "~/hooks/animate/blur/animate";
 
 export const NotFound: FC = () => {
-  const handler = useBlurXAnimate();
+  const handler = useBlurAnimate();
 
   const blur = () => {
     handler();

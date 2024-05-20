@@ -28,6 +28,7 @@ export const useInit = () => {
     endTimeout();
     timeoutRef.current = setTimeout(
       () => {
+        console.log(screen)
         set(
           (draft: {
             screen: TScreen;
@@ -35,11 +36,12 @@ export const useInit = () => {
             draft.screen = screen;
           }
         );
-        if (screen.isDimensions) {
+        if (screen.isDimensions && !screen.isResizing) {
           const size =
             table.update.screen({
               screen,
             });
+
           update(size);
         }
       },

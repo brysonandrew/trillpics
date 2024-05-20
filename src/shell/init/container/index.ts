@@ -1,11 +1,5 @@
 import { TDimensionsReady } from "@brysonandrew/config-types";
-
-export const PADDING_Y = 48;
-const PADDING_TOP = PADDING_Y / 2;
-export const PADDING_Y_BOUNDS = {
-  top: PADDING_TOP,
-  bottom: PADDING_Y - PADDING_TOP,
-} as const;
+import { boxSize } from "~/constants/box/size";
 
 export const measureContainer = (
   screen: Omit<
@@ -17,19 +11,22 @@ export const measureContainer = (
   //   document.createElement("div");
   // container.className = "container";
   // document.body.appendChild(container);
-  const width = Math.min(
-    screen.width,
-    1024
-  );
+  const s = boxSize();
+  const width =
+    Math.min(screen.width, 1024) - s.m2;
+  const height = screen.height - s.m2;
   const paddingX = screen.width - width;
-  const paddingXHalf = paddingX / 2;
+  const pX05 = paddingX / 2;
+  const paddingY = screen.height - height;
+  const pY05 = paddingY / 2;
   return {
     isDimensions: true,
     width,
-    height: screen.height - PADDING_Y,
-    left: paddingXHalf,
-    right: paddingXHalf,
-    ...PADDING_Y_BOUNDS,
+    height,
+    left: pX05,
+    right: pX05,
+    top: pY05,
+    bottom: pY05,
   } as const;
 };
 

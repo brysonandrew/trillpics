@@ -13,7 +13,7 @@ export const PicDisplayCell: FC<
 > = ({
   style,
   column,
-  row,
+  row, 
   ...props
 }) => {
   return (

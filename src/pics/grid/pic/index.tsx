@@ -10,6 +10,7 @@ import { usePicVideo } from "~/hooks/pic/video";
 import clsx from "clsx";
 import { resolveCompositeKey } from "@brysonandrew/utils-key";
 import { resolvePicSrc } from "~/utils/src";
+import { useVideoReadEntries } from "~/hooks/pic/video/read/entries/hook";
 
 export type TCell = {
   row: number;
@@ -25,22 +26,25 @@ export const Pic: FC<TPicProps> = ({
   const {
     isCellZoomed,
     isCellClosing,
+    isCurrOver,
     clear: clearZoomClosing,
   } = usePicZoom(cell);
   const {
     addedCheck,
     removingCheck,
-    clearRemoving,
-  } = usePicVideo();
-  const isAdded = addedCheck(name);
+    decryptRemoving,
+  } = useVideoReadEntries();
+  const handleLayoutAnimationComplete =
+    () => {
+      if (isCellClosing) {
+        clearZoomClosing();
+      }
+    };
 
   const isRemoving =
     removingCheck(name);
-  const handleLayoutAnimationComplete =
-    () => {
-      clearZoomClosing();
-      clearRemoving();
-    };
+ // const name = decryptRemoving(_name);
+  const isAdded = addedCheck(name);
 
   return (
     <Box
@@ -52,32 +56,6 @@ export const Pic: FC<TPicProps> = ({
         style,
         ...boxChildProps
       }) => {
-        if (isAdded) {
-          return (
-            <div
-              key={resolveCompositeKey(
-                "placeholder",
-                name
-              )}
-              className={clsx(
-                "bg-black-05 center"
-              )}
-              style={style}
-            >
-              <img
-                className="fill object-contain grayscale-100 mix-blend-difference opacity-50"
-                src={resolvePicSrc(
-                  name
-                )}
-                alt={name}
-                style={style}
-              />
-              {/* <TypographyBorderedMd>
-                {name}
-              </TypographyBorderedMd> */}
-            </div>
-          );
-        }
         if (isCellZoomed)
           return (
             <PicZoomed
@@ -106,6 +84,7 @@ export const Pic: FC<TPicProps> = ({
                   ),
                   style: {
                     zIndex: 0,
+                    backgroundColor: isAdded ? isRemoving ? 'blue' : 'red' : '',
                     ...style,
                   },
                 })}

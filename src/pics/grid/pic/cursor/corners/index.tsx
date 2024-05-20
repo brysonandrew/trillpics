@@ -1,9 +1,7 @@
 import type { FC } from "react";
-import { resolveUrlId } from "@brysonandrew/utils-attributes";
-import { LINEAR_GRADIENT_SVG_ID } from "~/shell/global/svg/gradients/blue-pink-yellow";
 import { CursorCornersSet } from "~/pics/grid/pic/cursor/corners/set";
-const SIZE = 100;
-const CORNER_SIZE = 10;
+const SIZE = 200;
+const CORNER_SIZE = 20;
 
 export const CursorCorners: FC = () => {
   return (
@@ -14,6 +12,16 @@ export const CursorCorners: FC = () => {
       height="100%"
       fill="none"
     >
+      {/* <rect
+        x="0"
+        y="0"
+        width={SIZE}
+        height={SIZE}
+        fill={resolveUrlId(
+          LINEAR_GRADIENT_SVG_ID
+        )}
+        fillOpacity={0.2}
+      /> */}
       {/* <CursorCornersSet
         size={SIZE}
         corner={{
@@ -27,6 +35,7 @@ export const CursorCorners: FC = () => {
         // strokeLinecap="round"
         // strokeLinejoin="round"
       /> */}
+
       <CursorCornersSet
         size={SIZE}
         corner={{

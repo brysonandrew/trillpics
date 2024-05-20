@@ -1,6 +1,4 @@
-import { useRef } from "react";
 import { THoverKey } from "@brysonandrew/hooks-dom";
-import { resolveCompositeKey } from "@brysonandrew/utils-key";
 import { useTimebomb } from "~/hooks/use-time-bomb";
 import { useTrillPicsStore } from "~/store/middleware";
 import { useContextGrid } from "~/context";
@@ -48,11 +46,6 @@ export const useHoverKey = (
     })
   );
 
-  const coords = (event: any) =>
-    resolveCompositeKey(
-      (~~event.pageX / 10) * 10,
-      (~~event.pageY / 10) * 10
-    );
 
   const { isArmed, trigger } =
     useTimebomb(1000, cooldownEnd);
@@ -60,19 +53,11 @@ export const useHoverKey = (
   const onStart: TEventHandler =
     (key: THoverKey) =>
     (event: TEventUnion) => {
-      const nextCoords = coords(event);
-
-      console.log(
-        "start",
-        event.type,
-        nextCoords,
-        main.cursor.isHoverIdle
-      );
       if (main.cursor.isHoverIdle) {
-        console.log("IDOL");
         return;
       }
       if (config?.handlers?.start) {
+        console.log("START")
         config.handlers.start?.(key);
       }
 

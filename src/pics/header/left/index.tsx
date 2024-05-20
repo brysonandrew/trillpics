@@ -9,37 +9,53 @@ import { Title } from "~/pics/header/left/title";
 import { useScrollTopHandler } from "~/context/scroll/top";
 import { useTrillPicsStore } from "~/store/middleware";
 import { useHoverKey } from "~/hooks/use-hover-key";
-import { isDefined } from "~/utils/validation/is/defined";
+import { SCROLL_TOP_HOVER_KEY } from "~/pics/header/scroll-top";
 
 export const HeaderLeft: FC = memo(
   () => {
     const { pathname } = useLocation();
-    const { handler } =
+    const handler =
       useScrollTopHandler();
-    const { isScroll } =
+    const { isScroll, isIdle, set } =
       useTrillPicsStore(
-        ({ isScroll }) => ({
+        ({
           isScroll,
+          isIdle,
+          set,
+        }) => ({
+          isScroll,
+          isIdle,
+          set,
         })
       );
     const isHome =
       pathname === HOME_ROUTE;
-
-    const title = "Go back";
+    const handleHoverStart = () => {
+      set({ isIdle: true });
+    };
+    const title = SCROLL_TOP_HOVER_KEY;
     const { motionHandlers } =
-      useHoverKey();
+      useHoverKey({
+        handlers: {
+          start: handleHoverStart,
+        },
+      });
 
     return (
-      <div className="relative -top-1 left-2 shrink-0 grow-0">
+      <motion.div
+        className="relative -top-1 left-2 shrink-0 grow-0"
+        {...motionHandlers(title)}
+      >
         {isHome ? (
           <>
             {isScroll ? (
               <motion.button
                 key="title"
+                title={title}
+                onClick={handler}
                 {...motionHandlers(
                   title
                 )}
-                onClick={handler}
               >
                 <Title />
               </motion.button>
@@ -55,7 +71,7 @@ export const HeaderLeft: FC = memo(
             <Title />
           </Link>
         )}
-      </div>
+      </motion.div>
     );
   }
 );

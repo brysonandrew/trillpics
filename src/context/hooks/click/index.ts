@@ -1,9 +1,12 @@
 import { useEventListener } from "@brysonandrew/hooks-events";
 import { useContextGrid } from "~/context";
+import { useTrillPicsStore } from "~/store/middleware";
 
 export const useClickGrid = (
   trigger: () => void
 ) => {
+
+
   const { ref, main } =
     useContextGrid();
 
@@ -18,7 +21,6 @@ export const useClickGrid = (
       trigger();
     }
     main.cursor.isDragging = false;
-
   };
   useEventListener(
     "click",

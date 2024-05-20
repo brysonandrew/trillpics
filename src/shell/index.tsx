@@ -32,7 +32,7 @@ export const Shell = withProviders(
         />
         <GlobalCss />
         <SvgFilters />
-        <BlurXyWrap>
+        <BlurXyWrap> 
           <ShellBackground
             isDarkMode={isDarkMode}
           />

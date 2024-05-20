@@ -17,6 +17,7 @@ export const PicDisplay: FC<
 > = ({ name, src = resolvePicSrc(name), ...props }) => {
   const isVacant =
     typeof name === "number";
+    
   if (isVacant) {
     return (
       <motion.div

@@ -15,32 +15,39 @@ export const useMove = ({
   isOnscreen: boolean;
   scrollY: MotionValue;
 }) => {
-  const { isScrolling } =
+  const { hoverKeys, isScrolling, isIdle, set } =
     useTrillPicsStore(
-      ({ isScrolling }) => ({
+      ({
+        hoverKeys,
         isScrolling,
+        isIdle,
+        set,
+      }) => ({
+        hoverKeys,
+        isScrolling,
+        isIdle,
+        set,
       })
     );
   const { endTimeout, timeoutRef } =
     useTimeoutRef();
   const [isCursorMove, setCursorMove] =
     useState(false);
-  const [isIdle, setIdle] =
-    useState(true);
   const { move } = usePicCell(main);
   const handleMove = (
     event: PointerEvent
   ) => {
-    if (main.cursor.isDragging) return;
+    if (main.cursor.isDragging || hoverKeys.length > 0) return;
     endTimeout();
-    if (!isIdle) {
-      setIdle(false);
+    if (isIdle) {
+      set({ isIdle: false });
     }
     timeoutRef.current = setTimeout(
       () => {
-        setIdle(true);
+        set({ isIdle: true, hoverKeys: [] });
+        main.cursor.isDragging = false;
       },
-      1
+      60000
     );
     const currScrollY = scrollY.get();
     const mx = event.pageX;

@@ -10,7 +10,7 @@ export const AddRemoveIcon: FC<
   const rotate = isAdded ? -45 : 0;
   return (
     <motion.h4
-      className="relative origin-center"
+      className="relative origin-center grayscale-100 brightness-50"
       initial={{
         opacity: 0,
         scale: 0,
@@ -18,7 +18,7 @@ export const AddRemoveIcon: FC<
       }}
       animate={{
         opacity: 1,
-        scale: isAdded ? 1.6 : 1.6,
+        scale:4,
         rotate,
         transition: {
           ...TRANSITION,

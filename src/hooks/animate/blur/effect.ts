@@ -1,11 +1,11 @@
 import { useEffect } from "react";
-import { useBlurXAnimate } from "~/hooks/blur/animate";
+import { useBlurAnimate } from "~/hooks/animate/blur/animate";
 
 type TConfig = { dependency: string };
-export const useBlurXEffect = (
+export const useBlurEffect = (
   config: TConfig
 ) => {
-  const handler = useBlurXAnimate();
+  const handler = useBlurAnimate();
   useEffect(() => {
     handler();
   }, [config.dependency, handler]);

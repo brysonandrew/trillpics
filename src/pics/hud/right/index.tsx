@@ -8,10 +8,7 @@ import {
 } from "framer-motion";
 import { TDimensions } from "@brysonandrew/config-types";
 import { LinesVertical } from "~/pages/video/_common/footer/left/lines/vertical";
-import {
-  PADDING_Y,
-  TMeasureContainerResult,
-} from "~/shell/init/container";
+import { TMeasureContainerResult } from "~/shell/init/container";
 import { boxSize } from "~/constants/box/size";
 import { HideControls } from "~/pics/header/right/zen-mode";
 import { DarkMode } from "~/pics/header/right/dark-mode";
@@ -41,40 +38,40 @@ export const PicsHudRight: FC<
     dimensions.height / 4 + s.m025;
 
   const top =
-    ptop +
-    pheight -
-    PADDING_Y -
-    foundation.height +
-    s.m05;
-
+    ptop + pheight - foundation.height;
   return (
     <LayoutGroup>
       <motion.div
         className="absolute flex flex-col items-star justify-evenly w-0 bg-red"
         style={{
-          right: s.m,
+          right: 0,
           top,
           gap: s.m05,
           height:
-            dimensions.height - top,
+            dimensions.height -
+            top +
+            s.m025,
         }}
       >
         <div
-          className="flex flex-col items-end justify-evenly shrink-0 w-0"
+          className="relative flex flex-col items-end justify-evenly shrink-0 w-0"
           style={{
             gap: s.m05,
             height: s.m4,
-            right:0
           }}
         >
           <DarkMode isLabel={isIdle} />
-          <LinesVertical />
+          <LinesVertical
+            style={{ left: -s.m05 }}
+          />
           <HideControls
             isLabel={isIdle}
           />
           {children}
         </div>
-        <LinesVertical />
+        <LinesVertical
+          style={{ left: -s.m05 }}
+        />
       </motion.div>
     </LayoutGroup>
   );

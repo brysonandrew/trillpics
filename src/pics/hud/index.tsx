@@ -8,7 +8,6 @@ import { PicsHudFooter } from "~/pics/hud/footer";
 import { PicsHudLeft } from "~/pics/hud/left";
 import { PicsHudRight } from "~/pics/hud/right";
 import { PicsHudHeaderRight } from "~/pics/hud/header/right";
-import { PicsHeaderScrollTop } from "~/pics/header/scroll-top";
 import { boxSize } from "~/constants/box/size";
 
 export type THudContainer = Extract<
@@ -42,13 +41,10 @@ export const Hud: FC<TProps> = ({
             dimensions={dimensions}
             foundation={foundationValue}
             isIdle={isIdle}
-          >
-            {isVerticalScroll && (
-              <PicsHeaderScrollTop
-                isLabel={isIdle}
-              />
-            )}
-          </PicsHudLeft>
+            isVerticalScroll={
+              isVerticalScroll
+            }
+          />
         )}
       </div>
 
@@ -78,9 +74,16 @@ export const Hud: FC<TProps> = ({
                     dimensions
                   }
                 >
+                  <PicsHudFooter
+                    key="PicsHudFooter"
+                    dimensions={
+                      dimensions
+                    }
+                  />
                   {foundationValue && (
                     <>
                       <PicsHudHeaderRight
+                        key="PicsHudHeaderRight"
                         foundation={
                           foundationValue
                         }
@@ -95,12 +98,6 @@ export const Hud: FC<TProps> = ({
                         foundation={
                           foundationValue
                         }
-                        dimensions={
-                          dimensions
-                        }
-                      />
-                      <PicsHudFooter
-                        key="PicsHudFooter"
                         dimensions={
                           dimensions
                         }

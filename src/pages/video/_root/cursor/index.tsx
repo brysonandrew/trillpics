@@ -1,13 +1,20 @@
 import type { FC } from "react";
-import { PicVideoControls } from "~/pages/video/_common/pic/controls";
 import { AddRemoveIcon } from "~/pages/video/_common/pic/controls/add-remove-icon";
 import { PicCursor } from "~/pics/grid/pic/cursor";
 import { useTrillPicsStore } from "~/store/middleware";
 import { Video_RootCursorSelected } from "~/pages/video/_root/cursor/selected";
 import { useClickVideo } from "~/context/hooks/click/video";
 import { usePicVideo } from "~/hooks/pic/video";
-import { TypographyBorderedMd } from "~/components/typography/bordered/md";
 import { useContextGrid } from "~/context";
+
+// const {
+//   addedCheck,
+//   removingCheck,
+//   clearRemoving,
+// } = usePicVideo();
+// const isAdded = addedCheck(name);
+// const isRemoving =
+//   removingCheck(name);
 
 export const Video_RootCursor: FC =
   () => {
@@ -32,16 +39,16 @@ export const Video_RootCursor: FC =
     const { isCurrAdded, isCurrName } =
       props;
     const isSelectedVisible =
-      main.cursor.isHoverIdle &&
+      !main.cursor.isHoverIdle &&
       isControls &&
       !isScrolling &&
       !isActiveHover;
-    const title = isCurrName
-      ? isCurrAdded
-        ? "Remove from video"
-        : "Add to video"
-      : "";
- 
+    // const title = isCurrName
+    //   ? isCurrAdded
+    //     ? "Remove from video"
+    //     : "Add to video"
+    //   : "";
+
     return (
       <>
         {isSelectedVisible && (
@@ -55,13 +62,6 @@ export const Video_RootCursor: FC =
               <AddRemoveIcon
                 isAdded={isCurrAdded}
               />
-              <PicVideoControls
-                {...props}
-              >
-                <TypographyBorderedMd>
-                  {title}
-                </TypographyBorderedMd>
-              </PicVideoControls>
             </header>
           </div>
         </PicCursor>

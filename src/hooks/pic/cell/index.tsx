@@ -57,6 +57,7 @@ export const usePicCell = (main: {
     mx = main.cursor.x.get(),
     my = main.cursor.y.get()
   ) => {
+
     if (zoomParamValue || size === 0)
       return;
 
@@ -104,6 +105,8 @@ export const usePicCell = (main: {
   };
 
   const leave = (nextCell: TCell) => {
+    console.log("cell.l")
+
     const key = cellEncrypt(nextCell);
     const paramValue = searchParams.get(
       CELL_PARAM_KEY
@@ -119,7 +122,7 @@ export const usePicCell = (main: {
   };
 
   const clear = () => {
-    console.log("clear");
+    console.log("cell.clear");
     searchParams.delete(CELL_PARAM_KEY);
     navigate(
       `${pathname}?${searchParams}`

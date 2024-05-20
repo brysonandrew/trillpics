@@ -1,18 +1,17 @@
 import type { FC } from "react";
-import { IconsTrash } from "~/components/icons/video/trash1";
 import {
   PillBHover,
   TPillBHoverProps,
 } from "~/components/buttons/pill/b/hover";
 import { TVideoFooterProps } from "~/pages/video/_common/footer/types";
-import { useContextGrid } from "~/context";
 import { usePicVideo } from "~/hooks/pic/video";
 import { useNavigationControls } from "~/hooks/navigation/controls";
 import { VIDEO_ROUTE } from "~/constants/params";
 import { resolvePicSrc } from "~/utils/src";
-import { PIC_SIZE_0125 } from "~/constants/remotion";
 import { useTrillPicsStore } from "~/store/middleware";
-import { useBlurXAnimate } from "~/hooks/blur/animate";
+import { useBlurAnimate } from "~/hooks/animate/blur/animate";
+import { MAX_COUNT } from "~/pages/video/_common/reorder";
+import { IconsTrash } from "~/components/icons/video/trash";
 
 export const LeftButtonsClear: FC<
   TVideoFooterProps &
@@ -27,15 +26,21 @@ export const LeftButtonsClear: FC<
     names,
     isVideoPics,
   } = usePicVideo();
-  const { main } = useContextGrid();
   const { togglePathValue, isActive } =
     useNavigationControls(VIDEO_ROUTE);
   const { screen } = useTrillPicsStore(
     ({ screen }) => ({ screen })
   );
-  if (!isVideoPics) return null;
-  const handler = useBlurXAnimate();
 
+  if (
+    !isVideoPics ||
+    !screen.isDimensions
+  )
+    return null;
+  const container = screen.container;
+  const unitSize =
+    container.width / MAX_COUNT;
+  const handler = useBlurAnimate();
   const handleClear = () => {
     handler();
     if (!isActive) {
@@ -45,53 +50,43 @@ export const LeftButtonsClear: FC<
   };
   const title = "Delete all";
   return (
-    <>
-      <Button
-        onClick={handleClear}
-        Icon={IconsTrash}
-        subtitle={
-          <>
-            <p>
-              {`Delete all ${count} of the pics you have added.`}
-            </p>
-            <div className="h-2" />
-            <ul
-              className="grid gap-2 w-full"
-              style={{
-                display: "grid",
-                left: 0,
-                width:
-                  screen.isDimensions
-                    ? screen.container
-                        ?.width
-                    : "100%",
-                gridTemplateColumns: `repeat(auto-fill, minmax(${PIC_SIZE_0125}px, 1fr))`,
-              }}
-            >
-              {names.map((name) => (
-                <li key={name}>
-                  <img
-                    alt={name}
-                    src={resolvePicSrc(
-                      name
-                    )}
-                    width={
-                      PIC_SIZE_0125
-                    }
-                    height={
-                      PIC_SIZE_0125
-                    }
-                  />
-                </li>
-              ))}
-            </ul>
-          </>
-        }
-        {...props}
-        title={title}
-      >
-        {title}
-      </Button>
-    </>
+    <Button
+      onClick={handleClear}
+      Icon={IconsTrash}
+      subtitle={
+        <>
+          <p>
+            {`Delete all ${count} of the pics you have added.`}
+          </p>
+          <div className="h-2" />
+          <ul
+            className="grid gap-2"
+            style={{
+              display: "grid",
+              left: 0,
+              width: container.width,
+              gridTemplateColumns: `repeat(auto-fill, minmax(${unitSize}px, 1fr))`,
+            }}
+          >
+            {names.map((name) => (
+              <li key={name}>
+                <img
+                  alt={name}
+                  src={resolvePicSrc(
+                    name
+                  )}
+                  width={unitSize}
+                  height={unitSize}
+                />
+              </li>
+            ))}
+          </ul>
+        </>
+      }
+      {...props}
+      title={title}
+    >
+      {title}
+    </Button>
   );
 };

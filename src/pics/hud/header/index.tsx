@@ -13,15 +13,8 @@ type TProps = {
 export const PicsHudHeader: FC<
   PropsWithChildren<TProps>
 > = ({ children, dimensions }) => {
-  const bSize = boxSize();
-
   return (
-    <header
-      className={clsx(
-        "row-start-space"
-      )}
-      style={{ gap: bSize.m05, height:0 }}
-    > 
+    <header style={{ height: 0 }}>
       <PicsHudHeaderFoundation
         dimensions={dimensions}
       />

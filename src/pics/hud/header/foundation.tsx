@@ -40,9 +40,7 @@ export const PicsHudHeaderFoundation: FC<
         <motion.div
           className="absolute top-0"
           initial={{opacity: 0}}
-          style={{
-            left: s.m05,
-          }}
+       
           animate={{
             opacity: isSavingDelayed ? 0.5 : 1,
           }}

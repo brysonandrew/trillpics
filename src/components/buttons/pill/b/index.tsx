@@ -98,7 +98,7 @@ export const PillB: FC<TPillBProps> = ({
           height,
           borderRadius,
           ...style,
-        } as any
+        }
       }
       {...props}
     >
@@ -110,7 +110,7 @@ export const PillB: FC<TPillBProps> = ({
             style={
               {
                 borderRadius,
-              } as any
+              }
             }
             initial={{
               scale: 1,
@@ -194,7 +194,6 @@ export const PillB: FC<TPillBProps> = ({
               className="relative row px-2 px-0 text-left text-sm"
               style={{
                 height: sm.minHeight,
-                ...GLITCH_FILTER_SVG_PROPS,
               }}
               {...(isReady
                 ? FADE_PRESENCE_DELAY_02
@@ -207,7 +206,7 @@ export const PillB: FC<TPillBProps> = ({
                     borderRadius,
                   }}
                 />
-                <span className="relative">
+                <span className="relative dark:text-black text-white-8 _outline-filter">
                   {children}
                 </span>
               </div>

@@ -3,13 +3,13 @@ import {
   AnimatePresence,
   motion,
 } from "framer-motion";
-import { TUsePicVideoResult } from "~/hooks/pic/video";
 import { IconsVideo } from "~/components/icons/video/video";
 import { useContextGrid } from "~/context";
 import { resolvePositionFromCell } from "~/pics/grid/pic/cursor/position-from-cell";
 import { PRESENCE_OPACITY } from "@brysonandrew/motion-config-constants";
 import { TypographyBordered } from "~/components/typography/bordered";
 import { FILTERS_FAT_1_SVG_PROPS } from "~/shell/global/svg/filters/fat/1";
+import { TUsePicVideoResult } from "~/hooks/pic/video";
 
 type TProps = TUsePicVideoResult;
 export const Video_RootCursorSelected: FC<
@@ -54,10 +54,13 @@ export const Video_RootCursorSelected: FC<
               title="Remove from video"
               className="relative row"
               animate={io}
-              style={{transformOrigin:"50% 50% 50%"}}
+              style={{
+                transformOrigin:
+                  "50% 50% 50%",
+              }}
             >
               <IconsVideo size={28} />
-              <div className="w-2"/>
+              <div className="w-2" />
               <TypographyBordered
                 classValue="text-sm mt-0.5"
                 shadow={{

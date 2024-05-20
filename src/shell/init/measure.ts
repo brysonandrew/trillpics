@@ -13,7 +13,7 @@ import {
 import { useContextGrid } from "~/context";
 import { isValue } from "~/utils/validation/is/value";
 import { measureContainer } from "~/shell/init/container";
-import { useBlurXAnimate } from "~/hooks/blur/animate";
+import { useBlurAnimate } from "~/hooks/animate/blur/animate";
 
 export const RESIZE_COOLDOWN = 400;
 
@@ -98,15 +98,15 @@ export const useScreenMeasure = (
 
     setScreen(next ?? INIT_SCREEN);
   };
-  const handler = useBlurXAnimate();
+  const handler = useBlurAnimate();
 
   const handleResize = () => {
     handleSize({
       ...INIT_SCREEN,
       isResizing: true,
     });
-  
-    handler()
+
+    handler();
     endTimeout();
     timeoutRef.current = setTimeout(
       () => {

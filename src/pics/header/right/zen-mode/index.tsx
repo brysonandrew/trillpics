@@ -34,7 +34,7 @@ export const HideControls: FC<Partial<TPillBHoverProps>> = (props) => {
       Icon={IconsVisible}
       subtitle={
         <div className="column-start gap-2">
-          <p>{`This temporarily removes the page's default display.`}</p>
+          <p>{`This removes the page's default display.`}</p>
           <p>{`When you wish to return, simply move your mouse or pointer device on and off the page.`}</p>
         </div>
       }
