@@ -73,7 +73,7 @@ export const PicCursor: FC<
         }}
         initial={io}
         animate={{
-          opacity: 0,
+          opacity: 1,
           ...position,
         }}
         exit={io}
@@ -88,10 +88,10 @@ export const PicCursor: FC<
                 className="fill center"
                 key={resolveCompositeKey(
                   "display",
-                  cellOverResult.cell
-                    ?.column,
-                  cellOverResult.cell
-                    ?.row
+                  // cellOverResult.cell
+                  //   ?.column,
+                  // cellOverResult.cell
+                  //   ?.row
                 )}
                 initial={{
                   scale: 0.8,
@@ -102,7 +102,11 @@ export const PicCursor: FC<
                 {...DELAY_TRANSITION_PROPS}
               >
                 <CursorCorners />
+
+                <motion.div className="fill center">
                 {children}
+
+                </motion.div>
               </motion.div>
             )}
         </AnimatePresence>

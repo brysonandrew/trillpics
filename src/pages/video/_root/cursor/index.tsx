@@ -6,6 +6,7 @@ import { Video_RootCursorSelected } from "~/pages/video/_root/cursor/selected";
 import { useClickVideo } from "~/context/hooks/click/video";
 import { usePicVideo } from "~/hooks/pic/video";
 import { useContextGrid } from "~/context";
+import { useClickSelect } from "~/context/hooks/click/select";
 
 // const {
 //   addedCheck,
@@ -19,7 +20,9 @@ import { useContextGrid } from "~/context";
 export const Video_RootCursor: FC =
   () => {
     const { main } = useContextGrid();
-    const props = usePicVideo();
+const props =    useClickSelect();
+
+    // const props = usePicVideo();
     const {
       isControls,
       isScrolling,
@@ -35,9 +38,9 @@ export const Video_RootCursor: FC =
         isActiveHover,
       })
     );
-    useClickVideo(props.toggle);
-    const { isCurrAdded, isCurrName } =
-      props;
+    // useClickVideo(props.toggle);
+    // const { isCurrAdded, isCurrName } =
+    //   props;
     const isSelectedVisible =
       !main.cursor.isHoverIdle &&
       isControls &&
@@ -60,7 +63,7 @@ export const Video_RootCursor: FC =
           <div className="fill center">
             <header className="row gap-4">
               <AddRemoveIcon
-                isAdded={isCurrAdded}
+                isAdded={props.isAdded}
               />
             </header>
           </div>

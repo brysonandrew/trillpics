@@ -23,7 +23,7 @@ export const PicBackdrop: FC<
   };
   return (
     <motion.div
-      className={clsx("inset-0")}
+      className={clsx("inset-0 pointer-events-none")}
       style={{
         position: "fixed",
         ...(screenDimensions ?? {}),

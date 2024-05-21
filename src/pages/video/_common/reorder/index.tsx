@@ -1,4 +1,4 @@
-import type { FC } from "react";
+import type { FC, PropsWithChildren } from "react";
 import {
   motion,
   Reorder,
@@ -12,16 +12,14 @@ import { Dragger } from "~/pages/video/_common/reorder/dragger";
 import clsx from "clsx";
 import { useTrillPicsStore } from "~/store/middleware";
 import { boxSize } from "~/constants/box/size";
-import { IconsTrash40 } from "~/components/icons/video/trash/40";
 import { useTimebomb } from "~/hooks/use-time-bomb";
 import { LinesVertical } from "~/pages/video/_common/footer/left/lines/vertical";
-import { PARAM_CLOSING_VALUE } from "~/hooks/pic/constants";
 import { IconsTrash } from "~/components/icons/video/trash";
 export const MAX_COUNT = 5;
 export const TOTAL_GAP = 40;
 
-export const _CommonReorder: FC =
-  () => {
+export const _CommonReorder: FC<PropsWithChildren> =
+  ({children}) => {
     const {
       size: _size,
       names,
@@ -78,6 +76,7 @@ export const _CommonReorder: FC =
                 y,
               }}
             >
+            {children}
               <motion.ul
                 style={{
                   x,

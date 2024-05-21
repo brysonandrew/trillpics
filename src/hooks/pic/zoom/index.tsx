@@ -13,6 +13,7 @@ import {
   PARAM_OPEN_VALUE,
 } from "~/hooks/pic/constants";
 import { paramsMoveToEnd } from "~/utils/params/move-to-end";
+import { picZoomRead } from "~/hooks/pic/zoom/read";
 
 export const usePicZoom = (
   cell?: TCell
@@ -22,9 +23,12 @@ export const usePicZoom = (
   const [searchParams] =
     useSearchParams();
 
-  const paramValue = searchParams.get(
-    ZOOM_PARAM_KEY
-  );
+  const {
+    isZoomDisabled,
+    isZoomed,
+    isClosing,
+  } = picZoomRead(searchParams);
+
   const cellKeyParamValue =
     searchParams.get(CELL_PARAM_KEY);
   const currCell =
@@ -35,16 +39,9 @@ export const usePicZoom = (
     cell &&
     cellKeyParamValue === currKey;
 
-  const isZoomDisabled =
-    !searchParams.has(CELL_PARAM_KEY);
-  const isZoomed =
-    paramValue === PARAM_OPEN_VALUE;
-
   const isCellZoomed =
     cellKeyParamValue === currKey &&
     isZoomed;
-  const isClosing =
-    paramValue === PARAM_CLOSING_VALUE;
   const isCellClosing =
     cellKeyParamValue === currKey &&
     isClosing;

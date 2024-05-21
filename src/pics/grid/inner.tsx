@@ -54,20 +54,21 @@ const Inner = forwardRef<
       eventRef.current.isHovering =
         true;
     };
+    const handleLeave = () => {
+      // if (hoverKeys.length > 0) {
+      //   set({ hoverKeys: [] });
+      // }
+      eventRef.current.isHovering =
+        false;
+    };
     return (
       <ul
         ref={ref}
         className={clsx(className)}
         onPointerOver={handleEnter}
         onPointerEnter={handleEnter}
-        onPointerLeave={() => {
-          eventRef.current.isHovering =
-            false;
-        }}
-        onPointerOut={() => {
-          eventRef.current.isHovering =
-            false;
-        }}
+        onPointerLeave={handleLeave}
+        onPointerOut={handleLeave}
         style={{
           ...style,
         }}

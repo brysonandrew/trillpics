@@ -35,8 +35,12 @@ export type TVirtualizeContextProviderProps =
 export const VirtualizeContextProvider: FC<
   TVirtualizeContextProviderProps
 > = ({ children }) => {
-  const [foundationValue, updateFoundation] =
-    useState<TFoundationValue>(null);
+  const [picValue, updatePic] =
+    useState<TElementValue>(null);
+  const [
+    foundationValue,
+    updateFoundation,
+  ] = useState<TFoundationValue>(null);
   const [footerValue, updateFooter] =
     useState<TElementValue>(null);
   const [centerValue, updateCenter] =
@@ -71,7 +75,11 @@ export const VirtualizeContextProvider: FC<
       scrollY,
       ref,
     });
-  const isIdle = useMove({main,isOnscreen,scrollY});
+  const isIdle = useMove({
+    main,
+    isOnscreen,
+    scrollY,
+  });
 
   return (
     <VirtualizeContext.Provider
@@ -83,6 +91,8 @@ export const VirtualizeContextProvider: FC<
         main,
         fonts,
         onScroll: handleScroll,
+        picValue,
+        updatePic,
         headerValue,
         updateHeader,
         centerValue,

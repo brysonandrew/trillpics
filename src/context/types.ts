@@ -54,6 +54,10 @@ export type TVirtualizeContext = {
   updateCenter: Dispatch<
     SetStateAction<TElementValue>
   >;
+  picValue: TElementValue;
+  updatePic: Dispatch<
+    SetStateAction<TElementValue>
+  >;
   headerValue: TElementValue;
   updateHeader: Dispatch<
     SetStateAction<TElementValue>

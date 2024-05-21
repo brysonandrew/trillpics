@@ -11,7 +11,6 @@ import {
   ZOOM_PARAM_KEY,
 } from "~/hooks/pic/constants";
 import { cellEncrypt } from "~/hooks/pic/cell/encrypt";
-import { usePicZoom } from "~/hooks/pic/zoom";
 import { cellDecrypt } from "~/hooks/pic/cell/decrypt";
 import { useTrillPicsStore } from "~/store/middleware";
 import { useTimeoutRef } from "@brysonandrew/hooks-window";
@@ -58,7 +57,7 @@ export const usePicCell = (main: {
     my = main.cursor.y.get()
   ) => {
 
-    if (zoomParamValue || size === 0)
+    if (size === 0)
       return;
 
     const column = ~~(mx / size);
@@ -145,5 +144,3 @@ export const usePicCell = (main: {
     clear,
   };
 };
-export type TUsePicZoomResult =
-  ReturnType<typeof usePicZoom>;

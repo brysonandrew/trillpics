@@ -42,8 +42,6 @@ export const PillBHover: FC<
     }
   };
 
-
-
   return (
     <>
       {isHovering && (

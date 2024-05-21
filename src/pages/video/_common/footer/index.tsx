@@ -9,15 +9,29 @@ type TProps = TPropsWithChildren;
 export const VideoFooter: FC<
   TProps
 > = () => {
-  const { footerValue } =
-    useContextGrid();
+  const {
+    footerValue,
+    picValue,
+    updatePic,
+  } = useContextGrid();
 
   return (
     <>
       <Outlet />
       {footerValue &&
         createPortal(
-          <_CommonReorder />,
+          <_CommonReorder>
+            <div
+              ref={(instance) => {
+                if (
+                  instance &&
+                  !picValue
+                ) {
+                  updatePic(instance);
+                }
+              }}
+            />
+          </_CommonReorder>,
           footerValue
         )}
     </>

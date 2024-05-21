@@ -1,13 +1,15 @@
 import type { FC } from "react";
 import { FULLSCREEN_Z } from "~/constants/dom";
-import { TBoxChildProps } from "~/pics/grid/pic/box";
-import { PicDisplay } from "~/pics/grid/pic/display";
+import {
+  PicDisplay,
+  TPicDisplayProps,
+} from "~/pics/grid/pic/display";
 import { centerInScreen } from "~/utils/dimensions/center-in-viewport";
 import { useTrillPicsStore } from "~/store/middleware";
 
 export const PicZoomedDisplay: FC<
-    TBoxChildProps
-> = ({ style, ...props }) => {
+  TPicDisplayProps
+> = (props) => {
   const { screen } = useTrillPicsStore(
     ({ screen }) => ({ screen })
   );
@@ -27,7 +29,6 @@ export const PicZoomedDisplay: FC<
   return (
     <PicDisplay
       style={{
-        ...style,
         position: "fixed",
         ...centerInScreen(
           zoomDimensions,

@@ -21,8 +21,19 @@ export const videoReadEntries = (
       )
     );
   };
-  const removingCheck = (v: string) =>
-    rx.test(v);
+  const removingCheck = (
+    name: string
+  ) => rx.test(name);
+
+  const removingInValuesCheck = (
+    name: string
+  ) =>
+    paramValues.some(
+      (v) =>
+        removingCheck(v) &&
+        decryptRemoving(v) === name
+    );
+
   // v.endsWith(
   //   PARAM_CLOSING_VALUE
   // );
@@ -44,5 +55,6 @@ export const videoReadEntries = (
     decryptRemoving,
     addedCheck,
     removingCheck,
+    removingInValuesCheck
   };
 };

@@ -9,9 +9,9 @@ import { resolvePositionFromCell } from "~/pics/grid/pic/cursor/position-from-ce
 import { PRESENCE_OPACITY } from "@brysonandrew/motion-config-constants";
 import { TypographyBordered } from "~/components/typography/bordered";
 import { FILTERS_FAT_1_SVG_PROPS } from "~/shell/global/svg/filters/fat/1";
-import { TUsePicVideoResult } from "~/hooks/pic/video";
+import { TUsePicSelected } from "~/hooks/pic/selected";
 
-type TProps = TUsePicVideoResult;
+type TProps = TUsePicSelected;
 export const Video_RootCursorSelected: FC<
   TProps
 > = (props) => {

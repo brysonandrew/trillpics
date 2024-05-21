@@ -1,11 +1,27 @@
-import type { FC } from "react";
+import { FC, useEffect } from "react";
 import { PicCursor } from "~/pics/grid/pic/cursor";
-import { useClickZoom } from "~/context/hooks/click/zoom";
 import { Helmet } from "react-helmet-async";
 import { IconsOpen40 } from "~/components/icons/open/40";
+import { useContextGrid } from "~/context";
+import { useClickSelect } from "~/context/hooks/click/select";
+import { PortalBody } from "@brysonandrew/layout-portal";
+import { FULLSCREEN_Z } from "~/constants/dom";
+import { PicBackdrop } from "~/pics/grid/pic/backdrop";
+import { PicZoomedDisplay } from "~/pics/grid/pic/zoomed/display";
 
 export const Home: FC = () => {
-  const isDisabled = useClickZoom();
+  const { updatePic } =
+    useContextGrid();
+  const {
+    isSelectedPics,
+    names,
+    cells,
+    isRemoving,
+    removingInValuesCheck,
+  } = useClickSelect();
+  useEffect(() => {
+    updatePic(document.body);
+  }, []);
   return (
     <>
       <Helmet>
@@ -13,8 +29,24 @@ export const Home: FC = () => {
           Trill Pics | AI Art Gallery
         </title>
       </Helmet>
+
+      {isSelectedPics &&
+        !isRemoving && (
+          <PortalBody>
+            <PicBackdrop
+              style={{
+                zIndex: FULLSCREEN_Z,
+              }}
+            />
+            <PicZoomedDisplay
+              {...cells[0]}
+              name={names[0]}
+            />
+          </PortalBody>
+        )}
+
       <PicCursor
-        isDisabled={isDisabled}
+      // isDisabled={isDisabled}
       >
         <IconsOpen40 />
       </PicCursor>
