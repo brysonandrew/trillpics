@@ -10,7 +10,6 @@ import {
   useMotionValue,
   useTransform,
 } from "framer-motion";
-import { useTrillPicsStore } from "~/store/middleware";
 import { useContextGrid } from "~/context";
 import { useHoverKey } from "~/hooks/use-hover-key";
 import clsx from "clsx";
@@ -18,8 +17,9 @@ import { resolveAccessibilityTitles } from "@brysonandrew/utils-attributes";
 import { boxSize } from "~/constants/box/size";
 import { TDimensions } from "@brysonandrew/config-types";
 
-type TProps = {
+type TProps =  {
   container: TDimensions;
+  left: number
   width: number;
   height: number;
   children(
@@ -27,18 +27,15 @@ type TProps = {
     y: MotionValue
   ): JSX.Element;
 };
-export const Dragger: FC<TProps> = ({
+export const _CommonReorderDragger: FC<TProps> = ({
   container,
   height,
   width,
   children,
+  ...props
 }) => {
   const x = useMotionValue(0);
   const y = useMotionValue(height);
-
-  const { screen } = useTrillPicsStore(
-    ({ screen }) => ({ screen })
-  );
   const { main } = useContextGrid();
 
   const title = "Drag video pics";
@@ -66,14 +63,15 @@ export const Dragger: FC<TProps> = ({
 
   const tx = useTransform(
     x,
-    (v) => v / 1.6
+    (v) => v / 4
   );
   const ty = useTransform(
     y,
-    (v) => v / 1.6
+    (v) => v / 2
   );
 
-  const left = width / 2 - s.m;
+  const left = props.left + width / 2;
+
   return (
     <>
       {children(tx, ty)}
@@ -81,13 +79,13 @@ export const Dragger: FC<TProps> = ({
         drag
         dragConstraints={{
           left: 0,
-          bottom: s.m,
+          bottom: s.m3,
           right: 0,
           top:
             -container.height / 2 + s.m,
         }}
         className={clsx(
-          "absolute bottom-full center rounded-md mb-4 _gradient-radial",
+          "absolute rounded-md mb-4 _gradient-radial",
           isHover(title)
             ? "grayscale-100"
             : ""
@@ -95,6 +93,7 @@ export const Dragger: FC<TProps> = ({
         style={{
           x,
           y,
+          top: -s.m2 * 1.5,
           left,
           width: s.m2,
           height: s.m2,

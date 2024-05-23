@@ -10,8 +10,8 @@ import { VIDEO_ROUTE } from "~/constants/params";
 import { resolvePicSrc } from "~/utils/src";
 import { useTrillPicsStore } from "~/store/middleware";
 import { useBlurAnimate } from "~/hooks/animate/blur/animate";
-import { MAX_COUNT } from "~/pages/video/_common/reorder";
 import { IconsTrash } from "~/components/icons/video/trash";
+import { MAX_COUNT } from "~/pages/video/_common/reorder/constants";
 
 export const LeftButtonsClear: FC<
   TVideoFooterProps &

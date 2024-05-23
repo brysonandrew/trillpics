@@ -34,9 +34,6 @@ export const videoReadEntries = (
         decryptRemoving(v) === name
     );
 
-  // v.endsWith(
-  //   PARAM_CLOSING_VALUE
-  // );
   const decryptRemoving = (
     v: string
   ) => {

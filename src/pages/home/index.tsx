@@ -17,11 +17,11 @@ export const Home: FC = () => {
     names,
     cells,
     isRemoving,
-    removingInValuesCheck,
   } = useClickSelect();
   useEffect(() => {
     updatePic(document.body);
   }, []);
+  
   return (
     <>
       <Helmet>
@@ -29,7 +29,6 @@ export const Home: FC = () => {
           Trill Pics | AI Art Gallery
         </title>
       </Helmet>
-
       {isSelectedPics &&
         !isRemoving && (
           <PortalBody>
@@ -44,9 +43,10 @@ export const Home: FC = () => {
             />
           </PortalBody>
         )}
-
       <PicCursor
-      // isDisabled={isDisabled}
+        isDisabled={Boolean(
+          isSelectedPics || isRemoving
+        )}
       >
         <IconsOpen40 />
       </PicCursor>

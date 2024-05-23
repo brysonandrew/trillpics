@@ -175,7 +175,7 @@ export const usePicSelected = () => {
   const isRemoving =
     currName && removingInValuesCheck(currName);
 
-  console.log(currName, isRemoving);
+  // console.log(currName, isRemoving);
   const maybeCheck = (name: TPic) => {
     return (
       name === currName && !isAdded
@@ -191,6 +191,7 @@ export const usePicSelected = () => {
     isSelectedPics,
     isRemoving,
     size,
+    paramValues,
     removingInValuesCheck,
     ...selectedPicsResult,
   };

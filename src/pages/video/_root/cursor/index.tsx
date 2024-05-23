@@ -3,26 +3,15 @@ import { AddRemoveIcon } from "~/pages/video/_common/pic/controls/add-remove-ico
 import { PicCursor } from "~/pics/grid/pic/cursor";
 import { useTrillPicsStore } from "~/store/middleware";
 import { Video_RootCursorSelected } from "~/pages/video/_root/cursor/selected";
-import { useClickVideo } from "~/context/hooks/click/video";
-import { usePicVideo } from "~/hooks/pic/video";
 import { useContextGrid } from "~/context";
 import { useClickSelect } from "~/context/hooks/click/select";
-
-// const {
-//   addedCheck,
-//   removingCheck,
-//   clearRemoving,
-// } = usePicVideo();
-// const isAdded = addedCheck(name);
-// const isRemoving =
-//   removingCheck(name);
+import { _CommonReorder } from "~/pages/video/_common/reorder";
 
 export const Video_RootCursor: FC =
   () => {
     const { main } = useContextGrid();
-const props =    useClickSelect();
+    const props = useClickSelect();
 
-    // const props = usePicVideo();
     const {
       isControls,
       isScrolling,
@@ -38,20 +27,12 @@ const props =    useClickSelect();
         isActiveHover,
       })
     );
-    // useClickVideo(props.toggle);
-    // const { isCurrAdded, isCurrName } =
-    //   props;
+
     const isSelectedVisible =
       !main.cursor.isHoverIdle &&
       isControls &&
       !isScrolling &&
       !isActiveHover;
-    // const title = isCurrName
-    //   ? isCurrAdded
-    //     ? "Remove from video"
-    //     : "Add to video"
-    //   : "";
-
     return (
       <>
         {isSelectedVisible && (
@@ -68,6 +49,9 @@ const props =    useClickSelect();
             </header>
           </div>
         </PicCursor>
+        <footer className="h-0 w-full">
+          <_CommonReorder {...props} />
+        </footer>
       </>
     );
   };

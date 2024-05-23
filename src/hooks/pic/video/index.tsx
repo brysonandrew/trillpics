@@ -23,9 +23,9 @@ import { detailsFromSearchParams } from "~/hooks/pic/cell/over/details/from-sear
 import { TCell } from "~/pics/grid/pic";
 import { isDefined } from "~/utils/validation/is/defined";
 import { detailsFromCell } from "~/hooks/pic/cell/over/details/from-cell";
-import { MAX_COUNT } from "~/pages/video/_common/reorder";
 import { videoPicsCheck } from "~/hooks/pic/video/read/video-pics-check";
 import { videoReadEntries } from "~/hooks/pic/video/read/entries";
+import { MAX_COUNT } from "~/pages/video/_common/reorder/constants";
 
 export const usePicVideo = () => {
   const { pics } = useTrillPicsStore(

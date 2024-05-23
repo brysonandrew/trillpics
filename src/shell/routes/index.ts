@@ -3,7 +3,7 @@ import { Shell } from "~/shell";
 import { Pics } from "~/pics";
 import { SHELL_ROUTES_PAGES } from "~/shell/routes/pages";
 import { Home } from "~/pages/home";
-import { VideoFooter } from "~/pages/video/_common/footer";
+import { VideoShell } from "~/pages/video/shell";
 import { NotFound } from "~/shell/routes/not-found";
 
 export const ROUTES: RouteObject[] = [
@@ -19,13 +19,9 @@ export const ROUTES: RouteObject[] = [
             path: "/",
             Component: Home,
           },
-          // {
-          //   path: "/home/cursor",
-          //   Component: HomeCursor,
-          // },
           {
             path: "/video",
-            Component: VideoFooter,
+            Component: VideoShell,
             children: [
               ...SHELL_ROUTES_PAGES,
             ],

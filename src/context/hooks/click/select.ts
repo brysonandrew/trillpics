@@ -4,8 +4,9 @@ import { usePicSelected } from "~/hooks/pic/selected";
 export const useClickSelect = () => {
   const props = usePicSelected();
   const handle = () => {
-    if (props.isSelectedPics) {
-      props.deselect(props.names[0]);
+    const name = props.names[0]
+    if (props.paramValues.includes(name)) {
+      props.deselect(name);
       return;
     }
     props.select();

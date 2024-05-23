@@ -85,8 +85,8 @@ export const VirtualizeContextProvider: FC<
     <VirtualizeContext.Provider
       value={{
         isIdle,
-        scrollY,
         isOnscreen,
+        scrollY,
         ref,
         main,
         fonts,
