@@ -16,18 +16,26 @@ import clsx from "clsx";
 import { resolveAccessibilityTitles } from "@brysonandrew/utils-attributes";
 import { boxSize } from "~/constants/box/size";
 import { TDimensions } from "@brysonandrew/config-types";
+import { TMotionPoint } from "@brysonandrew/motion-config-types";
 
-type TProps =  {
+type TMotionValuesRecord =
+  TMotionPoint & {
+    x025: MotionValue;
+    y05: MotionValue;
+    y033: MotionValue;
+  };
+type TProps = {
   container: TDimensions;
-  left: number
+  left: number;
   width: number;
   height: number;
   children(
-    x: MotionValue,
-    y: MotionValue
+    motionValuesRecord: TMotionValuesRecord
   ): JSX.Element;
 };
-export const _CommonReorderDragger: FC<TProps> = ({
+export const _CommonReorderDragger: FC<
+  TProps
+> = ({
   container,
   height,
   width,
@@ -43,7 +51,7 @@ export const _CommonReorderDragger: FC<TProps> = ({
   useEffect(() => {
     animate<number>(
       y,
-      -container.height / 6 + s.m,
+      -container.height / 2 + s.m,
       {
         ease: "easeIn",
         duration: 1,
@@ -61,11 +69,16 @@ export const _CommonReorderDragger: FC<TProps> = ({
   };
   const s = boxSize();
 
-  const tx = useTransform(
+  const x025 = useTransform(
     x,
     (v) => v / 4
   );
-  const ty = useTransform(
+  const y033 = useTransform(
+    y,
+    (v) => v / 3
+  );
+
+  const y05 = useTransform(
     y,
     (v) => v / 2
   );
@@ -74,18 +87,24 @@ export const _CommonReorderDragger: FC<TProps> = ({
 
   return (
     <>
-      {children(tx, ty)}
+      {children({
+        x025,
+        y033,
+        y05,
+        x,
+        y,
+      })}
       <motion.button
         drag
         dragConstraints={{
           left: 0,
-          bottom: s.m3,
+          bottom: 0,
           right: 0,
           top:
             -container.height / 2 + s.m,
         }}
         className={clsx(
-          "absolute rounded-md mb-4 _gradient-radial",
+          "center absolute rounded-md mb-4 _gradient-radial",
           isHover(title)
             ? "grayscale-100"
             : ""
@@ -93,7 +112,7 @@ export const _CommonReorderDragger: FC<TProps> = ({
         style={{
           x,
           y,
-          top: -s.m2 * 1.5,
+          bottom: 0,
           left,
           width: s.m2,
           height: s.m2,

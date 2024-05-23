@@ -34,16 +34,16 @@ export const PicDisplay: FC<
       src={src}
       alt={`░▒▓█ pic #${name} █▓▒░`}
       draggable={false}
-      onError={
-        name === "11"
-          ? console.log
-          : NOOP
-      }
-      onLoad={
-        name === "11"
-          ? console.log
-          : NOOP
-      }
+      // onError={
+      //   name === "11"
+      //     ? console.log
+      //     : NOOP
+      // }
+      // onLoad={
+      //   name === "11"
+      //     ? console.log
+      //     : NOOP
+      // }
       {...props}
     />
   );

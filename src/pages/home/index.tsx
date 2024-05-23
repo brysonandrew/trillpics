@@ -3,11 +3,11 @@ import { PicCursor } from "~/pics/grid/pic/cursor";
 import { Helmet } from "react-helmet-async";
 import { IconsOpen40 } from "~/components/icons/open/40";
 import { useContextGrid } from "~/context";
-import { useClickSelect } from "~/context/hooks/click/select";
 import { PortalBody } from "@brysonandrew/layout-portal";
 import { FULLSCREEN_Z } from "~/constants/dom";
 import { PicBackdrop } from "~/pics/grid/pic/backdrop";
 import { PicZoomedDisplay } from "~/pics/grid/pic/zoomed/display";
+import { useHomeClickSelect } from "~/pages/home/select";
 
 export const Home: FC = () => {
   const { updatePic } =
@@ -17,11 +17,11 @@ export const Home: FC = () => {
     names,
     cells,
     isRemoving,
-  } = useClickSelect();
+  } = useHomeClickSelect();
   useEffect(() => {
     updatePic(document.body);
   }, []);
-  
+
   return (
     <>
       <Helmet>

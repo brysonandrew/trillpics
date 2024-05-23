@@ -1,7 +1,7 @@
 import { useClickGrid } from "~/context/hooks/click";
 import { usePicSelected } from "~/hooks/pic/selected";
 
-export const useClickSelect = () => {
+export const useHomeClickSelect = () => {
   const props = usePicSelected();
   const handle = () => {
     const name = props.names[0]

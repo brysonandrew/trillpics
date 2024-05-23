@@ -17,7 +17,7 @@ export const _CommonReorderPlaceholder: FC<
             key={`${index}`}
             className={clsx(
               "relative",
-              "border border-white dark:border-black bg-white-01 dark:bg-black-01 backdrop-blur-sm"
+              "border border-white dark:border-black bg-white-01 dark:bg-black-01 backdrop-blur-sm opacity-50"
             )}
             {...itemProps}
           >

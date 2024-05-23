@@ -43,7 +43,7 @@ export const usePicSelected = () => {
     removingCheck,
     encryptRemoving,
     decryptRemoving,
-    removingInValuesCheck
+    removingInValuesCheck,
   } = videoReadEntries(paramValues);
   const isSelectedPics = videoPicsCheck(
     paramValues
@@ -170,10 +170,16 @@ export const usePicSelected = () => {
       deselect();
       return;
     }
-    select();
+    if (currName) {
+      select([
+        currName,
+        ...paramValues,
+      ]);
+    }
   };
   const isRemoving =
-    currName && removingInValuesCheck(currName);
+    currName &&
+    removingInValuesCheck(currName);
 
   // console.log(currName, isRemoving);
   const maybeCheck = (name: TPic) => {
@@ -183,6 +189,7 @@ export const usePicSelected = () => {
   };
 
   return {
+    currName,
     toggle,
     select,
     deselect,
@@ -193,6 +200,9 @@ export const usePicSelected = () => {
     size,
     paramValues,
     removingInValuesCheck,
+    removingCheck,
+    decryptRemoving,
+    encryptRemoving,
     ...selectedPicsResult,
   };
 };
