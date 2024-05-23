@@ -24,9 +24,9 @@ export const LinesTopRight: FC<
   const rounded = boxRadius();
   const s = boxSize();
   const top =
-    dimensions.height / 8 + s.m05 + 1;
+    dimensions.height / 8 - s.m025 + s.m025/4 + s.m025/8;
   const height =
-    dimensions.height / 3 - s.m05;
+    dimensions.height / 3 - s.m2 + s.m025/4;
   return (
     <Lines_Line
       classValue={clsx(classValue)}

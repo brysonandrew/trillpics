@@ -52,6 +52,6 @@ export const videoReadEntries = (
     decryptRemoving,
     addedCheck,
     removingCheck,
-    removingInValuesCheck
+    removingInValuesCheck,
   };
 };

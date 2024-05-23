@@ -14,9 +14,10 @@ export const PlaybackProgressSeeker: FC =
     return (
       <div
         className={clsx(
-          "relative flex grow w-full h-4 background"
+          "relative flex grow w-full h-4 bg-black rounded-md"
         )}
         onPointerDown={handler}
+        // onPointerUp={handler}
       >
         <LightingGlow classValue="fill opacity-20" />
         <TexturesMeshRounded />

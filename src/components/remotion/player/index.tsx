@@ -9,8 +9,7 @@ import { TPicSeriesSchema, TPicSeriesProps } from "~/components/remotion/pic-ser
 export const RemotionPlayer = () => {
   const props =
     useRemotionPlayerProps();
- // const renderPoster = usePoster();
-   const renderLoading = useLoading();
+  const renderLoading = useLoading();
   usePlayerListeners();
   return (
     <Player<
@@ -21,9 +20,6 @@ export const RemotionPlayer = () => {
       clickToPlay
       doubleClickToFullscreen
       renderLoading={renderLoading}
-      // showPosterWhenPaused
-      // showPosterWhenUnplayed
-      // showPosterWhenEnded
       component={PicSeries}
       schema={PIC_SERIES_SCHEMA}
       {...props}

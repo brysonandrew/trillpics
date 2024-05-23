@@ -2,11 +2,10 @@ import type { FC } from "react";
 import { LinesHorizontal } from "~/pages/video/_common/footer/left/lines/horizontal";
 import { PillBHover } from "~/components/buttons/pill/b/hover";
 import { boxSize } from "~/constants/box/size";
-import { usePicVideo } from "~/hooks/pic/video";
 import { useReady } from "~/hooks/use-ready";
 import { TVideoFooterProps } from "~/pages/video/_common/footer/types";
 import { SeperatorHorizontal } from "~/pages/video/_common/footer/left/seperator/horizontal";
-import { Slider } from "~/components/slider";
+import { SecondsSlider } from "~/components/slider";
 import { TypographyBorderedSm } from "~/components/typography/bordered/sm";
 
 export const _RootLeftDuration: FC<
@@ -30,7 +29,7 @@ export const _RootLeftDuration: FC<
       style={{
         left: bSize.m * 2.5,
         bottom: 0,
-        width: 'calc(100% - 245px)'
+        width: "calc(100% - 245px)",
       }}
     >
       <LinesHorizontal />
@@ -39,7 +38,7 @@ export const _RootLeftDuration: FC<
       </TypographyBorderedSm>
       <LinesHorizontal />
       <div className="w-full md:w-3/4">
-        <Slider />
+        <SecondsSlider />
       </div>
       <LinesHorizontal />
     </div>

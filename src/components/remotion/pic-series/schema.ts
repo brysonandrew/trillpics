@@ -7,4 +7,5 @@ export const PIC_SERIES_SCHEMA =
     ),
     seconds: z.number(),
     count: z.number(),
+    isPics: z.boolean()
   });

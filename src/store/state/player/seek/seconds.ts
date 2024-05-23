@@ -14,8 +14,6 @@ export const playerSeekSecondsState: TStateHandler<
         !isNull(state.playerInstance)
       ) {
         const min =
-          (state.playerInstance.getCurrentFrame() ??
-            0) +
           state.fps * seconds;
         const max =
           state.fps *

@@ -5,14 +5,14 @@ import {
   PillBHover,
   TPillBHoverProps,
 } from "~/components/buttons/pill/b/hover";
-import { usePicVideo } from "~/hooks/pic/video";
 import { useBlurAnimate } from "~/hooks/animate/blur/animate";
+import { usePicSelected } from "~/hooks/pic/selected";
 
 export const HudLeftAddRandom: FC<
   Partial<TPillBHoverProps>
 > = (props) => {
   const { ref } = useContextGrid();
-  const { add } = usePicVideo();
+  const { add } = usePicSelected();
   const handleBlur = useBlurAnimate();
 
   const handleClick = () => {

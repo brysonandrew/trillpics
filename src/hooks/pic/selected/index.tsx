@@ -71,20 +71,19 @@ export const usePicSelected = () => {
       columnsCount,
     });
 
-  const add = (
-    nextNames = currName
-      ? [currName]
-      : null
-  ) => {
-    if (nextNames === null) return;
-
-    nextNames.forEach((name) => {
-      searchParams.append(
-        SELECTED_PARAM_KEY,
-        name
-      );
-    });
-
+  const add = (cell: TCell) => {
+    if (cell === null) return;
+    const { currName } =
+      detailsFromCell({
+        cell,
+        columnsCount,
+        pics,
+      });
+    if (currName === null) return;
+    searchParams.append(
+      SELECTED_PARAM_KEY,
+      currName
+    );
     const r1 = paramsMoveToEnd(
       searchParams,
       CELL_PARAM_KEY
@@ -99,7 +98,6 @@ export const usePicSelected = () => {
       ? [currName]
       : null
   ) => {
-    console.log("select", nextNames);
     if (nextNames === null) return;
     searchParams.delete(
       SELECTED_PARAM_KEY
@@ -189,6 +187,7 @@ export const usePicSelected = () => {
   };
 
   return {
+    add,
     currName,
     toggle,
     select,

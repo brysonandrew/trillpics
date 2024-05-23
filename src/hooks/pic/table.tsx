@@ -23,7 +23,6 @@ export const usePicTable = () => {
     size,
   }: Pick<TPicsTable, "size"> &
     TTableUpdateCountResult) => {
-      console.log("table.update")
     searchParams.set(
       SIZE_PARAM_KEY,
       `${size}`

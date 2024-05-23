@@ -1,7 +1,6 @@
 import { FC } from "react";
 import { useTrillPicsStore } from "~/store/middleware";
 import { MonoChars } from "~/components/remotion/player/playback/timer/numbers";
-import { TypographyBorderedSm } from "~/components/typography/bordered/sm";
 
 type TProps = { frame: number };
 export const TimerDisplay: FC<
@@ -22,12 +21,13 @@ export const TimerDisplay: FC<
   ).padStart(2, "0");
 
   return (
-    <TypographyBorderedSm 
-    // c="flex shrink-0 grow-0 text-left"
+    <div
+      className="row"
+      // c="flex shrink-0 grow-0 text-left"
     >
       <MonoChars>{m}</MonoChars>:
       <MonoChars>{s}</MonoChars>.
       <MonoChars>{ms}</MonoChars>
-    </TypographyBorderedSm>
+    </div>
   );
 };

@@ -20,7 +20,7 @@ export const HudLeftShuffle: FC<{
     handler();
     updatePics();
   };
-  const title = "Randomize Pics";
+  const title = "Shuffle Pics";
   return (
     <PillBHover
       key={title}

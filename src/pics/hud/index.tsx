@@ -35,30 +35,9 @@ export const Hud: FC<TProps> = ({
           height: dimensions.height,
         }}
       >
-        {foundationValue && (
-          <PicsHudLeft
-            key="PicsHudLeft"
-            dimensions={dimensions}
-            foundation={foundationValue}
-            isIdle={isIdle}
-            isVerticalScroll={
-              isVerticalScroll
-            }
-          />
-        )}
-      </div>
-
-      <div
-        className="fixed w-0 z-10"
-        style={{
-          left: dimensions.left,
-          top: dimensions.top,
-          height: dimensions.height,
-        }}
-      >
         <div
           className={clsx(
-            "absolute top-0 left-0 h-0 row"
+            "absolute top-0 left-0 h-0 row shrink-0"
           )}
           style={{
             width: dimensions.width,
@@ -101,12 +80,42 @@ export const Hud: FC<TProps> = ({
                         dimensions={
                           dimensions
                         }
+                        isVerticalScroll={
+                          isVerticalScroll
+                        }
                       />
                     </>
                   )}
                 </PicsHudHeader>
               </>
             )}
+
+            <div
+              key="left"
+              className="fixed w-0 z-0"
+              style={{
+                left: dimensions.left,
+                top: dimensions.top,
+                height:
+                  dimensions.height,
+              }}
+            >
+              {foundationValue && (
+                <PicsHudLeft
+                  key="PicsHudLeft"
+                  dimensions={
+                    dimensions
+                  }
+                  foundation={
+                    foundationValue
+                  }
+                  isIdle={isIdle}
+                  isVerticalScroll={
+                    isVerticalScroll
+                  }
+                />
+              )}
+            </div>
           </AnimatePresence>
         </div>
       </div>

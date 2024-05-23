@@ -5,7 +5,7 @@ import { boxSize } from "~/constants/box/size";
 import { LinesVertical } from "~/pages/video/_common/footer/left/lines/vertical";
 import { FooterNavDelete } from "~/pages/video/_common/footer/left/delete";
 import { FooterNavAdd } from "~/pages/video/_common/footer/left/add";
-import { usePicVideo } from "~/hooks/pic/video";
+import { usePicVideoReadInputs } from "~/hooks/pic/video/read/inputs/hook";
 
 export const _CommonFooterLeft: FC =
   () => {
@@ -15,8 +15,9 @@ export const _CommonFooterLeft: FC =
           screen,
         })
       );
-    const { isVideoPics } =
-      usePicVideo();
+    const { count } =
+      usePicVideoReadInputs();
+    const isVideoPics = count > 0;
     const container =
       screen.isDimensions &&
       screen.container;
@@ -73,7 +74,6 @@ export const _CommonFooterLeft: FC =
               marginLeft: bSize.s05,
             }}
           />
-          
         </div>
       </div>
     );

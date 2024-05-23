@@ -1,5 +1,5 @@
 import { PointerEventHandler } from "react";
-import { usePicVideo } from "~/hooks/pic/video";
+import { usePicVideoReadSeconds } from "~/hooks/pic/video/read/seconds/hook";
 import { useTrillPicsStore } from "~/store/middleware";
 
 export const useSeek = () => {
@@ -10,7 +10,7 @@ export const useSeek = () => {
         seekSeconds,
       })
     );
-  const { seconds } = usePicVideo();
+  const  seconds = usePicVideoReadSeconds();
 
   const handleSeek = (
     progress: number

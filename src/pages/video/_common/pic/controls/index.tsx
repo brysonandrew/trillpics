@@ -1,21 +1,21 @@
 import type { FC } from "react";
 import { motion } from "framer-motion";
-import { TUsePicVideoResult } from "~/hooks/pic/video";
 import { TPropsWithChildren } from "@brysonandrew/config-types";
 import { PRESENCE_OPACITY } from "@brysonandrew/motion-config-constants";
 import { TypographyBordered } from "~/components/typography/bordered";
+import { TUsePicSelected } from "~/hooks/pic/selected";
 
 export type TPicVideoControlsProps =
-  TPropsWithChildren<TUsePicVideoResult>;
+  TPropsWithChildren<TUsePicSelected>;
 export const PicVideoControls: FC<
   TPicVideoControlsProps
 > = (props) => {
-  const { isCurrAdded, children } =
+  const { isAdded, children } =
     props;
   return (
     <motion.div
       key={
-        isCurrAdded
+        isAdded
           ? "added"
           : "VideoControlsCounter"
       }

@@ -106,23 +106,20 @@ export const PillB: FC<TPillBProps> = ({
         {isSelected && (
           <motion.div
             className="fill -inset-2 _gradient-radial"
-            layoutId="PillB_SELECTED"
+            // layoutId="selected pill b"
             style={
               {
                 borderRadius,
               }
             }
             initial={{
-              scale: 1,
-              opacity: 1,
+              scale: 0.5,
             }}
             animate={{
-              scale: [1, 0.5, 1],
-              opacity: [1, 0.5, 1],
+              scale: 1,
             }}
             exit={{
-              scale: 1,
-              opacity: 1,
+              scale: 0.5,
             }}
           />
         )}

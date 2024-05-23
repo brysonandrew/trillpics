@@ -16,11 +16,17 @@ export const BOX_SIZE = {
   ...BOX_SIZES,
   s05: BOX_SIZE_S * 0.5,
   s025: BOX_SIZE_S * 0.25,
-  m05: BOX_SIZE_M * 0.5,
+
+  m0125: BOX_SIZE_M * 0.125,
   m025: BOX_SIZE_M * 0.25,
+  m05: BOX_SIZE_M * 0.5,
+  m15: BOX_SIZE_M * 1.5,
   m2: BOX_SIZE_M * 2,
+  m25: BOX_SIZE_M * 2.5,
+
   m3: BOX_SIZE_M * 3,
   m4: BOX_SIZE_M * 4,
+
   size: DEFAULT_SIZE_BOX_SIZE,
   minWidth: DEFAULT_SIZE_BOX_SIZE,
   minHeight: DEFAULT_SIZE_BOX_SIZE,

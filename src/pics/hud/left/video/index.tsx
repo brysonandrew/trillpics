@@ -21,6 +21,8 @@ type TProps = {
 export const HudLeftVideo: FC<
   TProps
 > = ({ isLabel }) => {
+  const s = boxSize();
+
   const isVideoPics =
     useVideoPicsCheck();
   const { togglePathValue, isActive } =
@@ -32,7 +34,7 @@ export const HudLeftVideo: FC<
         : VIDEO_ROUTE
     );
   };
-  const s = boxSize();
+
   const title = isActive
     ? "Exit Video Maker"
     : "Video Maker";
@@ -40,7 +42,13 @@ export const HudLeftVideo: FC<
   return (
     <>
       {isActive && isVideoPics && (
-        <>
+        <motion.div
+          layout
+          className="column-start shrink-0 justify-evenly w-0"
+          style={{
+            height: s.m4,
+          }}
+        >
           <LeftButtonsClear
             isLabel={isLabel}
           />
@@ -53,8 +61,17 @@ export const HudLeftVideo: FC<
             <VideoPicsCounter />
           </motion.div>
           <PicsHudLeftLine />
-        </>
+          {isActive && (
+            <>
+              <HudLeftAddRandom
+                isLabel={isLabel}
+              />
+              <PicsHudLeftLine />
+            </>
+          )}
+        </motion.div>
       )}
+
       <PillBHover
         title={title}
         subtitle={
@@ -63,6 +80,7 @@ export const HudLeftVideo: FC<
             : "Make a short video clip composed of the pics you see here."
         }
         onClick={handleClick}
+        isSelected={isActive}
         isLabel={isLabel}
         Icon={IconsVideo}
         outerCircle={
@@ -74,14 +92,6 @@ export const HudLeftVideo: FC<
       >
         {title}
       </PillBHover>
-      {isActive && (
-        <>
-          <PicsHudLeftLine />
-          <HudLeftAddRandom
-            isLabel={isLabel}
-          />
-        </>
-      )}
     </>
   );
 };

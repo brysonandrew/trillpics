@@ -1,5 +1,5 @@
 import { useSearchParams } from "react-router-dom";
-import { VIDEO_PARAM_KEY } from "~/hooks/pic/constants";
+import { SELECTED_PARAM_KEY } from "~/hooks/pic/constants";
 import { picVideoReadCount } from "~/hooks/pic/video/read/count";
 
 export const usePicVideoReadCount =
@@ -8,7 +8,7 @@ export const usePicVideoReadCount =
       useSearchParams();
     const paramValues =
       searchParams.getAll(
-        VIDEO_PARAM_KEY
+        SELECTED_PARAM_KEY
       );
     return picVideoReadCount(
       paramValues

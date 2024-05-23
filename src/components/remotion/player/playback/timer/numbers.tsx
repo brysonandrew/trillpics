@@ -11,14 +11,14 @@ export const MonoChars: FC<Props> = ({
   return (
     <>
       {[...children].map((value, index) => (
-        <span
+        <div
           key={`${index}`}
           className="text-center"
           style={{width, ...style}}
           {...props}
         >
           {value}
-        </span>
+        </div>
       ))}
     </>
   );

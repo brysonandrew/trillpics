@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 
-export const useBodyStyle = (
+export const useBodyStyleWrite = (
   style: string
 ) => {
   useEffect(() => {

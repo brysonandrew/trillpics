@@ -1,23 +1,23 @@
+import { useMemo } from "react";
 import { useImageDimensions } from "@brysonandrew/measure";
 import { DIMENSIONS } from "~/constants/remotion";
-import { usePicVideo } from "~/hooks/pic/video";
+import { usePicVideoReadInputs } from "~/hooks/pic/video/read/inputs/hook";
 import { useTrillPicsStore } from "~/store/middleware";
 
 export const useRemotionProps = () => {
+  const picVideoInputs =
+    usePicVideoReadInputs();
   const {
-    names,
-    isVideoPics,
-    seconds,
-  } = usePicVideo();
-  const secs = seconds || 10;
-  const { screen, fps, pics } =
-    useTrillPicsStore(
-      ({ screen, fps, pics }) => ({
-        screen,
-        fps,
-        pics,
-      })
-    );
+    screen,
+    fps,
+    pics: allPics,
+  } = useTrillPicsStore(
+    ({ screen, fps, pics }) => ({
+      screen,
+      fps,
+      pics,
+    })
+  );
   const dimensions = useImageDimensions(
     {
       box: screen.isDimensions
@@ -27,24 +27,30 @@ export const useRemotionProps = () => {
     }
   );
 
-  const videoPics = isVideoPics
-    ? names
-    : [...Array(5)].map(
-        () =>
-          `${Math.floor(
-            pics.length * Math.random()
-          )}`
-      );
-
-  const durationInFrames = secs * fps;
-
+  const pics = useMemo(() => {
+    return picVideoInputs.isPics
+      ? picVideoInputs.pics
+      : [...Array(5)].map(
+          () =>
+            `${Math.floor(
+              allPics.length *
+                Math.random()
+            )}`
+        );
+  }, [picVideoInputs]);
+  const seconds =
+    picVideoInputs.seconds || 10;
+  const durationInFrames =
+    seconds * fps;
+  const count = pics.length;
   return {
     fps,
     durationInFrames,
     props: {
-      pics: videoPics as string[],
-      count: videoPics.length,
-      seconds: secs,
+      pics,
+      count,
+      seconds,
+      isPics: count > 0,
     },
     ...(dimensions.isDimensions
       ? dimensions

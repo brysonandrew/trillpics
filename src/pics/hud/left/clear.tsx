@@ -4,7 +4,6 @@ import {
   TPillBHoverProps,
 } from "~/components/buttons/pill/b/hover";
 import { TVideoFooterProps } from "~/pages/video/_common/footer/types";
-import { usePicVideo } from "~/hooks/pic/video";
 import { useNavigationControls } from "~/hooks/navigation/controls";
 import { VIDEO_ROUTE } from "~/constants/params";
 import { resolvePicSrc } from "~/utils/src";
@@ -12,6 +11,7 @@ import { useTrillPicsStore } from "~/store/middleware";
 import { useBlurAnimate } from "~/hooks/animate/blur/animate";
 import { IconsTrash } from "~/components/icons/video/trash";
 import { MAX_COUNT } from "~/pages/video/_common/reorder/constants";
+import { usePicVideoWriteInputs } from "~/hooks/pic/video/write/inputs/hook";
 
 export const LeftButtonsClear: FC<
   TVideoFooterProps &
@@ -23,9 +23,9 @@ export const LeftButtonsClear: FC<
   const {
     clear,
     count,
-    names,
-    isVideoPics,
-  } = usePicVideo();
+    pics: names,
+    isPics: isVideoPics,
+  } = usePicVideoWriteInputs();
   const { togglePathValue, isActive } =
     useNavigationControls(VIDEO_ROUTE);
   const { screen } = useTrillPicsStore(

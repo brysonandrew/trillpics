@@ -8,7 +8,6 @@ import {
   COLUMNS_COUNT_PARAM_KEY,
   SECONDS_PARAM_KEY,
   VIDEO_PARAM_KEY,
-  PARAM_CLOSING_VALUE,
 } from "~/hooks/pic/constants";
 import { useVideoPicsResult } from "~/hooks/pic/video/pics";
 import {

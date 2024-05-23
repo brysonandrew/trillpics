@@ -3,7 +3,7 @@ import {
   motion,
 } from "framer-motion";
 import { useTrillPicsStore } from "~/store/middleware";
-import { PillB } from "~/components/buttons/pill/b";
+import { PillB, TPillBProps } from "~/components/buttons/pill/b";
 import { IconsGenerate } from "~/components/icons/video/generate";
 import { trpc } from "~/utils/trpc";
 import { TGenerateProps } from "~/server/generate";
@@ -15,33 +15,30 @@ import { TextureMetal } from "@brysonandrew/texture-metal";
 import { TGenerateInput } from "~/types/trpc/generate";
 import { useHoverKey } from "~/hooks/use-hover-key";
 import { boxStyle } from "~/constants/box/style";
-import { usePicVideo } from "~/hooks/pic/video";
+import { usePicVideoReadInputs } from "~/hooks/pic/video/read/inputs/hook";
+import { FC } from "react";
 
 const DEFAULT: TGenerateInput = {
   input: {
     pics: [],
     count: 0,
     seconds: 1,
+    isPics: false,
   },
   fps: 3,
 };
 
-export const Generate = () => {
+export const Generate:FC<Partial<TPillBProps>> = (props) => {
   const { fps } = useTrillPicsStore(
     ({ fps }) => ({
       fps,
     })
   );
-  const { names, seconds, count } =
-    usePicVideo();
+  const input = usePicVideoReadInputs();
   const { handlers, isHover } =
     useHoverKey();
   const config: TGenerateProps = {
-    input: {
-      pics:names,
-      seconds,
-      count,
-    },
+    input,
     fps,
   };
   const borderStyle = boxStyle({
@@ -106,18 +103,20 @@ export const Generate = () => {
       }
     ),
   };
+  const isHovering = isHover(title);
+
 
   return (
-    <div className="relative h-0">
+    <div className="relative">
       <AnimatePresence>
-        {isAura && (
+        {(isAura || isHovering) && (
           <>
             <motion.div
               key={resolveCompositeKey(
                 isHover.toString(),
                 isLoading.toString()
               )}
-              className="absolute -inset-1 ml-1 mt-0 _gradient-radial"
+              className="absolute -inset-6 ml-0 mt-0 _gradient-radial"
               style={{
                 filter:
                   AURA.GLOBAL.value,
@@ -127,7 +126,7 @@ export const Generate = () => {
             />
             <TextureMetal
               key="background"
-              className="fill h-10"
+              className="fill h-20"
               style={borderStyle}
               {...AURA_TRANSITION}
             />
@@ -136,13 +135,14 @@ export const Generate = () => {
       </AnimatePresence>
       <PillB
         title="Generate video"
+        // isSelected={isHovering}
         circleProps={{
           isGlow: isSuccess,
           ...{
             transition: {
               repeat: Infinity,
               repeatDelay: 0.8,
-              duration: isHover(title)
+              duration: isHovering
                 ? 0.8
                 : 0,
             },
@@ -155,6 +155,7 @@ export const Generate = () => {
         Icon={IconsGenerate}
         onClick={handleGenerate}
         {...handlers(title)}
+        {...props}
       >
         Generate
       </PillB>

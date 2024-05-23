@@ -7,6 +7,7 @@ import {
   TDivMotionProps,
   TImgMotionProps,
 } from "@brysonandrew/config-types";
+import clsx from "clsx";
 
 export type TPicDisplayProps =
   TDivMotionProps &
@@ -14,7 +15,7 @@ export type TPicDisplayProps =
     Pick<TPicProps, "name">;
 export const PicDisplay: FC<
   TPicDisplayProps
-> = ({ name, src = resolvePicSrc(name), ...props }) => {
+> = ({ name, src = resolvePicSrc(name), classValue, ...props }) => {
   const isVacant =
     typeof name === "number";
     
@@ -29,6 +30,7 @@ export const PicDisplay: FC<
 
   return (
     <motion.img
+    className={clsx(classValue ?? 'relative')}
       key={name}
       layoutId={name}
       src={src}

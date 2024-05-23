@@ -23,6 +23,9 @@ import {
   MAX_COUNT,
 } from "~/pages/video/_common/reorder/constants";
 import { PRESENCE_OPACITY } from "@brysonandrew/motion-config-constants";
+import { CONTROLS_PLAYER_TITLE } from "~/pics/hud/left/player";
+import { AURA } from "@brysonandrew/svg-filter";
+import { useHoverKey } from "~/hooks/use-hover-key";
 
 type TProps = TUsePicSelected;
 export const _CommonReorder: FC<
@@ -36,19 +39,29 @@ export const _CommonReorder: FC<
   select,
   deselect,
 }) => {
-  const { screen } = useTrillPicsStore(
-    ({ screen }) => ({ screen })
-  );
+  const { screen, hoverKeys } =
+    useTrillPicsStore(
+      ({ screen, hoverKeys }) => ({
+        screen,
+        hoverKeys,
+      })
+    );
+  const isVideoPlayerButtonHover =
+    hoverKeys.includes(
+      CONTROLS_PLAYER_TITLE
+    );
   const { trigger } = useTimebomb(
     400,
     select
   );
+  const {handlers}  = useHoverKey()
+
   if (!screen.isDimensions) return null;
   const s = boxSize();
   const width =
-    screen.container.width - s.m;
+    screen.container.width - s.m3;
   const left =
-    screen.container.left + s.m05;
+    screen.container.left + s.m15;
   const gap =
     TOTAL_GAP / (MAX_COUNT - 1);
   const size =
@@ -61,7 +74,7 @@ export const _CommonReorder: FC<
       height,
       width,
       left,
-      top:0,
+      top: 0,
     },
   } as const;
   const itemProps = {
@@ -78,7 +91,7 @@ export const _CommonReorder: FC<
     >
       {({ x025, y033, y05, y }) => {
         return (
-          <div className="relative">
+          <div className="relative" {...handlers("dragger")}>
             {children}
             <_CommonReorderControls
               names={names}
@@ -130,6 +143,27 @@ export const _CommonReorder: FC<
                     }}
                   >
                     <AnimatePresence>
+                      {isVideoPlayerButtonHover ? (
+                        <motion.div
+                          key="glow"
+                          className="absolute _gradient-radial"
+                          style={{
+                            ...itemProps.style,
+                            opacity: 1,
+                            top: 0,
+                            left: 0,
+                            right: 0,
+                            bottom: 0,
+                            filter:
+                              "blur(40px)",
+                          }}
+                          {...PRESENCE_OPACITY}
+                          transition={{
+                            duration: 1,
+                            ease: "easeIn",
+                          }}
+                        />
+                      ) : null}
                       {isRemoving ? (
                         <PicDisplay
                           key="removing"
@@ -141,7 +175,7 @@ export const _CommonReorder: FC<
                           )}
                           style={{
                             ...itemProps.style,
-                            opacity:1,
+                            opacity: 1,
                             top: 0,
                             left: 0,
                             right: 0,
@@ -149,9 +183,9 @@ export const _CommonReorder: FC<
                             filter:
                               "blur(4px)",
                           }}
-                           {...PRESENCE_OPACITY}
+                          {...PRESENCE_OPACITY}
                           transition={{
-                            duration: 10,
+                            duration: 1,
                             ease: "easeIn",
                           }}
                         />
@@ -167,13 +201,20 @@ export const _CommonReorder: FC<
                               "grabbing",
                           }}
                           {...itemProps}
-                            {...PRESENCE_OPACITY}
+                          {...PRESENCE_OPACITY}
                           style={{
                             ...itemProps.style,
                             top: 0,
                             left: 0,
                             right: 0,
                             bottom: 0,
+
+                            // filter:
+                            //   isVideoPlayerButtonHover
+                            //     ? AURA
+                            //         .GLOBAL
+                            //         .value
+                            //     : "none",
                           }}
                           transition={{
                             duration: 0.6,

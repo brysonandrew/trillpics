@@ -8,9 +8,10 @@ import { FULLSCREEN_Z } from "~/constants/dom";
 import { PicBackdrop } from "~/pics/grid/pic/backdrop";
 import { PicZoomedDisplay } from "~/pics/grid/pic/zoomed/display";
 import { useHomeClickSelect } from "~/pages/home/select";
+import { GridOptions } from "~/pics/hud/left/grid-options";
 
 export const Home: FC = () => {
-  const { updatePic } =
+  const { updatePic,main,foundationValue } =
     useContextGrid();
   const {
     isSelectedPics,
@@ -50,6 +51,7 @@ export const Home: FC = () => {
       >
         <IconsOpen40 />
       </PicCursor>
+      <GridOptions />
     </>
   );
 };

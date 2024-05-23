@@ -1,18 +1,16 @@
-import { FC, useState } from "react";
+import { FC } from "react";
 import { motion } from "framer-motion";
 import { TClassValueProps } from "@brysonandrew/config-types";
 import clsx from "clsx";
 import { boxRadius } from "~/constants/box/radius";
 import { isNull } from "~/utils/validation/is/null";
+import { useTitleObserver } from "~/pics/header/use-title-observer";
 
 type TProps = TClassValueProps;
 export const HeaderSubtitle: FC<
   TProps
 > = ({ classValue }) => {
-  const [title, setTitle] = useState<
-    string | null
-  >(document.title);
-
+  const title = useTitleObserver();
   if (isNull(title)) return null;
   return (
     <motion.div
