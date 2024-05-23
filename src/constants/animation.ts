@@ -1,8 +1,8 @@
 import {
+  TRANSITION_02_EASE_IN_04,
   PRESENCE_OPACITY,
   TRANSITION_02_EASE_IN_02,
-  TRANSITION_02_EASE_IN_04,
-} from "@brysonandrew/motion-core";
+} from "@brysonandrew/motion-config-constants";
 import { resolvePresence } from "~/utils/animation";
 
 export const DURATION = 0.2;
@@ -17,15 +17,22 @@ export const DELAY_TRANSITION = {
   delay: TRANSITION.duration,
 };
 
+export const DELAY_TRANSITION_PROPS = {
+  transition: {
+    ...TRANSITION,
+    delay: TRANSITION.duration,
+  },
+};
+
 export const FADE_PRESENCE_WITH_DELAY =
   resolvePresence(
     {
       opacity: 0,
-      transition: DELAY_TRANSITION,
+      ...DELAY_TRANSITION_PROPS,
     },
     {
       opacity: 1,
-      transition: DELAY_TRANSITION,
+      ...DELAY_TRANSITION_PROPS,
     }
   );
 
@@ -34,12 +41,23 @@ export const FADE_PRESENCE =
     { opacity: 0 },
     { opacity: 1 }
   );
+
+export const FADE_PRESENCE_DELAY_04_TRANSITION =
+  {
+    transition:
+      TRANSITION_02_EASE_IN_04,
+  };
+
+export const FADE_PRESENCE_DELAY_02_TRANSITION =
+  {
+    transition:
+      TRANSITION_02_EASE_IN_02,
+  };
 export const FADE_PRESENCE_DELAY_04 = {
   ...FADE_PRESENCE,
   animate: {
     ...FADE_PRESENCE.animate,
-    transition:
-      TRANSITION_02_EASE_IN_04,
+    ...FADE_PRESENCE_DELAY_04_TRANSITION,
   },
 };
 export const MOTION_CONFIG = {
@@ -55,8 +73,7 @@ export const FADE_PRESENCE_05_DELAY_04 =
     ...FADE_PRESENCE_05,
     animate: {
       ...FADE_PRESENCE_05.animate,
-      transition:
-        TRANSITION_02_EASE_IN_04,
+      ...FADE_PRESENCE_DELAY_04_TRANSITION,
     },
   };
 
@@ -65,12 +82,11 @@ export const PRESENCE_OPACITY_ANIMATE_DELAY_02 =
     ...PRESENCE_OPACITY,
     animate: {
       ...PRESENCE_OPACITY.animate,
-      transition:
-        TRANSITION_02_EASE_IN_02,
+      ...FADE_PRESENCE_DELAY_02_TRANSITION,
     },
   };
 
 export const FADE_PRESENCE_DELAY_02 = {
   ...FADE_PRESENCE,
-  transition: TRANSITION_02_EASE_IN_02,
+  ...FADE_PRESENCE_DELAY_02_TRANSITION,
 };

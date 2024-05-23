@@ -1,45 +1,47 @@
-import { TLayoutOptionsRecord } from '@brysonandrew/app';
-import { DarkModeProvider } from '@brysonandrew/dark-mode';
-import { NetworkProvider } from '@brysonandrew/network';
-import { CursorProvider } from '@brysonandrew/motion-cursor';
-import { TChildrenProps } from '@brysonandrew/config-types/dom';
+import { FC } from "react";
+import { DarkModeProvider } from "@brysonandrew/dark-mode";
+import { NetworkProvider } from "@brysonandrew/network";
+import { TChildrenProps } from "@brysonandrew/config-types/dom";
 import {
-  FC,
-  PropsWithChildren,
-  useMemo,
-} from 'react';
-import { arrToNest } from '@brysonandrew/layout-utils/arrToNest';
-import { TCustomStyle } from '~app/style';
-import { App } from '~/shell/providers/App';
-import { BaseProvider } from '~/shell/providers/context/base';
-import { UserProvider } from '~/shell/providers/context/user';
-import { ViewportProvider } from '~/shell/providers/context/viewport';
-import { ScrollProvider } from '~/shell/providers/context/scroll';
+  CUSTOM_STYLE,
+  TCustomStyle,
+} from "~app/style";
+import { VirtualizeContextProvider } from "~/context";
+import { AppProvider } from "@brysonandrew/app";
+import { AppInit } from "@brysonandrew/app/AppInit";
+import {
+  APP_DESCRIPTION,
+  APP_TITLE,
+  APP_VERSION,
+} from "~app/base/package";
+import { FONTS } from "~app/base/fonts";
 
-type TLayoutOptions =
-  TLayoutOptionsRecord;
-export type TApp = TCustomStyle &
-  TLayoutOptions;
-
+export type TApp = TCustomStyle;
 type TProps = TChildrenProps;
 export const Providers: FC<TProps> = ({
-  children: _children,
+  children,
 }) => {
-  const children = useMemo(() => {
-    return arrToNest<PropsWithChildren>(
-      [
-        CursorProvider,
-        NetworkProvider,
-        DarkModeProvider,
-        BaseProvider,
-        ScrollProvider,
-        UserProvider,
-        ViewportProvider,
-      ],
-      <App>{_children}</App>,
-      {},
-    ); 
-  }, []);
-
-  return <>{children}</>;
+  return (
+    <AppInit<TCustomStyle>
+      style={CUSTOM_STYLE}
+      APP_TITLE={APP_TITLE}
+      APP_DESCRIPTION={APP_DESCRIPTION}
+      APP_VERSION={APP_VERSION}
+      FONTS={FONTS as any}
+    >
+      {(value) => (
+        <AppProvider<TCustomStyle>
+          {...value}
+        >
+          <VirtualizeContextProvider>
+            <NetworkProvider>
+              <DarkModeProvider>
+                {children}
+              </DarkModeProvider>
+            </NetworkProvider>
+          </VirtualizeContextProvider>
+        </AppProvider>
+      )}
+    </AppInit>
+  );
 };

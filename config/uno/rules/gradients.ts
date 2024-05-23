@@ -1,89 +1,119 @@
 import { Rule } from "unocss";
 import {
+  boxBackgroundCss,
+  boxBorderCss,
+} from "@brysonandrew/utils-box";
+
+import {
+  GRADIENT_MESH_DARK,
+  GRADIENT_MESH_COMMON,
+  GRADIENT_MESH_LIGHT,
+} from "../../app/color/gradient/mesh";
+import {
   GRADIENT_BLUE_PINK_YELLOW,
   GRADIENT_TEXT_COMMON,
   GRADIENT_TEAL_YELLOW_PINK,
   GRADIENT_BORDER_COMMON,
   RADIAL_BLUE_PINK_YELLOW,
   RADIAL_TEAL_YELLOW_PINK,
-  GRADIENT_NET_COMMON,
-  GRADIENT_NET_DARK,
-  GRADIENT_NET_LIGHT,
 } from "../../app/color/gradient";
+import { OUTLINE_FILTER_SVG_PROPS,OUTLINE_FILTER_SVG_DARK_PROPS } from "./filters/outline";
 
 export const GRADIENTS: Rule[] = [
   [
-    "_dark-gradient-net",
+    "_dark-outline-filter",
     {
-      ...GRADIENT_NET_DARK,
-      ...GRADIENT_NET_COMMON,
+      ...OUTLINE_FILTER_SVG_DARK_PROPS,
     },
   ],
   [
-    "_light-gradient-net",
+    "_light-outline-filter",
+    { ...OUTLINE_FILTER_SVG_PROPS },
+  ],
+  [
+    "_dark-gradient-mesh",
     {
-      ...GRADIENT_NET_LIGHT,
-      ...GRADIENT_NET_COMMON,
+      ...GRADIENT_MESH_DARK,
+      ...GRADIENT_MESH_COMMON,
+    },
+  ],
+  [
+    "_light-gradient-mesh",
+    {
+      ...GRADIENT_MESH_LIGHT,
+      ...GRADIENT_MESH_COMMON,
     },
   ],
   [
     "_dark-gradient-text",
     {
-      "background-image":
-        GRADIENT_BLUE_PINK_YELLOW,
+      ...boxBackgroundCss({
+        image:
+          GRADIENT_BLUE_PINK_YELLOW,
+      }),
       ...GRADIENT_TEXT_COMMON,
     },
   ],
   [
     "_light-gradient-text",
     {
-      "background-image":
-        GRADIENT_TEAL_YELLOW_PINK,
+      ...boxBackgroundCss({
+        image:
+          GRADIENT_TEAL_YELLOW_PINK,
+      }),
       ...GRADIENT_TEXT_COMMON,
     },
   ],
   [
     "_dark-gradient-border",
     {
-      "border-image":
-        GRADIENT_BLUE_PINK_YELLOW,
+      ...boxBorderCss({
+        image: `${GRADIENT_BLUE_PINK_YELLOW} 20`,
+      }),
       ...GRADIENT_BORDER_COMMON,
     },
   ],
   [
     "_light-gradient-border",
     {
-      "border-image":
-        GRADIENT_TEAL_YELLOW_PINK,
+      ...boxBorderCss({
+        image: `${GRADIENT_TEAL_YELLOW_PINK} 20`,
+      }),
       ...GRADIENT_BORDER_COMMON,
     },
   ],
   [
     "_dark-radial-gradient",
     {
-      "background-image":
-        RADIAL_BLUE_PINK_YELLOW,
+      ...boxBackgroundCss({
+        image: RADIAL_BLUE_PINK_YELLOW,
+      }),
     },
   ],
   [
     "_light-radial-gradient",
     {
-      "background-image":
-        RADIAL_TEAL_YELLOW_PINK,
+      ...boxBackgroundCss({
+        image: RADIAL_TEAL_YELLOW_PINK,
+      }),
     },
   ],
   [
     "_dark-linear-gradient",
     {
-      "background-image":
-        GRADIENT_BLUE_PINK_YELLOW,
+      ...boxBackgroundCss({
+        image:
+          GRADIENT_BLUE_PINK_YELLOW,
+      }),
     },
   ],
   [
     "_light-linear-gradient",
     {
-      "background-image":
-        GRADIENT_TEAL_YELLOW_PINK,
+      ...boxBackgroundCss({
+        image:
+          GRADIENT_TEAL_YELLOW_PINK,
+      }),
     },
   ],
 ];

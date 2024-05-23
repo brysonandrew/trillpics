@@ -1,66 +1,50 @@
+import { TWebFonts } from "@brysonandrew/config-types";
 import defaultTheme from "tailwindcss/defaultTheme";
 type TFontFamilyKey =
   keyof typeof defaultTheme.fontFamily;
 const withDefault = (
   value: string,
   key = "sans"
-) => [
+): string[] => [
   `"${value}"`,
   ...defaultTheme.fontFamily[
     key as TFontFamilyKey
   ],
 ];
-
-export const FONTS: any[] = [
+type TFontShareConfig = {
+  key: string;
+  provider: "none";
+  name: string;
+};
+export const FONTS = [
+  // {
+  //   key: "title",
+  //   name: withDefault("Saiba45"),
+  //   provider: "none",
+  // },
   {
-    key: "display-led",
-    name: withDefault(
-      "led_display-7" 
-    ),
-    provider: "none",
-  },
-  {
-    key: "mono",
-    name: withDefault(  
-      "DroidSansMono" 
-    ),
-    provider: "none",
-  },
-  {
-    key: "mono-pix",
-    name: withDefault(
-      "joystix" 
-    ),
-    provider: "none",
-  },
-  {
-    key: "sans",
-    name: withDefault(
-      "FFF Forward" 
-    ),
+    key: "title",
+    name: withDefault("Dragon"),
     provider: "none",
   },
   {
     key: "display",
-    name:  withDefault(
-      "Saiba 45"
-    ),
+    name: withDefault("Conthrax"),
     provider: "none",
   },
   {
-    key: "display-outline",
-    name:withDefault(
-      "Saiba 45 Outline"
-    ),
+    key: "slab",
+    name: withDefault("Armstrong3"),
     provider: "none",
   },
- 
   {
-    key: "mono-narrow",
-    name: withDefault(
-      "NK57",
-      "mono"
-    ),
+    key: "sans",
+    name: withDefault("Toxigenesis"),
     provider: "none",
   },
-];
+  {
+    key: "mono",
+    name: withDefault("Led Display 7"),
+    provider: "none",
+  },
+] as const; //satisfies readonly TFontShareConfig[];

@@ -1,41 +1,57 @@
-import { AnimatePresence } from "framer-motion";
-import { Header } from "~/pages/home/header";
-import { Controls } from "~/pages/home/controls";
-import { useVideoStore } from "~/store";
-import { useShallow } from "zustand/react/shallow";
-import { useIdleStatus } from "~/hooks/use-idle";
-import { SEARCH_PARAM_ID } from "~/components/pic/use-pic";
-import { useSearchParams } from "react-router-dom";
-import { List } from "./pics";
-const Home = () => {
-  const [searchParams] =
-    useSearchParams();
-  const searchParam = searchParams.get(
-    SEARCH_PARAM_ID
-  );
-  const isImageZoomed = Boolean(
-    searchParam
-  );
-  useIdleStatus();
-  const { isControls } = useVideoStore(
-    useShallow(({ isControls }) => ({
-      isControls,
-    }))
-  );
+import { FC, useEffect } from "react";
+import { PicCursor } from "~/pics/grid/pic/cursor";
+import { Helmet } from "react-helmet-async";
+import { IconsOpen40 } from "~/components/icons/open/40";
+import { useContextGrid } from "~/context";
+import { PortalBody } from "@brysonandrew/layout-portal";
+import { FULLSCREEN_Z } from "~/constants/dom";
+import { PicBackdrop } from "~/pics/grid/pic/backdrop";
+import { PicZoomedDisplay } from "~/pics/grid/pic/zoomed/display";
+import { useHomeClickSelect } from "~/pages/home/select";
+import { GridOptions } from "~/pics/hud/left/grid-options";
+
+export const Home: FC = () => {
+  const { updatePic,main,foundationValue } =
+    useContextGrid();
+  const {
+    isSelectedPics,
+    names,
+    cells,
+    isRemoving,
+  } = useHomeClickSelect();
+  useEffect(() => {
+    updatePic(document.body);
+  }, []);
 
   return (
     <>
-      <List />
-      <AnimatePresence>
-        {isControls &&
-          !isImageZoomed && (
-            <>
-              <Header key="header" />
-              <Controls key="controls" />
-            </>
-          )}
-      </AnimatePresence>
+      <Helmet>
+        <title>
+          Trill Pics | AI Art Gallery
+        </title>
+      </Helmet>
+      {isSelectedPics &&
+        !isRemoving && (
+          <PortalBody>
+            <PicBackdrop
+              style={{
+                zIndex: FULLSCREEN_Z,
+              }}
+            />
+            <PicZoomedDisplay
+              {...cells[0]}
+              name={names[0]}
+            />
+          </PortalBody>
+        )}
+      <PicCursor
+        isDisabled={Boolean(
+          isSelectedPics || isRemoving
+        )}
+      >
+        <IconsOpen40 />
+      </PicCursor>
+      <GridOptions />
     </>
   );
 };
-export { Home };

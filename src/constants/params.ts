@@ -1,3 +1,17 @@
-export const AUTH_PARAM_KEY = 'auth';
-export const SIGN_UP_PARAM_VALUE = 'sign-up';
-export const SIGN_IN_PARAM_VALUE = 'sign-in';
+export const HOME_ROUTE = "/";
+export const VIDEO_ROUTE = "/video";
+export const VIDEO_PLAYER_ROUTE =
+  "/video/player";
+export const VIDEO_SCHEDULER_ROUTE =
+  "/video/scheduler";
+
+export const MODE_PARAM_KEY = "mode";
+
+export const PATH_VALUES = {
+  [HOME_ROUTE]: HOME_ROUTE,
+  [VIDEO_ROUTE]: VIDEO_ROUTE,
+  [VIDEO_PLAYER_ROUTE]:
+    VIDEO_PLAYER_ROUTE,
+  [VIDEO_SCHEDULER_ROUTE]:
+    VIDEO_SCHEDULER_ROUTE,
+} as const;

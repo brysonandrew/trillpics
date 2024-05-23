@@ -1,4 +1,4 @@
-import { EXTS } from '../config';
+import { EXTS } from "../config";
 
 export type TMediaDetails = {
   key: string;
@@ -6,16 +6,18 @@ export type TMediaDetails = {
   name: string;
   ext: TExtKey;
 };
-
 import type {
   Metadata,
   OutputInfo,
-} from 'sharp';
-import { TSource } from '@brysonandrew/config-types';
-export type TDimensions = {
-  width: number;
-  height: number;
-};
+} from "sharp";
+import {
+  TDimensions,
+  TSource,
+} from "@brysonandrew/config-types";
+// export type TDimensions = {
+//   width: number;
+//   height: number;
+// };
 
 export type TFilePathKey = string;
 export type TFilePathBaseKey = string;

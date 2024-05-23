@@ -1,29 +1,55 @@
-import { type FC } from "react";
-import { Notifications } from "~/components/notifications";
 import { Outlet } from "react-router";
-import { withProviders } from "~/shell/providers/withProviders";
-import { Global } from "~/shell/global";
-import { FadeV } from "@brysonandrew/fade-edge/pairs/FadeV";
-import { useVideoStore } from "~/store/index";
-import { DecorationNet } from "~/components/decoration/background/net";
+import { withProviders } from "~/shell/providers/with-providers";
+import { useInit } from "~/shell/init";
+import { GradientsBluePinkYellow } from "~/shell/global/svg/gradients/blue-pink-yellow";
+import { GlobalCss } from "~/shell/global/css";
+import { useDarkMode } from "@brysonandrew/dark-mode";
+import { Dark } from "~/shell/global/favicon/dark";
+import { Light } from "~/shell/global/favicon/light";
+import { ShellBackground } from "~/shell/background";
+import { BlurXyWrap } from "~/components/blur/xy";
+import { Hud } from "~/pics/hud";
+import { SvgFilters } from "~/shell/global/svg/filters";
 
-const C = () => {
-  const { isPlayerOpen } =
-    useVideoStore();
-  return (
-    <Global>
-      <DecorationNet />
-      <Outlet />
-      {!isPlayerOpen && (
-        <FadeV
-          classValue="z-4x0"
-          darkEdgeColor="var(--dark-06)"
-          lightEdgeColor="var(--light-02)"
+export const Shell = withProviders(
+  () => {
+    const {
+      screen,
+      table,
+      isControls,
+    } = useInit();
+    const { isDarkMode } =
+      useDarkMode();
+
+    const Favicon = isDarkMode
+      ? Dark
+      : Light;
+    return (
+      <>
+        <Favicon />
+        <GradientsBluePinkYellow
+          isDarkMode={isDarkMode}
         />
-      )}
-      <Notifications />
-    </Global>
-  );
-};
-export const Shell: FC =
-  withProviders(C);
+        <GlobalCss />
+        <SvgFilters />
+        <BlurXyWrap> 
+          <ShellBackground
+            isDarkMode={isDarkMode}
+          />
+          <Outlet />
+        </BlurXyWrap>
+        {isControls &&
+          screen.isDimensions && (
+            <Hud
+              dimensions={
+                screen.container
+              }
+              isVerticalScroll={
+                table.isVerticalScroll
+              }
+            />
+          )}
+      </>
+    );
+  }
+);

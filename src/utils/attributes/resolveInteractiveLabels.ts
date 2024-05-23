@@ -5,7 +5,7 @@ export type TInteractiveLabelProps = Pick<
   'title' | 'aria-label'
 >;
 
-export const resolveInteractiveLabels = (
+export const resolveAccessibilityTitles = (
   title: string,
 ): TInteractiveLabelProps => ({
   title,

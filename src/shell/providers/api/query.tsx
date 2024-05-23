@@ -4,15 +4,16 @@ import {
   QueryClientProvider,
 } from "@tanstack/react-query";
 
-const queryClient = new QueryClient({
-  defaultOptions: {
-    queries: {
-      refetchOnWindowFocus: false,
+export const queryClient =
+  new QueryClient({
+    defaultOptions: {
+      queries: {
+        refetchOnWindowFocus: false,
+      },
     },
-  },
-});
+  });
 
-const QueryProvider = ({
+export const ProvidersApiQuery = ({
   children,
 }: TChildrenProps) => {
   return (
@@ -23,5 +24,3 @@ const QueryProvider = ({
     </QueryClientProvider>
   );
 };
-
-export { queryClient, QueryProvider };

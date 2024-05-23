@@ -19,6 +19,7 @@ export type TIconsSvgProps = Omit<
     size?: number;
     fill?: string;
     d?: string;
+    children?: any
   };
 export const IconsSvg: FC<
   TIconsSvgProps
@@ -30,12 +31,14 @@ export const IconsSvg: FC<
   size,
   fill,
   d,
+  children,
   ...props
 }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
       className={clsx(
+        'relative shrink-0',
         className,
         classValue
       )}
@@ -49,6 +52,8 @@ export const IconsSvg: FC<
         fill={fill}
         {...pathProps}
       />
+
+      {children}
     </svg>
   );
 };

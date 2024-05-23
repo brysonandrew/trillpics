@@ -1,0 +1,39 @@
+  <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="150" height="150" style="transform:scale(2);transform-origin:0 0 ">
+     <defs>
+  <filter id='fake-stroke' x='-50%' y='-50%' width='200%' height='200%' color-interpolation-filters="sRGB">
+  
+   <!-- select just the red outline and zero out the opacity of everything that's not 100% red. -->
+   <feColorMatrix type="matrix" values="1 0 0 0 0 
+                                        0 0 0 0 0 
+                                        0 0 0 0 0 
+                                        255 -255 -255 -254 0" result="outline-only"/>
+    <feGaussianBlur stdDeviation="1"/>
+
+   <!-- select just the blur - not the original stroke. -->
+    <feComposite operator="out" in2="outline-only"/>
+
+   <!-- select just the blur that overlaps the original content -->
+    <feComposite operator="in" in2="SourceGraphic" />
+
+   <!-- increase its opacity to 100% except the most blurred - to fake anti-aliasing -->
+    <feComponentTransfer>
+      <feFuncA type="table" tableValues="0 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1"/>
+    </feComponentTransfer>
+
+   <!-- change the color of the fake stroke to the desired value -->
+    <feColorMatrix type="matrix" values ="0 0 0 0 0
+                                          0 0 0 0 0
+                                          0 0 0 0 1 
+                                          0 0 0 1 0"/>
+   <!-- put it on top of the original -->
+    <feComposite operator="over" in2="SourceGraphic"/>
+
+  </filter> 
+       
+	</defs>
+  
+<path class="st0" d="M144.7,126.2l-2.8,8.8l-3.9-2.3l-2-7.7l1.7-4.3l5.5-4.4L144.7,126.2z M93.5,24.2l6,6.3l4.4-1l7.5,6l1.9,1.1
+	l2.5-0.3l4,3.4l12.3,2.4l-4.3,8.9l-1.1,9.1l-2.4,2.2l-3.9-1.2l0.3,3.2l-6.3,7l-0.1,5.6l4.1-1.9l2.9,5.4L121,84l2.5,4.6l-3,3.7
+	l2.2,9.3l4.6,1.5l-1,5.1l-7.8,6.6l-16.9-3.2l-12.5,3.8l-1,7l-9.9,1.5l-9.6-5.3l-3.1,2.5l-15.8-5.3l-3.4-4.6l4.4-7.1l1.6-24.1
+	l-8.8-13l-6.3-6.4l-13.1-4.9l-0.9-9.4l11.1-2.8L48.9,47l-2.7-14.8l8.1,5.7l20-10.3l2.6-11l7.5-2.8l1.3,4.8l4,0.2L93.5,24.2z" stroke-width="2" fill="#00ffff"  stroke="#FF0000" filter="url(#fake-stroke)"/>
+</svg>

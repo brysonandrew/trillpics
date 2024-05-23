@@ -1,19 +1,18 @@
 import type { StaticShortcutMap } from "unocss";
 import { SHORTCUTS as _SHORTCUTS } from "@brysonandrew/uno-shortcuts";
+import { SHORTCUTS_BOX } from "../shortcuts/box";
 import { INPUT } from "./input";
 import { POSITION } from "./position";
 import { GRID } from "./grid";
-import { INTERACTIVE } from "./interactive";
 import { LAYOUT } from "./layout";
-import { GRADIENT } from "./gradient";
 
 export const SHORTCUTS: StaticShortcutMap =
   {
     ..._SHORTCUTS,
     "border-main":
-      "border-white dark:border-black",
+      "border-gray-8 dark:border-gray-2",
     "border-main-inverted":
-      "border-black dark:border-white",
+      "border-gray-2 dark:border-gray-8",
     "bg-main": "bg-white dark:bg-black",
     "bg-main-inverted":
       "bg-black dark:bg-white",
@@ -21,7 +20,8 @@ export const SHORTCUTS: StaticShortcutMap =
       "text-black dark:text-white",
     "text-main-inverted":
       "text-white dark:text-black",
-    "btn-disabled": "disabled:(cursor-not-allowed opacity-50)",
+    "btn-disabled":
+      "disabled:(cursor-not-allowed opacity-50)",
     spin05:
       "animate-[spin_0.5s_linear_infinite]",
     spin075:
@@ -31,7 +31,6 @@ export const SHORTCUTS: StaticShortcutMap =
     ...GRID,
     ...INPUT,
     ...POSITION,
-    ...INTERACTIVE,
     ...LAYOUT,
-    ...GRADIENT,
+    ...SHORTCUTS_BOX,
   } as const;

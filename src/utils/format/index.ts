@@ -2,7 +2,7 @@ export const capitalize = (
   word: string | null,
 ) =>
   word
-    ? `${word[0].toUpperCase()}${word
+    ? `${word[0]?.toUpperCase()}${word
         .toLowerCase()
         .slice(1)}`
     : '';

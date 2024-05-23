@@ -1,13 +1,13 @@
 import type { FC } from "react";
 import { TSvgProps } from "@brysonandrew/config-types";
-import { IconsSvgGradient24 } from "~/components/icons/svg/gradient/24";
+import { IconsSvgGradient16vb24 } from "~/components/icons/svg/gradient/16vb24";
 
 export const IconsVisible: FC<
   TSvgProps
 > = (props) => {
   return (
-    <IconsSvgGradient24
-      d="M0 0h2v2H0zm2 2h2v2H2zm18 0h2v2h-2zm2-2h2v2h-2zM2 20h2v2H2zm-2 2h2v2H0zm20-2h2v2h-2zm2 2h2v2h-2zM8 17h8v2H8zm8-2h4v2h-4zm-8 0H4v2h4zm8-8h4v2h-4zM8 7H4v2h4zm12 2h2v2h-2zM4 9H2v2h2zm18 2h2v2h-2zM2 11H0v2h2zm18 2h2v2h-2zM4 13H2v2h2zm4-8h8v2H8zm2 5h4v4h-4z"
+    <IconsSvgGradient16vb24
+      d="M12 13h-2v-1H9v-2h1V9h2v1h1v2h-1Zm2 4H8v-1H7v-1H6v-1H5V8h1V7h1V6h1V5h6v1h1v1h1v1h1v6h-1v1h-1v1h-1Zm1 4H7v-1H5v-1H4v-1H3v-1H2v-2H1V7h1V5h1V4h1V3h1V2h2V1h8v1h2v1h1v1h1v1h1v2h1v8h-1v2h-1v1h-1v1h-1v1h-2Zm-2-6v-1h1v-1h1V9h-1V8h-1V7H9v1H8v1H7v4h1v1h1v1Zm1 4v-1h2v-1h1v-1h1v-2h1V8h-1V6h-1V5h-1V4h-2V3H8v1H6v1H5v1H4v2H3v6h1v2h1v1h1v1h2v1Z"
       {...props}
     />
   );

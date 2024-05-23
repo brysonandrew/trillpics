@@ -4,15 +4,27 @@ import {
   loadEnv,
 } from "vite";
 import tsConfigPaths from "vite-tsconfig-paths";
-import react from "@vitejs/plugin-react";
-// import react from "@vitejs/plugin-react-swc";
+// import react from "@vitejs/plugin-react";
+import react from "@vitejs/plugin-react-swc";
 import unoCss from "unocss/vite";
 import { nodePolyfills } from "vite-plugin-node-polyfills";
-
+//
+export const VITE_CONFIG_SERVER_ORIGIN =
+  "http://0.0.0.0:3000";
 export const VITE_CONFIG: UserConfig = {
+  optimizeDeps: {
+    include: ["react-device-detect"],
+  },
   build: {
+    commonjsOptions: {
+      include: [
+        /react-device-detect/,
+        /node_modules/,
+      ],
+    },
     rollupOptions: {
       external: [
+        // "react-device-detect",
         "mlly",
         "local-pkg",
         "fs",
@@ -29,7 +41,7 @@ export const VITE_CONFIG: UserConfig = {
     },
   },
   plugins: [
-    nodePolyfills({ exclude: ["fs"] }),
+    // nodePolyfills({ exclude: ["fs"] }),
     unoCss({ inspector: true }),
     tsConfigPaths({
       loose: true,
@@ -44,7 +56,7 @@ export const VITE_CONFIG: UserConfig = {
     port: 3000,
     strictPort: true,
     host: true,
-    origin: "http://0.0.0.0:3000",
+    origin: VITE_CONFIG_SERVER_ORIGIN,
   },
   publicDir: "assets",
   esbuild: {
@@ -53,7 +65,7 @@ export const VITE_CONFIG: UserConfig = {
         "silent",
     },
   },
-  envPrefix: "_"
+  envPrefix: "_",
 };
 
 export default defineConfig(

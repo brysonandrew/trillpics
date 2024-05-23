@@ -1,0 +1,1 @@
+export type TLightingClassValue = 'shadow'|'_gradient_radial'|'bg-white'|string

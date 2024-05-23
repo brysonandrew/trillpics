@@ -1,3 +1,5 @@
-export const READ_ADD_PIC_TO_VIDEO_INFO =
-  "READ_ADD_PIC_TO_VIDEO_INFO";
-export const MILESTONES = [READ_ADD_PIC_TO_VIDEO_INFO] as const
+export const READ__VIDEOS__INFO =
+  "READ__VIDEOS__INFO";
+  export const READ__ZEN__INFO =
+  "READ__ZEN__INFO";
+export const MILESTONES = [READ__VIDEOS__INFO,READ__ZEN__INFO] as const

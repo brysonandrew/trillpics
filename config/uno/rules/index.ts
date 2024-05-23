@@ -6,11 +6,13 @@ import { BORDERS } from "./borders";
 import { CURSORS } from "./cursors";
 import { NEU } from "./neu";
 import { ANIMATIONS } from "./animations";
+import { DOTS } from "./dots";
 
 export const resolveRules = <
   T extends object
 >() =>
   [
+    ...DOTS,
     ...CURSORS,
     ...SHADOWS,
     ...BORDERS,
