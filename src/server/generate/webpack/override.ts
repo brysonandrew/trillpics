@@ -69,8 +69,24 @@ export const webpackOverride: WebpackOverrideFn =
             "config",
             "uno"
           ),
+          "~uno/shortcuts/box/background":
+            entry(
+              "config",
+              "uno",
+              "shortcuts/box/background"
+            ),
+          "~uno/preflights": entry(
+            "config",
+            "uno",
+            "preflights"
+          ),
           "~ops/": entry("ops"),
           "~root/": entry("."),
+          "~root/package.json": entry(
+            "package.json"
+          ),
+          "~root/remotion.config":
+            entry("remotion.config"),
           ...currentConfig.resolve
             ?.alias,
           ...record,

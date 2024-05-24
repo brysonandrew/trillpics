@@ -11,14 +11,13 @@ import { downloadMedia } from "~/pages/video/player/_header/generate/download-me
 import { AURA } from "@brysonandrew/svg-filter";
 import { resolvePresence } from "~/utils/animation";
 import { resolveCompositeKey } from "@brysonandrew/utils-key";
-import { TextureMetal } from "@brysonandrew/texture-metal";
 import { TGenerateInput } from "~/types/trpc/generate";
 import { useHoverKey } from "~/hooks/use-hover-key";
 import { boxStyle } from "~/constants/box/style";
 import { usePicVideoReadInputs } from "~/hooks/pic/video/read/inputs/hook";
 import { FC } from "react";
 
-const DEFAULT: TGenerateInput = {
+export const DEFAULT_INPUT: TGenerateInput = {
   input: {
     pics: [],
     count: 0,
@@ -124,12 +123,12 @@ export const Generate:FC<Partial<TPillBProps>> = (props) => {
               }}
               {...AURA_TRANSITION}
             />
-            <TextureMetal
+            {/* <TextureMetal
               key="background"
               className="fill h-20"
               style={borderStyle}
               {...AURA_TRANSITION}
-            />
+            /> */}
           </>
         )}
       </AnimatePresence>
