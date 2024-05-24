@@ -1044,7 +1044,6 @@ const crf_1 = __webpack_require__(67689);
 const file_extensions_1 = __webpack_require__(39284);
 const get_extension_from_codec_1 = __webpack_require__(3866);
 const image_format_1 = __webpack_require__(76467);
-const jpeg_quality_1 = __webpack_require__(44122);
 const log_level_1 = __webpack_require__(70926);
 const options_1 = __webpack_require__(11435);
 const audio_codec_1 = __webpack_require__(26748);
@@ -1072,7 +1071,6 @@ exports.BrowserSafeApis = {
     validStillImageFormats: image_format_1.validStillImageFormats,
     DEFAULT_PIXEL_FORMAT: pixel_format_1.DEFAULT_PIXEL_FORMAT,
     DEFAULT_TIMEOUT: TimeoutSettings_1.DEFAULT_TIMEOUT,
-    DEFAULT_JPEG_QUALITY: jpeg_quality_1.DEFAULT_JPEG_QUALITY,
     supportedAudioCodecs: audio_codec_1.supportedAudioCodecs,
     defaultFileExtensionMap: file_extensions_1.defaultFileExtensionMap,
     defaultAudioCodecs: audio_codec_1.defaultAudioCodecs,
@@ -2120,12 +2118,12 @@ exports.enableLambdaInsights = {
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.enableMultiprocessOnLinuxOption = void 0;
 const jsx_runtime_1 = __webpack_require__(85893);
-let multiProcessOnLinux = true;
+let multiProcessOnLinux = false;
 const cliFlag = 'enable-multiprocess-on-linux';
 exports.enableMultiprocessOnLinuxOption = {
     name: 'Enable Multiprocess on Linux',
     cliFlag,
-    description: () => ((0, jsx_runtime_1.jsxs)(jsx_runtime_1.Fragment, { children: ["Removes the ", (0, jsx_runtime_1.jsx)("code", { children: '--single-process' }), " flag that gets passed to Chromium on Linux by default. This will make the render faster because multiple processes can be used, but may cause issues with some Linux distributions or if window server libraries are missing.", (0, jsx_runtime_1.jsx)("br", {}), "Default: ", (0, jsx_runtime_1.jsx)("code", { children: "false" }), " until v4.0.136, then ", (0, jsx_runtime_1.jsx)("code", { children: "true" }), " from v4.0.137 on because newer Chrome versions ", "don't", " allow rendering with the ", (0, jsx_runtime_1.jsx)("code", { children: "--single-process" }), " flag. ", (0, jsx_runtime_1.jsx)("br", {}), "This flag will be removed in Remotion v5.0."] })),
+    description: () => ((0, jsx_runtime_1.jsxs)(jsx_runtime_1.Fragment, { children: ["Removes the ", (0, jsx_runtime_1.jsx)("code", { children: '--single-process' }), " flag that gets passed to Chromium on Linux by default. This will make the render faster because multiple processes can be used, but may cause issues with some Linux distributions or if window server libraries are missing."] })),
     ssrName: 'chromiumOptions.enableMultiprocessOnLinux',
     docLink: 'https://www.remotion.dev/docs/chromium-flags',
     type: false,
@@ -2530,7 +2528,6 @@ const log_level_1 = __webpack_require__(3613);
 const mute_1 = __webpack_require__(54970);
 const number_of_gif_loops_1 = __webpack_require__(89689);
 const offthreadvideo_cache_size_1 = __webpack_require__(17655);
-const on_browser_download_1 = __webpack_require__(97316);
 const overwrite_1 = __webpack_require__(96045);
 const prefer_lossless_1 = __webpack_require__(90353);
 const public_dir_1 = __webpack_require__(77340);
@@ -2538,7 +2535,6 @@ const public_path_1 = __webpack_require__(38120);
 const repro_1 = __webpack_require__(77301);
 const scale_1 = __webpack_require__(66);
 const separate_audio_1 = __webpack_require__(35501);
-const throw_if_site_exists_1 = __webpack_require__(49300);
 const timeout_1 = __webpack_require__(28804);
 const video_bitrate_1 = __webpack_require__(94818);
 const video_codec_1 = __webpack_require__(93826);
@@ -2578,8 +2574,6 @@ exports.allOptions = {
     separateAudioOption: separate_audio_1.separateAudioOption,
     publicPathOption: public_path_1.publicPathOption,
     publicDirOption: public_dir_1.publicDirOption,
-    onBrowserDownloadOption: on_browser_download_1.onBrowserDownloadOption,
-    throwIfSiteExistsOption: throw_if_site_exists_1.throwIfSiteExistsOption,
 };
 
 
@@ -2655,7 +2649,7 @@ exports.logLevelOption = {
     cliFlag,
     name: 'Log Level',
     ssrName: 'logLevel',
-    description: () => ((0, jsx_runtime_1.jsxs)(jsx_runtime_1.Fragment, { children: ["One of ", (0, jsx_runtime_1.jsx)("code", { children: "verbose" }), ", ", (0, jsx_runtime_1.jsx)("code", { children: "info" }), ", ", (0, jsx_runtime_1.jsx)("code", { children: "warn" }), ",", ' ', (0, jsx_runtime_1.jsx)("code", { children: "error" }), ".", (0, jsx_runtime_1.jsx)("br", {}), " Determines how much is being logged to the console.", (0, jsx_runtime_1.jsx)("br", {}), " ", (0, jsx_runtime_1.jsx)("code", { children: "verbose" }), " will also log ", (0, jsx_runtime_1.jsx)("code", { children: "console.log" }), "'", "s from the browser.", (0, jsx_runtime_1.jsx)("br", {}), " Default ", (0, jsx_runtime_1.jsx)("code", { children: "info" }), "."] })),
+    description: () => ((0, jsx_runtime_1.jsxs)(jsx_runtime_1.Fragment, { children: ["One of ", (0, jsx_runtime_1.jsx)("code", { children: "verbose" }), ", ", (0, jsx_runtime_1.jsx)("code", { children: "info" }), ", ", (0, jsx_runtime_1.jsx)("code", { children: "warn" }), ",", ' ', (0, jsx_runtime_1.jsx)("code", { children: "error" }), ". Determines how much is being logged to the console.", ' ', (0, jsx_runtime_1.jsx)("code", { children: "verbose" }), " will also log ", (0, jsx_runtime_1.jsx)("code", { children: "console.log" }), "'", "s from the browser. Default ", (0, jsx_runtime_1.jsx)("code", { children: "info" }), "."] })),
     docLink: 'https://www.remotion.dev/docs/troubleshooting/debug-failed-render',
     getValue: ({ commandLine }) => {
         if (commandLine[cliFlag]) {
@@ -2844,33 +2838,6 @@ exports.validateOffthreadVideoCacheSizeInBytes = validateOffthreadVideoCacheSize
 
 /***/ }),
 
-/***/ 97316:
-/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
-
-"use strict";
-
-Object.defineProperty(exports, "__esModule", ({ value: true }));
-exports.onBrowserDownloadOption = void 0;
-const jsx_runtime_1 = __webpack_require__(85893);
-const cliFlag = 'on-browser-download';
-exports.onBrowserDownloadOption = {
-    name: 'Browser download callback function',
-    cliFlag,
-    description: () => ((0, jsx_runtime_1.jsxs)(jsx_runtime_1.Fragment, { children: ["Gets called when no compatible local browser is detected on the system and this API needs to download a browser. Return a callback to observe progress.", ' ', (0, jsx_runtime_1.jsx)("a", { href: "/docs/renderer/ensure-browser#onbrowserdownload", children: "See here for how to use this option." })] })),
-    ssrName: 'onBrowserDownload',
-    docLink: 'https://www.remotion.dev/docs/renderer/ensure-browser',
-    type: undefined,
-    getValue: () => {
-        throw new Error('does not support config file');
-    },
-    setConfig: () => {
-        throw new Error('does not support config file');
-    },
-};
-
-
-/***/ }),
-
 /***/ 89102:
 /***/ ((__unused_webpack_module, exports, __webpack_require__) => {
 
@@ -2893,12 +2860,10 @@ const log_level_1 = __webpack_require__(3613);
 const mute_1 = __webpack_require__(54970);
 const number_of_gif_loops_1 = __webpack_require__(89689);
 const offthreadvideo_cache_size_1 = __webpack_require__(17655);
-const on_browser_download_1 = __webpack_require__(97316);
 const prefer_lossless_1 = __webpack_require__(90353);
 const repro_1 = __webpack_require__(77301);
 const scale_1 = __webpack_require__(66);
 const separate_audio_1 = __webpack_require__(35501);
-const throw_if_site_exists_1 = __webpack_require__(49300);
 const timeout_1 = __webpack_require__(28804);
 const video_bitrate_1 = __webpack_require__(94818);
 const video_codec_1 = __webpack_require__(93826);
@@ -2923,7 +2888,6 @@ exports.optionsMap = {
         forSeamlessAacConcatenation: for_seamless_aac_concatenation_1.forSeamlessAacConcatenationOption,
         separateAudioTo: separate_audio_1.separateAudioOption,
         audioCodec: audio_codec_1.audioCodecOption,
-        onBrowserDownload: on_browser_download_1.onBrowserDownloadOption,
     },
     stitchFramesToVideo: {
         separateAudioTo: separate_audio_1.separateAudioOption,
@@ -2934,21 +2898,18 @@ exports.optionsMap = {
         logLevel: log_level_1.logLevelOption,
         timeoutInMilliseconds: timeout_1.delayRenderTimeoutInMillisecondsOption,
         binariesDirectory: binaries_directory_1.binariesDirectoryOption,
-        onBrowserDownload: on_browser_download_1.onBrowserDownloadOption,
     },
     getCompositions: {
         offthreadVideoCacheSizeInBytes: offthreadvideo_cache_size_1.offthreadVideoCacheSizeInBytesOption,
         logLevel: log_level_1.logLevelOption,
         timeoutInMilliseconds: timeout_1.delayRenderTimeoutInMillisecondsOption,
         binariesDirectory: binaries_directory_1.binariesDirectoryOption,
-        onBrowserDownload: on_browser_download_1.onBrowserDownloadOption,
     },
     selectComposition: {
         offthreadVideoCacheSizeInBytes: offthreadvideo_cache_size_1.offthreadVideoCacheSizeInBytesOption,
         logLevel: log_level_1.logLevelOption,
         timeoutInMilliseconds: timeout_1.delayRenderTimeoutInMillisecondsOption,
         binariesDirectory: binaries_directory_1.binariesDirectoryOption,
-        onBrowserDownload: on_browser_download_1.onBrowserDownloadOption,
     },
     renderFrames: {
         forSeamlessAacConcatenation: for_seamless_aac_concatenation_1.forSeamlessAacConcatenationOption,
@@ -2957,7 +2918,6 @@ exports.optionsMap = {
         logLevel: log_level_1.logLevelOption,
         timeoutInMilliseconds: timeout_1.delayRenderTimeoutInMillisecondsOption,
         binariesDirectory: binaries_directory_1.binariesDirectoryOption,
-        onBrowserDownload: on_browser_download_1.onBrowserDownloadOption,
     },
     renderMediaOnLambda: {
         offthreadVideoCacheSizeInBytes: offthreadvideo_cache_size_1.offthreadVideoCacheSizeInBytesOption,
@@ -3011,14 +2971,6 @@ exports.optionsMap = {
         scale: scale_1.scaleOption,
         jpegQuality: jpeg_quality_1.jpegQualityOption,
         delayRenderTimeoutInMilliseconds: timeout_1.delayRenderTimeoutInMillisecondsOption,
-    },
-    ensureBrowser: {
-        logLevel: log_level_1.logLevelOption,
-        onBrowserDownload: on_browser_download_1.onBrowserDownloadOption,
-    },
-    deploySiteLambda: {
-        logLevel: log_level_1.logLevelOption,
-        throwIfSiteExists: throw_if_site_exists_1.throwIfSiteExistsOption,
     },
 };
 
@@ -3323,42 +3275,6 @@ exports.separateAudioOption = {
     },
     ssrName: 'separateAudioTo',
     type: 'string',
-};
-
-
-/***/ }),
-
-/***/ 49300:
-/***/ ((__unused_webpack_module, exports) => {
-
-"use strict";
-
-Object.defineProperty(exports, "__esModule", ({ value: true }));
-exports.throwIfSiteExistsOption = void 0;
-const DEFAULT = false;
-const cliFlag = 'throw-if-site-exists';
-exports.throwIfSiteExistsOption = {
-    cliFlag,
-    description: () => `Prevents accidential update of an existing site. If there are any files in the subfolder where the site should be placed, the function will throw.`,
-    docLink: 'https://remotion.dev/docs/lambda/deploy-site',
-    getValue: ({ commandLine }) => {
-        if (commandLine[cliFlag]) {
-            return {
-                source: 'cli',
-                value: commandLine[cliFlag],
-            };
-        }
-        return {
-            source: 'default',
-            value: DEFAULT,
-        };
-    },
-    name: 'Throw if site exists',
-    setConfig: () => {
-        throw new Error('Not implemented');
-    },
-    ssrName: 'throwIfSiteExists',
-    type: false,
 };
 
 
@@ -4523,9 +4439,9 @@ const file_1 = __webpack_require__(3562);
 const folder_1 = __webpack_require__(48317);
 const sidebar_1 = __webpack_require__(2833);
 const InlineAction_1 = __webpack_require__(16971);
+const layout_1 = __webpack_require__(34153);
 const NotificationCenter_1 = __webpack_require__(9349);
 const actions_1 = __webpack_require__(73017);
-const layout_1 = __webpack_require__(34153);
 const ASSET_ITEM_HEIGHT = 32;
 const iconStyle = {
     width: 18,
@@ -4647,13 +4563,7 @@ const AssetSelectorItem = ({ item, tabIndex, level, parentFolder }) => {
         if (isMobileLayout) {
             setSidebarCollapsedState({ left: 'collapsed', right: 'collapsed' });
         }
-    }, [
-        isMobileLayout,
-        item.name,
-        parentFolder,
-        setCanvasContent,
-        setSidebarCollapsedState,
-    ]);
+    }, [item.name, parentFolder, setCanvasContent]);
     const style = (0, react_1.useMemo)(() => {
         return {
             ...itemStyle,
@@ -4689,7 +4599,7 @@ const AssetSelectorItem = ({ item, tabIndex, level, parentFolder }) => {
                 '/' +
                 item.name,
         }).catch((err) => {
-            (0, NotificationCenter_1.showNotification)(`Could not open file: ${err.message}`, 2000);
+            (0, NotificationCenter_1.sendErrorNotification)(`Could not open file: ${err.message}`);
         });
     }, [item.name, parentFolder]);
     const copyToClipboard = (0, react_1.useCallback)((e) => {
@@ -4697,10 +4607,16 @@ const AssetSelectorItem = ({ item, tabIndex, level, parentFolder }) => {
         const content = `staticFile("${[parentFolder, item.name].join('/')}")`;
         (0, copy_text_1.copyText)(content)
             .then(() => {
-            (0, NotificationCenter_1.showNotification)(`Copied '${content}' to clipboard`, 1000);
+            var _a;
+            (_a = NotificationCenter_1.notificationCenter.current) === null || _a === void 0 ? void 0 : _a.addNotification({
+                content: `Copied '${content}' to clipboard`,
+                created: Date.now(),
+                duration: 1000,
+                id: String(Math.random()),
+            });
         })
             .catch((err) => {
-            (0, NotificationCenter_1.showNotification)(`Could not copy: ${err.message}`, 2000);
+            (0, NotificationCenter_1.sendErrorNotification)(`Could not copy: ${err.message}`);
         });
     }, [item.name, parentFolder]);
     return ((0, jsx_runtime_1.jsx)(layout_1.Row, { align: "center", children: (0, jsx_runtime_1.jsxs)("div", { style: style, onPointerEnter: onPointerEnter, onPointerLeave: onPointerLeave, onClick: onClick, tabIndex: tabIndex, title: item.name, children: [(0, jsx_runtime_1.jsx)(file_1.FileIcon, { style: iconStyle, color: colors_1.LIGHT_TEXT }), (0, jsx_runtime_1.jsx)(layout_1.Spacing, { x: 1 }), (0, jsx_runtime_1.jsx)("div", { style: label, children: item.name }), hovered ? ((0, jsx_runtime_1.jsxs)(jsx_runtime_1.Fragment, { children: [(0, jsx_runtime_1.jsx)(layout_1.Spacing, { x: 0.5 }), (0, jsx_runtime_1.jsx)(InlineAction_1.InlineAction, { title: "Copy staticFile() name", renderAction: renderCopyAction, onClick: copyToClipboard }), (0, jsx_runtime_1.jsx)(layout_1.Spacing, { x: 0.5 }), (0, jsx_runtime_1.jsx)(InlineAction_1.InlineAction, { title: "Open in Explorer", renderAction: renderFileExplorerAction, onClick: revealInExplorer })] })) : null] }) }));
@@ -4938,9 +4854,9 @@ const editor_zoom_gestures_1 = __webpack_require__(60926);
 const EditorGuides_1 = __importDefault(__webpack_require__(83651));
 const EditorRuler_1 = __webpack_require__(66416);
 const use_is_ruler_visible_1 = __webpack_require__(25404);
+const layout_1 = __webpack_require__(34153);
 const Preview_1 = __webpack_require__(68093);
 const ResetZoomButton_1 = __webpack_require__(21512);
-const layout_1 = __webpack_require__(34153);
 const container = {
     flex: 1,
     display: 'flex',
@@ -5191,12 +5107,12 @@ const colors_1 = __webpack_require__(38746);
 const timeline_zoom_1 = __webpack_require__(28837);
 const Canvas_1 = __webpack_require__(81264);
 const FramePersistor_1 = __webpack_require__(81438);
+const layout_1 = __webpack_require__(34153);
 const styles_1 = __webpack_require__(25693);
 const Spinner_1 = __webpack_require__(2667);
 const imperative_state_1 = __webpack_require__(15703);
 const timeline_scroll_logic_1 = __webpack_require__(74138);
 const ZoomPersistor_1 = __webpack_require__(23408);
-const layout_1 = __webpack_require__(34153);
 const container = {
     color: 'white',
     flex: 1,
@@ -5240,8 +5156,7 @@ const CanvasOrLoading = ({ size }) => {
         };
     }, [takesALongTime]);
     if (!canvasContent) {
-        const compname = window.location.pathname.replace('/', '');
-        return ((0, jsx_runtime_1.jsx)("div", { style: container, className: "css-reset", children: (0, jsx_runtime_1.jsxs)("div", { style: style, children: ["Composition with ID ", compname, " not found."] }) }));
+        return null;
     }
     const content = ((0, jsx_runtime_1.jsxs)(jsx_runtime_1.Fragment, { children: [(0, jsx_runtime_1.jsx)(ZoomPersistor_1.ZoomPersistor, {}), (0, jsx_runtime_1.jsx)(Canvas_1.Canvas, { size: size, canvasContent: canvasContent })] }));
     if (canvasContent.type === 'asset' || canvasContent.type === 'output') {
@@ -5520,11 +5435,10 @@ const is_composition_still_1 = __webpack_require__(76498);
 const folder_1 = __webpack_require__(48317);
 const still_1 = __webpack_require__(27669);
 const video_1 = __webpack_require__(73782);
-const modals_1 = __webpack_require__(89750);
 const ContextMenu_1 = __webpack_require__(59309);
+const layout_1 = __webpack_require__(34153);
 const NotificationCenter_1 = __webpack_require__(9349);
 const SidebarRenderButton_1 = __webpack_require__(91580);
-const layout_1 = __webpack_require__(34153);
 const COMPOSITION_ITEM_HEIGHT = 32;
 const itemStyle = {
     paddingRight: 10,
@@ -5598,67 +5512,11 @@ const CompositionSelectorItem = ({ item, level, currentComposition, tabIndex, se
             onClick(evt);
         }
     }, [onClick]);
-    const { setSelectedModal } = (0, react_1.useContext)(modals_1.ModalsContext);
     const contextMenu = (0, react_1.useMemo)(() => {
         if (item.type === 'composition') {
             return [
                 {
-                    id: 'duplicate',
-                    keyHint: null,
-                    label: `Duplicate...`,
-                    leftItem: null,
-                    onClick: () => {
-                        setSelectedModal({
-                            type: 'duplicate-comp',
-                            compositionId: item.composition.id,
-                            compositionType: item.composition.durationInFrames === 1
-                                ? 'still'
-                                : 'composition',
-                        });
-                    },
-                    quickSwitcherLabel: null,
-                    subMenu: null,
-                    type: 'item',
-                    value: 'duplicate',
-                },
-                {
-                    id: 'rename',
-                    keyHint: null,
-                    label: `Rename...`,
-                    leftItem: null,
-                    onClick: () => {
-                        setSelectedModal({
-                            type: 'rename-comp',
-                            compositionId: item.composition.id,
-                        });
-                    },
-                    quickSwitcherLabel: null,
-                    subMenu: null,
-                    type: 'item',
-                    value: 'rename',
-                },
-                {
-                    id: 'delete',
-                    keyHint: null,
-                    label: `Delete...`,
-                    leftItem: null,
-                    onClick: () => {
-                        setSelectedModal({
-                            type: 'delete-comp',
-                            compositionId: item.composition.id,
-                        });
-                    },
-                    quickSwitcherLabel: null,
-                    subMenu: null,
-                    type: 'item',
-                    value: 'delete',
-                },
-                {
-                    type: 'divider',
-                    id: 'copy-id-divider',
-                },
-                {
-                    id: 'copy-id',
+                    id: '1',
                     keyHint: null,
                     label: `Copy ID`,
                     leftItem: null,
@@ -5666,10 +5524,22 @@ const CompositionSelectorItem = ({ item, level, currentComposition, tabIndex, se
                         navigator.clipboard
                             .writeText(item.composition.id)
                             .catch((err) => {
-                            (0, NotificationCenter_1.showNotification)(`Could not copy to clipboard: ${err.message}`, 1000);
+                            var _a;
+                            (_a = NotificationCenter_1.notificationCenter.current) === null || _a === void 0 ? void 0 : _a.addNotification({
+                                content: `Could not copy to clipboard: ${err.message}`,
+                                created: Date.now(),
+                                duration: 1000,
+                                id: String(Math.random()),
+                            });
                         })
                             .then(() => {
-                            (0, NotificationCenter_1.showNotification)('Copied to clipboard', 1000);
+                            var _a;
+                            (_a = NotificationCenter_1.notificationCenter.current) === null || _a === void 0 ? void 0 : _a.addNotification({
+                                content: 'Copied to clipboard',
+                                created: Date.now(),
+                                duration: 1000,
+                                id: String(Math.random()),
+                            });
                         });
                     },
                     quickSwitcherLabel: null,
@@ -5680,7 +5550,7 @@ const CompositionSelectorItem = ({ item, level, currentComposition, tabIndex, se
             ];
         }
         return [];
-    }, [item, setSelectedModal]);
+    }, [item]);
     if (item.type === 'folder') {
         return ((0, jsx_runtime_1.jsxs)(jsx_runtime_1.Fragment, { children: [(0, jsx_runtime_1.jsxs)("button", { style: style, onPointerEnter: onPointerEnter, onPointerLeave: onPointerLeave, tabIndex: tabIndex, onClick: onClick, type: "button", title: item.folderName, children: [item.expanded ? ((0, jsx_runtime_1.jsx)(folder_1.ExpandedFolderIcon, { style: iconStyle, color: hovered || selected ? 'white' : colors_1.LIGHT_TEXT })) : ((0, jsx_runtime_1.jsx)(folder_1.CollapsedFolderIcon, { color: hovered || selected ? 'white' : colors_1.LIGHT_TEXT, style: iconStyle })), (0, jsx_runtime_1.jsx)(layout_1.Spacing, { x: 1 }), (0, jsx_runtime_1.jsx)("div", { style: label, children: item.folderName })] }), item.expanded
                     ? item.items.map((childItem) => {
@@ -5788,7 +5658,7 @@ const ContextMenu = ({ children, values }) => {
                     right: canOpenOnLeft ? size.windowSize.width - opened.left : 0,
                 }),
         };
-    }, [opened, size, isMobileLayout, spaceToTop, spaceToBottom]);
+    }, [opened.type, size, isMobileLayout, spaceToTop, spaceToBottom]);
     const onHide = (0, react_1.useCallback)(() => {
         setOpened({ type: 'not-open' });
     }, []);
@@ -5841,8 +5711,8 @@ const jsx_runtime_1 = __webpack_require__(85893);
 const react_1 = __webpack_require__(67294);
 const copy_text_1 = __webpack_require__(73760);
 const Button_1 = __webpack_require__(2111);
-const NotificationCenter_1 = __webpack_require__(9349);
 const layout_1 = __webpack_require__(34153);
+const NotificationCenter_1 = __webpack_require__(9349);
 const iconStyle = {
     width: 16,
     height: 16,
@@ -5864,7 +5734,7 @@ const CopyButton = ({ textToCopy, label, labelWhenCopied }) => {
             setCopied(Date.now());
         })
             .catch((err) => {
-            (0, NotificationCenter_1.showNotification)(`Could not copy: ${err.message}`, 2000);
+            (0, NotificationCenter_1.sendErrorNotification)(`Could not copy: ${err.message}`);
         });
     }, [textToCopy]);
     (0, react_1.useEffect)(() => {
@@ -5982,10 +5852,10 @@ const CurrentCompositionKeybindings = ({ readOnlyStudio }) => {
             return;
         }
         if (readOnlyStudio) {
-            return (0, NotificationCenter_1.showNotification)('Studio is read-only', 2000);
+            return (0, NotificationCenter_1.sendErrorNotification)('Studio is read-only');
         }
         if (type !== 'connected') {
-            (0, NotificationCenter_1.showNotification)('Studio server is offline', 2000);
+            (0, NotificationCenter_1.sendErrorNotification)('Studio server is offline');
             return;
         }
         const renderButton = document.getElementById('render-modal-button');
@@ -6066,7 +5936,7 @@ const DEFAULT_BUFFER_STATE_DELAY_IN_MILLISECONDS = 300;
 exports.BUFFER_STATE_DELAY_IN_MILLISECONDS =  false
     ? 0
     : Number(null);
-const Editor = ({ Root, readOnlyStudio }) => {
+const Editor = ({ Root, readOnlyStudio, }) => {
     const drawRef = (0, react_1.useRef)(null);
     const size = player_1.PlayerInternals.useElementSize(drawRef, {
         triggerOnWindowResize: false,
@@ -6102,7 +5972,7 @@ const Editor = ({ Root, readOnlyStudio }) => {
     const MemoRoot = (0, react_1.useMemo)(() => {
         return react_1.default.memo(Root);
     }, [Root]);
-    return ((0, jsx_runtime_1.jsx)(z_index_1.HigherZIndex, { onEscape: noop_1.noop, onOutsideClick: noop_1.noop, children: (0, jsx_runtime_1.jsxs)(timeline_zoom_1.TimelineZoomContext, { children: [(0, jsx_runtime_1.jsx)(remotion_1.Internals.CurrentScaleContext.Provider, { value: value, children: (0, jsx_runtime_1.jsxs)("div", { style: background, children: [canvasMounted ? (0, jsx_runtime_1.jsx)(MemoRoot, {}) : null, (0, jsx_runtime_1.jsxs)(remotion_1.Internals.CanUseRemotionHooksProvider, { children: [(0, jsx_runtime_1.jsx)(EditorContent_1.EditorContent, { drawRef: drawRef, size: size, onMounted: onMounted, readOnlyStudio: readOnlyStudio, bufferStateDelayInMilliseconds: exports.BUFFER_STATE_DELAY_IN_MILLISECONDS }), (0, jsx_runtime_1.jsx)(GlobalKeybindings_1.GlobalKeybindings, {})] })] }) }), (0, jsx_runtime_1.jsx)(Modals_1.Modals, { readOnlyStudio: readOnlyStudio }), (0, jsx_runtime_1.jsx)(NotificationCenter_1.NotificationCenter, {})] }) }));
+    return ((0, jsx_runtime_1.jsx)(z_index_1.HigherZIndex, { onEscape: noop_1.noop, onOutsideClick: noop_1.noop, children: (0, jsx_runtime_1.jsxs)(timeline_zoom_1.TimelineZoomContext, { children: [(0, jsx_runtime_1.jsx)(remotion_1.Internals.CurrentScaleContext.Provider, { value: value, children: (0, jsx_runtime_1.jsxs)("div", { style: background, children: [canvasMounted ? (0, jsx_runtime_1.jsx)(MemoRoot, {}) : null, (0, jsx_runtime_1.jsxs)(remotion_1.Internals.CanUseRemotionHooksProvider, { children: [(0, jsx_runtime_1.jsx)(EditorContent_1.EditorContent, { drawRef: drawRef, size: size, onMounted: onMounted, readOnlyStudio: readOnlyStudio, bufferStateDelayInMilliseconds: exports.BUFFER_STATE_DELAY_IN_MILLISECONDS }), (0, jsx_runtime_1.jsx)(GlobalKeybindings_1.GlobalKeybindings, {})] }), (0, jsx_runtime_1.jsx)(NotificationCenter_1.NotificationCenter, {})] }) }), (0, jsx_runtime_1.jsx)(Modals_1.Modals, { readOnlyStudio: readOnlyStudio })] }) }));
 };
 exports.Editor = Editor;
 
@@ -6139,7 +6009,7 @@ const EditorContent = ({ readOnlyStudio, onMounted, size, drawRef, bufferStateDe
     const { canvasContent } = (0, react_1.useContext)(remotion_1.Internals.CompositionManager);
     // Preventing multiple renders so the update check doesn't get rendered twice and needs to be aborted
     const onlyTopPanel = canvasContent === null || isStill || canvasContent.type !== 'composition';
-    return ((0, jsx_runtime_1.jsxs)("div", { style: container, children: [(0, jsx_runtime_1.jsx)(InitialCompositionLoader_1.InitialCompositionLoader, {}), (0, jsx_runtime_1.jsx)(MenuToolbar_1.MenuToolbar, { readOnlyStudio: readOnlyStudio }), onlyTopPanel ? ((0, jsx_runtime_1.jsx)("div", { style: SplitterContainer_1.containerColumn, children: (0, jsx_runtime_1.jsx)(TopPanel_1.TopPanel, { size: size, drawRef: drawRef, bufferStateDelayInMilliseconds: bufferStateDelayInMilliseconds, onMounted: onMounted, readOnlyStudio: readOnlyStudio }) })) : ((0, jsx_runtime_1.jsxs)(SplitterContainer_1.SplitterContainer, { orientation: "horizontal", id: "top-to-bottom", maxFlex: 0.9, minFlex: 0.2, defaultFlex: 0.75, children: [(0, jsx_runtime_1.jsx)(SplitterElement_1.SplitterElement, { sticky: null, type: "flexer", children: (0, jsx_runtime_1.jsx)(TopPanel_1.TopPanel, { size: size, drawRef: drawRef, bufferStateDelayInMilliseconds: bufferStateDelayInMilliseconds, onMounted: onMounted, readOnlyStudio: readOnlyStudio }) }), (0, jsx_runtime_1.jsx)(SplitterHandle_1.SplitterHandle, { allowToCollapse: "none", onCollapse: noop }), (0, jsx_runtime_1.jsx)(SplitterElement_1.SplitterElement, { sticky: null, type: "anti-flexer", children: (0, jsx_runtime_1.jsx)(Timeline_1.Timeline, {}) })] }))] }));
+    return ((0, jsx_runtime_1.jsxs)("div", { style: container, children: [(0, jsx_runtime_1.jsx)(InitialCompositionLoader_1.InitialCompositionLoader, {}), (0, jsx_runtime_1.jsx)(MenuToolbar_1.MenuToolbar, { readOnlyStudio: readOnlyStudio }), onlyTopPanel ? ((0, jsx_runtime_1.jsx)(TopPanel_1.TopPanel, { size: size, drawRef: drawRef, bufferStateDelayInMilliseconds: bufferStateDelayInMilliseconds, onMounted: onMounted, readOnlyStudio: readOnlyStudio })) : ((0, jsx_runtime_1.jsxs)(SplitterContainer_1.SplitterContainer, { orientation: "horizontal", id: "top-to-bottom", maxFlex: 0.9, minFlex: 0.2, defaultFlex: 0.75, children: [(0, jsx_runtime_1.jsx)(SplitterElement_1.SplitterElement, { sticky: null, type: "flexer", children: (0, jsx_runtime_1.jsx)(TopPanel_1.TopPanel, { size: size, drawRef: drawRef, bufferStateDelayInMilliseconds: bufferStateDelayInMilliseconds, onMounted: onMounted, readOnlyStudio: readOnlyStudio }) }), (0, jsx_runtime_1.jsx)(SplitterHandle_1.SplitterHandle, { allowToCollapse: "none", onCollapse: noop }), (0, jsx_runtime_1.jsx)(SplitterElement_1.SplitterElement, { sticky: null, type: "anti-flexer", children: (0, jsx_runtime_1.jsx)(Timeline_1.Timeline, {}) })] }))] }));
 };
 exports.EditorContent = EditorContent;
 
@@ -6703,8 +6573,8 @@ exports.FilePreview = void 0;
 const jsx_runtime_1 = __webpack_require__(85893);
 const studio_shared_1 = __webpack_require__(87154);
 const JSONViewer_1 = __webpack_require__(15266);
-const TextViewer_1 = __webpack_require__(45665);
 const layout_1 = __webpack_require__(34153);
+const TextViewer_1 = __webpack_require__(45665);
 const msgStyle = {
     fontSize: 13,
     color: 'white',
@@ -6920,7 +6790,6 @@ const react_1 = __webpack_require__(67294);
 const use_keybinding_1 = __webpack_require__(67442);
 const checkerboard_1 = __webpack_require__(94223);
 const modals_1 = __webpack_require__(89750);
-const NotificationCenter_1 = __webpack_require__(9349);
 const GlobalKeybindings = () => {
     const keybindings = (0, use_keybinding_1.useKeybinding)();
     const { setSelectedModal } = (0, react_1.useContext)(modals_1.ModalsContext);
@@ -6930,7 +6799,10 @@ const GlobalKeybindings = () => {
             event: 'keypress',
             key: 'n',
             callback: () => {
-                (0, NotificationCenter_1.showNotification)(`To make a new composition, right-click an existing one and select "Duplicate"`, 5000);
+                setSelectedModal({
+                    type: 'new-comp',
+                    compType: 'composition',
+                });
             },
             commandCtrlKey: false,
             preventDefault: true,
@@ -7263,7 +7135,7 @@ const li = {
     fontSize: 14,
 };
 const KeyboardShortcutsExplainer = () => {
-    return ((0, jsx_runtime_1.jsxs)("div", { children: [(0, use_keybinding_1.areKeyboardShortcutsDisabled)() ? ((0, jsx_runtime_1.jsxs)("div", { style: keyboardShortcutsDisabled, children: ["Keyboard shortcuts disabled either due to:", (0, jsx_runtime_1.jsxs)("ul", { style: ul, children: [(0, jsx_runtime_1.jsx)("li", { style: li, children: "a) --disable-keyboard-shortcuts being passed" }), (0, jsx_runtime_1.jsx)("li", { style: li, children: "b) Config.setKeyboardShortcutsEnabled(false) being set or" }), (0, jsx_runtime_1.jsx)("li", { style: li, children: " c) a Remotion version mismatch." })] })] })) : null, (0, jsx_runtime_1.jsxs)(layout_1.Row, { style: container, children: [(0, jsx_runtime_1.jsxs)(layout_1.Column, { children: [(0, jsx_runtime_1.jsx)("div", { style: title, children: "Playback" }), (0, jsx_runtime_1.jsxs)(layout_1.Row, { align: "center", children: [(0, jsx_runtime_1.jsxs)("div", { style: left, children: [(0, jsx_runtime_1.jsx)("kbd", { style: key, children: (0, jsx_runtime_1.jsx)(keys_1.ShiftIcon, {}) }), (0, jsx_runtime_1.jsx)(layout_1.Spacing, { x: 0.3 }), (0, jsx_runtime_1.jsx)("kbd", { style: key, children: (0, jsx_runtime_1.jsx)(keys_1.ArrowLeft, {}) })] }), (0, jsx_runtime_1.jsx)("div", { style: right, children: "1 second back" })] }), (0, jsx_runtime_1.jsxs)(layout_1.Row, { align: "center", children: [(0, jsx_runtime_1.jsx)("div", { style: left, children: (0, jsx_runtime_1.jsx)("kbd", { style: key, children: (0, jsx_runtime_1.jsx)(keys_1.ArrowLeft, {}) }) }), (0, jsx_runtime_1.jsx)("div", { style: right, children: "Previous frame" })] }), (0, jsx_runtime_1.jsxs)(layout_1.Row, { align: "center", children: [(0, jsx_runtime_1.jsx)("div", { style: left, children: (0, jsx_runtime_1.jsx)("kbd", { style: key, children: "Space" }) }), (0, jsx_runtime_1.jsx)("div", { style: right, children: "Play / Pause" })] }), (0, jsx_runtime_1.jsxs)(layout_1.Row, { align: "center", children: [(0, jsx_runtime_1.jsx)("div", { style: left, children: (0, jsx_runtime_1.jsx)("kbd", { style: key, children: (0, jsx_runtime_1.jsx)(keys_1.ArrowRight, {}) }) }), (0, jsx_runtime_1.jsx)("div", { style: right, children: "Next frame" })] }), (0, jsx_runtime_1.jsxs)(layout_1.Row, { align: "center", children: [(0, jsx_runtime_1.jsxs)("div", { style: left, children: [(0, jsx_runtime_1.jsx)("kbd", { style: key, children: (0, jsx_runtime_1.jsx)(keys_1.ShiftIcon, {}) }), (0, jsx_runtime_1.jsx)(layout_1.Spacing, { x: 0.3 }), (0, jsx_runtime_1.jsx)("kbd", { style: key, children: (0, jsx_runtime_1.jsx)(keys_1.ArrowRight, {}) })] }), (0, jsx_runtime_1.jsx)("div", { style: right, children: "1 second forward" })] }), (0, jsx_runtime_1.jsxs)(layout_1.Row, { align: "center", children: [(0, jsx_runtime_1.jsx)("div", { style: left, children: (0, jsx_runtime_1.jsx)("kbd", { style: key, children: "A" }) }), (0, jsx_runtime_1.jsx)("div", { style: right, children: "Jump to beginning" })] }), (0, jsx_runtime_1.jsxs)(layout_1.Row, { align: "center", children: [(0, jsx_runtime_1.jsx)("div", { style: left, children: (0, jsx_runtime_1.jsx)("kbd", { style: key, children: "E" }) }), (0, jsx_runtime_1.jsx)("div", { style: right, children: "Jump to end" })] }), (0, jsx_runtime_1.jsxs)(layout_1.Row, { align: "center", children: [(0, jsx_runtime_1.jsx)("div", { style: left, children: (0, jsx_runtime_1.jsx)("kbd", { style: key, children: "J" }) }), (0, jsx_runtime_1.jsx)("div", { style: right, children: "Reverse playback" })] }), (0, jsx_runtime_1.jsxs)(layout_1.Row, { align: "center", children: [(0, jsx_runtime_1.jsx)("div", { style: left, children: (0, jsx_runtime_1.jsx)("kbd", { style: key, children: "K" }) }), (0, jsx_runtime_1.jsx)("div", { style: right, children: "Pause" })] }), (0, jsx_runtime_1.jsxs)(layout_1.Row, { align: "center", children: [(0, jsx_runtime_1.jsx)("div", { style: left, children: (0, jsx_runtime_1.jsx)("kbd", { style: key, children: "L" }) }), (0, jsx_runtime_1.jsx)("div", { style: right, children: "Play / Speed up" })] }), (0, jsx_runtime_1.jsxs)(layout_1.Row, { align: "center", children: [(0, jsx_runtime_1.jsx)("div", { style: left, children: (0, jsx_runtime_1.jsx)("kbd", { style: key, children: "G" }) }), (0, jsx_runtime_1.jsx)("div", { style: right, children: "Go to frame" })] }), (0, jsx_runtime_1.jsxs)(layout_1.Row, { align: "center", children: [(0, jsx_runtime_1.jsx)("div", { style: left, children: (0, jsx_runtime_1.jsx)("kbd", { style: key, children: "Enter" }) }), (0, jsx_runtime_1.jsx)("div", { style: right, children: "Pause & return to playback start" })] }), (0, jsx_runtime_1.jsx)("br", {}), (0, jsx_runtime_1.jsx)("div", { style: title, children: "Sidebar" }), (0, jsx_runtime_1.jsxs)(layout_1.Row, { align: "center", children: [(0, jsx_runtime_1.jsxs)("div", { style: left, children: [(0, jsx_runtime_1.jsx)("kbd", { style: key, children: ShortcutHint_1.cmdOrCtrlCharacter }), (0, jsx_runtime_1.jsx)(layout_1.Spacing, { x: 0.3 }), (0, jsx_runtime_1.jsx)("kbd", { style: key, children: "B" })] }), (0, jsx_runtime_1.jsx)("div", { style: right, children: "Toggle left sidebar" })] }), (0, jsx_runtime_1.jsxs)(layout_1.Row, { align: "center", children: [(0, jsx_runtime_1.jsxs)("div", { style: left, children: [(0, jsx_runtime_1.jsx)("kbd", { style: key, children: ShortcutHint_1.cmdOrCtrlCharacter }), (0, jsx_runtime_1.jsx)(layout_1.Spacing, { x: 0.3 }), (0, jsx_runtime_1.jsx)("kbd", { style: key, children: "J" })] }), (0, jsx_runtime_1.jsx)("div", { style: right, children: "Toggle right sidebar" })] }), (0, jsx_runtime_1.jsxs)(layout_1.Row, { align: "center", children: [(0, jsx_runtime_1.jsxs)("div", { style: left, children: [(0, jsx_runtime_1.jsx)("kbd", { style: key, children: ShortcutHint_1.cmdOrCtrlCharacter }), (0, jsx_runtime_1.jsx)(layout_1.Spacing, { x: 0.3 }), (0, jsx_runtime_1.jsx)("kbd", { style: key, children: "G" })] }), (0, jsx_runtime_1.jsx)("div", { style: right, children: "Toggle both sidebars" })] }), (0, jsx_runtime_1.jsx)("br", {}), (0, jsx_runtime_1.jsx)("div", { style: title, children: "View" }), (0, jsx_runtime_1.jsxs)(layout_1.Row, { align: "center", children: [(0, jsx_runtime_1.jsx)("div", { style: left, children: (0, jsx_runtime_1.jsx)("kbd", { style: key, children: "F" }) }), (0, jsx_runtime_1.jsx)("div", { style: right, children: "Enter fullscreen" })] }), (0, jsx_runtime_1.jsxs)(layout_1.Row, { align: "center", children: [(0, jsx_runtime_1.jsx)("div", { style: left, children: (0, jsx_runtime_1.jsx)("kbd", { style: key, children: "Esc" }) }), (0, jsx_runtime_1.jsx)("div", { style: right, children: "Exit fullscreen" })] })] }), (0, jsx_runtime_1.jsx)(layout_1.Spacing, { x: 8 }), (0, jsx_runtime_1.jsxs)(layout_1.Column, { children: [(0, jsx_runtime_1.jsx)("div", { style: title, children: "Navigation" }), (0, jsx_runtime_1.jsxs)(layout_1.Row, { align: "center", children: [(0, jsx_runtime_1.jsx)("div", { style: left, children: (0, jsx_runtime_1.jsx)("kbd", { style: key, children: "R" }) }), (0, jsx_runtime_1.jsx)("div", { style: right, children: "Render composition" })] }), (0, jsx_runtime_1.jsxs)(layout_1.Row, { align: "center", children: [(0, jsx_runtime_1.jsx)("div", { style: left, children: (0, jsx_runtime_1.jsx)("kbd", { style: key, children: "T" }) }), (0, jsx_runtime_1.jsx)("div", { style: right, children: "Toggle checkerboard background" })] }), (0, jsx_runtime_1.jsxs)(layout_1.Row, { align: "center", children: [(0, jsx_runtime_1.jsx)("div", { style: left, children: (0, jsx_runtime_1.jsx)("kbd", { style: key, children: "?" }) }), (0, jsx_runtime_1.jsx)("div", { style: right, children: "Show keyboard shortcuts" })] }), (0, jsx_runtime_1.jsxs)(layout_1.Row, { align: "center", children: [(0, jsx_runtime_1.jsxs)("div", { style: left, children: [(0, jsx_runtime_1.jsx)("kbd", { style: key, children: ShortcutHint_1.cmdOrCtrlCharacter }), (0, jsx_runtime_1.jsx)(layout_1.Spacing, { x: 0.3 }), (0, jsx_runtime_1.jsx)("kbd", { style: key, children: "K" })] }), (0, jsx_runtime_1.jsx)("div", { style: right, children: "Quick Switcher" })] }), (0, jsx_runtime_1.jsx)("br", {}), (0, jsx_runtime_1.jsx)("div", { style: title, children: "Playback range" }), (0, jsx_runtime_1.jsxs)(layout_1.Row, { align: "center", children: [(0, jsx_runtime_1.jsx)("div", { style: left, children: (0, jsx_runtime_1.jsx)("kbd", { style: key, children: "I" }) }), (0, jsx_runtime_1.jsx)("div", { style: right, children: "Set In Point" })] }), (0, jsx_runtime_1.jsxs)(layout_1.Row, { align: "center", children: [(0, jsx_runtime_1.jsx)("div", { style: left, children: (0, jsx_runtime_1.jsx)("kbd", { style: key, children: "O" }) }), (0, jsx_runtime_1.jsx)("div", { style: right, children: "Set Out Point" })] }), (0, jsx_runtime_1.jsxs)(layout_1.Row, { align: "center", children: [(0, jsx_runtime_1.jsx)("div", { style: left, children: (0, jsx_runtime_1.jsx)("kbd", { style: key, children: "X" }) }), (0, jsx_runtime_1.jsx)("div", { style: right, children: "Clear In/Out Points" })] }), (0, jsx_runtime_1.jsx)("br", {}), (0, jsx_runtime_1.jsx)("div", { style: title, children: "Zoom" }), (0, jsx_runtime_1.jsxs)(layout_1.Row, { align: "center", children: [(0, jsx_runtime_1.jsx)("div", { style: left, children: (0, jsx_runtime_1.jsx)("kbd", { style: key, children: "+" }) }), (0, jsx_runtime_1.jsx)("div", { style: right, children: "Zoom in" })] }), (0, jsx_runtime_1.jsxs)(layout_1.Row, { align: "center", children: [(0, jsx_runtime_1.jsx)("div", { style: left, children: (0, jsx_runtime_1.jsx)("kbd", { style: key, children: "-" }) }), (0, jsx_runtime_1.jsx)("div", { style: right, children: "Zoom out" })] }), (0, jsx_runtime_1.jsxs)(layout_1.Row, { align: "center", children: [(0, jsx_runtime_1.jsx)("div", { style: left, children: (0, jsx_runtime_1.jsx)("kbd", { style: key, children: "0" }) }), (0, jsx_runtime_1.jsx)("div", { style: right, children: "Reset zoom" })] }), ' ', (0, jsx_runtime_1.jsx)("br", {}), (0, jsx_runtime_1.jsx)("div", { style: title, children: "Props Editor" }), (0, jsx_runtime_1.jsxs)(layout_1.Row, { align: "center", children: [(0, jsx_runtime_1.jsxs)("div", { style: left, children: [(0, jsx_runtime_1.jsx)("kbd", { style: key, children: ShortcutHint_1.cmdOrCtrlCharacter }), (0, jsx_runtime_1.jsx)(layout_1.Spacing, { x: 0.3 }), (0, jsx_runtime_1.jsx)("kbd", { style: key, children: "S" })] }), (0, jsx_runtime_1.jsx)("div", { style: right, children: "Save" })] })] })] })] }));
+    return ((0, jsx_runtime_1.jsxs)("div", { children: [(0, use_keybinding_1.areKeyboardShortcutsDisabled)() ? ((0, jsx_runtime_1.jsxs)("div", { style: keyboardShortcutsDisabled, children: ["Keyboard shortcuts disabled either due to:", (0, jsx_runtime_1.jsxs)("ul", { style: ul, children: [(0, jsx_runtime_1.jsx)("li", { style: li, children: "a) --disable-keyboard-shortcuts being passed" }), (0, jsx_runtime_1.jsx)("li", { style: li, children: "b) Config.setKeyboardShortcutsEnabled(false) being set or" }), (0, jsx_runtime_1.jsx)("li", { style: li, children: " c) a Remotion version mismatch." })] })] })) : null, (0, jsx_runtime_1.jsxs)(layout_1.Row, { style: container, children: [(0, jsx_runtime_1.jsxs)(layout_1.Column, { children: [(0, jsx_runtime_1.jsx)("div", { style: title, children: "Playback" }), (0, jsx_runtime_1.jsxs)(layout_1.Row, { align: "center", children: [(0, jsx_runtime_1.jsxs)("div", { style: left, children: [(0, jsx_runtime_1.jsx)("kbd", { style: key, children: (0, jsx_runtime_1.jsx)(keys_1.ShiftIcon, {}) }), (0, jsx_runtime_1.jsx)(layout_1.Spacing, { x: 0.3 }), (0, jsx_runtime_1.jsx)("kbd", { style: key, children: (0, jsx_runtime_1.jsx)(keys_1.ArrowLeft, {}) })] }), (0, jsx_runtime_1.jsx)("div", { style: right, children: "1 second back" })] }), (0, jsx_runtime_1.jsxs)(layout_1.Row, { align: "center", children: [(0, jsx_runtime_1.jsx)("div", { style: left, children: (0, jsx_runtime_1.jsx)("kbd", { style: key, children: (0, jsx_runtime_1.jsx)(keys_1.ArrowLeft, {}) }) }), (0, jsx_runtime_1.jsx)("div", { style: right, children: "Previous frame" })] }), (0, jsx_runtime_1.jsxs)(layout_1.Row, { align: "center", children: [(0, jsx_runtime_1.jsx)("div", { style: left, children: (0, jsx_runtime_1.jsx)("kbd", { style: key, children: "Space" }) }), (0, jsx_runtime_1.jsx)("div", { style: right, children: "Play / Pause" })] }), (0, jsx_runtime_1.jsxs)(layout_1.Row, { align: "center", children: [(0, jsx_runtime_1.jsx)("div", { style: left, children: (0, jsx_runtime_1.jsx)("kbd", { style: key, children: (0, jsx_runtime_1.jsx)(keys_1.ArrowRight, {}) }) }), (0, jsx_runtime_1.jsx)("div", { style: right, children: "Next frame" })] }), (0, jsx_runtime_1.jsxs)(layout_1.Row, { align: "center", children: [(0, jsx_runtime_1.jsxs)("div", { style: left, children: [(0, jsx_runtime_1.jsx)("kbd", { style: key, children: (0, jsx_runtime_1.jsx)(keys_1.ShiftIcon, {}) }), (0, jsx_runtime_1.jsx)(layout_1.Spacing, { x: 0.3 }), (0, jsx_runtime_1.jsx)("kbd", { style: key, children: (0, jsx_runtime_1.jsx)(keys_1.ArrowRight, {}) })] }), (0, jsx_runtime_1.jsx)("div", { style: right, children: "1 second forward" })] }), (0, jsx_runtime_1.jsxs)(layout_1.Row, { align: "center", children: [(0, jsx_runtime_1.jsx)("div", { style: left, children: (0, jsx_runtime_1.jsx)("kbd", { style: key, children: "A" }) }), (0, jsx_runtime_1.jsx)("div", { style: right, children: "Jump to beginning" })] }), (0, jsx_runtime_1.jsxs)(layout_1.Row, { align: "center", children: [(0, jsx_runtime_1.jsx)("div", { style: left, children: (0, jsx_runtime_1.jsx)("kbd", { style: key, children: "E" }) }), (0, jsx_runtime_1.jsx)("div", { style: right, children: "Jump to end" })] }), (0, jsx_runtime_1.jsxs)(layout_1.Row, { align: "center", children: [(0, jsx_runtime_1.jsx)("div", { style: left, children: (0, jsx_runtime_1.jsx)("kbd", { style: key, children: "J" }) }), (0, jsx_runtime_1.jsx)("div", { style: right, children: "Reverse playback" })] }), (0, jsx_runtime_1.jsxs)(layout_1.Row, { align: "center", children: [(0, jsx_runtime_1.jsx)("div", { style: left, children: (0, jsx_runtime_1.jsx)("kbd", { style: key, children: "K" }) }), (0, jsx_runtime_1.jsx)("div", { style: right, children: "Pause" })] }), (0, jsx_runtime_1.jsxs)(layout_1.Row, { align: "center", children: [(0, jsx_runtime_1.jsx)("div", { style: left, children: (0, jsx_runtime_1.jsx)("kbd", { style: key, children: "L" }) }), (0, jsx_runtime_1.jsx)("div", { style: right, children: "Play / Speed up" })] }), (0, jsx_runtime_1.jsxs)(layout_1.Row, { align: "center", children: [(0, jsx_runtime_1.jsx)("div", { style: left, children: (0, jsx_runtime_1.jsx)("kbd", { style: key, children: "G" }) }), (0, jsx_runtime_1.jsx)("div", { style: right, children: "Go to frame" })] }), (0, jsx_runtime_1.jsxs)(layout_1.Row, { align: "center", children: [(0, jsx_runtime_1.jsx)("div", { style: left, children: (0, jsx_runtime_1.jsx)("kbd", { style: key, children: "Enter" }) }), (0, jsx_runtime_1.jsx)("div", { style: right, children: "Pause & return to playback start" })] }), (0, jsx_runtime_1.jsx)("br", {}), (0, jsx_runtime_1.jsx)("div", { style: title, children: "Sidebar" }), (0, jsx_runtime_1.jsxs)(layout_1.Row, { align: "center", children: [(0, jsx_runtime_1.jsxs)("div", { style: left, children: [(0, jsx_runtime_1.jsx)("kbd", { style: key, children: ShortcutHint_1.cmdOrCtrlCharacter }), (0, jsx_runtime_1.jsx)(layout_1.Spacing, { x: 0.3 }), (0, jsx_runtime_1.jsx)("kbd", { style: key, children: "B" })] }), (0, jsx_runtime_1.jsx)("div", { style: right, children: "Toggle left sidebar" })] }), (0, jsx_runtime_1.jsxs)(layout_1.Row, { align: "center", children: [(0, jsx_runtime_1.jsxs)("div", { style: left, children: [(0, jsx_runtime_1.jsx)("kbd", { style: key, children: ShortcutHint_1.cmdOrCtrlCharacter }), (0, jsx_runtime_1.jsx)(layout_1.Spacing, { x: 0.3 }), (0, jsx_runtime_1.jsx)("kbd", { style: key, children: "J" })] }), (0, jsx_runtime_1.jsx)("div", { style: right, children: "Toggle right sidebar" })] }), (0, jsx_runtime_1.jsxs)(layout_1.Row, { align: "center", children: [(0, jsx_runtime_1.jsxs)("div", { style: left, children: [(0, jsx_runtime_1.jsx)("kbd", { style: key, children: ShortcutHint_1.cmdOrCtrlCharacter }), (0, jsx_runtime_1.jsx)(layout_1.Spacing, { x: 0.3 }), (0, jsx_runtime_1.jsx)("kbd", { style: key, children: "G" })] }), (0, jsx_runtime_1.jsx)("div", { style: right, children: "Toggle both sidebars" })] }), (0, jsx_runtime_1.jsx)("br", {}), (0, jsx_runtime_1.jsx)("div", { style: title, children: "View" }), (0, jsx_runtime_1.jsxs)(layout_1.Row, { align: "center", children: [(0, jsx_runtime_1.jsx)("div", { style: left, children: (0, jsx_runtime_1.jsx)("kbd", { style: key, children: "F" }) }), (0, jsx_runtime_1.jsx)("div", { style: right, children: "Enter fullscreen" })] }), (0, jsx_runtime_1.jsxs)(layout_1.Row, { align: "center", children: [(0, jsx_runtime_1.jsx)("div", { style: left, children: (0, jsx_runtime_1.jsx)("kbd", { style: key, children: "Esc" }) }), (0, jsx_runtime_1.jsx)("div", { style: right, children: "Exit fullscreen" })] })] }), (0, jsx_runtime_1.jsx)(layout_1.Spacing, { x: 8 }), (0, jsx_runtime_1.jsxs)(layout_1.Column, { children: [(0, jsx_runtime_1.jsx)("div", { style: title, children: "Navigation" }), (0, jsx_runtime_1.jsxs)(layout_1.Row, { align: "center", children: [(0, jsx_runtime_1.jsx)("div", { style: left, children: (0, jsx_runtime_1.jsx)("kbd", { style: key, children: "N" }) }), (0, jsx_runtime_1.jsx)("div", { style: right, children: "New composition" })] }), (0, jsx_runtime_1.jsxs)(layout_1.Row, { align: "center", children: [(0, jsx_runtime_1.jsx)("div", { style: left, children: (0, jsx_runtime_1.jsx)("kbd", { style: key, children: "R" }) }), (0, jsx_runtime_1.jsx)("div", { style: right, children: "Render composition" })] }), (0, jsx_runtime_1.jsxs)(layout_1.Row, { align: "center", children: [(0, jsx_runtime_1.jsx)("div", { style: left, children: (0, jsx_runtime_1.jsx)("kbd", { style: key, children: "T" }) }), (0, jsx_runtime_1.jsx)("div", { style: right, children: "Toggle checkerboard background" })] }), (0, jsx_runtime_1.jsxs)(layout_1.Row, { align: "center", children: [(0, jsx_runtime_1.jsx)("div", { style: left, children: (0, jsx_runtime_1.jsx)("kbd", { style: key, children: "?" }) }), (0, jsx_runtime_1.jsx)("div", { style: right, children: "Show keyboard shortcuts" })] }), (0, jsx_runtime_1.jsxs)(layout_1.Row, { align: "center", children: [(0, jsx_runtime_1.jsxs)("div", { style: left, children: [(0, jsx_runtime_1.jsx)("kbd", { style: key, children: ShortcutHint_1.cmdOrCtrlCharacter }), (0, jsx_runtime_1.jsx)(layout_1.Spacing, { x: 0.3 }), (0, jsx_runtime_1.jsx)("kbd", { style: key, children: "K" })] }), (0, jsx_runtime_1.jsx)("div", { style: right, children: "Quick Switcher" })] }), (0, jsx_runtime_1.jsx)("br", {}), (0, jsx_runtime_1.jsx)("div", { style: title, children: "Playback range" }), (0, jsx_runtime_1.jsxs)(layout_1.Row, { align: "center", children: [(0, jsx_runtime_1.jsx)("div", { style: left, children: (0, jsx_runtime_1.jsx)("kbd", { style: key, children: "I" }) }), (0, jsx_runtime_1.jsx)("div", { style: right, children: "Set In Point" })] }), (0, jsx_runtime_1.jsxs)(layout_1.Row, { align: "center", children: [(0, jsx_runtime_1.jsx)("div", { style: left, children: (0, jsx_runtime_1.jsx)("kbd", { style: key, children: "O" }) }), (0, jsx_runtime_1.jsx)("div", { style: right, children: "Set Out Point" })] }), (0, jsx_runtime_1.jsxs)(layout_1.Row, { align: "center", children: [(0, jsx_runtime_1.jsx)("div", { style: left, children: (0, jsx_runtime_1.jsx)("kbd", { style: key, children: "X" }) }), (0, jsx_runtime_1.jsx)("div", { style: right, children: "Clear In/Out Points" })] }), (0, jsx_runtime_1.jsx)("br", {}), (0, jsx_runtime_1.jsx)("div", { style: title, children: "Zoom" }), (0, jsx_runtime_1.jsxs)(layout_1.Row, { align: "center", children: [(0, jsx_runtime_1.jsx)("div", { style: left, children: (0, jsx_runtime_1.jsx)("kbd", { style: key, children: "+" }) }), (0, jsx_runtime_1.jsx)("div", { style: right, children: "Zoom in" })] }), (0, jsx_runtime_1.jsxs)(layout_1.Row, { align: "center", children: [(0, jsx_runtime_1.jsx)("div", { style: left, children: (0, jsx_runtime_1.jsx)("kbd", { style: key, children: "-" }) }), (0, jsx_runtime_1.jsx)("div", { style: right, children: "Zoom out" })] }), (0, jsx_runtime_1.jsxs)(layout_1.Row, { align: "center", children: [(0, jsx_runtime_1.jsx)("div", { style: left, children: (0, jsx_runtime_1.jsx)("kbd", { style: key, children: "0" }) }), (0, jsx_runtime_1.jsx)("div", { style: right, children: "Reset zoom" })] }), ' ', (0, jsx_runtime_1.jsx)("br", {}), (0, jsx_runtime_1.jsx)("div", { style: title, children: "Props Editor" }), (0, jsx_runtime_1.jsxs)(layout_1.Row, { align: "center", children: [(0, jsx_runtime_1.jsxs)("div", { style: left, children: [(0, jsx_runtime_1.jsx)("kbd", { style: key, children: ShortcutHint_1.cmdOrCtrlCharacter }), (0, jsx_runtime_1.jsx)(layout_1.Spacing, { x: 0.3 }), (0, jsx_runtime_1.jsx)("kbd", { style: key, children: "S" })] }), (0, jsx_runtime_1.jsx)("div", { style: right, children: "Save" })] })] })] })] }));
 };
 exports.KeyboardShortcutsExplainer = KeyboardShortcutsExplainer;
 
@@ -7506,10 +7378,10 @@ const use_keybinding_1 = __webpack_require__(67442);
 const caret_1 = __webpack_require__(74655);
 const z_index_1 = __webpack_require__(19666);
 const layout_1 = __webpack_require__(34153);
-const SubMenu_1 = __webpack_require__(706);
 const is_menu_item_1 = __webpack_require__(98185);
 const portals_1 = __webpack_require__(90442);
 const styles_1 = __webpack_require__(25693);
+const SubMenu_1 = __webpack_require__(706);
 const container = {
     paddingTop: 8,
     paddingBottom: 8,
@@ -7598,7 +7470,7 @@ const MenuSubItem = ({ label, leaveLeftSpace, leftItem, onActionChosen, id, sele
             });
         }
     }, [selected]);
-    return ((0, jsx_runtime_1.jsx)("div", { ref: ref, onPointerEnter: onPointerEnter, onPointerLeave: onPointerLeave, style: style, onPointerUp: onPointerUp, role: "button", className: is_menu_item_1.MENU_ITEM_CLASSNAME, children: (0, jsx_runtime_1.jsxs)(layout_1.Row, { align: "center", children: [leaveLeftSpace ? ((0, jsx_runtime_1.jsxs)(jsx_runtime_1.Fragment, { children: [(0, jsx_runtime_1.jsx)("div", { style: leftSpace, children: leftItem }), (0, jsx_runtime_1.jsx)(layout_1.Spacing, { x: 1 })] })) : null, (0, jsx_runtime_1.jsx)("div", { style: labelStyle, title: typeof label === 'string' ? label : undefined, children: label }), ' ', (0, jsx_runtime_1.jsx)(layout_1.Spacing, { x: 2 }), subMenu ? (0, jsx_runtime_1.jsx)(caret_1.CaretRight, {}) : null, keyHint && !(0, use_keybinding_1.areKeyboardShortcutsDisabled)() ? ((0, jsx_runtime_1.jsx)("span", { style: keyHintCss, children: keyHint })) : null, portalStyle && subMenu
+    return ((0, jsx_runtime_1.jsx)("div", { ref: ref, onPointerEnter: onPointerEnter, onPointerLeave: onPointerLeave, style: style, onPointerUp: onPointerUp, role: "button", className: is_menu_item_1.MENU_ITEM_CLASSNAME, children: (0, jsx_runtime_1.jsxs)(layout_1.Row, { align: "center", children: [leaveLeftSpace ? ((0, jsx_runtime_1.jsxs)(jsx_runtime_1.Fragment, { children: [(0, jsx_runtime_1.jsx)("div", { style: leftSpace, children: leftItem }), (0, jsx_runtime_1.jsx)(layout_1.Spacing, { x: 1 })] })) : null, (0, jsx_runtime_1.jsx)("div", { style: labelStyle, ...{ title: typeof label === 'string' ? label : undefined }, children: label }), ' ', (0, jsx_runtime_1.jsx)(layout_1.Spacing, { x: 2 }), subMenu ? (0, jsx_runtime_1.jsx)(caret_1.CaretRight, {}) : null, keyHint && !(0, use_keybinding_1.areKeyboardShortcutsDisabled)() ? ((0, jsx_runtime_1.jsx)("span", { style: keyHintCss, children: keyHint })) : null, portalStyle && subMenu
                     ? react_dom_1.default.createPortal((0, jsx_runtime_1.jsx)(SubMenu_1.SubMenuComponent, { onQuitFullMenu: onQuitMenu, subMenu: subMenu, onQuitSubMenu: onQuitSubmenu, portalStyle: portalStyle, subMenuActivated: subMenuActivated }), (0, portals_1.getPortal)(currentZIndex))
                     : null] }) }));
 };
@@ -7743,9 +7615,9 @@ exports.MenuBuildIndicator = void 0;
 const jsx_runtime_1 = __webpack_require__(85893);
 const react_1 = __webpack_require__(67294);
 const client_id_1 = __webpack_require__(82862);
+const layout_1 = __webpack_require__(34153);
 const OpenEditorButton_1 = __webpack_require__(33409);
 const Spinner_1 = __webpack_require__(2667);
-const layout_1 = __webpack_require__(34153);
 const cwd = {
     fontSize: 13,
     opacity: 0.8,
@@ -7798,11 +7670,11 @@ const react_1 = __webpack_require__(67294);
 const colors_1 = __webpack_require__(38746);
 const mobile_layout_1 = __webpack_require__(64486);
 const use_menu_structure_1 = __webpack_require__(51325);
+const layout_1 = __webpack_require__(34153);
 const MenuItem_1 = __webpack_require__(92558);
 const MenuBuildIndicator_1 = __webpack_require__(20245);
 const SidebarCollapserControls_1 = __webpack_require__(87430);
 const UpdateCheck_1 = __webpack_require__(37739);
-const layout_1 = __webpack_require__(34153);
 const row = {
     alignItems: 'center',
     flexDirection: 'row',
@@ -7986,8 +7858,8 @@ exports.NewCompHeader = void 0;
 const jsx_runtime_1 = __webpack_require__(85893);
 const react_1 = __webpack_require__(67294);
 const modals_1 = __webpack_require__(89750);
-const CancelButton_1 = __webpack_require__(11824);
 const layout_1 = __webpack_require__(34153);
+const CancelButton_1 = __webpack_require__(11824);
 const container = {
     display: 'flex',
     flexDirection: 'row',
@@ -8030,9 +7902,7 @@ const jsx_runtime_1 = __webpack_require__(85893);
 const react_1 = __webpack_require__(67294);
 const client_id_1 = __webpack_require__(82862);
 const modals_1 = __webpack_require__(89750);
-const DeleteComposition_1 = __webpack_require__(70621);
-const DuplicateComposition_1 = __webpack_require__(86062);
-const RenameComposition_1 = __webpack_require__(50565);
+const NewComposition_1 = __importDefault(__webpack_require__(36130));
 const QuickSwitcher_1 = __importDefault(__webpack_require__(50918));
 const RenderModal_1 = __webpack_require__(82401);
 const RenderStatusModal_1 = __webpack_require__(45645);
@@ -8041,7 +7911,7 @@ const Modals = ({ readOnlyStudio }) => {
     const { selectedModal: modalContextType } = (0, react_1.useContext)(modals_1.ModalsContext);
     const canRender = (0, react_1.useContext)(client_id_1.StudioServerConnectionCtx).previewServerState.type ===
         'connected';
-    return ((0, jsx_runtime_1.jsxs)(jsx_runtime_1.Fragment, { children: [modalContextType && modalContextType.type === 'duplicate-comp' && ((0, jsx_runtime_1.jsx)(DuplicateComposition_1.DuplicateComposition, { compositionType: modalContextType.compositionType, compositionId: modalContextType.compositionId })), modalContextType && modalContextType.type === 'delete-comp' && ((0, jsx_runtime_1.jsx)(DeleteComposition_1.DeleteComposition, { compositionId: modalContextType.compositionId })), modalContextType && modalContextType.type === 'rename-comp' && ((0, jsx_runtime_1.jsx)(RenameComposition_1.RenameComposition, { compositionId: modalContextType.compositionId })), modalContextType && canRender && modalContextType.type === 'render' && ((0, jsx_runtime_1.jsx)(RenderModal_1.RenderModalWithLoader, { initialFrame: modalContextType.initialFrame, compositionId: modalContextType.compositionId, initialVideoImageFormat: modalContextType.initialVideoImageFormat, initialJpegQuality: modalContextType.initialJpegQuality, initialScale: modalContextType.initialScale, initialLogLevel: modalContextType.initialLogLevel, initialOffthreadVideoCacheSizeInBytes: modalContextType.initialOffthreadVideoCacheSizeInBytes, initialConcurrency: modalContextType.initialConcurrency, maxConcurrency: modalContextType.maxConcurrency, minConcurrency: modalContextType.minConcurrency, initialStillImageFormat: modalContextType.initialStillImageFormat, initialMuted: modalContextType.initialMuted, initialEnforceAudioTrack: modalContextType.initialEnforceAudioTrack, initialProResProfile: modalContextType.initialProResProfile, initialx264Preset: modalContextType.initialx264Preset, initialPixelFormat: modalContextType.initialPixelFormat, initialAudioBitrate: modalContextType.initialAudioBitrate, initialVideoBitrate: modalContextType.initialVideoBitrate, initialEveryNthFrame: modalContextType.initialEveryNthFrame, initialNumberOfGifLoops: modalContextType.initialNumberOfGifLoops, initialDelayRenderTimeout: modalContextType.initialDelayRenderTimeout, initialEnvVariables: modalContextType.initialEnvVariables, initialDisableWebSecurity: modalContextType.initialDisableWebSecurity, initialGl: modalContextType.initialOpenGlRenderer, initialHeadless: modalContextType.initialHeadless, initialIgnoreCertificateErrors: modalContextType.initialIgnoreCertificateErrors, initialEncodingBufferSize: modalContextType.initialEncodingBufferSize, initialEncodingMaxRate: modalContextType.initialEncodingMaxRate, initialUserAgent: modalContextType.initialUserAgent, initialColorSpace: modalContextType.initialColorSpace, initialMultiProcessOnLinux: modalContextType.initialMultiProcessOnLinux, initialRepro: modalContextType.initialRepro, initialBeep: modalContextType.initialBeep, initialForSeamlessAacConcatenation: modalContextType.initialForSeamlessAacConcatenation, defaultProps: modalContextType.defaultProps, inFrameMark: modalContextType.inFrameMark, outFrameMark: modalContextType.outFrameMark, defaultConfigurationAudioCodec: modalContextType.defaultConfigurationAudioCodec, defaultConfigurationVideoCodec: modalContextType.defaultConfigurationVideoCodec, renderTypeOfLastRender: modalContextType.renderTypeOfLastRender })), modalContextType &&
+    return ((0, jsx_runtime_1.jsxs)(jsx_runtime_1.Fragment, { children: [modalContextType && modalContextType.type === 'new-comp' && ((0, jsx_runtime_1.jsx)(NewComposition_1.default, { initialCompType: modalContextType.compType })), modalContextType && canRender && modalContextType.type === 'render' && ((0, jsx_runtime_1.jsx)(RenderModal_1.RenderModalWithLoader, { initialFrame: modalContextType.initialFrame, compositionId: modalContextType.compositionId, initialVideoImageFormat: modalContextType.initialVideoImageFormat, initialJpegQuality: modalContextType.initialJpegQuality, initialScale: modalContextType.initialScale, initialLogLevel: modalContextType.initialLogLevel, initialOffthreadVideoCacheSizeInBytes: modalContextType.initialOffthreadVideoCacheSizeInBytes, initialConcurrency: modalContextType.initialConcurrency, maxConcurrency: modalContextType.maxConcurrency, minConcurrency: modalContextType.minConcurrency, initialStillImageFormat: modalContextType.initialStillImageFormat, initialMuted: modalContextType.initialMuted, initialEnforceAudioTrack: modalContextType.initialEnforceAudioTrack, initialProResProfile: modalContextType.initialProResProfile, initialx264Preset: modalContextType.initialx264Preset, initialPixelFormat: modalContextType.initialPixelFormat, initialAudioBitrate: modalContextType.initialAudioBitrate, initialVideoBitrate: modalContextType.initialVideoBitrate, initialEveryNthFrame: modalContextType.initialEveryNthFrame, initialNumberOfGifLoops: modalContextType.initialNumberOfGifLoops, initialDelayRenderTimeout: modalContextType.initialDelayRenderTimeout, initialEnvVariables: modalContextType.initialEnvVariables, initialDisableWebSecurity: modalContextType.initialDisableWebSecurity, initialGl: modalContextType.initialOpenGlRenderer, initialHeadless: modalContextType.initialHeadless, initialIgnoreCertificateErrors: modalContextType.initialIgnoreCertificateErrors, initialEncodingBufferSize: modalContextType.initialEncodingBufferSize, initialEncodingMaxRate: modalContextType.initialEncodingMaxRate, initialUserAgent: modalContextType.initialUserAgent, initialColorSpace: modalContextType.initialColorSpace, initialMultiProcessOnLinux: modalContextType.initialMultiProcessOnLinux, initialRepro: modalContextType.initialRepro, initialBeep: modalContextType.initialBeep, initialForSeamlessAacConcatenation: modalContextType.initialForSeamlessAacConcatenation, defaultProps: modalContextType.defaultProps, inFrameMark: modalContextType.inFrameMark, outFrameMark: modalContextType.outFrameMark, defaultConfigurationAudioCodec: modalContextType.defaultConfigurationAudioCodec, defaultConfigurationVideoCodec: modalContextType.defaultConfigurationVideoCodec })), modalContextType &&
                 canRender &&
                 modalContextType.type === 'render-progress' && ((0, jsx_runtime_1.jsx)(RenderStatusModal_1.RenderStatusModal, { jobId: modalContextType.jobId })), modalContextType && modalContextType.type === 'update' && ((0, jsx_runtime_1.jsx)(UpdateModal_1.UpdateModal, { info: modalContextType.info, knownBugs: modalContextType.knownBugs })), modalContextType && modalContextType.type === 'quick-switcher' && ((0, jsx_runtime_1.jsx)(QuickSwitcher_1.default, { readOnlyStudio: readOnlyStudio, invocationTimestamp: modalContextType.invocationTimestamp, initialMode: modalContextType.mode }))] }));
 };
@@ -8130,138 +8000,6 @@ exports.CancelButton = CancelButton;
 
 /***/ }),
 
-/***/ 66355:
-/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
-
-"use strict";
-
-Object.defineProperty(exports, "__esModule", ({ value: true }));
-exports.CodemodFooter = void 0;
-const jsx_runtime_1 = __webpack_require__(85893);
-const react_1 = __webpack_require__(67294);
-const ShortcutHint_1 = __webpack_require__(81994);
-const colors_1 = __webpack_require__(38746);
-const use_keybinding_1 = __webpack_require__(67442);
-const modals_1 = __webpack_require__(89750);
-const Button_1 = __webpack_require__(2111);
-const NotificationCenter_1 = __webpack_require__(9349);
-const actions_1 = __webpack_require__(73017);
-const layout_1 = __webpack_require__(34153);
-const DiffPreview_1 = __webpack_require__(92491);
-const buttonStyle = {
-    backgroundColor: colors_1.BLUE,
-    color: 'white',
-};
-const CodemodFooter = ({ codemod, valid, loadingNotification, succeessNotifcation, errorNotification, genericSubmitLabel, submitLabel, }) => {
-    const [submitting, setSubmitting] = (0, react_1.useState)(false);
-    const { setSelectedModal } = (0, react_1.useContext)(modals_1.ModalsContext);
-    const [codemodStatus, setCanApplyCodemod] = (0, react_1.useState)({
-        type: 'loading',
-    });
-    const [projectInfo, setProjectInfo] = (0, react_1.useState)(null);
-    (0, react_1.useEffect)(() => {
-        const controller = new AbortController();
-        (0, actions_1.getProjectInfo)(controller.signal)
-            .then((info) => {
-            setProjectInfo(info.projectInfo);
-        })
-            .catch((err) => {
-            (0, NotificationCenter_1.showNotification)(`Could not get project info: ${err.message}. Unable to duplicate composition`, 3000);
-        });
-        return () => {
-            controller.abort();
-        };
-    }, []);
-    const trigger = (0, react_1.useCallback)(() => {
-        setSubmitting(true);
-        setSelectedModal(null);
-        const notification = (0, NotificationCenter_1.showNotification)(loadingNotification, null);
-        (0, actions_1.applyCodemod)({
-            codemod,
-            dryRun: false,
-            signal: new AbortController().signal,
-        })
-            .then(() => {
-            notification.replaceContent(succeessNotifcation, 2000);
-        })
-            .catch((err) => {
-            notification.replaceContent(`${errorNotification}: ${err.message}`, 2000);
-        });
-    }, [
-        codemod,
-        errorNotification,
-        loadingNotification,
-        setSelectedModal,
-        succeessNotifcation,
-    ]);
-    const getCanApplyCodemod = (0, react_1.useCallback)(async (signal) => {
-        const res = await (0, actions_1.applyCodemod)({
-            codemod,
-            dryRun: true,
-            signal,
-        });
-        if (res.success) {
-            setCanApplyCodemod({ type: 'success', diff: res.diff });
-        }
-        else {
-            setCanApplyCodemod({
-                type: 'fail',
-                error: res.reason,
-            });
-        }
-    }, [codemod]);
-    (0, react_1.useEffect)(() => {
-        const abortController = new AbortController();
-        let aborted = false;
-        getCanApplyCodemod(abortController.signal)
-            .then(() => undefined)
-            .catch((err) => {
-            if (aborted) {
-                return;
-            }
-            (0, NotificationCenter_1.showNotification)(`Cannot duplicate composition: ${err.message}`, 3000);
-        });
-        return () => {
-            aborted = true;
-            abortController.abort();
-        };
-    }, [codemodStatus, getCanApplyCodemod, setSelectedModal]);
-    const disabled = !valid ||
-        submitting ||
-        projectInfo === null ||
-        codemodStatus.type !== 'success';
-    const { registerKeybinding } = (0, use_keybinding_1.useKeybinding)();
-    (0, react_1.useEffect)(() => {
-        if (disabled) {
-            return;
-        }
-        const enter = registerKeybinding({
-            callback() {
-                trigger();
-            },
-            commandCtrlKey: true,
-            key: 'Enter',
-            event: 'keydown',
-            preventDefault: true,
-            triggerIfInputFieldFocused: true,
-            keepRegisteredWhenNotHighestContext: false,
-        });
-        return () => {
-            enter.unregister();
-        };
-    }, [disabled, registerKeybinding, trigger, valid]);
-    return ((0, jsx_runtime_1.jsxs)(layout_1.Row, { align: "center", children: [(0, jsx_runtime_1.jsx)(DiffPreview_1.CodemodDiffPreview, { status: codemodStatus }), (0, jsx_runtime_1.jsx)(layout_1.Flex, {}), (0, jsx_runtime_1.jsx)(layout_1.Spacing, { block: true, x: 2 }), (0, jsx_runtime_1.jsxs)(Button_1.Button, { onClick: trigger, disabled: disabled, style: {
-                    ...buttonStyle,
-                    backgroundColor: disabled ? colors_1.BLUE_DISABLED : colors_1.BLUE,
-                }, children: [projectInfo && projectInfo.relativeRootFile
-                        ? submitLabel({ relativeRootPath: projectInfo.relativeRootFile })
-                        : genericSubmitLabel, (0, jsx_runtime_1.jsx)(ShortcutHint_1.ShortcutHint, { keyToPress: "\u21B5", cmdOrCtrl: true })] })] }));
-};
-exports.CodemodFooter = CodemodFooter;
-
-
-/***/ }),
-
 /***/ 65873:
 /***/ (function(__unused_webpack_module, exports, __webpack_require__) {
 
@@ -8281,10 +8019,10 @@ const mobile_layout_1 = __webpack_require__(64486);
 const noop_1 = __webpack_require__(71206);
 const caret_1 = __webpack_require__(74655);
 const z_index_1 = __webpack_require__(19666);
+const layout_1 = __webpack_require__(34153);
 const is_menu_item_1 = __webpack_require__(98185);
 const portals_1 = __webpack_require__(90442);
 const styles_1 = __webpack_require__(25693);
-const layout_1 = __webpack_require__(34153);
 const MenuContent_1 = __webpack_require__(52906);
 const container = {
     padding: '8px 10px',
@@ -8438,285 +8176,40 @@ exports.Combobox = Combobox;
 
 /***/ }),
 
-/***/ 70621:
+/***/ 65954:
 /***/ ((__unused_webpack_module, exports, __webpack_require__) => {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", ({ value: true }));
-exports.DeleteComposition = void 0;
+exports.CopyHint = void 0;
 const jsx_runtime_1 = __webpack_require__(85893);
 const react_1 = __webpack_require__(67294);
-const styles_1 = __webpack_require__(25693);
-const ModalHeader_1 = __webpack_require__(79659);
-const ResolveCompositionBeforeModal_1 = __webpack_require__(16033);
-const CodemodFooter_1 = __webpack_require__(66355);
-const DismissableModal_1 = __webpack_require__(44741);
-const content = {
-    padding: 16,
-    fontSize: 14,
-    flex: 1,
-    minWidth: 500,
-};
-const DeleteCompositionLoaded = ({ compositionId }) => {
-    const context = (0, react_1.useContext)(ResolveCompositionBeforeModal_1.ResolvedCompositionContext);
-    if (!context) {
-        throw new Error('Resolved composition context');
-    }
-    const { unresolved } = context;
-    const codemod = (0, react_1.useMemo)(() => {
-        return {
-            type: 'delete-composition',
-            idToDelete: compositionId,
-        };
-    }, [compositionId]);
-    const onSubmit = (0, react_1.useCallback)((e) => {
-        e.preventDefault();
-    }, []);
-    return ((0, jsx_runtime_1.jsxs)(jsx_runtime_1.Fragment, { children: [(0, jsx_runtime_1.jsx)(ModalHeader_1.NewCompHeader, { title: 'Delete composition' }), (0, jsx_runtime_1.jsxs)("form", { onSubmit: onSubmit, children: [(0, jsx_runtime_1.jsxs)("div", { style: content, children: ["Do you want to delete the", ' ', (0, jsx_runtime_1.jsx)("code", { style: styles_1.inlineCodeSnippet, children: unresolved.durationInFrames === 1 ? `<Still>` : '<Composition>' }), ' ', "with ID ", '"', unresolved.id, '"', "?", (0, jsx_runtime_1.jsx)("br", {}), "The associated ", (0, jsx_runtime_1.jsx)("code", { style: styles_1.inlineCodeSnippet, children: "component" }), " will remain in your code."] }), (0, jsx_runtime_1.jsx)("div", { style: { ...content, borderTop: '1px solid black' }, children: (0, jsx_runtime_1.jsx)(CodemodFooter_1.CodemodFooter, { errorNotification: `Could not delete composition`, loadingNotification: 'Deleting', succeessNotifcation: `Deleted ${unresolved.id}`, genericSubmitLabel: `Delete`, submitLabel: ({ relativeRootPath }) => `Delete from ${relativeRootPath}`, codemod: codemod, valid: true }) })] })] }));
-};
-const DeleteComposition = ({ compositionId }) => {
-    return ((0, jsx_runtime_1.jsx)(DismissableModal_1.DismissableModal, { children: (0, jsx_runtime_1.jsx)(ResolveCompositionBeforeModal_1.ResolveCompositionBeforeModal, { compositionId: compositionId, children: (0, jsx_runtime_1.jsx)(DeleteCompositionLoaded, { compositionId: compositionId }) }) }));
-};
-exports.DeleteComposition = DeleteComposition;
-
-
-/***/ }),
-
-/***/ 92491:
-/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
-
-"use strict";
-
-Object.defineProperty(exports, "__esModule", ({ value: true }));
-exports.CodemodDiffPreview = void 0;
-const jsx_runtime_1 = __webpack_require__(85893);
 const colors_1 = __webpack_require__(38746);
-const CodemodDiffPreview = ({ status }) => {
-    if (status.type === 'loading') {
+const style = {
+    fontSize: 12,
+    color: colors_1.LIGHT_TEXT,
+};
+const CopyHint = () => {
+    const [projectInfo, setProjectInfo] = (0, react_1.useState)(null);
+    (0, react_1.useEffect)(() => {
+        fetch(`/api/project-info`)
+            .then((res) => res.json())
+            .then((res) => {
+            setProjectInfo(res);
+        })
+            .catch((err) => {
+            // eslint-disable-next-line no-console
+            console.log('Error fetching info about the project', err);
+            setProjectInfo(null);
+        });
+    }, []);
+    if (!(projectInfo === null || projectInfo === void 0 ? void 0 : projectInfo.videoFile)) {
         return null;
     }
-    if (status.type === 'fail') {
-        return ((0, jsx_runtime_1.jsx)("span", { style: { color: colors_1.FAIL_COLOR, fontSize: 13, lineHeight: 1.2 }, children: status.error }));
-    }
-    return ((0, jsx_runtime_1.jsxs)("div", { style: { lineHeight: 1.2 }, children: [(0, jsx_runtime_1.jsx)("span", { style: { color: colors_1.LIGHT_TEXT, fontSize: 13, lineHeight: 1.2 }, children: "This will edit your Root file." }), (0, jsx_runtime_1.jsx)("br", {}), (0, jsx_runtime_1.jsxs)("span", { style: { color: colors_1.BLUE, fontSize: 13, lineHeight: 1.2 }, children: [status.diff.additions, " addition", status.diff.additions === 1 ? '' : 's', ","] }), ' ', (0, jsx_runtime_1.jsxs)("span", { style: {
-                    color: colors_1.SELECTED_GUIDE,
-                    fontSize: 13,
-                    lineHeight: 1.2,
-                }, children: [status.diff.deletions, " deletion", status.diff.deletions === 1 ? '' : 's'] })] }));
+    return ((0, jsx_runtime_1.jsxs)("div", { style: style, children: ["Copy this into ", (0, jsx_runtime_1.jsx)("br", {}), " your", ' ', (0, jsx_runtime_1.jsx)("span", { style: style, title: projectInfo.videoFile, children: projectInfo.relativeVideoFile }), ' ', "file."] }));
 };
-exports.CodemodDiffPreview = CodemodDiffPreview;
-
-
-/***/ }),
-
-/***/ 44741:
-/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
-
-"use strict";
-
-Object.defineProperty(exports, "__esModule", ({ value: true }));
-exports.DismissableModal = void 0;
-const jsx_runtime_1 = __webpack_require__(85893);
-const react_1 = __webpack_require__(67294);
-const modals_1 = __webpack_require__(89750);
-const ModalContainer_1 = __webpack_require__(43896);
-const DismissableModal = ({ children }) => {
-    const { setSelectedModal } = (0, react_1.useContext)(modals_1.ModalsContext);
-    const onQuit = (0, react_1.useCallback)(() => {
-        setSelectedModal(null);
-    }, [setSelectedModal]);
-    return ((0, jsx_runtime_1.jsx)(ModalContainer_1.ModalContainer, { onOutsideClick: onQuit, onEscape: onQuit, children: children }));
-};
-exports.DismissableModal = DismissableModal;
-
-
-/***/ }),
-
-/***/ 86062:
-/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
-
-"use strict";
-
-Object.defineProperty(exports, "__esModule", ({ value: true }));
-exports.DuplicateComposition = void 0;
-const jsx_runtime_1 = __webpack_require__(85893);
-const react_1 = __webpack_require__(67294);
-const remotion_1 = __webpack_require__(27982);
-const validate_new_comp_data_1 = __webpack_require__(26786);
-const ModalHeader_1 = __webpack_require__(79659);
-const ResolveCompositionBeforeModal_1 = __webpack_require__(16033);
-const layout_1 = __webpack_require__(34976);
-const layout_2 = __webpack_require__(34153);
-const CodemodFooter_1 = __webpack_require__(66355);
-const ComboBox_1 = __webpack_require__(65873);
-const DismissableModal_1 = __webpack_require__(44741);
-const InputDragger_1 = __webpack_require__(73194);
-const NewCompDuration_1 = __webpack_require__(4665);
-const RemInput_1 = __webpack_require__(60424);
-const ValidationMessage_1 = __webpack_require__(45853);
-const content = {
-    padding: 12,
-    paddingRight: 12,
-    flex: 1,
-    fontSize: 13,
-    minWidth: 500,
-};
-const comboBoxStyle = {
-    width: 190,
-};
-const DuplicateCompositionLoaded = ({ initialType }) => {
-    const context = (0, react_1.useContext)(ResolveCompositionBeforeModal_1.ResolvedCompositionContext);
-    if (!context) {
-        throw new Error('Resolved composition context');
-    }
-    const { resolved, unresolved } = context;
-    const [initialCompType] = (0, react_1.useState)(initialType);
-    const hadDimensionsDefined = unresolved.width && unresolved.height;
-    const hadFpsDefined = unresolved.fps !== undefined;
-    const hadDurationDefined = unresolved.durationInFrames !== undefined;
-    const [selectedFrameRate, setFrameRate] = (0, react_1.useState)(resolved.result.fps);
-    const { compositions } = (0, react_1.useContext)(remotion_1.Internals.CompositionManager);
-    const [type, setType] = (0, react_1.useState)(initialCompType);
-    const [newId, setName] = (0, react_1.useState)(() => {
-        var _a;
-        const numberAtEnd = (_a = resolved.result.id.match(/([0-9]+)$/)) === null || _a === void 0 ? void 0 : _a[0];
-        let prefix = numberAtEnd ? Number(numberAtEnd) : 1;
-        const initialName = resolved.result.id.replace(/([0-9]+)$/, '');
-        let currentName = initialName;
-        // eslint-disable-next-line no-constant-condition
-        while (true) {
-            currentName = initialName + prefix;
-            const err = (0, validate_new_comp_data_1.validateCompositionName)(currentName, compositions);
-            if (!err) {
-                break;
-            }
-            prefix++;
-        }
-        return currentName;
-    });
-    const [size, setSize] = (0, react_1.useState)(() => ({
-        width: resolved.result.width,
-        height: resolved.result.height,
-    }));
-    const [durationInFrames, setDurationInFrames] = (0, react_1.useState)(resolved.result.durationInFrames);
-    const onTypeChanged = (0, react_1.useCallback)((newType) => {
-        setType(newType);
-    }, []);
-    const onWidthChanged = (0, react_1.useCallback)((newValue) => {
-        setSize((s) => {
-            const { height } = s;
-            const newWidth = Number(newValue);
-            return {
-                height,
-                width: newWidth,
-            };
-        });
-    }, []);
-    const onWidthDirectlyChanged = (0, react_1.useCallback)((newWidth) => {
-        setSize((s) => {
-            const { height } = s;
-            return {
-                height,
-                width: newWidth,
-            };
-        });
-    }, []);
-    const onHeightDirectlyChanged = (0, react_1.useCallback)((newHeight) => {
-        setSize((s) => {
-            const { width } = s;
-            return {
-                width,
-                height: newHeight,
-            };
-        });
-    }, []);
-    const onHeightChanged = (0, react_1.useCallback)((newValue) => {
-        setSize((s) => {
-            const { width } = s;
-            const newHeight = Number(newValue);
-            return {
-                width,
-                height: newHeight,
-            };
-        });
-    }, []);
-    const onNameChange = (0, react_1.useCallback)((e) => {
-        setName(e.target.value);
-    }, []);
-    const onTextFpsChange = (0, react_1.useCallback)((newFps) => {
-        setFrameRate(Number(newFps));
-    }, []);
-    const onFpsChange = (0, react_1.useCallback)((newFps) => {
-        setFrameRate(newFps);
-    }, []);
-    const compNameErrMessage = (0, validate_new_comp_data_1.validateCompositionName)(newId, compositions);
-    const compWidthErrMessage = (0, validate_new_comp_data_1.validateCompositionDimension)('Width', size.width);
-    const compHeightErrMessage = (0, validate_new_comp_data_1.validateCompositionDimension)('Height', size.height);
-    const typeValues = (0, react_1.useMemo)(() => {
-        return [
-            {
-                id: 'composition',
-                keyHint: null,
-                label: '<Composition />',
-                leftItem: null,
-                onClick: () => onTypeChanged('composition'),
-                subMenu: null,
-                type: 'item',
-                value: 'composition',
-                quickSwitcherLabel: null,
-            },
-            {
-                id: 'still',
-                keyHint: null,
-                label: '<Still />',
-                leftItem: null,
-                onClick: () => onTypeChanged('still'),
-                subMenu: null,
-                type: 'item',
-                value: 'still',
-                quickSwitcherLabel: null,
-            },
-        ];
-    }, [onTypeChanged]);
-    const valid = compNameErrMessage === null &&
-        compWidthErrMessage === null &&
-        compHeightErrMessage === null;
-    const codemod = (0, react_1.useMemo)(() => {
-        return {
-            type: 'duplicate-composition',
-            idToDuplicate: resolved.result.id,
-            newDurationInFrames: hadDurationDefined ? Number(durationInFrames) : null,
-            newFps: hadFpsDefined ? Number(selectedFrameRate) : null,
-            newHeight: hadDimensionsDefined ? Number(size.height) : null,
-            newWidth: hadDimensionsDefined ? Number(size.width) : null,
-            newId,
-            tag: type === 'still' ? 'Still' : 'Composition',
-        };
-    }, [
-        durationInFrames,
-        hadDimensionsDefined,
-        hadDurationDefined,
-        hadFpsDefined,
-        newId,
-        resolved.result.id,
-        selectedFrameRate,
-        size.height,
-        size.width,
-        type,
-    ]);
-    const onSubmit = (0, react_1.useCallback)((e) => {
-        e.preventDefault();
-    }, []);
-    return ((0, jsx_runtime_1.jsxs)(jsx_runtime_1.Fragment, { children: [(0, jsx_runtime_1.jsx)(ModalHeader_1.NewCompHeader, { title: `Duplicate ${resolved.result.id}` }), (0, jsx_runtime_1.jsxs)("form", { onSubmit: onSubmit, children: [(0, jsx_runtime_1.jsxs)("div", { style: content, children: [initialCompType === 'composition' ? (
-                            // We allow converting from a composition to a still, but
-                            // not the other way around
-                            (0, jsx_runtime_1.jsxs)("div", { style: layout_1.optionRow, children: [(0, jsx_runtime_1.jsx)("div", { style: layout_1.label, children: "Type" }), (0, jsx_runtime_1.jsx)("div", { style: layout_1.rightRow, children: (0, jsx_runtime_1.jsx)(ComboBox_1.Combobox, { title: "Type of composition", style: comboBoxStyle, values: typeValues, selectedId: type }) })] })) : null, (0, jsx_runtime_1.jsxs)("div", { style: layout_1.optionRow, children: [(0, jsx_runtime_1.jsx)("div", { style: layout_1.label, children: "ID" }), (0, jsx_runtime_1.jsx)("div", { style: layout_1.rightRow, children: (0, jsx_runtime_1.jsxs)("div", { children: [(0, jsx_runtime_1.jsx)(RemInput_1.RemotionInput, { value: newId, onChange: onNameChange, type: "text", autoFocus: true, placeholder: "Composition ID", status: "ok", rightAlign: true }), compNameErrMessage ? ((0, jsx_runtime_1.jsxs)(jsx_runtime_1.Fragment, { children: [(0, jsx_runtime_1.jsx)(layout_2.Spacing, { y: 1, block: true }), (0, jsx_runtime_1.jsx)(ValidationMessage_1.ValidationMessage, { align: "flex-start", message: compNameErrMessage, type: "error" })] })) : null] }) })] }), hadDimensionsDefined ? ((0, jsx_runtime_1.jsxs)(jsx_runtime_1.Fragment, { children: [(0, jsx_runtime_1.jsxs)("div", { style: layout_1.optionRow, children: [(0, jsx_runtime_1.jsx)("div", { style: layout_1.label, children: "Width" }), (0, jsx_runtime_1.jsxs)("div", { style: layout_1.rightRow, children: [(0, jsx_runtime_1.jsx)(InputDragger_1.InputDragger, { type: "number", value: size.width, placeholder: "Width", onTextChange: onWidthChanged, name: "width", step: 2, min: 2, required: true, status: "ok", formatter: (w) => `${w}px`, max: 100000000, onValueChange: onWidthDirectlyChanged, rightAlign: false }), compWidthErrMessage ? ((0, jsx_runtime_1.jsxs)(jsx_runtime_1.Fragment, { children: [(0, jsx_runtime_1.jsx)(layout_2.Spacing, { y: 1, block: true }), (0, jsx_runtime_1.jsx)(ValidationMessage_1.ValidationMessage, { align: "flex-start", message: compWidthErrMessage, type: "error" })] })) : null] })] }), (0, jsx_runtime_1.jsxs)("div", { style: layout_1.optionRow, children: [(0, jsx_runtime_1.jsx)("div", { style: layout_1.label, children: "Height" }), (0, jsx_runtime_1.jsxs)("div", { style: layout_1.rightRow, children: [(0, jsx_runtime_1.jsx)(InputDragger_1.InputDragger, { type: "number", value: size.height, onTextChange: onHeightChanged, placeholder: "Height", name: "height", step: 2, required: true, formatter: (h) => `${h}px`, min: 2, status: "ok", max: 100000000, onValueChange: onHeightDirectlyChanged, rightAlign: false }), compHeightErrMessage ? ((0, jsx_runtime_1.jsxs)(jsx_runtime_1.Fragment, { children: [(0, jsx_runtime_1.jsx)(layout_2.Spacing, { y: 1, block: true }), (0, jsx_runtime_1.jsx)(ValidationMessage_1.ValidationMessage, { align: "flex-start", message: compHeightErrMessage, type: "error" })] })) : null] })] })] })) : null, type === 'composition' && hadDurationDefined ? ((0, jsx_runtime_1.jsx)(NewCompDuration_1.NewCompDuration, { durationInFrames: durationInFrames, setDurationInFrames: setDurationInFrames })) : null, type === 'composition' && hadFpsDefined ? ((0, jsx_runtime_1.jsxs)("div", { style: layout_1.optionRow, children: [(0, jsx_runtime_1.jsx)("div", { style: layout_1.label, children: "FPS" }), (0, jsx_runtime_1.jsx)("div", { style: layout_1.rightRow, children: (0, jsx_runtime_1.jsx)(InputDragger_1.InputDragger, { type: "number", value: selectedFrameRate, onTextChange: onTextFpsChange, placeholder: "Frame rate (fps)", name: "fps", min: 1, required: true, status: "ok", max: 240, step: 0.01, onValueChange: onFpsChange, rightAlign: false }) })] })) : null] }), (0, jsx_runtime_1.jsx)("div", { style: { ...content, borderTop: '1px solid black' }, children: (0, jsx_runtime_1.jsx)(CodemodFooter_1.CodemodFooter, { loadingNotification: 'Duplicating...', errorNotification: 'Could not duplicate composition', succeessNotifcation: `Duplicated ${unresolved.id}`, genericSubmitLabel: 'Duplicate', submitLabel: ({ relativeRootPath }) => `Add to ${relativeRootPath}`, codemod: codemod, valid: valid }) })] })] }));
-};
-const DuplicateComposition = ({ compositionId, compositionType }) => {
-    return ((0, jsx_runtime_1.jsx)(DismissableModal_1.DismissableModal, { children: (0, jsx_runtime_1.jsx)(ResolveCompositionBeforeModal_1.ResolveCompositionBeforeModal, { compositionId: compositionId, children: (0, jsx_runtime_1.jsx)(DuplicateCompositionLoaded, { initialType: compositionType }) }) }));
-};
-exports.DuplicateComposition = DuplicateComposition;
+exports.CopyHint = CopyHint;
 
 
 /***/ }),
@@ -8886,9 +8379,9 @@ const react_1 = __webpack_require__(67294);
 const colors_1 = __webpack_require__(38746);
 const mobile_layout_1 = __webpack_require__(64486);
 const use_keybinding_1 = __webpack_require__(67442);
+const is_menu_item_1 = __webpack_require__(98185);
 const MenuDivider_1 = __webpack_require__(8912);
 const MenuSubItem_1 = __webpack_require__(40951);
-const is_menu_item_1 = __webpack_require__(98185);
 const styles_1 = __webpack_require__(25693);
 const BORDER_SIZE = 1;
 const container = {
@@ -9137,6 +8630,109 @@ exports.MenuContent = MenuContent;
 
 /***/ }),
 
+/***/ 86766:
+/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+exports.NewCompAspectRatio = void 0;
+const jsx_runtime_1 = __webpack_require__(85893);
+const new_comp_layout_1 = __webpack_require__(69096);
+const render_aspect_ratio_1 = __webpack_require__(5805);
+const ToggleAspectRatio_1 = __webpack_require__(36342);
+const GUIDE_HEIGHT = 55;
+const GUIDE_WIDTH = 10;
+const container = {
+    display: 'flex',
+    flexDirection: 'row',
+    marginLeft: 10,
+    alignItems: 'center',
+};
+const NewCompAspectRatio = ({ width, height, aspectRatioLocked, setAspectRatioLocked }) => {
+    const pixels = Number(width) * Number(height);
+    return ((0, jsx_runtime_1.jsx)("div", { children: (0, jsx_runtime_1.jsxs)("div", { style: container, children: [(0, jsx_runtime_1.jsx)("svg", { width: GUIDE_WIDTH, height: GUIDE_HEIGHT, children: (0, jsx_runtime_1.jsx)("path", { d: `M 0 0 L ${GUIDE_WIDTH} 0 L ${GUIDE_WIDTH} ${GUIDE_HEIGHT} L 0 ${GUIDE_HEIGHT}`, fill: "transparent", strokeWidth: "2", stroke: "rgba(255, 255, 255, 0.2)" }) }), (0, jsx_runtime_1.jsx)(ToggleAspectRatio_1.ToggleAspectRatio, { aspectRatioLocked: Boolean(aspectRatioLocked), setAspectRatioLocked: setAspectRatioLocked }), pixels > 0 ? ((0, jsx_runtime_1.jsxs)("div", { style: new_comp_layout_1.rightLabel, children: ["Aspect ratio ", (0, render_aspect_ratio_1.aspectRatio)(Number(width), Number(height))] })) : null] }) }));
+};
+exports.NewCompAspectRatio = NewCompAspectRatio;
+
+
+/***/ }),
+
+/***/ 48127:
+/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+exports.getNewCompositionCode = void 0;
+const jsx_runtime_1 = __webpack_require__(85893);
+const strColor = '#9ECBFF';
+const consColor = '#79B8FF';
+const propColor = '#B392F0';
+const keywordColor = '#F97583';
+const cssReset = {
+    fontFamily: 'monospace',
+};
+const makeProperty = (key, val, type, raw) => {
+    if (raw) {
+        return makePropertyRaw(key, val, type);
+    }
+    return [
+        `  `,
+        (0, jsx_runtime_1.jsx)("span", { style: { ...cssReset, color: propColor }, children: key }, key + 'key'),
+        (0, jsx_runtime_1.jsx)("span", { style: { ...cssReset, color: keywordColor }, children: '=' }, key + 'equal'),
+        type === 'string'
+            ? [
+                (0, jsx_runtime_1.jsxs)("span", { style: { ...cssReset, color: strColor }, children: ['"', val, '"'] }, key + 'value'),
+            ]
+            : [
+                '{',
+                (0, jsx_runtime_1.jsx)("span", { style: {
+                        ...cssReset,
+                        color: typeof val === 'number' ? consColor : strColor,
+                    }, children: val }, key + 'value'),
+                '}',
+            ],
+        (0, jsx_runtime_1.jsx)("br", {}, key + 'br'),
+    ];
+};
+const makePropertyRaw = (key, val, type) => {
+    return [
+        `  `,
+        key,
+        '=',
+        type === 'string' ? ['"' + val + '"'].join('') : ['{', val, '}'].join(''),
+        '\n',
+    ].join('');
+};
+const getNewCompositionCode = ({ type, height, width, fps, durationInFrames, name, raw, }) => {
+    const compName = type === 'still' ? 'Still' : 'Composition';
+    const props = [
+        ...makeProperty('id', name, 'string', raw),
+        ...makeProperty('component', name, 'const', raw),
+        ...(type === 'composition'
+            ? makeProperty('durationInFrames', durationInFrames, 'const', raw)
+            : []),
+        ...makeProperty('height', height, 'const', raw),
+        ...makeProperty('width', width, 'const', raw),
+        ...(type === 'composition' ? makeProperty('fps', fps, 'const', raw) : []),
+    ];
+    if (raw) {
+        return ['<', compName, '\n', ...props, '/>'].join('');
+    }
+    return [
+        `<`,
+        (0, jsx_runtime_1.jsx)("span", { style: { ...cssReset, color: '#79B8FF' }, children: compName }, "compname"),
+        (0, jsx_runtime_1.jsx)("br", {}, "linebr1"),
+        ...props,
+        '/>',
+    ];
+};
+exports.getNewCompositionCode = getNewCompositionCode;
+
+
+/***/ }),
+
 /***/ 4665:
 /***/ ((__unused_webpack_module, exports, __webpack_require__) => {
 
@@ -9147,23 +8743,235 @@ exports.NewCompDuration = void 0;
 const jsx_runtime_1 = __webpack_require__(85893);
 const react_1 = __webpack_require__(67294);
 const validate_new_comp_data_1 = __webpack_require__(26786);
-const layout_1 = __webpack_require__(34976);
-const layout_2 = __webpack_require__(34153);
+const layout_1 = __webpack_require__(34153);
 const InputDragger_1 = __webpack_require__(73194);
+const new_comp_layout_1 = __webpack_require__(69096);
 const ValidationMessage_1 = __webpack_require__(45853);
-const NewCompDuration = ({ durationInFrames, setDurationInFrames }) => {
+const NewCompDuration = ({ durationInFrames, setDurationInFrames, fps }) => {
     const onDurationInFramesChanged = (0, react_1.useCallback)((newValue) => {
-        setDurationInFrames(Number(newValue));
+        setDurationInFrames(String(Number(newValue)));
     }, [setDurationInFrames]);
     const onDurationChangedDirectly = (0, react_1.useCallback)((newVal) => {
-        setDurationInFrames(newVal);
+        setDurationInFrames(String(newVal));
     }, [setDurationInFrames]);
     const compDurationErrMessage = (0, validate_new_comp_data_1.validateCompositionDuration)(durationInFrames);
-    return ((0, jsx_runtime_1.jsxs)("div", { style: layout_1.optionRow, children: [(0, jsx_runtime_1.jsx)("div", { style: layout_1.label, children: "Duration in frames" }), (0, jsx_runtime_1.jsxs)("div", { style: layout_1.rightRow, children: [(0, jsx_runtime_1.jsx)(InputDragger_1.InputDragger, { type: "number", value: durationInFrames, onTextChange: onDurationInFramesChanged, placeholder: "Duration (frames)", name: "durationInFrames", min: 1, step: 1, required: true, status: "ok", 
-                        // Hitting Promise.all() limit in Chrome
-                        max: 300000, onValueChange: onDurationChangedDirectly, rightAlign: false }), compDurationErrMessage ? ((0, jsx_runtime_1.jsxs)(jsx_runtime_1.Fragment, { children: [(0, jsx_runtime_1.jsx)(layout_2.Spacing, { y: 1, block: true }), (0, jsx_runtime_1.jsx)(ValidationMessage_1.ValidationMessage, { align: "flex-start", message: compDurationErrMessage, type: "error" })] })) : null] })] }));
+    return ((0, jsx_runtime_1.jsx)("div", { children: (0, jsx_runtime_1.jsx)("label", { children: (0, jsx_runtime_1.jsxs)(layout_1.Row, { align: "center", children: [(0, jsx_runtime_1.jsx)("div", { style: new_comp_layout_1.leftLabel, children: " Duration in frames" }), (0, jsx_runtime_1.jsxs)("div", { style: new_comp_layout_1.inputArea, children: [(0, jsx_runtime_1.jsx)(InputDragger_1.InputDragger, { type: "number", value: durationInFrames, onTextChange: onDurationInFramesChanged, placeholder: "Duration (frames)", name: "durationInFrames", min: 1, step: 1, required: true, status: "ok", 
+                                // Hitting Promise.all() limit in Chrome
+                                max: 300000, onValueChange: onDurationChangedDirectly, rightAlign: false }), compDurationErrMessage ? ((0, jsx_runtime_1.jsxs)(jsx_runtime_1.Fragment, { children: [(0, jsx_runtime_1.jsx)(layout_1.Spacing, { y: 1, block: true }), (0, jsx_runtime_1.jsx)(ValidationMessage_1.ValidationMessage, { align: "flex-start", message: compDurationErrMessage, type: "error" })] })) : null] }), (0, jsx_runtime_1.jsxs)("span", { style: new_comp_layout_1.rightLabel, children: [(Number(durationInFrames) / Number(fps)).toFixed(2), "sec"] })] }) }) }));
 };
 exports.NewCompDuration = NewCompDuration;
+
+
+/***/ }),
+
+/***/ 36130:
+/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+const jsx_runtime_1 = __webpack_require__(85893);
+const react_1 = __webpack_require__(67294);
+const remotion_1 = __webpack_require__(27982);
+const validate_new_comp_data_1 = __webpack_require__(26786);
+const Checkmark_1 = __webpack_require__(33644);
+const aspect_ratio_locked_1 = __webpack_require__(43782);
+const modals_1 = __webpack_require__(89750);
+const CopyButton_1 = __webpack_require__(18471);
+const layout_1 = __webpack_require__(34153);
+const ModalContainer_1 = __webpack_require__(43896);
+const ModalHeader_1 = __webpack_require__(79659);
+const ComboBox_1 = __webpack_require__(65873);
+const CopyHint_1 = __webpack_require__(65954);
+const InputDragger_1 = __webpack_require__(73194);
+const new_comp_layout_1 = __webpack_require__(69096);
+const NewCompAspectRatio_1 = __webpack_require__(86766);
+const NewCompCode_1 = __webpack_require__(48127);
+const NewCompDuration_1 = __webpack_require__(4665);
+const RemInput_1 = __webpack_require__(60424);
+const ValidationMessage_1 = __webpack_require__(45853);
+const left = {
+    padding: 12,
+    paddingBottom: 80,
+    paddingRight: 12,
+    flex: 1,
+    fontSize: 13,
+};
+const panelRight = {
+    backgroundColor: 'black',
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    position: 'relative',
+    width: 400,
+};
+const pre = {
+    fontSize: 17,
+    fontFamily: 'monospace',
+};
+const comboBoxStyle = {
+    width: new_comp_layout_1.inputArea.width,
+};
+const copyRowStyle = {
+    position: 'absolute',
+    bottom: 10,
+    right: 0,
+    paddingRight: 10,
+    paddingLeft: 20,
+    width: '100%',
+    alignItems: 'center',
+    color: new_comp_layout_1.leftLabel.color,
+};
+const commonFrameRates = [24, 25, 29.97, 30, 48, 50];
+const NewComposition = (props) => {
+    const { initialCompType } = props;
+    const [selectedFrameRate, setFrameRate] = (0, react_1.useState)(String(commonFrameRates[0]));
+    const { compositions } = (0, react_1.useContext)(remotion_1.Internals.CompositionManager);
+    const [type, setType] = (0, react_1.useState)(initialCompType);
+    const [name, setName] = (0, react_1.useState)('MyComp');
+    const [size, setSize] = (0, react_1.useState)({
+        width: '1280',
+        height: '720',
+    });
+    const panelContent = (0, react_1.useMemo)(() => {
+        return {
+            flexDirection: 'row',
+            display: 'flex',
+            width: (0, ModalContainer_1.getMaxModalWidth)(950),
+            height: type === 'composition'
+                ? (0, ModalContainer_1.getMaxModalHeight)(490)
+                : (0, ModalContainer_1.getMaxModalHeight)(340),
+            overflow: 'hidden',
+        };
+    }, [type]);
+    const [lockedAspectRatio, setLockedAspectRatio] = (0, react_1.useState)((0, aspect_ratio_locked_1.loadAspectRatioOption)() ? Number(size.width) / Number(size.height) : null);
+    const [durationInFrames, setDurationInFrames] = (0, react_1.useState)('150');
+    const setAspectRatioLocked = (0, react_1.useCallback)((option) => {
+        (0, aspect_ratio_locked_1.persistAspectRatioOption)(option);
+        setLockedAspectRatio(option ? Number(size.width) / Number(size.height) : null);
+    }, [size.height, size.width]);
+    const { setSelectedModal } = (0, react_1.useContext)(modals_1.ModalsContext);
+    const onQuit = (0, react_1.useCallback)(() => {
+        setSelectedModal(null);
+    }, [setSelectedModal]);
+    const onTypeChanged = (0, react_1.useCallback)((newType) => {
+        setType(newType);
+    }, []);
+    const onWidthChanged = (0, react_1.useCallback)((newValue) => {
+        setSize((s) => {
+            const { height } = s;
+            const newWidth = Number(newValue);
+            return {
+                height: lockedAspectRatio === null
+                    ? height
+                    : String(Math.ceil(newWidth / lockedAspectRatio / 2) * 2),
+                width: String(newWidth),
+            };
+        });
+    }, [lockedAspectRatio]);
+    const onWidthDirectlyChanged = (0, react_1.useCallback)((newWidth) => {
+        setSize((s) => {
+            const { height } = s;
+            return {
+                height: lockedAspectRatio === null
+                    ? height
+                    : String(Math.ceil(newWidth / lockedAspectRatio / 2) * 2),
+                width: String(newWidth),
+            };
+        });
+    }, [lockedAspectRatio]);
+    const onHeightDirectlyChanged = (0, react_1.useCallback)((newHeight) => {
+        setSize((s) => {
+            const { width } = s;
+            return {
+                width: lockedAspectRatio === null
+                    ? width
+                    : String(Math.ceil((newHeight / 2) * lockedAspectRatio) * 2),
+                height: String(newHeight),
+            };
+        });
+    }, [lockedAspectRatio]);
+    const onHeightChanged = (0, react_1.useCallback)((newValue) => {
+        setSize((s) => {
+            const { width } = s;
+            const newHeight = Number(newValue);
+            return {
+                width: lockedAspectRatio === null
+                    ? width
+                    : String(Math.ceil((newHeight / 2) * lockedAspectRatio) * 2),
+                height: String(newHeight),
+            };
+        });
+    }, [lockedAspectRatio]);
+    const onNameChange = (0, react_1.useCallback)((e) => {
+        setName(e.target.value);
+    }, []);
+    const onFpsChange = (0, react_1.useCallback)((newFps) => {
+        setFrameRate(String(newFps));
+    }, []);
+    const items = (0, react_1.useMemo)(() => {
+        return commonFrameRates.map((frameRate) => {
+            return {
+                id: String(frameRate),
+                label: `${frameRate}fps`,
+                onClick: () => onFpsChange(frameRate),
+                type: 'item',
+                value: frameRate,
+                keyHint: null,
+                leftItem: String(frameRate) === selectedFrameRate ? (0, jsx_runtime_1.jsx)(Checkmark_1.Checkmark, {}) : null,
+                subMenu: null,
+                quickSwitcherLabel: null,
+            };
+        });
+    }, [onFpsChange, selectedFrameRate]);
+    const compNameErrMessage = (0, validate_new_comp_data_1.validateCompositionName)(name, compositions);
+    const compWidthErrMessage = (0, validate_new_comp_data_1.validateCompositionDimension)('Width', size.width);
+    const compHeightErrMessage = (0, validate_new_comp_data_1.validateCompositionDimension)('Height', size.height);
+    const typeValues = (0, react_1.useMemo)(() => {
+        return [
+            {
+                id: 'composition',
+                keyHint: null,
+                label: '<Composition />',
+                leftItem: null,
+                onClick: () => onTypeChanged('composition'),
+                subMenu: null,
+                type: 'item',
+                value: 'composition',
+                quickSwitcherLabel: null,
+            },
+            {
+                id: 'still',
+                keyHint: null,
+                label: '<Still />',
+                leftItem: null,
+                onClick: () => onTypeChanged('still'),
+                subMenu: null,
+                type: 'item',
+                value: 'still',
+                quickSwitcherLabel: null,
+            },
+        ];
+    }, [onTypeChanged]);
+    return ((0, jsx_runtime_1.jsxs)(ModalContainer_1.ModalContainer, { onOutsideClick: onQuit, onEscape: onQuit, children: [(0, jsx_runtime_1.jsx)(ModalHeader_1.NewCompHeader, { title: "New composition" }), (0, jsx_runtime_1.jsxs)("div", { style: panelContent, children: [(0, jsx_runtime_1.jsxs)("div", { style: left, children: [(0, jsx_runtime_1.jsx)(layout_1.Spacing, { y: 3 }), (0, jsx_runtime_1.jsxs)("form", { children: [(0, jsx_runtime_1.jsxs)("label", { children: [(0, jsx_runtime_1.jsxs)(layout_1.Row, { align: "center", children: [(0, jsx_runtime_1.jsx)("div", { style: new_comp_layout_1.leftLabel, children: "Type" }), (0, jsx_runtime_1.jsx)("div", { style: new_comp_layout_1.inputArea, children: (0, jsx_runtime_1.jsx)(ComboBox_1.Combobox, { title: "Type of composition", style: comboBoxStyle, values: typeValues, selectedId: type }) })] }), (0, jsx_runtime_1.jsx)(layout_1.Spacing, { y: 1 }), (0, jsx_runtime_1.jsxs)(layout_1.Row, { align: "center", children: [(0, jsx_runtime_1.jsx)("div", { style: new_comp_layout_1.leftLabel, children: "Name" }), (0, jsx_runtime_1.jsxs)("div", { style: new_comp_layout_1.inputArea, children: [(0, jsx_runtime_1.jsx)(RemInput_1.RemotionInput, { value: name, onChange: onNameChange, type: "text", placeholder: "Composition name", status: "ok", rightAlign: false }), compNameErrMessage ? ((0, jsx_runtime_1.jsxs)(jsx_runtime_1.Fragment, { children: [(0, jsx_runtime_1.jsx)(layout_1.Spacing, { y: 1, block: true }), (0, jsx_runtime_1.jsx)(ValidationMessage_1.ValidationMessage, { align: "flex-start", message: compNameErrMessage, type: "error" })] })) : null] })] })] }), (0, jsx_runtime_1.jsx)(layout_1.Spacing, { y: 1 }), (0, jsx_runtime_1.jsxs)(layout_1.Row, { align: "center", children: [(0, jsx_runtime_1.jsxs)("div", { children: [(0, jsx_runtime_1.jsx)("div", { children: (0, jsx_runtime_1.jsx)("label", { children: (0, jsx_runtime_1.jsxs)(layout_1.Row, { align: "center", children: [(0, jsx_runtime_1.jsx)("div", { style: new_comp_layout_1.leftLabel, children: "Width" }), (0, jsx_runtime_1.jsxs)("div", { style: new_comp_layout_1.inputArea, children: [(0, jsx_runtime_1.jsx)(InputDragger_1.InputDragger, { type: "number", value: size.width, placeholder: "Width", onTextChange: onWidthChanged, name: "width", step: 2, min: 2, required: true, status: "ok", formatter: (w) => `${w}px`, max: 100000000, onValueChange: onWidthDirectlyChanged, rightAlign: false }), compWidthErrMessage ? ((0, jsx_runtime_1.jsxs)(jsx_runtime_1.Fragment, { children: [(0, jsx_runtime_1.jsx)(layout_1.Spacing, { y: 1, block: true }), (0, jsx_runtime_1.jsx)(ValidationMessage_1.ValidationMessage, { align: "flex-start", message: compWidthErrMessage, type: "error" })] })) : null] })] }) }) }), (0, jsx_runtime_1.jsx)("div", {}), (0, jsx_runtime_1.jsx)(layout_1.Spacing, { y: 1 }), (0, jsx_runtime_1.jsx)("div", {}), (0, jsx_runtime_1.jsx)("label", { children: (0, jsx_runtime_1.jsxs)(layout_1.Row, { align: "center", children: [(0, jsx_runtime_1.jsx)("div", { style: new_comp_layout_1.leftLabel, children: "Height" }), (0, jsx_runtime_1.jsxs)("div", { style: new_comp_layout_1.inputArea, children: [(0, jsx_runtime_1.jsx)(InputDragger_1.InputDragger, { type: "number", value: size.height, onTextChange: onHeightChanged, placeholder: "Height", name: "height", step: 2, required: true, formatter: (h) => `${h}px`, min: 2, status: "ok", max: 100000000, onValueChange: onHeightDirectlyChanged, rightAlign: false }), compHeightErrMessage ? ((0, jsx_runtime_1.jsxs)(jsx_runtime_1.Fragment, { children: [(0, jsx_runtime_1.jsx)(layout_1.Spacing, { y: 1, block: true }), (0, jsx_runtime_1.jsx)(ValidationMessage_1.ValidationMessage, { align: "flex-start", message: compHeightErrMessage, type: "error" })] })) : null] })] }) })] }), (0, jsx_runtime_1.jsx)("div", { children: (0, jsx_runtime_1.jsx)(NewCompAspectRatio_1.NewCompAspectRatio, { width: Number(size.width), height: Number(size.height), aspectRatioLocked: lockedAspectRatio, setAspectRatioLocked: setAspectRatioLocked }) })] }), (0, jsx_runtime_1.jsx)("div", {}), (0, jsx_runtime_1.jsx)(layout_1.Spacing, { y: 1 }), type === 'composition' ? ((0, jsx_runtime_1.jsx)(NewCompDuration_1.NewCompDuration, { durationInFrames: durationInFrames, fps: selectedFrameRate, setDurationInFrames: setDurationInFrames })) : null, (0, jsx_runtime_1.jsx)("div", {}), (0, jsx_runtime_1.jsx)("br", {}), (0, jsx_runtime_1.jsx)("div", {}), type === 'composition' ? ((0, jsx_runtime_1.jsxs)("div", { children: [(0, jsx_runtime_1.jsx)("div", {}), (0, jsx_runtime_1.jsx)(layout_1.Spacing, { y: 1 }), (0, jsx_runtime_1.jsxs)("label", { children: [(0, jsx_runtime_1.jsx)("div", { style: new_comp_layout_1.leftLabel, children: "Framerate" }), (0, jsx_runtime_1.jsx)(ComboBox_1.Combobox, { title: "Framerate", style: comboBoxStyle, values: items, selectedId: selectedFrameRate })] })] })) : null] })] }), (0, jsx_runtime_1.jsxs)("div", { style: panelRight, children: [(0, jsx_runtime_1.jsx)("pre", { style: pre, children: (0, NewCompCode_1.getNewCompositionCode)({
+                                    type,
+                                    durationInFrames: Number(durationInFrames),
+                                    fps: Number(selectedFrameRate),
+                                    height: Number(size.height),
+                                    width: Number(size.width),
+                                    name,
+                                    raw: false,
+                                }) }), (0, jsx_runtime_1.jsxs)(layout_1.Row, { align: "center", style: copyRowStyle, children: [(0, jsx_runtime_1.jsx)(CopyHint_1.CopyHint, {}), (0, jsx_runtime_1.jsx)(layout_1.Flex, {}), (0, jsx_runtime_1.jsx)(CopyButton_1.CopyButton, { label: "Copy code", labelWhenCopied: "Copied!", textToCopy: (0, NewCompCode_1.getNewCompositionCode)({
+                                            type,
+                                            durationInFrames: Number(durationInFrames),
+                                            fps: Number(selectedFrameRate),
+                                            height: Number(size.height),
+                                            width: Number(size.width),
+                                            name,
+                                            raw: true,
+                                        }) })] })] }), ' '] })] }));
+};
+exports["default"] = NewComposition;
 
 
 /***/ }),
@@ -9411,65 +9219,36 @@ exports.RemTextarea = (0, react_1.forwardRef)(RemTextareaFRFunction);
 
 /***/ }),
 
-/***/ 50565:
+/***/ 36342:
 /***/ ((__unused_webpack_module, exports, __webpack_require__) => {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", ({ value: true }));
-exports.RenameComposition = void 0;
+exports.ToggleAspectRatio = void 0;
 const jsx_runtime_1 = __webpack_require__(85893);
 const react_1 = __webpack_require__(67294);
-const remotion_1 = __webpack_require__(27982);
-const validate_new_comp_data_1 = __webpack_require__(26786);
-const ModalHeader_1 = __webpack_require__(79659);
-const ResolveCompositionBeforeModal_1 = __webpack_require__(16033);
-const layout_1 = __webpack_require__(34976);
-const layout_2 = __webpack_require__(34153);
-const CodemodFooter_1 = __webpack_require__(66355);
-const DismissableModal_1 = __webpack_require__(44741);
-const RemInput_1 = __webpack_require__(60424);
-const ValidationMessage_1 = __webpack_require__(45853);
-const content = {
-    padding: 12,
-    paddingRight: 12,
-    flex: 1,
-    fontSize: 13,
-    minWidth: 500,
+const colors_1 = __webpack_require__(38746);
+const lock_1 = __webpack_require__(42810);
+const buttonStyle = {
+    backgroundColor: colors_1.BACKGROUND,
+    border: 'none',
+    position: 'absolute',
+    paddingLeft: 2,
+    paddingRight: 2,
+    marginLeft: 3,
 };
-const RenameCompositionLoaded = () => {
-    const context = (0, react_1.useContext)(ResolveCompositionBeforeModal_1.ResolvedCompositionContext);
-    if (!context) {
-        throw new Error('Resolved composition context');
-    }
-    const { resolved } = context;
-    const { compositions } = (0, react_1.useContext)(remotion_1.Internals.CompositionManager);
-    const [newId, setName] = (0, react_1.useState)(() => {
-        return resolved.result.id;
-    });
-    const onNameChange = (0, react_1.useCallback)((e) => {
-        setName(e.target.value);
-    }, []);
-    const compNameErrMessage = newId === resolved.result.id
-        ? null
-        : (0, validate_new_comp_data_1.validateCompositionName)(newId, compositions);
-    const valid = compNameErrMessage === null && resolved.result.id !== newId;
-    const codemod = (0, react_1.useMemo)(() => {
-        return {
-            type: 'rename-composition',
-            idToRename: resolved.result.id,
-            newId,
-        };
-    }, [newId, resolved.result.id]);
-    const onSubmit = (0, react_1.useCallback)((e) => {
-        e.preventDefault();
-    }, []);
-    return ((0, jsx_runtime_1.jsxs)(jsx_runtime_1.Fragment, { children: [(0, jsx_runtime_1.jsx)(ModalHeader_1.NewCompHeader, { title: `Rename ${resolved.result.id}` }), (0, jsx_runtime_1.jsxs)("form", { onSubmit: onSubmit, children: [(0, jsx_runtime_1.jsx)("div", { style: content, children: (0, jsx_runtime_1.jsxs)("div", { style: layout_1.optionRow, children: [(0, jsx_runtime_1.jsx)("div", { style: layout_1.label, children: "ID" }), (0, jsx_runtime_1.jsx)("div", { style: layout_1.rightRow, children: (0, jsx_runtime_1.jsxs)("div", { children: [(0, jsx_runtime_1.jsx)(RemInput_1.RemotionInput, { value: newId, onChange: onNameChange, type: "text", autoFocus: true, placeholder: "Composition ID", status: "ok", rightAlign: true }), compNameErrMessage ? ((0, jsx_runtime_1.jsxs)(jsx_runtime_1.Fragment, { children: [(0, jsx_runtime_1.jsx)(layout_2.Spacing, { y: 1, block: true }), (0, jsx_runtime_1.jsx)(ValidationMessage_1.ValidationMessage, { align: "flex-start", message: compNameErrMessage, type: "error" })] })) : null] }) })] }) }), (0, jsx_runtime_1.jsx)("div", { style: { ...content, borderTop: '1px solid black' }, children: (0, jsx_runtime_1.jsx)(CodemodFooter_1.CodemodFooter, { loadingNotification: 'Renaming...', errorNotification: 'Could not rename composition', succeessNotifcation: `Renamed to ${newId}`, genericSubmitLabel: 'Rename', submitLabel: ({ relativeRootPath }) => `Modify ${relativeRootPath}`, codemod: codemod, valid: valid }) })] })] }));
+const iconStyle = {
+    width: 10,
+    color: 'white',
 };
-const RenameComposition = ({ compositionId }) => {
-    return ((0, jsx_runtime_1.jsx)(DismissableModal_1.DismissableModal, { children: (0, jsx_runtime_1.jsx)(ResolveCompositionBeforeModal_1.ResolveCompositionBeforeModal, { compositionId: compositionId, children: (0, jsx_runtime_1.jsx)(RenameCompositionLoaded, {}) }) }));
+const ToggleAspectRatio = ({ aspectRatioLocked, setAspectRatioLocked }) => {
+    const onClick = (0, react_1.useCallback)(() => {
+        setAspectRatioLocked(!aspectRatioLocked);
+    }, [aspectRatioLocked, setAspectRatioLocked]);
+    return ((0, jsx_runtime_1.jsx)("button", { type: "button", onClick: onClick, style: buttonStyle, children: aspectRatioLocked ? ((0, jsx_runtime_1.jsx)(lock_1.LockIcon, { style: iconStyle })) : ((0, jsx_runtime_1.jsx)(lock_1.UnlockIcon, { style: iconStyle })) }));
 };
-exports.RenameComposition = RenameComposition;
+exports.ToggleAspectRatio = ToggleAspectRatio;
 
 
 /***/ }),
@@ -9512,6 +9291,65 @@ const ValidationMessage = ({ message, align, type }) => {
     return ((0, jsx_runtime_1.jsx)("div", { style: container, children: (0, jsx_runtime_1.jsxs)(layout_1.Row, { align: "center", justify: align, children: [(0, jsx_runtime_1.jsx)(exports.WarningTriangle, { style: finalStyle }), (0, jsx_runtime_1.jsx)(layout_1.Spacing, { x: 1 }), (0, jsx_runtime_1.jsx)("div", { style: label, children: message })] }) }));
 };
 exports.ValidationMessage = ValidationMessage;
+
+
+/***/ }),
+
+/***/ 69096:
+/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+exports.rightLabel = exports.inputArea = exports.leftLabel = void 0;
+const colors_1 = __webpack_require__(38746);
+exports.leftLabel = {
+    width: 160,
+    display: 'inline-block',
+    textAlign: 'right',
+    paddingRight: 30,
+    fontSize: 14,
+    color: colors_1.LIGHT_COLOR,
+};
+exports.inputArea = {
+    width: 190,
+};
+exports.rightLabel = {
+    fontSize: 13,
+    color: colors_1.LIGHT_TEXT,
+    marginLeft: 10,
+};
+
+
+/***/ }),
+
+/***/ 5805:
+/***/ ((__unused_webpack_module, exports) => {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+exports.aspectRatio = void 0;
+function gcd_two_numbers(x, y) {
+    x = Math.abs(x);
+    y = Math.abs(y);
+    while (y) {
+        const t = y;
+        y = x % y;
+        x = t;
+    }
+    return x;
+}
+const aspectRatio = (width, height) => {
+    const commonDivisor = gcd_two_numbers(width, height);
+    const widthDivisor = width / commonDivisor;
+    const heightDivisor = height / commonDivisor;
+    if (widthDivisor < 100) {
+        return widthDivisor + ':' + heightDivisor;
+    }
+    return (widthDivisor / heightDivisor).toFixed(2);
+};
+exports.aspectRatio = aspectRatio;
 
 
 /***/ }),
@@ -9571,9 +9409,6 @@ const notification = {
 };
 const Notification = ({ children, id, duration, created, onRemove }) => {
     (0, react_1.useEffect)(() => {
-        if (duration === null) {
-            return;
-        }
         const timeout = setTimeout(() => {
             onRemove(id);
         }, duration - (Date.now() - created));
@@ -9594,7 +9429,7 @@ exports.Notification = Notification;
 "use strict";
 
 Object.defineProperty(exports, "__esModule", ({ value: true }));
-exports.NotificationCenter = exports.showNotification = void 0;
+exports.NotificationCenter = exports.sendErrorNotification = exports.notificationCenter = void 0;
 const jsx_runtime_1 = __webpack_require__(85893);
 const react_1 = __webpack_require__(67294);
 const Notification_1 = __webpack_require__(93946);
@@ -9609,16 +9444,17 @@ const container = {
     pointerEvents: 'none',
     backgroundColor: 'transparent',
 };
-const notificationCenter = (0, react_1.createRef)();
-const showNotification = (content, durationInMs) => {
-    return notificationCenter.current.addNotification({
+exports.notificationCenter = (0, react_1.createRef)();
+const sendErrorNotification = (content) => {
+    var _a;
+    (_a = exports.notificationCenter.current) === null || _a === void 0 ? void 0 : _a.addNotification({
         content,
-        duration: durationInMs,
+        duration: 2000,
         created: Date.now(),
         id: String(Math.random()).replace('0.', ''),
     });
 };
-exports.showNotification = showNotification;
+exports.sendErrorNotification = sendErrorNotification;
 const NotificationCenter = () => {
     const [notifications, setNotifications] = (0, react_1.useState)([]);
     const onRemove = (0, react_1.useCallback)((id) => {
@@ -9630,25 +9466,8 @@ const NotificationCenter = () => {
         setNotifications((previousNotifications) => {
             return [...previousNotifications, notification];
         });
-        return {
-            replaceContent: (newContent, durationInMs) => {
-                setNotifications((oldNotifications) => {
-                    return oldNotifications.map((notificationToMap) => {
-                        if (notificationToMap.id === notification.id) {
-                            return {
-                                ...notificationToMap,
-                                duration: durationInMs,
-                                content: newContent,
-                                created: Date.now(),
-                            };
-                        }
-                        return notificationToMap;
-                    });
-                });
-            },
-        };
     }, []);
-    (0, react_1.useImperativeHandle)(notificationCenter, () => {
+    (0, react_1.useImperativeHandle)(exports.notificationCenter, () => {
         return {
             addNotification,
         };
@@ -9708,7 +9527,7 @@ const ServerDisconnected = () => {
     const { previewServerState: ctx } = (0, react_1.useContext)(client_id_1.StudioServerConnectionCtx);
     const fav = document.getElementById('__remotion_favicon');
     if (ctx.type !== 'disconnected') {
-        fav.setAttribute('href', '/favicon.ico');
+        fav.setAttribute('href', '/remotion.png');
         return null;
     }
     if (pageIsGoingToReload) {
@@ -9764,13 +9583,13 @@ const OpenEditorButton = ({ type }) => {
                 .then((res) => res.json())
                 .then(({ success }) => {
                 if (!success) {
-                    (0, NotificationCenter_1.showNotification)(`Could not open ${window.remotion_editorName}`, 2000);
+                    (0, NotificationCenter_1.sendErrorNotification)(`Could not open ${window.remotion_editorName}`);
                 }
             })
                 .catch((err) => {
                 // eslint-disable-next-line no-console
                 console.error(err);
-                (0, NotificationCenter_1.showNotification)(`Could not open ${window.remotion_editorName}`, 2000);
+                (0, NotificationCenter_1.sendErrorNotification)(`Could not open ${window.remotion_editorName}`);
             });
         }
         if (type === 'git') {
@@ -10191,7 +10010,7 @@ const PlayPause = ({ playbackRate, loop, bufferStateDelayInMilliseconds }) => {
             }
             stopped = true;
         };
-    }, [bufferStateDelayInMilliseconds, emitter]);
+    }, [emitter]);
     return ((0, jsx_runtime_1.jsxs)(jsx_runtime_1.Fragment, { children: [(0, jsx_runtime_1.jsx)(ControlButton_1.ControlButton, { "aria-label": "Jump to beginning", title: "Jump to beginning", disabled: !videoConfig || isFirstFrame, onClick: jumpToStart, children: (0, jsx_runtime_1.jsx)(jump_to_start_1.JumpToStart, { style: backStyle }) }), (0, jsx_runtime_1.jsx)(ControlButton_1.ControlButton, { "aria-label": "Step back one frame", title: "Step back one frame", disabled: !videoConfig || isFirstFrame, onClick: oneFrameBack, children: (0, jsx_runtime_1.jsx)(step_back_1.StepBack, { style: forwardBackStyle }) }), (0, jsx_runtime_1.jsx)(ControlButton_1.ControlButton, { "aria-label": playing ? 'Pause' : 'Play', title: playing ? 'Pause' : 'Play', onClick: playing ? pause : play, disabled: !videoConfig, children: playing ? (showBufferIndicator ? ((0, jsx_runtime_1.jsx)(player_1.PlayerInternals.BufferingIndicator, { type: "studio" })) : ((0, jsx_runtime_1.jsx)(pause_1.Pause, { style: iconButton }))) : ((0, jsx_runtime_1.jsx)(play_1.Play, { style: iconButton })) }), (0, jsx_runtime_1.jsx)(ControlButton_1.ControlButton, { "aria-label": "Step forward one frame", title: "Step forward one frame", disabled: !videoConfig || isLastFrame, onClick: oneFrameForward, children: (0, jsx_runtime_1.jsx)(step_forward_1.StepForward, { style: forwardBackStyle }) })] }));
 };
 exports.PlayPause = PlayPause;
@@ -10561,17 +10380,17 @@ const loop_1 = __webpack_require__(31009);
 const CheckboardToggle_1 = __webpack_require__(91588);
 const FpsCounter_1 = __webpack_require__(4462);
 const FullscreenToggle_1 = __webpack_require__(72499);
+const layout_1 = __webpack_require__(34153);
 const LoopToggle_1 = __webpack_require__(6470);
 const MuteToggle_1 = __webpack_require__(1290);
-const PlayPause_1 = __webpack_require__(53315);
 const PlaybackKeyboardShortcutsManager_1 = __webpack_require__(44759);
 const PlaybackRatePersistor_1 = __webpack_require__(73853);
 const PlaybackRateSelector_1 = __webpack_require__(28223);
+const PlayPause_1 = __webpack_require__(53315);
 const RenderButton_1 = __webpack_require__(51016);
 const SizeSelector_1 = __webpack_require__(33876);
 const TimelineZoomControls_1 = __webpack_require__(55454);
 const TimelineInOutToggle_1 = __webpack_require__(25440);
-const layout_1 = __webpack_require__(34153);
 const container = {
     display: 'flex',
     justifyContent: 'center',
@@ -10661,10 +10480,17 @@ exports.QuickSwitcherNoResults = QuickSwitcherNoResults;
 
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 const jsx_runtime_1 = __webpack_require__(85893);
-const DismissableModal_1 = __webpack_require__(44741);
+const react_1 = __webpack_require__(67294);
+const modals_1 = __webpack_require__(89750);
+const ModalContainer_1 = __webpack_require__(43896);
 const QuickSwitcherContent_1 = __webpack_require__(74573);
 const QuickSwitcher = ({ initialMode, invocationTimestamp, readOnlyStudio }) => {
-    return ((0, jsx_runtime_1.jsx)(DismissableModal_1.DismissableModal, { children: (0, jsx_runtime_1.jsx)(QuickSwitcherContent_1.QuickSwitcherContent, { readOnlyStudio: readOnlyStudio, invocationTimestamp: invocationTimestamp, initialMode: initialMode }) }));
+    const { setSelectedModal } = (0, react_1.useContext)(modals_1.ModalsContext);
+    const onQuit = (0, react_1.useCallback)(() => {
+        setSelectedModal(null);
+    }, [setSelectedModal]);
+    // Separate child component to correctly capture keybindings
+    return ((0, jsx_runtime_1.jsx)(ModalContainer_1.ModalContainer, { onOutsideClick: onQuit, onEscape: onQuit, children: (0, jsx_runtime_1.jsx)(QuickSwitcherContent_1.QuickSwitcherContent, { readOnlyStudio: readOnlyStudio, invocationTimestamp: invocationTimestamp, initialMode: initialMode }) }));
 };
 exports["default"] = QuickSwitcher;
 
@@ -10689,14 +10515,14 @@ const modals_1 = __webpack_require__(89750);
 const CompositionSelector_1 = __webpack_require__(9674);
 const InitialCompositionLoader_1 = __webpack_require__(88219);
 const KeyboardShortcutsExplainer_1 = __webpack_require__(24332);
+const layout_1 = __webpack_require__(34153);
 const is_menu_item_1 = __webpack_require__(98185);
 const RemInput_1 = __webpack_require__(60424);
-const layout_1 = __webpack_require__(34153);
+const algolia_search_1 = __webpack_require__(3881);
 const AlgoliaCredit_1 = __webpack_require__(8855);
+const fuzzy_search_1 = __webpack_require__(37435);
 const NoResults_1 = __webpack_require__(90403);
 const QuickSwitcherResult_1 = __webpack_require__(66710);
-const algolia_search_1 = __webpack_require__(3881);
-const fuzzy_search_1 = __webpack_require__(37435);
 const input = {
     width: '100%',
 };
@@ -11302,7 +11128,6 @@ const RenderButton = () => {
             initialBeep: defaults.beepOnFinish,
             initialRepro: defaults.repro,
             initialForSeamlessAacConcatenation: defaults.forSeamlessAacConcatenation,
-            renderTypeOfLastRender: null,
         });
     }, [video, setSelectedModal, frame, props, inFrame, outFrame]);
     if (!video) {
@@ -11469,18 +11294,18 @@ const remotion_1 = __webpack_require__(27982);
 const no_react_1 = __webpack_require__(60808);
 const client_id_1 = __webpack_require__(82862);
 const colors_1 = __webpack_require__(38746);
+const get_zod_if_possible_1 = __webpack_require__(22455);
+const layout_1 = __webpack_require__(34153);
 const ValidationMessage_1 = __webpack_require__(45853);
 const NotificationCenter_1 = __webpack_require__(9349);
 const actions_1 = __webpack_require__(73017);
 const SegmentedControl_1 = __webpack_require__(91182);
-const get_zod_if_possible_1 = __webpack_require__(22455);
-const layout_1 = __webpack_require__(34153);
+const get_render_modal_warnings_1 = __webpack_require__(90609);
 const RenderModalJSONPropsEditor_1 = __webpack_require__(47817);
+const extract_enum_json_paths_1 = __webpack_require__(95352);
 const SchemaEditor_1 = __webpack_require__(18770);
 const SchemaErrorMessages_1 = __webpack_require__(41209);
-const extract_enum_json_paths_1 = __webpack_require__(95352);
 const WarningIndicatorButton_1 = __webpack_require__(98808);
-const get_render_modal_warnings_1 = __webpack_require__(90609);
 const errorExplanation = {
     fontSize: 14,
     color: colors_1.LIGHT_TEXT,
@@ -11649,12 +11474,12 @@ const DataEditor = ({ unresolvedComposition, inputProps, setInputProps, mayShowS
     }, [mode]);
     const onUpdate = (0, react_1.useCallback)(() => {
         if (schema === 'no-zod' || schema === 'no-schema' || z === null) {
-            (0, NotificationCenter_1.showNotification)('Cannot update default props: No Zod schema', 2000);
+            (0, NotificationCenter_1.sendErrorNotification)('Cannot update default props: No Zod schema');
             return;
         }
         (0, actions_1.updateDefaultProps)(unresolvedComposition.id, inputProps, (0, extract_enum_json_paths_1.extractEnumJsonPaths)(schema, z, [])).then((response) => {
             if (!response.success) {
-                (0, NotificationCenter_1.showNotification)(`Cannot update default props: ${response.reason}`, 2000);
+                (0, NotificationCenter_1.sendErrorNotification)('Cannot update default props: ' + response.reason);
             }
         });
     }, [unresolvedComposition.id, inputProps, schema, z]);
@@ -11664,7 +11489,7 @@ const DataEditor = ({ unresolvedComposition, inputProps, setInputProps, mayShowS
     const onSave = (0, react_1.useCallback)((updater) => {
         var _a;
         if (schema === 'no-zod' || schema === 'no-schema' || z === null) {
-            (0, NotificationCenter_1.showNotification)('Cannot update default props: No Zod schema', 2000);
+            (0, NotificationCenter_1.sendErrorNotification)('Cannot update default props: No Zod schema');
             return;
         }
         setSaving(true);
@@ -11673,11 +11498,11 @@ const DataEditor = ({ unresolvedComposition, inputProps, setInputProps, mayShowS
             if (!response.success) {
                 // eslint-disable-next-line no-console
                 console.log(response.stack);
-                (0, NotificationCenter_1.showNotification)(`Cannot update default props: ${response.reason}. See console for more information.`, 2000);
+                (0, NotificationCenter_1.sendErrorNotification)(`Cannot update default props: ${response.reason}. See console for more information.`);
             }
         })
             .catch((err) => {
-            (0, NotificationCenter_1.showNotification)(`Cannot update default props: ${err.message}`, 2000);
+            (0, NotificationCenter_1.sendErrorNotification)(`Cannot update default props: ${err.message}`);
             setSaving(false);
         });
     }, [
@@ -11753,8 +11578,8 @@ const jsx_runtime_1 = __webpack_require__(85893);
 const react_1 = __webpack_require__(67294);
 const Checkbox_1 = __webpack_require__(93345);
 const layout_1 = __webpack_require__(34153);
-const OptionExplainerBubble_1 = __webpack_require__(11903);
 const layout_2 = __webpack_require__(34976);
+const OptionExplainerBubble_1 = __webpack_require__(11903);
 const EnforceAudioTrackSetting = ({ enforceAudioTrack, muted, setEnforceAudioTrack }) => {
     const onEnforceAudioTrackChanged = (0, react_1.useCallback)((e) => {
         setEnforceAudioTrack(e.target.checked);
@@ -11798,9 +11623,9 @@ Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.EnvInput = void 0;
 const jsx_runtime_1 = __webpack_require__(85893);
 const react_1 = __importStar(__webpack_require__(67294));
+const layout_1 = __webpack_require__(34153);
 const RemInput_1 = __webpack_require__(60424);
 const ValidationMessage_1 = __webpack_require__(45853);
-const layout_1 = __webpack_require__(34153);
 const InlineEyeIcon_1 = __webpack_require__(54583);
 const InlineRemoveButton_1 = __webpack_require__(45767);
 const layout_2 = __webpack_require__(34976);
@@ -11857,8 +11682,8 @@ Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.FrameRangeSetting = void 0;
 const jsx_runtime_1 = __webpack_require__(85893);
 const react_1 = __webpack_require__(67294);
-const MultiRangeSlider_1 = __webpack_require__(90097);
 const layout_1 = __webpack_require__(34976);
+const MultiRangeSlider_1 = __webpack_require__(90097);
 const numberWrapper = {
     minWidth: '39px',
     display: 'flex',
@@ -12276,8 +12101,8 @@ const jsx_runtime_1 = __webpack_require__(85893);
 const react_1 = __webpack_require__(67294);
 const Checkbox_1 = __webpack_require__(93345);
 const layout_1 = __webpack_require__(34153);
-const OptionExplainerBubble_1 = __webpack_require__(11903);
 const layout_2 = __webpack_require__(34976);
+const OptionExplainerBubble_1 = __webpack_require__(11903);
 const MutedSetting = ({ muted, setMuted, enforceAudioTrack }) => {
     const onMutedChanged = (0, react_1.useCallback)((e) => {
         setMuted(e.target.checked);
@@ -12332,11 +12157,11 @@ Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.NumberSetting = void 0;
 const jsx_runtime_1 = __webpack_require__(85893);
 const react_1 = __webpack_require__(67294);
+const layout_1 = __webpack_require__(34153);
 const InputDragger_1 = __webpack_require__(73194);
 const RemInput_1 = __webpack_require__(60424);
-const layout_1 = __webpack_require__(34153);
-const OptionExplainerBubble_1 = __webpack_require__(11903);
 const layout_2 = __webpack_require__(34976);
+const OptionExplainerBubble_1 = __webpack_require__(11903);
 const NumberSetting = ({ name, value, step, hint, onValueChanged, max, min, formatter }) => {
     const onTextChanged = (0, react_1.useCallback)((e) => {
         onValueChanged((q) => {
@@ -12368,8 +12193,8 @@ Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.OptionExplainer = void 0;
 const jsx_runtime_1 = __webpack_require__(85893);
 const colors_1 = __webpack_require__(38746);
-const MenuDivider_1 = __webpack_require__(8912);
 const layout_1 = __webpack_require__(34153);
+const MenuDivider_1 = __webpack_require__(8912);
 const CliCopyButton_1 = __webpack_require__(50261);
 const container = {
     fontSize: 14,
@@ -12454,13 +12279,14 @@ const jsx_runtime_1 = __webpack_require__(85893);
 const client_1 = __webpack_require__(27297);
 const studio_shared_1 = __webpack_require__(87154);
 const react_1 = __webpack_require__(67294);
+const remotion_1 = __webpack_require__(27982);
 const ShortcutHint_1 = __webpack_require__(81994);
 const colors_1 = __webpack_require__(38746);
 const convert_env_variables_1 = __webpack_require__(11729);
 const render_modal_sections_1 = __webpack_require__(7332);
 const use_keybinding_1 = __webpack_require__(67442);
-const Checkmark_1 = __webpack_require__(33644);
 const audio_1 = __webpack_require__(21407);
+const Checkmark_1 = __webpack_require__(33644);
 const data_1 = __webpack_require__(69465);
 const file_1 = __webpack_require__(3562);
 const frame_1 = __webpack_require__(91480);
@@ -12469,25 +12295,26 @@ const gif_1 = __webpack_require__(9221);
 const modals_1 = __webpack_require__(89750);
 const sidebar_1 = __webpack_require__(2833);
 const Button_1 = __webpack_require__(2111);
+const layout_1 = __webpack_require__(34153);
 const is_menu_item_1 = __webpack_require__(98185);
+const styles_1 = __webpack_require__(25693);
 const ModalContainer_1 = __webpack_require__(43896);
 const ModalHeader_1 = __webpack_require__(79659);
-const DismissableModal_1 = __webpack_require__(44741);
 const OptionsPanel_1 = __webpack_require__(88204);
 const actions_1 = __webpack_require__(73017);
 const SegmentedControl_1 = __webpack_require__(91182);
+const Spinner_1 = __webpack_require__(2667);
 const vertical_1 = __webpack_require__(55391);
 const CrfSetting_1 = __webpack_require__(52648);
 const DataEditor_1 = __webpack_require__(72185);
+const get_default_codecs_1 = __webpack_require__(10327);
+const get_string_before_suffix_1 = __webpack_require__(14997);
+const out_name_checker_1 = __webpack_require__(77170);
 const RenderModalAdvanced_1 = __webpack_require__(62637);
 const RenderModalAudio_1 = __webpack_require__(25534);
 const RenderModalBasic_1 = __webpack_require__(67409);
 const RenderModalGif_1 = __webpack_require__(3784);
 const RenderModalPicture_1 = __webpack_require__(39956);
-const ResolveCompositionBeforeModal_1 = __webpack_require__(16033);
-const get_default_codecs_1 = __webpack_require__(10327);
-const get_string_before_suffix_1 = __webpack_require__(14997);
-const out_name_checker_1 = __webpack_require__(77170);
 const initialState = { type: 'idle' };
 const reducer = (state, action) => {
     if (action.type === 'start') {
@@ -12565,13 +12392,7 @@ const outer = {
     display: 'flex',
     flexDirection: 'column',
 };
-const RenderModal = ({ initialFrame, initialVideoImageFormat, initialStillImageFormat, initialJpegQuality, initialScale, initialLogLevel, initialConcurrency, maxConcurrency, minConcurrency, initialMuted, initialEnforceAudioTrack, initialProResProfile, initialx264Preset, initialPixelFormat, initialVideoBitrate, initialAudioBitrate, initialEveryNthFrame, initialNumberOfGifLoops, initialDelayRenderTimeout, initialOffthreadVideoCacheSizeInBytes, initialEnvVariables, initialDisableWebSecurity, initialGl, initialHeadless, initialIgnoreCertificateErrors, initialEncodingBufferSize, initialEncodingMaxRate, initialUserAgent, defaultProps, inFrameMark, outFrameMark, initialColorSpace, initialMultiProcessOnLinux, defaultConfigurationAudioCodec, defaultConfigurationVideoCodec, initialBeep, initialRepro, initialForSeamlessAacConcatenation, renderTypeOfLastRender, }) => {
-    const { setSelectedModal } = (0, react_1.useContext)(modals_1.ModalsContext);
-    const context = (0, react_1.useContext)(ResolveCompositionBeforeModal_1.ResolvedCompositionContext);
-    if (!context) {
-        throw new Error('Should not be able to render without resolving comp first');
-    }
-    const { resolved: { result: resolvedComposition }, unresolved: unresolvedComposition, } = context;
+const RenderModal = ({ initialFrame, initialVideoImageFormat, initialStillImageFormat, initialJpegQuality, initialScale, initialLogLevel, initialConcurrency, maxConcurrency, minConcurrency, initialMuted, initialEnforceAudioTrack, initialProResProfile, initialx264Preset, initialPixelFormat, initialVideoBitrate, initialAudioBitrate, initialEveryNthFrame, initialNumberOfGifLoops, initialDelayRenderTimeout, initialOffthreadVideoCacheSizeInBytes, initialEnvVariables, initialDisableWebSecurity, initialGl, initialHeadless, initialIgnoreCertificateErrors, initialEncodingBufferSize, initialEncodingMaxRate, initialUserAgent, defaultProps, inFrameMark, outFrameMark, onClose, resolvedComposition, unresolvedComposition, initialColorSpace, initialMultiProcessOnLinux, defaultConfigurationAudioCodec, defaultConfigurationVideoCodec, initialBeep, initialRepro, initialForSeamlessAacConcatenation, }) => {
     const isMounted = (0, react_1.useRef)(true);
     const [isVideo] = (0, react_1.useState)(() => {
         return typeof resolvedComposition.durationInFrames === 'undefined'
@@ -12583,7 +12404,7 @@ const RenderModal = ({ initialFrame, initialVideoImageFormat, initialStillImageF
             defaultConfigurationVideoCodec,
             compositionDefaultVideoCodec: resolvedComposition.defaultCodec,
             defaultConfigurationAudioCodec,
-            renderType: renderTypeOfLastRender !== null && renderTypeOfLastRender !== void 0 ? renderTypeOfLastRender : (isVideo ? 'video' : 'still'),
+            renderType: isVideo ? 'video' : 'still',
         });
     });
     const [state, dispatch] = (0, react_1.useReducer)(reducer, initialState);
@@ -12600,11 +12421,9 @@ const RenderModal = ({ initialFrame, initialVideoImageFormat, initialStillImageF
     const [initialOutName] = (0, react_1.useState)(() => {
         return (0, studio_shared_1.getDefaultOutLocation)({
             compositionName: resolvedComposition.id,
-            defaultExtension: initialRenderType === 'still'
-                ? initialStillImageFormat
-                : isVideo
-                    ? client_1.BrowserSafeApis.getFileExtensionFromCodec(initialVideoCodec, initialAudioCodec)
-                    : initialStillImageFormat,
+            defaultExtension: isVideo
+                ? client_1.BrowserSafeApis.getFileExtensionFromCodec(initialVideoCodec, initialAudioCodec)
+                : initialStillImageFormat,
             type: 'asset',
         });
     });
@@ -12851,7 +12670,7 @@ const RenderModal = ({ initialFrame, initialVideoImageFormat, initialStillImageF
         })
             .then(() => {
             dispatchIfMounted({ type: 'succeed' });
-            setSelectedModal(null);
+            onClose();
         })
             .catch(() => {
             dispatchIfMounted({ type: 'fail' });
@@ -12873,7 +12692,7 @@ const RenderModal = ({ initialFrame, initialVideoImageFormat, initialStillImageF
         offthreadVideoCacheSizeInBytes,
         multiProcessOnLinux,
         beepOnFinish,
-        setSelectedModal,
+        onClose,
     ]);
     const [everyNthFrameSetting, setEveryNthFrameSetting] = (0, react_1.useState)(() => initialEveryNthFrame);
     const everyNthFrame = (0, react_1.useMemo)(() => {
@@ -12937,7 +12756,7 @@ const RenderModal = ({ initialFrame, initialVideoImageFormat, initialStillImageF
         })
             .then(() => {
             dispatchIfMounted({ type: 'succeed' });
-            setSelectedModal(null);
+            onClose();
         })
             .catch(() => {
             dispatchIfMounted({ type: 'fail' });
@@ -12982,7 +12801,7 @@ const RenderModal = ({ initialFrame, initialVideoImageFormat, initialStillImageF
         repro,
         forSeamlessAacConcatenation,
         separateAudioTo,
-        setSelectedModal,
+        onClose,
     ]);
     const onClickSequence = (0, react_1.useCallback)(() => {
         var _a;
@@ -13012,7 +12831,7 @@ const RenderModal = ({ initialFrame, initialVideoImageFormat, initialStillImageF
         })
             .then(() => {
             dispatchIfMounted({ type: 'succeed' });
-            setSelectedModal(null);
+            onClose();
         })
             .catch(() => {
             dispatchIfMounted({ type: 'fail' });
@@ -13038,7 +12857,7 @@ const RenderModal = ({ initialFrame, initialVideoImageFormat, initialStillImageF
         multiProcessOnLinux,
         beepOnFinish,
         repro,
-        setSelectedModal,
+        onClose,
     ]);
     (0, react_1.useEffect)(() => {
         return () => {
@@ -13201,6 +13020,9 @@ const RenderModal = ({ initialFrame, initialVideoImageFormat, initialStillImageF
     const { registerKeybinding } = (0, use_keybinding_1.useKeybinding)();
     const renderDisabled = state.type === 'load' || !outnameValidation.valid;
     const trigger = (0, react_1.useCallback)(() => {
+        if (renderDisabled) {
+            return;
+        }
         if (renderMode === 'still') {
             onClickStill();
         }
@@ -13210,11 +13032,8 @@ const RenderModal = ({ initialFrame, initialVideoImageFormat, initialStillImageF
         else {
             onClickVideo();
         }
-    }, [renderMode, onClickStill, onClickSequence, onClickVideo]);
+    }, [renderDisabled, renderMode, onClickStill, onClickSequence, onClickVideo]);
     (0, react_1.useEffect)(() => {
-        if (renderDisabled) {
-            return;
-        }
         const enter = registerKeybinding({
             callback() {
                 trigger();
@@ -13229,7 +13048,7 @@ const RenderModal = ({ initialFrame, initialVideoImageFormat, initialStillImageF
         return () => {
             enter.unregister();
         };
-    }, [registerKeybinding, renderDisabled, trigger]);
+    }, [registerKeybinding, trigger]);
     const pixelFormatOptions = (0, react_1.useMemo)(() => {
         return availablePixelFormats.map((option) => {
             return {
@@ -13252,9 +13071,54 @@ const RenderModal = ({ initialFrame, initialVideoImageFormat, initialStillImageF
                         }, children: [state.type === 'idle' ? `Render ${renderMode}` : 'Rendering...', (0, jsx_runtime_1.jsx)(ShortcutHint_1.ShortcutHint, { keyToPress: "\u21B5", cmdOrCtrl: true })] })] }), (0, jsx_runtime_1.jsxs)("div", { style: horizontalLayout, children: [(0, jsx_runtime_1.jsxs)("div", { style: leftSidebar, children: [shownTabs.includes('general') ? ((0, jsx_runtime_1.jsxs)(vertical_1.VerticalTab, { style: horizontalTab, selected: tab === 'general', onClick: () => setTab('general'), children: [(0, jsx_runtime_1.jsx)("div", { style: iconContainer, children: (0, jsx_runtime_1.jsx)(file_1.FileIcon, { style: icon }) }), "General"] })) : null, shownTabs.includes('data') ? ((0, jsx_runtime_1.jsxs)(vertical_1.VerticalTab, { style: horizontalTab, selected: tab === 'data', onClick: () => setTab('data'), children: [(0, jsx_runtime_1.jsx)("div", { style: iconContainer, children: (0, jsx_runtime_1.jsx)(data_1.DataIcon, { style: icon }) }), "Input Props"] })) : null, shownTabs.includes('picture') ? ((0, jsx_runtime_1.jsxs)(vertical_1.VerticalTab, { style: horizontalTab, selected: tab === 'picture', onClick: () => setTab('picture'), children: [(0, jsx_runtime_1.jsx)("div", { style: iconContainer, children: (0, jsx_runtime_1.jsx)(frame_1.PicIcon, { style: icon }) }), "Picture"] })) : null, shownTabs.includes('audio') ? ((0, jsx_runtime_1.jsxs)(vertical_1.VerticalTab, { style: horizontalTab, selected: tab === 'audio', onClick: () => setTab('audio'), children: [(0, jsx_runtime_1.jsx)("div", { style: iconContainer, children: (0, jsx_runtime_1.jsx)(audio_1.AudioIcon, { style: icon }) }), "Audio"] })) : null, shownTabs.includes('gif') ? ((0, jsx_runtime_1.jsxs)(vertical_1.VerticalTab, { style: horizontalTab, selected: tab === 'gif', onClick: () => setTab('gif'), children: [(0, jsx_runtime_1.jsx)("div", { style: iconContainer, children: (0, jsx_runtime_1.jsx)(gif_1.GifIcon, { style: icon }) }), "GIF"] })) : null, shownTabs.includes('advanced') ? ((0, jsx_runtime_1.jsxs)(vertical_1.VerticalTab, { style: horizontalTab, selected: tab === 'advanced', onClick: () => setTab('advanced'), children: [(0, jsx_runtime_1.jsx)("div", { style: iconContainer, children: (0, jsx_runtime_1.jsx)(gear_1.GearIcon, { style: icon }) }), "Other"] })) : null] }), (0, jsx_runtime_1.jsx)("div", { style: optionsPanel, className: is_menu_item_1.VERTICAL_SCROLLBAR_CLASSNAME, children: tab === 'general' ? ((0, jsx_runtime_1.jsx)(RenderModalBasic_1.RenderModalBasic, { codec: codec, resolvedComposition: resolvedComposition, frame: frame, imageFormatOptions: imageFormatOptions, outName: outName, proResProfile: proResProfile, renderMode: renderMode, setVideoCodec: setCodec, setFrame: setFrame, setOutName: setOutName, setProResProfile: setProResProfile, endFrame: endFrame, setEndFrame: setEndFrame, setStartFrame: setStartFrame, startFrame: startFrame, validationMessage: outnameValidation.valid ? null : outnameValidation.error.message })) : tab === 'picture' ? ((0, jsx_runtime_1.jsx)(RenderModalPicture_1.RenderModalPicture, { renderMode: renderMode, scale: scale, setScale: setScale, pixelFormat: pixelFormat, pixelFormatOptions: pixelFormatOptions, imageFormatOptions: imageFormatOptions, crf: crf, setCrf: setCrf, customTargetVideoBitrate: customTargetVideoBitrate, maxCrf: maxCrf, minCrf: minCrf, jpegQuality: jpegQuality, qualityControlType: qualityControlType, setJpegQuality: setJpegQuality, setColorSpace: setColorSpace, colorSpace: colorSpace, setCustomTargetVideoBitrateValue: setCustomTargetVideoBitrateValue, setQualityControl: setQualityControl, videoImageFormat: videoImageFormat, stillImageFormat: stillImageFormat, shouldDisplayQualityControlPicker: supportsBothQualityControls, encodingBufferSize: encodingBufferSize, setEncodingBufferSize: setEncodingBufferSize, encodingMaxRate: encodingMaxRate, setEncodingMaxRate: setEncodingMaxRate })) : tab === 'audio' ? ((0, jsx_runtime_1.jsx)(RenderModalAudio_1.RenderModalAudio, { muted: muted, renderMode: renderMode, setMuted: setMuted, codec: codec, audioCodec: audioCodec, setAudioCodec: setAudioCodec, enforceAudioTrack: enforceAudioTrack, setEnforceAudioTrackState: setEnforceAudioTrackState, customTargetAudioBitrate: customTargetAudioBitrate, setCustomTargetAudioBitrateValue: setCustomTargetAudioBitrateValue, setShouldHaveCustomTargetAudioBitrate: setShouldHaveCustomTargetAudioBitrate, shouldHaveCustomTargetAudioBitrate: shouldHaveCustomTargetAudioBitrate, forSeamlessAacConcatenation: forSeamlessAacConcatenation, setForSeamlessAacConcatenation: setForSeamlessAacConcatenation, separateAudioTo: separateAudioTo, setSeparateAudioTo: setSeparateAudioTo, outName: outName })) : tab === 'gif' ? ((0, jsx_runtime_1.jsx)(RenderModalGif_1.RenderModalGif, { everyNthFrame: everyNthFrame, limitNumberOfGifLoops: limitNumberOfGifLoops, numberOfGifLoopsSetting: numberOfGifLoopsSetting, setEveryNthFrameSetting: setEveryNthFrameSetting, setLimitNumberOfGifLoops: setLimitNumberOfGifLoops, setNumberOfGifLoopsSetting: setNumberOfGifLoopsSetting })) : tab === 'data' ? ((0, jsx_runtime_1.jsx)(DataEditor_1.DataEditor, { inputProps: inputProps, setInputProps: setInputProps, unresolvedComposition: unresolvedComposition, mayShowSaveButton: false, propsEditType: "input-props", saving: saving, setSaving: setSaving, readOnlyStudio: false })) : ((0, jsx_runtime_1.jsx)(RenderModalAdvanced_1.RenderModalAdvanced, { x264Preset: x264Preset, setx264Preset: setx264Preset, concurrency: concurrency, maxConcurrency: maxConcurrency, minConcurrency: minConcurrency, renderMode: renderMode, setConcurrency: setConcurrency, setVerboseLogging: setLogLevel, logLevel: logLevel, delayRenderTimeout: delayRenderTimeout, setDelayRenderTimeout: setDelayRenderTimeout, disallowParallelEncoding: disallowParallelEncoding, setDisallowParallelEncoding: setDisallowParallelEncoding, setDisableWebSecurity: setDisableWebSecurity, setIgnoreCertificateErrors: setIgnoreCertificateErrors, setHeadless: setHeadless, headless: headless, ignoreCertificateErrors: ignoreCertificateErrors, disableWebSecurity: disableWebSecurity, openGlOption: openGlOption, setOpenGlOption: setOpenGlOption, setEnvVariables: setEnvVariables, envVariables: envVariables, offthreadVideoCacheSizeInBytes: offthreadVideoCacheSizeInBytes, setOffthreadVideoCacheSizeInBytes: setOffthreadVideoCacheSizeInBytes, enableMultiProcessOnLinux: multiProcessOnLinux, setChromiumMultiProcessOnLinux: setChromiumMultiProcessOnLinux, codec: codec, userAgent: userAgent, setUserAgent: setUserAgent, setBeep: setBeepOnFinish, beep: beepOnFinish, repro: repro, setRepro: setRepro })) })] })] }));
 };
 const RenderModalWithLoader = (props) => {
-    return ((0, jsx_runtime_1.jsx)(DismissableModal_1.DismissableModal, { children: (0, jsx_runtime_1.jsx)(ResolveCompositionBeforeModal_1.ResolveCompositionBeforeModal, { compositionId: props.compositionId, children: (0, jsx_runtime_1.jsx)(RenderModal, { ...props }) }) }));
+    const { setSelectedModal } = (0, react_1.useContext)(modals_1.ModalsContext);
+    const onQuit = (0, react_1.useCallback)(() => {
+        setSelectedModal(null);
+    }, [setSelectedModal]);
+    (0, react_1.useEffect)(() => {
+        const { current } = remotion_1.Internals.resolveCompositionsRef;
+        if (!current) {
+            throw new Error('resolveCompositionsRef');
+        }
+        current.setCurrentRenderModalComposition(props.compositionId);
+        return () => {
+            current.setCurrentRenderModalComposition(null);
+        };
+    }, [props.compositionId]);
+    const resolved = remotion_1.Internals.useResolvedVideoConfig(props.compositionId);
+    const unresolvedContext = (0, react_1.useContext)(remotion_1.Internals.CompositionManager);
+    const unresolved = unresolvedContext.compositions.find((c) => props.compositionId === c.id);
+    if (!unresolved) {
+        throw new Error('Composition not found: ' + props.compositionId);
+    }
+    if (!resolved) {
+        return null;
+    }
+    if (resolved.type === 'loading') {
+        return ((0, jsx_runtime_1.jsx)(ModalContainer_1.ModalContainer, { onOutsideClick: onQuit, onEscape: onQuit, children: (0, jsx_runtime_1.jsxs)("div", { style: loaderContainer, children: [(0, jsx_runtime_1.jsx)(Spinner_1.Spinner, { duration: 1, size: 30 }), (0, jsx_runtime_1.jsx)(layout_1.Spacing, { y: 2 }), (0, jsx_runtime_1.jsxs)("div", { style: loaderLabel, children: ["Running ", (0, jsx_runtime_1.jsx)("code", { style: styles_1.inlineCodeSnippet, children: "calculateMetadata()" })] })] }) }));
+    }
+    if (resolved.type === 'error') {
+        return ((0, jsx_runtime_1.jsx)(ModalContainer_1.ModalContainer, { onOutsideClick: onQuit, onEscape: onQuit, children: (0, jsx_runtime_1.jsxs)("div", { style: loaderContainer, children: [(0, jsx_runtime_1.jsx)(layout_1.Spacing, { y: 2 }), (0, jsx_runtime_1.jsxs)("div", { style: loaderLabel, children: ["Running ", (0, jsx_runtime_1.jsx)("code", { style: styles_1.inlineCodeSnippet, children: "calculateMetadata()" }), ' ', "yielded an error:"] }), (0, jsx_runtime_1.jsx)(layout_1.Spacing, { y: 1 }), (0, jsx_runtime_1.jsx)("div", { style: loaderLabel, children: resolved.error.message || 'Unknown error' })] }) }));
+    }
+    return ((0, jsx_runtime_1.jsx)(ModalContainer_1.ModalContainer, { onOutsideClick: onQuit, onEscape: onQuit, children: (0, jsx_runtime_1.jsx)(RenderModal, { unresolvedComposition: unresolved, ...props, onClose: onQuit, resolvedComposition: resolved.result }) }));
 };
 exports.RenderModalWithLoader = RenderModalWithLoader;
+const loaderContainer = {
+    paddingTop: 40,
+    paddingBottom: 40,
+    paddingLeft: 100,
+    paddingRight: 100,
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    flexDirection: 'column',
+};
+const loaderLabel = {
+    fontSize: 14,
+    color: colors_1.LIGHT_TEXT,
+    fontFamily: 'sans-serif',
+    lineHeight: 1.5,
+};
 
 
 /***/ }),
@@ -13272,15 +13136,15 @@ const react_1 = __webpack_require__(67294);
 const presets_labels_1 = __webpack_require__(47410);
 const Checkmark_1 = __webpack_require__(33644);
 const Checkbox_1 = __webpack_require__(93345);
+const layout_1 = __webpack_require__(34153);
 const is_menu_item_1 = __webpack_require__(98185);
 const ComboBox_1 = __webpack_require__(65873);
 const RemInput_1 = __webpack_require__(60424);
-const layout_1 = __webpack_require__(34153);
+const layout_2 = __webpack_require__(34976);
 const NumberSetting_1 = __webpack_require__(89673);
 const OptionExplainerBubble_1 = __webpack_require__(11903);
 const RenderModalEnvironmentVariables_1 = __webpack_require__(47713);
 const RenderModalHr_1 = __webpack_require__(97902);
-const layout_2 = __webpack_require__(34976);
 const container = {
     flex: 1,
     overflowY: 'auto',
@@ -13408,17 +13272,17 @@ const client_1 = __webpack_require__(27297);
 const react_1 = __webpack_require__(67294);
 const Checkmark_1 = __webpack_require__(33644);
 const Checkbox_1 = __webpack_require__(93345);
+const layout_1 = __webpack_require__(34153);
 const is_menu_item_1 = __webpack_require__(98185);
 const ComboBox_1 = __webpack_require__(65873);
 const RemInput_1 = __webpack_require__(60424);
-const layout_1 = __webpack_require__(34153);
 const EnforceAudioTrackSetting_1 = __webpack_require__(39946);
+const human_readable_audio_codecs_1 = __webpack_require__(50091);
+const layout_2 = __webpack_require__(34976);
 const MutedSetting_1 = __webpack_require__(20085);
 const OptionExplainerBubble_1 = __webpack_require__(11903);
 const RenderModalHr_1 = __webpack_require__(97902);
 const SeparateAudioOption_1 = __webpack_require__(75769);
-const human_readable_audio_codecs_1 = __webpack_require__(50091);
-const layout_2 = __webpack_require__(34976);
 const container = {
     flex: 1,
     overflowY: 'auto',
@@ -13473,16 +13337,16 @@ const react_1 = __webpack_require__(67294);
 const prores_labels_1 = __webpack_require__(98163);
 const use_file_existence_1 = __webpack_require__(19808);
 const Checkmark_1 = __webpack_require__(33644);
+const layout_1 = __webpack_require__(34153);
 const ComboBox_1 = __webpack_require__(65873);
 const InputDragger_1 = __webpack_require__(73194);
 const RemInput_1 = __webpack_require__(60424);
 const SegmentedControl_1 = __webpack_require__(91182);
-const layout_1 = __webpack_require__(34153);
 const FrameRangeSetting_1 = __webpack_require__(14485);
-const OptionExplainerBubble_1 = __webpack_require__(11903);
-const RenderModalOutputName_1 = __webpack_require__(24609);
 const human_readable_codec_1 = __webpack_require__(12485);
 const layout_2 = __webpack_require__(34976);
+const OptionExplainerBubble_1 = __webpack_require__(11903);
+const RenderModalOutputName_1 = __webpack_require__(24609);
 const container = {
     flex: 1,
 };
@@ -13621,10 +13485,10 @@ const jsx_runtime_1 = __webpack_require__(85893);
 const react_1 = __webpack_require__(67294);
 const Checkbox_1 = __webpack_require__(93345);
 const layout_1 = __webpack_require__(34153);
+const layout_2 = __webpack_require__(34976);
 const NumberOfLoopsSetting_1 = __webpack_require__(7168);
 const NumberSetting_1 = __webpack_require__(89673);
 const OptionExplainerBubble_1 = __webpack_require__(11903);
-const layout_2 = __webpack_require__(34976);
 const container = {
     flex: 1,
 };
@@ -13702,11 +13566,11 @@ const colors_1 = __webpack_require__(38746);
 const document_title_1 = __webpack_require__(70441);
 const use_keybinding_1 = __webpack_require__(67442);
 const Button_1 = __webpack_require__(2111);
+const layout_1 = __webpack_require__(34153);
 const RemTextarea_1 = __webpack_require__(3048);
 const ValidationMessage_1 = __webpack_require__(45853);
-const layout_1 = __webpack_require__(34153);
-const ZodErrorMessages_1 = __webpack_require__(80533);
 const deep_equal_1 = __webpack_require__(24592);
+const ZodErrorMessages_1 = __webpack_require__(80533);
 const style = {
     fontFamily: 'monospace',
     flex: 1,
@@ -13824,9 +13688,9 @@ exports.RenderModalJSONPropsEditor = RenderModalJSONPropsEditor;
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.RenderModalOutputName = void 0;
 const jsx_runtime_1 = __webpack_require__(85893);
+const layout_1 = __webpack_require__(34153);
 const RemInput_1 = __webpack_require__(60424);
 const ValidationMessage_1 = __webpack_require__(45853);
-const layout_1 = __webpack_require__(34153);
 const layout_2 = __webpack_require__(34976);
 const RenderModalOutputName = ({ existence, inputStyle, outName, onValueChange, validationMessage, label: labelText, }) => {
     return ((0, jsx_runtime_1.jsxs)("div", { style: layout_2.optionRow, children: [(0, jsx_runtime_1.jsx)(layout_1.Column, { children: (0, jsx_runtime_1.jsx)("div", { style: layout_2.label, children: labelText }) }), (0, jsx_runtime_1.jsx)("div", { style: layout_2.rightRow, children: (0, jsx_runtime_1.jsxs)("div", { children: [(0, jsx_runtime_1.jsx)(RemInput_1.RemotionInput, { status: validationMessage ? 'error' : existence ? 'warning' : 'ok', style: inputStyle, type: "text", value: outName, onChange: onValueChange, rightAlign: true }), validationMessage ? ((0, jsx_runtime_1.jsxs)(jsx_runtime_1.Fragment, { children: [(0, jsx_runtime_1.jsx)(layout_1.Spacing, { y: 1, block: true }), (0, jsx_runtime_1.jsx)(ValidationMessage_1.ValidationMessage, { align: "flex-end", message: validationMessage, type: 'error' })] })) : existence ? ((0, jsx_runtime_1.jsxs)(jsx_runtime_1.Fragment, { children: [(0, jsx_runtime_1.jsx)(layout_1.Spacing, { y: 1, block: true }), (0, jsx_runtime_1.jsx)(ValidationMessage_1.ValidationMessage, { align: "flex-end", message: "Will be overwritten", type: 'warning' })] })) : null] }) })] }));
@@ -13848,17 +13712,17 @@ const client_1 = __webpack_require__(27297);
 const react_1 = __webpack_require__(67294);
 const Checkmark_1 = __webpack_require__(33644);
 const Checkbox_1 = __webpack_require__(93345);
+const layout_1 = __webpack_require__(34153);
 const is_menu_item_1 = __webpack_require__(98185);
 const ComboBox_1 = __webpack_require__(65873);
 const RemInput_1 = __webpack_require__(60424);
 const SegmentedControl_1 = __webpack_require__(91182);
-const layout_1 = __webpack_require__(34153);
 const CrfSetting_1 = __webpack_require__(52648);
 const JpegQualitySetting_1 = __webpack_require__(73800);
+const layout_2 = __webpack_require__(34976);
 const OptionExplainerBubble_1 = __webpack_require__(11903);
 const RenderModalHr_1 = __webpack_require__(97902);
 const ScaleSetting_1 = __webpack_require__(95378);
-const layout_2 = __webpack_require__(34976);
 const qualityControlModes = ['crf', 'bitrate'];
 const container = {
     flex: 1,
@@ -13927,13 +13791,13 @@ const react_1 = __webpack_require__(67294);
 const retry_payload_1 = __webpack_require__(86524);
 const modals_1 = __webpack_require__(89750);
 const Button_1 = __webpack_require__(2111);
+const layout_1 = __webpack_require__(34153);
 const is_menu_item_1 = __webpack_require__(98185);
 const ModalContainer_1 = __webpack_require__(43896);
 const ModalHeader_1 = __webpack_require__(79659);
 const NotificationCenter_1 = __webpack_require__(9349);
 const actions_1 = __webpack_require__(73017);
 const context_1 = __webpack_require__(23697);
-const layout_1 = __webpack_require__(34153);
 const GuiRenderStatus_1 = __webpack_require__(84066);
 const container = {
     padding: 20,
@@ -13975,12 +13839,12 @@ const RenderStatusModal = ({ jobId }) => {
     const onClickOnRemove = (0, react_1.useCallback)(() => {
         setSelectedModal(null);
         (0, actions_1.removeRenderJob)(job).catch((err) => {
-            (0, NotificationCenter_1.showNotification)(`Could not remove job: ${err.message}`, 2000);
+            (0, NotificationCenter_1.sendErrorNotification)(`Could not remove job: ${err.message}`);
         });
     }, [job, setSelectedModal]);
     const onClickOnCancel = (0, react_1.useCallback)(() => {
         (0, actions_1.cancelRenderJob)(job).catch((err) => {
-            (0, NotificationCenter_1.showNotification)(`Could not cancel job: ${err.message}`, 2000);
+            (0, NotificationCenter_1.sendErrorNotification)(`Could not cancel job: ${err.message}`);
         });
     }, [job]);
     if (!job || job.status === 'idle') {
@@ -13989,97 +13853,6 @@ const RenderStatusModal = ({ jobId }) => {
     return ((0, jsx_runtime_1.jsxs)(ModalContainer_1.ModalContainer, { onOutsideClick: onQuit, onEscape: onQuit, children: [(0, jsx_runtime_1.jsx)(ModalHeader_1.NewCompHeader, { title: `Render ${job.compositionId}` }), (0, jsx_runtime_1.jsxs)("div", { style: container, children: [job.status === 'failed' ? ((0, jsx_runtime_1.jsxs)(jsx_runtime_1.Fragment, { children: [(0, jsx_runtime_1.jsx)("p", { children: "The render failed because of the following error:" }), (0, jsx_runtime_1.jsx)("div", { className: is_menu_item_1.HORIZONTAL_SCROLLBAR_CLASSNAME, style: codeBlock, children: job.error.stack })] })) : null, job.status === 'done' || job.status === 'running' ? ((0, jsx_runtime_1.jsx)(GuiRenderStatus_1.GuiRenderStatus, { job: job })) : null, (0, jsx_runtime_1.jsx)("div", { style: spacer }), (0, jsx_runtime_1.jsxs)("div", { style: buttonRow, children: [job.status === 'running' ? ((0, jsx_runtime_1.jsx)(Button_1.Button, { onClick: onClickOnCancel, children: "Cancel render" })) : ((0, jsx_runtime_1.jsx)(Button_1.Button, { onClick: onClickOnRemove, children: "Remove render" })), (0, jsx_runtime_1.jsx)(layout_1.Flex, {}), job.status === 'failed' ? ((0, jsx_runtime_1.jsx)(Button_1.Button, { onClick: onRetry, children: "Retry" })) : null, (0, jsx_runtime_1.jsx)("div", { style: spacer }), (0, jsx_runtime_1.jsx)(Button_1.Button, { onClick: onQuit, children: "Close" })] })] })] }));
 };
 exports.RenderStatusModal = RenderStatusModal;
-
-
-/***/ }),
-
-/***/ 16033:
-/***/ (function(__unused_webpack_module, exports, __webpack_require__) {
-
-"use strict";
-
-var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
-    if (k2 === undefined) k2 = k;
-    var desc = Object.getOwnPropertyDescriptor(m, k);
-    if (!desc || ("get" in desc ? !m.__esModule : desc.writable || desc.configurable)) {
-      desc = { enumerable: true, get: function() { return m[k]; } };
-    }
-    Object.defineProperty(o, k2, desc);
-}) : (function(o, m, k, k2) {
-    if (k2 === undefined) k2 = k;
-    o[k2] = m[k];
-}));
-var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {
-    Object.defineProperty(o, "default", { enumerable: true, value: v });
-}) : function(o, v) {
-    o["default"] = v;
-});
-var __importStar = (this && this.__importStar) || function (mod) {
-    if (mod && mod.__esModule) return mod;
-    var result = {};
-    if (mod != null) for (var k in mod) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
-    __setModuleDefault(result, mod);
-    return result;
-};
-Object.defineProperty(exports, "__esModule", ({ value: true }));
-exports.ResolveCompositionBeforeModal = exports.ResolvedCompositionContext = void 0;
-const jsx_runtime_1 = __webpack_require__(85893);
-const react_1 = __importStar(__webpack_require__(67294));
-const remotion_1 = __webpack_require__(27982);
-const colors_1 = __webpack_require__(38746);
-const styles_1 = __webpack_require__(25693);
-const Spinner_1 = __webpack_require__(2667);
-const layout_1 = __webpack_require__(34153);
-const loaderContainer = {
-    paddingTop: 40,
-    paddingBottom: 40,
-    paddingLeft: 100,
-    paddingRight: 100,
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
-    flexDirection: 'column',
-};
-const loaderLabel = {
-    fontSize: 14,
-    color: colors_1.LIGHT_TEXT,
-    fontFamily: 'sans-serif',
-    lineHeight: 1.5,
-};
-exports.ResolvedCompositionContext = react_1.default.createContext(null);
-const ResolveCompositionBeforeModal = ({ compositionId, children }) => {
-    const resolved = remotion_1.Internals.useResolvedVideoConfig(compositionId);
-    const unresolvedContext = (0, react_1.useContext)(remotion_1.Internals.CompositionManager);
-    const unresolved = unresolvedContext.compositions.find((c) => compositionId === c.id);
-    (0, react_1.useEffect)(() => {
-        const { current } = remotion_1.Internals.resolveCompositionsRef;
-        if (!current) {
-            throw new Error('No ref to trigger composition calc');
-        }
-        current.setCurrentRenderModalComposition(compositionId);
-        return () => {
-            current.setCurrentRenderModalComposition(null);
-        };
-    }, [compositionId]);
-    if (!unresolved) {
-        throw new Error('Composition not found: ' + compositionId);
-    }
-    const value = (0, react_1.useMemo)(() => {
-        return {
-            resolved: resolved,
-            unresolved,
-        };
-    }, [resolved, unresolved]);
-    if (!resolved || resolved.type === 'loading') {
-        return ((0, jsx_runtime_1.jsxs)("div", { style: loaderContainer, children: [(0, jsx_runtime_1.jsx)(Spinner_1.Spinner, { duration: 1, size: 30 }), (0, jsx_runtime_1.jsx)(layout_1.Spacing, { y: 2 }), (0, jsx_runtime_1.jsxs)("div", { style: loaderLabel, children: ["Running ", (0, jsx_runtime_1.jsx)("code", { style: styles_1.inlineCodeSnippet, children: "calculateMetadata()" })] })] }));
-    }
-    if (resolved.type === 'error') {
-        return ((0, jsx_runtime_1.jsxs)("div", { style: loaderContainer, children: [(0, jsx_runtime_1.jsx)(layout_1.Spacing, { y: 2 }), (0, jsx_runtime_1.jsxs)("div", { style: loaderLabel, children: ["Running ", (0, jsx_runtime_1.jsx)("code", { style: styles_1.inlineCodeSnippet, children: "calculateMetadata()" }), ' ', "yielded an error:"] }), (0, jsx_runtime_1.jsx)(layout_1.Spacing, { y: 1 }), (0, jsx_runtime_1.jsx)("div", { style: loaderLabel, children: resolved.error.message || 'Unknown error' })] }));
-    }
-    // eslint-disable-next-line react/jsx-no-useless-fragment
-    return ((0, jsx_runtime_1.jsx)(exports.ResolvedCompositionContext.Provider, { value: value, children: children }));
-};
-exports.ResolveCompositionBeforeModal = ResolveCompositionBeforeModal;
 
 
 /***/ }),
@@ -14153,11 +13926,11 @@ const jsx_runtime_1 = __webpack_require__(85893);
 const react_1 = __webpack_require__(67294);
 const document_title_1 = __webpack_require__(70441);
 const use_keybinding_1 = __webpack_require__(67442);
-const is_menu_item_1 = __webpack_require__(98185);
 const get_zod_if_possible_1 = __webpack_require__(22455);
+const is_menu_item_1 = __webpack_require__(98185);
+const deep_equal_1 = __webpack_require__(24592);
 const SchemaErrorMessages_1 = __webpack_require__(41209);
 const ZodObjectEditor_1 = __webpack_require__(81307);
-const deep_equal_1 = __webpack_require__(24592);
 const scrollable = {
     display: 'flex',
     flexDirection: 'column',
@@ -14229,8 +14002,8 @@ exports.TopLevelZodValue = exports.InvalidSchema = exports.InvalidDefaultProps =
 const jsx_runtime_1 = __webpack_require__(85893);
 const colors_1 = __webpack_require__(38746);
 const Button_1 = __webpack_require__(2111);
-const styles_1 = __webpack_require__(25693);
 const layout_1 = __webpack_require__(34153);
+const styles_1 = __webpack_require__(25693);
 const ZodErrorMessages_1 = __webpack_require__(80533);
 const explainer = {
     display: 'flex',
@@ -14299,9 +14072,9 @@ const react_1 = __webpack_require__(67294);
 const colors_1 = __webpack_require__(38746);
 const layout_1 = __webpack_require__(34153);
 const InlineRemoveButton_1 = __webpack_require__(45767);
+const get_schema_label_1 = __webpack_require__(59782);
 const SchemaResetButton_1 = __webpack_require__(46187);
 const SchemaSaveButton_1 = __webpack_require__(48470);
-const get_schema_label_1 = __webpack_require__(59782);
 const compactStyles = {
     fontSize: 15,
     color: colors_1.LIGHT_TEXT,
@@ -14552,15 +14325,15 @@ exports.ZodArrayEditor = void 0;
 const jsx_runtime_1 = __webpack_require__(85893);
 const react_1 = __importStar(__webpack_require__(67294));
 const get_zod_if_possible_1 = __webpack_require__(22455);
+const create_zod_values_1 = __webpack_require__(54756);
+const deep_equal_1 = __webpack_require__(24592);
 const Fieldset_1 = __webpack_require__(43948);
+const local_state_1 = __webpack_require__(11852);
 const SchemaLabel_1 = __webpack_require__(14599);
 const SchemaSeparationLine_1 = __webpack_require__(46989);
 const SchemaVerticalGuide_1 = __webpack_require__(37159);
 const ZodArrayItemEditor_1 = __webpack_require__(65181);
 const ZodFieldValidation_1 = __webpack_require__(83611);
-const create_zod_values_1 = __webpack_require__(54756);
-const deep_equal_1 = __webpack_require__(24592);
-const local_state_1 = __webpack_require__(11852);
 const ZodArrayEditor = ({ schema, jsonPath, setValue, defaultValue, value, onSave, showSaveButton, onRemove, saving, saveDisabledByParent, mayPad, }) => {
     const { localValue, onChange, RevisionContextProvider, reset } = (0, local_state_1.useLocalState)({
         value,
@@ -14654,8 +14427,8 @@ const jsx_runtime_1 = __webpack_require__(85893);
 const react_1 = __webpack_require__(67294);
 const Checkbox_1 = __webpack_require__(93345);
 const Fieldset_1 = __webpack_require__(43948);
-const SchemaLabel_1 = __webpack_require__(14599);
 const local_state_1 = __webpack_require__(11852);
+const SchemaLabel_1 = __webpack_require__(14599);
 const fullWidth = {
     width: '100%',
 };
@@ -14689,15 +14462,15 @@ exports.ZodColorEditor = void 0;
 const jsx_runtime_1 = __webpack_require__(85893);
 const react_1 = __webpack_require__(67294);
 const color_math_1 = __webpack_require__(29133);
+const get_zod_if_possible_1 = __webpack_require__(22455);
+const layout_1 = __webpack_require__(34153);
 const InputDragger_1 = __webpack_require__(73194);
 const RemInput_1 = __webpack_require__(60424);
 const RemInputTypeColor_1 = __webpack_require__(98749);
-const get_zod_if_possible_1 = __webpack_require__(22455);
-const layout_1 = __webpack_require__(34153);
 const Fieldset_1 = __webpack_require__(43948);
+const local_state_1 = __webpack_require__(11852);
 const SchemaLabel_1 = __webpack_require__(14599);
 const ZodFieldValidation_1 = __webpack_require__(83611);
-const local_state_1 = __webpack_require__(11852);
 const fullWidth = {
     width: '100%',
 };
@@ -14768,12 +14541,12 @@ exports.ZodDateEditor = void 0;
 const jsx_runtime_1 = __webpack_require__(85893);
 const react_1 = __webpack_require__(67294);
 const colors_1 = __webpack_require__(38746);
-const RemInput_1 = __webpack_require__(60424);
 const layout_1 = __webpack_require__(34153);
+const RemInput_1 = __webpack_require__(60424);
 const Fieldset_1 = __webpack_require__(43948);
+const local_state_1 = __webpack_require__(11852);
 const SchemaLabel_1 = __webpack_require__(14599);
 const ZodFieldValidation_1 = __webpack_require__(83611);
-const local_state_1 = __webpack_require__(11852);
 const fullWidth = {
     width: '100%',
 };
@@ -14856,13 +14629,13 @@ exports.ZodDiscriminatedUnionEditor = void 0;
 const jsx_runtime_1 = __webpack_require__(85893);
 const react_1 = __webpack_require__(67294);
 const Checkmark_1 = __webpack_require__(33644);
-const ComboBox_1 = __webpack_require__(65873);
 const get_zod_if_possible_1 = __webpack_require__(22455);
+const ComboBox_1 = __webpack_require__(65873);
+const create_zod_values_1 = __webpack_require__(54756);
 const Fieldset_1 = __webpack_require__(43948);
+const local_state_1 = __webpack_require__(11852);
 const SchemaLabel_1 = __webpack_require__(14599);
 const ZodObjectEditor_1 = __webpack_require__(81307);
-const create_zod_values_1 = __webpack_require__(54756);
-const local_state_1 = __webpack_require__(11852);
 const ZodDiscriminatedUnionEditor = ({ schema, setValue, showSaveButton, saving, value, defaultValue, saveDisabledByParent, onSave, mayPad, jsonPath, onRemove, }) => {
     const z = (0, get_zod_if_possible_1.useZodIfPossible)();
     if (!z) {
@@ -14947,9 +14720,9 @@ exports.ZodEffectEditor = void 0;
 const jsx_runtime_1 = __webpack_require__(85893);
 const get_zod_if_possible_1 = __webpack_require__(22455);
 const Fieldset_1 = __webpack_require__(43948);
+const local_state_1 = __webpack_require__(11852);
 const ZodFieldValidation_1 = __webpack_require__(83611);
 const ZodSwitch_1 = __webpack_require__(52783);
-const local_state_1 = __webpack_require__(11852);
 const fullWidth = {
     width: '100%',
 };
@@ -14986,12 +14759,12 @@ exports.ZodEnumEditor = void 0;
 const jsx_runtime_1 = __webpack_require__(85893);
 const react_1 = __webpack_require__(67294);
 const Checkmark_1 = __webpack_require__(33644);
-const ComboBox_1 = __webpack_require__(65873);
 const get_zod_if_possible_1 = __webpack_require__(22455);
+const ComboBox_1 = __webpack_require__(65873);
 const Fieldset_1 = __webpack_require__(43948);
+const local_state_1 = __webpack_require__(11852);
 const SchemaLabel_1 = __webpack_require__(14599);
 const ZodFieldValidation_1 = __webpack_require__(83611);
-const local_state_1 = __webpack_require__(11852);
 const container = {
     width: '100%',
 };
@@ -15049,8 +14822,8 @@ exports.ZodErrorMessages = void 0;
 const jsx_runtime_1 = __webpack_require__(85893);
 const react_1 = __webpack_require__(67294);
 const colors_1 = __webpack_require__(38746);
-const ValidationMessage_1 = __webpack_require__(45853);
 const layout_1 = __webpack_require__(34153);
+const ValidationMessage_1 = __webpack_require__(45853);
 const schemaLabel = {
     fontSize: 14,
     color: colors_1.LIGHT_TEXT,
@@ -15194,9 +14967,9 @@ const jsx_runtime_1 = __webpack_require__(85893);
 const react_1 = __webpack_require__(67294);
 const InputDragger_1 = __webpack_require__(73194);
 const Fieldset_1 = __webpack_require__(43948);
+const local_state_1 = __webpack_require__(11852);
 const SchemaLabel_1 = __webpack_require__(14599);
 const ZodFieldValidation_1 = __webpack_require__(83611);
-const local_state_1 = __webpack_require__(11852);
 const fullWidth = {
     width: '100%',
 };
@@ -15294,13 +15067,13 @@ const jsx_runtime_1 = __webpack_require__(85893);
 const react_1 = __importStar(__webpack_require__(67294));
 const get_zod_if_possible_1 = __webpack_require__(22455);
 const layout_1 = __webpack_require__(34976);
+const deep_equal_1 = __webpack_require__(24592);
 const Fieldset_1 = __webpack_require__(43948);
+const local_state_1 = __webpack_require__(11852);
 const SchemaLabel_1 = __webpack_require__(14599);
 const SchemaSeparationLine_1 = __webpack_require__(46989);
 const SchemaVerticalGuide_1 = __webpack_require__(37159);
 const ZodSwitch_1 = __webpack_require__(52783);
-const deep_equal_1 = __webpack_require__(24592);
-const local_state_1 = __webpack_require__(11852);
 const ZodObjectEditor = ({ schema, jsonPath, setValue, value, defaultValue, onSave, showSaveButton, onRemove, saving, saveDisabledByParent, mayPad, discriminatedUnionReplacement, }) => {
     const z = (0, get_zod_if_possible_1.useZodIfPossible)();
     if (!z) {
@@ -15395,11 +15168,11 @@ const colors_1 = __webpack_require__(38746);
 const Checkbox_1 = __webpack_require__(93345);
 const get_zod_if_possible_1 = __webpack_require__(22455);
 const layout_1 = __webpack_require__(34153);
+const create_zod_values_1 = __webpack_require__(54756);
 const Fieldset_1 = __webpack_require__(43948);
+const local_state_1 = __webpack_require__(11852);
 const SchemaLabel_1 = __webpack_require__(14599);
 const ZodSwitch_1 = __webpack_require__(52783);
-const create_zod_values_1 = __webpack_require__(54756);
-const local_state_1 = __webpack_require__(11852);
 const labelStyle = {
     fontFamily: 'sans-serif',
     fontSize: 14,
@@ -15451,12 +15224,12 @@ const jsx_runtime_1 = __webpack_require__(85893);
 const react_1 = __webpack_require__(67294);
 const remotion_1 = __webpack_require__(27982);
 const Checkmark_1 = __webpack_require__(33644);
-const ComboBox_1 = __webpack_require__(65873);
 const get_zod_if_possible_1 = __webpack_require__(22455);
+const ComboBox_1 = __webpack_require__(65873);
 const Fieldset_1 = __webpack_require__(43948);
+const local_state_1 = __webpack_require__(11852);
 const SchemaLabel_1 = __webpack_require__(14599);
 const ZodFieldValidation_1 = __webpack_require__(83611);
-const local_state_1 = __webpack_require__(11852);
 const container = {
     width: '100%',
 };
@@ -15513,12 +15286,12 @@ Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.ZodStringEditor = void 0;
 const jsx_runtime_1 = __webpack_require__(85893);
 const react_1 = __webpack_require__(67294);
-const RemInput_1 = __webpack_require__(60424);
 const get_zod_if_possible_1 = __webpack_require__(22455);
+const RemInput_1 = __webpack_require__(60424);
 const Fieldset_1 = __webpack_require__(43948);
+const local_state_1 = __webpack_require__(11852);
 const SchemaLabel_1 = __webpack_require__(14599);
 const ZodFieldValidation_1 = __webpack_require__(83611);
-const local_state_1 = __webpack_require__(11852);
 const fullWidth = {
     width: '100%',
 };
@@ -15664,12 +15437,12 @@ Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.ZodTextareaEditor = void 0;
 const jsx_runtime_1 = __webpack_require__(85893);
 const react_1 = __webpack_require__(67294);
-const RemTextarea_1 = __webpack_require__(3048);
 const get_zod_if_possible_1 = __webpack_require__(22455);
+const RemTextarea_1 = __webpack_require__(3048);
 const Fieldset_1 = __webpack_require__(43948);
+const local_state_1 = __webpack_require__(11852);
 const SchemaLabel_1 = __webpack_require__(14599);
 const ZodFieldValidation_1 = __webpack_require__(83611);
-const local_state_1 = __webpack_require__(11852);
 const fullWidth = {
     width: '100%',
 };
@@ -16234,10 +16007,10 @@ const react_1 = __webpack_require__(67294);
 const use_file_existence_1 = __webpack_require__(19808);
 const Checkbox_1 = __webpack_require__(93345);
 const layout_1 = __webpack_require__(34153);
-const OptionExplainerBubble_1 = __webpack_require__(11903);
-const RenderModalOutputName_1 = __webpack_require__(24609);
 const get_string_before_suffix_1 = __webpack_require__(14997);
 const layout_2 = __webpack_require__(34976);
+const OptionExplainerBubble_1 = __webpack_require__(11903);
+const RenderModalOutputName_1 = __webpack_require__(24609);
 const SeparateAudioOptionInput = ({ separateAudioTo, setSeparateAudioTo, audioCodec }) => {
     const existence = (0, use_file_existence_1.useFileExistence)(separateAudioTo);
     const onValueChange = (0, react_1.useCallback)((e) => {
@@ -16339,24 +16112,13 @@ const client_1 = __webpack_require__(27297);
 const getDefaultCodecs = ({ defaultConfigurationVideoCodec, compositionDefaultVideoCodec, renderType, defaultConfigurationAudioCodec, }) => {
     var _a;
     const userPreferredVideoCodec = (_a = compositionDefaultVideoCodec !== null && compositionDefaultVideoCodec !== void 0 ? compositionDefaultVideoCodec : defaultConfigurationVideoCodec) !== null && _a !== void 0 ? _a : 'h264';
-    const userPreferredVideoCodecForAudioTab = userPreferredVideoCodec === 'aac'
-        ? 'aac'
-        : userPreferredVideoCodec === 'mp3'
-            ? 'mp3'
-            : userPreferredVideoCodec === 'wav'
-                ? 'wav'
-                : defaultConfigurationAudioCodec === 'pcm-16'
-                    ? 'wav'
-                    : defaultConfigurationAudioCodec === 'mp3'
-                        ? 'mp3'
-                        : 'aac';
     const isVideoCodecAnAudioCodec = client_1.BrowserSafeApis.isAudioCodec(userPreferredVideoCodec);
     if (isVideoCodecAnAudioCodec) {
         return {
             initialAudioCodec: userPreferredVideoCodec,
             initialRenderType: 'audio',
             initialVideoCodec: userPreferredVideoCodec,
-            initialVideoCodecForAudioTab: userPreferredVideoCodecForAudioTab,
+            initialVideoCodecForAudioTab: userPreferredVideoCodec,
             initialVideoCodecForVideoTab: client_1.BrowserSafeApis.isAudioCodec(defaultConfigurationVideoCodec)
                 ? 'h264'
                 : defaultConfigurationVideoCodec,
@@ -16367,7 +16129,7 @@ const getDefaultCodecs = ({ defaultConfigurationVideoCodec, compositionDefaultVi
         initialAudioCodec: defaultConfigurationAudioCodec !== null && defaultConfigurationAudioCodec !== void 0 ? defaultConfigurationAudioCodec : suitableAudioCodecForVideoCodec,
         initialVideoCodec: userPreferredVideoCodec,
         initialRenderType: renderType,
-        initialVideoCodecForAudioTab: userPreferredVideoCodecForAudioTab,
+        initialVideoCodecForAudioTab: userPreferredVideoCodec,
         initialVideoCodecForVideoTab: userPreferredVideoCodec,
     };
 };
@@ -16815,10 +16577,16 @@ const RenderQueueCopyToClipboard = ({ job }) => {
             binariesDirectory: job.binariesDirectory,
         })
             .catch((err) => {
-            (0, NotificationCenter_1.showNotification)(`Could not copy to clipboard: ${err.message}`, 2000);
+            (0, NotificationCenter_1.sendErrorNotification)(`Could not copy to clipboard: ${err.message}`);
         })
             .then(() => {
-            (0, NotificationCenter_1.showNotification)('Copied to clipboard', 1000);
+            var _a;
+            (_a = NotificationCenter_1.notificationCenter.current) === null || _a === void 0 ? void 0 : _a.addNotification({
+                content: 'Copied to clipboard',
+                created: Date.now(),
+                duration: 1000,
+                id: String(Math.random()),
+            });
         });
     }, [job.binariesDirectory, job.outName]);
     return ((0, jsx_runtime_1.jsx)(InlineAction_1.InlineAction, { title: "Copy to clipboard", renderAction: renderCopyAction, onClick: onClick }));
@@ -16981,7 +16749,7 @@ const RenderQueueCancelButton = ({ job }) => {
     const onClick = (0, react_1.useCallback)((e) => {
         e.stopPropagation();
         (0, actions_1.cancelRenderJob)(job).catch((err) => {
-            (0, NotificationCenter_1.showNotification)(`Could not cancel job: ${err.message}`, 2000);
+            (0, NotificationCenter_1.sendErrorNotification)(`Could not cancel job: ${err.message}`);
         });
     }, [job]);
     const icon = (0, react_1.useMemo)(() => {
@@ -17099,7 +16867,7 @@ const RenderQueueOpenInFinderItem = ({ job }) => {
     const onClick = (0, react_1.useCallback)((e) => {
         e.stopPropagation();
         (0, actions_1.openInFileExplorer)({ directory: job.outName }).catch((err) => {
-            (0, NotificationCenter_1.showNotification)(`Could not open file: ${err.message}`, 2000);
+            (0, NotificationCenter_1.sendErrorNotification)(`Could not open file: ${err.message}`);
         });
     }, [job.outName]);
     const icon = (0, react_1.useMemo)(() => {
@@ -17195,10 +16963,16 @@ const RenderQueueRemoveItem = ({ job }) => {
         e.stopPropagation();
         (0, actions_1.removeRenderJob)(job)
             .then(() => {
-            (0, NotificationCenter_1.showNotification)('Removed job', 2000);
+            var _a;
+            (_a = NotificationCenter_1.notificationCenter.current) === null || _a === void 0 ? void 0 : _a.addNotification({
+                content: 'Removed job',
+                duration: 2000,
+                created: Date.now(),
+                id: String(Math.random()).replace('0.', ''),
+            });
         })
             .catch((err) => {
-            (0, NotificationCenter_1.showNotification)(`Could not remove item: ${err.message}`, 2000);
+            (0, NotificationCenter_1.sendErrorNotification)(`Could not remove item: ${err.message}`);
         });
     }, [job]);
     const icon = (0, react_1.useMemo)(() => {
@@ -17242,7 +17016,7 @@ const RenderQueueRepeatItem = ({ job }) => {
         if (isMobileLayout) {
             setSidebarCollapsedState({ left: 'collapsed', right: 'collapsed' });
         }
-    }, [isMobileLayout, job, setSelectedModal, setSidebarCollapsedState]);
+    }, [job, setSelectedModal]);
     const icon = (0, react_1.useMemo)(() => {
         return {
             height: 12,
@@ -17287,7 +17061,7 @@ exports.SuccessIcon = SuccessIcon;
 "use strict";
 
 Object.defineProperty(exports, "__esModule", ({ value: true }));
-exports.canUpdateDefaultProps = exports.updateDefaultProps = exports.getProjectInfo = exports.updateAvailable = exports.cancelRenderJob = exports.removeRenderJob = exports.applyCodemod = exports.copyToClipboard = exports.openInFileExplorer = exports.subscribeToFileExistenceWatcher = exports.unsubscribeFromFileExistenceWatcher = exports.addVideoRenderJob = exports.addSequenceRenderJob = exports.addStillRenderJob = void 0;
+exports.canUpdateDefaultProps = exports.updateDefaultProps = exports.updateAvailable = exports.cancelRenderJob = exports.removeRenderJob = exports.copyToClipboard = exports.openInFileExplorer = exports.subscribeToFileExistenceWatcher = exports.unsubscribeFromFileExistenceWatcher = exports.addVideoRenderJob = exports.addSequenceRenderJob = exports.addStillRenderJob = void 0;
 const no_react_1 = __webpack_require__(60808);
 const callApi = (endpoint, body, signal) => {
     return new Promise((resolve, reject) => {
@@ -17437,14 +17211,6 @@ const copyToClipboard = ({ outName, binariesDirectory, }) => {
     return callApi('/api/copy-still-to-clipboard', body);
 };
 exports.copyToClipboard = copyToClipboard;
-const applyCodemod = ({ codemod, dryRun, signal, }) => {
-    const body = {
-        codemod,
-        dryRun,
-    };
-    return callApi('/api/apply-codemod', body, signal);
-};
-exports.applyCodemod = applyCodemod;
 const removeRenderJob = (job) => {
     return callApi('/api/remove-render', {
         jobId: job.id,
@@ -17461,10 +17227,6 @@ const updateAvailable = (signal) => {
     return callApi('/api/update-available', {}, signal);
 };
 exports.updateAvailable = updateAvailable;
-const getProjectInfo = (signal) => {
-    return callApi('/api/project-info', {}, signal);
-};
-exports.getProjectInfo = getProjectInfo;
 const updateDefaultProps = (compositionId, defaultProps, enumPaths) => {
     return callApi('/api/update-default-props', {
         compositionId,
@@ -17586,10 +17348,10 @@ const react_1 = __importStar(__webpack_require__(67294));
 const remotion_1 = __webpack_require__(27982);
 const client_id_1 = __webpack_require__(82862);
 const colors_1 = __webpack_require__(38746);
-const is_menu_item_1 = __webpack_require__(98185);
 const layout_1 = __webpack_require__(34153);
-const RenderQueueItem_1 = __webpack_require__(77034);
+const is_menu_item_1 = __webpack_require__(98185);
 const context_1 = __webpack_require__(23697);
+const RenderQueueItem_1 = __webpack_require__(77034);
 const separatorStyle = {
     borderBottom: `1px solid ${colors_1.BORDER_COLOR}`,
 };
@@ -17703,9 +17465,9 @@ const jsx_runtime_1 = __webpack_require__(85893);
 const react_1 = __webpack_require__(67294);
 const remotion_1 = __webpack_require__(27982);
 const colors_1 = __webpack_require__(38746);
+const layout_1 = __webpack_require__(34153);
 const context_1 = __webpack_require__(23697);
 const Tabs_1 = __webpack_require__(27654);
-const layout_1 = __webpack_require__(34153);
 const row = {
     display: 'flex',
     flexDirection: 'row',
@@ -18176,19 +17938,11 @@ const SidebarRenderButton = ({ composition, visible }) => {
             initialBeep: defaults.beepOnFinish,
             initialRepro: defaults.repro,
             initialForSeamlessAacConcatenation: defaults.forSeamlessAacConcatenation,
-            renderTypeOfLastRender: null,
         });
         if (isMobileLayout) {
             setSidebarCollapsedState({ left: 'collapsed', right: 'collapsed' });
         }
-    }, [
-        composition.defaultProps,
-        composition.id,
-        isMobileLayout,
-        props,
-        setSelectedModal,
-        setSidebarCollapsedState,
-    ]);
+    }, [composition.defaultProps, composition.id, props, setSelectedModal]);
     const renderAction = (0, react_1.useCallback)((color) => {
         return (0, jsx_runtime_1.jsx)(render_1.ThinRenderIcon, { fill: color, svgProps: iconStyle });
     }, [iconStyle]);
@@ -18384,7 +18138,7 @@ exports.Spinner = Spinner;
 "use strict";
 
 Object.defineProperty(exports, "__esModule", ({ value: true }));
-exports.SplitterContainer = exports.containerColumn = void 0;
+exports.SplitterContainer = void 0;
 const jsx_runtime_1 = __webpack_require__(85893);
 const react_1 = __webpack_require__(67294);
 const timeline_1 = __webpack_require__(67245);
@@ -18394,9 +18148,8 @@ const containerRow = {
     flexDirection: 'row',
     flex: 1,
     height: '100%',
-    width: '100%',
 };
-exports.containerColumn = {
+const containerColumn = {
     display: 'flex',
     flexDirection: 'column',
     flex: 1,
@@ -18448,7 +18201,7 @@ const SplitterContainer = ({ orientation, children, defaultFlex, maxFlex, minFle
         orientation,
         persistFlex,
     ]);
-    return ((0, jsx_runtime_1.jsx)(SplitterContext_1.SplitterContext.Provider, { value: value, children: (0, jsx_runtime_1.jsx)("div", { ref: ref, style: orientation === 'horizontal' ? exports.containerColumn : containerRow, children: children }) }));
+    return ((0, jsx_runtime_1.jsx)(SplitterContext_1.SplitterContext.Provider, { value: value, children: (0, jsx_runtime_1.jsx)("div", { ref: ref, style: orientation === 'horizontal' ? containerColumn : containerRow, children: children }) }));
 };
 exports.SplitterContainer = SplitterContainer;
 
@@ -18893,8 +18646,8 @@ const colors_1 = __webpack_require__(38746);
 const is_current_selected_still_1 = __webpack_require__(14970);
 const use_keybinding_1 = __webpack_require__(67442);
 const render_frame_1 = __webpack_require__(70401);
-const InputDragger_1 = __webpack_require__(73194);
 const layout_1 = __webpack_require__(34153);
+const InputDragger_1 = __webpack_require__(73194);
 const text = {
     color: 'white',
     display: 'flex',
@@ -19100,7 +18853,9 @@ const is_menu_item_1 = __webpack_require__(98185);
 const SplitterContainer_1 = __webpack_require__(70980);
 const SplitterElement_1 = __webpack_require__(4042);
 const SplitterHandle_1 = __webpack_require__(55052);
+const is_collapsed_1 = __webpack_require__(34192);
 const MaxTimelineTracks_1 = __webpack_require__(14402);
+const timeline_refs_1 = __webpack_require__(33761);
 const TimelineDragHandler_1 = __webpack_require__(46001);
 const TimelineInOutPointer_1 = __webpack_require__(47159);
 const TimelineList_1 = __webpack_require__(5754);
@@ -19110,8 +18865,6 @@ const TimelineSlider_1 = __webpack_require__(31769);
 const TimelineTimeIndicators_1 = __webpack_require__(63795);
 const TimelineTracks_1 = __webpack_require__(49741);
 const TimelineWidthProvider_1 = __webpack_require__(93054);
-const is_collapsed_1 = __webpack_require__(34192);
-const timeline_refs_1 = __webpack_require__(33761);
 const container = {
     minHeight: '100%',
     flex: 1,
@@ -19183,12 +18936,12 @@ const z_index_1 = __webpack_require__(19666);
 const ContextMenu_1 = __webpack_require__(59309);
 const is_menu_item_1 = __webpack_require__(98185);
 const TimelineInOutToggle_1 = __webpack_require__(25440);
+const timeline_refs_1 = __webpack_require__(33761);
+const timeline_scroll_logic_1 = __webpack_require__(74138);
 const TimelineInOutPointer_1 = __webpack_require__(47159);
 const TimelineInOutPointerHandle_1 = __webpack_require__(12840);
 const TimelineSlider_1 = __webpack_require__(31769);
 const TimelineWidthProvider_1 = __webpack_require__(93054);
-const timeline_refs_1 = __webpack_require__(33761);
-const timeline_scroll_logic_1 = __webpack_require__(74138);
 const inner = {
     overflowY: 'auto',
     overflowX: 'hidden',
@@ -20036,7 +19789,6 @@ const TimelineSequence = ({ s }) => {
 };
 exports.TimelineSequence = TimelineSequence;
 const Inner = ({ s, windowWidth }) => {
-    var _a;
     // If a duration is 1, it is essentially a still and it should have width 0
     // Some compositions may not be longer than their media duration,
     // if that is the case, it needs to be asynchronously determined
@@ -20047,13 +19799,9 @@ const Inner = ({ s, windowWidth }) => {
     }
     const frame = (0, remotion_1.useCurrentFrame)();
     const relativeFrame = frame - s.from;
-    const relativeFrameWithPremount = relativeFrame + ((_a = s.premountDisplay) !== null && _a !== void 0 ? _a : 0);
     const roundedFrame = Math.round(relativeFrame * 100) / 100;
     const isInRange = relativeFrame >= 0 && relativeFrame < s.duration;
-    const isPremounting = relativeFrameWithPremount >= 0 &&
-        relativeFrameWithPremount < s.duration &&
-        !isInRange;
-    const { marginLeft, width, premountWidth } = (0, react_1.useMemo)(() => {
+    const { marginLeft, width } = (0, react_1.useMemo)(() => {
         return (0, get_timeline_sequence_layout_1.getTimelineSequenceLayout)({
             durationInFrames: s.loopDisplay
                 ? s.loopDisplay.durationInFrames * s.loopDisplay.numberOfTimes
@@ -20063,7 +19811,6 @@ const Inner = ({ s, windowWidth }) => {
             maxMediaDuration,
             video,
             windowWidth,
-            premountDisplay: s.premountDisplay,
         });
     }, [maxMediaDuration, s, video, windowWidth]);
     const style = (0, react_1.useMemo)(() => {
@@ -20084,26 +19831,15 @@ const Inner = ({ s, windowWidth }) => {
             opacity: isInRange ? 1 : 0.5,
         };
     }, [isInRange, marginLeft, s.type, width]);
-    return ((0, jsx_runtime_1.jsxs)("div", { style: style, title: s.displayName, children: [premountWidth ? ((0, jsx_runtime_1.jsx)("div", { style: {
-                    width: premountWidth,
-                    height: '100%',
-                    background: `repeating-linear-gradient(
-							-45deg,
-							transparent,
-							transparent 2px,
-							rgba(255, 255, 255, ${isPremounting ? 0.5 : 0.2}) 2px,
-							rgba(255, 255, 255, ${isPremounting ? 0.5 : 0.2}) 4px
-						)`,
-                    position: 'absolute',
-                } })) : null, s.type === 'audio' ? ((0, jsx_runtime_1.jsx)(AudioWaveform_1.AudioWaveform, { src: s.src, doesVolumeChange: s.doesVolumeChange, visualizationWidth: width, startFrom: s.startMediaFrom, durationInFrames: s.duration, volume: s.volume, setMaxMediaDuration: setMaxMediaDuration, playbackRate: s.playbackRate })) : null, s.type === 'video' ? (0, jsx_runtime_1.jsx)(TimelineVideoInfo_1.TimelineVideoInfo, { src: s.src }) : null, s.loopDisplay === undefined ? null : ((0, jsx_runtime_1.jsx)(LoopedTimelineIndicators_1.LoopedTimelineIndicator, { loops: s.loopDisplay.numberOfTimes })), s.type !== 'audio' &&
+    return ((0, jsx_runtime_1.jsxs)("div", { style: style, title: s.displayName, children: [s.type === 'audio' ? ((0, jsx_runtime_1.jsx)(AudioWaveform_1.AudioWaveform, { src: s.src, doesVolumeChange: s.doesVolumeChange, visualizationWidth: width, startFrom: s.startMediaFrom, durationInFrames: s.duration, volume: s.volume, setMaxMediaDuration: setMaxMediaDuration, playbackRate: s.playbackRate })) : null, s.type === 'video' ? (0, jsx_runtime_1.jsx)(TimelineVideoInfo_1.TimelineVideoInfo, { src: s.src }) : null, s.loopDisplay === undefined ? null : ((0, jsx_runtime_1.jsx)(LoopedTimelineIndicators_1.LoopedTimelineIndicator, { loops: s.loopDisplay.numberOfTimes })), s.type !== 'audio' &&
                 s.type !== 'video' &&
                 s.loopDisplay === undefined &&
-                (isInRange || isPremounting) ? ((0, jsx_runtime_1.jsx)("div", { style: {
-                    paddingLeft: 5 + (premountWidth !== null && premountWidth !== void 0 ? premountWidth : 0),
+                isInRange ? ((0, jsx_runtime_1.jsx)("div", { style: {
+                    paddingLeft: 5,
                     height: '100%',
                     display: 'flex',
                     alignItems: 'center',
-                }, children: (0, jsx_runtime_1.jsx)(TimelineSequenceFrame_1.TimelineSequenceFrame, { premounted: isPremounting, roundedFrame: roundedFrame }) })) : null] }, s.id));
+                }, children: (0, jsx_runtime_1.jsx)(TimelineSequenceFrame_1.TimelineSequenceFrame, { roundedFrame: roundedFrame }) })) : null] }, s.id));
 };
 
 
@@ -20123,8 +19859,8 @@ const relativeFrameStyle = {
     color: 'white',
     opacity: 0.5,
 };
-const TimelineSequenceFrame = ({ roundedFrame, premounted }) => {
-    return ((0, jsx_runtime_1.jsx)("div", { style: relativeFrameStyle, children: premounted ? '0 (Premounted)' : roundedFrame }));
+const TimelineSequenceFrame = ({ roundedFrame }) => {
+    return (0, jsx_runtime_1.jsx)("div", { style: relativeFrameStyle, children: roundedFrame });
 };
 exports.TimelineSequenceFrame = TimelineSequenceFrame;
 
@@ -20142,10 +19878,10 @@ const jsx_runtime_1 = __webpack_require__(85893);
 const react_1 = __webpack_require__(67294);
 const remotion_1 = __webpack_require__(27982);
 const get_left_of_timeline_slider_1 = __webpack_require__(90014);
-const TimelineSliderHandle_1 = __webpack_require__(36331);
-const TimelineWidthProvider_1 = __webpack_require__(93054);
 const imperative_state_1 = __webpack_require__(15703);
 const timeline_refs_1 = __webpack_require__(33761);
+const TimelineSliderHandle_1 = __webpack_require__(36331);
+const TimelineWidthProvider_1 = __webpack_require__(93054);
 const container = {
     position: 'absolute',
     bottom: 0,
@@ -20316,15 +20052,14 @@ const get_git_menu_item_1 = __webpack_require__(74457);
 const open_in_editor_1 = __webpack_require__(48513);
 const url_state_1 = __webpack_require__(59207);
 const InitialCompositionLoader_1 = __webpack_require__(88219);
+const layout_1 = __webpack_require__(34153);
 const NotificationCenter_1 = __webpack_require__(9349);
 const Spinner_1 = __webpack_require__(2667);
-const layout_1 = __webpack_require__(34153);
 const get_stack_1 = __webpack_require__(84899);
 const source_attribution_1 = __webpack_require__(81419);
 // @ts-expect-error
 source_map_1.SourceMapConsumer.initialize({
-    'lib/mappings.wasm': (window.remotion_publicPath === '/' ? '' : window.remotion_publicPath) +
-        studio_shared_1.SOURCE_MAP_ENDPOINT,
+    'lib/mappings.wasm': studio_shared_1.SOURCE_MAP_ENDPOINT,
 });
 const TimelineStack = ({ isCompact, sequence }) => {
     const [originalLocation, setOriginalLocation] = (0, react_1.useState)(null);
@@ -20364,7 +20099,7 @@ const TimelineStack = ({ isCompact, sequence }) => {
             });
         }
         catch (err) {
-            (0, NotificationCenter_1.showNotification)(err.message, 2000);
+            (0, NotificationCenter_1.sendErrorNotification)(err.message);
         }
         finally {
             setOpening(false);
@@ -20524,9 +20259,9 @@ const timeline_layout_1 = __webpack_require__(82799);
 const render_frame_1 = __webpack_require__(70401);
 const SplitterHandle_1 = __webpack_require__(55052);
 const TimeValue_1 = __webpack_require__(78000);
-const TimelineWidthProvider_1 = __webpack_require__(93054);
 const timeline_refs_1 = __webpack_require__(33761);
 const timeline_scroll_logic_1 = __webpack_require__(74138);
+const TimelineWidthProvider_1 = __webpack_require__(93054);
 exports.TIMELINE_TIME_INDICATOR_HEIGHT = 39;
 const container = {
     height: exports.TIMELINE_TIME_INDICATOR_HEIGHT - 4,
@@ -20681,10 +20416,10 @@ exports.TimelineTracks = void 0;
 const jsx_runtime_1 = __webpack_require__(85893);
 const react_1 = __webpack_require__(67294);
 const timeline_layout_1 = __webpack_require__(82799);
+const is_collapsed_1 = __webpack_require__(34192);
 const MaxTimelineTracks_1 = __webpack_require__(14402);
 const TimelineSequence_1 = __webpack_require__(92901);
 const TimelineTimeIndicators_1 = __webpack_require__(63795);
-const is_collapsed_1 = __webpack_require__(34192);
 const content = {
     paddingLeft: timeline_layout_1.TIMELINE_PADDING,
     paddingRight: timeline_layout_1.TIMELINE_PADDING,
@@ -20962,8 +20697,8 @@ Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.zoomAndPreserveCursor = exports.getFrameFromX = exports.getFrameWhileScrollingRight = exports.getFrameIncrementFromWidth = exports.getScrollPositionForCursorOnRightEdge = exports.getScrollPositionForCursorOnLeftEdge = exports.scrollToTimelineXOffset = exports.ensureFrameIsInViewport = exports.isCursorInViewport = exports.getFrameWhileScrollingLeft = exports.canScrollTimelineIntoDirection = void 0;
 const remotion_1 = __webpack_require__(27982);
 const timeline_layout_1 = __webpack_require__(82799);
-const TimelineSlider_1 = __webpack_require__(31769);
 const timeline_refs_1 = __webpack_require__(33761);
+const TimelineSlider_1 = __webpack_require__(31769);
 const canScrollTimelineIntoDirection = () => {
     const current = timeline_refs_1.scrollableRef.current;
     const { scrollWidth, scrollLeft, clientWidth } = current;
@@ -21673,12 +21408,13 @@ const jsx_runtime_1 = __webpack_require__(85893);
 const react_1 = __webpack_require__(67294);
 const colors_1 = __webpack_require__(38746);
 const copy_text_1 = __webpack_require__(73760);
+const modals_1 = __webpack_require__(89750);
 const CopyButton_1 = __webpack_require__(18471);
 const KnownBugs_1 = __webpack_require__(26709);
-const ModalHeader_1 = __webpack_require__(79659);
-const DismissableModal_1 = __webpack_require__(44741);
-const NotificationCenter_1 = __webpack_require__(9349);
 const layout_1 = __webpack_require__(34153);
+const ModalContainer_1 = __webpack_require__(43896);
+const ModalHeader_1 = __webpack_require__(79659);
+const NotificationCenter_1 = __webpack_require__(9349);
 const container = {
     padding: 20,
     paddingTop: 0,
@@ -21712,16 +21448,20 @@ const commands = {
     unknown: 'npx remotion upgrade',
 };
 const UpdateModal = ({ info, knownBugs }) => {
+    const { setSelectedModal } = (0, react_1.useContext)(modals_1.ModalsContext);
+    const onQuit = (0, react_1.useCallback)(() => {
+        setSelectedModal(null);
+    }, [setSelectedModal]);
     const hasKnownBugs = (0, react_1.useMemo)(() => {
         return knownBugs && (knownBugs === null || knownBugs === void 0 ? void 0 : knownBugs.length) > 0;
     }, [knownBugs]);
     const command = commands[info.packageManager];
     const onClick = (0, react_1.useCallback)(() => {
         (0, copy_text_1.copyText)(command).catch((err) => {
-            (0, NotificationCenter_1.showNotification)(`Could not copy: ${err.message}`, 2000);
+            (0, NotificationCenter_1.sendErrorNotification)(`Could not copy: ${err.message}`);
         });
     }, [command]);
-    return ((0, jsx_runtime_1.jsxs)(DismissableModal_1.DismissableModal, { children: [(0, jsx_runtime_1.jsx)(ModalHeader_1.NewCompHeader, { title: "Update available" }), (0, jsx_runtime_1.jsxs)("div", { style: container, children: [hasKnownBugs ? ((0, jsx_runtime_1.jsxs)(jsx_runtime_1.Fragment, { children: [(0, jsx_runtime_1.jsxs)("div", { style: title, children: ["The currently installed version ", info.currentVersion, " has the following known bugs:"] }), (0, jsx_runtime_1.jsx)(KnownBugs_1.KnownBugs, { bugs: knownBugs }), (0, jsx_runtime_1.jsx)("div", { style: { height: '20px' } }), (0, jsx_runtime_1.jsx)("div", { style: text, children: "To upgrade, run the following command:" })] })) : ((0, jsx_runtime_1.jsx)("div", { style: title, children: "A new update for Remotion is available! Run the following command:" })), (0, jsx_runtime_1.jsxs)(layout_1.Row, { align: "center", children: [(0, jsx_runtime_1.jsx)(layout_1.Flex, { children: (0, jsx_runtime_1.jsx)("pre", { onClick: onClick, style: code, children: command }) }), (0, jsx_runtime_1.jsx)(layout_1.Spacing, { x: 1 }), (0, jsx_runtime_1.jsx)(CopyButton_1.CopyButton, { textToCopy: command, label: "Copy", labelWhenCopied: "Copied!" })] }), (0, jsx_runtime_1.jsxs)("div", { style: text, children: ["This will upgrade Remotion from ", info.currentVersion, " to", ' ', info.latestVersion, "."] }), (0, jsx_runtime_1.jsxs)("div", { style: text, children: ["Read the", ' ', (0, jsx_runtime_1.jsx)("a", { style: link, target: "_blank", href: "https://github.com/remotion-dev/remotion/releases", children: "Release notes" }), ' ', "to know what", "'s", " new in Remotion."] })] })] }));
+    return ((0, jsx_runtime_1.jsxs)(ModalContainer_1.ModalContainer, { onOutsideClick: onQuit, onEscape: onQuit, children: [(0, jsx_runtime_1.jsx)(ModalHeader_1.NewCompHeader, { title: "Update available" }), (0, jsx_runtime_1.jsxs)("div", { style: container, children: [hasKnownBugs ? ((0, jsx_runtime_1.jsxs)(jsx_runtime_1.Fragment, { children: [(0, jsx_runtime_1.jsxs)("div", { style: title, children: ["The currently installed version ", info.currentVersion, " has the following known bugs:"] }), (0, jsx_runtime_1.jsx)(KnownBugs_1.KnownBugs, { bugs: knownBugs }), (0, jsx_runtime_1.jsx)("div", { style: { height: '20px' } }), (0, jsx_runtime_1.jsx)("div", { style: text, children: "To upgrade, run the following command:" })] })) : ((0, jsx_runtime_1.jsx)("div", { style: title, children: "A new update for Remotion is available! Run the following command:" })), (0, jsx_runtime_1.jsxs)(layout_1.Row, { align: "center", children: [(0, jsx_runtime_1.jsx)(layout_1.Flex, { children: (0, jsx_runtime_1.jsx)("pre", { onClick: onClick, style: code, children: command }) }), (0, jsx_runtime_1.jsx)(layout_1.Spacing, { x: 1 }), (0, jsx_runtime_1.jsx)(CopyButton_1.CopyButton, { textToCopy: command, label: "Copy", labelWhenCopied: "Copied!" })] }), (0, jsx_runtime_1.jsxs)("div", { style: text, children: ["This will upgrade Remotion from ", info.currentVersion, " to", ' ', info.latestVersion, "."] }), (0, jsx_runtime_1.jsxs)("div", { style: text, children: ["Read the", ' ', (0, jsx_runtime_1.jsx)("a", { style: link, target: "_blank", href: "https://github.com/remotion-dev/remotion/releases", children: "Release notes" }), ' ', "to know what", "'s", " new in Remotion."] })] })] }));
 };
 exports.UpdateModal = UpdateModal;
 
@@ -21981,8 +21721,14 @@ Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.handleUploadFile = void 0;
 const NotificationCenter_1 = __webpack_require__(9349);
 const handleUploadFile = async (file, assetPath) => {
+    var _a, _b, _c, _d;
     if (!file) {
-        (0, NotificationCenter_1.showNotification)('Please select a file first!', 3000);
+        (_a = NotificationCenter_1.notificationCenter.current) === null || _a === void 0 ? void 0 : _a.addNotification({
+            content: `Please select a file first!`,
+            created: Date.now(),
+            duration: 3000,
+            id: String(Math.random()),
+        });
         return;
     }
     try {
@@ -21996,15 +21742,30 @@ const handleUploadFile = async (file, assetPath) => {
             body: file,
         });
         if (response.ok) {
-            (0, NotificationCenter_1.showNotification)(`Added ${file.name} to ${assetPath}`, 3000);
+            (_b = NotificationCenter_1.notificationCenter.current) === null || _b === void 0 ? void 0 : _b.addNotification({
+                content: `Added ${file.name} to ${assetPath}`,
+                created: Date.now(),
+                duration: 3000,
+                id: String(Math.random()),
+            });
         }
         else {
             const jsonResponse = await response.json();
-            (0, NotificationCenter_1.showNotification)(`Upload failed: ${jsonResponse.error}`, 3000);
+            (_c = NotificationCenter_1.notificationCenter.current) === null || _c === void 0 ? void 0 : _c.addNotification({
+                content: `Upload failed: ${jsonResponse.error}`,
+                created: Date.now(),
+                duration: 3000,
+                id: String(Math.random()),
+            });
         }
     }
     catch (error) {
-        (0, NotificationCenter_1.showNotification)(`Error during upload: ${error}`, 3000);
+        (_d = NotificationCenter_1.notificationCenter.current) === null || _d === void 0 ? void 0 : _d.addNotification({
+            content: `Error during upload: ${error}`,
+            created: Date.now(),
+            duration: 3000,
+            id: String(Math.random()),
+        });
     }
 };
 exports.handleUploadFile = handleUploadFile;
@@ -22948,17 +22709,17 @@ exports.ErrorDisplay = void 0;
 const jsx_runtime_1 = __webpack_require__(85893);
 const studio_shared_1 = __webpack_require__(87154);
 const react_1 = __webpack_require__(67294);
-const is_menu_item_1 = __webpack_require__(98185);
 const layout_1 = __webpack_require__(34153);
+const is_menu_item_1 = __webpack_require__(98185);
 const AskOnDiscord_1 = __webpack_require__(72639);
 const CalculateMetadataErrorExplainer_1 = __webpack_require__(80058);
 const ErrorTitle_1 = __webpack_require__(48324);
+const get_help_link_1 = __webpack_require__(26099);
 const HelpLink_1 = __webpack_require__(16698);
 const OpenInEditor_1 = __webpack_require__(61078);
 const Retry_1 = __webpack_require__(39526);
 const SearchGitHubIssues_1 = __webpack_require__(38118);
 const StackFrame_1 = __webpack_require__(86359);
-const get_help_link_1 = __webpack_require__(26099);
 const stack = {
     marginTop: 17,
     overflowX: 'scroll',
@@ -23515,8 +23276,8 @@ exports.StackElement = void 0;
 const jsx_runtime_1 = __webpack_require__(85893);
 const react_1 = __webpack_require__(67294);
 const Button_1 = __webpack_require__(2111);
-const CodeFrame_1 = __webpack_require__(21123);
 const carets_1 = __webpack_require__(49390);
+const CodeFrame_1 = __webpack_require__(21123);
 const format_location_1 = __webpack_require__(65133);
 const location = {
     color: 'rgba(255, 255, 255, 0.6)',
@@ -23702,7 +23463,6 @@ const calculateTimeline = ({ sequences, sequenceDuration, }) => {
                     nonce: 0,
                     loopDisplay: undefined,
                     stack: null,
-                    premountDisplay: null,
                 },
                 depth: 0,
                 hash: '-',
@@ -23873,7 +23633,7 @@ const PreviewServerConnection = ({ children, readOnlyStudio }) => {
                 }
             }
             if (newEvent.type === 'render-job-failed') {
-                (0, NotificationCenter_1.showNotification)(`Rendering "${newEvent.compositionId}" failed`, 2000);
+                (0, NotificationCenter_1.sendErrorNotification)(`Rendering "${newEvent.compositionId}" failed`);
             }
             if (newEvent.type === 'new-public-folder') {
                 const payload = {
@@ -24812,7 +24572,7 @@ const getWidthOfTrack = ({ durationInFrames, lastFrame, windowWidth, spatialDura
         : (spatialDuration / lastFrame) * fullWidth;
     return base - exports.SEQUENCE_BORDER_WIDTH + nonNegativeMarginLeft;
 };
-const getTimelineSequenceLayout = ({ durationInFrames, startFrom, maxMediaDuration, startFromMedia, video, windowWidth, premountDisplay, }) => {
+const getTimelineSequenceLayout = ({ durationInFrames, startFrom, maxMediaDuration, startFromMedia, video, windowWidth, }) => {
     var _a;
     const maxMediaSequenceDuration = (maxMediaDuration !== null && maxMediaDuration !== void 0 ? maxMediaDuration : Infinity) - startFromMedia;
     const lastFrame = ((_a = video.durationInFrames) !== null && _a !== void 0 ? _a : 1) - 1;
@@ -24833,26 +24593,15 @@ const getTimelineSequenceLayout = ({ durationInFrames, startFrom, maxMediaDurati
         : (startFromWithOffset / lastFrame) *
             (windowWidth - timeline_layout_1.TIMELINE_PADDING * 2);
     const nonNegativeMarginLeft = Math.min(marginLeft, 0);
-    const width = Math.floor(getWidthOfTrack({
-        durationInFrames,
-        lastFrame,
-        nonNegativeMarginLeft,
-        spatialDuration,
-        windowWidth,
-    }));
-    const premountWidth = premountDisplay
-        ? Math.floor(getWidthOfTrack({
-            durationInFrames: premountDisplay,
+    return {
+        marginLeft: Math.round(Math.max(marginLeft, 0)),
+        width: Math.floor(getWidthOfTrack({
+            durationInFrames,
             lastFrame,
             nonNegativeMarginLeft,
-            spatialDuration: premountDisplay,
+            spatialDuration,
             windowWidth,
-        }))
-        : null;
-    return {
-        marginLeft: Math.round(Math.max(marginLeft, 0)) - (premountWidth !== null && premountWidth !== void 0 ? premountWidth : 0),
-        width: width + (premountWidth !== null && premountWidth !== void 0 ? premountWidth : 0),
-        premountWidth,
+        })),
     };
 };
 exports.getTimelineSequenceLayout = getTimelineSequenceLayout;
@@ -25070,17 +24819,29 @@ const pickColor = () => {
         .then((color) => {
         (0, copy_text_1.copyText)(color.sRGBHex)
             .then(() => {
-            (0, NotificationCenter_1.showNotification)((0, jsx_runtime_1.jsxs)(jsx_runtime_1.Fragment, { children: [(0, jsx_runtime_1.jsx)(ColorDot_1.ColorDot, { color: color.sRGBHex }), " ", (0, jsx_runtime_1.jsx)(layout_1.Spacing, { x: 1 }), " Copied", ' ', color.sRGBHex] }), 2000);
+            var _a;
+            (_a = NotificationCenter_1.notificationCenter.current) === null || _a === void 0 ? void 0 : _a.addNotification({
+                content: ((0, jsx_runtime_1.jsxs)(jsx_runtime_1.Fragment, { children: [(0, jsx_runtime_1.jsx)(ColorDot_1.ColorDot, { color: color.sRGBHex }), " ", (0, jsx_runtime_1.jsx)(layout_1.Spacing, { x: 1 }), " Copied", ' ', color.sRGBHex] })),
+                created: Date.now(),
+                duration: 2000,
+                id: String(Math.random()),
+            });
         })
             .catch((err) => {
-            (0, NotificationCenter_1.showNotification)(`Could not copy: ${err.message}`, 2000);
+            (0, NotificationCenter_1.sendErrorNotification)(`Could not copy: ${err.message}`);
         });
     })
         .catch((err) => {
+        var _a;
         if (err.message.includes('canceled')) {
             return;
         }
-        (0, NotificationCenter_1.showNotification)(`Could not pick color.`, 2000);
+        (_a = NotificationCenter_1.notificationCenter.current) === null || _a === void 0 ? void 0 : _a.addNotification({
+            content: `Could not pick color.`,
+            duration: 2000,
+            created: Date.now(),
+            id: String(Math.random()),
+        });
     });
 };
 exports.pickColor = pickColor;
@@ -25265,7 +25026,6 @@ const makeRetryPayload = (job) => {
             initialBeep: job.beepOnFinish,
             initialRepro: job.repro,
             initialForSeamlessAacConcatenation: defaults.forSeamlessAacConcatenation,
-            renderTypeOfLastRender: 'still',
         };
     }
     if (job.type === 'sequence') {
@@ -25310,7 +25070,6 @@ const makeRetryPayload = (job) => {
             initialBeep: job.beepOnFinish,
             initialRepro: job.repro,
             initialForSeamlessAacConcatenation: defaults.forSeamlessAacConcatenation,
-            renderTypeOfLastRender: 'sequence',
         };
     }
     if (job.type === 'video') {
@@ -25355,7 +25114,6 @@ const makeRetryPayload = (job) => {
             initialBeep: job.beepOnFinish,
             initialRepro: job.repro,
             initialForSeamlessAacConcatenation: job.forSeamlessAacConcatenation,
-            renderTypeOfLastRender: 'video',
         };
     }
     throw new Error(`Job ${JSON.stringify(job)} Not implemented`);
@@ -25675,11 +25433,11 @@ const jsx_runtime_1 = __webpack_require__(85893);
 const react_1 = __webpack_require__(67294);
 const remotion_1 = __webpack_require__(27982);
 const no_react_1 = __webpack_require__(60808);
+const layout_1 = __webpack_require__(34153);
 const NotificationCenter_1 = __webpack_require__(9349);
 const SizeSelector_1 = __webpack_require__(33876);
-const TimeValue_1 = __webpack_require__(78000);
 const TimelineInOutToggle_1 = __webpack_require__(25440);
-const layout_1 = __webpack_require__(34153);
+const TimeValue_1 = __webpack_require__(78000);
 const ShortcutHint_1 = __webpack_require__(81994);
 const Checkmark_1 = __webpack_require__(33644);
 const canvas_ref_1 = __webpack_require__(22108);
@@ -25702,8 +25460,52 @@ const rotate = {
     transform: `rotate(90deg)`,
 };
 const ICON_SIZE = 16;
-const getFileMenu = ({ readOnlyStudio, closeMenu, previewServerState, }) => {
+const getFileMenu = ({ readOnlyStudio, closeMenu, setSelectedModal, previewServerState, }) => {
     const items = [
+        readOnlyStudio
+            ? null
+            : {
+                id: 'new-sequence',
+                value: 'new-sequence',
+                label: 'New composition...',
+                onClick: () => {
+                    closeMenu();
+                    setSelectedModal({
+                        compType: 'composition',
+                        type: 'new-comp',
+                    });
+                },
+                type: 'item',
+                keyHint: 'N',
+                leftItem: null,
+                subMenu: null,
+                quickSwitcherLabel: 'New composition...',
+            },
+        readOnlyStudio
+            ? null
+            : {
+                id: 'new-still',
+                value: 'new-still',
+                label: 'New still...',
+                onClick: () => {
+                    closeMenu();
+                    setSelectedModal({
+                        compType: 'still',
+                        type: 'new-comp',
+                    });
+                },
+                type: 'item',
+                keyHint: null,
+                leftItem: null,
+                subMenu: null,
+                quickSwitcherLabel: 'New still...',
+            },
+        readOnlyStudio
+            ? null
+            : {
+                type: 'divider',
+                id: 'new-divider',
+            },
         readOnlyStudio
             ? null
             : {
@@ -25713,7 +25515,7 @@ const getFileMenu = ({ readOnlyStudio, closeMenu, previewServerState, }) => {
                 onClick: () => {
                     closeMenu();
                     if (previewServerState !== 'connected') {
-                        (0, NotificationCenter_1.showNotification)('Restart the studio to render', 2000);
+                        (0, NotificationCenter_1.sendErrorNotification)('Restart the studio to render');
                         return;
                     }
                     const renderButton = document.getElementById('render-modal-button');
@@ -25747,13 +25549,13 @@ const getFileMenu = ({ readOnlyStudio, closeMenu, previewServerState, }) => {
                         .then((res) => res.json())
                         .then(({ success }) => {
                         if (!success) {
-                            (0, NotificationCenter_1.showNotification)(`Could not open ${window.remotion_editorName}`, 2000);
+                            (0, NotificationCenter_1.sendErrorNotification)(`Could not open ${window.remotion_editorName}`);
                         }
                     })
                         .catch((err) => {
                         // eslint-disable-next-line no-console
                         console.error(err);
-                        (0, NotificationCenter_1.showNotification)(`Could not open ${window.remotion_editorName}`, 2000);
+                        (0, NotificationCenter_1.sendErrorNotification)(`Could not open ${window.remotion_editorName}`);
                     });
                 },
                 type: 'item',
@@ -25858,6 +25660,7 @@ const useMenuStructure = (closeMenu, readOnlyStudio) => {
                 readOnlyStudio,
                 closeMenu,
                 previewServerState: type,
+                setSelectedModal,
             }),
             {
                 id: 'view',
@@ -26576,13 +26379,13 @@ const validateCompositionDimension = (dimension, value) => {
 };
 exports.validateCompositionDimension = validateCompositionDimension;
 const validateCompositionDuration = (value) => {
-    if (value % 1 !== 0) {
+    if (Number(value) % 1 !== 0) {
         return `Duration must be an integer.`;
     }
-    if (Number.isNaN(value)) {
+    if (Number.isNaN(Number(value))) {
         return 'Invalid number.';
     }
-    if (value === 0) {
+    if (Number(value) === 0) {
         return 'Duration cannot be zero.';
     }
     return null;
@@ -26818,6 +26621,26 @@ exports.ArrowRight = ArrowRight;
 
 /***/ }),
 
+/***/ 42810:
+/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+exports.UnlockIcon = exports.LockIcon = void 0;
+const jsx_runtime_1 = __webpack_require__(85893);
+const LockIcon = (props) => {
+    return ((0, jsx_runtime_1.jsx)("svg", { viewBox: "0 0 448 512", ...props, children: (0, jsx_runtime_1.jsx)("path", { fill: "currentColor", d: "M400 224h-24v-72C376 68.2 307.8 0 224 0S72 68.2 72 152v72H48c-26.5 0-48 21.5-48 48v192c0 26.5 21.5 48 48 48h352c26.5 0 48-21.5 48-48V272c0-26.5-21.5-48-48-48zm-104 0H152v-72c0-39.7 32.3-72 72-72s72 32.3 72 72v72z" }) }));
+};
+exports.LockIcon = LockIcon;
+const UnlockIcon = (props) => {
+    return ((0, jsx_runtime_1.jsx)("svg", { viewBox: "0 0 448 512", ...props, children: (0, jsx_runtime_1.jsx)("path", { fill: "currentColor", d: "M400 256H152V152.9c0-39.6 31.7-72.5 71.3-72.9 40-.4 72.7 32.1 72.7 72v16c0 13.3 10.7 24 24 24h32c13.3 0 24-10.7 24-24v-16C376 68 307.5-.3 223.5 0 139.5.3 72 69.5 72 153.5V256H48c-26.5 0-48 21.5-48 48v160c0 26.5 21.5 48 48 48h352c26.5 0 48-21.5 48-48V304c0-26.5-21.5-48-48-48z" }) }));
+};
+exports.UnlockIcon = UnlockIcon;
+
+
+/***/ }),
+
 /***/ 90276:
 /***/ ((__unused_webpack_module, exports, __webpack_require__) => {
 
@@ -27013,6 +26836,30 @@ Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.Studio = void 0;
 var Studio_1 = __webpack_require__(31971);
 Object.defineProperty(exports, "Studio", ({ enumerable: true, get: function () { return Studio_1.Studio; } }));
+
+
+/***/ }),
+
+/***/ 43782:
+/***/ ((__unused_webpack_module, exports) => {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+exports.loadAspectRatioOption = exports.persistAspectRatioOption = void 0;
+const aspectRatioLocalStorageKey = 'aspectRatio';
+const persistAspectRatioOption = (option) => {
+    localStorage.setItem(aspectRatioLocalStorageKey, String(option));
+};
+exports.persistAspectRatioOption = persistAspectRatioOption;
+const loadAspectRatioOption = () => {
+    const item = localStorage.getItem(aspectRatioLocalStorageKey);
+    if (item === null) {
+        return true;
+    }
+    return item !== 'false';
+};
+exports.loadAspectRatioOption = loadAspectRatioOption;
 
 
 /***/ }),
@@ -31638,6 +31485,11 @@ class ZodError extends Error {
         processError(this);
         return fieldErrors;
     }
+    static assert(value) {
+        if (!(value instanceof ZodError)) {
+            throw new Error(`Not a ZodError: ${value}`);
+        }
+    }
     toString() {
         return this.message;
     }
@@ -31760,6 +31612,13 @@ const makeIssue = (params) => {
         ...issueData,
         path: fullPath,
     };
+    if (issueData.message !== undefined) {
+        return {
+            ...issueData,
+            path: fullPath,
+            message: issueData.message,
+        };
+    }
     let errorMessage = "";
     const maps = errorMaps
         .filter((m) => !!m)
@@ -31771,12 +31630,13 @@ const makeIssue = (params) => {
     return {
         ...issueData,
         path: fullPath,
-        message: issueData.message || errorMessage,
+        message: errorMessage,
     };
 };
 exports.makeIssue = makeIssue;
 exports.EMPTY_PATH = [];
 function addIssueToContext(ctx, issueData) {
+    const overrideMap = (0, errors_1.getErrorMap)();
     const issue = (0, exports.makeIssue)({
         issueData: issueData,
         data: ctx.data,
@@ -31784,8 +31644,8 @@ function addIssueToContext(ctx, issueData) {
         errorMaps: [
             ctx.common.contextualErrorMap,
             ctx.schemaErrorMap,
-            (0, errors_1.getErrorMap)(),
-            en_1.default, // then global default map
+            overrideMap,
+            overrideMap === en_1.default ? undefined : en_1.default, // then global default map
         ].filter((x) => !!x),
     });
     ctx.common.issues.push(issue);
@@ -31817,9 +31677,11 @@ class ParseStatus {
     static async mergeObjectAsync(status, pairs) {
         const syncPairs = [];
         for (const pair of pairs) {
+            const key = await pair.key;
+            const value = await pair.value;
             syncPairs.push({
-                key: await pair.key,
-                value: await pair.value,
+                key,
+                value,
             });
         }
         return ParseStatus.mergeObjectSync(status, syncPairs);
@@ -32199,13 +32061,25 @@ exports["default"] = errorMap;
 /***/ }),
 
 /***/ 55433:
-/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+/***/ (function(__unused_webpack_module, exports, __webpack_require__) {
 
 "use strict";
 
+var __classPrivateFieldGet = (this && this.__classPrivateFieldGet) || function (receiver, state, kind, f) {
+    if (kind === "a" && !f) throw new TypeError("Private accessor was defined without a getter");
+    if (typeof state === "function" ? receiver !== state || !f : !state.has(receiver)) throw new TypeError("Cannot read private member from an object whose class did not declare it");
+    return kind === "m" ? f : kind === "a" ? f.call(receiver) : f ? f.value : state.get(receiver);
+};
+var __classPrivateFieldSet = (this && this.__classPrivateFieldSet) || function (receiver, state, value, kind, f) {
+    if (kind === "m") throw new TypeError("Private method is not writable");
+    if (kind === "a" && !f) throw new TypeError("Private accessor was defined without a setter");
+    if (typeof state === "function" ? receiver !== state || !f : !state.has(receiver)) throw new TypeError("Cannot write private member to an object whose class did not declare it");
+    return (kind === "a" ? f.call(receiver, value) : f ? f.value = value : state.set(receiver, value)), value;
+};
+var _ZodEnum_cache, _ZodNativeEnum_cache;
 Object.defineProperty(exports, "__esModule", ({ value: true }));
-exports.date = exports.boolean = exports.bigint = exports.array = exports.any = exports.coerce = exports.ZodFirstPartyTypeKind = exports.late = exports.ZodSchema = exports.Schema = exports.custom = exports.ZodReadonly = exports.ZodPipeline = exports.ZodBranded = exports.BRAND = exports.ZodNaN = exports.ZodCatch = exports.ZodDefault = exports.ZodNullable = exports.ZodOptional = exports.ZodTransformer = exports.ZodEffects = exports.ZodPromise = exports.ZodNativeEnum = exports.ZodEnum = exports.ZodLiteral = exports.ZodLazy = exports.ZodFunction = exports.ZodSet = exports.ZodMap = exports.ZodRecord = exports.ZodTuple = exports.ZodIntersection = exports.ZodDiscriminatedUnion = exports.ZodUnion = exports.ZodObject = exports.ZodArray = exports.ZodVoid = exports.ZodNever = exports.ZodUnknown = exports.ZodAny = exports.ZodNull = exports.ZodUndefined = exports.ZodSymbol = exports.ZodDate = exports.ZodBoolean = exports.ZodBigInt = exports.ZodNumber = exports.ZodString = exports.ZodType = void 0;
-exports.NEVER = exports["void"] = exports.unknown = exports.union = exports.undefined = exports.tuple = exports.transformer = exports.symbol = exports.string = exports.strictObject = exports.set = exports.record = exports.promise = exports.preprocess = exports.pipeline = exports.ostring = exports.optional = exports.onumber = exports.oboolean = exports.object = exports.number = exports.nullable = exports["null"] = exports.never = exports.nativeEnum = exports.nan = exports.map = exports.literal = exports.lazy = exports.intersection = exports["instanceof"] = exports["function"] = exports["enum"] = exports.effect = exports.discriminatedUnion = void 0;
+exports.boolean = exports.bigint = exports.array = exports.any = exports.coerce = exports.ZodFirstPartyTypeKind = exports.late = exports.ZodSchema = exports.Schema = exports.custom = exports.ZodReadonly = exports.ZodPipeline = exports.ZodBranded = exports.BRAND = exports.ZodNaN = exports.ZodCatch = exports.ZodDefault = exports.ZodNullable = exports.ZodOptional = exports.ZodTransformer = exports.ZodEffects = exports.ZodPromise = exports.ZodNativeEnum = exports.ZodEnum = exports.ZodLiteral = exports.ZodLazy = exports.ZodFunction = exports.ZodSet = exports.ZodMap = exports.ZodRecord = exports.ZodTuple = exports.ZodIntersection = exports.ZodDiscriminatedUnion = exports.ZodUnion = exports.ZodObject = exports.ZodArray = exports.ZodVoid = exports.ZodNever = exports.ZodUnknown = exports.ZodAny = exports.ZodNull = exports.ZodUndefined = exports.ZodSymbol = exports.ZodDate = exports.ZodBoolean = exports.ZodBigInt = exports.ZodNumber = exports.ZodString = exports.datetimeRegex = exports.ZodType = void 0;
+exports.NEVER = exports["void"] = exports.unknown = exports.union = exports.undefined = exports.tuple = exports.transformer = exports.symbol = exports.string = exports.strictObject = exports.set = exports.record = exports.promise = exports.preprocess = exports.pipeline = exports.ostring = exports.optional = exports.onumber = exports.oboolean = exports.object = exports.number = exports.nullable = exports["null"] = exports.never = exports.nativeEnum = exports.nan = exports.map = exports.literal = exports.lazy = exports.intersection = exports["instanceof"] = exports["function"] = exports["enum"] = exports.effect = exports.discriminatedUnion = exports.date = void 0;
 const errors_1 = __webpack_require__(76996);
 const errorUtil_1 = __webpack_require__(88762);
 const parseUtil_1 = __webpack_require__(93187);
@@ -32261,12 +32135,17 @@ function processCreateParams(params) {
     if (errorMap)
         return { errorMap: errorMap, description };
     const customMap = (iss, ctx) => {
+        var _a, _b;
+        const { message } = params;
+        if (iss.code === "invalid_enum_value") {
+            return { message: message !== null && message !== void 0 ? message : ctx.defaultError };
+        }
+        if (typeof ctx.data === "undefined") {
+            return { message: (_a = message !== null && message !== void 0 ? message : required_error) !== null && _a !== void 0 ? _a : ctx.defaultError };
+        }
         if (iss.code !== "invalid_type")
             return { message: ctx.defaultError };
-        if (typeof ctx.data === "undefined") {
-            return { message: required_error !== null && required_error !== void 0 ? required_error : ctx.defaultError };
-        }
-        return { message: invalid_type_error !== null && invalid_type_error !== void 0 ? invalid_type_error : ctx.defaultError };
+        return { message: (_b = message !== null && message !== void 0 ? message : invalid_type_error) !== null && _b !== void 0 ? _b : ctx.defaultError };
     };
     return { errorMap: customMap, description };
 }
@@ -32527,11 +32406,13 @@ exports.ZodType = ZodType;
 exports.Schema = ZodType;
 exports.ZodSchema = ZodType;
 const cuidRegex = /^c[^\s-]{8,}$/i;
-const cuid2Regex = /^[a-z][a-z0-9]*$/;
+const cuid2Regex = /^[0-9a-z]+$/;
 const ulidRegex = /^[0-9A-HJKMNP-TV-Z]{26}$/;
 // const uuidRegex =
 //   /^([a-f0-9]{8}-[a-f0-9]{4}-[1-5][a-f0-9]{3}-[a-f0-9]{4}-[a-f0-9]{12}|00000000-0000-0000-0000-000000000000)$/i;
 const uuidRegex = /^[0-9a-fA-F]{8}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F]{12}$/i;
+const nanoidRegex = /^[a-z0-9_-]{21}$/i;
+const durationRegex = /^[-+]?P(?!$)(?:(?:[-+]?\d+Y)|(?:[-+]?\d+[.,]\d+Y$))?(?:(?:[-+]?\d+M)|(?:[-+]?\d+[.,]\d+M$))?(?:(?:[-+]?\d+W)|(?:[-+]?\d+[.,]\d+W$))?(?:(?:[-+]?\d+D)|(?:[-+]?\d+[.,]\d+D$))?(?:T(?=[\d+-])(?:(?:[-+]?\d+H)|(?:[-+]?\d+[.,]\d+H$))?(?:(?:[-+]?\d+M)|(?:[-+]?\d+[.,]\d+M$))?(?:[-+]?\d+(?:[.,]\d+)?S)?)??$/;
 // from https://stackoverflow.com/a/46181/1550155
 // old version: too slow, didn't support unicode
 // const emailRegex = /^((([a-z]|\d|[!#\$%&'\*\+\-\/=\?\^_`{\|}~]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])+(\.([a-z]|\d|[!#\$%&'\*\+\-\/=\?\^_`{\|}~]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])+)*)|((\x22)((((\x20|\x09)*(\x0d\x0a))?(\x20|\x09)+)?(([\x01-\x08\x0b\x0c\x0e-\x1f\x7f]|\x21|[\x23-\x5b]|[\x5d-\x7e]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(\\([\x01-\x09\x0b\x0c\x0d-\x7f]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]))))*(((\x20|\x09)*(\x0d\x0a))?(\x20|\x09)+)?(\x22)))@((([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])*([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])))\.)+(([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])*([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])))$/i;
@@ -32544,41 +32425,49 @@ const uuidRegex = /^[0-9a-fA-F]{8}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-
 //   /^[a-zA-Z0-9\.\!\#\$\%\&\'\*\+\/\=\?\^\_\`\{\|\}\~\-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/;
 // const emailRegex =
 //   /^(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*|"(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21\x23-\x5b\x5d-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])*")@(?:(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\[(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?|[a-z0-9-]*[a-z0-9]:(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21-\x5a\x53-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])+)\])$/i;
-const emailRegex = /^(?!\.)(?!.*\.\.)([A-Z0-9_+-\.]*)[A-Z0-9_+-]@([A-Z0-9][A-Z0-9\-]*\.)+[A-Z]{2,}$/i;
+const emailRegex = /^(?!\.)(?!.*\.\.)([A-Z0-9_'+\-\.]*)[A-Z0-9_+-]@([A-Z0-9][A-Z0-9\-]*\.)+[A-Z]{2,}$/i;
 // const emailRegex =
 //   /^[a-z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-z0-9-]+(?:\.[a-z0-9\-]+)*$/i;
 // from https://thekevinscott.com/emojis-in-javascript/#writing-a-regular-expression
 const _emojiRegex = `^(\\p{Extended_Pictographic}|\\p{Emoji_Component})+$`;
 let emojiRegex;
-const ipv4Regex = /^(((25[0-5])|(2[0-4][0-9])|(1[0-9]{2})|([0-9]{1,2}))\.){3}((25[0-5])|(2[0-4][0-9])|(1[0-9]{2})|([0-9]{1,2}))$/;
+// faster, simpler, safer
+const ipv4Regex = /^(?:(?:25[0-5]|2[0-4][0-9]|1[0-9][0-9]|[1-9][0-9]|[0-9])\.){3}(?:25[0-5]|2[0-4][0-9]|1[0-9][0-9]|[1-9][0-9]|[0-9])$/;
 const ipv6Regex = /^(([a-f0-9]{1,4}:){7}|::([a-f0-9]{1,4}:){0,6}|([a-f0-9]{1,4}:){1}:([a-f0-9]{1,4}:){0,5}|([a-f0-9]{1,4}:){2}:([a-f0-9]{1,4}:){0,4}|([a-f0-9]{1,4}:){3}:([a-f0-9]{1,4}:){0,3}|([a-f0-9]{1,4}:){4}:([a-f0-9]{1,4}:){0,2}|([a-f0-9]{1,4}:){5}:([a-f0-9]{1,4}:){0,1})([a-f0-9]{1,4}|(((25[0-5])|(2[0-4][0-9])|(1[0-9]{2})|([0-9]{1,2}))\.){3}((25[0-5])|(2[0-4][0-9])|(1[0-9]{2})|([0-9]{1,2})))$/;
-// Adapted from https://stackoverflow.com/a/3143231
-const datetimeRegex = (args) => {
+// https://stackoverflow.com/questions/7860392/determine-if-string-is-in-base64-using-javascript
+const base64Regex = /^([0-9a-zA-Z+/]{4})*(([0-9a-zA-Z+/]{2}==)|([0-9a-zA-Z+/]{3}=))?$/;
+// simple
+// const dateRegexSource = `\\d{4}-\\d{2}-\\d{2}`;
+// no leap year validation
+// const dateRegexSource = `\\d{4}-((0[13578]|10|12)-31|(0[13-9]|1[0-2])-30|(0[1-9]|1[0-2])-(0[1-9]|1\\d|2\\d))`;
+// with leap year validation
+const dateRegexSource = `((\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-((0[13578]|1[02])-(0[1-9]|[12]\\d|3[01])|(0[469]|11)-(0[1-9]|[12]\\d|30)|(02)-(0[1-9]|1\\d|2[0-8])))`;
+const dateRegex = new RegExp(`^${dateRegexSource}$`);
+function timeRegexSource(args) {
+    // let regex = `\\d{2}:\\d{2}:\\d{2}`;
+    let regex = `([01]\\d|2[0-3]):[0-5]\\d:[0-5]\\d`;
     if (args.precision) {
-        if (args.offset) {
-            return new RegExp(`^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}\\.\\d{${args.precision}}(([+-]\\d{2}(:?\\d{2})?)|Z)$`);
-        }
-        else {
-            return new RegExp(`^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}\\.\\d{${args.precision}}Z$`);
-        }
+        regex = `${regex}\\.\\d{${args.precision}}`;
     }
-    else if (args.precision === 0) {
-        if (args.offset) {
-            return new RegExp(`^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}(([+-]\\d{2}(:?\\d{2})?)|Z)$`);
-        }
-        else {
-            return new RegExp(`^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}Z$`);
-        }
+    else if (args.precision == null) {
+        regex = `${regex}(\\.\\d+)?`;
     }
-    else {
-        if (args.offset) {
-            return new RegExp(`^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}(\\.\\d+)?(([+-]\\d{2}(:?\\d{2})?)|Z)$`);
-        }
-        else {
-            return new RegExp(`^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}(\\.\\d+)?Z$`);
-        }
-    }
-};
+    return regex;
+}
+function timeRegex(args) {
+    return new RegExp(`^${timeRegexSource(args)}$`);
+}
+// Adapted from https://stackoverflow.com/a/3143231
+function datetimeRegex(args) {
+    let regex = `${dateRegexSource}T${timeRegexSource(args)}`;
+    const opts = [];
+    opts.push(args.local ? `Z?` : `Z`);
+    if (args.offset)
+        opts.push(`([+-]\\d{2}:?\\d{2})`);
+    regex = `${regex}(${opts.join("|")})`;
+    return new RegExp(`^${regex}$`);
+}
+exports.datetimeRegex = datetimeRegex;
 function isValidIP(ip, version) {
     if ((version === "v4" || !version) && ipv4Regex.test(ip)) {
         return true;
@@ -32600,9 +32489,7 @@ class ZodString extends ZodType {
                 code: ZodError_1.ZodIssueCode.invalid_type,
                 expected: util_1.ZodParsedType.string,
                 received: ctx.parsedType,
-            }
-            //
-            );
+            });
             return parseUtil_1.INVALID;
         }
         const status = new parseUtil_1.ParseStatus();
@@ -32694,6 +32581,17 @@ class ZodString extends ZodType {
                     ctx = this._getOrReturnCtx(input, ctx);
                     (0, parseUtil_1.addIssueToContext)(ctx, {
                         validation: "uuid",
+                        code: ZodError_1.ZodIssueCode.invalid_string,
+                        message: check.message,
+                    });
+                    status.dirty();
+                }
+            }
+            else if (check.kind === "nanoid") {
+                if (!nanoidRegex.test(input.data)) {
+                    ctx = this._getOrReturnCtx(input, ctx);
+                    (0, parseUtil_1.addIssueToContext)(ctx, {
+                        validation: "nanoid",
                         code: ZodError_1.ZodIssueCode.invalid_string,
                         message: check.message,
                     });
@@ -32814,11 +32712,57 @@ class ZodString extends ZodType {
                     status.dirty();
                 }
             }
+            else if (check.kind === "date") {
+                const regex = dateRegex;
+                if (!regex.test(input.data)) {
+                    ctx = this._getOrReturnCtx(input, ctx);
+                    (0, parseUtil_1.addIssueToContext)(ctx, {
+                        code: ZodError_1.ZodIssueCode.invalid_string,
+                        validation: "date",
+                        message: check.message,
+                    });
+                    status.dirty();
+                }
+            }
+            else if (check.kind === "time") {
+                const regex = timeRegex(check);
+                if (!regex.test(input.data)) {
+                    ctx = this._getOrReturnCtx(input, ctx);
+                    (0, parseUtil_1.addIssueToContext)(ctx, {
+                        code: ZodError_1.ZodIssueCode.invalid_string,
+                        validation: "time",
+                        message: check.message,
+                    });
+                    status.dirty();
+                }
+            }
+            else if (check.kind === "duration") {
+                if (!durationRegex.test(input.data)) {
+                    ctx = this._getOrReturnCtx(input, ctx);
+                    (0, parseUtil_1.addIssueToContext)(ctx, {
+                        validation: "duration",
+                        code: ZodError_1.ZodIssueCode.invalid_string,
+                        message: check.message,
+                    });
+                    status.dirty();
+                }
+            }
             else if (check.kind === "ip") {
                 if (!isValidIP(input.data, check.version)) {
                     ctx = this._getOrReturnCtx(input, ctx);
                     (0, parseUtil_1.addIssueToContext)(ctx, {
                         validation: "ip",
+                        code: ZodError_1.ZodIssueCode.invalid_string,
+                        message: check.message,
+                    });
+                    status.dirty();
+                }
+            }
+            else if (check.kind === "base64") {
+                if (!base64Regex.test(input.data)) {
+                    ctx = this._getOrReturnCtx(input, ctx);
+                    (0, parseUtil_1.addIssueToContext)(ctx, {
+                        validation: "base64",
                         code: ZodError_1.ZodIssueCode.invalid_string,
                         message: check.message,
                     });
@@ -32856,6 +32800,9 @@ class ZodString extends ZodType {
     uuid(message) {
         return this._addCheck({ kind: "uuid", ...errorUtil_1.errorUtil.errToObj(message) });
     }
+    nanoid(message) {
+        return this._addCheck({ kind: "nanoid", ...errorUtil_1.errorUtil.errToObj(message) });
+    }
     cuid(message) {
         return this._addCheck({ kind: "cuid", ...errorUtil_1.errorUtil.errToObj(message) });
     }
@@ -32865,16 +32812,20 @@ class ZodString extends ZodType {
     ulid(message) {
         return this._addCheck({ kind: "ulid", ...errorUtil_1.errorUtil.errToObj(message) });
     }
+    base64(message) {
+        return this._addCheck({ kind: "base64", ...errorUtil_1.errorUtil.errToObj(message) });
+    }
     ip(options) {
         return this._addCheck({ kind: "ip", ...errorUtil_1.errorUtil.errToObj(options) });
     }
     datetime(options) {
-        var _a;
+        var _a, _b;
         if (typeof options === "string") {
             return this._addCheck({
                 kind: "datetime",
                 precision: null,
                 offset: false,
+                local: false,
                 message: options,
             });
         }
@@ -32882,8 +32833,29 @@ class ZodString extends ZodType {
             kind: "datetime",
             precision: typeof (options === null || options === void 0 ? void 0 : options.precision) === "undefined" ? null : options === null || options === void 0 ? void 0 : options.precision,
             offset: (_a = options === null || options === void 0 ? void 0 : options.offset) !== null && _a !== void 0 ? _a : false,
+            local: (_b = options === null || options === void 0 ? void 0 : options.local) !== null && _b !== void 0 ? _b : false,
             ...errorUtil_1.errorUtil.errToObj(options === null || options === void 0 ? void 0 : options.message),
         });
+    }
+    date(message) {
+        return this._addCheck({ kind: "date", message });
+    }
+    time(options) {
+        if (typeof options === "string") {
+            return this._addCheck({
+                kind: "time",
+                precision: null,
+                message: options,
+            });
+        }
+        return this._addCheck({
+            kind: "time",
+            precision: typeof (options === null || options === void 0 ? void 0 : options.precision) === "undefined" ? null : options === null || options === void 0 ? void 0 : options.precision,
+            ...errorUtil_1.errorUtil.errToObj(options === null || options === void 0 ? void 0 : options.message),
+        });
+    }
+    duration(message) {
+        return this._addCheck({ kind: "duration", ...errorUtil_1.errorUtil.errToObj(message) });
     }
     regex(regex, message) {
         return this._addCheck({
@@ -32963,6 +32935,15 @@ class ZodString extends ZodType {
     get isDatetime() {
         return !!this._def.checks.find((ch) => ch.kind === "datetime");
     }
+    get isDate() {
+        return !!this._def.checks.find((ch) => ch.kind === "date");
+    }
+    get isTime() {
+        return !!this._def.checks.find((ch) => ch.kind === "time");
+    }
+    get isDuration() {
+        return !!this._def.checks.find((ch) => ch.kind === "duration");
+    }
     get isEmail() {
         return !!this._def.checks.find((ch) => ch.kind === "email");
     }
@@ -32975,6 +32956,9 @@ class ZodString extends ZodType {
     get isUUID() {
         return !!this._def.checks.find((ch) => ch.kind === "uuid");
     }
+    get isNANOID() {
+        return !!this._def.checks.find((ch) => ch.kind === "nanoid");
+    }
     get isCUID() {
         return !!this._def.checks.find((ch) => ch.kind === "cuid");
     }
@@ -32986,6 +32970,9 @@ class ZodString extends ZodType {
     }
     get isIP() {
         return !!this._def.checks.find((ch) => ch.kind === "ip");
+    }
+    get isBase64() {
+        return !!this._def.checks.find((ch) => ch.kind === "base64");
     }
     get minLength() {
         let min = null;
@@ -33988,9 +33975,10 @@ class ZodObject extends ZodType {
                 const syncPairs = [];
                 for (const pair of pairs) {
                     const key = await pair.key;
+                    const value = await pair.value;
                     syncPairs.push({
                         key,
-                        value: await pair.value,
+                        value,
                         alwaysSet: pair.alwaysSet,
                     });
                 }
@@ -34366,7 +34354,7 @@ const getDiscriminator = (type) => {
     }
     else if (type instanceof ZodNativeEnum) {
         // eslint-disable-next-line ban/ban
-        return Object.keys(type.enum);
+        return util_1.util.objectValues(type.enum);
     }
     else if (type instanceof ZodDefault) {
         return getDiscriminator(type._def.innerType);
@@ -34377,8 +34365,23 @@ const getDiscriminator = (type) => {
     else if (type instanceof ZodNull) {
         return [null];
     }
+    else if (type instanceof ZodOptional) {
+        return [undefined, ...getDiscriminator(type.unwrap())];
+    }
+    else if (type instanceof ZodNullable) {
+        return [null, ...getDiscriminator(type.unwrap())];
+    }
+    else if (type instanceof ZodBranded) {
+        return getDiscriminator(type.unwrap());
+    }
+    else if (type instanceof ZodReadonly) {
+        return getDiscriminator(type.unwrap());
+    }
+    else if (type instanceof ZodCatch) {
+        return getDiscriminator(type._def.innerType);
+    }
     else {
-        return null;
+        return [];
     }
 };
 class ZodDiscriminatedUnion extends ZodType {
@@ -34441,7 +34444,7 @@ class ZodDiscriminatedUnion extends ZodType {
         // try {
         for (const type of options) {
             const discriminatorValues = getDiscriminator(type.shape[discriminator]);
-            if (!discriminatorValues) {
+            if (!discriminatorValues.length) {
                 throw new Error(`A discriminator value for key \`${discriminator}\` could not be extracted from all schema options`);
             }
             for (const value of discriminatorValues) {
@@ -34657,6 +34660,7 @@ class ZodRecord extends ZodType {
             pairs.push({
                 key: keyType._parse(new ParseInputLazyPath(ctx, key, ctx.path, key)),
                 value: valueType._parse(new ParseInputLazyPath(ctx, ctx.data[key], ctx.path, key)),
+                alwaysSet: key in ctx.data,
             });
         }
         if (ctx.common.async) {
@@ -35022,6 +35026,10 @@ function createZodEnum(values, params) {
     });
 }
 class ZodEnum extends ZodType {
+    constructor() {
+        super(...arguments);
+        _ZodEnum_cache.set(this, void 0);
+    }
     _parse(input) {
         if (typeof input.data !== "string") {
             const ctx = this._getOrReturnCtx(input);
@@ -35033,7 +35041,10 @@ class ZodEnum extends ZodType {
             });
             return parseUtil_1.INVALID;
         }
-        if (this._def.values.indexOf(input.data) === -1) {
+        if (!__classPrivateFieldGet(this, _ZodEnum_cache, "f")) {
+            __classPrivateFieldSet(this, _ZodEnum_cache, new Set(this._def.values), "f");
+        }
+        if (!__classPrivateFieldGet(this, _ZodEnum_cache, "f").has(input.data)) {
             const ctx = this._getOrReturnCtx(input);
             const expectedValues = this._def.values;
             (0, parseUtil_1.addIssueToContext)(ctx, {
@@ -35069,16 +35080,27 @@ class ZodEnum extends ZodType {
         }
         return enumValues;
     }
-    extract(values) {
-        return ZodEnum.create(values);
+    extract(values, newDef = this._def) {
+        return ZodEnum.create(values, {
+            ...this._def,
+            ...newDef,
+        });
     }
-    exclude(values) {
-        return ZodEnum.create(this.options.filter((opt) => !values.includes(opt)));
+    exclude(values, newDef = this._def) {
+        return ZodEnum.create(this.options.filter((opt) => !values.includes(opt)), {
+            ...this._def,
+            ...newDef,
+        });
     }
 }
 exports.ZodEnum = ZodEnum;
+_ZodEnum_cache = new WeakMap();
 ZodEnum.create = createZodEnum;
 class ZodNativeEnum extends ZodType {
+    constructor() {
+        super(...arguments);
+        _ZodNativeEnum_cache.set(this, void 0);
+    }
     _parse(input) {
         const nativeEnumValues = util_1.util.getValidEnumValues(this._def.values);
         const ctx = this._getOrReturnCtx(input);
@@ -35092,7 +35114,10 @@ class ZodNativeEnum extends ZodType {
             });
             return parseUtil_1.INVALID;
         }
-        if (nativeEnumValues.indexOf(input.data) === -1) {
+        if (!__classPrivateFieldGet(this, _ZodNativeEnum_cache, "f")) {
+            __classPrivateFieldSet(this, _ZodNativeEnum_cache, new Set(util_1.util.getValidEnumValues(this._def.values)), "f");
+        }
+        if (!__classPrivateFieldGet(this, _ZodNativeEnum_cache, "f").has(input.data)) {
             const expectedValues = util_1.util.objectValues(nativeEnumValues);
             (0, parseUtil_1.addIssueToContext)(ctx, {
                 received: ctx.data,
@@ -35108,6 +35133,7 @@ class ZodNativeEnum extends ZodType {
     }
 }
 exports.ZodNativeEnum = ZodNativeEnum;
+_ZodNativeEnum_cache = new WeakMap();
 ZodNativeEnum.create = (values, params) => {
     return new ZodNativeEnum({
         values: values,
@@ -35178,33 +35204,43 @@ class ZodEffects extends ZodType {
         checkCtx.addIssue = checkCtx.addIssue.bind(checkCtx);
         if (effect.type === "preprocess") {
             const processed = effect.transform(ctx.data, checkCtx);
-            if (ctx.common.issues.length) {
-                return {
-                    status: "dirty",
-                    value: ctx.data,
-                };
-            }
             if (ctx.common.async) {
-                return Promise.resolve(processed).then((processed) => {
-                    return this._def.schema._parseAsync({
+                return Promise.resolve(processed).then(async (processed) => {
+                    if (status.value === "aborted")
+                        return parseUtil_1.INVALID;
+                    const result = await this._def.schema._parseAsync({
                         data: processed,
                         path: ctx.path,
                         parent: ctx,
                     });
+                    if (result.status === "aborted")
+                        return parseUtil_1.INVALID;
+                    if (result.status === "dirty")
+                        return (0, parseUtil_1.DIRTY)(result.value);
+                    if (status.value === "dirty")
+                        return (0, parseUtil_1.DIRTY)(result.value);
+                    return result;
                 });
             }
             else {
-                return this._def.schema._parseSync({
+                if (status.value === "aborted")
+                    return parseUtil_1.INVALID;
+                const result = this._def.schema._parseSync({
                     data: processed,
                     path: ctx.path,
                     parent: ctx,
                 });
+                if (result.status === "aborted")
+                    return parseUtil_1.INVALID;
+                if (result.status === "dirty")
+                    return (0, parseUtil_1.DIRTY)(result.value);
+                if (status.value === "dirty")
+                    return (0, parseUtil_1.DIRTY)(result.value);
+                return result;
             }
         }
         if (effect.type === "refinement") {
-            const executeRefinement = (acc
-            // effect: RefinementEffect<any>
-            ) => {
+            const executeRefinement = (acc) => {
                 const result = effect.refinement(acc, checkCtx);
                 if (ctx.common.async) {
                     return Promise.resolve(result);
@@ -35516,10 +35552,18 @@ exports.ZodPipeline = ZodPipeline;
 class ZodReadonly extends ZodType {
     _parse(input) {
         const result = this._def.innerType._parse(input);
-        if ((0, parseUtil_1.isValid)(result)) {
-            result.value = Object.freeze(result.value);
-        }
-        return result;
+        const freeze = (data) => {
+            if ((0, parseUtil_1.isValid)(data)) {
+                data.value = Object.freeze(data.value);
+            }
+            return data;
+        };
+        return (0, parseUtil_1.isAsync)(result)
+            ? result.then((data) => freeze(data))
+            : freeze(result);
+    }
+    unwrap() {
+        return this._def.innerType;
     }
 }
 exports.ZodReadonly = ZodReadonly;
@@ -35530,7 +35574,7 @@ ZodReadonly.create = (type, params) => {
         ...processCreateParams(params),
     });
 };
-const custom = (check, params = {}, 
+function custom(check, params = {}, 
 /**
  * @deprecated
  *
@@ -35541,7 +35585,7 @@ const custom = (check, params = {},
  * ```
  *
  */
-fatal) => {
+fatal) {
     if (check)
         return ZodAny.create().superRefine((data, ctx) => {
             var _a, _b;
@@ -35557,7 +35601,7 @@ fatal) => {
             }
         });
     return ZodAny.create();
-};
+}
 exports.custom = custom;
 exports.late = {
     object: ZodObject.lazycreate,
@@ -35609,7 +35653,7 @@ const instanceOfType = (
 // const instanceOfType = <T extends new (...args: any[]) => any>(
 cls, params = {
     message: `Input not instance of ${cls.name}`,
-}) => (0, exports.custom)((data) => data instanceof cls, params);
+}) => custom((data) => data instanceof cls, params);
 exports["instanceof"] = instanceOfType;
 const stringType = ZodString.create;
 exports.string = stringType;
@@ -36569,6 +36613,39 @@ const useElementSize = (ref, options) => {
     }, [size, updateSize]);
 };
 
+const PLAYER_CSS_CLASSNAME = '__remotion-player';
+
+const errorStyle = {
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    flex: 1,
+    height: '100%',
+    width: '100%',
+};
+class ErrorBoundary extends react__WEBPACK_IMPORTED_MODULE_2__.Component {
+    constructor() {
+        super(...arguments);
+        this.state = { hasError: null };
+    }
+    static getDerivedStateFromError(error) {
+        // Update state so the next render will show the fallback UI.
+        return { hasError: error };
+    }
+    componentDidCatch(error) {
+        this.props.onError(error);
+    }
+    render() {
+        if (this.state.hasError) {
+            // You can render any custom fallback UI
+            return ((0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", { style: errorStyle, children: this.props.errorFallback({
+                    error: this.state.hasError,
+                }) }));
+        }
+        return this.props.children;
+    }
+}
+
 const DefaultPlayPauseButton = ({ playing, buffering }) => {
     if (playing && buffering) {
         return (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(BufferingIndicator, { type: "player" });
@@ -36577,6 +36654,12 @@ const DefaultPlayPauseButton = ({ playing, buffering }) => {
         return (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(PauseIcon, {});
     }
     return (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(PlayIcon, {});
+};
+
+const formatTime = (timeInSeconds) => {
+    const minutes = Math.floor(timeInSeconds / 60);
+    const seconds = Math.floor(timeInSeconds - minutes * 60);
+    return `${String(minutes)}:${String(seconds).padStart(2, '0')}`;
 };
 
 const BAR_HEIGHT$1 = 5;
@@ -37015,12 +37098,6 @@ const PlayerSeekBar = ({ durationInFrames, onSeekEnd, onSeekStart, inFrame, outF
     return ((0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", { ref: containerRef, onPointerDown: onPointerDown, style: containerStyle$1, children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", { style: barBackground, children: [(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", { style: active }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", { style: fillStyle })] }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", { style: knobStyle })] }));
 };
 
-const formatTime = (timeInSeconds) => {
-    const minutes = Math.floor(timeInSeconds / 60);
-    const seconds = Math.floor(timeInSeconds - minutes * 60);
-    return `${String(minutes)}:${String(seconds).padStart(2, '0')}`;
-};
-
 const X_SPACER = 10;
 const X_PADDING = 12;
 const useVideoControlsResize = ({ allowFullscreen: allowFullScreen, playerWidth, }) => {
@@ -37219,39 +37296,6 @@ const Controls = ({ durationInFrames, isFullscreen, fps, player, showVolumeContr
                                 ? onExitFullscreenButtonClick
                                 : onFullscreenButtonClick, children: renderFullscreenButton === null ? ((0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(FullscreenIcon, { isFullscreen: isFullscreen })) : (renderFullscreenButton({ isFullscreen })) })) : null })] }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", { style: ySpacer }), (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(PlayerSeekBar, { onSeekEnd: onSeekEnd, onSeekStart: onSeekStart, durationInFrames: durationInFrames, inFrame: inFrame, outFrame: outFrame })] }));
 };
-
-const errorStyle = {
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
-    flex: 1,
-    height: '100%',
-    width: '100%',
-};
-class ErrorBoundary extends react__WEBPACK_IMPORTED_MODULE_2__.Component {
-    constructor() {
-        super(...arguments);
-        this.state = { hasError: null };
-    }
-    static getDerivedStateFromError(error) {
-        // Update state so the next render will show the fallback UI.
-        return { hasError: error };
-    }
-    componentDidCatch(error) {
-        this.props.onError(error);
-    }
-    render() {
-        if (this.state.hasError) {
-            // You can render any custom fallback UI
-            return ((0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", { style: errorStyle, children: this.props.errorFallback({
-                    error: this.state.hasError,
-                }) }));
-        }
-        return this.props.children;
-    }
-}
-
-const PLAYER_CSS_CLASSNAME = '__remotion-player';
 
 const IS_NODE = typeof document === 'undefined';
 
@@ -37501,7 +37545,6 @@ const PlayerUI = ({ controls, style, loop, autoPlay, allowFullscreen, inputProps
         };
         const onResume = () => {
             requestAnimationFrame(() => {
-                stopped = true;
                 setShowBufferState(false);
                 if (timeout) {
                     clearTimeout(timeout);
