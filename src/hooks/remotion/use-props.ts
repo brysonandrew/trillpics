@@ -1,12 +1,14 @@
 import { useMemo } from "react";
 import { useImageDimensions } from "@brysonandrew/measure";
 import { DIMENSIONS } from "~/constants/remotion";
-import { usePicVideoReadInputs } from "~/hooks/pic/video/read/inputs/hook";
 import { useTrillPicsStore } from "~/store/middleware";
+import { DEFAULT_INPUT } from "~/pages/video/player/_header/generate";
 
-export const useRemotionProps = () => {
-  const picVideoInputs =
-    usePicVideoReadInputs();
+export const useRemotionProps = (
+  picVideoInputs = DEFAULT_INPUT[
+    "input"
+  ]
+) => {
   const {
     screen,
     fps,

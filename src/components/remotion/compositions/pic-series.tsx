@@ -11,6 +11,7 @@ import {
 
 export const CompositionsPicSeries: FC =
   () => {
+
     const {
       props: defaultProps,
       ...props
