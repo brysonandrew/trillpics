@@ -19,6 +19,9 @@ import { PicsHudLeftLine } from "~/pics/hud/left/line";
 import { HudLeftShuffle } from "~/pics/hud/left/shuffle";
 import { useTrillPicsStore } from "~/store/middleware";
 import { useLocation } from "react-router";
+import { height } from "tailwindcss/defaultTheme";
+import { useContextGrid } from "~/context";
+import { Download } from "~/pages/video/player/_header/download";
 
 export type THudContainer = Extract<
   TMeasureContainerResult,
@@ -28,6 +31,7 @@ type TProps = {
   foundation: DOMRect;
   dimensions: TDimensions;
   isIdle: boolean;
+  playerHeight: number;
   isVerticalScroll: boolean;
 };
 export const PicsHudRight: FC<
@@ -35,52 +39,33 @@ export const PicsHudRight: FC<
 > = ({
   foundation,
   dimensions,
+  playerHeight,
   isIdle,
-  isVerticalScroll,
 }) => {
-  // const {} = useLocation()
-  const { isScroll } =
-    useTrillPicsStore(
-      ({ isScroll }) => ({
-        isScroll,
-      })
-    );
   const s = boxSize();
-
-  const ptop = s.m15;
-  const pheight =
-    dimensions.height / 5 + s.m025;
-
-  const top =
-    ptop +
-    pheight -
-    foundation.height +
-    s.m;
-
-  const isScrollTopShown =
-    isScroll && isVerticalScroll;
-
-  const SCROLL_TOP_TRANSITION =
-    MOTION_CONFIG;
+  const { dragger } = useContextGrid();
   return (
     <LayoutGroup>
       <motion.div
         className="absolute flex flex-col items-end justify-evenly shrink-0 w-0"
         style={{
-          right: 0,
-          top,
-          gap: s.m05,
+          right: -s.m05,
+          top:
+            foundation.top +
+            foundation.height,
+          gap: s.m025,
           height:
             dimensions.height -
-            top 
+            foundation.height   +
+            s.m025,
         }}
       >
         <div
           className="relative flex flex-col items-end justify-evenly shrink-0 w-0"
           style={{
-            // top,
-            gap: s.m05,
-            height: s.m4,
+            top: -s.m025,
+            gap: s.m025,
+            height: s.m3,
           }}
         >
           <DarkMode isLabel={isIdle} />
@@ -89,16 +74,27 @@ export const PicsHudRight: FC<
           />
           <HideControls
             isLabel={isIdle}
+            direction="rtl"
           />
         </div>
-
         <LinesVertical
-          style={{ left: -s.m05 }}
+          style={{
+            left: -s.m05,
+          }}
         />
-
-        {/* <LinesVertical
-          style={{ left: -s.m05 }}
-        /> */}
+        {/* <motion.div
+          className="relative bottom-0 right-0 row-space w-0"
+          style={{
+            top: s.m15,
+            y: dragger.y06,
+            left: -s.m05,
+            x: -s.m,
+            top: s.m4 + s.m05,
+          }}
+        >
+          <div />
+          <Download direction="rtl" />
+        </motion.div> */}
       </motion.div>
     </LayoutGroup>
   );

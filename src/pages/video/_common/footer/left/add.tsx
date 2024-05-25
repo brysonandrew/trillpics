@@ -1,5 +1,4 @@
 import type { FC } from "react";
-import { TypographyBorderedXs } from "~/components/typography/bordered/xs";
 import { boxSize } from "~/constants/box/size";
 import { useReady } from "~/hooks/use-ready";
 import { LinesVertical } from "~/pages/video/_common/footer/left/lines/vertical";
@@ -38,9 +37,9 @@ export const FooterNavAdd: FC = () => {
           marginLeft: bSize.s05,
         }}
       />
-      <TypographyBorderedXs>
+      <span className="_outline-filter">
         use random
-      </TypographyBorderedXs>
+      </span>
       {/* <LinesVertical
         style={{
           marginLeft: bSize.s05,

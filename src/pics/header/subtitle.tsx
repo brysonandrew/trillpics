@@ -16,7 +16,7 @@ export const HeaderSubtitle: FC<
     <motion.div
       key="header-right"
       className={clsx(
-        "relative",
+        "relative h-0 -top-2.5",
         classValue
       )}
     >

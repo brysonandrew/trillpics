@@ -8,5 +8,5 @@ export const useVideoClickSelect =
       props.toggle();
     };
     useClickGrid(handle);
-    return props;
+    return props; 
   };

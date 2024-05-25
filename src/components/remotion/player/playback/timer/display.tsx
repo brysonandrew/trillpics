@@ -21,10 +21,7 @@ export const TimerDisplay: FC<
   ).padStart(2, "0");
 
   return (
-    <div
-      className="row"
-      // c="flex shrink-0 grow-0 text-left"
-    >
+    <div className="row">
       <MonoChars>{m}</MonoChars>:
       <MonoChars>{s}</MonoChars>.
       <MonoChars>{ms}</MonoChars>

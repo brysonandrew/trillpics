@@ -2,7 +2,6 @@ import type { FC } from "react";
 import { motion } from "framer-motion";
 import { TPropsWithChildren } from "@brysonandrew/config-types";
 import { PRESENCE_OPACITY } from "@brysonandrew/motion-config-constants";
-import { TypographyBordered } from "~/components/typography/bordered";
 import { TUsePicSelected } from "~/hooks/pic/selected";
 
 export type TPicVideoControlsProps =
@@ -10,8 +9,7 @@ export type TPicVideoControlsProps =
 export const PicVideoControls: FC<
   TPicVideoControlsProps
 > = (props) => {
-  const { isAdded, children } =
-    props;
+  const { isAdded, children } = props;
   return (
     <motion.div
       key={
@@ -26,12 +24,9 @@ export const PicVideoControls: FC<
       }}
       {...PRESENCE_OPACITY}
     >
-      <TypographyBordered  classValue="text-main-inverted"
-          shadow={{
-            classValue: "text-gray-9",
-          }}>
+      <span className="_outline-filter">
         {children}
-      </TypographyBordered>
+      </span>
     </motion.div>
   );
 };

@@ -15,8 +15,6 @@ export const useClickGrid = (
       isHovering &&
       !main.cursor.isDragging
     ) {
-      console.log("done")
-
       trigger();
     }
     main.cursor.isDragging = false;

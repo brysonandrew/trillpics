@@ -14,7 +14,7 @@ export const PlaybackProgressSeeker: FC =
     return (
       <div
         className={clsx(
-          "relative flex grow w-full h-4 bg-black rounded-md"
+          "relative flex grow w-full h-4 bg-transparent border border-white-05 dark:border-black rounded-md"
         )}
         onPointerDown={handler}
         // onPointerUp={handler}

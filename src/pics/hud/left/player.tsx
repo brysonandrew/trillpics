@@ -1,4 +1,8 @@
-import type { FC } from "react";
+import type {
+  FC,
+  PropsWithChildren,
+} from "react";
+import { motion } from "framer-motion";
 import { IconsPlay } from "~/components/icons/playback/play";
 import {
   PillBHover,
@@ -6,27 +10,28 @@ import {
 } from "~/components/buttons/pill/b/hover";
 import { useNavigationControls } from "~/hooks/navigation/controls";
 import { TVideoFooterProps } from "~/pages/video/_common/footer/types";
-import { VIDEO_PLAYER_ROUTE } from "~/constants/params";
+import {
+  VIDEO_PLAYER_ROUTE,
+  VIDEO_ROUTE,
+} from "~/constants/params";
 import { PlaybackButtonsPlay } from "~/components/remotion/player/playback/buttons/play";
 import { useTrillPicsStore } from "~/store/middleware";
 import { usePicVideoReadCount } from "~/hooks/pic/video/read/count/hook";
-import { PlaybackProgressSeeker } from "~/components/remotion/player/playback/progress/seeker";
-import { PlaybackButtonsBackward } from "~/components/remotion/player/playback/buttons/backward";
-import { PlaybackButtonsForward } from "~/components/remotion/player/playback/buttons/forward";
-import { PlaybackTimer } from "~/components/remotion/player/playback/timer";
-import { Generate } from "~/pages/video/player/_header/generate";
 import { boxSize } from "~/constants/box/size";
+import { useLocation } from "react-router";
 export const CONTROLS_PLAYER_TITLE =
   "Video player";
+type TProps = TVideoFooterProps &
+  Partial<TPillBHoverProps>;
 export const ControlsPlayer: FC<
-  TVideoFooterProps &
-    Partial<TPillBHoverProps>
+  PropsWithChildren<TProps>
 > = ({
   Button = PillBHover,
   title,
-
+  children,
   ...props
 }) => {
+  const { pathname } = useLocation();
   const count = usePicVideoReadCount();
   const { screen } = useTrillPicsStore(
     ({ screen }) => ({
@@ -44,68 +49,39 @@ export const ControlsPlayer: FC<
   if (!screen.isDimensions) return null;
   if (isActive) {
     return (
-      <div
-        className="column-start h-0"
+      <motion.div
+        className="relative row"
         style={{
-          gap: s.m,
-          width: screen.container.width,
+          left: 0,
+          top: 0,
+          gap: s.m05,
+          x: 8,
         }}
       >
-        <div
-          className="row"
-          style={{ gap: s.m05 }}
-        >
-          <PlaybackButtonsPlay
-            isSelected
-            {...props}
-          />
-          <div
-            className="row-space"
-            style={{
-              width:
-                screen.container.width -
-                s.m,
-              paddingLeft: `${s.m05}px`,
-              paddingRight: `${s.m25}px`,
-            }}
-          >
-            <PlaybackButtonsBackward />
-            <PlaybackTimer />
-            <PlaybackButtonsForward />
-          </div>
-        </div>
-        <div className="w-full">
-          <PlaybackProgressSeeker />
-        </div>
-        <Generate />
-        {/* <div className="h-8" />
-          <div className="row-space">
-            <PlaybackButtonsBackward />
-            <PlaybackTimer />
-            <PlaybackButtonsForward />
-          </div> */}
-      </div>
+        {children}
+        <PlaybackButtonsPlay
+          {...props}
+        />
+      </motion.div>
     );
   }
 
   return (
-    <>
-      <Button
-        title={
-          title ?? CONTROLS_PLAYER_TITLE
-        }
-        subtitle={
-          count === 0
-            ? "View and download video with 5 random gallery pics."
-            : "View and download your creation."
-        }
-        onClick={handleClick}
-        Icon={IconsPlay}
-        isSelected={isActive}
-        {...props}
-      >
-        {title}
-      </Button>
-    </>
+    <Button
+      isSelected={isActive}
+      title={
+        title ?? CONTROLS_PLAYER_TITLE
+      }
+      subtitle={
+        count === 0
+          ? "View and download a video with up to 5 gallery pics."
+          : "View and download a sequence of pics as a video."
+      }
+      onClick={handleClick}
+      Icon={IconsPlay}
+      {...props}
+    >
+      {title}
+    </Button>
   );
 };

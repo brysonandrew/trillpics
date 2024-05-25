@@ -5,6 +5,24 @@ import { isValue } from "~/utils/validation/is/value";
 const rx = new RegExp(
   `${PARAM_CLOSING_VALUE}$`
 );
+export const removingCheck = (
+  name: string
+) => rx.test(name);
+
+export const decryptRemoving = (
+  v: string
+) => {
+  if (removingCheck(v)) {
+    return v.replace(rx, "");
+  }
+
+  return v;
+};
+
+export const encryptRemoving = (
+  v: string
+) => `${v}${PARAM_CLOSING_VALUE}`;
+
 type TConfig = string[];
 export const videoReadEntries = (
   paramValues: TConfig
@@ -33,19 +51,6 @@ export const videoReadEntries = (
         removingCheck(v) &&
         decryptRemoving(v) === name
     );
-
-  const decryptRemoving = (
-    v: string
-  ) => {
-    if (removingCheck(v)) {
-      return v.replace(rx, "");
-    }
-
-    return v;
-  };
-
-  const encryptRemoving = (v: string) =>
-    `${v}${PARAM_CLOSING_VALUE}`;
 
   return {
     encryptRemoving,

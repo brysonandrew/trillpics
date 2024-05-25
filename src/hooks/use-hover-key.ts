@@ -57,7 +57,6 @@ export const useHoverKey = (
         return;
       }
       if (config?.handlers?.start) {
-        console.log("START")
         config.handlers.start?.(key);
       }
 

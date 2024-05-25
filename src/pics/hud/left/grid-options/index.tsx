@@ -29,7 +29,7 @@ export const GridOptions: FC = () => {
       style={{
         left:
           screen.container.left +
-          s.m,
+          s.m15,
         gap: s.m025,
         width: s.m3,
         top:

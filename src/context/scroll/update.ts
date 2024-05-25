@@ -7,15 +7,25 @@ import {
 import { useTrillPicsStore } from "~/store/middleware";
 import { useTimeoutRef } from "@brysonandrew/hooks-window";
 import { TVirtualizeContext } from "~/context/types";
+import {
+  useLocation,
+  useNavigate,
+  useSearchParams,
+} from "react-router-dom";
+import { CELL_PARAM_KEY } from "~/hooks/pic/constants";
 
 type TConfig = Pick<
   TVirtualizeContext,
   "scrollY" | "ref"
-> 
+>;
 export const useScrollUpdateHandler = ({
   scrollY,
   ref: handle,
 }: TConfig) => {
+  const [searchParams] =
+    useSearchParams();
+  const { pathname } = useLocation();
+  const navigate = useNavigate();
   const prevScrollOffsetRef =
     useRef<number>(0);
   const { timeoutRef, endTimeout } =
@@ -52,31 +62,27 @@ export const useScrollUpdateHandler = ({
       !isScrolling &&
       scrollDelta > 0
     ) {
-      console.log(
-        "start scrolling",
-        scrollDelta
-      );
       set({
         isScrolling: true,
         scrollDirection,
         scrollDelta,
       });
+      searchParams.delete(
+        CELL_PARAM_KEY
+      );
+      navigate(
+        `${pathname}?${searchParams}`
+      );
     }
     endTimeout();
     if (!isScrolling) return;
     timeoutRef.current = setTimeout(
       () => {
-        console.log(
-          "stop scrolling",
-          scrollDelta
-        );
-      
         set({
           isScrolling: false,
           scrollDirection: null,
           scrollDelta,
         });
-     
       },
       SCROLL_COOLDOWN
     );
@@ -98,7 +104,11 @@ export const useScrollUpdateHandler = ({
     prevScrollOffsetRef.current =
       scrollOffset;
   };
-  return {handler,isScroll,isScrolling};
+  return {
+    handler,
+    isScroll,
+    isScrolling,
+  };
 };
 export type TUseUseScrollUpdateHandlerResult =
   ReturnType<

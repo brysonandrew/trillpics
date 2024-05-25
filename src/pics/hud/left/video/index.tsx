@@ -1,5 +1,12 @@
-import { FC } from "react";
-import { motion } from "framer-motion";
+import {
+  FC,
+  PropsWithChildren,
+  useEffect,
+} from "react";
+import {
+  animate,
+  motion,
+} from "framer-motion";
 import { useNavigationControls } from "~/hooks/navigation/controls";
 import { IconsVideo } from "~/components/icons/video/video";
 import { VideoPicCounterFloating } from "~/shell/screen/video-pic-counter/floating";
@@ -8,21 +15,29 @@ import {
   HOME_ROUTE,
   VIDEO_ROUTE,
 } from "~/constants/params";
-import { HudLeftAddRandom } from "~/pics/hud/left/add-random";
-import { LeftButtonsClear } from "~/pics/hud/left/clear";
-import { VideoPicsCounter } from "~/shell/screen/video-pic-counter";
 import { useVideoPicsCheck } from "~/hooks/pic/video/read/video-pics-check/hook";
-import { PicsHudLeftLine } from "~/pics/hud/left/line";
 import { boxSize } from "~/constants/box/size";
+import { useContextGrid } from "~/context";
+import { THudContainer } from "~/pics/hud/left";
+import { TChildren } from "@brysonandrew/config-types";
+import { useLocation } from "react-router";
 
 type TProps = {
   isLabel: boolean;
+  container: THudContainer;
+  siblings: TChildren;
 };
 export const HudLeftVideo: FC<
-  TProps
-> = ({ isLabel }) => {
+  PropsWithChildren<TProps>
+> = ({
+  isLabel,
+  children,
+  container,
+  siblings,
+}) => {
+  const { pathname } = useLocation();
   const s = boxSize();
-
+  const { dragger } = useContextGrid();
   const isVideoPics =
     useVideoPicsCheck();
   const { togglePathValue, isActive } =
@@ -34,64 +49,56 @@ export const HudLeftVideo: FC<
         : VIDEO_ROUTE
     );
   };
+  useEffect(() => {
+    animate<number>(
+      dragger.y,
+      -container.height / 2 + s.m,
+      {
+        ease: "easeIn",
+        duration: 0.4,
+      }
+    );
+  }, []);
 
   const title = isActive
     ? "Exit Video Maker"
     : "Video Maker";
-
   return (
     <>
-      {isActive && isVideoPics && (
-        <motion.div
-          layout
-          className="column-start shrink-0 justify-evenly w-0"
-          style={{
-            height: s.m4,
-          }}
-        >
-          <LeftButtonsClear
-            isLabel={isLabel}
-          />
-          <PicsHudLeftLine />
-          <motion.div
-            layout
-            className="center"
-            style={{ width: s.m }}
-          >
-            <VideoPicsCounter />
-          </motion.div>
-          <PicsHudLeftLine />
-          {isActive && (
-            <>
-              <HudLeftAddRandom
-                isLabel={isLabel}
-              />
-              <PicsHudLeftLine />
-            </>
-          )}
-        </motion.div>
-      )}
-
-      <PillBHover
-        title={title}
-        subtitle={
-          isActive
-            ? ""
-            : "Make a short video clip composed of the pics you see here."
-        }
-        onClick={handleClick}
-        isSelected={isActive}
-        isLabel={isLabel}
-        Icon={IconsVideo}
-        outerCircle={
-          !isActive &&
-          isVideoPics && (
-            <VideoPicCounterFloating />
-          )
-        }
+      {isActive ? siblings : null}
+      <motion.div
+        className="absolute left-0 bottom-0"
+        style={{
+          bottom: s.m15,
+          y: dragger.y,
+          x: 0,
+        }}
       >
-        {title}
-      </PillBHover>
+        <PillBHover
+          title={title}
+          subtitle={
+            isActive
+              ? ""
+              : "Turn a sequence of pics into video."
+          }
+          onClick={handleClick}
+          isSelected={
+            isActive
+            // pathname === HOME_ROUTE
+          }
+          isLabel={isLabel}
+          Icon={IconsVideo}
+          outerCircle={
+            !isActive &&
+            isVideoPics && (
+              <VideoPicCounterFloating />
+            )
+          }
+        >
+          {title}
+        </PillBHover>
+        {isActive ? children : null}
+      </motion.div>
     </>
   );
 };

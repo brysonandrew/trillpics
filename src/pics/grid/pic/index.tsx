@@ -4,6 +4,7 @@ import { TPic } from "~/store/state/pics/types";
 import { PicDisplayCell } from "~/pics/grid/pic/cell";
 import { FULLSCREEN_Z } from "~/constants/dom";
 import { usePicSelectedRead } from "~/hooks/pic/selected/read";
+import { ZOOM_PARAM_KEY } from "~/hooks/pic/constants";
 
 export type TCell = {
   row: number;
@@ -16,13 +17,26 @@ export const Pic: FC<TPicProps> = ({
   name,
   ...cell
 }) => {
-  const { isSelected, isRemoving } =
-    usePicSelectedRead(cell);
-
-    if (isRemoving) {
-      console.log(isRemoving, isSelected)
-
-    }
+  const {
+    isSelected,
+    isRemoving,
+  } = usePicSelectedRead(name);
+  const {
+    isSelected: isZoomed,
+    isRemoving: isUnzooming,
+  } = usePicSelectedRead(
+    name,
+    ZOOM_PARAM_KEY
+  );
+  // if (isZoomed) {
+  //   console.log(name, "isZoomed");
+  // }
+  // if (isUnzooming) {
+  //   console.log(
+  //     name,
+  //     "isUnzooming",
+  //   );
+  // }
   return (
     <Box
       cursor="pointer"
@@ -30,16 +44,21 @@ export const Pic: FC<TPicProps> = ({
       {...cell}
     >
       {({ ...boxChildProps }) => {
-        if (isSelected) return null;
+        if (
+          isSelected || 
+          isZoomed)
+          return null;
 
         return (
           <PicDisplayCell
             {...boxChildProps}
             style={{
               ...boxChildProps.style,
-              zIndex: isRemoving
-                ? FULLSCREEN_Z
-                : 0,
+              zIndex:
+                isRemoving ||
+                isUnzooming
+                  ? FULLSCREEN_Z
+                  : 0,
             }}
           />
         );

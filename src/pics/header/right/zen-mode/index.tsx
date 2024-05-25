@@ -1,10 +1,15 @@
 import type { FC } from "react";
-import { PillBHover, TPillBHoverProps } from "~/components/buttons/pill/b/hover";
+import {
+  PillBHover,
+  TPillBHoverProps,
+} from "~/components/buttons/pill/b/hover";
 import { IconsVisible } from "~/components/icons/video/visible";
 import { useContextGrid } from "~/context";
 import { useTrillPicsStore } from "~/store/middleware";
 
-export const HideControls: FC<Partial<TPillBHoverProps>> = (props) => {
+export const HideControls: FC<
+  Partial<TPillBHoverProps>
+> = (props) => {
   const { resetLayout } =
     useContextGrid();
   const { isControls, toggleControls } =

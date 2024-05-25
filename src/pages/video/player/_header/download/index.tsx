@@ -1,13 +1,17 @@
+import { FC } from "react";
 import {
   AnimatePresence,
   motion,
 } from "framer-motion";
 import { useTrillPicsStore } from "~/store/middleware";
-import { PillB, TPillBProps } from "~/components/buttons/pill/b";
+import {
+  PillB,
+  TPillBProps,
+} from "~/components/buttons/pill/b";
 import { IconsGenerate } from "~/components/icons/video/generate";
 import { trpc } from "~/utils/trpc";
 import { TGenerateProps } from "~/server/generate";
-import { downloadMedia } from "~/pages/video/player/_header/generate/download-media";
+import { downloadMedia } from "~/pages/video/player/_header/download/download-media";
 import { AURA } from "@brysonandrew/svg-filter";
 import { resolvePresence } from "~/utils/animation";
 import { resolveCompositeKey } from "@brysonandrew/utils-key";
@@ -15,19 +19,23 @@ import { TGenerateInput } from "~/types/trpc/generate";
 import { useHoverKey } from "~/hooks/use-hover-key";
 import { boxStyle } from "~/constants/box/style";
 import { usePicVideoReadInputs } from "~/hooks/pic/video/read/inputs/hook";
-import { FC } from "react";
+import { IconsDownload } from "~/components/icons/download";
+import { PillBHover } from "~/components/buttons/pill/b/hover";
 
-export const DEFAULT_INPUT: TGenerateInput = {
-  input: {
-    pics: [],
-    count: 0,
-    seconds: 1,
-    isPics: false,
-  },
-  fps: 3,
-};
+export const DEFAULT_INPUT: TGenerateInput =
+  {
+    input: {
+      pics: [],
+      count: 0,
+      seconds: 1,
+      isPics: false,
+    },
+    fps: 3,
+  };
 
-export const Generate:FC<Partial<TPillBProps>> = (props) => {
+export const Download: FC<
+  Partial<TPillBProps>
+> = (props) => {
   const { fps } = useTrillPicsStore(
     ({ fps }) => ({
       fps,
@@ -40,13 +48,17 @@ export const Generate:FC<Partial<TPillBProps>> = (props) => {
     input,
     fps,
   };
-  const borderStyle = boxStyle({
+  const {
+    width,
+    minWidth,
+    ...borderStyle
+  } = boxStyle({
     layer: "flat",
     borderRadius: "xl",
     size: "m",
   });
 
-  const title = "Generate";
+  const title = "Download video";
 
   // const dl = async (blob: Blob) => {};
 
@@ -104,7 +116,6 @@ export const Generate:FC<Partial<TPillBProps>> = (props) => {
   };
   const isHovering = isHover(title);
 
-
   return (
     <div className="relative">
       <AnimatePresence>
@@ -115,26 +126,25 @@ export const Generate:FC<Partial<TPillBProps>> = (props) => {
                 isHover.toString(),
                 isLoading.toString()
               )}
-              className="absolute -inset-6 ml-0 mt-0 _gradient-radial"
+              className="fill ml-0 mt-0 _gradient-radial"
               style={{
                 filter:
                   AURA.GLOBAL.value,
+                scaleX: 1.2,
+                scaleY: 1.1,
+                x: 12,
                 ...borderStyle,
               }}
               {...AURA_TRANSITION}
             />
-            {/* <TextureMetal
-              key="background"
-              className="fill h-20"
-              style={borderStyle}
-              {...AURA_TRANSITION}
-            /> */}
           </>
         )}
       </AnimatePresence>
-      <PillB
-        title="Generate video"
-        // isSelected={isHovering}
+      <PillBHover
+        title={title}
+        isSelected={isHovering}
+        classValue="gap-2"
+        style={{ x: 10 }}
         circleProps={{
           isGlow: isSuccess,
           ...{
@@ -151,13 +161,13 @@ export const Generate:FC<Partial<TPillBProps>> = (props) => {
             ),
           },
         }}
-        Icon={IconsGenerate}
+        Icon={IconsDownload}
         onClick={handleGenerate}
-        {...handlers(title)}
         {...props}
+        {...handlers(title)}
       >
-        Generate
-      </PillB>
+        {title}
+      </PillBHover>
     </div>
   );
 };

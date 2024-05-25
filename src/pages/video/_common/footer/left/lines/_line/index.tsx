@@ -16,7 +16,7 @@ export const Lines_Line: FC<TLines_LineProps> = ({
   return (
     <motion.div
       className={clsx(
-        "relative grow",
+        "relative grow pointer-events-none",
         sizeClass ?? "border",
         colorClass ?? "border-white dark:border-black",
         opacityClass ??"opacity-50",

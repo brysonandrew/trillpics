@@ -126,7 +126,7 @@ export const Grid = forwardRef<
         outerElementType={Outer}
         innerRef={innerHandle}
         outerRef={outerHandle}
-        overscanCount={20}
+        overscanCount={3}
         {...props}
       >
         {Row}

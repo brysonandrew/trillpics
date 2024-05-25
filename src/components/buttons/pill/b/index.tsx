@@ -24,9 +24,6 @@ import { isString } from "~/utils/validation/is/string";
 import { TBoxSizesKey } from "~/constants/box/size/constants";
 import { useDarkMode } from "@brysonandrew/dark-mode";
 import { LINEAR_GRADIENT_SVG_ID } from "~/shell/global/svg/gradients/blue-pink-yellow";
-import { GLITCH_FILTER_SVG_PROPS } from "~/shell/global/svg/filters/glitch";
-// declare type MotionStyle = MotionCSS & MotionTransform & MakeMotion<SVGPathProperties> & MakeCustomValueType<CustomStyles>;
-//augment validate.js
 
 export type TPillBProps =
   TButtonMotionProps &
@@ -38,6 +35,7 @@ export type TPillBProps =
       outerCircle?: ReactNode;
       size?: TBoxSizesKey;
       isSelected?: boolean;
+      direction?: "ltr" | "rtl";
     };
 export const PillB: FC<TPillBProps> = ({
   Root = motion.button,
@@ -52,6 +50,7 @@ export const PillB: FC<TPillBProps> = ({
   isFlat,
   style,
   size = "s",
+  direction = "ltr",
   disabled,
   ...props
 }) => {
@@ -61,8 +60,8 @@ export const PillB: FC<TPillBProps> = ({
     size,
   });
   const {
-    height,
     width,
+    height,
     boxShadow,
     borderRadius,
   } = box;
@@ -82,44 +81,48 @@ export const PillB: FC<TPillBProps> = ({
       disabled={disabled}
       className={clsx(
         "relative",
-        "center shrink-0",
+        "gap-4 shrink-0",
         "disabled:(grayscale-100 brightness-60 opacity-80 cursor-not-allowed)",
-        classValue
+        "hover:grayscale-100",
+        classValue,
+        direction === 'ltr' ? 'row' : 'row-reverse'
       )}
       {...(isReady
         ? { layout: true }
         : {})}
       layout={isReady}
-      style={
-        {
-          ...(isFlat
-            ? { boxShadow }
-            : {}),
-          height,
-          borderRadius,
-          ...style,
-        }
-      }
+      style={{
+        ...(isFlat
+          ? { boxShadow }
+          : {}),
+        height,
+        borderRadius,
+        ...style,
+      }}
       {...props}
     >
       <>
         {isSelected && (
           <motion.div
-            className="fill -inset-2 _gradient-radial"
+            className="fill _gradient-radial pointer-events-none"
             // layoutId="selected pill b"
-            style={
-              {
-                borderRadius,
-              }
-            }
+            layout
+            style={{
+              borderRadius,
+              width,
+              height,
+            }}
             initial={{
-              scale: 0.5,
+              scale: 1,
+              opacity: 0,
             }}
             animate={{
-              scale: 1,
+              scale: 1.2,
+              opacity: 1,
             }}
             exit={{
-              scale: 0.5,
+              scale: 1,
+              opacity: 0,
             }}
           />
         )}
@@ -131,7 +134,7 @@ export const PillB: FC<TPillBProps> = ({
             `${isReady}`
           )}
           className={clsx(
-            "center relative bg-white dark:bg-black",
+            "center relative bg-white dark:bg-black pointer-events-none",
             isFlat
               ? ""
               : "_gradient-radial"
@@ -148,7 +151,7 @@ export const PillB: FC<TPillBProps> = ({
           }
         >
           <div
-            className="center relative shrink-0 border-1 border-transparent bg-gray dark:bg-black"
+            className="center relative shrink-0 border-1 border-transparent bg-gray dark:bg-black pointer-events-none"
             style={{
               borderRadius,
               height: sm.height,
@@ -166,6 +169,11 @@ export const PillB: FC<TPillBProps> = ({
                 : "padding-box",
             }}
           >
+             <>
+          {outerCircle && (
+            <>{outerCircle}</>
+          )}
+        </>
             <Icon
               {...(isDarkMode
                 ? {
@@ -179,35 +187,30 @@ export const PillB: FC<TPillBProps> = ({
             />
           </div>
         </motion.div>
-        <>
-          {outerCircle && (
-            <>{outerCircle}</>
-          )}
-        </>
+       
         <AnimatePresence>
           {isString(children) ? (
             <motion.div
               key={`${title}`}
-              className="relative row px-2 px-0 text-left text-sm"
+              className="relative top-2 px-0 text-left text-sm pointer-events-none"
               style={{
-                height: sm.minHeight,
+                height: sm.height,
               }}
               {...(isReady
                 ? FADE_PRESENCE_DELAY_02
                 : {})}
             >
-              <div className="uppercase font-sans _outline-filter lg:(text-sm whitespace-nowrap)">
+              <div className="uppercase font-sans _outline-filter lg:(text-sm whitespace-nowrap) pointer-events-none">
                 <div
-                  className="absolute -inset-y-4 -inset-x-1 _gradient-radial opacity-20 filter-blur-md"
+                  className="absolute -inset-y-4 -inset-x-1 _gradient-radial opacity-20 filter-blur-md pointer-events-none"
                   style={{
                     borderRadius,
                   }}
                 />
-                <span className="relative dark:text-black text-white-8 _outline-filter">
+                <span className="relative dark:text-black text-white-8 _outline-filter pointer-events-none">
                   {children}
                 </span>
               </div>
-              <motion.div />
             </motion.div>
           ) : (
             <>{children}</>

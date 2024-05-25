@@ -1,18 +1,20 @@
 import { FC } from "react";
-import {  AnimatePresence,  HTMLMotionProps,  motion,} from "framer-motion";
+import {
+  AnimatePresence,
+  HTMLMotionProps,
+  motion,
+} from "framer-motion";
 import clsx, { ClassValue } from "clsx";
 import { TGradientShortcut } from "~uno/shortcuts/box/gradient";
 import { TChildren } from "@brysonandrew/config-types";
 import { LightingGlow } from "~/components/layout/lighting/glow";
 import { TexturesMeshRounded } from "~/components/textures/mesh/rounded";
 import { boxStyle } from "~/constants/box/style";
-import { TypographyBorderedXs } from "~/components/typography/bordered/xs";
-import { borderRadius } from "tailwindcss/defaultTheme";
 
 export type TPillProps =
   HTMLMotionProps<"span"> & {
     classValue?: ClassValue;
-    sizeClass?:ClassValue
+    sizeClass?: ClassValue;
     gradient?: TGradientShortcut;
     isCircle?: boolean;
     isActive?: boolean;
@@ -35,26 +37,18 @@ export const Pill: FC<TPillProps> = ({
   return (
     <motion.div
       className={clsx(
-        "center h-5 text-sx px-1.5 _gradient-radial z-20",
-        sizeClass ?? ('h-5' + isCircle ? " w-5" : ''),
+        "center h-5 text-sx px-1.5 _gradient-radial z-20 _outline-filter",
+        sizeClass ??
+          ("h-5" + isCircle
+            ? " w-5"
+            : ""),
         classValue
       )}
       style={{ borderRadius, ...style }}
       layout
       {...props}
     >
-      <AnimatePresence>
-        {isActive && (
-          <LightingGlow
-            key="GLOW_KEY"
-            classValue="-inset-2"
-          />
-        )}
-      </AnimatePresence>
-      <TexturesMeshRounded />
-      <TypographyBorderedXs>
-        {children}
-      </TypographyBorderedXs>
+      {children}
     </motion.div>
   );
 };

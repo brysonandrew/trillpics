@@ -6,11 +6,6 @@ type TProps = TPropsWithChildren;
 export const VideoShell: FC<
   TProps
 > = () => {
-  // const {
-  //   footerValue,
-  //   picValue,
-  //   updatePic,
-  // } = useContextGrid();
 
   return (
     <>

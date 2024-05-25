@@ -1,11 +1,16 @@
 import { FC, useState } from "react";
 import { useDarkMode } from "@brysonandrew/dark-mode";
-import { PillBHover, TPillBHoverProps } from "~/components/buttons/pill/b/hover";
+import {
+  PillBHover,
+  TPillBHoverProps,
+} from "~/components/buttons/pill/b/hover";
 import { Moon } from "~/pics/header/right/dark-mode/icons/Moon";
 import { Sun } from "~/pics/header/right/dark-mode/icons/Sun";
 import { useHoverKey } from "~/hooks/use-hover-key";
 
-export const DarkMode: FC<Partial<TPillBHoverProps>> = (props) => {
+export const DarkMode: FC<
+  Partial<TPillBHoverProps>
+> = (props) => {
   const { isDarkMode, toggle } =
     useDarkMode();
   const [initial, setInitial] =
@@ -14,7 +19,7 @@ export const DarkMode: FC<Partial<TPillBHoverProps>> = (props) => {
   const key = isDarkMode
     ? "light"
     : "dark";
-  const title = `Use ${key} mode`; 
+  const title = `${key} mode`;
 
   const handleTap = () => {
     setInitial(true);
@@ -35,9 +40,9 @@ export const DarkMode: FC<Partial<TPillBHoverProps>> = (props) => {
       title={title}
       onClick={handleTap}
       Icon={Icon}
+      direction="rtl"
       {...motionHandlers(title)}
       {...props}
-
     >
       {isHover(title) && title}
     </PillBHover>

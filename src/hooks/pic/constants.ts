@@ -21,4 +21,4 @@ export const DELIMITER_CELL_KEY = "-";
 
 export const DELIMITER_VIDEO_PICS = ",";
 
-export const SELECTED_PARAM_KEY = "sel";
+export const SELECTED_PARAM_KEY = "pic";

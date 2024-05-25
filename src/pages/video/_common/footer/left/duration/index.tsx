@@ -6,7 +6,6 @@ import { useReady } from "~/hooks/use-ready";
 import { TVideoFooterProps } from "~/pages/video/_common/footer/types";
 import { SeperatorHorizontal } from "~/pages/video/_common/footer/left/seperator/horizontal";
 import { SecondsSlider } from "~/components/slider";
-import { TypographyBorderedSm } from "~/components/typography/bordered/sm";
 
 export const _RootLeftDuration: FC<
   TVideoFooterProps
@@ -33,9 +32,10 @@ export const _RootLeftDuration: FC<
       }}
     >
       <LinesHorizontal />
-      <TypographyBorderedSm>
-        duration
-      </TypographyBorderedSm>
+ <div>
+ duration
+
+ </div>
       <LinesHorizontal />
       <div className="w-full md:w-3/4">
         <SecondsSlider />

@@ -23,6 +23,12 @@ export const DELAY_TRANSITION_PROPS = {
     delay: TRANSITION.duration,
   },
 };
+export const DELAY_04_TRANSITION_PROPS = {
+  transition: {
+    ...TRANSITION,
+    delay: TRANSITION.duration*2,
+  },
+};
 
 export const FADE_PRESENCE_WITH_DELAY =
   resolvePresence(

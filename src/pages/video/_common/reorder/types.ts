@@ -1,9 +1,11 @@
 import {
   TUlProps,
   TLiProps,
+  TDivProps,
+  TDimensions,
 } from "@brysonandrew/config-types";
 
 export type TCommonProps = {
-  boxProps: TUlProps;
-  itemProps: TLiProps;
+  boxProps: TDivProps;
+  itemProps: TLiProps & {style:TDimensions};
 };

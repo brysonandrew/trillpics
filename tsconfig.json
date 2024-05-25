@@ -40,5 +40,5 @@
     "**/*.js",
     "**/*.jsx",
     "**/*.tsx"
-, ".cemetary/use-param-mode.ts", ".cemetary/pic/index.tsx"  ]
+  ]
 }

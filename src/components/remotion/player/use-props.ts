@@ -3,7 +3,7 @@ import { useRemotionProps } from "~/hooks/remotion/use-props";
 import { useTrillPicsStore } from "~/store/middleware";
 import { PlayerRef } from "@remotion/player";
 import { boxSize } from "~/constants/box/size";
-// // // //
+
 export const useRemotionPlayerProps =
   () => {
     const {

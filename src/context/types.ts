@@ -14,6 +14,7 @@ import { TPicsRows } from "~/store/state/table/types";
 import { TFontsResult } from "~/context/fonts";
 import { TUseUiResult } from "~/context/ui";
 import { TCell } from "~/pics/grid/pic";
+import { TDraggerMotion } from "~/context/dragger";
 
 export type TVirtualizeListProps =
   TPicsRows;
@@ -54,10 +55,6 @@ export type TVirtualizeContext = {
   updateCenter: Dispatch<
     SetStateAction<TElementValue>
   >;
-  picValue: TElementValue;
-  updatePic: Dispatch<
-    SetStateAction<TElementValue>
-  >;
   headerValue: TElementValue;
   updateHeader: Dispatch<
     SetStateAction<TElementValue>
@@ -75,4 +72,5 @@ export type TVirtualizeContext = {
     props: ListOnScrollProps
   ): void;
   resetLayout(): void;
+  dragger: TDraggerMotion;
 };

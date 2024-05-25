@@ -12,13 +12,22 @@ import { CursorCorners } from "~/pics/grid/pic/cursor/corners";
 import { TPropsWithChildren } from "@brysonandrew/config-types";
 import { useCellOver } from "~/hooks/pic/cell/over/hook";
 import { resolvePositionFromCell } from "~/pics/grid/pic/cursor/position-from-cell";
-import { DELAY_TRANSITION_PROPS } from "~/constants/animation";
+import {
+  DELAY_04_TRANSITION_PROPS,
+  DELAY_TRANSITION_PROPS,
+} from "~/constants/animation";
+import { boxRadius } from "~/constants/box/radius";
 
 export const PicCursor: FC<
   TPropsWithChildren<{
     isDisabled?: boolean;
+    onClick?(): void;
   }>
-> = ({ children, isDisabled }) => {
+> = ({
+  onClick,
+  children,
+  isDisabled,
+}) => {
   const cellOverResult = useCellOver();
   const { scrollY } = useContextGrid();
   const {
@@ -45,6 +54,7 @@ export const PicCursor: FC<
     resolvePositionFromCell(
       cellOverResult
     );
+  const borderRadus = boxRadius();
 
   const io = {
     opacity: 0,
@@ -66,14 +76,14 @@ export const PicCursor: FC<
         className="fill center text-2xl cursor-pointer pointer-events-none"
         style={{
           y: scrollY,
-          pointerEvents: "none",
+          ...position,
         }}
         whileInView={{
           opacity: 1,
         }}
         initial={io}
         animate={{
-          opacity: 1,
+          opacity: 0,
           ...position,
         }}
         exit={io}
@@ -87,11 +97,7 @@ export const PicCursor: FC<
               <motion.div
                 className="fill center"
                 key={resolveCompositeKey(
-                  "display",
-                  // cellOverResult.cell
-                  //   ?.column,
-                  // cellOverResult.cell
-                  //   ?.row
+                  "display"
                 )}
                 initial={{
                   scale: 0.8,
@@ -102,10 +108,15 @@ export const PicCursor: FC<
                 {...DELAY_TRANSITION_PROPS}
               >
                 <CursorCorners />
-
-                <motion.div className="fill center">
-                {children}
-
+                <motion.div
+                  className="absolute left-1/6 top-1/6 center w-2/3 h-2/3 border border-white dark:border-black opacity-60"
+                  style={{
+                    borderRadius:
+                      borderRadus,
+                  }}
+                  {...DELAY_04_TRANSITION_PROPS}
+                >
+                  {children}
                 </motion.div>
               </motion.div>
             )}

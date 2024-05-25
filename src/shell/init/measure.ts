@@ -81,6 +81,7 @@ export const useScreenMeasure = (
             dimensions
           ),
         },
+
         ...dimensions,
         halfWidth: width * 0.5,
         halfHeight: height * 0.5,

@@ -21,8 +21,11 @@ import { isValue } from "~/utils/validation/is/value";
 import { videoReadEntries } from "~/hooks/pic/video/read/entries";
 import { TPic } from "~/store/state/pics/types";
 import { useTimebomb } from "~/hooks/use-time-bomb";
+import { MAX_COUNT } from "~/pages/video/_common/reorder/constants";
 
-export const usePicSelected = () => {
+export const usePicSelected = (
+  key = SELECTED_PARAM_KEY
+) => {
   const { pathname } = useLocation();
   const navigate = useNavigate();
   const [searchParams] =
@@ -35,9 +38,7 @@ export const usePicSelected = () => {
       0
   );
   const paramValues =
-    searchParams.getAll(
-      SELECTED_PARAM_KEY
-    );
+    searchParams.getAll(key);
   const {
     addedCheck,
     removingCheck,
@@ -71,42 +72,24 @@ export const usePicSelected = () => {
       columnsCount,
     });
 
-  const add = (cell: TCell) => {
-    if (cell === null) return;
-    const { currName } =
-      detailsFromCell({
-        cell,
-        columnsCount,
-        pics,
-      });
-    if (currName === null) return;
-    searchParams.append(
-      SELECTED_PARAM_KEY,
-      currName
-    );
-    const r1 = paramsMoveToEnd(
-      searchParams,
-      CELL_PARAM_KEY
-    );
-    navigate(
-      `${pathname}?${searchParams}`
-    );
-  };
-
   const select = (
     nextNames = currName
       ? [currName]
       : null
   ) => {
     if (nextNames === null) return;
-    searchParams.delete(
-      SELECTED_PARAM_KEY
+
+    const maxedNames = nextNames.slice(
+      Math.max(
+        nextNames.length - MAX_COUNT,
+        0
+      )
     );
-    nextNames.forEach((name) => {
-      searchParams.append(
-        SELECTED_PARAM_KEY,
-        name
-      );
+    searchParams.delete(key);
+    maxedNames.forEach((name) => {
+      if (name) {
+        searchParams.append(key, name);
+      }
     });
 
     const r1 = paramsMoveToEnd(
@@ -123,6 +106,19 @@ export const usePicSelected = () => {
     select
   );
 
+  const add = (cell: TCell) => {
+    if (cell === null) return;
+    const { currName } =
+      detailsFromCell({
+        cell,
+        columnsCount,
+        pics,
+      });
+    if (currName === null) return;
+
+    select([...paramValues, currName]);
+  };
+
   const deselectByCell = (
     cell?: TCell
   ) => {
@@ -137,7 +133,7 @@ export const usePicSelected = () => {
     }
   };
 
-  const deselect = (name?: string) => {
+  const deselect = (name = searchParams.get(key)) => {
     const nextName = name ?? currName;
 
     if (
@@ -170,8 +166,8 @@ export const usePicSelected = () => {
     }
     if (currName) {
       select([
-        currName,
         ...paramValues,
+        currName,
       ]);
     }
   };
@@ -179,7 +175,6 @@ export const usePicSelected = () => {
     currName &&
     removingInValuesCheck(currName);
 
-  // console.log(currName, isRemoving);
   const maybeCheck = (name: TPic) => {
     return (
       name === currName && !isAdded
@@ -202,6 +197,7 @@ export const usePicSelected = () => {
     removingCheck,
     decryptRemoving,
     encryptRemoving,
+    searchParams,
     ...selectedPicsResult,
   };
 };

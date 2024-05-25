@@ -6,35 +6,33 @@ import { LinesTopRight } from "~/pages/video/_common/footer/left/lines/top-right
 import { HeaderSubtitle } from "~/pics/header/subtitle";
 
 type TProps = {
-  isIdle: boolean
+  isIdle: boolean;
   dimensions: TDimensions;
   foundation: DOMRect;
 };
 
 export const PicsHudHeaderRight: FC<
   TProps
-> = ({
-  foundation,
-  dimensions,
-}) => {
+> = ({ foundation, dimensions }) => {
   const s = boxSize();
   return (
     <div
       key="header-right"
-      className="absolute row h-0"
+      className="absolute row-start h-0"
       style={{
         left: foundation.width + s.m05,
         width:
-        dimensions.width -
-          foundation.width -
-          s.m05,
+          dimensions.width -
+          foundation.width,
         top: s.m05,
         gap: s.m05,
       }}
     >
       <LinesHorizontal classValue="hidden lg:flex" />
       <HeaderSubtitle classValue="hidden lg:flex" />
-      <LinesTopRight dimensions={dimensions} />
+      <LinesTopRight
+        dimensions={dimensions}
+      />
     </div>
   );
 };

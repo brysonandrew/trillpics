@@ -2,7 +2,7 @@ import { useMemo } from "react";
 import { useImageDimensions } from "@brysonandrew/measure";
 import { DIMENSIONS } from "~/constants/remotion";
 import { useTrillPicsStore } from "~/store/middleware";
-import { DEFAULT_INPUT } from "~/pages/video/player/_header/generate";
+import { DEFAULT_INPUT } from "~/pages/video/player/_header/download";
 
 export const useRemotionProps = (
   picVideoInputs = DEFAULT_INPUT[
@@ -23,7 +23,7 @@ export const useRemotionProps = (
   const dimensions = useImageDimensions(
     {
       box: screen.isDimensions
-        ? screen
+        ? screen.container
         : null,
       image: DIMENSIONS,
     }
@@ -40,11 +40,13 @@ export const useRemotionProps = (
             )}`
         );
   }, [picVideoInputs]);
+
   const seconds =
     picVideoInputs.seconds || 10;
   const durationInFrames =
     seconds * fps;
   const count = pics.length;
+
   return {
     fps,
     durationInFrames,

@@ -6,6 +6,7 @@ import { Video_RootCursorSelected } from "~/pages/video/_root/cursor/selected";
 import { useContextGrid } from "~/context";
 import { useVideoClickSelect } from "~/pages/video/select";
 import { _CommonReorder } from "~/pages/video/_common/reorder";
+import { boxRadius } from "~/constants/box/radius";
 
 export const Video_RootCursor: FC =
   () => {
@@ -26,25 +27,13 @@ export const Video_RootCursor: FC =
         isActiveHover,
       })
     );
-    const isSelectedVisible =
-      !main.cursor.isHoverIdle &&
-      isControls &&
-      !isScrolling &&
-      !isActiveHover;
 
     return (
       <>
-        {isSelectedVisible && (
-          <Video_RootCursorSelected
-            {...props}
-          />
-        )}
         <PicCursor>
-          <div className="fill center">
-            <AddRemoveIcon
-              isAdded={props.isAdded}
-            />
-          </div>
+          <AddRemoveIcon
+            isAdded={props.isAdded}
+          />
         </PicCursor>
         <footer className="h-0 w-full">
           <_CommonReorder {...props} />

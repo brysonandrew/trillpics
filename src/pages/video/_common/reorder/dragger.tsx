@@ -6,31 +6,23 @@ import {
 import {
   animate,
   motion,
-  MotionValue,
-  useMotionValue,
-  useTransform,
 } from "framer-motion";
 import { useContextGrid } from "~/context";
 import { useHoverKey } from "~/hooks/use-hover-key";
 import clsx from "clsx";
 import { resolveAccessibilityTitles } from "@brysonandrew/utils-attributes";
 import { boxSize } from "~/constants/box/size";
-import { TDimensions } from "@brysonandrew/config-types";
-import { TMotionPoint } from "@brysonandrew/motion-config-types";
+import { THudContainer } from "~/pics/hud/left";
+import { TDraggerMotion } from "~/context/dragger";
+import { LinesHorizontal1 } from "~/pages/video/_common/footer/left/lines/horizontal/1";
 
-type TMotionValuesRecord =
-  TMotionPoint & {
-    x025: MotionValue;
-    y05: MotionValue;
-    y033: MotionValue;
-  };
 type TProps = {
-  container: TDimensions;
+  container: THudContainer;
   left: number;
   width: number;
   height: number;
   children(
-    motionValuesRecord: TMotionValuesRecord
+    motionValuesRecord: TDraggerMotion
   ): JSX.Element;
 };
 export const _CommonReorderDragger: FC<
@@ -42,25 +34,32 @@ export const _CommonReorderDragger: FC<
   children,
   ...props
 }) => {
-  const x = useMotionValue(0);
-  const y = useMotionValue(height);
-  const { main } = useContextGrid();
-
+  const { main, dragger } =
+    useContextGrid();
+  const { x, y, y06, y075 } = dragger;
   const title = "Drag video pics";
 
+  const start = () => {
+    main.cursor.isDragging = true;
+  };
+  const stop = () => {
+    main.cursor.isDragging = true;
+  };
   useEffect(() => {
     animate<number>(
-      y,
-      -container.height / 2 + s.m,
+      dragger.y,
+      -container.height / 2 - s.m2,
       {
         ease: "easeIn",
-        duration: 1,
+        duration: 0.4,
       }
     );
   }, []);
 
   const { isHover, motionHandlers } =
-    useHoverKey();
+    useHoverKey({
+      handlers: { start, stop },
+    });
 
   const handlePointerDown: PointerEventHandler<
     HTMLButtonElement
@@ -69,39 +68,21 @@ export const _CommonReorderDragger: FC<
   };
   const s = boxSize();
 
-  const x025 = useTransform(
-    x,
-    (v) => v / 4
-  );
-  const y033 = useTransform(
-    y,
-    (v) => v / 3
-  );
-
-  const y05 = useTransform(
-    y,
-    (v) => v / 2
-  );
-
-  const left = props.left + width / 2;
+  const left =
+    props.left + width / 2 - s.m;
 
   return (
     <>
-      {children({
-        x025,
-        y033,
-        y05,
-        x,
-        y,
-      })}
+      {children(dragger)}
       <motion.button
         drag
         dragConstraints={{
-          left: 0,
+          left: 0, // -container.width * 0.5,
           bottom: 0,
-          right: 0,
+          right: 0, // container.width * 0.5,
           top:
-            -container.height / 2 + s.m,
+            -container.height * 0.75 -
+            s.m,
         }}
         className={clsx(
           "center absolute rounded-md mb-4 _gradient-radial",
@@ -114,8 +95,8 @@ export const _CommonReorderDragger: FC<
           y,
           bottom: 0,
           left,
-          width: s.m2,
-          height: s.m2,
+          width: s.m15,
+          height: s.m15,
         }}
         {...resolveAccessibilityTitles(
           title
@@ -125,11 +106,12 @@ export const _CommonReorderDragger: FC<
         }
         {...motionHandlers(title)}
       >
+        <LinesHorizontal1 />
         <div
-          className="rounded-md _r-dots cursor-grab focus:cursor-grabbing"
+          className="relative rounded-md _r-dots cursor-grab focus:cursor-grabbing"
           style={{
-            width: s.m2 - s.m025,
-            height: s.m2 - s.m025,
+            width: s.m15 - s.m0125,
+            height: s.m15 - s.m0125,
           }}
         />
       </motion.button>

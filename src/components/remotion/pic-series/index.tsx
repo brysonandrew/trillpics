@@ -51,12 +51,12 @@ export const PicSeries: FC<
             resolvePicSrc(pic);
           const src =
             staticFile(srcPath);
-
+console.log(src)
           return (
             <Series.Sequence
               key={`${src}`}
               durationInFrames={
-                unitFrames
+               Math.max(1,unitFrames)
               }
             >
               <AbsoluteFill

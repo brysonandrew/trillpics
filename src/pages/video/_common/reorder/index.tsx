@@ -24,8 +24,8 @@ import {
 } from "~/pages/video/_common/reorder/constants";
 import { PRESENCE_OPACITY } from "@brysonandrew/motion-config-constants";
 import { CONTROLS_PLAYER_TITLE } from "~/pics/hud/left/player";
-import { AURA } from "@brysonandrew/svg-filter";
 import { useHoverKey } from "~/hooks/use-hover-key";
+import { LEFT_BUTTONS_CLEAR_TITLE } from "~/pics/hud/left/clear";
 
 type TProps = TUsePicSelected;
 export const _CommonReorder: FC<
@@ -39,13 +39,24 @@ export const _CommonReorder: FC<
   select,
   deselect,
 }) => {
-  const { screen, hoverKeys } =
-    useTrillPicsStore(
-      ({ screen, hoverKeys }) => ({
-        screen,
-        hoverKeys,
-      })
-    );
+  const {
+    screen,
+    hoverKeys,
+    isControls,
+    isHover
+  } = useTrillPicsStore(
+    ({
+      screen,
+      hoverKeys,
+      isControls,
+      isHover
+    }) => ({
+      screen,
+      hoverKeys,
+      isControls,
+      isHover
+    })
+  );
   const isVideoPlayerButtonHover =
     hoverKeys.includes(
       CONTROLS_PLAYER_TITLE
@@ -54,9 +65,13 @@ export const _CommonReorder: FC<
     400,
     select
   );
-  const {handlers}  = useHoverKey()
+  const { handlers } = useHoverKey();
 
-  if (!screen.isDimensions) return null;
+  if (
+    !screen.isDimensions ||
+    !isControls
+  )
+    return null;
   const s = boxSize();
   const width =
     screen.container.width - s.m3;
@@ -89,9 +104,12 @@ export const _CommonReorder: FC<
       left={left}
       container={screen.container}
     >
-      {({ x025, y033, y05, y }) => {
+      {({ x025, y06, y075, y }) => {
         return (
-          <div className="relative" {...handlers("dragger")}>
+          <div
+            className="relative"
+            {...handlers("dragger")}
+          >
             {children}
             <_CommonReorderControls
               names={names}
@@ -100,12 +118,12 @@ export const _CommonReorder: FC<
               boxProps={boxProps}
               itemProps={itemProps}
               x={x025}
-              y={y05}
+              y={y075}
             />
             <motion.div
               style={{
                 ...boxProps.style,
-                y: y033,
+                y: y06,
               }}
             >
               <_CommonReorderPlaceholder
@@ -126,23 +144,19 @@ export const _CommonReorder: FC<
                 isVNumber(size);
                 const isRemoving =
                   removingCheck(name);
-                console.log(
-                  isRemoving,
-                  name
-                );
                 return (
                   <Reorder.Item
                     key={name}
                     value={name}
                     {...itemProps}
+                    whileDrag={{cursor:'grabbing'}}
                     style={{
                       ...itemProps.style,
-                      // x: 0,
-                      y: y033,
-                      // y: y033,
+                      cursor:'grab',
+                      y: y06,
                     }}
                   >
-                    <AnimatePresence>
+                    {!isHover(LEFT_BUTTONS_CLEAR_TITLE) && <AnimatePresence>
                       {isVideoPlayerButtonHover ? (
                         <motion.div
                           key="glow"
@@ -183,7 +197,7 @@ export const _CommonReorder: FC<
                             filter:
                               "blur(4px)",
                           }}
-                          {...PRESENCE_OPACITY}
+                          // {...PRESENCE_OPACITY}
                           transition={{
                             duration: 1,
                             ease: "easeIn",
@@ -201,7 +215,7 @@ export const _CommonReorder: FC<
                               "grabbing",
                           }}
                           {...itemProps}
-                          {...PRESENCE_OPACITY}
+                          // {...PRESENCE_OPACITY}
                           style={{
                             ...itemProps.style,
                             top: 0,
@@ -222,7 +236,7 @@ export const _CommonReorder: FC<
                           }}
                         />
                       )}
-                    </AnimatePresence>
+                    </AnimatePresence>}
                   </Reorder.Item>
                 );
               })}

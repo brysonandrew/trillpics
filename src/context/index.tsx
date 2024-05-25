@@ -22,6 +22,7 @@ import { useScrollUpdateHandler } from "~/context/scroll/update";
 import { useFonts } from "~/context/fonts";
 import { useUi } from "~/context/ui";
 import { useMove } from "~/context/hooks/move";
+import { useDragger } from "~/context/dragger";
 
 const VirtualizeContext = createContext(
   {} as TVirtualizeContext
@@ -35,8 +36,6 @@ export type TVirtualizeContextProviderProps =
 export const VirtualizeContextProvider: FC<
   TVirtualizeContextProviderProps
 > = ({ children }) => {
-  const [picValue, updatePic] =
-    useState<TElementValue>(null);
   const [
     foundationValue,
     updateFoundation,
@@ -53,12 +52,14 @@ export const VirtualizeContextProvider: FC<
   const fonts = useFonts();
   const blur = useBlur();
   const cursor = useCursor();
+  const dragger= useDragger()
   const ui = useUi();
   const scrollY = useMotionValue(0);
 
   const main = useMemo(() => {
     return {
       cursor,
+      dragger,
       blur,
       ui,
     };
@@ -90,9 +91,8 @@ export const VirtualizeContextProvider: FC<
         ref,
         main,
         fonts,
+        dragger,
         onScroll: handleScroll,
-        picValue,
-        updatePic,
         headerValue,
         updateHeader,
         centerValue,

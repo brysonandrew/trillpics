@@ -1,5 +1,4 @@
 import type { FC } from "react";
-import { TypographyBorderedXs } from "~/components/typography/bordered/xs";
 import { boxSize } from "~/constants/box/size";
 import { useReady } from "~/hooks/use-ready";
 import { LeftButtonsClear } from "~/pics/hud/left/clear";
@@ -49,9 +48,9 @@ export const FooterNavDelete: FC =
             marginLeft: bSize.s05,
           }}
         />
-        <TypographyBorderedXs>
+        <span className="_outline-filter">
           delete
-        </TypographyBorderedXs>
+        </span>
         <LinesVertical
           style={{
             marginLeft: bSize.s05,

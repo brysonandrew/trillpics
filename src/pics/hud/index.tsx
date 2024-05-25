@@ -74,6 +74,7 @@ export const Hud: FC<TProps> = ({
                       <PicsHudRight
                         key="PicsHudRight"
                         isIdle={isIdle}
+                        playerHeight={dimensions.playerHeight}
                         foundation={
                           foundationValue
                         }
@@ -89,7 +90,6 @@ export const Hud: FC<TProps> = ({
                 </PicsHudHeader>
               </>
             )}
-
             <div
               key="left"
               className="fixed w-0 z-0"
@@ -106,10 +106,12 @@ export const Hud: FC<TProps> = ({
                   dimensions={
                     dimensions
                   }
+                  playerHeight={
+                    dimensions.playerHeight
+                  }
                   foundation={
                     foundationValue
                   }
-                  isIdle={isIdle}
                   isVerticalScroll={
                     isVerticalScroll
                   }

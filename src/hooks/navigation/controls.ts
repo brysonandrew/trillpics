@@ -29,5 +29,6 @@ export const useNavigationControls = (
   return {
     isActive,
     togglePathValue,
+    searchParams
   };
 };
