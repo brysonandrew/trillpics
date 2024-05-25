@@ -10,12 +10,19 @@ import {
 } from "~/components/remotion/pic-series/types";
 
 export const CompositionsPicSeries: FC =
-  () => {
-
+  (__inputProps) => {
     const {
-      props: defaultProps,
+      props: _inputProps,
       ...props
     } = useRemotionProps();
+    const inputProps = {
+      ...__inputProps,
+      ..._inputProps,
+    };
+    inputProps.seconds =
+      inputProps.seconds || 10;
+    const durationInFrames =
+      inputProps.seconds * props.fps;
     return (
       <Composition<
         TPicSeriesSchema,
@@ -24,7 +31,10 @@ export const CompositionsPicSeries: FC =
         id="pic-series"
         component={PicSeries}
         schema={PIC_SERIES_SCHEMA}
-        defaultProps={defaultProps}
+        defaultProps={inputProps}
+        durationInFrames={
+          durationInFrames
+        }
         {...DIMENSIONS}
         {...props}
       />

@@ -17,14 +17,14 @@ export type TBoxChildProps =
   TBaseBoxChildProps;
 type TProps = TCell &
   TPicProps & {
-    cursor: "pointer" | "zoom-in";
+
     children(
       props: TBoxChildProps
     ): JSX.Element | null;
   };
 export const Box: FC<TProps> = ({
   children,
-  cursor,
+
   column,
   row,
   ...props
@@ -43,7 +43,7 @@ export const Box: FC<TProps> = ({
             size: size,
             left,
           }),
-          cursor,
+  
         }}
       />
       <>

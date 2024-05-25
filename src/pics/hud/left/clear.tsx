@@ -1,4 +1,5 @@
 import type { FC } from "react";
+import { motion } from "framer-motion";
 import {
   PillBHover,
   TPillBHoverProps,
@@ -13,8 +14,8 @@ import { IconsTrash } from "~/components/icons/video/trash";
 import { MAX_COUNT } from "~/pages/video/_common/reorder/constants";
 import { usePicVideoWriteInputs } from "~/hooks/pic/video/write/inputs/hook";
 import { boxSize } from "~/constants/box/size";
-import { motion } from "framer-motion";
-export const LEFT_BUTTONS_CLEAR_TITLE = "Delete all";
+export const LEFT_BUTTONS_CLEAR_TITLE =
+  "Delete all";
 
 export const LeftButtonsClear: FC<
   TVideoFooterProps &
@@ -51,11 +52,12 @@ export const LeftButtonsClear: FC<
     }
     clear();
   };
-  const s  = boxSize()
-  const title = LEFT_BUTTONS_CLEAR_TITLE
+  const s = boxSize();
+  const title =
+    LEFT_BUTTONS_CLEAR_TITLE;
   return (
     <Button
-    direction="rtl"
+      direction="rtl"
       onClick={handleClear}
       Icon={IconsTrash}
       subtitle={
@@ -77,7 +79,7 @@ export const LeftButtonsClear: FC<
             {names.map((name) => (
               <li key={name}>
                 <motion.img
-                layoutId={name}
+                  layoutId={name}
                   alt={name}
                   src={resolvePicSrc(
                     name

@@ -5,7 +5,10 @@ import {
 } from "react";
 import { FixedSizeList } from "react-window";
 import { Row } from "~/pics/grid/row";
-import { TPartialFixedTableProps, TPicsRows } from "~/store/state/table/types";
+import {
+  TPartialFixedTableProps,
+  TPicsRows,
+} from "~/store/state/table/types";
 import { TDimensions } from "@brysonandrew/config-types";
 import {
   Inner,
@@ -20,12 +23,14 @@ import {
   TGrid,
 } from "~/context/types";
 import { TTableUpdateCountResult } from "~/store/state/table/update/count";
+import { useContextGrid } from "~/context";
+import { CSSDeclarationList } from "tailwindcss/types/generated/default-theme";
 
 type TProps = TPartialFixedTableProps &
   TDimensions & {
     rows: TPicsRows;
     size: number;
-    count: TTableUpdateCountResult
+    count: TTableUpdateCountResult;
   };
 export const Grid = forwardRef<
   TGridHandle,
@@ -40,8 +45,9 @@ export const Grid = forwardRef<
     }: TProps,
     handleRef
   ) => {
-    const outerHandle =
-      useRef<TOuterHandle | null>(null);
+    const outerHandle = useRef<
+      any | null
+    >(null);
     const innerHandle =
       useRef<TInnerHandle | null>(null);
     const sourceRef =
@@ -51,6 +57,31 @@ export const Grid = forwardRef<
       handleRef,
       () => {
         return {
+          disableScroll: () => {
+            // console.log(sourceRef.current)
+            if (!outerHandle.current)
+              return;
+         
+            (
+              outerHandle.current
+                .style as CSSStyleDeclaration
+            ).setProperty(
+              "overflow",
+              "hidden"
+            );
+          },
+          enableScroll: () => {
+            // console.log(sourceRef.current)
+            if (!outerHandle.current)
+              return;
+            (
+              outerHandle.current
+                .style as CSSStyleDeclaration
+            ).setProperty(
+              "overflow",
+              "auto"
+            );
+          },
           scrollTop: () => {
             if (sourceRef.current) {
               sourceRef.current.scrollTo(

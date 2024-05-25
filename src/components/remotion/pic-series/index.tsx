@@ -23,18 +23,22 @@ const INPUT_PROPS = getInputProps();
 export const PicSeries: FC<
   TPicSeriesProps
 > = (props) => {
-  const { pics, seconds, count } = {
+  const inputProps = {
     ...props,
     ...INPUT_PROPS,
   };
+  const { pics, seconds, count } =
+    inputProps;
   const frame = useCurrentFrame();
   const { fps, height } =
     useVideoConfig();
+
   const unitSeconds = seconds / count;
   const unitFrames = unitSeconds * fps;
-  const frameInSecond = frame % fps;
-  const progressInSecond =
-  frameInSecond / fps;
+  const frameInUnit =
+    frame % unitFrames;
+  const secondInUnit =
+    frameInUnit / (fps * unitSeconds);
 
   const audioSrcPath = resolveAudioSrc(
     "insurrection-10941"
@@ -51,29 +55,32 @@ export const PicSeries: FC<
             resolvePicSrc(pic);
           const src =
             staticFile(srcPath);
-console.log(src)
+          const delta =
+            height - PIC_SIZE;
+          const top = `${Math.floor(
+            (delta / height) *
+              secondInUnit *
+              100
+          )}%`;
           return (
             <Series.Sequence
               key={`${src}`}
               durationInFrames={
-               Math.max(1,unitFrames)
+                unitFrames
               }
             >
-              <AbsoluteFill
+              <div
                 style={{
+                  position: "absolute",
                   left: 0,
-                  top:
-                    (PIC_SIZE -
-                      height *
-                        ASPECT_RATIO) *
-                    progressInSecond,
+                  top,
                 }}
               >
                 <Img
                   src={src}
                   alt={`${pic}`}
                 />
-              </AbsoluteFill>
+              </div>
             </Series.Sequence>
           );
         })}

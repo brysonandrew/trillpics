@@ -27,38 +27,20 @@ export const Pics: FC<TProps> = (
 
   return (
     <>
-      <div
-        style={{ height: 0 }}
-        ref={(instance) => {
-          if (
-            instance &&
-            headerValue === null
-          ) {
-            updateHeader(instance);
-          }
-        }}
-      >
-        {table.isVerticalScroll && (
-          <ScrollbarSeam />
-        )}
-      </div>
+      {table.isVerticalScroll && (
+        <ScrollbarSeam />
+      )}
       {screen.isDimensions && (
-        <>
-          <Grid
-            rows={table.rows}
-            count={table.count}
-            size={table.size}
-            onScroll={onScroll}
-            ref={ref}
-            {...props}
-            width={screen.width}
-            height={screen.height}
-          />
-          <PicsCenter
-            width={screen.width}
-            height={screen.height}
-          />
-        </>
+        <Grid
+          rows={table.rows}
+          count={table.count}
+          size={table.size}
+          onScroll={onScroll}
+          ref={ref}
+          {...props}
+          width={screen.width}
+          height={screen.height}
+        />
       )}
       <Outlet />
     </>

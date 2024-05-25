@@ -43,13 +43,10 @@ export const useRemotionProps = (
 
   const seconds =
     picVideoInputs.seconds || 10;
-  const durationInFrames =
-    seconds * fps;
   const count = pics.length;
 
   return {
     fps,
-    durationInFrames,
     props: {
       pics,
       count,

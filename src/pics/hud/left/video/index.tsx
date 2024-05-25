@@ -61,8 +61,8 @@ export const HudLeftVideo: FC<
   }, []);
 
   const title = isActive
-    ? "Exit Video Maker"
-    : "Video Maker";
+    ? "Exit video sequencer"
+    : "Video sequencer";
   return (
     <>
       {isActive ? siblings : null}
@@ -84,7 +84,6 @@ export const HudLeftVideo: FC<
           onClick={handleClick}
           isSelected={
             isActive
-            // pathname === HOME_ROUTE
           }
           isLabel={isLabel}
           Icon={IconsVideo}

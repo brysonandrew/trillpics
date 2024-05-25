@@ -69,8 +69,6 @@ export const _CommonReorderControls: FC<
       <motion.ul
         className={clsx(
           "absolute row left-0 top-0 w-full"
-          // "border dark:border-white border-black",
-          // "dark:bg-white-01 bg-black-01 backdrop-blur-sm"
         )}
       >
         {names.map((name, index) => {

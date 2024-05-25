@@ -45,10 +45,10 @@ export const PillBHoverOverlay: FC<
               {isString(children) ? (
                 <div
                   className={clsx(
-                    "relative center min-w-0 px-2 sm:px-4 xl:px-24 w-full top-0 left-1/2 -translate-x-1/2",
+                    "relative center min-w-0 px-2 sm:px-4 lg:px-24 xl:px-32 w-full top-0 left-1/2 -translate-x-1/2",
                     direction === "ltr"
-                      ? "column-end"
-                      : "column-start"
+                      ? "column-end text-right"
+                      : "column-start text-left"
                   )}
                 >
                   <h3 className="text-4xl sm:text-6xl xl:text-8xl char-gap-6 text-white-8 dark:text-black-2 font-title _outline-filter">

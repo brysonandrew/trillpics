@@ -26,6 +26,15 @@ export const PicDisplay: FC<
   style,
   ...props
 }) => {
+  const isRemoving =
+    removingCheck(name);
+    if (isRemoving) {
+      console.log(name)
+    }
+  src =
+    src ?? resolvePicSrc(isRemoving
+      ? decryptRemoving(name)
+      : name);
 
   return (
     <motion.img
@@ -37,8 +46,20 @@ export const PicDisplay: FC<
       src={src}
       alt={`░▒▓█ pic #${name} █▓▒░`}
       draggable={false}
-      style={style}
-    
+      style={{
+        ...style,
+      
+      }}
+      // onError={
+      //   name === "11"
+      //     ? console.log
+      //     : NOOP
+      // }
+      // onLoad={
+      //   name === "11"
+      //     ? console.log
+      //     : NOOP
+      // }
       {...props}
     />
   );

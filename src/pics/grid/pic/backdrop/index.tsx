@@ -6,8 +6,7 @@ import { motion } from "framer-motion";
 import { useTrillPicsStore } from "~/store/middleware";
 import { TLinkProps } from "@brysonandrew/config-types";
 import clsx from "clsx";
-import { useSearchParams } from "react-router-dom";
-import { VIDEO_ROUTE } from "~/constants/params";
+import { FULLSCREEN_Z } from "~/constants/dom";
 
 type TProps = PropsWithChildren<
   Partial<TLinkProps>
@@ -37,9 +36,13 @@ export const PicBackdrop: FC<
         ...(screenDimensions ?? {}),
         backdropFilter:
           "blur(28px) grayscale(80%)",
-
-        cursor: "pointer",
+        zIndex: FULLSCREEN_Z,
         ...style,
+      }}
+      transition={{
+        ease: "linear",
+        delay: 0,
+        duration: 1,
       }}
     />
   );

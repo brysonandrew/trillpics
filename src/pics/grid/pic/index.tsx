@@ -17,10 +17,8 @@ export const Pic: FC<TPicProps> = ({
   name,
   ...cell
 }) => {
-  const {
-    isSelected,
-    isRemoving,
-  } = usePicSelectedRead(name);
+  const { isSelected, isRemoving } =
+    usePicSelectedRead(name);
   const {
     isSelected: isZoomed,
     isRemoving: isUnzooming,
@@ -28,25 +26,11 @@ export const Pic: FC<TPicProps> = ({
     name,
     ZOOM_PARAM_KEY
   );
-  // if (isZoomed) {
-  //   console.log(name, "isZoomed");
-  // }
-  // if (isUnzooming) {
-  //   console.log(
-  //     name,
-  //     "isUnzooming",
-  //   );
-  // }
+
   return (
-    <Box
-      cursor="pointer"
-      name={name}
-      {...cell}
-    >
+    <Box name={name} {...cell}>
       {({ ...boxChildProps }) => {
-        if (
-          isSelected || 
-          isZoomed)
+        if (isSelected || isZoomed)
           return null;
 
         return (

@@ -23,10 +23,17 @@ export const DELAY_TRANSITION_PROPS = {
     delay: TRANSITION.duration,
   },
 };
+
 export const DELAY_04_TRANSITION_PROPS = {
   transition: {
     ...TRANSITION,
     delay: TRANSITION.duration*2,
+  },
+};
+export const DELAY_06_TRANSITION_PROPS = {
+  transition: {
+    ...TRANSITION,
+    delay: TRANSITION.duration*3,
   },
 };
 
@@ -95,4 +102,16 @@ export const PRESENCE_OPACITY_ANIMATE_DELAY_02 =
 export const FADE_PRESENCE_DELAY_02 = {
   ...FADE_PRESENCE,
   ...FADE_PRESENCE_DELAY_02_TRANSITION,
+};
+
+export const PRESENCE_OPACITY_06 = {
+  initial: {
+    opacity: 0,
+  },
+  animate: {
+    opacity: 0.6,
+  },
+  exit: {
+    opacity: 0,
+  },
 };

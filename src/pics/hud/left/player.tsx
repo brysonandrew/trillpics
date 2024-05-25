@@ -10,17 +10,14 @@ import {
 } from "~/components/buttons/pill/b/hover";
 import { useNavigationControls } from "~/hooks/navigation/controls";
 import { TVideoFooterProps } from "~/pages/video/_common/footer/types";
-import {
-  VIDEO_PLAYER_ROUTE,
-  VIDEO_ROUTE,
-} from "~/constants/params";
+import { VIDEO_PLAYER_ROUTE } from "~/constants/params";
 import { PlaybackButtonsPlay } from "~/components/remotion/player/playback/buttons/play";
 import { useTrillPicsStore } from "~/store/middleware";
 import { usePicVideoReadCount } from "~/hooks/pic/video/read/count/hook";
 import { boxSize } from "~/constants/box/size";
 import { useLocation } from "react-router";
 export const CONTROLS_PLAYER_TITLE =
-  "Video player";
+  "Viewing room";
 type TProps = TVideoFooterProps &
   Partial<TPillBHoverProps>;
 export const ControlsPlayer: FC<

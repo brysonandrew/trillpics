@@ -40,7 +40,7 @@ export const HideControls: FC<
       subtitle={
         <div className="column-start gap-2">
           <p>{`This removes the page's default display.`}</p>
-          <p>{`When you wish to return, simply move your mouse or pointer device on and off the page.`}</p>
+          <p>{`To exit this mode, simply move your mouse or pointer device on and off the page.`}</p>
         </div>
       }
       {...props}

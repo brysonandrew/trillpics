@@ -13,10 +13,20 @@ import {
 export const RemotionPlayer: FC<
   TPicSeriesProps
 > = (_inputProps) => {
-  const { inputProps, ...props } =
-    useRemotionPlayerProps();
+  const {
+    inputProps: __inputProps,
+    ...props
+  } = useRemotionPlayerProps();
   const renderLoading = useLoading();
   usePlayerListeners();
+
+  const inputProps = {
+    ...__inputProps,
+    ..._inputProps,
+  };
+  inputProps.seconds =
+    inputProps.seconds || 10;
+  const durationInFrames  = inputProps.seconds * props.fps;
   return (
     <Player<
       TPicSeriesSchema,
@@ -28,11 +38,10 @@ export const RemotionPlayer: FC<
       renderLoading={renderLoading}
       component={PicSeries}
       schema={PIC_SERIES_SCHEMA}
-      inputProps={{
-        ...inputProps,
-        ..._inputProps,
-      }}
+      inputProps={inputProps}
+      durationInFrames={durationInFrames}
       {...props}
+
     />
   );
 };

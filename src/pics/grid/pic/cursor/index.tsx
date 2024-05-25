@@ -1,4 +1,4 @@
-import type { FC } from "react";
+import { FC } from "react";
 import {
   AnimatePresence,
   motion,
@@ -15,6 +15,7 @@ import { resolvePositionFromCell } from "~/pics/grid/pic/cursor/position-from-ce
 import {
   DELAY_04_TRANSITION_PROPS,
   DELAY_TRANSITION_PROPS,
+  PRESENCE_OPACITY_06,
 } from "~/constants/animation";
 import { boxRadius } from "~/constants/box/radius";
 
@@ -65,7 +66,7 @@ export const PicCursor: FC<
     <MotionConfig
       transition={{
         ease: "linear",
-        duration: 0.2,
+        duration: isScrolling ? 0 : 0.2,
       }}
     >
       <motion.div
@@ -88,39 +89,79 @@ export const PicCursor: FC<
         }}
         exit={io}
       >
-        <AnimatePresence>
-          {!isActiveHover &&
-            !isDisabled &&
-            !isScrolling &&
-            isOnscreen &&
-            isControls && (
-              <motion.div
-                className="fill center"
-                key={resolveCompositeKey(
-                  "display"
-                )}
-                initial={{
-                  scale: 0.8,
-                }}
-                animate={{
-                  scale: [0.84, 0.9],
-                }}
-                {...DELAY_TRANSITION_PROPS}
-              >
-                <CursorCorners />
+        <MotionConfig
+          transition={{
+            ease: "linear",
+            duration: isScrolling
+              ? 0
+              : 0.2,
+          }}
+        >
+          <AnimatePresence>
+            {!isActiveHover &&
+              !isDisabled &&
+              isOnscreen &&
+              isControls && (
                 <motion.div
-                  className="absolute left-1/6 top-1/6 center w-2/3 h-2/3 border border-white dark:border-black opacity-60"
-                  style={{
-                    borderRadius:
-                      borderRadus,
-                  }}
-                  {...DELAY_04_TRANSITION_PROPS}
+                  className="fill center"
+                  key={resolveCompositeKey(
+                    "display"
+                  )}
+                  {...PRESENCE_OPACITY_06}
                 >
-                  {children}
+                  <motion.div
+                    className="fill"
+                    key="corners"
+                    style={{
+                      borderRadius:
+                        borderRadus,
+                    }}
+                    initial={{
+                      scale: 0.8,
+                    }}
+                    animate={{
+                      scale: [
+                        0.84, 0.9,
+                      ],
+                    }}
+                    exit={{
+                      scale: 0.8,
+                    }}
+                    {...DELAY_TRANSITION_PROPS}
+                  >
+                    <CursorCorners />
+                  </motion.div>
+                  <motion.div
+                    key="inner-square"
+                    className="absolute left-1/6 top-1/6 w-2/3 h-2/3 border border-white dark:border-black opacity-60"
+                    style={{
+                      borderRadius:
+                        borderRadus,
+                    }}
+                    initial={{
+                      opacity: 0.1,
+                      scale: 1,
+                    }}
+                    animate={{
+                      scale: 0.8,
+                      opacity: 1,
+                    }}
+                    exit={{
+                      scale: 1,
+                      opacity: 0.1,
+                    }}
+                    {...DELAY_04_TRANSITION_PROPS}
+                  ></motion.div>
                 </motion.div>
-              </motion.div>
-            )}
-        </AnimatePresence>
+              )}
+            <div
+              className="grayscale-10 contrast-80 _outline-filter"
+              key="children"
+            >
+              {children}
+            </div>
+          </AnimatePresence>
+        </MotionConfig>
       </motion.div>
     </MotionConfig>
   );

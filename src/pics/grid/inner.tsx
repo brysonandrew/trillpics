@@ -8,7 +8,7 @@ import clsx from "clsx";
 import { useTrillPicsStore } from "~/store/middleware";
 
 export type TInnerHandle = {
-  isHovering: () => boolean;
+  isHovering(): boolean;
 };
 
 const Inner = forwardRef<
@@ -31,10 +31,14 @@ const Inner = forwardRef<
           set,
         })
       );
-
+    const mutableRef =
+      useRef<HTMLUListElement | null>(
+        null
+      );
     const eventRef = useRef<{
       isHovering: boolean;
     }>({ isHovering: false });
+
     useImperativeHandle(
       ref,
       () => {
@@ -43,8 +47,10 @@ const Inner = forwardRef<
             return eventRef.current
               .isHovering;
           },
+          
         };
       },
+
       []
     );
     const handleEnter = () => {
@@ -61,15 +67,32 @@ const Inner = forwardRef<
       eventRef.current.isHovering =
         false;
     };
+    const resolveRef = (
+      instance: HTMLUListElement
+    ) => {
+      if (
+        instance &&
+        !mutableRef.current
+      ) {
+        mutableRef.current = instance;
+      }
+      // if (typeof ref === "function") {
+      //   ref(instance);
+      // } else if (ref) {
+      //   ref.current = node;
+      // }
+    };
     return (
       <ul
-        ref={ref}
+      ref={ref}
+        // ref={resolveRef}
         className={clsx(className)}
         onPointerOver={handleEnter}
         onPointerEnter={handleEnter}
         onPointerLeave={handleLeave}
         onPointerOut={handleLeave}
         style={{
+          cursor: "pointer",
           ...style,
         }}
         {...props}

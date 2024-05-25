@@ -18,7 +18,7 @@ import { TDraggerMotion } from "~/context/dragger";
 
 export type TVirtualizeListProps =
   TPicsRows;
-export type TGrid =
+export type TGrid = any &
   FixedSizeList<TVirtualizeListProps> & {
     state: {
       isScrolling: boolean;
@@ -29,6 +29,8 @@ export type TGrid =
   };
 
 export type TGridHandle = {
+  enableScroll: () => void;
+  disableScroll: () => void;
   scrollTop: () => void;
   scrollToRandom: () => TCell | void;
   isScrolling: () => boolean;

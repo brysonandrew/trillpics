@@ -77,7 +77,7 @@ export const PicsHudLeft: FC<
               left: s.m05,
             }}
           />
-          <motion.div
+          {/* <motion.div
             className="absolute left-0 bottom-0"
             style={{
               bottom: -s.m2,
@@ -115,12 +115,10 @@ export const PicsHudLeft: FC<
                 >
                   <PlaybackProgressSeeker />
                 </div>
-
-            
                 <Download direction="rtl" />
               </div>
             </ControlsPlayer>
-          </motion.div>
+          </motion.div> */}
           <HudLeftVideo
             isLabel={isIdle}
             container={dimensions}
