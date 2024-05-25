@@ -14,20 +14,20 @@ export const HudLeftShuffle: FC<{
         updatePics,
       })
     );
-  const handler = useBlurAnimate();
+  const handleBlur = useBlurAnimate();
 
-  const randomizePics = () => {
-    handler();
+  const handleClick = () => {
+    handleBlur();
     updatePics();
   };
-  const title = "Shuffle Pics";
+  const title = "Shuffle pics";
   return (
     <PillBHover
       key={title}
       title={title}
       isLabel={isLabel}
-      subtitle="Re-arrange all pics in the gallery at random."
-      onClick={randomizePics}
+      subtitle="Re-arrange pics at random."
+      onClick={handleClick}
       Icon={IconsShuffle}
       {...PRESENCE_OPACITY}
     >

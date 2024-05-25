@@ -202,7 +202,7 @@ export const PillB: FC<TPillBProps> = ({
             >
               <div className="uppercase font-sans _outline-filter lg:(text-sm whitespace-nowrap) pointer-events-none">
                 <div
-                  className="absolute -inset-y-4 -inset-x-1 _gradient-radial opacity-20 filter-blur-md pointer-events-none"
+                  className="absolute -inset-y-4 -inset-x-1 _gradient-radial opacity-40 filter-blur-md pointer-events-none"
                   style={{
                     borderRadius,
                   }}

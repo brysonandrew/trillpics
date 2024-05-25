@@ -15,8 +15,8 @@ import { Download } from "~/pages/video/player/_header/download";
 import { ControlsPlayer } from "~/pics/hud/left/player";
 import { Seperator } from "~/pages/video/_common/footer/left/seperator";
 import { PlaybackButtonsFullscreen } from "~/components/remotion/player/playback/buttons/fullscreen";
-import { FullScreenToggle } from "~root/build/612.bundle";
 import { GRADIENT_BLUE_PINK_YELLOW } from "~app/color/gradient";
+import { FullScreenToggle } from "~root/build/612.bundle";
 export const OVERFLOW_HIDDEN =
   "overflow: hidden;";
 
@@ -94,7 +94,7 @@ export const VideoPlayer = () => {
             height: width * (9 / 16),
           }}
         >
-          <div className="absolute -inset-2 bg-black rounded-lg opacity-20" />
+          <div className="absolute -inset-2 bg-black rounded-lg opacity-70" />
           <RemotionPlayer
             {...inputProps}
           />
@@ -119,20 +119,22 @@ export const VideoPlayer = () => {
             }}
           >
             <div className="relative row-space">
-              <div className="absolute -inset-2 bg-black rounded-lg  _gradient-mesh opacity-20" />
+              <div className="absolute -inset-2 bg-black rounded-lg  _gradient-mesh opacity-70" />
 
-              <div className="relative row gap-3">
+              <div className="relative row gap-6">
                 <PlaybackButtons />
                 <PlaybackTimer />
               </div>
-
-              <PlaybackButtonsFullscreen />
+              <div className="relative flex gap-2">
+                <PlaybackButtonsFullscreen direction="rtl"  />
+                <Download direction="rtl" />
+              </div>
             </div>
             <div
               style={{ height: s.m05 }}
             />
             <div
-              className="relative w-full _gradient-radial"
+              className="relative w-full _gradient-radial rounded-lg"
               style={{
                 left: 0,
                 width:
@@ -140,13 +142,11 @@ export const VideoPlayer = () => {
                     .width - s.m3,
               }}
             >
-                            <div className="absolute -inset-2 bg-black rounded-lg  _gradient-mesh opacity-20" />
-
+              <div className="absolute -inset-2 bg-black rounded-lg _gradient-mesh opacity-80" />
               <PlaybackProgressSeeker />
             </div>
           </div>
         </div>
-        {/* <Download direction="rtl" /> */}
       </div>
     </>
   );

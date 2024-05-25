@@ -21,6 +21,8 @@ import { boxStyle } from "~/constants/box/style";
 import { usePicVideoReadInputs } from "~/hooks/pic/video/read/inputs/hook";
 import { IconsDownload } from "~/components/icons/download";
 import { PillBHover } from "~/components/buttons/pill/b/hover";
+import { boxSize } from "~/constants/box/size";
+import { resolveSquare } from "@brysonandrew/measure";
 
 export const DEFAULT_INPUT: TGenerateInput =
   {
@@ -35,12 +37,13 @@ export const DEFAULT_INPUT: TGenerateInput =
 
 export const Download: FC<
   Partial<TPillBProps>
-> = (props) => {
+> = ({ children, ...props }) => {
   const { fps } = useTrillPicsStore(
     ({ fps }) => ({
       fps,
     })
   );
+  const s = boxSize();
   const input = usePicVideoReadInputs();
   const { handlers, isHover } =
     useHoverKey();
@@ -117,57 +120,63 @@ export const Download: FC<
   const isHovering = isHover(title);
 
   return (
-    <div className="relative">
-      <AnimatePresence>
-        {(isAura || isHovering) && (
-          <>
-            <motion.div
-              key={resolveCompositeKey(
-                isHover.toString(),
-                isLoading.toString()
-              )}
-              className="fill ml-0 mt-0 _gradient-radial"
-              style={{
-                filter:
-                  AURA.GLOBAL.value,
-                scaleX: 1.2,
-                scaleY: 1.1,
-                x: 12,
-                ...borderStyle,
-              }}
-              {...AURA_TRANSITION}
-            />
-          </>
-        )}
-      </AnimatePresence>
-      <PillBHover
-        title={title}
-        isSelected={isHovering}
-        classValue="gap-2"
-        style={{ x: 10 }}
-        circleProps={{
-          isGlow: isSuccess,
-          ...{
-            transition: {
-              repeat: Infinity,
-              repeatDelay: 0.8,
-              duration: isHovering
-                ? 0.8
-                : 0,
+    <div
+      className="relative flex"
+      style={{ ...resolveSquare(s.m) }}
+    >
+      <>
+        <AnimatePresence>
+          {(isAura || isHovering) && (
+            <>
+              <motion.div
+                key={resolveCompositeKey(
+                  isHover.toString(),
+                  isLoading.toString()
+                )}
+                className="fill _gradient-radial"
+                style={{
+                  filter:
+                    AURA.GLOBAL.value,
+                  scaleX: 1.2,
+                  scaleY: 1.1,
+                  x: 2,
+                  ...borderStyle,
+                }}
+                {...AURA_TRANSITION}
+              />
+            </>
+          )}
+        </AnimatePresence>
+        <PillBHover
+          title={title}
+          isSelected={isHovering}
+          style={{
+            ...resolveSquare(s.m),
+          }}
+          circleProps={{
+            isGlow: isSuccess,
+            ...{
+              transition: {
+                repeat: Infinity,
+                repeatDelay: 0.8,
+                duration: isHovering
+                  ? 0.8
+                  : 0,
+              },
+              ...resolvePresence(
+                { opacity: 0 },
+                { opacity: [0, 1] }
+              ),
             },
-            ...resolvePresence(
-              { opacity: 0 },
-              { opacity: [0, 1] }
-            ),
-          },
-        }}
-        Icon={IconsDownload}
-        onClick={handleGenerate}
-        {...props}
-        {...handlers(title)}
-      >
-        {title}
-      </PillBHover>
+          }}
+          Icon={IconsDownload}
+          onClick={handleGenerate}
+          {...props}
+          {...handlers(title)}
+        >
+          {title}
+        </PillBHover>
+      </>
     </div>
   );
 };

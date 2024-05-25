@@ -36,6 +36,7 @@ export const VideoPicsCounter: FC<
       classValue={clsx(
         "text-xs uppercase text-black font-sans",
         "pointer-events-none font-mono text-main-inverted",
+        // "_gradient-mesh bg-black-04",
         classValue ?? "relative"
       )}
       style={{ ...style }}

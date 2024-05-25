@@ -95,8 +95,8 @@ export const _CommonReorderDragger: FC<
           y,
           bottom: 0,
           left,
-          width: s.m15,
-          height: s.m15,
+          width: s.m125,
+          height: s.m125,
         }}
         {...resolveAccessibilityTitles(
           title
@@ -110,8 +110,8 @@ export const _CommonReorderDragger: FC<
         <div
           className="relative rounded-md _r-dots cursor-grab focus:cursor-grabbing"
           style={{
-            width: s.m15 - s.m0125,
-            height: s.m15 - s.m0125,
+            width: s.m125 - s.m0125,
+            height: s.m125 - s.m0125,
           }}
         />
       </motion.button>

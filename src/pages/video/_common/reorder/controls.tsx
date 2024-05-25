@@ -85,7 +85,7 @@ export const _CommonReorderControls: FC<
               {...handlers(key)}
             >
               <button
-                className={clsx("absolute center left-1/2 w-8 h-8 rounded-md _gradient-radial", 'hover:grayscale-100')}
+                className={clsx("absolute center left-1/2 w-8 h-8 rounded-lg _gradient-radial", 'hover:grayscale-100')}
                 style={{
                   top: -s.m0125,
                 }}
@@ -97,8 +97,8 @@ export const _CommonReorderControls: FC<
                     )
                   );
                 }}
-              >
-                <div className="absolute inset-0.25 bg-black rounded-md" />
+              > 
+                <div className="absolute inset-0.25 _gradient-mesh bg-black rounded-lg" />
                 <IconsTrash
                   fill={
                     isDarkMode
@@ -109,13 +109,7 @@ export const _CommonReorderControls: FC<
                   }
                 />
               </button>
-              {/* {index !== 0 && (
-                <LinesVertical
-                  style={{
-                    left: -gap / 2 - 1,
-                  }}
-                />
-              )} */}
+       
             </li>
           );
         })}

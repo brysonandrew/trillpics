@@ -24,6 +24,7 @@ import { VideoPicsCounter } from "~/shell/screen/video-pic-counter";
 import { Download } from "~/pages/video/player/_header/download";
 import { PlaybackTimer } from "~/components/remotion/player/playback/timer";
 import { PlaybackProgressSeeker } from "~/components/remotion/player/playback/progress/seeker";
+import { LinesHorizontal } from "~/pages/video/_common/footer/left/lines/horizontal";
 
 export type THudContainer = Extract<
   TMeasureContainerResult,
@@ -124,6 +125,25 @@ export const PicsHudLeft: FC<
             container={dimensions}
             siblings={
               <>
+                <motion.div
+                  layout
+                  className="relative row-space"
+                  style={{
+                    width: s.m4*2,
+                    height: 0,
+                    left: s.m15,
+                    bottom:
+                      s.m2 - s.m0125,
+                    // s.m025 +
+                    // s.m0125 / 2,
+                    gap: s.m05,
+                    x: 0,
+                    y: dragger.y,
+                  }}
+                >
+                  <div />
+                  <ControlsPlayer />
+                </motion.div>
                 <motion.div
                   className="absolute bottom-0"
                   style={{

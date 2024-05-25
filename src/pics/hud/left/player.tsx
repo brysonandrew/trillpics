@@ -43,25 +43,25 @@ export const ControlsPlayer: FC<
   const handleClick = () => {
     togglePathValue(VIDEO_PLAYER_ROUTE);
   };
-  if (!screen.isDimensions) return null;
-  if (isActive) {
-    return (
-      <motion.div
-        className="relative row"
-        style={{
-          left: 0,
-          top: 0,
-          gap: s.m05,
-          x: 8,
-        }}
-      >
-        {children}
-        <PlaybackButtonsPlay
-          {...props}
-        />
-      </motion.div>
-    );
-  }
+  // if (!screen.isDimensions) return null;
+  // if (isActive) {
+  //   return (
+  //     <motion.div
+  //       className="relative row"
+  //       style={{
+  //         left: 0,
+  //         top: 0,
+  //         gap: s.m05,
+  //         x: 8,
+  //       }}
+  //     >
+  //       {children}
+  //       <PlaybackButtonsPlay
+  //         {...props}
+  //       />
+  //     </motion.div>
+  //   );
+  // }
 
   return (
     <Button
