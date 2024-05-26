@@ -11,7 +11,6 @@ export const useClickGrid = (
     main.cursor.isHoverIdle = true;
     const isHovering =
       ref.current?.isHovering();
-      // console.log("IS HPVER",isHovering,'drag',main.cursor.isDragging)
     if (
       isHovering &&
       !main.cursor.isDragging

@@ -34,18 +34,24 @@ export const Pill: FC<TPillProps> = ({
   return (
     <motion.div
       className={clsx(
-        "center h-5 px-1.5 _gradient-radial z-20",
+        "center h-5 px-2 z-20",
+        "dark:_light-radial-gradient _dark-radial-gradient",
         sizeClass ??
-          ("h-5" + isCircle
-            ? " w-5"
-            : ""),
+          "h-5" +
+            (isCircle ? " w-5" : ""),
         classValue
       )}
       style={{ borderRadius, ...style }}
       layout
       {...props}
     >
-      {children}
+      <div
+        className="fill opacity-0 dark:opacity-20 _dark-gradient-mesh"
+        style={{ borderRadius }}
+      />
+      <span className="relative">
+        {children}
+      </span>
     </motion.div>
   );
 };

@@ -14,15 +14,22 @@ import { Hud } from "~/pics/hud";
 import { SvgFilters } from "~/shell/global/svg/filters";
 import { NetworkProvider } from "@brysonandrew/network";
 import { VirtualizeContextProvider } from "~/context";
+import { useScreenMeasure } from "~/shell/init/measure";
 
 export const Shell = () => {
-  const { screen, table, isControls } =
-    useInit();
+  const {
+    screen,
+    table,
+    isControls,
+    onReady,
+  } = useInit();
   const { isDarkMode } = useDarkMode();
   const Favicon = isDarkMode
     ? Dark
     : Light;
-  if (!screen.isDimensions) return null;
+  useScreenMeasure({
+    onReady,
+  });
 
   return (
     <NetworkProvider>
@@ -35,29 +42,29 @@ export const Shell = () => {
         <ShellBackground
           isDarkMode={isDarkMode}
         />
-        <VirtualizeContextProvider
-          screen={screen}
-        >
-          <>
-            <SvgFilters />
-
-            <BlurXyWrap>
-              <Outlet />
-            </BlurXyWrap>
-            {isControls && (
-              <Hud
-                container={
-                  screen.container
-                }
-                isVerticalScroll={
-                  table.isVerticalScroll
-                }
-              />
-            )}
-          </>
-        </VirtualizeContextProvider>
+        {screen.isDimensions && (
+          <VirtualizeContextProvider
+            screen={screen}
+          >
+            <>
+              <SvgFilters />
+              <BlurXyWrap>
+                <Outlet />
+              </BlurXyWrap>
+              {isControls && (
+                <Hud
+                  container={
+                    screen.container
+                  }
+                  isVerticalScroll={
+                    table.isVerticalScroll
+                  }
+                />
+              )}
+            </>
+          </VirtualizeContextProvider>
+        )}
       </DarkModeProvider>
     </NetworkProvider>
-  
-);
+  );
 };

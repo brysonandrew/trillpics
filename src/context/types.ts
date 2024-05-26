@@ -52,6 +52,7 @@ export type TElementValue =
 export type TMain = {
   blur: TBlur;
   cursor: TCursor;
+  dragger: TDraggerMotion
 };
 export type TVirtualizeContext =
   TScreenReadyProps & {

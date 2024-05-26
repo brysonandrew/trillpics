@@ -5,6 +5,7 @@ import clsx from "clsx";
 import { boxRadius } from "~/constants/box/radius";
 import { isNull } from "~/utils/validation/is/null";
 import { useTitleObserver } from "~/pics/header/use-title-observer";
+import { SubtitleText } from "~/pics/header/subtitle/text";
 
 type TProps = TClassValueProps;
 export const HeaderSubtitle: FC<
@@ -27,12 +28,12 @@ export const HeaderSubtitle: FC<
         }}
       />
 
-      <div className="relative text-main-inverted  _outline-filter font-sans text-sm uppercase whitespace-nowrap">
+      <SubtitleText>
         {title.replace(
           "Trill Pics | ",
           ""
         )}
-      </div>
+      </SubtitleText>
     </motion.div>
   );
 };

@@ -15,13 +15,15 @@ import { useVideoPicsCheck } from "~/hooks/pic/video/read/video-pics-check/hook"
 import { boxSize } from "~/constants/box/size";
 import { useContextGrid } from "~/context";
 import { TChildren } from "@brysonandrew/config-types";
-import { useDraggerReset } from "~/pages/video/_root/reorder/use-dragger-reset";
 import { THudContainer } from "~/pics/hud";
+import { IconsHome } from "~/components/icons/home";
+import { useDraggerReset } from "~/pages/video/_root/reorder/use-dragger-reset";
 
 type TProps = {
   isLabel: boolean;
   container: THudContainer;
   siblings: TChildren;
+  inActiveSiblings: TChildren;
 };
 export const HudLeftVideo: FC<
   PropsWithChildren<TProps>
@@ -30,9 +32,11 @@ export const HudLeftVideo: FC<
   children,
   container,
   siblings,
+  inActiveSiblings,
 }) => {
   const s = boxSize();
-  const { dragger } = useContextGrid();
+  const { dragger, main } =
+    useContextGrid();
   const isVideoPics =
     useVideoPicsCheck();
   const { togglePathValue, isActive } =
@@ -45,15 +49,19 @@ export const HudLeftVideo: FC<
     );
   };
   useDraggerReset({
-    containerHeight: container.height,
+    toY: isActive
+      ? -(s.m4 + s.m)
+      : 0,
+    main,
   });
-
   const title = isActive
     ? "Exit video sequencer"
     : "Video sequencer";
   return (
     <>
-      {isActive ? siblings : null}
+      {isActive
+        ? siblings
+        : inActiveSiblings}
       <motion.div
         className="absolute left-0 bottom-0"
         style={{
@@ -72,7 +80,11 @@ export const HudLeftVideo: FC<
           onClick={handleClick}
           isSelected={isActive}
           isLabel={isLabel}
-          Icon={IconsVideo}
+          Icon={
+            isActive
+              ? IconsHome
+              : IconsVideo
+          }
           outerCircle={
             !isActive &&
             isVideoPics && (

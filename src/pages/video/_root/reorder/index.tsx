@@ -2,7 +2,10 @@ import type {
   FC,
   PropsWithChildren,
 } from "react";
-import { motion, Reorder } from "framer-motion";
+import {
+  motion,
+  Reorder,
+} from "framer-motion";
 import { resolveSquare } from "@brysonandrew/measure";
 import { PicDisplay } from "~/pics/grid/pic/display";
 import { isVNumber } from "~/utils/validation/is/number";
@@ -11,7 +14,7 @@ import { useTrillPicsStore } from "~/store/middleware";
 import { boxSize } from "~/constants/box/size";
 import { TUsePicSelected } from "~/hooks/pic/selected";
 import { _CommonReorderPlaceholder } from "~/pages/video/_root/reorder/placeholder";
-import { _CommonReorderControls } from "~/pages/video/_root/reorder/controls";
+import { _CommonReorderControls } from "~/pages/video/_root/reorder/controls/controls";
 import {
   TOTAL_GAP,
   MAX_COUNT,
@@ -31,6 +34,8 @@ export const _CommonReorder: FC<
   names,
   select,
   deselect,
+  add,
+  pics,
 }) => {
   const {
     hoverKeys,
@@ -55,10 +60,7 @@ export const _CommonReorder: FC<
     );
   const { handlers } = useHoverKey();
 
-  if (
-    !isControls
-  )
-    return null;
+  if (!isControls) return null;
 
   const s = boxSize();
   const width =
@@ -89,11 +91,11 @@ export const _CommonReorder: FC<
   return (
     <_RootReorderDragger
       width={width}
-      height={height}
       left={left}
+      bottom={s.m05}
       container={screen.container}
     >
-      {({ x025, y06, y075,x,y }) => {
+      {({ x025, y06, y075, x, y }) => {
         return (
           <div
             className="relative"
@@ -101,6 +103,8 @@ export const _CommonReorder: FC<
           >
             {children}
             <_CommonReorderControls
+              add={add}
+              pics={pics}
               names={names}
               deselect={deselect}
               boxProps={boxProps}
@@ -128,7 +132,6 @@ export const _CommonReorder: FC<
                 ...boxStyle,
               }}
             >
-              
               {names.map((name) => {
                 isVNumber(size);
 
@@ -163,12 +166,9 @@ export const _CommonReorder: FC<
                             {...PRESENCE_OPACITY}
                             style={{
                               position:
-                              "absolute",
+                                "absolute",
                               ...itemProps.style,
                               top: y06, // must be top not y
-                           
-
-                        
                             }}
                             transition={{
                               duration: 0.6,
@@ -189,7 +189,8 @@ export const _CommonReorder: FC<
   );
 };
 
-{/* {removingParamValues.map(
+{
+  /* {removingParamValues.map(
                 (name) => {
                   return (
                     <Reorder.Item
@@ -224,4 +225,5 @@ export const _CommonReorder: FC<
                     </Reorder.Item>
                   );
                 }
-              )} */}
+              )} */
+}

@@ -4,6 +4,7 @@ import { DIMENSIONS } from "~/constants/remotion";
 import { useTrillPicsStore } from "~/store/middleware";
 import { DEFAULT_INPUT } from "~/pages/video/player/_header/download";
 import { useContextGrid } from "~/context";
+import { resolvePicRandoms } from "~/hooks/pic/randoms";
 
 export const useRemotionProps = (
   picVideoInputs = DEFAULT_INPUT[
@@ -17,7 +18,7 @@ export const useRemotionProps = (
         pics,
       })
     );
-    const { screen } = useContextGrid();
+  const { screen } = useContextGrid();
 
   const dimensions = useImageDimensions(
     {
@@ -29,13 +30,9 @@ export const useRemotionProps = (
   const pics = useMemo(() => {
     return picVideoInputs.isPics
       ? picVideoInputs.pics
-      : [...Array(5)].map(
-          () =>
-            `${Math.floor(
-              allPics.length *
-                Math.random()
-            )}`
-        );
+      : resolvePicRandoms({
+          pics: allPics,
+        });
   }, [picVideoInputs]);
 
   const seconds =

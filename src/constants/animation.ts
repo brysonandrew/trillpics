@@ -103,7 +103,17 @@ export const FADE_PRESENCE_DELAY_02 = {
   ...FADE_PRESENCE,
   ...FADE_PRESENCE_DELAY_02_TRANSITION,
 };
-
+export const PRESENCE_OPACITY_04 = {
+  initial: {
+    opacity: 0,
+  },
+  animate: {
+    opacity: 0.4,
+  },
+  exit: {
+    opacity: 0,
+  },
+};
 export const PRESENCE_OPACITY_06 = {
   initial: {
     opacity: 0,

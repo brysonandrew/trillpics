@@ -30,6 +30,7 @@ export type TPillBProps =
       size?: TBoxSizesKey;
       isSelected?: boolean;
       direction?: "ltr" | "rtl";
+      positionClass?:string
     };
 export const PillB: FC<TPillBProps> = ({
   Root = motion.button,
@@ -46,6 +47,7 @@ export const PillB: FC<TPillBProps> = ({
   size = "s",
   direction = "ltr",
   disabled,
+  positionClass,
   ...props
 }) => {
   const box = boxStyle({
@@ -59,7 +61,7 @@ export const PillB: FC<TPillBProps> = ({
     boxShadow,
     borderRadius,
   } = box;
-  const sm = boxSize(size);
+  const s = boxSize(size);
   return (
     <Root
       key={resolveCompositeKey(
@@ -71,8 +73,8 @@ export const PillB: FC<TPillBProps> = ({
       )}
       disabled={disabled}
       className={clsx(
-        "relative",
-        "gap-4 shrink-0",
+        positionClass?? "relative",
+        "shrink-0",
         "disabled:(grayscale-100 brightness-60 opacity-80 cursor-not-allowed)",
         "hover:grayscale-100",
         classValue,
@@ -85,6 +87,7 @@ export const PillB: FC<TPillBProps> = ({
         ...(isFlat
           ? { boxShadow }
           : {}),
+          gap:s.m05,
         height,
         borderRadius,
         ...style,
@@ -94,11 +97,13 @@ export const PillB: FC<TPillBProps> = ({
       <>
         {isSelected && (
           <motion.div
-            className="fill _gradient-radial pointer-events-none"
+            className="absolute _gradient-radial pointer-events-none"
             // layoutId="selected pill b"
             layout
             style={{
               borderRadius,
+              ...direction === 'ltr' ? {left:0} : {right:0},
+              top:0,
               width,
               height,
             }}
@@ -148,7 +153,7 @@ export const PillB: FC<TPillBProps> = ({
               key={`${title}`}
               className="relative top-2 px-0 text-left text-sm pointer-events-none"
               style={{
-                height: sm.height,
+                height: s.height,
               }}
               {...FADE_PRESENCE_DELAY_02}
             >

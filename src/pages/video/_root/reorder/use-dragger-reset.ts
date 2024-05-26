@@ -1,26 +1,31 @@
 import { useEffect } from "react";
 import { animate } from "framer-motion";
-import { boxSize } from "~/constants/box/size";
-import { useContextGrid } from "~/context";
+import { TMain } from "~/context/types";
 
 type TConfig = {
-  containerHeight: number;
+  toY: number;
+  main: TMain;
 };
 export const useDraggerReset = ({
-  containerHeight,
+  toY,
+  main,
 }: TConfig) => {
-  const { dragger } = useContextGrid();
   useEffect(() => {
-    if (!containerHeight) return;
-    animate<number>(
-      dragger.y,0,
-      // -containerHeight / 4,
-      {
-        ease: "easeIn",
-        duration: 0.4,
-      }
-    );
-  }, [containerHeight]);
+    if (
+      main.dragger.animateY !== null
+    ) {
+      main.dragger.animateY.stop();
+    }
+    main.dragger.animateY =
+      animate<number>(
+        main.dragger.y,
+        toY,
+        {
+          ease: "easeIn",
+          duration: 0.4,
+        }
+      );
+  }, [toY]);
 };
 export type TUseUseDraggerResetResult =
   ReturnType<typeof useDraggerReset>;

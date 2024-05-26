@@ -17,6 +17,7 @@ import { useTrillPicsStore } from "~/store/middleware";
 import { useTimeoutRef } from "@brysonandrew/hooks-window";
 import { TCursor } from "~/context/cursor";
 import { isString } from "~/utils/validation/is/string";
+import { isDefined } from "~/utils/validation/is/defined";
 
 export const usePicCell = (
   main: {
@@ -64,8 +65,8 @@ export const usePicCell = (
     my =
       (my ?? main.cursor.y.get()) -
       currScrollY;
-    console.log(mx, my, size);
-    if (size === 0) return;
+    // console.log(mx, my, size);
+    if (size === 0 || !isDefined(mx)) return;
 
     const column = ~~(mx / size);
     const row = ~~(my / size);

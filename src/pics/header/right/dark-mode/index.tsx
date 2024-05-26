@@ -6,15 +6,13 @@ import {
 } from "~/components/buttons/pill/b/hover";
 import { Moon } from "~/pics/header/right/dark-mode/icons/Moon";
 import { Sun } from "~/pics/header/right/dark-mode/icons/Sun";
-import { useHoverKey } from "~/hooks/use-hover-key";
 
 export const DarkMode: FC<
   Partial<TPillBHoverProps>
 > = (props) => {
   const { isDarkMode, toggle } =
     useDarkMode();
-  const [initial, setInitial] =
-    useState<boolean>(false);
+
 
   const key = isDarkMode
     ? "light"
@@ -22,30 +20,18 @@ export const DarkMode: FC<
   const title = `${key} mode`;
 
   const handleTap = () => {
-    setInitial(true);
     toggle();
   };
-  const stop = () => {
-    setInitial(false);
-  };
 
-  const { isHover, motionHandlers } =
-    useHoverKey({
-      handlers: { stop },
-    });
   const Icon = isDarkMode ? Moon : Sun;
-
   return (
     <PillBHover
       title={title}
       onClick={handleTap}
       Icon={Icon}
       direction="rtl"
-      {...motionHandlers(title)}
       {...props}
-    >
-      {isHover(title) && title}
-    </PillBHover>
+   />
   );
 };
 

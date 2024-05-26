@@ -84,9 +84,6 @@ export const useScrollUpdateHandler = ({
           scrollDirection: null,
           scrollDelta,
         });
-        console.log(window)
-        move();
-        console.log('scroll false')
       },
       SCROLL_COOLDOWN
     );

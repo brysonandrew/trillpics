@@ -45,7 +45,7 @@ export const PillBHoverOverlay: FC<
               {isString(children) ? (
                 <div
                   className={clsx(
-                    "relative center min-w-0 px-2 sm:px-4 lg:px-24 xl:px-32 w-full top-0 left-1/2 -translate-x-1/2",
+                    "relative center min-w-0 px-2 w-full sm:px-4 lg:px-24 xl:px-32 xl:w-xl top-0 left-1/2 -translate-x-1/2",
                     direction === "ltr"
                       ? "column-end text-right"
                       : "column-start text-left"

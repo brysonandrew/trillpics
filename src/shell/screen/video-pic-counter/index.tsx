@@ -25,17 +25,16 @@ export const VideoPicsCounter: FC<
 
   const charCount =
     count.toFixed(0).length;
-  const isCircle = charCount === 1;
+  const isCircle = false; // charCount === 1 && !isDefined(children);
   return (
     <Pill
       isCircle={isCircle}
       sizeClass={
-        "h-7" + isCircle ? " w-7" : ""
+        "h-6" + (isCircle ? " w-6" : "")
       }
       layoutId="VideoPicsCounter"
       classValue={clsx(
         "pointer-events-none",
-        // "_gradient-mesh bg-black-04",
         classValue ?? "relative"
       )}
       style={{ ...style }}

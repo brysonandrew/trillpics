@@ -22,6 +22,7 @@ import { videoReadEntries } from "~/hooks/pic/video/read/entries";
 import { TPic } from "~/store/state/pics/types";
 import { useTimebomb } from "~/hooks/use-time-bomb";
 import { MAX_COUNT } from "~/pages/video/_root/reorder/constants";
+import { isDefined } from "~/utils/validation/is/defined";
 
 export const usePicSelected = (
   key = SELECTED_PARAM_KEY
@@ -32,10 +33,6 @@ export const usePicSelected = (
     useSearchParams();
   const { pics } = useTrillPicsStore(
     ({ pics }) => ({ pics })
-  );
-  const size = Number(
-    searchParams.get(SIZE_PARAM_KEY) ??
-      0
   );
   const paramValues =
     searchParams.getAll(key);
@@ -121,17 +118,19 @@ export const usePicSelected = (
     handleRemovingClear
   );
 
-  const add = (cell: TCell) => {
-    if (cell === null) return;
-    const { currName } =
-      detailsFromCell({
-        cell,
-        columnsCount,
-        pics,
-      });
-    if (currName === null) return;
+  const add = (
+    name: string,
+    replace?: string
+  ) => {
+  
 
-    select([...paramValues, currName]);
+    const next = isDefined(replace)
+      ? paramValues.map((v) =>
+          v === replace ? name : v
+        )
+      : [...paramValues, name];
+
+    select(next);
   };
 
   const deselect = (
@@ -195,6 +194,9 @@ export const usePicSelected = (
     removingParamValues,
     removingCheck,
     searchParams,
+    detailsFromCell,
+    columnsCount,
+    pics,
     ...cellOverDetailsResult,
     ...selectedPicsResult,
   };

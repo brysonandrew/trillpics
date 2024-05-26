@@ -5,6 +5,8 @@ import { useTrillPicsStore } from "~/store/middleware";
 import { usePicCell } from "~/hooks/pic/cell";
 import { useTimeoutRef } from "@brysonandrew/hooks-window";
 import { TMain } from "~/context/types";
+import { useCursorOffset } from "~/context/hooks/move/offset";
+import { TITLE_HOVER_KEY } from "~/pics/header/left";
 
 export const useMove = ({
   main,
@@ -34,11 +36,13 @@ export const useMove = ({
   const [isCursorMove, setCursorMove] =
     useState(false);
   const { move } = usePicCell(main,scrollY);
+  const handler = useCursorOffset(main);
+
   const handleMove = (
     event: PointerEvent
   ) => {
     endTimeout();
-    if (isIdle) {
+    if (isIdle && !hoverKeys.includes(TITLE_HOVER_KEY)) {
       set({ isIdle: false });
     }
     timeoutRef.current = setTimeout(
@@ -51,6 +55,9 @@ export const useMove = ({
     const mx = event.pageX;
     const my =
       event.pageY;
+
+      handler({ nextX:mx, nextY:my });
+
     const prevX = main.cursor.x.get();
     const prevY = main.cursor.y.get();
 
@@ -60,7 +67,7 @@ export const useMove = ({
     );
     if (Math.abs(d) > 1) {
       main.cursor.isHoverIdle = false;
-      console.log(mx, my, 'update');
+      // console.log(mx, my, 'update');
 
       main.cursor.x.set(mx);
       main.cursor.y.set(my);

@@ -68,7 +68,7 @@ const Inner = forwardRef<
     > = (e) => {
 
       toggleOnscreen(true);
-      console.log("enter", e);
+      // console.log("enter", e);
       if (hoverKeys.length > 0) {
         set({ hoverKeys: [] });
       }
@@ -81,7 +81,7 @@ const Inner = forwardRef<
       HTMLUListElement
     > = (e) => {
 
-      console.log(e);
+      // console.log(e);
       main.cursor.x.set(e.pageX);
       main.cursor.y.set(e.pageY );
 

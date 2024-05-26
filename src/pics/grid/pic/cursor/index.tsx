@@ -12,6 +12,7 @@ import { useCellOver } from "~/hooks/pic/cell/over/hook";
 import { resolvePositionFromCell } from "~/pics/grid/pic/cursor/position-from-cell";
 import {
   DELAY_TRANSITION_PROPS,
+  PRESENCE_OPACITY_04,
   PRESENCE_OPACITY_06,
 } from "~/constants/animation";
 import { boxRadius } from "~/constants/box/radius";
@@ -23,6 +24,8 @@ import {
 import { PicCursorSquare } from "~/pics/grid/pic/cursor/square";
 import { TUsePicSelected } from "~/hooks/pic/selected";
 import { useTrillPicsStore } from "~/store/middleware";
+import { Sight } from "~/components/cursor";
+import { Box } from "~/components/cursor/box";
 
 export const PicCursor: FC<
   TPropsWithChildren<
@@ -38,7 +41,6 @@ export const PicCursor: FC<
   } = props;
   const {
     scrollY,
-    main: { cursor },
   } = useContextGrid();
   const { isOnscreen, isScrolling ,hoverKeys} =
     useTrillPicsStore(
@@ -90,14 +92,9 @@ export const PicCursor: FC<
           duration: 0.2,
         }}
       >
-        <motion.div
-          className="absolute top-0 left-0 w-0 h-0 pointer-events-none"
-          style={{
-            x: cursor.x,
-            y: cursor.y,
-          }}
-        >
-          <span className="column-start absolute bottom-1 right-1">
+         <Sight>
+          <Box>
+          <span className="column-start">
             {/* {isActiveHover && <div>active hover</div>} */}
 
             <div>hk: {hoverKeys.join(" - ")}</div>
@@ -117,7 +114,17 @@ export const PicCursor: FC<
               </div>
             )}
           </span>
-        </motion.div>
+          </Box>
+        </Sight>
+        {/* <motion.div
+          className="absolute top-0 left-0 w-0 h-0 pointer-events-none  _outline-filter"
+          style={{
+            x: cursor.x,
+            y: cursor.y,
+          }}
+        >
+
+        </motion.div> */}
       </MotionConfig>
       <MotionConfig
         transition={{
@@ -137,7 +144,7 @@ export const PicCursor: FC<
             ...position,
           }}
           whileInView={{
-            opacity: 0.5,
+            opacity: 1,
           }}
           initial={io}
           animate={{
@@ -168,7 +175,7 @@ export const PicCursor: FC<
                     currKey,
                     "display"
                   )}
-                  {...PRESENCE_OPACITY_06}
+                  {...PRESENCE_OPACITY_04}
                 >
                   <motion.div
                     className="fill"
@@ -201,7 +208,7 @@ export const PicCursor: FC<
                 </motion.div>
                 {isShown && (
                   <motion.div
-                    className="grayscale-10 contrast-80 _outline-filter"
+                    className="grayscale-10 contrast-80"
                     key={resolveCompositeKey(
                       "children",
                       currKey

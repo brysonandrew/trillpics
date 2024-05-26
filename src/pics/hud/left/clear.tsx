@@ -36,7 +36,7 @@ export const LeftButtonsClear: FC<
   const { screen } = useContextGrid();
   const handler = useBlurAnimate();
 
-  if (!isVideoPics) return null;
+  if (!isVideoPics) return <div/>;
   const container = screen.container;
   const unitSize =
     container.width / MAX_COUNT;
@@ -52,7 +52,6 @@ export const LeftButtonsClear: FC<
     LEFT_BUTTONS_CLEAR_TITLE;
   return (
     <Button
-      direction="rtl"
       onClick={handleClear}
       Icon={IconsTrash}
       subtitle={

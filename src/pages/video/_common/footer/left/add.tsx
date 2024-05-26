@@ -39,10 +39,10 @@ export const FooterNavAdd: FC = () => {
         }}
       /> */}
       <HudLeftAddRandom
-        key="HudLeftAddRandom"
-        {...{
-          layoutId: "HudLeftAddRandom",
-        }}
+        // key="HudLeftAddRandom"
+        // {...{
+        //   layoutId: "HudLeftAddRandom",
+        // }}
       />
     </div>
   );

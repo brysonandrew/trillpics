@@ -1,7 +1,6 @@
 import { PicBackdrop } from "~/pics/grid/pic/backdrop";
 import { RemotionPlayer } from "~/components/remotion/player";
 import { Helmet } from "react-helmet-async";
-import { useTrillPicsStore } from "~/store/middleware";
 import { boxSize } from "~/constants/box/size";
 import { usePicVideoReadInputs } from "~/hooks/pic/video/read/inputs/hook";
 import { FULLSCREEN_Z } from "~/constants/dom";
@@ -16,6 +15,7 @@ import {
 } from "react-router-dom";
 import { VIDEO_ROUTE } from "~/shell/routes";
 import { useContextGrid } from "~/context";
+
 export const OVERFLOW_HIDDEN =
   "overflow: hidden;";
 
@@ -28,9 +28,10 @@ export const VideoPlayer = () => {
     usePicVideoReadInputs();
 
   const s = boxSize();
-
-  const width =
-    screen.container.width - s.m3;
+  const container = screen.container;
+  const width = container.width - s.m3;
+  const paddingY =
+    screen.container.top + s.m15;
   return (
     <>
       <Helmet>
@@ -45,26 +46,22 @@ export const VideoPlayer = () => {
         <PicBackdrop />
       </Link>
       <div
-        className="absolute column-start items-stretch"
+        className="fill overflow-auto"
         style={{
-          gap: s.m05,
-          top:
-            screen.container.top +
-            s.m15,
-          left:
-            screen.container.left +
-            s.m15,
-          width,
-          // height:
-          //   containerHeight -
-          //   (foundationValue?.height ??
-          //     0),
           zIndex: FULLSCREEN_Z,
+          paddingTop: paddingY,
+          paddingBottom: paddingY,
+          paddingLeft:
+          screen.container.left +
+          s.m15,
+          gap: s.m05,
         }}
       >
         <div
           className="relative"
           style={{
+ 
+           
             width,
             height: width * (9 / 16),
           }}
@@ -75,22 +72,23 @@ export const VideoPlayer = () => {
           />
         </div>
         <div
+          className="relative flex-col flex justify-center"
           style={{
             gap: s.m025,
             width:
-              screen.container.width -
-              s.m3,
-            left: s.m15,
+              container.width - s.m3,
+            // left: s.m15,
+            // height:container.height,
           }}
         >
           <div
             className="relative flex-col flex justify-center"
             style={{
-              left: 0,
-              top: 0,
+              // left: 0,
+              // top: 0,
+              // height:container.height,
               width:
-                screen.container.width -
-                s.m3,
+                container.width - s.m3,
             }}
           >
             <div className="relative row-space">
@@ -113,8 +111,8 @@ export const VideoPlayer = () => {
               style={{
                 left: 0,
                 width:
-                  screen.container
-                    .width - s.m3,
+                  container.width -
+                  s.m3,
               }}
             >
               <div className="absolute -inset-2 bg-black rounded-lg _gradient-mesh opacity-80" />
@@ -123,6 +121,9 @@ export const VideoPlayer = () => {
           </div>
         </div>
       </div>
+      <div
+        style={{ height: paddingY }}
+      />
     </>
   );
 };

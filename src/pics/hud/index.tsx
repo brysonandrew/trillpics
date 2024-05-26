@@ -42,15 +42,13 @@ export const Hud: FC<TProps> = ({
           }}
         >
           <AnimatePresence>
-            <>
-              <PicsHudHeader
-                key="PicsHudHeader"
-                container={container}
-                isVerticalScroll={
-                  isVerticalScroll
-                }
-              />
-            </>
+            <PicsHudHeader
+              key="PicsHudHeader"
+              container={container}
+              isVerticalScroll={
+                isVerticalScroll
+              }
+            />
             <div
               key="left"
               className="fixed w-0 z-0"
