@@ -25,7 +25,7 @@ export const RemotionPlayer: FC<
     ..._inputProps,
   };
   inputProps.seconds =
-    inputProps.seconds || 10;
+    inputProps.seconds || inputProps.count || 10;
   const durationInFrames  = inputProps.seconds * props.fps;
   return (
     <Player<

@@ -10,29 +10,20 @@ export const ShellBackground: FC<
 > = ({ isDarkMode }) => {
   return (
     <div
-      className="fill brightness-20 _gradient-mesh"
+      className="fill _gradient-mesh bg-gray"
       style={{
         minHeight: "100vh",
       }}
     >
       <div
-        className="fill inset-3 _gradient-mesh"
+        className="fill inset-1 _r-dots opacity-10"
         style={{
-          right: `calc(0.75rem + ${
+          right: `calc(0.25rem + ${
             SCROLLBAR_WIDTH +
             SCROLLBAR_BORDER_WIDTH * 2
           }px)`,
         }}
-      >
-        <img
-          className="w-full h-full opacity-10 grayscale-100 p-6"
-          src={`logo-${
-            isDarkMode
-              ? "dark"
-              : "light"
-          }.svg`}
-        />
-      </div>
+     />
     </div>
   );
 };

@@ -7,6 +7,6 @@ export const useVideoClickSelect =
     const handle = () => {
       props.toggle();
     };
-    useClickGrid(handle);
+    useClickGrid(handle,false);
     return props; 
   };

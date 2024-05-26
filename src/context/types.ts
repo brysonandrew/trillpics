@@ -16,6 +16,7 @@ import { TFontsResult } from "~/context/fonts";
 import { TCell } from "~/pics/grid/pic";
 import { TDraggerMotion } from "~/context/dragger";
 import { TReadyScreen } from "~/shell/init/measure";
+import { useTimeoutRef } from "@brysonandrew/hooks-window";
 
 export type TScreenReadyProps = {
   screen: TReadyScreen;
@@ -66,6 +67,7 @@ export type TVirtualizeContext =
     main: TMain;
     fonts: TFontsResult;
     scrollY: MotionValue<number>;
+    scrollTimeoutRef: ReturnType<typeof useTimeoutRef>
     onScroll(
       props: ListOnScrollProps
     ): void;

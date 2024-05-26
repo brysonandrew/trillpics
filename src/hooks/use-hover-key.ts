@@ -19,10 +19,12 @@ type TConfig = {
     start?: THandler;
     stop?: THandler;
   };
+  isDisabled?:boolean
 };
 export const useHoverKey = (
   config?: TConfig
 ) => {
+  const isDisabled = config?.isDisabled;
   const { main } = useContextGrid();
   const {
     hoverKeys,
@@ -72,7 +74,7 @@ export const useHoverKey = (
       trigger();
     };
   const handlers = (key: THoverKey) =>
-    ({
+    (isDisabled ? {} : {
       onPointerEnter: onStart(key),
       onPointerOut: onStop(key),
       onPointerLeave: onStop(key),
@@ -81,7 +83,7 @@ export const useHoverKey = (
   const motionHandlers = (
     key: THoverKey
   ) =>
-    ({
+    (isDisabled ? {} : {
       onHoverStart: onStart(key),
       onHoverEnd: onStop(key),
       onPointerLeave: onStop(key),

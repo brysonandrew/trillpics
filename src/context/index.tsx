@@ -21,6 +21,7 @@ import { useScrollUpdateHandler } from "~/context/scroll/update";
 import { useFonts } from "~/context/fonts";
 import { useMove } from "~/context/hooks/move";
 import { useDragger } from "~/context/dragger";
+import { useTimeoutRef } from "@brysonandrew/hooks-window";
 
 const VirtualizeContext = createContext(
   {} as TVirtualizeContext
@@ -43,6 +44,8 @@ export const VirtualizeContextProvider: FC<
   const blur = useBlur();
   const cursor = useCursor();
   const dragger = useDragger();
+  const scrollTimeoutRef =
+  useTimeoutRef();
   const scrollY = useMotionValue(0);
 
   const main = useMemo(() => {
@@ -62,11 +65,13 @@ export const VirtualizeContextProvider: FC<
       scrollY,
       ref,
       main,
+      scrollTimeoutRef
     });
   const isIdle = useMove({
     main,
     isOnscreen,
     scrollY,
+    scrollTimeoutRef
   });
 
   return (
@@ -84,6 +89,7 @@ export const VirtualizeContextProvider: FC<
         updateFoundation,
         resetLayout,
         screen,
+        scrollTimeoutRef
       }}
     >
       {children}

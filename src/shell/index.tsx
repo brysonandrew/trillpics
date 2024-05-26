@@ -16,6 +16,8 @@ import { NetworkProvider } from "@brysonandrew/network";
 import { VirtualizeContextProvider } from "~/context";
 import { useScreenMeasure } from "~/shell/init/measure";
 import { ProvidersApi } from "~/shell/providers/api";
+import { Pics } from "~/pics";
+import { SoundProvider } from "~/context/sound";
 
 export const Shell = () => {
   const {
@@ -33,39 +35,41 @@ export const Shell = () => {
   });
 
   return (
-    <NetworkProvider>
-      <DarkModeProvider>
-        <Favicon />
-        <GradientsBluePinkYellow
-          isDarkMode={isDarkMode}
-        />
-        <GlobalCss />
-        <ShellBackground
-          isDarkMode={isDarkMode}
-        />
-        {screen.isDimensions && (
-          <VirtualizeContextProvider
-            screen={screen}
-          >
-            <ProvidersApi>
-              <SvgFilters />
-              <BlurXyWrap>
-                <Outlet />
-              </BlurXyWrap>
-              {isControls && (
-                <Hud
-                  container={
-                    screen.container
-                  }
-                  isVerticalScroll={
-                    table.isVerticalScroll
-                  }
-                />
-              )}
-            </ProvidersApi>
-          </VirtualizeContextProvider>
-        )}
-      </DarkModeProvider>
-    </NetworkProvider>
+    <SoundProvider>
+      <NetworkProvider>
+        <DarkModeProvider>
+          <Favicon />
+          <GradientsBluePinkYellow
+            isDarkMode={isDarkMode}
+          />
+          <GlobalCss />
+          <ShellBackground
+            isDarkMode={isDarkMode}
+          />
+          {screen.isDimensions && (
+            <VirtualizeContextProvider
+              screen={screen}
+            >
+              <ProvidersApi>
+                <SvgFilters />
+                <BlurXyWrap>
+                  <Pics />
+                </BlurXyWrap>
+                {isControls && (
+                  <Hud
+                    container={
+                      screen.container
+                    }
+                    isVerticalScroll={
+                      table.isVerticalScroll
+                    }
+                  />
+                )}
+              </ProvidersApi>
+            </VirtualizeContextProvider>
+          )}
+        </DarkModeProvider>
+      </NetworkProvider>
+    </SoundProvider>
   );
 };

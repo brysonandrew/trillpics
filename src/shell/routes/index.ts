@@ -1,9 +1,7 @@
 import { RouteObject } from "react-router";
 import { Shell } from "~/shell";
-import { Pics } from "~/pics";
 import { SHELL_ROUTES_PAGES } from "~/shell/routes/pages";
 import { Home } from "~/pages/home";
-import { VideoShell } from "~/pages/video/_root/shell";
 import { NotFound } from "~/shell/routes/not-found";
 
 export const ROUTES: RouteObject[] = [
@@ -13,21 +11,9 @@ export const ROUTES: RouteObject[] = [
     children: [
       {
         path: "/",
-        Component: Pics,
-        children: [
-          {
-            path: "/",
-            Component: Home,
-          },
-          {
-            path: "/video",
-            Component: VideoShell,
-            children: [
-              ...SHELL_ROUTES_PAGES,
-            ],
-          },
-        ],
+        Component: Home,
       },
+      ...SHELL_ROUTES_PAGES,
       {
         path: "*",
         Component: NotFound,

@@ -55,7 +55,6 @@ export const LeftButtonsClear: FC<
       onClick={handleClear}
       Icon={IconsTrash}
       direction="rtl"
-
       subtitle={
         <>
           <p>
@@ -66,7 +65,7 @@ export const LeftButtonsClear: FC<
             className="relative grid gap-2"
             style={{
               display: "grid",
-              left: container.left,
+              left: 0,
               width: container.width,
               gap: s.m,
               gridTemplateColumns: `repeat(auto-fill, minmax(${unitSize}px, 1fr))`,

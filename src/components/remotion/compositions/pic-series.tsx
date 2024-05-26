@@ -21,10 +21,9 @@ export const CompositionsPicSeries: FC =
       ...INPUT_PROPS
     };
     inputProps.seconds =
-      inputProps.seconds || 10;
+      inputProps.seconds || inputProps.count || 10;
     const durationInFrames =
       inputProps.seconds * props.fps;
-      // console.log(durationInFrames,inputProps,props)
     return (
       <Composition<
         TPicSeriesSchema,

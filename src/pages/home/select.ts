@@ -10,7 +10,6 @@ export const useHomeClickSelect =
       ZOOM_PARAM_KEY
     );
     const handleClick = () => {
-      console.log("LCICK")
       if (props.isSelectedPics) {
         ref.current?.enableScroll();
         props.deselect();

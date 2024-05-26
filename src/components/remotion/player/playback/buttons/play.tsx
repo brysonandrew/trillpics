@@ -7,6 +7,7 @@ import {
   PillB,
   TPillBProps,
 } from "~/components/buttons/pill/b";
+import { useLoop } from "~/hooks/sound/koolasuchas/useLoop";
 
 export const PlaybackButtonsPlay: FC<
   Partial<TPillBProps>
@@ -27,9 +28,10 @@ export const PlaybackButtonsPlay: FC<
       {...resolveAccessibilityTitles(
         isPlaying ? "pause" : "play"
       )}
-      onClick={() =>
-        playerInstance?.toggle()
-      }
+      onClick={() => {
+        // play();
+        playerInstance?.toggle();
+      }}
       Icon={
         isPlaying
           ? IconsPause

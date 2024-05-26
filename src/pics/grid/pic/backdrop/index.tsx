@@ -43,6 +43,8 @@ export const PicBackdrop: FC<
         duration: 1,
       }}
       {...props}
-    />
+    >
+      <div className="fill _r-dots opacity-20"/>
+    </motion.div>
   );
 };

@@ -32,8 +32,9 @@ export const PicSeries: FC<
   const frame = useCurrentFrame();
   const { fps, width, height } =
     useVideoConfig();
-  console.log(width, height);
-
+    // const source = new AudioBufferSourceNode(offlineCtx, {
+    //   buffer: decodedBuffer,
+    // });
   const unitSeconds = seconds / count;
   const unitFrames = unitSeconds * fps;
   const frameInUnit =

@@ -9,9 +9,15 @@ import { resolveCompositeKey } from "@brysonandrew/utils-key";
 import { CursorCorners } from "~/pics/grid/pic/cursor/corners";
 import { TPropsWithChildren } from "@brysonandrew/config-types";
 import { resolvePositionFromCell } from "~/pics/grid/pic/cursor/position-from-cell";
-import { DELAY_TRANSITION_PROPS, PRESENCE_OPACITY_04 } from "~/constants/animation";
+import {
+  DELAY_TRANSITION_PROPS,
+  PRESENCE_OPACITY_04,
+} from "~/constants/animation";
 import { boxRadius } from "~/constants/box/radius";
-import { PRESENCE_OPACITY } from "@brysonandrew/motion-config-constants";
+import {
+  PRESENCE_OPACITY,
+  PRESENCE_OPACITY_06,
+} from "@brysonandrew/motion-config-constants";
 import {
   TUseShowCursorConfig,
   useShowCursor,
@@ -24,12 +30,8 @@ import { Box } from "~/components/cursor/box";
 export const PicCursor: FC<
   TPropsWithChildren<TUseShowCursorConfig>
 > = ({ children, ...props }) => {
-  const {
-    currCell,
-    size,
-    currKey,
-    currName,
-  } = props;
+  const { currCell, size, currKey } =
+    props;
   const { scrollY } = useContextGrid();
   const {
     isOnscreen,
@@ -62,7 +64,7 @@ export const PicCursor: FC<
 
   return (
     <>
-      <MotionConfig
+      {/* <MotionConfig
         transition={{
           ease: "linear",
           duration: 0.2,
@@ -71,7 +73,7 @@ export const PicCursor: FC<
         <Sight>
           <Box>
             <span className="column-start">
-              {/* {isActiveHover && <div>active hover</div>} */}
+              {isActiveHover && <div>active hover</div>}
 
               <div>
                 hk:{" "}
@@ -95,20 +97,19 @@ export const PicCursor: FC<
             </span>
           </Box>
         </Sight>
-      </MotionConfig>
+      </MotionConfig> */}
       <MotionConfig
         transition={{
           ease: "linear",
-          duration: 0.2,
+          duration: 0.1,
         }}
       >
         <motion.div
           key={resolveCompositeKey(
             currKey,
-            "scroller",
-            `${isShown}`
+            "scroller"
           )}
-          className="fill center text-2xl cursor-pointer pointer-events-none"
+          className="fill center text-2xl pointer-events-none"
           style={{
             y: scrollY,
             ...position,
@@ -123,21 +124,15 @@ export const PicCursor: FC<
           }}
           exit={io}
         >
-          {/* <MotionConfig
-          transition={{
-            ease: "linear",
-            duration: 0.2,
-          }}
-        > */}
           <AnimatePresence>
             {isShown && (
               <motion.div
-                className="fill center"
+                className="fill center bg-gray-04"
                 key={resolveCompositeKey(
                   currKey,
                   "display"
                 )}
-                {...PRESENCE_OPACITY}
+                {...PRESENCE_OPACITY_06}
               >
                 <motion.div
                   className="fill center"
@@ -166,6 +161,7 @@ export const PicCursor: FC<
                       scale: 0.8,
                     }}
                     {...DELAY_TRANSITION_PROPS}
+
                   >
                     <CursorCorners />
                   </motion.div>
@@ -191,7 +187,6 @@ export const PicCursor: FC<
               </motion.div>
             )}
           </AnimatePresence>
-          {/* </MotionConfig> */}
         </motion.div>
       </MotionConfig>
     </>

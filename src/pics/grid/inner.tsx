@@ -26,7 +26,8 @@ const Inner = forwardRef<
     },
     ref
   ) => {
-    const { main,scrollY } = useContextGrid();
+    const { main, scrollY } =
+      useContextGrid();
     const {
       hoverKeys,
       set,
@@ -66,7 +67,10 @@ const Inner = forwardRef<
     const handleEnter: PointerEventHandler<
       HTMLUListElement
     > = (e) => {
-
+      const target = e.currentTarget;
+      const bb =
+        target.getBoundingClientRect();
+      scrollY.set(bb.top);
       toggleOnscreen(true);
       // console.log("enter", e);
       if (hoverKeys.length > 0) {
@@ -75,15 +79,14 @@ const Inner = forwardRef<
       eventRef.current.isHovering =
         true;
       main.cursor.x.set(e.pageX);
-      main.cursor.y.set(e.pageY );
+      main.cursor.y.set(e.pageY);
     };
     const handleLeave: PointerEventHandler<
       HTMLUListElement
     > = (e) => {
-
       // console.log(e);
       main.cursor.x.set(e.pageX);
-      main.cursor.y.set(e.pageY );
+      main.cursor.y.set(e.pageY);
 
       // if (hoverKeys.length > 0) {
       //   set({ hoverKeys: [] });
