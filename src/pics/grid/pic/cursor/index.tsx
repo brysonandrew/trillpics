@@ -12,11 +12,11 @@ import { resolvePositionFromCell } from "~/pics/grid/pic/cursor/position-from-ce
 import {
   DELAY_TRANSITION_PROPS,
   PRESENCE_OPACITY_04,
+  PRESENCE_OPACITY_06,
 } from "~/constants/animation";
 import { boxRadius } from "~/constants/box/radius";
 import {
   PRESENCE_OPACITY,
-  PRESENCE_OPACITY_06,
 } from "@brysonandrew/motion-config-constants";
 import {
   TUseShowCursorConfig,

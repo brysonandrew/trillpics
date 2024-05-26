@@ -1,5 +1,5 @@
 import type { FC } from "react";
-import { motion, useMotionValueEvent } from "framer-motion";
+import { motion } from "framer-motion";
 import clsx from "clsx";
 import { TChildren } from "@brysonandrew/config-types/dom/main";
 import { TDivMotionProps } from "@brysonandrew/config-types/dom/motion";
