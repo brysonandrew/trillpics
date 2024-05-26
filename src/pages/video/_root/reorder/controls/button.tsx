@@ -24,7 +24,7 @@ export const _CommonReorderControlsButton: FC<
   return (
     <button
       className={clsx(
-        "relative center",
+        "relative center hover:opacity-100 opacity-90",
         "hover:grayscale-100",
         classValue
       )}

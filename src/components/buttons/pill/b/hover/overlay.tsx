@@ -9,6 +9,9 @@ import clsx from "clsx";
 import { PortalBody } from "@brysonandrew/layout-portal";
 import { TPillBHoverProps } from "~/components/buttons/pill/b/hover";
 import { LinesHorizontalShadow } from "~/components/lines/horizontal/shadow";
+import { useContextGrid } from "~/context";
+import { PRESENCE_OPACITY } from "@brysonandrew/motion-config-constants";
+import { PRESENCE_OPACITY_ANIMATE_DELAY_02 } from "~/constants/animation";
 
 type TProps = Pick<
   TPillBHoverProps,
@@ -24,23 +27,25 @@ export const PillBHoverOverlay: FC<
 }) => {
   return (
     <PortalBody>
-      <AnimatePresence>
+      <AnimatePresence mode="wait">
         {isShown && (
           <>
             <motion.div
-              className="fill bg-gray rounded-lg z-0 pointer-events-none"
+              className="fill bg-white dark:bg-gray rounded-lg z-0 pointer-events-none"
               initial={{ opacity: 0 }}
-              animate={{ opacity: 0.6 }}
+              animate={{ opacity: 0.2 }}
               exit={{ opacity: 0 }}
+             
             />
-            <div
-              style={{ maxWidth: 1400 }}
+            <motion.div
+              style={{ maxWidth: 1200 }}
               className={clsx(
                 "absolute flex flex-col justify-center items-end h-screen z-0 pointer-events-none",
                 direction === "ltr"
                   ? "right-0"
                   : "left-0"
               )}
+              {...PRESENCE_OPACITY_ANIMATE_DELAY_02}
             >
               {isString(children) ? (
                 <div
@@ -89,7 +94,7 @@ export const PillBHoverOverlay: FC<
               ) : (
                 <>{children}</>
               )}
-            </div>
+            </motion.div>
           </>
         )}
       </AnimatePresence>

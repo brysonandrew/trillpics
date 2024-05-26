@@ -17,21 +17,26 @@ import { usePicCell } from "~/hooks/pic/cell";
 
 type TConfig = Pick<
   TVirtualizeContext,
-  "scrollY" | "ref" | 'main'
+  | "scrollY"
+  | "ref"
+  | "main"
+  | "scrollTimeoutRef"
 >;
 export const useScrollUpdateHandler = ({
   scrollY,
   ref: handle,
-  main
+  main,
+  scrollTimeoutRef,
 }: TConfig) => {
+  const { timeoutRef, endTimeout } =
+    scrollTimeoutRef;
   const [searchParams] =
     useSearchParams();
   const { pathname } = useLocation();
   const navigate = useNavigate();
   const prevScrollOffsetRef =
     useRef<number>(0);
-  const { timeoutRef, endTimeout } =
-    useTimeoutRef();
+
   const { isScroll, isScrolling, set } =
     useTrillPicsStore(
       ({
@@ -44,7 +49,10 @@ export const useScrollUpdateHandler = ({
         set,
       })
     );
-    const {move} = usePicCell(main,scrollY)
+  const { move } = usePicCell(
+    main,
+    scrollY
+  );
 
   const handler = (
     props: ListOnScrollProps

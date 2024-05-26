@@ -3,13 +3,15 @@ import { ScrollbarSeam } from "~/components/layout/scrollbar-seam";
 import { useTrillPicsStore } from "~/store/middleware";
 import { TPartialFixedTableProps } from "~/store/state/table/types";
 import { Grid } from "~/pics/grid";
-import { useContextGrid } from "~/context";
+import {
+  useContextGrid,
+  VirtualizeContextProvider,
+} from "~/context";
 import { Outlet } from "react-router";
+import { TScreenReadyProps } from "~/context/types";
 
-type TProps = TPartialFixedTableProps;
-export const Pics: FC<TProps> = (
-  props
-) => {
+type TProps = TScreenReadyProps;
+export const Pics: FC = () => {
   const { onScroll, ref, screen } =
     useContextGrid();
   const { table } = useTrillPicsStore(
@@ -29,11 +31,10 @@ export const Pics: FC<TProps> = (
         size={table.size}
         onScroll={onScroll}
         ref={ref}
-        {...props}
         width={screen.width}
         height={screen.height}
       />
-      <Outlet />
+      <Outlet context={{ screen }} />
     </>
   );
 };

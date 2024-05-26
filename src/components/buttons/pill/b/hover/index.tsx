@@ -1,4 +1,8 @@
-import { FC } from "react";
+import {
+  FC,
+  useEffect,
+  useState,
+} from "react";
 import { AnimatePresence } from "framer-motion";
 import {
   PillB,
@@ -8,6 +12,8 @@ import { useHoverKey } from "~/hooks/use-hover-key";
 import { isDefined } from "~/utils/validation/is/defined";
 import { useTrillPicsStore } from "~/store/middleware";
 import { PillBHoverOverlay } from "~/components/buttons/pill/b/hover/overlay";
+import { useLocation } from "react-router";
+import { useTimeoutRef } from "@brysonandrew/hooks-window";
 
 export type TPillBHoverProps =
   TPillBProps & {
@@ -24,12 +30,29 @@ export const PillBHover: FC<
   onClick,
   ...props
 }) => {
+  const { endTimeout, timeoutRef } =
+    useTimeoutRef();
+  const { pathname } = useLocation();
+  const [isMoving, setMoving] =
+    useState(false);
   const { set } = useTrillPicsStore(
     ({ set }) => ({ set })
   );
-  const { motionHandlers, isHover } =
-    useHoverKey();
 
+  useEffect(() => {
+    endTimeout();
+    if (!isMoving) {
+      setMoving(true);
+    }
+    timeoutRef.current = setTimeout(
+      () => {
+        setMoving(false);
+      },
+      500
+    );
+  }, [pathname]);
+    const { motionHandlers, isHover } =
+    useHoverKey();
   const isHovering =
     isDefined<typeof title>(title) &&
     isHover(title);
@@ -45,7 +68,7 @@ export const PillBHover: FC<
   return (
     <>
       <PillBHoverOverlay
-        isShown={isHovering}
+        isShown={isHovering && !isMoving}
         key={title}
         direction={props.direction}
         subtitle={subtitle}

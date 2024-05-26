@@ -1,6 +1,6 @@
 import type { FC } from "react";
 import { motion } from "framer-motion";
-import { DELAY_04_TRANSITION_PROPS } from "~/constants/animation";
+import { DELAY_04_TRANSITION_PROPS, DELAY_TRANSITION_PROPS } from "~/constants/animation";
 import { boxRadius } from "~/constants/box/radius";
 
 export const PicCursorSquare: FC =
@@ -13,18 +13,18 @@ export const PicCursorSquare: FC =
           borderRadius: borderRadus,
         }}
         initial={{
-          opacity: 0.1,
-          scale: 1,
+          opacity: 0.4,
+          scale: 0.8,
         }}
         animate={{
-          scale: 0.8,
-          opacity: 1,
+          scale: 0.7,
+          opacity: 0.8,
         }}
         exit={{
-          scale: 1,
-          opacity: 0.1,
+          scale: 0.8,
+          opacity: 0.4,
         }}
-        {...DELAY_04_TRANSITION_PROPS}
+        {...DELAY_TRANSITION_PROPS}
       />
     );
   };

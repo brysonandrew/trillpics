@@ -24,6 +24,7 @@ export const VideoPlayer = () => {
     useSearchParams();
   const { screen } = useContextGrid();
 
+
   const inputProps =
     usePicVideoReadInputs();
 
@@ -64,12 +65,11 @@ export const VideoPlayer = () => {
           className="relative"
           style={{
             gap: s.m05,
-         
             width,
             height: width * (9 / 16),
           }}
         >
-          <div className="absolute -inset-2 bg-black rounded-lg opacity-70" />
+          <div className="absolute -inset-2 bg-black-05 _gradient-mesh rounded-lg opacity-80" />
           <RemotionPlayer
             {...inputProps}
           />
@@ -83,23 +83,17 @@ export const VideoPlayer = () => {
             gap: s.m025,
             width:
               container.width - s.m3,
-            // left: s.m15,
-            // height:container.height,
           }}
         >
           <div
             className="relative flex-col flex justify-center"
             style={{
-              // left: 0,
-              // top: 0,
-              // height:container.height,
-
               width:
                 container.width - s.m3,
             }}
           >
             <div className="relative row-space">
-              <div className="absolute -inset-2 bg-black rounded-lg  _gradient-mesh opacity-70" />
+              <div className="absolute -inset-2 bg-black-05 rounded-lg  _gradient-mesh opacity-80" />
 
               <div className="relative row gap-6">
                 <PlaybackButtons />
@@ -122,7 +116,7 @@ export const VideoPlayer = () => {
                   s.m3,
               }}
             >
-              <div className="absolute -inset-2 bg-black rounded-lg _gradient-mesh opacity-80" />
+              <div className="absolute -inset-2 bg-black-05 rounded-lg _gradient-mesh opacity-60" />
               <PlaybackProgressSeeker />
             </div>
           </div>

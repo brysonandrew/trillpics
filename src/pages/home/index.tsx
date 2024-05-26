@@ -32,10 +32,12 @@ export const Home: FC = () => {
           {isSelectedPics && (
             <PortalBody>
               <PicBackdrop
+
                 onClick={
                   cursorProps.onClick
                 }
                 style={{
+                  cursor:'pointer',
                   zIndex: FULLSCREEN_Z,
                 }}
               />

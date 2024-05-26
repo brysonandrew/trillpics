@@ -1,6 +1,7 @@
 import {
   FC,
   PropsWithChildren,
+  useState,
 } from "react";
 import {
   AnimatePresence,
@@ -22,6 +23,7 @@ import { usePicTableReadSize } from "~/hooks/pic/table/read/size";
 import { Pill } from "~/components/layout/pill";
 import { SubtitleText } from "~/pics/header/subtitle/text";
 import { _RootReorderDragger } from "~/pages/video/_root/reorder/dragger";
+import clsx from "clsx";
 
 type TProps = PropsWithChildren<{
   foundation: DOMRect;
@@ -36,6 +38,7 @@ export const PicsHudLeft: FC<
   playerHeight,
   container,
 }) => {
+
   const { dragger, isIdle } =
     useContextGrid();
   const s = boxSize();
@@ -47,7 +50,12 @@ export const PicsHudLeft: FC<
       <AnimatePresence>
         <motion.div
           key="root"
-          className="absolute flex flex-col justify-start items-start w-0 shrink-0"
+          className={clsx(
+            "absolute flex flex-col justify-start items-start w-0 shrink-0",
+            // isMoving
+            //   ? "pointer-events-none"
+            //   : ""
+          )}
           style={{
             left: -s.m05,
             gap: s.m05,
@@ -87,15 +95,19 @@ export const PicsHudLeft: FC<
                   left: 0,
                   y: dragger.y,
                 }}
+                // onLayoutAnimationStart={() =>
+                //   setMoving(true)
+                // }
+                // onLayoutAnimationComplete={() =>
+                //   setMoving(false)
+                // }
               >
                 <div
                   style={{
                     width: s.m,
                   }}
                 />
-
                 <ControlsPlayer
-
                   isLabel={isIdle}
                 />
               </motion.div>
@@ -111,7 +123,9 @@ export const PicsHudLeft: FC<
                       container.width +
                       s.m,
                     left: 0,
-                    top: container.height +s.m,
+                    top:
+                      container.height +
+                      s.m,
                     // y: dragger.y075,
                   }}
                 >
@@ -124,13 +138,6 @@ export const PicsHudLeft: FC<
                     left={0}
                   />
                   <div />
-                  {/* <HudLeftAddRandom
-                    isLabel={isIdle}
-                    // positionClass="absolute"
-                  />
-                  <LeftButtonsClear
-                    isLabel={isIdle}
-                  /> */}
                 </motion.div>
 
                 <motion.div
@@ -149,7 +156,7 @@ export const PicsHudLeft: FC<
                 >
                   <HudLeftAddRandom
                     isLabel={isIdle}
-                    
+
                     // positionClass="absolute"
                   />
                   <LeftButtonsClear
@@ -159,7 +166,13 @@ export const PicsHudLeft: FC<
 
                 {isVideoPics && (
                   <motion.div
-                    layout
+                    // layout
+                    // onLayoutAnimationStart={() =>
+                    //   setMoving(true)
+                    // }
+                    // onLayoutAnimationComplete={() =>
+                    //   setMoving(false)
+                    // }
                     className="absolute row-space"
                     style={{
                       height: 0,
@@ -177,7 +190,6 @@ export const PicsHudLeft: FC<
                       className="relative row h-0"
                       style={{
                         top: s.m025,
-
                         gap: s.m05,
                       }}
                     >
@@ -187,7 +199,7 @@ export const PicsHudLeft: FC<
                         }}
                       />
                       <VideoPicsCounter
-                        classValue="relative"
+                        classValue="relative pointer-events-none"
                         style={{
                           bottom: s.m,
                         }}
@@ -205,7 +217,7 @@ export const PicsHudLeft: FC<
                       }}
                     >
                       <Pill
-                        classValue="relative"
+                        classValue="relative pointer-events-none"
                         sizeClass={
                           "h-6"
                         }
@@ -214,10 +226,11 @@ export const PicsHudLeft: FC<
                         }}
                       >
                         <SubtitleText>
-                          see video
+                          watch
                         </SubtitleText>
                       </Pill>
                       <ControlsPlayer
+
                         style={{
                           width: s.m,
                         }}
