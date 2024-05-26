@@ -8,19 +8,29 @@ import {
   useScreenMeasure,
 } from "~/shell/init/measure";
 import { useTrillPicsStore } from "~/store/middleware";
+import { TState } from "~/store/types";
 
 export const useInit = () => {
   const { timeoutRef, endTimeout } =
     useTimeoutRef();
-  const { table, set,screen,isControls } =
-    useTrillPicsStore(
-      ({ table,screen, set,isControls }) => ({
-        table,
-        screen,
-        set,
-        isControls
-      })
-    );
+  const {
+    table,
+    set,
+    screen,
+    isControls,
+  } = useTrillPicsStore(
+    ({
+      table,
+      screen,
+      set,
+      isControls,
+    }) => ({
+      table,
+      screen,
+      set,
+      isControls,
+    })
+  );
   const { update } = usePicTable();
   const handleScreenReady = (
     screen: TScreen
@@ -28,15 +38,15 @@ export const useInit = () => {
     endTimeout();
     timeoutRef.current = setTimeout(
       () => {
-        console.log(screen)
         set(
-          (draft: {
-            screen: TScreen;
-          }) => {
+          (draft:TState) => {
             draft.screen = screen;
           }
         );
-        if (screen.isDimensions && !screen.isResizing) {
+        if (
+          screen.isDimensions &&
+          !screen.isResizing
+        ) {
           const size =
             table.update.screen({
               screen,
@@ -50,11 +60,9 @@ export const useInit = () => {
         : 0
     );
   };
-  useScreenMeasure({
-    onReady: handleScreenReady,
-  });
+
   useOnscreen();
   useFonts();
 
-  return {table,screen,isControls};
+  return { table, screen, isControls, onReady:handleScreenReady };
 };

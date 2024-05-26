@@ -4,7 +4,7 @@ import {
   useSearchParams,
 } from "react-router-dom";
 import {
-  CELL_PARAM_KEY,
+  OVER_CELL_PARAM_KEY,
   SECONDS_PARAM_KEY,
 } from "~/hooks/pic/constants";
 import { paramsMoveToEnd } from "~/utils/params/move-to-end";
@@ -30,7 +30,7 @@ export const usePicVideoWriteSeconds =
       );
       paramsMoveToEnd(
         searchParams,
-        CELL_PARAM_KEY
+        OVER_CELL_PARAM_KEY
       );
       navigate(
         `${pathname}?${searchParams}`

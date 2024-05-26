@@ -1,22 +1,37 @@
 import { PicBackdrop } from "~/pics/grid/pic/backdrop";
 import { RemotionPlayer } from "~/components/remotion/player";
 import { Helmet } from "react-helmet-async";
-import { useTrillPicsStore } from "~/store/middleware";
 import { boxSize } from "~/constants/box/size";
-import { GRADIENT_MESH_COMMON, GRADIENT_MESH_DARK } from "~app/color/gradient/mesh";
+import { usePicVideoReadInputs } from "~/hooks/pic/video/read/inputs/hook";
+import { FULLSCREEN_Z } from "~/constants/dom";
+import { PlaybackButtons } from "~/components/remotion/player/playback/buttons";
+import { PlaybackProgressSeeker } from "~/components/remotion/player/playback/progress/seeker";
+import { PlaybackTimer } from "~/components/remotion/player/playback/timer";
+import { Download } from "~/pages/video/player/_header/download";
+import { PlaybackButtonsFullscreen } from "~/components/remotion/player/playback/buttons/fullscreen";
+import {
+  Link,
+  useSearchParams,
+} from "react-router-dom";
+import { VIDEO_ROUTE } from "~/shell/routes";
+import { useContextGrid } from "~/context";
+
 export const OVERFLOW_HIDDEN =
   "overflow: hidden;";
 
 export const VideoPlayer = () => {
-  const { screen } = useTrillPicsStore(
-    ({ screen }) => ({
-      screen,
-    })
-  );
+  const [searchParams] =
+    useSearchParams();
+  const { screen } = useContextGrid();
+
+  const inputProps =
+    usePicVideoReadInputs();
+
   const s = boxSize();
-  if (!screen.isDimensions) return null;
-  const width =
-    screen.container.width - s.m3;
+  const container = screen.container;
+  const width = container.width - s.m3;
+  const paddingY =
+    screen.container.top;
   return (
     <>
       <Helmet>
@@ -24,25 +39,98 @@ export const VideoPlayer = () => {
           Trill Pics | Viewing Room
         </title>
       </Helmet>
-      <PicBackdrop />
+      <Link
+        className="fill"
+        to={`${VIDEO_ROUTE}?${searchParams}`}
+      >
+        <PicBackdrop />
+      </Link>
       <div
-        className="vplayer absolute h-screen _gradient-mesh"
+        className="fill overflow-auto"
         style={{
-          // margin: `0 ${s.m15}px`,
-          ...GRADIENT_MESH_COMMON,
-          ...GRADIENT_MESH_DARK,
-          top:
-            screen.container.top +
-            s.m15,
-          left:
-            screen.container.left +
-            s.m15,
-          width,
-          // height: (width * 9) / 16,
+          zIndex: FULLSCREEN_Z,
+          paddingTop: paddingY+s.m15,
+             paddingLeft:
+              screen.container.left +
+              s.m15,
+          paddingBottom: paddingY,
+          // paddingLeft:
+          // screen.container.left +
+          // s.m15,
+          gap: s.m,
         }}
       >
-        <RemotionPlayer />
+        <div
+          className="relative"
+          style={{
+            gap: s.m05,
+         
+            width,
+            height: width * (9 / 16),
+          }}
+        >
+          <div className="absolute -inset-2 bg-black rounded-lg opacity-70" />
+          <RemotionPlayer
+            {...inputProps}
+          />
+        </div>
+        <div
+          style={{ height: s.m05 }}
+        />
+        <div
+          className="relative flex-col flex justify-center"
+          style={{
+            gap: s.m025,
+            width:
+              container.width - s.m3,
+            // left: s.m15,
+            // height:container.height,
+          }}
+        >
+          <div
+            className="relative flex-col flex justify-center"
+            style={{
+              // left: 0,
+              // top: 0,
+              // height:container.height,
+
+              width:
+                container.width - s.m3,
+            }}
+          >
+            <div className="relative row-space">
+              <div className="absolute -inset-2 bg-black rounded-lg  _gradient-mesh opacity-70" />
+
+              <div className="relative row gap-6">
+                <PlaybackButtons />
+                <PlaybackTimer />
+              </div>
+              <div className="relative flex gap-2">
+                <PlaybackButtonsFullscreen direction="rtl" />
+                <Download direction="rtl" />
+              </div>
+            </div>
+            <div
+              style={{ height: s.m05 }}
+            />
+            <div
+              className="relative w-full _gradient-radial rounded-lg"
+              style={{
+                left: 0,
+                width:
+                  container.width -
+                  s.m3,
+              }}
+            >
+              <div className="absolute -inset-2 bg-black rounded-lg _gradient-mesh opacity-80" />
+              <PlaybackProgressSeeker />
+            </div>
+          </div>
+        </div>
       </div>
+      <div
+        style={{ height: paddingY }}
+      />
     </>
   );
 };

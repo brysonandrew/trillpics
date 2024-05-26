@@ -15,6 +15,7 @@
   src: url("/fonts/armstrong3/regular.otf")
     format("opentype");
 }
+
 @font-face {
   font-family: "Conthrax";
   src: url("/fonts/conthrax/regular.otf")
@@ -33,10 +34,6 @@
     format("opentype");
 }
 
-/* * {
-  font-family: "Dragon";
-} */
-
 @font-face {
   font-family: "Saiba45";
   src: url("/fonts/saiba45/regular.ttf")
@@ -48,33 +45,3 @@
   src: url("/fonts/leddisplay7/regular.ttf")
     format("truetype");
 }
-/* 
-@font-face {
-  font-family: "GType rGX9";
-  src: url("/fonts/GType-rGX9.ttf")
-    format("truetype");
-}
-
-@font-face {
-  font-family: "FFF Forward";
-  src: url("/fonts/fff-forward/FFFFORWA.ttf")
-    format("truetype");
-}
-
-@font-face {
-  font-family: "NK57";
-  src: url("/fonts/nk57-monospace/nk57-monospace-cd-bd.otf")
-    format("opentype");
-}
-
-@font-face {
-  font-family: "joystix";
-  src: url("/fonts/joystix.monospace-regular.otf")
-    format("opentype");
-} */
-
-/* @font-face {
-  font-family: "DroidSansMono";
-  src: url("/fonts/droid-sans-mono/DroidSansMono.ttf")
-    format("truetype");
-} */

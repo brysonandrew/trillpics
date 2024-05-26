@@ -6,11 +6,7 @@ import {
 
 import * as SliderPrimitive from "@radix-ui/react-slider";
 import { cx } from "class-variance-authority";
-import {
-  clsx,
-  type ClassValue,
-} from "clsx";
-import { GRADIENT_MESH_LIGHT } from "~app/color/gradient/mesh";
+import { clsx } from "clsx";
 
 export type TSliderProps =
   ComponentPropsWithoutRef<
@@ -46,12 +42,10 @@ const SliderInput = forwardRef<
     >
       <SliderPrimitive.Track
         className={cx(
-          "relative bg-white-4 dark:bg-black w-full grow overflow-hidden rounded-full",
+          "relative _gradient-mesh bg-white-4 dark:bg-black w-full grow overflow-hidden rounded-full",
           trackSizeClass
         )}
         style={{
-          ...GRADIENT_MESH_LIGHT,
-          backgroundSize: "2px 2px",
           backgroundColor:
             "rgba(0,0,0,0)",
         }}

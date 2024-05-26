@@ -1,6 +1,6 @@
 import { cellDecrypt } from "~/hooks/pic/cell/decrypt";
 import {
-  CELL_PARAM_KEY,
+  OVER_CELL_PARAM_KEY,
   SIZE_PARAM_KEY,
 } from "~/hooks/pic/constants";
 
@@ -8,7 +8,7 @@ export const resolveCellOver = (
   searchParams: URLSearchParams
 ) => {
   const paramValue = searchParams.get(
-    CELL_PARAM_KEY
+    OVER_CELL_PARAM_KEY
   );
   const cell =  paramValue
   ? cellDecrypt(paramValue)
@@ -18,6 +18,7 @@ export const resolveCellOver = (
   );
 
   return {
+    paramValue,
     cell,
     size,
   };

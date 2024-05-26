@@ -6,7 +6,6 @@ const CORNER_SIZE = 20;
 export const CursorCorners: FC = () => {
   return (
     <svg
-      className="pointer-events-none"
       viewBox={`0 0 ${SIZE} ${SIZE}`}
       width="100%"
       height="100%"

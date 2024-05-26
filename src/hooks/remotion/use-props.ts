@@ -1,61 +1,53 @@
 import { useMemo } from "react";
-import { useImageDimensions } from "@brysonandrew/measure";
-import { DIMENSIONS } from "~/constants/remotion";
+import {
+  DIMENSIONS,
+  PIC_DIMENSIONS,
+} from "~/constants/remotion";
 import { useTrillPicsStore } from "~/store/middleware";
-import { DEFAULT_INPUT } from "~/pages/video/player/_header/generate";
+import { DEFAULT_INPUT } from "~/pages/video/player/_header/download";
+import { resolvePicRandoms } from "~/hooks/pic/randoms";
+import { dimensionsWithinPlayerBounds } from "~/hooks/within-player-bounds";
 
 export const useRemotionProps = (
   picVideoInputs = DEFAULT_INPUT[
     "input"
   ]
 ) => {
-  const {
-    screen,
-    fps,
-    pics: allPics,
-  } = useTrillPicsStore(
-    ({ screen, fps, pics }) => ({
-      screen,
-      fps,
-      pics,
-    })
-  );
-  const dimensions = useImageDimensions(
-    {
-      box: screen.isDimensions
-        ? screen
-        : null,
-      image: DIMENSIONS,
-    }
-  );
-
+  const { fps, pics: allPics } =
+    useTrillPicsStore(
+      ({ fps, pics }) => ({
+        fps,
+        pics,
+      })
+    );
+    const canvasDimensions= DIMENSIONS
+  const dimensions =
+    dimensionsWithinPlayerBounds({
+      canvasDimensions,
+      ...PIC_DIMENSIONS,
+      fillMode: "cover",
+    });
   const pics = useMemo(() => {
     return picVideoInputs.isPics
       ? picVideoInputs.pics
-      : [...Array(5)].map(
-          () =>
-            `${Math.floor(
-              allPics.length *
-                Math.random()
-            )}`
-        );
+      : resolvePicRandoms({
+          pics: allPics,
+        });
   }, [picVideoInputs]);
-  const seconds =
-    picVideoInputs.seconds || 10;
-  const durationInFrames =
-    seconds * fps;
+
   const count = pics.length;
+  const seconds =
+    picVideoInputs.seconds || count * 2;
   return {
     fps,
-    durationInFrames,
     props: {
       pics,
       count,
       seconds,
       isPics: count > 0,
+      dimensions
     },
-    ...(dimensions.isDimensions
-      ? dimensions
-      : DIMENSIONS),
+    ...canvasDimensions,
+    // ...dimensions
   };
 };

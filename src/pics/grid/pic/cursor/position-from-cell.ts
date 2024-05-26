@@ -6,7 +6,7 @@ export const resolvePositionFromCell =
   ({
     cell,
     size,
-  }: TUseCellOverResult) => 
+  }: Pick<TUseCellOverResult, 'cell' | 'size'>) => 
     isNull(cell)
       ? {}
       : {

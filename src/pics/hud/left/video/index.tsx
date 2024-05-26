@@ -1,4 +1,7 @@
-import { FC } from "react";
+import {
+  FC,
+  PropsWithChildren,
+} from "react";
 import { motion } from "framer-motion";
 import { useNavigationControls } from "~/hooks/navigation/controls";
 import { IconsVideo } from "~/components/icons/video/video";
@@ -8,21 +11,32 @@ import {
   HOME_ROUTE,
   VIDEO_ROUTE,
 } from "~/constants/params";
-import { HudLeftAddRandom } from "~/pics/hud/left/add-random";
-import { LeftButtonsClear } from "~/pics/hud/left/clear";
-import { VideoPicsCounter } from "~/shell/screen/video-pic-counter";
 import { useVideoPicsCheck } from "~/hooks/pic/video/read/video-pics-check/hook";
-import { PicsHudLeftLine } from "~/pics/hud/left/line";
 import { boxSize } from "~/constants/box/size";
+import { useContextGrid } from "~/context";
+import { TChildren } from "@brysonandrew/config-types";
+import { THudContainer } from "~/pics/hud";
+import { IconsHome } from "~/components/icons/home";
+import { useDraggerReset } from "~/pages/video/_root/reorder/use-dragger-reset";
 
 type TProps = {
   isLabel: boolean;
+  container: THudContainer;
+  siblings: TChildren;
+  inActiveSiblings: TChildren;
 };
 export const HudLeftVideo: FC<
-  TProps
-> = ({ isLabel }) => {
+  PropsWithChildren<TProps>
+> = ({
+  isLabel,
+  children,
+  container,
+  siblings,
+  inActiveSiblings,
+}) => {
   const s = boxSize();
-
+  const { dragger, main } =
+    useContextGrid();
   const isVideoPics =
     useVideoPicsCheck();
   const { togglePathValue, isActive } =
@@ -34,64 +48,54 @@ export const HudLeftVideo: FC<
         : VIDEO_ROUTE
     );
   };
-
+  useDraggerReset({
+    toY: isActive
+      ? -(s.m4 + s.m)
+      : 0,
+    main,
+  });
   const title = isActive
-    ? "Exit Video Maker"
-    : "Video Maker";
-
+    ? "Exit video sequencer"
+    : "Video sequencer";
   return (
     <>
-      {isActive && isVideoPics && (
-        <motion.div
-          layout
-          className="column-start shrink-0 justify-evenly w-0"
-          style={{
-            height: s.m4,
-          }}
-        >
-          <LeftButtonsClear
-            isLabel={isLabel}
-          />
-          <PicsHudLeftLine />
-          <motion.div
-            layout
-            className="center"
-            style={{ width: s.m }}
-          >
-            <VideoPicsCounter />
-          </motion.div>
-          <PicsHudLeftLine />
-          {isActive && (
-            <>
-              <HudLeftAddRandom
-                isLabel={isLabel}
-              />
-              <PicsHudLeftLine />
-            </>
-          )}
-        </motion.div>
-      )}
-
-      <PillBHover
-        title={title}
-        subtitle={
-          isActive
-            ? ""
-            : "Make a short video clip composed of the pics you see here."
-        }
-        onClick={handleClick}
-        isSelected={isActive}
-        isLabel={isLabel}
-        Icon={IconsVideo}
-        outerCircle={
-          !isActive &&
-          isVideoPics && (
-            <VideoPicCounterFloating />
-          )
-        }
+      {isActive
+        ? siblings
+        : inActiveSiblings}
+      <motion.div
+        className="absolute left-0 bottom-0"
+        style={{
+          bottom: s.m15 - s.m0125,
+          y: dragger.y,
+          x: 0,
+        }}
       >
-        {title}
-      </PillBHover>
+        <PillBHover
+          title={title}
+          subtitle={
+            isActive
+              ? ""
+              : "Turn a sequence of pics into video."
+          }
+          onClick={handleClick}
+          isSelected={isActive}
+          isLabel={isLabel}
+          Icon={
+            isActive
+              ? IconsHome
+              : IconsVideo
+          }
+          outerCircle={
+            !isActive &&
+            isVideoPics && (
+              <VideoPicCounterFloating />
+            )
+          }
+        >
+          {title}
+        </PillBHover>
+        {isActive ? children : null}
+      </motion.div>
     </>
   );
 };

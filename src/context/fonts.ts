@@ -5,31 +5,18 @@ import {
 } from "react";
 import WebFont from "webfontloader";
 import { produce } from "immer";
+import { FONT_NAMES } from "~app/base/fonts";
 
-export const FAMILIES = [
-  "Dragon",
-  "Conthrax",
-  // "Saiba 45",
-  // "led_display-7",
-  // "joystix",
-  // "FFF Forward",
-  // "Saiba 45 Outline",
-
-] as const;
+export const FAMILIES = FONT_NAMES.map(
+  ([name]) => name
+);
 
 type TFamilies = typeof FAMILIES;
 type TFamily = TFamilies[number];
 const URLS = [
-  // "/fonts/saiba-45/SAIBA-45.ttf",
-  // "/fonts/led-display7/led_display-7.ttf",
-  // "/fonts/joystix.monospace-regular.otf",
-  // "/fonts/fff-forward/FFFFORWA.ttf",
-  // "/fonts/saiba-45/SAIBA-45-Outline.ttf",
-  "/fonts/armstrong3/regular.otf",
-  "/fonts/conthrax/regular.otf",
+  // "/fonts/armstrong3/regular.otf",
   "/fonts/dragon/regular.otf",
-  "/fonts/neuropolitical/regular.otf",
-  "/fonts/toxigenesis/regular.otf"
+  "/fonts/toxigenesis/regular.otf",
 ] as const;
 
 const LOADER_RECORD = {

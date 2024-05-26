@@ -25,3 +25,7 @@ export const DIMENSIONS: TDimensions = {
   width: WIDTH,
   height: HEIGHT,
 };
+export const PIC_DIMENSIONS: TDimensions = {
+  width: PIC_SIZE,
+  height: PIC_SIZE,
+};

@@ -12,7 +12,7 @@ export const PlayerFooterButtonsExit: FC =
     const handleClick = () => {
       togglePathValue();
     };
-    const title = "Exit Video Player";
+    const title = "Exit viewing room";
 
     return (
       <PillBHover

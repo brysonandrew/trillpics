@@ -14,6 +14,8 @@ import { onProgress } from "~/server/generate/webpack/on-progress";
 import { onDownload } from "~/server/generate/media/on-download";
 import { REMOTION_ENTRY_POINT } from "~root/remotion.config";
 import { TGenerateOutput } from "~/types/trpc/generate";
+import d from "dotenv";
+d.config();
 
 export type TGenerateProps = {
   input: TPicSeriesProps;
@@ -25,6 +27,7 @@ export const generate = async ({
 }: TGenerateProps) => {
   const id = "pic-series";
   const isLocalMode = isLocal();
+  console.log("ISLOCAL ",isLocalMode)
   const serveUrl = isLocalMode
     ? await bundle({
         publicDir: path.join(
@@ -41,7 +44,7 @@ export const generate = async ({
     : "https://brysonandrew.github.io/trillpics";
 
   const durationInFrames =
-    fps * input.pics.length;
+    fps * input.seconds;
 
   const inputProps = {
     ...input,

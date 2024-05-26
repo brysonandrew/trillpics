@@ -16,9 +16,11 @@ export const PlaybackTimer: FC = () => {
     );
 
   return (
-    <div className="relative flex h-0 shrink-0 grow-0 items-center text-left _outline-filter pointer-events-none">
-      <TimerCurrent />
-      <div className="flex brightness-80">
+    <div className="inline-flex bg-gray dark:bg-black px-2 rounded-lg relative font-sans text-sm text-white dark:text-white shrink-0 grow-0 items-center text-left _outline-filter pointer-events-none">
+      <div className="invert-20">
+        <TimerCurrent />
+      </div>
+      <div className="flex">
         <span className="px-1 h-0">
           /
         </span>

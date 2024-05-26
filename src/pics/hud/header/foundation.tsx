@@ -7,7 +7,7 @@ import { useTimebomb } from "~/hooks/use-time-bomb";
 import { boxSize } from "~/constants/box/size";
 
 type TProps = {
-  dimensions: TDimensions;
+  container: TDimensions;
 };
 export const PicsHudHeaderFoundation: FC<
   TProps
@@ -19,7 +19,8 @@ export const PicsHudHeaderFoundation: FC<
   } = useContextGrid();
 
   const isFontReady =
-    fonts["Conthrax"].active;
+    fonts["Dragon"].active &&
+    fonts["Toxigenesis"].active;
 
   const saveFoundation = (
     instance: HTMLDivElement
@@ -30,8 +31,10 @@ export const PicsHudHeaderFoundation: FC<
     updateFoundation(rect);
   };
 
-  const { trigger, isArmed:isSavingDelayed } =
-    useTimebomb(100, saveFoundation);
+  const {
+    trigger,
+    isArmed: isSavingDelayed,
+  } = useTimebomb(100, saveFoundation);
   const s = boxSize();
 
   return (
@@ -39,10 +42,11 @@ export const PicsHudHeaderFoundation: FC<
       {isFontReady && (
         <motion.div
           className="absolute top-0"
-          initial={{opacity: 0}}
-       
+          initial={{ opacity: 0 }}
           animate={{
-            opacity: isSavingDelayed ? 0.5 : 1,
+            opacity: isSavingDelayed
+              ? 0.5
+              : 1,
           }}
           ref={(instance) => {
             if (
@@ -52,8 +56,7 @@ export const PicsHudHeaderFoundation: FC<
               trigger(instance);
             }
           }}
-          exit={{opacity: 0}}
-
+          exit={{ opacity: 0 }}
         >
           <HeaderLeft />
         </motion.div>

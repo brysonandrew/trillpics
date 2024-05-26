@@ -12,7 +12,6 @@ export const useNavigationControls = (
   const navigate = useNavigate();
   const isActive =
     useNavigationActive(pathValue);
-
   const togglePathValue = (
     nextPathValue?: TPathValue
   ) => {
@@ -29,5 +28,6 @@ export const useNavigationControls = (
   return {
     isActive,
     togglePathValue,
+    searchParams
   };
 };

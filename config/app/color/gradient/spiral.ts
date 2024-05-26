@@ -1,8 +1,8 @@
 import { resolveGradient } from "@brysonandrew/color-gradient";
-import { resolveBoxBackground } from "@brysonandrew/utils-box";
+import { boxBackgroundCss, resolveBoxBackground } from "@brysonandrew/utils-box";
 
 export const spiral = (ringSize:number) =>
-resolveBoxBackground({
+  boxBackgroundCss({
   image: resolveGradient({
     name: "repeating-linear-gradient",
     parts: [

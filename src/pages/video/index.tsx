@@ -7,7 +7,7 @@ export const Video = () => {
     <>
       <Helmet>
         <title>
-          Trill Pics | Video Maker
+          Trill Pics | Video Sequencer
         </title>
       </Helmet>
       <GridOptions />

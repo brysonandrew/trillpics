@@ -1,25 +1,14 @@
 import type { FC } from "react";
-import { TypographyBorderedXs } from "~/components/typography/bordered/xs";
 import { boxSize } from "~/constants/box/size";
-import { useReady } from "~/hooks/use-ready";
 import { LeftButtonsClear } from "~/pics/hud/left/clear";
-import { LinesVertical } from "~/pages/video/_common/footer/left/lines/vertical";
-import { useTrillPicsStore } from "~/store/middleware";
+import { LinesVertical } from "~/components/lines/vertical";
+import { useContextGrid } from "~/context";
 
 export const FooterNavDelete: FC =
   () => {
-    const { screen } =
-      useTrillPicsStore(
-        ({ screen }) => ({
-          screen,
-        })
-      );
-    const isReady = useReady();
+    const { screen } = useContextGrid();
 
-    const container =
-      screen.isDimensions &&
-      screen.container;
-    if (!container) return null;
+    const container = screen.container;
     const bSize = boxSize();
     const verticalSpace =
       container.height / 2;
@@ -32,26 +21,26 @@ export const FooterNavDelete: FC =
           top: -vs025 - bSize.m,
           left: bSize.m * 1.5,
           gap: bSize.m05,
-          height: (vs025 / 4).toFixed(2),
+          height: (vs025 / 4).toFixed(
+            2
+          ),
         }}
       >
         <LeftButtonsClear
           key="LeftButtonsClear"
-          {...(isReady
-            ? {
-                layoutId:
-                  "LeftButtonsClear",
-              }
-            : {})}
+          {...{
+            layoutId:
+              "LeftButtonsClear",
+          }}
         />
         <LinesVertical
           style={{
             marginLeft: bSize.s05,
           }}
         />
-        <TypographyBorderedXs>
+        <span className="_outline-filter">
           delete
-        </TypographyBorderedXs>
+        </span>
         <LinesVertical
           style={{
             marginLeft: bSize.s05,

@@ -3,7 +3,7 @@ import {
   AnimatePresence,
   motion,
 } from "framer-motion";
-import { Generate } from "~/pages/video/player/_header/generate";
+import { Download } from "~/pages/video/player/_header/download";
 import { PlayerPlayback } from "~/components/remotion/player/playback";
 import { GradientsZebraBackground } from "~/components/gradients/zebra/background";
 import { LoadingOverlay } from "~/components/remotion/player/overlays/loading/overlay";
@@ -20,7 +20,7 @@ export const PlayerHeader: FC<
       {isPlayerInstance ? (
         <motion.div>
           <PlayerPlayback />
-          <Generate />
+          <Download />
         </motion.div>
       ) : (
         <motion.div>

@@ -1,16 +1,30 @@
+import { useContextGrid } from "~/context";
 import { useClickGrid } from "~/context/hooks/click";
+import { ZOOM_PARAM_KEY } from "~/hooks/pic/constants";
 import { usePicSelected } from "~/hooks/pic/selected";
 
-export const useHomeClickSelect = () => {
-  const props = usePicSelected();
-  const handle = () => {
-    const name = props.names[0]
-    if (props.paramValues.includes(name)) {
-      props.deselect(name);
-      return;
-    }
-    props.select();
+export const useHomeClickSelect =
+  () => {
+    const { ref } = useContextGrid();
+    const props = usePicSelected(
+      ZOOM_PARAM_KEY
+    );
+    const handleClick = () => {
+      console.log("LCICK")
+      if (props.isSelectedPics) {
+        ref.current?.enableScroll();
+        props.deselect();
+        return;
+      }
+
+      if (props.currName) {
+        ref.current?.disableScroll();
+        props.select();
+      }
+    };
+    const isDisabled = Boolean(
+      props.isSelectedPics || props.isRemoving
+    );
+    useClickGrid(handleClick,isDisabled);
+    return { ...props,onClick:handleClick,isDisabled };
   };
-  useClickGrid(handle);
-  return props;
-};

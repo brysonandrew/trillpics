@@ -7,15 +7,27 @@ import {
 import { useTrillPicsStore } from "~/store/middleware";
 import { useTimeoutRef } from "@brysonandrew/hooks-window";
 import { TVirtualizeContext } from "~/context/types";
+import {
+  useLocation,
+  useNavigate,
+  useSearchParams,
+} from "react-router-dom";
+import { OVER_CELL_PARAM_KEY } from "~/hooks/pic/constants";
+import { usePicCell } from "~/hooks/pic/cell";
 
 type TConfig = Pick<
   TVirtualizeContext,
-  "scrollY" | "ref"
-> 
+  "scrollY" | "ref" | 'main'
+>;
 export const useScrollUpdateHandler = ({
   scrollY,
   ref: handle,
+  main
 }: TConfig) => {
+  const [searchParams] =
+    useSearchParams();
+  const { pathname } = useLocation();
+  const navigate = useNavigate();
   const prevScrollOffsetRef =
     useRef<number>(0);
   const { timeoutRef, endTimeout } =
@@ -32,6 +44,7 @@ export const useScrollUpdateHandler = ({
         set,
       })
     );
+    const {move} = usePicCell(main,scrollY)
 
   const handler = (
     props: ListOnScrollProps
@@ -39,9 +52,7 @@ export const useScrollUpdateHandler = ({
     const {
       scrollOffset,
       scrollDirection,
-      scrollUpdateWasRequested,
     } = props;
-
     scrollY.set(-scrollOffset);
 
     const scrollDelta = Math.abs(
@@ -52,31 +63,27 @@ export const useScrollUpdateHandler = ({
       !isScrolling &&
       scrollDelta > 0
     ) {
-      console.log(
-        "start scrolling",
-        scrollDelta
-      );
       set({
         isScrolling: true,
         scrollDirection,
         scrollDelta,
       });
+      searchParams.delete(
+        OVER_CELL_PARAM_KEY
+      );
+      navigate(
+        `${pathname}?${searchParams}`
+      );
     }
     endTimeout();
     if (!isScrolling) return;
     timeoutRef.current = setTimeout(
       () => {
-        console.log(
-          "stop scrolling",
-          scrollDelta
-        );
-      
         set({
           isScrolling: false,
           scrollDirection: null,
           scrollDelta,
         });
-     
       },
       SCROLL_COOLDOWN
     );
@@ -98,7 +105,11 @@ export const useScrollUpdateHandler = ({
     prevScrollOffsetRef.current =
       scrollOffset;
   };
-  return {handler,isScroll,isScrolling};
+  return {
+    handler,
+    isScroll,
+    isScrolling,
+  };
 };
 export type TUseUseScrollUpdateHandlerResult =
   ReturnType<

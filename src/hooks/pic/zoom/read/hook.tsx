@@ -1,7 +1,7 @@
 import { useSearchParams } from "react-router-dom";
 import { TCell } from "~/pics/grid/pic";
 import { cellEncrypt } from "~/hooks/pic/cell/encrypt";
-import { CELL_PARAM_KEY } from "~/hooks/pic/constants";
+import { OVER_CELL_PARAM_KEY } from "~/hooks/pic/constants";
 import { picZoomRead } from "~/hooks/pic/zoom/read";
 
 export const usePicZoomRead = (
@@ -15,7 +15,7 @@ export const usePicZoomRead = (
     isClosing,
   } = picZoomRead(searchParams);
   const cellKeyParamValue =
-    searchParams.get(CELL_PARAM_KEY);
+    searchParams.get(OVER_CELL_PARAM_KEY);
   const currKey = cellEncrypt(currCell);
   const isCellZoomed =
     cellKeyParamValue === currKey &&

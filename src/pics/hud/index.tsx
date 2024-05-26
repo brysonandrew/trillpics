@@ -4,10 +4,7 @@ import clsx from "clsx";
 import { TMeasureContainerResult } from "~/shell/init/container";
 import { useContextGrid } from "~/context";
 import { PicsHudHeader } from "~/pics/hud/header";
-import { PicsHudFooter } from "~/pics/hud/footer";
 import { PicsHudLeft } from "~/pics/hud/left";
-import { PicsHudRight } from "~/pics/hud/right";
-import { PicsHudHeaderRight } from "~/pics/hud/header/right";
 import { boxSize } from "~/constants/box/size";
 
 export type THudContainer = Extract<
@@ -15,11 +12,11 @@ export type THudContainer = Extract<
   { isDimensions: true }
 >;
 type TProps = {
-  dimensions: THudContainer;
+  container: THudContainer;
   isVerticalScroll: boolean;
 };
 export const Hud: FC<TProps> = ({
-  dimensions,
+  container,
   isVerticalScroll,
 }) => {
   const { foundationValue, isIdle } =
@@ -30,9 +27,9 @@ export const Hud: FC<TProps> = ({
       <div
         className="fixed w-0 z-0"
         style={{
-          left: dimensions.left,
-          top: dimensions.top,
-          height: dimensions.height,
+          left: container.left,
+          top: container.top,
+          height: container.height,
         }}
       >
         <div
@@ -40,76 +37,38 @@ export const Hud: FC<TProps> = ({
             "absolute top-0 left-0 h-0 row shrink-0"
           )}
           style={{
-            width: dimensions.width,
+            width: container.width,
             gap: s.m05,
           }}
         >
           <AnimatePresence>
-            {dimensions.isDimensions && (
-              <>
-                <PicsHudHeader
-                  key="PicsHudHeader"
-                  dimensions={
-                    dimensions
-                  }
-                >
-                  <PicsHudFooter
-                    key="PicsHudFooter"
-                    dimensions={
-                      dimensions
-                    }
-                  />
-                  {foundationValue && (
-                    <>
-                      <PicsHudHeaderRight
-                        key="PicsHudHeaderRight"
-                        foundation={
-                          foundationValue
-                        }
-                        dimensions={
-                          dimensions
-                        }
-                        isIdle={isIdle}
-                      />
-                      <PicsHudRight
-                        key="PicsHudRight"
-                        isIdle={isIdle}
-                        foundation={
-                          foundationValue
-                        }
-                        dimensions={
-                          dimensions
-                        }
-                        isVerticalScroll={
-                          isVerticalScroll
-                        }
-                      />
-                    </>
-                  )}
-                </PicsHudHeader>
-              </>
-            )}
-
+            <PicsHudHeader
+              key="PicsHudHeader"
+              container={container}
+              isVerticalScroll={
+                isVerticalScroll
+              }
+            />
             <div
               key="left"
               className="fixed w-0 z-0"
               style={{
-                left: dimensions.left,
-                top: dimensions.top,
+                left: container.left,
+                top: container.top,
                 height:
-                  dimensions.height,
+                  container.height,
               }}
             >
               {foundationValue && (
                 <PicsHudLeft
                   key="PicsHudLeft"
-                  dimensions={
-                    dimensions
+                  container={container}
+                  playerHeight={
+                    container.playerHeight
                   }
                   foundation={
                     foundationValue
                   }
-                  isIdle={isIdle}
                   isVerticalScroll={
                     isVerticalScroll
                   }

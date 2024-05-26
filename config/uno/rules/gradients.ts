@@ -5,9 +5,9 @@ import {
 } from "@brysonandrew/utils-box";
 
 import {
-  GRADIENT_MESH_DARK,
-  GRADIENT_MESH_COMMON,
-  GRADIENT_MESH_LIGHT,
+  GRADIENT_MESH_DARK_CSS,
+  GRADIENT_MESH_COMMON_CSS,
+  GRADIENT_MESH_LIGHT_CSS,
 } from "../../app/color/gradient/mesh";
 import {
   GRADIENT_BLUE_PINK_YELLOW,
@@ -33,15 +33,15 @@ export const GRADIENTS: Rule[] = [
   [
     "_dark-gradient-mesh",
     {
-      ...GRADIENT_MESH_DARK,
-      ...GRADIENT_MESH_COMMON,
+      ...GRADIENT_MESH_DARK_CSS,
+      ...GRADIENT_MESH_COMMON_CSS,
     },
   ],
   [
     "_light-gradient-mesh",
     {
-      ...GRADIENT_MESH_LIGHT,
-      ...GRADIENT_MESH_COMMON,
+      ...GRADIENT_MESH_LIGHT_CSS,
+      ...GRADIENT_MESH_COMMON_CSS,
     },
   ],
   [

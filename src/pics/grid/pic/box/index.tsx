@@ -5,7 +5,6 @@ import {
   TPicProps,
 } from "~/pics/grid/pic";
 import { padBox } from "~/pics/grid/pic/pad-box";
-import { GRADIENT_MESH_DARK } from "~app/color/gradient/mesh";
 import { usePicTableReadSize } from "~/hooks/pic/table/read/size";
 
 type TBaseBoxChildProps = TPicProps & {
@@ -17,14 +16,13 @@ export type TBoxChildProps =
   TBaseBoxChildProps;
 type TProps = TCell &
   TPicProps & {
-    cursor: "pointer" | "zoom-in";
     children(
       props: TBoxChildProps
     ): JSX.Element | null;
   };
 export const Box: FC<TProps> = ({
   children,
-  cursor,
+
   column,
   row,
   ...props
@@ -35,15 +33,13 @@ export const Box: FC<TProps> = ({
   return (
     <>
       <div
+        className="_gradient-mesh"
         style={{
-          ...GRADIENT_MESH_DARK,
-          backgroundSize: "2px 2px",
           position: "absolute",
           ...padBox({
             size: size,
             left,
           }),
-          cursor,
         }}
       />
       <>

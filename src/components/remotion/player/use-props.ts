@@ -2,32 +2,28 @@ import { LegacyRef } from "react";
 import { useRemotionProps } from "~/hooks/remotion/use-props";
 import { useTrillPicsStore } from "~/store/middleware";
 import { PlayerRef } from "@remotion/player";
-import { boxSize } from "~/constants/box/size";
-// // // //
+
 export const useRemotionPlayerProps =
   () => {
+    const { playerInstance, set } =
+      useTrillPicsStore(
+        ({ playerInstance, set }) => ({
+          playerInstance,
+          set,
+        })
+      );
     const {
-      playerInstance,
-      set,
-      screen,
-    } = useTrillPicsStore(
-      ({
-        playerInstance,
-        set,
-        screen,
-      }) => ({
-        playerInstance,
-        screen,
-        set,
-      })
-    );
-    const {
+      // width,
+      // height,
+      // canvasDimensions: {
+      //   width: compositionWidth,
+      //   height: compositionHeight,
+      // },
       width: compositionWidth,
       height: compositionHeight,
       props: inputProps,
       ...props
     } = useRemotionProps();
-    const s = boxSize();
 
     const resolveRef: LegacyRef<
       PlayerRef | null
@@ -40,26 +36,13 @@ export const useRemotionPlayerProps =
         });
       }
     };
-    const width =
-      (screen.isDimensions
-        ? screen.container.width
-        : 0) - s.m3 ;
     return {
       ref: resolveRef,
       compositionWidth,
       compositionHeight,
       style: {
-        // position:'relative' as const,
         cursor: "pointer",
-        width:'100%',
-        // margin: `0 ${s.m15}px`,
-        // width,
-        // height:
-        //   ((screen.isDimensions
-        //     ? width
-        //     : 0) *
-        //     9) /
-        //   16,
+        width: "100%",
       },
       inputProps,
       ...props,

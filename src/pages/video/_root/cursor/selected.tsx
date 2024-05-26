@@ -7,8 +7,6 @@ import { IconsVideo } from "~/components/icons/video/video";
 import { useContextGrid } from "~/context";
 import { resolvePositionFromCell } from "~/pics/grid/pic/cursor/position-from-cell";
 import { PRESENCE_OPACITY } from "@brysonandrew/motion-config-constants";
-import { TypographyBordered } from "~/components/typography/bordered";
-import { FILTERS_FAT_1_SVG_PROPS } from "~/shell/global/svg/filters/fat/1";
 import { TUsePicSelected } from "~/hooks/pic/selected";
 
 type TProps = TUsePicSelected;
@@ -36,7 +34,7 @@ export const Video_RootCursorSelected: FC<
             size,
           });
         const style = {
-          y: scrollY,
+          // y: scrollY,
           ...position,
         };
         const io = {
@@ -61,22 +59,12 @@ export const Video_RootCursorSelected: FC<
             >
               <IconsVideo size={28} />
               <div className="w-2" />
-              <TypographyBordered
-                classValue="text-sm mt-0.5"
-                shadow={{
-                  classValue:
-                    "text-sm text-gray",
-                }}
-                style={
-                  FILTERS_FAT_1_SVG_PROPS
-                }
-              >
-                <div className="whitespace-nowrap font-sans">
-                  {isMaybe
-                    ? ""
-                    : `#${index + 1}`}
-                </div>
-              </TypographyBordered>
+
+              <div className="whitespace-nowrap font-sans _outline-filter">
+                {isMaybe
+                  ? ""
+                  : `#${index + 1}`}
+              </div>
             </motion.button>
           </motion.div>
         );

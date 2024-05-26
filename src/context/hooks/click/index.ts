@@ -2,12 +2,14 @@ import { useEventListener } from "@brysonandrew/hooks-events";
 import { useContextGrid } from "~/context";
 
 export const useClickGrid = (
-  trigger: () => void
+  trigger: () => void,
+  isDisabled:boolean
 ) => {
   const { ref, main } =
     useContextGrid();
 
   const handleClick = () => {
+    if (isDisabled) return;
     main.cursor.isHoverIdle = true;
     const isHovering =
       ref.current?.isHovering();
@@ -15,8 +17,6 @@ export const useClickGrid = (
       isHovering &&
       !main.cursor.isDragging
     ) {
-      console.log("done")
-
       trigger();
     }
     main.cursor.isDragging = false;

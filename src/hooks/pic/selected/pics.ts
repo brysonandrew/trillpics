@@ -39,7 +39,6 @@ export const useSelectedPicsResult = ({
         ...(Array.isArray(paramValues)
           ? paramValues
           : []),
-        // ...(currName ? [currName] : []), // maybes
       ],
     ];
     const uniqueSelectedPics =

@@ -5,15 +5,12 @@ import {
   TPicDisplayProps,
 } from "~/pics/grid/pic/display";
 import { centerInScreen } from "~/utils/dimensions/center-in-viewport";
-import { useTrillPicsStore } from "~/store/middleware";
+import { useContextGrid } from "~/context";
 
 export const PicZoomedDisplay: FC<
   TPicDisplayProps
 > = (props) => {
-  const { screen } = useTrillPicsStore(
-    ({ screen }) => ({ screen })
-  );
-  if (!screen.isDimensions) return null;
+  const { screen } = useContextGrid();
   const shortest = Math.min(
     screen.width,
     screen.height

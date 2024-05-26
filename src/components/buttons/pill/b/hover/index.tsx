@@ -1,4 +1,5 @@
 import { FC } from "react";
+import { AnimatePresence } from "framer-motion";
 import {
   PillB,
   TPillBProps,
@@ -27,11 +28,11 @@ export const PillBHover: FC<
     ({ set }) => ({ set })
   );
   const { motionHandlers, isHover } =
-  useHoverKey();
+    useHoverKey();
 
   const isHovering =
-  isDefined<typeof title>(title) &&
-  isHover(title);
+    isDefined<typeof title>(title) &&
+    isHover(title);
 
   const handleClick: React.MouseEventHandler<
     HTMLButtonElement
@@ -41,16 +42,16 @@ export const PillBHover: FC<
       set({ hoverKeys: [] });
     }
   };
-
   return (
     <>
-      {isHovering && (
-        <PillBHoverOverlay
-          subtitle={subtitle}
-        >
-          {children}
-        </PillBHoverOverlay>
-      )}
+      <PillBHoverOverlay
+        isShown={isHovering}
+        key={title}
+        direction={props.direction}
+        subtitle={subtitle}
+      >
+        {children}
+      </PillBHoverOverlay>
       <PillB
         title={title}
         onClick={handleClick}

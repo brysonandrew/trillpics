@@ -12,6 +12,7 @@ import {
   GRADIENT_TEAL_YELLOW_PINK,
 } from "../../app/color/gradient";
 import { TColor } from "../index";
+
 export const SCROLLBAR_WIDTH = 10;
 export const SCROLLBAR_BORDER_WIDTH = 2;
 

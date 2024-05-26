@@ -42,13 +42,13 @@ if (root) {
           <MotionConfig
             {...MOTION_CONFIG}
           >
-            <ProvidersApi>
+    
               <Suspense fallback={null}>
                 <RouterProvider
                   router={router}
                 />
               </Suspense>
-            </ProvidersApi>
+      
           </MotionConfig>
         </Boundary>
       </HelmetProvider>

@@ -1,9 +1,10 @@
 const PADDING = 8;
 const BOX_SIZE_M = 40;
+
 const BOX_SIZE_S =
   BOX_SIZE_M - PADDING;
 const BOX_SIZE_XS =
-  BOX_SIZE_S - PADDING;
+  BOX_SIZE_S - PADDING/2;
 const DEFAULT_SIZE_BOX_SIZE =
   BOX_SIZE_M;
 
@@ -20,6 +21,8 @@ export const BOX_SIZE = {
   m0125: BOX_SIZE_M * 0.125,
   m025: BOX_SIZE_M * 0.25,
   m05: BOX_SIZE_M * 0.5,
+  m075: BOX_SIZE_M * 0.75,
+  m125: BOX_SIZE_M * 1.25,
   m15: BOX_SIZE_M * 1.5,
   m2: BOX_SIZE_M * 2,
   m25: BOX_SIZE_M * 2.5,

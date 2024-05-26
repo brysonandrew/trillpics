@@ -5,15 +5,13 @@ import {
   useLocation,
   useSearchParams,
 } from "react-router-dom";
-import {
-  HOME_ROUTE,
-  VIDEO_ROUTE,
-} from "~/constants/params";
+import { HOME_ROUTE } from "~/constants/params";
 import { Title } from "~/pics/header/left/title";
 import { useScrollTopHandler } from "~/context/scroll/top";
 import { useTrillPicsStore } from "~/store/middleware";
 import { useHoverKey } from "~/hooks/use-hover-key";
-import { SCROLL_TOP_HOVER_KEY } from "~/pics/header/scroll-top";
+
+export const TITLE_HOVER_KEY = 'Title'
 
 export const HeaderLeft: FC = memo(
   () => {
@@ -38,9 +36,10 @@ export const HeaderLeft: FC = memo(
     const isHome =
       pathname === HOME_ROUTE;
     const handleHoverStart = () => {
+      console.log('idle ',isIdle)
       set({ isIdle: true });
     };
-    const title = SCROLL_TOP_HOVER_KEY;
+    const title = TITLE_HOVER_KEY;
     const { motionHandlers } =
       useHoverKey({
         handlers: {

@@ -15,7 +15,9 @@ export const VITE_CONFIG: UserConfig = {
   optimizeDeps: {
     include: ["react-device-detect"],
   },
+  
   build: {
+    
     commonjsOptions: {
       include: [
         /react-device-detect/,
@@ -65,7 +67,8 @@ export const VITE_CONFIG: UserConfig = {
         "silent",
     },
   },
-  envPrefix: "_",
+  envPrefix: "_"
+  
 };
 
 export default defineConfig(

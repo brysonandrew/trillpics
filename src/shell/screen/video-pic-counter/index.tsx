@@ -25,24 +25,28 @@ export const VideoPicsCounter: FC<
 
   const charCount =
     count.toFixed(0).length;
-  const isCircle = charCount === 1;
+  const isCircle = false; // charCount === 1 && !isDefined(children);
   return (
     <Pill
       isCircle={isCircle}
       sizeClass={
-        "h-7" + isCircle ? " w-7" : ""
+        "h-6" + (isCircle ? " w-6" : "")
       }
       layoutId="VideoPicsCounter"
       classValue={clsx(
-        "text-xs uppercase text-black font-sans",
-        "pointer-events-none font-mono text-main-inverted",
+        "pointer-events-none",
         classValue ?? "relative"
       )}
       style={{ ...style }}
       layout
       {...props}
     >
-      <span className="flex flex-row whitespace-nowrap">
+      <span
+        className={clsx(
+          "flex flex-row whitespace-nowrap text-white dark:text-black _outline-filter",
+          "text-xs uppercase font-sans"
+        )}
+      >
         {children(count)}
       </span>
     </Pill>

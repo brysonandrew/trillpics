@@ -7,7 +7,7 @@ import { PlaybackButtonsBack } from "~/components/remotion/player/playback/butto
 export const PlaybackButtons: FC =
   () => {
     return (
-      <div className="relative row gap-1 shrink-0">
+      <div className="relative row gap-2 shrink-0">
         <PlaybackButtonsBack/>
         <PlaybackButtonsBackward />
         <PlaybackButtonsPlay />

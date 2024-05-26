@@ -46,8 +46,7 @@ export const useHoverKey = (
     })
   );
 
-
-  const { isArmed, trigger } =
+  const { isArmed, trigger, disarm } =
     useTimebomb(1000, cooldownEnd);
 
   const onStart: TEventHandler =
@@ -57,7 +56,6 @@ export const useHoverKey = (
         return;
       }
       if (config?.handlers?.start) {
-        console.log("START")
         config.handlers.start?.(key);
       }
 
@@ -70,6 +68,7 @@ export const useHoverKey = (
         config.handlers.stop?.(key);
       }
       unhover(key);
+      disarm();
       trigger();
     };
   const handlers = (key: THoverKey) =>

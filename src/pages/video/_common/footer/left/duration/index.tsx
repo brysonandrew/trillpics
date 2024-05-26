@@ -1,12 +1,10 @@
 import type { FC } from "react";
-import { LinesHorizontal } from "~/pages/video/_common/footer/left/lines/horizontal";
+import { LinesHorizontal } from "~/components/lines/horizontal";
 import { PillBHover } from "~/components/buttons/pill/b/hover";
 import { boxSize } from "~/constants/box/size";
-import { useReady } from "~/hooks/use-ready";
 import { TVideoFooterProps } from "~/pages/video/_common/footer/types";
-import { SeperatorHorizontal } from "~/pages/video/_common/footer/left/seperator/horizontal";
+import { SeperatorHorizontal } from "~/components/seperator/horizontal";
 import { SecondsSlider } from "~/components/slider";
-import { TypographyBorderedSm } from "~/components/typography/bordered/sm";
 
 export const _RootLeftDuration: FC<
   TVideoFooterProps
@@ -15,7 +13,6 @@ export const _RootLeftDuration: FC<
   Seperator = SeperatorHorizontal,
   ..._props
 }) => {
-  const isReady = useReady();
 
   const props = {
     Button,
@@ -33,9 +30,10 @@ export const _RootLeftDuration: FC<
       }}
     >
       <LinesHorizontal />
-      <TypographyBorderedSm>
-        duration
-      </TypographyBorderedSm>
+ <div>
+ duration
+
+ </div>
       <LinesHorizontal />
       <div className="w-full md:w-3/4">
         <SecondsSlider />

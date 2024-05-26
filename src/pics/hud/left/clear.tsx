@@ -1,4 +1,5 @@
 import type { FC } from "react";
+import { motion } from "framer-motion";
 import {
   PillBHover,
   TPillBHoverProps,
@@ -10,8 +11,12 @@ import { resolvePicSrc } from "~/utils/src";
 import { useTrillPicsStore } from "~/store/middleware";
 import { useBlurAnimate } from "~/hooks/animate/blur/animate";
 import { IconsTrash } from "~/components/icons/video/trash";
-import { MAX_COUNT } from "~/pages/video/_common/reorder/constants";
+import { MAX_COUNT } from "~/pages/video/_root/reorder/constants";
 import { usePicVideoWriteInputs } from "~/hooks/pic/video/write/inputs/hook";
+import { boxSize } from "~/constants/box/size";
+import { useContextGrid } from "~/context";
+export const LEFT_BUTTONS_CLEAR_TITLE =
+  "Delete all";
 
 export const LeftButtonsClear: FC<
   TVideoFooterProps &
@@ -28,19 +33,13 @@ export const LeftButtonsClear: FC<
   } = usePicVideoWriteInputs();
   const { togglePathValue, isActive } =
     useNavigationControls(VIDEO_ROUTE);
-  const { screen } = useTrillPicsStore(
-    ({ screen }) => ({ screen })
-  );
+  const { screen } = useContextGrid();
+  const handler = useBlurAnimate();
 
-  if (
-    !isVideoPics ||
-    !screen.isDimensions
-  )
-    return null;
+  if (!isVideoPics) return <div/>;
   const container = screen.container;
   const unitSize =
     container.width / MAX_COUNT;
-  const handler = useBlurAnimate();
   const handleClear = () => {
     handler();
     if (!isActive) {
@@ -48,29 +47,35 @@ export const LeftButtonsClear: FC<
     }
     clear();
   };
-  const title = "Delete all";
+  const s = boxSize();
+  const title =
+    LEFT_BUTTONS_CLEAR_TITLE;
   return (
     <Button
       onClick={handleClear}
       Icon={IconsTrash}
+      direction="rtl"
+
       subtitle={
         <>
           <p>
             {`Delete all ${count} of the pics you have added.`}
           </p>
-          <div className="h-2" />
+          <div className="h-6" />
           <ul
-            className="grid gap-2"
+            className="relative grid gap-2"
             style={{
               display: "grid",
-              left: 0,
+              left: container.left,
               width: container.width,
+              gap: s.m,
               gridTemplateColumns: `repeat(auto-fill, minmax(${unitSize}px, 1fr))`,
             }}
           >
             {names.map((name) => (
               <li key={name}>
-                <img
+                <motion.img
+                  layoutId={name}
                   alt={name}
                   src={resolvePicSrc(
                     name
