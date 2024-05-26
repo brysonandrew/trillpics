@@ -10619,6 +10619,1140 @@ if (true) {
 
 /***/ }),
 
+/***/ 75874:
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+let defaultTheme = __webpack_require__(68737)
+module.exports = (defaultTheme.__esModule ? defaultTheme : { default: defaultTheme }).default
+
+
+/***/ }),
+
+/***/ 68737:
+/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", ({
+    value: true
+}));
+Object.defineProperty(exports, "default", ({
+    enumerable: true,
+    get: function() {
+        return _default;
+    }
+}));
+const _cloneDeep = __webpack_require__(39392);
+const _configfull = /*#__PURE__*/ _interop_require_default(__webpack_require__(49924));
+function _interop_require_default(obj) {
+    return obj && obj.__esModule ? obj : {
+        default: obj
+    };
+}
+const _default = (0, _cloneDeep.cloneDeep)(_configfull.default.theme);
+
+
+/***/ }),
+
+/***/ 39392:
+/***/ ((__unused_webpack_module, exports) => {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", ({
+    value: true
+}));
+Object.defineProperty(exports, "cloneDeep", ({
+    enumerable: true,
+    get: function() {
+        return cloneDeep;
+    }
+}));
+function cloneDeep(value) {
+    if (Array.isArray(value)) {
+        return value.map((child)=>cloneDeep(child));
+    }
+    if (typeof value === "object" && value !== null) {
+        return Object.fromEntries(Object.entries(value).map(([k, v])=>[
+                k,
+                cloneDeep(v)
+            ]));
+    }
+    return value;
+}
+
+
+/***/ }),
+
+/***/ 49924:
+/***/ ((module) => {
+
+module.exports = {
+  content: [],
+  presets: [],
+  darkMode: 'media', // or 'class'
+  theme: {
+    accentColor: ({ theme }) => ({
+      ...theme('colors'),
+      auto: 'auto',
+    }),
+    animation: {
+      none: 'none',
+      spin: 'spin 1s linear infinite',
+      ping: 'ping 1s cubic-bezier(0, 0, 0.2, 1) infinite',
+      pulse: 'pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+      bounce: 'bounce 1s infinite',
+    },
+    aria: {
+      busy: 'busy="true"',
+      checked: 'checked="true"',
+      disabled: 'disabled="true"',
+      expanded: 'expanded="true"',
+      hidden: 'hidden="true"',
+      pressed: 'pressed="true"',
+      readonly: 'readonly="true"',
+      required: 'required="true"',
+      selected: 'selected="true"',
+    },
+    aspectRatio: {
+      auto: 'auto',
+      square: '1 / 1',
+      video: '16 / 9',
+    },
+    backdropBlur: ({ theme }) => theme('blur'),
+    backdropBrightness: ({ theme }) => theme('brightness'),
+    backdropContrast: ({ theme }) => theme('contrast'),
+    backdropGrayscale: ({ theme }) => theme('grayscale'),
+    backdropHueRotate: ({ theme }) => theme('hueRotate'),
+    backdropInvert: ({ theme }) => theme('invert'),
+    backdropOpacity: ({ theme }) => theme('opacity'),
+    backdropSaturate: ({ theme }) => theme('saturate'),
+    backdropSepia: ({ theme }) => theme('sepia'),
+    backgroundColor: ({ theme }) => theme('colors'),
+    backgroundImage: {
+      none: 'none',
+      'gradient-to-t': 'linear-gradient(to top, var(--tw-gradient-stops))',
+      'gradient-to-tr': 'linear-gradient(to top right, var(--tw-gradient-stops))',
+      'gradient-to-r': 'linear-gradient(to right, var(--tw-gradient-stops))',
+      'gradient-to-br': 'linear-gradient(to bottom right, var(--tw-gradient-stops))',
+      'gradient-to-b': 'linear-gradient(to bottom, var(--tw-gradient-stops))',
+      'gradient-to-bl': 'linear-gradient(to bottom left, var(--tw-gradient-stops))',
+      'gradient-to-l': 'linear-gradient(to left, var(--tw-gradient-stops))',
+      'gradient-to-tl': 'linear-gradient(to top left, var(--tw-gradient-stops))',
+    },
+    backgroundOpacity: ({ theme }) => theme('opacity'),
+    backgroundPosition: {
+      bottom: 'bottom',
+      center: 'center',
+      left: 'left',
+      'left-bottom': 'left bottom',
+      'left-top': 'left top',
+      right: 'right',
+      'right-bottom': 'right bottom',
+      'right-top': 'right top',
+      top: 'top',
+    },
+    backgroundSize: {
+      auto: 'auto',
+      cover: 'cover',
+      contain: 'contain',
+    },
+    blur: {
+      0: '0',
+      none: '0',
+      sm: '4px',
+      DEFAULT: '8px',
+      md: '12px',
+      lg: '16px',
+      xl: '24px',
+      '2xl': '40px',
+      '3xl': '64px',
+    },
+    borderColor: ({ theme }) => ({
+      ...theme('colors'),
+      DEFAULT: theme('colors.gray.200', 'currentColor'),
+    }),
+    borderOpacity: ({ theme }) => theme('opacity'),
+    borderRadius: {
+      none: '0px',
+      sm: '0.125rem',
+      DEFAULT: '0.25rem',
+      md: '0.375rem',
+      lg: '0.5rem',
+      xl: '0.75rem',
+      '2xl': '1rem',
+      '3xl': '1.5rem',
+      full: '9999px',
+    },
+    borderSpacing: ({ theme }) => ({
+      ...theme('spacing'),
+    }),
+    borderWidth: {
+      DEFAULT: '1px',
+      0: '0px',
+      2: '2px',
+      4: '4px',
+      8: '8px',
+    },
+    boxShadow: {
+      sm: '0 1px 2px 0 rgb(0 0 0 / 0.05)',
+      DEFAULT: '0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1)',
+      md: '0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1)',
+      lg: '0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1)',
+      xl: '0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1)',
+      '2xl': '0 25px 50px -12px rgb(0 0 0 / 0.25)',
+      inner: 'inset 0 2px 4px 0 rgb(0 0 0 / 0.05)',
+      none: 'none',
+    },
+    boxShadowColor: ({ theme }) => theme('colors'),
+    brightness: {
+      0: '0',
+      50: '.5',
+      75: '.75',
+      90: '.9',
+      95: '.95',
+      100: '1',
+      105: '1.05',
+      110: '1.1',
+      125: '1.25',
+      150: '1.5',
+      200: '2',
+    },
+    caretColor: ({ theme }) => theme('colors'),
+    colors: ({ colors }) => ({
+      inherit: colors.inherit,
+      current: colors.current,
+      transparent: colors.transparent,
+      black: colors.black,
+      white: colors.white,
+      slate: colors.slate,
+      gray: colors.gray,
+      zinc: colors.zinc,
+      neutral: colors.neutral,
+      stone: colors.stone,
+      red: colors.red,
+      orange: colors.orange,
+      amber: colors.amber,
+      yellow: colors.yellow,
+      lime: colors.lime,
+      green: colors.green,
+      emerald: colors.emerald,
+      teal: colors.teal,
+      cyan: colors.cyan,
+      sky: colors.sky,
+      blue: colors.blue,
+      indigo: colors.indigo,
+      violet: colors.violet,
+      purple: colors.purple,
+      fuchsia: colors.fuchsia,
+      pink: colors.pink,
+      rose: colors.rose,
+    }),
+    columns: {
+      auto: 'auto',
+      1: '1',
+      2: '2',
+      3: '3',
+      4: '4',
+      5: '5',
+      6: '6',
+      7: '7',
+      8: '8',
+      9: '9',
+      10: '10',
+      11: '11',
+      12: '12',
+      '3xs': '16rem',
+      '2xs': '18rem',
+      xs: '20rem',
+      sm: '24rem',
+      md: '28rem',
+      lg: '32rem',
+      xl: '36rem',
+      '2xl': '42rem',
+      '3xl': '48rem',
+      '4xl': '56rem',
+      '5xl': '64rem',
+      '6xl': '72rem',
+      '7xl': '80rem',
+    },
+    container: {},
+    content: {
+      none: 'none',
+    },
+    contrast: {
+      0: '0',
+      50: '.5',
+      75: '.75',
+      100: '1',
+      125: '1.25',
+      150: '1.5',
+      200: '2',
+    },
+    cursor: {
+      auto: 'auto',
+      default: 'default',
+      pointer: 'pointer',
+      wait: 'wait',
+      text: 'text',
+      move: 'move',
+      help: 'help',
+      'not-allowed': 'not-allowed',
+      none: 'none',
+      'context-menu': 'context-menu',
+      progress: 'progress',
+      cell: 'cell',
+      crosshair: 'crosshair',
+      'vertical-text': 'vertical-text',
+      alias: 'alias',
+      copy: 'copy',
+      'no-drop': 'no-drop',
+      grab: 'grab',
+      grabbing: 'grabbing',
+      'all-scroll': 'all-scroll',
+      'col-resize': 'col-resize',
+      'row-resize': 'row-resize',
+      'n-resize': 'n-resize',
+      'e-resize': 'e-resize',
+      's-resize': 's-resize',
+      'w-resize': 'w-resize',
+      'ne-resize': 'ne-resize',
+      'nw-resize': 'nw-resize',
+      'se-resize': 'se-resize',
+      'sw-resize': 'sw-resize',
+      'ew-resize': 'ew-resize',
+      'ns-resize': 'ns-resize',
+      'nesw-resize': 'nesw-resize',
+      'nwse-resize': 'nwse-resize',
+      'zoom-in': 'zoom-in',
+      'zoom-out': 'zoom-out',
+    },
+    divideColor: ({ theme }) => theme('borderColor'),
+    divideOpacity: ({ theme }) => theme('borderOpacity'),
+    divideWidth: ({ theme }) => theme('borderWidth'),
+    dropShadow: {
+      sm: '0 1px 1px rgb(0 0 0 / 0.05)',
+      DEFAULT: ['0 1px 2px rgb(0 0 0 / 0.1)', '0 1px 1px rgb(0 0 0 / 0.06)'],
+      md: ['0 4px 3px rgb(0 0 0 / 0.07)', '0 2px 2px rgb(0 0 0 / 0.06)'],
+      lg: ['0 10px 8px rgb(0 0 0 / 0.04)', '0 4px 3px rgb(0 0 0 / 0.1)'],
+      xl: ['0 20px 13px rgb(0 0 0 / 0.03)', '0 8px 5px rgb(0 0 0 / 0.08)'],
+      '2xl': '0 25px 25px rgb(0 0 0 / 0.15)',
+      none: '0 0 #0000',
+    },
+    fill: ({ theme }) => ({
+      none: 'none',
+      ...theme('colors'),
+    }),
+    flex: {
+      1: '1 1 0%',
+      auto: '1 1 auto',
+      initial: '0 1 auto',
+      none: 'none',
+    },
+    flexBasis: ({ theme }) => ({
+      auto: 'auto',
+      ...theme('spacing'),
+      '1/2': '50%',
+      '1/3': '33.333333%',
+      '2/3': '66.666667%',
+      '1/4': '25%',
+      '2/4': '50%',
+      '3/4': '75%',
+      '1/5': '20%',
+      '2/5': '40%',
+      '3/5': '60%',
+      '4/5': '80%',
+      '1/6': '16.666667%',
+      '2/6': '33.333333%',
+      '3/6': '50%',
+      '4/6': '66.666667%',
+      '5/6': '83.333333%',
+      '1/12': '8.333333%',
+      '2/12': '16.666667%',
+      '3/12': '25%',
+      '4/12': '33.333333%',
+      '5/12': '41.666667%',
+      '6/12': '50%',
+      '7/12': '58.333333%',
+      '8/12': '66.666667%',
+      '9/12': '75%',
+      '10/12': '83.333333%',
+      '11/12': '91.666667%',
+      full: '100%',
+    }),
+    flexGrow: {
+      0: '0',
+      DEFAULT: '1',
+    },
+    flexShrink: {
+      0: '0',
+      DEFAULT: '1',
+    },
+    fontFamily: {
+      sans: [
+        'ui-sans-serif',
+        'system-ui',
+        'sans-serif',
+        '"Apple Color Emoji"',
+        '"Segoe UI Emoji"',
+        '"Segoe UI Symbol"',
+        '"Noto Color Emoji"',
+      ],
+      serif: ['ui-serif', 'Georgia', 'Cambria', '"Times New Roman"', 'Times', 'serif'],
+      mono: [
+        'ui-monospace',
+        'SFMono-Regular',
+        'Menlo',
+        'Monaco',
+        'Consolas',
+        '"Liberation Mono"',
+        '"Courier New"',
+        'monospace',
+      ],
+    },
+    fontSize: {
+      xs: ['0.75rem', { lineHeight: '1rem' }],
+      sm: ['0.875rem', { lineHeight: '1.25rem' }],
+      base: ['1rem', { lineHeight: '1.5rem' }],
+      lg: ['1.125rem', { lineHeight: '1.75rem' }],
+      xl: ['1.25rem', { lineHeight: '1.75rem' }],
+      '2xl': ['1.5rem', { lineHeight: '2rem' }],
+      '3xl': ['1.875rem', { lineHeight: '2.25rem' }],
+      '4xl': ['2.25rem', { lineHeight: '2.5rem' }],
+      '5xl': ['3rem', { lineHeight: '1' }],
+      '6xl': ['3.75rem', { lineHeight: '1' }],
+      '7xl': ['4.5rem', { lineHeight: '1' }],
+      '8xl': ['6rem', { lineHeight: '1' }],
+      '9xl': ['8rem', { lineHeight: '1' }],
+    },
+    fontWeight: {
+      thin: '100',
+      extralight: '200',
+      light: '300',
+      normal: '400',
+      medium: '500',
+      semibold: '600',
+      bold: '700',
+      extrabold: '800',
+      black: '900',
+    },
+    gap: ({ theme }) => theme('spacing'),
+    gradientColorStops: ({ theme }) => theme('colors'),
+    gradientColorStopPositions: {
+      '0%': '0%',
+      '5%': '5%',
+      '10%': '10%',
+      '15%': '15%',
+      '20%': '20%',
+      '25%': '25%',
+      '30%': '30%',
+      '35%': '35%',
+      '40%': '40%',
+      '45%': '45%',
+      '50%': '50%',
+      '55%': '55%',
+      '60%': '60%',
+      '65%': '65%',
+      '70%': '70%',
+      '75%': '75%',
+      '80%': '80%',
+      '85%': '85%',
+      '90%': '90%',
+      '95%': '95%',
+      '100%': '100%',
+    },
+    grayscale: {
+      0: '0',
+      DEFAULT: '100%',
+    },
+    gridAutoColumns: {
+      auto: 'auto',
+      min: 'min-content',
+      max: 'max-content',
+      fr: 'minmax(0, 1fr)',
+    },
+    gridAutoRows: {
+      auto: 'auto',
+      min: 'min-content',
+      max: 'max-content',
+      fr: 'minmax(0, 1fr)',
+    },
+    gridColumn: {
+      auto: 'auto',
+      'span-1': 'span 1 / span 1',
+      'span-2': 'span 2 / span 2',
+      'span-3': 'span 3 / span 3',
+      'span-4': 'span 4 / span 4',
+      'span-5': 'span 5 / span 5',
+      'span-6': 'span 6 / span 6',
+      'span-7': 'span 7 / span 7',
+      'span-8': 'span 8 / span 8',
+      'span-9': 'span 9 / span 9',
+      'span-10': 'span 10 / span 10',
+      'span-11': 'span 11 / span 11',
+      'span-12': 'span 12 / span 12',
+      'span-full': '1 / -1',
+    },
+    gridColumnEnd: {
+      auto: 'auto',
+      1: '1',
+      2: '2',
+      3: '3',
+      4: '4',
+      5: '5',
+      6: '6',
+      7: '7',
+      8: '8',
+      9: '9',
+      10: '10',
+      11: '11',
+      12: '12',
+      13: '13',
+    },
+    gridColumnStart: {
+      auto: 'auto',
+      1: '1',
+      2: '2',
+      3: '3',
+      4: '4',
+      5: '5',
+      6: '6',
+      7: '7',
+      8: '8',
+      9: '9',
+      10: '10',
+      11: '11',
+      12: '12',
+      13: '13',
+    },
+    gridRow: {
+      auto: 'auto',
+      'span-1': 'span 1 / span 1',
+      'span-2': 'span 2 / span 2',
+      'span-3': 'span 3 / span 3',
+      'span-4': 'span 4 / span 4',
+      'span-5': 'span 5 / span 5',
+      'span-6': 'span 6 / span 6',
+      'span-7': 'span 7 / span 7',
+      'span-8': 'span 8 / span 8',
+      'span-9': 'span 9 / span 9',
+      'span-10': 'span 10 / span 10',
+      'span-11': 'span 11 / span 11',
+      'span-12': 'span 12 / span 12',
+      'span-full': '1 / -1',
+    },
+    gridRowEnd: {
+      auto: 'auto',
+      1: '1',
+      2: '2',
+      3: '3',
+      4: '4',
+      5: '5',
+      6: '6',
+      7: '7',
+      8: '8',
+      9: '9',
+      10: '10',
+      11: '11',
+      12: '12',
+      13: '13',
+    },
+    gridRowStart: {
+      auto: 'auto',
+      1: '1',
+      2: '2',
+      3: '3',
+      4: '4',
+      5: '5',
+      6: '6',
+      7: '7',
+      8: '8',
+      9: '9',
+      10: '10',
+      11: '11',
+      12: '12',
+      13: '13',
+    },
+    gridTemplateColumns: {
+      none: 'none',
+      subgrid: 'subgrid',
+      1: 'repeat(1, minmax(0, 1fr))',
+      2: 'repeat(2, minmax(0, 1fr))',
+      3: 'repeat(3, minmax(0, 1fr))',
+      4: 'repeat(4, minmax(0, 1fr))',
+      5: 'repeat(5, minmax(0, 1fr))',
+      6: 'repeat(6, minmax(0, 1fr))',
+      7: 'repeat(7, minmax(0, 1fr))',
+      8: 'repeat(8, minmax(0, 1fr))',
+      9: 'repeat(9, minmax(0, 1fr))',
+      10: 'repeat(10, minmax(0, 1fr))',
+      11: 'repeat(11, minmax(0, 1fr))',
+      12: 'repeat(12, minmax(0, 1fr))',
+    },
+    gridTemplateRows: {
+      none: 'none',
+      subgrid: 'subgrid',
+      1: 'repeat(1, minmax(0, 1fr))',
+      2: 'repeat(2, minmax(0, 1fr))',
+      3: 'repeat(3, minmax(0, 1fr))',
+      4: 'repeat(4, minmax(0, 1fr))',
+      5: 'repeat(5, minmax(0, 1fr))',
+      6: 'repeat(6, minmax(0, 1fr))',
+      7: 'repeat(7, minmax(0, 1fr))',
+      8: 'repeat(8, minmax(0, 1fr))',
+      9: 'repeat(9, minmax(0, 1fr))',
+      10: 'repeat(10, minmax(0, 1fr))',
+      11: 'repeat(11, minmax(0, 1fr))',
+      12: 'repeat(12, minmax(0, 1fr))',
+    },
+    height: ({ theme }) => ({
+      auto: 'auto',
+      ...theme('spacing'),
+      '1/2': '50%',
+      '1/3': '33.333333%',
+      '2/3': '66.666667%',
+      '1/4': '25%',
+      '2/4': '50%',
+      '3/4': '75%',
+      '1/5': '20%',
+      '2/5': '40%',
+      '3/5': '60%',
+      '4/5': '80%',
+      '1/6': '16.666667%',
+      '2/6': '33.333333%',
+      '3/6': '50%',
+      '4/6': '66.666667%',
+      '5/6': '83.333333%',
+      full: '100%',
+      screen: '100vh',
+      svh: '100svh',
+      lvh: '100lvh',
+      dvh: '100dvh',
+      min: 'min-content',
+      max: 'max-content',
+      fit: 'fit-content',
+    }),
+    hueRotate: {
+      0: '0deg',
+      15: '15deg',
+      30: '30deg',
+      60: '60deg',
+      90: '90deg',
+      180: '180deg',
+    },
+    inset: ({ theme }) => ({
+      auto: 'auto',
+      ...theme('spacing'),
+      '1/2': '50%',
+      '1/3': '33.333333%',
+      '2/3': '66.666667%',
+      '1/4': '25%',
+      '2/4': '50%',
+      '3/4': '75%',
+      full: '100%',
+    }),
+    invert: {
+      0: '0',
+      DEFAULT: '100%',
+    },
+    keyframes: {
+      spin: {
+        to: {
+          transform: 'rotate(360deg)',
+        },
+      },
+      ping: {
+        '75%, 100%': {
+          transform: 'scale(2)',
+          opacity: '0',
+        },
+      },
+      pulse: {
+        '50%': {
+          opacity: '.5',
+        },
+      },
+      bounce: {
+        '0%, 100%': {
+          transform: 'translateY(-25%)',
+          animationTimingFunction: 'cubic-bezier(0.8,0,1,1)',
+        },
+        '50%': {
+          transform: 'none',
+          animationTimingFunction: 'cubic-bezier(0,0,0.2,1)',
+        },
+      },
+    },
+    letterSpacing: {
+      tighter: '-0.05em',
+      tight: '-0.025em',
+      normal: '0em',
+      wide: '0.025em',
+      wider: '0.05em',
+      widest: '0.1em',
+    },
+    lineHeight: {
+      none: '1',
+      tight: '1.25',
+      snug: '1.375',
+      normal: '1.5',
+      relaxed: '1.625',
+      loose: '2',
+      3: '.75rem',
+      4: '1rem',
+      5: '1.25rem',
+      6: '1.5rem',
+      7: '1.75rem',
+      8: '2rem',
+      9: '2.25rem',
+      10: '2.5rem',
+    },
+    listStyleType: {
+      none: 'none',
+      disc: 'disc',
+      decimal: 'decimal',
+    },
+    listStyleImage: {
+      none: 'none',
+    },
+    margin: ({ theme }) => ({
+      auto: 'auto',
+      ...theme('spacing'),
+    }),
+    lineClamp: {
+      1: '1',
+      2: '2',
+      3: '3',
+      4: '4',
+      5: '5',
+      6: '6',
+    },
+    maxHeight: ({ theme }) => ({
+      ...theme('spacing'),
+      none: 'none',
+      full: '100%',
+      screen: '100vh',
+      svh: '100svh',
+      lvh: '100lvh',
+      dvh: '100dvh',
+      min: 'min-content',
+      max: 'max-content',
+      fit: 'fit-content',
+    }),
+    maxWidth: ({ theme, breakpoints }) => ({
+      ...theme('spacing'),
+      none: 'none',
+      xs: '20rem',
+      sm: '24rem',
+      md: '28rem',
+      lg: '32rem',
+      xl: '36rem',
+      '2xl': '42rem',
+      '3xl': '48rem',
+      '4xl': '56rem',
+      '5xl': '64rem',
+      '6xl': '72rem',
+      '7xl': '80rem',
+      full: '100%',
+      min: 'min-content',
+      max: 'max-content',
+      fit: 'fit-content',
+      prose: '65ch',
+      ...breakpoints(theme('screens')),
+    }),
+    minHeight: ({ theme }) => ({
+      ...theme('spacing'),
+      full: '100%',
+      screen: '100vh',
+      svh: '100svh',
+      lvh: '100lvh',
+      dvh: '100dvh',
+      min: 'min-content',
+      max: 'max-content',
+      fit: 'fit-content',
+    }),
+    minWidth: ({ theme }) => ({
+      ...theme('spacing'),
+      full: '100%',
+      min: 'min-content',
+      max: 'max-content',
+      fit: 'fit-content',
+    }),
+    objectPosition: {
+      bottom: 'bottom',
+      center: 'center',
+      left: 'left',
+      'left-bottom': 'left bottom',
+      'left-top': 'left top',
+      right: 'right',
+      'right-bottom': 'right bottom',
+      'right-top': 'right top',
+      top: 'top',
+    },
+    opacity: {
+      0: '0',
+      5: '0.05',
+      10: '0.1',
+      15: '0.15',
+      20: '0.2',
+      25: '0.25',
+      30: '0.3',
+      35: '0.35',
+      40: '0.4',
+      45: '0.45',
+      50: '0.5',
+      55: '0.55',
+      60: '0.6',
+      65: '0.65',
+      70: '0.7',
+      75: '0.75',
+      80: '0.8',
+      85: '0.85',
+      90: '0.9',
+      95: '0.95',
+      100: '1',
+    },
+    order: {
+      first: '-9999',
+      last: '9999',
+      none: '0',
+      1: '1',
+      2: '2',
+      3: '3',
+      4: '4',
+      5: '5',
+      6: '6',
+      7: '7',
+      8: '8',
+      9: '9',
+      10: '10',
+      11: '11',
+      12: '12',
+    },
+    outlineColor: ({ theme }) => theme('colors'),
+    outlineOffset: {
+      0: '0px',
+      1: '1px',
+      2: '2px',
+      4: '4px',
+      8: '8px',
+    },
+    outlineWidth: {
+      0: '0px',
+      1: '1px',
+      2: '2px',
+      4: '4px',
+      8: '8px',
+    },
+    padding: ({ theme }) => theme('spacing'),
+    placeholderColor: ({ theme }) => theme('colors'),
+    placeholderOpacity: ({ theme }) => theme('opacity'),
+    ringColor: ({ theme }) => ({
+      DEFAULT: theme('colors.blue.500', '#3b82f6'),
+      ...theme('colors'),
+    }),
+    ringOffsetColor: ({ theme }) => theme('colors'),
+    ringOffsetWidth: {
+      0: '0px',
+      1: '1px',
+      2: '2px',
+      4: '4px',
+      8: '8px',
+    },
+    ringOpacity: ({ theme }) => ({
+      DEFAULT: '0.5',
+      ...theme('opacity'),
+    }),
+    ringWidth: {
+      DEFAULT: '3px',
+      0: '0px',
+      1: '1px',
+      2: '2px',
+      4: '4px',
+      8: '8px',
+    },
+    rotate: {
+      0: '0deg',
+      1: '1deg',
+      2: '2deg',
+      3: '3deg',
+      6: '6deg',
+      12: '12deg',
+      45: '45deg',
+      90: '90deg',
+      180: '180deg',
+    },
+    saturate: {
+      0: '0',
+      50: '.5',
+      100: '1',
+      150: '1.5',
+      200: '2',
+    },
+    scale: {
+      0: '0',
+      50: '.5',
+      75: '.75',
+      90: '.9',
+      95: '.95',
+      100: '1',
+      105: '1.05',
+      110: '1.1',
+      125: '1.25',
+      150: '1.5',
+    },
+    screens: {
+      sm: '640px',
+      md: '768px',
+      lg: '1024px',
+      xl: '1280px',
+      '2xl': '1536px',
+    },
+    scrollMargin: ({ theme }) => ({
+      ...theme('spacing'),
+    }),
+    scrollPadding: ({ theme }) => theme('spacing'),
+    sepia: {
+      0: '0',
+      DEFAULT: '100%',
+    },
+    skew: {
+      0: '0deg',
+      1: '1deg',
+      2: '2deg',
+      3: '3deg',
+      6: '6deg',
+      12: '12deg',
+    },
+    space: ({ theme }) => ({
+      ...theme('spacing'),
+    }),
+    spacing: {
+      px: '1px',
+      0: '0px',
+      0.5: '0.125rem',
+      1: '0.25rem',
+      1.5: '0.375rem',
+      2: '0.5rem',
+      2.5: '0.625rem',
+      3: '0.75rem',
+      3.5: '0.875rem',
+      4: '1rem',
+      5: '1.25rem',
+      6: '1.5rem',
+      7: '1.75rem',
+      8: '2rem',
+      9: '2.25rem',
+      10: '2.5rem',
+      11: '2.75rem',
+      12: '3rem',
+      14: '3.5rem',
+      16: '4rem',
+      20: '5rem',
+      24: '6rem',
+      28: '7rem',
+      32: '8rem',
+      36: '9rem',
+      40: '10rem',
+      44: '11rem',
+      48: '12rem',
+      52: '13rem',
+      56: '14rem',
+      60: '15rem',
+      64: '16rem',
+      72: '18rem',
+      80: '20rem',
+      96: '24rem',
+    },
+    stroke: ({ theme }) => ({
+      none: 'none',
+      ...theme('colors'),
+    }),
+    strokeWidth: {
+      0: '0',
+      1: '1',
+      2: '2',
+    },
+    supports: {},
+    data: {},
+    textColor: ({ theme }) => theme('colors'),
+    textDecorationColor: ({ theme }) => theme('colors'),
+    textDecorationThickness: {
+      auto: 'auto',
+      'from-font': 'from-font',
+      0: '0px',
+      1: '1px',
+      2: '2px',
+      4: '4px',
+      8: '8px',
+    },
+    textIndent: ({ theme }) => ({
+      ...theme('spacing'),
+    }),
+    textOpacity: ({ theme }) => theme('opacity'),
+    textUnderlineOffset: {
+      auto: 'auto',
+      0: '0px',
+      1: '1px',
+      2: '2px',
+      4: '4px',
+      8: '8px',
+    },
+    transformOrigin: {
+      center: 'center',
+      top: 'top',
+      'top-right': 'top right',
+      right: 'right',
+      'bottom-right': 'bottom right',
+      bottom: 'bottom',
+      'bottom-left': 'bottom left',
+      left: 'left',
+      'top-left': 'top left',
+    },
+    transitionDelay: {
+      0: '0s',
+      75: '75ms',
+      100: '100ms',
+      150: '150ms',
+      200: '200ms',
+      300: '300ms',
+      500: '500ms',
+      700: '700ms',
+      1000: '1000ms',
+    },
+    transitionDuration: {
+      DEFAULT: '150ms',
+      0: '0s',
+      75: '75ms',
+      100: '100ms',
+      150: '150ms',
+      200: '200ms',
+      300: '300ms',
+      500: '500ms',
+      700: '700ms',
+      1000: '1000ms',
+    },
+    transitionProperty: {
+      none: 'none',
+      all: 'all',
+      DEFAULT:
+        'color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter',
+      colors: 'color, background-color, border-color, text-decoration-color, fill, stroke',
+      opacity: 'opacity',
+      shadow: 'box-shadow',
+      transform: 'transform',
+    },
+    transitionTimingFunction: {
+      DEFAULT: 'cubic-bezier(0.4, 0, 0.2, 1)',
+      linear: 'linear',
+      in: 'cubic-bezier(0.4, 0, 1, 1)',
+      out: 'cubic-bezier(0, 0, 0.2, 1)',
+      'in-out': 'cubic-bezier(0.4, 0, 0.2, 1)',
+    },
+    translate: ({ theme }) => ({
+      ...theme('spacing'),
+      '1/2': '50%',
+      '1/3': '33.333333%',
+      '2/3': '66.666667%',
+      '1/4': '25%',
+      '2/4': '50%',
+      '3/4': '75%',
+      full: '100%',
+    }),
+    size: ({ theme }) => ({
+      auto: 'auto',
+      ...theme('spacing'),
+      '1/2': '50%',
+      '1/3': '33.333333%',
+      '2/3': '66.666667%',
+      '1/4': '25%',
+      '2/4': '50%',
+      '3/4': '75%',
+      '1/5': '20%',
+      '2/5': '40%',
+      '3/5': '60%',
+      '4/5': '80%',
+      '1/6': '16.666667%',
+      '2/6': '33.333333%',
+      '3/6': '50%',
+      '4/6': '66.666667%',
+      '5/6': '83.333333%',
+      '1/12': '8.333333%',
+      '2/12': '16.666667%',
+      '3/12': '25%',
+      '4/12': '33.333333%',
+      '5/12': '41.666667%',
+      '6/12': '50%',
+      '7/12': '58.333333%',
+      '8/12': '66.666667%',
+      '9/12': '75%',
+      '10/12': '83.333333%',
+      '11/12': '91.666667%',
+      full: '100%',
+      min: 'min-content',
+      max: 'max-content',
+      fit: 'fit-content',
+    }),
+    width: ({ theme }) => ({
+      auto: 'auto',
+      ...theme('spacing'),
+      '1/2': '50%',
+      '1/3': '33.333333%',
+      '2/3': '66.666667%',
+      '1/4': '25%',
+      '2/4': '50%',
+      '3/4': '75%',
+      '1/5': '20%',
+      '2/5': '40%',
+      '3/5': '60%',
+      '4/5': '80%',
+      '1/6': '16.666667%',
+      '2/6': '33.333333%',
+      '3/6': '50%',
+      '4/6': '66.666667%',
+      '5/6': '83.333333%',
+      '1/12': '8.333333%',
+      '2/12': '16.666667%',
+      '3/12': '25%',
+      '4/12': '33.333333%',
+      '5/12': '41.666667%',
+      '6/12': '50%',
+      '7/12': '58.333333%',
+      '8/12': '66.666667%',
+      '9/12': '75%',
+      '10/12': '83.333333%',
+      '11/12': '91.666667%',
+      full: '100%',
+      screen: '100vw',
+      svw: '100svw',
+      lvw: '100lvw',
+      dvw: '100dvw',
+      min: 'min-content',
+      max: 'max-content',
+      fit: 'fit-content',
+    }),
+    willChange: {
+      auto: 'auto',
+      scroll: 'scroll-position',
+      contents: 'contents',
+      transform: 'transform',
+    },
+    zIndex: {
+      auto: 'auto',
+      0: '0',
+      10: '10',
+      20: '20',
+      30: '30',
+      40: '40',
+      50: '50',
+    },
+  },
+  plugins: [],
+}
+
+
+/***/ }),
+
 /***/ 53250:
 /***/ ((__unused_webpack_module, exports, __webpack_require__) => {
 
@@ -15397,6 +16531,90 @@ remotion_1.Internals.CSSUtils.injectCSS(`
 
 // EXTERNAL MODULE: ./node_modules/remotion/dist/cjs/index.js
 var cjs = __webpack_require__(27982);
+;// CONCATENATED MODULE: ./src/utils/src.ts
+const resolveSrc = (dir, name, ext = "avif") => `remotion/${dir}/${name}.${ext}`;
+const resolvePicSrc = (name) => resolveSrc("pics", name);
+const resolveAudioSrc = (name) => resolveSrc("audio", name, "mp3");
+
+;// CONCATENATED MODULE: ./src/components/remotion/pic-series/index.tsx
+
+
+const INPUT_PROPS = (0,cjs.getInputProps)();
+const PicSeries = (props) => {
+  const inputProps = {
+    ...props,
+    ...INPUT_PROPS
+  };
+  const { pics, seconds, count } = inputProps;
+  const frame = (0,cjs.useCurrentFrame)();
+  const { fps, width, height } = (0,cjs.useVideoConfig)();
+  console.log(width, height);
+  const unitSeconds = seconds / count;
+  const unitFrames = unitSeconds * fps;
+  const frameInUnit = frame % unitFrames;
+  const secondInUnit = frameInUnit / (fps * unitSeconds);
+  const delta = height - inputProps.dimensions.height;
+  const audioSrcPath = resolveAudioSrc(
+    "insurrection-10941"
+  );
+  const audioSrc = (0,cjs.staticFile)(
+    audioSrcPath
+  );
+  return /* @__PURE__ */ React.createElement(cjs.AbsoluteFill, null, /* @__PURE__ */ React.createElement(cjs.Audio, { src: audioSrc }), /* @__PURE__ */ React.createElement(cjs.Series, null, pics.map((pic) => {
+    const srcPath = resolvePicSrc(pic);
+    const src = (0,cjs.staticFile)(srcPath);
+    const top = `${Math.floor(
+      delta / height * secondInUnit * 100
+    )}%`;
+    return /* @__PURE__ */ React.createElement(
+      cjs.Series.Sequence,
+      {
+        key: `${src}`,
+        durationInFrames: unitFrames
+      },
+      /* @__PURE__ */ React.createElement(
+        "div",
+        {
+          style: {
+            position: "absolute",
+            left: 0,
+            top
+          }
+        },
+        /* @__PURE__ */ React.createElement(
+          cjs.Img,
+          {
+            src,
+            alt: `${pic}`,
+            ...{
+              width,
+              height: width
+            }
+          }
+        )
+      )
+    );
+  })));
+};
+
+// EXTERNAL MODULE: ./node_modules/zod/lib/index.mjs
+var lib = __webpack_require__(1604);
+;// CONCATENATED MODULE: ./src/components/remotion/pic-series/schema.ts
+
+const PIC_SERIES_SCHEMA = lib.z.object({
+  pics: lib.z.array(lib.z.string()),
+  seconds: lib.z.number(),
+  count: lib.z.number(),
+  isPics: lib.z.boolean(),
+  dimensions: lib.z.object({
+    height: lib.z.number(),
+    width: lib.z.number()
+  })
+});
+
+// EXTERNAL MODULE: ./node_modules/react/index.js
+var react = __webpack_require__(67294);
+var react_namespaceObject = /*#__PURE__*/__webpack_require__.t(react, 2);
 ;// CONCATENATED MODULE: ./src/constants/remotion.ts
 const DEFAULT_FPS = 24;
 const PIC_COUNT = 1;
@@ -15413,116 +16631,13 @@ const PIC_SIZE_0125 = PIC_SIZE * 0.125;
 const WIDTH = 1920;
 const HEIGHT = 1080;
 const ASPECT_RATIO = WIDTH / HEIGHT;
-const DIMENSIONS = {
+const remotion_DIMENSIONS = {
   width: WIDTH,
   height: HEIGHT
 };
-
-;// CONCATENATED MODULE: ./src/utils/src.ts
-const resolveSrc = (dir, name, ext = "avif") => `remotion/${dir}/${name}.${ext}`;
-const resolvePicSrc = (name) => resolveSrc("pics", name);
-const resolveAudioSrc = (name) => resolveSrc("audio", name, "mp3");
-
-;// CONCATENATED MODULE: ./src/components/remotion/pic-series/index.tsx
-
-
-
-const INPUT_PROPS = (0,cjs.getInputProps)();
-const PicSeries = (props) => {
-  const { pics, seconds, count } = {
-    ...props,
-    ...INPUT_PROPS
-  };
-  const frame = (0,cjs.useCurrentFrame)();
-  const { fps, height } = (0,cjs.useVideoConfig)();
-  const unitSeconds = seconds / count;
-  const unitFrames = unitSeconds * fps;
-  const frameInSecond = frame % fps;
-  const progressInSecond = frameInSecond / fps;
-  const audioSrcPath = resolveAudioSrc(
-    "insurrection-10941"
-  );
-  const audioSrc = (0,cjs.staticFile)(
-    audioSrcPath
-  );
-  return /* @__PURE__ */ React.createElement(cjs.AbsoluteFill, null, /* @__PURE__ */ React.createElement(cjs.Audio, { src: audioSrc }), /* @__PURE__ */ React.createElement(cjs.Series, null, pics.map((pic) => {
-    const srcPath = resolvePicSrc(pic);
-    const src = (0,cjs.staticFile)(srcPath);
-    return /* @__PURE__ */ React.createElement(
-      cjs.Series.Sequence,
-      {
-        key: `${src}`,
-        durationInFrames: unitFrames
-      },
-      /* @__PURE__ */ React.createElement(
-        cjs.AbsoluteFill,
-        {
-          style: {
-            left: 0,
-            top: (PIC_SIZE - height * ASPECT_RATIO) * progressInSecond
-          }
-        },
-        /* @__PURE__ */ React.createElement(
-          cjs.Img,
-          {
-            src,
-            alt: `${pic}`
-          }
-        )
-      )
-    );
-  })));
-};
-
-// EXTERNAL MODULE: ./node_modules/zod/lib/index.mjs
-var lib = __webpack_require__(1604);
-;// CONCATENATED MODULE: ./src/components/remotion/pic-series/schema.ts
-
-const PIC_SERIES_SCHEMA = lib.z.object({
-  pics: lib.z.array(
-    lib.z.string()
-  ),
-  seconds: lib.z.number(),
-  count: lib.z.number(),
-  isPics: lib.z.boolean()
-});
-
-// EXTERNAL MODULE: ./node_modules/react/index.js
-var react = __webpack_require__(67294);
-;// CONCATENATED MODULE: ./node_modules/@brysonandrew/measure/hooks/useImageDimensions.ts
-
-const useImageDimensions = ({
-  box,
-  image
-}) => {
-  const dimensions = (0,react.useMemo)(() => {
-    let imageHeight = 0;
-    let imageWidth = 0;
-    if (box && image) {
-      const rectAspect = box.width / box.height;
-      const imageAspect = image.width / image.height;
-      if (imageAspect > rectAspect) {
-        imageWidth = box.width;
-        imageHeight = box.width / imageAspect;
-      } else {
-        imageWidth = box.height * imageAspect;
-        imageHeight = box.height;
-      }
-      return {
-        width: ~~imageWidth,
-        height: ~~imageHeight
-      };
-    } else {
-      return null;
-    }
-  }, [box == null ? void 0 : box.width, box == null ? void 0 : box.height, image]);
-  if (dimensions === null) {
-    return { isDimensions: false };
-  }
-  return {
-    isDimensions: true,
-    ...dimensions
-  };
+const remotion_PIC_DIMENSIONS = {
+  width: PIC_SIZE,
+  height: PIC_SIZE
 };
 
 ;// CONCATENATED MODULE: ./src/store/state/core/controls/index.ts
@@ -15536,534 +16651,11 @@ const coreControlsState = (set) => ({
   }
 });
 
-;// CONCATENATED MODULE: ./src/hooks/use-screen-presence.ts
-
-
-const use_screen_presence_useScreenPresence = ({
-  onPointerLeave,
-  onPointerEnter
-}) => {
-  const docRef = useRef(null);
-  useEffect(() => {
-    docRef.current = document.documentElement;
-  }, []);
-  useEventListener(
-    "pointerenter",
-    onPointerEnter,
-    docRef
-  );
-  useEventListener(
-    "pointerleave",
-    onPointerLeave,
-    docRef
-  );
-};
-
-;// CONCATENATED MODULE: ./src/context/hooks/onscreen.ts
-
-
-
-const onscreen_useOnscreen = () => {
-  const pointerLeaveWhileNoControlsCheck = useRef(false);
-  const {
-    isControls,
-    isOnscreen,
-    toggleControls,
-    toggleOnscreen
-  } = useTrillPicsStore(
-    ({
-      isControls: isControls2,
-      isOnscreen: isOnscreen2,
-      toggleControls: toggleControls2,
-      toggleOnscreen: toggleOnscreen2
-    }) => ({
-      isControls: isControls2,
-      isOnscreen: isOnscreen2,
-      toggleControls: toggleControls2,
-      toggleOnscreen: toggleOnscreen2
-    })
-  );
-  const onPointerEnter = () => {
-    if (pointerLeaveWhileNoControlsCheck.current) {
-      toggleControls(true);
-      pointerLeaveWhileNoControlsCheck.current = false;
-    }
-    toggleOnscreen(true);
-  };
-  const onPointerLeave = () => {
-    if (!isControls) {
-      pointerLeaveWhileNoControlsCheck.current = true;
-    }
-    toggleOnscreen(false);
-  };
-  useScreenPresence({
-    onPointerEnter,
-    onPointerLeave
-  });
-  return isOnscreen;
-};
-
-;// CONCATENATED MODULE: ./src/context/blur.ts
-
-
-const blur_useBlur = () => {
-  const blurX = useMotionValue(0);
-  const blurY = useMotionValue(0);
-  const blur = useMemo(() => {
-    return {
-      control: {
-        x: null,
-        y: null
-      },
-      value: {
-        x: blurX,
-        y: blurY
-      }
-    };
-  }, []);
-  return blur;
-};
-
-;// CONCATENATED MODULE: ./src/context/cursor.ts
-
-
-const cursor_useCursor = () => {
-  const cursorX = useMotionValue(0);
-  const cursorY = useMotionValue(0);
-  const cursor = useMemo(() => {
-    return {
-      x: cursorX,
-      y: cursorY,
-      isDragging: false,
-      isHoverIdle: false,
-      prev: {
-        column: null,
-        row: null
-      }
-    };
-  }, []);
-  return cursor;
-};
-
-;// CONCATENATED MODULE: ./src/context/scroll/update.ts
-
-
-
-
-const update_useScrollUpdateHandler = ({
-  scrollY,
-  ref: handle
-}) => {
-  const prevScrollOffsetRef = useRef(0);
-  const { timeoutRef, endTimeout } = useTimeoutRef();
-  const { isScroll, isScrolling, set } = useTrillPicsStore(
-    ({
-      isScroll: isScroll2,
-      isScrolling: isScrolling2,
-      set: set2
-    }) => ({
-      isScroll: isScroll2,
-      isScrolling: isScrolling2,
-      set: set2
-    })
-  );
-  const handler = (props) => {
-    const {
-      scrollOffset,
-      scrollDirection,
-      scrollUpdateWasRequested
-    } = props;
-    scrollY.set(-scrollOffset);
-    const scrollDelta = Math.abs(
-      prevScrollOffsetRef.current - scrollOffset
-    );
-    if (!isScrolling && scrollDelta > 0) {
-      console.log(
-        "start scrolling",
-        scrollDelta
-      );
-      set({
-        isScrolling: true,
-        scrollDirection,
-        scrollDelta
-      });
-    }
-    endTimeout();
-    if (!isScrolling)
-      return;
-    timeoutRef.current = setTimeout(
-      () => {
-        console.log(
-          "stop scrolling",
-          scrollDelta
-        );
-        set({
-          isScrolling: false,
-          scrollDirection: null,
-          scrollDelta
-        });
-      },
-      SCROLL_COOLDOWN
-    );
-    if (!isScroll && scrollOffset > SCROLL) {
-      set({ isScroll: true });
-    }
-    if (isScroll && scrollOffset < SCROLL) {
-      set({
-        isScroll: false
-      });
-    }
-    prevScrollOffsetRef.current = scrollOffset;
-  };
-  return { handler, isScroll, isScrolling };
-};
-
-// EXTERNAL MODULE: ./node_modules/webfontloader/webfontloader.js
-var webfontloader = __webpack_require__(75933);
-;// CONCATENATED MODULE: ./src/context/fonts.ts
-
-
-
-const FAMILIES = [
-  "Dragon",
-  "Conthrax"
-  // "Saiba 45",
-  // "led_display-7",
-  // "joystix",
-  // "FFF Forward",
-  // "Saiba 45 Outline",
-];
-const URLS = (/* unused pure expression or super */ null && ([
-  // "/fonts/saiba-45/SAIBA-45.ttf",
-  // "/fonts/led-display7/led_display-7.ttf",
-  // "/fonts/joystix.monospace-regular.otf",
-  // "/fonts/fff-forward/FFFFORWA.ttf",
-  // "/fonts/saiba-45/SAIBA-45-Outline.ttf",
-  "/fonts/armstrong3/regular.otf",
-  "/fonts/conthrax/regular.otf",
-  "/fonts/dragon/regular.otf",
-  "/fonts/neuropolitical/regular.otf",
-  "/fonts/toxigenesis/regular.otf"
-]));
-const LOADER_RECORD = {
-  loading: console.log,
-  active: console.log,
-  inactive: console.log,
-  fontloading: console.log,
-  fontactive: console.log,
-  fontinactive: console.log
-};
-const INIT = FAMILIES.reduce((a, c) => {
-  a[c] = {};
-  return a;
-}, {});
-const fonts_useFonts = () => {
-  const [record, setRecord] = useState({ ...INIT });
-  const handleEvent = useCallback(
-    (family, event) => {
-      setRecord(
-        produce((draft) => {
-          draft[family][event] = true;
-        })
-      );
-    },
-    []
-  );
-  useEffect(() => {
-    WebFont.load({
-      fontloading: (family, styleWeight) => {
-        handleEvent(family, "active");
-      },
-      fontactive: (family, styleWeight) => {
-        handleEvent(family, "active");
-      },
-      custom: {
-        families: [...FAMILIES],
-        urls: [...URLS]
-      }
-    });
-  }, []);
-  return record;
-};
-
-;// CONCATENATED MODULE: ./src/context/ui.ts
-
-const ui_useUi = () => {
-  const ui = useMemo(() => {
-    return {
-      foundation: null,
-      header: null,
-      center: null,
-      footer: null
-    };
-  }, []);
-  return ui;
-};
-
-;// CONCATENATED MODULE: ./src/hooks/pic/cell/index.tsx
-
-
-
-
-
-
-
-
-const cell_usePicCell = (main) => {
-  const { endTimeout, timeoutRef } = useTimeoutRef();
-  const { isScrolling } = useTrillPicsStore(
-    ({ isScrolling: isScrolling2 }) => ({
-      isScrolling: isScrolling2
-    })
-  );
-  const { pathname } = useLocation();
-  const navigate = useNavigate();
-  const [searchParams] = useSearchParams();
-  const paramValue = searchParams.get(
-    CELL_PARAM_KEY
-  );
-  const zoomParamValue = searchParams.get(ZOOM_PARAM_KEY);
-  const size = Number(
-    searchParams.get(SIZE_PARAM_KEY)
-  );
-  const isCursorOverCell = (nextCell) => {
-    const paramValue2 = searchParams.get(
-      CELL_PARAM_KEY
-    );
-    const key = cellEncrypt(nextCell);
-    return key === paramValue2;
-  };
-  const move = (mx = main.cursor.x.get(), my = main.cursor.y.get()) => {
-    if (size === 0)
-      return;
-    const column = ~~(mx / size);
-    const row = ~~(my / size);
-    const key = cellEncrypt({
-      column,
-      row
-    });
-    const paramValue2 = searchParams.get(
-      CELL_PARAM_KEY
-    );
-    if (main.cursor.prev.column !== column || main.cursor.prev.row !== row) {
-      endTimeout();
-      if (!isScrolling) {
-        timeoutRef.current = setTimeout(
-          () => {
-            if (isString(key) && key !== paramValue2) {
-              searchParams.set(
-                CELL_PARAM_KEY,
-                key
-              );
-              navigate(
-                `${pathname}?${searchParams}`,
-                { replace: true }
-              );
-            }
-          },
-          0
-        );
-        main.cursor.prev.column = column;
-        main.cursor.prev.row = row;
-      }
-    }
-  };
-  const leave = (nextCell) => {
-    console.log("cell.l");
-    const key = cellEncrypt(nextCell);
-    const paramValue2 = searchParams.get(
-      CELL_PARAM_KEY
-    );
-    if (key === paramValue2) {
-      searchParams.delete(
-        CELL_PARAM_KEY
-      );
-      navigate(
-        `${pathname}?${searchParams}`
-      );
-    }
-  };
-  const clear = () => {
-    console.log("cell.clear");
-    searchParams.delete(CELL_PARAM_KEY);
-    navigate(
-      `${pathname}?${searchParams}`
-    );
-  };
-  useEffect(() => {
-    if (!isScrolling) {
-      move();
-    }
-  }, [isScrolling]);
-  return {
-    isCursorOverCell,
-    cell: paramValue ? cellDecrypt(paramValue) : null,
-    move,
-    leave,
-    clear
-  };
-};
-
-;// CONCATENATED MODULE: ./src/context/hooks/move.ts
-
-
-
-
-
-const move_useMove = ({
-  main,
-  scrollY,
-  isOnscreen
-}) => {
-  const { hoverKeys, isScrolling, isIdle, set } = useTrillPicsStore(
-    ({
-      hoverKeys: hoverKeys2,
-      isScrolling: isScrolling2,
-      isIdle: isIdle2,
-      set: set2
-    }) => ({
-      hoverKeys: hoverKeys2,
-      isScrolling: isScrolling2,
-      isIdle: isIdle2,
-      set: set2
-    })
-  );
-  const { endTimeout, timeoutRef } = useTimeoutRef();
-  const [isCursorMove, setCursorMove] = useState(false);
-  const { move } = usePicCell(main);
-  const handleMove = (event) => {
-    if (main.cursor.isDragging || hoverKeys.length > 0)
-      return;
-    endTimeout();
-    if (isIdle) {
-      set({ isIdle: false });
-    }
-    timeoutRef.current = setTimeout(
-      () => {
-        set({ isIdle: true, hoverKeys: [] });
-        main.cursor.isDragging = false;
-      },
-      6e4
-    );
-    const currScrollY = scrollY.get();
-    const mx = event.pageX;
-    const my = event.pageY - currScrollY;
-    const prevX = main.cursor.x.get();
-    const prevY = main.cursor.y.get();
-    const d = Math.sqrt(
-      Math.pow(mx - prevX, 2) + Math.pow(my - prevY, 2)
-    );
-    if (Math.abs(d) > 1) {
-      main.cursor.isHoverIdle = false;
-      main.cursor.x.set(mx);
-      main.cursor.y.set(my);
-    }
-    if (isOnscreen && !isScrolling) {
-      move(mx, my);
-      if (!isCursorMove) {
-        setCursorMove(true);
-      }
-    }
-  };
-  useEventListener(
-    "pointerenter",
-    handleMove
-  );
-  useEventListener(
-    "pointerover",
-    handleMove
-  );
-  useEventListener(
-    "pointermove",
-    handleMove
-  );
-  return isIdle;
-};
-
-;// CONCATENATED MODULE: ./src/context/index.tsx
-
-
-
-
-
-
-
-
-
-const VirtualizeContext = (0,react.createContext)(
-  {}
-);
-const context_useContextGrid = () => useContext(VirtualizeContext);
-const VirtualizeContextProvider = ({ children }) => {
-  const [picValue, updatePic] = useState(null);
-  const [
-    foundationValue,
-    updateFoundation
-  ] = useState(null);
-  const [footerValue, updateFooter] = useState(null);
-  const [centerValue, updateCenter] = useState(null);
-  const [headerValue, updateHeader] = useState(null);
-  const isOnscreen = useOnscreen();
-  const ref = useRef(null);
-  const fonts = useFonts();
-  const blur = useBlur();
-  const cursor = useCursor();
-  const ui = useUi();
-  const scrollY = useMotionValue(0);
-  const main = useMemo(() => {
-    return {
-      cursor,
-      blur,
-      ui
-    };
-  }, []);
-  const resetLayout = () => {
-    updateFoundation(null);
-    updateHeader(null);
-    updateFooter(null);
-  };
-  const { handler: handleScroll } = useScrollUpdateHandler({
-    scrollY,
-    ref
-  });
-  const isIdle = useMove({
-    main,
-    isOnscreen,
-    scrollY
-  });
-  return /* @__PURE__ */ React.createElement(
-    VirtualizeContext.Provider,
-    {
-      value: {
-        isIdle,
-        isOnscreen,
-        scrollY,
-        ref,
-        main,
-        fonts,
-        onScroll: handleScroll,
-        picValue,
-        updatePic,
-        headerValue,
-        updateHeader,
-        centerValue,
-        updateCenter,
-        foundationValue,
-        updateFoundation,
-        footerValue,
-        updateFooter,
-        resetLayout
-      }
-    },
-    children
-  );
-};
-
 ;// CONCATENATED MODULE: ./src/constants/box/size/constants.ts
 const PADDING = 8;
 const BOX_SIZE_M = 40;
 const BOX_SIZE_S = BOX_SIZE_M - PADDING;
-const BOX_SIZE_XS = BOX_SIZE_S - PADDING;
+const BOX_SIZE_XS = BOX_SIZE_S - PADDING / 2;
 const DEFAULT_SIZE_BOX_SIZE = BOX_SIZE_M;
 const BOX_SIZES = {
   s: BOX_SIZE_S,
@@ -16077,6 +16669,8 @@ const constants_BOX_SIZE = {
   m0125: BOX_SIZE_M * 0.125,
   m025: BOX_SIZE_M * 0.25,
   m05: BOX_SIZE_M * 0.5,
+  m075: BOX_SIZE_M * 0.75,
+  m125: BOX_SIZE_M * 1.25,
   m15: BOX_SIZE_M * 1.5,
   m2: BOX_SIZE_M * 2,
   m25: BOX_SIZE_M * 2.5,
@@ -16109,52 +16703,35 @@ const size_boxSize = (key) => {
 
 ;// CONCATENATED MODULE: ./src/shell/init/container/index.ts
 
+const MAX_WIDTH = 1280;
 const container_measureContainer = (screen) => {
   const s = boxSize();
-  const width = Math.min(screen.width, 1024) - s.m2;
+  const width = Math.min(screen.width, MAX_WIDTH) - s.m2;
+  const playerHeight = width * 9 / 16;
   const height = screen.height - s.m2;
-  const paddingX = screen.width - width;
+  const paddingX = Math.max(
+    screen.width - width,
+    s.m
+  );
   const pX05 = paddingX / 2;
-  const paddingY = screen.height - height;
+  const paddingY = Math.max(
+    screen.height - height,
+    s.m
+  );
   const pY05 = paddingY / 2;
   return {
     isDimensions: true,
     width,
+    playerHeight,
     height,
-    left: pX05,
-    right: pX05,
+    left: pX05 - s.m0125,
+    right: pX05 + s.m0125,
     top: pY05,
     bottom: pY05
   };
 };
 
-;// CONCATENATED MODULE: ./src/hooks/animate/blur/animate.ts
-
-
-
-const animate_useBlurAnimate = (axis = "x") => {
-  const { main } = useContextGrid();
-  const handler = () => {
-    var _a;
-    if (isValue(main.blur.control[axis])) {
-      (_a = main.blur.control[axis]) == null ? void 0 : _a.cancel();
-    }
-    const prev = main.blur.value[axis].get();
-    main.blur.control[axis] = animate(
-      main.blur.value[axis],
-      100,
-      {
-        type: "tween",
-        onComplete: () => main.blur.value[axis].set(prev)
-      }
-    );
-  };
-  return handler;
-};
-
 ;// CONCATENATED MODULE: ./src/shell/init/measure.ts
-
-
 
 
 
@@ -16166,7 +16743,6 @@ const INIT_SCREEN = {
   isDimensions: false
 };
 const useScreenMeasure = (config = {}) => {
-  const { main } = useContextGrid();
   const [screen, setScreen] = useState(INIT_SCREEN);
   const { timeoutRef, endTimeout } = useTimeoutRef();
   const handleSize = (next) => {
@@ -16196,6 +16772,7 @@ const useScreenMeasure = (config = {}) => {
         isDimensions,
         isResizing
       };
+      console.log(ready, config);
       if (config.onReady) {
         config.onReady(ready);
       }
@@ -16204,16 +16781,15 @@ const useScreenMeasure = (config = {}) => {
     }
     setScreen(next ?? INIT_SCREEN);
   };
-  const handler = useBlurAnimate();
   const handleResize = () => {
     handleSize({
       ...INIT_SCREEN,
       isResizing: true
     });
-    handler();
     endTimeout();
     timeoutRef.current = setTimeout(
       () => {
+        console.log("init");
         handleSize(INIT_SCREEN);
       },
       RESIZE_COOLDOWN
@@ -16379,10 +16955,12 @@ const precache_namespaceObject = {"length":973};
 ;// CONCATENATED MODULE: ./src/store/state/pics/state.ts
 
 
+const min = 45;
+const max = 973;
 const { length: picsCount } = precache_namespaceObject;
 const INIT_PICS = [
-  ...Array(picsCount)
-].map((_, index) => `${++index}`);
+  ...Array(max - min)
+].map((_, index) => `${index + min}`);
 const shuffledPics = shuffle(INIT_PICS);
 const picsState = (set, get) => ({
   picsCount,
@@ -16462,7 +17040,7 @@ const playerState = (...args) => {
 
 ;// CONCATENATED MODULE: ./src/store/state/scroll/index.ts
 const scroll_SCROLL = 240;
-const scroll_SCROLL_COOLDOWN = 400;
+const scroll_SCROLL_COOLDOWN = 100;
 const scrollState = () => ({
   isScroll: false,
   isScrolling: false,
@@ -19117,7 +19695,7 @@ const STORAGE_JSON = createJSONStorage(
 );
 
 ;// CONCATENATED MODULE: ./package.json
-const package_namespaceObject = JSON.parse('{"u2":"trill-pics","i8":"1.0.0"}');
+const package_namespaceObject = JSON.parse('{"u2":"trill-pics","i8":"1.0.0","WL":"AI Art Gallery & Video Maker"}');
 ;// CONCATENATED MODULE: ./src/store/middleware/3.persist/storage.ts
 
 
@@ -19229,684 +19807,6 @@ const middleware_useTrillPicsStore = (selector) => {
   );
   const result = useTrillPicsStoreBase(shallow);
   return result;
-};
-
-;// CONCATENATED MODULE: ./node_modules/@brysonandrew/motion-config-constants/core.ts
-const DURATION = 0.2;
-const EXIT_KEY = "exit";
-const FADE_PREFIX = "fade";
-const HOVER_KEY = "hover";
-const HOVER_VARIANT = (/* unused pure expression or super */ null && (["idle", "hover"]));
-const IDLE_KEY = "idle";
-const INITIAL_KEY = "initial";
-const MOTION_CONFIG = {
-  transition: {
-    type: "custom",
-    ease: "linear",
-    duration: 0.2,
-    delay: 0
-  }
-};
-const PLACEHOLDER = "";
-const PRESENCE_OPACITY = {
-  initial: {
-    opacity: 0
-  },
-  animate: {
-    opacity: 1
-  },
-  exit: {
-    opacity: 0
-  }
-};
-const PRESENCE_OPACITY_05 = {
-  initial: {
-    opacity: 0
-  },
-  animate: {
-    opacity: 0.5
-  },
-  exit: {
-    opacity: 0
-  }
-};
-const PRESENCE_OPACITY_ANIMATE_DELAY_04 = {
-  initial: {
-    opacity: 0
-  },
-  animate: {
-    opacity: 1,
-    transition: {
-      duration: 0.2,
-      ease: "easeIn",
-      delay: 0.4
-    }
-  },
-  exit: {
-    opacity: 0
-  }
-};
-const PRESENCE_OPACITY_DELAY = {
-  initial: {
-    opacity: 0
-  },
-  animate: {
-    opacity: 1
-  },
-  exit: {
-    opacity: 0
-  },
-  transition: {
-    duration: 0.2,
-    ease: "easeIn",
-    delay: 0.08
-  }
-};
-const PRESENCE_OPACITY_DURATION_DELAY = {
-  initial: {
-    opacity: 0
-  },
-  animate: {
-    opacity: 1
-  },
-  exit: {
-    opacity: 0
-  },
-  transition: {
-    duration: 0.2,
-    ease: "easeIn",
-    delay: 0.2
-  }
-};
-const PRESENCE_OPACITY_UP_Y = {
-  initial: {
-    opacity: 0,
-    y: "100%"
-  },
-  animate: {
-    opacity: 1,
-    y: 0
-  },
-  exit: {
-    opacity: 0,
-    y: "100%"
-  }
-};
-const PRESENCE_ROTATE_FROM_BOTTOM = {
-  initial: {
-    y: "100%",
-    rotateX: 45
-  },
-  animate: {
-    y: 0,
-    rotateX: 0
-  },
-  exit: {
-    y: "100%",
-    rotateX: 45
-  }
-};
-const PRESENCE_ROTATE_FROM_TOP = {
-  initial: {
-    y: "-100%",
-    rotateX: 45
-  },
-  animate: {
-    y: 0,
-    rotateX: 0
-  },
-  exit: {
-    y: "-100%",
-    rotateX: 45
-  }
-};
-const PRESENCE_SCALE_X = {
-  initial: {
-    scaleX: 0
-  },
-  animate: {
-    scaleX: 1
-  },
-  exit: {
-    scaleX: 0
-  }
-};
-const PRESENCE_UP_Y = {
-  initial: {
-    opacity: 0,
-    y: "100%"
-  },
-  animate: {
-    opacity: 1,
-    y: 0
-  },
-  exit: {
-    opacity: 0,
-    y: "100%"
-  }
-};
-const ROTATE_DIRECTIONS = (/* unused pure expression or super */ null && (["clockwise", "anti-clockwise"]));
-const ROTATE_TYPES = (/* unused pure expression or super */ null && (["roll", "pitch", "yaw"]));
-const SHIFT_DIRECTIONS = (/* unused pure expression or super */ null && (["left", "right", "up", "down"]));
-const SUB_VALUE_DELIMITER = "_";
-const TRANSITION = {
-  type: "custom",
-  ease: "linear",
-  duration: 0.2,
-  delay: 0
-};
-const TRANSITION_02_EASEIN_008 = {
-  duration: 0.2,
-  ease: "easeIn",
-  delay: 0.08
-};
-const TRANSITION_02_EASE_IN_02 = {
-  duration: 0.2,
-  ease: "easeIn",
-  delay: 0.2
-};
-const TRANSITION_02_EASE_IN_04 = {
-  duration: 0.2,
-  ease: "easeIn",
-  delay: 0.4
-};
-const TRANSITION_04_EASEIN_008 = {
-  duration: 0.4,
-  ease: "easeIn",
-  delay: 0.08
-};
-const VALUE_DELIMITER = "|";
-const ZOOM_DIRECTIONS = (/* unused pure expression or super */ null && (["height", "width", "depth"]));
-const ZOOM_TYPES = (/* unused pure expression or super */ null && (["expand", "shrink"]));
-const _SVD = "_";
-
-;// CONCATENATED MODULE: ./src/utils/animation/index.ts
-const animation_resolvePresence = (O, I) => ({
-  initial: O,
-  animate: I,
-  exit: O
-});
-const resolveFadeRight = (isI) => {
-  const O = { opacity: 0, x: -20 };
-  const I = { opacity: 1, x: 0 };
-  return isI ? I : O;
-};
-const resolveFadeRightProps = (isI) => ({
-  initial: resolveFadeRight(false),
-  animate: resolveFadeRight(isI)
-});
-const resolveVerticalShiftPresence = (y) => {
-  const O = { opacity: 1, y, rotateX: 45 };
-  const I = { opacity: 1, y: 0, rotateX: 0 };
-  return {
-    ...animation_resolvePresence(O, I),
-    transition: {
-      ease: "easeInOut"
-    }
-  };
-};
-
-;// CONCATENATED MODULE: ./src/constants/animation.ts
-
-
-const animation_DURATION = 0.2;
-const animation_TRANSITION = {
-  duration: animation_DURATION,
-  ease: "linear"
-};
-const DELAY_TRANSITION = {
-  ...animation_TRANSITION,
-  delay: animation_TRANSITION.duration
-};
-const DELAY_TRANSITION_PROPS = {
-  transition: {
-    ...animation_TRANSITION,
-    delay: animation_TRANSITION.duration
-  }
-};
-const FADE_PRESENCE_WITH_DELAY = animation_resolvePresence(
-  {
-    opacity: 0,
-    ...DELAY_TRANSITION_PROPS
-  },
-  {
-    opacity: 1,
-    ...DELAY_TRANSITION_PROPS
-  }
-);
-const FADE_PRESENCE = animation_resolvePresence(
-  { opacity: 0 },
-  { opacity: 1 }
-);
-const FADE_PRESENCE_DELAY_04_TRANSITION = {
-  transition: TRANSITION_02_EASE_IN_04
-};
-const FADE_PRESENCE_DELAY_02_TRANSITION = {
-  transition: TRANSITION_02_EASE_IN_02
-};
-const FADE_PRESENCE_DELAY_04 = {
-  ...FADE_PRESENCE,
-  animate: {
-    ...FADE_PRESENCE.animate,
-    ...FADE_PRESENCE_DELAY_04_TRANSITION
-  }
-};
-const animation_MOTION_CONFIG = {
-  transition: animation_TRANSITION
-};
-const FADE_PRESENCE_05 = animation_resolvePresence(
-  { opacity: 0 },
-  { opacity: 0.5 }
-);
-const FADE_PRESENCE_05_DELAY_04 = {
-  ...FADE_PRESENCE_05,
-  animate: {
-    ...FADE_PRESENCE_05.animate,
-    ...FADE_PRESENCE_DELAY_04_TRANSITION
-  }
-};
-const PRESENCE_OPACITY_ANIMATE_DELAY_02 = {
-  ...PRESENCE_OPACITY,
-  animate: {
-    ...PRESENCE_OPACITY.animate,
-    ...FADE_PRESENCE_DELAY_02_TRANSITION
-  }
-};
-const animation_FADE_PRESENCE_DELAY_02 = {
-  ...FADE_PRESENCE,
-  ...FADE_PRESENCE_DELAY_02_TRANSITION
-};
-
-;// CONCATENATED MODULE: ./src/constants/box/radius/index.ts
-const BORDER_RADIUS = {
-  s: 2,
-  m: 4,
-  l: 8,
-  xl: 40
-};
-const radius_boxRadius = (key = "xl") => {
-  return BORDER_RADIUS[key];
-};
-
-
-;// CONCATENATED MODULE: ./config/uno/shortcuts/box/background.ts
-const SHORTCUTS_BOX_BACKGROUND_IMAGE = {
-  "_gradient-mesh": "dark:_dark-gradient-mesh _light-gradient-mesh",
-  "_gradient-radial": "dark:_dark-radial-gradient _light-radial-gradient"
-};
-const SHORTCUTS_BOX_BACKGROUND_COLOR = {
-  "background-flat": "dark:bg-black-04 bg-gray-04",
-  background: "dark:bg-black-06 bg-gray-06"
-};
-
-;// CONCATENATED MODULE: ./src/constants/box/index.ts
-
-
-
-const BOX_SHADOW_FLAT = `inset -4px 4px 7px rgba(22,22,22,0.5),
-inset 4px -4px 7px rgba(59,59,59,0.5)`;
-const BOX_SHADOW_FLOATING = "0 0 1px 1px rgba(255,255,255,0.4)";
-const BOX_CLASS_VALUE = {
-  backgroundImage: SHORTCUTS_BOX_BACKGROUND_IMAGE,
-  backgroundColor: SHORTCUTS_BOX_BACKGROUND_COLOR
-};
-const box_BOX = {
-  ...BOX_CLASS_VALUE,
-  borderRadius: BORDER_RADIUS,
-  floating: {
-    boxShadow: BOX_SHADOW_FLOATING
-  },
-  flat: {
-    boxShadow: BOX_SHADOW_FLAT
-  },
-  size: constants_BOX_SIZE
-};
-
-;// CONCATENATED MODULE: ./src/constants/box/class/background/color.ts
-
-const color_boxBackgroundColor = ({
-  backgroundColor
-}) => {
-  const box = BOX;
-  return backgroundColor ? box.backgroundColor[backgroundColor] : null;
-};
-
-;// CONCATENATED MODULE: ./src/constants/box/class/background/image.ts
-
-const image_boxBackgroundImage = ({
-  backgroundImage
-}) => {
-  const box = BOX;
-  return backgroundImage ? box.backgroundImage[backgroundImage] : null;
-};
-
-;// CONCATENATED MODULE: ./src/constants/box/class/index.ts
-
-
-const class_boxBackground = (config) => {
-  const backgroundColor = boxBackgroundColor(config);
-  const backgroundImage = boxBackgroundImage(config);
-  return {
-    ...backgroundColor ? { backgroundColor } : {},
-    ...backgroundImage ? { backgroundImage } : {}
-  };
-};
-
-;// CONCATENATED MODULE: ./src/constants/box/border/border.ts
-
-
-const border_boxBorder = ({
-  layer,
-  borderRadius
-}) => {
-  const box = BOX;
-  return {
-    ...box[layer],
-    ...borderRadius ? {
-      borderRadius: boxRadius(
-        borderRadius
-      )
-    } : {}
-  };
-};
-
-;// CONCATENATED MODULE: ./src/constants/box/style/index.ts
-
-
-
-
-const style_boxStyle = ({
-  layer,
-  borderRadius,
-  size = "m",
-  backgroundColor,
-  backgroundImage
-}) => {
-  return {
-    ...boxBackground({
-      backgroundColor,
-      backgroundImage
-    }),
-    ...boxBorder({
-      layer,
-      borderRadius
-    }),
-    borderRadius: boxRadius(),
-    ...boxSize(size)
-  };
-};
-
-;// CONCATENATED MODULE: ./src/hooks/use-ready.ts
-
-const use_ready_useReady = () => {
-  const { screen, table } = useTrillPicsStore(
-    ({ screen: screen2, table: table2 }) => ({
-      screen: screen2,
-      table: table2
-    })
-  );
-  return screen.isDimensions && table.size > 0;
-};
-
-;// CONCATENATED MODULE: ./node_modules/@brysonandrew/color-base/resolveVarCss.ts
-const resolveVarCss_resolveVarCss = (color) => `var(--${color})`;
-
-;// CONCATENATED MODULE: ./config/app/color/gradient/mesh.ts
-
-
-
-const mesh_GRADIENT_MESH_DARK = resolveBoxBackground({
-  image: resolveGradient_resolveGradient({
-    name: "repeating-conic-gradient",
-    parts: [
-      "rgba(0,0,0,0)",
-      resolveVarCss_resolveVarCss("black"),
-      resolveVarCss_resolveVarCss("black-7")
-    ]
-  })
-});
-const GRADIENT_MESH_LIGHT = resolveBoxBackground({
-  image: resolveGradient_resolveGradient({
-    name: "repeating-conic-gradient",
-    parts: [
-      "rgba(0,0,0,0)",
-      resolveVarCss_resolveVarCss("gray")
-    ]
-  })
-});
-const GRADIENT_MESH_COMMON = resolveBoxBackground({
-  size: "4px 4px"
-});
-
-;// CONCATENATED MODULE: ./src/shell/global/svg/gradients/blue-pink-yellow.tsx
-
-
-const blue_pink_yellow_LINEAR_GRADIENT_SVG_ID = "linear-gradient-blue-pink-yellow-svg";
-const GradientsBluePinkYellow = ({ isDarkMode }) => {
-  return /* @__PURE__ */ React.createElement(SvgWrap, { className: "absolute" }, /* @__PURE__ */ React.createElement(
-    "linearGradient",
-    {
-      id: blue_pink_yellow_LINEAR_GRADIENT_SVG_ID,
-      x1: "0",
-      x2: "0",
-      y1: "0",
-      y2: "1"
-    },
-    (isDarkMode ? GRADIENT_BLUE_PINK_YELLOW_COLORS : GRADIENT_TEAL_YELLOW_PINK_COLORS).map(
-      (color, index, { length: count }) => /* @__PURE__ */ React.createElement(
-        "stop",
-        {
-          key: `${index}`,
-          offset: `${100 / (count - 1) * index}%`,
-          stopColor: color
-        }
-      )
-    )
-  ));
-};
-
-;// CONCATENATED MODULE: ./src/components/buttons/pill/b/index.tsx
-
-
-
-
-
-
-
-
-
-
-
-
-const b_PillB = ({
-  Root = motion.button,
-  isSelected,
-  Icon,
-  title,
-  iconProps,
-  circleProps,
-  children,
-  classValue,
-  outerCircle,
-  isFlat,
-  style,
-  size = "s",
-  disabled,
-  ...props
-}) => {
-  const box = boxStyle({
-    layer: "flat",
-    borderRadius: "xl",
-    size
-  });
-  const {
-    height,
-    width,
-    boxShadow,
-    borderRadius
-  } = box;
-  const sm = boxSize(size);
-  const isReady = useReady();
-  const { isDarkMode } = useDarkMode();
-  return /* @__PURE__ */ React.createElement(
-    Root,
-    {
-      key: resolveCompositeKey(
-        "PillB",
-        title,
-        `${isReady}`
-      ),
-      ...resolveAccessibilityTitles(
-        title
-      ),
-      disabled,
-      className: clsx(
-        "relative",
-        "center shrink-0",
-        "disabled:(grayscale-100 brightness-60 opacity-80 cursor-not-allowed)",
-        classValue
-      ),
-      ...isReady ? { layout: true } : {},
-      layout: isReady,
-      style: {
-        ...isFlat ? { boxShadow } : {},
-        height,
-        borderRadius,
-        ...style
-      },
-      ...props
-    },
-    /* @__PURE__ */ React.createElement(React.Fragment, null, isSelected && /* @__PURE__ */ React.createElement(
-      motion.div,
-      {
-        className: "fill -inset-2 _gradient-radial",
-        style: {
-          borderRadius
-        },
-        initial: {
-          scale: 0.5
-        },
-        animate: {
-          scale: 1
-        },
-        exit: {
-          scale: 0.5
-        }
-      }
-    ), /* @__PURE__ */ React.createElement(
-      motion.div,
-      {
-        key: resolveCompositeKey(
-          "PillB.motion.div.Icon",
-          title,
-          `${isReady}`
-        ),
-        className: clsx(
-          "center relative bg-white dark:bg-black",
-          isFlat ? "" : "_gradient-radial"
-        ),
-        ...isReady ? { layout: true } : {},
-        style: {
-          height,
-          borderRadius,
-          marginLeft: 0
-        }
-      },
-      /* @__PURE__ */ React.createElement(
-        "div",
-        {
-          className: "center relative shrink-0 border-1 border-transparent bg-gray dark:bg-black",
-          style: {
-            borderRadius,
-            height: sm.height,
-            width: sm.width,
-            ...isDarkMode ? {
-              ...GRADIENT_MESH_DARK
-            } : {
-              ...GRADIENT_MESH_DARK
-            },
-            backgroundSize: "2px 2px",
-            backgroundClip: isSelected ? "border-box" : "padding-box"
-          }
-        },
-        /* @__PURE__ */ React.createElement(
-          Icon,
-          {
-            ...isDarkMode ? {
-              fill: resolveUrlId(
-                LINEAR_GRADIENT_SVG_ID
-              )
-            } : {
-              fill: "#ffffff"
-            }
-          }
-        )
-      )
-    ), /* @__PURE__ */ React.createElement(React.Fragment, null, outerCircle && /* @__PURE__ */ React.createElement(React.Fragment, null, outerCircle)), /* @__PURE__ */ React.createElement(AnimatePresence, null, isString(children) ? /* @__PURE__ */ React.createElement(
-      motion.div,
-      {
-        key: `${title}`,
-        className: "relative row px-2 px-0 text-left text-sm",
-        style: {
-          height: sm.minHeight
-        },
-        ...isReady ? FADE_PRESENCE_DELAY_02 : {}
-      },
-      /* @__PURE__ */ React.createElement("div", { className: "uppercase font-sans _outline-filter lg:(text-sm whitespace-nowrap)" }, /* @__PURE__ */ React.createElement(
-        "div",
-        {
-          className: "absolute -inset-y-4 -inset-x-1 _gradient-radial opacity-20 filter-blur-md",
-          style: {
-            borderRadius
-          }
-        }
-      ), /* @__PURE__ */ React.createElement("span", { className: "relative dark:text-black text-white-8 _outline-filter" }, children)),
-      /* @__PURE__ */ React.createElement(motion.div, null)
-    ) : /* @__PURE__ */ React.createElement(React.Fragment, null, children)))
-  );
-};
-
-;// CONCATENATED MODULE: ./src/components/icons/svg/gradient/index.tsx
-
-
-
-const gradient_IconsSvgGradient = (props) => {
-  return /* @__PURE__ */ React.createElement(
-    IconsSvg,
-    {
-      size: 24,
-      viewBox: "0 0 24 24",
-      fill: resolveUrlId(
-        LINEAR_GRADIENT_SVG_ID
-      ),
-      ...props
-    }
-  );
-};
-
-;// CONCATENATED MODULE: ./src/components/icons/svg/gradient/16vb24.tsx
-
-const _16vb24_IconsSvgGradient16vb24 = (props) => {
-  return /* @__PURE__ */ React.createElement(
-    IconsSvgGradient,
-    {
-      size: 16,
-      viewBox: "0 0 24 24",
-      ...props
-    }
-  );
-};
-
-;// CONCATENATED MODULE: ./src/components/icons/video/generate.tsx
-
-const generate_IconsGenerate = (props) => {
-  return /* @__PURE__ */ React.createElement(
-    IconsSvgGradient16vb24,
-    {
-      d: "M7 7h4v4H7zm-2 6v-2h2v2zm0 0v4H1v-4zm8 0h-2v-2h2zm4 0h-4v4h4zm2-2v2h-2v-2zm0 0h4V7h-4z",
-      ...props
-    }
-  );
 };
 
 ;// CONCATENATED MODULE: ./node_modules/@trpc/server/dist/observable-ade1bad8.mjs
@@ -25123,12 +25023,40 @@ const trpcClient = trpc_trpc.createClient({
 });
 const TrpcClientProvider = trpc_trpc.Provider;
 
+;// CONCATENATED MODULE: ./src/utils/validation/is/number.ts
+
+const isNumber = (value) => {
+  if (defined_isDefined(value) && typeof value === "number")
+    return true;
+  return false;
+};
+function isVNumber(value) {
+  if (!isNumber(value)) {
+    console.log(value);
+    throw Error("Not a number v ");
+  }
+}
+
+;// CONCATENATED MODULE: ./src/utils/validation/is/timeout.ts
+
+
+const isTimeout = (value) => {
+  if (defined_isDefined(value) && isNumber(value))
+    return true;
+  return false;
+};
+const isNumberFinite = (value) => {
+  if (isNumber(value) && isFinite(value))
+    return true;
+  return false;
+};
+
 ;// CONCATENATED MODULE: ./src/hooks/use-time-bomb.ts
 
 
-const use_time_bomb_useTimebomb = (countdown = 1e3, target) => {
-  const [isArmed, arm] = useState(false);
-  const bomb = useMemo(() => ({ fuse: null }), []);
+const useTimebomb = (countdown = 1e3, target) => {
+  const [isArmed, arm] = (0,react.useState)(false);
+  const bomb = (0,react.useMemo)(() => ({ fuse: null }), []);
   const cancel = () => {
     if (isTimeout(bomb.fuse)) {
       clearTimeout(bomb.fuse);
@@ -25154,6 +25082,19457 @@ const use_time_bomb_useTimebomb = (countdown = 1e3, target) => {
   return { isArmed, trigger, disarm };
 };
 
+;// CONCATENATED MODULE: ./src/hooks/use-screen-presence.ts
+
+
+const use_screen_presence_useScreenPresence = ({
+  onPointerLeave,
+  onPointerEnter
+}) => {
+  const docRef = useRef(null);
+  useEffect(() => {
+    docRef.current = document.documentElement;
+  }, []);
+  useEventListener(
+    "pointerenter",
+    onPointerEnter,
+    docRef
+  );
+  useEventListener(
+    "pointerleave",
+    onPointerLeave,
+    docRef
+  );
+};
+
+;// CONCATENATED MODULE: ./src/context/hooks/onscreen.ts
+
+
+
+const onscreen_useOnscreen = () => {
+  const pointerLeaveWhileNoControlsCheck = useRef(false);
+  const {
+    isControls,
+    isOnscreen,
+    toggleControls,
+    toggleOnscreen
+  } = useTrillPicsStore(
+    ({
+      isControls: isControls2,
+      isOnscreen: isOnscreen2,
+      toggleControls: toggleControls2,
+      toggleOnscreen: toggleOnscreen2
+    }) => ({
+      isControls: isControls2,
+      isOnscreen: isOnscreen2,
+      toggleControls: toggleControls2,
+      toggleOnscreen: toggleOnscreen2
+    })
+  );
+  const onPointerEnter = () => {
+    if (pointerLeaveWhileNoControlsCheck.current) {
+      toggleControls(true);
+      pointerLeaveWhileNoControlsCheck.current = false;
+    }
+    toggleOnscreen(true);
+  };
+  const onPointerLeave = () => {
+    if (!isControls) {
+      pointerLeaveWhileNoControlsCheck.current = true;
+    }
+    toggleOnscreen(false);
+  };
+  useScreenPresence({
+    onPointerEnter,
+    onPointerLeave
+  });
+  return isOnscreen;
+};
+
+;// CONCATENATED MODULE: ./src/context/blur.ts
+
+
+const blur_useBlur = () => {
+  const blurX = useMotionValue(0);
+  const blurY = useMotionValue(0);
+  const blur = useMemo(() => {
+    return {
+      control: {
+        x: null,
+        y: null
+      },
+      value: {
+        x: blurX,
+        y: blurY
+      }
+    };
+  }, []);
+  return blur;
+};
+
+;// CONCATENATED MODULE: ./src/context/cursor.ts
+
+
+const cursor_useCursor = () => {
+  const x = useMotionValue(0);
+  const y = useMotionValue(0);
+  const labelX = useMotionValue(``);
+  const labelY = useMotionValue(``);
+  const cursor = useMemo(() => {
+    return {
+      x,
+      y,
+      isDragging: false,
+      isHoverIdle: false,
+      prev: {
+        column: null,
+        row: null
+      },
+      offset: {
+        x: 1,
+        y: -1
+      },
+      label: {
+        x: labelX,
+        y: labelY
+      }
+    };
+  }, []);
+  return cursor;
+};
+
+;// CONCATENATED MODULE: ./src/hooks/pic/cell/index.tsx
+
+
+
+
+
+
+
+
+
+const cell_usePicCell = (main, scrollY) => {
+  const { endTimeout, timeoutRef } = useTimeoutRef();
+  const { isScrolling } = useTrillPicsStore(
+    ({ isScrolling: isScrolling2 }) => ({
+      isScrolling: isScrolling2
+    })
+  );
+  const { pathname } = useLocation();
+  const navigate = useNavigate();
+  const [searchParams] = useSearchParams();
+  const paramValue = searchParams.get(
+    OVER_CELL_PARAM_KEY
+  );
+  const size = Number(
+    searchParams.get(SIZE_PARAM_KEY)
+  );
+  const isCursorOverCell = (nextCell) => {
+    const paramValue2 = searchParams.get(
+      OVER_CELL_PARAM_KEY
+    );
+    const key = cellEncrypt(nextCell);
+    return key === paramValue2;
+  };
+  const move = (mx, my) => {
+    if (searchParams.has(ZOOM_PARAM_KEY) || searchParams.has(REMOVING_PARAM_KEY))
+      return;
+    const currScrollY = scrollY.get();
+    mx = mx ?? main.cursor.x.get();
+    my = (my ?? main.cursor.y.get()) - currScrollY;
+    if (size === 0 || !isDefined(mx))
+      return;
+    const column = ~~(mx / size);
+    const row = ~~(my / size);
+    const key = cellEncrypt({
+      column,
+      row
+    });
+    const paramValue2 = searchParams.get(
+      OVER_CELL_PARAM_KEY
+    );
+    if (main.cursor.prev.column !== column || main.cursor.prev.row !== row) {
+      endTimeout();
+      timeoutRef.current = setTimeout(
+        () => {
+          if (isString(key) && key !== paramValue2) {
+            searchParams.set(
+              OVER_CELL_PARAM_KEY,
+              key
+            );
+            navigate(
+              `${pathname}?${searchParams}`,
+              { replace: true }
+            );
+          }
+        },
+        0
+      );
+      main.cursor.prev.column = column;
+      main.cursor.prev.row = row;
+    }
+  };
+  const leave = (nextCell) => {
+    console.log("cell.l");
+    const key = cellEncrypt(nextCell);
+    const paramValue2 = searchParams.get(
+      OVER_CELL_PARAM_KEY
+    );
+    if (key === paramValue2) {
+      searchParams.delete(
+        OVER_CELL_PARAM_KEY
+      );
+      navigate(
+        `${pathname}?${searchParams}`
+      );
+    }
+  };
+  const clear = () => {
+    console.log("cell.clear");
+    searchParams.delete(
+      OVER_CELL_PARAM_KEY
+    );
+    navigate(
+      `${pathname}?${searchParams}`
+    );
+  };
+  useEffect(() => {
+    if (!isScrolling) {
+      move();
+    }
+  }, [isScrolling]);
+  return {
+    isCursorOverCell,
+    cell: paramValue ? cellDecrypt(paramValue) : null,
+    move,
+    leave,
+    clear
+  };
+};
+
+;// CONCATENATED MODULE: ./src/context/scroll/update.ts
+
+
+
+
+
+
+
+const update_useScrollUpdateHandler = ({
+  scrollY,
+  ref: handle,
+  main
+}) => {
+  const [searchParams] = useSearchParams();
+  const { pathname } = useLocation();
+  const navigate = useNavigate();
+  const prevScrollOffsetRef = useRef(0);
+  const { timeoutRef, endTimeout } = useTimeoutRef();
+  const { isScroll, isScrolling, set } = useTrillPicsStore(
+    ({
+      isScroll: isScroll2,
+      isScrolling: isScrolling2,
+      set: set2
+    }) => ({
+      isScroll: isScroll2,
+      isScrolling: isScrolling2,
+      set: set2
+    })
+  );
+  const { move } = usePicCell(main, scrollY);
+  const handler = (props) => {
+    const {
+      scrollOffset,
+      scrollDirection
+    } = props;
+    scrollY.set(-scrollOffset);
+    const scrollDelta = Math.abs(
+      prevScrollOffsetRef.current - scrollOffset
+    );
+    if (!isScrolling && scrollDelta > 0) {
+      set({
+        isScrolling: true,
+        scrollDirection,
+        scrollDelta
+      });
+      searchParams.delete(
+        OVER_CELL_PARAM_KEY
+      );
+      navigate(
+        `${pathname}?${searchParams}`
+      );
+    }
+    endTimeout();
+    if (!isScrolling)
+      return;
+    timeoutRef.current = setTimeout(
+      () => {
+        set({
+          isScrolling: false,
+          scrollDirection: null,
+          scrollDelta
+        });
+      },
+      SCROLL_COOLDOWN
+    );
+    if (!isScroll && scrollOffset > SCROLL) {
+      set({ isScroll: true });
+    }
+    if (isScroll && scrollOffset < SCROLL) {
+      set({
+        isScroll: false
+      });
+    }
+    prevScrollOffsetRef.current = scrollOffset;
+  };
+  return {
+    handler,
+    isScroll,
+    isScrolling
+  };
+};
+
+// EXTERNAL MODULE: ./node_modules/webfontloader/webfontloader.js
+var webfontloader = __webpack_require__(75933);
+// EXTERNAL MODULE: ./node_modules/tailwindcss/defaultTheme.js
+var defaultTheme = __webpack_require__(75874);
+var defaultTheme_default = /*#__PURE__*/__webpack_require__.n(defaultTheme);
+;// CONCATENATED MODULE: ./config/app/base/fonts.ts
+
+const FONT_NAMES = [
+  ["Dragon", "title"],
+  ["Armstrong3", "slab"],
+  ["Toxigenesis", "sans"]
+];
+const withDefault = (value, key = "sans") => [
+  `"${value}"`,
+  ...(defaultTheme_default()).fontFamily[key]
+];
+const FONTS = FONT_NAMES.map(([name, key]) => ({
+  key,
+  name: withDefault(name),
+  provider: "none"
+}));
+
+;// CONCATENATED MODULE: ./src/context/fonts.ts
+
+
+
+
+const FAMILIES = FONT_NAMES.map(
+  ([name]) => name
+);
+const URLS = (/* unused pure expression or super */ null && ([
+  // "/fonts/armstrong3/regular.otf",
+  "/fonts/dragon/regular.otf",
+  "/fonts/toxigenesis/regular.otf"
+]));
+const LOADER_RECORD = {
+  loading: console.log,
+  active: console.log,
+  inactive: console.log,
+  fontloading: console.log,
+  fontactive: console.log,
+  fontinactive: console.log
+};
+const INIT = FAMILIES.reduce((a, c) => {
+  a[c] = {};
+  return a;
+}, {});
+const fonts_useFonts = () => {
+  const [record, setRecord] = useState({ ...INIT });
+  const handleEvent = useCallback(
+    (family, event) => {
+      setRecord(
+        produce((draft) => {
+          draft[family][event] = true;
+        })
+      );
+    },
+    []
+  );
+  useEffect(() => {
+    WebFont.load({
+      fontloading: (family, styleWeight) => {
+        handleEvent(family, "active");
+      },
+      fontactive: (family, styleWeight) => {
+        handleEvent(family, "active");
+      },
+      custom: {
+        families: [...FAMILIES],
+        urls: [...URLS]
+      }
+    });
+  }, []);
+  return record;
+};
+
+;// CONCATENATED MODULE: ./src/context/hooks/move/animate.ts
+
+
+const LABEL_SIZE = 80;
+const OFFSET = 20;
+const resolveCalc = (percent, sign, px) => `calc(${percent}% ${sign < 0 ? "-" : "+"} ${px}px)`;
+const ANIMATION_OPTIONS = {
+  type: "tween"
+};
+const animate_useCursorAnimate = (main) => {
+  const animateRef = useRef({});
+  const handler = ({
+    // nextHoverKey = hoverKey,
+    nextSignX = main.cursor.offset.x,
+    nextSignY = main.cursor.offset.y
+  } = {}) => {
+    const zeroX = resolveCalc(0, nextSignX, 0);
+    const zeroY = resolveCalc(0, nextSignY, 0);
+    let labelXValue = zeroX;
+    let labelYValue = zeroY;
+    const percentX = nextSignX < 0 ? -100 : 0;
+    const percentY = nextSignY < 0 ? -100 : 0;
+    labelXValue = resolveCalc(
+      percentX,
+      nextSignX,
+      OFFSET
+    );
+    labelYValue = resolveCalc(
+      percentY,
+      nextSignY,
+      OFFSET
+    );
+    animateRef.current.x = animate(
+      main.cursor.label.x,
+      labelXValue,
+      ANIMATION_OPTIONS
+    );
+    animateRef.current.y = animate(
+      main.cursor.label.y,
+      labelYValue,
+      ANIMATION_OPTIONS
+    );
+  };
+  useEffect(() => {
+    return () => {
+      if (animateRef.current.x) {
+        animateRef.current.x.stop();
+      }
+      if (animateRef.current.y) {
+        animateRef.current.y.stop();
+      }
+    };
+  }, []);
+  return handler;
+};
+
+;// CONCATENATED MODULE: ./src/context/hooks/move/offset.ts
+
+const offset_useCursorOffset = (main) => {
+  const handleAnimate = useCursorAnimate(main);
+  const handler = ({ nextX, nextY }) => {
+    const viewportWidth = window.innerWidth;
+    const viewportHalfWidth = viewportWidth * 0.5;
+    const viewportHeight = window.innerHeight;
+    const viewportHalfHeight = viewportHeight * 0.5;
+    const BOUND_X = viewportHalfWidth * 0.6;
+    const BOUND_Y = viewportHalfHeight * 0.6;
+    const signX = nextX > viewportHalfWidth + BOUND_X ? -1 : 1;
+    const signY = nextY < viewportHalfHeight - BOUND_Y ? 1 : -1;
+    if (main.cursor.offset.x !== signX || main.cursor.offset.y !== signY) {
+      main.cursor.offset.x = signX;
+      main.cursor.offset.y = signY;
+      handleAnimate({ nextSignX: signX, nextSignY: signY });
+    }
+  };
+  return handler;
+};
+
+// EXTERNAL MODULE: ./node_modules/react/jsx-runtime.js
+var jsx_runtime = __webpack_require__(85893);
+;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/context/MotionConfigContext.mjs
+
+
+/**
+ * @public
+ */
+const MotionConfigContext = (0,react.createContext)({
+    transformPagePoint: (p) => p,
+    isStatic: false,
+    reducedMotion: "never",
+});
+
+
+
+;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/context/MotionContext/index.mjs
+
+
+const MotionContext = (0,react.createContext)({});
+
+
+
+;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/context/PresenceContext.mjs
+
+
+/**
+ * @public
+ */
+const PresenceContext_PresenceContext = (0,react.createContext)(null);
+
+
+
+;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/utils/is-browser.mjs
+const isBrowser = typeof document !== "undefined";
+
+
+
+;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/utils/use-isomorphic-effect.mjs
+
+
+
+const use_isomorphic_effect_useIsomorphicLayoutEffect = isBrowser ? react.useLayoutEffect : react.useEffect;
+
+
+
+;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/context/LazyContext.mjs
+
+
+const LazyContext = (0,react.createContext)({ strict: false });
+
+
+
+;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/render/dom/utils/camel-to-dash.mjs
+/**
+ * Convert camelCase to dash-case properties.
+ */
+const camelToDash = (str) => str.replace(/([a-z])([A-Z])/gu, "$1-$2").toLowerCase();
+
+
+
+;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/animation/optimized-appear/data-id.mjs
+
+
+const optimizedAppearDataId = "framerAppearId";
+const optimizedAppearDataAttribute = "data-" + camelToDash(optimizedAppearDataId);
+
+
+
+;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/utils/GlobalConfig.mjs
+const MotionGlobalConfig = {
+    skipAnimations: false,
+    useManualTiming: false,
+};
+
+
+
+;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/frameloop/render-step.mjs
+class Queue {
+    constructor() {
+        this.order = [];
+        this.scheduled = new Set();
+    }
+    add(process) {
+        if (!this.scheduled.has(process)) {
+            this.scheduled.add(process);
+            this.order.push(process);
+            return true;
+        }
+    }
+    remove(process) {
+        const index = this.order.indexOf(process);
+        if (index !== -1) {
+            this.order.splice(index, 1);
+            this.scheduled.delete(process);
+        }
+    }
+    clear() {
+        this.order.length = 0;
+        this.scheduled.clear();
+    }
+}
+function createRenderStep(runNextFrame) {
+    /**
+     * We create and reuse two queues, one to queue jobs for the current frame
+     * and one for the next. We reuse to avoid triggering GC after x frames.
+     */
+    let thisFrame = new Queue();
+    let nextFrame = new Queue();
+    let numToRun = 0;
+    /**
+     * Track whether we're currently processing jobs in this step. This way
+     * we can decide whether to schedule new jobs for this frame or next.
+     */
+    let isProcessing = false;
+    let flushNextFrame = false;
+    /**
+     * A set of processes which were marked keepAlive when scheduled.
+     */
+    const toKeepAlive = new WeakSet();
+    const step = {
+        /**
+         * Schedule a process to run on the next frame.
+         */
+        schedule: (callback, keepAlive = false, immediate = false) => {
+            const addToCurrentFrame = immediate && isProcessing;
+            const queue = addToCurrentFrame ? thisFrame : nextFrame;
+            if (keepAlive)
+                toKeepAlive.add(callback);
+            if (queue.add(callback) && addToCurrentFrame && isProcessing) {
+                // If we're adding it to the currently running queue, update its measured size
+                numToRun = thisFrame.order.length;
+            }
+            return callback;
+        },
+        /**
+         * Cancel the provided callback from running on the next frame.
+         */
+        cancel: (callback) => {
+            nextFrame.remove(callback);
+            toKeepAlive.delete(callback);
+        },
+        /**
+         * Execute all schedule callbacks.
+         */
+        process: (frameData) => {
+            /**
+             * If we're already processing we've probably been triggered by a flushSync
+             * inside an existing process. Instead of executing, mark flushNextFrame
+             * as true and ensure we flush the following frame at the end of this one.
+             */
+            if (isProcessing) {
+                flushNextFrame = true;
+                return;
+            }
+            isProcessing = true;
+            [thisFrame, nextFrame] = [nextFrame, thisFrame];
+            // Clear the next frame queue
+            nextFrame.clear();
+            // Execute this frame
+            numToRun = thisFrame.order.length;
+            if (numToRun) {
+                for (let i = 0; i < numToRun; i++) {
+                    const callback = thisFrame.order[i];
+                    if (toKeepAlive.has(callback)) {
+                        step.schedule(callback);
+                        runNextFrame();
+                    }
+                    callback(frameData);
+                }
+            }
+            isProcessing = false;
+            if (flushNextFrame) {
+                flushNextFrame = false;
+                step.process(frameData);
+            }
+        },
+    };
+    return step;
+}
+
+
+
+;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/frameloop/batcher.mjs
+
+
+
+const stepsOrder = [
+    "read", // Read
+    "resolveKeyframes", // Write/Read/Write/Read
+    "update", // Compute
+    "preRender", // Compute
+    "render", // Write
+    "postRender", // Compute
+];
+const maxElapsed = 40;
+function createRenderBatcher(scheduleNextBatch, allowKeepAlive) {
+    let runNextFrame = false;
+    let useDefaultElapsed = true;
+    const state = {
+        delta: 0,
+        timestamp: 0,
+        isProcessing: false,
+    };
+    const steps = stepsOrder.reduce((acc, key) => {
+        acc[key] = createRenderStep(() => (runNextFrame = true));
+        return acc;
+    }, {});
+    const processStep = (stepId) => {
+        steps[stepId].process(state);
+    };
+    const processBatch = () => {
+        const timestamp = MotionGlobalConfig.useManualTiming
+            ? state.timestamp
+            : performance.now();
+        runNextFrame = false;
+        state.delta = useDefaultElapsed
+            ? 1000 / 60
+            : Math.max(Math.min(timestamp - state.timestamp, maxElapsed), 1);
+        state.timestamp = timestamp;
+        state.isProcessing = true;
+        stepsOrder.forEach(processStep);
+        state.isProcessing = false;
+        if (runNextFrame && allowKeepAlive) {
+            useDefaultElapsed = false;
+            scheduleNextBatch(processBatch);
+        }
+    };
+    const wake = () => {
+        runNextFrame = true;
+        useDefaultElapsed = true;
+        if (!state.isProcessing) {
+            scheduleNextBatch(processBatch);
+        }
+    };
+    const schedule = stepsOrder.reduce((acc, key) => {
+        const step = steps[key];
+        acc[key] = (process, keepAlive = false, immediate = false) => {
+            if (!runNextFrame)
+                wake();
+            return step.schedule(process, keepAlive, immediate);
+        };
+        return acc;
+    }, {});
+    const cancel = (process) => stepsOrder.forEach((key) => steps[key].cancel(process));
+    return { schedule, cancel, state, steps };
+}
+
+
+
+;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/frameloop/microtask.mjs
+
+
+const { schedule: microtask, cancel: cancelMicrotask } = createRenderBatcher(queueMicrotask, false);
+
+
+
+;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/motion/utils/use-visual-element.mjs
+
+
+
+
+
+
+
+
+
+function useVisualElement(Component, visualState, props, createVisualElement) {
+    const { visualElement: parent } = (0,react.useContext)(MotionContext);
+    const lazyContext = (0,react.useContext)(LazyContext);
+    const presenceContext = (0,react.useContext)(PresenceContext_PresenceContext);
+    const reducedMotionConfig = (0,react.useContext)(MotionConfigContext).reducedMotion;
+    const visualElementRef = (0,react.useRef)();
+    /**
+     * If we haven't preloaded a renderer, check to see if we have one lazy-loaded
+     */
+    createVisualElement = createVisualElement || lazyContext.renderer;
+    if (!visualElementRef.current && createVisualElement) {
+        visualElementRef.current = createVisualElement(Component, {
+            visualState,
+            parent,
+            props,
+            presenceContext,
+            blockInitialAnimation: presenceContext
+                ? presenceContext.initial === false
+                : false,
+            reducedMotionConfig,
+        });
+    }
+    const visualElement = visualElementRef.current;
+    (0,react.useInsertionEffect)(() => {
+        visualElement && visualElement.update(props, presenceContext);
+    });
+    /**
+     * Cache this value as we want to know whether HandoffAppearAnimations
+     * was present on initial render - it will be deleted after this.
+     */
+    const wantsHandoff = (0,react.useRef)(Boolean(props[optimizedAppearDataAttribute] &&
+        !window.HandoffComplete));
+    use_isomorphic_effect_useIsomorphicLayoutEffect(() => {
+        if (!visualElement)
+            return;
+        microtask.render(visualElement.render);
+        /**
+         * Ideally this function would always run in a useEffect.
+         *
+         * However, if we have optimised appear animations to handoff from,
+         * it needs to happen synchronously to ensure there's no flash of
+         * incorrect styles in the event of a hydration error.
+         *
+         * So if we detect a situtation where optimised appear animations
+         * are running, we use useLayoutEffect to trigger animations.
+         */
+        if (wantsHandoff.current && visualElement.animationState) {
+            visualElement.animationState.animateChanges();
+        }
+    });
+    (0,react.useEffect)(() => {
+        if (!visualElement)
+            return;
+        visualElement.updateFeatures();
+        if (!wantsHandoff.current && visualElement.animationState) {
+            visualElement.animationState.animateChanges();
+        }
+        if (wantsHandoff.current) {
+            wantsHandoff.current = false;
+            // This ensures all future calls to animateChanges() will run in useEffect
+            window.HandoffComplete = true;
+        }
+    });
+    return visualElement;
+}
+
+
+
+;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/utils/is-ref-object.mjs
+function isRefObject(ref) {
+    return (ref &&
+        typeof ref === "object" &&
+        Object.prototype.hasOwnProperty.call(ref, "current"));
+}
+
+
+
+;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/motion/utils/use-motion-ref.mjs
+
+
+
+/**
+ * Creates a ref function that, when called, hydrates the provided
+ * external ref and VisualElement.
+ */
+function useMotionRef(visualState, visualElement, externalRef) {
+    return (0,react.useCallback)((instance) => {
+        instance && visualState.mount && visualState.mount(instance);
+        if (visualElement) {
+            instance
+                ? visualElement.mount(instance)
+                : visualElement.unmount();
+        }
+        if (externalRef) {
+            if (typeof externalRef === "function") {
+                externalRef(instance);
+            }
+            else if (isRefObject(externalRef)) {
+                externalRef.current = instance;
+            }
+        }
+    }, 
+    /**
+     * Only pass a new ref callback to React if we've received a visual element
+     * factory. Otherwise we'll be mounting/remounting every time externalRef
+     * or other dependencies change.
+     */
+    [visualElement]);
+}
+
+
+
+;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/render/utils/is-variant-label.mjs
+/**
+ * Decides if the supplied variable is variant label
+ */
+function isVariantLabel(v) {
+    return typeof v === "string" || Array.isArray(v);
+}
+
+
+
+;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/animation/utils/is-animation-controls.mjs
+function isAnimationControls(v) {
+    return (v !== null &&
+        typeof v === "object" &&
+        typeof v.start === "function");
+}
+
+
+
+;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/render/utils/variant-props.mjs
+const variantPriorityOrder = [
+    "animate",
+    "whileInView",
+    "whileFocus",
+    "whileHover",
+    "whileTap",
+    "whileDrag",
+    "exit",
+];
+const variantProps = ["initial", ...variantPriorityOrder];
+
+
+
+;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/render/utils/is-controlling-variants.mjs
+
+
+
+
+function isControllingVariants(props) {
+    return (isAnimationControls(props.animate) ||
+        variantProps.some((name) => isVariantLabel(props[name])));
+}
+function isVariantNode(props) {
+    return Boolean(isControllingVariants(props) || props.variants);
+}
+
+
+
+;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/context/MotionContext/utils.mjs
+
+
+
+function getCurrentTreeVariants(props, context) {
+    if (isControllingVariants(props)) {
+        const { initial, animate } = props;
+        return {
+            initial: initial === false || isVariantLabel(initial)
+                ? initial
+                : undefined,
+            animate: isVariantLabel(animate) ? animate : undefined,
+        };
+    }
+    return props.inherit !== false ? context : {};
+}
+
+
+
+;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/context/MotionContext/create.mjs
+
+
+
+
+function useCreateMotionContext(props) {
+    const { initial, animate } = getCurrentTreeVariants(props, (0,react.useContext)(MotionContext));
+    return (0,react.useMemo)(() => ({ initial, animate }), [variantLabelsAsDependency(initial), variantLabelsAsDependency(animate)]);
+}
+function variantLabelsAsDependency(prop) {
+    return Array.isArray(prop) ? prop.join(" ") : prop;
+}
+
+
+
+;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/motion/features/definitions.mjs
+const featureProps = {
+    animation: [
+        "animate",
+        "variants",
+        "whileHover",
+        "whileTap",
+        "exit",
+        "whileInView",
+        "whileFocus",
+        "whileDrag",
+    ],
+    exit: ["exit"],
+    drag: ["drag", "dragControls"],
+    focus: ["whileFocus"],
+    hover: ["whileHover", "onHoverStart", "onHoverEnd"],
+    tap: ["whileTap", "onTap", "onTapStart", "onTapCancel"],
+    pan: ["onPan", "onPanStart", "onPanSessionStart", "onPanEnd"],
+    inView: ["whileInView", "onViewportEnter", "onViewportLeave"],
+    layout: ["layout", "layoutId"],
+};
+const featureDefinitions = {};
+for (const key in featureProps) {
+    featureDefinitions[key] = {
+        isEnabled: (props) => featureProps[key].some((name) => !!props[name]),
+    };
+}
+
+
+
+;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/motion/features/load-features.mjs
+
+
+function loadFeatures(features) {
+    for (const key in features) {
+        featureDefinitions[key] = {
+            ...featureDefinitions[key],
+            ...features[key],
+        };
+    }
+}
+
+
+
+;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/context/LayoutGroupContext.mjs
+
+
+const LayoutGroupContext = (0,react.createContext)({});
+
+
+
+;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/context/SwitchLayoutGroupContext.mjs
+
+
+/**
+ * Internal, exported only for usage in Framer
+ */
+const SwitchLayoutGroupContext = (0,react.createContext)({});
+
+
+
+;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/motion/utils/symbol.mjs
+const motionComponentSymbol = Symbol.for("motionComponentSymbol");
+
+
+
+;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/motion/index.mjs
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/**
+ * Create a `motion` component.
+ *
+ * This function accepts a Component argument, which can be either a string (ie "div"
+ * for `motion.div`), or an actual React component.
+ *
+ * Alongside this is a config option which provides a way of rendering the provided
+ * component "offline", or outside the React render cycle.
+ */
+function motion_createMotionComponent({ preloadedFeatures, createVisualElement, useRender, useVisualState, Component, }) {
+    preloadedFeatures && loadFeatures(preloadedFeatures);
+    function MotionComponent(props, externalRef) {
+        /**
+         * If we need to measure the element we load this functionality in a
+         * separate class component in order to gain access to getSnapshotBeforeUpdate.
+         */
+        let MeasureLayout;
+        const configAndProps = {
+            ...(0,react.useContext)(MotionConfigContext),
+            ...props,
+            layoutId: useLayoutId(props),
+        };
+        const { isStatic } = configAndProps;
+        const context = useCreateMotionContext(props);
+        const visualState = useVisualState(props, isStatic);
+        if (!isStatic && isBrowser) {
+            /**
+             * Create a VisualElement for this component. A VisualElement provides a common
+             * interface to renderer-specific APIs (ie DOM/Three.js etc) as well as
+             * providing a way of rendering to these APIs outside of the React render loop
+             * for more performant animations and interactions
+             */
+            context.visualElement = useVisualElement(Component, visualState, configAndProps, createVisualElement);
+            /**
+             * Load Motion gesture and animation features. These are rendered as renderless
+             * components so each feature can optionally make use of React lifecycle methods.
+             */
+            const initialLayoutGroupConfig = (0,react.useContext)(SwitchLayoutGroupContext);
+            const isStrict = (0,react.useContext)(LazyContext).strict;
+            if (context.visualElement) {
+                MeasureLayout = context.visualElement.loadFeatures(
+                // Note: Pass the full new combined props to correctly re-render dynamic feature components.
+                configAndProps, isStrict, preloadedFeatures, initialLayoutGroupConfig);
+            }
+        }
+        /**
+         * The mount order and hierarchy is specific to ensure our element ref
+         * is hydrated by the time features fire their effects.
+         */
+        return ((0,jsx_runtime.jsxs)(MotionContext.Provider, { value: context, children: [MeasureLayout && context.visualElement ? ((0,jsx_runtime.jsx)(MeasureLayout, { visualElement: context.visualElement, ...configAndProps })) : null, useRender(Component, props, useMotionRef(visualState, context.visualElement, externalRef), visualState, isStatic, context.visualElement)] }));
+    }
+    const ForwardRefComponent = (0,react.forwardRef)(MotionComponent);
+    ForwardRefComponent[motionComponentSymbol] = Component;
+    return ForwardRefComponent;
+}
+function useLayoutId({ layoutId }) {
+    const layoutGroupId = (0,react.useContext)(LayoutGroupContext).id;
+    return layoutGroupId && layoutId !== undefined
+        ? layoutGroupId + "-" + layoutId
+        : layoutId;
+}
+
+
+
+;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/render/dom/motion-proxy.mjs
+
+
+/**
+ * Convert any React component into a `motion` component. The provided component
+ * **must** use `React.forwardRef` to the underlying DOM component you want to animate.
+ *
+ * ```jsx
+ * const Component = React.forwardRef((props, ref) => {
+ *   return <div ref={ref} />
+ * })
+ *
+ * const MotionComponent = motion(Component)
+ * ```
+ *
+ * @public
+ */
+function createMotionProxy(createConfig) {
+    function custom(Component, customMotionComponentConfig = {}) {
+        return motion_createMotionComponent(createConfig(Component, customMotionComponentConfig));
+    }
+    if (typeof Proxy === "undefined") {
+        return custom;
+    }
+    /**
+     * A cache of generated `motion` components, e.g `motion.div`, `motion.input` etc.
+     * Rather than generating them anew every render.
+     */
+    const componentCache = new Map();
+    return new Proxy(custom, {
+        /**
+         * Called when `motion` is referenced with a prop: `motion.div`, `motion.input` etc.
+         * The prop name is passed through as `key` and we can use that to generate a `motion`
+         * DOM component with that name.
+         */
+        get: (_target, key) => {
+            /**
+             * If this element doesn't exist in the component cache, create it and cache.
+             */
+            if (!componentCache.has(key)) {
+                componentCache.set(key, custom(key));
+            }
+            return componentCache.get(key);
+        },
+    });
+}
+
+
+
+;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/render/svg/lowercase-elements.mjs
+/**
+ * We keep these listed seperately as we use the lowercase tag names as part
+ * of the runtime bundle to detect SVG components
+ */
+const lowercaseSVGElements = [
+    "animate",
+    "circle",
+    "defs",
+    "desc",
+    "ellipse",
+    "g",
+    "image",
+    "line",
+    "filter",
+    "marker",
+    "mask",
+    "metadata",
+    "path",
+    "pattern",
+    "polygon",
+    "polyline",
+    "rect",
+    "stop",
+    "switch",
+    "symbol",
+    "svg",
+    "text",
+    "tspan",
+    "use",
+    "view",
+];
+
+
+
+;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/render/dom/utils/is-svg-component.mjs
+
+
+function isSVGComponent(Component) {
+    if (
+    /**
+     * If it's not a string, it's a custom React component. Currently we only support
+     * HTML custom React components.
+     */
+    typeof Component !== "string" ||
+        /**
+         * If it contains a dash, the element is a custom HTML webcomponent.
+         */
+        Component.includes("-")) {
+        return false;
+    }
+    else if (
+    /**
+     * If it's in our list of lowercase SVG tags, it's an SVG component
+     */
+    lowercaseSVGElements.indexOf(Component) > -1 ||
+        /**
+         * If it contains a capital letter, it's an SVG component
+         */
+        /[A-Z]/u.test(Component)) {
+        return true;
+    }
+    return false;
+}
+
+
+
+;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/projection/styles/scale-correction.mjs
+const scaleCorrectors = {};
+function addScaleCorrector(correctors) {
+    Object.assign(scaleCorrectors, correctors);
+}
+
+
+
+;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/render/html/utils/transform.mjs
+/**
+ * Generate a list of every possible transform key.
+ */
+const transformPropOrder = [
+    "transformPerspective",
+    "x",
+    "y",
+    "z",
+    "translateX",
+    "translateY",
+    "translateZ",
+    "scale",
+    "scaleX",
+    "scaleY",
+    "rotate",
+    "rotateX",
+    "rotateY",
+    "rotateZ",
+    "skew",
+    "skewX",
+    "skewY",
+];
+/**
+ * A quick lookup for transform props.
+ */
+const transformProps = new Set(transformPropOrder);
+
+
+
+;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/motion/utils/is-forced-motion-value.mjs
+
+
+
+function isForcedMotionValue(key, { layout, layoutId }) {
+    return (transformProps.has(key) ||
+        key.startsWith("origin") ||
+        ((layout || layoutId !== undefined) &&
+            (!!scaleCorrectors[key] || key === "opacity")));
+}
+
+
+
+;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/value/utils/is-motion-value.mjs
+const isMotionValue = (value) => Boolean(value && value.getVelocity);
+
+
+
+;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/render/html/utils/build-transform.mjs
+
+
+const translateAlias = {
+    x: "translateX",
+    y: "translateY",
+    z: "translateZ",
+    transformPerspective: "perspective",
+};
+const numTransforms = transformPropOrder.length;
+/**
+ * Build a CSS transform style from individual x/y/scale etc properties.
+ *
+ * This outputs with a default order of transforms/scales/rotations, this can be customised by
+ * providing a transformTemplate function.
+ */
+function buildTransform(transform, { enableHardwareAcceleration = true, allowTransformNone = true, }, transformIsDefault, transformTemplate) {
+    // The transform string we're going to build into.
+    let transformString = "";
+    /**
+     * Loop over all possible transforms in order, adding the ones that
+     * are present to the transform string.
+     */
+    for (let i = 0; i < numTransforms; i++) {
+        const key = transformPropOrder[i];
+        if (transform[key] !== undefined) {
+            const transformName = translateAlias[key] || key;
+            transformString += `${transformName}(${transform[key]}) `;
+        }
+    }
+    if (enableHardwareAcceleration && !transform.z) {
+        transformString += "translateZ(0)";
+    }
+    transformString = transformString.trim();
+    // If we have a custom `transform` template, pass our transform values and
+    // generated transformString to that before returning
+    if (transformTemplate) {
+        transformString = transformTemplate(transform, transformIsDefault ? "" : transformString);
+    }
+    else if (allowTransformNone && transformIsDefault) {
+        transformString = "none";
+    }
+    return transformString;
+}
+
+
+
+;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/render/dom/utils/is-css-variable.mjs
+const checkStringStartsWith = (token) => (key) => typeof key === "string" && key.startsWith(token);
+const isCSSVariableName = checkStringStartsWith("--");
+const startsAsVariableToken = checkStringStartsWith("var(--");
+const isCSSVariableToken = (value) => {
+    const startsWithToken = startsAsVariableToken(value);
+    if (!startsWithToken)
+        return false;
+    // Ensure any comments are stripped from the value as this can harm performance of the regex.
+    return singleCssVariableRegex.test(value.split("/*")[0].trim());
+};
+const singleCssVariableRegex = /var\(--(?:[\w-]+\s*|[\w-]+\s*,(?:\s*[^)(\s]|\s*\((?:[^)(]|\([^)(]*\))*\))+\s*)\)$/iu;
+
+
+
+;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/render/dom/value-types/get-as-type.mjs
+/**
+ * Provided a value and a ValueType, returns the value as that value type.
+ */
+const getValueAsType = (value, type) => {
+    return type && typeof value === "number"
+        ? type.transform(value)
+        : value;
+};
+
+
+
+;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/utils/clamp.mjs
+const clamp = (min, max, v) => {
+    if (v > max)
+        return max;
+    if (v < min)
+        return min;
+    return v;
+};
+
+
+
+;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/value/types/numbers/index.mjs
+
+
+const number = {
+    test: (v) => typeof v === "number",
+    parse: parseFloat,
+    transform: (v) => v,
+};
+const alpha = {
+    ...number,
+    transform: (v) => clamp(0, 1, v),
+};
+const scale = {
+    ...number,
+    default: 1,
+};
+
+
+
+;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/value/types/utils.mjs
+/**
+ * TODO: When we move from string as a source of truth to data models
+ * everything in this folder should probably be referred to as models vs types
+ */
+// If this number is a decimal, make it just five decimal places
+// to avoid exponents
+const sanitize = (v) => Math.round(v * 100000) / 100000;
+const floatRegex = /-?(?:\d+(?:\.\d+)?|\.\d+)/gu;
+const colorRegex = /(?:#[\da-f]{3,8}|(?:rgb|hsl)a?\((?:-?[\d.]+%?[,\s]+){2}-?[\d.]+%?\s*(?:[,/]\s*)?(?:\b\d+(?:\.\d+)?|\.\d+)?%?\))/giu;
+const singleColorRegex = /^(?:#[\da-f]{3,8}|(?:rgb|hsl)a?\((?:-?[\d.]+%?[,\s]+){2}-?[\d.]+%?\s*(?:[,/]\s*)?(?:\b\d+(?:\.\d+)?|\.\d+)?%?\))$/iu;
+function utils_isString(v) {
+    return typeof v === "string";
+}
+
+
+
+;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/value/types/numbers/units.mjs
+
+
+const createUnitType = (unit) => ({
+    test: (v) => utils_isString(v) && v.endsWith(unit) && v.split(" ").length === 1,
+    parse: parseFloat,
+    transform: (v) => `${v}${unit}`,
+});
+const degrees = createUnitType("deg");
+const percent = createUnitType("%");
+const px = createUnitType("px");
+const vh = createUnitType("vh");
+const vw = createUnitType("vw");
+const progressPercentage = {
+    ...percent,
+    parse: (v) => percent.parse(v) / 100,
+    transform: (v) => percent.transform(v * 100),
+};
+
+
+
+;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/render/dom/value-types/type-int.mjs
+
+
+const type_int_int = {
+    ...number,
+    transform: Math.round,
+};
+
+
+
+;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/render/dom/value-types/number.mjs
+
+
+
+
+const numberValueTypes = {
+    // Border props
+    borderWidth: px,
+    borderTopWidth: px,
+    borderRightWidth: px,
+    borderBottomWidth: px,
+    borderLeftWidth: px,
+    borderRadius: px,
+    radius: px,
+    borderTopLeftRadius: px,
+    borderTopRightRadius: px,
+    borderBottomRightRadius: px,
+    borderBottomLeftRadius: px,
+    // Positioning props
+    width: px,
+    maxWidth: px,
+    height: px,
+    maxHeight: px,
+    size: px,
+    top: px,
+    right: px,
+    bottom: px,
+    left: px,
+    // Spacing props
+    padding: px,
+    paddingTop: px,
+    paddingRight: px,
+    paddingBottom: px,
+    paddingLeft: px,
+    margin: px,
+    marginTop: px,
+    marginRight: px,
+    marginBottom: px,
+    marginLeft: px,
+    // Transform props
+    rotate: degrees,
+    rotateX: degrees,
+    rotateY: degrees,
+    rotateZ: degrees,
+    scale: scale,
+    scaleX: scale,
+    scaleY: scale,
+    scaleZ: scale,
+    skew: degrees,
+    skewX: degrees,
+    skewY: degrees,
+    distance: px,
+    translateX: px,
+    translateY: px,
+    translateZ: px,
+    x: px,
+    y: px,
+    z: px,
+    perspective: px,
+    transformPerspective: px,
+    opacity: alpha,
+    originX: progressPercentage,
+    originY: progressPercentage,
+    originZ: px,
+    // Misc
+    zIndex: type_int_int,
+    backgroundPositionX: px,
+    backgroundPositionY: px,
+    // SVG
+    fillOpacity: alpha,
+    strokeOpacity: alpha,
+    numOctaves: type_int_int,
+};
+
+
+
+;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/render/html/utils/build-styles.mjs
+
+
+
+
+
+
+function buildHTMLStyles(state, latestValues, options, transformTemplate) {
+    const { style, vars, transform, transformOrigin } = state;
+    // Track whether we encounter any transform or transformOrigin values.
+    let hasTransform = false;
+    let hasTransformOrigin = false;
+    // Does the calculated transform essentially equal "none"?
+    let transformIsNone = true;
+    /**
+     * Loop over all our latest animated values and decide whether to handle them
+     * as a style or CSS variable.
+     *
+     * Transforms and transform origins are kept seperately for further processing.
+     */
+    for (const key in latestValues) {
+        const value = latestValues[key];
+        /**
+         * If this is a CSS variable we don't do any further processing.
+         */
+        if (isCSSVariableName(key)) {
+            vars[key] = value;
+            continue;
+        }
+        // Convert the value to its default value type, ie 0 -> "0px"
+        const valueType = numberValueTypes[key];
+        const valueAsType = getValueAsType(value, valueType);
+        if (transformProps.has(key)) {
+            // If this is a transform, flag to enable further transform processing
+            hasTransform = true;
+            transform[key] = valueAsType;
+            // If we already know we have a non-default transform, early return
+            if (!transformIsNone)
+                continue;
+            // Otherwise check to see if this is a default transform
+            if (value !== (valueType.default || 0))
+                transformIsNone = false;
+        }
+        else if (key.startsWith("origin")) {
+            // If this is a transform origin, flag and enable further transform-origin processing
+            hasTransformOrigin = true;
+            transformOrigin[key] = valueAsType;
+        }
+        else {
+            style[key] = valueAsType;
+        }
+    }
+    if (!latestValues.transform) {
+        if (hasTransform || transformTemplate) {
+            style.transform = buildTransform(state.transform, options, transformIsNone, transformTemplate);
+        }
+        else if (style.transform) {
+            /**
+             * If we have previously created a transform but currently don't have any,
+             * reset transform style to none.
+             */
+            style.transform = "none";
+        }
+    }
+    /**
+     * Build a transformOrigin style. Uses the same defaults as the browser for
+     * undefined origins.
+     */
+    if (hasTransformOrigin) {
+        const { originX = "50%", originY = "50%", originZ = 0, } = transformOrigin;
+        style.transformOrigin = `${originX} ${originY} ${originZ}`;
+    }
+}
+
+
+
+;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/render/html/utils/create-render-state.mjs
+const createHtmlRenderState = () => ({
+    style: {},
+    transform: {},
+    transformOrigin: {},
+    vars: {},
+});
+
+
+
+;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/render/html/use-props.mjs
+
+
+
+
+
+
+function copyRawValuesOnly(target, source, props) {
+    for (const key in source) {
+        if (!isMotionValue(source[key]) && !isForcedMotionValue(key, props)) {
+            target[key] = source[key];
+        }
+    }
+}
+function useInitialMotionValues({ transformTemplate }, visualState, isStatic) {
+    return (0,react.useMemo)(() => {
+        const state = createHtmlRenderState();
+        buildHTMLStyles(state, visualState, { enableHardwareAcceleration: !isStatic }, transformTemplate);
+        return Object.assign({}, state.vars, state.style);
+    }, [visualState]);
+}
+function useStyle(props, visualState, isStatic) {
+    const styleProp = props.style || {};
+    const style = {};
+    /**
+     * Copy non-Motion Values straight into style
+     */
+    copyRawValuesOnly(style, styleProp, props);
+    Object.assign(style, useInitialMotionValues(props, visualState, isStatic));
+    return style;
+}
+function useHTMLProps(props, visualState, isStatic) {
+    // The `any` isn't ideal but it is the type of createElement props argument
+    const htmlProps = {};
+    const style = useStyle(props, visualState, isStatic);
+    if (props.drag && props.dragListener !== false) {
+        // Disable the ghost element when a user drags
+        htmlProps.draggable = false;
+        // Disable text selection
+        style.userSelect =
+            style.WebkitUserSelect =
+                style.WebkitTouchCallout =
+                    "none";
+        // Disable scrolling on the draggable direction
+        style.touchAction =
+            props.drag === true
+                ? "none"
+                : `pan-${props.drag === "x" ? "y" : "x"}`;
+    }
+    if (props.tabIndex === undefined &&
+        (props.onTap || props.onTapStart || props.whileTap)) {
+        htmlProps.tabIndex = 0;
+    }
+    htmlProps.style = style;
+    return htmlProps;
+}
+
+
+
+;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/motion/utils/valid-prop.mjs
+/**
+ * A list of all valid MotionProps.
+ *
+ * @privateRemarks
+ * This doesn't throw if a `MotionProp` name is missing - it should.
+ */
+const validMotionProps = new Set([
+    "animate",
+    "exit",
+    "variants",
+    "initial",
+    "style",
+    "values",
+    "variants",
+    "transition",
+    "transformTemplate",
+    "custom",
+    "inherit",
+    "onBeforeLayoutMeasure",
+    "onAnimationStart",
+    "onAnimationComplete",
+    "onUpdate",
+    "onDragStart",
+    "onDrag",
+    "onDragEnd",
+    "onMeasureDragConstraints",
+    "onDirectionLock",
+    "onDragTransitionEnd",
+    "_dragX",
+    "_dragY",
+    "onHoverStart",
+    "onHoverEnd",
+    "onViewportEnter",
+    "onViewportLeave",
+    "globalTapTarget",
+    "ignoreStrict",
+    "viewport",
+]);
+/**
+ * Check whether a prop name is a valid `MotionProp` key.
+ *
+ * @param key - Name of the property to check
+ * @returns `true` is key is a valid `MotionProp`.
+ *
+ * @public
+ */
+function isValidMotionProp(key) {
+    return (key.startsWith("while") ||
+        (key.startsWith("drag") && key !== "draggable") ||
+        key.startsWith("layout") ||
+        key.startsWith("onTap") ||
+        key.startsWith("onPan") ||
+        key.startsWith("onLayout") ||
+        validMotionProps.has(key));
+}
+
+
+
+;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/render/dom/utils/filter-props.mjs
+
+
+let shouldForward = (key) => !isValidMotionProp(key);
+function loadExternalIsValidProp(isValidProp) {
+    if (!isValidProp)
+        return;
+    // Explicitly filter our events
+    shouldForward = (key) => key.startsWith("on") ? !isValidMotionProp(key) : isValidProp(key);
+}
+/**
+ * Emotion and Styled Components both allow users to pass through arbitrary props to their components
+ * to dynamically generate CSS. They both use the `@emotion/is-prop-valid` package to determine which
+ * of these should be passed to the underlying DOM node.
+ *
+ * However, when styling a Motion component `styled(motion.div)`, both packages pass through *all* props
+ * as it's seen as an arbitrary component rather than a DOM node. Motion only allows arbitrary props
+ * passed through the `custom` prop so it doesn't *need* the payload or computational overhead of
+ * `@emotion/is-prop-valid`, however to fix this problem we need to use it.
+ *
+ * By making it an optionalDependency we can offer this functionality only in the situations where it's
+ * actually required.
+ */
+try {
+    /**
+     * We attempt to import this package but require won't be defined in esm environments, in that case
+     * isPropValid will have to be provided via `MotionContext`. In a 6.0.0 this should probably be removed
+     * in favour of explicit injection.
+     */
+    loadExternalIsValidProp(require("@emotion/is-prop-valid").default);
+}
+catch (_a) {
+    // We don't need to actually do anything here - the fallback is the existing `isPropValid`.
+}
+function filterProps(props, isDom, forwardMotionProps) {
+    const filteredProps = {};
+    for (const key in props) {
+        /**
+         * values is considered a valid prop by Emotion, so if it's present
+         * this will be rendered out to the DOM unless explicitly filtered.
+         *
+         * We check the type as it could be used with the `feColorMatrix`
+         * element, which we support.
+         */
+        if (key === "values" && typeof props.values === "object")
+            continue;
+        if (shouldForward(key) ||
+            (forwardMotionProps === true && isValidMotionProp(key)) ||
+            (!isDom && !isValidMotionProp(key)) ||
+            // If trying to use native HTML drag events, forward drag listeners
+            (props["draggable"] &&
+                key.startsWith("onDrag"))) {
+            filteredProps[key] =
+                props[key];
+        }
+    }
+    return filteredProps;
+}
+
+
+
+;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/render/svg/utils/transform-origin.mjs
+
+
+function calcOrigin(origin, offset, size) {
+    return typeof origin === "string"
+        ? origin
+        : px.transform(offset + size * origin);
+}
+/**
+ * The SVG transform origin defaults are different to CSS and is less intuitive,
+ * so we use the measured dimensions of the SVG to reconcile these.
+ */
+function calcSVGTransformOrigin(dimensions, originX, originY) {
+    const pxOriginX = calcOrigin(originX, dimensions.x, dimensions.width);
+    const pxOriginY = calcOrigin(originY, dimensions.y, dimensions.height);
+    return `${pxOriginX} ${pxOriginY}`;
+}
+
+
+
+;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/render/svg/utils/path.mjs
+
+
+const dashKeys = {
+    offset: "stroke-dashoffset",
+    array: "stroke-dasharray",
+};
+const camelKeys = {
+    offset: "strokeDashoffset",
+    array: "strokeDasharray",
+};
+/**
+ * Build SVG path properties. Uses the path's measured length to convert
+ * our custom pathLength, pathSpacing and pathOffset into stroke-dashoffset
+ * and stroke-dasharray attributes.
+ *
+ * This function is mutative to reduce per-frame GC.
+ */
+function buildSVGPath(attrs, length, spacing = 1, offset = 0, useDashCase = true) {
+    // Normalise path length by setting SVG attribute pathLength to 1
+    attrs.pathLength = 1;
+    // We use dash case when setting attributes directly to the DOM node and camel case
+    // when defining props on a React component.
+    const keys = useDashCase ? dashKeys : camelKeys;
+    // Build the dash offset
+    attrs[keys.offset] = px.transform(-offset);
+    // Build the dash array
+    const pathLength = px.transform(length);
+    const pathSpacing = px.transform(spacing);
+    attrs[keys.array] = `${pathLength} ${pathSpacing}`;
+}
+
+
+
+;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/render/svg/utils/build-attrs.mjs
+
+
+
+
+/**
+ * Build SVG visual attrbutes, like cx and style.transform
+ */
+function buildSVGAttrs(state, { attrX, attrY, attrScale, originX, originY, pathLength, pathSpacing = 1, pathOffset = 0, 
+// This is object creation, which we try to avoid per-frame.
+...latest }, options, isSVGTag, transformTemplate) {
+    buildHTMLStyles(state, latest, options, transformTemplate);
+    /**
+     * For svg tags we just want to make sure viewBox is animatable and treat all the styles
+     * as normal HTML tags.
+     */
+    if (isSVGTag) {
+        if (state.style.viewBox) {
+            state.attrs.viewBox = state.style.viewBox;
+        }
+        return;
+    }
+    state.attrs = state.style;
+    state.style = {};
+    const { attrs, style, dimensions } = state;
+    /**
+     * However, we apply transforms as CSS transforms. So if we detect a transform we take it from attrs
+     * and copy it into style.
+     */
+    if (attrs.transform) {
+        if (dimensions)
+            style.transform = attrs.transform;
+        delete attrs.transform;
+    }
+    // Parse transformOrigin
+    if (dimensions &&
+        (originX !== undefined || originY !== undefined || style.transform)) {
+        style.transformOrigin = calcSVGTransformOrigin(dimensions, originX !== undefined ? originX : 0.5, originY !== undefined ? originY : 0.5);
+    }
+    // Render attrX/attrY/attrScale as attributes
+    if (attrX !== undefined)
+        attrs.x = attrX;
+    if (attrY !== undefined)
+        attrs.y = attrY;
+    if (attrScale !== undefined)
+        attrs.scale = attrScale;
+    // Build SVG path if one has been defined
+    if (pathLength !== undefined) {
+        buildSVGPath(attrs, pathLength, pathSpacing, pathOffset, false);
+    }
+}
+
+
+
+;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/render/svg/utils/create-render-state.mjs
+
+
+const createSvgRenderState = () => ({
+    ...createHtmlRenderState(),
+    attrs: {},
+});
+
+
+
+;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/render/svg/utils/is-svg-tag.mjs
+const isSVGTag = (tag) => typeof tag === "string" && tag.toLowerCase() === "svg";
+
+
+
+;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/render/svg/use-props.mjs
+
+
+
+
+
+
+function useSVGProps(props, visualState, _isStatic, Component) {
+    const visualProps = (0,react.useMemo)(() => {
+        const state = createSvgRenderState();
+        buildSVGAttrs(state, visualState, { enableHardwareAcceleration: false }, isSVGTag(Component), props.transformTemplate);
+        return {
+            ...state.attrs,
+            style: { ...state.style },
+        };
+    }, [visualState]);
+    if (props.style) {
+        const rawStyles = {};
+        copyRawValuesOnly(rawStyles, props.style, props);
+        visualProps.style = { ...rawStyles, ...visualProps.style };
+    }
+    return visualProps;
+}
+
+
+
+;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/render/dom/use-render.mjs
+
+
+
+
+
+
+
+function createUseRender(forwardMotionProps = false) {
+    const useRender = (Component, props, ref, { latestValues }, isStatic) => {
+        const useVisualProps = isSVGComponent(Component)
+            ? useSVGProps
+            : useHTMLProps;
+        const visualProps = useVisualProps(props, latestValues, isStatic, Component);
+        const filteredProps = filterProps(props, typeof Component === "string", forwardMotionProps);
+        const elementProps = Component !== react.Fragment
+            ? { ...filteredProps, ...visualProps, ref }
+            : {};
+        /**
+         * If component has been handed a motion value as its child,
+         * memoise its initial value and render that. Subsequent updates
+         * will be handled by the onChange handler
+         */
+        const { children } = props;
+        const renderedChildren = (0,react.useMemo)(() => (isMotionValue(children) ? children.get() : children), [children]);
+        return (0,react.createElement)(Component, {
+            ...elementProps,
+            children: renderedChildren,
+        });
+    };
+    return useRender;
+}
+
+
+
+;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/render/html/utils/render.mjs
+function renderHTML(element, { style, vars }, styleProp, projection) {
+    Object.assign(element.style, style, projection && projection.getProjectionStyles(styleProp));
+    // Loop over any CSS variables and assign those.
+    for (const key in vars) {
+        element.style.setProperty(key, vars[key]);
+    }
+}
+
+
+
+;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/render/svg/utils/camel-case-attrs.mjs
+/**
+ * A set of attribute names that are always read/written as camel case.
+ */
+const camelCaseAttributes = new Set([
+    "baseFrequency",
+    "diffuseConstant",
+    "kernelMatrix",
+    "kernelUnitLength",
+    "keySplines",
+    "keyTimes",
+    "limitingConeAngle",
+    "markerHeight",
+    "markerWidth",
+    "numOctaves",
+    "targetX",
+    "targetY",
+    "surfaceScale",
+    "specularConstant",
+    "specularExponent",
+    "stdDeviation",
+    "tableValues",
+    "viewBox",
+    "gradientTransform",
+    "pathLength",
+    "startOffset",
+    "textLength",
+    "lengthAdjust",
+]);
+
+
+
+;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/render/svg/utils/render.mjs
+
+
+
+
+function renderSVG(element, renderState, _styleProp, projection) {
+    renderHTML(element, renderState, undefined, projection);
+    for (const key in renderState.attrs) {
+        element.setAttribute(!camelCaseAttributes.has(key) ? camelToDash(key) : key, renderState.attrs[key]);
+    }
+}
+
+
+
+;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/render/html/utils/scrape-motion-values.mjs
+
+
+
+function scrapeMotionValuesFromProps(props, prevProps, visualElement) {
+    var _a;
+    const { style } = props;
+    const newValues = {};
+    for (const key in style) {
+        if (isMotionValue(style[key]) ||
+            (prevProps.style &&
+                isMotionValue(prevProps.style[key])) ||
+            isForcedMotionValue(key, props) ||
+            ((_a = visualElement === null || visualElement === void 0 ? void 0 : visualElement.getValue(key)) === null || _a === void 0 ? void 0 : _a.liveStyle) !== undefined) {
+            newValues[key] = style[key];
+        }
+    }
+    return newValues;
+}
+
+
+
+;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/render/svg/utils/scrape-motion-values.mjs
+
+
+
+
+function scrape_motion_values_scrapeMotionValuesFromProps(props, prevProps, visualElement) {
+    const newValues = scrapeMotionValuesFromProps(props, prevProps, visualElement);
+    for (const key in props) {
+        if (isMotionValue(props[key]) ||
+            isMotionValue(prevProps[key])) {
+            const targetKey = transformPropOrder.indexOf(key) !== -1
+                ? "attr" + key.charAt(0).toUpperCase() + key.substring(1)
+                : key;
+            newValues[targetKey] = props[key];
+        }
+    }
+    return newValues;
+}
+
+
+
+;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/render/utils/resolve-variants.mjs
+function getValueState(visualElement) {
+    const state = [{}, {}];
+    visualElement === null || visualElement === void 0 ? void 0 : visualElement.values.forEach((value, key) => {
+        state[0][key] = value.get();
+        state[1][key] = value.getVelocity();
+    });
+    return state;
+}
+function resolveVariantFromProps(props, definition, custom, visualElement) {
+    /**
+     * If the variant definition is a function, resolve.
+     */
+    if (typeof definition === "function") {
+        const [current, velocity] = getValueState(visualElement);
+        definition = definition(custom !== undefined ? custom : props.custom, current, velocity);
+    }
+    /**
+     * If the variant definition is a variant label, or
+     * the function returned a variant label, resolve.
+     */
+    if (typeof definition === "string") {
+        definition = props.variants && props.variants[definition];
+    }
+    /**
+     * At this point we've resolved both functions and variant labels,
+     * but the resolved variant label might itself have been a function.
+     * If so, resolve. This can only have returned a valid target object.
+     */
+    if (typeof definition === "function") {
+        const [current, velocity] = getValueState(visualElement);
+        definition = definition(custom !== undefined ? custom : props.custom, current, velocity);
+    }
+    return definition;
+}
+
+
+
+;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/utils/use-constant.mjs
+
+
+/**
+ * Creates a constant value over the lifecycle of a component.
+ *
+ * Even if `useMemo` is provided an empty array as its final argument, it doesn't offer
+ * a guarantee that it won't re-run for performance reasons later on. By using `useConstant`
+ * you can ensure that initialisers don't execute twice or more.
+ */
+function useConstant(init) {
+    const ref = (0,react.useRef)(null);
+    if (ref.current === null) {
+        ref.current = init();
+    }
+    return ref.current;
+}
+
+
+
+;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/animation/utils/is-keyframes-target.mjs
+const isKeyframesTarget = (v) => {
+    return Array.isArray(v);
+};
+
+
+
+;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/utils/resolve-value.mjs
+
+
+const isCustomValue = (v) => {
+    return Boolean(v && typeof v === "object" && v.mix && v.toValue);
+};
+const resolveFinalValueInKeyframes = (v) => {
+    // TODO maybe throw if v.length - 1 is placeholder token?
+    return isKeyframesTarget(v) ? v[v.length - 1] || 0 : v;
+};
+
+
+
+;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/value/utils/resolve-motion-value.mjs
+
+
+
+/**
+ * If the provided value is a MotionValue, this returns the actual value, otherwise just the value itself
+ *
+ * TODO: Remove and move to library
+ */
+function resolveMotionValue(value) {
+    const unwrappedValue = isMotionValue(value) ? value.get() : value;
+    return isCustomValue(unwrappedValue)
+        ? unwrappedValue.toValue()
+        : unwrappedValue;
+}
+
+
+
+;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/motion/utils/use-visual-state.mjs
+
+
+
+
+
+
+
+
+
+function makeState({ scrapeMotionValuesFromProps, createRenderState, onMount, }, props, context, presenceContext) {
+    const state = {
+        latestValues: makeLatestValues(props, context, presenceContext, scrapeMotionValuesFromProps),
+        renderState: createRenderState(),
+    };
+    if (onMount) {
+        state.mount = (instance) => onMount(props, instance, state);
+    }
+    return state;
+}
+const makeUseVisualState = (config) => (props, isStatic) => {
+    const context = (0,react.useContext)(MotionContext);
+    const presenceContext = (0,react.useContext)(PresenceContext_PresenceContext);
+    const make = () => makeState(config, props, context, presenceContext);
+    return isStatic ? make() : useConstant(make);
+};
+function makeLatestValues(props, context, presenceContext, scrapeMotionValues) {
+    const values = {};
+    const motionValues = scrapeMotionValues(props, {});
+    for (const key in motionValues) {
+        values[key] = resolveMotionValue(motionValues[key]);
+    }
+    let { initial, animate } = props;
+    const isControllingVariants$1 = isControllingVariants(props);
+    const isVariantNode$1 = isVariantNode(props);
+    if (context &&
+        isVariantNode$1 &&
+        !isControllingVariants$1 &&
+        props.inherit !== false) {
+        if (initial === undefined)
+            initial = context.initial;
+        if (animate === undefined)
+            animate = context.animate;
+    }
+    let isInitialAnimationBlocked = presenceContext
+        ? presenceContext.initial === false
+        : false;
+    isInitialAnimationBlocked = isInitialAnimationBlocked || initial === false;
+    const variantToSet = isInitialAnimationBlocked ? animate : initial;
+    if (variantToSet &&
+        typeof variantToSet !== "boolean" &&
+        !isAnimationControls(variantToSet)) {
+        const list = Array.isArray(variantToSet) ? variantToSet : [variantToSet];
+        list.forEach((definition) => {
+            const resolved = resolveVariantFromProps(props, definition);
+            if (!resolved)
+                return;
+            const { transitionEnd, transition, ...target } = resolved;
+            for (const key in target) {
+                let valueTarget = target[key];
+                if (Array.isArray(valueTarget)) {
+                    /**
+                     * Take final keyframe if the initial animation is blocked because
+                     * we want to initialise at the end of that blocked animation.
+                     */
+                    const index = isInitialAnimationBlocked
+                        ? valueTarget.length - 1
+                        : 0;
+                    valueTarget = valueTarget[index];
+                }
+                if (valueTarget !== null) {
+                    values[key] = valueTarget;
+                }
+            }
+            for (const key in transitionEnd)
+                values[key] = transitionEnd[key];
+        });
+    }
+    return values;
+}
+
+
+
+;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/utils/noop.mjs
+const noop_noop = (any) => any;
+
+
+
+;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/frameloop/frame.mjs
+
+
+
+const { schedule: frame_frame, cancel: cancelFrame, state: frameData, steps, } = createRenderBatcher(typeof requestAnimationFrame !== "undefined" ? requestAnimationFrame : noop_noop, true);
+
+
+
+;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/render/svg/config-motion.mjs
+
+
+
+
+
+
+
+
+const svgMotionConfig = {
+    useVisualState: makeUseVisualState({
+        scrapeMotionValuesFromProps: scrape_motion_values_scrapeMotionValuesFromProps,
+        createRenderState: createSvgRenderState,
+        onMount: (props, instance, { renderState, latestValues }) => {
+            frame_frame.read(() => {
+                try {
+                    renderState.dimensions =
+                        typeof instance.getBBox ===
+                            "function"
+                            ? instance.getBBox()
+                            : instance.getBoundingClientRect();
+                }
+                catch (e) {
+                    // Most likely trying to measure an unrendered element under Firefox
+                    renderState.dimensions = {
+                        x: 0,
+                        y: 0,
+                        width: 0,
+                        height: 0,
+                    };
+                }
+            });
+            frame_frame.render(() => {
+                buildSVGAttrs(renderState, latestValues, { enableHardwareAcceleration: false }, isSVGTag(instance.tagName), props.transformTemplate);
+                renderSVG(instance, renderState);
+            });
+        },
+    }),
+};
+
+
+
+;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/render/html/config-motion.mjs
+
+
+
+
+const htmlMotionConfig = {
+    useVisualState: makeUseVisualState({
+        scrapeMotionValuesFromProps: scrapeMotionValuesFromProps,
+        createRenderState: createHtmlRenderState,
+    }),
+};
+
+
+
+;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/render/dom/utils/create-config.mjs
+
+
+
+
+
+function create_config_createDomMotionConfig(Component, { forwardMotionProps = false }, preloadedFeatures, createVisualElement) {
+    const baseConfig = isSVGComponent(Component)
+        ? svgMotionConfig
+        : htmlMotionConfig;
+    return {
+        ...baseConfig,
+        preloadedFeatures,
+        useRender: createUseRender(forwardMotionProps),
+        createVisualElement,
+        Component,
+    };
+}
+
+
+
+;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/events/add-dom-event.mjs
+function addDomEvent(target, eventName, handler, options = { passive: true }) {
+    target.addEventListener(eventName, handler, options);
+    return () => target.removeEventListener(eventName, handler);
+}
+
+
+
+;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/events/utils/is-primary-pointer.mjs
+const isPrimaryPointer = (event) => {
+    if (event.pointerType === "mouse") {
+        return typeof event.button !== "number" || event.button <= 0;
+    }
+    else {
+        /**
+         * isPrimary is true for all mice buttons, whereas every touch point
+         * is regarded as its own input. So subsequent concurrent touch points
+         * will be false.
+         *
+         * Specifically match against false here as incomplete versions of
+         * PointerEvents in very old browser might have it set as undefined.
+         */
+        return event.isPrimary !== false;
+    }
+};
+
+
+
+;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/events/event-info.mjs
+
+
+function extractEventInfo(event, pointType = "page") {
+    return {
+        point: {
+            x: event[`${pointType}X`],
+            y: event[`${pointType}Y`],
+        },
+    };
+}
+const addPointerInfo = (handler) => {
+    return (event) => isPrimaryPointer(event) && handler(event, extractEventInfo(event));
+};
+
+
+
+;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/events/add-pointer-event.mjs
+
+
+
+function addPointerEvent(target, eventName, handler, options) {
+    return addDomEvent(target, eventName, addPointerInfo(handler), options);
+}
+
+
+
+;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/utils/pipe.mjs
+/**
+ * Pipe
+ * Compose other transformers to run linearily
+ * pipe(min(20), max(40))
+ * @param  {...functions} transformers
+ * @return {function}
+ */
+const combineFunctions = (a, b) => (v) => b(a(v));
+const pipe = (...transformers) => transformers.reduce(combineFunctions);
+
+
+
+;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/gestures/drag/utils/lock.mjs
+function createLock(name) {
+    let lock = null;
+    return () => {
+        const openLock = () => {
+            lock = null;
+        };
+        if (lock === null) {
+            lock = name;
+            return openLock;
+        }
+        return false;
+    };
+}
+const globalHorizontalLock = createLock("dragHorizontal");
+const globalVerticalLock = createLock("dragVertical");
+function getGlobalLock(drag) {
+    let lock = false;
+    if (drag === "y") {
+        lock = globalVerticalLock();
+    }
+    else if (drag === "x") {
+        lock = globalHorizontalLock();
+    }
+    else {
+        const openHorizontal = globalHorizontalLock();
+        const openVertical = globalVerticalLock();
+        if (openHorizontal && openVertical) {
+            lock = () => {
+                openHorizontal();
+                openVertical();
+            };
+        }
+        else {
+            // Release the locks because we don't use them
+            if (openHorizontal)
+                openHorizontal();
+            if (openVertical)
+                openVertical();
+        }
+    }
+    return lock;
+}
+function isDragActive() {
+    // Check the gesture lock - if we get it, it means no drag gesture is active
+    // and we can safely fire the tap gesture.
+    const openGestureLock = getGlobalLock(true);
+    if (!openGestureLock)
+        return true;
+    openGestureLock();
+    return false;
+}
+
+
+
+;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/motion/features/Feature.mjs
+class Feature {
+    constructor(node) {
+        this.isMounted = false;
+        this.node = node;
+    }
+    update() { }
+}
+
+
+
+;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/gestures/hover.mjs
+
+
+
+
+
+
+function addHoverEvent(node, isActive) {
+    const eventName = isActive ? "pointerenter" : "pointerleave";
+    const callbackName = isActive ? "onHoverStart" : "onHoverEnd";
+    const handleEvent = (event, info) => {
+        if (event.pointerType === "touch" || isDragActive())
+            return;
+        const props = node.getProps();
+        if (node.animationState && props.whileHover) {
+            node.animationState.setActive("whileHover", isActive);
+        }
+        const callback = props[callbackName];
+        if (callback) {
+            frame_frame.postRender(() => callback(event, info));
+        }
+    };
+    return addPointerEvent(node.current, eventName, handleEvent, {
+        passive: !node.getProps()[callbackName],
+    });
+}
+class HoverGesture extends Feature {
+    mount() {
+        this.unmount = pipe(addHoverEvent(this.node, true), addHoverEvent(this.node, false));
+    }
+    unmount() { }
+}
+
+
+
+;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/gestures/focus.mjs
+
+
+
+
+class FocusGesture extends Feature {
+    constructor() {
+        super(...arguments);
+        this.isActive = false;
+    }
+    onFocus() {
+        let isFocusVisible = false;
+        /**
+         * If this element doesn't match focus-visible then don't
+         * apply whileHover. But, if matches throws that focus-visible
+         * is not a valid selector then in that browser outline styles will be applied
+         * to the element by default and we want to match that behaviour with whileFocus.
+         */
+        try {
+            isFocusVisible = this.node.current.matches(":focus-visible");
+        }
+        catch (e) {
+            isFocusVisible = true;
+        }
+        if (!isFocusVisible || !this.node.animationState)
+            return;
+        this.node.animationState.setActive("whileFocus", true);
+        this.isActive = true;
+    }
+    onBlur() {
+        if (!this.isActive || !this.node.animationState)
+            return;
+        this.node.animationState.setActive("whileFocus", false);
+        this.isActive = false;
+    }
+    mount() {
+        this.unmount = pipe(addDomEvent(this.node.current, "focus", () => this.onFocus()), addDomEvent(this.node.current, "blur", () => this.onBlur()));
+    }
+    unmount() { }
+}
+
+
+
+;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/gestures/utils/is-node-or-child.mjs
+/**
+ * Recursively traverse up the tree to check whether the provided child node
+ * is the parent or a descendant of it.
+ *
+ * @param parent - Element to find
+ * @param child - Element to test against parent
+ */
+const isNodeOrChild = (parent, child) => {
+    if (!child) {
+        return false;
+    }
+    else if (parent === child) {
+        return true;
+    }
+    else {
+        return isNodeOrChild(parent, child.parentElement);
+    }
+};
+
+
+
+;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/gestures/press.mjs
+
+
+
+
+
+
+
+
+
+
+function fireSyntheticPointerEvent(name, handler) {
+    if (!handler)
+        return;
+    const syntheticPointerEvent = new PointerEvent("pointer" + name);
+    handler(syntheticPointerEvent, extractEventInfo(syntheticPointerEvent));
+}
+class PressGesture extends Feature {
+    constructor() {
+        super(...arguments);
+        this.removeStartListeners = noop_noop;
+        this.removeEndListeners = noop_noop;
+        this.removeAccessibleListeners = noop_noop;
+        this.startPointerPress = (startEvent, startInfo) => {
+            if (this.isPressing)
+                return;
+            this.removeEndListeners();
+            const props = this.node.getProps();
+            const endPointerPress = (endEvent, endInfo) => {
+                if (!this.checkPressEnd())
+                    return;
+                const { onTap, onTapCancel, globalTapTarget } = this.node.getProps();
+                /**
+                 * We only count this as a tap gesture if the event.target is the same
+                 * as, or a child of, this component's element
+                 */
+                const handler = !globalTapTarget &&
+                    !isNodeOrChild(this.node.current, endEvent.target)
+                    ? onTapCancel
+                    : onTap;
+                if (handler) {
+                    frame_frame.update(() => handler(endEvent, endInfo));
+                }
+            };
+            const removePointerUpListener = addPointerEvent(window, "pointerup", endPointerPress, {
+                passive: !(props.onTap || props["onPointerUp"]),
+            });
+            const removePointerCancelListener = addPointerEvent(window, "pointercancel", (cancelEvent, cancelInfo) => this.cancelPress(cancelEvent, cancelInfo), {
+                passive: !(props.onTapCancel ||
+                    props["onPointerCancel"]),
+            });
+            this.removeEndListeners = pipe(removePointerUpListener, removePointerCancelListener);
+            this.startPress(startEvent, startInfo);
+        };
+        this.startAccessiblePress = () => {
+            const handleKeydown = (keydownEvent) => {
+                if (keydownEvent.key !== "Enter" || this.isPressing)
+                    return;
+                const handleKeyup = (keyupEvent) => {
+                    if (keyupEvent.key !== "Enter" || !this.checkPressEnd())
+                        return;
+                    fireSyntheticPointerEvent("up", (event, info) => {
+                        const { onTap } = this.node.getProps();
+                        if (onTap) {
+                            frame_frame.postRender(() => onTap(event, info));
+                        }
+                    });
+                };
+                this.removeEndListeners();
+                this.removeEndListeners = addDomEvent(this.node.current, "keyup", handleKeyup);
+                fireSyntheticPointerEvent("down", (event, info) => {
+                    this.startPress(event, info);
+                });
+            };
+            const removeKeydownListener = addDomEvent(this.node.current, "keydown", handleKeydown);
+            const handleBlur = () => {
+                if (!this.isPressing)
+                    return;
+                fireSyntheticPointerEvent("cancel", (cancelEvent, cancelInfo) => this.cancelPress(cancelEvent, cancelInfo));
+            };
+            const removeBlurListener = addDomEvent(this.node.current, "blur", handleBlur);
+            this.removeAccessibleListeners = pipe(removeKeydownListener, removeBlurListener);
+        };
+    }
+    startPress(event, info) {
+        this.isPressing = true;
+        const { onTapStart, whileTap } = this.node.getProps();
+        /**
+         * Ensure we trigger animations before firing event callback
+         */
+        if (whileTap && this.node.animationState) {
+            this.node.animationState.setActive("whileTap", true);
+        }
+        if (onTapStart) {
+            frame_frame.postRender(() => onTapStart(event, info));
+        }
+    }
+    checkPressEnd() {
+        this.removeEndListeners();
+        this.isPressing = false;
+        const props = this.node.getProps();
+        if (props.whileTap && this.node.animationState) {
+            this.node.animationState.setActive("whileTap", false);
+        }
+        return !isDragActive();
+    }
+    cancelPress(event, info) {
+        if (!this.checkPressEnd())
+            return;
+        const { onTapCancel } = this.node.getProps();
+        if (onTapCancel) {
+            frame_frame.postRender(() => onTapCancel(event, info));
+        }
+    }
+    mount() {
+        const props = this.node.getProps();
+        const removePointerListener = addPointerEvent(props.globalTapTarget ? window : this.node.current, "pointerdown", this.startPointerPress, {
+            passive: !(props.onTapStart ||
+                props["onPointerStart"]),
+        });
+        const removeFocusListener = addDomEvent(this.node.current, "focus", this.startAccessiblePress);
+        this.removeStartListeners = pipe(removePointerListener, removeFocusListener);
+    }
+    unmount() {
+        this.removeStartListeners();
+        this.removeEndListeners();
+        this.removeAccessibleListeners();
+    }
+}
+
+
+
+;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/motion/features/viewport/observers.mjs
+/**
+ * Map an IntersectionHandler callback to an element. We only ever make one handler for one
+ * element, so even though these handlers might all be triggered by different
+ * observers, we can keep them in the same map.
+ */
+const observerCallbacks = new WeakMap();
+/**
+ * Multiple observers can be created for multiple element/document roots. Each with
+ * different settings. So here we store dictionaries of observers to each root,
+ * using serialised settings (threshold/margin) as lookup keys.
+ */
+const observers = new WeakMap();
+const fireObserverCallback = (entry) => {
+    const callback = observerCallbacks.get(entry.target);
+    callback && callback(entry);
+};
+const fireAllObserverCallbacks = (entries) => {
+    entries.forEach(fireObserverCallback);
+};
+function initIntersectionObserver({ root, ...options }) {
+    const lookupRoot = root || document;
+    /**
+     * If we don't have an observer lookup map for this root, create one.
+     */
+    if (!observers.has(lookupRoot)) {
+        observers.set(lookupRoot, {});
+    }
+    const rootObservers = observers.get(lookupRoot);
+    const key = JSON.stringify(options);
+    /**
+     * If we don't have an observer for this combination of root and settings,
+     * create one.
+     */
+    if (!rootObservers[key]) {
+        rootObservers[key] = new IntersectionObserver(fireAllObserverCallbacks, { root, ...options });
+    }
+    return rootObservers[key];
+}
+function observeIntersection(element, options, callback) {
+    const rootInteresectionObserver = initIntersectionObserver(options);
+    observerCallbacks.set(element, callback);
+    rootInteresectionObserver.observe(element);
+    return () => {
+        observerCallbacks.delete(element);
+        rootInteresectionObserver.unobserve(element);
+    };
+}
+
+
+
+;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/motion/features/viewport/index.mjs
+
+
+
+const thresholdNames = {
+    some: 0,
+    all: 1,
+};
+class InViewFeature extends Feature {
+    constructor() {
+        super(...arguments);
+        this.hasEnteredView = false;
+        this.isInView = false;
+    }
+    startObserver() {
+        this.unmount();
+        const { viewport = {} } = this.node.getProps();
+        const { root, margin: rootMargin, amount = "some", once } = viewport;
+        const options = {
+            root: root ? root.current : undefined,
+            rootMargin,
+            threshold: typeof amount === "number" ? amount : thresholdNames[amount],
+        };
+        const onIntersectionUpdate = (entry) => {
+            const { isIntersecting } = entry;
+            /**
+             * If there's been no change in the viewport state, early return.
+             */
+            if (this.isInView === isIntersecting)
+                return;
+            this.isInView = isIntersecting;
+            /**
+             * Handle hasEnteredView. If this is only meant to run once, and
+             * element isn't visible, early return. Otherwise set hasEnteredView to true.
+             */
+            if (once && !isIntersecting && this.hasEnteredView) {
+                return;
+            }
+            else if (isIntersecting) {
+                this.hasEnteredView = true;
+            }
+            if (this.node.animationState) {
+                this.node.animationState.setActive("whileInView", isIntersecting);
+            }
+            /**
+             * Use the latest committed props rather than the ones in scope
+             * when this observer is created
+             */
+            const { onViewportEnter, onViewportLeave } = this.node.getProps();
+            const callback = isIntersecting ? onViewportEnter : onViewportLeave;
+            callback && callback(entry);
+        };
+        return observeIntersection(this.node.current, options, onIntersectionUpdate);
+    }
+    mount() {
+        this.startObserver();
+    }
+    update() {
+        if (typeof IntersectionObserver === "undefined")
+            return;
+        const { props, prevProps } = this.node;
+        const hasOptionsChanged = ["amount", "margin", "root"].some(hasViewportOptionChanged(props, prevProps));
+        if (hasOptionsChanged) {
+            this.startObserver();
+        }
+    }
+    unmount() { }
+}
+function hasViewportOptionChanged({ viewport = {} }, { viewport: prevViewport = {} } = {}) {
+    return (name) => viewport[name] !== prevViewport[name];
+}
+
+
+
+;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/motion/features/gestures.mjs
+
+
+
+
+
+const gestureAnimations = {
+    inView: {
+        Feature: InViewFeature,
+    },
+    tap: {
+        Feature: PressGesture,
+    },
+    focus: {
+        Feature: FocusGesture,
+    },
+    hover: {
+        Feature: HoverGesture,
+    },
+};
+
+
+
+;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/utils/shallow-compare.mjs
+function shallowCompare(next, prev) {
+    if (!Array.isArray(prev))
+        return false;
+    const prevLength = prev.length;
+    if (prevLength !== next.length)
+        return false;
+    for (let i = 0; i < prevLength; i++) {
+        if (prev[i] !== next[i])
+            return false;
+    }
+    return true;
+}
+
+
+
+;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/render/utils/resolve-dynamic-variants.mjs
+
+
+function resolveVariant(visualElement, definition, custom) {
+    const props = visualElement.getProps();
+    return resolveVariantFromProps(props, definition, custom !== undefined ? custom : props.custom, visualElement);
+}
+
+
+
+;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/utils/time-conversion.mjs
+/**
+ * Converts seconds to milliseconds
+ *
+ * @param seconds - Time in seconds.
+ * @return milliseconds - Converted time in milliseconds.
+ */
+const secondsToMilliseconds = (seconds) => seconds * 1000;
+const millisecondsToSeconds = (milliseconds) => milliseconds / 1000;
+
+
+
+;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/animation/utils/default-transitions.mjs
+
+
+const underDampedSpring = {
+    type: "spring",
+    stiffness: 500,
+    damping: 25,
+    restSpeed: 10,
+};
+const criticallyDampedSpring = (target) => ({
+    type: "spring",
+    stiffness: 550,
+    damping: target === 0 ? 2 * Math.sqrt(550) : 30,
+    restSpeed: 10,
+});
+const keyframesTransition = {
+    type: "keyframes",
+    duration: 0.8,
+};
+/**
+ * Default easing curve is a slightly shallower version of
+ * the default browser easing curve.
+ */
+const ease = {
+    type: "keyframes",
+    ease: [0.25, 0.1, 0.35, 1],
+    duration: 0.3,
+};
+const getDefaultTransition = (valueKey, { keyframes }) => {
+    if (keyframes.length > 2) {
+        return keyframesTransition;
+    }
+    else if (transformProps.has(valueKey)) {
+        return valueKey.startsWith("scale")
+            ? criticallyDampedSpring(keyframes[1])
+            : underDampedSpring;
+    }
+    return ease;
+};
+
+
+
+;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/animation/utils/transitions.mjs
+/**
+ * Decide whether a transition is defined on a given Transition.
+ * This filters out orchestration options and returns true
+ * if any options are left.
+ */
+function isTransitionDefined({ when, delay: _delay, delayChildren, staggerChildren, staggerDirection, repeat, repeatType, repeatDelay, from, elapsed, ...transition }) {
+    return !!Object.keys(transition).length;
+}
+function getValueTransition(transition, key) {
+    return (transition[key] ||
+        transition["default"] ||
+        transition);
+}
+
+
+
+;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/utils/use-instant-transition-state.mjs
+const instantAnimationState = {
+    current: false,
+};
+
+
+
+;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/animation/animators/waapi/utils/get-final-keyframe.mjs
+const isNotNull = (value) => value !== null;
+function getFinalKeyframe(keyframes, { repeat, repeatType = "loop" }, finalKeyframe) {
+    const resolvedKeyframes = keyframes.filter(isNotNull);
+    const index = repeat && repeatType !== "loop" && repeat % 2 === 1
+        ? 0
+        : resolvedKeyframes.length - 1;
+    return !index || finalKeyframe === undefined
+        ? resolvedKeyframes[index]
+        : finalKeyframe;
+}
+
+
+
+;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/frameloop/sync-time.mjs
+
+
+
+let now;
+function clearTime() {
+    now = undefined;
+}
+/**
+ * An eventloop-synchronous alternative to performance.now().
+ *
+ * Ensures that time measurements remain consistent within a synchronous context.
+ * Usually calling performance.now() twice within the same synchronous context
+ * will return different values which isn't useful for animations when we're usually
+ * trying to sync animations to the same frame.
+ */
+const time = {
+    now: () => {
+        if (now === undefined) {
+            time.set(frameData.isProcessing || MotionGlobalConfig.useManualTiming
+                ? frameData.timestamp
+                : performance.now());
+        }
+        return now;
+    },
+    set: (newTime) => {
+        now = newTime;
+        queueMicrotask(clearTime);
+    },
+};
+
+
+
+;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/utils/is-zero-value-string.mjs
+/**
+ * Check if the value is a zero value string like "0px" or "0%"
+ */
+const isZeroValueString = (v) => /^0[^.\s]+$/u.test(v);
+
+
+
+;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/animation/utils/is-none.mjs
+
+
+function isNone(value) {
+    if (typeof value === "number") {
+        return value === 0;
+    }
+    else if (value !== null) {
+        return value === "none" || value === "0" || isZeroValueString(value);
+    }
+    else {
+        return true;
+    }
+}
+
+
+
+;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/utils/errors.mjs
+
+
+let warning = noop_noop;
+let invariant = noop_noop;
+if (false) {}
+
+
+
+;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/utils/is-numerical-string.mjs
+/**
+ * Check if value is a numerical string, ie a string that is purely a number eg "100" or "-100.1"
+ */
+const isNumericalString = (v) => /^-?(?:\d+(?:\.\d+)?|\.\d+)$/u.test(v);
+
+
+
+;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/render/dom/utils/css-variables-conversion.mjs
+
+
+
+
+/**
+ * Parse Framer's special CSS variable format into a CSS token and a fallback.
+ *
+ * ```
+ * `var(--foo, #fff)` => [`--foo`, '#fff']
+ * ```
+ *
+ * @param current
+ */
+const splitCSSVariableRegex = 
+// eslint-disable-next-line redos-detector/no-unsafe-regex -- false positive, as it can match a lot of words
+/^var\(--(?:([\w-]+)|([\w-]+), ?([a-zA-Z\d ()%#.,-]+))\)/u;
+function parseCSSVariable(current) {
+    const match = splitCSSVariableRegex.exec(current);
+    if (!match)
+        return [,];
+    const [, token1, token2, fallback] = match;
+    return [`--${token1 !== null && token1 !== void 0 ? token1 : token2}`, fallback];
+}
+const maxDepth = 4;
+function getVariableValue(current, element, depth = 1) {
+    invariant(depth <= maxDepth, `Max CSS variable fallback depth detected in property "${current}". This may indicate a circular fallback dependency.`);
+    const [token, fallback] = parseCSSVariable(current);
+    // No CSS variable detected
+    if (!token)
+        return;
+    // Attempt to read this CSS variable off the element
+    const resolved = window.getComputedStyle(element).getPropertyValue(token);
+    if (resolved) {
+        const trimmed = resolved.trim();
+        return isNumericalString(trimmed) ? parseFloat(trimmed) : trimmed;
+    }
+    return isCSSVariableToken(fallback)
+        ? getVariableValue(fallback, element, depth + 1)
+        : fallback;
+}
+
+
+
+;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/render/dom/utils/unit-conversion.mjs
+
+
+
+
+const positionalKeys = new Set([
+    "width",
+    "height",
+    "top",
+    "left",
+    "right",
+    "bottom",
+    "x",
+    "y",
+    "translateX",
+    "translateY",
+]);
+const isNumOrPxType = (v) => v === number || v === px;
+const getPosFromMatrix = (matrix, pos) => parseFloat(matrix.split(", ")[pos]);
+const getTranslateFromMatrix = (pos2, pos3) => (_bbox, { transform }) => {
+    if (transform === "none" || !transform)
+        return 0;
+    const matrix3d = transform.match(/^matrix3d\((.+)\)$/u);
+    if (matrix3d) {
+        return getPosFromMatrix(matrix3d[1], pos3);
+    }
+    else {
+        const matrix = transform.match(/^matrix\((.+)\)$/u);
+        if (matrix) {
+            return getPosFromMatrix(matrix[1], pos2);
+        }
+        else {
+            return 0;
+        }
+    }
+};
+const transformKeys = new Set(["x", "y", "z"]);
+const nonTranslationalTransformKeys = transformPropOrder.filter((key) => !transformKeys.has(key));
+function removeNonTranslationalTransform(visualElement) {
+    const removedTransforms = [];
+    nonTranslationalTransformKeys.forEach((key) => {
+        const value = visualElement.getValue(key);
+        if (value !== undefined) {
+            removedTransforms.push([key, value.get()]);
+            value.set(key.startsWith("scale") ? 1 : 0);
+        }
+    });
+    return removedTransforms;
+}
+const positionalValues = {
+    // Dimensions
+    width: ({ x }, { paddingLeft = "0", paddingRight = "0" }) => x.max - x.min - parseFloat(paddingLeft) - parseFloat(paddingRight),
+    height: ({ y }, { paddingTop = "0", paddingBottom = "0" }) => y.max - y.min - parseFloat(paddingTop) - parseFloat(paddingBottom),
+    top: (_bbox, { top }) => parseFloat(top),
+    left: (_bbox, { left }) => parseFloat(left),
+    bottom: ({ y }, { top }) => parseFloat(top) + (y.max - y.min),
+    right: ({ x }, { left }) => parseFloat(left) + (x.max - x.min),
+    // Transform
+    x: getTranslateFromMatrix(4, 13),
+    y: getTranslateFromMatrix(5, 14),
+};
+// Alias translate longform names
+positionalValues.translateX = positionalValues.x;
+positionalValues.translateY = positionalValues.y;
+
+
+
+;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/render/dom/value-types/test.mjs
+/**
+ * Tests a provided value against a ValueType
+ */
+const testValueType = (v) => (type) => type.test(v);
+
+
+
+;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/render/dom/value-types/type-auto.mjs
+/**
+ * ValueType for "auto"
+ */
+const auto = {
+    test: (v) => v === "auto",
+    parse: (v) => v,
+};
+
+
+
+;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/render/dom/value-types/dimensions.mjs
+
+
+
+
+
+/**
+ * A list of value types commonly used for dimensions
+ */
+const dimensionValueTypes = [number, px, percent, degrees, vw, vh, auto];
+/**
+ * Tests a dimensional value against the list of dimension ValueTypes
+ */
+const findDimensionValueType = (v) => dimensionValueTypes.find(testValueType(v));
+
+
+
+;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/render/utils/KeyframesResolver.mjs
+
+
+
+const toResolve = new Set();
+let isScheduled = false;
+let anyNeedsMeasurement = false;
+function measureAllKeyframes() {
+    if (anyNeedsMeasurement) {
+        const resolversToMeasure = Array.from(toResolve).filter((resolver) => resolver.needsMeasurement);
+        const elementsToMeasure = new Set(resolversToMeasure.map((resolver) => resolver.element));
+        const transformsToRestore = new Map();
+        /**
+         * Write pass
+         * If we're measuring elements we want to remove bounding box-changing transforms.
+         */
+        elementsToMeasure.forEach((element) => {
+            const removedTransforms = removeNonTranslationalTransform(element);
+            if (!removedTransforms.length)
+                return;
+            transformsToRestore.set(element, removedTransforms);
+            element.render();
+        });
+        // Read
+        resolversToMeasure.forEach((resolver) => resolver.measureInitialState());
+        // Write
+        elementsToMeasure.forEach((element) => {
+            element.render();
+            const restore = transformsToRestore.get(element);
+            if (restore) {
+                restore.forEach(([key, value]) => {
+                    var _a;
+                    (_a = element.getValue(key)) === null || _a === void 0 ? void 0 : _a.set(value);
+                });
+            }
+        });
+        // Read
+        resolversToMeasure.forEach((resolver) => resolver.measureEndState());
+        // Write
+        resolversToMeasure.forEach((resolver) => {
+            if (resolver.suspendedScrollY !== undefined) {
+                window.scrollTo(0, resolver.suspendedScrollY);
+            }
+        });
+    }
+    anyNeedsMeasurement = false;
+    isScheduled = false;
+    toResolve.forEach((resolver) => resolver.complete());
+    toResolve.clear();
+}
+function readAllKeyframes() {
+    toResolve.forEach((resolver) => {
+        resolver.readKeyframes();
+        if (resolver.needsMeasurement) {
+            anyNeedsMeasurement = true;
+        }
+    });
+}
+function flushKeyframeResolvers() {
+    readAllKeyframes();
+    measureAllKeyframes();
+}
+class KeyframeResolver {
+    constructor(unresolvedKeyframes, onComplete, name, motionValue, element, isAsync = false) {
+        /**
+         * Track whether this resolver has completed. Once complete, it never
+         * needs to attempt keyframe resolution again.
+         */
+        this.isComplete = false;
+        /**
+         * Track whether this resolver is async. If it is, it'll be added to the
+         * resolver queue and flushed in the next frame. Resolvers that aren't going
+         * to trigger read/write thrashing don't need to be async.
+         */
+        this.isAsync = false;
+        /**
+         * Track whether this resolver needs to perform a measurement
+         * to resolve its keyframes.
+         */
+        this.needsMeasurement = false;
+        /**
+         * Track whether this resolver is currently scheduled to resolve
+         * to allow it to be cancelled and resumed externally.
+         */
+        this.isScheduled = false;
+        this.unresolvedKeyframes = [...unresolvedKeyframes];
+        this.onComplete = onComplete;
+        this.name = name;
+        this.motionValue = motionValue;
+        this.element = element;
+        this.isAsync = isAsync;
+    }
+    scheduleResolve() {
+        this.isScheduled = true;
+        if (this.isAsync) {
+            toResolve.add(this);
+            if (!isScheduled) {
+                isScheduled = true;
+                frame_frame.read(readAllKeyframes);
+                frame_frame.resolveKeyframes(measureAllKeyframes);
+            }
+        }
+        else {
+            this.readKeyframes();
+            this.complete();
+        }
+    }
+    readKeyframes() {
+        const { unresolvedKeyframes, name, element, motionValue } = this;
+        /**
+         * If a keyframe is null, we hydrate it either by reading it from
+         * the instance, or propagating from previous keyframes.
+         */
+        for (let i = 0; i < unresolvedKeyframes.length; i++) {
+            if (unresolvedKeyframes[i] === null) {
+                /**
+                 * If the first keyframe is null, we need to find its value by sampling the element
+                 */
+                if (i === 0) {
+                    const currentValue = motionValue === null || motionValue === void 0 ? void 0 : motionValue.get();
+                    const finalKeyframe = unresolvedKeyframes[unresolvedKeyframes.length - 1];
+                    if (currentValue !== undefined) {
+                        unresolvedKeyframes[0] = currentValue;
+                    }
+                    else if (element && name) {
+                        const valueAsRead = element.readValue(name, finalKeyframe);
+                        if (valueAsRead !== undefined && valueAsRead !== null) {
+                            unresolvedKeyframes[0] = valueAsRead;
+                        }
+                    }
+                    if (unresolvedKeyframes[0] === undefined) {
+                        unresolvedKeyframes[0] = finalKeyframe;
+                    }
+                    if (motionValue && currentValue === undefined) {
+                        motionValue.set(unresolvedKeyframes[0]);
+                    }
+                }
+                else {
+                    unresolvedKeyframes[i] = unresolvedKeyframes[i - 1];
+                }
+            }
+        }
+    }
+    setFinalKeyframe() { }
+    measureInitialState() { }
+    renderEndStyles() { }
+    measureEndState() { }
+    complete() {
+        this.isComplete = true;
+        this.onComplete(this.unresolvedKeyframes, this.finalKeyframe);
+        toResolve.delete(this);
+    }
+    cancel() {
+        if (!this.isComplete) {
+            this.isScheduled = false;
+            toResolve.delete(this);
+        }
+    }
+    resume() {
+        if (!this.isComplete)
+            this.scheduleResolve();
+    }
+}
+
+
+
+;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/value/types/color/utils.mjs
+
+
+/**
+ * Returns true if the provided string is a color, ie rgba(0,0,0,0) or #000,
+ * but false if a number or multiple colors
+ */
+const isColorString = (type, testProp) => (v) => {
+    return Boolean((utils_isString(v) && singleColorRegex.test(v) && v.startsWith(type)) ||
+        (testProp && Object.prototype.hasOwnProperty.call(v, testProp)));
+};
+const splitColor = (aName, bName, cName) => (v) => {
+    if (!utils_isString(v))
+        return v;
+    const [a, b, c, alpha] = v.match(floatRegex);
+    return {
+        [aName]: parseFloat(a),
+        [bName]: parseFloat(b),
+        [cName]: parseFloat(c),
+        alpha: alpha !== undefined ? parseFloat(alpha) : 1,
+    };
+};
+
+
+
+;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/value/types/color/rgba.mjs
+
+
+
+
+
+const clampRgbUnit = (v) => clamp(0, 255, v);
+const rgbUnit = {
+    ...number,
+    transform: (v) => Math.round(clampRgbUnit(v)),
+};
+const rgba = {
+    test: isColorString("rgb", "red"),
+    parse: splitColor("red", "green", "blue"),
+    transform: ({ red, green, blue, alpha: alpha$1 = 1 }) => "rgba(" +
+        rgbUnit.transform(red) +
+        ", " +
+        rgbUnit.transform(green) +
+        ", " +
+        rgbUnit.transform(blue) +
+        ", " +
+        sanitize(alpha.transform(alpha$1)) +
+        ")",
+};
+
+
+
+;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/value/types/color/hex.mjs
+
+
+
+function parseHex(v) {
+    let r = "";
+    let g = "";
+    let b = "";
+    let a = "";
+    // If we have 6 characters, ie #FF0000
+    if (v.length > 5) {
+        r = v.substring(1, 3);
+        g = v.substring(3, 5);
+        b = v.substring(5, 7);
+        a = v.substring(7, 9);
+        // Or we have 3 characters, ie #F00
+    }
+    else {
+        r = v.substring(1, 2);
+        g = v.substring(2, 3);
+        b = v.substring(3, 4);
+        a = v.substring(4, 5);
+        r += r;
+        g += g;
+        b += b;
+        a += a;
+    }
+    return {
+        red: parseInt(r, 16),
+        green: parseInt(g, 16),
+        blue: parseInt(b, 16),
+        alpha: a ? parseInt(a, 16) / 255 : 1,
+    };
+}
+const hex = {
+    test: isColorString("#"),
+    parse: parseHex,
+    transform: rgba.transform,
+};
+
+
+
+;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/value/types/color/hsla.mjs
+
+
+
+
+
+const hsla = {
+    test: isColorString("hsl", "hue"),
+    parse: splitColor("hue", "saturation", "lightness"),
+    transform: ({ hue, saturation, lightness, alpha: alpha$1 = 1 }) => {
+        return ("hsla(" +
+            Math.round(hue) +
+            ", " +
+            percent.transform(sanitize(saturation)) +
+            ", " +
+            percent.transform(sanitize(lightness)) +
+            ", " +
+            sanitize(alpha.transform(alpha$1)) +
+            ")");
+    },
+};
+
+
+
+;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/value/types/color/index.mjs
+
+
+
+
+
+const color = {
+    test: (v) => rgba.test(v) || hex.test(v) || hsla.test(v),
+    parse: (v) => {
+        if (rgba.test(v)) {
+            return rgba.parse(v);
+        }
+        else if (hsla.test(v)) {
+            return hsla.parse(v);
+        }
+        else {
+            return hex.parse(v);
+        }
+    },
+    transform: (v) => {
+        return utils_isString(v)
+            ? v
+            : v.hasOwnProperty("red")
+                ? rgba.transform(v)
+                : hsla.transform(v);
+    },
+};
+
+
+
+;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/value/types/complex/index.mjs
+
+
+
+function test(v) {
+    var _a, _b;
+    return (isNaN(v) &&
+        utils_isString(v) &&
+        (((_a = v.match(floatRegex)) === null || _a === void 0 ? void 0 : _a.length) || 0) +
+            (((_b = v.match(colorRegex)) === null || _b === void 0 ? void 0 : _b.length) || 0) >
+            0);
+}
+const NUMBER_TOKEN = "number";
+const COLOR_TOKEN = "color";
+const VAR_TOKEN = "var";
+const VAR_FUNCTION_TOKEN = "var(";
+const SPLIT_TOKEN = "${}";
+// this regex consists of the `singleCssVariableRegex|rgbHSLValueRegex|digitRegex`
+const complexRegex = /var\s*\(\s*--(?:[\w-]+\s*|[\w-]+\s*,(?:\s*[^)(\s]|\s*\((?:[^)(]|\([^)(]*\))*\))+\s*)\)|#[\da-f]{3,8}|(?:rgb|hsl)a?\((?:-?[\d.]+%?[,\s]+){2}-?[\d.]+%?\s*(?:[,/]\s*)?(?:\b\d+(?:\.\d+)?|\.\d+)?%?\)|-?(?:\d+(?:\.\d+)?|\.\d+)/giu;
+function analyseComplexValue(value) {
+    const originalValue = value.toString();
+    const values = [];
+    const indexes = {
+        color: [],
+        number: [],
+        var: [],
+    };
+    const types = [];
+    let i = 0;
+    const tokenised = originalValue.replace(complexRegex, (parsedValue) => {
+        if (color.test(parsedValue)) {
+            indexes.color.push(i);
+            types.push(COLOR_TOKEN);
+            values.push(color.parse(parsedValue));
+        }
+        else if (parsedValue.startsWith(VAR_FUNCTION_TOKEN)) {
+            indexes.var.push(i);
+            types.push(VAR_TOKEN);
+            values.push(parsedValue);
+        }
+        else {
+            indexes.number.push(i);
+            types.push(NUMBER_TOKEN);
+            values.push(parseFloat(parsedValue));
+        }
+        ++i;
+        return SPLIT_TOKEN;
+    });
+    const split = tokenised.split(SPLIT_TOKEN);
+    return { values, split, indexes, types };
+}
+function parseComplexValue(v) {
+    return analyseComplexValue(v).values;
+}
+function createTransformer(source) {
+    const { split, types } = analyseComplexValue(source);
+    const numSections = split.length;
+    return (v) => {
+        let output = "";
+        for (let i = 0; i < numSections; i++) {
+            output += split[i];
+            if (v[i] !== undefined) {
+                const type = types[i];
+                if (type === NUMBER_TOKEN) {
+                    output += sanitize(v[i]);
+                }
+                else if (type === COLOR_TOKEN) {
+                    output += color.transform(v[i]);
+                }
+                else {
+                    output += v[i];
+                }
+            }
+        }
+        return output;
+    };
+}
+const convertNumbersToZero = (v) => typeof v === "number" ? 0 : v;
+function getAnimatableNone(v) {
+    const parsed = parseComplexValue(v);
+    const transformer = createTransformer(v);
+    return transformer(parsed.map(convertNumbersToZero));
+}
+const complex = {
+    test,
+    parse: parseComplexValue,
+    createTransformer,
+    getAnimatableNone,
+};
+
+
+
+;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/value/types/complex/filter.mjs
+
+
+
+/**
+ * Properties that should default to 1 or 100%
+ */
+const maxDefaults = new Set(["brightness", "contrast", "saturate", "opacity"]);
+function applyDefaultFilter(v) {
+    const [name, value] = v.slice(0, -1).split("(");
+    if (name === "drop-shadow")
+        return v;
+    const [number] = value.match(floatRegex) || [];
+    if (!number)
+        return v;
+    const unit = value.replace(number, "");
+    let defaultValue = maxDefaults.has(name) ? 1 : 0;
+    if (number !== value)
+        defaultValue *= 100;
+    return name + "(" + defaultValue + unit + ")";
+}
+const functionRegex = /\b([a-z-]*)\(.*?\)/gu;
+const filter = {
+    ...complex,
+    getAnimatableNone: (v) => {
+        const functions = v.match(functionRegex);
+        return functions ? functions.map(applyDefaultFilter).join(" ") : v;
+    },
+};
+
+
+
+;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/render/dom/value-types/defaults.mjs
+
+
+
+
+/**
+ * A map of default value types for common values
+ */
+const defaultValueTypes = {
+    ...numberValueTypes,
+    // Color props
+    color: color,
+    backgroundColor: color,
+    outlineColor: color,
+    fill: color,
+    stroke: color,
+    // Border props
+    borderColor: color,
+    borderTopColor: color,
+    borderRightColor: color,
+    borderBottomColor: color,
+    borderLeftColor: color,
+    filter: filter,
+    WebkitFilter: filter,
+};
+/**
+ * Gets the default ValueType for the provided value key
+ */
+const getDefaultValueType = (key) => defaultValueTypes[key];
+
+
+
+;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/render/dom/value-types/animatable-none.mjs
+
+
+
+
+function animatable_none_getAnimatableNone(key, value) {
+    let defaultValueType = getDefaultValueType(key);
+    if (defaultValueType !== filter)
+        defaultValueType = complex;
+    // If value is not recognised as animatable, ie "none", create an animatable version origin based on the target
+    return defaultValueType.getAnimatableNone
+        ? defaultValueType.getAnimatableNone(value)
+        : undefined;
+}
+
+
+
+;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/render/html/utils/make-none-animatable.mjs
+
+
+
+/**
+ * If we encounter keyframes like "none" or "0" and we also have keyframes like
+ * "#fff" or "200px 200px" we want to find a keyframe to serve as a template for
+ * the "none" keyframes. In this case "#fff" or "200px 200px" - then these get turned into
+ * zero equivalents, i.e. "#fff0" or "0px 0px".
+ */
+const invalidTemplates = new Set(["auto", "none", "0"]);
+function makeNoneKeyframesAnimatable(unresolvedKeyframes, noneKeyframeIndexes, name) {
+    let i = 0;
+    let animatableTemplate = undefined;
+    while (i < unresolvedKeyframes.length && !animatableTemplate) {
+        const keyframe = unresolvedKeyframes[i];
+        if (typeof keyframe === "string" &&
+            !invalidTemplates.has(keyframe) &&
+            analyseComplexValue(keyframe).values.length) {
+            animatableTemplate = unresolvedKeyframes[i];
+        }
+        i++;
+    }
+    if (animatableTemplate && name) {
+        for (const noneIndex of noneKeyframeIndexes) {
+            unresolvedKeyframes[noneIndex] = animatable_none_getAnimatableNone(name, animatableTemplate);
+        }
+    }
+}
+
+
+
+;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/render/dom/DOMKeyframesResolver.mjs
+
+
+
+
+
+
+
+
+class DOMKeyframesResolver extends KeyframeResolver {
+    constructor(unresolvedKeyframes, onComplete, name, motionValue) {
+        super(unresolvedKeyframes, onComplete, name, motionValue, motionValue === null || motionValue === void 0 ? void 0 : motionValue.owner, true);
+    }
+    readKeyframes() {
+        const { unresolvedKeyframes, element, name } = this;
+        if (!element.current)
+            return;
+        super.readKeyframes();
+        /**
+         * If any keyframe is a CSS variable, we need to find its value by sampling the element
+         */
+        for (let i = 0; i < unresolvedKeyframes.length; i++) {
+            const keyframe = unresolvedKeyframes[i];
+            if (typeof keyframe === "string" && isCSSVariableToken(keyframe)) {
+                const resolved = getVariableValue(keyframe, element.current);
+                if (resolved !== undefined) {
+                    unresolvedKeyframes[i] = resolved;
+                }
+                if (i === unresolvedKeyframes.length - 1) {
+                    this.finalKeyframe = keyframe;
+                }
+            }
+        }
+        /**
+         * Resolve "none" values. We do this potentially twice - once before and once after measuring keyframes.
+         * This could be seen as inefficient but it's a trade-off to avoid measurements in more situations, which
+         * have a far bigger performance impact.
+         */
+        this.resolveNoneKeyframes();
+        /**
+         * Check to see if unit type has changed. If so schedule jobs that will
+         * temporarily set styles to the destination keyframes.
+         * Skip if we have more than two keyframes or this isn't a positional value.
+         * TODO: We can throw if there are multiple keyframes and the value type changes.
+         */
+        if (!positionalKeys.has(name) || unresolvedKeyframes.length !== 2) {
+            return;
+        }
+        const [origin, target] = unresolvedKeyframes;
+        const originType = findDimensionValueType(origin);
+        const targetType = findDimensionValueType(target);
+        /**
+         * Either we don't recognise these value types or we can animate between them.
+         */
+        if (originType === targetType)
+            return;
+        /**
+         * If both values are numbers or pixels, we can animate between them by
+         * converting them to numbers.
+         */
+        if (isNumOrPxType(originType) && isNumOrPxType(targetType)) {
+            for (let i = 0; i < unresolvedKeyframes.length; i++) {
+                const value = unresolvedKeyframes[i];
+                if (typeof value === "string") {
+                    unresolvedKeyframes[i] = parseFloat(value);
+                }
+            }
+        }
+        else {
+            /**
+             * Else, the only way to resolve this is by measuring the element.
+             */
+            this.needsMeasurement = true;
+        }
+    }
+    resolveNoneKeyframes() {
+        const { unresolvedKeyframes, name } = this;
+        const noneKeyframeIndexes = [];
+        for (let i = 0; i < unresolvedKeyframes.length; i++) {
+            if (isNone(unresolvedKeyframes[i])) {
+                noneKeyframeIndexes.push(i);
+            }
+        }
+        if (noneKeyframeIndexes.length) {
+            makeNoneKeyframesAnimatable(unresolvedKeyframes, noneKeyframeIndexes, name);
+        }
+    }
+    measureInitialState() {
+        const { element, unresolvedKeyframes, name } = this;
+        if (!element.current)
+            return;
+        if (name === "height") {
+            this.suspendedScrollY = window.pageYOffset;
+        }
+        this.measuredOrigin = positionalValues[name](element.measureViewportBox(), window.getComputedStyle(element.current));
+        unresolvedKeyframes[0] = this.measuredOrigin;
+        // Set final key frame to measure after next render
+        const measureKeyframe = unresolvedKeyframes[unresolvedKeyframes.length - 1];
+        if (measureKeyframe !== undefined) {
+            element.getValue(name, measureKeyframe).jump(measureKeyframe, false);
+        }
+    }
+    measureEndState() {
+        var _a;
+        const { element, name, unresolvedKeyframes } = this;
+        if (!element.current)
+            return;
+        const value = element.getValue(name);
+        value && value.jump(this.measuredOrigin, false);
+        const finalKeyframeIndex = unresolvedKeyframes.length - 1;
+        const finalKeyframe = unresolvedKeyframes[finalKeyframeIndex];
+        unresolvedKeyframes[finalKeyframeIndex] = positionalValues[name](element.measureViewportBox(), window.getComputedStyle(element.current));
+        if (finalKeyframe !== null && this.finalKeyframe === undefined) {
+            this.finalKeyframe = finalKeyframe;
+        }
+        // If we removed transform values, reapply them before the next render
+        if ((_a = this.removedTransforms) === null || _a === void 0 ? void 0 : _a.length) {
+            this.removedTransforms.forEach(([unsetTransformName, unsetTransformValue]) => {
+                element
+                    .getValue(unsetTransformName)
+                    .set(unsetTransformValue);
+            });
+        }
+        this.resolveNoneKeyframes();
+    }
+}
+
+
+
+;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/utils/memo.mjs
+function memo(callback) {
+    let result;
+    return () => {
+        if (result === undefined)
+            result = callback();
+        return result;
+    };
+}
+
+
+
+;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/animation/utils/is-animatable.mjs
+
+
+/**
+ * Check if a value is animatable. Examples:
+ *
+ * ✅: 100, "100px", "#fff"
+ * ❌: "block", "url(2.jpg)"
+ * @param value
+ *
+ * @internal
+ */
+const isAnimatable = (value, name) => {
+    // If the list of keys tat might be non-animatable grows, replace with Set
+    if (name === "zIndex")
+        return false;
+    // If it's a number or a keyframes array, we can animate it. We might at some point
+    // need to do a deep isAnimatable check of keyframes, or let Popmotion handle this,
+    // but for now lets leave it like this for performance reasons
+    if (typeof value === "number" || Array.isArray(value))
+        return true;
+    if (typeof value === "string" && // It's animatable if we have a string
+        (complex.test(value) || value === "0") && // And it contains numbers and/or colors
+        !value.startsWith("url(") // Unless it starts with "url("
+    ) {
+        return true;
+    }
+    return false;
+};
+
+
+
+;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/animation/animators/utils/can-animate.mjs
+
+
+
+function hasKeyframesChanged(keyframes) {
+    const current = keyframes[0];
+    if (keyframes.length === 1)
+        return true;
+    for (let i = 0; i < keyframes.length; i++) {
+        if (keyframes[i] !== current)
+            return true;
+    }
+}
+function canAnimate(keyframes, name, type, velocity) {
+    /**
+     * Check if we're able to animate between the start and end keyframes,
+     * and throw a warning if we're attempting to animate between one that's
+     * animatable and another that isn't.
+     */
+    const originKeyframe = keyframes[0];
+    if (originKeyframe === null)
+        return false;
+    /**
+     * These aren't traditionally animatable but we do support them.
+     * In future we could look into making this more generic or replacing
+     * this function with mix() === mixImmediate
+     */
+    if (name === "display" || name === "visibility")
+        return true;
+    const targetKeyframe = keyframes[keyframes.length - 1];
+    const isOriginAnimatable = isAnimatable(originKeyframe, name);
+    const isTargetAnimatable = isAnimatable(targetKeyframe, name);
+    warning(isOriginAnimatable === isTargetAnimatable, `You are trying to animate ${name} from "${originKeyframe}" to "${targetKeyframe}". ${originKeyframe} is not an animatable value - to enable this animation set ${originKeyframe} to a value animatable to ${targetKeyframe} via the \`style\` property.`);
+    // Always skip if any of these are true
+    if (!isOriginAnimatable || !isTargetAnimatable) {
+        return false;
+    }
+    return hasKeyframesChanged(keyframes) || (type === "spring" && velocity);
+}
+
+
+
+;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/animation/animators/BaseAnimation.mjs
+
+
+
+
+
+class BaseAnimation {
+    constructor({ autoplay = true, delay = 0, type = "keyframes", repeat = 0, repeatDelay = 0, repeatType = "loop", ...options }) {
+        // Track whether the animation has been stopped. Stopped animations won't restart.
+        this.isStopped = false;
+        this.hasAttemptedResolve = false;
+        this.options = {
+            autoplay,
+            delay,
+            type,
+            repeat,
+            repeatDelay,
+            repeatType,
+            ...options,
+        };
+        this.updateFinishedPromise();
+    }
+    /**
+     * A getter for resolved data. If keyframes are not yet resolved, accessing
+     * this.resolved will synchronously flush all pending keyframe resolvers.
+     * This is a deoptimisation, but at its worst still batches read/writes.
+     */
+    get resolved() {
+        if (!this._resolved && !this.hasAttemptedResolve) {
+            flushKeyframeResolvers();
+        }
+        return this._resolved;
+    }
+    /**
+     * A method to be called when the keyframes resolver completes. This method
+     * will check if its possible to run the animation and, if not, skip it.
+     * Otherwise, it will call initPlayback on the implementing class.
+     */
+    onKeyframesResolved(keyframes, finalKeyframe) {
+        this.hasAttemptedResolve = true;
+        const { name, type, velocity, delay, onComplete, onUpdate, isGenerator, } = this.options;
+        /**
+         * If we can't animate this value with the resolved keyframes
+         * then we should complete it immediately.
+         */
+        if (!isGenerator && !canAnimate(keyframes, name, type, velocity)) {
+            // Finish immediately
+            if (instantAnimationState.current || !delay) {
+                onUpdate === null || onUpdate === void 0 ? void 0 : onUpdate(getFinalKeyframe(keyframes, this.options, finalKeyframe));
+                onComplete === null || onComplete === void 0 ? void 0 : onComplete();
+                this.resolveFinishedPromise();
+                return;
+            }
+            // Finish after a delay
+            else {
+                this.options.duration = 0;
+            }
+        }
+        const resolvedAnimation = this.initPlayback(keyframes, finalKeyframe);
+        if (resolvedAnimation === false)
+            return;
+        this._resolved = {
+            keyframes,
+            finalKeyframe,
+            ...resolvedAnimation,
+        };
+        this.onPostResolved();
+    }
+    onPostResolved() { }
+    /**
+     * Allows the returned animation to be awaited or promise-chained. Currently
+     * resolves when the animation finishes at all but in a future update could/should
+     * reject if its cancels.
+     */
+    then(resolve, reject) {
+        return this.currentFinishedPromise.then(resolve, reject);
+    }
+    updateFinishedPromise() {
+        this.currentFinishedPromise = new Promise((resolve) => {
+            this.resolveFinishedPromise = resolve;
+        });
+    }
+}
+
+
+
+;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/utils/velocity-per-second.mjs
+/*
+  Convert velocity into velocity per second
+
+  @param [number]: Unit per frame
+  @param [number]: Frame duration in ms
+*/
+function velocityPerSecond(velocity, frameDuration) {
+    return frameDuration ? velocity * (1000 / frameDuration) : 0;
+}
+
+
+
+;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/animation/generators/utils/velocity.mjs
+
+
+const velocitySampleDuration = 5; // ms
+function calcGeneratorVelocity(resolveValue, t, current) {
+    const prevT = Math.max(t - velocitySampleDuration, 0);
+    return velocityPerSecond(current - resolveValue(prevT), t - prevT);
+}
+
+
+
+;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/animation/generators/spring/find.mjs
+
+
+
+
+const safeMin = 0.001;
+const minDuration = 0.01;
+const maxDuration = 10.0;
+const minDamping = 0.05;
+const maxDamping = 1;
+function findSpring({ duration = 800, bounce = 0.25, velocity = 0, mass = 1, }) {
+    let envelope;
+    let derivative;
+    warning(duration <= secondsToMilliseconds(maxDuration), "Spring duration must be 10 seconds or less");
+    let dampingRatio = 1 - bounce;
+    /**
+     * Restrict dampingRatio and duration to within acceptable ranges.
+     */
+    dampingRatio = clamp(minDamping, maxDamping, dampingRatio);
+    duration = clamp(minDuration, maxDuration, millisecondsToSeconds(duration));
+    if (dampingRatio < 1) {
+        /**
+         * Underdamped spring
+         */
+        envelope = (undampedFreq) => {
+            const exponentialDecay = undampedFreq * dampingRatio;
+            const delta = exponentialDecay * duration;
+            const a = exponentialDecay - velocity;
+            const b = calcAngularFreq(undampedFreq, dampingRatio);
+            const c = Math.exp(-delta);
+            return safeMin - (a / b) * c;
+        };
+        derivative = (undampedFreq) => {
+            const exponentialDecay = undampedFreq * dampingRatio;
+            const delta = exponentialDecay * duration;
+            const d = delta * velocity + velocity;
+            const e = Math.pow(dampingRatio, 2) * Math.pow(undampedFreq, 2) * duration;
+            const f = Math.exp(-delta);
+            const g = calcAngularFreq(Math.pow(undampedFreq, 2), dampingRatio);
+            const factor = -envelope(undampedFreq) + safeMin > 0 ? -1 : 1;
+            return (factor * ((d - e) * f)) / g;
+        };
+    }
+    else {
+        /**
+         * Critically-damped spring
+         */
+        envelope = (undampedFreq) => {
+            const a = Math.exp(-undampedFreq * duration);
+            const b = (undampedFreq - velocity) * duration + 1;
+            return -safeMin + a * b;
+        };
+        derivative = (undampedFreq) => {
+            const a = Math.exp(-undampedFreq * duration);
+            const b = (velocity - undampedFreq) * (duration * duration);
+            return a * b;
+        };
+    }
+    const initialGuess = 5 / duration;
+    const undampedFreq = approximateRoot(envelope, derivative, initialGuess);
+    duration = secondsToMilliseconds(duration);
+    if (isNaN(undampedFreq)) {
+        return {
+            stiffness: 100,
+            damping: 10,
+            duration,
+        };
+    }
+    else {
+        const stiffness = Math.pow(undampedFreq, 2) * mass;
+        return {
+            stiffness,
+            damping: dampingRatio * 2 * Math.sqrt(mass * stiffness),
+            duration,
+        };
+    }
+}
+const rootIterations = 12;
+function approximateRoot(envelope, derivative, initialGuess) {
+    let result = initialGuess;
+    for (let i = 1; i < rootIterations; i++) {
+        result = result - envelope(result) / derivative(result);
+    }
+    return result;
+}
+function calcAngularFreq(undampedFreq, dampingRatio) {
+    return undampedFreq * Math.sqrt(1 - dampingRatio * dampingRatio);
+}
+
+
+
+;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/animation/generators/spring/index.mjs
+
+
+
+
+const durationKeys = ["duration", "bounce"];
+const physicsKeys = ["stiffness", "damping", "mass"];
+function isSpringType(options, keys) {
+    return keys.some((key) => options[key] !== undefined);
+}
+function getSpringOptions(options) {
+    let springOptions = {
+        velocity: 0.0,
+        stiffness: 100,
+        damping: 10,
+        mass: 1.0,
+        isResolvedFromDuration: false,
+        ...options,
+    };
+    // stiffness/damping/mass overrides duration/bounce
+    if (!isSpringType(options, physicsKeys) &&
+        isSpringType(options, durationKeys)) {
+        const derived = findSpring(options);
+        springOptions = {
+            ...springOptions,
+            ...derived,
+            mass: 1.0,
+        };
+        springOptions.isResolvedFromDuration = true;
+    }
+    return springOptions;
+}
+function spring({ keyframes, restDelta, restSpeed, ...options }) {
+    const origin = keyframes[0];
+    const target = keyframes[keyframes.length - 1];
+    /**
+     * This is the Iterator-spec return value. We ensure it's mutable rather than using a generator
+     * to reduce GC during animation.
+     */
+    const state = { done: false, value: origin };
+    const { stiffness, damping, mass, duration, velocity, isResolvedFromDuration, } = getSpringOptions({
+        ...options,
+        velocity: -millisecondsToSeconds(options.velocity || 0),
+    });
+    const initialVelocity = velocity || 0.0;
+    const dampingRatio = damping / (2 * Math.sqrt(stiffness * mass));
+    const initialDelta = target - origin;
+    const undampedAngularFreq = millisecondsToSeconds(Math.sqrt(stiffness / mass));
+    /**
+     * If we're working on a granular scale, use smaller defaults for determining
+     * when the spring is finished.
+     *
+     * These defaults have been selected emprically based on what strikes a good
+     * ratio between feeling good and finishing as soon as changes are imperceptible.
+     */
+    const isGranularScale = Math.abs(initialDelta) < 5;
+    restSpeed || (restSpeed = isGranularScale ? 0.01 : 2);
+    restDelta || (restDelta = isGranularScale ? 0.005 : 0.5);
+    let resolveSpring;
+    if (dampingRatio < 1) {
+        const angularFreq = calcAngularFreq(undampedAngularFreq, dampingRatio);
+        // Underdamped spring
+        resolveSpring = (t) => {
+            const envelope = Math.exp(-dampingRatio * undampedAngularFreq * t);
+            return (target -
+                envelope *
+                    (((initialVelocity +
+                        dampingRatio * undampedAngularFreq * initialDelta) /
+                        angularFreq) *
+                        Math.sin(angularFreq * t) +
+                        initialDelta * Math.cos(angularFreq * t)));
+        };
+    }
+    else if (dampingRatio === 1) {
+        // Critically damped spring
+        resolveSpring = (t) => target -
+            Math.exp(-undampedAngularFreq * t) *
+                (initialDelta +
+                    (initialVelocity + undampedAngularFreq * initialDelta) * t);
+    }
+    else {
+        // Overdamped spring
+        const dampedAngularFreq = undampedAngularFreq * Math.sqrt(dampingRatio * dampingRatio - 1);
+        resolveSpring = (t) => {
+            const envelope = Math.exp(-dampingRatio * undampedAngularFreq * t);
+            // When performing sinh or cosh values can hit Infinity so we cap them here
+            const freqForT = Math.min(dampedAngularFreq * t, 300);
+            return (target -
+                (envelope *
+                    ((initialVelocity +
+                        dampingRatio * undampedAngularFreq * initialDelta) *
+                        Math.sinh(freqForT) +
+                        dampedAngularFreq *
+                            initialDelta *
+                            Math.cosh(freqForT))) /
+                    dampedAngularFreq);
+        };
+    }
+    return {
+        calculatedDuration: isResolvedFromDuration ? duration || null : null,
+        next: (t) => {
+            const current = resolveSpring(t);
+            if (!isResolvedFromDuration) {
+                let currentVelocity = initialVelocity;
+                if (t !== 0) {
+                    /**
+                     * We only need to calculate velocity for under-damped springs
+                     * as over- and critically-damped springs can't overshoot, so
+                     * checking only for displacement is enough.
+                     */
+                    if (dampingRatio < 1) {
+                        currentVelocity = calcGeneratorVelocity(resolveSpring, t, current);
+                    }
+                    else {
+                        currentVelocity = 0;
+                    }
+                }
+                const isBelowVelocityThreshold = Math.abs(currentVelocity) <= restSpeed;
+                const isBelowDisplacementThreshold = Math.abs(target - current) <= restDelta;
+                state.done =
+                    isBelowVelocityThreshold && isBelowDisplacementThreshold;
+            }
+            else {
+                state.done = t >= duration;
+            }
+            state.value = state.done ? target : current;
+            return state;
+        },
+    };
+}
+
+
+
+;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/animation/generators/inertia.mjs
+
+
+
+function inertia({ keyframes, velocity = 0.0, power = 0.8, timeConstant = 325, bounceDamping = 10, bounceStiffness = 500, modifyTarget, min, max, restDelta = 0.5, restSpeed, }) {
+    const origin = keyframes[0];
+    const state = {
+        done: false,
+        value: origin,
+    };
+    const isOutOfBounds = (v) => (min !== undefined && v < min) || (max !== undefined && v > max);
+    const nearestBoundary = (v) => {
+        if (min === undefined)
+            return max;
+        if (max === undefined)
+            return min;
+        return Math.abs(min - v) < Math.abs(max - v) ? min : max;
+    };
+    let amplitude = power * velocity;
+    const ideal = origin + amplitude;
+    const target = modifyTarget === undefined ? ideal : modifyTarget(ideal);
+    /**
+     * If the target has changed we need to re-calculate the amplitude, otherwise
+     * the animation will start from the wrong position.
+     */
+    if (target !== ideal)
+        amplitude = target - origin;
+    const calcDelta = (t) => -amplitude * Math.exp(-t / timeConstant);
+    const calcLatest = (t) => target + calcDelta(t);
+    const applyFriction = (t) => {
+        const delta = calcDelta(t);
+        const latest = calcLatest(t);
+        state.done = Math.abs(delta) <= restDelta;
+        state.value = state.done ? target : latest;
+    };
+    /**
+     * Ideally this would resolve for t in a stateless way, we could
+     * do that by always precalculating the animation but as we know
+     * this will be done anyway we can assume that spring will
+     * be discovered during that.
+     */
+    let timeReachedBoundary;
+    let spring$1;
+    const checkCatchBoundary = (t) => {
+        if (!isOutOfBounds(state.value))
+            return;
+        timeReachedBoundary = t;
+        spring$1 = spring({
+            keyframes: [state.value, nearestBoundary(state.value)],
+            velocity: calcGeneratorVelocity(calcLatest, t, state.value), // TODO: This should be passing * 1000
+            damping: bounceDamping,
+            stiffness: bounceStiffness,
+            restDelta,
+            restSpeed,
+        });
+    };
+    checkCatchBoundary(0);
+    return {
+        calculatedDuration: null,
+        next: (t) => {
+            /**
+             * We need to resolve the friction to figure out if we need a
+             * spring but we don't want to do this twice per frame. So here
+             * we flag if we updated for this frame and later if we did
+             * we can skip doing it again.
+             */
+            let hasUpdatedFrame = false;
+            if (!spring$1 && timeReachedBoundary === undefined) {
+                hasUpdatedFrame = true;
+                applyFriction(t);
+                checkCatchBoundary(t);
+            }
+            /**
+             * If we have a spring and the provided t is beyond the moment the friction
+             * animation crossed the min/max boundary, use the spring.
+             */
+            if (timeReachedBoundary !== undefined && t >= timeReachedBoundary) {
+                return spring$1.next(t - timeReachedBoundary);
+            }
+            else {
+                !hasUpdatedFrame && applyFriction(t);
+                return state;
+            }
+        },
+    };
+}
+
+
+
+;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/easing/cubic-bezier.mjs
+
+
+/*
+  Bezier function generator
+  This has been modified from Gaëtan Renaudeau's BezierEasing
+  https://github.com/gre/bezier-easing/blob/master/src/index.js
+  https://github.com/gre/bezier-easing/blob/master/LICENSE
+  
+  I've removed the newtonRaphsonIterate algo because in benchmarking it
+  wasn't noticiably faster than binarySubdivision, indeed removing it
+  usually improved times, depending on the curve.
+  I also removed the lookup table, as for the added bundle size and loop we're
+  only cutting ~4 or so subdivision iterations. I bumped the max iterations up
+  to 12 to compensate and this still tended to be faster for no perceivable
+  loss in accuracy.
+  Usage
+    const easeOut = cubicBezier(.17,.67,.83,.67);
+    const x = easeOut(0.5); // returns 0.627...
+*/
+// Returns x(t) given t, x1, and x2, or y(t) given t, y1, and y2.
+const calcBezier = (t, a1, a2) => (((1.0 - 3.0 * a2 + 3.0 * a1) * t + (3.0 * a2 - 6.0 * a1)) * t + 3.0 * a1) *
+    t;
+const subdivisionPrecision = 0.0000001;
+const subdivisionMaxIterations = 12;
+function binarySubdivide(x, lowerBound, upperBound, mX1, mX2) {
+    let currentX;
+    let currentT;
+    let i = 0;
+    do {
+        currentT = lowerBound + (upperBound - lowerBound) / 2.0;
+        currentX = calcBezier(currentT, mX1, mX2) - x;
+        if (currentX > 0.0) {
+            upperBound = currentT;
+        }
+        else {
+            lowerBound = currentT;
+        }
+    } while (Math.abs(currentX) > subdivisionPrecision &&
+        ++i < subdivisionMaxIterations);
+    return currentT;
+}
+function cubicBezier(mX1, mY1, mX2, mY2) {
+    // If this is a linear gradient, return linear easing
+    if (mX1 === mY1 && mX2 === mY2)
+        return noop_noop;
+    const getTForX = (aX) => binarySubdivide(aX, 0, 1, mX1, mX2);
+    // If animation is at start/end, return t without easing
+    return (t) => t === 0 || t === 1 ? t : calcBezier(getTForX(t), mY1, mY2);
+}
+
+
+
+;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/easing/ease.mjs
+
+
+const easeIn = cubicBezier(0.42, 0, 1, 1);
+const easeOut = cubicBezier(0, 0, 0.58, 1);
+const easeInOut = cubicBezier(0.42, 0, 0.58, 1);
+
+
+
+;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/easing/utils/is-easing-array.mjs
+const isEasingArray = (ease) => {
+    return Array.isArray(ease) && typeof ease[0] !== "number";
+};
+
+
+
+;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/easing/modifiers/mirror.mjs
+// Accepts an easing function and returns a new one that outputs mirrored values for
+// the second half of the animation. Turns easeIn into easeInOut.
+const mirrorEasing = (easing) => (p) => p <= 0.5 ? easing(2 * p) / 2 : (2 - easing(2 * (1 - p))) / 2;
+
+
+
+;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/easing/modifiers/reverse.mjs
+// Accepts an easing function and returns a new one that outputs reversed values.
+// Turns easeIn into easeOut.
+const reverseEasing = (easing) => (p) => 1 - easing(1 - p);
+
+
+
+;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/easing/circ.mjs
+
+
+
+const circIn = (p) => 1 - Math.sin(Math.acos(p));
+const circOut = reverseEasing(circIn);
+const circInOut = mirrorEasing(circIn);
+
+
+
+;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/easing/back.mjs
+
+
+
+
+const backOut = cubicBezier(0.33, 1.53, 0.69, 0.99);
+const backIn = reverseEasing(backOut);
+const backInOut = mirrorEasing(backIn);
+
+
+
+;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/easing/anticipate.mjs
+
+
+const anticipate = (p) => (p *= 2) < 1 ? 0.5 * backIn(p) : 0.5 * (2 - Math.pow(2, -10 * (p - 1)));
+
+
+
+;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/easing/utils/map.mjs
+
+
+
+
+
+
+
+
+const easingLookup = {
+    linear: noop_noop,
+    easeIn: easeIn,
+    easeInOut: easeInOut,
+    easeOut: easeOut,
+    circIn: circIn,
+    circInOut: circInOut,
+    circOut: circOut,
+    backIn: backIn,
+    backInOut: backInOut,
+    backOut: backOut,
+    anticipate: anticipate,
+};
+const easingDefinitionToFunction = (definition) => {
+    if (Array.isArray(definition)) {
+        // If cubic bezier definition, create bezier curve
+        invariant(definition.length === 4, `Cubic bezier arrays must contain four numerical values.`);
+        const [x1, y1, x2, y2] = definition;
+        return cubicBezier(x1, y1, x2, y2);
+    }
+    else if (typeof definition === "string") {
+        // Else lookup from table
+        invariant(easingLookup[definition] !== undefined, `Invalid easing type '${definition}'`);
+        return easingLookup[definition];
+    }
+    return definition;
+};
+
+
+
+;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/utils/progress.mjs
+/*
+  Progress within given range
+
+  Given a lower limit and an upper limit, we return the progress
+  (expressed as a number 0-1) represented by the given value, and
+  limit that progress to within 0-1.
+
+  @param [number]: Lower limit
+  @param [number]: Upper limit
+  @param [number]: Value to find progress within given range
+  @return [number]: Progress of value within range as expressed 0-1
+*/
+const progress = (from, to, value) => {
+    const toFromDifference = to - from;
+    return toFromDifference === 0 ? 1 : (value - from) / toFromDifference;
+};
+
+
+
+;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/utils/mix/number.mjs
+/*
+  Value in range from progress
+
+  Given a lower limit and an upper limit, we return the value within
+  that range as expressed by progress (usually a number from 0 to 1)
+
+  So progress = 0.5 would change
+
+  from -------- to
+
+  to
+
+  from ---- to
+
+  E.g. from = 10, to = 20, progress = 0.5 => 15
+
+  @param [number]: Lower limit of range
+  @param [number]: Upper limit of range
+  @param [number]: The progress between lower and upper limits expressed 0-1
+  @return [number]: Value as calculated from progress within range (not limited within range)
+*/
+const mixNumber = (from, to, progress) => {
+    return from + (to - from) * progress;
+};
+
+
+
+;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/utils/hsla-to-rgba.mjs
+// Adapted from https://gist.github.com/mjackson/5311256
+function hueToRgb(p, q, t) {
+    if (t < 0)
+        t += 1;
+    if (t > 1)
+        t -= 1;
+    if (t < 1 / 6)
+        return p + (q - p) * 6 * t;
+    if (t < 1 / 2)
+        return q;
+    if (t < 2 / 3)
+        return p + (q - p) * (2 / 3 - t) * 6;
+    return p;
+}
+function hslaToRgba({ hue, saturation, lightness, alpha }) {
+    hue /= 360;
+    saturation /= 100;
+    lightness /= 100;
+    let red = 0;
+    let green = 0;
+    let blue = 0;
+    if (!saturation) {
+        red = green = blue = lightness;
+    }
+    else {
+        const q = lightness < 0.5
+            ? lightness * (1 + saturation)
+            : lightness + saturation - lightness * saturation;
+        const p = 2 * lightness - q;
+        red = hueToRgb(p, q, hue + 1 / 3);
+        green = hueToRgb(p, q, hue);
+        blue = hueToRgb(p, q, hue - 1 / 3);
+    }
+    return {
+        red: Math.round(red * 255),
+        green: Math.round(green * 255),
+        blue: Math.round(blue * 255),
+        alpha,
+    };
+}
+
+
+
+;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/utils/mix/color.mjs
+
+
+
+
+
+
+
+// Linear color space blending
+// Explained https://www.youtube.com/watch?v=LKnqECcg6Gw
+// Demonstrated http://codepen.io/osublake/pen/xGVVaN
+const mixLinearColor = (from, to, v) => {
+    const fromExpo = from * from;
+    const expo = v * (to * to - fromExpo) + fromExpo;
+    return expo < 0 ? 0 : Math.sqrt(expo);
+};
+const colorTypes = [hex, rgba, hsla];
+const getColorType = (v) => colorTypes.find((type) => type.test(v));
+function asRGBA(color) {
+    const type = getColorType(color);
+    invariant(Boolean(type), `'${color}' is not an animatable color. Use the equivalent color code instead.`);
+    let model = type.parse(color);
+    if (type === hsla) {
+        // TODO Remove this cast - needed since Framer Motion's stricter typing
+        model = hslaToRgba(model);
+    }
+    return model;
+}
+const mixColor = (from, to) => {
+    const fromRGBA = asRGBA(from);
+    const toRGBA = asRGBA(to);
+    const blended = { ...fromRGBA };
+    return (v) => {
+        blended.red = mixLinearColor(fromRGBA.red, toRGBA.red, v);
+        blended.green = mixLinearColor(fromRGBA.green, toRGBA.green, v);
+        blended.blue = mixLinearColor(fromRGBA.blue, toRGBA.blue, v);
+        blended.alpha = mixNumber(fromRGBA.alpha, toRGBA.alpha, v);
+        return rgba.transform(blended);
+    };
+};
+
+
+
+;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/utils/mix/visibility.mjs
+const invisibleValues = new Set(["none", "hidden"]);
+/**
+ * Returns a function that, when provided a progress value between 0 and 1,
+ * will return the "none" or "hidden" string only when the progress is that of
+ * the origin or target.
+ */
+function mixVisibility(origin, target) {
+    if (invisibleValues.has(origin)) {
+        return (p) => (p <= 0 ? origin : target);
+    }
+    else {
+        return (p) => (p >= 1 ? target : origin);
+    }
+}
+
+
+
+;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/utils/mix/complex.mjs
+
+
+
+
+
+
+
+
+
+function mixImmediate(a, b) {
+    return (p) => (p > 0 ? b : a);
+}
+function complex_mixNumber(a, b) {
+    return (p) => mixNumber(a, b, p);
+}
+function getMixer(a) {
+    if (typeof a === "number") {
+        return complex_mixNumber;
+    }
+    else if (typeof a === "string") {
+        return isCSSVariableToken(a)
+            ? mixImmediate
+            : color.test(a)
+                ? mixColor
+                : mixComplex;
+    }
+    else if (Array.isArray(a)) {
+        return mixArray;
+    }
+    else if (typeof a === "object") {
+        return color.test(a) ? mixColor : mixObject;
+    }
+    return mixImmediate;
+}
+function mixArray(a, b) {
+    const output = [...a];
+    const numValues = output.length;
+    const blendValue = a.map((v, i) => getMixer(v)(v, b[i]));
+    return (p) => {
+        for (let i = 0; i < numValues; i++) {
+            output[i] = blendValue[i](p);
+        }
+        return output;
+    };
+}
+function mixObject(a, b) {
+    const output = { ...a, ...b };
+    const blendValue = {};
+    for (const key in output) {
+        if (a[key] !== undefined && b[key] !== undefined) {
+            blendValue[key] = getMixer(a[key])(a[key], b[key]);
+        }
+    }
+    return (v) => {
+        for (const key in blendValue) {
+            output[key] = blendValue[key](v);
+        }
+        return output;
+    };
+}
+function matchOrder(origin, target) {
+    var _a;
+    const orderedOrigin = [];
+    const pointers = { color: 0, var: 0, number: 0 };
+    for (let i = 0; i < target.values.length; i++) {
+        const type = target.types[i];
+        const originIndex = origin.indexes[type][pointers[type]];
+        const originValue = (_a = origin.values[originIndex]) !== null && _a !== void 0 ? _a : 0;
+        orderedOrigin[i] = originValue;
+        pointers[type]++;
+    }
+    return orderedOrigin;
+}
+const mixComplex = (origin, target) => {
+    const template = complex.createTransformer(target);
+    const originStats = analyseComplexValue(origin);
+    const targetStats = analyseComplexValue(target);
+    const canInterpolate = originStats.indexes.var.length === targetStats.indexes.var.length &&
+        originStats.indexes.color.length === targetStats.indexes.color.length &&
+        originStats.indexes.number.length >= targetStats.indexes.number.length;
+    if (canInterpolate) {
+        if ((invisibleValues.has(origin) &&
+            !targetStats.values.length) ||
+            (invisibleValues.has(target) &&
+                !originStats.values.length)) {
+            return mixVisibility(origin, target);
+        }
+        return pipe(mixArray(matchOrder(originStats, targetStats), targetStats.values), template);
+    }
+    else {
+        warning(true, `Complex values '${origin}' and '${target}' too different to mix. Ensure all colors are of the same type, and that each contains the same quantity of number and color values. Falling back to instant transition.`);
+        return mixImmediate(origin, target);
+    }
+};
+
+
+
+;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/utils/mix/index.mjs
+
+
+
+function mix(from, to, p) {
+    if (typeof from === "number" &&
+        typeof to === "number" &&
+        typeof p === "number") {
+        return mixNumber(from, to, p);
+    }
+    const mixer = getMixer(from);
+    return mixer(from, to);
+}
+
+
+
+;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/utils/interpolate.mjs
+
+
+
+
+
+
+
+function createMixers(output, ease, customMixer) {
+    const mixers = [];
+    const mixerFactory = customMixer || mix;
+    const numMixers = output.length - 1;
+    for (let i = 0; i < numMixers; i++) {
+        let mixer = mixerFactory(output[i], output[i + 1]);
+        if (ease) {
+            const easingFunction = Array.isArray(ease) ? ease[i] || noop_noop : ease;
+            mixer = pipe(easingFunction, mixer);
+        }
+        mixers.push(mixer);
+    }
+    return mixers;
+}
+/**
+ * Create a function that maps from a numerical input array to a generic output array.
+ *
+ * Accepts:
+ *   - Numbers
+ *   - Colors (hex, hsl, hsla, rgb, rgba)
+ *   - Complex (combinations of one or more numbers or strings)
+ *
+ * ```jsx
+ * const mixColor = interpolate([0, 1], ['#fff', '#000'])
+ *
+ * mixColor(0.5) // 'rgba(128, 128, 128, 1)'
+ * ```
+ *
+ * TODO Revist this approach once we've moved to data models for values,
+ * probably not needed to pregenerate mixer functions.
+ *
+ * @public
+ */
+function interpolate(input, output, { clamp: isClamp = true, ease, mixer } = {}) {
+    const inputLength = input.length;
+    invariant(inputLength === output.length, "Both input and output ranges must be the same length");
+    /**
+     * If we're only provided a single input, we can just make a function
+     * that returns the output.
+     */
+    if (inputLength === 1)
+        return () => output[0];
+    if (inputLength === 2 && input[0] === input[1])
+        return () => output[1];
+    // If input runs highest -> lowest, reverse both arrays
+    if (input[0] > input[inputLength - 1]) {
+        input = [...input].reverse();
+        output = [...output].reverse();
+    }
+    const mixers = createMixers(output, ease, mixer);
+    const numMixers = mixers.length;
+    const interpolator = (v) => {
+        let i = 0;
+        if (numMixers > 1) {
+            for (; i < input.length - 2; i++) {
+                if (v < input[i + 1])
+                    break;
+            }
+        }
+        const progressInRange = progress(input[i], input[i + 1], v);
+        return mixers[i](progressInRange);
+    };
+    return isClamp
+        ? (v) => interpolator(clamp(input[0], input[inputLength - 1], v))
+        : interpolator;
+}
+
+
+
+;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/utils/offsets/fill.mjs
+
+
+
+function fillOffset(offset, remaining) {
+    const min = offset[offset.length - 1];
+    for (let i = 1; i <= remaining; i++) {
+        const offsetProgress = progress(0, remaining, i);
+        offset.push(mixNumber(min, 1, offsetProgress));
+    }
+}
+
+
+
+;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/utils/offsets/default.mjs
+
+
+function defaultOffset(arr) {
+    const offset = [0];
+    fillOffset(offset, arr.length - 1);
+    return offset;
+}
+
+
+
+;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/utils/offsets/time.mjs
+function convertOffsetToTimes(offset, duration) {
+    return offset.map((o) => o * duration);
+}
+
+
+
+;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/animation/generators/keyframes.mjs
+
+
+
+
+
+
+
+function defaultEasing(values, easing) {
+    return values.map(() => easing || easeInOut).splice(0, values.length - 1);
+}
+function keyframes({ duration = 300, keyframes: keyframeValues, times, ease = "easeInOut", }) {
+    /**
+     * Easing functions can be externally defined as strings. Here we convert them
+     * into actual functions.
+     */
+    const easingFunctions = isEasingArray(ease)
+        ? ease.map(easingDefinitionToFunction)
+        : easingDefinitionToFunction(ease);
+    /**
+     * This is the Iterator-spec return value. We ensure it's mutable rather than using a generator
+     * to reduce GC during animation.
+     */
+    const state = {
+        done: false,
+        value: keyframeValues[0],
+    };
+    /**
+     * Create a times array based on the provided 0-1 offsets
+     */
+    const absoluteTimes = convertOffsetToTimes(
+    // Only use the provided offsets if they're the correct length
+    // TODO Maybe we should warn here if there's a length mismatch
+    times && times.length === keyframeValues.length
+        ? times
+        : defaultOffset(keyframeValues), duration);
+    const mapTimeToKeyframe = interpolate(absoluteTimes, keyframeValues, {
+        ease: Array.isArray(easingFunctions)
+            ? easingFunctions
+            : defaultEasing(keyframeValues, easingFunctions),
+    });
+    return {
+        calculatedDuration: duration,
+        next: (t) => {
+            state.value = mapTimeToKeyframe(t);
+            state.done = t >= duration;
+            return state;
+        },
+    };
+}
+
+
+
+;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/animation/generators/utils/calc-duration.mjs
+/**
+ * Implement a practical max duration for keyframe generation
+ * to prevent infinite loops
+ */
+const maxGeneratorDuration = 20000;
+function calcGeneratorDuration(generator) {
+    let duration = 0;
+    const timeStep = 50;
+    let state = generator.next(duration);
+    while (!state.done && duration < maxGeneratorDuration) {
+        duration += timeStep;
+        state = generator.next(duration);
+    }
+    return duration >= maxGeneratorDuration ? Infinity : duration;
+}
+
+
+
+;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/animation/animators/drivers/driver-frameloop.mjs
+
+
+
+const frameloopDriver = (update) => {
+    const passTimestamp = ({ timestamp }) => update(timestamp);
+    return {
+        start: () => frame_frame.update(passTimestamp, true),
+        stop: () => cancelFrame(passTimestamp),
+        /**
+         * If we're processing this frame we can use the
+         * framelocked timestamp to keep things in sync.
+         */
+        now: () => (frameData.isProcessing ? frameData.timestamp : time.now()),
+    };
+};
+
+
+
+;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/animation/animators/MainThreadAnimation.mjs
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+const generators = {
+    decay: inertia,
+    inertia: inertia,
+    tween: keyframes,
+    keyframes: keyframes,
+    spring: spring,
+};
+const percentToProgress = (percent) => percent / 100;
+/**
+ * Animation that runs on the main thread. Designed to be WAAPI-spec in the subset of
+ * features we expose publically. Mostly the compatibility is to ensure visual identity
+ * between both WAAPI and main thread animations.
+ */
+class MainThreadAnimation extends BaseAnimation {
+    constructor({ KeyframeResolver: KeyframeResolver$1 = KeyframeResolver, ...options }) {
+        super(options);
+        /**
+         * The time at which the animation was paused.
+         */
+        this.holdTime = null;
+        /**
+         * The time at which the animation was started.
+         */
+        this.startTime = null;
+        /**
+         * The time at which the animation was cancelled.
+         */
+        this.cancelTime = null;
+        /**
+         * The current time of the animation.
+         */
+        this.currentTime = 0;
+        /**
+         * Playback speed as a factor. 0 would be stopped, -1 reverse and 2 double speed.
+         */
+        this.playbackSpeed = 1;
+        /**
+         * The state of the animation to apply when the animation is resolved. This
+         * allows calls to the public API to control the animation before it is resolved,
+         * without us having to resolve it first.
+         */
+        this.pendingPlayState = "running";
+        this.state = "idle";
+        /**
+         * This method is bound to the instance to fix a pattern where
+         * animation.stop is returned as a reference from a useEffect.
+         */
+        this.stop = () => {
+            this.resolver.cancel();
+            this.isStopped = true;
+            if (this.state === "idle")
+                return;
+            this.teardown();
+            const { onStop } = this.options;
+            onStop && onStop();
+        };
+        const { name, motionValue, keyframes } = this.options;
+        const onResolved = (resolvedKeyframes, finalKeyframe) => this.onKeyframesResolved(resolvedKeyframes, finalKeyframe);
+        if (name && motionValue && motionValue.owner) {
+            this.resolver = motionValue.owner.resolveKeyframes(keyframes, onResolved, name, motionValue);
+        }
+        else {
+            this.resolver = new KeyframeResolver$1(keyframes, onResolved, name, motionValue);
+        }
+        this.resolver.scheduleResolve();
+    }
+    initPlayback(keyframes$1) {
+        const { type = "keyframes", repeat = 0, repeatDelay = 0, repeatType, velocity = 0, } = this.options;
+        const generatorFactory = generators[type] || keyframes;
+        /**
+         * If our generator doesn't support mixing numbers, we need to replace keyframes with
+         * [0, 100] and then make a function that maps that to the actual keyframes.
+         *
+         * 100 is chosen instead of 1 as it works nicer with spring animations.
+         */
+        let mapPercentToKeyframes;
+        let mirroredGenerator;
+        if (generatorFactory !== keyframes &&
+            typeof keyframes$1[0] !== "number") {
+            if (false) {}
+            mapPercentToKeyframes = pipe(percentToProgress, mix(keyframes$1[0], keyframes$1[1]));
+            keyframes$1 = [0, 100];
+        }
+        const generator = generatorFactory({ ...this.options, keyframes: keyframes$1 });
+        /**
+         * If we have a mirror repeat type we need to create a second generator that outputs the
+         * mirrored (not reversed) animation and later ping pong between the two generators.
+         */
+        if (repeatType === "mirror") {
+            mirroredGenerator = generatorFactory({
+                ...this.options,
+                keyframes: [...keyframes$1].reverse(),
+                velocity: -velocity,
+            });
+        }
+        /**
+         * If duration is undefined and we have repeat options,
+         * we need to calculate a duration from the generator.
+         *
+         * We set it to the generator itself to cache the duration.
+         * Any timeline resolver will need to have already precalculated
+         * the duration by this step.
+         */
+        if (generator.calculatedDuration === null) {
+            generator.calculatedDuration = calcGeneratorDuration(generator);
+        }
+        const { calculatedDuration } = generator;
+        const resolvedDuration = calculatedDuration + repeatDelay;
+        const totalDuration = resolvedDuration * (repeat + 1) - repeatDelay;
+        return {
+            generator,
+            mirroredGenerator,
+            mapPercentToKeyframes,
+            calculatedDuration,
+            resolvedDuration,
+            totalDuration,
+        };
+    }
+    onPostResolved() {
+        const { autoplay = true } = this.options;
+        this.play();
+        if (this.pendingPlayState === "paused" || !autoplay) {
+            this.pause();
+        }
+        else {
+            this.state = this.pendingPlayState;
+        }
+    }
+    tick(timestamp, sample = false) {
+        const { resolved } = this;
+        // If the animations has failed to resolve, return the final keyframe.
+        if (!resolved) {
+            const { keyframes } = this.options;
+            return { done: true, value: keyframes[keyframes.length - 1] };
+        }
+        const { finalKeyframe, generator, mirroredGenerator, mapPercentToKeyframes, keyframes, calculatedDuration, totalDuration, resolvedDuration, } = resolved;
+        if (this.startTime === null)
+            return generator.next(0);
+        const { delay, repeat, repeatType, repeatDelay, onUpdate } = this.options;
+        /**
+         * requestAnimationFrame timestamps can come through as lower than
+         * the startTime as set by performance.now(). Here we prevent this,
+         * though in the future it could be possible to make setting startTime
+         * a pending operation that gets resolved here.
+         */
+        if (this.speed > 0) {
+            this.startTime = Math.min(this.startTime, timestamp);
+        }
+        else if (this.speed < 0) {
+            this.startTime = Math.min(timestamp - totalDuration / this.speed, this.startTime);
+        }
+        // Update currentTime
+        if (sample) {
+            this.currentTime = timestamp;
+        }
+        else if (this.holdTime !== null) {
+            this.currentTime = this.holdTime;
+        }
+        else {
+            // Rounding the time because floating point arithmetic is not always accurate, e.g. 3000.367 - 1000.367 =
+            // 2000.0000000000002. This is a problem when we are comparing the currentTime with the duration, for
+            // example.
+            this.currentTime =
+                Math.round(timestamp - this.startTime) * this.speed;
+        }
+        // Rebase on delay
+        const timeWithoutDelay = this.currentTime - delay * (this.speed >= 0 ? 1 : -1);
+        const isInDelayPhase = this.speed >= 0
+            ? timeWithoutDelay < 0
+            : timeWithoutDelay > totalDuration;
+        this.currentTime = Math.max(timeWithoutDelay, 0);
+        // If this animation has finished, set the current time  to the total duration.
+        if (this.state === "finished" && this.holdTime === null) {
+            this.currentTime = totalDuration;
+        }
+        let elapsed = this.currentTime;
+        let frameGenerator = generator;
+        if (repeat) {
+            /**
+             * Get the current progress (0-1) of the animation. If t is >
+             * than duration we'll get values like 2.5 (midway through the
+             * third iteration)
+             */
+            const progress = Math.min(this.currentTime, totalDuration) / resolvedDuration;
+            /**
+             * Get the current iteration (0 indexed). For instance the floor of
+             * 2.5 is 2.
+             */
+            let currentIteration = Math.floor(progress);
+            /**
+             * Get the current progress of the iteration by taking the remainder
+             * so 2.5 is 0.5 through iteration 2
+             */
+            let iterationProgress = progress % 1.0;
+            /**
+             * If iteration progress is 1 we count that as the end
+             * of the previous iteration.
+             */
+            if (!iterationProgress && progress >= 1) {
+                iterationProgress = 1;
+            }
+            iterationProgress === 1 && currentIteration--;
+            currentIteration = Math.min(currentIteration, repeat + 1);
+            /**
+             * Reverse progress if we're not running in "normal" direction
+             */
+            const isOddIteration = Boolean(currentIteration % 2);
+            if (isOddIteration) {
+                if (repeatType === "reverse") {
+                    iterationProgress = 1 - iterationProgress;
+                    if (repeatDelay) {
+                        iterationProgress -= repeatDelay / resolvedDuration;
+                    }
+                }
+                else if (repeatType === "mirror") {
+                    frameGenerator = mirroredGenerator;
+                }
+            }
+            elapsed = clamp(0, 1, iterationProgress) * resolvedDuration;
+        }
+        /**
+         * If we're in negative time, set state as the initial keyframe.
+         * This prevents delay: x, duration: 0 animations from finishing
+         * instantly.
+         */
+        const state = isInDelayPhase
+            ? { done: false, value: keyframes[0] }
+            : frameGenerator.next(elapsed);
+        if (mapPercentToKeyframes) {
+            state.value = mapPercentToKeyframes(state.value);
+        }
+        let { done } = state;
+        if (!isInDelayPhase && calculatedDuration !== null) {
+            done =
+                this.speed >= 0
+                    ? this.currentTime >= totalDuration
+                    : this.currentTime <= 0;
+        }
+        const isAnimationFinished = this.holdTime === null &&
+            (this.state === "finished" || (this.state === "running" && done));
+        if (isAnimationFinished && finalKeyframe !== undefined) {
+            state.value = getFinalKeyframe(keyframes, this.options, finalKeyframe);
+        }
+        if (onUpdate) {
+            onUpdate(state.value);
+        }
+        if (isAnimationFinished) {
+            this.finish();
+        }
+        return state;
+    }
+    get duration() {
+        const { resolved } = this;
+        return resolved ? millisecondsToSeconds(resolved.calculatedDuration) : 0;
+    }
+    get time() {
+        return millisecondsToSeconds(this.currentTime);
+    }
+    set time(newTime) {
+        newTime = secondsToMilliseconds(newTime);
+        this.currentTime = newTime;
+        if (this.holdTime !== null || this.speed === 0) {
+            this.holdTime = newTime;
+        }
+        else if (this.driver) {
+            this.startTime = this.driver.now() - newTime / this.speed;
+        }
+    }
+    get speed() {
+        return this.playbackSpeed;
+    }
+    set speed(newSpeed) {
+        const hasChanged = this.playbackSpeed !== newSpeed;
+        this.playbackSpeed = newSpeed;
+        if (hasChanged) {
+            this.time = millisecondsToSeconds(this.currentTime);
+        }
+    }
+    play() {
+        if (!this.resolver.isScheduled) {
+            this.resolver.resume();
+        }
+        if (!this._resolved) {
+            this.pendingPlayState = "running";
+            return;
+        }
+        if (this.isStopped)
+            return;
+        const { driver = frameloopDriver, onPlay } = this.options;
+        if (!this.driver) {
+            this.driver = driver((timestamp) => this.tick(timestamp));
+        }
+        onPlay && onPlay();
+        const now = this.driver.now();
+        if (this.holdTime !== null) {
+            this.startTime = now - this.holdTime;
+        }
+        else if (!this.startTime || this.state === "finished") {
+            this.startTime = now;
+        }
+        if (this.state === "finished") {
+            this.updateFinishedPromise();
+        }
+        this.cancelTime = this.startTime;
+        this.holdTime = null;
+        /**
+         * Set playState to running only after we've used it in
+         * the previous logic.
+         */
+        this.state = "running";
+        this.driver.start();
+    }
+    pause() {
+        var _a;
+        if (!this._resolved) {
+            this.pendingPlayState = "paused";
+            return;
+        }
+        this.state = "paused";
+        this.holdTime = (_a = this.currentTime) !== null && _a !== void 0 ? _a : 0;
+    }
+    complete() {
+        if (this.state !== "running") {
+            this.play();
+        }
+        this.pendingPlayState = this.state = "finished";
+        this.holdTime = null;
+    }
+    finish() {
+        this.teardown();
+        this.state = "finished";
+        const { onComplete } = this.options;
+        onComplete && onComplete();
+    }
+    cancel() {
+        if (this.cancelTime !== null) {
+            this.tick(this.cancelTime);
+        }
+        this.teardown();
+        this.updateFinishedPromise();
+    }
+    teardown() {
+        this.state = "idle";
+        this.stopDriver();
+        this.resolveFinishedPromise();
+        this.updateFinishedPromise();
+        this.startTime = this.cancelTime = null;
+        this.resolver.cancel();
+    }
+    stopDriver() {
+        if (!this.driver)
+            return;
+        this.driver.stop();
+        this.driver = undefined;
+    }
+    sample(time) {
+        this.startTime = 0;
+        return this.tick(time, true);
+    }
+}
+// Legacy interface
+function animateValue(options) {
+    return new MainThreadAnimation(options);
+}
+
+
+
+;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/easing/utils/is-bezier-definition.mjs
+const isBezierDefinition = (easing) => Array.isArray(easing) && typeof easing[0] === "number";
+
+
+
+;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/animation/animators/waapi/easing.mjs
+
+
+function isWaapiSupportedEasing(easing) {
+    return Boolean(!easing ||
+        (typeof easing === "string" && easing in supportedWaapiEasing) ||
+        isBezierDefinition(easing) ||
+        (Array.isArray(easing) && easing.every(isWaapiSupportedEasing)));
+}
+const cubicBezierAsString = ([a, b, c, d]) => `cubic-bezier(${a}, ${b}, ${c}, ${d})`;
+const supportedWaapiEasing = {
+    linear: "linear",
+    ease: "ease",
+    easeIn: "ease-in",
+    easeOut: "ease-out",
+    easeInOut: "ease-in-out",
+    circIn: cubicBezierAsString([0, 0.65, 0.55, 1]),
+    circOut: cubicBezierAsString([0.55, 0, 1, 0.45]),
+    backIn: cubicBezierAsString([0.31, 0.01, 0.66, -0.59]),
+    backOut: cubicBezierAsString([0.33, 1.53, 0.69, 0.99]),
+};
+function mapEasingToNativeEasingWithDefault(easing) {
+    return (mapEasingToNativeEasing(easing) ||
+        supportedWaapiEasing.easeOut);
+}
+function mapEasingToNativeEasing(easing) {
+    if (!easing) {
+        return undefined;
+    }
+    else if (isBezierDefinition(easing)) {
+        return cubicBezierAsString(easing);
+    }
+    else if (Array.isArray(easing)) {
+        return easing.map(mapEasingToNativeEasingWithDefault);
+    }
+    else {
+        return supportedWaapiEasing[easing];
+    }
+}
+
+
+
+;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/animation/animators/waapi/index.mjs
+
+
+function animateStyle(element, valueName, keyframes, { delay = 0, duration = 300, repeat = 0, repeatType = "loop", ease, times, } = {}) {
+    const keyframeOptions = { [valueName]: keyframes };
+    if (times)
+        keyframeOptions.offset = times;
+    const easing = mapEasingToNativeEasing(ease);
+    /**
+     * If this is an easing array, apply to keyframes, not animation as a whole
+     */
+    if (Array.isArray(easing))
+        keyframeOptions.easing = easing;
+    return element.animate(keyframeOptions, {
+        delay,
+        duration,
+        easing: !Array.isArray(easing) ? easing : "linear",
+        fill: "both",
+        iterations: repeat + 1,
+        direction: repeatType === "reverse" ? "alternate" : "normal",
+    });
+}
+
+
+
+;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/animation/animators/AcceleratedAnimation.mjs
+
+
+
+
+
+
+
+
+
+
+
+const supportsWaapi = memo(() => Object.hasOwnProperty.call(Element.prototype, "animate"));
+/**
+ * A list of values that can be hardware-accelerated.
+ */
+const acceleratedValues = new Set([
+    "opacity",
+    "clipPath",
+    "filter",
+    "transform",
+    // TODO: Can be accelerated but currently disabled until https://issues.chromium.org/issues/41491098 is resolved
+    // or until we implement support for linear() easing.
+    // "background-color"
+]);
+/**
+ * 10ms is chosen here as it strikes a balance between smooth
+ * results (more than one keyframe per frame at 60fps) and
+ * keyframe quantity.
+ */
+const sampleDelta = 10; //ms
+/**
+ * Implement a practical max duration for keyframe generation
+ * to prevent infinite loops
+ */
+const AcceleratedAnimation_maxDuration = 20000;
+/**
+ * Check if an animation can run natively via WAAPI or requires pregenerated keyframes.
+ * WAAPI doesn't support spring or function easings so we run these as JS animation before
+ * handing off.
+ */
+function requiresPregeneratedKeyframes(options) {
+    return (options.type === "spring" ||
+        options.name === "backgroundColor" ||
+        !isWaapiSupportedEasing(options.ease));
+}
+function pregenerateKeyframes(keyframes, options) {
+    /**
+     * Create a main-thread animation to pregenerate keyframes.
+     * We sample this at regular intervals to generate keyframes that we then
+     * linearly interpolate between.
+     */
+    const sampleAnimation = new MainThreadAnimation({
+        ...options,
+        keyframes,
+        repeat: 0,
+        delay: 0,
+        isGenerator: true,
+    });
+    let state = { done: false, value: keyframes[0] };
+    const pregeneratedKeyframes = [];
+    /**
+     * Bail after 20 seconds of pre-generated keyframes as it's likely
+     * we're heading for an infinite loop.
+     */
+    let t = 0;
+    while (!state.done && t < AcceleratedAnimation_maxDuration) {
+        state = sampleAnimation.sample(t);
+        pregeneratedKeyframes.push(state.value);
+        t += sampleDelta;
+    }
+    return {
+        times: undefined,
+        keyframes: pregeneratedKeyframes,
+        duration: t - sampleDelta,
+        ease: "linear",
+    };
+}
+class AcceleratedAnimation extends BaseAnimation {
+    constructor(options) {
+        super(options);
+        const { name, motionValue, keyframes } = this.options;
+        this.resolver = new DOMKeyframesResolver(keyframes, (resolvedKeyframes, finalKeyframe) => this.onKeyframesResolved(resolvedKeyframes, finalKeyframe), name, motionValue);
+        this.resolver.scheduleResolve();
+    }
+    initPlayback(keyframes, finalKeyframe) {
+        var _a;
+        let { duration = 300, times, ease, type, motionValue, name, } = this.options;
+        /**
+         * If element has since been unmounted, return false to indicate
+         * the animation failed to initialised.
+         */
+        if (!((_a = motionValue.owner) === null || _a === void 0 ? void 0 : _a.current)) {
+            return false;
+        }
+        /**
+         * If this animation needs pre-generated keyframes then generate.
+         */
+        if (requiresPregeneratedKeyframes(this.options)) {
+            const { onComplete, onUpdate, motionValue, ...options } = this.options;
+            const pregeneratedAnimation = pregenerateKeyframes(keyframes, options);
+            keyframes = pregeneratedAnimation.keyframes;
+            // If this is a very short animation, ensure we have
+            // at least two keyframes to animate between as older browsers
+            // can't animate between a single keyframe.
+            if (keyframes.length === 1) {
+                keyframes[1] = keyframes[0];
+            }
+            duration = pregeneratedAnimation.duration;
+            times = pregeneratedAnimation.times;
+            ease = pregeneratedAnimation.ease;
+            type = "keyframes";
+        }
+        const animation = animateStyle(motionValue.owner.current, name, keyframes, { ...this.options, duration, times, ease });
+        // Override the browser calculated startTime with one synchronised to other JS
+        // and WAAPI animations starting this event loop.
+        animation.startTime = time.now();
+        if (this.pendingTimeline) {
+            animation.timeline = this.pendingTimeline;
+            this.pendingTimeline = undefined;
+        }
+        else {
+            /**
+             * Prefer the `onfinish` prop as it's more widely supported than
+             * the `finished` promise.
+             *
+             * Here, we synchronously set the provided MotionValue to the end
+             * keyframe. If we didn't, when the WAAPI animation is finished it would
+             * be removed from the element which would then revert to its old styles.
+             */
+            animation.onfinish = () => {
+                const { onComplete } = this.options;
+                motionValue.set(getFinalKeyframe(keyframes, this.options, finalKeyframe));
+                onComplete && onComplete();
+                this.cancel();
+                this.resolveFinishedPromise();
+            };
+        }
+        return {
+            animation,
+            duration,
+            times,
+            type,
+            ease,
+            keyframes: keyframes,
+        };
+    }
+    get duration() {
+        const { resolved } = this;
+        if (!resolved)
+            return 0;
+        const { duration } = resolved;
+        return millisecondsToSeconds(duration);
+    }
+    get time() {
+        const { resolved } = this;
+        if (!resolved)
+            return 0;
+        const { animation } = resolved;
+        return millisecondsToSeconds(animation.currentTime || 0);
+    }
+    set time(newTime) {
+        const { resolved } = this;
+        if (!resolved)
+            return;
+        const { animation } = resolved;
+        animation.currentTime = secondsToMilliseconds(newTime);
+    }
+    get speed() {
+        const { resolved } = this;
+        if (!resolved)
+            return 1;
+        const { animation } = resolved;
+        return animation.playbackRate;
+    }
+    set speed(newSpeed) {
+        const { resolved } = this;
+        if (!resolved)
+            return;
+        const { animation } = resolved;
+        animation.playbackRate = newSpeed;
+    }
+    get state() {
+        const { resolved } = this;
+        if (!resolved)
+            return "idle";
+        const { animation } = resolved;
+        return animation.playState;
+    }
+    /**
+     * Replace the default DocumentTimeline with another AnimationTimeline.
+     * Currently used for scroll animations.
+     */
+    attachTimeline(timeline) {
+        if (!this._resolved) {
+            this.pendingTimeline = timeline;
+        }
+        else {
+            const { resolved } = this;
+            if (!resolved)
+                return noop_noop;
+            const { animation } = resolved;
+            animation.timeline = timeline;
+            animation.onfinish = null;
+        }
+        return noop_noop;
+    }
+    play() {
+        if (this.isStopped)
+            return;
+        const { resolved } = this;
+        if (!resolved)
+            return;
+        const { animation } = resolved;
+        if (animation.playState === "finished") {
+            this.updateFinishedPromise();
+        }
+        animation.play();
+    }
+    pause() {
+        const { resolved } = this;
+        if (!resolved)
+            return;
+        const { animation } = resolved;
+        animation.pause();
+    }
+    stop() {
+        this.resolver.cancel();
+        this.isStopped = true;
+        if (this.state === "idle")
+            return;
+        const { resolved } = this;
+        if (!resolved)
+            return;
+        const { animation, keyframes, duration, type, ease, times } = resolved;
+        if (animation.playState === "idle" ||
+            animation.playState === "finished") {
+            return;
+        }
+        /**
+         * WAAPI doesn't natively have any interruption capabilities.
+         *
+         * Rather than read commited styles back out of the DOM, we can
+         * create a renderless JS animation and sample it twice to calculate
+         * its current value, "previous" value, and therefore allow
+         * Motion to calculate velocity for any subsequent animation.
+         */
+        if (this.time) {
+            const { motionValue, onUpdate, onComplete, ...options } = this.options;
+            const sampleAnimation = new MainThreadAnimation({
+                ...options,
+                keyframes,
+                duration,
+                type,
+                ease,
+                times,
+                isGenerator: true,
+            });
+            const sampleTime = secondsToMilliseconds(this.time);
+            motionValue.setWithVelocity(sampleAnimation.sample(sampleTime - sampleDelta).value, sampleAnimation.sample(sampleTime).value, sampleDelta);
+        }
+        this.cancel();
+    }
+    complete() {
+        const { resolved } = this;
+        if (!resolved)
+            return;
+        resolved.animation.finish();
+    }
+    cancel() {
+        const { resolved } = this;
+        if (!resolved)
+            return;
+        resolved.animation.cancel();
+    }
+    static supports(options) {
+        const { motionValue, name, repeatDelay, repeatType, damping, type } = options;
+        return (supportsWaapi() &&
+            name &&
+            acceleratedValues.has(name) &&
+            motionValue &&
+            motionValue.owner &&
+            motionValue.owner.current instanceof HTMLElement &&
+            /**
+             * If we're outputting values to onUpdate then we can't use WAAPI as there's
+             * no way to read the value from WAAPI every frame.
+             */
+            !motionValue.owner.getProps().onUpdate &&
+            !repeatDelay &&
+            repeatType !== "mirror" &&
+            damping !== 0 &&
+            type !== "inertia");
+    }
+}
+
+
+
+;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/animation/interfaces/motion-value.mjs
+
+
+
+
+
+
+
+
+
+
+const animateMotionValue = (name, value, target, transition = {}, element, isHandoff) => (onComplete) => {
+    const valueTransition = getValueTransition(transition, name) || {};
+    /**
+     * Most transition values are currently completely overwritten by value-specific
+     * transitions. In the future it'd be nicer to blend these transitions. But for now
+     * delay actually does inherit from the root transition if not value-specific.
+     */
+    const delay = valueTransition.delay || transition.delay || 0;
+    /**
+     * Elapsed isn't a public transition option but can be passed through from
+     * optimized appear effects in milliseconds.
+     */
+    let { elapsed = 0 } = transition;
+    elapsed = elapsed - secondsToMilliseconds(delay);
+    let options = {
+        keyframes: Array.isArray(target) ? target : [null, target],
+        ease: "easeOut",
+        velocity: value.getVelocity(),
+        ...valueTransition,
+        delay: -elapsed,
+        onUpdate: (v) => {
+            value.set(v);
+            valueTransition.onUpdate && valueTransition.onUpdate(v);
+        },
+        onComplete: () => {
+            onComplete();
+            valueTransition.onComplete && valueTransition.onComplete();
+        },
+        name,
+        motionValue: value,
+        element: isHandoff ? undefined : element,
+    };
+    /**
+     * If there's no transition defined for this value, we can generate
+     * unqiue transition settings for this value.
+     */
+    if (!isTransitionDefined(valueTransition)) {
+        options = {
+            ...options,
+            ...getDefaultTransition(name, options),
+        };
+    }
+    /**
+     * Both WAAPI and our internal animation functions use durations
+     * as defined by milliseconds, while our external API defines them
+     * as seconds.
+     */
+    if (options.duration) {
+        options.duration = secondsToMilliseconds(options.duration);
+    }
+    if (options.repeatDelay) {
+        options.repeatDelay = secondsToMilliseconds(options.repeatDelay);
+    }
+    if (options.from !== undefined) {
+        options.keyframes[0] = options.from;
+    }
+    let shouldSkip = false;
+    if (options.type === false ||
+        (options.duration === 0 && !options.repeatDelay)) {
+        options.duration = 0;
+        if (options.delay === 0) {
+            shouldSkip = true;
+        }
+    }
+    if (instantAnimationState.current ||
+        MotionGlobalConfig.skipAnimations) {
+        shouldSkip = true;
+        options.duration = 0;
+        options.delay = 0;
+    }
+    /**
+     * If we can or must skip creating the animation, and apply only
+     * the final keyframe, do so. We also check once keyframes are resolved but
+     * this early check prevents the need to create an animation at all.
+     */
+    if (shouldSkip && !isHandoff && value.get() !== undefined) {
+        const finalKeyframe = getFinalKeyframe(options.keyframes, valueTransition);
+        if (finalKeyframe !== undefined) {
+            frame_frame.update(() => {
+                options.onUpdate(finalKeyframe);
+                options.onComplete();
+            });
+            return;
+        }
+    }
+    /**
+     * Animate via WAAPI if possible. If this is a handoff animation, the optimised animation will be running via
+     * WAAPI. Therefore, this animation must be JS to ensure it runs "under" the
+     * optimised animation.
+     */
+    if (!isHandoff && AcceleratedAnimation.supports(options)) {
+        return new AcceleratedAnimation(options);
+    }
+    else {
+        return new MainThreadAnimation(options);
+    }
+};
+
+
+
+;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/value/use-will-change/is.mjs
+
+
+function isWillChangeMotionValue(value) {
+    return Boolean(isMotionValue(value) && value.add);
+}
+
+
+
+;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/utils/array.mjs
+function addUniqueItem(arr, item) {
+    if (arr.indexOf(item) === -1)
+        arr.push(item);
+}
+function removeItem(arr, item) {
+    const index = arr.indexOf(item);
+    if (index > -1)
+        arr.splice(index, 1);
+}
+// Adapted from array-move
+function moveItem([...arr], fromIndex, toIndex) {
+    const startIndex = fromIndex < 0 ? arr.length + fromIndex : fromIndex;
+    if (startIndex >= 0 && startIndex < arr.length) {
+        const endIndex = toIndex < 0 ? arr.length + toIndex : toIndex;
+        const [item] = arr.splice(fromIndex, 1);
+        arr.splice(endIndex, 0, item);
+    }
+    return arr;
+}
+
+
+
+;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/utils/subscription-manager.mjs
+
+
+class SubscriptionManager {
+    constructor() {
+        this.subscriptions = [];
+    }
+    add(handler) {
+        addUniqueItem(this.subscriptions, handler);
+        return () => removeItem(this.subscriptions, handler);
+    }
+    notify(a, b, c) {
+        const numSubscriptions = this.subscriptions.length;
+        if (!numSubscriptions)
+            return;
+        if (numSubscriptions === 1) {
+            /**
+             * If there's only a single handler we can just call it without invoking a loop.
+             */
+            this.subscriptions[0](a, b, c);
+        }
+        else {
+            for (let i = 0; i < numSubscriptions; i++) {
+                /**
+                 * Check whether the handler exists before firing as it's possible
+                 * the subscriptions were modified during this loop running.
+                 */
+                const handler = this.subscriptions[i];
+                handler && handler(a, b, c);
+            }
+        }
+    }
+    getSize() {
+        return this.subscriptions.length;
+    }
+    clear() {
+        this.subscriptions.length = 0;
+    }
+}
+
+
+
+;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/value/index.mjs
+
+
+
+
+
+
+/**
+ * Maximum time between the value of two frames, beyond which we
+ * assume the velocity has since been 0.
+ */
+const MAX_VELOCITY_DELTA = 30;
+const isFloat = (value) => {
+    return !isNaN(parseFloat(value));
+};
+const collectMotionValues = {
+    current: undefined,
+};
+/**
+ * `MotionValue` is used to track the state and velocity of motion values.
+ *
+ * @public
+ */
+class MotionValue {
+    /**
+     * @param init - The initiating value
+     * @param config - Optional configuration options
+     *
+     * -  `transformer`: A function to transform incoming values with.
+     *
+     * @internal
+     */
+    constructor(init, options = {}) {
+        /**
+         * This will be replaced by the build step with the latest version number.
+         * When MotionValues are provided to motion components, warn if versions are mixed.
+         */
+        this.version = "11.2.6";
+        /**
+         * Tracks whether this value can output a velocity. Currently this is only true
+         * if the value is numerical, but we might be able to widen the scope here and support
+         * other value types.
+         *
+         * @internal
+         */
+        this.canTrackVelocity = null;
+        /**
+         * An object containing a SubscriptionManager for each active event.
+         */
+        this.events = {};
+        this.updateAndNotify = (v, render = true) => {
+            const currentTime = time.now();
+            /**
+             * If we're updating the value during another frame or eventloop
+             * than the previous frame, then the we set the previous frame value
+             * to current.
+             */
+            if (this.updatedAt !== currentTime) {
+                this.setPrevFrameValue();
+            }
+            this.prev = this.current;
+            this.setCurrent(v);
+            // Update update subscribers
+            if (this.current !== this.prev && this.events.change) {
+                this.events.change.notify(this.current);
+            }
+            // Update render subscribers
+            if (render && this.events.renderRequest) {
+                this.events.renderRequest.notify(this.current);
+            }
+        };
+        this.hasAnimated = false;
+        this.setCurrent(init);
+        this.owner = options.owner;
+    }
+    setCurrent(current) {
+        this.current = current;
+        this.updatedAt = time.now();
+        if (this.canTrackVelocity === null && current !== undefined) {
+            this.canTrackVelocity = isFloat(this.current);
+        }
+    }
+    setPrevFrameValue(prevFrameValue = this.current) {
+        this.prevFrameValue = prevFrameValue;
+        this.prevUpdatedAt = this.updatedAt;
+    }
+    /**
+     * Adds a function that will be notified when the `MotionValue` is updated.
+     *
+     * It returns a function that, when called, will cancel the subscription.
+     *
+     * When calling `onChange` inside a React component, it should be wrapped with the
+     * `useEffect` hook. As it returns an unsubscribe function, this should be returned
+     * from the `useEffect` function to ensure you don't add duplicate subscribers..
+     *
+     * ```jsx
+     * export const MyComponent = () => {
+     *   const x = useMotionValue(0)
+     *   const y = useMotionValue(0)
+     *   const opacity = useMotionValue(1)
+     *
+     *   useEffect(() => {
+     *     function updateOpacity() {
+     *       const maxXY = Math.max(x.get(), y.get())
+     *       const newOpacity = transform(maxXY, [0, 100], [1, 0])
+     *       opacity.set(newOpacity)
+     *     }
+     *
+     *     const unsubscribeX = x.on("change", updateOpacity)
+     *     const unsubscribeY = y.on("change", updateOpacity)
+     *
+     *     return () => {
+     *       unsubscribeX()
+     *       unsubscribeY()
+     *     }
+     *   }, [])
+     *
+     *   return <motion.div style={{ x }} />
+     * }
+     * ```
+     *
+     * @param subscriber - A function that receives the latest value.
+     * @returns A function that, when called, will cancel this subscription.
+     *
+     * @deprecated
+     */
+    onChange(subscription) {
+        if (false) {}
+        return this.on("change", subscription);
+    }
+    on(eventName, callback) {
+        if (!this.events[eventName]) {
+            this.events[eventName] = new SubscriptionManager();
+        }
+        const unsubscribe = this.events[eventName].add(callback);
+        if (eventName === "change") {
+            return () => {
+                unsubscribe();
+                /**
+                 * If we have no more change listeners by the start
+                 * of the next frame, stop active animations.
+                 */
+                frame_frame.read(() => {
+                    if (!this.events.change.getSize()) {
+                        this.stop();
+                    }
+                });
+            };
+        }
+        return unsubscribe;
+    }
+    clearListeners() {
+        for (const eventManagers in this.events) {
+            this.events[eventManagers].clear();
+        }
+    }
+    /**
+     * Attaches a passive effect to the `MotionValue`.
+     *
+     * @internal
+     */
+    attach(passiveEffect, stopPassiveEffect) {
+        this.passiveEffect = passiveEffect;
+        this.stopPassiveEffect = stopPassiveEffect;
+    }
+    /**
+     * Sets the state of the `MotionValue`.
+     *
+     * @remarks
+     *
+     * ```jsx
+     * const x = useMotionValue(0)
+     * x.set(10)
+     * ```
+     *
+     * @param latest - Latest value to set.
+     * @param render - Whether to notify render subscribers. Defaults to `true`
+     *
+     * @public
+     */
+    set(v, render = true) {
+        if (!render || !this.passiveEffect) {
+            this.updateAndNotify(v, render);
+        }
+        else {
+            this.passiveEffect(v, this.updateAndNotify);
+        }
+    }
+    setWithVelocity(prev, current, delta) {
+        this.set(current);
+        this.prev = undefined;
+        this.prevFrameValue = prev;
+        this.prevUpdatedAt = this.updatedAt - delta;
+    }
+    /**
+     * Set the state of the `MotionValue`, stopping any active animations,
+     * effects, and resets velocity to `0`.
+     */
+    jump(v, endAnimation = true) {
+        this.updateAndNotify(v);
+        this.prev = v;
+        this.prevUpdatedAt = this.prevFrameValue = undefined;
+        endAnimation && this.stop();
+        if (this.stopPassiveEffect)
+            this.stopPassiveEffect();
+    }
+    /**
+     * Returns the latest state of `MotionValue`
+     *
+     * @returns - The latest state of `MotionValue`
+     *
+     * @public
+     */
+    get() {
+        if (collectMotionValues.current) {
+            collectMotionValues.current.push(this);
+        }
+        return this.current;
+    }
+    /**
+     * @public
+     */
+    getPrevious() {
+        return this.prev;
+    }
+    /**
+     * Returns the latest velocity of `MotionValue`
+     *
+     * @returns - The latest velocity of `MotionValue`. Returns `0` if the state is non-numerical.
+     *
+     * @public
+     */
+    getVelocity() {
+        const currentTime = time.now();
+        if (!this.canTrackVelocity ||
+            this.prevFrameValue === undefined ||
+            currentTime - this.updatedAt > MAX_VELOCITY_DELTA) {
+            return 0;
+        }
+        const delta = Math.min(this.updatedAt - this.prevUpdatedAt, MAX_VELOCITY_DELTA);
+        // Casts because of parseFloat's poor typing
+        return velocityPerSecond(parseFloat(this.current) -
+            parseFloat(this.prevFrameValue), delta);
+    }
+    /**
+     * Registers a new animation to control this `MotionValue`. Only one
+     * animation can drive a `MotionValue` at one time.
+     *
+     * ```jsx
+     * value.start()
+     * ```
+     *
+     * @param animation - A function that starts the provided animation
+     *
+     * @internal
+     */
+    start(startAnimation) {
+        this.stop();
+        return new Promise((resolve) => {
+            this.hasAnimated = true;
+            this.animation = startAnimation(resolve);
+            if (this.events.animationStart) {
+                this.events.animationStart.notify();
+            }
+        }).then(() => {
+            if (this.events.animationComplete) {
+                this.events.animationComplete.notify();
+            }
+            this.clearAnimation();
+        });
+    }
+    /**
+     * Stop the currently active animation.
+     *
+     * @public
+     */
+    stop() {
+        if (this.animation) {
+            this.animation.stop();
+            if (this.events.animationCancel) {
+                this.events.animationCancel.notify();
+            }
+        }
+        this.clearAnimation();
+    }
+    /**
+     * Returns `true` if this value is currently animating.
+     *
+     * @public
+     */
+    isAnimating() {
+        return !!this.animation;
+    }
+    clearAnimation() {
+        delete this.animation;
+    }
+    /**
+     * Destroy and clean up subscribers to this `MotionValue`.
+     *
+     * The `MotionValue` hooks like `useMotionValue` and `useTransform` automatically
+     * handle the lifecycle of the returned `MotionValue`, so this method is only necessary if you've manually
+     * created a `MotionValue` via the `motionValue` function.
+     *
+     * @public
+     */
+    destroy() {
+        this.clearListeners();
+        this.stop();
+        if (this.stopPassiveEffect) {
+            this.stopPassiveEffect();
+        }
+    }
+}
+function motionValue(init, options) {
+    return new MotionValue(init, options);
+}
+
+
+
+;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/render/utils/setters.mjs
+
+
+
+
+/**
+ * Set VisualElement's MotionValue, creating a new MotionValue for it if
+ * it doesn't exist.
+ */
+function setMotionValue(visualElement, key, value) {
+    if (visualElement.hasValue(key)) {
+        visualElement.getValue(key).set(value);
+    }
+    else {
+        visualElement.addValue(key, motionValue(value));
+    }
+}
+function setTarget(visualElement, definition) {
+    const resolved = resolveVariant(visualElement, definition);
+    let { transitionEnd = {}, transition = {}, ...target } = resolved || {};
+    target = { ...target, ...transitionEnd };
+    for (const key in target) {
+        const value = resolveFinalValueInKeyframes(target[key]);
+        setMotionValue(visualElement, key, value);
+    }
+}
+
+
+
+;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/animation/interfaces/visual-element-target.mjs
+
+
+
+
+
+
+
+
+/**
+ * Decide whether we should block this animation. Previously, we achieved this
+ * just by checking whether the key was listed in protectedKeys, but this
+ * posed problems if an animation was triggered by afterChildren and protectedKeys
+ * had been set to true in the meantime.
+ */
+function shouldBlockAnimation({ protectedKeys, needsAnimating }, key) {
+    const shouldBlock = protectedKeys.hasOwnProperty(key) && needsAnimating[key] !== true;
+    needsAnimating[key] = false;
+    return shouldBlock;
+}
+function animateTarget(visualElement, targetAndTransition, { delay = 0, transitionOverride, type } = {}) {
+    var _a;
+    let { transition = visualElement.getDefaultTransition(), transitionEnd, ...target } = targetAndTransition;
+    const willChange = visualElement.getValue("willChange");
+    if (transitionOverride)
+        transition = transitionOverride;
+    const animations = [];
+    const animationTypeState = type &&
+        visualElement.animationState &&
+        visualElement.animationState.getState()[type];
+    for (const key in target) {
+        const value = visualElement.getValue(key, (_a = visualElement.latestValues[key]) !== null && _a !== void 0 ? _a : null);
+        const valueTarget = target[key];
+        if (valueTarget === undefined ||
+            (animationTypeState &&
+                shouldBlockAnimation(animationTypeState, key))) {
+            continue;
+        }
+        const valueTransition = {
+            delay,
+            elapsed: 0,
+            ...getValueTransition(transition || {}, key),
+        };
+        /**
+         * If this is the first time a value is being animated, check
+         * to see if we're handling off from an existing animation.
+         */
+        let isHandoff = false;
+        if (window.HandoffAppearAnimations) {
+            const props = visualElement.getProps();
+            const appearId = props[optimizedAppearDataAttribute];
+            if (appearId) {
+                const elapsed = window.HandoffAppearAnimations(appearId, key, value, frame_frame);
+                if (elapsed !== null) {
+                    valueTransition.elapsed = elapsed;
+                    isHandoff = true;
+                }
+            }
+        }
+        value.start(animateMotionValue(key, value, valueTarget, visualElement.shouldReduceMotion && transformProps.has(key)
+            ? { type: false }
+            : valueTransition, visualElement, isHandoff));
+        const animation = value.animation;
+        if (animation) {
+            if (isWillChangeMotionValue(willChange)) {
+                willChange.add(key);
+                animation.then(() => willChange.remove(key));
+            }
+            animations.push(animation);
+        }
+    }
+    if (transitionEnd) {
+        Promise.all(animations).then(() => {
+            frame_frame.update(() => {
+                transitionEnd && setTarget(visualElement, transitionEnd);
+            });
+        });
+    }
+    return animations;
+}
+
+
+
+;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/animation/interfaces/visual-element-variant.mjs
+
+
+
+function animateVariant(visualElement, variant, options = {}) {
+    var _a;
+    const resolved = resolveVariant(visualElement, variant, options.type === "exit"
+        ? (_a = visualElement.presenceContext) === null || _a === void 0 ? void 0 : _a.custom
+        : undefined);
+    let { transition = visualElement.getDefaultTransition() || {} } = resolved || {};
+    if (options.transitionOverride) {
+        transition = options.transitionOverride;
+    }
+    /**
+     * If we have a variant, create a callback that runs it as an animation.
+     * Otherwise, we resolve a Promise immediately for a composable no-op.
+     */
+    const getAnimation = resolved
+        ? () => Promise.all(animateTarget(visualElement, resolved, options))
+        : () => Promise.resolve();
+    /**
+     * If we have children, create a callback that runs all their animations.
+     * Otherwise, we resolve a Promise immediately for a composable no-op.
+     */
+    const getChildAnimations = visualElement.variantChildren && visualElement.variantChildren.size
+        ? (forwardDelay = 0) => {
+            const { delayChildren = 0, staggerChildren, staggerDirection, } = transition;
+            return animateChildren(visualElement, variant, delayChildren + forwardDelay, staggerChildren, staggerDirection, options);
+        }
+        : () => Promise.resolve();
+    /**
+     * If the transition explicitly defines a "when" option, we need to resolve either
+     * this animation or all children animations before playing the other.
+     */
+    const { when } = transition;
+    if (when) {
+        const [first, last] = when === "beforeChildren"
+            ? [getAnimation, getChildAnimations]
+            : [getChildAnimations, getAnimation];
+        return first().then(() => last());
+    }
+    else {
+        return Promise.all([getAnimation(), getChildAnimations(options.delay)]);
+    }
+}
+function animateChildren(visualElement, variant, delayChildren = 0, staggerChildren = 0, staggerDirection = 1, options) {
+    const animations = [];
+    const maxStaggerDuration = (visualElement.variantChildren.size - 1) * staggerChildren;
+    const generateStaggerDuration = staggerDirection === 1
+        ? (i = 0) => i * staggerChildren
+        : (i = 0) => maxStaggerDuration - i * staggerChildren;
+    Array.from(visualElement.variantChildren)
+        .sort(sortByTreeOrder)
+        .forEach((child, i) => {
+        child.notify("AnimationStart", variant);
+        animations.push(animateVariant(child, variant, {
+            ...options,
+            delay: delayChildren + generateStaggerDuration(i),
+        }).then(() => child.notify("AnimationComplete", variant)));
+    });
+    return Promise.all(animations);
+}
+function sortByTreeOrder(a, b) {
+    return a.sortNodePosition(b);
+}
+
+
+
+;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/animation/interfaces/visual-element.mjs
+
+
+
+
+
+function animateVisualElement(visualElement, definition, options = {}) {
+    visualElement.notify("AnimationStart", definition);
+    let animation;
+    if (Array.isArray(definition)) {
+        const animations = definition.map((variant) => animateVariant(visualElement, variant, options));
+        animation = Promise.all(animations);
+    }
+    else if (typeof definition === "string") {
+        animation = animateVariant(visualElement, definition, options);
+    }
+    else {
+        const resolvedDefinition = typeof definition === "function"
+            ? resolveVariant(visualElement, definition, options.custom)
+            : definition;
+        animation = Promise.all(animateTarget(visualElement, resolvedDefinition, options));
+    }
+    return animation.then(() => {
+        frame_frame.postRender(() => {
+            visualElement.notify("AnimationComplete", definition);
+        });
+    });
+}
+
+
+
+;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/render/utils/animation-state.mjs
+
+
+
+
+
+
+
+
+const reversePriorityOrder = [...variantPriorityOrder].reverse();
+const numAnimationTypes = variantPriorityOrder.length;
+function animateList(visualElement) {
+    return (animations) => Promise.all(animations.map(({ animation, options }) => animateVisualElement(visualElement, animation, options)));
+}
+function createAnimationState(visualElement) {
+    let animate = animateList(visualElement);
+    const state = createState();
+    let isInitialRender = true;
+    /**
+     * This function will be used to reduce the animation definitions for
+     * each active animation type into an object of resolved values for it.
+     */
+    const buildResolvedTypeValues = (type) => (acc, definition) => {
+        var _a;
+        const resolved = resolveVariant(visualElement, definition, type === "exit"
+            ? (_a = visualElement.presenceContext) === null || _a === void 0 ? void 0 : _a.custom
+            : undefined);
+        if (resolved) {
+            const { transition, transitionEnd, ...target } = resolved;
+            acc = { ...acc, ...target, ...transitionEnd };
+        }
+        return acc;
+    };
+    /**
+     * This just allows us to inject mocked animation functions
+     * @internal
+     */
+    function setAnimateFunction(makeAnimator) {
+        animate = makeAnimator(visualElement);
+    }
+    /**
+     * When we receive new props, we need to:
+     * 1. Create a list of protected keys for each type. This is a directory of
+     *    value keys that are currently being "handled" by types of a higher priority
+     *    so that whenever an animation is played of a given type, these values are
+     *    protected from being animated.
+     * 2. Determine if an animation type needs animating.
+     * 3. Determine if any values have been removed from a type and figure out
+     *    what to animate those to.
+     */
+    function animateChanges(changedActiveType) {
+        const props = visualElement.getProps();
+        const context = visualElement.getVariantContext(true) || {};
+        /**
+         * A list of animations that we'll build into as we iterate through the animation
+         * types. This will get executed at the end of the function.
+         */
+        const animations = [];
+        /**
+         * Keep track of which values have been removed. Then, as we hit lower priority
+         * animation types, we can check if they contain removed values and animate to that.
+         */
+        const removedKeys = new Set();
+        /**
+         * A dictionary of all encountered keys. This is an object to let us build into and
+         * copy it without iteration. Each time we hit an animation type we set its protected
+         * keys - the keys its not allowed to animate - to the latest version of this object.
+         */
+        let encounteredKeys = {};
+        /**
+         * If a variant has been removed at a given index, and this component is controlling
+         * variant animations, we want to ensure lower-priority variants are forced to animate.
+         */
+        let removedVariantIndex = Infinity;
+        /**
+         * Iterate through all animation types in reverse priority order. For each, we want to
+         * detect which values it's handling and whether or not they've changed (and therefore
+         * need to be animated). If any values have been removed, we want to detect those in
+         * lower priority props and flag for animation.
+         */
+        for (let i = 0; i < numAnimationTypes; i++) {
+            const type = reversePriorityOrder[i];
+            const typeState = state[type];
+            const prop = props[type] !== undefined
+                ? props[type]
+                : context[type];
+            const propIsVariant = isVariantLabel(prop);
+            /**
+             * If this type has *just* changed isActive status, set activeDelta
+             * to that status. Otherwise set to null.
+             */
+            const activeDelta = type === changedActiveType ? typeState.isActive : null;
+            if (activeDelta === false)
+                removedVariantIndex = i;
+            /**
+             * If this prop is an inherited variant, rather than been set directly on the
+             * component itself, we want to make sure we allow the parent to trigger animations.
+             *
+             * TODO: Can probably change this to a !isControllingVariants check
+             */
+            let isInherited = prop === context[type] &&
+                prop !== props[type] &&
+                propIsVariant;
+            /**
+             *
+             */
+            if (isInherited &&
+                isInitialRender &&
+                visualElement.manuallyAnimateOnMount) {
+                isInherited = false;
+            }
+            /**
+             * Set all encountered keys so far as the protected keys for this type. This will
+             * be any key that has been animated or otherwise handled by active, higher-priortiy types.
+             */
+            typeState.protectedKeys = { ...encounteredKeys };
+            // Check if we can skip analysing this prop early
+            if (
+            // If it isn't active and hasn't *just* been set as inactive
+            (!typeState.isActive && activeDelta === null) ||
+                // If we didn't and don't have any defined prop for this animation type
+                (!prop && !typeState.prevProp) ||
+                // Or if the prop doesn't define an animation
+                isAnimationControls(prop) ||
+                typeof prop === "boolean") {
+                continue;
+            }
+            /**
+             * As we go look through the values defined on this type, if we detect
+             * a changed value or a value that was removed in a higher priority, we set
+             * this to true and add this prop to the animation list.
+             */
+            const variantDidChange = checkVariantsDidChange(typeState.prevProp, prop);
+            let shouldAnimateType = variantDidChange ||
+                // If we're making this variant active, we want to always make it active
+                (type === changedActiveType &&
+                    typeState.isActive &&
+                    !isInherited &&
+                    propIsVariant) ||
+                // If we removed a higher-priority variant (i is in reverse order)
+                (i > removedVariantIndex && propIsVariant);
+            let handledRemovedValues = false;
+            /**
+             * As animations can be set as variant lists, variants or target objects, we
+             * coerce everything to an array if it isn't one already
+             */
+            const definitionList = Array.isArray(prop) ? prop : [prop];
+            /**
+             * Build an object of all the resolved values. We'll use this in the subsequent
+             * animateChanges calls to determine whether a value has changed.
+             */
+            let resolvedValues = definitionList.reduce(buildResolvedTypeValues(type), {});
+            if (activeDelta === false)
+                resolvedValues = {};
+            /**
+             * Now we need to loop through all the keys in the prev prop and this prop,
+             * and decide:
+             * 1. If the value has changed, and needs animating
+             * 2. If it has been removed, and needs adding to the removedKeys set
+             * 3. If it has been removed in a higher priority type and needs animating
+             * 4. If it hasn't been removed in a higher priority but hasn't changed, and
+             *    needs adding to the type's protectedKeys list.
+             */
+            const { prevResolvedValues = {} } = typeState;
+            const allKeys = {
+                ...prevResolvedValues,
+                ...resolvedValues,
+            };
+            const markToAnimate = (key) => {
+                shouldAnimateType = true;
+                if (removedKeys.has(key)) {
+                    handledRemovedValues = true;
+                    removedKeys.delete(key);
+                }
+                typeState.needsAnimating[key] = true;
+                const motionValue = visualElement.getValue(key);
+                if (motionValue)
+                    motionValue.liveStyle = false;
+            };
+            for (const key in allKeys) {
+                const next = resolvedValues[key];
+                const prev = prevResolvedValues[key];
+                // If we've already handled this we can just skip ahead
+                if (encounteredKeys.hasOwnProperty(key))
+                    continue;
+                /**
+                 * If the value has changed, we probably want to animate it.
+                 */
+                let valueHasChanged = false;
+                if (isKeyframesTarget(next) && isKeyframesTarget(prev)) {
+                    valueHasChanged = !shallowCompare(next, prev);
+                }
+                else {
+                    valueHasChanged = next !== prev;
+                }
+                if (valueHasChanged) {
+                    if (next !== undefined && next !== null) {
+                        // If next is defined and doesn't equal prev, it needs animating
+                        markToAnimate(key);
+                    }
+                    else {
+                        // If it's undefined, it's been removed.
+                        removedKeys.add(key);
+                    }
+                }
+                else if (next !== undefined && removedKeys.has(key)) {
+                    /**
+                     * If next hasn't changed and it isn't undefined, we want to check if it's
+                     * been removed by a higher priority
+                     */
+                    markToAnimate(key);
+                }
+                else {
+                    /**
+                     * If it hasn't changed, we add it to the list of protected values
+                     * to ensure it doesn't get animated.
+                     */
+                    typeState.protectedKeys[key] = true;
+                }
+            }
+            /**
+             * Update the typeState so next time animateChanges is called we can compare the
+             * latest prop and resolvedValues to these.
+             */
+            typeState.prevProp = prop;
+            typeState.prevResolvedValues = resolvedValues;
+            /**
+             *
+             */
+            if (typeState.isActive) {
+                encounteredKeys = { ...encounteredKeys, ...resolvedValues };
+            }
+            if (isInitialRender && visualElement.blockInitialAnimation) {
+                shouldAnimateType = false;
+            }
+            /**
+             * If this is an inherited prop we want to hard-block animations
+             */
+            if (shouldAnimateType && (!isInherited || handledRemovedValues)) {
+                animations.push(...definitionList.map((animation) => ({
+                    animation: animation,
+                    options: { type },
+                })));
+            }
+        }
+        /**
+         * If there are some removed value that haven't been dealt with,
+         * we need to create a new animation that falls back either to the value
+         * defined in the style prop, or the last read value.
+         */
+        if (removedKeys.size) {
+            const fallbackAnimation = {};
+            removedKeys.forEach((key) => {
+                const fallbackTarget = visualElement.getBaseTarget(key);
+                const motionValue = visualElement.getValue(key);
+                if (motionValue)
+                    motionValue.liveStyle = true;
+                // @ts-expect-error - @mattgperry to figure if we should do something here
+                fallbackAnimation[key] = fallbackTarget !== null && fallbackTarget !== void 0 ? fallbackTarget : null;
+            });
+            animations.push({ animation: fallbackAnimation });
+        }
+        let shouldAnimate = Boolean(animations.length);
+        if (isInitialRender &&
+            (props.initial === false || props.initial === props.animate) &&
+            !visualElement.manuallyAnimateOnMount) {
+            shouldAnimate = false;
+        }
+        isInitialRender = false;
+        return shouldAnimate ? animate(animations) : Promise.resolve();
+    }
+    /**
+     * Change whether a certain animation type is active.
+     */
+    function setActive(type, isActive) {
+        var _a;
+        // If the active state hasn't changed, we can safely do nothing here
+        if (state[type].isActive === isActive)
+            return Promise.resolve();
+        // Propagate active change to children
+        (_a = visualElement.variantChildren) === null || _a === void 0 ? void 0 : _a.forEach((child) => { var _a; return (_a = child.animationState) === null || _a === void 0 ? void 0 : _a.setActive(type, isActive); });
+        state[type].isActive = isActive;
+        const animations = animateChanges(type);
+        for (const key in state) {
+            state[key].protectedKeys = {};
+        }
+        return animations;
+    }
+    return {
+        animateChanges,
+        setActive,
+        setAnimateFunction,
+        getState: () => state,
+    };
+}
+function checkVariantsDidChange(prev, next) {
+    if (typeof next === "string") {
+        return next !== prev;
+    }
+    else if (Array.isArray(next)) {
+        return !shallowCompare(next, prev);
+    }
+    return false;
+}
+function createTypeState(isActive = false) {
+    return {
+        isActive,
+        protectedKeys: {},
+        needsAnimating: {},
+        prevResolvedValues: {},
+    };
+}
+function createState() {
+    return {
+        animate: createTypeState(true),
+        whileInView: createTypeState(),
+        whileHover: createTypeState(),
+        whileTap: createTypeState(),
+        whileDrag: createTypeState(),
+        whileFocus: createTypeState(),
+        exit: createTypeState(),
+    };
+}
+
+
+
+;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/motion/features/animation/index.mjs
+
+
+
+
+class AnimationFeature extends Feature {
+    /**
+     * We dynamically generate the AnimationState manager as it contains a reference
+     * to the underlying animation library. We only want to load that if we load this,
+     * so people can optionally code split it out using the `m` component.
+     */
+    constructor(node) {
+        super(node);
+        node.animationState || (node.animationState = createAnimationState(node));
+    }
+    updateAnimationControlsSubscription() {
+        const { animate } = this.node.getProps();
+        this.unmount();
+        if (isAnimationControls(animate)) {
+            this.unmount = animate.subscribe(this.node);
+        }
+    }
+    /**
+     * Subscribe any provided AnimationControls to the component's VisualElement
+     */
+    mount() {
+        this.updateAnimationControlsSubscription();
+    }
+    update() {
+        const { animate } = this.node.getProps();
+        const { animate: prevAnimate } = this.node.prevProps || {};
+        if (animate !== prevAnimate) {
+            this.updateAnimationControlsSubscription();
+        }
+    }
+    unmount() { }
+}
+
+
+
+;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/motion/features/animation/exit.mjs
+
+
+let id = 0;
+class ExitAnimationFeature extends Feature {
+    constructor() {
+        super(...arguments);
+        this.id = id++;
+    }
+    update() {
+        if (!this.node.presenceContext)
+            return;
+        const { isPresent, onExitComplete } = this.node.presenceContext;
+        const { isPresent: prevIsPresent } = this.node.prevPresenceContext || {};
+        if (!this.node.animationState || isPresent === prevIsPresent) {
+            return;
+        }
+        const exitAnimation = this.node.animationState.setActive("exit", !isPresent);
+        if (onExitComplete && !isPresent) {
+            exitAnimation.then(() => onExitComplete(this.id));
+        }
+    }
+    mount() {
+        const { register } = this.node.presenceContext || {};
+        if (register) {
+            this.unmount = register(this.id);
+        }
+    }
+    unmount() { }
+}
+
+
+
+;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/motion/features/animations.mjs
+
+
+
+const animations = {
+    animation: {
+        Feature: AnimationFeature,
+    },
+    exit: {
+        Feature: ExitAnimationFeature,
+    },
+};
+
+
+
+;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/utils/distance.mjs
+const distance = (a, b) => Math.abs(a - b);
+function distance2D(a, b) {
+    // Multi-dimensional
+    const xDelta = distance(a.x, b.x);
+    const yDelta = distance(a.y, b.y);
+    return Math.sqrt(xDelta ** 2 + yDelta ** 2);
+}
+
+
+
+;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/gestures/pan/PanSession.mjs
+
+
+
+
+
+
+
+
+/**
+ * @internal
+ */
+class PanSession {
+    constructor(event, handlers, { transformPagePoint, contextWindow, dragSnapToOrigin = false } = {}) {
+        /**
+         * @internal
+         */
+        this.startEvent = null;
+        /**
+         * @internal
+         */
+        this.lastMoveEvent = null;
+        /**
+         * @internal
+         */
+        this.lastMoveEventInfo = null;
+        /**
+         * @internal
+         */
+        this.handlers = {};
+        /**
+         * @internal
+         */
+        this.contextWindow = window;
+        this.updatePoint = () => {
+            if (!(this.lastMoveEvent && this.lastMoveEventInfo))
+                return;
+            const info = getPanInfo(this.lastMoveEventInfo, this.history);
+            const isPanStarted = this.startEvent !== null;
+            // Only start panning if the offset is larger than 3 pixels. If we make it
+            // any larger than this we'll want to reset the pointer history
+            // on the first update to avoid visual snapping to the cursoe.
+            const isDistancePastThreshold = distance2D(info.offset, { x: 0, y: 0 }) >= 3;
+            if (!isPanStarted && !isDistancePastThreshold)
+                return;
+            const { point } = info;
+            const { timestamp } = frameData;
+            this.history.push({ ...point, timestamp });
+            const { onStart, onMove } = this.handlers;
+            if (!isPanStarted) {
+                onStart && onStart(this.lastMoveEvent, info);
+                this.startEvent = this.lastMoveEvent;
+            }
+            onMove && onMove(this.lastMoveEvent, info);
+        };
+        this.handlePointerMove = (event, info) => {
+            this.lastMoveEvent = event;
+            this.lastMoveEventInfo = transformPoint(info, this.transformPagePoint);
+            // Throttle mouse move event to once per frame
+            frame_frame.update(this.updatePoint, true);
+        };
+        this.handlePointerUp = (event, info) => {
+            this.end();
+            const { onEnd, onSessionEnd, resumeAnimation } = this.handlers;
+            if (this.dragSnapToOrigin)
+                resumeAnimation && resumeAnimation();
+            if (!(this.lastMoveEvent && this.lastMoveEventInfo))
+                return;
+            const panInfo = getPanInfo(event.type === "pointercancel"
+                ? this.lastMoveEventInfo
+                : transformPoint(info, this.transformPagePoint), this.history);
+            if (this.startEvent && onEnd) {
+                onEnd(event, panInfo);
+            }
+            onSessionEnd && onSessionEnd(event, panInfo);
+        };
+        // If we have more than one touch, don't start detecting this gesture
+        if (!isPrimaryPointer(event))
+            return;
+        this.dragSnapToOrigin = dragSnapToOrigin;
+        this.handlers = handlers;
+        this.transformPagePoint = transformPagePoint;
+        this.contextWindow = contextWindow || window;
+        const info = extractEventInfo(event);
+        const initialInfo = transformPoint(info, this.transformPagePoint);
+        const { point } = initialInfo;
+        const { timestamp } = frameData;
+        this.history = [{ ...point, timestamp }];
+        const { onSessionStart } = handlers;
+        onSessionStart &&
+            onSessionStart(event, getPanInfo(initialInfo, this.history));
+        this.removeListeners = pipe(addPointerEvent(this.contextWindow, "pointermove", this.handlePointerMove), addPointerEvent(this.contextWindow, "pointerup", this.handlePointerUp), addPointerEvent(this.contextWindow, "pointercancel", this.handlePointerUp));
+    }
+    updateHandlers(handlers) {
+        this.handlers = handlers;
+    }
+    end() {
+        this.removeListeners && this.removeListeners();
+        cancelFrame(this.updatePoint);
+    }
+}
+function transformPoint(info, transformPagePoint) {
+    return transformPagePoint ? { point: transformPagePoint(info.point) } : info;
+}
+function subtractPoint(a, b) {
+    return { x: a.x - b.x, y: a.y - b.y };
+}
+function getPanInfo({ point }, history) {
+    return {
+        point,
+        delta: subtractPoint(point, lastDevicePoint(history)),
+        offset: subtractPoint(point, startDevicePoint(history)),
+        velocity: getVelocity(history, 0.1),
+    };
+}
+function startDevicePoint(history) {
+    return history[0];
+}
+function lastDevicePoint(history) {
+    return history[history.length - 1];
+}
+function getVelocity(history, timeDelta) {
+    if (history.length < 2) {
+        return { x: 0, y: 0 };
+    }
+    let i = history.length - 1;
+    let timestampedPoint = null;
+    const lastPoint = lastDevicePoint(history);
+    while (i >= 0) {
+        timestampedPoint = history[i];
+        if (lastPoint.timestamp - timestampedPoint.timestamp >
+            secondsToMilliseconds(timeDelta)) {
+            break;
+        }
+        i--;
+    }
+    if (!timestampedPoint) {
+        return { x: 0, y: 0 };
+    }
+    const time = millisecondsToSeconds(lastPoint.timestamp - timestampedPoint.timestamp);
+    if (time === 0) {
+        return { x: 0, y: 0 };
+    }
+    const currentVelocity = {
+        x: (lastPoint.x - timestampedPoint.x) / time,
+        y: (lastPoint.y - timestampedPoint.y) / time,
+    };
+    if (currentVelocity.x === Infinity) {
+        currentVelocity.x = 0;
+    }
+    if (currentVelocity.y === Infinity) {
+        currentVelocity.y = 0;
+    }
+    return currentVelocity;
+}
+
+
+
+;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/projection/geometry/delta-calc.mjs
+
+
+function calcLength(axis) {
+    return axis.max - axis.min;
+}
+function isNear(value, target = 0, maxDistance = 0.01) {
+    return Math.abs(value - target) <= maxDistance;
+}
+function calcAxisDelta(delta, source, target, origin = 0.5) {
+    delta.origin = origin;
+    delta.originPoint = mixNumber(source.min, source.max, delta.origin);
+    delta.scale = calcLength(target) / calcLength(source);
+    if (isNear(delta.scale, 1, 0.0001) || isNaN(delta.scale))
+        delta.scale = 1;
+    delta.translate =
+        mixNumber(target.min, target.max, delta.origin) - delta.originPoint;
+    if (isNear(delta.translate) || isNaN(delta.translate))
+        delta.translate = 0;
+}
+function calcBoxDelta(delta, source, target, origin) {
+    calcAxisDelta(delta.x, source.x, target.x, origin ? origin.originX : undefined);
+    calcAxisDelta(delta.y, source.y, target.y, origin ? origin.originY : undefined);
+}
+function calcRelativeAxis(target, relative, parent) {
+    target.min = parent.min + relative.min;
+    target.max = target.min + calcLength(relative);
+}
+function calcRelativeBox(target, relative, parent) {
+    calcRelativeAxis(target.x, relative.x, parent.x);
+    calcRelativeAxis(target.y, relative.y, parent.y);
+}
+function calcRelativeAxisPosition(target, layout, parent) {
+    target.min = layout.min - parent.min;
+    target.max = target.min + calcLength(layout);
+}
+function calcRelativePosition(target, layout, parent) {
+    calcRelativeAxisPosition(target.x, layout.x, parent.x);
+    calcRelativeAxisPosition(target.y, layout.y, parent.y);
+}
+
+
+
+;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/gestures/drag/utils/constraints.mjs
+
+
+
+
+
+/**
+ * Apply constraints to a point. These constraints are both physical along an
+ * axis, and an elastic factor that determines how much to constrain the point
+ * by if it does lie outside the defined parameters.
+ */
+function applyConstraints(point, { min, max }, elastic) {
+    if (min !== undefined && point < min) {
+        // If we have a min point defined, and this is outside of that, constrain
+        point = elastic
+            ? mixNumber(min, point, elastic.min)
+            : Math.max(point, min);
+    }
+    else if (max !== undefined && point > max) {
+        // If we have a max point defined, and this is outside of that, constrain
+        point = elastic
+            ? mixNumber(max, point, elastic.max)
+            : Math.min(point, max);
+    }
+    return point;
+}
+/**
+ * Calculate constraints in terms of the viewport when defined relatively to the
+ * measured axis. This is measured from the nearest edge, so a max constraint of 200
+ * on an axis with a max value of 300 would return a constraint of 500 - axis length
+ */
+function calcRelativeAxisConstraints(axis, min, max) {
+    return {
+        min: min !== undefined ? axis.min + min : undefined,
+        max: max !== undefined
+            ? axis.max + max - (axis.max - axis.min)
+            : undefined,
+    };
+}
+/**
+ * Calculate constraints in terms of the viewport when
+ * defined relatively to the measured bounding box.
+ */
+function calcRelativeConstraints(layoutBox, { top, left, bottom, right }) {
+    return {
+        x: calcRelativeAxisConstraints(layoutBox.x, left, right),
+        y: calcRelativeAxisConstraints(layoutBox.y, top, bottom),
+    };
+}
+/**
+ * Calculate viewport constraints when defined as another viewport-relative axis
+ */
+function calcViewportAxisConstraints(layoutAxis, constraintsAxis) {
+    let min = constraintsAxis.min - layoutAxis.min;
+    let max = constraintsAxis.max - layoutAxis.max;
+    // If the constraints axis is actually smaller than the layout axis then we can
+    // flip the constraints
+    if (constraintsAxis.max - constraintsAxis.min <
+        layoutAxis.max - layoutAxis.min) {
+        [min, max] = [max, min];
+    }
+    return { min, max };
+}
+/**
+ * Calculate viewport constraints when defined as another viewport-relative box
+ */
+function calcViewportConstraints(layoutBox, constraintsBox) {
+    return {
+        x: calcViewportAxisConstraints(layoutBox.x, constraintsBox.x),
+        y: calcViewportAxisConstraints(layoutBox.y, constraintsBox.y),
+    };
+}
+/**
+ * Calculate a transform origin relative to the source axis, between 0-1, that results
+ * in an asthetically pleasing scale/transform needed to project from source to target.
+ */
+function constraints_calcOrigin(source, target) {
+    let origin = 0.5;
+    const sourceLength = calcLength(source);
+    const targetLength = calcLength(target);
+    if (targetLength > sourceLength) {
+        origin = progress(target.min, target.max - sourceLength, source.min);
+    }
+    else if (sourceLength > targetLength) {
+        origin = progress(source.min, source.max - targetLength, target.min);
+    }
+    return clamp(0, 1, origin);
+}
+/**
+ * Rebase the calculated viewport constraints relative to the layout.min point.
+ */
+function rebaseAxisConstraints(layout, constraints) {
+    const relativeConstraints = {};
+    if (constraints.min !== undefined) {
+        relativeConstraints.min = constraints.min - layout.min;
+    }
+    if (constraints.max !== undefined) {
+        relativeConstraints.max = constraints.max - layout.min;
+    }
+    return relativeConstraints;
+}
+const defaultElastic = 0.35;
+/**
+ * Accepts a dragElastic prop and returns resolved elastic values for each axis.
+ */
+function resolveDragElastic(dragElastic = defaultElastic) {
+    if (dragElastic === false) {
+        dragElastic = 0;
+    }
+    else if (dragElastic === true) {
+        dragElastic = defaultElastic;
+    }
+    return {
+        x: resolveAxisElastic(dragElastic, "left", "right"),
+        y: resolveAxisElastic(dragElastic, "top", "bottom"),
+    };
+}
+function resolveAxisElastic(dragElastic, minLabel, maxLabel) {
+    return {
+        min: resolvePointElastic(dragElastic, minLabel),
+        max: resolvePointElastic(dragElastic, maxLabel),
+    };
+}
+function resolvePointElastic(dragElastic, label) {
+    return typeof dragElastic === "number"
+        ? dragElastic
+        : dragElastic[label] || 0;
+}
+
+
+
+;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/projection/geometry/models.mjs
+const createAxisDelta = () => ({
+    translate: 0,
+    scale: 1,
+    origin: 0,
+    originPoint: 0,
+});
+const createDelta = () => ({
+    x: createAxisDelta(),
+    y: createAxisDelta(),
+});
+const createAxis = () => ({ min: 0, max: 0 });
+const createBox = () => ({
+    x: createAxis(),
+    y: createAxis(),
+});
+
+
+
+;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/projection/utils/each-axis.mjs
+function eachAxis(callback) {
+    return [callback("x"), callback("y")];
+}
+
+
+
+;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/projection/geometry/conversion.mjs
+/**
+ * Bounding boxes tend to be defined as top, left, right, bottom. For various operations
+ * it's easier to consider each axis individually. This function returns a bounding box
+ * as a map of single-axis min/max values.
+ */
+function convertBoundingBoxToBox({ top, left, right, bottom, }) {
+    return {
+        x: { min: left, max: right },
+        y: { min: top, max: bottom },
+    };
+}
+function convertBoxToBoundingBox({ x, y }) {
+    return { top: y.min, right: x.max, bottom: y.max, left: x.min };
+}
+/**
+ * Applies a TransformPoint function to a bounding box. TransformPoint is usually a function
+ * provided by Framer to allow measured points to be corrected for device scaling. This is used
+ * when measuring DOM elements and DOM event points.
+ */
+function transformBoxPoints(point, transformPoint) {
+    if (!transformPoint)
+        return point;
+    const topLeft = transformPoint({ x: point.left, y: point.top });
+    const bottomRight = transformPoint({ x: point.right, y: point.bottom });
+    return {
+        top: topLeft.y,
+        left: topLeft.x,
+        bottom: bottomRight.y,
+        right: bottomRight.x,
+    };
+}
+
+
+
+;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/projection/utils/has-transform.mjs
+function isIdentityScale(scale) {
+    return scale === undefined || scale === 1;
+}
+function hasScale({ scale, scaleX, scaleY }) {
+    return (!isIdentityScale(scale) ||
+        !isIdentityScale(scaleX) ||
+        !isIdentityScale(scaleY));
+}
+function hasTransform(values) {
+    return (hasScale(values) ||
+        has2DTranslate(values) ||
+        values.z ||
+        values.rotate ||
+        values.rotateX ||
+        values.rotateY ||
+        values.skewX ||
+        values.skewY);
+}
+function has2DTranslate(values) {
+    return is2DTranslate(values.x) || is2DTranslate(values.y);
+}
+function is2DTranslate(value) {
+    return value && value !== "0%";
+}
+
+
+
+;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/projection/geometry/delta-apply.mjs
+
+
+
+/**
+ * Scales a point based on a factor and an originPoint
+ */
+function scalePoint(point, scale, originPoint) {
+    const distanceFromOrigin = point - originPoint;
+    const scaled = scale * distanceFromOrigin;
+    return originPoint + scaled;
+}
+/**
+ * Applies a translate/scale delta to a point
+ */
+function applyPointDelta(point, translate, scale, originPoint, boxScale) {
+    if (boxScale !== undefined) {
+        point = scalePoint(point, boxScale, originPoint);
+    }
+    return scalePoint(point, scale, originPoint) + translate;
+}
+/**
+ * Applies a translate/scale delta to an axis
+ */
+function applyAxisDelta(axis, translate = 0, scale = 1, originPoint, boxScale) {
+    axis.min = applyPointDelta(axis.min, translate, scale, originPoint, boxScale);
+    axis.max = applyPointDelta(axis.max, translate, scale, originPoint, boxScale);
+}
+/**
+ * Applies a translate/scale delta to a box
+ */
+function applyBoxDelta(box, { x, y }) {
+    applyAxisDelta(box.x, x.translate, x.scale, x.originPoint);
+    applyAxisDelta(box.y, y.translate, y.scale, y.originPoint);
+}
+/**
+ * Apply a tree of deltas to a box. We do this to calculate the effect of all the transforms
+ * in a tree upon our box before then calculating how to project it into our desired viewport-relative box
+ *
+ * This is the final nested loop within updateLayoutDelta for future refactoring
+ */
+function applyTreeDeltas(box, treeScale, treePath, isSharedTransition = false) {
+    const treeLength = treePath.length;
+    if (!treeLength)
+        return;
+    // Reset the treeScale
+    treeScale.x = treeScale.y = 1;
+    let node;
+    let delta;
+    for (let i = 0; i < treeLength; i++) {
+        node = treePath[i];
+        delta = node.projectionDelta;
+        /**
+         * TODO: Prefer to remove this, but currently we have motion components with
+         * display: contents in Framer.
+         */
+        const instance = node.instance;
+        if (instance &&
+            instance.style &&
+            instance.style.display === "contents") {
+            continue;
+        }
+        if (isSharedTransition &&
+            node.options.layoutScroll &&
+            node.scroll &&
+            node !== node.root) {
+            transformBox(box, {
+                x: -node.scroll.offset.x,
+                y: -node.scroll.offset.y,
+            });
+        }
+        if (delta) {
+            // Incoporate each ancestor's scale into a culmulative treeScale for this component
+            treeScale.x *= delta.x.scale;
+            treeScale.y *= delta.y.scale;
+            // Apply each ancestor's calculated delta into this component's recorded layout box
+            applyBoxDelta(box, delta);
+        }
+        if (isSharedTransition && hasTransform(node.latestValues)) {
+            transformBox(box, node.latestValues);
+        }
+    }
+    /**
+     * Snap tree scale back to 1 if it's within a non-perceivable threshold.
+     * This will help reduce useless scales getting rendered.
+     */
+    treeScale.x = snapToDefault(treeScale.x);
+    treeScale.y = snapToDefault(treeScale.y);
+}
+function snapToDefault(scale) {
+    if (Number.isInteger(scale))
+        return scale;
+    return scale > 1.0000000000001 || scale < 0.999999999999 ? scale : 1;
+}
+function translateAxis(axis, distance) {
+    axis.min = axis.min + distance;
+    axis.max = axis.max + distance;
+}
+/**
+ * Apply a transform to an axis from the latest resolved motion values.
+ * This function basically acts as a bridge between a flat motion value map
+ * and applyAxisDelta
+ */
+function transformAxis(axis, transforms, [key, scaleKey, originKey]) {
+    const axisOrigin = transforms[originKey] !== undefined ? transforms[originKey] : 0.5;
+    const originPoint = mixNumber(axis.min, axis.max, axisOrigin);
+    // Apply the axis delta to the final axis
+    applyAxisDelta(axis, transforms[key], transforms[scaleKey], originPoint, transforms.scale);
+}
+/**
+ * The names of the motion values we want to apply as translation, scale and origin.
+ */
+const xKeys = ["x", "scaleX", "originX"];
+const yKeys = ["y", "scaleY", "originY"];
+/**
+ * Apply a transform to a box from the latest resolved motion values.
+ */
+function transformBox(box, transform) {
+    transformAxis(box.x, transform, xKeys);
+    transformAxis(box.y, transform, yKeys);
+}
+
+
+
+;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/projection/utils/measure.mjs
+
+
+
+function measureViewportBox(instance, transformPoint) {
+    return convertBoundingBoxToBox(transformBoxPoints(instance.getBoundingClientRect(), transformPoint));
+}
+function measurePageBox(element, rootProjectionNode, transformPagePoint) {
+    const viewportBox = measureViewportBox(element, transformPagePoint);
+    const { scroll } = rootProjectionNode;
+    if (scroll) {
+        translateAxis(viewportBox.x, scroll.offset.x);
+        translateAxis(viewportBox.y, scroll.offset.y);
+    }
+    return viewportBox;
+}
+
+
+
+;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/utils/get-context-window.mjs
+// Fixes https://github.com/framer/motion/issues/2270
+const getContextWindow = ({ current }) => {
+    return current ? current.ownerDocument.defaultView : null;
+};
+
+
+
+;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/gestures/drag/VisualElementDragControls.mjs
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+const elementDragControls = new WeakMap();
+/**
+ *
+ */
+// let latestPointerEvent: PointerEvent
+class VisualElementDragControls {
+    constructor(visualElement) {
+        // This is a reference to the global drag gesture lock, ensuring only one component
+        // can "capture" the drag of one or both axes.
+        // TODO: Look into moving this into pansession?
+        this.openGlobalLock = null;
+        this.isDragging = false;
+        this.currentDirection = null;
+        this.originPoint = { x: 0, y: 0 };
+        /**
+         * The permitted boundaries of travel, in pixels.
+         */
+        this.constraints = false;
+        this.hasMutatedConstraints = false;
+        /**
+         * The per-axis resolved elastic values.
+         */
+        this.elastic = createBox();
+        this.visualElement = visualElement;
+    }
+    start(originEvent, { snapToCursor = false } = {}) {
+        /**
+         * Don't start dragging if this component is exiting
+         */
+        const { presenceContext } = this.visualElement;
+        if (presenceContext && presenceContext.isPresent === false)
+            return;
+        const onSessionStart = (event) => {
+            const { dragSnapToOrigin } = this.getProps();
+            // Stop or pause any animations on both axis values immediately. This allows the user to throw and catch
+            // the component.
+            dragSnapToOrigin ? this.pauseAnimation() : this.stopAnimation();
+            if (snapToCursor) {
+                this.snapToCursor(extractEventInfo(event, "page").point);
+            }
+        };
+        const onStart = (event, info) => {
+            // Attempt to grab the global drag gesture lock - maybe make this part of PanSession
+            const { drag, dragPropagation, onDragStart } = this.getProps();
+            if (drag && !dragPropagation) {
+                if (this.openGlobalLock)
+                    this.openGlobalLock();
+                this.openGlobalLock = getGlobalLock(drag);
+                // If we don 't have the lock, don't start dragging
+                if (!this.openGlobalLock)
+                    return;
+            }
+            this.isDragging = true;
+            this.currentDirection = null;
+            this.resolveConstraints();
+            if (this.visualElement.projection) {
+                this.visualElement.projection.isAnimationBlocked = true;
+                this.visualElement.projection.target = undefined;
+            }
+            /**
+             * Record gesture origin
+             */
+            eachAxis((axis) => {
+                let current = this.getAxisMotionValue(axis).get() || 0;
+                /**
+                 * If the MotionValue is a percentage value convert to px
+                 */
+                if (percent.test(current)) {
+                    const { projection } = this.visualElement;
+                    if (projection && projection.layout) {
+                        const measuredAxis = projection.layout.layoutBox[axis];
+                        if (measuredAxis) {
+                            const length = calcLength(measuredAxis);
+                            current = length * (parseFloat(current) / 100);
+                        }
+                    }
+                }
+                this.originPoint[axis] = current;
+            });
+            // Fire onDragStart event
+            if (onDragStart) {
+                frame_frame.postRender(() => onDragStart(event, info));
+            }
+            const { animationState } = this.visualElement;
+            animationState && animationState.setActive("whileDrag", true);
+        };
+        const onMove = (event, info) => {
+            // latestPointerEvent = event
+            const { dragPropagation, dragDirectionLock, onDirectionLock, onDrag, } = this.getProps();
+            // If we didn't successfully receive the gesture lock, early return.
+            if (!dragPropagation && !this.openGlobalLock)
+                return;
+            const { offset } = info;
+            // Attempt to detect drag direction if directionLock is true
+            if (dragDirectionLock && this.currentDirection === null) {
+                this.currentDirection = getCurrentDirection(offset);
+                // If we've successfully set a direction, notify listener
+                if (this.currentDirection !== null) {
+                    onDirectionLock && onDirectionLock(this.currentDirection);
+                }
+                return;
+            }
+            // Update each point with the latest position
+            this.updateAxis("x", info.point, offset);
+            this.updateAxis("y", info.point, offset);
+            /**
+             * Ideally we would leave the renderer to fire naturally at the end of
+             * this frame but if the element is about to change layout as the result
+             * of a re-render we want to ensure the browser can read the latest
+             * bounding box to ensure the pointer and element don't fall out of sync.
+             */
+            this.visualElement.render();
+            /**
+             * This must fire after the render call as it might trigger a state
+             * change which itself might trigger a layout update.
+             */
+            onDrag && onDrag(event, info);
+        };
+        const onSessionEnd = (event, info) => this.stop(event, info);
+        const resumeAnimation = () => eachAxis((axis) => {
+            var _a;
+            return this.getAnimationState(axis) === "paused" &&
+                ((_a = this.getAxisMotionValue(axis).animation) === null || _a === void 0 ? void 0 : _a.play());
+        });
+        const { dragSnapToOrigin } = this.getProps();
+        this.panSession = new PanSession(originEvent, {
+            onSessionStart,
+            onStart,
+            onMove,
+            onSessionEnd,
+            resumeAnimation,
+        }, {
+            transformPagePoint: this.visualElement.getTransformPagePoint(),
+            dragSnapToOrigin,
+            contextWindow: getContextWindow(this.visualElement),
+        });
+    }
+    stop(event, info) {
+        const isDragging = this.isDragging;
+        this.cancel();
+        if (!isDragging)
+            return;
+        const { velocity } = info;
+        this.startAnimation(velocity);
+        const { onDragEnd } = this.getProps();
+        if (onDragEnd) {
+            frame_frame.postRender(() => onDragEnd(event, info));
+        }
+    }
+    cancel() {
+        this.isDragging = false;
+        const { projection, animationState } = this.visualElement;
+        if (projection) {
+            projection.isAnimationBlocked = false;
+        }
+        this.panSession && this.panSession.end();
+        this.panSession = undefined;
+        const { dragPropagation } = this.getProps();
+        if (!dragPropagation && this.openGlobalLock) {
+            this.openGlobalLock();
+            this.openGlobalLock = null;
+        }
+        animationState && animationState.setActive("whileDrag", false);
+    }
+    updateAxis(axis, _point, offset) {
+        const { drag } = this.getProps();
+        // If we're not dragging this axis, do an early return.
+        if (!offset || !shouldDrag(axis, drag, this.currentDirection))
+            return;
+        const axisValue = this.getAxisMotionValue(axis);
+        let next = this.originPoint[axis] + offset[axis];
+        // Apply constraints
+        if (this.constraints && this.constraints[axis]) {
+            next = applyConstraints(next, this.constraints[axis], this.elastic[axis]);
+        }
+        axisValue.set(next);
+    }
+    resolveConstraints() {
+        var _a;
+        const { dragConstraints, dragElastic } = this.getProps();
+        const layout = this.visualElement.projection &&
+            !this.visualElement.projection.layout
+            ? this.visualElement.projection.measure(false)
+            : (_a = this.visualElement.projection) === null || _a === void 0 ? void 0 : _a.layout;
+        const prevConstraints = this.constraints;
+        if (dragConstraints && isRefObject(dragConstraints)) {
+            if (!this.constraints) {
+                this.constraints = this.resolveRefConstraints();
+            }
+        }
+        else {
+            if (dragConstraints && layout) {
+                this.constraints = calcRelativeConstraints(layout.layoutBox, dragConstraints);
+            }
+            else {
+                this.constraints = false;
+            }
+        }
+        this.elastic = resolveDragElastic(dragElastic);
+        /**
+         * If we're outputting to external MotionValues, we want to rebase the measured constraints
+         * from viewport-relative to component-relative.
+         */
+        if (prevConstraints !== this.constraints &&
+            layout &&
+            this.constraints &&
+            !this.hasMutatedConstraints) {
+            eachAxis((axis) => {
+                if (this.constraints !== false &&
+                    this.getAxisMotionValue(axis)) {
+                    this.constraints[axis] = rebaseAxisConstraints(layout.layoutBox[axis], this.constraints[axis]);
+                }
+            });
+        }
+    }
+    resolveRefConstraints() {
+        const { dragConstraints: constraints, onMeasureDragConstraints } = this.getProps();
+        if (!constraints || !isRefObject(constraints))
+            return false;
+        const constraintsElement = constraints.current;
+        invariant(constraintsElement !== null, "If `dragConstraints` is set as a React ref, that ref must be passed to another component's `ref` prop.");
+        const { projection } = this.visualElement;
+        // TODO
+        if (!projection || !projection.layout)
+            return false;
+        const constraintsBox = measurePageBox(constraintsElement, projection.root, this.visualElement.getTransformPagePoint());
+        let measuredConstraints = calcViewportConstraints(projection.layout.layoutBox, constraintsBox);
+        /**
+         * If there's an onMeasureDragConstraints listener we call it and
+         * if different constraints are returned, set constraints to that
+         */
+        if (onMeasureDragConstraints) {
+            const userConstraints = onMeasureDragConstraints(convertBoxToBoundingBox(measuredConstraints));
+            this.hasMutatedConstraints = !!userConstraints;
+            if (userConstraints) {
+                measuredConstraints = convertBoundingBoxToBox(userConstraints);
+            }
+        }
+        return measuredConstraints;
+    }
+    startAnimation(velocity) {
+        const { drag, dragMomentum, dragElastic, dragTransition, dragSnapToOrigin, onDragTransitionEnd, } = this.getProps();
+        const constraints = this.constraints || {};
+        const momentumAnimations = eachAxis((axis) => {
+            if (!shouldDrag(axis, drag, this.currentDirection)) {
+                return;
+            }
+            let transition = (constraints && constraints[axis]) || {};
+            if (dragSnapToOrigin)
+                transition = { min: 0, max: 0 };
+            /**
+             * Overdamp the boundary spring if `dragElastic` is disabled. There's still a frame
+             * of spring animations so we should look into adding a disable spring option to `inertia`.
+             * We could do something here where we affect the `bounceStiffness` and `bounceDamping`
+             * using the value of `dragElastic`.
+             */
+            const bounceStiffness = dragElastic ? 200 : 1000000;
+            const bounceDamping = dragElastic ? 40 : 10000000;
+            const inertia = {
+                type: "inertia",
+                velocity: dragMomentum ? velocity[axis] : 0,
+                bounceStiffness,
+                bounceDamping,
+                timeConstant: 750,
+                restDelta: 1,
+                restSpeed: 10,
+                ...dragTransition,
+                ...transition,
+            };
+            // If we're not animating on an externally-provided `MotionValue` we can use the
+            // component's animation controls which will handle interactions with whileHover (etc),
+            // otherwise we just have to animate the `MotionValue` itself.
+            return this.startAxisValueAnimation(axis, inertia);
+        });
+        // Run all animations and then resolve the new drag constraints.
+        return Promise.all(momentumAnimations).then(onDragTransitionEnd);
+    }
+    startAxisValueAnimation(axis, transition) {
+        const axisValue = this.getAxisMotionValue(axis);
+        return axisValue.start(animateMotionValue(axis, axisValue, 0, transition, this.visualElement));
+    }
+    stopAnimation() {
+        eachAxis((axis) => this.getAxisMotionValue(axis).stop());
+    }
+    pauseAnimation() {
+        eachAxis((axis) => { var _a; return (_a = this.getAxisMotionValue(axis).animation) === null || _a === void 0 ? void 0 : _a.pause(); });
+    }
+    getAnimationState(axis) {
+        var _a;
+        return (_a = this.getAxisMotionValue(axis).animation) === null || _a === void 0 ? void 0 : _a.state;
+    }
+    /**
+     * Drag works differently depending on which props are provided.
+     *
+     * - If _dragX and _dragY are provided, we output the gesture delta directly to those motion values.
+     * - Otherwise, we apply the delta to the x/y motion values.
+     */
+    getAxisMotionValue(axis) {
+        const dragKey = `_drag${axis.toUpperCase()}`;
+        const props = this.visualElement.getProps();
+        const externalMotionValue = props[dragKey];
+        return externalMotionValue
+            ? externalMotionValue
+            : this.visualElement.getValue(axis, (props.initial
+                ? props.initial[axis]
+                : undefined) || 0);
+    }
+    snapToCursor(point) {
+        eachAxis((axis) => {
+            const { drag } = this.getProps();
+            // If we're not dragging this axis, do an early return.
+            if (!shouldDrag(axis, drag, this.currentDirection))
+                return;
+            const { projection } = this.visualElement;
+            const axisValue = this.getAxisMotionValue(axis);
+            if (projection && projection.layout) {
+                const { min, max } = projection.layout.layoutBox[axis];
+                axisValue.set(point[axis] - mixNumber(min, max, 0.5));
+            }
+        });
+    }
+    /**
+     * When the viewport resizes we want to check if the measured constraints
+     * have changed and, if so, reposition the element within those new constraints
+     * relative to where it was before the resize.
+     */
+    scalePositionWithinConstraints() {
+        if (!this.visualElement.current)
+            return;
+        const { drag, dragConstraints } = this.getProps();
+        const { projection } = this.visualElement;
+        if (!isRefObject(dragConstraints) || !projection || !this.constraints)
+            return;
+        /**
+         * Stop current animations as there can be visual glitching if we try to do
+         * this mid-animation
+         */
+        this.stopAnimation();
+        /**
+         * Record the relative position of the dragged element relative to the
+         * constraints box and save as a progress value.
+         */
+        const boxProgress = { x: 0, y: 0 };
+        eachAxis((axis) => {
+            const axisValue = this.getAxisMotionValue(axis);
+            if (axisValue && this.constraints !== false) {
+                const latest = axisValue.get();
+                boxProgress[axis] = constraints_calcOrigin({ min: latest, max: latest }, this.constraints[axis]);
+            }
+        });
+        /**
+         * Update the layout of this element and resolve the latest drag constraints
+         */
+        const { transformTemplate } = this.visualElement.getProps();
+        this.visualElement.current.style.transform = transformTemplate
+            ? transformTemplate({}, "")
+            : "none";
+        projection.root && projection.root.updateScroll();
+        projection.updateLayout();
+        this.resolveConstraints();
+        /**
+         * For each axis, calculate the current progress of the layout axis
+         * within the new constraints.
+         */
+        eachAxis((axis) => {
+            if (!shouldDrag(axis, drag, null))
+                return;
+            /**
+             * Calculate a new transform based on the previous box progress
+             */
+            const axisValue = this.getAxisMotionValue(axis);
+            const { min, max } = this.constraints[axis];
+            axisValue.set(mixNumber(min, max, boxProgress[axis]));
+        });
+    }
+    addListeners() {
+        if (!this.visualElement.current)
+            return;
+        elementDragControls.set(this.visualElement, this);
+        const element = this.visualElement.current;
+        /**
+         * Attach a pointerdown event listener on this DOM element to initiate drag tracking.
+         */
+        const stopPointerListener = addPointerEvent(element, "pointerdown", (event) => {
+            const { drag, dragListener = true } = this.getProps();
+            drag && dragListener && this.start(event);
+        });
+        const measureDragConstraints = () => {
+            const { dragConstraints } = this.getProps();
+            if (isRefObject(dragConstraints)) {
+                this.constraints = this.resolveRefConstraints();
+            }
+        };
+        const { projection } = this.visualElement;
+        const stopMeasureLayoutListener = projection.addEventListener("measure", measureDragConstraints);
+        if (projection && !projection.layout) {
+            projection.root && projection.root.updateScroll();
+            projection.updateLayout();
+        }
+        measureDragConstraints();
+        /**
+         * Attach a window resize listener to scale the draggable target within its defined
+         * constraints as the window resizes.
+         */
+        const stopResizeListener = addDomEvent(window, "resize", () => this.scalePositionWithinConstraints());
+        /**
+         * If the element's layout changes, calculate the delta and apply that to
+         * the drag gesture's origin point.
+         */
+        const stopLayoutUpdateListener = projection.addEventListener("didUpdate", (({ delta, hasLayoutChanged }) => {
+            if (this.isDragging && hasLayoutChanged) {
+                eachAxis((axis) => {
+                    const motionValue = this.getAxisMotionValue(axis);
+                    if (!motionValue)
+                        return;
+                    this.originPoint[axis] += delta[axis].translate;
+                    motionValue.set(motionValue.get() + delta[axis].translate);
+                });
+                this.visualElement.render();
+            }
+        }));
+        return () => {
+            stopResizeListener();
+            stopPointerListener();
+            stopMeasureLayoutListener();
+            stopLayoutUpdateListener && stopLayoutUpdateListener();
+        };
+    }
+    getProps() {
+        const props = this.visualElement.getProps();
+        const { drag = false, dragDirectionLock = false, dragPropagation = false, dragConstraints = false, dragElastic = defaultElastic, dragMomentum = true, } = props;
+        return {
+            ...props,
+            drag,
+            dragDirectionLock,
+            dragPropagation,
+            dragConstraints,
+            dragElastic,
+            dragMomentum,
+        };
+    }
+}
+function shouldDrag(direction, drag, currentDirection) {
+    return ((drag === true || drag === direction) &&
+        (currentDirection === null || currentDirection === direction));
+}
+/**
+ * Based on an x/y offset determine the current drag direction. If both axis' offsets are lower
+ * than the provided threshold, return `null`.
+ *
+ * @param offset - The x/y offset from origin.
+ * @param lockThreshold - (Optional) - the minimum absolute offset before we can determine a drag direction.
+ */
+function getCurrentDirection(offset, lockThreshold = 10) {
+    let direction = null;
+    if (Math.abs(offset.y) > lockThreshold) {
+        direction = "y";
+    }
+    else if (Math.abs(offset.x) > lockThreshold) {
+        direction = "x";
+    }
+    return direction;
+}
+
+
+
+;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/gestures/drag/index.mjs
+
+
+
+
+class DragGesture extends Feature {
+    constructor(node) {
+        super(node);
+        this.removeGroupControls = noop_noop;
+        this.removeListeners = noop_noop;
+        this.controls = new VisualElementDragControls(node);
+    }
+    mount() {
+        // If we've been provided a DragControls for manual control over the drag gesture,
+        // subscribe this component to it on mount.
+        const { dragControls } = this.node.getProps();
+        if (dragControls) {
+            this.removeGroupControls = dragControls.subscribe(this.controls);
+        }
+        this.removeListeners = this.controls.addListeners() || noop_noop;
+    }
+    unmount() {
+        this.removeGroupControls();
+        this.removeListeners();
+    }
+}
+
+
+
+;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/gestures/pan/index.mjs
+
+
+
+
+
+
+
+const asyncHandler = (handler) => (event, info) => {
+    if (handler) {
+        frame_frame.postRender(() => handler(event, info));
+    }
+};
+class PanGesture extends Feature {
+    constructor() {
+        super(...arguments);
+        this.removePointerDownListener = noop_noop;
+    }
+    onPointerDown(pointerDownEvent) {
+        this.session = new PanSession(pointerDownEvent, this.createPanHandlers(), {
+            transformPagePoint: this.node.getTransformPagePoint(),
+            contextWindow: getContextWindow(this.node),
+        });
+    }
+    createPanHandlers() {
+        const { onPanSessionStart, onPanStart, onPan, onPanEnd } = this.node.getProps();
+        return {
+            onSessionStart: asyncHandler(onPanSessionStart),
+            onStart: asyncHandler(onPanStart),
+            onMove: onPan,
+            onEnd: (event, info) => {
+                delete this.session;
+                if (onPanEnd) {
+                    frame_frame.postRender(() => onPanEnd(event, info));
+                }
+            },
+        };
+    }
+    mount() {
+        this.removePointerDownListener = addPointerEvent(this.node.current, "pointerdown", (event) => this.onPointerDown(event));
+    }
+    update() {
+        this.session && this.session.updateHandlers(this.createPanHandlers());
+    }
+    unmount() {
+        this.removePointerDownListener();
+        this.session && this.session.end();
+    }
+}
+
+
+
+;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/components/AnimatePresence/use-presence.mjs
+
+
+
+/**
+ * When a component is the child of `AnimatePresence`, it can use `usePresence`
+ * to access information about whether it's still present in the React tree.
+ *
+ * ```jsx
+ * import { usePresence } from "framer-motion"
+ *
+ * export const Component = () => {
+ *   const [isPresent, safeToRemove] = usePresence()
+ *
+ *   useEffect(() => {
+ *     !isPresent && setTimeout(safeToRemove, 1000)
+ *   }, [isPresent])
+ *
+ *   return <div />
+ * }
+ * ```
+ *
+ * If `isPresent` is `false`, it means that a component has been removed the tree, but
+ * `AnimatePresence` won't really remove it until `safeToRemove` has been called.
+ *
+ * @public
+ */
+function usePresence() {
+    const context = (0,react.useContext)(PresenceContext_PresenceContext);
+    if (context === null)
+        return [true, null];
+    const { isPresent, onExitComplete, register } = context;
+    // It's safe to call the following hooks conditionally (after an early return) because the context will always
+    // either be null or non-null for the lifespan of the component.
+    const id = (0,react.useId)();
+    (0,react.useEffect)(() => register(id), []);
+    const safeToRemove = () => onExitComplete && onExitComplete(id);
+    return !isPresent && onExitComplete ? [false, safeToRemove] : [true];
+}
+/**
+ * Similar to `usePresence`, except `useIsPresent` simply returns whether or not the component is present.
+ * There is no `safeToRemove` function.
+ *
+ * ```jsx
+ * import { useIsPresent } from "framer-motion"
+ *
+ * export const Component = () => {
+ *   const isPresent = useIsPresent()
+ *
+ *   useEffect(() => {
+ *     !isPresent && console.log("I've been removed!")
+ *   }, [isPresent])
+ *
+ *   return <div />
+ * }
+ * ```
+ *
+ * @public
+ */
+function useIsPresent() {
+    return isPresent(useContext(PresenceContext));
+}
+function isPresent(context) {
+    return context === null ? true : context.isPresent;
+}
+
+
+
+;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/projection/node/state.mjs
+/**
+ * This should only ever be modified on the client otherwise it'll
+ * persist through server requests. If we need instanced states we
+ * could lazy-init via root.
+ */
+const globalProjectionState = {
+    /**
+     * Global flag as to whether the tree has animated since the last time
+     * we resized the window
+     */
+    hasAnimatedSinceResize: true,
+    /**
+     * We set this to true once, on the first update. Any nodes added to the tree beyond that
+     * update will be given a `data-projection-id` attribute.
+     */
+    hasEverUpdated: false,
+};
+
+
+
+;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/projection/styles/scale-border-radius.mjs
+
+
+function pixelsToPercent(pixels, axis) {
+    if (axis.max === axis.min)
+        return 0;
+    return (pixels / (axis.max - axis.min)) * 100;
+}
+/**
+ * We always correct borderRadius as a percentage rather than pixels to reduce paints.
+ * For example, if you are projecting a box that is 100px wide with a 10px borderRadius
+ * into a box that is 200px wide with a 20px borderRadius, that is actually a 10%
+ * borderRadius in both states. If we animate between the two in pixels that will trigger
+ * a paint each time. If we animate between the two in percentage we'll avoid a paint.
+ */
+const correctBorderRadius = {
+    correct: (latest, node) => {
+        if (!node.target)
+            return latest;
+        /**
+         * If latest is a string, if it's a percentage we can return immediately as it's
+         * going to be stretched appropriately. Otherwise, if it's a pixel, convert it to a number.
+         */
+        if (typeof latest === "string") {
+            if (px.test(latest)) {
+                latest = parseFloat(latest);
+            }
+            else {
+                return latest;
+            }
+        }
+        /**
+         * If latest is a number, it's a pixel value. We use the current viewportBox to calculate that
+         * pixel value as a percentage of each axis
+         */
+        const x = pixelsToPercent(latest, node.target.x);
+        const y = pixelsToPercent(latest, node.target.y);
+        return `${x}% ${y}%`;
+    },
+};
+
+
+
+;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/projection/styles/scale-box-shadow.mjs
+
+
+
+const correctBoxShadow = {
+    correct: (latest, { treeScale, projectionDelta }) => {
+        const original = latest;
+        const shadow = complex.parse(latest);
+        // TODO: Doesn't support multiple shadows
+        if (shadow.length > 5)
+            return original;
+        const template = complex.createTransformer(latest);
+        const offset = typeof shadow[0] !== "number" ? 1 : 0;
+        // Calculate the overall context scale
+        const xScale = projectionDelta.x.scale * treeScale.x;
+        const yScale = projectionDelta.y.scale * treeScale.y;
+        shadow[0 + offset] /= xScale;
+        shadow[1 + offset] /= yScale;
+        /**
+         * Ideally we'd correct x and y scales individually, but because blur and
+         * spread apply to both we have to take a scale average and apply that instead.
+         * We could potentially improve the outcome of this by incorporating the ratio between
+         * the two scales.
+         */
+        const averageScale = mixNumber(xScale, yScale, 0.5);
+        // Blur
+        if (typeof shadow[2 + offset] === "number")
+            shadow[2 + offset] /= averageScale;
+        // Spread
+        if (typeof shadow[3 + offset] === "number")
+            shadow[3 + offset] /= averageScale;
+        return template(shadow);
+    },
+};
+
+
+
+;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/motion/features/layout/MeasureLayout.mjs
+
+
+
+
+
+
+
+
+
+
+
+
+class MeasureLayoutWithContext extends react.Component {
+    /**
+     * This only mounts projection nodes for components that
+     * need measuring, we might want to do it for all components
+     * in order to incorporate transforms
+     */
+    componentDidMount() {
+        const { visualElement, layoutGroup, switchLayoutGroup, layoutId } = this.props;
+        const { projection } = visualElement;
+        addScaleCorrector(defaultScaleCorrectors);
+        if (projection) {
+            if (layoutGroup.group)
+                layoutGroup.group.add(projection);
+            if (switchLayoutGroup && switchLayoutGroup.register && layoutId) {
+                switchLayoutGroup.register(projection);
+            }
+            projection.root.didUpdate();
+            projection.addEventListener("animationComplete", () => {
+                this.safeToRemove();
+            });
+            projection.setOptions({
+                ...projection.options,
+                onExitComplete: () => this.safeToRemove(),
+            });
+        }
+        globalProjectionState.hasEverUpdated = true;
+    }
+    getSnapshotBeforeUpdate(prevProps) {
+        const { layoutDependency, visualElement, drag, isPresent } = this.props;
+        const projection = visualElement.projection;
+        if (!projection)
+            return null;
+        /**
+         * TODO: We use this data in relegate to determine whether to
+         * promote a previous element. There's no guarantee its presence data
+         * will have updated by this point - if a bug like this arises it will
+         * have to be that we markForRelegation and then find a new lead some other way,
+         * perhaps in didUpdate
+         */
+        projection.isPresent = isPresent;
+        if (drag ||
+            prevProps.layoutDependency !== layoutDependency ||
+            layoutDependency === undefined) {
+            projection.willUpdate();
+        }
+        else {
+            this.safeToRemove();
+        }
+        if (prevProps.isPresent !== isPresent) {
+            if (isPresent) {
+                projection.promote();
+            }
+            else if (!projection.relegate()) {
+                /**
+                 * If there's another stack member taking over from this one,
+                 * it's in charge of the exit animation and therefore should
+                 * be in charge of the safe to remove. Otherwise we call it here.
+                 */
+                frame_frame.postRender(() => {
+                    const stack = projection.getStack();
+                    if (!stack || !stack.members.length) {
+                        this.safeToRemove();
+                    }
+                });
+            }
+        }
+        return null;
+    }
+    componentDidUpdate() {
+        const { projection } = this.props.visualElement;
+        if (projection) {
+            projection.root.didUpdate();
+            microtask.postRender(() => {
+                if (!projection.currentAnimation && projection.isLead()) {
+                    this.safeToRemove();
+                }
+            });
+        }
+    }
+    componentWillUnmount() {
+        const { visualElement, layoutGroup, switchLayoutGroup: promoteContext, } = this.props;
+        const { projection } = visualElement;
+        if (projection) {
+            projection.scheduleCheckAfterUnmount();
+            if (layoutGroup && layoutGroup.group)
+                layoutGroup.group.remove(projection);
+            if (promoteContext && promoteContext.deregister)
+                promoteContext.deregister(projection);
+        }
+    }
+    safeToRemove() {
+        const { safeToRemove } = this.props;
+        safeToRemove && safeToRemove();
+    }
+    render() {
+        return null;
+    }
+}
+function MeasureLayout(props) {
+    const [isPresent, safeToRemove] = usePresence();
+    const layoutGroup = (0,react.useContext)(LayoutGroupContext);
+    return ((0,jsx_runtime.jsx)(MeasureLayoutWithContext, { ...props, layoutGroup: layoutGroup, switchLayoutGroup: (0,react.useContext)(SwitchLayoutGroupContext), isPresent: isPresent, safeToRemove: safeToRemove }));
+}
+const defaultScaleCorrectors = {
+    borderRadius: {
+        ...correctBorderRadius,
+        applyTo: [
+            "borderTopLeftRadius",
+            "borderTopRightRadius",
+            "borderBottomLeftRadius",
+            "borderBottomRightRadius",
+        ],
+    },
+    borderTopLeftRadius: correctBorderRadius,
+    borderTopRightRadius: correctBorderRadius,
+    borderBottomLeftRadius: correctBorderRadius,
+    borderBottomRightRadius: correctBorderRadius,
+    boxShadow: correctBoxShadow,
+};
+
+
+
+;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/projection/animation/mix-values.mjs
+
+
+
+
+
+
+const borders = ["TopLeft", "TopRight", "BottomLeft", "BottomRight"];
+const numBorders = borders.length;
+const asNumber = (value) => typeof value === "string" ? parseFloat(value) : value;
+const isPx = (value) => typeof value === "number" || px.test(value);
+function mixValues(target, follow, lead, progress, shouldCrossfadeOpacity, isOnlyMember) {
+    if (shouldCrossfadeOpacity) {
+        target.opacity = mixNumber(0, 
+        // TODO Reinstate this if only child
+        lead.opacity !== undefined ? lead.opacity : 1, easeCrossfadeIn(progress));
+        target.opacityExit = mixNumber(follow.opacity !== undefined ? follow.opacity : 1, 0, easeCrossfadeOut(progress));
+    }
+    else if (isOnlyMember) {
+        target.opacity = mixNumber(follow.opacity !== undefined ? follow.opacity : 1, lead.opacity !== undefined ? lead.opacity : 1, progress);
+    }
+    /**
+     * Mix border radius
+     */
+    for (let i = 0; i < numBorders; i++) {
+        const borderLabel = `border${borders[i]}Radius`;
+        let followRadius = getRadius(follow, borderLabel);
+        let leadRadius = getRadius(lead, borderLabel);
+        if (followRadius === undefined && leadRadius === undefined)
+            continue;
+        followRadius || (followRadius = 0);
+        leadRadius || (leadRadius = 0);
+        const canMix = followRadius === 0 ||
+            leadRadius === 0 ||
+            isPx(followRadius) === isPx(leadRadius);
+        if (canMix) {
+            target[borderLabel] = Math.max(mixNumber(asNumber(followRadius), asNumber(leadRadius), progress), 0);
+            if (percent.test(leadRadius) || percent.test(followRadius)) {
+                target[borderLabel] += "%";
+            }
+        }
+        else {
+            target[borderLabel] = leadRadius;
+        }
+    }
+    /**
+     * Mix rotation
+     */
+    if (follow.rotate || lead.rotate) {
+        target.rotate = mixNumber(follow.rotate || 0, lead.rotate || 0, progress);
+    }
+}
+function getRadius(values, radiusName) {
+    return values[radiusName] !== undefined
+        ? values[radiusName]
+        : values.borderRadius;
+}
+// /**
+//  * We only want to mix the background color if there's a follow element
+//  * that we're not crossfading opacity between. For instance with switch
+//  * AnimateSharedLayout animations, this helps the illusion of a continuous
+//  * element being animated but also cuts down on the number of paints triggered
+//  * for elements where opacity is doing that work for us.
+//  */
+// if (
+//     !hasFollowElement &&
+//     latestLeadValues.backgroundColor &&
+//     latestFollowValues.backgroundColor
+// ) {
+//     /**
+//      * This isn't ideal performance-wise as mixColor is creating a new function every frame.
+//      * We could probably create a mixer that runs at the start of the animation but
+//      * the idea behind the crossfader is that it runs dynamically between two potentially
+//      * changing targets (ie opacity or borderRadius may be animating independently via variants)
+//      */
+//     leadState.backgroundColor = followState.backgroundColor = mixColor(
+//         latestFollowValues.backgroundColor as string,
+//         latestLeadValues.backgroundColor as string
+//     )(p)
+// }
+const easeCrossfadeIn = compress(0, 0.5, circOut);
+const easeCrossfadeOut = compress(0.5, 0.95, noop_noop);
+function compress(min, max, easing) {
+    return (p) => {
+        // Could replace ifs with clamp
+        if (p < min)
+            return 0;
+        if (p > max)
+            return 1;
+        return easing(progress(min, max, p));
+    };
+}
+
+
+
+;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/projection/geometry/copy.mjs
+/**
+ * Reset an axis to the provided origin box.
+ *
+ * This is a mutative operation.
+ */
+function copyAxisInto(axis, originAxis) {
+    axis.min = originAxis.min;
+    axis.max = originAxis.max;
+}
+/**
+ * Reset a box to the provided origin box.
+ *
+ * This is a mutative operation.
+ */
+function copyBoxInto(box, originBox) {
+    copyAxisInto(box.x, originBox.x);
+    copyAxisInto(box.y, originBox.y);
+}
+
+
+
+;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/projection/geometry/delta-remove.mjs
+
+
+
+
+/**
+ * Remove a delta from a point. This is essentially the steps of applyPointDelta in reverse
+ */
+function removePointDelta(point, translate, scale, originPoint, boxScale) {
+    point -= translate;
+    point = scalePoint(point, 1 / scale, originPoint);
+    if (boxScale !== undefined) {
+        point = scalePoint(point, 1 / boxScale, originPoint);
+    }
+    return point;
+}
+/**
+ * Remove a delta from an axis. This is essentially the steps of applyAxisDelta in reverse
+ */
+function removeAxisDelta(axis, translate = 0, scale = 1, origin = 0.5, boxScale, originAxis = axis, sourceAxis = axis) {
+    if (percent.test(translate)) {
+        translate = parseFloat(translate);
+        const relativeProgress = mixNumber(sourceAxis.min, sourceAxis.max, translate / 100);
+        translate = relativeProgress - sourceAxis.min;
+    }
+    if (typeof translate !== "number")
+        return;
+    let originPoint = mixNumber(originAxis.min, originAxis.max, origin);
+    if (axis === originAxis)
+        originPoint -= translate;
+    axis.min = removePointDelta(axis.min, translate, scale, originPoint, boxScale);
+    axis.max = removePointDelta(axis.max, translate, scale, originPoint, boxScale);
+}
+/**
+ * Remove a transforms from an axis. This is essentially the steps of applyAxisTransforms in reverse
+ * and acts as a bridge between motion values and removeAxisDelta
+ */
+function removeAxisTransforms(axis, transforms, [key, scaleKey, originKey], origin, sourceAxis) {
+    removeAxisDelta(axis, transforms[key], transforms[scaleKey], transforms[originKey], transforms.scale, origin, sourceAxis);
+}
+/**
+ * The names of the motion values we want to apply as translation, scale and origin.
+ */
+const delta_remove_xKeys = ["x", "scaleX", "originX"];
+const delta_remove_yKeys = ["y", "scaleY", "originY"];
+/**
+ * Remove a transforms from an box. This is essentially the steps of applyAxisBox in reverse
+ * and acts as a bridge between motion values and removeAxisDelta
+ */
+function removeBoxTransforms(box, transforms, originBox, sourceBox) {
+    removeAxisTransforms(box.x, transforms, delta_remove_xKeys, originBox ? originBox.x : undefined, sourceBox ? sourceBox.x : undefined);
+    removeAxisTransforms(box.y, transforms, delta_remove_yKeys, originBox ? originBox.y : undefined, sourceBox ? sourceBox.y : undefined);
+}
+
+
+
+;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/projection/geometry/utils.mjs
+
+
+function isAxisDeltaZero(delta) {
+    return delta.translate === 0 && delta.scale === 1;
+}
+function isDeltaZero(delta) {
+    return isAxisDeltaZero(delta.x) && isAxisDeltaZero(delta.y);
+}
+function boxEquals(a, b) {
+    return (a.x.min === b.x.min &&
+        a.x.max === b.x.max &&
+        a.y.min === b.y.min &&
+        a.y.max === b.y.max);
+}
+function boxEqualsRounded(a, b) {
+    return (Math.round(a.x.min) === Math.round(b.x.min) &&
+        Math.round(a.x.max) === Math.round(b.x.max) &&
+        Math.round(a.y.min) === Math.round(b.y.min) &&
+        Math.round(a.y.max) === Math.round(b.y.max));
+}
+function aspectRatio(box) {
+    return calcLength(box.x) / calcLength(box.y);
+}
+
+
+
+;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/projection/shared/stack.mjs
+
+
+class NodeStack {
+    constructor() {
+        this.members = [];
+    }
+    add(node) {
+        addUniqueItem(this.members, node);
+        node.scheduleRender();
+    }
+    remove(node) {
+        removeItem(this.members, node);
+        if (node === this.prevLead) {
+            this.prevLead = undefined;
+        }
+        if (node === this.lead) {
+            const prevLead = this.members[this.members.length - 1];
+            if (prevLead) {
+                this.promote(prevLead);
+            }
+        }
+    }
+    relegate(node) {
+        const indexOfNode = this.members.findIndex((member) => node === member);
+        if (indexOfNode === 0)
+            return false;
+        /**
+         * Find the next projection node that is present
+         */
+        let prevLead;
+        for (let i = indexOfNode; i >= 0; i--) {
+            const member = this.members[i];
+            if (member.isPresent !== false) {
+                prevLead = member;
+                break;
+            }
+        }
+        if (prevLead) {
+            this.promote(prevLead);
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
+    promote(node, preserveFollowOpacity) {
+        const prevLead = this.lead;
+        if (node === prevLead)
+            return;
+        this.prevLead = prevLead;
+        this.lead = node;
+        node.show();
+        if (prevLead) {
+            prevLead.instance && prevLead.scheduleRender();
+            node.scheduleRender();
+            node.resumeFrom = prevLead;
+            if (preserveFollowOpacity) {
+                node.resumeFrom.preserveOpacity = true;
+            }
+            if (prevLead.snapshot) {
+                node.snapshot = prevLead.snapshot;
+                node.snapshot.latestValues =
+                    prevLead.animationValues || prevLead.latestValues;
+            }
+            if (node.root && node.root.isUpdating) {
+                node.isLayoutDirty = true;
+            }
+            const { crossfade } = node.options;
+            if (crossfade === false) {
+                prevLead.hide();
+            }
+            /**
+             * TODO:
+             *   - Test border radius when previous node was deleted
+             *   - boxShadow mixing
+             *   - Shared between element A in scrolled container and element B (scroll stays the same or changes)
+             *   - Shared between element A in transformed container and element B (transform stays the same or changes)
+             *   - Shared between element A in scrolled page and element B (scroll stays the same or changes)
+             * ---
+             *   - Crossfade opacity of root nodes
+             *   - layoutId changes after animation
+             *   - layoutId changes mid animation
+             */
+        }
+    }
+    exitAnimationComplete() {
+        this.members.forEach((node) => {
+            const { options, resumingFrom } = node;
+            options.onExitComplete && options.onExitComplete();
+            if (resumingFrom) {
+                resumingFrom.options.onExitComplete &&
+                    resumingFrom.options.onExitComplete();
+            }
+        });
+    }
+    scheduleRender() {
+        this.members.forEach((node) => {
+            node.instance && node.scheduleRender(false);
+        });
+    }
+    /**
+     * Clear any leads that have been removed this render to prevent them from being
+     * used in future animations and to prevent memory leaks
+     */
+    removeLeadSnapshot() {
+        if (this.lead && this.lead.snapshot) {
+            this.lead.snapshot = undefined;
+        }
+    }
+}
+
+
+
+;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/projection/styles/transform.mjs
+function buildProjectionTransform(delta, treeScale, latestTransform) {
+    let transform = "";
+    /**
+     * The translations we use to calculate are always relative to the viewport coordinate space.
+     * But when we apply scales, we also scale the coordinate space of an element and its children.
+     * For instance if we have a treeScale (the culmination of all parent scales) of 0.5 and we need
+     * to move an element 100 pixels, we actually need to move it 200 in within that scaled space.
+     */
+    const xTranslate = delta.x.translate / treeScale.x;
+    const yTranslate = delta.y.translate / treeScale.y;
+    const zTranslate = (latestTransform === null || latestTransform === void 0 ? void 0 : latestTransform.z) || 0;
+    if (xTranslate || yTranslate || zTranslate) {
+        transform = `translate3d(${xTranslate}px, ${yTranslate}px, ${zTranslate}px) `;
+    }
+    /**
+     * Apply scale correction for the tree transform.
+     * This will apply scale to the screen-orientated axes.
+     */
+    if (treeScale.x !== 1 || treeScale.y !== 1) {
+        transform += `scale(${1 / treeScale.x}, ${1 / treeScale.y}) `;
+    }
+    if (latestTransform) {
+        const { transformPerspective, rotate, rotateX, rotateY, skewX, skewY } = latestTransform;
+        if (transformPerspective)
+            transform = `perspective(${transformPerspective}px) ${transform}`;
+        if (rotate)
+            transform += `rotate(${rotate}deg) `;
+        if (rotateX)
+            transform += `rotateX(${rotateX}deg) `;
+        if (rotateY)
+            transform += `rotateY(${rotateY}deg) `;
+        if (skewX)
+            transform += `skewX(${skewX}deg) `;
+        if (skewY)
+            transform += `skewY(${skewY}deg) `;
+    }
+    /**
+     * Apply scale to match the size of the element to the size we want it.
+     * This will apply scale to the element-orientated axes.
+     */
+    const elementScaleX = delta.x.scale * treeScale.x;
+    const elementScaleY = delta.y.scale * treeScale.y;
+    if (elementScaleX !== 1 || elementScaleY !== 1) {
+        transform += `scale(${elementScaleX}, ${elementScaleY})`;
+    }
+    return transform || "none";
+}
+
+
+
+;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/render/utils/compare-by-depth.mjs
+const compareByDepth = (a, b) => a.depth - b.depth;
+
+
+
+;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/render/utils/flat-tree.mjs
+
+
+
+class FlatTree {
+    constructor() {
+        this.children = [];
+        this.isDirty = false;
+    }
+    add(child) {
+        addUniqueItem(this.children, child);
+        this.isDirty = true;
+    }
+    remove(child) {
+        removeItem(this.children, child);
+        this.isDirty = true;
+    }
+    forEach(callback) {
+        this.isDirty && this.children.sort(compareByDepth);
+        this.isDirty = false;
+        this.children.forEach(callback);
+    }
+}
+
+
+
+;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/utils/delay.mjs
+
+
+
+/**
+ * Timeout defined in ms
+ */
+function delay(callback, timeout) {
+    const start = time.now();
+    const checkElapsed = ({ timestamp }) => {
+        const elapsed = timestamp - start;
+        if (elapsed >= timeout) {
+            cancelFrame(checkElapsed);
+            callback(elapsed - timeout);
+        }
+    };
+    frame_frame.read(checkElapsed, true);
+    return () => cancelFrame(checkElapsed);
+}
+
+
+
+;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/debug/record.mjs
+function record(data) {
+    if (window.MotionDebug) {
+        window.MotionDebug.record(data);
+    }
+}
+
+
+
+;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/render/dom/utils/is-svg-element.mjs
+function isSVGElement(element) {
+    return element instanceof SVGElement && element.tagName !== "svg";
+}
+
+
+
+;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/animation/interfaces/single-value.mjs
+
+
+
+
+function animateSingleValue(value, keyframes, options) {
+    const motionValue$1 = isMotionValue(value) ? value : motionValue(value);
+    motionValue$1.start(animateMotionValue("", motionValue$1, keyframes, options));
+    return motionValue$1.animation;
+}
+
+
+
+;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/projection/node/create-projection-node.mjs
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+const transformAxes = ["", "X", "Y", "Z"];
+const hiddenVisibility = { visibility: "hidden" };
+/**
+ * We use 1000 as the animation target as 0-1000 maps better to pixels than 0-1
+ * which has a noticeable difference in spring animations
+ */
+const animationTarget = 1000;
+let create_projection_node_id = 0;
+/**
+ * Use a mutable data object for debug data so as to not create a new
+ * object every frame.
+ */
+const projectionFrameData = {
+    type: "projectionFrame",
+    totalNodes: 0,
+    resolvedTargetDeltas: 0,
+    recalculatedProjection: 0,
+};
+function resetDistortingTransform(key, visualElement, values, sharedAnimationValues) {
+    const { latestValues } = visualElement;
+    // Record the distorting transform and then temporarily set it to 0
+    if (latestValues[key]) {
+        values[key] = latestValues[key];
+        visualElement.setStaticValue(key, 0);
+        if (sharedAnimationValues) {
+            sharedAnimationValues[key] = 0;
+        }
+    }
+}
+function createProjectionNode({ attachResizeListener, defaultParent, measureScroll, checkIsScrollRoot, resetTransform, }) {
+    return class ProjectionNode {
+        constructor(latestValues = {}, parent = defaultParent === null || defaultParent === void 0 ? void 0 : defaultParent()) {
+            /**
+             * A unique ID generated for every projection node.
+             */
+            this.id = create_projection_node_id++;
+            /**
+             * An id that represents a unique session instigated by startUpdate.
+             */
+            this.animationId = 0;
+            /**
+             * A Set containing all this component's children. This is used to iterate
+             * through the children.
+             *
+             * TODO: This could be faster to iterate as a flat array stored on the root node.
+             */
+            this.children = new Set();
+            /**
+             * Options for the node. We use this to configure what kind of layout animations
+             * we should perform (if any).
+             */
+            this.options = {};
+            /**
+             * We use this to detect when its safe to shut down part of a projection tree.
+             * We have to keep projecting children for scale correction and relative projection
+             * until all their parents stop performing layout animations.
+             */
+            this.isTreeAnimating = false;
+            this.isAnimationBlocked = false;
+            /**
+             * Flag to true if we think this layout has been changed. We can't always know this,
+             * currently we set it to true every time a component renders, or if it has a layoutDependency
+             * if that has changed between renders. Additionally, components can be grouped by LayoutGroup
+             * and if one node is dirtied, they all are.
+             */
+            this.isLayoutDirty = false;
+            /**
+             * Flag to true if we think the projection calculations for this node needs
+             * recalculating as a result of an updated transform or layout animation.
+             */
+            this.isProjectionDirty = false;
+            /**
+             * Flag to true if the layout *or* transform has changed. This then gets propagated
+             * throughout the projection tree, forcing any element below to recalculate on the next frame.
+             */
+            this.isSharedProjectionDirty = false;
+            /**
+             * Flag transform dirty. This gets propagated throughout the whole tree but is only
+             * respected by shared nodes.
+             */
+            this.isTransformDirty = false;
+            /**
+             * Block layout updates for instant layout transitions throughout the tree.
+             */
+            this.updateManuallyBlocked = false;
+            this.updateBlockedByResize = false;
+            /**
+             * Set to true between the start of the first `willUpdate` call and the end of the `didUpdate`
+             * call.
+             */
+            this.isUpdating = false;
+            /**
+             * If this is an SVG element we currently disable projection transforms
+             */
+            this.isSVG = false;
+            /**
+             * Flag to true (during promotion) if a node doing an instant layout transition needs to reset
+             * its projection styles.
+             */
+            this.needsReset = false;
+            /**
+             * Flags whether this node should have its transform reset prior to measuring.
+             */
+            this.shouldResetTransform = false;
+            /**
+             * An object representing the calculated contextual/accumulated/tree scale.
+             * This will be used to scale calculcated projection transforms, as these are
+             * calculated in screen-space but need to be scaled for elements to layoutly
+             * make it to their calculated destinations.
+             *
+             * TODO: Lazy-init
+             */
+            this.treeScale = { x: 1, y: 1 };
+            /**
+             *
+             */
+            this.eventHandlers = new Map();
+            this.hasTreeAnimated = false;
+            // Note: Currently only running on root node
+            this.updateScheduled = false;
+            this.projectionUpdateScheduled = false;
+            this.checkUpdateFailed = () => {
+                if (this.isUpdating) {
+                    this.isUpdating = false;
+                    this.clearAllSnapshots();
+                }
+            };
+            /**
+             * This is a multi-step process as shared nodes might be of different depths. Nodes
+             * are sorted by depth order, so we need to resolve the entire tree before moving to
+             * the next step.
+             */
+            this.updateProjection = () => {
+                this.projectionUpdateScheduled = false;
+                /**
+                 * Reset debug counts. Manually resetting rather than creating a new
+                 * object each frame.
+                 */
+                projectionFrameData.totalNodes =
+                    projectionFrameData.resolvedTargetDeltas =
+                        projectionFrameData.recalculatedProjection =
+                            0;
+                this.nodes.forEach(propagateDirtyNodes);
+                this.nodes.forEach(resolveTargetDelta);
+                this.nodes.forEach(calcProjection);
+                this.nodes.forEach(cleanDirtyNodes);
+                record(projectionFrameData);
+            };
+            this.hasProjected = false;
+            this.isVisible = true;
+            this.animationProgress = 0;
+            /**
+             * Shared layout
+             */
+            // TODO Only running on root node
+            this.sharedNodes = new Map();
+            this.latestValues = latestValues;
+            this.root = parent ? parent.root || parent : this;
+            this.path = parent ? [...parent.path, parent] : [];
+            this.parent = parent;
+            this.depth = parent ? parent.depth + 1 : 0;
+            for (let i = 0; i < this.path.length; i++) {
+                this.path[i].shouldResetTransform = true;
+            }
+            if (this.root === this)
+                this.nodes = new FlatTree();
+        }
+        addEventListener(name, handler) {
+            if (!this.eventHandlers.has(name)) {
+                this.eventHandlers.set(name, new SubscriptionManager());
+            }
+            return this.eventHandlers.get(name).add(handler);
+        }
+        notifyListeners(name, ...args) {
+            const subscriptionManager = this.eventHandlers.get(name);
+            subscriptionManager && subscriptionManager.notify(...args);
+        }
+        hasListeners(name) {
+            return this.eventHandlers.has(name);
+        }
+        /**
+         * Lifecycles
+         */
+        mount(instance, isLayoutDirty = this.root.hasTreeAnimated) {
+            if (this.instance)
+                return;
+            this.isSVG = isSVGElement(instance);
+            this.instance = instance;
+            const { layoutId, layout, visualElement } = this.options;
+            if (visualElement && !visualElement.current) {
+                visualElement.mount(instance);
+            }
+            this.root.nodes.add(this);
+            this.parent && this.parent.children.add(this);
+            if (isLayoutDirty && (layout || layoutId)) {
+                this.isLayoutDirty = true;
+            }
+            if (attachResizeListener) {
+                let cancelDelay;
+                const resizeUnblockUpdate = () => (this.root.updateBlockedByResize = false);
+                attachResizeListener(instance, () => {
+                    this.root.updateBlockedByResize = true;
+                    cancelDelay && cancelDelay();
+                    cancelDelay = delay(resizeUnblockUpdate, 250);
+                    if (globalProjectionState.hasAnimatedSinceResize) {
+                        globalProjectionState.hasAnimatedSinceResize = false;
+                        this.nodes.forEach(finishAnimation);
+                    }
+                });
+            }
+            if (layoutId) {
+                this.root.registerSharedNode(layoutId, this);
+            }
+            // Only register the handler if it requires layout animation
+            if (this.options.animate !== false &&
+                visualElement &&
+                (layoutId || layout)) {
+                this.addEventListener("didUpdate", ({ delta, hasLayoutChanged, hasRelativeTargetChanged, layout: newLayout, }) => {
+                    if (this.isTreeAnimationBlocked()) {
+                        this.target = undefined;
+                        this.relativeTarget = undefined;
+                        return;
+                    }
+                    // TODO: Check here if an animation exists
+                    const layoutTransition = this.options.transition ||
+                        visualElement.getDefaultTransition() ||
+                        defaultLayoutTransition;
+                    const { onLayoutAnimationStart, onLayoutAnimationComplete, } = visualElement.getProps();
+                    /**
+                     * The target layout of the element might stay the same,
+                     * but its position relative to its parent has changed.
+                     */
+                    const targetChanged = !this.targetLayout ||
+                        !boxEqualsRounded(this.targetLayout, newLayout) ||
+                        hasRelativeTargetChanged;
+                    /**
+                     * If the layout hasn't seemed to have changed, it might be that the
+                     * element is visually in the same place in the document but its position
+                     * relative to its parent has indeed changed. So here we check for that.
+                     */
+                    const hasOnlyRelativeTargetChanged = !hasLayoutChanged && hasRelativeTargetChanged;
+                    if (this.options.layoutRoot ||
+                        (this.resumeFrom && this.resumeFrom.instance) ||
+                        hasOnlyRelativeTargetChanged ||
+                        (hasLayoutChanged &&
+                            (targetChanged || !this.currentAnimation))) {
+                        if (this.resumeFrom) {
+                            this.resumingFrom = this.resumeFrom;
+                            this.resumingFrom.resumingFrom = undefined;
+                        }
+                        this.setAnimationOrigin(delta, hasOnlyRelativeTargetChanged);
+                        const animationOptions = {
+                            ...getValueTransition(layoutTransition, "layout"),
+                            onPlay: onLayoutAnimationStart,
+                            onComplete: onLayoutAnimationComplete,
+                        };
+                        if (visualElement.shouldReduceMotion ||
+                            this.options.layoutRoot) {
+                            animationOptions.delay = 0;
+                            animationOptions.type = false;
+                        }
+                        this.startAnimation(animationOptions);
+                    }
+                    else {
+                        /**
+                         * If the layout hasn't changed and we have an animation that hasn't started yet,
+                         * finish it immediately. Otherwise it will be animating from a location
+                         * that was probably never commited to screen and look like a jumpy box.
+                         */
+                        if (!hasLayoutChanged) {
+                            finishAnimation(this);
+                        }
+                        if (this.isLead() && this.options.onExitComplete) {
+                            this.options.onExitComplete();
+                        }
+                    }
+                    this.targetLayout = newLayout;
+                });
+            }
+        }
+        unmount() {
+            this.options.layoutId && this.willUpdate();
+            this.root.nodes.remove(this);
+            const stack = this.getStack();
+            stack && stack.remove(this);
+            this.parent && this.parent.children.delete(this);
+            this.instance = undefined;
+            cancelFrame(this.updateProjection);
+        }
+        // only on the root
+        blockUpdate() {
+            this.updateManuallyBlocked = true;
+        }
+        unblockUpdate() {
+            this.updateManuallyBlocked = false;
+        }
+        isUpdateBlocked() {
+            return this.updateManuallyBlocked || this.updateBlockedByResize;
+        }
+        isTreeAnimationBlocked() {
+            return (this.isAnimationBlocked ||
+                (this.parent && this.parent.isTreeAnimationBlocked()) ||
+                false);
+        }
+        // Note: currently only running on root node
+        startUpdate() {
+            if (this.isUpdateBlocked())
+                return;
+            this.isUpdating = true;
+            /**
+             * If we're running optimised appear animations then these must be
+             * cancelled before measuring the DOM. This is so we can measure
+             * the true layout of the element rather than the WAAPI animation
+             * which will be unaffected by the resetSkewAndRotate step.
+             */
+            if (window.HandoffCancelAllAnimations) {
+                window.HandoffCancelAllAnimations();
+            }
+            this.nodes && this.nodes.forEach(resetSkewAndRotation);
+            this.animationId++;
+        }
+        getTransformTemplate() {
+            const { visualElement } = this.options;
+            return visualElement && visualElement.getProps().transformTemplate;
+        }
+        willUpdate(shouldNotifyListeners = true) {
+            this.root.hasTreeAnimated = true;
+            if (this.root.isUpdateBlocked()) {
+                this.options.onExitComplete && this.options.onExitComplete();
+                return;
+            }
+            !this.root.isUpdating && this.root.startUpdate();
+            if (this.isLayoutDirty)
+                return;
+            this.isLayoutDirty = true;
+            for (let i = 0; i < this.path.length; i++) {
+                const node = this.path[i];
+                node.shouldResetTransform = true;
+                node.updateScroll("snapshot");
+                if (node.options.layoutRoot) {
+                    node.willUpdate(false);
+                }
+            }
+            const { layoutId, layout } = this.options;
+            if (layoutId === undefined && !layout)
+                return;
+            const transformTemplate = this.getTransformTemplate();
+            this.prevTransformTemplateValue = transformTemplate
+                ? transformTemplate(this.latestValues, "")
+                : undefined;
+            this.updateSnapshot();
+            shouldNotifyListeners && this.notifyListeners("willUpdate");
+        }
+        update() {
+            this.updateScheduled = false;
+            const updateWasBlocked = this.isUpdateBlocked();
+            // When doing an instant transition, we skip the layout update,
+            // but should still clean up the measurements so that the next
+            // snapshot could be taken correctly.
+            if (updateWasBlocked) {
+                this.unblockUpdate();
+                this.clearAllSnapshots();
+                this.nodes.forEach(clearMeasurements);
+                return;
+            }
+            if (!this.isUpdating) {
+                this.nodes.forEach(clearIsLayoutDirty);
+            }
+            this.isUpdating = false;
+            /**
+             * Write
+             */
+            this.nodes.forEach(resetTransformStyle);
+            /**
+             * Read ==================
+             */
+            // Update layout measurements of updated children
+            this.nodes.forEach(updateLayout);
+            /**
+             * Write
+             */
+            // Notify listeners that the layout is updated
+            this.nodes.forEach(notifyLayoutUpdate);
+            this.clearAllSnapshots();
+            /**
+             * Manually flush any pending updates. Ideally
+             * we could leave this to the following requestAnimationFrame but this seems
+             * to leave a flash of incorrectly styled content.
+             */
+            const now = time.now();
+            frameData.delta = clamp(0, 1000 / 60, now - frameData.timestamp);
+            frameData.timestamp = now;
+            frameData.isProcessing = true;
+            steps.update.process(frameData);
+            steps.preRender.process(frameData);
+            steps.render.process(frameData);
+            frameData.isProcessing = false;
+        }
+        didUpdate() {
+            if (!this.updateScheduled) {
+                this.updateScheduled = true;
+                microtask.read(() => this.update());
+            }
+        }
+        clearAllSnapshots() {
+            this.nodes.forEach(clearSnapshot);
+            this.sharedNodes.forEach(removeLeadSnapshots);
+        }
+        scheduleUpdateProjection() {
+            if (!this.projectionUpdateScheduled) {
+                this.projectionUpdateScheduled = true;
+                frame_frame.preRender(this.updateProjection, false, true);
+            }
+        }
+        scheduleCheckAfterUnmount() {
+            /**
+             * If the unmounting node is in a layoutGroup and did trigger a willUpdate,
+             * we manually call didUpdate to give a chance to the siblings to animate.
+             * Otherwise, cleanup all snapshots to prevents future nodes from reusing them.
+             */
+            frame_frame.postRender(() => {
+                if (this.isLayoutDirty) {
+                    this.root.didUpdate();
+                }
+                else {
+                    this.root.checkUpdateFailed();
+                }
+            });
+        }
+        /**
+         * Update measurements
+         */
+        updateSnapshot() {
+            if (this.snapshot || !this.instance)
+                return;
+            this.snapshot = this.measure();
+        }
+        updateLayout() {
+            if (!this.instance)
+                return;
+            // TODO: Incorporate into a forwarded scroll offset
+            this.updateScroll();
+            if (!(this.options.alwaysMeasureLayout && this.isLead()) &&
+                !this.isLayoutDirty) {
+                return;
+            }
+            /**
+             * When a node is mounted, it simply resumes from the prevLead's
+             * snapshot instead of taking a new one, but the ancestors scroll
+             * might have updated while the prevLead is unmounted. We need to
+             * update the scroll again to make sure the layout we measure is
+             * up to date.
+             */
+            if (this.resumeFrom && !this.resumeFrom.instance) {
+                for (let i = 0; i < this.path.length; i++) {
+                    const node = this.path[i];
+                    node.updateScroll();
+                }
+            }
+            const prevLayout = this.layout;
+            this.layout = this.measure(false);
+            this.layoutCorrected = createBox();
+            this.isLayoutDirty = false;
+            this.projectionDelta = undefined;
+            this.notifyListeners("measure", this.layout.layoutBox);
+            const { visualElement } = this.options;
+            visualElement &&
+                visualElement.notify("LayoutMeasure", this.layout.layoutBox, prevLayout ? prevLayout.layoutBox : undefined);
+        }
+        updateScroll(phase = "measure") {
+            let needsMeasurement = Boolean(this.options.layoutScroll && this.instance);
+            if (this.scroll &&
+                this.scroll.animationId === this.root.animationId &&
+                this.scroll.phase === phase) {
+                needsMeasurement = false;
+            }
+            if (needsMeasurement) {
+                this.scroll = {
+                    animationId: this.root.animationId,
+                    phase,
+                    isRoot: checkIsScrollRoot(this.instance),
+                    offset: measureScroll(this.instance),
+                };
+            }
+        }
+        resetTransform() {
+            if (!resetTransform)
+                return;
+            const isResetRequested = this.isLayoutDirty || this.shouldResetTransform;
+            const hasProjection = this.projectionDelta && !isDeltaZero(this.projectionDelta);
+            const transformTemplate = this.getTransformTemplate();
+            const transformTemplateValue = transformTemplate
+                ? transformTemplate(this.latestValues, "")
+                : undefined;
+            const transformTemplateHasChanged = transformTemplateValue !== this.prevTransformTemplateValue;
+            if (isResetRequested &&
+                (hasProjection ||
+                    hasTransform(this.latestValues) ||
+                    transformTemplateHasChanged)) {
+                resetTransform(this.instance, transformTemplateValue);
+                this.shouldResetTransform = false;
+                this.scheduleRender();
+            }
+        }
+        measure(removeTransform = true) {
+            const pageBox = this.measurePageBox();
+            let layoutBox = this.removeElementScroll(pageBox);
+            /**
+             * Measurements taken during the pre-render stage
+             * still have transforms applied so we remove them
+             * via calculation.
+             */
+            if (removeTransform) {
+                layoutBox = this.removeTransform(layoutBox);
+            }
+            roundBox(layoutBox);
+            return {
+                animationId: this.root.animationId,
+                measuredBox: pageBox,
+                layoutBox,
+                latestValues: {},
+                source: this.id,
+            };
+        }
+        measurePageBox() {
+            const { visualElement } = this.options;
+            if (!visualElement)
+                return createBox();
+            const box = visualElement.measureViewportBox();
+            // Remove viewport scroll to give page-relative coordinates
+            const { scroll } = this.root;
+            if (scroll) {
+                translateAxis(box.x, scroll.offset.x);
+                translateAxis(box.y, scroll.offset.y);
+            }
+            return box;
+        }
+        removeElementScroll(box) {
+            const boxWithoutScroll = createBox();
+            copyBoxInto(boxWithoutScroll, box);
+            /**
+             * Performance TODO: Keep a cumulative scroll offset down the tree
+             * rather than loop back up the path.
+             */
+            for (let i = 0; i < this.path.length; i++) {
+                const node = this.path[i];
+                const { scroll, options } = node;
+                if (node !== this.root && scroll && options.layoutScroll) {
+                    /**
+                     * If this is a new scroll root, we want to remove all previous scrolls
+                     * from the viewport box.
+                     */
+                    if (scroll.isRoot) {
+                        copyBoxInto(boxWithoutScroll, box);
+                        const { scroll: rootScroll } = this.root;
+                        /**
+                         * Undo the application of page scroll that was originally added
+                         * to the measured bounding box.
+                         */
+                        if (rootScroll) {
+                            translateAxis(boxWithoutScroll.x, -rootScroll.offset.x);
+                            translateAxis(boxWithoutScroll.y, -rootScroll.offset.y);
+                        }
+                    }
+                    translateAxis(boxWithoutScroll.x, scroll.offset.x);
+                    translateAxis(boxWithoutScroll.y, scroll.offset.y);
+                }
+            }
+            return boxWithoutScroll;
+        }
+        applyTransform(box, transformOnly = false) {
+            const withTransforms = createBox();
+            copyBoxInto(withTransforms, box);
+            for (let i = 0; i < this.path.length; i++) {
+                const node = this.path[i];
+                if (!transformOnly &&
+                    node.options.layoutScroll &&
+                    node.scroll &&
+                    node !== node.root) {
+                    transformBox(withTransforms, {
+                        x: -node.scroll.offset.x,
+                        y: -node.scroll.offset.y,
+                    });
+                }
+                if (!hasTransform(node.latestValues))
+                    continue;
+                transformBox(withTransforms, node.latestValues);
+            }
+            if (hasTransform(this.latestValues)) {
+                transformBox(withTransforms, this.latestValues);
+            }
+            return withTransforms;
+        }
+        removeTransform(box) {
+            const boxWithoutTransform = createBox();
+            copyBoxInto(boxWithoutTransform, box);
+            for (let i = 0; i < this.path.length; i++) {
+                const node = this.path[i];
+                if (!node.instance)
+                    continue;
+                if (!hasTransform(node.latestValues))
+                    continue;
+                hasScale(node.latestValues) && node.updateSnapshot();
+                const sourceBox = createBox();
+                const nodeBox = node.measurePageBox();
+                copyBoxInto(sourceBox, nodeBox);
+                removeBoxTransforms(boxWithoutTransform, node.latestValues, node.snapshot ? node.snapshot.layoutBox : undefined, sourceBox);
+            }
+            if (hasTransform(this.latestValues)) {
+                removeBoxTransforms(boxWithoutTransform, this.latestValues);
+            }
+            return boxWithoutTransform;
+        }
+        setTargetDelta(delta) {
+            this.targetDelta = delta;
+            this.root.scheduleUpdateProjection();
+            this.isProjectionDirty = true;
+        }
+        setOptions(options) {
+            this.options = {
+                ...this.options,
+                ...options,
+                crossfade: options.crossfade !== undefined ? options.crossfade : true,
+            };
+        }
+        clearMeasurements() {
+            this.scroll = undefined;
+            this.layout = undefined;
+            this.snapshot = undefined;
+            this.prevTransformTemplateValue = undefined;
+            this.targetDelta = undefined;
+            this.target = undefined;
+            this.isLayoutDirty = false;
+        }
+        forceRelativeParentToResolveTarget() {
+            if (!this.relativeParent)
+                return;
+            /**
+             * If the parent target isn't up-to-date, force it to update.
+             * This is an unfortunate de-optimisation as it means any updating relative
+             * projection will cause all the relative parents to recalculate back
+             * up the tree.
+             */
+            if (this.relativeParent.resolvedRelativeTargetAt !==
+                frameData.timestamp) {
+                this.relativeParent.resolveTargetDelta(true);
+            }
+        }
+        resolveTargetDelta(forceRecalculation = false) {
+            var _a;
+            /**
+             * Once the dirty status of nodes has been spread through the tree, we also
+             * need to check if we have a shared node of a different depth that has itself
+             * been dirtied.
+             */
+            const lead = this.getLead();
+            this.isProjectionDirty || (this.isProjectionDirty = lead.isProjectionDirty);
+            this.isTransformDirty || (this.isTransformDirty = lead.isTransformDirty);
+            this.isSharedProjectionDirty || (this.isSharedProjectionDirty = lead.isSharedProjectionDirty);
+            const isShared = Boolean(this.resumingFrom) || this !== lead;
+            /**
+             * We don't use transform for this step of processing so we don't
+             * need to check whether any nodes have changed transform.
+             */
+            const canSkip = !(forceRecalculation ||
+                (isShared && this.isSharedProjectionDirty) ||
+                this.isProjectionDirty ||
+                ((_a = this.parent) === null || _a === void 0 ? void 0 : _a.isProjectionDirty) ||
+                this.attemptToResolveRelativeTarget);
+            if (canSkip)
+                return;
+            const { layout, layoutId } = this.options;
+            /**
+             * If we have no layout, we can't perform projection, so early return
+             */
+            if (!this.layout || !(layout || layoutId))
+                return;
+            this.resolvedRelativeTargetAt = frameData.timestamp;
+            /**
+             * If we don't have a targetDelta but do have a layout, we can attempt to resolve
+             * a relativeParent. This will allow a component to perform scale correction
+             * even if no animation has started.
+             */
+            if (!this.targetDelta && !this.relativeTarget) {
+                const relativeParent = this.getClosestProjectingParent();
+                if (relativeParent &&
+                    relativeParent.layout &&
+                    this.animationProgress !== 1) {
+                    this.relativeParent = relativeParent;
+                    this.forceRelativeParentToResolveTarget();
+                    this.relativeTarget = createBox();
+                    this.relativeTargetOrigin = createBox();
+                    calcRelativePosition(this.relativeTargetOrigin, this.layout.layoutBox, relativeParent.layout.layoutBox);
+                    copyBoxInto(this.relativeTarget, this.relativeTargetOrigin);
+                }
+                else {
+                    this.relativeParent = this.relativeTarget = undefined;
+                }
+            }
+            /**
+             * If we have no relative target or no target delta our target isn't valid
+             * for this frame.
+             */
+            if (!this.relativeTarget && !this.targetDelta)
+                return;
+            /**
+             * Lazy-init target data structure
+             */
+            if (!this.target) {
+                this.target = createBox();
+                this.targetWithTransforms = createBox();
+            }
+            /**
+             * If we've got a relative box for this component, resolve it into a target relative to the parent.
+             */
+            if (this.relativeTarget &&
+                this.relativeTargetOrigin &&
+                this.relativeParent &&
+                this.relativeParent.target) {
+                this.forceRelativeParentToResolveTarget();
+                calcRelativeBox(this.target, this.relativeTarget, this.relativeParent.target);
+                /**
+                 * If we've only got a targetDelta, resolve it into a target
+                 */
+            }
+            else if (this.targetDelta) {
+                if (Boolean(this.resumingFrom)) {
+                    // TODO: This is creating a new object every frame
+                    this.target = this.applyTransform(this.layout.layoutBox);
+                }
+                else {
+                    copyBoxInto(this.target, this.layout.layoutBox);
+                }
+                applyBoxDelta(this.target, this.targetDelta);
+            }
+            else {
+                /**
+                 * If no target, use own layout as target
+                 */
+                copyBoxInto(this.target, this.layout.layoutBox);
+            }
+            /**
+             * If we've been told to attempt to resolve a relative target, do so.
+             */
+            if (this.attemptToResolveRelativeTarget) {
+                this.attemptToResolveRelativeTarget = false;
+                const relativeParent = this.getClosestProjectingParent();
+                if (relativeParent &&
+                    Boolean(relativeParent.resumingFrom) ===
+                        Boolean(this.resumingFrom) &&
+                    !relativeParent.options.layoutScroll &&
+                    relativeParent.target &&
+                    this.animationProgress !== 1) {
+                    this.relativeParent = relativeParent;
+                    this.forceRelativeParentToResolveTarget();
+                    this.relativeTarget = createBox();
+                    this.relativeTargetOrigin = createBox();
+                    calcRelativePosition(this.relativeTargetOrigin, this.target, relativeParent.target);
+                    copyBoxInto(this.relativeTarget, this.relativeTargetOrigin);
+                }
+                else {
+                    this.relativeParent = this.relativeTarget = undefined;
+                }
+            }
+            /**
+             * Increase debug counter for resolved target deltas
+             */
+            projectionFrameData.resolvedTargetDeltas++;
+        }
+        getClosestProjectingParent() {
+            if (!this.parent ||
+                hasScale(this.parent.latestValues) ||
+                has2DTranslate(this.parent.latestValues)) {
+                return undefined;
+            }
+            if (this.parent.isProjecting()) {
+                return this.parent;
+            }
+            else {
+                return this.parent.getClosestProjectingParent();
+            }
+        }
+        isProjecting() {
+            return Boolean((this.relativeTarget ||
+                this.targetDelta ||
+                this.options.layoutRoot) &&
+                this.layout);
+        }
+        calcProjection() {
+            var _a;
+            const lead = this.getLead();
+            const isShared = Boolean(this.resumingFrom) || this !== lead;
+            let canSkip = true;
+            /**
+             * If this is a normal layout animation and neither this node nor its nearest projecting
+             * is dirty then we can't skip.
+             */
+            if (this.isProjectionDirty || ((_a = this.parent) === null || _a === void 0 ? void 0 : _a.isProjectionDirty)) {
+                canSkip = false;
+            }
+            /**
+             * If this is a shared layout animation and this node's shared projection is dirty then
+             * we can't skip.
+             */
+            if (isShared &&
+                (this.isSharedProjectionDirty || this.isTransformDirty)) {
+                canSkip = false;
+            }
+            /**
+             * If we have resolved the target this frame we must recalculate the
+             * projection to ensure it visually represents the internal calculations.
+             */
+            if (this.resolvedRelativeTargetAt === frameData.timestamp) {
+                canSkip = false;
+            }
+            if (canSkip)
+                return;
+            const { layout, layoutId } = this.options;
+            /**
+             * If this section of the tree isn't animating we can
+             * delete our target sources for the following frame.
+             */
+            this.isTreeAnimating = Boolean((this.parent && this.parent.isTreeAnimating) ||
+                this.currentAnimation ||
+                this.pendingAnimation);
+            if (!this.isTreeAnimating) {
+                this.targetDelta = this.relativeTarget = undefined;
+            }
+            if (!this.layout || !(layout || layoutId))
+                return;
+            /**
+             * Reset the corrected box with the latest values from box, as we're then going
+             * to perform mutative operations on it.
+             */
+            copyBoxInto(this.layoutCorrected, this.layout.layoutBox);
+            /**
+             * Record previous tree scales before updating.
+             */
+            const prevTreeScaleX = this.treeScale.x;
+            const prevTreeScaleY = this.treeScale.y;
+            /**
+             * Apply all the parent deltas to this box to produce the corrected box. This
+             * is the layout box, as it will appear on screen as a result of the transforms of its parents.
+             */
+            applyTreeDeltas(this.layoutCorrected, this.treeScale, this.path, isShared);
+            /**
+             * If this layer needs to perform scale correction but doesn't have a target,
+             * use the layout as the target.
+             */
+            if (lead.layout &&
+                !lead.target &&
+                (this.treeScale.x !== 1 || this.treeScale.y !== 1)) {
+                lead.target = lead.layout.layoutBox;
+                lead.targetWithTransforms = createBox();
+            }
+            const { target } = lead;
+            if (!target) {
+                /**
+                 * If we don't have a target to project into, but we were previously
+                 * projecting, we want to remove the stored transform and schedule
+                 * a render to ensure the elements reflect the removed transform.
+                 */
+                if (this.projectionTransform) {
+                    this.projectionDelta = createDelta();
+                    this.projectionTransform = "none";
+                    this.scheduleRender();
+                }
+                return;
+            }
+            if (!this.projectionDelta) {
+                this.projectionDelta = createDelta();
+                this.projectionDeltaWithTransform = createDelta();
+            }
+            const prevProjectionTransform = this.projectionTransform;
+            /**
+             * Update the delta between the corrected box and the target box before user-set transforms were applied.
+             * This will allow us to calculate the corrected borderRadius and boxShadow to compensate
+             * for our layout reprojection, but still allow them to be scaled correctly by the user.
+             * It might be that to simplify this we may want to accept that user-set scale is also corrected
+             * and we wouldn't have to keep and calc both deltas, OR we could support a user setting
+             * to allow people to choose whether these styles are corrected based on just the
+             * layout reprojection or the final bounding box.
+             */
+            calcBoxDelta(this.projectionDelta, this.layoutCorrected, target, this.latestValues);
+            this.projectionTransform = buildProjectionTransform(this.projectionDelta, this.treeScale);
+            if (this.projectionTransform !== prevProjectionTransform ||
+                this.treeScale.x !== prevTreeScaleX ||
+                this.treeScale.y !== prevTreeScaleY) {
+                this.hasProjected = true;
+                this.scheduleRender();
+                this.notifyListeners("projectionUpdate", target);
+            }
+            /**
+             * Increase debug counter for recalculated projections
+             */
+            projectionFrameData.recalculatedProjection++;
+        }
+        hide() {
+            this.isVisible = false;
+            // TODO: Schedule render
+        }
+        show() {
+            this.isVisible = true;
+            // TODO: Schedule render
+        }
+        scheduleRender(notifyAll = true) {
+            this.options.scheduleRender && this.options.scheduleRender();
+            if (notifyAll) {
+                const stack = this.getStack();
+                stack && stack.scheduleRender();
+            }
+            if (this.resumingFrom && !this.resumingFrom.instance) {
+                this.resumingFrom = undefined;
+            }
+        }
+        setAnimationOrigin(delta, hasOnlyRelativeTargetChanged = false) {
+            const snapshot = this.snapshot;
+            const snapshotLatestValues = snapshot
+                ? snapshot.latestValues
+                : {};
+            const mixedValues = { ...this.latestValues };
+            const targetDelta = createDelta();
+            if (!this.relativeParent ||
+                !this.relativeParent.options.layoutRoot) {
+                this.relativeTarget = this.relativeTargetOrigin = undefined;
+            }
+            this.attemptToResolveRelativeTarget = !hasOnlyRelativeTargetChanged;
+            const relativeLayout = createBox();
+            const snapshotSource = snapshot ? snapshot.source : undefined;
+            const layoutSource = this.layout ? this.layout.source : undefined;
+            const isSharedLayoutAnimation = snapshotSource !== layoutSource;
+            const stack = this.getStack();
+            const isOnlyMember = !stack || stack.members.length <= 1;
+            const shouldCrossfadeOpacity = Boolean(isSharedLayoutAnimation &&
+                !isOnlyMember &&
+                this.options.crossfade === true &&
+                !this.path.some(hasOpacityCrossfade));
+            this.animationProgress = 0;
+            let prevRelativeTarget;
+            this.mixTargetDelta = (latest) => {
+                const progress = latest / 1000;
+                mixAxisDelta(targetDelta.x, delta.x, progress);
+                mixAxisDelta(targetDelta.y, delta.y, progress);
+                this.setTargetDelta(targetDelta);
+                if (this.relativeTarget &&
+                    this.relativeTargetOrigin &&
+                    this.layout &&
+                    this.relativeParent &&
+                    this.relativeParent.layout) {
+                    calcRelativePosition(relativeLayout, this.layout.layoutBox, this.relativeParent.layout.layoutBox);
+                    mixBox(this.relativeTarget, this.relativeTargetOrigin, relativeLayout, progress);
+                    /**
+                     * If this is an unchanged relative target we can consider the
+                     * projection not dirty.
+                     */
+                    if (prevRelativeTarget &&
+                        boxEquals(this.relativeTarget, prevRelativeTarget)) {
+                        this.isProjectionDirty = false;
+                    }
+                    if (!prevRelativeTarget)
+                        prevRelativeTarget = createBox();
+                    copyBoxInto(prevRelativeTarget, this.relativeTarget);
+                }
+                if (isSharedLayoutAnimation) {
+                    this.animationValues = mixedValues;
+                    mixValues(mixedValues, snapshotLatestValues, this.latestValues, progress, shouldCrossfadeOpacity, isOnlyMember);
+                }
+                this.root.scheduleUpdateProjection();
+                this.scheduleRender();
+                this.animationProgress = progress;
+            };
+            this.mixTargetDelta(this.options.layoutRoot ? 1000 : 0);
+        }
+        startAnimation(options) {
+            this.notifyListeners("animationStart");
+            this.currentAnimation && this.currentAnimation.stop();
+            if (this.resumingFrom && this.resumingFrom.currentAnimation) {
+                this.resumingFrom.currentAnimation.stop();
+            }
+            if (this.pendingAnimation) {
+                cancelFrame(this.pendingAnimation);
+                this.pendingAnimation = undefined;
+            }
+            /**
+             * Start the animation in the next frame to have a frame with progress 0,
+             * where the target is the same as when the animation started, so we can
+             * calculate the relative positions correctly for instant transitions.
+             */
+            this.pendingAnimation = frame_frame.update(() => {
+                globalProjectionState.hasAnimatedSinceResize = true;
+                this.currentAnimation = animateSingleValue(0, animationTarget, {
+                    ...options,
+                    onUpdate: (latest) => {
+                        this.mixTargetDelta(latest);
+                        options.onUpdate && options.onUpdate(latest);
+                    },
+                    onComplete: () => {
+                        options.onComplete && options.onComplete();
+                        this.completeAnimation();
+                    },
+                });
+                if (this.resumingFrom) {
+                    this.resumingFrom.currentAnimation = this.currentAnimation;
+                }
+                this.pendingAnimation = undefined;
+            });
+        }
+        completeAnimation() {
+            if (this.resumingFrom) {
+                this.resumingFrom.currentAnimation = undefined;
+                this.resumingFrom.preserveOpacity = undefined;
+            }
+            const stack = this.getStack();
+            stack && stack.exitAnimationComplete();
+            this.resumingFrom =
+                this.currentAnimation =
+                    this.animationValues =
+                        undefined;
+            this.notifyListeners("animationComplete");
+        }
+        finishAnimation() {
+            if (this.currentAnimation) {
+                this.mixTargetDelta && this.mixTargetDelta(animationTarget);
+                this.currentAnimation.stop();
+            }
+            this.completeAnimation();
+        }
+        applyTransformsToTarget() {
+            const lead = this.getLead();
+            let { targetWithTransforms, target, layout, latestValues } = lead;
+            if (!targetWithTransforms || !target || !layout)
+                return;
+            /**
+             * If we're only animating position, and this element isn't the lead element,
+             * then instead of projecting into the lead box we instead want to calculate
+             * a new target that aligns the two boxes but maintains the layout shape.
+             */
+            if (this !== lead &&
+                this.layout &&
+                layout &&
+                shouldAnimatePositionOnly(this.options.animationType, this.layout.layoutBox, layout.layoutBox)) {
+                target = this.target || createBox();
+                const xLength = calcLength(this.layout.layoutBox.x);
+                target.x.min = lead.target.x.min;
+                target.x.max = target.x.min + xLength;
+                const yLength = calcLength(this.layout.layoutBox.y);
+                target.y.min = lead.target.y.min;
+                target.y.max = target.y.min + yLength;
+            }
+            copyBoxInto(targetWithTransforms, target);
+            /**
+             * Apply the latest user-set transforms to the targetBox to produce the targetBoxFinal.
+             * This is the final box that we will then project into by calculating a transform delta and
+             * applying it to the corrected box.
+             */
+            transformBox(targetWithTransforms, latestValues);
+            /**
+             * Update the delta between the corrected box and the final target box, after
+             * user-set transforms are applied to it. This will be used by the renderer to
+             * create a transform style that will reproject the element from its layout layout
+             * into the desired bounding box.
+             */
+            calcBoxDelta(this.projectionDeltaWithTransform, this.layoutCorrected, targetWithTransforms, latestValues);
+        }
+        registerSharedNode(layoutId, node) {
+            if (!this.sharedNodes.has(layoutId)) {
+                this.sharedNodes.set(layoutId, new NodeStack());
+            }
+            const stack = this.sharedNodes.get(layoutId);
+            stack.add(node);
+            const config = node.options.initialPromotionConfig;
+            node.promote({
+                transition: config ? config.transition : undefined,
+                preserveFollowOpacity: config && config.shouldPreserveFollowOpacity
+                    ? config.shouldPreserveFollowOpacity(node)
+                    : undefined,
+            });
+        }
+        isLead() {
+            const stack = this.getStack();
+            return stack ? stack.lead === this : true;
+        }
+        getLead() {
+            var _a;
+            const { layoutId } = this.options;
+            return layoutId ? ((_a = this.getStack()) === null || _a === void 0 ? void 0 : _a.lead) || this : this;
+        }
+        getPrevLead() {
+            var _a;
+            const { layoutId } = this.options;
+            return layoutId ? (_a = this.getStack()) === null || _a === void 0 ? void 0 : _a.prevLead : undefined;
+        }
+        getStack() {
+            const { layoutId } = this.options;
+            if (layoutId)
+                return this.root.sharedNodes.get(layoutId);
+        }
+        promote({ needsReset, transition, preserveFollowOpacity, } = {}) {
+            const stack = this.getStack();
+            if (stack)
+                stack.promote(this, preserveFollowOpacity);
+            if (needsReset) {
+                this.projectionDelta = undefined;
+                this.needsReset = true;
+            }
+            if (transition)
+                this.setOptions({ transition });
+        }
+        relegate() {
+            const stack = this.getStack();
+            if (stack) {
+                return stack.relegate(this);
+            }
+            else {
+                return false;
+            }
+        }
+        resetSkewAndRotation() {
+            const { visualElement } = this.options;
+            if (!visualElement)
+                return;
+            // If there's no detected skew or rotation values, we can early return without a forced render.
+            let hasDistortingTransform = false;
+            /**
+             * An unrolled check for rotation values. Most elements don't have any rotation and
+             * skipping the nested loop and new object creation is 50% faster.
+             */
+            const { latestValues } = visualElement;
+            if (latestValues.z ||
+                latestValues.rotate ||
+                latestValues.rotateX ||
+                latestValues.rotateY ||
+                latestValues.rotateZ ||
+                latestValues.skewX ||
+                latestValues.skewY) {
+                hasDistortingTransform = true;
+            }
+            // If there's no distorting values, we don't need to do any more.
+            if (!hasDistortingTransform)
+                return;
+            const resetValues = {};
+            if (latestValues.z) {
+                resetDistortingTransform("z", visualElement, resetValues, this.animationValues);
+            }
+            // Check the skew and rotate value of all axes and reset to 0
+            for (let i = 0; i < transformAxes.length; i++) {
+                resetDistortingTransform(`rotate${transformAxes[i]}`, visualElement, resetValues, this.animationValues);
+                resetDistortingTransform(`skew${transformAxes[i]}`, visualElement, resetValues, this.animationValues);
+            }
+            // Force a render of this element to apply the transform with all skews and rotations
+            // set to 0.
+            visualElement.render();
+            // Put back all the values we reset
+            for (const key in resetValues) {
+                visualElement.setStaticValue(key, resetValues[key]);
+                if (this.animationValues) {
+                    this.animationValues[key] = resetValues[key];
+                }
+            }
+            // Schedule a render for the next frame. This ensures we won't visually
+            // see the element with the reset rotate value applied.
+            visualElement.scheduleRender();
+        }
+        getProjectionStyles(styleProp) {
+            var _a, _b;
+            if (!this.instance || this.isSVG)
+                return undefined;
+            if (!this.isVisible) {
+                return hiddenVisibility;
+            }
+            const styles = {
+                visibility: "",
+            };
+            const transformTemplate = this.getTransformTemplate();
+            if (this.needsReset) {
+                this.needsReset = false;
+                styles.opacity = "";
+                styles.pointerEvents =
+                    resolveMotionValue(styleProp === null || styleProp === void 0 ? void 0 : styleProp.pointerEvents) || "";
+                styles.transform = transformTemplate
+                    ? transformTemplate(this.latestValues, "")
+                    : "none";
+                return styles;
+            }
+            const lead = this.getLead();
+            if (!this.projectionDelta || !this.layout || !lead.target) {
+                const emptyStyles = {};
+                if (this.options.layoutId) {
+                    emptyStyles.opacity =
+                        this.latestValues.opacity !== undefined
+                            ? this.latestValues.opacity
+                            : 1;
+                    emptyStyles.pointerEvents =
+                        resolveMotionValue(styleProp === null || styleProp === void 0 ? void 0 : styleProp.pointerEvents) || "";
+                }
+                if (this.hasProjected && !hasTransform(this.latestValues)) {
+                    emptyStyles.transform = transformTemplate
+                        ? transformTemplate({}, "")
+                        : "none";
+                    this.hasProjected = false;
+                }
+                return emptyStyles;
+            }
+            const valuesToRender = lead.animationValues || lead.latestValues;
+            this.applyTransformsToTarget();
+            styles.transform = buildProjectionTransform(this.projectionDeltaWithTransform, this.treeScale, valuesToRender);
+            if (transformTemplate) {
+                styles.transform = transformTemplate(valuesToRender, styles.transform);
+            }
+            const { x, y } = this.projectionDelta;
+            styles.transformOrigin = `${x.origin * 100}% ${y.origin * 100}% 0`;
+            if (lead.animationValues) {
+                /**
+                 * If the lead component is animating, assign this either the entering/leaving
+                 * opacity
+                 */
+                styles.opacity =
+                    lead === this
+                        ? (_b = (_a = valuesToRender.opacity) !== null && _a !== void 0 ? _a : this.latestValues.opacity) !== null && _b !== void 0 ? _b : 1
+                        : this.preserveOpacity
+                            ? this.latestValues.opacity
+                            : valuesToRender.opacityExit;
+            }
+            else {
+                /**
+                 * Or we're not animating at all, set the lead component to its layout
+                 * opacity and other components to hidden.
+                 */
+                styles.opacity =
+                    lead === this
+                        ? valuesToRender.opacity !== undefined
+                            ? valuesToRender.opacity
+                            : ""
+                        : valuesToRender.opacityExit !== undefined
+                            ? valuesToRender.opacityExit
+                            : 0;
+            }
+            /**
+             * Apply scale correction
+             */
+            for (const key in scaleCorrectors) {
+                if (valuesToRender[key] === undefined)
+                    continue;
+                const { correct, applyTo } = scaleCorrectors[key];
+                /**
+                 * Only apply scale correction to the value if we have an
+                 * active projection transform. Otherwise these values become
+                 * vulnerable to distortion if the element changes size without
+                 * a corresponding layout animation.
+                 */
+                const corrected = styles.transform === "none"
+                    ? valuesToRender[key]
+                    : correct(valuesToRender[key], lead);
+                if (applyTo) {
+                    const num = applyTo.length;
+                    for (let i = 0; i < num; i++) {
+                        styles[applyTo[i]] = corrected;
+                    }
+                }
+                else {
+                    styles[key] = corrected;
+                }
+            }
+            /**
+             * Disable pointer events on follow components. This is to ensure
+             * that if a follow component covers a lead component it doesn't block
+             * pointer events on the lead.
+             */
+            if (this.options.layoutId) {
+                styles.pointerEvents =
+                    lead === this
+                        ? resolveMotionValue(styleProp === null || styleProp === void 0 ? void 0 : styleProp.pointerEvents) || ""
+                        : "none";
+            }
+            return styles;
+        }
+        clearSnapshot() {
+            this.resumeFrom = this.snapshot = undefined;
+        }
+        // Only run on root
+        resetTree() {
+            this.root.nodes.forEach((node) => { var _a; return (_a = node.currentAnimation) === null || _a === void 0 ? void 0 : _a.stop(); });
+            this.root.nodes.forEach(clearMeasurements);
+            this.root.sharedNodes.clear();
+        }
+    };
+}
+function updateLayout(node) {
+    node.updateLayout();
+}
+function notifyLayoutUpdate(node) {
+    var _a;
+    const snapshot = ((_a = node.resumeFrom) === null || _a === void 0 ? void 0 : _a.snapshot) || node.snapshot;
+    if (node.isLead() &&
+        node.layout &&
+        snapshot &&
+        node.hasListeners("didUpdate")) {
+        const { layoutBox: layout, measuredBox: measuredLayout } = node.layout;
+        const { animationType } = node.options;
+        const isShared = snapshot.source !== node.layout.source;
+        // TODO Maybe we want to also resize the layout snapshot so we don't trigger
+        // animations for instance if layout="size" and an element has only changed position
+        if (animationType === "size") {
+            eachAxis((axis) => {
+                const axisSnapshot = isShared
+                    ? snapshot.measuredBox[axis]
+                    : snapshot.layoutBox[axis];
+                const length = calcLength(axisSnapshot);
+                axisSnapshot.min = layout[axis].min;
+                axisSnapshot.max = axisSnapshot.min + length;
+            });
+        }
+        else if (shouldAnimatePositionOnly(animationType, snapshot.layoutBox, layout)) {
+            eachAxis((axis) => {
+                const axisSnapshot = isShared
+                    ? snapshot.measuredBox[axis]
+                    : snapshot.layoutBox[axis];
+                const length = calcLength(layout[axis]);
+                axisSnapshot.max = axisSnapshot.min + length;
+                /**
+                 * Ensure relative target gets resized and rerendererd
+                 */
+                if (node.relativeTarget && !node.currentAnimation) {
+                    node.isProjectionDirty = true;
+                    node.relativeTarget[axis].max =
+                        node.relativeTarget[axis].min + length;
+                }
+            });
+        }
+        const layoutDelta = createDelta();
+        calcBoxDelta(layoutDelta, layout, snapshot.layoutBox);
+        const visualDelta = createDelta();
+        if (isShared) {
+            calcBoxDelta(visualDelta, node.applyTransform(measuredLayout, true), snapshot.measuredBox);
+        }
+        else {
+            calcBoxDelta(visualDelta, layout, snapshot.layoutBox);
+        }
+        const hasLayoutChanged = !isDeltaZero(layoutDelta);
+        let hasRelativeTargetChanged = false;
+        if (!node.resumeFrom) {
+            const relativeParent = node.getClosestProjectingParent();
+            /**
+             * If the relativeParent is itself resuming from a different element then
+             * the relative snapshot is not relavent
+             */
+            if (relativeParent && !relativeParent.resumeFrom) {
+                const { snapshot: parentSnapshot, layout: parentLayout } = relativeParent;
+                if (parentSnapshot && parentLayout) {
+                    const relativeSnapshot = createBox();
+                    calcRelativePosition(relativeSnapshot, snapshot.layoutBox, parentSnapshot.layoutBox);
+                    const relativeLayout = createBox();
+                    calcRelativePosition(relativeLayout, layout, parentLayout.layoutBox);
+                    if (!boxEqualsRounded(relativeSnapshot, relativeLayout)) {
+                        hasRelativeTargetChanged = true;
+                    }
+                    if (relativeParent.options.layoutRoot) {
+                        node.relativeTarget = relativeLayout;
+                        node.relativeTargetOrigin = relativeSnapshot;
+                        node.relativeParent = relativeParent;
+                    }
+                }
+            }
+        }
+        node.notifyListeners("didUpdate", {
+            layout,
+            snapshot,
+            delta: visualDelta,
+            layoutDelta,
+            hasLayoutChanged,
+            hasRelativeTargetChanged,
+        });
+    }
+    else if (node.isLead()) {
+        const { onExitComplete } = node.options;
+        onExitComplete && onExitComplete();
+    }
+    /**
+     * Clearing transition
+     * TODO: Investigate why this transition is being passed in as {type: false } from Framer
+     * and why we need it at all
+     */
+    node.options.transition = undefined;
+}
+function propagateDirtyNodes(node) {
+    /**
+     * Increase debug counter for nodes encountered this frame
+     */
+    projectionFrameData.totalNodes++;
+    if (!node.parent)
+        return;
+    /**
+     * If this node isn't projecting, propagate isProjectionDirty. It will have
+     * no performance impact but it will allow the next child that *is* projecting
+     * but *isn't* dirty to just check its parent to see if *any* ancestor needs
+     * correcting.
+     */
+    if (!node.isProjecting()) {
+        node.isProjectionDirty = node.parent.isProjectionDirty;
+    }
+    /**
+     * Propagate isSharedProjectionDirty and isTransformDirty
+     * throughout the whole tree. A future revision can take another look at
+     * this but for safety we still recalcualte shared nodes.
+     */
+    node.isSharedProjectionDirty || (node.isSharedProjectionDirty = Boolean(node.isProjectionDirty ||
+        node.parent.isProjectionDirty ||
+        node.parent.isSharedProjectionDirty));
+    node.isTransformDirty || (node.isTransformDirty = node.parent.isTransformDirty);
+}
+function cleanDirtyNodes(node) {
+    node.isProjectionDirty =
+        node.isSharedProjectionDirty =
+            node.isTransformDirty =
+                false;
+}
+function clearSnapshot(node) {
+    node.clearSnapshot();
+}
+function clearMeasurements(node) {
+    node.clearMeasurements();
+}
+function clearIsLayoutDirty(node) {
+    node.isLayoutDirty = false;
+}
+function resetTransformStyle(node) {
+    const { visualElement } = node.options;
+    if (visualElement && visualElement.getProps().onBeforeLayoutMeasure) {
+        visualElement.notify("BeforeLayoutMeasure");
+    }
+    node.resetTransform();
+}
+function finishAnimation(node) {
+    node.finishAnimation();
+    node.targetDelta = node.relativeTarget = node.target = undefined;
+    node.isProjectionDirty = true;
+}
+function resolveTargetDelta(node) {
+    node.resolveTargetDelta();
+}
+function calcProjection(node) {
+    node.calcProjection();
+}
+function resetSkewAndRotation(node) {
+    node.resetSkewAndRotation();
+}
+function removeLeadSnapshots(stack) {
+    stack.removeLeadSnapshot();
+}
+function mixAxisDelta(output, delta, p) {
+    output.translate = mixNumber(delta.translate, 0, p);
+    output.scale = mixNumber(delta.scale, 1, p);
+    output.origin = delta.origin;
+    output.originPoint = delta.originPoint;
+}
+function mixAxis(output, from, to, p) {
+    output.min = mixNumber(from.min, to.min, p);
+    output.max = mixNumber(from.max, to.max, p);
+}
+function mixBox(output, from, to, p) {
+    mixAxis(output.x, from.x, to.x, p);
+    mixAxis(output.y, from.y, to.y, p);
+}
+function hasOpacityCrossfade(node) {
+    return (node.animationValues && node.animationValues.opacityExit !== undefined);
+}
+const defaultLayoutTransition = {
+    duration: 0.45,
+    ease: [0.4, 0, 0.1, 1],
+};
+const userAgentContains = (string) => typeof navigator !== "undefined" &&
+    navigator.userAgent &&
+    navigator.userAgent.toLowerCase().includes(string);
+/**
+ * Measured bounding boxes must be rounded in Safari and
+ * left untouched in Chrome, otherwise non-integer layouts within scaled-up elements
+ * can appear to jump.
+ */
+const roundPoint = userAgentContains("applewebkit/") && !userAgentContains("chrome/")
+    ? Math.round
+    : noop_noop;
+function roundAxis(axis) {
+    // Round to the nearest .5 pixels to support subpixel layouts
+    axis.min = roundPoint(axis.min);
+    axis.max = roundPoint(axis.max);
+}
+function roundBox(box) {
+    roundAxis(box.x);
+    roundAxis(box.y);
+}
+function shouldAnimatePositionOnly(animationType, snapshot, layout) {
+    return (animationType === "position" ||
+        (animationType === "preserve-aspect" &&
+            !isNear(aspectRatio(snapshot), aspectRatio(layout), 0.2)));
+}
+
+
+
+;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/projection/node/DocumentProjectionNode.mjs
+
+
+
+const DocumentProjectionNode = createProjectionNode({
+    attachResizeListener: (ref, notify) => addDomEvent(ref, "resize", notify),
+    measureScroll: () => ({
+        x: document.documentElement.scrollLeft || document.body.scrollLeft,
+        y: document.documentElement.scrollTop || document.body.scrollTop,
+    }),
+    checkIsScrollRoot: () => true,
+});
+
+
+
+;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/projection/node/HTMLProjectionNode.mjs
+
+
+
+const rootProjectionNode = {
+    current: undefined,
+};
+const HTMLProjectionNode = createProjectionNode({
+    measureScroll: (instance) => ({
+        x: instance.scrollLeft,
+        y: instance.scrollTop,
+    }),
+    defaultParent: () => {
+        if (!rootProjectionNode.current) {
+            const documentNode = new DocumentProjectionNode({});
+            documentNode.mount(window);
+            documentNode.setOptions({ layoutScroll: true });
+            rootProjectionNode.current = documentNode;
+        }
+        return rootProjectionNode.current;
+    },
+    resetTransform: (instance, value) => {
+        instance.style.transform = value !== undefined ? value : "none";
+    },
+    checkIsScrollRoot: (instance) => Boolean(window.getComputedStyle(instance).position === "fixed"),
+});
+
+
+
+;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/motion/features/drag.mjs
+
+
+
+
+
+const drag = {
+    pan: {
+        Feature: PanGesture,
+    },
+    drag: {
+        Feature: DragGesture,
+        ProjectionNode: HTMLProjectionNode,
+        MeasureLayout: MeasureLayout,
+    },
+};
+
+
+
+;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/utils/reduced-motion/state.mjs
+// Does this device prefer reduced motion? Returns `null` server-side.
+const prefersReducedMotion = { current: null };
+const hasReducedMotionListener = { current: false };
+
+
+
+;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/utils/reduced-motion/index.mjs
+
+
+
+function initPrefersReducedMotion() {
+    hasReducedMotionListener.current = true;
+    if (!isBrowser)
+        return;
+    if (window.matchMedia) {
+        const motionMediaQuery = window.matchMedia("(prefers-reduced-motion)");
+        const setReducedMotionPreferences = () => (prefersReducedMotion.current = motionMediaQuery.matches);
+        motionMediaQuery.addListener(setReducedMotionPreferences);
+        setReducedMotionPreferences();
+    }
+    else {
+        prefersReducedMotion.current = false;
+    }
+}
+
+
+
+;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/render/utils/motion-values.mjs
+
+
+
+
+
+function updateMotionValuesFromProps(element, next, prev) {
+    const { willChange } = next;
+    for (const key in next) {
+        const nextValue = next[key];
+        const prevValue = prev[key];
+        if (isMotionValue(nextValue)) {
+            /**
+             * If this is a motion value found in props or style, we want to add it
+             * to our visual element's motion value map.
+             */
+            element.addValue(key, nextValue);
+            if (isWillChangeMotionValue(willChange)) {
+                willChange.add(key);
+            }
+            /**
+             * Check the version of the incoming motion value with this version
+             * and warn against mismatches.
+             */
+            if (false) {}
+        }
+        else if (isMotionValue(prevValue)) {
+            /**
+             * If we're swapping from a motion value to a static value,
+             * create a new motion value from that
+             */
+            element.addValue(key, motionValue(nextValue, { owner: element }));
+            if (isWillChangeMotionValue(willChange)) {
+                willChange.remove(key);
+            }
+        }
+        else if (prevValue !== nextValue) {
+            /**
+             * If this is a flat value that has changed, update the motion value
+             * or create one if it doesn't exist. We only want to do this if we're
+             * not handling the value with our animation state.
+             */
+            if (element.hasValue(key)) {
+                const existingValue = element.getValue(key);
+                if (existingValue.liveStyle === true) {
+                    existingValue.jump(nextValue);
+                }
+                else if (!existingValue.hasAnimated) {
+                    existingValue.set(nextValue);
+                }
+            }
+            else {
+                const latestValue = element.getStaticValue(key);
+                element.addValue(key, motionValue(latestValue !== undefined ? latestValue : nextValue, { owner: element }));
+            }
+        }
+    }
+    // Handle removed values
+    for (const key in prev) {
+        if (next[key] === undefined)
+            element.removeValue(key);
+    }
+    return next;
+}
+
+
+
+;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/render/store.mjs
+const visualElementStore = new WeakMap();
+
+
+
+;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/render/dom/value-types/find.mjs
+
+
+
+
+
+/**
+ * A list of all ValueTypes
+ */
+const valueTypes = [...dimensionValueTypes, color, complex];
+/**
+ * Tests a value against the list of ValueTypes
+ */
+const findValueType = (v) => valueTypes.find(testValueType(v));
+
+
+
+;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/render/VisualElement.mjs
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+const featureNames = Object.keys(featureDefinitions);
+const numFeatures = featureNames.length;
+const propEventHandlers = [
+    "AnimationStart",
+    "AnimationComplete",
+    "Update",
+    "BeforeLayoutMeasure",
+    "LayoutMeasure",
+    "LayoutAnimationStart",
+    "LayoutAnimationComplete",
+];
+const numVariantProps = variantProps.length;
+function getClosestProjectingNode(visualElement) {
+    if (!visualElement)
+        return undefined;
+    return visualElement.options.allowProjection !== false
+        ? visualElement.projection
+        : getClosestProjectingNode(visualElement.parent);
+}
+/**
+ * A VisualElement is an imperative abstraction around UI elements such as
+ * HTMLElement, SVGElement, Three.Object3D etc.
+ */
+class VisualElement {
+    /**
+     * This method takes React props and returns found MotionValues. For example, HTML
+     * MotionValues will be found within the style prop, whereas for Three.js within attribute arrays.
+     *
+     * This isn't an abstract method as it needs calling in the constructor, but it is
+     * intended to be one.
+     */
+    scrapeMotionValuesFromProps(_props, _prevProps, _visualElement) {
+        return {};
+    }
+    constructor({ parent, props, presenceContext, reducedMotionConfig, blockInitialAnimation, visualState, }, options = {}) {
+        this.resolveKeyframes = (keyframes, 
+        // We use an onComplete callback here rather than a Promise as a Promise
+        // resolution is a microtask and we want to retain the ability to force
+        // the resolution of keyframes synchronously.
+        onComplete, name, value) => {
+            return new this.KeyframeResolver(keyframes, onComplete, name, value, this);
+        };
+        /**
+         * A reference to the current underlying Instance, e.g. a HTMLElement
+         * or Three.Mesh etc.
+         */
+        this.current = null;
+        /**
+         * A set containing references to this VisualElement's children.
+         */
+        this.children = new Set();
+        /**
+         * Determine what role this visual element should take in the variant tree.
+         */
+        this.isVariantNode = false;
+        this.isControllingVariants = false;
+        /**
+         * Decides whether this VisualElement should animate in reduced motion
+         * mode.
+         *
+         * TODO: This is currently set on every individual VisualElement but feels
+         * like it could be set globally.
+         */
+        this.shouldReduceMotion = null;
+        /**
+         * A map of all motion values attached to this visual element. Motion
+         * values are source of truth for any given animated value. A motion
+         * value might be provided externally by the component via props.
+         */
+        this.values = new Map();
+        this.KeyframeResolver = KeyframeResolver;
+        /**
+         * Cleanup functions for active features (hover/tap/exit etc)
+         */
+        this.features = {};
+        /**
+         * A map of every subscription that binds the provided or generated
+         * motion values onChange listeners to this visual element.
+         */
+        this.valueSubscriptions = new Map();
+        /**
+         * A reference to the previously-provided motion values as returned
+         * from scrapeMotionValuesFromProps. We use the keys in here to determine
+         * if any motion values need to be removed after props are updated.
+         */
+        this.prevMotionValues = {};
+        /**
+         * An object containing a SubscriptionManager for each active event.
+         */
+        this.events = {};
+        /**
+         * An object containing an unsubscribe function for each prop event subscription.
+         * For example, every "Update" event can have multiple subscribers via
+         * VisualElement.on(), but only one of those can be defined via the onUpdate prop.
+         */
+        this.propEventSubscriptions = {};
+        this.notifyUpdate = () => this.notify("Update", this.latestValues);
+        this.render = () => {
+            if (!this.current)
+                return;
+            this.triggerBuild();
+            this.renderInstance(this.current, this.renderState, this.props.style, this.projection);
+        };
+        this.scheduleRender = () => frame_frame.render(this.render, false, true);
+        const { latestValues, renderState } = visualState;
+        this.latestValues = latestValues;
+        this.baseTarget = { ...latestValues };
+        this.initialValues = props.initial ? { ...latestValues } : {};
+        this.renderState = renderState;
+        this.parent = parent;
+        this.props = props;
+        this.presenceContext = presenceContext;
+        this.depth = parent ? parent.depth + 1 : 0;
+        this.reducedMotionConfig = reducedMotionConfig;
+        this.options = options;
+        this.blockInitialAnimation = Boolean(blockInitialAnimation);
+        this.isControllingVariants = isControllingVariants(props);
+        this.isVariantNode = isVariantNode(props);
+        if (this.isVariantNode) {
+            this.variantChildren = new Set();
+        }
+        this.manuallyAnimateOnMount = Boolean(parent && parent.current);
+        /**
+         * Any motion values that are provided to the element when created
+         * aren't yet bound to the element, as this would technically be impure.
+         * However, we iterate through the motion values and set them to the
+         * initial values for this component.
+         *
+         * TODO: This is impure and we should look at changing this to run on mount.
+         * Doing so will break some tests but this isn't neccessarily a breaking change,
+         * more a reflection of the test.
+         */
+        const { willChange, ...initialMotionValues } = this.scrapeMotionValuesFromProps(props, {}, this);
+        for (const key in initialMotionValues) {
+            const value = initialMotionValues[key];
+            if (latestValues[key] !== undefined && isMotionValue(value)) {
+                value.set(latestValues[key], false);
+                if (isWillChangeMotionValue(willChange)) {
+                    willChange.add(key);
+                }
+            }
+        }
+    }
+    mount(instance) {
+        this.current = instance;
+        visualElementStore.set(instance, this);
+        if (this.projection && !this.projection.instance) {
+            this.projection.mount(instance);
+        }
+        if (this.parent && this.isVariantNode && !this.isControllingVariants) {
+            this.removeFromVariantTree = this.parent.addVariantChild(this);
+        }
+        this.values.forEach((value, key) => this.bindToMotionValue(key, value));
+        if (!hasReducedMotionListener.current) {
+            initPrefersReducedMotion();
+        }
+        this.shouldReduceMotion =
+            this.reducedMotionConfig === "never"
+                ? false
+                : this.reducedMotionConfig === "always"
+                    ? true
+                    : prefersReducedMotion.current;
+        if (false) {}
+        if (this.parent)
+            this.parent.children.add(this);
+        this.update(this.props, this.presenceContext);
+    }
+    unmount() {
+        var _a;
+        visualElementStore["delete"](this.current);
+        this.projection && this.projection.unmount();
+        cancelFrame(this.notifyUpdate);
+        cancelFrame(this.render);
+        this.valueSubscriptions.forEach((remove) => remove());
+        this.removeFromVariantTree && this.removeFromVariantTree();
+        this.parent && this.parent.children.delete(this);
+        for (const key in this.events) {
+            this.events[key].clear();
+        }
+        for (const key in this.features) {
+            (_a = this.features[key]) === null || _a === void 0 ? void 0 : _a.unmount();
+        }
+        this.current = null;
+    }
+    bindToMotionValue(key, value) {
+        const valueIsTransform = transformProps.has(key);
+        const removeOnChange = value.on("change", (latestValue) => {
+            this.latestValues[key] = latestValue;
+            this.props.onUpdate && frame_frame.preRender(this.notifyUpdate);
+            if (valueIsTransform && this.projection) {
+                this.projection.isTransformDirty = true;
+            }
+        });
+        const removeOnRenderRequest = value.on("renderRequest", this.scheduleRender);
+        this.valueSubscriptions.set(key, () => {
+            removeOnChange();
+            removeOnRenderRequest();
+            if (value.owner)
+                value.stop();
+        });
+    }
+    sortNodePosition(other) {
+        /**
+         * If these nodes aren't even of the same type we can't compare their depth.
+         */
+        if (!this.current ||
+            !this.sortInstanceNodePosition ||
+            this.type !== other.type) {
+            return 0;
+        }
+        return this.sortInstanceNodePosition(this.current, other.current);
+    }
+    loadFeatures({ children, ...renderedProps }, isStrict, preloadedFeatures, initialLayoutGroupConfig) {
+        let ProjectionNodeConstructor;
+        let MeasureLayout;
+        /**
+         * If we're in development mode, check to make sure we're not rendering a motion component
+         * as a child of LazyMotion, as this will break the file-size benefits of using it.
+         */
+        if (false) {}
+        for (let i = 0; i < numFeatures; i++) {
+            const name = featureNames[i];
+            const { isEnabled, Feature: FeatureConstructor, ProjectionNode, MeasureLayout: MeasureLayoutComponent, } = featureDefinitions[name];
+            if (ProjectionNode)
+                ProjectionNodeConstructor = ProjectionNode;
+            if (isEnabled(renderedProps)) {
+                if (!this.features[name] && FeatureConstructor) {
+                    this.features[name] = new FeatureConstructor(this);
+                }
+                if (MeasureLayoutComponent) {
+                    MeasureLayout = MeasureLayoutComponent;
+                }
+            }
+        }
+        if ((this.type === "html" || this.type === "svg") &&
+            !this.projection &&
+            ProjectionNodeConstructor) {
+            const { layoutId, layout, drag, dragConstraints, layoutScroll, layoutRoot, } = renderedProps;
+            this.projection = new ProjectionNodeConstructor(this.latestValues, renderedProps["data-framer-portal-id"]
+                ? undefined
+                : getClosestProjectingNode(this.parent));
+            this.projection.setOptions({
+                layoutId,
+                layout,
+                alwaysMeasureLayout: Boolean(drag) ||
+                    (dragConstraints && isRefObject(dragConstraints)),
+                visualElement: this,
+                scheduleRender: () => this.scheduleRender(),
+                /**
+                 * TODO: Update options in an effect. This could be tricky as it'll be too late
+                 * to update by the time layout animations run.
+                 * We also need to fix this safeToRemove by linking it up to the one returned by usePresence,
+                 * ensuring it gets called if there's no potential layout animations.
+                 *
+                 */
+                animationType: typeof layout === "string" ? layout : "both",
+                initialPromotionConfig: initialLayoutGroupConfig,
+                layoutScroll,
+                layoutRoot,
+            });
+        }
+        return MeasureLayout;
+    }
+    updateFeatures() {
+        for (const key in this.features) {
+            const feature = this.features[key];
+            if (feature.isMounted) {
+                feature.update();
+            }
+            else {
+                feature.mount();
+                feature.isMounted = true;
+            }
+        }
+    }
+    triggerBuild() {
+        this.build(this.renderState, this.latestValues, this.options, this.props);
+    }
+    /**
+     * Measure the current viewport box with or without transforms.
+     * Only measures axis-aligned boxes, rotate and skew must be manually
+     * removed with a re-render to work.
+     */
+    measureViewportBox() {
+        return this.current
+            ? this.measureInstanceViewportBox(this.current, this.props)
+            : createBox();
+    }
+    getStaticValue(key) {
+        return this.latestValues[key];
+    }
+    setStaticValue(key, value) {
+        this.latestValues[key] = value;
+    }
+    /**
+     * Update the provided props. Ensure any newly-added motion values are
+     * added to our map, old ones removed, and listeners updated.
+     */
+    update(props, presenceContext) {
+        if (props.transformTemplate || this.props.transformTemplate) {
+            this.scheduleRender();
+        }
+        this.prevProps = this.props;
+        this.props = props;
+        this.prevPresenceContext = this.presenceContext;
+        this.presenceContext = presenceContext;
+        /**
+         * Update prop event handlers ie onAnimationStart, onAnimationComplete
+         */
+        for (let i = 0; i < propEventHandlers.length; i++) {
+            const key = propEventHandlers[i];
+            if (this.propEventSubscriptions[key]) {
+                this.propEventSubscriptions[key]();
+                delete this.propEventSubscriptions[key];
+            }
+            const listenerName = ("on" + key);
+            const listener = props[listenerName];
+            if (listener) {
+                this.propEventSubscriptions[key] = this.on(key, listener);
+            }
+        }
+        this.prevMotionValues = updateMotionValuesFromProps(this, this.scrapeMotionValuesFromProps(props, this.prevProps, this), this.prevMotionValues);
+        if (this.handleChildMotionValue) {
+            this.handleChildMotionValue();
+        }
+    }
+    getProps() {
+        return this.props;
+    }
+    /**
+     * Returns the variant definition with a given name.
+     */
+    getVariant(name) {
+        return this.props.variants ? this.props.variants[name] : undefined;
+    }
+    /**
+     * Returns the defined default transition on this component.
+     */
+    getDefaultTransition() {
+        return this.props.transition;
+    }
+    getTransformPagePoint() {
+        return this.props.transformPagePoint;
+    }
+    getClosestVariantNode() {
+        return this.isVariantNode
+            ? this
+            : this.parent
+                ? this.parent.getClosestVariantNode()
+                : undefined;
+    }
+    getVariantContext(startAtParent = false) {
+        if (startAtParent) {
+            return this.parent ? this.parent.getVariantContext() : undefined;
+        }
+        if (!this.isControllingVariants) {
+            const context = this.parent
+                ? this.parent.getVariantContext() || {}
+                : {};
+            if (this.props.initial !== undefined) {
+                context.initial = this.props.initial;
+            }
+            return context;
+        }
+        const context = {};
+        for (let i = 0; i < numVariantProps; i++) {
+            const name = variantProps[i];
+            const prop = this.props[name];
+            if (isVariantLabel(prop) || prop === false) {
+                context[name] = prop;
+            }
+        }
+        return context;
+    }
+    /**
+     * Add a child visual element to our set of children.
+     */
+    addVariantChild(child) {
+        const closestVariantNode = this.getClosestVariantNode();
+        if (closestVariantNode) {
+            closestVariantNode.variantChildren &&
+                closestVariantNode.variantChildren.add(child);
+            return () => closestVariantNode.variantChildren.delete(child);
+        }
+    }
+    /**
+     * Add a motion value and bind it to this visual element.
+     */
+    addValue(key, value) {
+        // Remove existing value if it exists
+        const existingValue = this.values.get(key);
+        if (value !== existingValue) {
+            if (existingValue)
+                this.removeValue(key);
+            this.bindToMotionValue(key, value);
+            this.values.set(key, value);
+            this.latestValues[key] = value.get();
+        }
+    }
+    /**
+     * Remove a motion value and unbind any active subscriptions.
+     */
+    removeValue(key) {
+        this.values.delete(key);
+        const unsubscribe = this.valueSubscriptions.get(key);
+        if (unsubscribe) {
+            unsubscribe();
+            this.valueSubscriptions.delete(key);
+        }
+        delete this.latestValues[key];
+        this.removeValueFromRenderState(key, this.renderState);
+    }
+    /**
+     * Check whether we have a motion value for this key
+     */
+    hasValue(key) {
+        return this.values.has(key);
+    }
+    getValue(key, defaultValue) {
+        if (this.props.values && this.props.values[key]) {
+            return this.props.values[key];
+        }
+        let value = this.values.get(key);
+        if (value === undefined && defaultValue !== undefined) {
+            value = motionValue(defaultValue === null ? undefined : defaultValue, { owner: this });
+            this.addValue(key, value);
+        }
+        return value;
+    }
+    /**
+     * If we're trying to animate to a previously unencountered value,
+     * we need to check for it in our state and as a last resort read it
+     * directly from the instance (which might have performance implications).
+     */
+    readValue(key, target) {
+        var _a;
+        let value = this.latestValues[key] !== undefined || !this.current
+            ? this.latestValues[key]
+            : (_a = this.getBaseTargetFromProps(this.props, key)) !== null && _a !== void 0 ? _a : this.readValueFromInstance(this.current, key, this.options);
+        if (value !== undefined && value !== null) {
+            if (typeof value === "string" &&
+                (isNumericalString(value) || isZeroValueString(value))) {
+                // If this is a number read as a string, ie "0" or "200", convert it to a number
+                value = parseFloat(value);
+            }
+            else if (!findValueType(value) && complex.test(target)) {
+                value = animatable_none_getAnimatableNone(key, target);
+            }
+            this.setBaseTarget(key, isMotionValue(value) ? value.get() : value);
+        }
+        return isMotionValue(value) ? value.get() : value;
+    }
+    /**
+     * Set the base target to later animate back to. This is currently
+     * only hydrated on creation and when we first read a value.
+     */
+    setBaseTarget(key, value) {
+        this.baseTarget[key] = value;
+    }
+    /**
+     * Find the base target for a value thats been removed from all animation
+     * props.
+     */
+    getBaseTarget(key) {
+        var _a;
+        const { initial } = this.props;
+        let valueFromInitial;
+        if (typeof initial === "string" || typeof initial === "object") {
+            const variant = resolveVariantFromProps(this.props, initial, (_a = this.presenceContext) === null || _a === void 0 ? void 0 : _a.custom);
+            if (variant) {
+                valueFromInitial = variant[key];
+            }
+        }
+        /**
+         * If this value still exists in the current initial variant, read that.
+         */
+        if (initial && valueFromInitial !== undefined) {
+            return valueFromInitial;
+        }
+        /**
+         * Alternatively, if this VisualElement config has defined a getBaseTarget
+         * so we can read the value from an alternative source, try that.
+         */
+        const target = this.getBaseTargetFromProps(this.props, key);
+        if (target !== undefined && !isMotionValue(target))
+            return target;
+        /**
+         * If the value was initially defined on initial, but it doesn't any more,
+         * return undefined. Otherwise return the value as initially read from the DOM.
+         */
+        return this.initialValues[key] !== undefined &&
+            valueFromInitial === undefined
+            ? undefined
+            : this.baseTarget[key];
+    }
+    on(eventName, callback) {
+        if (!this.events[eventName]) {
+            this.events[eventName] = new SubscriptionManager();
+        }
+        return this.events[eventName].add(callback);
+    }
+    notify(eventName, ...args) {
+        if (this.events[eventName]) {
+            this.events[eventName].notify(...args);
+        }
+    }
+}
+
+
+
+;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/render/dom/DOMVisualElement.mjs
+
+
+
+class DOMVisualElement extends VisualElement {
+    constructor() {
+        super(...arguments);
+        this.KeyframeResolver = DOMKeyframesResolver;
+    }
+    sortInstanceNodePosition(a, b) {
+        /**
+         * compareDocumentPosition returns a bitmask, by using the bitwise &
+         * we're returning true if 2 in that bitmask is set to true. 2 is set
+         * to true if b preceeds a.
+         */
+        return a.compareDocumentPosition(b) & 2 ? 1 : -1;
+    }
+    getBaseTargetFromProps(props, key) {
+        return props.style
+            ? props.style[key]
+            : undefined;
+    }
+    removeValueFromRenderState(key, { vars, style }) {
+        delete vars[key];
+        delete style[key];
+    }
+}
+
+
+
+;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/render/html/HTMLVisualElement.mjs
+
+
+
+
+
+
+
+
+
+
+function getComputedStyle(element) {
+    return window.getComputedStyle(element);
+}
+class HTMLVisualElement extends DOMVisualElement {
+    constructor() {
+        super(...arguments);
+        this.type = "html";
+    }
+    readValueFromInstance(instance, key) {
+        if (transformProps.has(key)) {
+            const defaultType = getDefaultValueType(key);
+            return defaultType ? defaultType.default || 0 : 0;
+        }
+        else {
+            const computedStyle = getComputedStyle(instance);
+            const value = (isCSSVariableName(key)
+                ? computedStyle.getPropertyValue(key)
+                : computedStyle[key]) || 0;
+            return typeof value === "string" ? value.trim() : value;
+        }
+    }
+    measureInstanceViewportBox(instance, { transformPagePoint }) {
+        return measureViewportBox(instance, transformPagePoint);
+    }
+    build(renderState, latestValues, options, props) {
+        buildHTMLStyles(renderState, latestValues, options, props.transformTemplate);
+    }
+    scrapeMotionValuesFromProps(props, prevProps, visualElement) {
+        return scrapeMotionValuesFromProps(props, prevProps, visualElement);
+    }
+    handleChildMotionValue() {
+        if (this.childSubscription) {
+            this.childSubscription();
+            delete this.childSubscription;
+        }
+        const { children } = this.props;
+        if (isMotionValue(children)) {
+            this.childSubscription = children.on("change", (latest) => {
+                if (this.current)
+                    this.current.textContent = `${latest}`;
+            });
+        }
+    }
+    renderInstance(instance, renderState, styleProp, projection) {
+        renderHTML(instance, renderState, styleProp, projection);
+    }
+}
+
+
+
+;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/render/svg/SVGVisualElement.mjs
+
+
+
+
+
+
+
+
+
+
+
+class SVGVisualElement extends DOMVisualElement {
+    constructor() {
+        super(...arguments);
+        this.type = "svg";
+        this.isSVGTag = false;
+    }
+    getBaseTargetFromProps(props, key) {
+        return props[key];
+    }
+    readValueFromInstance(instance, key) {
+        if (transformProps.has(key)) {
+            const defaultType = getDefaultValueType(key);
+            return defaultType ? defaultType.default || 0 : 0;
+        }
+        key = !camelCaseAttributes.has(key) ? camelToDash(key) : key;
+        return instance.getAttribute(key);
+    }
+    measureInstanceViewportBox() {
+        return createBox();
+    }
+    scrapeMotionValuesFromProps(props, prevProps, visualElement) {
+        return scrape_motion_values_scrapeMotionValuesFromProps(props, prevProps, visualElement);
+    }
+    build(renderState, latestValues, options, props) {
+        buildSVGAttrs(renderState, latestValues, options, this.isSVGTag, props.transformTemplate);
+    }
+    renderInstance(instance, renderState, styleProp, projection) {
+        renderSVG(instance, renderState, styleProp, projection);
+    }
+    mount(instance) {
+        this.isSVGTag = isSVGTag(instance.tagName);
+        super.mount(instance);
+    }
+}
+
+
+
+;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/render/dom/create-visual-element.mjs
+
+
+
+
+
+const create_visual_element_createDomVisualElement = (Component, options) => {
+    return isSVGComponent(Component)
+        ? new SVGVisualElement(options, { enableHardwareAcceleration: false })
+        : new HTMLVisualElement(options, {
+            allowProjection: Component !== react.Fragment,
+            enableHardwareAcceleration: true,
+        });
+};
+
+
+
+;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/motion/features/layout.mjs
+
+
+
+const layout = {
+    layout: {
+        ProjectionNode: HTMLProjectionNode,
+        MeasureLayout: MeasureLayout,
+    },
+};
+
+
+
+;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/render/dom/motion.mjs
+
+
+
+
+
+
+
+
+
+const preloadedFeatures = {
+    ...animations,
+    ...gestureAnimations,
+    ...drag,
+    ...layout,
+};
+/**
+ * HTML & SVG components, optimised for use with gestures and animation. These can be used as
+ * drop-in replacements for any HTML & SVG component, all CSS & SVG properties are supported.
+ *
+ * @public
+ */
+const motion_motion = /*@__PURE__*/ createMotionProxy((Component, config) => create_config_createDomMotionConfig(Component, config, preloadedFeatures, create_visual_element_createDomVisualElement));
+/**
+ * Create a DOM `motion` component with the provided string. This is primarily intended
+ * as a full alternative to `motion` for consumers who have to support environments that don't
+ * support `Proxy`.
+ *
+ * ```javascript
+ * import { createDomMotionComponent } from "framer-motion"
+ *
+ * const motion = {
+ *   div: createDomMotionComponent('div')
+ * }
+ * ```
+ *
+ * @public
+ */
+function createDomMotionComponent(key) {
+    return createMotionComponent(createDomMotionConfig(key, { forwardMotionProps: false }, preloadedFeatures, createDomVisualElement));
+}
+
+
+
+// EXTERNAL MODULE: ./node_modules/react-dom/index.js
+var react_dom = __webpack_require__(73935);
+var react_dom_namespaceObject = /*#__PURE__*/__webpack_require__.t(react_dom, 2);
+;// CONCATENATED MODULE: ./node_modules/@remix-run/router/dist/router.js
+/**
+ * @remix-run/router v1.16.1
+ *
+ * Copyright (c) Remix Software Inc.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE.md file in the root directory of this source tree.
+ *
+ * @license MIT
+ */
+function _extends() {
+  _extends = Object.assign ? Object.assign.bind() : function (target) {
+    for (var i = 1; i < arguments.length; i++) {
+      var source = arguments[i];
+      for (var key in source) {
+        if (Object.prototype.hasOwnProperty.call(source, key)) {
+          target[key] = source[key];
+        }
+      }
+    }
+    return target;
+  };
+  return _extends.apply(this, arguments);
+}
+
+////////////////////////////////////////////////////////////////////////////////
+//#region Types and Constants
+////////////////////////////////////////////////////////////////////////////////
+/**
+ * Actions represent the type of change to a location value.
+ */
+var router_Action;
+(function (Action) {
+  /**
+   * A POP indicates a change to an arbitrary index in the history stack, such
+   * as a back or forward navigation. It does not describe the direction of the
+   * navigation, only that the current index changed.
+   *
+   * Note: This is the default action for newly created history objects.
+   */
+  Action["Pop"] = "POP";
+  /**
+   * A PUSH indicates a new entry being added to the history stack, such as when
+   * a link is clicked and a new page loads. When this happens, all subsequent
+   * entries in the stack are lost.
+   */
+  Action["Push"] = "PUSH";
+  /**
+   * A REPLACE indicates the entry at the current index in the history stack
+   * being replaced by a new one.
+   */
+  Action["Replace"] = "REPLACE";
+})(router_Action || (router_Action = {}));
+const PopStateEventType = "popstate";
+/**
+ * Memory history stores the current location in memory. It is designed for use
+ * in stateful non-browser environments like tests and React Native.
+ */
+function router_createMemoryHistory(options) {
+  if (options === void 0) {
+    options = {};
+  }
+  let {
+    initialEntries = ["/"],
+    initialIndex,
+    v5Compat = false
+  } = options;
+  let entries; // Declare so we can access from createMemoryLocation
+  entries = initialEntries.map((entry, index) => createMemoryLocation(entry, typeof entry === "string" ? null : entry.state, index === 0 ? "default" : undefined));
+  let index = clampIndex(initialIndex == null ? entries.length - 1 : initialIndex);
+  let action = router_Action.Pop;
+  let listener = null;
+  function clampIndex(n) {
+    return Math.min(Math.max(n, 0), entries.length - 1);
+  }
+  function getCurrentLocation() {
+    return entries[index];
+  }
+  function createMemoryLocation(to, state, key) {
+    if (state === void 0) {
+      state = null;
+    }
+    let location = createLocation(entries ? getCurrentLocation().pathname : "/", to, state, key);
+    router_warning(location.pathname.charAt(0) === "/", "relative pathnames are not supported in memory history: " + JSON.stringify(to));
+    return location;
+  }
+  function createHref(to) {
+    return typeof to === "string" ? to : router_createPath(to);
+  }
+  let history = {
+    get index() {
+      return index;
+    },
+    get action() {
+      return action;
+    },
+    get location() {
+      return getCurrentLocation();
+    },
+    createHref,
+    createURL(to) {
+      return new URL(createHref(to), "http://localhost");
+    },
+    encodeLocation(to) {
+      let path = typeof to === "string" ? router_parsePath(to) : to;
+      return {
+        pathname: path.pathname || "",
+        search: path.search || "",
+        hash: path.hash || ""
+      };
+    },
+    push(to, state) {
+      action = router_Action.Push;
+      let nextLocation = createMemoryLocation(to, state);
+      index += 1;
+      entries.splice(index, entries.length, nextLocation);
+      if (v5Compat && listener) {
+        listener({
+          action,
+          location: nextLocation,
+          delta: 1
+        });
+      }
+    },
+    replace(to, state) {
+      action = router_Action.Replace;
+      let nextLocation = createMemoryLocation(to, state);
+      entries[index] = nextLocation;
+      if (v5Compat && listener) {
+        listener({
+          action,
+          location: nextLocation,
+          delta: 0
+        });
+      }
+    },
+    go(delta) {
+      action = router_Action.Pop;
+      let nextIndex = clampIndex(index + delta);
+      let nextLocation = entries[nextIndex];
+      index = nextIndex;
+      if (listener) {
+        listener({
+          action,
+          location: nextLocation,
+          delta
+        });
+      }
+    },
+    listen(fn) {
+      listener = fn;
+      return () => {
+        listener = null;
+      };
+    }
+  };
+  return history;
+}
+/**
+ * Browser history stores the location in regular URLs. This is the standard for
+ * most web apps, but it requires some configuration on the server to ensure you
+ * serve the same app at multiple URLs.
+ *
+ * @see https://github.com/remix-run/history/tree/main/docs/api-reference.md#createbrowserhistory
+ */
+function router_createBrowserHistory(options) {
+  if (options === void 0) {
+    options = {};
+  }
+  function createBrowserLocation(window, globalHistory) {
+    let {
+      pathname,
+      search,
+      hash
+    } = window.location;
+    return createLocation("", {
+      pathname,
+      search,
+      hash
+    },
+    // state defaults to `null` because `window.history.state` does
+    globalHistory.state && globalHistory.state.usr || null, globalHistory.state && globalHistory.state.key || "default");
+  }
+  function createBrowserHref(window, to) {
+    return typeof to === "string" ? to : router_createPath(to);
+  }
+  return getUrlBasedHistory(createBrowserLocation, createBrowserHref, null, options);
+}
+/**
+ * Hash history stores the location in window.location.hash. This makes it ideal
+ * for situations where you don't want to send the location to the server for
+ * some reason, either because you do cannot configure it or the URL space is
+ * reserved for something else.
+ *
+ * @see https://github.com/remix-run/history/tree/main/docs/api-reference.md#createhashhistory
+ */
+function router_createHashHistory(options) {
+  if (options === void 0) {
+    options = {};
+  }
+  function createHashLocation(window, globalHistory) {
+    let {
+      pathname = "/",
+      search = "",
+      hash = ""
+    } = router_parsePath(window.location.hash.substr(1));
+    // Hash URL should always have a leading / just like window.location.pathname
+    // does, so if an app ends up at a route like /#something then we add a
+    // leading slash so all of our path-matching behaves the same as if it would
+    // in a browser router.  This is particularly important when there exists a
+    // root splat route (<Route path="*">) since that matches internally against
+    // "/*" and we'd expect /#something to 404 in a hash router app.
+    if (!pathname.startsWith("/") && !pathname.startsWith(".")) {
+      pathname = "/" + pathname;
+    }
+    return createLocation("", {
+      pathname,
+      search,
+      hash
+    },
+    // state defaults to `null` because `window.history.state` does
+    globalHistory.state && globalHistory.state.usr || null, globalHistory.state && globalHistory.state.key || "default");
+  }
+  function createHashHref(window, to) {
+    let base = window.document.querySelector("base");
+    let href = "";
+    if (base && base.getAttribute("href")) {
+      let url = window.location.href;
+      let hashIndex = url.indexOf("#");
+      href = hashIndex === -1 ? url : url.slice(0, hashIndex);
+    }
+    return href + "#" + (typeof to === "string" ? to : router_createPath(to));
+  }
+  function validateHashLocation(location, to) {
+    router_warning(location.pathname.charAt(0) === "/", "relative pathnames are not supported in hash history.push(" + JSON.stringify(to) + ")");
+  }
+  return getUrlBasedHistory(createHashLocation, createHashHref, validateHashLocation, options);
+}
+function router_invariant(value, message) {
+  if (value === false || value === null || typeof value === "undefined") {
+    throw new Error(message);
+  }
+}
+function router_warning(cond, message) {
+  if (!cond) {
+    // eslint-disable-next-line no-console
+    if (typeof console !== "undefined") console.warn(message);
+    try {
+      // Welcome to debugging history!
+      //
+      // This error is thrown as a convenience, so you can more easily
+      // find the source for a warning that appears in the console by
+      // enabling "pause on exceptions" in your JavaScript debugger.
+      throw new Error(message);
+      // eslint-disable-next-line no-empty
+    } catch (e) {}
+  }
+}
+function createKey() {
+  return Math.random().toString(36).substr(2, 8);
+}
+/**
+ * For browser-based histories, we combine the state and key into an object
+ */
+function getHistoryState(location, index) {
+  return {
+    usr: location.state,
+    key: location.key,
+    idx: index
+  };
+}
+/**
+ * Creates a Location object with a unique key from the given Path
+ */
+function createLocation(current, to, state, key) {
+  if (state === void 0) {
+    state = null;
+  }
+  let location = _extends({
+    pathname: typeof current === "string" ? current : current.pathname,
+    search: "",
+    hash: ""
+  }, typeof to === "string" ? router_parsePath(to) : to, {
+    state,
+    // TODO: This could be cleaned up.  push/replace should probably just take
+    // full Locations now and avoid the need to run through this flow at all
+    // But that's a pretty big refactor to the current test suite so going to
+    // keep as is for the time being and just let any incoming keys take precedence
+    key: to && to.key || key || createKey()
+  });
+  return location;
+}
+/**
+ * Creates a string URL path from the given pathname, search, and hash components.
+ */
+function router_createPath(_ref) {
+  let {
+    pathname = "/",
+    search = "",
+    hash = ""
+  } = _ref;
+  if (search && search !== "?") pathname += search.charAt(0) === "?" ? search : "?" + search;
+  if (hash && hash !== "#") pathname += hash.charAt(0) === "#" ? hash : "#" + hash;
+  return pathname;
+}
+/**
+ * Parses a string URL path into its separate pathname, search, and hash components.
+ */
+function router_parsePath(path) {
+  let parsedPath = {};
+  if (path) {
+    let hashIndex = path.indexOf("#");
+    if (hashIndex >= 0) {
+      parsedPath.hash = path.substr(hashIndex);
+      path = path.substr(0, hashIndex);
+    }
+    let searchIndex = path.indexOf("?");
+    if (searchIndex >= 0) {
+      parsedPath.search = path.substr(searchIndex);
+      path = path.substr(0, searchIndex);
+    }
+    if (path) {
+      parsedPath.pathname = path;
+    }
+  }
+  return parsedPath;
+}
+function getUrlBasedHistory(getLocation, createHref, validateLocation, options) {
+  if (options === void 0) {
+    options = {};
+  }
+  let {
+    window = document.defaultView,
+    v5Compat = false
+  } = options;
+  let globalHistory = window.history;
+  let action = router_Action.Pop;
+  let listener = null;
+  let index = getIndex();
+  // Index should only be null when we initialize. If not, it's because the
+  // user called history.pushState or history.replaceState directly, in which
+  // case we should log a warning as it will result in bugs.
+  if (index == null) {
+    index = 0;
+    globalHistory.replaceState(_extends({}, globalHistory.state, {
+      idx: index
+    }), "");
+  }
+  function getIndex() {
+    let state = globalHistory.state || {
+      idx: null
+    };
+    return state.idx;
+  }
+  function handlePop() {
+    action = router_Action.Pop;
+    let nextIndex = getIndex();
+    let delta = nextIndex == null ? null : nextIndex - index;
+    index = nextIndex;
+    if (listener) {
+      listener({
+        action,
+        location: history.location,
+        delta
+      });
+    }
+  }
+  function push(to, state) {
+    action = router_Action.Push;
+    let location = createLocation(history.location, to, state);
+    if (validateLocation) validateLocation(location, to);
+    index = getIndex() + 1;
+    let historyState = getHistoryState(location, index);
+    let url = history.createHref(location);
+    // try...catch because iOS limits us to 100 pushState calls :/
+    try {
+      globalHistory.pushState(historyState, "", url);
+    } catch (error) {
+      // If the exception is because `state` can't be serialized, let that throw
+      // outwards just like a replace call would so the dev knows the cause
+      // https://html.spec.whatwg.org/multipage/nav-history-apis.html#shared-history-push/replace-state-steps
+      // https://html.spec.whatwg.org/multipage/structured-data.html#structuredserializeinternal
+      if (error instanceof DOMException && error.name === "DataCloneError") {
+        throw error;
+      }
+      // They are going to lose state here, but there is no real
+      // way to warn them about it since the page will refresh...
+      window.location.assign(url);
+    }
+    if (v5Compat && listener) {
+      listener({
+        action,
+        location: history.location,
+        delta: 1
+      });
+    }
+  }
+  function replace(to, state) {
+    action = router_Action.Replace;
+    let location = createLocation(history.location, to, state);
+    if (validateLocation) validateLocation(location, to);
+    index = getIndex();
+    let historyState = getHistoryState(location, index);
+    let url = history.createHref(location);
+    globalHistory.replaceState(historyState, "", url);
+    if (v5Compat && listener) {
+      listener({
+        action,
+        location: history.location,
+        delta: 0
+      });
+    }
+  }
+  function createURL(to) {
+    // window.location.origin is "null" (the literal string value) in Firefox
+    // under certain conditions, notably when serving from a local HTML file
+    // See https://bugzilla.mozilla.org/show_bug.cgi?id=878297
+    let base = window.location.origin !== "null" ? window.location.origin : window.location.href;
+    let href = typeof to === "string" ? to : router_createPath(to);
+    // Treating this as a full URL will strip any trailing spaces so we need to
+    // pre-encode them since they might be part of a matching splat param from
+    // an ancestor route
+    href = href.replace(/ $/, "%20");
+    router_invariant(base, "No window.location.(origin|href) available to create URL for href: " + href);
+    return new URL(href, base);
+  }
+  let history = {
+    get action() {
+      return action;
+    },
+    get location() {
+      return getLocation(window, globalHistory);
+    },
+    listen(fn) {
+      if (listener) {
+        throw new Error("A history only accepts one active listener");
+      }
+      window.addEventListener(PopStateEventType, handlePop);
+      listener = fn;
+      return () => {
+        window.removeEventListener(PopStateEventType, handlePop);
+        listener = null;
+      };
+    },
+    createHref(to) {
+      return createHref(window, to);
+    },
+    createURL,
+    encodeLocation(to) {
+      // Encode a Location the same way window.location would
+      let url = createURL(to);
+      return {
+        pathname: url.pathname,
+        search: url.search,
+        hash: url.hash
+      };
+    },
+    push,
+    replace,
+    go(n) {
+      return globalHistory.go(n);
+    }
+  };
+  return history;
+}
+//#endregion
+
+var ResultType;
+(function (ResultType) {
+  ResultType["data"] = "data";
+  ResultType["deferred"] = "deferred";
+  ResultType["redirect"] = "redirect";
+  ResultType["error"] = "error";
+})(ResultType || (ResultType = {}));
+const immutableRouteKeys = new Set(["lazy", "caseSensitive", "path", "id", "index", "children"]);
+function isIndexRoute(route) {
+  return route.index === true;
+}
+// Walk the route tree generating unique IDs where necessary, so we are working
+// solely with AgnosticDataRouteObject's within the Router
+function convertRoutesToDataRoutes(routes, mapRouteProperties, parentPath, manifest) {
+  if (parentPath === void 0) {
+    parentPath = [];
+  }
+  if (manifest === void 0) {
+    manifest = {};
+  }
+  return routes.map((route, index) => {
+    let treePath = [...parentPath, index];
+    let id = typeof route.id === "string" ? route.id : treePath.join("-");
+    router_invariant(route.index !== true || !route.children, "Cannot specify children on an index route");
+    router_invariant(!manifest[id], "Found a route id collision on id \"" + id + "\".  Route " + "id's must be globally unique within Data Router usages");
+    if (isIndexRoute(route)) {
+      let indexRoute = _extends({}, route, mapRouteProperties(route), {
+        id
+      });
+      manifest[id] = indexRoute;
+      return indexRoute;
+    } else {
+      let pathOrLayoutRoute = _extends({}, route, mapRouteProperties(route), {
+        id,
+        children: undefined
+      });
+      manifest[id] = pathOrLayoutRoute;
+      if (route.children) {
+        pathOrLayoutRoute.children = convertRoutesToDataRoutes(route.children, mapRouteProperties, treePath, manifest);
+      }
+      return pathOrLayoutRoute;
+    }
+  });
+}
+/**
+ * Matches the given routes to a location and returns the match data.
+ *
+ * @see https://reactrouter.com/utils/match-routes
+ */
+function router_matchRoutes(routes, locationArg, basename) {
+  if (basename === void 0) {
+    basename = "/";
+  }
+  let location = typeof locationArg === "string" ? router_parsePath(locationArg) : locationArg;
+  let pathname = router_stripBasename(location.pathname || "/", basename);
+  if (pathname == null) {
+    return null;
+  }
+  let branches = flattenRoutes(routes);
+  rankRouteBranches(branches);
+  let matches = null;
+  for (let i = 0; matches == null && i < branches.length; ++i) {
+    // Incoming pathnames are generally encoded from either window.location
+    // or from router.navigate, but we want to match against the unencoded
+    // paths in the route definitions.  Memory router locations won't be
+    // encoded here but there also shouldn't be anything to decode so this
+    // should be a safe operation.  This avoids needing matchRoutes to be
+    // history-aware.
+    let decoded = decodePath(pathname);
+    matches = matchRouteBranch(branches[i], decoded);
+  }
+  return matches;
+}
+function convertRouteMatchToUiMatch(match, loaderData) {
+  let {
+    route,
+    pathname,
+    params
+  } = match;
+  return {
+    id: route.id,
+    pathname,
+    params,
+    data: loaderData[route.id],
+    handle: route.handle
+  };
+}
+function flattenRoutes(routes, branches, parentsMeta, parentPath) {
+  if (branches === void 0) {
+    branches = [];
+  }
+  if (parentsMeta === void 0) {
+    parentsMeta = [];
+  }
+  if (parentPath === void 0) {
+    parentPath = "";
+  }
+  let flattenRoute = (route, index, relativePath) => {
+    let meta = {
+      relativePath: relativePath === undefined ? route.path || "" : relativePath,
+      caseSensitive: route.caseSensitive === true,
+      childrenIndex: index,
+      route
+    };
+    if (meta.relativePath.startsWith("/")) {
+      router_invariant(meta.relativePath.startsWith(parentPath), "Absolute route path \"" + meta.relativePath + "\" nested under path " + ("\"" + parentPath + "\" is not valid. An absolute child route path ") + "must start with the combined path of all its parent routes.");
+      meta.relativePath = meta.relativePath.slice(parentPath.length);
+    }
+    let path = router_joinPaths([parentPath, meta.relativePath]);
+    let routesMeta = parentsMeta.concat(meta);
+    // Add the children before adding this route to the array, so we traverse the
+    // route tree depth-first and child routes appear before their parents in
+    // the "flattened" version.
+    if (route.children && route.children.length > 0) {
+      router_invariant(
+      // Our types know better, but runtime JS may not!
+      // @ts-expect-error
+      route.index !== true, "Index routes must not have child routes. Please remove " + ("all child routes from route path \"" + path + "\"."));
+      flattenRoutes(route.children, branches, routesMeta, path);
+    }
+    // Routes without a path shouldn't ever match by themselves unless they are
+    // index routes, so don't add them to the list of possible branches.
+    if (route.path == null && !route.index) {
+      return;
+    }
+    branches.push({
+      path,
+      score: computeScore(path, route.index),
+      routesMeta
+    });
+  };
+  routes.forEach((route, index) => {
+    var _route$path;
+    // coarse-grain check for optional params
+    if (route.path === "" || !((_route$path = route.path) != null && _route$path.includes("?"))) {
+      flattenRoute(route, index);
+    } else {
+      for (let exploded of explodeOptionalSegments(route.path)) {
+        flattenRoute(route, index, exploded);
+      }
+    }
+  });
+  return branches;
+}
+/**
+ * Computes all combinations of optional path segments for a given path,
+ * excluding combinations that are ambiguous and of lower priority.
+ *
+ * For example, `/one/:two?/three/:four?/:five?` explodes to:
+ * - `/one/three`
+ * - `/one/:two/three`
+ * - `/one/three/:four`
+ * - `/one/three/:five`
+ * - `/one/:two/three/:four`
+ * - `/one/:two/three/:five`
+ * - `/one/three/:four/:five`
+ * - `/one/:two/three/:four/:five`
+ */
+function explodeOptionalSegments(path) {
+  let segments = path.split("/");
+  if (segments.length === 0) return [];
+  let [first, ...rest] = segments;
+  // Optional path segments are denoted by a trailing `?`
+  let isOptional = first.endsWith("?");
+  // Compute the corresponding required segment: `foo?` -> `foo`
+  let required = first.replace(/\?$/, "");
+  if (rest.length === 0) {
+    // Intepret empty string as omitting an optional segment
+    // `["one", "", "three"]` corresponds to omitting `:two` from `/one/:two?/three` -> `/one/three`
+    return isOptional ? [required, ""] : [required];
+  }
+  let restExploded = explodeOptionalSegments(rest.join("/"));
+  let result = [];
+  // All child paths with the prefix.  Do this for all children before the
+  // optional version for all children, so we get consistent ordering where the
+  // parent optional aspect is preferred as required.  Otherwise, we can get
+  // child sections interspersed where deeper optional segments are higher than
+  // parent optional segments, where for example, /:two would explode _earlier_
+  // then /:one.  By always including the parent as required _for all children_
+  // first, we avoid this issue
+  result.push(...restExploded.map(subpath => subpath === "" ? required : [required, subpath].join("/")));
+  // Then, if this is an optional value, add all child versions without
+  if (isOptional) {
+    result.push(...restExploded);
+  }
+  // for absolute paths, ensure `/` instead of empty segment
+  return result.map(exploded => path.startsWith("/") && exploded === "" ? "/" : exploded);
+}
+function rankRouteBranches(branches) {
+  branches.sort((a, b) => a.score !== b.score ? b.score - a.score // Higher score first
+  : compareIndexes(a.routesMeta.map(meta => meta.childrenIndex), b.routesMeta.map(meta => meta.childrenIndex)));
+}
+const paramRe = /^:[\w-]+$/;
+const dynamicSegmentValue = 3;
+const indexRouteValue = 2;
+const emptySegmentValue = 1;
+const staticSegmentValue = 10;
+const splatPenalty = (/* unused pure expression or super */ null && (-2));
+const isSplat = s => s === "*";
+function computeScore(path, index) {
+  let segments = path.split("/");
+  let initialScore = segments.length;
+  if (segments.some(isSplat)) {
+    initialScore += splatPenalty;
+  }
+  if (index) {
+    initialScore += indexRouteValue;
+  }
+  return segments.filter(s => !isSplat(s)).reduce((score, segment) => score + (paramRe.test(segment) ? dynamicSegmentValue : segment === "" ? emptySegmentValue : staticSegmentValue), initialScore);
+}
+function compareIndexes(a, b) {
+  let siblings = a.length === b.length && a.slice(0, -1).every((n, i) => n === b[i]);
+  return siblings ?
+  // If two routes are siblings, we should try to match the earlier sibling
+  // first. This allows people to have fine-grained control over the matching
+  // behavior by simply putting routes with identical paths in the order they
+  // want them tried.
+  a[a.length - 1] - b[b.length - 1] :
+  // Otherwise, it doesn't really make sense to rank non-siblings by index,
+  // so they sort equally.
+  0;
+}
+function matchRouteBranch(branch, pathname) {
+  let {
+    routesMeta
+  } = branch;
+  let matchedParams = {};
+  let matchedPathname = "/";
+  let matches = [];
+  for (let i = 0; i < routesMeta.length; ++i) {
+    let meta = routesMeta[i];
+    let end = i === routesMeta.length - 1;
+    let remainingPathname = matchedPathname === "/" ? pathname : pathname.slice(matchedPathname.length) || "/";
+    let match = router_matchPath({
+      path: meta.relativePath,
+      caseSensitive: meta.caseSensitive,
+      end
+    }, remainingPathname);
+    if (!match) return null;
+    Object.assign(matchedParams, match.params);
+    let route = meta.route;
+    matches.push({
+      // TODO: Can this as be avoided?
+      params: matchedParams,
+      pathname: router_joinPaths([matchedPathname, match.pathname]),
+      pathnameBase: normalizePathname(router_joinPaths([matchedPathname, match.pathnameBase])),
+      route
+    });
+    if (match.pathnameBase !== "/") {
+      matchedPathname = router_joinPaths([matchedPathname, match.pathnameBase]);
+    }
+  }
+  return matches;
+}
+/**
+ * Returns a path with params interpolated.
+ *
+ * @see https://reactrouter.com/utils/generate-path
+ */
+function generatePath(originalPath, params) {
+  if (params === void 0) {
+    params = {};
+  }
+  let path = originalPath;
+  if (path.endsWith("*") && path !== "*" && !path.endsWith("/*")) {
+    router_warning(false, "Route path \"" + path + "\" will be treated as if it were " + ("\"" + path.replace(/\*$/, "/*") + "\" because the `*` character must ") + "always follow a `/` in the pattern. To get rid of this warning, " + ("please change the route path to \"" + path.replace(/\*$/, "/*") + "\"."));
+    path = path.replace(/\*$/, "/*");
+  }
+  // ensure `/` is added at the beginning if the path is absolute
+  const prefix = path.startsWith("/") ? "/" : "";
+  const stringify = p => p == null ? "" : typeof p === "string" ? p : String(p);
+  const segments = path.split(/\/+/).map((segment, index, array) => {
+    const isLastSegment = index === array.length - 1;
+    // only apply the splat if it's the last segment
+    if (isLastSegment && segment === "*") {
+      const star = "*";
+      // Apply the splat
+      return stringify(params[star]);
+    }
+    const keyMatch = segment.match(/^:([\w-]+)(\??)$/);
+    if (keyMatch) {
+      const [, key, optional] = keyMatch;
+      let param = params[key];
+      router_invariant(optional === "?" || param != null, "Missing \":" + key + "\" param");
+      return stringify(param);
+    }
+    // Remove any optional markers from optional static segments
+    return segment.replace(/\?$/g, "");
+  })
+  // Remove empty segments
+  .filter(segment => !!segment);
+  return prefix + segments.join("/");
+}
+/**
+ * Performs pattern matching on a URL pathname and returns information about
+ * the match.
+ *
+ * @see https://reactrouter.com/utils/match-path
+ */
+function router_matchPath(pattern, pathname) {
+  if (typeof pattern === "string") {
+    pattern = {
+      path: pattern,
+      caseSensitive: false,
+      end: true
+    };
+  }
+  let [matcher, compiledParams] = compilePath(pattern.path, pattern.caseSensitive, pattern.end);
+  let match = pathname.match(matcher);
+  if (!match) return null;
+  let matchedPathname = match[0];
+  let pathnameBase = matchedPathname.replace(/(.)\/+$/, "$1");
+  let captureGroups = match.slice(1);
+  let params = compiledParams.reduce((memo, _ref, index) => {
+    let {
+      paramName,
+      isOptional
+    } = _ref;
+    // We need to compute the pathnameBase here using the raw splat value
+    // instead of using params["*"] later because it will be decoded then
+    if (paramName === "*") {
+      let splatValue = captureGroups[index] || "";
+      pathnameBase = matchedPathname.slice(0, matchedPathname.length - splatValue.length).replace(/(.)\/+$/, "$1");
+    }
+    const value = captureGroups[index];
+    if (isOptional && !value) {
+      memo[paramName] = undefined;
+    } else {
+      memo[paramName] = (value || "").replace(/%2F/g, "/");
+    }
+    return memo;
+  }, {});
+  return {
+    params,
+    pathname: matchedPathname,
+    pathnameBase,
+    pattern
+  };
+}
+function compilePath(path, caseSensitive, end) {
+  if (caseSensitive === void 0) {
+    caseSensitive = false;
+  }
+  if (end === void 0) {
+    end = true;
+  }
+  router_warning(path === "*" || !path.endsWith("*") || path.endsWith("/*"), "Route path \"" + path + "\" will be treated as if it were " + ("\"" + path.replace(/\*$/, "/*") + "\" because the `*` character must ") + "always follow a `/` in the pattern. To get rid of this warning, " + ("please change the route path to \"" + path.replace(/\*$/, "/*") + "\"."));
+  let params = [];
+  let regexpSource = "^" + path.replace(/\/*\*?$/, "") // Ignore trailing / and /*, we'll handle it below
+  .replace(/^\/*/, "/") // Make sure it has a leading /
+  .replace(/[\\.*+^${}|()[\]]/g, "\\$&") // Escape special regex chars
+  .replace(/\/:([\w-]+)(\?)?/g, (_, paramName, isOptional) => {
+    params.push({
+      paramName,
+      isOptional: isOptional != null
+    });
+    return isOptional ? "/?([^\\/]+)?" : "/([^\\/]+)";
+  });
+  if (path.endsWith("*")) {
+    params.push({
+      paramName: "*"
+    });
+    regexpSource += path === "*" || path === "/*" ? "(.*)$" // Already matched the initial /, just match the rest
+    : "(?:\\/(.+)|\\/*)$"; // Don't include the / in params["*"]
+  } else if (end) {
+    // When matching to the end, ignore trailing slashes
+    regexpSource += "\\/*$";
+  } else if (path !== "" && path !== "/") {
+    // If our path is non-empty and contains anything beyond an initial slash,
+    // then we have _some_ form of path in our regex, so we should expect to
+    // match only if we find the end of this path segment.  Look for an optional
+    // non-captured trailing slash (to match a portion of the URL) or the end
+    // of the path (if we've matched to the end).  We used to do this with a
+    // word boundary but that gives false positives on routes like
+    // /user-preferences since `-` counts as a word boundary.
+    regexpSource += "(?:(?=\\/|$))";
+  } else ;
+  let matcher = new RegExp(regexpSource, caseSensitive ? undefined : "i");
+  return [matcher, params];
+}
+function decodePath(value) {
+  try {
+    return value.split("/").map(v => decodeURIComponent(v).replace(/\//g, "%2F")).join("/");
+  } catch (error) {
+    router_warning(false, "The URL path \"" + value + "\" could not be decoded because it is is a " + "malformed URL segment. This is probably due to a bad percent " + ("encoding (" + error + ")."));
+    return value;
+  }
+}
+/**
+ * @private
+ */
+function router_stripBasename(pathname, basename) {
+  if (basename === "/") return pathname;
+  if (!pathname.toLowerCase().startsWith(basename.toLowerCase())) {
+    return null;
+  }
+  // We want to leave trailing slash behavior in the user's control, so if they
+  // specify a basename with a trailing slash, we should support it
+  let startIndex = basename.endsWith("/") ? basename.length - 1 : basename.length;
+  let nextChar = pathname.charAt(startIndex);
+  if (nextChar && nextChar !== "/") {
+    // pathname does not start with basename/
+    return null;
+  }
+  return pathname.slice(startIndex) || "/";
+}
+/**
+ * Returns a resolved path object relative to the given pathname.
+ *
+ * @see https://reactrouter.com/utils/resolve-path
+ */
+function resolvePath(to, fromPathname) {
+  if (fromPathname === void 0) {
+    fromPathname = "/";
+  }
+  let {
+    pathname: toPathname,
+    search = "",
+    hash = ""
+  } = typeof to === "string" ? router_parsePath(to) : to;
+  let pathname = toPathname ? toPathname.startsWith("/") ? toPathname : resolvePathname(toPathname, fromPathname) : fromPathname;
+  return {
+    pathname,
+    search: normalizeSearch(search),
+    hash: normalizeHash(hash)
+  };
+}
+function resolvePathname(relativePath, fromPathname) {
+  let segments = fromPathname.replace(/\/+$/, "").split("/");
+  let relativeSegments = relativePath.split("/");
+  relativeSegments.forEach(segment => {
+    if (segment === "..") {
+      // Keep the root "" segment so the pathname starts at /
+      if (segments.length > 1) segments.pop();
+    } else if (segment !== ".") {
+      segments.push(segment);
+    }
+  });
+  return segments.length > 1 ? segments.join("/") : "/";
+}
+function getInvalidPathError(char, field, dest, path) {
+  return "Cannot include a '" + char + "' character in a manually specified " + ("`to." + field + "` field [" + JSON.stringify(path) + "].  Please separate it out to the ") + ("`to." + dest + "` field. Alternatively you may provide the full path as ") + "a string in <Link to=\"...\"> and the router will parse it for you.";
+}
+/**
+ * @private
+ *
+ * When processing relative navigation we want to ignore ancestor routes that
+ * do not contribute to the path, such that index/pathless layout routes don't
+ * interfere.
+ *
+ * For example, when moving a route element into an index route and/or a
+ * pathless layout route, relative link behavior contained within should stay
+ * the same.  Both of the following examples should link back to the root:
+ *
+ *   <Route path="/">
+ *     <Route path="accounts" element={<Link to=".."}>
+ *   </Route>
+ *
+ *   <Route path="/">
+ *     <Route path="accounts">
+ *       <Route element={<AccountsLayout />}>       // <-- Does not contribute
+ *         <Route index element={<Link to=".."} />  // <-- Does not contribute
+ *       </Route
+ *     </Route>
+ *   </Route>
+ */
+function getPathContributingMatches(matches) {
+  return matches.filter((match, index) => index === 0 || match.route.path && match.route.path.length > 0);
+}
+// Return the array of pathnames for the current route matches - used to
+// generate the routePathnames input for resolveTo()
+function getResolveToMatches(matches, v7_relativeSplatPath) {
+  let pathMatches = getPathContributingMatches(matches);
+  // When v7_relativeSplatPath is enabled, use the full pathname for the leaf
+  // match so we include splat values for "." links.  See:
+  // https://github.com/remix-run/react-router/issues/11052#issuecomment-1836589329
+  if (v7_relativeSplatPath) {
+    return pathMatches.map((match, idx) => idx === matches.length - 1 ? match.pathname : match.pathnameBase);
+  }
+  return pathMatches.map(match => match.pathnameBase);
+}
+/**
+ * @private
+ */
+function router_resolveTo(toArg, routePathnames, locationPathname, isPathRelative) {
+  if (isPathRelative === void 0) {
+    isPathRelative = false;
+  }
+  let to;
+  if (typeof toArg === "string") {
+    to = router_parsePath(toArg);
+  } else {
+    to = _extends({}, toArg);
+    router_invariant(!to.pathname || !to.pathname.includes("?"), getInvalidPathError("?", "pathname", "search", to));
+    router_invariant(!to.pathname || !to.pathname.includes("#"), getInvalidPathError("#", "pathname", "hash", to));
+    router_invariant(!to.search || !to.search.includes("#"), getInvalidPathError("#", "search", "hash", to));
+  }
+  let isEmptyPath = toArg === "" || to.pathname === "";
+  let toPathname = isEmptyPath ? "/" : to.pathname;
+  let from;
+  // Routing is relative to the current pathname if explicitly requested.
+  //
+  // If a pathname is explicitly provided in `to`, it should be relative to the
+  // route context. This is explained in `Note on `<Link to>` values` in our
+  // migration guide from v5 as a means of disambiguation between `to` values
+  // that begin with `/` and those that do not. However, this is problematic for
+  // `to` values that do not provide a pathname. `to` can simply be a search or
+  // hash string, in which case we should assume that the navigation is relative
+  // to the current location's pathname and *not* the route pathname.
+  if (toPathname == null) {
+    from = locationPathname;
+  } else {
+    let routePathnameIndex = routePathnames.length - 1;
+    // With relative="route" (the default), each leading .. segment means
+    // "go up one route" instead of "go up one URL segment".  This is a key
+    // difference from how <a href> works and a major reason we call this a
+    // "to" value instead of a "href".
+    if (!isPathRelative && toPathname.startsWith("..")) {
+      let toSegments = toPathname.split("/");
+      while (toSegments[0] === "..") {
+        toSegments.shift();
+        routePathnameIndex -= 1;
+      }
+      to.pathname = toSegments.join("/");
+    }
+    from = routePathnameIndex >= 0 ? routePathnames[routePathnameIndex] : "/";
+  }
+  let path = resolvePath(to, from);
+  // Ensure the pathname has a trailing slash if the original "to" had one
+  let hasExplicitTrailingSlash = toPathname && toPathname !== "/" && toPathname.endsWith("/");
+  // Or if this was a link to the current path which has a trailing slash
+  let hasCurrentTrailingSlash = (isEmptyPath || toPathname === ".") && locationPathname.endsWith("/");
+  if (!path.pathname.endsWith("/") && (hasExplicitTrailingSlash || hasCurrentTrailingSlash)) {
+    path.pathname += "/";
+  }
+  return path;
+}
+/**
+ * @private
+ */
+function getToPathname(to) {
+  // Empty strings should be treated the same as / paths
+  return to === "" || to.pathname === "" ? "/" : typeof to === "string" ? router_parsePath(to).pathname : to.pathname;
+}
+/**
+ * @private
+ */
+const router_joinPaths = paths => paths.join("/").replace(/\/\/+/g, "/");
+/**
+ * @private
+ */
+const normalizePathname = pathname => pathname.replace(/\/+$/, "").replace(/^\/*/, "/");
+/**
+ * @private
+ */
+const normalizeSearch = search => !search || search === "?" ? "" : search.startsWith("?") ? search : "?" + search;
+/**
+ * @private
+ */
+const normalizeHash = hash => !hash || hash === "#" ? "" : hash.startsWith("#") ? hash : "#" + hash;
+/**
+ * This is a shortcut for creating `application/json` responses. Converts `data`
+ * to JSON and sets the `Content-Type` header.
+ */
+const json = function json(data, init) {
+  if (init === void 0) {
+    init = {};
+  }
+  let responseInit = typeof init === "number" ? {
+    status: init
+  } : init;
+  let headers = new Headers(responseInit.headers);
+  if (!headers.has("Content-Type")) {
+    headers.set("Content-Type", "application/json; charset=utf-8");
+  }
+  return new Response(JSON.stringify(data), _extends({}, responseInit, {
+    headers
+  }));
+};
+class router_AbortedDeferredError extends Error {}
+class DeferredData {
+  constructor(data, responseInit) {
+    this.pendingKeysSet = new Set();
+    this.subscribers = new Set();
+    this.deferredKeys = [];
+    router_invariant(data && typeof data === "object" && !Array.isArray(data), "defer() only accepts plain objects");
+    // Set up an AbortController + Promise we can race against to exit early
+    // cancellation
+    let reject;
+    this.abortPromise = new Promise((_, r) => reject = r);
+    this.controller = new AbortController();
+    let onAbort = () => reject(new router_AbortedDeferredError("Deferred data aborted"));
+    this.unlistenAbortSignal = () => this.controller.signal.removeEventListener("abort", onAbort);
+    this.controller.signal.addEventListener("abort", onAbort);
+    this.data = Object.entries(data).reduce((acc, _ref2) => {
+      let [key, value] = _ref2;
+      return Object.assign(acc, {
+        [key]: this.trackPromise(key, value)
+      });
+    }, {});
+    if (this.done) {
+      // All incoming values were resolved
+      this.unlistenAbortSignal();
+    }
+    this.init = responseInit;
+  }
+  trackPromise(key, value) {
+    if (!(value instanceof Promise)) {
+      return value;
+    }
+    this.deferredKeys.push(key);
+    this.pendingKeysSet.add(key);
+    // We store a little wrapper promise that will be extended with
+    // _data/_error props upon resolve/reject
+    let promise = Promise.race([value, this.abortPromise]).then(data => this.onSettle(promise, key, undefined, data), error => this.onSettle(promise, key, error));
+    // Register rejection listeners to avoid uncaught promise rejections on
+    // errors or aborted deferred values
+    promise.catch(() => {});
+    Object.defineProperty(promise, "_tracked", {
+      get: () => true
+    });
+    return promise;
+  }
+  onSettle(promise, key, error, data) {
+    if (this.controller.signal.aborted && error instanceof router_AbortedDeferredError) {
+      this.unlistenAbortSignal();
+      Object.defineProperty(promise, "_error", {
+        get: () => error
+      });
+      return Promise.reject(error);
+    }
+    this.pendingKeysSet.delete(key);
+    if (this.done) {
+      // Nothing left to abort!
+      this.unlistenAbortSignal();
+    }
+    // If the promise was resolved/rejected with undefined, we'll throw an error as you
+    // should always resolve with a value or null
+    if (error === undefined && data === undefined) {
+      let undefinedError = new Error("Deferred data for key \"" + key + "\" resolved/rejected with `undefined`, " + "you must resolve/reject with a value or `null`.");
+      Object.defineProperty(promise, "_error", {
+        get: () => undefinedError
+      });
+      this.emit(false, key);
+      return Promise.reject(undefinedError);
+    }
+    if (data === undefined) {
+      Object.defineProperty(promise, "_error", {
+        get: () => error
+      });
+      this.emit(false, key);
+      return Promise.reject(error);
+    }
+    Object.defineProperty(promise, "_data", {
+      get: () => data
+    });
+    this.emit(false, key);
+    return data;
+  }
+  emit(aborted, settledKey) {
+    this.subscribers.forEach(subscriber => subscriber(aborted, settledKey));
+  }
+  subscribe(fn) {
+    this.subscribers.add(fn);
+    return () => this.subscribers.delete(fn);
+  }
+  cancel() {
+    this.controller.abort();
+    this.pendingKeysSet.forEach((v, k) => this.pendingKeysSet.delete(k));
+    this.emit(true);
+  }
+  async resolveData(signal) {
+    let aborted = false;
+    if (!this.done) {
+      let onAbort = () => this.cancel();
+      signal.addEventListener("abort", onAbort);
+      aborted = await new Promise(resolve => {
+        this.subscribe(aborted => {
+          signal.removeEventListener("abort", onAbort);
+          if (aborted || this.done) {
+            resolve(aborted);
+          }
+        });
+      });
+    }
+    return aborted;
+  }
+  get done() {
+    return this.pendingKeysSet.size === 0;
+  }
+  get unwrappedData() {
+    router_invariant(this.data !== null && this.done, "Can only unwrap data on initialized and settled deferreds");
+    return Object.entries(this.data).reduce((acc, _ref3) => {
+      let [key, value] = _ref3;
+      return Object.assign(acc, {
+        [key]: unwrapTrackedPromise(value)
+      });
+    }, {});
+  }
+  get pendingKeys() {
+    return Array.from(this.pendingKeysSet);
+  }
+}
+function isTrackedPromise(value) {
+  return value instanceof Promise && value._tracked === true;
+}
+function unwrapTrackedPromise(value) {
+  if (!isTrackedPromise(value)) {
+    return value;
+  }
+  if (value._error) {
+    throw value._error;
+  }
+  return value._data;
+}
+const defer = function defer(data, init) {
+  if (init === void 0) {
+    init = {};
+  }
+  let responseInit = typeof init === "number" ? {
+    status: init
+  } : init;
+  return new DeferredData(data, responseInit);
+};
+/**
+ * A redirect response. Sets the status code and the `Location` header.
+ * Defaults to "302 Found".
+ */
+const redirect = function redirect(url, init) {
+  if (init === void 0) {
+    init = 302;
+  }
+  let responseInit = init;
+  if (typeof responseInit === "number") {
+    responseInit = {
+      status: responseInit
+    };
+  } else if (typeof responseInit.status === "undefined") {
+    responseInit.status = 302;
+  }
+  let headers = new Headers(responseInit.headers);
+  headers.set("Location", url);
+  return new Response(null, _extends({}, responseInit, {
+    headers
+  }));
+};
+/**
+ * A redirect response that will force a document reload to the new location.
+ * Sets the status code and the `Location` header.
+ * Defaults to "302 Found".
+ */
+const redirectDocument = (url, init) => {
+  let response = redirect(url, init);
+  response.headers.set("X-Remix-Reload-Document", "true");
+  return response;
+};
+/**
+ * @private
+ * Utility class we use to hold auto-unwrapped 4xx/5xx Response bodies
+ *
+ * We don't export the class for public use since it's an implementation
+ * detail, but we export the interface above so folks can build their own
+ * abstractions around instances via isRouteErrorResponse()
+ */
+class ErrorResponseImpl {
+  constructor(status, statusText, data, internal) {
+    if (internal === void 0) {
+      internal = false;
+    }
+    this.status = status;
+    this.statusText = statusText || "";
+    this.internal = internal;
+    if (data instanceof Error) {
+      this.data = data.toString();
+      this.error = data;
+    } else {
+      this.data = data;
+    }
+  }
+}
+/**
+ * Check if the given error is an ErrorResponse generated from a 4xx/5xx
+ * Response thrown from an action/loader
+ */
+function router_isRouteErrorResponse(error) {
+  return error != null && typeof error.status === "number" && typeof error.statusText === "string" && typeof error.internal === "boolean" && "data" in error;
+}
+
+const validMutationMethodsArr = ["post", "put", "patch", "delete"];
+const validMutationMethods = new Set(validMutationMethodsArr);
+const validRequestMethodsArr = ["get", ...validMutationMethodsArr];
+const validRequestMethods = new Set(validRequestMethodsArr);
+const redirectStatusCodes = new Set([301, 302, 303, 307, 308]);
+const redirectPreserveMethodStatusCodes = new Set([307, 308]);
+const IDLE_NAVIGATION = {
+  state: "idle",
+  location: undefined,
+  formMethod: undefined,
+  formAction: undefined,
+  formEncType: undefined,
+  formData: undefined,
+  json: undefined,
+  text: undefined
+};
+const router_IDLE_FETCHER = {
+  state: "idle",
+  data: undefined,
+  formMethod: undefined,
+  formAction: undefined,
+  formEncType: undefined,
+  formData: undefined,
+  json: undefined,
+  text: undefined
+};
+const router_IDLE_BLOCKER = {
+  state: "unblocked",
+  proceed: undefined,
+  reset: undefined,
+  location: undefined
+};
+const ABSOLUTE_URL_REGEX = /^(?:[a-z][a-z0-9+.-]*:|\/\/)/i;
+const defaultMapRouteProperties = route => ({
+  hasErrorBoundary: Boolean(route.hasErrorBoundary)
+});
+const TRANSITIONS_STORAGE_KEY = "remix-router-transitions";
+//#endregion
+////////////////////////////////////////////////////////////////////////////////
+//#region createRouter
+////////////////////////////////////////////////////////////////////////////////
+/**
+ * Create a router and listen to history POP navigations
+ */
+function router_createRouter(init) {
+  const routerWindow = init.window ? init.window : typeof window !== "undefined" ? window : undefined;
+  const isBrowser = typeof routerWindow !== "undefined" && typeof routerWindow.document !== "undefined" && typeof routerWindow.document.createElement !== "undefined";
+  const isServer = !isBrowser;
+  router_invariant(init.routes.length > 0, "You must provide a non-empty routes array to createRouter");
+  let mapRouteProperties;
+  if (init.mapRouteProperties) {
+    mapRouteProperties = init.mapRouteProperties;
+  } else if (init.detectErrorBoundary) {
+    // If they are still using the deprecated version, wrap it with the new API
+    let detectErrorBoundary = init.detectErrorBoundary;
+    mapRouteProperties = route => ({
+      hasErrorBoundary: detectErrorBoundary(route)
+    });
+  } else {
+    mapRouteProperties = defaultMapRouteProperties;
+  }
+  // Routes keyed by ID
+  let manifest = {};
+  // Routes in tree format for matching
+  let dataRoutes = convertRoutesToDataRoutes(init.routes, mapRouteProperties, undefined, manifest);
+  let inFlightDataRoutes;
+  let basename = init.basename || "/";
+  let dataStrategyImpl = init.unstable_dataStrategy || defaultDataStrategy;
+  // Config driven behavior flags
+  let future = _extends({
+    v7_fetcherPersist: false,
+    v7_normalizeFormMethod: false,
+    v7_partialHydration: false,
+    v7_prependBasename: false,
+    v7_relativeSplatPath: false,
+    unstable_skipActionErrorRevalidation: false
+  }, init.future);
+  // Cleanup function for history
+  let unlistenHistory = null;
+  // Externally-provided functions to call on all state changes
+  let subscribers = new Set();
+  // Externally-provided object to hold scroll restoration locations during routing
+  let savedScrollPositions = null;
+  // Externally-provided function to get scroll restoration keys
+  let getScrollRestorationKey = null;
+  // Externally-provided function to get current scroll position
+  let getScrollPosition = null;
+  // One-time flag to control the initial hydration scroll restoration.  Because
+  // we don't get the saved positions from <ScrollRestoration /> until _after_
+  // the initial render, we need to manually trigger a separate updateState to
+  // send along the restoreScrollPosition
+  // Set to true if we have `hydrationData` since we assume we were SSR'd and that
+  // SSR did the initial scroll restoration.
+  let initialScrollRestored = init.hydrationData != null;
+  let initialMatches = router_matchRoutes(dataRoutes, init.history.location, basename);
+  let initialErrors = null;
+  if (initialMatches == null) {
+    // If we do not match a user-provided-route, fall back to the root
+    // to allow the error boundary to take over
+    let error = getInternalRouterError(404, {
+      pathname: init.history.location.pathname
+    });
+    let {
+      matches,
+      route
+    } = getShortCircuitMatches(dataRoutes);
+    initialMatches = matches;
+    initialErrors = {
+      [route.id]: error
+    };
+  }
+  let initialized;
+  let hasLazyRoutes = initialMatches.some(m => m.route.lazy);
+  let hasLoaders = initialMatches.some(m => m.route.loader);
+  if (hasLazyRoutes) {
+    // All initialMatches need to be loaded before we're ready.  If we have lazy
+    // functions around still then we'll need to run them in initialize()
+    initialized = false;
+  } else if (!hasLoaders) {
+    // If we've got no loaders to run, then we're good to go
+    initialized = true;
+  } else if (future.v7_partialHydration) {
+    // If partial hydration is enabled, we're initialized so long as we were
+    // provided with hydrationData for every route with a loader, and no loaders
+    // were marked for explicit hydration
+    let loaderData = init.hydrationData ? init.hydrationData.loaderData : null;
+    let errors = init.hydrationData ? init.hydrationData.errors : null;
+    let isRouteInitialized = m => {
+      // No loader, nothing to initialize
+      if (!m.route.loader) {
+        return true;
+      }
+      // Explicitly opting-in to running on hydration
+      if (typeof m.route.loader === "function" && m.route.loader.hydrate === true) {
+        return false;
+      }
+      // Otherwise, initialized if hydrated with data or an error
+      return loaderData && loaderData[m.route.id] !== undefined || errors && errors[m.route.id] !== undefined;
+    };
+    // If errors exist, don't consider routes below the boundary
+    if (errors) {
+      let idx = initialMatches.findIndex(m => errors[m.route.id] !== undefined);
+      initialized = initialMatches.slice(0, idx + 1).every(isRouteInitialized);
+    } else {
+      initialized = initialMatches.every(isRouteInitialized);
+    }
+  } else {
+    // Without partial hydration - we're initialized if we were provided any
+    // hydrationData - which is expected to be complete
+    initialized = init.hydrationData != null;
+  }
+  let router;
+  let state = {
+    historyAction: init.history.action,
+    location: init.history.location,
+    matches: initialMatches,
+    initialized,
+    navigation: IDLE_NAVIGATION,
+    // Don't restore on initial updateState() if we were SSR'd
+    restoreScrollPosition: init.hydrationData != null ? false : null,
+    preventScrollReset: false,
+    revalidation: "idle",
+    loaderData: init.hydrationData && init.hydrationData.loaderData || {},
+    actionData: init.hydrationData && init.hydrationData.actionData || null,
+    errors: init.hydrationData && init.hydrationData.errors || initialErrors,
+    fetchers: new Map(),
+    blockers: new Map()
+  };
+  // -- Stateful internal variables to manage navigations --
+  // Current navigation in progress (to be committed in completeNavigation)
+  let pendingAction = router_Action.Pop;
+  // Should the current navigation prevent the scroll reset if scroll cannot
+  // be restored?
+  let pendingPreventScrollReset = false;
+  // AbortController for the active navigation
+  let pendingNavigationController;
+  // Should the current navigation enable document.startViewTransition?
+  let pendingViewTransitionEnabled = false;
+  // Store applied view transitions so we can apply them on POP
+  let appliedViewTransitions = new Map();
+  // Cleanup function for persisting applied transitions to sessionStorage
+  let removePageHideEventListener = null;
+  // We use this to avoid touching history in completeNavigation if a
+  // revalidation is entirely uninterrupted
+  let isUninterruptedRevalidation = false;
+  // Use this internal flag to force revalidation of all loaders:
+  //  - submissions (completed or interrupted)
+  //  - useRevalidator()
+  //  - X-Remix-Revalidate (from redirect)
+  let isRevalidationRequired = false;
+  // Use this internal array to capture routes that require revalidation due
+  // to a cancelled deferred on action submission
+  let cancelledDeferredRoutes = [];
+  // Use this internal array to capture fetcher loads that were cancelled by an
+  // action navigation and require revalidation
+  let cancelledFetcherLoads = [];
+  // AbortControllers for any in-flight fetchers
+  let fetchControllers = new Map();
+  // Track loads based on the order in which they started
+  let incrementingLoadId = 0;
+  // Track the outstanding pending navigation data load to be compared against
+  // the globally incrementing load when a fetcher load lands after a completed
+  // navigation
+  let pendingNavigationLoadId = -1;
+  // Fetchers that triggered data reloads as a result of their actions
+  let fetchReloadIds = new Map();
+  // Fetchers that triggered redirect navigations
+  let fetchRedirectIds = new Set();
+  // Most recent href/match for fetcher.load calls for fetchers
+  let fetchLoadMatches = new Map();
+  // Ref-count mounted fetchers so we know when it's ok to clean them up
+  let activeFetchers = new Map();
+  // Fetchers that have requested a delete when using v7_fetcherPersist,
+  // they'll be officially removed after they return to idle
+  let deletedFetchers = new Set();
+  // Store DeferredData instances for active route matches.  When a
+  // route loader returns defer() we stick one in here.  Then, when a nested
+  // promise resolves we update loaderData.  If a new navigation starts we
+  // cancel active deferreds for eliminated routes.
+  let activeDeferreds = new Map();
+  // Store blocker functions in a separate Map outside of router state since
+  // we don't need to update UI state if they change
+  let blockerFunctions = new Map();
+  // Flag to ignore the next history update, so we can revert the URL change on
+  // a POP navigation that was blocked by the user without touching router state
+  let ignoreNextHistoryUpdate = false;
+  // Initialize the router, all side effects should be kicked off from here.
+  // Implemented as a Fluent API for ease of:
+  //   let router = createRouter(init).initialize();
+  function initialize() {
+    // If history informs us of a POP navigation, start the navigation but do not update
+    // state.  We'll update our own state once the navigation completes
+    unlistenHistory = init.history.listen(_ref => {
+      let {
+        action: historyAction,
+        location,
+        delta
+      } = _ref;
+      // Ignore this event if it was just us resetting the URL from a
+      // blocked POP navigation
+      if (ignoreNextHistoryUpdate) {
+        ignoreNextHistoryUpdate = false;
+        return;
+      }
+      router_warning(blockerFunctions.size === 0 || delta != null, "You are trying to use a blocker on a POP navigation to a location " + "that was not created by @remix-run/router. This will fail silently in " + "production. This can happen if you are navigating outside the router " + "via `window.history.pushState`/`window.location.hash` instead of using " + "router navigation APIs.  This can also happen if you are using " + "createHashRouter and the user manually changes the URL.");
+      let blockerKey = shouldBlockNavigation({
+        currentLocation: state.location,
+        nextLocation: location,
+        historyAction
+      });
+      if (blockerKey && delta != null) {
+        // Restore the URL to match the current UI, but don't update router state
+        ignoreNextHistoryUpdate = true;
+        init.history.go(delta * -1);
+        // Put the blocker into a blocked state
+        updateBlocker(blockerKey, {
+          state: "blocked",
+          location,
+          proceed() {
+            updateBlocker(blockerKey, {
+              state: "proceeding",
+              proceed: undefined,
+              reset: undefined,
+              location
+            });
+            // Re-do the same POP navigation we just blocked
+            init.history.go(delta);
+          },
+          reset() {
+            let blockers = new Map(state.blockers);
+            blockers.set(blockerKey, router_IDLE_BLOCKER);
+            updateState({
+              blockers
+            });
+          }
+        });
+        return;
+      }
+      return startNavigation(historyAction, location);
+    });
+    if (isBrowser) {
+      // FIXME: This feels gross.  How can we cleanup the lines between
+      // scrollRestoration/appliedTransitions persistance?
+      restoreAppliedTransitions(routerWindow, appliedViewTransitions);
+      let _saveAppliedTransitions = () => persistAppliedTransitions(routerWindow, appliedViewTransitions);
+      routerWindow.addEventListener("pagehide", _saveAppliedTransitions);
+      removePageHideEventListener = () => routerWindow.removeEventListener("pagehide", _saveAppliedTransitions);
+    }
+    // Kick off initial data load if needed.  Use Pop to avoid modifying history
+    // Note we don't do any handling of lazy here.  For SPA's it'll get handled
+    // in the normal navigation flow.  For SSR it's expected that lazy modules are
+    // resolved prior to router creation since we can't go into a fallbackElement
+    // UI for SSR'd apps
+    if (!state.initialized) {
+      startNavigation(router_Action.Pop, state.location, {
+        initialHydration: true
+      });
+    }
+    return router;
+  }
+  // Clean up a router and it's side effects
+  function dispose() {
+    if (unlistenHistory) {
+      unlistenHistory();
+    }
+    if (removePageHideEventListener) {
+      removePageHideEventListener();
+    }
+    subscribers.clear();
+    pendingNavigationController && pendingNavigationController.abort();
+    state.fetchers.forEach((_, key) => deleteFetcher(key));
+    state.blockers.forEach((_, key) => deleteBlocker(key));
+  }
+  // Subscribe to state updates for the router
+  function subscribe(fn) {
+    subscribers.add(fn);
+    return () => subscribers.delete(fn);
+  }
+  // Update our state and notify the calling context of the change
+  function updateState(newState, opts) {
+    if (opts === void 0) {
+      opts = {};
+    }
+    state = _extends({}, state, newState);
+    // Prep fetcher cleanup so we can tell the UI which fetcher data entries
+    // can be removed
+    let completedFetchers = [];
+    let deletedFetchersKeys = [];
+    if (future.v7_fetcherPersist) {
+      state.fetchers.forEach((fetcher, key) => {
+        if (fetcher.state === "idle") {
+          if (deletedFetchers.has(key)) {
+            // Unmounted from the UI and can be totally removed
+            deletedFetchersKeys.push(key);
+          } else {
+            // Returned to idle but still mounted in the UI, so semi-remains for
+            // revalidations and such
+            completedFetchers.push(key);
+          }
+        }
+      });
+    }
+    // Iterate over a local copy so that if flushSync is used and we end up
+    // removing and adding a new subscriber due to the useCallback dependencies,
+    // we don't get ourselves into a loop calling the new subscriber immediately
+    [...subscribers].forEach(subscriber => subscriber(state, {
+      deletedFetchers: deletedFetchersKeys,
+      unstable_viewTransitionOpts: opts.viewTransitionOpts,
+      unstable_flushSync: opts.flushSync === true
+    }));
+    // Remove idle fetchers from state since we only care about in-flight fetchers.
+    if (future.v7_fetcherPersist) {
+      completedFetchers.forEach(key => state.fetchers.delete(key));
+      deletedFetchersKeys.forEach(key => deleteFetcher(key));
+    }
+  }
+  // Complete a navigation returning the state.navigation back to the IDLE_NAVIGATION
+  // and setting state.[historyAction/location/matches] to the new route.
+  // - Location is a required param
+  // - Navigation will always be set to IDLE_NAVIGATION
+  // - Can pass any other state in newState
+  function completeNavigation(location, newState, _temp) {
+    var _location$state, _location$state2;
+    let {
+      flushSync
+    } = _temp === void 0 ? {} : _temp;
+    // Deduce if we're in a loading/actionReload state:
+    // - We have committed actionData in the store
+    // - The current navigation was a mutation submission
+    // - We're past the submitting state and into the loading state
+    // - The location being loaded is not the result of a redirect
+    let isActionReload = state.actionData != null && state.navigation.formMethod != null && isMutationMethod(state.navigation.formMethod) && state.navigation.state === "loading" && ((_location$state = location.state) == null ? void 0 : _location$state._isRedirect) !== true;
+    let actionData;
+    if (newState.actionData) {
+      if (Object.keys(newState.actionData).length > 0) {
+        actionData = newState.actionData;
+      } else {
+        // Empty actionData -> clear prior actionData due to an action error
+        actionData = null;
+      }
+    } else if (isActionReload) {
+      // Keep the current data if we're wrapping up the action reload
+      actionData = state.actionData;
+    } else {
+      // Clear actionData on any other completed navigations
+      actionData = null;
+    }
+    // Always preserve any existing loaderData from re-used routes
+    let loaderData = newState.loaderData ? mergeLoaderData(state.loaderData, newState.loaderData, newState.matches || [], newState.errors) : state.loaderData;
+    // On a successful navigation we can assume we got through all blockers
+    // so we can start fresh
+    let blockers = state.blockers;
+    if (blockers.size > 0) {
+      blockers = new Map(blockers);
+      blockers.forEach((_, k) => blockers.set(k, router_IDLE_BLOCKER));
+    }
+    // Always respect the user flag.  Otherwise don't reset on mutation
+    // submission navigations unless they redirect
+    let preventScrollReset = pendingPreventScrollReset === true || state.navigation.formMethod != null && isMutationMethod(state.navigation.formMethod) && ((_location$state2 = location.state) == null ? void 0 : _location$state2._isRedirect) !== true;
+    if (inFlightDataRoutes) {
+      dataRoutes = inFlightDataRoutes;
+      inFlightDataRoutes = undefined;
+    }
+    if (isUninterruptedRevalidation) ; else if (pendingAction === router_Action.Pop) ; else if (pendingAction === router_Action.Push) {
+      init.history.push(location, location.state);
+    } else if (pendingAction === router_Action.Replace) {
+      init.history.replace(location, location.state);
+    }
+    let viewTransitionOpts;
+    // On POP, enable transitions if they were enabled on the original navigation
+    if (pendingAction === router_Action.Pop) {
+      // Forward takes precedence so they behave like the original navigation
+      let priorPaths = appliedViewTransitions.get(state.location.pathname);
+      if (priorPaths && priorPaths.has(location.pathname)) {
+        viewTransitionOpts = {
+          currentLocation: state.location,
+          nextLocation: location
+        };
+      } else if (appliedViewTransitions.has(location.pathname)) {
+        // If we don't have a previous forward nav, assume we're popping back to
+        // the new location and enable if that location previously enabled
+        viewTransitionOpts = {
+          currentLocation: location,
+          nextLocation: state.location
+        };
+      }
+    } else if (pendingViewTransitionEnabled) {
+      // Store the applied transition on PUSH/REPLACE
+      let toPaths = appliedViewTransitions.get(state.location.pathname);
+      if (toPaths) {
+        toPaths.add(location.pathname);
+      } else {
+        toPaths = new Set([location.pathname]);
+        appliedViewTransitions.set(state.location.pathname, toPaths);
+      }
+      viewTransitionOpts = {
+        currentLocation: state.location,
+        nextLocation: location
+      };
+    }
+    updateState(_extends({}, newState, {
+      actionData,
+      loaderData,
+      historyAction: pendingAction,
+      location,
+      initialized: true,
+      navigation: IDLE_NAVIGATION,
+      revalidation: "idle",
+      restoreScrollPosition: getSavedScrollPosition(location, newState.matches || state.matches),
+      preventScrollReset,
+      blockers
+    }), {
+      viewTransitionOpts,
+      flushSync: flushSync === true
+    });
+    // Reset stateful navigation vars
+    pendingAction = router_Action.Pop;
+    pendingPreventScrollReset = false;
+    pendingViewTransitionEnabled = false;
+    isUninterruptedRevalidation = false;
+    isRevalidationRequired = false;
+    cancelledDeferredRoutes = [];
+    cancelledFetcherLoads = [];
+  }
+  // Trigger a navigation event, which can either be a numerical POP or a PUSH
+  // replace with an optional submission
+  async function navigate(to, opts) {
+    if (typeof to === "number") {
+      init.history.go(to);
+      return;
+    }
+    let normalizedPath = normalizeTo(state.location, state.matches, basename, future.v7_prependBasename, to, future.v7_relativeSplatPath, opts == null ? void 0 : opts.fromRouteId, opts == null ? void 0 : opts.relative);
+    let {
+      path,
+      submission,
+      error
+    } = normalizeNavigateOptions(future.v7_normalizeFormMethod, false, normalizedPath, opts);
+    let currentLocation = state.location;
+    let nextLocation = createLocation(state.location, path, opts && opts.state);
+    // When using navigate as a PUSH/REPLACE we aren't reading an already-encoded
+    // URL from window.location, so we need to encode it here so the behavior
+    // remains the same as POP and non-data-router usages.  new URL() does all
+    // the same encoding we'd get from a history.pushState/window.location read
+    // without having to touch history
+    nextLocation = _extends({}, nextLocation, init.history.encodeLocation(nextLocation));
+    let userReplace = opts && opts.replace != null ? opts.replace : undefined;
+    let historyAction = router_Action.Push;
+    if (userReplace === true) {
+      historyAction = router_Action.Replace;
+    } else if (userReplace === false) ; else if (submission != null && isMutationMethod(submission.formMethod) && submission.formAction === state.location.pathname + state.location.search) {
+      // By default on submissions to the current location we REPLACE so that
+      // users don't have to double-click the back button to get to the prior
+      // location.  If the user redirects to a different location from the
+      // action/loader this will be ignored and the redirect will be a PUSH
+      historyAction = router_Action.Replace;
+    }
+    let preventScrollReset = opts && "preventScrollReset" in opts ? opts.preventScrollReset === true : undefined;
+    let flushSync = (opts && opts.unstable_flushSync) === true;
+    let blockerKey = shouldBlockNavigation({
+      currentLocation,
+      nextLocation,
+      historyAction
+    });
+    if (blockerKey) {
+      // Put the blocker into a blocked state
+      updateBlocker(blockerKey, {
+        state: "blocked",
+        location: nextLocation,
+        proceed() {
+          updateBlocker(blockerKey, {
+            state: "proceeding",
+            proceed: undefined,
+            reset: undefined,
+            location: nextLocation
+          });
+          // Send the same navigation through
+          navigate(to, opts);
+        },
+        reset() {
+          let blockers = new Map(state.blockers);
+          blockers.set(blockerKey, router_IDLE_BLOCKER);
+          updateState({
+            blockers
+          });
+        }
+      });
+      return;
+    }
+    return await startNavigation(historyAction, nextLocation, {
+      submission,
+      // Send through the formData serialization error if we have one so we can
+      // render at the right error boundary after we match routes
+      pendingError: error,
+      preventScrollReset,
+      replace: opts && opts.replace,
+      enableViewTransition: opts && opts.unstable_viewTransition,
+      flushSync
+    });
+  }
+  // Revalidate all current loaders.  If a navigation is in progress or if this
+  // is interrupted by a navigation, allow this to "succeed" by calling all
+  // loaders during the next loader round
+  function revalidate() {
+    interruptActiveLoads();
+    updateState({
+      revalidation: "loading"
+    });
+    // If we're currently submitting an action, we don't need to start a new
+    // navigation, we'll just let the follow up loader execution call all loaders
+    if (state.navigation.state === "submitting") {
+      return;
+    }
+    // If we're currently in an idle state, start a new navigation for the current
+    // action/location and mark it as uninterrupted, which will skip the history
+    // update in completeNavigation
+    if (state.navigation.state === "idle") {
+      startNavigation(state.historyAction, state.location, {
+        startUninterruptedRevalidation: true
+      });
+      return;
+    }
+    // Otherwise, if we're currently in a loading state, just start a new
+    // navigation to the navigation.location but do not trigger an uninterrupted
+    // revalidation so that history correctly updates once the navigation completes
+    startNavigation(pendingAction || state.historyAction, state.navigation.location, {
+      overrideNavigation: state.navigation
+    });
+  }
+  // Start a navigation to the given action/location.  Can optionally provide a
+  // overrideNavigation which will override the normalLoad in the case of a redirect
+  // navigation
+  async function startNavigation(historyAction, location, opts) {
+    // Abort any in-progress navigations and start a new one. Unset any ongoing
+    // uninterrupted revalidations unless told otherwise, since we want this
+    // new navigation to update history normally
+    pendingNavigationController && pendingNavigationController.abort();
+    pendingNavigationController = null;
+    pendingAction = historyAction;
+    isUninterruptedRevalidation = (opts && opts.startUninterruptedRevalidation) === true;
+    // Save the current scroll position every time we start a new navigation,
+    // and track whether we should reset scroll on completion
+    saveScrollPosition(state.location, state.matches);
+    pendingPreventScrollReset = (opts && opts.preventScrollReset) === true;
+    pendingViewTransitionEnabled = (opts && opts.enableViewTransition) === true;
+    let routesToUse = inFlightDataRoutes || dataRoutes;
+    let loadingNavigation = opts && opts.overrideNavigation;
+    let matches = router_matchRoutes(routesToUse, location, basename);
+    let flushSync = (opts && opts.flushSync) === true;
+    // Short circuit with a 404 on the root error boundary if we match nothing
+    if (!matches) {
+      let error = getInternalRouterError(404, {
+        pathname: location.pathname
+      });
+      let {
+        matches: notFoundMatches,
+        route
+      } = getShortCircuitMatches(routesToUse);
+      // Cancel all pending deferred on 404s since we don't keep any routes
+      cancelActiveDeferreds();
+      completeNavigation(location, {
+        matches: notFoundMatches,
+        loaderData: {},
+        errors: {
+          [route.id]: error
+        }
+      }, {
+        flushSync
+      });
+      return;
+    }
+    // Short circuit if it's only a hash change and not a revalidation or
+    // mutation submission.
+    //
+    // Ignore on initial page loads because since the initial load will always
+    // be "same hash".  For example, on /page#hash and submit a <Form method="post">
+    // which will default to a navigation to /page
+    if (state.initialized && !isRevalidationRequired && isHashChangeOnly(state.location, location) && !(opts && opts.submission && isMutationMethod(opts.submission.formMethod))) {
+      completeNavigation(location, {
+        matches
+      }, {
+        flushSync
+      });
+      return;
+    }
+    // Create a controller/Request for this navigation
+    pendingNavigationController = new AbortController();
+    let request = createClientSideRequest(init.history, location, pendingNavigationController.signal, opts && opts.submission);
+    let pendingActionResult;
+    if (opts && opts.pendingError) {
+      // If we have a pendingError, it means the user attempted a GET submission
+      // with binary FormData so assign here and skip to handleLoaders.  That
+      // way we handle calling loaders above the boundary etc.  It's not really
+      // different from an actionError in that sense.
+      pendingActionResult = [findNearestBoundary(matches).route.id, {
+        type: ResultType.error,
+        error: opts.pendingError
+      }];
+    } else if (opts && opts.submission && isMutationMethod(opts.submission.formMethod)) {
+      // Call action if we received an action submission
+      let actionResult = await handleAction(request, location, opts.submission, matches, {
+        replace: opts.replace,
+        flushSync
+      });
+      if (actionResult.shortCircuited) {
+        return;
+      }
+      pendingActionResult = actionResult.pendingActionResult;
+      loadingNavigation = getLoadingNavigation(location, opts.submission);
+      flushSync = false;
+      // Create a GET request for the loaders
+      request = createClientSideRequest(init.history, request.url, request.signal);
+    }
+    // Call loaders
+    let {
+      shortCircuited,
+      loaderData,
+      errors
+    } = await handleLoaders(request, location, matches, loadingNavigation, opts && opts.submission, opts && opts.fetcherSubmission, opts && opts.replace, opts && opts.initialHydration === true, flushSync, pendingActionResult);
+    if (shortCircuited) {
+      return;
+    }
+    // Clean up now that the action/loaders have completed.  Don't clean up if
+    // we short circuited because pendingNavigationController will have already
+    // been assigned to a new controller for the next navigation
+    pendingNavigationController = null;
+    completeNavigation(location, _extends({
+      matches
+    }, getActionDataForCommit(pendingActionResult), {
+      loaderData,
+      errors
+    }));
+  }
+  // Call the action matched by the leaf route for this navigation and handle
+  // redirects/errors
+  async function handleAction(request, location, submission, matches, opts) {
+    if (opts === void 0) {
+      opts = {};
+    }
+    interruptActiveLoads();
+    // Put us in a submitting state
+    let navigation = getSubmittingNavigation(location, submission);
+    updateState({
+      navigation
+    }, {
+      flushSync: opts.flushSync === true
+    });
+    // Call our action and get the result
+    let result;
+    let actionMatch = getTargetMatch(matches, location);
+    if (!actionMatch.route.action && !actionMatch.route.lazy) {
+      result = {
+        type: ResultType.error,
+        error: getInternalRouterError(405, {
+          method: request.method,
+          pathname: location.pathname,
+          routeId: actionMatch.route.id
+        })
+      };
+    } else {
+      let results = await callDataStrategy("action", request, [actionMatch], matches);
+      result = results[0];
+      if (request.signal.aborted) {
+        return {
+          shortCircuited: true
+        };
+      }
+    }
+    if (isRedirectResult(result)) {
+      let replace;
+      if (opts && opts.replace != null) {
+        replace = opts.replace;
+      } else {
+        // If the user didn't explicity indicate replace behavior, replace if
+        // we redirected to the exact same location we're currently at to avoid
+        // double back-buttons
+        let location = normalizeRedirectLocation(result.response.headers.get("Location"), new URL(request.url), basename);
+        replace = location === state.location.pathname + state.location.search;
+      }
+      await startRedirectNavigation(request, result, {
+        submission,
+        replace
+      });
+      return {
+        shortCircuited: true
+      };
+    }
+    if (isDeferredResult(result)) {
+      throw getInternalRouterError(400, {
+        type: "defer-action"
+      });
+    }
+    if (isErrorResult(result)) {
+      // Store off the pending error - we use it to determine which loaders
+      // to call and will commit it when we complete the navigation
+      let boundaryMatch = findNearestBoundary(matches, actionMatch.route.id);
+      // By default, all submissions are REPLACE navigations, but if the
+      // action threw an error that'll be rendered in an errorElement, we fall
+      // back to PUSH so that the user can use the back button to get back to
+      // the pre-submission form location to try again
+      if ((opts && opts.replace) !== true) {
+        pendingAction = router_Action.Push;
+      }
+      return {
+        pendingActionResult: [boundaryMatch.route.id, result]
+      };
+    }
+    return {
+      pendingActionResult: [actionMatch.route.id, result]
+    };
+  }
+  // Call all applicable loaders for the given matches, handling redirects,
+  // errors, etc.
+  async function handleLoaders(request, location, matches, overrideNavigation, submission, fetcherSubmission, replace, initialHydration, flushSync, pendingActionResult) {
+    // Figure out the right navigation we want to use for data loading
+    let loadingNavigation = overrideNavigation || getLoadingNavigation(location, submission);
+    // If this was a redirect from an action we don't have a "submission" but
+    // we have it on the loading navigation so use that if available
+    let activeSubmission = submission || fetcherSubmission || getSubmissionFromNavigation(loadingNavigation);
+    let routesToUse = inFlightDataRoutes || dataRoutes;
+    let [matchesToLoad, revalidatingFetchers] = getMatchesToLoad(init.history, state, matches, activeSubmission, location, future.v7_partialHydration && initialHydration === true, future.unstable_skipActionErrorRevalidation, isRevalidationRequired, cancelledDeferredRoutes, cancelledFetcherLoads, deletedFetchers, fetchLoadMatches, fetchRedirectIds, routesToUse, basename, pendingActionResult);
+    // Cancel pending deferreds for no-longer-matched routes or routes we're
+    // about to reload.  Note that if this is an action reload we would have
+    // already cancelled all pending deferreds so this would be a no-op
+    cancelActiveDeferreds(routeId => !(matches && matches.some(m => m.route.id === routeId)) || matchesToLoad && matchesToLoad.some(m => m.route.id === routeId));
+    pendingNavigationLoadId = ++incrementingLoadId;
+    // Short circuit if we have no loaders to run
+    if (matchesToLoad.length === 0 && revalidatingFetchers.length === 0) {
+      let updatedFetchers = markFetchRedirectsDone();
+      completeNavigation(location, _extends({
+        matches,
+        loaderData: {},
+        // Commit pending error if we're short circuiting
+        errors: pendingActionResult && isErrorResult(pendingActionResult[1]) ? {
+          [pendingActionResult[0]]: pendingActionResult[1].error
+        } : null
+      }, getActionDataForCommit(pendingActionResult), updatedFetchers ? {
+        fetchers: new Map(state.fetchers)
+      } : {}), {
+        flushSync
+      });
+      return {
+        shortCircuited: true
+      };
+    }
+    // If this is an uninterrupted revalidation, we remain in our current idle
+    // state.  If not, we need to switch to our loading state and load data,
+    // preserving any new action data or existing action data (in the case of
+    // a revalidation interrupting an actionReload)
+    // If we have partialHydration enabled, then don't update the state for the
+    // initial data load since it's not a "navigation"
+    if (!isUninterruptedRevalidation && (!future.v7_partialHydration || !initialHydration)) {
+      revalidatingFetchers.forEach(rf => {
+        let fetcher = state.fetchers.get(rf.key);
+        let revalidatingFetcher = getLoadingFetcher(undefined, fetcher ? fetcher.data : undefined);
+        state.fetchers.set(rf.key, revalidatingFetcher);
+      });
+      let actionData;
+      if (pendingActionResult && !isErrorResult(pendingActionResult[1])) {
+        // This is cast to `any` currently because `RouteData`uses any and it
+        // would be a breaking change to use any.
+        // TODO: v7 - change `RouteData` to use `unknown` instead of `any`
+        actionData = {
+          [pendingActionResult[0]]: pendingActionResult[1].data
+        };
+      } else if (state.actionData) {
+        if (Object.keys(state.actionData).length === 0) {
+          actionData = null;
+        } else {
+          actionData = state.actionData;
+        }
+      }
+      updateState(_extends({
+        navigation: loadingNavigation
+      }, actionData !== undefined ? {
+        actionData
+      } : {}, revalidatingFetchers.length > 0 ? {
+        fetchers: new Map(state.fetchers)
+      } : {}), {
+        flushSync
+      });
+    }
+    revalidatingFetchers.forEach(rf => {
+      if (fetchControllers.has(rf.key)) {
+        abortFetcher(rf.key);
+      }
+      if (rf.controller) {
+        // Fetchers use an independent AbortController so that aborting a fetcher
+        // (via deleteFetcher) does not abort the triggering navigation that
+        // triggered the revalidation
+        fetchControllers.set(rf.key, rf.controller);
+      }
+    });
+    // Proxy navigation abort through to revalidation fetchers
+    let abortPendingFetchRevalidations = () => revalidatingFetchers.forEach(f => abortFetcher(f.key));
+    if (pendingNavigationController) {
+      pendingNavigationController.signal.addEventListener("abort", abortPendingFetchRevalidations);
+    }
+    let {
+      loaderResults,
+      fetcherResults
+    } = await callLoadersAndMaybeResolveData(state.matches, matches, matchesToLoad, revalidatingFetchers, request);
+    if (request.signal.aborted) {
+      return {
+        shortCircuited: true
+      };
+    }
+    // Clean up _after_ loaders have completed.  Don't clean up if we short
+    // circuited because fetchControllers would have been aborted and
+    // reassigned to new controllers for the next navigation
+    if (pendingNavigationController) {
+      pendingNavigationController.signal.removeEventListener("abort", abortPendingFetchRevalidations);
+    }
+    revalidatingFetchers.forEach(rf => fetchControllers.delete(rf.key));
+    // If any loaders returned a redirect Response, start a new REPLACE navigation
+    let redirect = findRedirect([...loaderResults, ...fetcherResults]);
+    if (redirect) {
+      if (redirect.idx >= matchesToLoad.length) {
+        // If this redirect came from a fetcher make sure we mark it in
+        // fetchRedirectIds so it doesn't get revalidated on the next set of
+        // loader executions
+        let fetcherKey = revalidatingFetchers[redirect.idx - matchesToLoad.length].key;
+        fetchRedirectIds.add(fetcherKey);
+      }
+      await startRedirectNavigation(request, redirect.result, {
+        replace
+      });
+      return {
+        shortCircuited: true
+      };
+    }
+    // Process and commit output from loaders
+    let {
+      loaderData,
+      errors
+    } = processLoaderData(state, matches, matchesToLoad, loaderResults, pendingActionResult, revalidatingFetchers, fetcherResults, activeDeferreds);
+    // Wire up subscribers to update loaderData as promises settle
+    activeDeferreds.forEach((deferredData, routeId) => {
+      deferredData.subscribe(aborted => {
+        // Note: No need to updateState here since the TrackedPromise on
+        // loaderData is stable across resolve/reject
+        // Remove this instance if we were aborted or if promises have settled
+        if (aborted || deferredData.done) {
+          activeDeferreds.delete(routeId);
+        }
+      });
+    });
+    // During partial hydration, preserve SSR errors for routes that don't re-run
+    if (future.v7_partialHydration && initialHydration && state.errors) {
+      Object.entries(state.errors).filter(_ref2 => {
+        let [id] = _ref2;
+        return !matchesToLoad.some(m => m.route.id === id);
+      }).forEach(_ref3 => {
+        let [routeId, error] = _ref3;
+        errors = Object.assign(errors || {}, {
+          [routeId]: error
+        });
+      });
+    }
+    let updatedFetchers = markFetchRedirectsDone();
+    let didAbortFetchLoads = abortStaleFetchLoads(pendingNavigationLoadId);
+    let shouldUpdateFetchers = updatedFetchers || didAbortFetchLoads || revalidatingFetchers.length > 0;
+    return _extends({
+      loaderData,
+      errors
+    }, shouldUpdateFetchers ? {
+      fetchers: new Map(state.fetchers)
+    } : {});
+  }
+  // Trigger a fetcher load/submit for the given fetcher key
+  function fetch(key, routeId, href, opts) {
+    if (isServer) {
+      throw new Error("router.fetch() was called during the server render, but it shouldn't be. " + "You are likely calling a useFetcher() method in the body of your component. " + "Try moving it to a useEffect or a callback.");
+    }
+    if (fetchControllers.has(key)) abortFetcher(key);
+    let flushSync = (opts && opts.unstable_flushSync) === true;
+    let routesToUse = inFlightDataRoutes || dataRoutes;
+    let normalizedPath = normalizeTo(state.location, state.matches, basename, future.v7_prependBasename, href, future.v7_relativeSplatPath, routeId, opts == null ? void 0 : opts.relative);
+    let matches = router_matchRoutes(routesToUse, normalizedPath, basename);
+    if (!matches) {
+      setFetcherError(key, routeId, getInternalRouterError(404, {
+        pathname: normalizedPath
+      }), {
+        flushSync
+      });
+      return;
+    }
+    let {
+      path,
+      submission,
+      error
+    } = normalizeNavigateOptions(future.v7_normalizeFormMethod, true, normalizedPath, opts);
+    if (error) {
+      setFetcherError(key, routeId, error, {
+        flushSync
+      });
+      return;
+    }
+    let match = getTargetMatch(matches, path);
+    pendingPreventScrollReset = (opts && opts.preventScrollReset) === true;
+    if (submission && isMutationMethod(submission.formMethod)) {
+      handleFetcherAction(key, routeId, path, match, matches, flushSync, submission);
+      return;
+    }
+    // Store off the match so we can call it's shouldRevalidate on subsequent
+    // revalidations
+    fetchLoadMatches.set(key, {
+      routeId,
+      path
+    });
+    handleFetcherLoader(key, routeId, path, match, matches, flushSync, submission);
+  }
+  // Call the action for the matched fetcher.submit(), and then handle redirects,
+  // errors, and revalidation
+  async function handleFetcherAction(key, routeId, path, match, requestMatches, flushSync, submission) {
+    interruptActiveLoads();
+    fetchLoadMatches.delete(key);
+    if (!match.route.action && !match.route.lazy) {
+      let error = getInternalRouterError(405, {
+        method: submission.formMethod,
+        pathname: path,
+        routeId: routeId
+      });
+      setFetcherError(key, routeId, error, {
+        flushSync
+      });
+      return;
+    }
+    // Put this fetcher into it's submitting state
+    let existingFetcher = state.fetchers.get(key);
+    updateFetcherState(key, getSubmittingFetcher(submission, existingFetcher), {
+      flushSync
+    });
+    // Call the action for the fetcher
+    let abortController = new AbortController();
+    let fetchRequest = createClientSideRequest(init.history, path, abortController.signal, submission);
+    fetchControllers.set(key, abortController);
+    let originatingLoadId = incrementingLoadId;
+    let actionResults = await callDataStrategy("action", fetchRequest, [match], requestMatches);
+    let actionResult = actionResults[0];
+    if (fetchRequest.signal.aborted) {
+      // We can delete this so long as we weren't aborted by our own fetcher
+      // re-submit which would have put _new_ controller is in fetchControllers
+      if (fetchControllers.get(key) === abortController) {
+        fetchControllers.delete(key);
+      }
+      return;
+    }
+    // When using v7_fetcherPersist, we don't want errors bubbling up to the UI
+    // or redirects processed for unmounted fetchers so we just revert them to
+    // idle
+    if (future.v7_fetcherPersist && deletedFetchers.has(key)) {
+      if (isRedirectResult(actionResult) || isErrorResult(actionResult)) {
+        updateFetcherState(key, getDoneFetcher(undefined));
+        return;
+      }
+      // Let SuccessResult's fall through for revalidation
+    } else {
+      if (isRedirectResult(actionResult)) {
+        fetchControllers.delete(key);
+        if (pendingNavigationLoadId > originatingLoadId) {
+          // A new navigation was kicked off after our action started, so that
+          // should take precedence over this redirect navigation.  We already
+          // set isRevalidationRequired so all loaders for the new route should
+          // fire unless opted out via shouldRevalidate
+          updateFetcherState(key, getDoneFetcher(undefined));
+          return;
+        } else {
+          fetchRedirectIds.add(key);
+          updateFetcherState(key, getLoadingFetcher(submission));
+          return startRedirectNavigation(fetchRequest, actionResult, {
+            fetcherSubmission: submission
+          });
+        }
+      }
+      // Process any non-redirect errors thrown
+      if (isErrorResult(actionResult)) {
+        setFetcherError(key, routeId, actionResult.error);
+        return;
+      }
+    }
+    if (isDeferredResult(actionResult)) {
+      throw getInternalRouterError(400, {
+        type: "defer-action"
+      });
+    }
+    // Start the data load for current matches, or the next location if we're
+    // in the middle of a navigation
+    let nextLocation = state.navigation.location || state.location;
+    let revalidationRequest = createClientSideRequest(init.history, nextLocation, abortController.signal);
+    let routesToUse = inFlightDataRoutes || dataRoutes;
+    let matches = state.navigation.state !== "idle" ? router_matchRoutes(routesToUse, state.navigation.location, basename) : state.matches;
+    router_invariant(matches, "Didn't find any matches after fetcher action");
+    let loadId = ++incrementingLoadId;
+    fetchReloadIds.set(key, loadId);
+    let loadFetcher = getLoadingFetcher(submission, actionResult.data);
+    state.fetchers.set(key, loadFetcher);
+    let [matchesToLoad, revalidatingFetchers] = getMatchesToLoad(init.history, state, matches, submission, nextLocation, false, future.unstable_skipActionErrorRevalidation, isRevalidationRequired, cancelledDeferredRoutes, cancelledFetcherLoads, deletedFetchers, fetchLoadMatches, fetchRedirectIds, routesToUse, basename, [match.route.id, actionResult]);
+    // Put all revalidating fetchers into the loading state, except for the
+    // current fetcher which we want to keep in it's current loading state which
+    // contains it's action submission info + action data
+    revalidatingFetchers.filter(rf => rf.key !== key).forEach(rf => {
+      let staleKey = rf.key;
+      let existingFetcher = state.fetchers.get(staleKey);
+      let revalidatingFetcher = getLoadingFetcher(undefined, existingFetcher ? existingFetcher.data : undefined);
+      state.fetchers.set(staleKey, revalidatingFetcher);
+      if (fetchControllers.has(staleKey)) {
+        abortFetcher(staleKey);
+      }
+      if (rf.controller) {
+        fetchControllers.set(staleKey, rf.controller);
+      }
+    });
+    updateState({
+      fetchers: new Map(state.fetchers)
+    });
+    let abortPendingFetchRevalidations = () => revalidatingFetchers.forEach(rf => abortFetcher(rf.key));
+    abortController.signal.addEventListener("abort", abortPendingFetchRevalidations);
+    let {
+      loaderResults,
+      fetcherResults
+    } = await callLoadersAndMaybeResolveData(state.matches, matches, matchesToLoad, revalidatingFetchers, revalidationRequest);
+    if (abortController.signal.aborted) {
+      return;
+    }
+    abortController.signal.removeEventListener("abort", abortPendingFetchRevalidations);
+    fetchReloadIds.delete(key);
+    fetchControllers.delete(key);
+    revalidatingFetchers.forEach(r => fetchControllers.delete(r.key));
+    let redirect = findRedirect([...loaderResults, ...fetcherResults]);
+    if (redirect) {
+      if (redirect.idx >= matchesToLoad.length) {
+        // If this redirect came from a fetcher make sure we mark it in
+        // fetchRedirectIds so it doesn't get revalidated on the next set of
+        // loader executions
+        let fetcherKey = revalidatingFetchers[redirect.idx - matchesToLoad.length].key;
+        fetchRedirectIds.add(fetcherKey);
+      }
+      return startRedirectNavigation(revalidationRequest, redirect.result);
+    }
+    // Process and commit output from loaders
+    let {
+      loaderData,
+      errors
+    } = processLoaderData(state, state.matches, matchesToLoad, loaderResults, undefined, revalidatingFetchers, fetcherResults, activeDeferreds);
+    // Since we let revalidations complete even if the submitting fetcher was
+    // deleted, only put it back to idle if it hasn't been deleted
+    if (state.fetchers.has(key)) {
+      let doneFetcher = getDoneFetcher(actionResult.data);
+      state.fetchers.set(key, doneFetcher);
+    }
+    abortStaleFetchLoads(loadId);
+    // If we are currently in a navigation loading state and this fetcher is
+    // more recent than the navigation, we want the newer data so abort the
+    // navigation and complete it with the fetcher data
+    if (state.navigation.state === "loading" && loadId > pendingNavigationLoadId) {
+      router_invariant(pendingAction, "Expected pending action");
+      pendingNavigationController && pendingNavigationController.abort();
+      completeNavigation(state.navigation.location, {
+        matches,
+        loaderData,
+        errors,
+        fetchers: new Map(state.fetchers)
+      });
+    } else {
+      // otherwise just update with the fetcher data, preserving any existing
+      // loaderData for loaders that did not need to reload.  We have to
+      // manually merge here since we aren't going through completeNavigation
+      updateState({
+        errors,
+        loaderData: mergeLoaderData(state.loaderData, loaderData, matches, errors),
+        fetchers: new Map(state.fetchers)
+      });
+      isRevalidationRequired = false;
+    }
+  }
+  // Call the matched loader for fetcher.load(), handling redirects, errors, etc.
+  async function handleFetcherLoader(key, routeId, path, match, matches, flushSync, submission) {
+    let existingFetcher = state.fetchers.get(key);
+    updateFetcherState(key, getLoadingFetcher(submission, existingFetcher ? existingFetcher.data : undefined), {
+      flushSync
+    });
+    // Call the loader for this fetcher route match
+    let abortController = new AbortController();
+    let fetchRequest = createClientSideRequest(init.history, path, abortController.signal);
+    fetchControllers.set(key, abortController);
+    let originatingLoadId = incrementingLoadId;
+    let results = await callDataStrategy("loader", fetchRequest, [match], matches);
+    let result = results[0];
+    // Deferred isn't supported for fetcher loads, await everything and treat it
+    // as a normal load.  resolveDeferredData will return undefined if this
+    // fetcher gets aborted, so we just leave result untouched and short circuit
+    // below if that happens
+    if (isDeferredResult(result)) {
+      result = (await resolveDeferredData(result, fetchRequest.signal, true)) || result;
+    }
+    // We can delete this so long as we weren't aborted by our our own fetcher
+    // re-load which would have put _new_ controller is in fetchControllers
+    if (fetchControllers.get(key) === abortController) {
+      fetchControllers.delete(key);
+    }
+    if (fetchRequest.signal.aborted) {
+      return;
+    }
+    // We don't want errors bubbling up or redirects followed for unmounted
+    // fetchers, so short circuit here if it was removed from the UI
+    if (deletedFetchers.has(key)) {
+      updateFetcherState(key, getDoneFetcher(undefined));
+      return;
+    }
+    // If the loader threw a redirect Response, start a new REPLACE navigation
+    if (isRedirectResult(result)) {
+      if (pendingNavigationLoadId > originatingLoadId) {
+        // A new navigation was kicked off after our loader started, so that
+        // should take precedence over this redirect navigation
+        updateFetcherState(key, getDoneFetcher(undefined));
+        return;
+      } else {
+        fetchRedirectIds.add(key);
+        await startRedirectNavigation(fetchRequest, result);
+        return;
+      }
+    }
+    // Process any non-redirect errors thrown
+    if (isErrorResult(result)) {
+      setFetcherError(key, routeId, result.error);
+      return;
+    }
+    router_invariant(!isDeferredResult(result), "Unhandled fetcher deferred data");
+    // Put the fetcher back into an idle state
+    updateFetcherState(key, getDoneFetcher(result.data));
+  }
+  /**
+   * Utility function to handle redirects returned from an action or loader.
+   * Normally, a redirect "replaces" the navigation that triggered it.  So, for
+   * example:
+   *
+   *  - user is on /a
+   *  - user clicks a link to /b
+   *  - loader for /b redirects to /c
+   *
+   * In a non-JS app the browser would track the in-flight navigation to /b and
+   * then replace it with /c when it encountered the redirect response.  In
+   * the end it would only ever update the URL bar with /c.
+   *
+   * In client-side routing using pushState/replaceState, we aim to emulate
+   * this behavior and we also do not update history until the end of the
+   * navigation (including processed redirects).  This means that we never
+   * actually touch history until we've processed redirects, so we just use
+   * the history action from the original navigation (PUSH or REPLACE).
+   */
+  async function startRedirectNavigation(request, redirect, _temp2) {
+    let {
+      submission,
+      fetcherSubmission,
+      replace
+    } = _temp2 === void 0 ? {} : _temp2;
+    if (redirect.response.headers.has("X-Remix-Revalidate")) {
+      isRevalidationRequired = true;
+    }
+    let location = redirect.response.headers.get("Location");
+    router_invariant(location, "Expected a Location header on the redirect Response");
+    location = normalizeRedirectLocation(location, new URL(request.url), basename);
+    let redirectLocation = createLocation(state.location, location, {
+      _isRedirect: true
+    });
+    if (isBrowser) {
+      let isDocumentReload = false;
+      if (redirect.response.headers.has("X-Remix-Reload-Document")) {
+        // Hard reload if the response contained X-Remix-Reload-Document
+        isDocumentReload = true;
+      } else if (ABSOLUTE_URL_REGEX.test(location)) {
+        const url = init.history.createURL(location);
+        isDocumentReload =
+        // Hard reload if it's an absolute URL to a new origin
+        url.origin !== routerWindow.location.origin ||
+        // Hard reload if it's an absolute URL that does not match our basename
+        router_stripBasename(url.pathname, basename) == null;
+      }
+      if (isDocumentReload) {
+        if (replace) {
+          routerWindow.location.replace(location);
+        } else {
+          routerWindow.location.assign(location);
+        }
+        return;
+      }
+    }
+    // There's no need to abort on redirects, since we don't detect the
+    // redirect until the action/loaders have settled
+    pendingNavigationController = null;
+    let redirectHistoryAction = replace === true ? router_Action.Replace : router_Action.Push;
+    // Use the incoming submission if provided, fallback on the active one in
+    // state.navigation
+    let {
+      formMethod,
+      formAction,
+      formEncType
+    } = state.navigation;
+    if (!submission && !fetcherSubmission && formMethod && formAction && formEncType) {
+      submission = getSubmissionFromNavigation(state.navigation);
+    }
+    // If this was a 307/308 submission we want to preserve the HTTP method and
+    // re-submit the GET/POST/PUT/PATCH/DELETE as a submission navigation to the
+    // redirected location
+    let activeSubmission = submission || fetcherSubmission;
+    if (redirectPreserveMethodStatusCodes.has(redirect.response.status) && activeSubmission && isMutationMethod(activeSubmission.formMethod)) {
+      await startNavigation(redirectHistoryAction, redirectLocation, {
+        submission: _extends({}, activeSubmission, {
+          formAction: location
+        }),
+        // Preserve this flag across redirects
+        preventScrollReset: pendingPreventScrollReset
+      });
+    } else {
+      // If we have a navigation submission, we will preserve it through the
+      // redirect navigation
+      let overrideNavigation = getLoadingNavigation(redirectLocation, submission);
+      await startNavigation(redirectHistoryAction, redirectLocation, {
+        overrideNavigation,
+        // Send fetcher submissions through for shouldRevalidate
+        fetcherSubmission,
+        // Preserve this flag across redirects
+        preventScrollReset: pendingPreventScrollReset
+      });
+    }
+  }
+  // Utility wrapper for calling dataStrategy client-side without having to
+  // pass around the manifest, mapRouteProperties, etc.
+  async function callDataStrategy(type, request, matchesToLoad, matches) {
+    try {
+      let results = await callDataStrategyImpl(dataStrategyImpl, type, request, matchesToLoad, matches, manifest, mapRouteProperties);
+      return await Promise.all(results.map((result, i) => {
+        if (isRedirectHandlerResult(result)) {
+          let response = result.result;
+          return {
+            type: ResultType.redirect,
+            response: normalizeRelativeRoutingRedirectResponse(response, request, matchesToLoad[i].route.id, matches, basename, future.v7_relativeSplatPath)
+          };
+        }
+        return convertHandlerResultToDataResult(result);
+      }));
+    } catch (e) {
+      // If the outer dataStrategy method throws, just return the error for all
+      // matches - and it'll naturally bubble to the root
+      return matchesToLoad.map(() => ({
+        type: ResultType.error,
+        error: e
+      }));
+    }
+  }
+  async function callLoadersAndMaybeResolveData(currentMatches, matches, matchesToLoad, fetchersToLoad, request) {
+    let [loaderResults, ...fetcherResults] = await Promise.all([matchesToLoad.length ? callDataStrategy("loader", request, matchesToLoad, matches) : [], ...fetchersToLoad.map(f => {
+      if (f.matches && f.match && f.controller) {
+        let fetcherRequest = createClientSideRequest(init.history, f.path, f.controller.signal);
+        return callDataStrategy("loader", fetcherRequest, [f.match], f.matches).then(r => r[0]);
+      } else {
+        return Promise.resolve({
+          type: ResultType.error,
+          error: getInternalRouterError(404, {
+            pathname: f.path
+          })
+        });
+      }
+    })]);
+    await Promise.all([resolveDeferredResults(currentMatches, matchesToLoad, loaderResults, loaderResults.map(() => request.signal), false, state.loaderData), resolveDeferredResults(currentMatches, fetchersToLoad.map(f => f.match), fetcherResults, fetchersToLoad.map(f => f.controller ? f.controller.signal : null), true)]);
+    return {
+      loaderResults,
+      fetcherResults
+    };
+  }
+  function interruptActiveLoads() {
+    // Every interruption triggers a revalidation
+    isRevalidationRequired = true;
+    // Cancel pending route-level deferreds and mark cancelled routes for
+    // revalidation
+    cancelledDeferredRoutes.push(...cancelActiveDeferreds());
+    // Abort in-flight fetcher loads
+    fetchLoadMatches.forEach((_, key) => {
+      if (fetchControllers.has(key)) {
+        cancelledFetcherLoads.push(key);
+        abortFetcher(key);
+      }
+    });
+  }
+  function updateFetcherState(key, fetcher, opts) {
+    if (opts === void 0) {
+      opts = {};
+    }
+    state.fetchers.set(key, fetcher);
+    updateState({
+      fetchers: new Map(state.fetchers)
+    }, {
+      flushSync: (opts && opts.flushSync) === true
+    });
+  }
+  function setFetcherError(key, routeId, error, opts) {
+    if (opts === void 0) {
+      opts = {};
+    }
+    let boundaryMatch = findNearestBoundary(state.matches, routeId);
+    deleteFetcher(key);
+    updateState({
+      errors: {
+        [boundaryMatch.route.id]: error
+      },
+      fetchers: new Map(state.fetchers)
+    }, {
+      flushSync: (opts && opts.flushSync) === true
+    });
+  }
+  function getFetcher(key) {
+    if (future.v7_fetcherPersist) {
+      activeFetchers.set(key, (activeFetchers.get(key) || 0) + 1);
+      // If this fetcher was previously marked for deletion, unmark it since we
+      // have a new instance
+      if (deletedFetchers.has(key)) {
+        deletedFetchers.delete(key);
+      }
+    }
+    return state.fetchers.get(key) || router_IDLE_FETCHER;
+  }
+  function deleteFetcher(key) {
+    let fetcher = state.fetchers.get(key);
+    // Don't abort the controller if this is a deletion of a fetcher.submit()
+    // in it's loading phase since - we don't want to abort the corresponding
+    // revalidation and want them to complete and land
+    if (fetchControllers.has(key) && !(fetcher && fetcher.state === "loading" && fetchReloadIds.has(key))) {
+      abortFetcher(key);
+    }
+    fetchLoadMatches.delete(key);
+    fetchReloadIds.delete(key);
+    fetchRedirectIds.delete(key);
+    deletedFetchers.delete(key);
+    state.fetchers.delete(key);
+  }
+  function deleteFetcherAndUpdateState(key) {
+    if (future.v7_fetcherPersist) {
+      let count = (activeFetchers.get(key) || 0) - 1;
+      if (count <= 0) {
+        activeFetchers.delete(key);
+        deletedFetchers.add(key);
+      } else {
+        activeFetchers.set(key, count);
+      }
+    } else {
+      deleteFetcher(key);
+    }
+    updateState({
+      fetchers: new Map(state.fetchers)
+    });
+  }
+  function abortFetcher(key) {
+    let controller = fetchControllers.get(key);
+    router_invariant(controller, "Expected fetch controller: " + key);
+    controller.abort();
+    fetchControllers.delete(key);
+  }
+  function markFetchersDone(keys) {
+    for (let key of keys) {
+      let fetcher = getFetcher(key);
+      let doneFetcher = getDoneFetcher(fetcher.data);
+      state.fetchers.set(key, doneFetcher);
+    }
+  }
+  function markFetchRedirectsDone() {
+    let doneKeys = [];
+    let updatedFetchers = false;
+    for (let key of fetchRedirectIds) {
+      let fetcher = state.fetchers.get(key);
+      router_invariant(fetcher, "Expected fetcher: " + key);
+      if (fetcher.state === "loading") {
+        fetchRedirectIds.delete(key);
+        doneKeys.push(key);
+        updatedFetchers = true;
+      }
+    }
+    markFetchersDone(doneKeys);
+    return updatedFetchers;
+  }
+  function abortStaleFetchLoads(landedId) {
+    let yeetedKeys = [];
+    for (let [key, id] of fetchReloadIds) {
+      if (id < landedId) {
+        let fetcher = state.fetchers.get(key);
+        router_invariant(fetcher, "Expected fetcher: " + key);
+        if (fetcher.state === "loading") {
+          abortFetcher(key);
+          fetchReloadIds.delete(key);
+          yeetedKeys.push(key);
+        }
+      }
+    }
+    markFetchersDone(yeetedKeys);
+    return yeetedKeys.length > 0;
+  }
+  function getBlocker(key, fn) {
+    let blocker = state.blockers.get(key) || router_IDLE_BLOCKER;
+    if (blockerFunctions.get(key) !== fn) {
+      blockerFunctions.set(key, fn);
+    }
+    return blocker;
+  }
+  function deleteBlocker(key) {
+    state.blockers.delete(key);
+    blockerFunctions.delete(key);
+  }
+  // Utility function to update blockers, ensuring valid state transitions
+  function updateBlocker(key, newBlocker) {
+    let blocker = state.blockers.get(key) || router_IDLE_BLOCKER;
+    // Poor mans state machine :)
+    // https://mermaid.live/edit#pako:eNqVkc9OwzAMxl8l8nnjAYrEtDIOHEBIgwvKJTReGy3_lDpIqO27k6awMG0XcrLlnz87nwdonESogKXXBuE79rq75XZO3-yHds0RJVuv70YrPlUrCEe2HfrORS3rubqZfuhtpg5C9wk5tZ4VKcRUq88q9Z8RS0-48cE1iHJkL0ugbHuFLus9L6spZy8nX9MP2CNdomVaposqu3fGayT8T8-jJQwhepo_UtpgBQaDEUom04dZhAN1aJBDlUKJBxE1ceB2Smj0Mln-IBW5AFU2dwUiktt_2Qaq2dBfaKdEup85UV7Yd-dKjlnkabl2Pvr0DTkTreM
+    router_invariant(blocker.state === "unblocked" && newBlocker.state === "blocked" || blocker.state === "blocked" && newBlocker.state === "blocked" || blocker.state === "blocked" && newBlocker.state === "proceeding" || blocker.state === "blocked" && newBlocker.state === "unblocked" || blocker.state === "proceeding" && newBlocker.state === "unblocked", "Invalid blocker state transition: " + blocker.state + " -> " + newBlocker.state);
+    let blockers = new Map(state.blockers);
+    blockers.set(key, newBlocker);
+    updateState({
+      blockers
+    });
+  }
+  function shouldBlockNavigation(_ref4) {
+    let {
+      currentLocation,
+      nextLocation,
+      historyAction
+    } = _ref4;
+    if (blockerFunctions.size === 0) {
+      return;
+    }
+    // We ony support a single active blocker at the moment since we don't have
+    // any compelling use cases for multi-blocker yet
+    if (blockerFunctions.size > 1) {
+      router_warning(false, "A router only supports one blocker at a time");
+    }
+    let entries = Array.from(blockerFunctions.entries());
+    let [blockerKey, blockerFunction] = entries[entries.length - 1];
+    let blocker = state.blockers.get(blockerKey);
+    if (blocker && blocker.state === "proceeding") {
+      // If the blocker is currently proceeding, we don't need to re-check
+      // it and can let this navigation continue
+      return;
+    }
+    // At this point, we know we're unblocked/blocked so we need to check the
+    // user-provided blocker function
+    if (blockerFunction({
+      currentLocation,
+      nextLocation,
+      historyAction
+    })) {
+      return blockerKey;
+    }
+  }
+  function cancelActiveDeferreds(predicate) {
+    let cancelledRouteIds = [];
+    activeDeferreds.forEach((dfd, routeId) => {
+      if (!predicate || predicate(routeId)) {
+        // Cancel the deferred - but do not remove from activeDeferreds here -
+        // we rely on the subscribers to do that so our tests can assert proper
+        // cleanup via _internalActiveDeferreds
+        dfd.cancel();
+        cancelledRouteIds.push(routeId);
+        activeDeferreds.delete(routeId);
+      }
+    });
+    return cancelledRouteIds;
+  }
+  // Opt in to capturing and reporting scroll positions during navigations,
+  // used by the <ScrollRestoration> component
+  function enableScrollRestoration(positions, getPosition, getKey) {
+    savedScrollPositions = positions;
+    getScrollPosition = getPosition;
+    getScrollRestorationKey = getKey || null;
+    // Perform initial hydration scroll restoration, since we miss the boat on
+    // the initial updateState() because we've not yet rendered <ScrollRestoration/>
+    // and therefore have no savedScrollPositions available
+    if (!initialScrollRestored && state.navigation === IDLE_NAVIGATION) {
+      initialScrollRestored = true;
+      let y = getSavedScrollPosition(state.location, state.matches);
+      if (y != null) {
+        updateState({
+          restoreScrollPosition: y
+        });
+      }
+    }
+    return () => {
+      savedScrollPositions = null;
+      getScrollPosition = null;
+      getScrollRestorationKey = null;
+    };
+  }
+  function getScrollKey(location, matches) {
+    if (getScrollRestorationKey) {
+      let key = getScrollRestorationKey(location, matches.map(m => convertRouteMatchToUiMatch(m, state.loaderData)));
+      return key || location.key;
+    }
+    return location.key;
+  }
+  function saveScrollPosition(location, matches) {
+    if (savedScrollPositions && getScrollPosition) {
+      let key = getScrollKey(location, matches);
+      savedScrollPositions[key] = getScrollPosition();
+    }
+  }
+  function getSavedScrollPosition(location, matches) {
+    if (savedScrollPositions) {
+      let key = getScrollKey(location, matches);
+      let y = savedScrollPositions[key];
+      if (typeof y === "number") {
+        return y;
+      }
+    }
+    return null;
+  }
+  function _internalSetRoutes(newRoutes) {
+    manifest = {};
+    inFlightDataRoutes = convertRoutesToDataRoutes(newRoutes, mapRouteProperties, undefined, manifest);
+  }
+  router = {
+    get basename() {
+      return basename;
+    },
+    get future() {
+      return future;
+    },
+    get state() {
+      return state;
+    },
+    get routes() {
+      return dataRoutes;
+    },
+    get window() {
+      return routerWindow;
+    },
+    initialize,
+    subscribe,
+    enableScrollRestoration,
+    navigate,
+    fetch,
+    revalidate,
+    // Passthrough to history-aware createHref used by useHref so we get proper
+    // hash-aware URLs in DOM paths
+    createHref: to => init.history.createHref(to),
+    encodeLocation: to => init.history.encodeLocation(to),
+    getFetcher,
+    deleteFetcher: deleteFetcherAndUpdateState,
+    dispose,
+    getBlocker,
+    deleteBlocker,
+    _internalFetchControllers: fetchControllers,
+    _internalActiveDeferreds: activeDeferreds,
+    // TODO: Remove setRoutes, it's temporary to avoid dealing with
+    // updating the tree while validating the update algorithm.
+    _internalSetRoutes
+  };
+  return router;
+}
+//#endregion
+////////////////////////////////////////////////////////////////////////////////
+//#region createStaticHandler
+////////////////////////////////////////////////////////////////////////////////
+const UNSAFE_DEFERRED_SYMBOL = Symbol("deferred");
+function createStaticHandler(routes, opts) {
+  router_invariant(routes.length > 0, "You must provide a non-empty routes array to createStaticHandler");
+  let manifest = {};
+  let basename = (opts ? opts.basename : null) || "/";
+  let mapRouteProperties;
+  if (opts != null && opts.mapRouteProperties) {
+    mapRouteProperties = opts.mapRouteProperties;
+  } else if (opts != null && opts.detectErrorBoundary) {
+    // If they are still using the deprecated version, wrap it with the new API
+    let detectErrorBoundary = opts.detectErrorBoundary;
+    mapRouteProperties = route => ({
+      hasErrorBoundary: detectErrorBoundary(route)
+    });
+  } else {
+    mapRouteProperties = defaultMapRouteProperties;
+  }
+  // Config driven behavior flags
+  let future = _extends({
+    v7_relativeSplatPath: false,
+    v7_throwAbortReason: false
+  }, opts ? opts.future : null);
+  let dataRoutes = convertRoutesToDataRoutes(routes, mapRouteProperties, undefined, manifest);
+  /**
+   * The query() method is intended for document requests, in which we want to
+   * call an optional action and potentially multiple loaders for all nested
+   * routes.  It returns a StaticHandlerContext object, which is very similar
+   * to the router state (location, loaderData, actionData, errors, etc.) and
+   * also adds SSR-specific information such as the statusCode and headers
+   * from action/loaders Responses.
+   *
+   * It _should_ never throw and should report all errors through the
+   * returned context.errors object, properly associating errors to their error
+   * boundary.  Additionally, it tracks _deepestRenderedBoundaryId which can be
+   * used to emulate React error boundaries during SSr by performing a second
+   * pass only down to the boundaryId.
+   *
+   * The one exception where we do not return a StaticHandlerContext is when a
+   * redirect response is returned or thrown from any action/loader.  We
+   * propagate that out and return the raw Response so the HTTP server can
+   * return it directly.
+   *
+   * - `opts.requestContext` is an optional server context that will be passed
+   *   to actions/loaders in the `context` parameter
+   * - `opts.skipLoaderErrorBubbling` is an optional parameter that will prevent
+   *   the bubbling of errors which allows single-fetch-type implementations
+   *   where the client will handle the bubbling and we may need to return data
+   *   for the handling route
+   */
+  async function query(request, _temp3) {
+    let {
+      requestContext,
+      skipLoaderErrorBubbling,
+      unstable_dataStrategy
+    } = _temp3 === void 0 ? {} : _temp3;
+    let url = new URL(request.url);
+    let method = request.method;
+    let location = createLocation("", router_createPath(url), null, "default");
+    let matches = router_matchRoutes(dataRoutes, location, basename);
+    // SSR supports HEAD requests while SPA doesn't
+    if (!isValidMethod(method) && method !== "HEAD") {
+      let error = getInternalRouterError(405, {
+        method
+      });
+      let {
+        matches: methodNotAllowedMatches,
+        route
+      } = getShortCircuitMatches(dataRoutes);
+      return {
+        basename,
+        location,
+        matches: methodNotAllowedMatches,
+        loaderData: {},
+        actionData: null,
+        errors: {
+          [route.id]: error
+        },
+        statusCode: error.status,
+        loaderHeaders: {},
+        actionHeaders: {},
+        activeDeferreds: null
+      };
+    } else if (!matches) {
+      let error = getInternalRouterError(404, {
+        pathname: location.pathname
+      });
+      let {
+        matches: notFoundMatches,
+        route
+      } = getShortCircuitMatches(dataRoutes);
+      return {
+        basename,
+        location,
+        matches: notFoundMatches,
+        loaderData: {},
+        actionData: null,
+        errors: {
+          [route.id]: error
+        },
+        statusCode: error.status,
+        loaderHeaders: {},
+        actionHeaders: {},
+        activeDeferreds: null
+      };
+    }
+    let result = await queryImpl(request, location, matches, requestContext, unstable_dataStrategy || null, skipLoaderErrorBubbling === true, null);
+    if (isResponse(result)) {
+      return result;
+    }
+    // When returning StaticHandlerContext, we patch back in the location here
+    // since we need it for React Context.  But this helps keep our submit and
+    // loadRouteData operating on a Request instead of a Location
+    return _extends({
+      location,
+      basename
+    }, result);
+  }
+  /**
+   * The queryRoute() method is intended for targeted route requests, either
+   * for fetch ?_data requests or resource route requests.  In this case, we
+   * are only ever calling a single action or loader, and we are returning the
+   * returned value directly.  In most cases, this will be a Response returned
+   * from the action/loader, but it may be a primitive or other value as well -
+   * and in such cases the calling context should handle that accordingly.
+   *
+   * We do respect the throw/return differentiation, so if an action/loader
+   * throws, then this method will throw the value.  This is important so we
+   * can do proper boundary identification in Remix where a thrown Response
+   * must go to the Catch Boundary but a returned Response is happy-path.
+   *
+   * One thing to note is that any Router-initiated Errors that make sense
+   * to associate with a status code will be thrown as an ErrorResponse
+   * instance which include the raw Error, such that the calling context can
+   * serialize the error as they see fit while including the proper response
+   * code.  Examples here are 404 and 405 errors that occur prior to reaching
+   * any user-defined loaders.
+   *
+   * - `opts.routeId` allows you to specify the specific route handler to call.
+   *   If not provided the handler will determine the proper route by matching
+   *   against `request.url`
+   * - `opts.requestContext` is an optional server context that will be passed
+   *    to actions/loaders in the `context` parameter
+   */
+  async function queryRoute(request, _temp4) {
+    let {
+      routeId,
+      requestContext,
+      unstable_dataStrategy
+    } = _temp4 === void 0 ? {} : _temp4;
+    let url = new URL(request.url);
+    let method = request.method;
+    let location = createLocation("", router_createPath(url), null, "default");
+    let matches = router_matchRoutes(dataRoutes, location, basename);
+    // SSR supports HEAD requests while SPA doesn't
+    if (!isValidMethod(method) && method !== "HEAD" && method !== "OPTIONS") {
+      throw getInternalRouterError(405, {
+        method
+      });
+    } else if (!matches) {
+      throw getInternalRouterError(404, {
+        pathname: location.pathname
+      });
+    }
+    let match = routeId ? matches.find(m => m.route.id === routeId) : getTargetMatch(matches, location);
+    if (routeId && !match) {
+      throw getInternalRouterError(403, {
+        pathname: location.pathname,
+        routeId
+      });
+    } else if (!match) {
+      // This should never hit I don't think?
+      throw getInternalRouterError(404, {
+        pathname: location.pathname
+      });
+    }
+    let result = await queryImpl(request, location, matches, requestContext, unstable_dataStrategy || null, false, match);
+    if (isResponse(result)) {
+      return result;
+    }
+    let error = result.errors ? Object.values(result.errors)[0] : undefined;
+    if (error !== undefined) {
+      // If we got back result.errors, that means the loader/action threw
+      // _something_ that wasn't a Response, but it's not guaranteed/required
+      // to be an `instanceof Error` either, so we have to use throw here to
+      // preserve the "error" state outside of queryImpl.
+      throw error;
+    }
+    // Pick off the right state value to return
+    if (result.actionData) {
+      return Object.values(result.actionData)[0];
+    }
+    if (result.loaderData) {
+      var _result$activeDeferre;
+      let data = Object.values(result.loaderData)[0];
+      if ((_result$activeDeferre = result.activeDeferreds) != null && _result$activeDeferre[match.route.id]) {
+        data[UNSAFE_DEFERRED_SYMBOL] = result.activeDeferreds[match.route.id];
+      }
+      return data;
+    }
+    return undefined;
+  }
+  async function queryImpl(request, location, matches, requestContext, unstable_dataStrategy, skipLoaderErrorBubbling, routeMatch) {
+    router_invariant(request.signal, "query()/queryRoute() requests must contain an AbortController signal");
+    try {
+      if (isMutationMethod(request.method.toLowerCase())) {
+        let result = await submit(request, matches, routeMatch || getTargetMatch(matches, location), requestContext, unstable_dataStrategy, skipLoaderErrorBubbling, routeMatch != null);
+        return result;
+      }
+      let result = await loadRouteData(request, matches, requestContext, unstable_dataStrategy, skipLoaderErrorBubbling, routeMatch);
+      return isResponse(result) ? result : _extends({}, result, {
+        actionData: null,
+        actionHeaders: {}
+      });
+    } catch (e) {
+      // If the user threw/returned a Response in callLoaderOrAction for a
+      // `queryRoute` call, we throw the `HandlerResult` to bail out early
+      // and then return or throw the raw Response here accordingly
+      if (isHandlerResult(e) && isResponse(e.result)) {
+        if (e.type === ResultType.error) {
+          throw e.result;
+        }
+        return e.result;
+      }
+      // Redirects are always returned since they don't propagate to catch
+      // boundaries
+      if (isRedirectResponse(e)) {
+        return e;
+      }
+      throw e;
+    }
+  }
+  async function submit(request, matches, actionMatch, requestContext, unstable_dataStrategy, skipLoaderErrorBubbling, isRouteRequest) {
+    let result;
+    if (!actionMatch.route.action && !actionMatch.route.lazy) {
+      let error = getInternalRouterError(405, {
+        method: request.method,
+        pathname: new URL(request.url).pathname,
+        routeId: actionMatch.route.id
+      });
+      if (isRouteRequest) {
+        throw error;
+      }
+      result = {
+        type: ResultType.error,
+        error
+      };
+    } else {
+      let results = await callDataStrategy("action", request, [actionMatch], matches, isRouteRequest, requestContext, unstable_dataStrategy);
+      result = results[0];
+      if (request.signal.aborted) {
+        throwStaticHandlerAbortedError(request, isRouteRequest, future);
+      }
+    }
+    if (isRedirectResult(result)) {
+      // Uhhhh - this should never happen, we should always throw these from
+      // callLoaderOrAction, but the type narrowing here keeps TS happy and we
+      // can get back on the "throw all redirect responses" train here should
+      // this ever happen :/
+      throw new Response(null, {
+        status: result.response.status,
+        headers: {
+          Location: result.response.headers.get("Location")
+        }
+      });
+    }
+    if (isDeferredResult(result)) {
+      let error = getInternalRouterError(400, {
+        type: "defer-action"
+      });
+      if (isRouteRequest) {
+        throw error;
+      }
+      result = {
+        type: ResultType.error,
+        error
+      };
+    }
+    if (isRouteRequest) {
+      // Note: This should only be non-Response values if we get here, since
+      // isRouteRequest should throw any Response received in callLoaderOrAction
+      if (isErrorResult(result)) {
+        throw result.error;
+      }
+      return {
+        matches: [actionMatch],
+        loaderData: {},
+        actionData: {
+          [actionMatch.route.id]: result.data
+        },
+        errors: null,
+        // Note: statusCode + headers are unused here since queryRoute will
+        // return the raw Response or value
+        statusCode: 200,
+        loaderHeaders: {},
+        actionHeaders: {},
+        activeDeferreds: null
+      };
+    }
+    // Create a GET request for the loaders
+    let loaderRequest = new Request(request.url, {
+      headers: request.headers,
+      redirect: request.redirect,
+      signal: request.signal
+    });
+    if (isErrorResult(result)) {
+      // Store off the pending error - we use it to determine which loaders
+      // to call and will commit it when we complete the navigation
+      let boundaryMatch = skipLoaderErrorBubbling ? actionMatch : findNearestBoundary(matches, actionMatch.route.id);
+      let context = await loadRouteData(loaderRequest, matches, requestContext, unstable_dataStrategy, skipLoaderErrorBubbling, null, [boundaryMatch.route.id, result]);
+      // action status codes take precedence over loader status codes
+      return _extends({}, context, {
+        statusCode: router_isRouteErrorResponse(result.error) ? result.error.status : result.statusCode != null ? result.statusCode : 500,
+        actionData: null,
+        actionHeaders: _extends({}, result.headers ? {
+          [actionMatch.route.id]: result.headers
+        } : {})
+      });
+    }
+    let context = await loadRouteData(loaderRequest, matches, requestContext, unstable_dataStrategy, skipLoaderErrorBubbling, null);
+    return _extends({}, context, {
+      actionData: {
+        [actionMatch.route.id]: result.data
+      }
+    }, result.statusCode ? {
+      statusCode: result.statusCode
+    } : {}, {
+      actionHeaders: result.headers ? {
+        [actionMatch.route.id]: result.headers
+      } : {}
+    });
+  }
+  async function loadRouteData(request, matches, requestContext, unstable_dataStrategy, skipLoaderErrorBubbling, routeMatch, pendingActionResult) {
+    let isRouteRequest = routeMatch != null;
+    // Short circuit if we have no loaders to run (queryRoute())
+    if (isRouteRequest && !(routeMatch != null && routeMatch.route.loader) && !(routeMatch != null && routeMatch.route.lazy)) {
+      throw getInternalRouterError(400, {
+        method: request.method,
+        pathname: new URL(request.url).pathname,
+        routeId: routeMatch == null ? void 0 : routeMatch.route.id
+      });
+    }
+    let requestMatches = routeMatch ? [routeMatch] : pendingActionResult && isErrorResult(pendingActionResult[1]) ? getLoaderMatchesUntilBoundary(matches, pendingActionResult[0]) : matches;
+    let matchesToLoad = requestMatches.filter(m => m.route.loader || m.route.lazy);
+    // Short circuit if we have no loaders to run (query())
+    if (matchesToLoad.length === 0) {
+      return {
+        matches,
+        // Add a null for all matched routes for proper revalidation on the client
+        loaderData: matches.reduce((acc, m) => Object.assign(acc, {
+          [m.route.id]: null
+        }), {}),
+        errors: pendingActionResult && isErrorResult(pendingActionResult[1]) ? {
+          [pendingActionResult[0]]: pendingActionResult[1].error
+        } : null,
+        statusCode: 200,
+        loaderHeaders: {},
+        activeDeferreds: null
+      };
+    }
+    let results = await callDataStrategy("loader", request, matchesToLoad, matches, isRouteRequest, requestContext, unstable_dataStrategy);
+    if (request.signal.aborted) {
+      throwStaticHandlerAbortedError(request, isRouteRequest, future);
+    }
+    // Process and commit output from loaders
+    let activeDeferreds = new Map();
+    let context = processRouteLoaderData(matches, matchesToLoad, results, pendingActionResult, activeDeferreds, skipLoaderErrorBubbling);
+    // Add a null for any non-loader matches for proper revalidation on the client
+    let executedLoaders = new Set(matchesToLoad.map(match => match.route.id));
+    matches.forEach(match => {
+      if (!executedLoaders.has(match.route.id)) {
+        context.loaderData[match.route.id] = null;
+      }
+    });
+    return _extends({}, context, {
+      matches,
+      activeDeferreds: activeDeferreds.size > 0 ? Object.fromEntries(activeDeferreds.entries()) : null
+    });
+  }
+  // Utility wrapper for calling dataStrategy server-side without having to
+  // pass around the manifest, mapRouteProperties, etc.
+  async function callDataStrategy(type, request, matchesToLoad, matches, isRouteRequest, requestContext, unstable_dataStrategy) {
+    let results = await callDataStrategyImpl(unstable_dataStrategy || defaultDataStrategy, type, request, matchesToLoad, matches, manifest, mapRouteProperties, requestContext);
+    return await Promise.all(results.map((result, i) => {
+      if (isRedirectHandlerResult(result)) {
+        let response = result.result;
+        // Throw redirects and let the server handle them with an HTTP redirect
+        throw normalizeRelativeRoutingRedirectResponse(response, request, matchesToLoad[i].route.id, matches, basename, future.v7_relativeSplatPath);
+      }
+      if (isResponse(result.result) && isRouteRequest) {
+        // For SSR single-route requests, we want to hand Responses back
+        // directly without unwrapping
+        throw result;
+      }
+      return convertHandlerResultToDataResult(result);
+    }));
+  }
+  return {
+    dataRoutes,
+    query,
+    queryRoute
+  };
+}
+//#endregion
+////////////////////////////////////////////////////////////////////////////////
+//#region Helpers
+////////////////////////////////////////////////////////////////////////////////
+/**
+ * Given an existing StaticHandlerContext and an error thrown at render time,
+ * provide an updated StaticHandlerContext suitable for a second SSR render
+ */
+function getStaticContextFromError(routes, context, error) {
+  let newContext = _extends({}, context, {
+    statusCode: router_isRouteErrorResponse(error) ? error.status : 500,
+    errors: {
+      [context._deepestRenderedBoundaryId || routes[0].id]: error
+    }
+  });
+  return newContext;
+}
+function throwStaticHandlerAbortedError(request, isRouteRequest, future) {
+  if (future.v7_throwAbortReason && request.signal.reason !== undefined) {
+    throw request.signal.reason;
+  }
+  let method = isRouteRequest ? "queryRoute" : "query";
+  throw new Error(method + "() call aborted: " + request.method + " " + request.url);
+}
+function isSubmissionNavigation(opts) {
+  return opts != null && ("formData" in opts && opts.formData != null || "body" in opts && opts.body !== undefined);
+}
+function normalizeTo(location, matches, basename, prependBasename, to, v7_relativeSplatPath, fromRouteId, relative) {
+  let contextualMatches;
+  let activeRouteMatch;
+  if (fromRouteId) {
+    // Grab matches up to the calling route so our route-relative logic is
+    // relative to the correct source route
+    contextualMatches = [];
+    for (let match of matches) {
+      contextualMatches.push(match);
+      if (match.route.id === fromRouteId) {
+        activeRouteMatch = match;
+        break;
+      }
+    }
+  } else {
+    contextualMatches = matches;
+    activeRouteMatch = matches[matches.length - 1];
+  }
+  // Resolve the relative path
+  let path = router_resolveTo(to ? to : ".", getResolveToMatches(contextualMatches, v7_relativeSplatPath), router_stripBasename(location.pathname, basename) || location.pathname, relative === "path");
+  // When `to` is not specified we inherit search/hash from the current
+  // location, unlike when to="." and we just inherit the path.
+  // See https://github.com/remix-run/remix/issues/927
+  if (to == null) {
+    path.search = location.search;
+    path.hash = location.hash;
+  }
+  // Add an ?index param for matched index routes if we don't already have one
+  if ((to == null || to === "" || to === ".") && activeRouteMatch && activeRouteMatch.route.index && !hasNakedIndexQuery(path.search)) {
+    path.search = path.search ? path.search.replace(/^\?/, "?index&") : "?index";
+  }
+  // If we're operating within a basename, prepend it to the pathname.  If
+  // this is a root navigation, then just use the raw basename which allows
+  // the basename to have full control over the presence of a trailing slash
+  // on root actions
+  if (prependBasename && basename !== "/") {
+    path.pathname = path.pathname === "/" ? basename : router_joinPaths([basename, path.pathname]);
+  }
+  return router_createPath(path);
+}
+// Normalize navigation options by converting formMethod=GET formData objects to
+// URLSearchParams so they behave identically to links with query params
+function normalizeNavigateOptions(normalizeFormMethod, isFetcher, path, opts) {
+  // Return location verbatim on non-submission navigations
+  if (!opts || !isSubmissionNavigation(opts)) {
+    return {
+      path
+    };
+  }
+  if (opts.formMethod && !isValidMethod(opts.formMethod)) {
+    return {
+      path,
+      error: getInternalRouterError(405, {
+        method: opts.formMethod
+      })
+    };
+  }
+  let getInvalidBodyError = () => ({
+    path,
+    error: getInternalRouterError(400, {
+      type: "invalid-body"
+    })
+  });
+  // Create a Submission on non-GET navigations
+  let rawFormMethod = opts.formMethod || "get";
+  let formMethod = normalizeFormMethod ? rawFormMethod.toUpperCase() : rawFormMethod.toLowerCase();
+  let formAction = stripHashFromPath(path);
+  if (opts.body !== undefined) {
+    if (opts.formEncType === "text/plain") {
+      // text only support POST/PUT/PATCH/DELETE submissions
+      if (!isMutationMethod(formMethod)) {
+        return getInvalidBodyError();
+      }
+      let text = typeof opts.body === "string" ? opts.body : opts.body instanceof FormData || opts.body instanceof URLSearchParams ?
+      // https://html.spec.whatwg.org/multipage/form-control-infrastructure.html#plain-text-form-data
+      Array.from(opts.body.entries()).reduce((acc, _ref5) => {
+        let [name, value] = _ref5;
+        return "" + acc + name + "=" + value + "\n";
+      }, "") : String(opts.body);
+      return {
+        path,
+        submission: {
+          formMethod,
+          formAction,
+          formEncType: opts.formEncType,
+          formData: undefined,
+          json: undefined,
+          text
+        }
+      };
+    } else if (opts.formEncType === "application/json") {
+      // json only supports POST/PUT/PATCH/DELETE submissions
+      if (!isMutationMethod(formMethod)) {
+        return getInvalidBodyError();
+      }
+      try {
+        let json = typeof opts.body === "string" ? JSON.parse(opts.body) : opts.body;
+        return {
+          path,
+          submission: {
+            formMethod,
+            formAction,
+            formEncType: opts.formEncType,
+            formData: undefined,
+            json,
+            text: undefined
+          }
+        };
+      } catch (e) {
+        return getInvalidBodyError();
+      }
+    }
+  }
+  router_invariant(typeof FormData === "function", "FormData is not available in this environment");
+  let searchParams;
+  let formData;
+  if (opts.formData) {
+    searchParams = convertFormDataToSearchParams(opts.formData);
+    formData = opts.formData;
+  } else if (opts.body instanceof FormData) {
+    searchParams = convertFormDataToSearchParams(opts.body);
+    formData = opts.body;
+  } else if (opts.body instanceof URLSearchParams) {
+    searchParams = opts.body;
+    formData = convertSearchParamsToFormData(searchParams);
+  } else if (opts.body == null) {
+    searchParams = new URLSearchParams();
+    formData = new FormData();
+  } else {
+    try {
+      searchParams = new URLSearchParams(opts.body);
+      formData = convertSearchParamsToFormData(searchParams);
+    } catch (e) {
+      return getInvalidBodyError();
+    }
+  }
+  let submission = {
+    formMethod,
+    formAction,
+    formEncType: opts && opts.formEncType || "application/x-www-form-urlencoded",
+    formData,
+    json: undefined,
+    text: undefined
+  };
+  if (isMutationMethod(submission.formMethod)) {
+    return {
+      path,
+      submission
+    };
+  }
+  // Flatten submission onto URLSearchParams for GET submissions
+  let parsedPath = router_parsePath(path);
+  // On GET navigation submissions we can drop the ?index param from the
+  // resulting location since all loaders will run.  But fetcher GET submissions
+  // only run a single loader so we need to preserve any incoming ?index params
+  if (isFetcher && parsedPath.search && hasNakedIndexQuery(parsedPath.search)) {
+    searchParams.append("index", "");
+  }
+  parsedPath.search = "?" + searchParams;
+  return {
+    path: router_createPath(parsedPath),
+    submission
+  };
+}
+// Filter out all routes below any caught error as they aren't going to
+// render so we don't need to load them
+function getLoaderMatchesUntilBoundary(matches, boundaryId) {
+  let boundaryMatches = matches;
+  if (boundaryId) {
+    let index = matches.findIndex(m => m.route.id === boundaryId);
+    if (index >= 0) {
+      boundaryMatches = matches.slice(0, index);
+    }
+  }
+  return boundaryMatches;
+}
+function getMatchesToLoad(history, state, matches, submission, location, isInitialLoad, skipActionErrorRevalidation, isRevalidationRequired, cancelledDeferredRoutes, cancelledFetcherLoads, deletedFetchers, fetchLoadMatches, fetchRedirectIds, routesToUse, basename, pendingActionResult) {
+  let actionResult = pendingActionResult ? isErrorResult(pendingActionResult[1]) ? pendingActionResult[1].error : pendingActionResult[1].data : undefined;
+  let currentUrl = history.createURL(state.location);
+  let nextUrl = history.createURL(location);
+  // Pick navigation matches that are net-new or qualify for revalidation
+  let boundaryId = pendingActionResult && isErrorResult(pendingActionResult[1]) ? pendingActionResult[0] : undefined;
+  let boundaryMatches = boundaryId ? getLoaderMatchesUntilBoundary(matches, boundaryId) : matches;
+  // Don't revalidate loaders by default after action 4xx/5xx responses
+  // when the flag is enabled.  They can still opt-into revalidation via
+  // `shouldRevalidate` via `actionResult`
+  let actionStatus = pendingActionResult ? pendingActionResult[1].statusCode : undefined;
+  let shouldSkipRevalidation = skipActionErrorRevalidation && actionStatus && actionStatus >= 400;
+  let navigationMatches = boundaryMatches.filter((match, index) => {
+    let {
+      route
+    } = match;
+    if (route.lazy) {
+      // We haven't loaded this route yet so we don't know if it's got a loader!
+      return true;
+    }
+    if (route.loader == null) {
+      return false;
+    }
+    if (isInitialLoad) {
+      if (typeof route.loader !== "function" || route.loader.hydrate) {
+        return true;
+      }
+      return state.loaderData[route.id] === undefined && (
+      // Don't re-run if the loader ran and threw an error
+      !state.errors || state.errors[route.id] === undefined);
+    }
+    // Always call the loader on new route instances and pending defer cancellations
+    if (isNewLoader(state.loaderData, state.matches[index], match) || cancelledDeferredRoutes.some(id => id === match.route.id)) {
+      return true;
+    }
+    // This is the default implementation for when we revalidate.  If the route
+    // provides it's own implementation, then we give them full control but
+    // provide this value so they can leverage it if needed after they check
+    // their own specific use cases
+    let currentRouteMatch = state.matches[index];
+    let nextRouteMatch = match;
+    return shouldRevalidateLoader(match, _extends({
+      currentUrl,
+      currentParams: currentRouteMatch.params,
+      nextUrl,
+      nextParams: nextRouteMatch.params
+    }, submission, {
+      actionResult,
+      unstable_actionStatus: actionStatus,
+      defaultShouldRevalidate: shouldSkipRevalidation ? false :
+      // Forced revalidation due to submission, useRevalidator, or X-Remix-Revalidate
+      isRevalidationRequired || currentUrl.pathname + currentUrl.search === nextUrl.pathname + nextUrl.search ||
+      // Search params affect all loaders
+      currentUrl.search !== nextUrl.search || isNewRouteInstance(currentRouteMatch, nextRouteMatch)
+    }));
+  });
+  // Pick fetcher.loads that need to be revalidated
+  let revalidatingFetchers = [];
+  fetchLoadMatches.forEach((f, key) => {
+    // Don't revalidate:
+    //  - on initial load (shouldn't be any fetchers then anyway)
+    //  - if fetcher won't be present in the subsequent render
+    //    - no longer matches the URL (v7_fetcherPersist=false)
+    //    - was unmounted but persisted due to v7_fetcherPersist=true
+    if (isInitialLoad || !matches.some(m => m.route.id === f.routeId) || deletedFetchers.has(key)) {
+      return;
+    }
+    let fetcherMatches = router_matchRoutes(routesToUse, f.path, basename);
+    // If the fetcher path no longer matches, push it in with null matches so
+    // we can trigger a 404 in callLoadersAndMaybeResolveData.  Note this is
+    // currently only a use-case for Remix HMR where the route tree can change
+    // at runtime and remove a route previously loaded via a fetcher
+    if (!fetcherMatches) {
+      revalidatingFetchers.push({
+        key,
+        routeId: f.routeId,
+        path: f.path,
+        matches: null,
+        match: null,
+        controller: null
+      });
+      return;
+    }
+    // Revalidating fetchers are decoupled from the route matches since they
+    // load from a static href.  They revalidate based on explicit revalidation
+    // (submission, useRevalidator, or X-Remix-Revalidate)
+    let fetcher = state.fetchers.get(key);
+    let fetcherMatch = getTargetMatch(fetcherMatches, f.path);
+    let shouldRevalidate = false;
+    if (fetchRedirectIds.has(key)) {
+      // Never trigger a revalidation of an actively redirecting fetcher
+      shouldRevalidate = false;
+    } else if (cancelledFetcherLoads.includes(key)) {
+      // Always revalidate if the fetcher was cancelled
+      shouldRevalidate = true;
+    } else if (fetcher && fetcher.state !== "idle" && fetcher.data === undefined) {
+      // If the fetcher hasn't ever completed loading yet, then this isn't a
+      // revalidation, it would just be a brand new load if an explicit
+      // revalidation is required
+      shouldRevalidate = isRevalidationRequired;
+    } else {
+      // Otherwise fall back on any user-defined shouldRevalidate, defaulting
+      // to explicit revalidations only
+      shouldRevalidate = shouldRevalidateLoader(fetcherMatch, _extends({
+        currentUrl,
+        currentParams: state.matches[state.matches.length - 1].params,
+        nextUrl,
+        nextParams: matches[matches.length - 1].params
+      }, submission, {
+        actionResult,
+        unstable_actionStatus: actionStatus,
+        defaultShouldRevalidate: shouldSkipRevalidation ? false : isRevalidationRequired
+      }));
+    }
+    if (shouldRevalidate) {
+      revalidatingFetchers.push({
+        key,
+        routeId: f.routeId,
+        path: f.path,
+        matches: fetcherMatches,
+        match: fetcherMatch,
+        controller: new AbortController()
+      });
+    }
+  });
+  return [navigationMatches, revalidatingFetchers];
+}
+function isNewLoader(currentLoaderData, currentMatch, match) {
+  let isNew =
+  // [a] -> [a, b]
+  !currentMatch ||
+  // [a, b] -> [a, c]
+  match.route.id !== currentMatch.route.id;
+  // Handle the case that we don't have data for a re-used route, potentially
+  // from a prior error or from a cancelled pending deferred
+  let isMissingData = currentLoaderData[match.route.id] === undefined;
+  // Always load if this is a net-new route or we don't yet have data
+  return isNew || isMissingData;
+}
+function isNewRouteInstance(currentMatch, match) {
+  let currentPath = currentMatch.route.path;
+  return (
+    // param change for this match, /users/123 -> /users/456
+    currentMatch.pathname !== match.pathname ||
+    // splat param changed, which is not present in match.path
+    // e.g. /files/images/avatar.jpg -> files/finances.xls
+    currentPath != null && currentPath.endsWith("*") && currentMatch.params["*"] !== match.params["*"]
+  );
+}
+function shouldRevalidateLoader(loaderMatch, arg) {
+  if (loaderMatch.route.shouldRevalidate) {
+    let routeChoice = loaderMatch.route.shouldRevalidate(arg);
+    if (typeof routeChoice === "boolean") {
+      return routeChoice;
+    }
+  }
+  return arg.defaultShouldRevalidate;
+}
+/**
+ * Execute route.lazy() methods to lazily load route modules (loader, action,
+ * shouldRevalidate) and update the routeManifest in place which shares objects
+ * with dataRoutes so those get updated as well.
+ */
+async function loadLazyRouteModule(route, mapRouteProperties, manifest) {
+  if (!route.lazy) {
+    return;
+  }
+  let lazyRoute = await route.lazy();
+  // If the lazy route function was executed and removed by another parallel
+  // call then we can return - first lazy() to finish wins because the return
+  // value of lazy is expected to be static
+  if (!route.lazy) {
+    return;
+  }
+  let routeToUpdate = manifest[route.id];
+  router_invariant(routeToUpdate, "No route found in manifest");
+  // Update the route in place.  This should be safe because there's no way
+  // we could yet be sitting on this route as we can't get there without
+  // resolving lazy() first.
+  //
+  // This is different than the HMR "update" use-case where we may actively be
+  // on the route being updated.  The main concern boils down to "does this
+  // mutation affect any ongoing navigations or any current state.matches
+  // values?".  If not, it should be safe to update in place.
+  let routeUpdates = {};
+  for (let lazyRouteProperty in lazyRoute) {
+    let staticRouteValue = routeToUpdate[lazyRouteProperty];
+    let isPropertyStaticallyDefined = staticRouteValue !== undefined &&
+    // This property isn't static since it should always be updated based
+    // on the route updates
+    lazyRouteProperty !== "hasErrorBoundary";
+    router_warning(!isPropertyStaticallyDefined, "Route \"" + routeToUpdate.id + "\" has a static property \"" + lazyRouteProperty + "\" " + "defined but its lazy function is also returning a value for this property. " + ("The lazy route property \"" + lazyRouteProperty + "\" will be ignored."));
+    if (!isPropertyStaticallyDefined && !immutableRouteKeys.has(lazyRouteProperty)) {
+      routeUpdates[lazyRouteProperty] = lazyRoute[lazyRouteProperty];
+    }
+  }
+  // Mutate the route with the provided updates.  Do this first so we pass
+  // the updated version to mapRouteProperties
+  Object.assign(routeToUpdate, routeUpdates);
+  // Mutate the `hasErrorBoundary` property on the route based on the route
+  // updates and remove the `lazy` function so we don't resolve the lazy
+  // route again.
+  Object.assign(routeToUpdate, _extends({}, mapRouteProperties(routeToUpdate), {
+    lazy: undefined
+  }));
+}
+// Default implementation of `dataStrategy` which fetches all loaders in parallel
+function defaultDataStrategy(opts) {
+  return Promise.all(opts.matches.map(m => m.resolve()));
+}
+async function callDataStrategyImpl(dataStrategyImpl, type, request, matchesToLoad, matches, manifest, mapRouteProperties, requestContext) {
+  let routeIdsToLoad = matchesToLoad.reduce((acc, m) => acc.add(m.route.id), new Set());
+  let loadedMatches = new Set();
+  // Send all matches here to allow for a middleware-type implementation.
+  // handler will be a no-op for unneeded routes and we filter those results
+  // back out below.
+  let results = await dataStrategyImpl({
+    matches: matches.map(match => {
+      let shouldLoad = routeIdsToLoad.has(match.route.id);
+      // `resolve` encapsulates the route.lazy, executing the
+      // loader/action, and mapping return values/thrown errors to a
+      // HandlerResult.  Users can pass a callback to take fine-grained control
+      // over the execution of the loader/action
+      let resolve = handlerOverride => {
+        loadedMatches.add(match.route.id);
+        return shouldLoad ? callLoaderOrAction(type, request, match, manifest, mapRouteProperties, handlerOverride, requestContext) : Promise.resolve({
+          type: ResultType.data,
+          result: undefined
+        });
+      };
+      return _extends({}, match, {
+        shouldLoad,
+        resolve
+      });
+    }),
+    request,
+    params: matches[0].params,
+    context: requestContext
+  });
+  // Throw if any loadRoute implementations not called since they are what
+  // ensures a route is fully loaded
+  matches.forEach(m => router_invariant(loadedMatches.has(m.route.id), "`match.resolve()` was not called for route id \"" + m.route.id + "\". " + "You must call `match.resolve()` on every match passed to " + "`dataStrategy` to ensure all routes are properly loaded."));
+  // Filter out any middleware-only matches for which we didn't need to run handlers
+  return results.filter((_, i) => routeIdsToLoad.has(matches[i].route.id));
+}
+// Default logic for calling a loader/action is the user has no specified a dataStrategy
+async function callLoaderOrAction(type, request, match, manifest, mapRouteProperties, handlerOverride, staticContext) {
+  let result;
+  let onReject;
+  let runHandler = handler => {
+    // Setup a promise we can race against so that abort signals short circuit
+    let reject;
+    // This will never resolve so safe to type it as Promise<HandlerResult> to
+    // satisfy the function return value
+    let abortPromise = new Promise((_, r) => reject = r);
+    onReject = () => reject();
+    request.signal.addEventListener("abort", onReject);
+    let actualHandler = ctx => {
+      if (typeof handler !== "function") {
+        return Promise.reject(new Error("You cannot call the handler for a route which defines a boolean " + ("\"" + type + "\" [routeId: " + match.route.id + "]")));
+      }
+      return handler({
+        request,
+        params: match.params,
+        context: staticContext
+      }, ...(ctx !== undefined ? [ctx] : []));
+    };
+    let handlerPromise;
+    if (handlerOverride) {
+      handlerPromise = handlerOverride(ctx => actualHandler(ctx));
+    } else {
+      handlerPromise = (async () => {
+        try {
+          let val = await actualHandler();
+          return {
+            type: "data",
+            result: val
+          };
+        } catch (e) {
+          return {
+            type: "error",
+            result: e
+          };
+        }
+      })();
+    }
+    return Promise.race([handlerPromise, abortPromise]);
+  };
+  try {
+    let handler = match.route[type];
+    if (match.route.lazy) {
+      if (handler) {
+        // Run statically defined handler in parallel with lazy()
+        let handlerError;
+        let [value] = await Promise.all([
+        // If the handler throws, don't let it immediately bubble out,
+        // since we need to let the lazy() execution finish so we know if this
+        // route has a boundary that can handle the error
+        runHandler(handler).catch(e => {
+          handlerError = e;
+        }), loadLazyRouteModule(match.route, mapRouteProperties, manifest)]);
+        if (handlerError !== undefined) {
+          throw handlerError;
+        }
+        result = value;
+      } else {
+        // Load lazy route module, then run any returned handler
+        await loadLazyRouteModule(match.route, mapRouteProperties, manifest);
+        handler = match.route[type];
+        if (handler) {
+          // Handler still runs even if we got interrupted to maintain consistency
+          // with un-abortable behavior of handler execution on non-lazy or
+          // previously-lazy-loaded routes
+          result = await runHandler(handler);
+        } else if (type === "action") {
+          let url = new URL(request.url);
+          let pathname = url.pathname + url.search;
+          throw getInternalRouterError(405, {
+            method: request.method,
+            pathname,
+            routeId: match.route.id
+          });
+        } else {
+          // lazy() route has no loader to run.  Short circuit here so we don't
+          // hit the invariant below that errors on returning undefined.
+          return {
+            type: ResultType.data,
+            result: undefined
+          };
+        }
+      }
+    } else if (!handler) {
+      let url = new URL(request.url);
+      let pathname = url.pathname + url.search;
+      throw getInternalRouterError(404, {
+        pathname
+      });
+    } else {
+      result = await runHandler(handler);
+    }
+    router_invariant(result.result !== undefined, "You defined " + (type === "action" ? "an action" : "a loader") + " for route " + ("\"" + match.route.id + "\" but didn't return anything from your `" + type + "` ") + "function. Please return a value or `null`.");
+  } catch (e) {
+    // We should already be catching and converting normal handler executions to
+    // HandlerResults and returning them, so anything that throws here is an
+    // unexpected error we still need to wrap
+    return {
+      type: ResultType.error,
+      result: e
+    };
+  } finally {
+    if (onReject) {
+      request.signal.removeEventListener("abort", onReject);
+    }
+  }
+  return result;
+}
+async function convertHandlerResultToDataResult(handlerResult) {
+  let {
+    result,
+    type,
+    status
+  } = handlerResult;
+  if (isResponse(result)) {
+    let data;
+    try {
+      let contentType = result.headers.get("Content-Type");
+      // Check between word boundaries instead of startsWith() due to the last
+      // paragraph of https://httpwg.org/specs/rfc9110.html#field.content-type
+      if (contentType && /\bapplication\/json\b/.test(contentType)) {
+        if (result.body == null) {
+          data = null;
+        } else {
+          data = await result.json();
+        }
+      } else {
+        data = await result.text();
+      }
+    } catch (e) {
+      return {
+        type: ResultType.error,
+        error: e
+      };
+    }
+    if (type === ResultType.error) {
+      return {
+        type: ResultType.error,
+        error: new ErrorResponseImpl(result.status, result.statusText, data),
+        statusCode: result.status,
+        headers: result.headers
+      };
+    }
+    return {
+      type: ResultType.data,
+      data,
+      statusCode: result.status,
+      headers: result.headers
+    };
+  }
+  if (type === ResultType.error) {
+    return {
+      type: ResultType.error,
+      error: result,
+      statusCode: router_isRouteErrorResponse(result) ? result.status : status
+    };
+  }
+  if (isDeferredData(result)) {
+    var _result$init, _result$init2;
+    return {
+      type: ResultType.deferred,
+      deferredData: result,
+      statusCode: (_result$init = result.init) == null ? void 0 : _result$init.status,
+      headers: ((_result$init2 = result.init) == null ? void 0 : _result$init2.headers) && new Headers(result.init.headers)
+    };
+  }
+  return {
+    type: ResultType.data,
+    data: result,
+    statusCode: status
+  };
+}
+// Support relative routing in internal redirects
+function normalizeRelativeRoutingRedirectResponse(response, request, routeId, matches, basename, v7_relativeSplatPath) {
+  let location = response.headers.get("Location");
+  router_invariant(location, "Redirects returned/thrown from loaders/actions must have a Location header");
+  if (!ABSOLUTE_URL_REGEX.test(location)) {
+    let trimmedMatches = matches.slice(0, matches.findIndex(m => m.route.id === routeId) + 1);
+    location = normalizeTo(new URL(request.url), trimmedMatches, basename, true, location, v7_relativeSplatPath);
+    response.headers.set("Location", location);
+  }
+  return response;
+}
+function normalizeRedirectLocation(location, currentUrl, basename) {
+  if (ABSOLUTE_URL_REGEX.test(location)) {
+    // Strip off the protocol+origin for same-origin + same-basename absolute redirects
+    let normalizedLocation = location;
+    let url = normalizedLocation.startsWith("//") ? new URL(currentUrl.protocol + normalizedLocation) : new URL(normalizedLocation);
+    let isSameBasename = router_stripBasename(url.pathname, basename) != null;
+    if (url.origin === currentUrl.origin && isSameBasename) {
+      return url.pathname + url.search + url.hash;
+    }
+  }
+  return location;
+}
+// Utility method for creating the Request instances for loaders/actions during
+// client-side navigations and fetches.  During SSR we will always have a
+// Request instance from the static handler (query/queryRoute)
+function createClientSideRequest(history, location, signal, submission) {
+  let url = history.createURL(stripHashFromPath(location)).toString();
+  let init = {
+    signal
+  };
+  if (submission && isMutationMethod(submission.formMethod)) {
+    let {
+      formMethod,
+      formEncType
+    } = submission;
+    // Didn't think we needed this but it turns out unlike other methods, patch
+    // won't be properly normalized to uppercase and results in a 405 error.
+    // See: https://fetch.spec.whatwg.org/#concept-method
+    init.method = formMethod.toUpperCase();
+    if (formEncType === "application/json") {
+      init.headers = new Headers({
+        "Content-Type": formEncType
+      });
+      init.body = JSON.stringify(submission.json);
+    } else if (formEncType === "text/plain") {
+      // Content-Type is inferred (https://fetch.spec.whatwg.org/#dom-request)
+      init.body = submission.text;
+    } else if (formEncType === "application/x-www-form-urlencoded" && submission.formData) {
+      // Content-Type is inferred (https://fetch.spec.whatwg.org/#dom-request)
+      init.body = convertFormDataToSearchParams(submission.formData);
+    } else {
+      // Content-Type is inferred (https://fetch.spec.whatwg.org/#dom-request)
+      init.body = submission.formData;
+    }
+  }
+  return new Request(url, init);
+}
+function convertFormDataToSearchParams(formData) {
+  let searchParams = new URLSearchParams();
+  for (let [key, value] of formData.entries()) {
+    // https://html.spec.whatwg.org/multipage/form-control-infrastructure.html#converting-an-entry-list-to-a-list-of-name-value-pairs
+    searchParams.append(key, typeof value === "string" ? value : value.name);
+  }
+  return searchParams;
+}
+function convertSearchParamsToFormData(searchParams) {
+  let formData = new FormData();
+  for (let [key, value] of searchParams.entries()) {
+    formData.append(key, value);
+  }
+  return formData;
+}
+function processRouteLoaderData(matches, matchesToLoad, results, pendingActionResult, activeDeferreds, skipLoaderErrorBubbling) {
+  // Fill in loaderData/errors from our loaders
+  let loaderData = {};
+  let errors = null;
+  let statusCode;
+  let foundError = false;
+  let loaderHeaders = {};
+  let pendingError = pendingActionResult && isErrorResult(pendingActionResult[1]) ? pendingActionResult[1].error : undefined;
+  // Process loader results into state.loaderData/state.errors
+  results.forEach((result, index) => {
+    let id = matchesToLoad[index].route.id;
+    router_invariant(!isRedirectResult(result), "Cannot handle redirect results in processLoaderData");
+    if (isErrorResult(result)) {
+      let error = result.error;
+      // If we have a pending action error, we report it at the highest-route
+      // that throws a loader error, and then clear it out to indicate that
+      // it was consumed
+      if (pendingError !== undefined) {
+        error = pendingError;
+        pendingError = undefined;
+      }
+      errors = errors || {};
+      if (skipLoaderErrorBubbling) {
+        errors[id] = error;
+      } else {
+        // Look upwards from the matched route for the closest ancestor error
+        // boundary, defaulting to the root match.  Prefer higher error values
+        // if lower errors bubble to the same boundary
+        let boundaryMatch = findNearestBoundary(matches, id);
+        if (errors[boundaryMatch.route.id] == null) {
+          errors[boundaryMatch.route.id] = error;
+        }
+      }
+      // Clear our any prior loaderData for the throwing route
+      loaderData[id] = undefined;
+      // Once we find our first (highest) error, we set the status code and
+      // prevent deeper status codes from overriding
+      if (!foundError) {
+        foundError = true;
+        statusCode = router_isRouteErrorResponse(result.error) ? result.error.status : 500;
+      }
+      if (result.headers) {
+        loaderHeaders[id] = result.headers;
+      }
+    } else {
+      if (isDeferredResult(result)) {
+        activeDeferreds.set(id, result.deferredData);
+        loaderData[id] = result.deferredData.data;
+        // Error status codes always override success status codes, but if all
+        // loaders are successful we take the deepest status code.
+        if (result.statusCode != null && result.statusCode !== 200 && !foundError) {
+          statusCode = result.statusCode;
+        }
+        if (result.headers) {
+          loaderHeaders[id] = result.headers;
+        }
+      } else {
+        loaderData[id] = result.data;
+        // Error status codes always override success status codes, but if all
+        // loaders are successful we take the deepest status code.
+        if (result.statusCode && result.statusCode !== 200 && !foundError) {
+          statusCode = result.statusCode;
+        }
+        if (result.headers) {
+          loaderHeaders[id] = result.headers;
+        }
+      }
+    }
+  });
+  // If we didn't consume the pending action error (i.e., all loaders
+  // resolved), then consume it here.  Also clear out any loaderData for the
+  // throwing route
+  if (pendingError !== undefined && pendingActionResult) {
+    errors = {
+      [pendingActionResult[0]]: pendingError
+    };
+    loaderData[pendingActionResult[0]] = undefined;
+  }
+  return {
+    loaderData,
+    errors,
+    statusCode: statusCode || 200,
+    loaderHeaders
+  };
+}
+function processLoaderData(state, matches, matchesToLoad, results, pendingActionResult, revalidatingFetchers, fetcherResults, activeDeferreds) {
+  let {
+    loaderData,
+    errors
+  } = processRouteLoaderData(matches, matchesToLoad, results, pendingActionResult, activeDeferreds, false // This method is only called client side so we always want to bubble
+  );
+  // Process results from our revalidating fetchers
+  for (let index = 0; index < revalidatingFetchers.length; index++) {
+    let {
+      key,
+      match,
+      controller
+    } = revalidatingFetchers[index];
+    router_invariant(fetcherResults !== undefined && fetcherResults[index] !== undefined, "Did not find corresponding fetcher result");
+    let result = fetcherResults[index];
+    // Process fetcher non-redirect errors
+    if (controller && controller.signal.aborted) {
+      // Nothing to do for aborted fetchers
+      continue;
+    } else if (isErrorResult(result)) {
+      let boundaryMatch = findNearestBoundary(state.matches, match == null ? void 0 : match.route.id);
+      if (!(errors && errors[boundaryMatch.route.id])) {
+        errors = _extends({}, errors, {
+          [boundaryMatch.route.id]: result.error
+        });
+      }
+      state.fetchers.delete(key);
+    } else if (isRedirectResult(result)) {
+      // Should never get here, redirects should get processed above, but we
+      // keep this to type narrow to a success result in the else
+      router_invariant(false, "Unhandled fetcher revalidation redirect");
+    } else if (isDeferredResult(result)) {
+      // Should never get here, deferred data should be awaited for fetchers
+      // in resolveDeferredResults
+      router_invariant(false, "Unhandled fetcher deferred data");
+    } else {
+      let doneFetcher = getDoneFetcher(result.data);
+      state.fetchers.set(key, doneFetcher);
+    }
+  }
+  return {
+    loaderData,
+    errors
+  };
+}
+function mergeLoaderData(loaderData, newLoaderData, matches, errors) {
+  let mergedLoaderData = _extends({}, newLoaderData);
+  for (let match of matches) {
+    let id = match.route.id;
+    if (newLoaderData.hasOwnProperty(id)) {
+      if (newLoaderData[id] !== undefined) {
+        mergedLoaderData[id] = newLoaderData[id];
+      }
+    } else if (loaderData[id] !== undefined && match.route.loader) {
+      // Preserve existing keys not included in newLoaderData and where a loader
+      // wasn't removed by HMR
+      mergedLoaderData[id] = loaderData[id];
+    }
+    if (errors && errors.hasOwnProperty(id)) {
+      // Don't keep any loader data below the boundary
+      break;
+    }
+  }
+  return mergedLoaderData;
+}
+function getActionDataForCommit(pendingActionResult) {
+  if (!pendingActionResult) {
+    return {};
+  }
+  return isErrorResult(pendingActionResult[1]) ? {
+    // Clear out prior actionData on errors
+    actionData: {}
+  } : {
+    actionData: {
+      [pendingActionResult[0]]: pendingActionResult[1].data
+    }
+  };
+}
+// Find the nearest error boundary, looking upwards from the leaf route (or the
+// route specified by routeId) for the closest ancestor error boundary,
+// defaulting to the root match
+function findNearestBoundary(matches, routeId) {
+  let eligibleMatches = routeId ? matches.slice(0, matches.findIndex(m => m.route.id === routeId) + 1) : [...matches];
+  return eligibleMatches.reverse().find(m => m.route.hasErrorBoundary === true) || matches[0];
+}
+function getShortCircuitMatches(routes) {
+  // Prefer a root layout route if present, otherwise shim in a route object
+  let route = routes.length === 1 ? routes[0] : routes.find(r => r.index || !r.path || r.path === "/") || {
+    id: "__shim-error-route__"
+  };
+  return {
+    matches: [{
+      params: {},
+      pathname: "",
+      pathnameBase: "",
+      route
+    }],
+    route
+  };
+}
+function getInternalRouterError(status, _temp5) {
+  let {
+    pathname,
+    routeId,
+    method,
+    type
+  } = _temp5 === void 0 ? {} : _temp5;
+  let statusText = "Unknown Server Error";
+  let errorMessage = "Unknown @remix-run/router error";
+  if (status === 400) {
+    statusText = "Bad Request";
+    if (method && pathname && routeId) {
+      errorMessage = "You made a " + method + " request to \"" + pathname + "\" but " + ("did not provide a `loader` for route \"" + routeId + "\", ") + "so there is no way to handle the request.";
+    } else if (type === "defer-action") {
+      errorMessage = "defer() is not supported in actions";
+    } else if (type === "invalid-body") {
+      errorMessage = "Unable to encode submission body";
+    }
+  } else if (status === 403) {
+    statusText = "Forbidden";
+    errorMessage = "Route \"" + routeId + "\" does not match URL \"" + pathname + "\"";
+  } else if (status === 404) {
+    statusText = "Not Found";
+    errorMessage = "No route matches URL \"" + pathname + "\"";
+  } else if (status === 405) {
+    statusText = "Method Not Allowed";
+    if (method && pathname && routeId) {
+      errorMessage = "You made a " + method.toUpperCase() + " request to \"" + pathname + "\" but " + ("did not provide an `action` for route \"" + routeId + "\", ") + "so there is no way to handle the request.";
+    } else if (method) {
+      errorMessage = "Invalid request method \"" + method.toUpperCase() + "\"";
+    }
+  }
+  return new ErrorResponseImpl(status || 500, statusText, new Error(errorMessage), true);
+}
+// Find any returned redirect errors, starting from the lowest match
+function findRedirect(results) {
+  for (let i = results.length - 1; i >= 0; i--) {
+    let result = results[i];
+    if (isRedirectResult(result)) {
+      return {
+        result,
+        idx: i
+      };
+    }
+  }
+}
+function stripHashFromPath(path) {
+  let parsedPath = typeof path === "string" ? router_parsePath(path) : path;
+  return router_createPath(_extends({}, parsedPath, {
+    hash: ""
+  }));
+}
+function isHashChangeOnly(a, b) {
+  if (a.pathname !== b.pathname || a.search !== b.search) {
+    return false;
+  }
+  if (a.hash === "") {
+    // /page -> /page#hash
+    return b.hash !== "";
+  } else if (a.hash === b.hash) {
+    // /page#hash -> /page#hash
+    return true;
+  } else if (b.hash !== "") {
+    // /page#hash -> /page#other
+    return true;
+  }
+  // If the hash is removed the browser will re-perform a request to the server
+  // /page#hash -> /page
+  return false;
+}
+function isHandlerResult(result) {
+  return result != null && typeof result === "object" && "type" in result && "result" in result && (result.type === ResultType.data || result.type === ResultType.error);
+}
+function isRedirectHandlerResult(result) {
+  return isResponse(result.result) && redirectStatusCodes.has(result.result.status);
+}
+function isDeferredResult(result) {
+  return result.type === ResultType.deferred;
+}
+function isErrorResult(result) {
+  return result.type === ResultType.error;
+}
+function isRedirectResult(result) {
+  return (result && result.type) === ResultType.redirect;
+}
+function isDeferredData(value) {
+  let deferred = value;
+  return deferred && typeof deferred === "object" && typeof deferred.data === "object" && typeof deferred.subscribe === "function" && typeof deferred.cancel === "function" && typeof deferred.resolveData === "function";
+}
+function isResponse(value) {
+  return value != null && typeof value.status === "number" && typeof value.statusText === "string" && typeof value.headers === "object" && typeof value.body !== "undefined";
+}
+function isRedirectResponse(result) {
+  if (!isResponse(result)) {
+    return false;
+  }
+  let status = result.status;
+  let location = result.headers.get("Location");
+  return status >= 300 && status <= 399 && location != null;
+}
+function isValidMethod(method) {
+  return validRequestMethods.has(method.toLowerCase());
+}
+function isMutationMethod(method) {
+  return validMutationMethods.has(method.toLowerCase());
+}
+async function resolveDeferredResults(currentMatches, matchesToLoad, results, signals, isFetcher, currentLoaderData) {
+  for (let index = 0; index < results.length; index++) {
+    let result = results[index];
+    let match = matchesToLoad[index];
+    // If we don't have a match, then we can have a deferred result to do
+    // anything with.  This is for revalidating fetchers where the route was
+    // removed during HMR
+    if (!match) {
+      continue;
+    }
+    let currentMatch = currentMatches.find(m => m.route.id === match.route.id);
+    let isRevalidatingLoader = currentMatch != null && !isNewRouteInstance(currentMatch, match) && (currentLoaderData && currentLoaderData[match.route.id]) !== undefined;
+    if (isDeferredResult(result) && (isFetcher || isRevalidatingLoader)) {
+      // Note: we do not have to touch activeDeferreds here since we race them
+      // against the signal in resolveDeferredData and they'll get aborted
+      // there if needed
+      let signal = signals[index];
+      router_invariant(signal, "Expected an AbortSignal for revalidating fetcher deferred result");
+      await resolveDeferredData(result, signal, isFetcher).then(result => {
+        if (result) {
+          results[index] = result || results[index];
+        }
+      });
+    }
+  }
+}
+async function resolveDeferredData(result, signal, unwrap) {
+  if (unwrap === void 0) {
+    unwrap = false;
+  }
+  let aborted = await result.deferredData.resolveData(signal);
+  if (aborted) {
+    return;
+  }
+  if (unwrap) {
+    try {
+      return {
+        type: ResultType.data,
+        data: result.deferredData.unwrappedData
+      };
+    } catch (e) {
+      // Handle any TrackedPromise._error values encountered while unwrapping
+      return {
+        type: ResultType.error,
+        error: e
+      };
+    }
+  }
+  return {
+    type: ResultType.data,
+    data: result.deferredData.data
+  };
+}
+function hasNakedIndexQuery(search) {
+  return new URLSearchParams(search).getAll("index").some(v => v === "");
+}
+function getTargetMatch(matches, location) {
+  let search = typeof location === "string" ? router_parsePath(location).search : location.search;
+  if (matches[matches.length - 1].route.index && hasNakedIndexQuery(search || "")) {
+    // Return the leaf index route when index is present
+    return matches[matches.length - 1];
+  }
+  // Otherwise grab the deepest "path contributing" match (ignoring index and
+  // pathless layout routes)
+  let pathMatches = getPathContributingMatches(matches);
+  return pathMatches[pathMatches.length - 1];
+}
+function getSubmissionFromNavigation(navigation) {
+  let {
+    formMethod,
+    formAction,
+    formEncType,
+    text,
+    formData,
+    json
+  } = navigation;
+  if (!formMethod || !formAction || !formEncType) {
+    return;
+  }
+  if (text != null) {
+    return {
+      formMethod,
+      formAction,
+      formEncType,
+      formData: undefined,
+      json: undefined,
+      text
+    };
+  } else if (formData != null) {
+    return {
+      formMethod,
+      formAction,
+      formEncType,
+      formData,
+      json: undefined,
+      text: undefined
+    };
+  } else if (json !== undefined) {
+    return {
+      formMethod,
+      formAction,
+      formEncType,
+      formData: undefined,
+      json,
+      text: undefined
+    };
+  }
+}
+function getLoadingNavigation(location, submission) {
+  if (submission) {
+    let navigation = {
+      state: "loading",
+      location,
+      formMethod: submission.formMethod,
+      formAction: submission.formAction,
+      formEncType: submission.formEncType,
+      formData: submission.formData,
+      json: submission.json,
+      text: submission.text
+    };
+    return navigation;
+  } else {
+    let navigation = {
+      state: "loading",
+      location,
+      formMethod: undefined,
+      formAction: undefined,
+      formEncType: undefined,
+      formData: undefined,
+      json: undefined,
+      text: undefined
+    };
+    return navigation;
+  }
+}
+function getSubmittingNavigation(location, submission) {
+  let navigation = {
+    state: "submitting",
+    location,
+    formMethod: submission.formMethod,
+    formAction: submission.formAction,
+    formEncType: submission.formEncType,
+    formData: submission.formData,
+    json: submission.json,
+    text: submission.text
+  };
+  return navigation;
+}
+function getLoadingFetcher(submission, data) {
+  if (submission) {
+    let fetcher = {
+      state: "loading",
+      formMethod: submission.formMethod,
+      formAction: submission.formAction,
+      formEncType: submission.formEncType,
+      formData: submission.formData,
+      json: submission.json,
+      text: submission.text,
+      data
+    };
+    return fetcher;
+  } else {
+    let fetcher = {
+      state: "loading",
+      formMethod: undefined,
+      formAction: undefined,
+      formEncType: undefined,
+      formData: undefined,
+      json: undefined,
+      text: undefined,
+      data
+    };
+    return fetcher;
+  }
+}
+function getSubmittingFetcher(submission, existingFetcher) {
+  let fetcher = {
+    state: "submitting",
+    formMethod: submission.formMethod,
+    formAction: submission.formAction,
+    formEncType: submission.formEncType,
+    formData: submission.formData,
+    json: submission.json,
+    text: submission.text,
+    data: existingFetcher ? existingFetcher.data : undefined
+  };
+  return fetcher;
+}
+function getDoneFetcher(data) {
+  let fetcher = {
+    state: "idle",
+    formMethod: undefined,
+    formAction: undefined,
+    formEncType: undefined,
+    formData: undefined,
+    json: undefined,
+    text: undefined,
+    data
+  };
+  return fetcher;
+}
+function restoreAppliedTransitions(_window, transitions) {
+  try {
+    let sessionPositions = _window.sessionStorage.getItem(TRANSITIONS_STORAGE_KEY);
+    if (sessionPositions) {
+      let json = JSON.parse(sessionPositions);
+      for (let [k, v] of Object.entries(json || {})) {
+        if (v && Array.isArray(v)) {
+          transitions.set(k, new Set(v || []));
+        }
+      }
+    }
+  } catch (e) {
+    // no-op, use default empty object
+  }
+}
+function persistAppliedTransitions(_window, transitions) {
+  if (transitions.size > 0) {
+    let json = {};
+    for (let [k, v] of transitions) {
+      json[k] = [...v];
+    }
+    try {
+      _window.sessionStorage.setItem(TRANSITIONS_STORAGE_KEY, JSON.stringify(json));
+    } catch (error) {
+      router_warning(false, "Failed to save applied view transitions in sessionStorage (" + error + ").");
+    }
+  }
+}
+//#endregion
+
+
+//# sourceMappingURL=router.js.map
+
+;// CONCATENATED MODULE: ./node_modules/react-router/dist/index.js
+/**
+ * React Router v6.23.1
+ *
+ * Copyright (c) Remix Software Inc.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE.md file in the root directory of this source tree.
+ *
+ * @license MIT
+ */
+
+
+
+
+function dist_extends() {
+  dist_extends = Object.assign ? Object.assign.bind() : function (target) {
+    for (var i = 1; i < arguments.length; i++) {
+      var source = arguments[i];
+      for (var key in source) {
+        if (Object.prototype.hasOwnProperty.call(source, key)) {
+          target[key] = source[key];
+        }
+      }
+    }
+    return target;
+  };
+  return dist_extends.apply(this, arguments);
+}
+
+// Create react-specific types from the agnostic types in @remix-run/router to
+// export from react-router
+const DataRouterContext = /*#__PURE__*/react.createContext(null);
+if (false) {}
+const DataRouterStateContext = /*#__PURE__*/(/* unused pure expression or super */ null && (React.createContext(null)));
+if (false) {}
+const AwaitContext = /*#__PURE__*/(/* unused pure expression or super */ null && (React.createContext(null)));
+if (false) {}
+
+/**
+ * A Navigator is a "location changer"; it's how you get to different locations.
+ *
+ * Every history instance conforms to the Navigator interface, but the
+ * distinction is useful primarily when it comes to the low-level `<Router>` API
+ * where both the location and a navigator must be provided separately in order
+ * to avoid "tearing" that may occur in a suspense-enabled app if the action
+ * and/or location were to be read directly from the history instance.
+ */
+
+const NavigationContext = /*#__PURE__*/react.createContext(null);
+if (false) {}
+const LocationContext = /*#__PURE__*/react.createContext(null);
+if (false) {}
+const RouteContext = /*#__PURE__*/react.createContext({
+  outlet: null,
+  matches: [],
+  isDataRoute: false
+});
+if (false) {}
+const RouteErrorContext = /*#__PURE__*/(/* unused pure expression or super */ null && (React.createContext(null)));
+if (false) {}
+
+/**
+ * Returns the full href for the given "to" value. This is useful for building
+ * custom links that are also accessible and preserve right-click behavior.
+ *
+ * @see https://reactrouter.com/hooks/use-href
+ */
+function useHref(to, _temp) {
+  let {
+    relative
+  } = _temp === void 0 ? {} : _temp;
+  !useInRouterContext() ?  false ? 0 : router_invariant(false) : void 0;
+  let {
+    basename,
+    navigator
+  } = react.useContext(NavigationContext);
+  let {
+    hash,
+    pathname,
+    search
+  } = dist_useResolvedPath(to, {
+    relative
+  });
+  let joinedPathname = pathname;
+
+  // If we're operating within a basename, prepend it to the pathname prior
+  // to creating the href.  If this is a root navigation, then just use the raw
+  // basename which allows the basename to have full control over the presence
+  // of a trailing slash on root links
+  if (basename !== "/") {
+    joinedPathname = pathname === "/" ? basename : router_joinPaths([basename, pathname]);
+  }
+  return navigator.createHref({
+    pathname: joinedPathname,
+    search,
+    hash
+  });
+}
+
+/**
+ * Returns true if this component is a descendant of a `<Router>`.
+ *
+ * @see https://reactrouter.com/hooks/use-in-router-context
+ */
+function useInRouterContext() {
+  return react.useContext(LocationContext) != null;
+}
+
+/**
+ * Returns the current location object, which represents the current URL in web
+ * browsers.
+ *
+ * Note: If you're using this it may mean you're doing some of your own
+ * "routing" in your app, and we'd like to know what your use case is. We may
+ * be able to provide something higher-level to better suit your needs.
+ *
+ * @see https://reactrouter.com/hooks/use-location
+ */
+function dist_useLocation() {
+  !useInRouterContext() ?  false ? 0 : router_invariant(false) : void 0;
+  return react.useContext(LocationContext).location;
+}
+
+/**
+ * Returns the current navigation action which describes how the router came to
+ * the current location, either by a pop, push, or replace on the history stack.
+ *
+ * @see https://reactrouter.com/hooks/use-navigation-type
+ */
+function useNavigationType() {
+  return React.useContext(LocationContext).navigationType;
+}
+
+/**
+ * Returns a PathMatch object if the given pattern matches the current URL.
+ * This is useful for components that need to know "active" state, e.g.
+ * `<NavLink>`.
+ *
+ * @see https://reactrouter.com/hooks/use-match
+ */
+function useMatch(pattern) {
+  !useInRouterContext() ?  false ? 0 : UNSAFE_invariant(false) : void 0;
+  let {
+    pathname
+  } = dist_useLocation();
+  return React.useMemo(() => matchPath(pattern, pathname), [pathname, pattern]);
+}
+
+/**
+ * The interface for the navigate() function returned from useNavigate().
+ */
+
+const navigateEffectWarning = (/* unused pure expression or super */ null && ("You should call navigate() in a React.useEffect(), not when " + "your component is first rendered."));
+
+// Mute warnings for calls to useNavigate in SSR environments
+function dist_useIsomorphicLayoutEffect(cb) {
+  let isStatic = react.useContext(NavigationContext).static;
+  if (!isStatic) {
+    // We should be able to get rid of this once react 18.3 is released
+    // See: https://github.com/facebook/react/pull/26395
+    // eslint-disable-next-line react-hooks/rules-of-hooks
+    react.useLayoutEffect(cb);
+  }
+}
+
+/**
+ * Returns an imperative method for changing the location. Used by `<Link>`s, but
+ * may also be used by other elements to change the location.
+ *
+ * @see https://reactrouter.com/hooks/use-navigate
+ */
+function dist_useNavigate() {
+  let {
+    isDataRoute
+  } = react.useContext(RouteContext);
+  // Conditional usage is OK here because the usage of a data router is static
+  // eslint-disable-next-line react-hooks/rules-of-hooks
+  return isDataRoute ? useNavigateStable() : useNavigateUnstable();
+}
+function useNavigateUnstable() {
+  !useInRouterContext() ?  false ? 0 : router_invariant(false) : void 0;
+  let dataRouterContext = react.useContext(DataRouterContext);
+  let {
+    basename,
+    future,
+    navigator
+  } = react.useContext(NavigationContext);
+  let {
+    matches
+  } = react.useContext(RouteContext);
+  let {
+    pathname: locationPathname
+  } = dist_useLocation();
+  let routePathnamesJson = JSON.stringify(getResolveToMatches(matches, future.v7_relativeSplatPath));
+  let activeRef = react.useRef(false);
+  dist_useIsomorphicLayoutEffect(() => {
+    activeRef.current = true;
+  });
+  let navigate = react.useCallback(function (to, options) {
+    if (options === void 0) {
+      options = {};
+    }
+     false ? 0 : void 0;
+
+    // Short circuit here since if this happens on first render the navigate
+    // is useless because we haven't wired up our history listener yet
+    if (!activeRef.current) return;
+    if (typeof to === "number") {
+      navigator.go(to);
+      return;
+    }
+    let path = router_resolveTo(to, JSON.parse(routePathnamesJson), locationPathname, options.relative === "path");
+
+    // If we're operating within a basename, prepend it to the pathname prior
+    // to handing off to history (but only if we're not in a data router,
+    // otherwise it'll prepend the basename inside of the router).
+    // If this is a root navigation, then we navigate to the raw basename
+    // which allows the basename to have full control over the presence of a
+    // trailing slash on root links
+    if (dataRouterContext == null && basename !== "/") {
+      path.pathname = path.pathname === "/" ? basename : router_joinPaths([basename, path.pathname]);
+    }
+    (!!options.replace ? navigator.replace : navigator.push)(path, options.state, options);
+  }, [basename, navigator, routePathnamesJson, locationPathname, dataRouterContext]);
+  return navigate;
+}
+const OutletContext = /*#__PURE__*/(/* unused pure expression or super */ null && (React.createContext(null)));
+
+/**
+ * Returns the context (if provided) for the child route at this level of the route
+ * hierarchy.
+ * @see https://reactrouter.com/hooks/use-outlet-context
+ */
+function useOutletContext() {
+  return React.useContext(OutletContext);
+}
+
+/**
+ * Returns the element for the child route at this level of the route
+ * hierarchy. Used internally by `<Outlet>` to render child routes.
+ *
+ * @see https://reactrouter.com/hooks/use-outlet
+ */
+function useOutlet(context) {
+  let outlet = React.useContext(RouteContext).outlet;
+  if (outlet) {
+    return /*#__PURE__*/React.createElement(OutletContext.Provider, {
+      value: context
+    }, outlet);
+  }
+  return outlet;
+}
+
+/**
+ * Returns an object of key/value pairs of the dynamic params from the current
+ * URL that were matched by the route path.
+ *
+ * @see https://reactrouter.com/hooks/use-params
+ */
+function useParams() {
+  let {
+    matches
+  } = React.useContext(RouteContext);
+  let routeMatch = matches[matches.length - 1];
+  return routeMatch ? routeMatch.params : {};
+}
+
+/**
+ * Resolves the pathname of the given `to` value against the current location.
+ *
+ * @see https://reactrouter.com/hooks/use-resolved-path
+ */
+function dist_useResolvedPath(to, _temp2) {
+  let {
+    relative
+  } = _temp2 === void 0 ? {} : _temp2;
+  let {
+    future
+  } = react.useContext(NavigationContext);
+  let {
+    matches
+  } = react.useContext(RouteContext);
+  let {
+    pathname: locationPathname
+  } = dist_useLocation();
+  let routePathnamesJson = JSON.stringify(getResolveToMatches(matches, future.v7_relativeSplatPath));
+  return react.useMemo(() => router_resolveTo(to, JSON.parse(routePathnamesJson), locationPathname, relative === "path"), [to, routePathnamesJson, locationPathname, relative]);
+}
+
+/**
+ * Returns the element of the route that matched the current location, prepared
+ * with the correct context to render the remainder of the route tree. Route
+ * elements in the tree must render an `<Outlet>` to render their child route's
+ * element.
+ *
+ * @see https://reactrouter.com/hooks/use-routes
+ */
+function useRoutes(routes, locationArg) {
+  return useRoutesImpl(routes, locationArg);
+}
+
+// Internal implementation with accept optional param for RouterProvider usage
+function useRoutesImpl(routes, locationArg, dataRouterState, future) {
+  !useInRouterContext() ?  false ? 0 : UNSAFE_invariant(false) : void 0;
+  let {
+    navigator
+  } = React.useContext(NavigationContext);
+  let {
+    matches: parentMatches
+  } = React.useContext(RouteContext);
+  let routeMatch = parentMatches[parentMatches.length - 1];
+  let parentParams = routeMatch ? routeMatch.params : {};
+  let parentPathname = routeMatch ? routeMatch.pathname : "/";
+  let parentPathnameBase = routeMatch ? routeMatch.pathnameBase : "/";
+  let parentRoute = routeMatch && routeMatch.route;
+  if (false) {}
+  let locationFromContext = dist_useLocation();
+  let location;
+  if (locationArg) {
+    var _parsedLocationArg$pa;
+    let parsedLocationArg = typeof locationArg === "string" ? parsePath(locationArg) : locationArg;
+    !(parentPathnameBase === "/" || ((_parsedLocationArg$pa = parsedLocationArg.pathname) == null ? void 0 : _parsedLocationArg$pa.startsWith(parentPathnameBase))) ?  false ? 0 : UNSAFE_invariant(false) : void 0;
+    location = parsedLocationArg;
+  } else {
+    location = locationFromContext;
+  }
+  let pathname = location.pathname || "/";
+  let remainingPathname = pathname;
+  if (parentPathnameBase !== "/") {
+    // Determine the remaining pathname by removing the # of URL segments the
+    // parentPathnameBase has, instead of removing based on character count.
+    // This is because we can't guarantee that incoming/outgoing encodings/
+    // decodings will match exactly.
+    // We decode paths before matching on a per-segment basis with
+    // decodeURIComponent(), but we re-encode pathnames via `new URL()` so they
+    // match what `window.location.pathname` would reflect.  Those don't 100%
+    // align when it comes to encoded URI characters such as % and &.
+    //
+    // So we may end up with:
+    //   pathname:           "/descendant/a%25b/match"
+    //   parentPathnameBase: "/descendant/a%b"
+    //
+    // And the direct substring removal approach won't work :/
+    let parentSegments = parentPathnameBase.replace(/^\//, "").split("/");
+    let segments = pathname.replace(/^\//, "").split("/");
+    remainingPathname = "/" + segments.slice(parentSegments.length).join("/");
+  }
+  let matches = matchRoutes(routes, {
+    pathname: remainingPathname
+  });
+  if (false) {}
+  let renderedMatches = _renderMatches(matches && matches.map(match => Object.assign({}, match, {
+    params: Object.assign({}, parentParams, match.params),
+    pathname: joinPaths([parentPathnameBase,
+    // Re-encode pathnames that were decoded inside matchRoutes
+    navigator.encodeLocation ? navigator.encodeLocation(match.pathname).pathname : match.pathname]),
+    pathnameBase: match.pathnameBase === "/" ? parentPathnameBase : joinPaths([parentPathnameBase,
+    // Re-encode pathnames that were decoded inside matchRoutes
+    navigator.encodeLocation ? navigator.encodeLocation(match.pathnameBase).pathname : match.pathnameBase])
+  })), parentMatches, dataRouterState, future);
+
+  // When a user passes in a `locationArg`, the associated routes need to
+  // be wrapped in a new `LocationContext.Provider` in order for `useLocation`
+  // to use the scoped location instead of the global location.
+  if (locationArg && renderedMatches) {
+    return /*#__PURE__*/React.createElement(LocationContext.Provider, {
+      value: {
+        location: dist_extends({
+          pathname: "/",
+          search: "",
+          hash: "",
+          state: null,
+          key: "default"
+        }, location),
+        navigationType: Action.Pop
+      }
+    }, renderedMatches);
+  }
+  return renderedMatches;
+}
+function DefaultErrorComponent() {
+  let error = useRouteError();
+  let message = isRouteErrorResponse(error) ? error.status + " " + error.statusText : error instanceof Error ? error.message : JSON.stringify(error);
+  let stack = error instanceof Error ? error.stack : null;
+  let lightgrey = "rgba(200,200,200, 0.5)";
+  let preStyles = {
+    padding: "0.5rem",
+    backgroundColor: lightgrey
+  };
+  let codeStyles = {
+    padding: "2px 4px",
+    backgroundColor: lightgrey
+  };
+  let devInfo = null;
+  if (false) {}
+  return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("h2", null, "Unexpected Application Error!"), /*#__PURE__*/React.createElement("h3", {
+    style: {
+      fontStyle: "italic"
+    }
+  }, message), stack ? /*#__PURE__*/React.createElement("pre", {
+    style: preStyles
+  }, stack) : null, devInfo);
+}
+const defaultErrorElement = /*#__PURE__*/(/* unused pure expression or super */ null && (React.createElement(DefaultErrorComponent, null)));
+class RenderErrorBoundary extends react.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      location: props.location,
+      revalidation: props.revalidation,
+      error: props.error
+    };
+  }
+  static getDerivedStateFromError(error) {
+    return {
+      error: error
+    };
+  }
+  static getDerivedStateFromProps(props, state) {
+    // When we get into an error state, the user will likely click "back" to the
+    // previous page that didn't have an error. Because this wraps the entire
+    // application, that will have no effect--the error page continues to display.
+    // This gives us a mechanism to recover from the error when the location changes.
+    //
+    // Whether we're in an error state or not, we update the location in state
+    // so that when we are in an error state, it gets reset when a new location
+    // comes in and the user recovers from the error.
+    if (state.location !== props.location || state.revalidation !== "idle" && props.revalidation === "idle") {
+      return {
+        error: props.error,
+        location: props.location,
+        revalidation: props.revalidation
+      };
+    }
+
+    // If we're not changing locations, preserve the location but still surface
+    // any new errors that may come through. We retain the existing error, we do
+    // this because the error provided from the app state may be cleared without
+    // the location changing.
+    return {
+      error: props.error !== undefined ? props.error : state.error,
+      location: state.location,
+      revalidation: props.revalidation || state.revalidation
+    };
+  }
+  componentDidCatch(error, errorInfo) {
+    console.error("React Router caught the following error during render", error, errorInfo);
+  }
+  render() {
+    return this.state.error !== undefined ? /*#__PURE__*/React.createElement(RouteContext.Provider, {
+      value: this.props.routeContext
+    }, /*#__PURE__*/React.createElement(RouteErrorContext.Provider, {
+      value: this.state.error,
+      children: this.props.component
+    })) : this.props.children;
+  }
+}
+function RenderedRoute(_ref) {
+  let {
+    routeContext,
+    match,
+    children
+  } = _ref;
+  let dataRouterContext = React.useContext(DataRouterContext);
+
+  // Track how deep we got in our render pass to emulate SSR componentDidCatch
+  // in a DataStaticRouter
+  if (dataRouterContext && dataRouterContext.static && dataRouterContext.staticContext && (match.route.errorElement || match.route.ErrorBoundary)) {
+    dataRouterContext.staticContext._deepestRenderedBoundaryId = match.route.id;
+  }
+  return /*#__PURE__*/React.createElement(RouteContext.Provider, {
+    value: routeContext
+  }, children);
+}
+function _renderMatches(matches, parentMatches, dataRouterState, future) {
+  var _dataRouterState2;
+  if (parentMatches === void 0) {
+    parentMatches = [];
+  }
+  if (dataRouterState === void 0) {
+    dataRouterState = null;
+  }
+  if (future === void 0) {
+    future = null;
+  }
+  if (matches == null) {
+    var _dataRouterState;
+    if ((_dataRouterState = dataRouterState) != null && _dataRouterState.errors) {
+      // Don't bail if we have data router errors so we can render them in the
+      // boundary.  Use the pre-matched (or shimmed) matches
+      matches = dataRouterState.matches;
+    } else {
+      return null;
+    }
+  }
+  let renderedMatches = matches;
+
+  // If we have data errors, trim matches to the highest error boundary
+  let errors = (_dataRouterState2 = dataRouterState) == null ? void 0 : _dataRouterState2.errors;
+  if (errors != null) {
+    let errorIndex = renderedMatches.findIndex(m => m.route.id && (errors == null ? void 0 : errors[m.route.id]) !== undefined);
+    !(errorIndex >= 0) ?  false ? 0 : UNSAFE_invariant(false) : void 0;
+    renderedMatches = renderedMatches.slice(0, Math.min(renderedMatches.length, errorIndex + 1));
+  }
+
+  // If we're in a partial hydration mode, detect if we need to render down to
+  // a given HydrateFallback while we load the rest of the hydration data
+  let renderFallback = false;
+  let fallbackIndex = -1;
+  if (dataRouterState && future && future.v7_partialHydration) {
+    for (let i = 0; i < renderedMatches.length; i++) {
+      let match = renderedMatches[i];
+      // Track the deepest fallback up until the first route without data
+      if (match.route.HydrateFallback || match.route.hydrateFallbackElement) {
+        fallbackIndex = i;
+      }
+      if (match.route.id) {
+        let {
+          loaderData,
+          errors
+        } = dataRouterState;
+        let needsToRunLoader = match.route.loader && loaderData[match.route.id] === undefined && (!errors || errors[match.route.id] === undefined);
+        if (match.route.lazy || needsToRunLoader) {
+          // We found the first route that's not ready to render (waiting on
+          // lazy, or has a loader that hasn't run yet).  Flag that we need to
+          // render a fallback and render up until the appropriate fallback
+          renderFallback = true;
+          if (fallbackIndex >= 0) {
+            renderedMatches = renderedMatches.slice(0, fallbackIndex + 1);
+          } else {
+            renderedMatches = [renderedMatches[0]];
+          }
+          break;
+        }
+      }
+    }
+  }
+  return renderedMatches.reduceRight((outlet, match, index) => {
+    // Only data routers handle errors/fallbacks
+    let error;
+    let shouldRenderHydrateFallback = false;
+    let errorElement = null;
+    let hydrateFallbackElement = null;
+    if (dataRouterState) {
+      error = errors && match.route.id ? errors[match.route.id] : undefined;
+      errorElement = match.route.errorElement || defaultErrorElement;
+      if (renderFallback) {
+        if (fallbackIndex < 0 && index === 0) {
+          warningOnce("route-fallback", false, "No `HydrateFallback` element provided to render during initial hydration");
+          shouldRenderHydrateFallback = true;
+          hydrateFallbackElement = null;
+        } else if (fallbackIndex === index) {
+          shouldRenderHydrateFallback = true;
+          hydrateFallbackElement = match.route.hydrateFallbackElement || null;
+        }
+      }
+    }
+    let matches = parentMatches.concat(renderedMatches.slice(0, index + 1));
+    let getChildren = () => {
+      let children;
+      if (error) {
+        children = errorElement;
+      } else if (shouldRenderHydrateFallback) {
+        children = hydrateFallbackElement;
+      } else if (match.route.Component) {
+        // Note: This is a de-optimized path since React won't re-use the
+        // ReactElement since it's identity changes with each new
+        // React.createElement call.  We keep this so folks can use
+        // `<Route Component={...}>` in `<Routes>` but generally `Component`
+        // usage is only advised in `RouterProvider` when we can convert it to
+        // `element` ahead of time.
+        children = /*#__PURE__*/React.createElement(match.route.Component, null);
+      } else if (match.route.element) {
+        children = match.route.element;
+      } else {
+        children = outlet;
+      }
+      return /*#__PURE__*/React.createElement(RenderedRoute, {
+        match: match,
+        routeContext: {
+          outlet,
+          matches,
+          isDataRoute: dataRouterState != null
+        },
+        children: children
+      });
+    };
+    // Only wrap in an error boundary within data router usages when we have an
+    // ErrorBoundary/errorElement on this route.  Otherwise let it bubble up to
+    // an ancestor ErrorBoundary/errorElement
+    return dataRouterState && (match.route.ErrorBoundary || match.route.errorElement || index === 0) ? /*#__PURE__*/React.createElement(RenderErrorBoundary, {
+      location: dataRouterState.location,
+      revalidation: dataRouterState.revalidation,
+      component: errorElement,
+      error: error,
+      children: getChildren(),
+      routeContext: {
+        outlet: null,
+        matches,
+        isDataRoute: true
+      }
+    }) : getChildren();
+  }, null);
+}
+var DataRouterHook = /*#__PURE__*/function (DataRouterHook) {
+  DataRouterHook["UseBlocker"] = "useBlocker";
+  DataRouterHook["UseRevalidator"] = "useRevalidator";
+  DataRouterHook["UseNavigateStable"] = "useNavigate";
+  return DataRouterHook;
+}(DataRouterHook || {});
+var DataRouterStateHook = /*#__PURE__*/function (DataRouterStateHook) {
+  DataRouterStateHook["UseBlocker"] = "useBlocker";
+  DataRouterStateHook["UseLoaderData"] = "useLoaderData";
+  DataRouterStateHook["UseActionData"] = "useActionData";
+  DataRouterStateHook["UseRouteError"] = "useRouteError";
+  DataRouterStateHook["UseNavigation"] = "useNavigation";
+  DataRouterStateHook["UseRouteLoaderData"] = "useRouteLoaderData";
+  DataRouterStateHook["UseMatches"] = "useMatches";
+  DataRouterStateHook["UseRevalidator"] = "useRevalidator";
+  DataRouterStateHook["UseNavigateStable"] = "useNavigate";
+  DataRouterStateHook["UseRouteId"] = "useRouteId";
+  return DataRouterStateHook;
+}(DataRouterStateHook || {});
+function getDataRouterConsoleError(hookName) {
+  return hookName + " must be used within a data router.  See https://reactrouter.com/routers/picking-a-router.";
+}
+function useDataRouterContext(hookName) {
+  let ctx = react.useContext(DataRouterContext);
+  !ctx ?  false ? 0 : router_invariant(false) : void 0;
+  return ctx;
+}
+function useDataRouterState(hookName) {
+  let state = React.useContext(DataRouterStateContext);
+  !state ?  false ? 0 : UNSAFE_invariant(false) : void 0;
+  return state;
+}
+function useRouteContext(hookName) {
+  let route = react.useContext(RouteContext);
+  !route ?  false ? 0 : router_invariant(false) : void 0;
+  return route;
+}
+
+// Internal version with hookName-aware debugging
+function useCurrentRouteId(hookName) {
+  let route = useRouteContext(hookName);
+  let thisRoute = route.matches[route.matches.length - 1];
+  !thisRoute.route.id ?  false ? 0 : router_invariant(false) : void 0;
+  return thisRoute.route.id;
+}
+
+/**
+ * Returns the ID for the nearest contextual route
+ */
+function useRouteId() {
+  return useCurrentRouteId(DataRouterStateHook.UseRouteId);
+}
+
+/**
+ * Returns the current navigation, defaulting to an "idle" navigation when
+ * no navigation is in progress
+ */
+function dist_useNavigation() {
+  let state = useDataRouterState(DataRouterStateHook.UseNavigation);
+  return state.navigation;
+}
+
+/**
+ * Returns a revalidate function for manually triggering revalidation, as well
+ * as the current state of any manual revalidations
+ */
+function useRevalidator() {
+  let dataRouterContext = useDataRouterContext(DataRouterHook.UseRevalidator);
+  let state = useDataRouterState(DataRouterStateHook.UseRevalidator);
+  return React.useMemo(() => ({
+    revalidate: dataRouterContext.router.revalidate,
+    state: state.revalidation
+  }), [dataRouterContext.router.revalidate, state.revalidation]);
+}
+
+/**
+ * Returns the active route matches, useful for accessing loaderData for
+ * parent/child routes or the route "handle" property
+ */
+function dist_useMatches() {
+  let {
+    matches,
+    loaderData
+  } = useDataRouterState(DataRouterStateHook.UseMatches);
+  return React.useMemo(() => matches.map(m => UNSAFE_convertRouteMatchToUiMatch(m, loaderData)), [matches, loaderData]);
+}
+
+/**
+ * Returns the loader data for the nearest ancestor Route loader
+ */
+function useLoaderData() {
+  let state = useDataRouterState(DataRouterStateHook.UseLoaderData);
+  let routeId = useCurrentRouteId(DataRouterStateHook.UseLoaderData);
+  if (state.errors && state.errors[routeId] != null) {
+    console.error("You cannot `useLoaderData` in an errorElement (routeId: " + routeId + ")");
+    return undefined;
+  }
+  return state.loaderData[routeId];
+}
+
+/**
+ * Returns the loaderData for the given routeId
+ */
+function useRouteLoaderData(routeId) {
+  let state = useDataRouterState(DataRouterStateHook.UseRouteLoaderData);
+  return state.loaderData[routeId];
+}
+
+/**
+ * Returns the action data for the nearest ancestor Route action
+ */
+function useActionData() {
+  let state = useDataRouterState(DataRouterStateHook.UseActionData);
+  let routeId = useCurrentRouteId(DataRouterStateHook.UseLoaderData);
+  return state.actionData ? state.actionData[routeId] : undefined;
+}
+
+/**
+ * Returns the nearest ancestor Route error, which could be a loader/action
+ * error or a render error.  This is intended to be called from your
+ * ErrorBoundary/errorElement to display a proper error message.
+ */
+function useRouteError() {
+  var _state$errors;
+  let error = React.useContext(RouteErrorContext);
+  let state = useDataRouterState(DataRouterStateHook.UseRouteError);
+  let routeId = useCurrentRouteId(DataRouterStateHook.UseRouteError);
+
+  // If this was a render error, we put it in a RouteError context inside
+  // of RenderErrorBoundary
+  if (error !== undefined) {
+    return error;
+  }
+
+  // Otherwise look for errors from our data router state
+  return (_state$errors = state.errors) == null ? void 0 : _state$errors[routeId];
+}
+
+/**
+ * Returns the happy-path data from the nearest ancestor `<Await />` value
+ */
+function useAsyncValue() {
+  let value = React.useContext(AwaitContext);
+  return value == null ? void 0 : value._data;
+}
+
+/**
+ * Returns the error from the nearest ancestor `<Await />` value
+ */
+function useAsyncError() {
+  let value = React.useContext(AwaitContext);
+  return value == null ? void 0 : value._error;
+}
+let blockerId = 0;
+
+/**
+ * Allow the application to block navigations within the SPA and present the
+ * user a confirmation dialog to confirm the navigation.  Mostly used to avoid
+ * using half-filled form data.  This does not handle hard-reloads or
+ * cross-origin navigations.
+ */
+function dist_useBlocker(shouldBlock) {
+  let {
+    router,
+    basename
+  } = useDataRouterContext(DataRouterHook.UseBlocker);
+  let state = useDataRouterState(DataRouterStateHook.UseBlocker);
+  let [blockerKey, setBlockerKey] = React.useState("");
+  let blockerFunction = React.useCallback(arg => {
+    if (typeof shouldBlock !== "function") {
+      return !!shouldBlock;
+    }
+    if (basename === "/") {
+      return shouldBlock(arg);
+    }
+
+    // If they provided us a function and we've got an active basename, strip
+    // it from the locations we expose to the user to match the behavior of
+    // useLocation
+    let {
+      currentLocation,
+      nextLocation,
+      historyAction
+    } = arg;
+    return shouldBlock({
+      currentLocation: dist_extends({}, currentLocation, {
+        pathname: stripBasename(currentLocation.pathname, basename) || currentLocation.pathname
+      }),
+      nextLocation: dist_extends({}, nextLocation, {
+        pathname: stripBasename(nextLocation.pathname, basename) || nextLocation.pathname
+      }),
+      historyAction
+    });
+  }, [basename, shouldBlock]);
+
+  // This effect is in charge of blocker key assignment and deletion (which is
+  // tightly coupled to the key)
+  React.useEffect(() => {
+    let key = String(++blockerId);
+    setBlockerKey(key);
+    return () => router.deleteBlocker(key);
+  }, [router]);
+
+  // This effect handles assigning the blockerFunction.  This is to handle
+  // unstable blocker function identities, and happens only after the prior
+  // effect so we don't get an orphaned blockerFunction in the router with a
+  // key of "".  Until then we just have the IDLE_BLOCKER.
+  React.useEffect(() => {
+    if (blockerKey !== "") {
+      router.getBlocker(blockerKey, blockerFunction);
+    }
+  }, [router, blockerKey, blockerFunction]);
+
+  // Prefer the blocker from `state` not `router.state` since DataRouterContext
+  // is memoized so this ensures we update on blocker state updates
+  return blockerKey && state.blockers.has(blockerKey) ? state.blockers.get(blockerKey) : IDLE_BLOCKER;
+}
+
+/**
+ * Stable version of useNavigate that is used when we are in the context of
+ * a RouterProvider.
+ */
+function useNavigateStable() {
+  let {
+    router
+  } = useDataRouterContext(DataRouterHook.UseNavigateStable);
+  let id = useCurrentRouteId(DataRouterStateHook.UseNavigateStable);
+  let activeRef = react.useRef(false);
+  dist_useIsomorphicLayoutEffect(() => {
+    activeRef.current = true;
+  });
+  let navigate = react.useCallback(function (to, options) {
+    if (options === void 0) {
+      options = {};
+    }
+     false ? 0 : void 0;
+
+    // Short circuit here since if this happens on first render the navigate
+    // is useless because we haven't wired up our router subscriber yet
+    if (!activeRef.current) return;
+    if (typeof to === "number") {
+      router.navigate(to);
+    } else {
+      router.navigate(to, dist_extends({
+        fromRouteId: id
+      }, options));
+    }
+  }, [router, id]);
+  return navigate;
+}
+const alreadyWarned = {};
+function warningOnce(key, cond, message) {
+  if (!cond && !alreadyWarned[key]) {
+    alreadyWarned[key] = true;
+     false ? 0 : void 0;
+  }
+}
+
+/**
+  Webpack + React 17 fails to compile on any of the following because webpack
+  complains that `startTransition` doesn't exist in `React`:
+  * import { startTransition } from "react"
+  * import * as React from from "react";
+    "startTransition" in React ? React.startTransition(() => setState()) : setState()
+  * import * as React from from "react";
+    "startTransition" in React ? React["startTransition"](() => setState()) : setState()
+
+  Moving it to a constant such as the following solves the Webpack/React 17 issue:
+  * import * as React from from "react";
+    const START_TRANSITION = "startTransition";
+    START_TRANSITION in React ? React[START_TRANSITION](() => setState()) : setState()
+
+  However, that introduces webpack/terser minification issues in production builds
+  in React 18 where minification/obfuscation ends up removing the call of
+  React.startTransition entirely from the first half of the ternary.  Grabbing
+  this exported reference once up front resolves that issue.
+
+  See https://github.com/remix-run/react-router/issues/10579
+*/
+const START_TRANSITION = "startTransition";
+const startTransitionImpl = react_namespaceObject[START_TRANSITION];
+
+/**
+ * Given a Remix Router instance, render the appropriate UI
+ */
+function RouterProvider(_ref) {
+  let {
+    fallbackElement,
+    router,
+    future
+  } = _ref;
+  let [state, setStateImpl] = React.useState(router.state);
+  let {
+    v7_startTransition
+  } = future || {};
+  let setState = React.useCallback(newState => {
+    if (v7_startTransition && startTransitionImpl) {
+      startTransitionImpl(() => setStateImpl(newState));
+    } else {
+      setStateImpl(newState);
+    }
+  }, [setStateImpl, v7_startTransition]);
+
+  // Need to use a layout effect here so we are subscribed early enough to
+  // pick up on any render-driven redirects/navigations (useEffect/<Navigate>)
+  React.useLayoutEffect(() => router.subscribe(setState), [router, setState]);
+  React.useEffect(() => {
+     false ? 0 : void 0;
+    // Only log this once on initial mount
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+  let navigator = React.useMemo(() => {
+    return {
+      createHref: router.createHref,
+      encodeLocation: router.encodeLocation,
+      go: n => router.navigate(n),
+      push: (to, state, opts) => router.navigate(to, {
+        state,
+        preventScrollReset: opts == null ? void 0 : opts.preventScrollReset
+      }),
+      replace: (to, state, opts) => router.navigate(to, {
+        replace: true,
+        state,
+        preventScrollReset: opts == null ? void 0 : opts.preventScrollReset
+      })
+    };
+  }, [router]);
+  let basename = router.basename || "/";
+  let dataRouterContext = React.useMemo(() => ({
+    router,
+    navigator,
+    static: false,
+    basename
+  }), [router, navigator, basename]);
+
+  // The fragment and {null} here are important!  We need them to keep React 18's
+  // useId happy when we are server-rendering since we may have a <script> here
+  // containing the hydrated server-side staticContext (from StaticRouterProvider).
+  // useId relies on the component tree structure to generate deterministic id's
+  // so we need to ensure it remains the same on the client even though
+  // we don't need the <script> tag
+  return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement(DataRouterContext.Provider, {
+    value: dataRouterContext
+  }, /*#__PURE__*/React.createElement(DataRouterStateContext.Provider, {
+    value: state
+  }, /*#__PURE__*/React.createElement(dist_Router, {
+    basename: basename,
+    location: state.location,
+    navigationType: state.historyAction,
+    navigator: navigator,
+    future: {
+      v7_relativeSplatPath: router.future.v7_relativeSplatPath
+    }
+  }, state.initialized || router.future.v7_partialHydration ? /*#__PURE__*/React.createElement(DataRoutes, {
+    routes: router.routes,
+    future: router.future,
+    state: state
+  }) : fallbackElement))), null);
+}
+function DataRoutes(_ref2) {
+  let {
+    routes,
+    future,
+    state
+  } = _ref2;
+  return useRoutesImpl(routes, undefined, state, future);
+}
+/**
+ * A `<Router>` that stores all entries in memory.
+ *
+ * @see https://reactrouter.com/router-components/memory-router
+ */
+function MemoryRouter(_ref3) {
+  let {
+    basename,
+    children,
+    initialEntries,
+    initialIndex,
+    future
+  } = _ref3;
+  let historyRef = React.useRef();
+  if (historyRef.current == null) {
+    historyRef.current = createMemoryHistory({
+      initialEntries,
+      initialIndex,
+      v5Compat: true
+    });
+  }
+  let history = historyRef.current;
+  let [state, setStateImpl] = React.useState({
+    action: history.action,
+    location: history.location
+  });
+  let {
+    v7_startTransition
+  } = future || {};
+  let setState = React.useCallback(newState => {
+    v7_startTransition && startTransitionImpl ? startTransitionImpl(() => setStateImpl(newState)) : setStateImpl(newState);
+  }, [setStateImpl, v7_startTransition]);
+  React.useLayoutEffect(() => history.listen(setState), [history, setState]);
+  return /*#__PURE__*/React.createElement(dist_Router, {
+    basename: basename,
+    children: children,
+    location: state.location,
+    navigationType: state.action,
+    navigator: history,
+    future: future
+  });
+}
+/**
+ * Changes the current location.
+ *
+ * Note: This API is mostly useful in React.Component subclasses that are not
+ * able to use hooks. In functional components, we recommend you use the
+ * `useNavigate` hook instead.
+ *
+ * @see https://reactrouter.com/components/navigate
+ */
+function Navigate(_ref4) {
+  let {
+    to,
+    replace,
+    state,
+    relative
+  } = _ref4;
+  !useInRouterContext() ?  false ? 0 : UNSAFE_invariant(false) : void 0;
+  let {
+    future,
+    static: isStatic
+  } = React.useContext(NavigationContext);
+   false ? 0 : void 0;
+  let {
+    matches
+  } = React.useContext(RouteContext);
+  let {
+    pathname: locationPathname
+  } = dist_useLocation();
+  let navigate = dist_useNavigate();
+
+  // Resolve the path outside of the effect so that when effects run twice in
+  // StrictMode they navigate to the same place
+  let path = resolveTo(to, UNSAFE_getResolveToMatches(matches, future.v7_relativeSplatPath), locationPathname, relative === "path");
+  let jsonPath = JSON.stringify(path);
+  React.useEffect(() => navigate(JSON.parse(jsonPath), {
+    replace,
+    state,
+    relative
+  }), [navigate, jsonPath, relative, replace, state]);
+  return null;
+}
+/**
+ * Renders the child route's element, if there is one.
+ *
+ * @see https://reactrouter.com/components/outlet
+ */
+function Outlet(props) {
+  return useOutlet(props.context);
+}
+/**
+ * Declares an element that should be rendered at a certain URL path.
+ *
+ * @see https://reactrouter.com/components/route
+ */
+function Route(_props) {
+   false ? 0 : UNSAFE_invariant(false) ;
+}
+/**
+ * Provides location context for the rest of the app.
+ *
+ * Note: You usually won't render a `<Router>` directly. Instead, you'll render a
+ * router that is more specific to your environment such as a `<BrowserRouter>`
+ * in web browsers or a `<StaticRouter>` for server rendering.
+ *
+ * @see https://reactrouter.com/router-components/router
+ */
+function dist_Router(_ref5) {
+  let {
+    basename: basenameProp = "/",
+    children = null,
+    location: locationProp,
+    navigationType = Action.Pop,
+    navigator,
+    static: staticProp = false,
+    future
+  } = _ref5;
+  !!useInRouterContext() ?  false ? 0 : UNSAFE_invariant(false) : void 0;
+
+  // Preserve trailing slashes on basename, so we can let the user control
+  // the enforcement of trailing slashes throughout the app
+  let basename = basenameProp.replace(/^\/*/, "/");
+  let navigationContext = React.useMemo(() => ({
+    basename,
+    navigator,
+    static: staticProp,
+    future: dist_extends({
+      v7_relativeSplatPath: false
+    }, future)
+  }), [basename, future, navigator, staticProp]);
+  if (typeof locationProp === "string") {
+    locationProp = parsePath(locationProp);
+  }
+  let {
+    pathname = "/",
+    search = "",
+    hash = "",
+    state = null,
+    key = "default"
+  } = locationProp;
+  let locationContext = React.useMemo(() => {
+    let trailingPathname = stripBasename(pathname, basename);
+    if (trailingPathname == null) {
+      return null;
+    }
+    return {
+      location: {
+        pathname: trailingPathname,
+        search,
+        hash,
+        state,
+        key
+      },
+      navigationType
+    };
+  }, [basename, pathname, search, hash, state, key, navigationType]);
+   false ? 0 : void 0;
+  if (locationContext == null) {
+    return null;
+  }
+  return /*#__PURE__*/React.createElement(NavigationContext.Provider, {
+    value: navigationContext
+  }, /*#__PURE__*/React.createElement(LocationContext.Provider, {
+    children: children,
+    value: locationContext
+  }));
+}
+/**
+ * A container for a nested tree of `<Route>` elements that renders the branch
+ * that best matches the current location.
+ *
+ * @see https://reactrouter.com/components/routes
+ */
+function Routes(_ref6) {
+  let {
+    children,
+    location
+  } = _ref6;
+  return useRoutes(createRoutesFromChildren(children), location);
+}
+/**
+ * Component to use for rendering lazily loaded data from returning defer()
+ * in a loader function
+ */
+function Await(_ref7) {
+  let {
+    children,
+    errorElement,
+    resolve
+  } = _ref7;
+  return /*#__PURE__*/React.createElement(AwaitErrorBoundary, {
+    resolve: resolve,
+    errorElement: errorElement
+  }, /*#__PURE__*/React.createElement(ResolveAwait, null, children));
+}
+var AwaitRenderStatus = /*#__PURE__*/function (AwaitRenderStatus) {
+  AwaitRenderStatus[AwaitRenderStatus["pending"] = 0] = "pending";
+  AwaitRenderStatus[AwaitRenderStatus["success"] = 1] = "success";
+  AwaitRenderStatus[AwaitRenderStatus["error"] = 2] = "error";
+  return AwaitRenderStatus;
+}(AwaitRenderStatus || {});
+const neverSettledPromise = new Promise(() => {});
+class AwaitErrorBoundary extends react.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      error: null
+    };
+  }
+  static getDerivedStateFromError(error) {
+    return {
+      error
+    };
+  }
+  componentDidCatch(error, errorInfo) {
+    console.error("<Await> caught the following error during render", error, errorInfo);
+  }
+  render() {
+    let {
+      children,
+      errorElement,
+      resolve
+    } = this.props;
+    let promise = null;
+    let status = AwaitRenderStatus.pending;
+    if (!(resolve instanceof Promise)) {
+      // Didn't get a promise - provide as a resolved promise
+      status = AwaitRenderStatus.success;
+      promise = Promise.resolve();
+      Object.defineProperty(promise, "_tracked", {
+        get: () => true
+      });
+      Object.defineProperty(promise, "_data", {
+        get: () => resolve
+      });
+    } else if (this.state.error) {
+      // Caught a render error, provide it as a rejected promise
+      status = AwaitRenderStatus.error;
+      let renderError = this.state.error;
+      promise = Promise.reject().catch(() => {}); // Avoid unhandled rejection warnings
+      Object.defineProperty(promise, "_tracked", {
+        get: () => true
+      });
+      Object.defineProperty(promise, "_error", {
+        get: () => renderError
+      });
+    } else if (resolve._tracked) {
+      // Already tracked promise - check contents
+      promise = resolve;
+      status = "_error" in promise ? AwaitRenderStatus.error : "_data" in promise ? AwaitRenderStatus.success : AwaitRenderStatus.pending;
+    } else {
+      // Raw (untracked) promise - track it
+      status = AwaitRenderStatus.pending;
+      Object.defineProperty(resolve, "_tracked", {
+        get: () => true
+      });
+      promise = resolve.then(data => Object.defineProperty(resolve, "_data", {
+        get: () => data
+      }), error => Object.defineProperty(resolve, "_error", {
+        get: () => error
+      }));
+    }
+    if (status === AwaitRenderStatus.error && promise._error instanceof AbortedDeferredError) {
+      // Freeze the UI by throwing a never resolved promise
+      throw neverSettledPromise;
+    }
+    if (status === AwaitRenderStatus.error && !errorElement) {
+      // No errorElement, throw to the nearest route-level error boundary
+      throw promise._error;
+    }
+    if (status === AwaitRenderStatus.error) {
+      // Render via our errorElement
+      return /*#__PURE__*/React.createElement(AwaitContext.Provider, {
+        value: promise,
+        children: errorElement
+      });
+    }
+    if (status === AwaitRenderStatus.success) {
+      // Render children with resolved value
+      return /*#__PURE__*/React.createElement(AwaitContext.Provider, {
+        value: promise,
+        children: children
+      });
+    }
+
+    // Throw to the suspense boundary
+    throw promise;
+  }
+}
+
+/**
+ * @private
+ * Indirection to leverage useAsyncValue for a render-prop API on `<Await>`
+ */
+function ResolveAwait(_ref8) {
+  let {
+    children
+  } = _ref8;
+  let data = useAsyncValue();
+  let toRender = typeof children === "function" ? children(data) : children;
+  return /*#__PURE__*/React.createElement(React.Fragment, null, toRender);
+}
+
+///////////////////////////////////////////////////////////////////////////////
+// UTILS
+///////////////////////////////////////////////////////////////////////////////
+
+/**
+ * Creates a route config from a React "children" object, which is usually
+ * either a `<Route>` element or an array of them. Used internally by
+ * `<Routes>` to create a route config from its children.
+ *
+ * @see https://reactrouter.com/utils/create-routes-from-children
+ */
+function createRoutesFromChildren(children, parentPath) {
+  if (parentPath === void 0) {
+    parentPath = [];
+  }
+  let routes = [];
+  React.Children.forEach(children, (element, index) => {
+    if (! /*#__PURE__*/React.isValidElement(element)) {
+      // Ignore non-elements. This allows people to more easily inline
+      // conditionals in their route config.
+      return;
+    }
+    let treePath = [...parentPath, index];
+    if (element.type === React.Fragment) {
+      // Transparently support React.Fragment and its children.
+      routes.push.apply(routes, createRoutesFromChildren(element.props.children, treePath));
+      return;
+    }
+    !(element.type === Route) ?  false ? 0 : UNSAFE_invariant(false) : void 0;
+    !(!element.props.index || !element.props.children) ?  false ? 0 : UNSAFE_invariant(false) : void 0;
+    let route = {
+      id: element.props.id || treePath.join("-"),
+      caseSensitive: element.props.caseSensitive,
+      element: element.props.element,
+      Component: element.props.Component,
+      index: element.props.index,
+      path: element.props.path,
+      loader: element.props.loader,
+      action: element.props.action,
+      errorElement: element.props.errorElement,
+      ErrorBoundary: element.props.ErrorBoundary,
+      hasErrorBoundary: element.props.ErrorBoundary != null || element.props.errorElement != null,
+      shouldRevalidate: element.props.shouldRevalidate,
+      handle: element.props.handle,
+      lazy: element.props.lazy
+    };
+    if (element.props.children) {
+      route.children = createRoutesFromChildren(element.props.children, treePath);
+    }
+    routes.push(route);
+  });
+  return routes;
+}
+
+/**
+ * Renders the result of `matchRoutes()` into a React element.
+ */
+function renderMatches(matches) {
+  return _renderMatches(matches);
+}
+
+function mapRouteProperties(route) {
+  let updates = {
+    // Note: this check also occurs in createRoutesFromChildren so update
+    // there if you change this -- please and thank you!
+    hasErrorBoundary: route.ErrorBoundary != null || route.errorElement != null
+  };
+  if (route.Component) {
+    if (false) {}
+    Object.assign(updates, {
+      element: /*#__PURE__*/React.createElement(route.Component),
+      Component: undefined
+    });
+  }
+  if (route.HydrateFallback) {
+    if (false) {}
+    Object.assign(updates, {
+      hydrateFallbackElement: /*#__PURE__*/React.createElement(route.HydrateFallback),
+      HydrateFallback: undefined
+    });
+  }
+  if (route.ErrorBoundary) {
+    if (false) {}
+    Object.assign(updates, {
+      errorElement: /*#__PURE__*/React.createElement(route.ErrorBoundary),
+      ErrorBoundary: undefined
+    });
+  }
+  return updates;
+}
+function createMemoryRouter(routes, opts) {
+  return createRouter({
+    basename: opts == null ? void 0 : opts.basename,
+    future: dist_extends({}, opts == null ? void 0 : opts.future, {
+      v7_prependBasename: true
+    }),
+    history: createMemoryHistory({
+      initialEntries: opts == null ? void 0 : opts.initialEntries,
+      initialIndex: opts == null ? void 0 : opts.initialIndex
+    }),
+    hydrationData: opts == null ? void 0 : opts.hydrationData,
+    routes,
+    mapRouteProperties,
+    unstable_dataStrategy: opts == null ? void 0 : opts.unstable_dataStrategy
+  }).initialize();
+}
+
+
+//# sourceMappingURL=index.js.map
+
+;// CONCATENATED MODULE: ./node_modules/react-router-dom/dist/index.js
+/**
+ * React Router DOM v6.23.1
+ *
+ * Copyright (c) Remix Software Inc.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE.md file in the root directory of this source tree.
+ *
+ * @license MIT
+ */
+
+
+
+
+
+
+
+function react_router_dom_dist_extends() {
+  react_router_dom_dist_extends = Object.assign ? Object.assign.bind() : function (target) {
+    for (var i = 1; i < arguments.length; i++) {
+      var source = arguments[i];
+      for (var key in source) {
+        if (Object.prototype.hasOwnProperty.call(source, key)) {
+          target[key] = source[key];
+        }
+      }
+    }
+    return target;
+  };
+  return react_router_dom_dist_extends.apply(this, arguments);
+}
+function _objectWithoutPropertiesLoose(source, excluded) {
+  if (source == null) return {};
+  var target = {};
+  var sourceKeys = Object.keys(source);
+  var key, i;
+  for (i = 0; i < sourceKeys.length; i++) {
+    key = sourceKeys[i];
+    if (excluded.indexOf(key) >= 0) continue;
+    target[key] = source[key];
+  }
+  return target;
+}
+
+const defaultMethod = "get";
+const defaultEncType = "application/x-www-form-urlencoded";
+function isHtmlElement(object) {
+  return object != null && typeof object.tagName === "string";
+}
+function isButtonElement(object) {
+  return isHtmlElement(object) && object.tagName.toLowerCase() === "button";
+}
+function isFormElement(object) {
+  return isHtmlElement(object) && object.tagName.toLowerCase() === "form";
+}
+function isInputElement(object) {
+  return isHtmlElement(object) && object.tagName.toLowerCase() === "input";
+}
+function isModifiedEvent(event) {
+  return !!(event.metaKey || event.altKey || event.ctrlKey || event.shiftKey);
+}
+function shouldProcessLinkClick(event, target) {
+  return event.button === 0 && (
+  // Ignore everything but left clicks
+  !target || target === "_self") &&
+  // Let browser handle "target=_blank" etc.
+  !isModifiedEvent(event) // Ignore clicks with modifier keys
+  ;
+}
+/**
+ * Creates a URLSearchParams object using the given initializer.
+ *
+ * This is identical to `new URLSearchParams(init)` except it also
+ * supports arrays as values in the object form of the initializer
+ * instead of just strings. This is convenient when you need multiple
+ * values for a given key, but don't want to use an array initializer.
+ *
+ * For example, instead of:
+ *
+ *   let searchParams = new URLSearchParams([
+ *     ['sort', 'name'],
+ *     ['sort', 'price']
+ *   ]);
+ *
+ * you can do:
+ *
+ *   let searchParams = createSearchParams({
+ *     sort: ['name', 'price']
+ *   });
+ */
+function createSearchParams(init) {
+  if (init === void 0) {
+    init = "";
+  }
+  return new URLSearchParams(typeof init === "string" || Array.isArray(init) || init instanceof URLSearchParams ? init : Object.keys(init).reduce((memo, key) => {
+    let value = init[key];
+    return memo.concat(Array.isArray(value) ? value.map(v => [key, v]) : [[key, value]]);
+  }, []));
+}
+function getSearchParamsForLocation(locationSearch, defaultSearchParams) {
+  let searchParams = createSearchParams(locationSearch);
+  if (defaultSearchParams) {
+    // Use `defaultSearchParams.forEach(...)` here instead of iterating of
+    // `defaultSearchParams.keys()` to work-around a bug in Firefox related to
+    // web extensions. Relevant Bugzilla tickets:
+    // https://bugzilla.mozilla.org/show_bug.cgi?id=1414602
+    // https://bugzilla.mozilla.org/show_bug.cgi?id=1023984
+    defaultSearchParams.forEach((_, key) => {
+      if (!searchParams.has(key)) {
+        defaultSearchParams.getAll(key).forEach(value => {
+          searchParams.append(key, value);
+        });
+      }
+    });
+  }
+  return searchParams;
+}
+// One-time check for submitter support
+let _formDataSupportsSubmitter = null;
+function isFormDataSubmitterSupported() {
+  if (_formDataSupportsSubmitter === null) {
+    try {
+      new FormData(document.createElement("form"),
+      // @ts-expect-error if FormData supports the submitter parameter, this will throw
+      0);
+      _formDataSupportsSubmitter = false;
+    } catch (e) {
+      _formDataSupportsSubmitter = true;
+    }
+  }
+  return _formDataSupportsSubmitter;
+}
+const supportedFormEncTypes = new Set(["application/x-www-form-urlencoded", "multipart/form-data", "text/plain"]);
+function getFormEncType(encType) {
+  if (encType != null && !supportedFormEncTypes.has(encType)) {
+     false ? 0 : void 0;
+    return null;
+  }
+  return encType;
+}
+function getFormSubmissionInfo(target, basename) {
+  let method;
+  let action;
+  let encType;
+  let formData;
+  let body;
+  if (isFormElement(target)) {
+    // When grabbing the action from the element, it will have had the basename
+    // prefixed to ensure non-JS scenarios work, so strip it since we'll
+    // re-prefix in the router
+    let attr = target.getAttribute("action");
+    action = attr ? stripBasename(attr, basename) : null;
+    method = target.getAttribute("method") || defaultMethod;
+    encType = getFormEncType(target.getAttribute("enctype")) || defaultEncType;
+    formData = new FormData(target);
+  } else if (isButtonElement(target) || isInputElement(target) && (target.type === "submit" || target.type === "image")) {
+    let form = target.form;
+    if (form == null) {
+      throw new Error("Cannot submit a <button> or <input type=\"submit\"> without a <form>");
+    }
+    // <button>/<input type="submit"> may override attributes of <form>
+    // When grabbing the action from the element, it will have had the basename
+    // prefixed to ensure non-JS scenarios work, so strip it since we'll
+    // re-prefix in the router
+    let attr = target.getAttribute("formaction") || form.getAttribute("action");
+    action = attr ? stripBasename(attr, basename) : null;
+    method = target.getAttribute("formmethod") || form.getAttribute("method") || defaultMethod;
+    encType = getFormEncType(target.getAttribute("formenctype")) || getFormEncType(form.getAttribute("enctype")) || defaultEncType;
+    // Build a FormData object populated from a form and submitter
+    formData = new FormData(form, target);
+    // If this browser doesn't support the `FormData(el, submitter)` format,
+    // then tack on the submitter value at the end.  This is a lightweight
+    // solution that is not 100% spec compliant.  For complete support in older
+    // browsers, consider using the `formdata-submitter-polyfill` package
+    if (!isFormDataSubmitterSupported()) {
+      let {
+        name,
+        type,
+        value
+      } = target;
+      if (type === "image") {
+        let prefix = name ? name + "." : "";
+        formData.append(prefix + "x", "0");
+        formData.append(prefix + "y", "0");
+      } else if (name) {
+        formData.append(name, value);
+      }
+    }
+  } else if (isHtmlElement(target)) {
+    throw new Error("Cannot submit element that is not <form>, <button>, or " + "<input type=\"submit|image\">");
+  } else {
+    method = defaultMethod;
+    action = null;
+    encType = defaultEncType;
+    body = target;
+  }
+  // Send body for <Form encType="text/plain" so we encode it into text
+  if (formData && encType === "text/plain") {
+    body = formData;
+    formData = undefined;
+  }
+  return {
+    action,
+    method: method.toLowerCase(),
+    encType,
+    formData,
+    body
+  };
+}
+
+const _excluded = ["onClick", "relative", "reloadDocument", "replace", "state", "target", "to", "preventScrollReset", "unstable_viewTransition"],
+  _excluded2 = (/* unused pure expression or super */ null && (["aria-current", "caseSensitive", "className", "end", "style", "to", "unstable_viewTransition", "children"])),
+  _excluded3 = (/* unused pure expression or super */ null && (["fetcherKey", "navigate", "reloadDocument", "replace", "state", "method", "action", "onSubmit", "relative", "preventScrollReset", "unstable_viewTransition"]));
+// HEY YOU! DON'T TOUCH THIS VARIABLE!
+//
+// It is replaced with the proper version at build time via a babel plugin in
+// the rollup config.
+//
+// Export a global property onto the window for React Router detection by the
+// Core Web Vitals Technology Report.  This way they can configure the `wappalyzer`
+// to detect and properly classify live websites as being built with React Router:
+// https://github.com/HTTPArchive/wappalyzer/blob/main/src/technologies/r.json
+const REACT_ROUTER_VERSION = "6";
+try {
+  window.__reactRouterVersion = REACT_ROUTER_VERSION;
+} catch (e) {
+  // no-op
+}
+function createBrowserRouter(routes, opts) {
+  return createRouter({
+    basename: opts == null ? void 0 : opts.basename,
+    future: react_router_dom_dist_extends({}, opts == null ? void 0 : opts.future, {
+      v7_prependBasename: true
+    }),
+    history: createBrowserHistory({
+      window: opts == null ? void 0 : opts.window
+    }),
+    hydrationData: (opts == null ? void 0 : opts.hydrationData) || parseHydrationData(),
+    routes,
+    mapRouteProperties: UNSAFE_mapRouteProperties,
+    unstable_dataStrategy: opts == null ? void 0 : opts.unstable_dataStrategy,
+    window: opts == null ? void 0 : opts.window
+  }).initialize();
+}
+function createHashRouter(routes, opts) {
+  return createRouter({
+    basename: opts == null ? void 0 : opts.basename,
+    future: react_router_dom_dist_extends({}, opts == null ? void 0 : opts.future, {
+      v7_prependBasename: true
+    }),
+    history: createHashHistory({
+      window: opts == null ? void 0 : opts.window
+    }),
+    hydrationData: (opts == null ? void 0 : opts.hydrationData) || parseHydrationData(),
+    routes,
+    mapRouteProperties: UNSAFE_mapRouteProperties,
+    unstable_dataStrategy: opts == null ? void 0 : opts.unstable_dataStrategy,
+    window: opts == null ? void 0 : opts.window
+  }).initialize();
+}
+function parseHydrationData() {
+  var _window;
+  let state = (_window = window) == null ? void 0 : _window.__staticRouterHydrationData;
+  if (state && state.errors) {
+    state = react_router_dom_dist_extends({}, state, {
+      errors: deserializeErrors(state.errors)
+    });
+  }
+  return state;
+}
+function deserializeErrors(errors) {
+  if (!errors) return null;
+  let entries = Object.entries(errors);
+  let serialized = {};
+  for (let [key, val] of entries) {
+    // Hey you!  If you change this, please change the corresponding logic in
+    // serializeErrors in react-router-dom/server.tsx :)
+    if (val && val.__type === "RouteErrorResponse") {
+      serialized[key] = new UNSAFE_ErrorResponseImpl(val.status, val.statusText, val.data, val.internal === true);
+    } else if (val && val.__type === "Error") {
+      // Attempt to reconstruct the right type of Error (i.e., ReferenceError)
+      if (val.__subType) {
+        let ErrorConstructor = window[val.__subType];
+        if (typeof ErrorConstructor === "function") {
+          try {
+            // @ts-expect-error
+            let error = new ErrorConstructor(val.message);
+            // Wipe away the client-side stack trace.  Nothing to fill it in with
+            // because we don't serialize SSR stack traces for security reasons
+            error.stack = "";
+            serialized[key] = error;
+          } catch (e) {
+            // no-op - fall through and create a normal Error
+          }
+        }
+      }
+      if (serialized[key] == null) {
+        let error = new Error(val.message);
+        // Wipe away the client-side stack trace.  Nothing to fill it in with
+        // because we don't serialize SSR stack traces for security reasons
+        error.stack = "";
+        serialized[key] = error;
+      }
+    } else {
+      serialized[key] = val;
+    }
+  }
+  return serialized;
+}
+const ViewTransitionContext = /*#__PURE__*/react.createContext({
+  isTransitioning: false
+});
+if (false) {}
+const FetchersContext = /*#__PURE__*/react.createContext(new Map());
+if (false) {}
+//#endregion
+////////////////////////////////////////////////////////////////////////////////
+//#region Components
+////////////////////////////////////////////////////////////////////////////////
+/**
+  Webpack + React 17 fails to compile on any of the following because webpack
+  complains that `startTransition` doesn't exist in `React`:
+  * import { startTransition } from "react"
+  * import * as React from from "react";
+    "startTransition" in React ? React.startTransition(() => setState()) : setState()
+  * import * as React from from "react";
+    "startTransition" in React ? React["startTransition"](() => setState()) : setState()
+
+  Moving it to a constant such as the following solves the Webpack/React 17 issue:
+  * import * as React from from "react";
+    const START_TRANSITION = "startTransition";
+    START_TRANSITION in React ? React[START_TRANSITION](() => setState()) : setState()
+
+  However, that introduces webpack/terser minification issues in production builds
+  in React 18 where minification/obfuscation ends up removing the call of
+  React.startTransition entirely from the first half of the ternary.  Grabbing
+  this exported reference once up front resolves that issue.
+
+  See https://github.com/remix-run/react-router/issues/10579
+*/
+const dist_START_TRANSITION = "startTransition";
+const dist_startTransitionImpl = react_namespaceObject[dist_START_TRANSITION];
+const FLUSH_SYNC = "flushSync";
+const flushSyncImpl = react_dom_namespaceObject[FLUSH_SYNC];
+const USE_ID = "useId";
+const useIdImpl = react_namespaceObject[USE_ID];
+function startTransitionSafe(cb) {
+  if (dist_startTransitionImpl) {
+    dist_startTransitionImpl(cb);
+  } else {
+    cb();
+  }
+}
+function flushSyncSafe(cb) {
+  if (flushSyncImpl) {
+    flushSyncImpl(cb);
+  } else {
+    cb();
+  }
+}
+class Deferred {
+  constructor() {
+    this.status = "pending";
+    this.promise = new Promise((resolve, reject) => {
+      this.resolve = value => {
+        if (this.status === "pending") {
+          this.status = "resolved";
+          resolve(value);
+        }
+      };
+      this.reject = reason => {
+        if (this.status === "pending") {
+          this.status = "rejected";
+          reject(reason);
+        }
+      };
+    });
+  }
+}
+/**
+ * Given a Remix Router instance, render the appropriate UI
+ */
+function dist_RouterProvider(_ref) {
+  let {
+    fallbackElement,
+    router,
+    future
+  } = _ref;
+  let [state, setStateImpl] = React.useState(router.state);
+  let [pendingState, setPendingState] = React.useState();
+  let [vtContext, setVtContext] = React.useState({
+    isTransitioning: false
+  });
+  let [renderDfd, setRenderDfd] = React.useState();
+  let [transition, setTransition] = React.useState();
+  let [interruption, setInterruption] = React.useState();
+  let fetcherData = React.useRef(new Map());
+  let {
+    v7_startTransition
+  } = future || {};
+  let optInStartTransition = React.useCallback(cb => {
+    if (v7_startTransition) {
+      startTransitionSafe(cb);
+    } else {
+      cb();
+    }
+  }, [v7_startTransition]);
+  let setState = React.useCallback((newState, _ref2) => {
+    let {
+      deletedFetchers,
+      unstable_flushSync: flushSync,
+      unstable_viewTransitionOpts: viewTransitionOpts
+    } = _ref2;
+    deletedFetchers.forEach(key => fetcherData.current.delete(key));
+    newState.fetchers.forEach((fetcher, key) => {
+      if (fetcher.data !== undefined) {
+        fetcherData.current.set(key, fetcher.data);
+      }
+    });
+    let isViewTransitionUnavailable = router.window == null || router.window.document == null || typeof router.window.document.startViewTransition !== "function";
+    // If this isn't a view transition or it's not available in this browser,
+    // just update and be done with it
+    if (!viewTransitionOpts || isViewTransitionUnavailable) {
+      if (flushSync) {
+        flushSyncSafe(() => setStateImpl(newState));
+      } else {
+        optInStartTransition(() => setStateImpl(newState));
+      }
+      return;
+    }
+    // flushSync + startViewTransition
+    if (flushSync) {
+      // Flush through the context to mark DOM elements as transition=ing
+      flushSyncSafe(() => {
+        // Cancel any pending transitions
+        if (transition) {
+          renderDfd && renderDfd.resolve();
+          transition.skipTransition();
+        }
+        setVtContext({
+          isTransitioning: true,
+          flushSync: true,
+          currentLocation: viewTransitionOpts.currentLocation,
+          nextLocation: viewTransitionOpts.nextLocation
+        });
+      });
+      // Update the DOM
+      let t = router.window.document.startViewTransition(() => {
+        flushSyncSafe(() => setStateImpl(newState));
+      });
+      // Clean up after the animation completes
+      t.finished.finally(() => {
+        flushSyncSafe(() => {
+          setRenderDfd(undefined);
+          setTransition(undefined);
+          setPendingState(undefined);
+          setVtContext({
+            isTransitioning: false
+          });
+        });
+      });
+      flushSyncSafe(() => setTransition(t));
+      return;
+    }
+    // startTransition + startViewTransition
+    if (transition) {
+      // Interrupting an in-progress transition, cancel and let everything flush
+      // out, and then kick off a new transition from the interruption state
+      renderDfd && renderDfd.resolve();
+      transition.skipTransition();
+      setInterruption({
+        state: newState,
+        currentLocation: viewTransitionOpts.currentLocation,
+        nextLocation: viewTransitionOpts.nextLocation
+      });
+    } else {
+      // Completed navigation update with opted-in view transitions, let 'er rip
+      setPendingState(newState);
+      setVtContext({
+        isTransitioning: true,
+        flushSync: false,
+        currentLocation: viewTransitionOpts.currentLocation,
+        nextLocation: viewTransitionOpts.nextLocation
+      });
+    }
+  }, [router.window, transition, renderDfd, fetcherData, optInStartTransition]);
+  // Need to use a layout effect here so we are subscribed early enough to
+  // pick up on any render-driven redirects/navigations (useEffect/<Navigate>)
+  React.useLayoutEffect(() => router.subscribe(setState), [router, setState]);
+  // When we start a view transition, create a Deferred we can use for the
+  // eventual "completed" render
+  React.useEffect(() => {
+    if (vtContext.isTransitioning && !vtContext.flushSync) {
+      setRenderDfd(new Deferred());
+    }
+  }, [vtContext]);
+  // Once the deferred is created, kick off startViewTransition() to update the
+  // DOM and then wait on the Deferred to resolve (indicating the DOM update has
+  // happened)
+  React.useEffect(() => {
+    if (renderDfd && pendingState && router.window) {
+      let newState = pendingState;
+      let renderPromise = renderDfd.promise;
+      let transition = router.window.document.startViewTransition(async () => {
+        optInStartTransition(() => setStateImpl(newState));
+        await renderPromise;
+      });
+      transition.finished.finally(() => {
+        setRenderDfd(undefined);
+        setTransition(undefined);
+        setPendingState(undefined);
+        setVtContext({
+          isTransitioning: false
+        });
+      });
+      setTransition(transition);
+    }
+  }, [optInStartTransition, pendingState, renderDfd, router.window]);
+  // When the new location finally renders and is committed to the DOM, this
+  // effect will run to resolve the transition
+  React.useEffect(() => {
+    if (renderDfd && pendingState && state.location.key === pendingState.location.key) {
+      renderDfd.resolve();
+    }
+  }, [renderDfd, transition, state.location, pendingState]);
+  // If we get interrupted with a new navigation during a transition, we skip
+  // the active transition, let it cleanup, then kick it off again here
+  React.useEffect(() => {
+    if (!vtContext.isTransitioning && interruption) {
+      setPendingState(interruption.state);
+      setVtContext({
+        isTransitioning: true,
+        flushSync: false,
+        currentLocation: interruption.currentLocation,
+        nextLocation: interruption.nextLocation
+      });
+      setInterruption(undefined);
+    }
+  }, [vtContext.isTransitioning, interruption]);
+  React.useEffect(() => {
+     false ? 0 : void 0;
+    // Only log this once on initial mount
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+  let navigator = React.useMemo(() => {
+    return {
+      createHref: router.createHref,
+      encodeLocation: router.encodeLocation,
+      go: n => router.navigate(n),
+      push: (to, state, opts) => router.navigate(to, {
+        state,
+        preventScrollReset: opts == null ? void 0 : opts.preventScrollReset
+      }),
+      replace: (to, state, opts) => router.navigate(to, {
+        replace: true,
+        state,
+        preventScrollReset: opts == null ? void 0 : opts.preventScrollReset
+      })
+    };
+  }, [router]);
+  let basename = router.basename || "/";
+  let dataRouterContext = React.useMemo(() => ({
+    router,
+    navigator,
+    static: false,
+    basename
+  }), [router, navigator, basename]);
+  // The fragment and {null} here are important!  We need them to keep React 18's
+  // useId happy when we are server-rendering since we may have a <script> here
+  // containing the hydrated server-side staticContext (from StaticRouterProvider).
+  // useId relies on the component tree structure to generate deterministic id's
+  // so we need to ensure it remains the same on the client even though
+  // we don't need the <script> tag
+  return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement(UNSAFE_DataRouterContext.Provider, {
+    value: dataRouterContext
+  }, /*#__PURE__*/React.createElement(UNSAFE_DataRouterStateContext.Provider, {
+    value: state
+  }, /*#__PURE__*/React.createElement(FetchersContext.Provider, {
+    value: fetcherData.current
+  }, /*#__PURE__*/React.createElement(ViewTransitionContext.Provider, {
+    value: vtContext
+  }, /*#__PURE__*/React.createElement(Router, {
+    basename: basename,
+    location: state.location,
+    navigationType: state.historyAction,
+    navigator: navigator,
+    future: {
+      v7_relativeSplatPath: router.future.v7_relativeSplatPath
+    }
+  }, state.initialized || router.future.v7_partialHydration ? /*#__PURE__*/React.createElement(dist_DataRoutes, {
+    routes: router.routes,
+    future: router.future,
+    state: state
+  }) : fallbackElement))))), null);
+}
+function dist_DataRoutes(_ref3) {
+  let {
+    routes,
+    future,
+    state
+  } = _ref3;
+  return UNSAFE_useRoutesImpl(routes, undefined, state, future);
+}
+/**
+ * A `<Router>` for use in web browsers. Provides the cleanest URLs.
+ */
+function BrowserRouter(_ref4) {
+  let {
+    basename,
+    children,
+    future,
+    window
+  } = _ref4;
+  let historyRef = React.useRef();
+  if (historyRef.current == null) {
+    historyRef.current = createBrowserHistory({
+      window,
+      v5Compat: true
+    });
+  }
+  let history = historyRef.current;
+  let [state, setStateImpl] = React.useState({
+    action: history.action,
+    location: history.location
+  });
+  let {
+    v7_startTransition
+  } = future || {};
+  let setState = React.useCallback(newState => {
+    v7_startTransition && dist_startTransitionImpl ? dist_startTransitionImpl(() => setStateImpl(newState)) : setStateImpl(newState);
+  }, [setStateImpl, v7_startTransition]);
+  React.useLayoutEffect(() => history.listen(setState), [history, setState]);
+  return /*#__PURE__*/React.createElement(Router, {
+    basename: basename,
+    children: children,
+    location: state.location,
+    navigationType: state.action,
+    navigator: history,
+    future: future
+  });
+}
+/**
+ * A `<Router>` for use in web browsers. Stores the location in the hash
+ * portion of the URL so it is not sent to the server.
+ */
+function HashRouter(_ref5) {
+  let {
+    basename,
+    children,
+    future,
+    window
+  } = _ref5;
+  let historyRef = React.useRef();
+  if (historyRef.current == null) {
+    historyRef.current = createHashHistory({
+      window,
+      v5Compat: true
+    });
+  }
+  let history = historyRef.current;
+  let [state, setStateImpl] = React.useState({
+    action: history.action,
+    location: history.location
+  });
+  let {
+    v7_startTransition
+  } = future || {};
+  let setState = React.useCallback(newState => {
+    v7_startTransition && dist_startTransitionImpl ? dist_startTransitionImpl(() => setStateImpl(newState)) : setStateImpl(newState);
+  }, [setStateImpl, v7_startTransition]);
+  React.useLayoutEffect(() => history.listen(setState), [history, setState]);
+  return /*#__PURE__*/React.createElement(Router, {
+    basename: basename,
+    children: children,
+    location: state.location,
+    navigationType: state.action,
+    navigator: history,
+    future: future
+  });
+}
+/**
+ * A `<Router>` that accepts a pre-instantiated history object. It's important
+ * to note that using your own history object is highly discouraged and may add
+ * two versions of the history library to your bundles unless you use the same
+ * version of the history library that React Router uses internally.
+ */
+function HistoryRouter(_ref6) {
+  let {
+    basename,
+    children,
+    future,
+    history
+  } = _ref6;
+  let [state, setStateImpl] = React.useState({
+    action: history.action,
+    location: history.location
+  });
+  let {
+    v7_startTransition
+  } = future || {};
+  let setState = React.useCallback(newState => {
+    v7_startTransition && dist_startTransitionImpl ? dist_startTransitionImpl(() => setStateImpl(newState)) : setStateImpl(newState);
+  }, [setStateImpl, v7_startTransition]);
+  React.useLayoutEffect(() => history.listen(setState), [history, setState]);
+  return /*#__PURE__*/React.createElement(Router, {
+    basename: basename,
+    children: children,
+    location: state.location,
+    navigationType: state.action,
+    navigator: history,
+    future: future
+  });
+}
+if (false) {}
+const dist_isBrowser = typeof window !== "undefined" && typeof window.document !== "undefined" && typeof window.document.createElement !== "undefined";
+const dist_ABSOLUTE_URL_REGEX = /^(?:[a-z][a-z0-9+.-]*:|\/\/)/i;
+/**
+ * The public API for rendering a history-aware `<a>`.
+ */
+const Link = /*#__PURE__*/react.forwardRef(function LinkWithRef(_ref7, ref) {
+  let {
+      onClick,
+      relative,
+      reloadDocument,
+      replace,
+      state,
+      target,
+      to,
+      preventScrollReset,
+      unstable_viewTransition
+    } = _ref7,
+    rest = _objectWithoutPropertiesLoose(_ref7, _excluded);
+  let {
+    basename
+  } = react.useContext(NavigationContext);
+  // Rendered into <a href> for absolute URLs
+  let absoluteHref;
+  let isExternal = false;
+  if (typeof to === "string" && dist_ABSOLUTE_URL_REGEX.test(to)) {
+    // Render the absolute href server- and client-side
+    absoluteHref = to;
+    // Only check for external origins client-side
+    if (dist_isBrowser) {
+      try {
+        let currentUrl = new URL(window.location.href);
+        let targetUrl = to.startsWith("//") ? new URL(currentUrl.protocol + to) : new URL(to);
+        let path = router_stripBasename(targetUrl.pathname, basename);
+        if (targetUrl.origin === currentUrl.origin && path != null) {
+          // Strip the protocol/origin/basename for same-origin absolute URLs
+          to = path + targetUrl.search + targetUrl.hash;
+        } else {
+          isExternal = true;
+        }
+      } catch (e) {
+        // We can't do external URL detection without a valid URL
+         false ? 0 : void 0;
+      }
+    }
+  }
+  // Rendered into <a href> for relative URLs
+  let href = useHref(to, {
+    relative
+  });
+  let internalOnClick = useLinkClickHandler(to, {
+    replace,
+    state,
+    target,
+    preventScrollReset,
+    relative,
+    unstable_viewTransition
+  });
+  function handleClick(event) {
+    if (onClick) onClick(event);
+    if (!event.defaultPrevented) {
+      internalOnClick(event);
+    }
+  }
+  return (
+    /*#__PURE__*/
+    // eslint-disable-next-line jsx-a11y/anchor-has-content
+    react.createElement("a", react_router_dom_dist_extends({}, rest, {
+      href: absoluteHref || href,
+      onClick: isExternal || reloadDocument ? onClick : handleClick,
+      ref: ref,
+      target: target
+    }))
+  );
+});
+if (false) {}
+/**
+ * A `<Link>` wrapper that knows if it's "active" or not.
+ */
+const NavLink = /*#__PURE__*/(/* unused pure expression or super */ null && (React.forwardRef(function NavLinkWithRef(_ref8, ref) {
+  let {
+      "aria-current": ariaCurrentProp = "page",
+      caseSensitive = false,
+      className: classNameProp = "",
+      end = false,
+      style: styleProp,
+      to,
+      unstable_viewTransition,
+      children
+    } = _ref8,
+    rest = _objectWithoutPropertiesLoose(_ref8, _excluded2);
+  let path = useResolvedPath(to, {
+    relative: rest.relative
+  });
+  let location = useLocation();
+  let routerState = React.useContext(UNSAFE_DataRouterStateContext);
+  let {
+    navigator,
+    basename
+  } = React.useContext(UNSAFE_NavigationContext);
+  let isTransitioning = routerState != null &&
+  // Conditional usage is OK here because the usage of a data router is static
+  // eslint-disable-next-line react-hooks/rules-of-hooks
+  useViewTransitionState(path) && unstable_viewTransition === true;
+  let toPathname = navigator.encodeLocation ? navigator.encodeLocation(path).pathname : path.pathname;
+  let locationPathname = location.pathname;
+  let nextLocationPathname = routerState && routerState.navigation && routerState.navigation.location ? routerState.navigation.location.pathname : null;
+  if (!caseSensitive) {
+    locationPathname = locationPathname.toLowerCase();
+    nextLocationPathname = nextLocationPathname ? nextLocationPathname.toLowerCase() : null;
+    toPathname = toPathname.toLowerCase();
+  }
+  if (nextLocationPathname && basename) {
+    nextLocationPathname = stripBasename(nextLocationPathname, basename) || nextLocationPathname;
+  }
+  // If the `to` has a trailing slash, look at that exact spot.  Otherwise,
+  // we're looking for a slash _after_ what's in `to`.  For example:
+  //
+  // <NavLink to="/users"> and <NavLink to="/users/">
+  // both want to look for a / at index 6 to match URL `/users/matt`
+  const endSlashPosition = toPathname !== "/" && toPathname.endsWith("/") ? toPathname.length - 1 : toPathname.length;
+  let isActive = locationPathname === toPathname || !end && locationPathname.startsWith(toPathname) && locationPathname.charAt(endSlashPosition) === "/";
+  let isPending = nextLocationPathname != null && (nextLocationPathname === toPathname || !end && nextLocationPathname.startsWith(toPathname) && nextLocationPathname.charAt(toPathname.length) === "/");
+  let renderProps = {
+    isActive,
+    isPending,
+    isTransitioning
+  };
+  let ariaCurrent = isActive ? ariaCurrentProp : undefined;
+  let className;
+  if (typeof classNameProp === "function") {
+    className = classNameProp(renderProps);
+  } else {
+    // If the className prop is not a function, we use a default `active`
+    // class for <NavLink />s that are active. In v5 `active` was the default
+    // value for `activeClassName`, but we are removing that API and can still
+    // use the old default behavior for a cleaner upgrade path and keep the
+    // simple styling rules working as they currently do.
+    className = [classNameProp, isActive ? "active" : null, isPending ? "pending" : null, isTransitioning ? "transitioning" : null].filter(Boolean).join(" ");
+  }
+  let style = typeof styleProp === "function" ? styleProp(renderProps) : styleProp;
+  return /*#__PURE__*/React.createElement(Link, react_router_dom_dist_extends({}, rest, {
+    "aria-current": ariaCurrent,
+    className: className,
+    ref: ref,
+    style: style,
+    to: to,
+    unstable_viewTransition: unstable_viewTransition
+  }), typeof children === "function" ? children(renderProps) : children);
+})));
+if (false) {}
+/**
+ * A `@remix-run/router`-aware `<form>`. It behaves like a normal form except
+ * that the interaction with the server is with `fetch` instead of new document
+ * requests, allowing components to add nicer UX to the page as the form is
+ * submitted and returns with data.
+ */
+const Form = /*#__PURE__*/(/* unused pure expression or super */ null && (React.forwardRef((_ref9, forwardedRef) => {
+  let {
+      fetcherKey,
+      navigate,
+      reloadDocument,
+      replace,
+      state,
+      method = defaultMethod,
+      action,
+      onSubmit,
+      relative,
+      preventScrollReset,
+      unstable_viewTransition
+    } = _ref9,
+    props = _objectWithoutPropertiesLoose(_ref9, _excluded3);
+  let submit = useSubmit();
+  let formAction = useFormAction(action, {
+    relative
+  });
+  let formMethod = method.toLowerCase() === "get" ? "get" : "post";
+  let submitHandler = event => {
+    onSubmit && onSubmit(event);
+    if (event.defaultPrevented) return;
+    event.preventDefault();
+    let submitter = event.nativeEvent.submitter;
+    let submitMethod = (submitter == null ? void 0 : submitter.getAttribute("formmethod")) || method;
+    submit(submitter || event.currentTarget, {
+      fetcherKey,
+      method: submitMethod,
+      navigate,
+      replace,
+      state,
+      relative,
+      preventScrollReset,
+      unstable_viewTransition
+    });
+  };
+  return /*#__PURE__*/React.createElement("form", react_router_dom_dist_extends({
+    ref: forwardedRef,
+    method: formMethod,
+    action: formAction,
+    onSubmit: reloadDocument ? onSubmit : submitHandler
+  }, props));
+})));
+if (false) {}
+/**
+ * This component will emulate the browser's scroll restoration on location
+ * changes.
+ */
+function ScrollRestoration(_ref10) {
+  let {
+    getKey,
+    storageKey
+  } = _ref10;
+  useScrollRestoration({
+    getKey,
+    storageKey
+  });
+  return null;
+}
+if (false) {}
+//#endregion
+////////////////////////////////////////////////////////////////////////////////
+//#region Hooks
+////////////////////////////////////////////////////////////////////////////////
+var dist_DataRouterHook;
+(function (DataRouterHook) {
+  DataRouterHook["UseScrollRestoration"] = "useScrollRestoration";
+  DataRouterHook["UseSubmit"] = "useSubmit";
+  DataRouterHook["UseSubmitFetcher"] = "useSubmitFetcher";
+  DataRouterHook["UseFetcher"] = "useFetcher";
+  DataRouterHook["useViewTransitionState"] = "useViewTransitionState";
+})(dist_DataRouterHook || (dist_DataRouterHook = {}));
+var dist_DataRouterStateHook;
+(function (DataRouterStateHook) {
+  DataRouterStateHook["UseFetcher"] = "useFetcher";
+  DataRouterStateHook["UseFetchers"] = "useFetchers";
+  DataRouterStateHook["UseScrollRestoration"] = "useScrollRestoration";
+})(dist_DataRouterStateHook || (dist_DataRouterStateHook = {}));
+// Internal hooks
+function dist_getDataRouterConsoleError(hookName) {
+  return hookName + " must be used within a data router.  See https://reactrouter.com/routers/picking-a-router.";
+}
+function dist_useDataRouterContext(hookName) {
+  let ctx = React.useContext(UNSAFE_DataRouterContext);
+  !ctx ?  false ? 0 : UNSAFE_invariant(false) : void 0;
+  return ctx;
+}
+function dist_useDataRouterState(hookName) {
+  let state = React.useContext(UNSAFE_DataRouterStateContext);
+  !state ?  false ? 0 : UNSAFE_invariant(false) : void 0;
+  return state;
+}
+// External hooks
+/**
+ * Handles the click behavior for router `<Link>` components. This is useful if
+ * you need to create custom `<Link>` components with the same click behavior we
+ * use in our exported `<Link>`.
+ */
+function useLinkClickHandler(to, _temp) {
+  let {
+    target,
+    replace: replaceProp,
+    state,
+    preventScrollReset,
+    relative,
+    unstable_viewTransition
+  } = _temp === void 0 ? {} : _temp;
+  let navigate = dist_useNavigate();
+  let location = dist_useLocation();
+  let path = dist_useResolvedPath(to, {
+    relative
+  });
+  return react.useCallback(event => {
+    if (shouldProcessLinkClick(event, target)) {
+      event.preventDefault();
+      // If the URL hasn't changed, a regular <a> will do a replace instead of
+      // a push, so do the same here unless the replace prop is explicitly set
+      let replace = replaceProp !== undefined ? replaceProp : router_createPath(location) === router_createPath(path);
+      navigate(to, {
+        replace,
+        state,
+        preventScrollReset,
+        relative,
+        unstable_viewTransition
+      });
+    }
+  }, [location, navigate, path, replaceProp, state, target, to, preventScrollReset, relative, unstable_viewTransition]);
+}
+/**
+ * A convenient wrapper for reading and writing search parameters via the
+ * URLSearchParams interface.
+ */
+function dist_useSearchParams(defaultInit) {
+   false ? 0 : void 0;
+  let defaultSearchParamsRef = react.useRef(createSearchParams(defaultInit));
+  let hasSetSearchParamsRef = react.useRef(false);
+  let location = dist_useLocation();
+  let searchParams = react.useMemo(() =>
+  // Only merge in the defaults if we haven't yet called setSearchParams.
+  // Once we call that we want those to take precedence, otherwise you can't
+  // remove a param with setSearchParams({}) if it has an initial value
+  getSearchParamsForLocation(location.search, hasSetSearchParamsRef.current ? null : defaultSearchParamsRef.current), [location.search]);
+  let navigate = dist_useNavigate();
+  let setSearchParams = react.useCallback((nextInit, navigateOptions) => {
+    const newSearchParams = createSearchParams(typeof nextInit === "function" ? nextInit(searchParams) : nextInit);
+    hasSetSearchParamsRef.current = true;
+    navigate("?" + newSearchParams, navigateOptions);
+  }, [navigate, searchParams]);
+  return [searchParams, setSearchParams];
+}
+function validateClientSideSubmission() {
+  if (typeof document === "undefined") {
+    throw new Error("You are calling submit during the server render. " + "Try calling submit within a `useEffect` or callback instead.");
+  }
+}
+let fetcherId = 0;
+let getUniqueFetcherId = () => "__" + String(++fetcherId) + "__";
+/**
+ * Returns a function that may be used to programmatically submit a form (or
+ * some arbitrary data) to the server.
+ */
+function useSubmit() {
+  let {
+    router
+  } = dist_useDataRouterContext(dist_DataRouterHook.UseSubmit);
+  let {
+    basename
+  } = React.useContext(UNSAFE_NavigationContext);
+  let currentRouteId = UNSAFE_useRouteId();
+  return React.useCallback(function (target, options) {
+    if (options === void 0) {
+      options = {};
+    }
+    validateClientSideSubmission();
+    let {
+      action,
+      method,
+      encType,
+      formData,
+      body
+    } = getFormSubmissionInfo(target, basename);
+    if (options.navigate === false) {
+      let key = options.fetcherKey || getUniqueFetcherId();
+      router.fetch(key, currentRouteId, options.action || action, {
+        preventScrollReset: options.preventScrollReset,
+        formData,
+        body,
+        formMethod: options.method || method,
+        formEncType: options.encType || encType,
+        unstable_flushSync: options.unstable_flushSync
+      });
+    } else {
+      router.navigate(options.action || action, {
+        preventScrollReset: options.preventScrollReset,
+        formData,
+        body,
+        formMethod: options.method || method,
+        formEncType: options.encType || encType,
+        replace: options.replace,
+        state: options.state,
+        fromRouteId: currentRouteId,
+        unstable_flushSync: options.unstable_flushSync,
+        unstable_viewTransition: options.unstable_viewTransition
+      });
+    }
+  }, [router, basename, currentRouteId]);
+}
+// v7: Eventually we should deprecate this entirely in favor of using the
+// router method directly?
+function useFormAction(action, _temp2) {
+  let {
+    relative
+  } = _temp2 === void 0 ? {} : _temp2;
+  let {
+    basename
+  } = React.useContext(UNSAFE_NavigationContext);
+  let routeContext = React.useContext(UNSAFE_RouteContext);
+  !routeContext ?  false ? 0 : UNSAFE_invariant(false) : void 0;
+  let [match] = routeContext.matches.slice(-1);
+  // Shallow clone path so we can modify it below, otherwise we modify the
+  // object referenced by useMemo inside useResolvedPath
+  let path = react_router_dom_dist_extends({}, useResolvedPath(action ? action : ".", {
+    relative
+  }));
+  // If no action was specified, browsers will persist current search params
+  // when determining the path, so match that behavior
+  // https://github.com/remix-run/remix/issues/927
+  let location = useLocation();
+  if (action == null) {
+    // Safe to write to this directly here since if action was undefined, we
+    // would have called useResolvedPath(".") which will never include a search
+    path.search = location.search;
+    // When grabbing search params from the URL, remove any included ?index param
+    // since it might not apply to our contextual route.  We add it back based
+    // on match.route.index below
+    let params = new URLSearchParams(path.search);
+    if (params.has("index") && params.get("index") === "") {
+      params.delete("index");
+      path.search = params.toString() ? "?" + params.toString() : "";
+    }
+  }
+  if ((!action || action === ".") && match.route.index) {
+    path.search = path.search ? path.search.replace(/^\?/, "?index&") : "?index";
+  }
+  // If we're operating within a basename, prepend it to the pathname prior
+  // to creating the form action.  If this is a root navigation, then just use
+  // the raw basename which allows the basename to have full control over the
+  // presence of a trailing slash on root actions
+  if (basename !== "/") {
+    path.pathname = path.pathname === "/" ? basename : joinPaths([basename, path.pathname]);
+  }
+  return createPath(path);
+}
+// TODO: (v7) Change the useFetcher generic default from `any` to `unknown`
+/**
+ * Interacts with route loaders and actions without causing a navigation. Great
+ * for any interaction that stays on the same page.
+ */
+function useFetcher(_temp3) {
+  var _route$matches;
+  let {
+    key
+  } = _temp3 === void 0 ? {} : _temp3;
+  let {
+    router
+  } = dist_useDataRouterContext(dist_DataRouterHook.UseFetcher);
+  let state = dist_useDataRouterState(dist_DataRouterStateHook.UseFetcher);
+  let fetcherData = React.useContext(FetchersContext);
+  let route = React.useContext(UNSAFE_RouteContext);
+  let routeId = (_route$matches = route.matches[route.matches.length - 1]) == null ? void 0 : _route$matches.route.id;
+  !fetcherData ?  false ? 0 : UNSAFE_invariant(false) : void 0;
+  !route ?  false ? 0 : UNSAFE_invariant(false) : void 0;
+  !(routeId != null) ?  false ? 0 : UNSAFE_invariant(false) : void 0;
+  // Fetcher key handling
+  // OK to call conditionally to feature detect `useId`
+  // eslint-disable-next-line react-hooks/rules-of-hooks
+  let defaultKey = useIdImpl ? useIdImpl() : "";
+  let [fetcherKey, setFetcherKey] = React.useState(key || defaultKey);
+  if (key && key !== fetcherKey) {
+    setFetcherKey(key);
+  } else if (!fetcherKey) {
+    // We will only fall through here when `useId` is not available
+    setFetcherKey(getUniqueFetcherId());
+  }
+  // Registration/cleanup
+  React.useEffect(() => {
+    router.getFetcher(fetcherKey);
+    return () => {
+      // Tell the router we've unmounted - if v7_fetcherPersist is enabled this
+      // will not delete immediately but instead queue up a delete after the
+      // fetcher returns to an `idle` state
+      router.deleteFetcher(fetcherKey);
+    };
+  }, [router, fetcherKey]);
+  // Fetcher additions
+  let load = React.useCallback((href, opts) => {
+    !routeId ?  false ? 0 : UNSAFE_invariant(false) : void 0;
+    router.fetch(fetcherKey, routeId, href, opts);
+  }, [fetcherKey, routeId, router]);
+  let submitImpl = useSubmit();
+  let submit = React.useCallback((target, opts) => {
+    submitImpl(target, react_router_dom_dist_extends({}, opts, {
+      navigate: false,
+      fetcherKey
+    }));
+  }, [fetcherKey, submitImpl]);
+  let FetcherForm = React.useMemo(() => {
+    let FetcherForm = /*#__PURE__*/React.forwardRef((props, ref) => {
+      return /*#__PURE__*/React.createElement(Form, react_router_dom_dist_extends({}, props, {
+        navigate: false,
+        fetcherKey: fetcherKey,
+        ref: ref
+      }));
+    });
+    if (false) {}
+    return FetcherForm;
+  }, [fetcherKey]);
+  // Exposed FetcherWithComponents
+  let fetcher = state.fetchers.get(fetcherKey) || IDLE_FETCHER;
+  let data = fetcherData.get(fetcherKey);
+  let fetcherWithComponents = React.useMemo(() => react_router_dom_dist_extends({
+    Form: FetcherForm,
+    submit,
+    load
+  }, fetcher, {
+    data
+  }), [FetcherForm, submit, load, fetcher, data]);
+  return fetcherWithComponents;
+}
+/**
+ * Provides all fetchers currently on the page. Useful for layouts and parent
+ * routes that need to provide pending/optimistic UI regarding the fetch.
+ */
+function useFetchers() {
+  let state = dist_useDataRouterState(dist_DataRouterStateHook.UseFetchers);
+  return Array.from(state.fetchers.entries()).map(_ref11 => {
+    let [key, fetcher] = _ref11;
+    return react_router_dom_dist_extends({}, fetcher, {
+      key
+    });
+  });
+}
+const SCROLL_RESTORATION_STORAGE_KEY = "react-router-scroll-positions";
+let savedScrollPositions = {};
+/**
+ * When rendered inside a RouterProvider, will restore scroll positions on navigations
+ */
+function useScrollRestoration(_temp4) {
+  let {
+    getKey,
+    storageKey
+  } = _temp4 === void 0 ? {} : _temp4;
+  let {
+    router
+  } = dist_useDataRouterContext(dist_DataRouterHook.UseScrollRestoration);
+  let {
+    restoreScrollPosition,
+    preventScrollReset
+  } = dist_useDataRouterState(dist_DataRouterStateHook.UseScrollRestoration);
+  let {
+    basename
+  } = React.useContext(UNSAFE_NavigationContext);
+  let location = useLocation();
+  let matches = useMatches();
+  let navigation = useNavigation();
+  // Trigger manual scroll restoration while we're active
+  React.useEffect(() => {
+    window.history.scrollRestoration = "manual";
+    return () => {
+      window.history.scrollRestoration = "auto";
+    };
+  }, []);
+  // Save positions on pagehide
+  usePageHide(React.useCallback(() => {
+    if (navigation.state === "idle") {
+      let key = (getKey ? getKey(location, matches) : null) || location.key;
+      savedScrollPositions[key] = window.scrollY;
+    }
+    try {
+      sessionStorage.setItem(storageKey || SCROLL_RESTORATION_STORAGE_KEY, JSON.stringify(savedScrollPositions));
+    } catch (error) {
+       false ? 0 : void 0;
+    }
+    window.history.scrollRestoration = "auto";
+  }, [storageKey, getKey, navigation.state, location, matches]));
+  // Read in any saved scroll locations
+  if (typeof document !== "undefined") {
+    // eslint-disable-next-line react-hooks/rules-of-hooks
+    React.useLayoutEffect(() => {
+      try {
+        let sessionPositions = sessionStorage.getItem(storageKey || SCROLL_RESTORATION_STORAGE_KEY);
+        if (sessionPositions) {
+          savedScrollPositions = JSON.parse(sessionPositions);
+        }
+      } catch (e) {
+        // no-op, use default empty object
+      }
+    }, [storageKey]);
+    // Enable scroll restoration in the router
+    // eslint-disable-next-line react-hooks/rules-of-hooks
+    React.useLayoutEffect(() => {
+      let getKeyWithoutBasename = getKey && basename !== "/" ? (location, matches) => getKey( // Strip the basename to match useLocation()
+      react_router_dom_dist_extends({}, location, {
+        pathname: stripBasename(location.pathname, basename) || location.pathname
+      }), matches) : getKey;
+      let disableScrollRestoration = router == null ? void 0 : router.enableScrollRestoration(savedScrollPositions, () => window.scrollY, getKeyWithoutBasename);
+      return () => disableScrollRestoration && disableScrollRestoration();
+    }, [router, basename, getKey]);
+    // Restore scrolling when state.restoreScrollPosition changes
+    // eslint-disable-next-line react-hooks/rules-of-hooks
+    React.useLayoutEffect(() => {
+      // Explicit false means don't do anything (used for submissions)
+      if (restoreScrollPosition === false) {
+        return;
+      }
+      // been here before, scroll to it
+      if (typeof restoreScrollPosition === "number") {
+        window.scrollTo(0, restoreScrollPosition);
+        return;
+      }
+      // try to scroll to the hash
+      if (location.hash) {
+        let el = document.getElementById(decodeURIComponent(location.hash.slice(1)));
+        if (el) {
+          el.scrollIntoView();
+          return;
+        }
+      }
+      // Don't reset if this navigation opted out
+      if (preventScrollReset === true) {
+        return;
+      }
+      // otherwise go to the top on new locations
+      window.scrollTo(0, 0);
+    }, [location, restoreScrollPosition, preventScrollReset]);
+  }
+}
+/**
+ * Setup a callback to be fired on the window's `beforeunload` event. This is
+ * useful for saving some data to `window.localStorage` just before the page
+ * refreshes.
+ *
+ * Note: The `callback` argument should be a function created with
+ * `React.useCallback()`.
+ */
+function useBeforeUnload(callback, options) {
+  let {
+    capture
+  } = options || {};
+  React.useEffect(() => {
+    let opts = capture != null ? {
+      capture
+    } : undefined;
+    window.addEventListener("beforeunload", callback, opts);
+    return () => {
+      window.removeEventListener("beforeunload", callback, opts);
+    };
+  }, [callback, capture]);
+}
+/**
+ * Setup a callback to be fired on the window's `pagehide` event. This is
+ * useful for saving some data to `window.localStorage` just before the page
+ * refreshes.  This event is better supported than beforeunload across browsers.
+ *
+ * Note: The `callback` argument should be a function created with
+ * `React.useCallback()`.
+ */
+function usePageHide(callback, options) {
+  let {
+    capture
+  } = options || {};
+  React.useEffect(() => {
+    let opts = capture != null ? {
+      capture
+    } : undefined;
+    window.addEventListener("pagehide", callback, opts);
+    return () => {
+      window.removeEventListener("pagehide", callback, opts);
+    };
+  }, [callback, capture]);
+}
+/**
+ * Wrapper around useBlocker to show a window.confirm prompt to users instead
+ * of building a custom UI with useBlocker.
+ *
+ * Warning: This has *a lot of rough edges* and behaves very differently (and
+ * very incorrectly in some cases) across browsers if user click addition
+ * back/forward navigations while the confirm is open.  Use at your own risk.
+ */
+function usePrompt(_ref12) {
+  let {
+    when,
+    message
+  } = _ref12;
+  let blocker = useBlocker(when);
+  React.useEffect(() => {
+    if (blocker.state === "blocked") {
+      let proceed = window.confirm(message);
+      if (proceed) {
+        // This timeout is needed to avoid a weird "race" on POP navigations
+        // between the `window.history` revert navigation and the result of
+        // `window.confirm`
+        setTimeout(blocker.proceed, 0);
+      } else {
+        blocker.reset();
+      }
+    }
+  }, [blocker, message]);
+  React.useEffect(() => {
+    if (blocker.state === "blocked" && !when) {
+      blocker.reset();
+    }
+  }, [blocker, when]);
+}
+/**
+ * Return a boolean indicating if there is an active view transition to the
+ * given href.  You can use this value to render CSS classes or viewTransitionName
+ * styles onto your elements
+ *
+ * @param href The destination href
+ * @param [opts.relative] Relative routing type ("route" | "path")
+ */
+function useViewTransitionState(to, opts) {
+  if (opts === void 0) {
+    opts = {};
+  }
+  let vtContext = React.useContext(ViewTransitionContext);
+  !(vtContext != null) ?  false ? 0 : UNSAFE_invariant(false) : void 0;
+  let {
+    basename
+  } = dist_useDataRouterContext(dist_DataRouterHook.useViewTransitionState);
+  let path = useResolvedPath(to, {
+    relative: opts.relative
+  });
+  if (!vtContext.isTransitioning) {
+    return false;
+  }
+  let currentPath = stripBasename(vtContext.currentLocation.pathname, basename) || vtContext.currentLocation.pathname;
+  let nextPath = stripBasename(vtContext.nextLocation.pathname, basename) || vtContext.nextLocation.pathname;
+  // Transition is active if we're going to or coming from the indicated
+  // destination.  This ensures that other PUSH navigations that reverse
+  // an indicated transition apply.  I.e., on the list view you have:
+  //
+  //   <NavLink to="/details/1" unstable_viewTransition>
+  //
+  // If you click the breadcrumb back to the list view:
+  //
+  //   <NavLink to="/list" unstable_viewTransition>
+  //
+  // We should apply the transition because it's indicated as active going
+  // from /list -> /details/1 and therefore should be active on the reverse
+  // (even though this isn't strictly a POP reverse)
+  return matchPath(path.pathname, nextPath) != null || matchPath(path.pathname, currentPath) != null;
+}
+//#endregion
+
+
+//# sourceMappingURL=index.js.map
+
+;// CONCATENATED MODULE: ./src/constants/params.ts
+const HOME_ROUTE = "/";
+const VIDEO_ROUTE = "/video";
+const VIDEO_PLAYER_ROUTE = "/video/player";
+const VIDEO_SCHEDULER_ROUTE = "/video/scheduler";
+const MODE_PARAM_KEY = "mode";
+const PATH_VALUES = {
+  [HOME_ROUTE]: HOME_ROUTE,
+  [VIDEO_ROUTE]: VIDEO_ROUTE,
+  [VIDEO_PLAYER_ROUTE]: VIDEO_PLAYER_ROUTE,
+  [VIDEO_SCHEDULER_ROUTE]: VIDEO_SCHEDULER_ROUTE
+};
+
+;// CONCATENATED MODULE: ./config/app/base/package.ts
+
+
+const APP_TITLE = kebabToTitle(
+  package_namespaceObject.u2
+);
+const APP_DESCRIPTION = package_namespaceObject.WL;
+const APP_VERSION = package_namespaceObject.i8;
+
+;// CONCATENATED MODULE: ./src/pics/header/left/title/text.tsx
+
+
+
+const TitleText = (0,react.memo)(
+  () => {
+    return /* @__PURE__ */ React.createElement(
+      motion_motion.h1,
+      {
+        style: {
+          overflowWrap: "break-word"
+        },
+        className: "relative z-10 font-title opacity-100 text-left text-3xl sm:text-3.5xl md:text-4xl"
+      },
+      /* @__PURE__ */ React.createElement("span", { className: "relative dark:text-black text-white-8 uppercase whitespace-nowrap font-sans _outline-filter" }, APP_TITLE)
+    );
+  }
+);
+
+;// CONCATENATED MODULE: ./node_modules/@brysonandrew/utils-function/noop.ts
+const NOOP = () => null;
+const VOIDOP = () => {
+  return;
+};
+
+;// CONCATENATED MODULE: ./node_modules/@brysonandrew/dark-mode/config/constants/index.tsx
+
+
+const MODES = (/* unused pure expression or super */ null && (["dark", "light"]));
+const INIT_MODE = "dark";
+const INIT_DARK_MODE = {
+  isDarkMode: INIT_MODE === "dark",
+  darkKey: INIT_MODE,
+  toggle: NOOP,
+  enable: NOOP,
+  disable: NOOP
+};
+const constants_DARK_MODE = (0,react.createContext)(
+  {}
+);
+
+;// CONCATENATED MODULE: ./node_modules/@brysonandrew/dark-mode/DarkModeProvider.tsx
+
+
+
+const DarkModeProvider_useDarkMode = () => (0,react.useContext)(constants_DARK_MODE);
+const DarkModeProvider = ({
+  children
+}) => {
+  const darkMode = useDarkModeState();
+  return /* @__PURE__ */ React.createElement(DARK_MODE.Provider, { value: darkMode }, children);
+};
+
+;// CONCATENATED MODULE: ./src/pics/header/left/title/sparkle-button.tsx
+
+const SparkleButton = () => {
+  const { darkKey } = DarkModeProvider_useDarkMode();
+  return /* @__PURE__ */ React.createElement("div", { className: "relative uppercase h-8 w-7 sm:(h-10 w-10)" }, /* @__PURE__ */ React.createElement(
+    "img",
+    {
+      className: "fill h-full",
+      src: `/logo-${darkKey}.svg`,
+      alt: `Logo ${darkKey}`
+    }
+  ));
+};
+
+;// CONCATENATED MODULE: ./src/pics/header/left/title/index.tsx
+
+
+const Title = () => {
+  return /* @__PURE__ */ React.createElement("div", { className: "relative top-1 -left-2 row items-center gap-4" }, /* @__PURE__ */ React.createElement(TitleText, null), /* @__PURE__ */ React.createElement(SparkleButton, null));
+};
+
+;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/render/dom/utils/resolve-element.mjs
+
+
+function resolveElements(elements, scope, selectorCache) {
+    var _a;
+    if (typeof elements === "string") {
+        let root = document;
+        if (scope) {
+            invariant(Boolean(scope.current), "Scope provided, but no element detected.");
+            root = scope.current;
+        }
+        if (selectorCache) {
+            (_a = selectorCache[elements]) !== null && _a !== void 0 ? _a : (selectorCache[elements] = root.querySelectorAll(elements));
+            elements = selectorCache[elements];
+        }
+        else {
+            elements = root.querySelectorAll(elements);
+        }
+    }
+    else if (elements instanceof Element) {
+        elements = [elements];
+    }
+    /**
+     * Return an empty array
+     */
+    return Array.from(elements || []);
+}
+
+
+
+;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/render/dom/scroll/observe.mjs
+
+
+function observeTimeline(update, timeline) {
+    let prevProgress;
+    const onFrame = () => {
+        const { currentTime } = timeline;
+        const percentage = currentTime === null ? 0 : currentTime.value;
+        const progress = percentage / 100;
+        if (prevProgress !== progress) {
+            update(progress);
+        }
+        prevProgress = progress;
+    };
+    frame_frame.update(onFrame, true);
+    return () => cancelFrame(onFrame);
+}
+
+
+
+;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/render/dom/scroll/supports.mjs
+
+
+const supportsScrollTimeline = memo(() => window.ScrollTimeline !== undefined);
+
+
+
+;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/animation/GroupPlaybackControls.mjs
+
+
+
+class GroupPlaybackControls {
+    constructor(animations) {
+        this.animations = animations.filter(Boolean);
+    }
+    then(onResolve, onReject) {
+        return Promise.all(this.animations).then(onResolve).catch(onReject);
+    }
+    /**
+     * TODO: Filter out cancelled or stopped animations before returning
+     */
+    getAll(propName) {
+        return this.animations[0][propName];
+    }
+    setAll(propName, newValue) {
+        for (let i = 0; i < this.animations.length; i++) {
+            this.animations[i][propName] = newValue;
+        }
+    }
+    attachTimeline(timeline) {
+        const cancelAll = this.animations.map((animation) => {
+            if (supportsScrollTimeline() && animation.attachTimeline) {
+                animation.attachTimeline(timeline);
+            }
+            else {
+                animation.pause();
+                return observeTimeline((progress) => {
+                    animation.time = animation.duration * progress;
+                }, timeline);
+            }
+        });
+        return () => {
+            cancelAll.forEach((cancelTimeline, i) => {
+                if (cancelTimeline)
+                    cancelTimeline();
+                this.animations[i].stop();
+            });
+        };
+    }
+    get time() {
+        return this.getAll("time");
+    }
+    set time(time) {
+        this.setAll("time", time);
+    }
+    get speed() {
+        return this.getAll("speed");
+    }
+    set speed(speed) {
+        this.setAll("speed", speed);
+    }
+    get duration() {
+        let max = 0;
+        for (let i = 0; i < this.animations.length; i++) {
+            max = Math.max(max, this.animations[i].duration);
+        }
+        return max;
+    }
+    runAll(methodName) {
+        this.animations.forEach((controls) => controls[methodName]());
+    }
+    play() {
+        this.runAll("play");
+    }
+    pause() {
+        this.runAll("pause");
+    }
+    stop() {
+        this.runAll("stop");
+    }
+    cancel() {
+        this.runAll("cancel");
+    }
+    complete() {
+        this.runAll("complete");
+    }
+}
+
+
+
+;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/animation/utils/is-dom-keyframes.mjs
+function isDOMKeyframes(keyframes) {
+    return typeof keyframes === "object" && !Array.isArray(keyframes);
+}
+
+
+
+;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/animation/utils/create-visual-element.mjs
+
+
+
+
+
+function createVisualElement(element) {
+    const options = {
+        presenceContext: null,
+        props: {},
+        visualState: {
+            renderState: {
+                transform: {},
+                transformOrigin: {},
+                style: {},
+                vars: {},
+                attrs: {},
+            },
+            latestValues: {},
+        },
+    };
+    const node = isSVGElement(element)
+        ? new SVGVisualElement(options, {
+            enableHardwareAcceleration: false,
+        })
+        : new HTMLVisualElement(options, {
+            enableHardwareAcceleration: true,
+        });
+    node.mount(element);
+    visualElementStore.set(element, node);
+}
+
+
+
+;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/easing/utils/create-generator-easing.mjs
+
+
+
+
+/**
+ * Create a progress => progress easing function from a generator.
+ */
+function createGeneratorEasing(options, scale = 100) {
+    const generator = spring({ keyframes: [0, scale], ...options });
+    const duration = Math.min(calcGeneratorDuration(generator), maxGeneratorDuration);
+    return {
+        type: "keyframes",
+        ease: (progress) => generator.next(duration * progress).value / scale,
+        duration: millisecondsToSeconds(duration),
+    };
+}
+
+
+
+;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/animation/sequence/utils/calc-time.mjs
+/**
+ * Given a absolute or relative time definition and current/prev time state of the sequence,
+ * calculate an absolute time for the next keyframes.
+ */
+function calcNextTime(current, next, prev, labels) {
+    var _a;
+    if (typeof next === "number") {
+        return next;
+    }
+    else if (next.startsWith("-") || next.startsWith("+")) {
+        return Math.max(0, current + parseFloat(next));
+    }
+    else if (next === "<") {
+        return prev;
+    }
+    else {
+        return (_a = labels.get(next)) !== null && _a !== void 0 ? _a : current;
+    }
+}
+
+
+
+;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/utils/wrap.mjs
+const wrap = (min, max, v) => {
+    const rangeSize = max - min;
+    return ((((v - min) % rangeSize) + rangeSize) % rangeSize) + min;
+};
+
+
+
+;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/easing/utils/get-easing-for-segment.mjs
+
+
+
+function getEasingForSegment(easing, i) {
+    return isEasingArray(easing) ? easing[wrap(0, easing.length, i)] : easing;
+}
+
+
+
+;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/animation/sequence/utils/edit.mjs
+
+
+
+
+function eraseKeyframes(sequence, startTime, endTime) {
+    for (let i = 0; i < sequence.length; i++) {
+        const keyframe = sequence[i];
+        if (keyframe.at > startTime && keyframe.at < endTime) {
+            removeItem(sequence, keyframe);
+            // If we remove this item we have to push the pointer back one
+            i--;
+        }
+    }
+}
+function addKeyframes(sequence, keyframes, easing, offset, startTime, endTime) {
+    /**
+     * Erase every existing value between currentTime and targetTime,
+     * this will essentially splice this timeline into any currently
+     * defined ones.
+     */
+    eraseKeyframes(sequence, startTime, endTime);
+    for (let i = 0; i < keyframes.length; i++) {
+        sequence.push({
+            value: keyframes[i],
+            at: mixNumber(startTime, endTime, offset[i]),
+            easing: getEasingForSegment(easing, i),
+        });
+    }
+}
+
+
+
+;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/animation/sequence/utils/sort.mjs
+function compareByTime(a, b) {
+    if (a.at === b.at) {
+        if (a.value === null)
+            return 1;
+        if (b.value === null)
+            return -1;
+        return 0;
+    }
+    else {
+        return a.at - b.at;
+    }
+}
+
+
+
+;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/animation/sequence/create.mjs
+
+
+
+
+
+
+
+
+
+
+
+const defaultSegmentEasing = "easeInOut";
+function createAnimationsFromSequence(sequence, { defaultTransition = {}, ...sequenceTransition } = {}, scope) {
+    const defaultDuration = defaultTransition.duration || 0.3;
+    const animationDefinitions = new Map();
+    const sequences = new Map();
+    const elementCache = {};
+    const timeLabels = new Map();
+    let prevTime = 0;
+    let currentTime = 0;
+    let totalDuration = 0;
+    /**
+     * Build the timeline by mapping over the sequence array and converting
+     * the definitions into keyframes and offsets with absolute time values.
+     * These will later get converted into relative offsets in a second pass.
+     */
+    for (let i = 0; i < sequence.length; i++) {
+        const segment = sequence[i];
+        /**
+         * If this is a timeline label, mark it and skip the rest of this iteration.
+         */
+        if (typeof segment === "string") {
+            timeLabels.set(segment, currentTime);
+            continue;
+        }
+        else if (!Array.isArray(segment)) {
+            timeLabels.set(segment.name, calcNextTime(currentTime, segment.at, prevTime, timeLabels));
+            continue;
+        }
+        let [subject, keyframes, transition = {}] = segment;
+        /**
+         * If a relative or absolute time value has been specified we need to resolve
+         * it in relation to the currentTime.
+         */
+        if (transition.at !== undefined) {
+            currentTime = calcNextTime(currentTime, transition.at, prevTime, timeLabels);
+        }
+        /**
+         * Keep track of the maximum duration in this definition. This will be
+         * applied to currentTime once the definition has been parsed.
+         */
+        let maxDuration = 0;
+        const resolveValueSequence = (valueKeyframes, valueTransition, valueSequence, elementIndex = 0, numElements = 0) => {
+            const valueKeyframesAsList = keyframesAsList(valueKeyframes);
+            const { delay = 0, times = defaultOffset(valueKeyframesAsList), type = "keyframes", ...remainingTransition } = valueTransition;
+            let { ease = defaultTransition.ease || "easeOut", duration } = valueTransition;
+            /**
+             * Resolve stagger() if defined.
+             */
+            const calculatedDelay = typeof delay === "function"
+                ? delay(elementIndex, numElements)
+                : delay;
+            /**
+             * If this animation should and can use a spring, generate a spring easing function.
+             */
+            const numKeyframes = valueKeyframesAsList.length;
+            if (numKeyframes <= 2 && type === "spring") {
+                /**
+                 * As we're creating an easing function from a spring,
+                 * ideally we want to generate it using the real distance
+                 * between the two keyframes. However this isn't always
+                 * possible - in these situations we use 0-100.
+                 */
+                let absoluteDelta = 100;
+                if (numKeyframes === 2 &&
+                    isNumberKeyframesArray(valueKeyframesAsList)) {
+                    const delta = valueKeyframesAsList[1] - valueKeyframesAsList[0];
+                    absoluteDelta = Math.abs(delta);
+                }
+                const springTransition = { ...remainingTransition };
+                if (duration !== undefined) {
+                    springTransition.duration = secondsToMilliseconds(duration);
+                }
+                const springEasing = createGeneratorEasing(springTransition, absoluteDelta);
+                ease = springEasing.ease;
+                duration = springEasing.duration;
+            }
+            duration !== null && duration !== void 0 ? duration : (duration = defaultDuration);
+            const startTime = currentTime + calculatedDelay;
+            const targetTime = startTime + duration;
+            /**
+             * If there's only one time offset of 0, fill in a second with length 1
+             */
+            if (times.length === 1 && times[0] === 0) {
+                times[1] = 1;
+            }
+            /**
+             * Fill out if offset if fewer offsets than keyframes
+             */
+            const remainder = times.length - valueKeyframesAsList.length;
+            remainder > 0 && fillOffset(times, remainder);
+            /**
+             * If only one value has been set, ie [1], push a null to the start of
+             * the keyframe array. This will let us mark a keyframe at this point
+             * that will later be hydrated with the previous value.
+             */
+            valueKeyframesAsList.length === 1 &&
+                valueKeyframesAsList.unshift(null);
+            /**
+             * Add keyframes, mapping offsets to absolute time.
+             */
+            addKeyframes(valueSequence, valueKeyframesAsList, ease, times, startTime, targetTime);
+            maxDuration = Math.max(calculatedDelay + duration, maxDuration);
+            totalDuration = Math.max(targetTime, totalDuration);
+        };
+        if (isMotionValue(subject)) {
+            const subjectSequence = getSubjectSequence(subject, sequences);
+            resolveValueSequence(keyframes, transition, getValueSequence("default", subjectSequence));
+        }
+        else {
+            /**
+             * Find all the elements specified in the definition and parse value
+             * keyframes from their timeline definitions.
+             */
+            const elements = resolveElements(subject, scope, elementCache);
+            const numElements = elements.length;
+            /**
+             * For every element in this segment, process the defined values.
+             */
+            for (let elementIndex = 0; elementIndex < numElements; elementIndex++) {
+                /**
+                 * Cast necessary, but we know these are of this type
+                 */
+                keyframes = keyframes;
+                transition = transition;
+                const element = elements[elementIndex];
+                const subjectSequence = getSubjectSequence(element, sequences);
+                for (const key in keyframes) {
+                    resolveValueSequence(keyframes[key], create_getValueTransition(transition, key), getValueSequence(key, subjectSequence), elementIndex, numElements);
+                }
+            }
+        }
+        prevTime = currentTime;
+        currentTime += maxDuration;
+    }
+    /**
+     * For every element and value combination create a new animation.
+     */
+    sequences.forEach((valueSequences, element) => {
+        for (const key in valueSequences) {
+            const valueSequence = valueSequences[key];
+            /**
+             * Arrange all the keyframes in ascending time order.
+             */
+            valueSequence.sort(compareByTime);
+            const keyframes = [];
+            const valueOffset = [];
+            const valueEasing = [];
+            /**
+             * For each keyframe, translate absolute times into
+             * relative offsets based on the total duration of the timeline.
+             */
+            for (let i = 0; i < valueSequence.length; i++) {
+                const { at, value, easing } = valueSequence[i];
+                keyframes.push(value);
+                valueOffset.push(progress(0, totalDuration, at));
+                valueEasing.push(easing || "easeOut");
+            }
+            /**
+             * If the first keyframe doesn't land on offset: 0
+             * provide one by duplicating the initial keyframe. This ensures
+             * it snaps to the first keyframe when the animation starts.
+             */
+            if (valueOffset[0] !== 0) {
+                valueOffset.unshift(0);
+                keyframes.unshift(keyframes[0]);
+                valueEasing.unshift(defaultSegmentEasing);
+            }
+            /**
+             * If the last keyframe doesn't land on offset: 1
+             * provide one with a null wildcard value. This will ensure it
+             * stays static until the end of the animation.
+             */
+            if (valueOffset[valueOffset.length - 1] !== 1) {
+                valueOffset.push(1);
+                keyframes.push(null);
+            }
+            if (!animationDefinitions.has(element)) {
+                animationDefinitions.set(element, {
+                    keyframes: {},
+                    transition: {},
+                });
+            }
+            const definition = animationDefinitions.get(element);
+            definition.keyframes[key] = keyframes;
+            definition.transition[key] = {
+                ...defaultTransition,
+                duration: totalDuration,
+                ease: valueEasing,
+                times: valueOffset,
+                ...sequenceTransition,
+            };
+        }
+    });
+    return animationDefinitions;
+}
+function getSubjectSequence(subject, sequences) {
+    !sequences.has(subject) && sequences.set(subject, {});
+    return sequences.get(subject);
+}
+function getValueSequence(name, sequences) {
+    if (!sequences[name])
+        sequences[name] = [];
+    return sequences[name];
+}
+function keyframesAsList(keyframes) {
+    return Array.isArray(keyframes) ? keyframes : [keyframes];
+}
+function create_getValueTransition(transition, key) {
+    return transition[key]
+        ? {
+            ...transition,
+            ...transition[key],
+        }
+        : { ...transition };
+}
+const create_isNumber = (keyframe) => typeof keyframe === "number";
+const isNumberKeyframesArray = (keyframes) => keyframes.every(create_isNumber);
+
+
+
+;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/animation/animate.mjs
+
+
+
+
+
+
+
+
+
+
+
+function animateElements(elementOrSelector, keyframes, options, scope) {
+    const elements = resolveElements(elementOrSelector, scope);
+    const numElements = elements.length;
+    invariant(Boolean(numElements), "No valid element provided.");
+    const animations = [];
+    for (let i = 0; i < numElements; i++) {
+        const element = elements[i];
+        /**
+         * Check each element for an associated VisualElement. If none exists,
+         * we need to create one.
+         */
+        if (!visualElementStore.has(element)) {
+            /**
+             * TODO: We only need render-specific parts of the VisualElement.
+             * With some additional work the size of the animate() function
+             * could be reduced significantly.
+             */
+            createVisualElement(element);
+        }
+        const visualElement = visualElementStore.get(element);
+        const transition = { ...options };
+        /**
+         * Resolve stagger function if provided.
+         */
+        if (typeof transition.delay === "function") {
+            transition.delay = transition.delay(i, numElements);
+        }
+        animations.push(...animateTarget(visualElement, { ...keyframes, transition }, {}));
+    }
+    return new GroupPlaybackControls(animations);
+}
+const isSequence = (value) => Array.isArray(value) && Array.isArray(value[0]);
+function animateSequence(sequence, options, scope) {
+    const animations = [];
+    const animationDefinitions = createAnimationsFromSequence(sequence, options, scope);
+    animationDefinitions.forEach(({ keyframes, transition }, subject) => {
+        let animation;
+        if (isMotionValue(subject)) {
+            animation = animateSingleValue(subject, keyframes.default, transition.default);
+        }
+        else {
+            animation = animateElements(subject, keyframes, transition);
+        }
+        animations.push(animation);
+    });
+    return new GroupPlaybackControls(animations);
+}
+const createScopedAnimate = (scope) => {
+    /**
+     * Implementation
+     */
+    function scopedAnimate(valueOrElementOrSequence, keyframes, options) {
+        let animation;
+        if (isSequence(valueOrElementOrSequence)) {
+            animation = animateSequence(valueOrElementOrSequence, keyframes, scope);
+        }
+        else if (isDOMKeyframes(keyframes)) {
+            animation = animateElements(valueOrElementOrSequence, keyframes, options, scope);
+        }
+        else {
+            animation = animateSingleValue(valueOrElementOrSequence, keyframes, options);
+        }
+        if (scope) {
+            scope.animations.push(animation);
+        }
+        return animation;
+    }
+    return scopedAnimate;
+};
+const animate_animate = createScopedAnimate();
+
+
+
+;// CONCATENATED MODULE: ./src/hooks/animate/blur/animate/1.ts
+
+
+
+const useBlurAnimate1 = (axis = "x") => {
+  const { main } = useContextGrid();
+  const { set } = middleware_useTrillPicsStore(
+    ({ set: set2 }) => ({
+      set: set2
+    })
+  );
+  const handler = (adjacentMotion) => {
+    var _a;
+    if (main.blur.control[axis]) {
+      (_a = main.blur.control[axis]) == null ? void 0 : _a.stop();
+    }
+    set({ isScroll: false });
+    const prev = adjacentMotion.get();
+    main.blur.control[axis] = animate_animate(
+      main.blur.value[axis],
+      prev * 8e-3,
+      {
+        type: "tween",
+        restDelta: 0,
+        restSpeed: 1,
+        velocity: prev * 0.02,
+        onComplete: () => {
+          adjacentMotion.set(prev);
+        }
+      }
+    );
+  };
+  return handler;
+};
+
+;// CONCATENATED MODULE: ./src/context/scroll/top.ts
+
+
+const useScrollTopHandler = () => {
+  const { scrollY, ref } = useContextGrid();
+  const handleBlur = useBlurAnimate1("y");
+  const handler = () => {
+    if (!ref.current)
+      return;
+    ref.current.scrollTop();
+    handleBlur(scrollY);
+  };
+  return handler;
+};
+
+;// CONCATENATED MODULE: ./src/pics/header/left/index.tsx
+
+
+
+
+
+
+
+
+const left_TITLE_HOVER_KEY = "Title";
+const HeaderLeft = (0,react.memo)(
+  () => {
+    const [searchParams] = dist_useSearchParams();
+    const { pathname } = dist_useLocation();
+    const handler = useScrollTopHandler();
+    const { isScroll, isIdle, set } = middleware_useTrillPicsStore(
+      ({
+        isScroll: isScroll2,
+        isIdle: isIdle2,
+        set: set2
+      }) => ({
+        isScroll: isScroll2,
+        isIdle: isIdle2,
+        set: set2
+      })
+    );
+    const isHome = pathname === HOME_ROUTE;
+    const handleHoverStart = () => {
+      console.log("idle ", isIdle);
+      set({ isIdle: true });
+    };
+    const title = left_TITLE_HOVER_KEY;
+    const { motionHandlers } = use_hover_key_useHoverKey({
+      handlers: {
+        start: handleHoverStart
+      }
+    });
+    return /* @__PURE__ */ React.createElement(
+      motion_motion.div,
+      {
+        className: "relative -top-1 left-2 shrink-0 grow-0",
+        ...motionHandlers(title)
+      },
+      isHome ? /* @__PURE__ */ React.createElement(React.Fragment, null, isScroll ? /* @__PURE__ */ React.createElement(
+        motion_motion.button,
+        {
+          key: "title",
+          title,
+          onClick: handler,
+          ...motionHandlers(
+            title
+          )
+        },
+        /* @__PURE__ */ React.createElement(Title, null)
+      ) : /* @__PURE__ */ React.createElement(Title, { key: "title" })) : /* @__PURE__ */ React.createElement(
+        Link,
+        {
+          className: "relative",
+          to: `${HOME_ROUTE}?${searchParams}`
+        },
+        /* @__PURE__ */ React.createElement(Title, null)
+      )
+    );
+  }
+);
+
+;// CONCATENATED MODULE: ./src/context/hooks/move/index.ts
+
+
+
+
+
+
+
+const move_useMove = ({
+  main,
+  scrollY,
+  isOnscreen
+}) => {
+  const { hoverKeys, isScrolling, isIdle, set } = useTrillPicsStore(
+    ({
+      hoverKeys: hoverKeys2,
+      isScrolling: isScrolling2,
+      isIdle: isIdle2,
+      set: set2
+    }) => ({
+      hoverKeys: hoverKeys2,
+      isScrolling: isScrolling2,
+      isIdle: isIdle2,
+      set: set2
+    })
+  );
+  const { endTimeout, timeoutRef } = useTimeoutRef();
+  const [isCursorMove, setCursorMove] = useState(false);
+  const { move } = usePicCell(main, scrollY);
+  const handler = useCursorOffset(main);
+  const handleMove = (event) => {
+    endTimeout();
+    if (isIdle && !hoverKeys.includes(TITLE_HOVER_KEY)) {
+      set({ isIdle: false });
+    }
+    timeoutRef.current = setTimeout(
+      () => {
+        set({ isIdle: true, hoverKeys: [] });
+        main.cursor.isDragging = false;
+      },
+      6e4
+    );
+    const mx = event.pageX;
+    const my = event.pageY;
+    handler({ nextX: mx, nextY: my });
+    const prevX = main.cursor.x.get();
+    const prevY = main.cursor.y.get();
+    const d = Math.sqrt(
+      Math.pow(mx - prevX, 2) + Math.pow(my - prevY, 2)
+    );
+    if (Math.abs(d) > 1) {
+      main.cursor.isHoverIdle = false;
+      main.cursor.x.set(mx);
+      main.cursor.y.set(my);
+    }
+    if (main.cursor.isDragging || hoverKeys.length > 0)
+      return;
+    if (isOnscreen && !isScrolling) {
+      move(mx, my);
+      if (!isCursorMove) {
+        setCursorMove(true);
+      }
+    }
+  };
+  useEventListener(
+    "pointerenter",
+    handleMove
+  );
+  useEventListener(
+    "pointerover",
+    handleMove
+  );
+  useEventListener(
+    "pointermove",
+    handleMove
+  );
+  return isIdle;
+};
+
+;// CONCATENATED MODULE: ./src/context/dragger.ts
+
+
+const dragger_useDragger = () => {
+  const x = useMotionValue(0);
+  const y = useMotionValue(0);
+  const x025 = useTransform(
+    x,
+    (v) => v * 0.25
+  );
+  const y075 = useTransform(
+    y,
+    (v) => v * 0.95
+  );
+  const y06 = useTransform(
+    y,
+    (v) => v * 0.6
+  );
+  const dragger = useMemo(() => {
+    return {
+      x,
+      y,
+      x025,
+      y075,
+      y06,
+      prevY: 0,
+      animateY: null
+    };
+  }, []);
+  return dragger;
+};
+
+;// CONCATENATED MODULE: ./src/context/index.tsx
+
+
+
+
+
+
+
+
+
+const VirtualizeContext = (0,react.createContext)(
+  {}
+);
+const useContextGrid = () => (0,react.useContext)(VirtualizeContext);
+const VirtualizeContextProvider = ({ children, screen }) => {
+  const [
+    foundationValue,
+    updateFoundation
+  ] = useState(null);
+  const isOnscreen = useOnscreen();
+  const ref = useRef(null);
+  const fonts = useFonts();
+  const blur = useBlur();
+  const cursor = useCursor();
+  const dragger = useDragger();
+  const scrollY = useMotionValue(0);
+  const main = useMemo(() => {
+    return {
+      cursor,
+      dragger,
+      blur
+    };
+  }, []);
+  const resetLayout = () => {
+    updateFoundation(null);
+  };
+  const { handler: handleScroll } = useScrollUpdateHandler({
+    scrollY,
+    ref,
+    main
+  });
+  const isIdle = useMove({
+    main,
+    isOnscreen,
+    scrollY
+  });
+  return /* @__PURE__ */ React.createElement(
+    VirtualizeContext.Provider,
+    {
+      value: {
+        isIdle,
+        isOnscreen,
+        scrollY,
+        ref,
+        main,
+        fonts,
+        dragger,
+        onScroll: handleScroll,
+        foundationValue,
+        updateFoundation,
+        resetLayout,
+        screen
+      }
+    },
+    children
+  );
+};
+
 ;// CONCATENATED MODULE: ./src/hooks/use-hover-key.ts
 
 
@@ -25166,7 +44545,7 @@ const use_hover_key_useHoverKey = (config) => {
     hover,
     unhover,
     cooldownEnd
-  } = useTrillPicsStore(
+  } = middleware_useTrillPicsStore(
     ({
       hoverKeys: hoverKeys2,
       isHover: isHover2,
@@ -25181,14 +44560,13 @@ const use_hover_key_useHoverKey = (config) => {
       cooldownEnd: cooldownEnd2
     })
   );
-  const { isArmed, trigger } = useTimebomb(1e3, cooldownEnd);
+  const { isArmed, trigger, disarm } = useTimebomb(1e3, cooldownEnd);
   const onStart = (key) => (event) => {
     var _a, _b, _c;
     if (main.cursor.isHoverIdle) {
       return;
     }
     if ((_a = config == null ? void 0 : config.handlers) == null ? void 0 : _a.start) {
-      console.log("START");
       (_c = (_b = config.handlers).start) == null ? void 0 : _c.call(_b, key);
     }
     hover(key);
@@ -25199,6 +44577,7 @@ const use_hover_key_useHoverKey = (config) => {
       (_c = (_b = config.handlers).stop) == null ? void 0 : _c.call(_b, key);
     }
     unhover(key);
+    disarm();
     trigger();
   };
   const handlers = (key) => ({
@@ -25225,7 +44604,793 @@ const use_hover_key_useHoverKey = (config) => {
   };
 };
 
-;// CONCATENATED MODULE: ./src/pages/video/player/_header/generate/index.tsx
+;// CONCATENATED MODULE: ./src/constants/box/radius/index.ts
+const BORDER_RADIUS = {
+  s: 2,
+  m: 4,
+  l: 8,
+  xl: 40
+};
+const radius_boxRadius = (key = "xl") => {
+  return BORDER_RADIUS[key];
+};
+
+
+;// CONCATENATED MODULE: ./config/uno/shortcuts/box/background.ts
+const SHORTCUTS_BOX_BACKGROUND_IMAGE = {
+  "_gradient-mesh": "dark:_dark-gradient-mesh _light-gradient-mesh",
+  "_gradient-radial": "dark:_dark-radial-gradient _light-radial-gradient"
+};
+const SHORTCUTS_BOX_BACKGROUND_COLOR = {
+  "background-flat": "dark:bg-black-04 bg-gray-04",
+  background: "dark:bg-black-06 bg-gray-06"
+};
+
+;// CONCATENATED MODULE: ./src/constants/box/index.ts
+
+
+
+const BOX_SHADOW_FLAT = `inset -4px 4px 7px rgba(22,22,22,0.5),
+inset 4px -4px 7px rgba(59,59,59,0.5)`;
+const BOX_SHADOW_FLOATING = "0 0 1px 1px rgba(255,255,255,0.4)";
+const BOX_CLASS_VALUE = {
+  backgroundImage: SHORTCUTS_BOX_BACKGROUND_IMAGE,
+  backgroundColor: SHORTCUTS_BOX_BACKGROUND_COLOR
+};
+const box_BOX = {
+  ...BOX_CLASS_VALUE,
+  borderRadius: BORDER_RADIUS,
+  floating: {
+    boxShadow: BOX_SHADOW_FLOATING
+  },
+  flat: {
+    boxShadow: BOX_SHADOW_FLAT
+  },
+  size: constants_BOX_SIZE
+};
+
+;// CONCATENATED MODULE: ./src/constants/box/class/background/color.ts
+
+const color_boxBackgroundColor = ({
+  backgroundColor
+}) => {
+  const box = BOX;
+  return backgroundColor ? box.backgroundColor[backgroundColor] : null;
+};
+
+;// CONCATENATED MODULE: ./src/constants/box/class/background/image.ts
+
+const image_boxBackgroundImage = ({
+  backgroundImage
+}) => {
+  const box = BOX;
+  return backgroundImage ? box.backgroundImage[backgroundImage] : null;
+};
+
+;// CONCATENATED MODULE: ./src/constants/box/class/index.ts
+
+
+const class_boxBackground = (config) => {
+  const backgroundColor = boxBackgroundColor(config);
+  const backgroundImage = boxBackgroundImage(config);
+  return {
+    ...backgroundColor ? { backgroundColor } : {},
+    ...backgroundImage ? { backgroundImage } : {}
+  };
+};
+
+;// CONCATENATED MODULE: ./src/constants/box/border/border.ts
+
+
+const border_boxBorder = ({
+  layer,
+  borderRadius
+}) => {
+  const box = BOX;
+  return {
+    ...box[layer],
+    ...borderRadius ? {
+      borderRadius: boxRadius(
+        borderRadius
+      )
+    } : {}
+  };
+};
+
+;// CONCATENATED MODULE: ./src/constants/box/style/index.ts
+
+
+
+
+const style_boxStyle = ({
+  layer,
+  borderRadius,
+  size = "m",
+  backgroundColor,
+  backgroundImage
+}) => {
+  return {
+    ...boxBackground({
+      backgroundColor,
+      backgroundImage
+    }),
+    ...boxBorder({
+      layer,
+      borderRadius
+    }),
+    borderRadius: boxRadius(),
+    ...boxSize(size)
+  };
+};
+
+;// CONCATENATED MODULE: ./src/hooks/pic/video/read/inputs/hook.ts
+
+
+
+
+const hook_usePicVideoReadInputs = () => {
+  const [searchParams] = useSearchParams();
+  const {
+    seconds,
+    pics,
+    isPics,
+    count
+  } = picVideoReadInputs(
+    searchParams
+  );
+  const canvasDimensions = DIMENSIONS;
+  const dimensions = dimensionsWithinPlayerBounds({
+    canvasDimensions,
+    ...PIC_DIMENSIONS,
+    fillMode: "cover"
+  });
+  return {
+    seconds,
+    pics,
+    count,
+    isPics,
+    dimensions
+  };
+};
+
+;// CONCATENATED MODULE: ./src/shell/global/svg/gradients/blue-pink-yellow.tsx
+
+
+const blue_pink_yellow_LINEAR_GRADIENT_SVG_ID = "linear-gradient-blue-pink-yellow-svg";
+const GradientsBluePinkYellow = ({ isDarkMode }) => {
+  return /* @__PURE__ */ React.createElement(SvgWrap, { className: "absolute" }, /* @__PURE__ */ React.createElement(
+    "linearGradient",
+    {
+      id: blue_pink_yellow_LINEAR_GRADIENT_SVG_ID,
+      x1: "0",
+      x2: "0",
+      y1: "0",
+      y2: "1"
+    },
+    (isDarkMode ? GRADIENT_BLUE_PINK_YELLOW_COLORS : GRADIENT_TEAL_YELLOW_PINK_COLORS).map(
+      (color, index, { length: count }) => /* @__PURE__ */ React.createElement(
+        "stop",
+        {
+          key: `${index}`,
+          offset: `${100 / (count - 1) * index}%`,
+          stopColor: color
+        }
+      )
+    )
+  ));
+};
+
+;// CONCATENATED MODULE: ./src/components/icons/svg/gradient/index.tsx
+
+
+
+const gradient_IconsSvgGradient = (props) => {
+  return /* @__PURE__ */ React.createElement(
+    IconsSvg,
+    {
+      size: 24,
+      viewBox: "0 0 24 24",
+      fill: resolveUrlId(
+        LINEAR_GRADIENT_SVG_ID
+      ),
+      ...props
+    }
+  );
+};
+
+;// CONCATENATED MODULE: ./src/components/icons/svg/gradient/24.tsx
+
+const _24_IconsSvgGradient24 = (props) => {
+  return /* @__PURE__ */ React.createElement(
+    IconsSvgGradient,
+    {
+      size: 24,
+      viewBox: "0 0 24 24",
+      ...props
+    }
+  );
+};
+
+;// CONCATENATED MODULE: ./src/components/icons/download.tsx
+
+const download_IconsDownload = () => {
+  return /* @__PURE__ */ React.createElement(
+    IconsSvgGradient24,
+    {
+      size: 24,
+      viewBox: "0 0 24 24",
+      d: "M11 4h2v8h2v2h-2v2h-2v-2H9v-2h2zm-2 8H7v-2h2zm6 0v-2h2v2zM4 18h16v2H4z"
+    }
+  );
+};
+
+;// CONCATENATED MODULE: ./node_modules/@brysonandrew/motion-config-constants/core.ts
+const DURATION = 0.2;
+const EXIT_KEY = "exit";
+const FADE_PREFIX = "fade";
+const HOVER_KEY = "hover";
+const HOVER_VARIANT = (/* unused pure expression or super */ null && (["idle", "hover"]));
+const IDLE_KEY = "idle";
+const INITIAL_KEY = "initial";
+const MOTION_CONFIG = {
+  transition: {
+    type: "custom",
+    ease: "linear",
+    duration: 0.2,
+    delay: 0
+  }
+};
+const PLACEHOLDER = "";
+const PRESENCE_OPACITY = {
+  initial: {
+    opacity: 0
+  },
+  animate: {
+    opacity: 1
+  },
+  exit: {
+    opacity: 0
+  }
+};
+const PRESENCE_OPACITY_05 = {
+  initial: {
+    opacity: 0
+  },
+  animate: {
+    opacity: 0.5
+  },
+  exit: {
+    opacity: 0
+  }
+};
+const PRESENCE_OPACITY_ANIMATE_DELAY_04 = {
+  initial: {
+    opacity: 0
+  },
+  animate: {
+    opacity: 1,
+    transition: {
+      duration: 0.2,
+      ease: "easeIn",
+      delay: 0.4
+    }
+  },
+  exit: {
+    opacity: 0
+  }
+};
+const PRESENCE_OPACITY_DELAY = {
+  initial: {
+    opacity: 0
+  },
+  animate: {
+    opacity: 1
+  },
+  exit: {
+    opacity: 0
+  },
+  transition: {
+    duration: 0.2,
+    ease: "easeIn",
+    delay: 0.08
+  }
+};
+const PRESENCE_OPACITY_DURATION_DELAY = {
+  initial: {
+    opacity: 0
+  },
+  animate: {
+    opacity: 1
+  },
+  exit: {
+    opacity: 0
+  },
+  transition: {
+    duration: 0.2,
+    ease: "easeIn",
+    delay: 0.2
+  }
+};
+const PRESENCE_OPACITY_UP_Y = {
+  initial: {
+    opacity: 0,
+    y: "100%"
+  },
+  animate: {
+    opacity: 1,
+    y: 0
+  },
+  exit: {
+    opacity: 0,
+    y: "100%"
+  }
+};
+const PRESENCE_ROTATE_FROM_BOTTOM = {
+  initial: {
+    y: "100%",
+    rotateX: 45
+  },
+  animate: {
+    y: 0,
+    rotateX: 0
+  },
+  exit: {
+    y: "100%",
+    rotateX: 45
+  }
+};
+const PRESENCE_ROTATE_FROM_TOP = {
+  initial: {
+    y: "-100%",
+    rotateX: 45
+  },
+  animate: {
+    y: 0,
+    rotateX: 0
+  },
+  exit: {
+    y: "-100%",
+    rotateX: 45
+  }
+};
+const PRESENCE_SCALE_X = {
+  initial: {
+    scaleX: 0
+  },
+  animate: {
+    scaleX: 1
+  },
+  exit: {
+    scaleX: 0
+  }
+};
+const PRESENCE_UP_Y = {
+  initial: {
+    opacity: 0,
+    y: "100%"
+  },
+  animate: {
+    opacity: 1,
+    y: 0
+  },
+  exit: {
+    opacity: 0,
+    y: "100%"
+  }
+};
+const ROTATE_DIRECTIONS = (/* unused pure expression or super */ null && (["clockwise", "anti-clockwise"]));
+const ROTATE_TYPES = (/* unused pure expression or super */ null && (["roll", "pitch", "yaw"]));
+const SHIFT_DIRECTIONS = (/* unused pure expression or super */ null && (["left", "right", "up", "down"]));
+const SUB_VALUE_DELIMITER = "_";
+const TRANSITION = {
+  type: "custom",
+  ease: "linear",
+  duration: 0.2,
+  delay: 0
+};
+const TRANSITION_02_EASEIN_008 = {
+  duration: 0.2,
+  ease: "easeIn",
+  delay: 0.08
+};
+const TRANSITION_02_EASE_IN_02 = {
+  duration: 0.2,
+  ease: "easeIn",
+  delay: 0.2
+};
+const TRANSITION_02_EASE_IN_04 = {
+  duration: 0.2,
+  ease: "easeIn",
+  delay: 0.4
+};
+const TRANSITION_04_EASEIN_008 = {
+  duration: 0.4,
+  ease: "easeIn",
+  delay: 0.08
+};
+const VALUE_DELIMITER = "|";
+const ZOOM_DIRECTIONS = (/* unused pure expression or super */ null && (["height", "width", "depth"]));
+const ZOOM_TYPES = (/* unused pure expression or super */ null && (["expand", "shrink"]));
+const _SVD = "_";
+
+;// CONCATENATED MODULE: ./src/utils/animation/index.ts
+const animation_resolvePresence = (O, I) => ({
+  initial: O,
+  animate: I,
+  exit: O
+});
+const resolveFadeRight = (isI) => {
+  const O = { opacity: 0, x: -20 };
+  const I = { opacity: 1, x: 0 };
+  return isI ? I : O;
+};
+const resolveFadeRightProps = (isI) => ({
+  initial: resolveFadeRight(false),
+  animate: resolveFadeRight(isI)
+});
+const resolveVerticalShiftPresence = (y) => {
+  const O = { opacity: 1, y, rotateX: 45 };
+  const I = { opacity: 1, y: 0, rotateX: 0 };
+  return {
+    ...animation_resolvePresence(O, I),
+    transition: {
+      ease: "easeInOut"
+    }
+  };
+};
+
+;// CONCATENATED MODULE: ./src/constants/animation.ts
+
+
+const animation_DURATION = 0.2;
+const animation_TRANSITION = {
+  duration: animation_DURATION,
+  ease: "linear"
+};
+const DELAY_TRANSITION = {
+  ...animation_TRANSITION,
+  delay: animation_TRANSITION.duration
+};
+const DELAY_TRANSITION_PROPS = {
+  transition: {
+    ...animation_TRANSITION,
+    delay: animation_TRANSITION.duration
+  }
+};
+const DELAY_04_TRANSITION_PROPS = {
+  transition: {
+    ...animation_TRANSITION,
+    delay: animation_TRANSITION.duration * 2
+  }
+};
+const DELAY_06_TRANSITION_PROPS = {
+  transition: {
+    ...animation_TRANSITION,
+    delay: animation_TRANSITION.duration * 3
+  }
+};
+const FADE_PRESENCE_WITH_DELAY = animation_resolvePresence(
+  {
+    opacity: 0,
+    ...DELAY_TRANSITION_PROPS
+  },
+  {
+    opacity: 1,
+    ...DELAY_TRANSITION_PROPS
+  }
+);
+const FADE_PRESENCE = animation_resolvePresence(
+  { opacity: 0 },
+  { opacity: 1 }
+);
+const FADE_PRESENCE_DELAY_04_TRANSITION = {
+  transition: TRANSITION_02_EASE_IN_04
+};
+const FADE_PRESENCE_DELAY_02_TRANSITION = {
+  transition: TRANSITION_02_EASE_IN_02
+};
+const FADE_PRESENCE_DELAY_04 = {
+  ...FADE_PRESENCE,
+  animate: {
+    ...FADE_PRESENCE.animate,
+    ...FADE_PRESENCE_DELAY_04_TRANSITION
+  }
+};
+const animation_MOTION_CONFIG = {
+  transition: animation_TRANSITION
+};
+const FADE_PRESENCE_05 = animation_resolvePresence(
+  { opacity: 0 },
+  { opacity: 0.5 }
+);
+const FADE_PRESENCE_05_DELAY_04 = {
+  ...FADE_PRESENCE_05,
+  animate: {
+    ...FADE_PRESENCE_05.animate,
+    ...FADE_PRESENCE_DELAY_04_TRANSITION
+  }
+};
+const PRESENCE_OPACITY_ANIMATE_DELAY_02 = {
+  ...PRESENCE_OPACITY,
+  animate: {
+    ...PRESENCE_OPACITY.animate,
+    ...FADE_PRESENCE_DELAY_02_TRANSITION
+  }
+};
+const animation_FADE_PRESENCE_DELAY_02 = {
+  ...FADE_PRESENCE,
+  ...FADE_PRESENCE_DELAY_02_TRANSITION
+};
+const PRESENCE_OPACITY_04 = {
+  initial: {
+    opacity: 0
+  },
+  animate: {
+    opacity: 0.4
+  },
+  exit: {
+    opacity: 0
+  }
+};
+const PRESENCE_OPACITY_06 = {
+  initial: {
+    opacity: 0
+  },
+  animate: {
+    opacity: 0.6
+  },
+  exit: {
+    opacity: 0
+  }
+};
+
+;// CONCATENATED MODULE: ./src/components/buttons/pill/b/icon.tsx
+
+
+
+
+
+const icon_ButtonPillBIcon = ({
+  // Root = motion.button,
+  isSelected,
+  Icon,
+  // title,
+  // iconProps,
+  // circleProps,
+  // children,
+  // classValue,
+  outerCircle,
+  // isFlat,
+  // style,
+  // size = "s",
+  // direction = "ltr",
+  // disabled,
+  iconProps,
+  style,
+  ...props
+}) => {
+  const borderRadius = boxRadius();
+  const s = boxSize();
+  const { isDarkMode } = useDarkMode();
+  return /* @__PURE__ */ React.createElement(
+    "div",
+    {
+      className: "center relative shrink-0 border border-transparent _gradient-mesh bg-gray-04 dark:bg-black-04 pointer-events-none",
+      style: {
+        borderRadius,
+        height: s.m,
+        width: s.m,
+        backgroundClip: isSelected ? "border-box" : "padding-box",
+        ...style
+      },
+      ...props
+    },
+    /* @__PURE__ */ React.createElement(React.Fragment, null, outerCircle && /* @__PURE__ */ React.createElement(React.Fragment, null, outerCircle)),
+    Icon && /* @__PURE__ */ React.createElement(
+      Icon,
+      {
+        fill: isDarkMode ? resolveUrlId(
+          LINEAR_GRADIENT_SVG_ID
+        ) : "#ffffff",
+        ...iconProps
+      }
+    )
+  );
+};
+
+;// CONCATENATED MODULE: ./src/components/buttons/pill/b/index.tsx
+
+
+
+
+
+
+
+
+
+const b_PillB = ({
+  Root = motion.button,
+  isSelected,
+  Icon,
+  title,
+  iconProps,
+  circleProps,
+  children,
+  classValue,
+  outerCircle,
+  isFlat,
+  style,
+  size = "s",
+  direction = "ltr",
+  disabled,
+  positionClass,
+  ...props
+}) => {
+  const box = boxStyle({
+    layer: "flat",
+    borderRadius: "xl",
+    size
+  });
+  const {
+    width,
+    height,
+    boxShadow,
+    borderRadius
+  } = box;
+  const s = boxSize(size);
+  return /* @__PURE__ */ React.createElement(
+    Root,
+    {
+      key: resolveCompositeKey(
+        "PillB",
+        title
+      ),
+      ...resolveAccessibilityTitles(
+        title
+      ),
+      disabled,
+      className: clsx(
+        positionClass ?? "relative",
+        "shrink-0",
+        "disabled:(grayscale-100 brightness-60 opacity-80 cursor-not-allowed)",
+        "hover:grayscale-100",
+        classValue,
+        direction === "ltr" ? "row" : "row-reverse"
+      ),
+      layout: true,
+      style: {
+        ...isFlat ? { boxShadow } : {},
+        gap: s.m05,
+        height,
+        borderRadius,
+        ...style
+      },
+      ...props
+    },
+    /* @__PURE__ */ React.createElement(React.Fragment, null, isSelected && /* @__PURE__ */ React.createElement(
+      motion.div,
+      {
+        className: "absolute _gradient-radial pointer-events-none",
+        layout: true,
+        style: {
+          borderRadius,
+          ...direction === "ltr" ? { left: 0 } : { right: 0 },
+          top: 0,
+          width,
+          height
+        },
+        initial: {
+          scale: 1,
+          opacity: 0
+        },
+        animate: {
+          scale: 1.2,
+          opacity: 1
+        },
+        exit: {
+          scale: 1,
+          opacity: 0
+        }
+      }
+    ), /* @__PURE__ */ React.createElement(
+      motion.div,
+      {
+        key: resolveCompositeKey(
+          "PillB.motion.div.Icon",
+          title
+        ),
+        className: clsx(
+          "center relative bg-white dark:bg-black pointer-events-none",
+          isFlat ? "" : "_gradient-radial"
+        ),
+        layout: true,
+        style: {
+          height,
+          borderRadius,
+          marginLeft: 0
+        }
+      },
+      /* @__PURE__ */ React.createElement(
+        ButtonPillBIcon,
+        {
+          isSelected,
+          Icon,
+          outerCircle
+        }
+      )
+    ), /* @__PURE__ */ React.createElement(AnimatePresence, null, isString(children) ? /* @__PURE__ */ React.createElement(
+      motion.div,
+      {
+        key: `${title}`,
+        className: "relative top-2 px-0 text-left text-sm pointer-events-none",
+        style: {
+          height: s.height
+        },
+        ...FADE_PRESENCE_DELAY_02
+      },
+      /* @__PURE__ */ React.createElement("div", { className: "uppercase font-sans _outline-filter lg:(text-sm whitespace-nowrap) pointer-events-none" }, /* @__PURE__ */ React.createElement(
+        "div",
+        {
+          className: "absolute -inset-y-4 -inset-x-1 _gradient-radial opacity-10 filter-blur-md pointer-events-none",
+          style: {
+            borderRadius
+          }
+        }
+      ), /* @__PURE__ */ React.createElement("span", { className: "relative dark:text-black text-white-8 _outline-filter pointer-events-none" }, children))
+    ) : /* @__PURE__ */ React.createElement(React.Fragment, null, children)))
+  );
+};
+
+;// CONCATENATED MODULE: ./src/components/buttons/pill/b/hover/index.tsx
+
+
+
+
+
+const hover_PillBHover = ({
+  title,
+  subtitle,
+  children = title,
+  isLabel,
+  onClick,
+  ...props
+}) => {
+  const { set } = useTrillPicsStore(
+    ({ set: set2 }) => ({ set: set2 })
+  );
+  const { motionHandlers, isHover } = useHoverKey();
+  const isHovering = isDefined(title) && isHover(title);
+  const handleClick = (event) => {
+    if (onClick) {
+      onClick(event);
+      set({ hoverKeys: [] });
+    }
+  };
+  return /* @__PURE__ */ React.createElement(React.Fragment, null, /* @__PURE__ */ React.createElement(
+    PillBHoverOverlay,
+    {
+      isShown: isHovering,
+      key: title,
+      direction: props.direction,
+      subtitle
+    },
+    children
+  ), /* @__PURE__ */ React.createElement(
+    PillB,
+    {
+      title,
+      onClick: handleClick,
+      ...motionHandlers(title),
+      ...props
+    },
+    !isHovering && isLabel ? title : null
+  ));
+};
+
+;// CONCATENATED MODULE: ./src/pages/video/player/_header/download/index.tsx
+
+
+
 
 
 
@@ -25243,28 +45408,35 @@ const DEFAULT_INPUT = {
     pics: [],
     count: 0,
     seconds: 1,
-    isPics: false
+    isPics: false,
+    dimensions: { ...remotion_PIC_DIMENSIONS }
   },
   fps: 3
 };
-const Generate = (props) => {
+const Download = ({ children, ...props }) => {
   const { fps } = useTrillPicsStore(
     ({ fps: fps2 }) => ({
       fps: fps2
     })
   );
+  const s = boxSize();
   const input = usePicVideoReadInputs();
   const { handlers, isHover } = useHoverKey();
+  input.seconds = input.seconds || input.count * 2 || 10;
   const config = {
     input,
     fps
   };
-  const borderStyle = boxStyle({
+  const {
+    width,
+    minWidth,
+    ...borderStyle
+  } = boxStyle({
     layer: "flat",
     borderRadius: "xl",
     size: "m"
   });
-  const title = "Generate";
+  const title = "Download video";
   const {
     isError,
     isIdle,
@@ -25305,45 +45477,121 @@ const Generate = (props) => {
     )
   };
   const isHovering = isHover(title);
-  return /* @__PURE__ */ React.createElement("div", { className: "relative" }, /* @__PURE__ */ React.createElement(AnimatePresence, null, (isAura || isHovering) && /* @__PURE__ */ React.createElement(React.Fragment, null, /* @__PURE__ */ React.createElement(
-    motion.div,
+  return /* @__PURE__ */ React.createElement(
+    "div",
     {
-      key: resolveCompositeKey(
-        isHover.toString(),
-        isLoading.toString()
-      ),
-      className: "absolute -inset-6 ml-0 mt-0 _gradient-radial",
-      style: {
-        filter: AURA.GLOBAL.value,
-        ...borderStyle
-      },
-      ...AURA_TRANSITION
-    }
-  ))), /* @__PURE__ */ React.createElement(
-    PillB,
-    {
-      title: "Generate video",
-      circleProps: {
-        isGlow: isSuccess,
-        ...{
-          transition: {
-            repeat: Infinity,
-            repeatDelay: 0.8,
-            duration: isHovering ? 0.8 : 0
-          },
-          ...resolvePresence(
-            { opacity: 0 },
-            { opacity: [0, 1] }
-          )
-        }
-      },
-      Icon: IconsGenerate,
-      onClick: handleGenerate,
-      ...handlers(title),
-      ...props
+      className: "relative flex",
+      style: { ...resolveSquare(s.m) }
     },
-    "Generate"
-  ));
+    /* @__PURE__ */ React.createElement(React.Fragment, null, /* @__PURE__ */ React.createElement(AnimatePresence, null, (isAura || isHovering) && /* @__PURE__ */ React.createElement(React.Fragment, null, /* @__PURE__ */ React.createElement(
+      motion.div,
+      {
+        key: resolveCompositeKey(
+          isHover.toString(),
+          isLoading.toString()
+        ),
+        className: "fill _gradient-radial",
+        style: {
+          filter: AURA.GLOBAL.value,
+          scaleX: 1.2,
+          scaleY: 1.1,
+          x: 2,
+          ...borderStyle
+        },
+        ...AURA_TRANSITION
+      }
+    ))), /* @__PURE__ */ React.createElement(
+      PillBHover,
+      {
+        title,
+        isSelected: isHovering,
+        style: {
+          ...resolveSquare(s.m)
+        },
+        circleProps: {
+          isGlow: isSuccess,
+          ...{
+            transition: {
+              repeat: Infinity,
+              repeatDelay: 0.8,
+              duration: isHovering ? 0.8 : 0
+            },
+            ...resolvePresence(
+              { opacity: 0 },
+              { opacity: [0, 1] }
+            )
+          }
+        },
+        Icon: IconsDownload,
+        onClick: handleGenerate,
+        ...props,
+        ...handlers(title)
+      },
+      title
+    ))
+  );
+};
+
+;// CONCATENATED MODULE: ./src/pages/video/_root/reorder/constants.ts
+const MAX_COUNT = 5;
+const TOTAL_GAP = 40;
+
+;// CONCATENATED MODULE: ./src/hooks/pic/randoms/index.ts
+
+const resolvePicRandoms = ({
+  pics,
+  count = MAX_COUNT
+}) => {
+  return [...Array(count)].map(
+    () => `${Math.floor(
+      pics.length * Math.random()
+    )}`
+  );
+};
+
+;// CONCATENATED MODULE: ./src/hooks/within-player-bounds.ts
+const within_player_bounds_dimensionsWithinPlayerBounds = ({
+  width: w,
+  height: h,
+  fillMode = "contain",
+  canvasDimensions: {
+    width: canvasWidth,
+    height: canvasHeight
+  }
+}) => {
+  const width = w;
+  const height = h;
+  const imageAspectRatio = width / height;
+  let scaledHeight = 0;
+  let scaledWidth = 0;
+  const rectAspect = canvasWidth / canvasHeight;
+  const imageAspect = width / height;
+  const condition = fillMode === "contain" ? imageAspect > rectAspect : imageAspect < rectAspect;
+  if (condition) {
+    scaledWidth = canvasWidth;
+    scaledHeight = canvasWidth / imageAspect;
+  } else {
+    scaledWidth = canvasHeight * imageAspect;
+    scaledHeight = canvasHeight;
+  }
+  scaledWidth = Math.floor(
+    scaledWidth
+  );
+  scaledHeight = Math.floor(
+    scaledHeight
+  );
+  const topLeftPosition = fillMode === "cover" ? {
+    left: (canvasWidth - scaledWidth) * 0.5,
+    top: (canvasHeight - scaledHeight) * 0.5
+  } : {
+    left: 0,
+    top: 0
+  };
+  return {
+    width: scaledWidth,
+    height: scaledHeight,
+    ...topLeftPosition
+  };
 };
 
 ;// CONCATENATED MODULE: ./src/hooks/remotion/use-props.ts
@@ -25352,44 +45600,38 @@ const Generate = (props) => {
 
 
 
+
 const useRemotionProps = (picVideoInputs = DEFAULT_INPUT.input) => {
-  const {
-    screen,
-    fps,
-    pics: allPics
-  } = middleware_useTrillPicsStore(
-    ({ screen: screen2, fps: fps2, pics: pics2 }) => ({
-      screen: screen2,
+  const { fps, pics: allPics } = middleware_useTrillPicsStore(
+    ({ fps: fps2, pics: pics2 }) => ({
       fps: fps2,
       pics: pics2
     })
   );
-  const dimensions = useImageDimensions(
-    {
-      box: screen.isDimensions ? screen : null,
-      image: DIMENSIONS
-    }
-  );
+  const canvasDimensions = remotion_DIMENSIONS;
+  const dimensions = within_player_bounds_dimensionsWithinPlayerBounds({
+    canvasDimensions,
+    ...remotion_PIC_DIMENSIONS,
+    fillMode: "cover"
+  });
   const pics = (0,react.useMemo)(() => {
-    return picVideoInputs.isPics ? picVideoInputs.pics : [...Array(5)].map(
-      () => `${Math.floor(
-        allPics.length * Math.random()
-      )}`
-    );
+    return picVideoInputs.isPics ? picVideoInputs.pics : resolvePicRandoms({
+      pics: allPics
+    });
   }, [picVideoInputs]);
-  const seconds = picVideoInputs.seconds || 10;
-  const durationInFrames = seconds * fps;
   const count = pics.length;
+  const seconds = picVideoInputs.seconds || count * 2;
   return {
     fps,
-    durationInFrames,
     props: {
       pics,
       count,
       seconds,
-      isPics: count > 0
+      isPics: count > 0,
+      dimensions
     },
-    ...dimensions.isDimensions ? dimensions : DIMENSIONS
+    ...canvasDimensions
+    // ...dimensions
   };
 };
 
@@ -25398,20 +45640,27 @@ const useRemotionProps = (picVideoInputs = DEFAULT_INPUT.input) => {
 
 
 
-
-const CompositionsPicSeries = () => {
+const pic_series_INPUT_PROPS = (0,cjs.getInputProps)();
+const CompositionsPicSeries = (__inputProps) => {
   const {
-    props: defaultProps,
+    props: _inputProps,
     ...props
   } = useRemotionProps();
+  const inputProps = {
+    ...__inputProps,
+    ..._inputProps,
+    ...pic_series_INPUT_PROPS
+  };
+  inputProps.seconds = inputProps.seconds || 10;
+  const durationInFrames = inputProps.seconds * props.fps;
   return /* @__PURE__ */ React.createElement(
     cjs.Composition,
     {
       id: "pic-series",
       component: PicSeries,
       schema: PIC_SERIES_SCHEMA,
-      defaultProps,
-      ...DIMENSIONS,
+      defaultProps: inputProps,
+      durationInFrames,
       ...props
     }
   );
