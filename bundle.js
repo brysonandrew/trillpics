@@ -16548,7 +16548,6 @@ const PicSeries = (props) => {
   const { pics, seconds, count } = inputProps;
   const frame = (0,cjs.useCurrentFrame)();
   const { fps, width, height } = (0,cjs.useVideoConfig)();
-  console.log(width, height);
   const unitSeconds = seconds / count;
   const unitFrames = unitSeconds * fps;
   const frameInUnit = frame % unitFrames;
@@ -25317,17 +25316,17 @@ const cell_usePicCell = (main, scrollY) => {
 
 
 
-
 const update_useScrollUpdateHandler = ({
   scrollY,
   ref: handle,
-  main
+  main,
+  scrollTimeoutRef
 }) => {
+  const { timeoutRef, endTimeout } = scrollTimeoutRef;
   const [searchParams] = useSearchParams();
   const { pathname } = useLocation();
   const navigate = useNavigate();
   const prevScrollOffsetRef = useRef(0);
-  const { timeoutRef, endTimeout } = useTimeoutRef();
   const { isScroll, isScrolling, set } = useTrillPicsStore(
     ({
       isScroll: isScroll2,
@@ -25339,7 +25338,10 @@ const update_useScrollUpdateHandler = ({
       set: set2
     })
   );
-  const { move } = usePicCell(main, scrollY);
+  const { move } = usePicCell(
+    main,
+    scrollY
+  );
   const handler = (props) => {
     const {
       scrollOffset,
@@ -25466,84 +25468,6 @@ const fonts_useFonts = () => {
     });
   }, []);
   return record;
-};
-
-;// CONCATENATED MODULE: ./src/context/hooks/move/animate.ts
-
-
-const LABEL_SIZE = 80;
-const OFFSET = 20;
-const resolveCalc = (percent, sign, px) => `calc(${percent}% ${sign < 0 ? "-" : "+"} ${px}px)`;
-const ANIMATION_OPTIONS = {
-  type: "tween"
-};
-const animate_useCursorAnimate = (main) => {
-  const animateRef = useRef({});
-  const handler = ({
-    // nextHoverKey = hoverKey,
-    nextSignX = main.cursor.offset.x,
-    nextSignY = main.cursor.offset.y
-  } = {}) => {
-    const zeroX = resolveCalc(0, nextSignX, 0);
-    const zeroY = resolveCalc(0, nextSignY, 0);
-    let labelXValue = zeroX;
-    let labelYValue = zeroY;
-    const percentX = nextSignX < 0 ? -100 : 0;
-    const percentY = nextSignY < 0 ? -100 : 0;
-    labelXValue = resolveCalc(
-      percentX,
-      nextSignX,
-      OFFSET
-    );
-    labelYValue = resolveCalc(
-      percentY,
-      nextSignY,
-      OFFSET
-    );
-    animateRef.current.x = animate(
-      main.cursor.label.x,
-      labelXValue,
-      ANIMATION_OPTIONS
-    );
-    animateRef.current.y = animate(
-      main.cursor.label.y,
-      labelYValue,
-      ANIMATION_OPTIONS
-    );
-  };
-  useEffect(() => {
-    return () => {
-      if (animateRef.current.x) {
-        animateRef.current.x.stop();
-      }
-      if (animateRef.current.y) {
-        animateRef.current.y.stop();
-      }
-    };
-  }, []);
-  return handler;
-};
-
-;// CONCATENATED MODULE: ./src/context/hooks/move/offset.ts
-
-const offset_useCursorOffset = (main) => {
-  const handleAnimate = useCursorAnimate(main);
-  const handler = ({ nextX, nextY }) => {
-    const viewportWidth = window.innerWidth;
-    const viewportHalfWidth = viewportWidth * 0.5;
-    const viewportHeight = window.innerHeight;
-    const viewportHalfHeight = viewportHeight * 0.5;
-    const BOUND_X = viewportHalfWidth * 0.6;
-    const BOUND_Y = viewportHalfHeight * 0.6;
-    const signX = nextX > viewportHalfWidth + BOUND_X ? -1 : 1;
-    const signY = nextY < viewportHalfHeight - BOUND_Y ? 1 : -1;
-    if (main.cursor.offset.x !== signX || main.cursor.offset.y !== signY) {
-      main.cursor.offset.x = signX;
-      main.cursor.offset.y = signY;
-      handleAnimate({ nextSignX: signX, nextSignY: signY });
-    }
-  };
-  return handler;
 };
 
 // EXTERNAL MODULE: ./node_modules/react/jsx-runtime.js
@@ -44234,7 +44158,7 @@ const createScopedAnimate = (scope) => {
     }
     return scopedAnimate;
 };
-const animate_animate = createScopedAnimate();
+const animate = createScopedAnimate();
 
 
 
@@ -44256,7 +44180,7 @@ const useBlurAnimate1 = (axis = "x") => {
     }
     set({ isScroll: false });
     const prev = adjacentMotion.get();
-    main.blur.control[axis] = animate_animate(
+    main.blur.control[axis] = animate(
       main.blur.value[axis],
       prev * 8e-3,
       {
@@ -44361,13 +44285,18 @@ const HeaderLeft = (0,react.memo)(
 
 
 
-
 const move_useMove = ({
   main,
   scrollY,
-  isOnscreen
+  isOnscreen,
+  scrollTimeoutRef
 }) => {
-  const { hoverKeys, isScrolling, isIdle, set } = useTrillPicsStore(
+  const {
+    hoverKeys,
+    isScrolling,
+    isIdle,
+    set
+  } = useTrillPicsStore(
     ({
       hoverKeys: hoverKeys2,
       isScrolling: isScrolling2,
@@ -44382,23 +44311,30 @@ const move_useMove = ({
   );
   const { endTimeout, timeoutRef } = useTimeoutRef();
   const [isCursorMove, setCursorMove] = useState(false);
-  const { move } = usePicCell(main, scrollY);
-  const handler = useCursorOffset(main);
+  const { move } = usePicCell(
+    main,
+    scrollY
+  );
   const handleMove = (event) => {
     endTimeout();
-    if (isIdle && !hoverKeys.includes(TITLE_HOVER_KEY)) {
+    if (isIdle && !hoverKeys.includes(
+      TITLE_HOVER_KEY
+    )) {
       set({ isIdle: false });
     }
     timeoutRef.current = setTimeout(
       () => {
-        set({ isIdle: true, hoverKeys: [] });
+        set({
+          isIdle: true,
+          hoverKeys: [],
+          isScrolling: false
+        });
         main.cursor.isDragging = false;
       },
       6e4
     );
     const mx = event.pageX;
     const my = event.pageY;
-    handler({ nextX: mx, nextY: my });
     const prevX = main.cursor.x.get();
     const prevY = main.cursor.y.get();
     const d = Math.sqrt(
@@ -44416,6 +44352,16 @@ const move_useMove = ({
       if (!isCursorMove) {
         setCursorMove(true);
       }
+    }
+    if (isScrolling) {
+      scrollTimeoutRef.endTimeout();
+      scrollTimeoutRef.timeoutRef.current = setTimeout(() => {
+        set({
+          isScrolling: false,
+          scrollDirection: null,
+          scrollDelta: 0
+        });
+      }, 0);
     }
   };
   useEventListener(
@@ -44475,6 +44421,7 @@ const dragger_useDragger = () => {
 
 
 
+
 const VirtualizeContext = (0,react.createContext)(
   {}
 );
@@ -44490,6 +44437,7 @@ const VirtualizeContextProvider = ({ children, screen }) => {
   const blur = useBlur();
   const cursor = useCursor();
   const dragger = useDragger();
+  const scrollTimeoutRef = useTimeoutRef();
   const scrollY = useMotionValue(0);
   const main = useMemo(() => {
     return {
@@ -44504,12 +44452,14 @@ const VirtualizeContextProvider = ({ children, screen }) => {
   const { handler: handleScroll } = useScrollUpdateHandler({
     scrollY,
     ref,
-    main
+    main,
+    scrollTimeoutRef
   });
   const isIdle = useMove({
     main,
     isOnscreen,
-    scrollY
+    scrollY,
+    scrollTimeoutRef
   });
   return /* @__PURE__ */ React.createElement(
     VirtualizeContext.Provider,
@@ -44526,7 +44476,8 @@ const VirtualizeContextProvider = ({ children, screen }) => {
         foundationValue,
         updateFoundation,
         resetLayout,
-        screen
+        screen,
+        scrollTimeoutRef
       }
     },
     children
@@ -44538,6 +44489,7 @@ const VirtualizeContextProvider = ({ children, screen }) => {
 
 
 const use_hover_key_useHoverKey = (config) => {
+  const isDisabled = config == null ? void 0 : config.isDisabled;
   const { main } = useContextGrid();
   const {
     hoverKeys,
@@ -44580,18 +44532,18 @@ const use_hover_key_useHoverKey = (config) => {
     disarm();
     trigger();
   };
-  const handlers = (key) => ({
+  const handlers = (key) => isDisabled ? {} : {
     onPointerEnter: onStart(key),
     onPointerOut: onStop(key),
     onPointerLeave: onStop(key),
     onMouseLeave: onStop(key)
-  });
-  const motionHandlers = (key) => ({
+  };
+  const motionHandlers = (key) => isDisabled ? {} : {
     onHoverStart: onStart(key),
     onHoverEnd: onStop(key),
     onPointerLeave: onStop(key),
     onMouseLeave: onStop(key)
-  });
+  };
   const clear = hover;
   return {
     hoverKeys,
@@ -44720,6 +44672,27 @@ const style_boxStyle = ({
     }),
     borderRadius: boxRadius(),
     ...boxSize(size)
+  };
+};
+
+;// CONCATENATED MODULE: ./src/hooks/pic/video/read/inputs/index.ts
+
+
+const inputs_picVideoReadInputs = (searchParams) => {
+  const seconds = Number(
+    searchParams.get(SECONDS_PARAM_KEY)
+  );
+  const pics = searchParams.getAll(
+    SELECTED_PARAM_KEY
+  );
+  const count = pics.length;
+  const isPics = count > 0;
+  return {
+    seconds,
+    pics,
+    count,
+    isPics,
+    dimensions: PIC_DIMENSIONS
   };
 };
 
@@ -45110,7 +45083,7 @@ const FADE_PRESENCE_05_DELAY_04 = {
     ...FADE_PRESENCE_DELAY_04_TRANSITION
   }
 };
-const PRESENCE_OPACITY_ANIMATE_DELAY_02 = {
+const animation_PRESENCE_OPACITY_ANIMATE_DELAY_02 = {
   ...PRESENCE_OPACITY,
   animate: {
     ...PRESENCE_OPACITY.animate,
@@ -45341,7 +45314,78 @@ const b_PillB = ({
   );
 };
 
+;// CONCATENATED MODULE: ./src/components/buttons/pill/b/hover/overlay.tsx
+
+
+
+
+
+
+
+const overlay_PillBHoverOverlay = ({
+  children,
+  subtitle,
+  direction = "ltr",
+  isShown
+}) => {
+  return /* @__PURE__ */ React.createElement(PortalBody, null, /* @__PURE__ */ React.createElement(AnimatePresence, { mode: "wait" }, isShown && /* @__PURE__ */ React.createElement(React.Fragment, null, /* @__PURE__ */ React.createElement(
+    motion.div,
+    {
+      className: "fill bg-white dark:bg-gray rounded-lg z-0 pointer-events-none",
+      initial: { opacity: 0 },
+      animate: { opacity: 0.2 },
+      exit: { opacity: 0 }
+    }
+  ), /* @__PURE__ */ React.createElement(
+    motion.div,
+    {
+      style: { maxWidth: 1200 },
+      className: clsx(
+        "absolute flex flex-col justify-center items-end h-screen z-0 pointer-events-none",
+        direction === "ltr" ? "right-0" : "left-0"
+      ),
+      ...PRESENCE_OPACITY_ANIMATE_DELAY_02
+    },
+    isString(children) ? /* @__PURE__ */ React.createElement(
+      "div",
+      {
+        className: clsx(
+          "relative center min-w-0 px-2 w-full sm:px-4 lg:px-24 xl:px-32 xl:w-xl top-0 left-1/2 -translate-x-1/2",
+          direction === "ltr" ? "column-end text-right" : "column-start text-left"
+        )
+      },
+      /* @__PURE__ */ React.createElement("h3", { className: "text-4xl sm:text-6xl xl:text-8xl char-gap-6 text-white-8 dark:text-black-2 font-title _outline-filter" }, children),
+      subtitle && /* @__PURE__ */ React.createElement(React.Fragment, null, /* @__PURE__ */ React.createElement("div", { className: "relative w-full" }, /* @__PURE__ */ React.createElement(
+        LinesHorizontal,
+        {
+          colorClass: "text-teal dark:text-blue border-t-current _gradient-border",
+          opacityClass: "opacity-100",
+          sizeClass: "border-t-4"
+        }
+      ), /* @__PURE__ */ React.createElement("div", { className: "h-1" }), /* @__PURE__ */ React.createElement(
+        LinesHorizontal,
+        {
+          opacityClass: "opacity-100",
+          sizeClass: "border-t-4"
+        }
+      )), /* @__PURE__ */ React.createElement("div", { className: "h-4" }), /* @__PURE__ */ React.createElement("div", { className: "relative text-4xl xl:text-5xl font-sans mix-blend-soft-light" }, /* @__PURE__ */ React.createElement(LinesHorizontalShadow, null), /* @__PURE__ */ React.createElement(
+        "div",
+        {
+          className: clsx(
+            "relative text-teal dark:text-black",
+            direction === "ltr" ? "text-right" : "text-left"
+          )
+        },
+        subtitle
+      )))
+    ) : /* @__PURE__ */ React.createElement(React.Fragment, null, children)
+  ))));
+};
+
 ;// CONCATENATED MODULE: ./src/components/buttons/pill/b/hover/index.tsx
+
+
+
 
 
 
@@ -45355,9 +45399,24 @@ const hover_PillBHover = ({
   onClick,
   ...props
 }) => {
+  const { endTimeout, timeoutRef } = useTimeoutRef();
+  const { pathname } = useLocation();
+  const [isMoving, setMoving] = useState(false);
   const { set } = useTrillPicsStore(
     ({ set: set2 }) => ({ set: set2 })
   );
+  useEffect(() => {
+    endTimeout();
+    if (!isMoving) {
+      setMoving(true);
+    }
+    timeoutRef.current = setTimeout(
+      () => {
+        setMoving(false);
+      },
+      500
+    );
+  }, [pathname]);
   const { motionHandlers, isHover } = useHoverKey();
   const isHovering = isDefined(title) && isHover(title);
   const handleClick = (event) => {
@@ -45369,7 +45428,7 @@ const hover_PillBHover = ({
   return /* @__PURE__ */ React.createElement(React.Fragment, null, /* @__PURE__ */ React.createElement(
     PillBHoverOverlay,
     {
-      isShown: isHovering,
+      isShown: isHovering && !isMoving,
       key: title,
       direction: props.direction,
       subtitle
@@ -45651,7 +45710,7 @@ const CompositionsPicSeries = (__inputProps) => {
     ..._inputProps,
     ...pic_series_INPUT_PROPS
   };
-  inputProps.seconds = inputProps.seconds || 10;
+  inputProps.seconds = inputProps.seconds || inputProps.count || 10;
   const durationInFrames = inputProps.seconds * props.fps;
   return /* @__PURE__ */ React.createElement(
     cjs.Composition,
