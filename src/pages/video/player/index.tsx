@@ -31,7 +31,7 @@ export const VideoPlayer = () => {
   const container = screen.container;
   const width = container.width - s.m3;
   const paddingY =
-    screen.container.top + s.m15;
+    screen.container.top;
   return (
     <>
       <Helmet>
@@ -49,19 +49,22 @@ export const VideoPlayer = () => {
         className="fill overflow-auto"
         style={{
           zIndex: FULLSCREEN_Z,
-          paddingTop: paddingY,
+          paddingTop: paddingY+s.m15,
+             paddingLeft:
+              screen.container.left +
+              s.m15,
           paddingBottom: paddingY,
-          paddingLeft:
-          screen.container.left +
-          s.m15,
-          gap: s.m05,
+          // paddingLeft:
+          // screen.container.left +
+          // s.m15,
+          gap: s.m,
         }}
       >
         <div
           className="relative"
           style={{
- 
-           
+            gap: s.m05,
+         
             width,
             height: width * (9 / 16),
           }}
@@ -71,6 +74,9 @@ export const VideoPlayer = () => {
             {...inputProps}
           />
         </div>
+        <div
+          style={{ height: s.m05 }}
+        />
         <div
           className="relative flex-col flex justify-center"
           style={{
@@ -87,6 +93,7 @@ export const VideoPlayer = () => {
               // left: 0,
               // top: 0,
               // height:container.height,
+
               width:
                 container.width - s.m3,
             }}

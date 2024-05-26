@@ -10,6 +10,7 @@ export const useHomeClickSelect =
       ZOOM_PARAM_KEY
     );
     const handleClick = () => {
+      console.log("LCICK")
       if (props.isSelectedPics) {
         ref.current?.enableScroll();
         props.deselect();
@@ -21,6 +22,9 @@ export const useHomeClickSelect =
         props.select();
       }
     };
-    useClickGrid(handleClick);
-    return { ...props };
+    const isDisabled = Boolean(
+      props.isSelectedPics || props.isRemoving
+    );
+    useClickGrid(handleClick,isDisabled);
+    return { ...props,onClick:handleClick,isDisabled };
   };

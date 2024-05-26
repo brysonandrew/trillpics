@@ -8,6 +8,7 @@ import {
 import { TCell } from "~/pics/grid/pic";
 import {
   OVER_CELL_PARAM_KEY,
+  REMOVING_PARAM_KEY,
   SIZE_PARAM_KEY,
   ZOOM_PARAM_KEY,
 } from "~/hooks/pic/constants";
@@ -59,6 +60,10 @@ export const usePicCell = (
     mx?: number,
     my?: number
   ) => {
+    if (
+      searchParams.has(ZOOM_PARAM_KEY)||searchParams.has(REMOVING_PARAM_KEY)
+    )
+      return;
     const currScrollY = scrollY.get();
 
     mx = mx ?? main.cursor.x.get();
@@ -66,7 +71,8 @@ export const usePicCell = (
       (my ?? main.cursor.y.get()) -
       currScrollY;
     // console.log(mx, my, size);
-    if (size === 0 || !isDefined(mx)) return;
+    if (size === 0 || !isDefined(mx))
+      return;
 
     const column = ~~(mx / size);
     const row = ~~(my / size);

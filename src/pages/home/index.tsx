@@ -18,9 +18,7 @@ export const Home: FC = () => {
     cells,
     isRemoving,
   } = cursorProps;
-  const isDisabled = Boolean(
-    isSelectedPics || isRemoving
-  );
+
 
   return (
     <>
@@ -34,6 +32,9 @@ export const Home: FC = () => {
           {isSelectedPics && (
             <PortalBody>
               <PicBackdrop
+                onClick={
+                  cursorProps.onClick
+                }
                 style={{
                   zIndex: FULLSCREEN_Z,
                 }}
@@ -49,7 +50,6 @@ export const Home: FC = () => {
       )}
 
       <PicCursor
-        isDisabled={isDisabled}
         {...cursorProps}
       >
         <IconsOpen80 />

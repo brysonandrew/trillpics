@@ -8,13 +8,8 @@ import { useContextGrid } from "~/context";
 import { resolveCompositeKey } from "@brysonandrew/utils-key";
 import { CursorCorners } from "~/pics/grid/pic/cursor/corners";
 import { TPropsWithChildren } from "@brysonandrew/config-types";
-import { useCellOver } from "~/hooks/pic/cell/over/hook";
 import { resolvePositionFromCell } from "~/pics/grid/pic/cursor/position-from-cell";
-import {
-  DELAY_TRANSITION_PROPS,
-  PRESENCE_OPACITY_04,
-  PRESENCE_OPACITY_06,
-} from "~/constants/animation";
+import { DELAY_TRANSITION_PROPS, PRESENCE_OPACITY_04 } from "~/constants/animation";
 import { boxRadius } from "~/constants/box/radius";
 import { PRESENCE_OPACITY } from "@brysonandrew/motion-config-constants";
 import {
@@ -22,16 +17,12 @@ import {
   useShowCursor,
 } from "~/pics/grid/pic/cursor/use-show-cursor";
 import { PicCursorSquare } from "~/pics/grid/pic/cursor/square";
-import { TUsePicSelected } from "~/hooks/pic/selected";
 import { useTrillPicsStore } from "~/store/middleware";
 import { Sight } from "~/components/cursor";
 import { Box } from "~/components/cursor/box";
 
 export const PicCursor: FC<
-  TPropsWithChildren<
-    TUseShowCursorConfig &
-      TUsePicSelected
-  >
+  TPropsWithChildren<TUseShowCursorConfig>
 > = ({ children, ...props }) => {
   const {
     currCell,
@@ -39,38 +30,23 @@ export const PicCursor: FC<
     currKey,
     currName,
   } = props;
+  const { scrollY } = useContextGrid();
   const {
-    scrollY,
-  } = useContextGrid();
-  const { isOnscreen, isScrolling ,hoverKeys} =
-    useTrillPicsStore(
-      ({
-        hoverKeys,
-        isOnscreen,
-        isScrolling,
-      }) => ({
-        hoverKeys,
-        isOnscreen,
-        isScrolling,
-      })
-    );
-    const {
-      isControls,
-      isActiveHover,
-    } = useTrillPicsStore(
-      ({
-        isScrolling,
-        isOnscreen,
-        isControls,
-        isActiveHover,
-      }) => ({
-        isScrolling,
-        isOnscreen,
-        isControls,
-        isActiveHover,
-      })
-    );
-  
+    isOnscreen,
+    isScrolling,
+    hoverKeys,
+  } = useTrillPicsStore(
+    ({
+      hoverKeys,
+      isOnscreen,
+      isScrolling,
+    }) => ({
+      hoverKeys,
+      isOnscreen,
+      isScrolling,
+    })
+  );
+
   const position =
     resolvePositionFromCell({
       cell: currCell,
@@ -92,39 +68,33 @@ export const PicCursor: FC<
           duration: 0.2,
         }}
       >
-         <Sight>
+        <Sight>
           <Box>
-          <span className="column-start">
-            {/* {isActiveHover && <div>active hover</div>} */}
+            <span className="column-start">
+              {/* {isActiveHover && <div>active hover</div>} */}
 
-            <div>hk: {hoverKeys.join(" - ")}</div>
-            {!isOnscreen && (
-              <span>AFK</span>
-            )}
-            {isScrolling && (
-              <span>scrolling...</span>
-            )}
-            {props.currName ? (
               <div>
-                {props.currName}
+                hk:{" "}
+                {hoverKeys.join(" - ")}
               </div>
-            ) : (
-              <div>
-                no cell
-              </div>
-            )}
-          </span>
+              {!isOnscreen && (
+                <span>AFK</span>
+              )}
+              {isScrolling && (
+                <span>
+                  scrolling...
+                </span>
+              )}
+              {props.currName ? (
+                <div>
+                  {props.currName}
+                </div>
+              ) : (
+                <div>no cell</div>
+              )}
+            </span>
           </Box>
         </Sight>
-        {/* <motion.div
-          className="absolute top-0 left-0 w-0 h-0 pointer-events-none  _outline-filter"
-          style={{
-            x: cursor.x,
-            y: cursor.y,
-          }}
-        >
-
-        </motion.div> */}
       </MotionConfig>
       <MotionConfig
         transition={{

@@ -21,7 +21,6 @@ import { useScrollUpdateHandler } from "~/context/scroll/update";
 import { useFonts } from "~/context/fonts";
 import { useMove } from "~/context/hooks/move";
 import { useDragger } from "~/context/dragger";
-import { useDraggerReset } from "~/pages/video/_root/reorder/use-dragger-reset";
 
 const VirtualizeContext = createContext(
   {} as TVirtualizeContext

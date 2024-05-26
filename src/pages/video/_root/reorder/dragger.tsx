@@ -93,7 +93,7 @@ export const _RootReorderDragger: FC<
         drag
         dragConstraints={{
           left: 0, // -container.width * 0.5,
-          bottom,
+          bottom: bottom-s.m05,
           right: 0, // container.width * 0.5,
           top: -container.height * 0.5,
         }}

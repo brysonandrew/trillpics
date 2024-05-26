@@ -54,6 +54,8 @@ export const LeftButtonsClear: FC<
     <Button
       onClick={handleClear}
       Icon={IconsTrash}
+      direction="rtl"
+
       subtitle={
         <>
           <p>

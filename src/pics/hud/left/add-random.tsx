@@ -45,7 +45,7 @@ export const HudLeftAddRandom: FC<
   return (
     <PillBHover
       onClick={handleClick}
-      direction="rtl"
+      direction="ltr"
       title="Add Random Pic"
       subtitle="Add a randomly selected pic from the gallery to your video."
       layout={false}

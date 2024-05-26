@@ -25,7 +25,7 @@ export const useDragger = () => {
   );
   const y075 = useTransform(
     y,
-    (v) => v * 0.8
+    (v) => v * 0.95
   );
 
   const y06 = useTransform(

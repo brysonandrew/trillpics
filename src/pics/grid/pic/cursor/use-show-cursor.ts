@@ -1,12 +1,17 @@
 import { useMemo } from "react";
+import { TUsePicSelected } from "~/hooks/pic/selected";
 import { useTrillPicsStore } from "~/store/middleware";
 
-export type TUseShowCursorConfig = {
-  isDisabled?: boolean;
-};
+export type TUseShowCursorConfig =
+  TUsePicSelected & {
+    isDisabled?: boolean;
+  };
 export const useShowCursor = ({
   isDisabled,
+  ...props
 }: TUseShowCursorConfig) => {
+  const isCurrCell =
+    props.currCell !== null;
   const {
     isScrolling,
     isOnscreen,
@@ -38,7 +43,8 @@ export const useShowCursor = ({
       !isActiveHover &&
       !isDisabled &&
       isOnscreen &&
-      isControls;
+      isControls &&
+      isCurrCell;
     return result;
   }, [
     isActiveHover,
@@ -46,6 +52,7 @@ export const useShowCursor = ({
     isOnscreen,
     isControls,
     isScrolling,
+    isCurrCell,
   ]);
 
   return isShown;

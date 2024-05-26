@@ -11,7 +11,7 @@ import {
 import { IconsGenerate } from "~/components/icons/video/generate";
 import { trpc } from "~/utils/trpc";
 import { TGenerateProps } from "~/server/generate";
-import { downloadMedia } from "~/pages/video/player/_header/download/download-media";
+import { downloadMedia } from "~/pages/video/player/_header/download/media";
 import { AURA } from "@brysonandrew/svg-filter";
 import { resolvePresence } from "~/utils/animation";
 import { resolveCompositeKey } from "@brysonandrew/utils-key";
@@ -47,6 +47,8 @@ export const Download: FC<
   const input = usePicVideoReadInputs();
   const { handlers, isHover } =
     useHoverKey();
+
+  input.seconds = input.seconds || (input.count * 2) || 10;
   const config: TGenerateProps = {
     input,
     fps,

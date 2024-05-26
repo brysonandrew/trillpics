@@ -61,6 +61,7 @@ export const _CommonReorderControls: FC<
       style={{
         x,
         y,
+
         ...boxProps.style,
       }}
     >
@@ -69,6 +70,7 @@ export const _CommonReorderControls: FC<
           "absolute row left-0 top-0 w-full"
         )}
         style={{
+          top: s.m,
           gap: boxProps.style?.gap,
         }}
       >

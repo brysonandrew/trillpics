@@ -4,13 +4,13 @@ import type {
 } from "react";
 import { motion } from "framer-motion";
 import { useTrillPicsStore } from "~/store/middleware";
-import { TLinkProps } from "@brysonandrew/config-types";
+import { TDivMotionProps, TLinkProps } from "@brysonandrew/config-types";
 import clsx from "clsx";
 import { FULLSCREEN_Z } from "~/constants/dom";
 import { useContextGrid } from "~/context";
 
 type TProps = PropsWithChildren<
-  Partial<TLinkProps>
+  Partial<TDivMotionProps>
 >;
 export const PicBackdrop: FC<
   TProps
@@ -28,7 +28,7 @@ export const PicBackdrop: FC<
   return (
     <motion.div
       className={clsx(
-        "fill pointer-events-none"
+        "fill"
       )}
       style={{
         ...(screenDimensions ?? {}),
@@ -42,6 +42,7 @@ export const PicBackdrop: FC<
         delay: 0,
         duration: 1,
       }}
+      {...props}
     />
   );
 };

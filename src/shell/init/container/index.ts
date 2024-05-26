@@ -1,7 +1,6 @@
 import { TDimensionsReady } from "@brysonandrew/config-types";
 import { boxSize } from "~/constants/box/size";
-import { SCROLLBAR_WIDTH } from "~uno/preflights";
-const MAX_WIDTH = 1400;
+const MAX_WIDTH = 1280;
 export const measureContainer = (
   screen: Omit<
     TDimensionsReady,

@@ -25,6 +25,7 @@ export const generate = async ({
 }: TGenerateProps) => {
   const id = "pic-series";
   const isLocalMode = isLocal();
+  console.log("ISLOCAL ",isLocalMode)
   const serveUrl = isLocalMode
     ? await bundle({
         publicDir: path.join(
@@ -41,7 +42,7 @@ export const generate = async ({
     : "https://brysonandrew.github.io/trillpics";
 
   const durationInFrames =
-    fps * input.pics.length;
+    fps * input.seconds;
 
   const inputProps = {
     ...input,

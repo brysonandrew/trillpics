@@ -95,7 +95,7 @@ export const PicsHudLeft: FC<
                 />
 
                 <ControlsPlayer
-                  title="Exit viewing room"
+
                   isLabel={isIdle}
                 />
               </motion.div>
@@ -149,6 +149,7 @@ export const PicsHudLeft: FC<
                 >
                   <HudLeftAddRandom
                     isLabel={isIdle}
+                    
                     // positionClass="absolute"
                   />
                   <LeftButtonsClear

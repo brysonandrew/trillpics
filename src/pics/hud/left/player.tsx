@@ -53,7 +53,9 @@ export const ControlsPlayer: FC<
       direction="rtl"
       isSelected={isActive}
       title={
-        title ?? CONTROLS_PLAYER_TITLE
+        isActive
+          ? "Exit viewing room"
+          : CONTROLS_PLAYER_TITLE
       }
       subtitle={
         !isActive

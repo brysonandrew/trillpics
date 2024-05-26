@@ -30,7 +30,7 @@ export const PicSeries: FC<
   const { pics, seconds, count } =
     inputProps;
   const frame = useCurrentFrame();
-  const { fps, height } =
+  const { fps,width, height } =
     useVideoConfig();
 
   const unitSeconds = seconds / count;
@@ -79,6 +79,7 @@ export const PicSeries: FC<
                 <Img
                   src={src}
                   alt={`${pic}`}
+                  {...{width, height:width}}
                 />
               </div>
             </Series.Sequence>
