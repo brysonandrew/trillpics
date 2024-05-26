@@ -34,8 +34,7 @@ export const VideoPicsCounter: FC<
       }
       layoutId="VideoPicsCounter"
       classValue={clsx(
-        "text-xs uppercase text-black font-sans",
-        "pointer-events-none font-mono text-main-inverted",
+        "pointer-events-none",
         // "_gradient-mesh bg-black-04",
         classValue ?? "relative"
       )}
@@ -43,7 +42,12 @@ export const VideoPicsCounter: FC<
       layout
       {...props}
     >
-      <span className="flex flex-row whitespace-nowrap">
+      <span
+        className={clsx(
+          "flex flex-row whitespace-nowrap text-white dark:text-black _outline-filter",
+          "text-xs uppercase font-sans"
+        )}
+      >
         {children(count)}
       </span>
     </Pill>

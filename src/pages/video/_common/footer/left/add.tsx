@@ -1,25 +1,18 @@
 import type { FC } from "react";
 import { boxSize } from "~/constants/box/size";
-import { useReady } from "~/hooks/use-ready";
-import { LinesVertical } from "~/pages/video/_common/footer/left/lines/vertical";
+import { LinesVertical } from "~/components/lines/vertical";
 import { HudLeftAddRandom } from "~/pics/hud/left/add-random";
-import { useTrillPicsStore } from "~/store/middleware";
+import { useContextGrid } from "~/context";
 
 export const FooterNavAdd: FC = () => {
-  const { screen } = useTrillPicsStore(
-    ({ screen }) => ({
-      screen,
-    })
-  );
+  const { screen } = useContextGrid();
+
   const container =
-    screen.isDimensions &&
     screen.container;
   if (!container) return null;
-  const isReady = useReady();
   const bSize = boxSize();
   const verticalSpace =
     container.height / 2;
-  const vs05 = verticalSpace / 2;
   const vs025 = verticalSpace / 4;
 
   return (
@@ -47,11 +40,9 @@ export const FooterNavAdd: FC = () => {
       /> */}
       <HudLeftAddRandom
         key="HudLeftAddRandom"
-        {...(isReady
-          ? {
-              layoutId: "HudLeftAddRandom",
-            }
-          : {})}
+        {...{
+          layoutId: "HudLeftAddRandom",
+        }}
       />
     </div>
   );

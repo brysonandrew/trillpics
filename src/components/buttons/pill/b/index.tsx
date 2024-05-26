@@ -9,21 +9,15 @@ import {
   TSvgProps,
 } from "@brysonandrew/config-types";
 import { TCircleProps } from "~/components/layout/circle/circle";
-import {
-  resolveAccessibilityTitles,
-  resolveUrlId,
-} from "@brysonandrew/utils-attributes";
+import { resolveAccessibilityTitles } from "@brysonandrew/utils-attributes";
 import { TFlatProps } from "~/types/ui";
 import { FADE_PRESENCE_DELAY_02 } from "~/constants/animation";
 import { boxStyle } from "~/constants/box/style";
 import { boxSize } from "~/constants/box/size";
-import { useReady } from "~/hooks/use-ready";
-import { GRADIENT_MESH_DARK } from "~app/color/gradient/mesh";
 import { resolveCompositeKey } from "@brysonandrew/utils-key";
 import { isString } from "~/utils/validation/is/string";
 import { TBoxSizesKey } from "~/constants/box/size/constants";
-import { useDarkMode } from "@brysonandrew/dark-mode";
-import { LINEAR_GRADIENT_SVG_ID } from "~/shell/global/svg/gradients/blue-pink-yellow";
+import { ButtonPillBIcon } from "~/components/buttons/pill/b/icon";
 
 export type TPillBProps =
   TButtonMotionProps &
@@ -66,14 +60,11 @@ export const PillB: FC<TPillBProps> = ({
     borderRadius,
   } = box;
   const sm = boxSize(size);
-  const isReady = useReady();
-  const { isDarkMode } = useDarkMode();
   return (
     <Root
       key={resolveCompositeKey(
         "PillB",
-        title,
-        `${isReady}`
+        title
       )}
       {...resolveAccessibilityTitles(
         title
@@ -85,12 +76,11 @@ export const PillB: FC<TPillBProps> = ({
         "disabled:(grayscale-100 brightness-60 opacity-80 cursor-not-allowed)",
         "hover:grayscale-100",
         classValue,
-        direction === 'ltr' ? 'row' : 'row-reverse'
+        direction === "ltr"
+          ? "row"
+          : "row-reverse"
       )}
-      {...(isReady
-        ? { layout: true }
-        : {})}
-      layout={isReady}
+      layout
       style={{
         ...(isFlat
           ? { boxShadow }
@@ -130,8 +120,7 @@ export const PillB: FC<TPillBProps> = ({
         <motion.div
           key={resolveCompositeKey(
             "PillB.motion.div.Icon",
-            title,
-            `${isReady}`
+            title
           )}
           className={clsx(
             "center relative bg-white dark:bg-black pointer-events-none",
@@ -139,55 +128,20 @@ export const PillB: FC<TPillBProps> = ({
               ? ""
               : "_gradient-radial"
           )}
-          {...(isReady
-            ? { layout: true }
-            : {})}
-          style={
-            {
-              height,
-              borderRadius,
-              marginLeft: 0,
-            } as any
-          }
+          layout
+          style={{
+            height,
+            borderRadius,
+            marginLeft: 0,
+          }}
         >
-          <div
-            className="center relative shrink-0 border-1 border-transparent bg-gray dark:bg-black pointer-events-none"
-            style={{
-              borderRadius,
-              height: sm.height,
-              width: sm.width,
-              ...(isDarkMode
-                ? {
-                    ...GRADIENT_MESH_DARK,
-                  }
-                : {
-                    ...GRADIENT_MESH_DARK,
-                  }),
-              backgroundSize: "2px 2px",
-              backgroundClip: isSelected
-                ? "border-box"
-                : "padding-box",
-            }}
-          >
-             <>
-          {outerCircle && (
-            <>{outerCircle}</>
-          )}
-        </>
-            <Icon
-              {...(isDarkMode
-                ? {
-                    fill: resolveUrlId(
-                      LINEAR_GRADIENT_SVG_ID
-                    ),
-                  }
-                : {
-                    fill: "#ffffff",
-                  })}
-            />
-          </div>
+          <ButtonPillBIcon
+            isSelected={isSelected}
+            Icon={Icon}
+            outerCircle={outerCircle}
+          />
         </motion.div>
-       
+
         <AnimatePresence>
           {isString(children) ? (
             <motion.div
@@ -196,13 +150,11 @@ export const PillB: FC<TPillBProps> = ({
               style={{
                 height: sm.height,
               }}
-              {...(isReady
-                ? FADE_PRESENCE_DELAY_02
-                : {})}
+              {...FADE_PRESENCE_DELAY_02}
             >
               <div className="uppercase font-sans _outline-filter lg:(text-sm whitespace-nowrap) pointer-events-none">
                 <div
-                  className="absolute -inset-y-4 -inset-x-1 _gradient-radial opacity-40 filter-blur-md pointer-events-none"
+                  className="absolute -inset-y-4 -inset-x-1 _gradient-radial opacity-10 filter-blur-md pointer-events-none"
                   style={{
                     borderRadius,
                   }}

@@ -1,11 +1,13 @@
 import {
   forwardRef,
+  PointerEventHandler,
   PropsWithChildren,
   useImperativeHandle,
   useRef,
 } from "react";
 import clsx from "clsx";
 import { useTrillPicsStore } from "~/store/middleware";
+import { useContextGrid } from "~/context";
 
 export type TInnerHandle = {
   isHovering(): boolean;
@@ -24,13 +26,22 @@ const Inner = forwardRef<
     },
     ref
   ) => {
-    const { hoverKeys, set } =
-      useTrillPicsStore(
-        ({ hoverKeys, set }) => ({
-          hoverKeys,
-          set,
-        })
-      );
+    const { main,scrollY } = useContextGrid();
+    const {
+      hoverKeys,
+      set,
+      toggleOnscreen,
+    } = useTrillPicsStore(
+      ({
+        hoverKeys,
+        set,
+        toggleOnscreen,
+      }) => ({
+        hoverKeys,
+        set,
+        toggleOnscreen,
+      })
+    );
     const mutableRef =
       useRef<HTMLUListElement | null>(
         null
@@ -47,20 +58,33 @@ const Inner = forwardRef<
             return eventRef.current
               .isHovering;
           },
-          
         };
       },
 
       []
     );
-    const handleEnter = () => {
+    const handleEnter: PointerEventHandler<
+      HTMLUListElement
+    > = (e) => {
+
+      toggleOnscreen(true);
+      console.log("enter", e);
       if (hoverKeys.length > 0) {
         set({ hoverKeys: [] });
       }
       eventRef.current.isHovering =
         true;
+      main.cursor.x.set(e.pageX);
+      main.cursor.y.set(e.pageY );
     };
-    const handleLeave = () => {
+    const handleLeave: PointerEventHandler<
+      HTMLUListElement
+    > = (e) => {
+
+      console.log(e);
+      main.cursor.x.set(e.pageX);
+      main.cursor.y.set(e.pageY );
+
       // if (hoverKeys.length > 0) {
       //   set({ hoverKeys: [] });
       // }
@@ -84,7 +108,7 @@ const Inner = forwardRef<
     };
     return (
       <ul
-      ref={ref}
+        ref={ref}
         // ref={resolveRef}
         className={clsx(className)}
         onPointerOver={handleEnter}

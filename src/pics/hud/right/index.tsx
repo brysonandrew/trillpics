@@ -1,35 +1,16 @@
-import {
-  FC,
-  PropsWithChildren,
-} from "react";
+import { FC } from "react";
 import {
   LayoutGroup,
   motion,
 } from "framer-motion";
 import { TDimensions } from "@brysonandrew/config-types";
-import { LinesVertical } from "~/pages/video/_common/footer/left/lines/vertical";
-import { TMeasureContainerResult } from "~/shell/init/container";
+import { LinesVertical } from "~/components/lines/vertical";
 import { boxSize } from "~/constants/box/size";
 import { HideControls } from "~/pics/header/right/zen-mode";
 import { DarkMode } from "~/pics/header/right/dark-mode";
-import { ControlsPlayer } from "~/pics/hud/left/player";
-import { MOTION_CONFIG } from "@brysonandrew/motion-config-constants";
-import { PicsHeaderScrollTop } from "~/pics/header/scroll-top";
-import { PicsHudLeftLine } from "~/pics/hud/left/line";
-import { HudLeftShuffle } from "~/pics/hud/left/shuffle";
-import { useTrillPicsStore } from "~/store/middleware";
-import { useLocation } from "react-router";
-import { height } from "tailwindcss/defaultTheme";
-import { useContextGrid } from "~/context";
-import { Download } from "~/pages/video/player/_header/download";
-
-export type THudContainer = Extract<
-  TMeasureContainerResult,
-  { isDimensions: true }
->;
 type TProps = {
   foundation: DOMRect;
-  dimensions: TDimensions;
+  container: TDimensions;
   isIdle: boolean;
   playerHeight: number;
   isVerticalScroll: boolean;
@@ -38,12 +19,10 @@ export const PicsHudRight: FC<
   TProps
 > = ({
   foundation,
-  dimensions,
-  playerHeight,
+  container,
   isIdle,
 }) => {
   const s = boxSize();
-  const { dragger } = useContextGrid();
   return (
     <LayoutGroup>
       <motion.div
@@ -55,8 +34,8 @@ export const PicsHudRight: FC<
             foundation.height,
           gap: s.m025,
           height:
-            dimensions.height -
-            foundation.height   +
+            container.height -
+            foundation.height +
             s.m025,
         }}
       >

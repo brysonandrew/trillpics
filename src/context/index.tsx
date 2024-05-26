@@ -1,5 +1,4 @@
 import {
-  PropsWithChildren,
   useRef,
   createContext,
   useContext,
@@ -16,11 +15,10 @@ import {
   TVirtualizeContext,
   TGridHandle,
   TFoundationValue,
-  TElementValue,
+  TVirtualizeContextProviderProps,
 } from "~/context/types";
 import { useScrollUpdateHandler } from "~/context/scroll/update";
 import { useFonts } from "~/context/fonts";
-import { useUi } from "~/context/ui";
 import { useMove } from "~/context/hooks/move";
 import { useDragger } from "~/context/dragger";
 
@@ -31,29 +29,20 @@ const VirtualizeContext = createContext(
 export const useContextGrid = () =>
   useContext(VirtualizeContext);
 
-export type TVirtualizeContextProviderProps =
-  PropsWithChildren;
 export const VirtualizeContextProvider: FC<
   TVirtualizeContextProviderProps
-> = ({ children }) => {
+> = ({ children, screen }) => {
   const [
     foundationValue,
     updateFoundation,
   ] = useState<TFoundationValue>(null);
-  const [footerValue, updateFooter] =
-    useState<TElementValue>(null);
-  const [centerValue, updateCenter] =
-    useState<TElementValue>(null);
-  const [headerValue, updateHeader] =
-    useState<TElementValue>(null);
   const isOnscreen = useOnscreen();
   const ref: TRefMutable<TGridHandle> =
     useRef<TGridHandle | null>(null);
   const fonts = useFonts();
   const blur = useBlur();
   const cursor = useCursor();
-  const dragger= useDragger()
-  const ui = useUi();
+  const dragger = useDragger();
   const scrollY = useMotionValue(0);
 
   const main = useMemo(() => {
@@ -61,20 +50,18 @@ export const VirtualizeContextProvider: FC<
       cursor,
       dragger,
       blur,
-      ui,
     };
   }, []);
 
   const resetLayout = () => {
     updateFoundation(null);
-    updateHeader(null);
-    updateFooter(null);
   };
 
   const { handler: handleScroll } =
     useScrollUpdateHandler({
       scrollY,
       ref,
+      main,
     });
   const isIdle = useMove({
     main,
@@ -93,15 +80,10 @@ export const VirtualizeContextProvider: FC<
         fonts,
         dragger,
         onScroll: handleScroll,
-        headerValue,
-        updateHeader,
-        centerValue,
-        updateCenter,
         foundationValue,
         updateFoundation,
-        footerValue,
-        updateFooter,
         resetLayout,
+        screen,
       }}
     >
       {children}

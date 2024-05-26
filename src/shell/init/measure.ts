@@ -1,17 +1,8 @@
 import { useState } from "react";
-import {
-  animate,
-  useIsomorphicLayoutEffect,
-} from "framer-motion";
+import { useIsomorphicLayoutEffect } from "framer-motion";
 import { useEventListener } from "@brysonandrew/hooks-events";
 import { useTimeoutRef } from "@brysonandrew/hooks-window";
-import {
-  TDimensions,
-  TDimensionsInit,
-  TDimensionsReady,
-} from "@brysonandrew/config-types";
-import { useContextGrid } from "~/context";
-import { isValue } from "~/utils/validation/is/value";
+import { TDimensionsInit, TDimensionsReady } from "@brysonandrew/config-types";
 import { measureContainer } from "~/shell/init/container";
 import { useBlurAnimate } from "~/hooks/animate/blur/animate";
 
@@ -42,10 +33,13 @@ type TConfig = {
 } & {
   onReady?: (state: TReady) => void;
 };
+export type TReadyScreen = Extract<
+  TScreen,
+  { isDimensions: true }
+>;
 export const useScreenMeasure = (
   config: TConfig = {}
 ) => {
-  const { main } = useContextGrid();
   const [screen, setScreen] =
     useState<TScreen>(INIT_SCREEN);
   const { timeoutRef, endTimeout } =

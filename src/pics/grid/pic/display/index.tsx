@@ -7,11 +7,6 @@ import {
   TImgMotionProps,
 } from "@brysonandrew/config-types";
 import clsx from "clsx";
-import {
-  decryptRemoving,
-  removingCheck,
-} from "~/hooks/pic/video/read/entries";
-import { FULLSCREEN_Z } from "~/constants/dom";
 
 export type TPicDisplayProps =
   TDivMotionProps &
@@ -26,15 +21,15 @@ export const PicDisplay: FC<
   style,
   ...props
 }) => {
-  const isRemoving =
-    removingCheck(name);
-    if (isRemoving) {
-      console.log(name)
-    }
-  src =
-    src ?? resolvePicSrc(isRemoving
-      ? decryptRemoving(name)
-      : name);
+  // const isRemoving =
+  // removingCheck(name);
+  // if (isRemoving) {
+  //   console.log(name)
+  // }
+  // src =
+  //   src ?? resolvePicSrc(isRemoving
+  //     ? decryptRemoving(name)
+  //     : name);
 
   return (
     <motion.img
@@ -48,7 +43,6 @@ export const PicDisplay: FC<
       draggable={false}
       style={{
         ...style,
-      
       }}
       // onError={
       //   name === "11"

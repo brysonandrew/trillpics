@@ -28,7 +28,6 @@ export const useInit = () => {
     endTimeout();
     timeoutRef.current = setTimeout(
       () => {
-        console.log(screen)
         set(
           (draft: {
             screen: TScreen;

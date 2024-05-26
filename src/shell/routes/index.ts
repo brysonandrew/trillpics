@@ -3,7 +3,7 @@ import { Shell } from "~/shell";
 import { Pics } from "~/pics";
 import { SHELL_ROUTES_PAGES } from "~/shell/routes/pages";
 import { Home } from "~/pages/home";
-import { VideoShell } from "~/pages/video/shell";
+import { VideoShell } from "~/pages/video/_root/shell";
 import { NotFound } from "~/shell/routes/not-found";
 
 export const ROUTES: RouteObject[] = [

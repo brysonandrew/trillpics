@@ -7,7 +7,7 @@ import { TCell } from "~/pics/grid/pic";
 import { cellDecrypt } from "~/hooks/pic/cell/decrypt";
 import { cellEncrypt } from "~/hooks/pic/cell/encrypt";
 import {
-  CELL_PARAM_KEY,
+  OVER_CELL_PARAM_KEY,
   ZOOM_PARAM_KEY,
   PARAM_CLOSING_VALUE,
   PARAM_OPEN_VALUE,
@@ -30,7 +30,7 @@ export const usePicZoom = (
   } = picZoomRead(searchParams);
 
   const cellKeyParamValue =
-    searchParams.get(CELL_PARAM_KEY);
+    searchParams.get(OVER_CELL_PARAM_KEY);
   const currCell =
     cell ??
     cellDecrypt(cellKeyParamValue);
@@ -55,7 +55,7 @@ export const usePicZoom = (
 
     const r = paramsMoveToEnd(
       searchParams,
-      CELL_PARAM_KEY
+      OVER_CELL_PARAM_KEY
     );
 
     navigate(

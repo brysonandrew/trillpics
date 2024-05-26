@@ -1,12 +1,8 @@
 import {
   FC,
   PropsWithChildren,
-  useEffect,
 } from "react";
-import {
-  animate,
-  motion,
-} from "framer-motion";
+import { motion } from "framer-motion";
 import { useNavigationControls } from "~/hooks/navigation/controls";
 import { IconsVideo } from "~/components/icons/video/video";
 import { VideoPicCounterFloating } from "~/shell/screen/video-pic-counter/floating";
@@ -18,9 +14,9 @@ import {
 import { useVideoPicsCheck } from "~/hooks/pic/video/read/video-pics-check/hook";
 import { boxSize } from "~/constants/box/size";
 import { useContextGrid } from "~/context";
-import { THudContainer } from "~/pics/hud/left";
 import { TChildren } from "@brysonandrew/config-types";
-import { useLocation } from "react-router";
+import { useDraggerReset } from "~/pages/video/_root/reorder/use-dragger-reset";
+import { THudContainer } from "~/pics/hud";
 
 type TProps = {
   isLabel: boolean;
@@ -35,7 +31,6 @@ export const HudLeftVideo: FC<
   container,
   siblings,
 }) => {
-  const { pathname } = useLocation();
   const s = boxSize();
   const { dragger } = useContextGrid();
   const isVideoPics =
@@ -49,16 +44,9 @@ export const HudLeftVideo: FC<
         : VIDEO_ROUTE
     );
   };
-  useEffect(() => {
-    animate<number>(
-      dragger.y,
-      -container.height / 2 + s.m,
-      {
-        ease: "easeIn",
-        duration: 0.4,
-      }
-    );
-  }, []);
+  useDraggerReset({
+    containerHeight: container.height,
+  });
 
   const title = isActive
     ? "Exit video sequencer"
@@ -69,7 +57,7 @@ export const HudLeftVideo: FC<
       <motion.div
         className="absolute left-0 bottom-0"
         style={{
-          bottom: s.m15,
+          bottom: s.m15 - s.m0125,
           y: dragger.y,
           x: 0,
         }}
@@ -82,9 +70,7 @@ export const HudLeftVideo: FC<
               : "Turn a sequence of pics into video."
           }
           onClick={handleClick}
-          isSelected={
-            isActive
-          }
+          isSelected={isActive}
           isLabel={isLabel}
           Icon={IconsVideo}
           outerCircle={

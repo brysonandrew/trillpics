@@ -7,7 +7,7 @@ import { useTimebomb } from "~/hooks/use-time-bomb";
 import { boxSize } from "~/constants/box/size";
 
 type TProps = {
-  dimensions: TDimensions;
+  container: TDimensions;
 };
 export const PicsHudHeaderFoundation: FC<
   TProps

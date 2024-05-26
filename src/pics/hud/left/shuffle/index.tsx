@@ -21,6 +21,7 @@ export const HudLeftShuffle: FC<{
     updatePics();
   };
   const title = "Shuffle pics";
+  
   return (
     <PillBHover
       key={title}

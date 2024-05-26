@@ -21,15 +21,13 @@ export const useDragger = () => {
   );
   const y075 = useTransform(
     y,
-    (v) => v * 0.75
+    (v) => v * 0.8
   );
 
   const y06 = useTransform(
     y,
     (v) => v * 0.6
   );
-
-
 
   const dragger =
     useMemo<TDraggerMotion>(() => {

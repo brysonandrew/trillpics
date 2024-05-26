@@ -1,14 +1,11 @@
 import { FC } from "react";
 import {
-  AnimatePresence,
   HTMLMotionProps,
   motion,
 } from "framer-motion";
 import clsx, { ClassValue } from "clsx";
 import { TGradientShortcut } from "~uno/shortcuts/box/gradient";
 import { TChildren } from "@brysonandrew/config-types";
-import { LightingGlow } from "~/components/layout/lighting/glow";
-import { TexturesMeshRounded } from "~/components/textures/mesh/rounded";
 import { boxStyle } from "~/constants/box/style";
 
 export type TPillProps =
@@ -37,7 +34,7 @@ export const Pill: FC<TPillProps> = ({
   return (
     <motion.div
       className={clsx(
-        "center h-5 text-sx px-1.5 _gradient-radial z-20 _outline-filter",
+        "center h-5 px-1.5 _gradient-radial z-20",
         sizeClass ??
           ("h-5" + isCircle
             ? " w-5"

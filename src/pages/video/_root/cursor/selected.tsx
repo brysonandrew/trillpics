@@ -34,7 +34,7 @@ export const Video_RootCursorSelected: FC<
             size,
           });
         const style = {
-          y: scrollY,
+          // y: scrollY,
           ...position,
         };
         const io = {

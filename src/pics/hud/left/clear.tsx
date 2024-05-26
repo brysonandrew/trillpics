@@ -11,9 +11,10 @@ import { resolvePicSrc } from "~/utils/src";
 import { useTrillPicsStore } from "~/store/middleware";
 import { useBlurAnimate } from "~/hooks/animate/blur/animate";
 import { IconsTrash } from "~/components/icons/video/trash";
-import { MAX_COUNT } from "~/pages/video/_common/reorder/constants";
+import { MAX_COUNT } from "~/pages/video/_root/reorder/constants";
 import { usePicVideoWriteInputs } from "~/hooks/pic/video/write/inputs/hook";
 import { boxSize } from "~/constants/box/size";
+import { useContextGrid } from "~/context";
 export const LEFT_BUTTONS_CLEAR_TITLE =
   "Delete all";
 
@@ -32,19 +33,13 @@ export const LeftButtonsClear: FC<
   } = usePicVideoWriteInputs();
   const { togglePathValue, isActive } =
     useNavigationControls(VIDEO_ROUTE);
-  const { screen } = useTrillPicsStore(
-    ({ screen }) => ({ screen })
-  );
+  const { screen } = useContextGrid();
+  const handler = useBlurAnimate();
 
-  if (
-    !isVideoPics ||
-    !screen.isDimensions
-  )
-    return null;
+  if (!isVideoPics) return null;
   const container = screen.container;
   const unitSize =
     container.width / MAX_COUNT;
-  const handler = useBlurAnimate();
   const handleClear = () => {
     handler();
     if (!isActive) {

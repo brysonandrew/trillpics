@@ -3,7 +3,7 @@ import clsx from "clsx";
 import {
   Lines_Line,
   TLines_LineProps,
-} from "~/pages/video/_common/footer/left/lines/_line";
+} from "~/components/lines/_line";
 
 type TProps = TLines_LineProps;
 export const LinesVertical: FC<

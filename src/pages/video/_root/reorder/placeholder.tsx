@@ -1,9 +1,9 @@
 import type { FC } from "react";
 import clsx from "clsx";
-import { LinesVertical } from "~/pages/video/_common/footer/left/lines/vertical";
-import { TCommonProps } from "~/pages/video/_common/reorder/types";
-import { MAX_COUNT } from "~/pages/video/_common/reorder/constants";
-import { LinesHorizontal1 } from "~/pages/video/_common/footer/left/lines/horizontal/1";
+import { LinesVertical } from "~/components/lines/vertical";
+import { TCommonProps } from "~/pages/video/_root/reorder/types";
+import { MAX_COUNT } from "~/pages/video/_root/reorder/constants";
+import { LinesHorizontal1 } from "~/components/lines/horizontal/1";
 
 type TProps = TCommonProps;
 export const _CommonReorderPlaceholder: FC<

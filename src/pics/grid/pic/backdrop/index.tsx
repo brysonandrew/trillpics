@@ -7,6 +7,7 @@ import { useTrillPicsStore } from "~/store/middleware";
 import { TLinkProps } from "@brysonandrew/config-types";
 import clsx from "clsx";
 import { FULLSCREEN_Z } from "~/constants/dom";
+import { useContextGrid } from "~/context";
 
 type TProps = PropsWithChildren<
   Partial<TLinkProps>
@@ -19,10 +20,7 @@ export const PicBackdrop: FC<
   classValue,
   ...props
 }) => {
-  const { screen } = useTrillPicsStore(
-    ({ screen }) => ({ screen })
-  );
-  if (!screen.isDimensions) return null;
+  const { screen } = useContextGrid();
   const screenDimensions = {
     width: screen.width,
     height: screen.height,

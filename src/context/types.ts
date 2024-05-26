@@ -1,5 +1,6 @@
 import {
   Dispatch,
+  PropsWithChildren,
   SetStateAction,
 } from "react";
 import { MotionValue } from "framer-motion";
@@ -12,9 +13,15 @@ import { TBlur } from "~/context/blur";
 import { TCursor } from "~/context/cursor";
 import { TPicsRows } from "~/store/state/table/types";
 import { TFontsResult } from "~/context/fonts";
-import { TUseUiResult } from "~/context/ui";
 import { TCell } from "~/pics/grid/pic";
 import { TDraggerMotion } from "~/context/dragger";
+import { TReadyScreen } from "~/shell/init/measure";
+
+export type TScreenReadyProps = {
+  screen: TReadyScreen;
+};
+export type TVirtualizeContextProviderProps =
+  PropsWithChildren<TScreenReadyProps>;
 
 export type TVirtualizeListProps =
   TPicsRows;
@@ -45,34 +52,22 @@ export type TElementValue =
 export type TMain = {
   blur: TBlur;
   cursor: TCursor;
-  ui: TUseUiResult;
 };
-export type TVirtualizeContext = {
-  isIdle: boolean;
-  foundationValue: TFoundationValue;
-  updateFoundation: Dispatch<
-    SetStateAction<TFoundationValue>
-  >;
-  centerValue: TElementValue;
-  updateCenter: Dispatch<
-    SetStateAction<TElementValue>
-  >;
-  headerValue: TElementValue;
-  updateHeader: Dispatch<
-    SetStateAction<TElementValue>
-  >;
-  footerValue: TElementValue;
-  updateFooter: Dispatch<
-    SetStateAction<TElementValue>
-  >;
-  isOnscreen: boolean;
-  ref: TRefMutable<TGridHandle>;
-  main: TMain;
-  fonts: TFontsResult;
-  scrollY: MotionValue<number>;
-  onScroll(
-    props: ListOnScrollProps
-  ): void;
-  resetLayout(): void;
-  dragger: TDraggerMotion;
-};
+export type TVirtualizeContext =
+  TScreenReadyProps & {
+    isIdle: boolean;
+    foundationValue: TFoundationValue;
+    updateFoundation: Dispatch<
+      SetStateAction<TFoundationValue>
+    >;
+    isOnscreen: boolean;
+    ref: TRefMutable<TGridHandle>;
+    main: TMain;
+    fonts: TFontsResult;
+    scrollY: MotionValue<number>;
+    onScroll(
+      props: ListOnScrollProps
+    ): void;
+    resetLayout(): void;
+    dragger: TDraggerMotion;
+  };

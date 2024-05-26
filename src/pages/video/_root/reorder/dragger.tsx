@@ -1,20 +1,16 @@
 import {
   FC,
   PointerEventHandler,
-  useEffect,
 } from "react";
-import {
-  animate,
-  motion,
-} from "framer-motion";
+import { motion } from "framer-motion";
 import { useContextGrid } from "~/context";
 import { useHoverKey } from "~/hooks/use-hover-key";
 import clsx from "clsx";
 import { resolveAccessibilityTitles } from "@brysonandrew/utils-attributes";
 import { boxSize } from "~/constants/box/size";
-import { THudContainer } from "~/pics/hud/left";
 import { TDraggerMotion } from "~/context/dragger";
-import { LinesHorizontal1 } from "~/pages/video/_common/footer/left/lines/horizontal/1";
+import { LinesHorizontal1 } from "~/components/lines/horizontal/1";
+import { THudContainer } from "~/pics/hud";
 
 type TProps = {
   container: THudContainer;
@@ -25,7 +21,7 @@ type TProps = {
     motionValuesRecord: TDraggerMotion
   ): JSX.Element;
 };
-export const _CommonReorderDragger: FC<
+export const _RootReorderDragger: FC<
   TProps
 > = ({
   container,
@@ -36,7 +32,7 @@ export const _CommonReorderDragger: FC<
 }) => {
   const { main, dragger } =
     useContextGrid();
-  const { x, y, y06, y075 } = dragger;
+  const { x, y } = dragger;
   const title = "Drag video pics";
 
   const start = () => {
@@ -45,16 +41,6 @@ export const _CommonReorderDragger: FC<
   const stop = () => {
     main.cursor.isDragging = true;
   };
-  useEffect(() => {
-    animate<number>(
-      dragger.y,
-      -container.height / 2 - s.m2,
-      {
-        ease: "easeIn",
-        duration: 0.4,
-      }
-    );
-  }, []);
 
   const { isHover, motionHandlers } =
     useHoverKey({
@@ -81,8 +67,7 @@ export const _CommonReorderDragger: FC<
           bottom: 0,
           right: 0, // container.width * 0.5,
           top:
-            -container.height * 0.75 -
-            s.m,
+            -container.height * 0.5
         }}
         className={clsx(
           "center absolute rounded-md mb-4 _gradient-radial",

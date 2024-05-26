@@ -1,4 +1,5 @@
 import { useEffect } from "react";
+import { MotionValue } from "framer-motion";
 import {
   useLocation,
   useNavigate,
@@ -6,7 +7,7 @@ import {
 } from "react-router-dom";
 import { TCell } from "~/pics/grid/pic";
 import {
-  CELL_PARAM_KEY,
+  OVER_CELL_PARAM_KEY,
   SIZE_PARAM_KEY,
   ZOOM_PARAM_KEY,
 } from "~/hooks/pic/constants";
@@ -17,9 +18,12 @@ import { useTimeoutRef } from "@brysonandrew/hooks-window";
 import { TCursor } from "~/context/cursor";
 import { isString } from "~/utils/validation/is/string";
 
-export const usePicCell = (main: {
-  cursor: TCursor;
-}) => {
+export const usePicCell = (
+  main: {
+    cursor: TCursor;
+  },
+  scrollY: MotionValue
+) => {
   const { endTimeout, timeoutRef } =
     useTimeoutRef();
   const { isScrolling } =
@@ -34,10 +38,8 @@ export const usePicCell = (main: {
     useSearchParams();
 
   const paramValue = searchParams.get(
-    CELL_PARAM_KEY
+    OVER_CELL_PARAM_KEY
   );
-  const zoomParamValue =
-    searchParams.get(ZOOM_PARAM_KEY);
   const size = Number(
     searchParams.get(SIZE_PARAM_KEY)
   );
@@ -45,7 +47,7 @@ export const usePicCell = (main: {
     nextCell: TCell
   ) => {
     const paramValue = searchParams.get(
-      CELL_PARAM_KEY
+      OVER_CELL_PARAM_KEY
     );
 
     const key = cellEncrypt(nextCell);
@@ -53,12 +55,17 @@ export const usePicCell = (main: {
   };
 
   const move = (
-    mx = main.cursor.x.get(),
-    my = main.cursor.y.get()
+    mx?: number,
+    my?: number
   ) => {
+    const currScrollY = scrollY.get();
 
-    if (size === 0)
-      return;
+    mx = mx ?? main.cursor.x.get();
+    my =
+      (my ?? main.cursor.y.get()) -
+      currScrollY;
+    console.log(mx, my, size);
+    if (size === 0) return;
 
     const column = ~~(mx / size);
     const row = ~~(my / size);
@@ -68,7 +75,7 @@ export const usePicCell = (main: {
       row,
     });
     const paramValue = searchParams.get(
-      CELL_PARAM_KEY
+      OVER_CELL_PARAM_KEY
     );
 
     if (
@@ -77,42 +84,41 @@ export const usePicCell = (main: {
       main.cursor.prev.row !== row
     ) {
       endTimeout();
-      if (!isScrolling) {
-        timeoutRef.current = setTimeout(
-          () => {
-            if (
-              isString(key) &&
-              key !== paramValue
-            ) {
-              searchParams.set(
-                CELL_PARAM_KEY,
-                key
-              );
-              navigate(
-                `${pathname}?${searchParams}`,
-                { replace: true }
-              );
-            }
-          },
-          0
-        );
-        main.cursor.prev.column =
-          column;
-        main.cursor.prev.row = row;
-      }
+      // if (!isScrolling) {
+      timeoutRef.current = setTimeout(
+        () => {
+          if (
+            isString(key) &&
+            key !== paramValue
+          ) {
+            searchParams.set(
+              OVER_CELL_PARAM_KEY,
+              key
+            );
+            navigate(
+              `${pathname}?${searchParams}`,
+              { replace: true }
+            );
+          }
+        },
+        0
+      );
+      main.cursor.prev.column = column;
+      main.cursor.prev.row = row;
+      // }
     }
   };
 
   const leave = (nextCell: TCell) => {
-    console.log("cell.l")
+    console.log("cell.l");
 
     const key = cellEncrypt(nextCell);
     const paramValue = searchParams.get(
-      CELL_PARAM_KEY
+      OVER_CELL_PARAM_KEY
     );
     if (key === paramValue) {
       searchParams.delete(
-        CELL_PARAM_KEY
+        OVER_CELL_PARAM_KEY
       );
       navigate(
         `${pathname}?${searchParams}`
@@ -122,7 +128,9 @@ export const usePicCell = (main: {
 
   const clear = () => {
     console.log("cell.clear");
-    searchParams.delete(CELL_PARAM_KEY);
+    searchParams.delete(
+      OVER_CELL_PARAM_KEY
+    );
     navigate(
       `${pathname}?${searchParams}`
     );

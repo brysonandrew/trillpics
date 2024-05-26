@@ -1,22 +1,46 @@
-import {
-  FC,
-  PropsWithChildren,
-} from "react";
-import { TDimensions } from "@brysonandrew/config-types";
+import { FC } from "react";
 import { PicsHudHeaderFoundation } from "~/pics/hud/header/foundation";
+import { useContextGrid } from "~/context";
+import { PicsHudHeaderRight } from "~/pics/hud/header/right";
+import { PicsHudRight } from "~/pics/hud/right";
+import { THudContainer } from "~/pics/hud";
 
 type TProps = {
-  dimensions: TDimensions;
+  container: THudContainer;
+  isVerticalScroll: boolean;
 };
 export const PicsHudHeader: FC<
-  PropsWithChildren<TProps>
-> = ({ children, dimensions }) => {
+  TProps
+> = ({ isVerticalScroll, container }) => {
+  const { foundationValue, isIdle } =
+    useContextGrid();
   return (
     <header style={{ height: 0 }}>
       <PicsHudHeaderFoundation
-        dimensions={dimensions}
+        container={container}
       />
-      {children}
+      {foundationValue && (
+        <>
+          <PicsHudHeaderRight
+            key="PicsHudHeaderRight"
+            foundation={foundationValue}
+            container={container}
+            isIdle={isIdle}
+          />
+          <PicsHudRight
+            key="PicsHudRight"
+            isIdle={isIdle}
+            playerHeight={
+              container.playerHeight
+            }
+            foundation={foundationValue}
+            container={container}
+            isVerticalScroll={
+              isVerticalScroll
+            }
+          />
+        </>
+      )}
     </header>
   );
 };

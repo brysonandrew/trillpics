@@ -33,11 +33,10 @@ export const useMove = ({
     useTimeoutRef();
   const [isCursorMove, setCursorMove] =
     useState(false);
-  const { move } = usePicCell(main);
+  const { move } = usePicCell(main,scrollY);
   const handleMove = (
     event: PointerEvent
   ) => {
-    if (main.cursor.isDragging || hoverKeys.length > 0) return;
     endTimeout();
     if (isIdle) {
       set({ isIdle: false });
@@ -49,10 +48,9 @@ export const useMove = ({
       },
       60000
     );
-    const currScrollY = scrollY.get();
     const mx = event.pageX;
     const my =
-      event.pageY - currScrollY;
+      event.pageY;
     const prevX = main.cursor.x.get();
     const prevY = main.cursor.y.get();
 
@@ -62,9 +60,12 @@ export const useMove = ({
     );
     if (Math.abs(d) > 1) {
       main.cursor.isHoverIdle = false;
+      console.log(mx, my, 'update');
+
       main.cursor.x.set(mx);
       main.cursor.y.set(my);
     }
+    if (main.cursor.isDragging || hoverKeys.length > 0) return;
 
     if (isOnscreen && !isScrolling) {
       move(mx, my);

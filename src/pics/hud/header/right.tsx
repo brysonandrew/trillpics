@@ -1,19 +1,19 @@
 import { FC } from "react";
 import { boxSize } from "~/constants/box/size";
 import { TDimensions } from "@brysonandrew/config-types";
-import { LinesHorizontal } from "~/pages/video/_common/footer/left/lines/horizontal";
-import { LinesTopRight } from "~/pages/video/_common/footer/left/lines/top-right";
+import { LinesHorizontal } from "~/components/lines/horizontal";
+import { LinesTopRight } from "~/components/lines/top-right";
 import { HeaderSubtitle } from "~/pics/header/subtitle";
+import { THudContainer } from "~/pics/hud";
 
 type TProps = {
   isIdle: boolean;
-  dimensions: TDimensions;
+  container: THudContainer;
   foundation: DOMRect;
 };
-
 export const PicsHudHeaderRight: FC<
   TProps
-> = ({ foundation, dimensions }) => {
+> = ({ foundation, container }) => {
   const s = boxSize();
   return (
     <div
@@ -22,7 +22,7 @@ export const PicsHudHeaderRight: FC<
       style={{
         left: foundation.width + s.m05,
         width:
-          dimensions.width -
+          container.width -
           foundation.width,
         top: s.m05,
         gap: s.m05,
@@ -31,7 +31,7 @@ export const PicsHudHeaderRight: FC<
       <LinesHorizontal classValue="hidden lg:flex" />
       <HeaderSubtitle classValue="hidden lg:flex" />
       <LinesTopRight
-        dimensions={dimensions}
+        container={container}
       />
     </div>
   );

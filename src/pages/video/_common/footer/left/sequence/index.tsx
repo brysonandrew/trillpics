@@ -1,6 +1,6 @@
 import type { FC } from "react";
 import { boxSize } from "~/constants/box/size";
-import { LinesHorizontal } from "~/pages/video/_common/footer/left/lines/horizontal";
+import { LinesHorizontal } from "~/components/lines/horizontal";
 import { ControlsSequence } from "~/pages/video/_common/footer/left/show";
 import { TVideoFooterProps } from "~/pages/video/_common/footer/types";
 

@@ -1,24 +1,22 @@
 import type { FC } from "react";
 import { boxSize } from "~/constants/box/size";
 import { useContextGrid } from "~/context";
-import { LinesHorizontal } from "~/pages/video/_common/footer/left/lines/horizontal";
+import { LinesHorizontal } from "~/components/lines/horizontal";
 import { PicsHeaderScrollTop } from "~/pics/header/scroll-top";
 import { HudLeftShuffle } from "~/pics/hud/left/shuffle";
 import { useTrillPicsStore } from "~/store/middleware";
 
 export const GridOptions: FC = () => {
-  const { foundationValue, isIdle } =
+  const { foundationValue, isIdle,screen } =
     useContextGrid();
-  const { isScroll, screen } =
+  const { isScroll } =
     useTrillPicsStore(
-      ({ isScroll, screen }) => ({
+      ({ isScroll }) => ({
         isScroll,
-        screen,
       })
     );
   if (
-    !foundationValue ||
-    !screen.isDimensions
+    !foundationValue
   )
     return null;
   const s = boxSize();

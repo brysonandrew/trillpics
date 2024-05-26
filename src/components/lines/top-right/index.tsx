@@ -4,21 +4,22 @@ import {
   TDivMotionProps,
 } from "@brysonandrew/config-types";
 import clsx from "clsx";
-import { TLinesOptions } from "~/pages/video/_common/footer/left/lines/types";
-import { Lines_Line } from "~/pages/video/_common/footer/left/lines/_line";
+import { TLinesOptions } from "~/components/lines/types";
+import { Lines_Line } from "~/components/lines/_line";
 import { boxRadius } from "~/constants/box/radius";
 import { boxSize } from "~/constants/box/size";
+import { THudContainer } from "~/pics/hud";
 
 type TProps = TDivMotionProps &
   TLinesOptions & {
-    dimensions: TDimensions;
+    container: THudContainer;
   };
 export const LinesTopRight: FC<
   TProps
 > = ({
   classValue,
   style,
-  dimensions,
+  container,
   ...props
 }) => {
   const rounded = boxRadius();

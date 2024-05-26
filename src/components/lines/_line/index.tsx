@@ -1,7 +1,7 @@
 import type { FC } from "react";
 import { TDivMotionProps } from "@brysonandrew/config-types";
 import clsx from "clsx";
-import { TLinesOptions } from "~/pages/video/_common/footer/left/lines/types";
+import { TLinesOptions } from "~/components/lines/types";
 import { motion } from "framer-motion";
 
 export type TLines_LineProps =TLinesOptions;

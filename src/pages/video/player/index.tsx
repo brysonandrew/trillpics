@@ -1,66 +1,36 @@
-import { useEffect } from "react";
-import { animate } from "framer-motion";
 import { PicBackdrop } from "~/pics/grid/pic/backdrop";
 import { RemotionPlayer } from "~/components/remotion/player";
 import { Helmet } from "react-helmet-async";
 import { useTrillPicsStore } from "~/store/middleware";
 import { boxSize } from "~/constants/box/size";
 import { usePicVideoReadInputs } from "~/hooks/pic/video/read/inputs/hook";
-import { useContextGrid } from "~/context";
 import { FULLSCREEN_Z } from "~/constants/dom";
 import { PlaybackButtons } from "~/components/remotion/player/playback/buttons";
 import { PlaybackProgressSeeker } from "~/components/remotion/player/playback/progress/seeker";
 import { PlaybackTimer } from "~/components/remotion/player/playback/timer";
 import { Download } from "~/pages/video/player/_header/download";
-import { ControlsPlayer } from "~/pics/hud/left/player";
-import { Seperator } from "~/pages/video/_common/footer/left/seperator";
 import { PlaybackButtonsFullscreen } from "~/components/remotion/player/playback/buttons/fullscreen";
-import { GRADIENT_BLUE_PINK_YELLOW } from "~app/color/gradient";
-import { FullScreenToggle } from "~root/build/612.bundle";
+import {
+  Link,
+  useSearchParams,
+} from "react-router-dom";
+import { VIDEO_ROUTE } from "~/shell/routes";
+import { useContextGrid } from "~/context";
 export const OVERFLOW_HIDDEN =
   "overflow: hidden;";
 
 export const VideoPlayer = () => {
-  const { screen } = useTrillPicsStore(
-    ({ screen }) => ({
-      screen,
-    })
-  );
-  const containerHeight =
-    screen.isDimensions
-      ? screen.container.height
-      : 0;
+  const [searchParams] =
+    useSearchParams();
+  const { screen } = useContextGrid();
+
   const inputProps =
     usePicVideoReadInputs();
 
-  const {
-    ref,
-    dragger,
-    foundationValue,
-  } = useContextGrid();
-
   const s = boxSize();
-  useEffect(() => {
-    ref.current?.disableScroll();
 
-    if (containerHeight < 1) return;
-    animate<number>(
-      dragger.y,
-      -containerHeight / 2,
-      {
-        ease: "easeIn",
-        duration: 0.4,
-      }
-    );
-
-    return () => {
-      ref.current?.enableScroll();
-    };
-  }, [containerHeight]);
-  if (!screen.isDimensions) return null;
   const width =
     screen.container.width - s.m3;
-  const dimensions = screen.container;
   return (
     <>
       <Helmet>
@@ -68,9 +38,14 @@ export const VideoPlayer = () => {
           Trill Pics | Viewing Room
         </title>
       </Helmet>
-      <PicBackdrop />
+      <Link
+        className="fill"
+        to={`${VIDEO_ROUTE}?${searchParams}`}
+      >
+        <PicBackdrop />
+      </Link>
       <div
-        className="absolute column-start items-stretch h-full"
+        className="absolute column-start items-stretch"
         style={{
           gap: s.m05,
           top:
@@ -80,10 +55,10 @@ export const VideoPlayer = () => {
             screen.container.left +
             s.m15,
           width,
-          height:
-            containerHeight -
-            (foundationValue?.height ??
-              0),
+          // height:
+          //   containerHeight -
+          //   (foundationValue?.height ??
+          //     0),
           zIndex: FULLSCREEN_Z,
         }}
       >
@@ -126,7 +101,7 @@ export const VideoPlayer = () => {
                 <PlaybackTimer />
               </div>
               <div className="relative flex gap-2">
-                <PlaybackButtonsFullscreen direction="rtl"  />
+                <PlaybackButtonsFullscreen direction="rtl" />
                 <Download direction="rtl" />
               </div>
             </div>

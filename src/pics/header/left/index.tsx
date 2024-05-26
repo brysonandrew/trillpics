@@ -5,10 +5,7 @@ import {
   useLocation,
   useSearchParams,
 } from "react-router-dom";
-import {
-  HOME_ROUTE,
-  VIDEO_ROUTE,
-} from "~/constants/params";
+import { HOME_ROUTE } from "~/constants/params";
 import { Title } from "~/pics/header/left/title";
 import { useScrollTopHandler } from "~/context/scroll/top";
 import { useTrillPicsStore } from "~/store/middleware";

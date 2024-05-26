@@ -7,32 +7,21 @@ import {
   LayoutGroup,
   motion,
 } from "framer-motion";
-import { TDimensions } from "@brysonandrew/config-types";
-import { TMeasureContainerResult } from "~/shell/init/container";
 import { boxSize } from "~/constants/box/size";
 import { HudLeftVideo } from "~/pics/hud/left/video";
-import { PicsHudLeftLine } from "~/pics/hud/left/line";
 import { ControlsPlayer } from "~/pics/hud/left/player";
 import { boxRadius } from "~/constants/box/radius";
-import { Lines_Line } from "~/pages/video/_common/footer/left/lines/_line";
+import { Lines_Line } from "~/components/lines/_line";
 import { useContextGrid } from "~/context";
 import { LeftButtonsClear } from "~/pics/hud/left/clear";
 import { useVideoPicsCheck } from "~/hooks/pic/video/read/video-pics-check/hook";
 import { HudLeftAddRandom } from "~/pics/hud/left/add-random";
-import { usePicTableReadSize } from "~/hooks/pic/table/read/size";
 import { VideoPicsCounter } from "~/shell/screen/video-pic-counter";
-import { Download } from "~/pages/video/player/_header/download";
-import { PlaybackTimer } from "~/components/remotion/player/playback/timer";
-import { PlaybackProgressSeeker } from "~/components/remotion/player/playback/progress/seeker";
-import { LinesHorizontal } from "~/pages/video/_common/footer/left/lines/horizontal";
+import { THudContainer } from "~/pics/hud";
 
-export type THudContainer = Extract<
-  TMeasureContainerResult,
-  { isDimensions: true }
->;
 type TProps = PropsWithChildren<{
   foundation: DOMRect;
-  dimensions: THudContainer;
+  container: THudContainer;
   playerHeight: number;
   isVerticalScroll: boolean;
 }>;
@@ -41,9 +30,8 @@ export const PicsHudLeft: FC<
 > = ({
   foundation,
   playerHeight,
-  dimensions,
+  container,
 }) => {
-  const size = usePicTableReadSize();
   const { dragger, isIdle } =
     useContextGrid();
   const s = boxSize();
@@ -63,9 +51,7 @@ export const PicsHudLeft: FC<
               foundation.height +
               s.m05 +
               s.m025,
-            height: dimensions.height,
-            // -
-            // foundation.height,
+            height: container.height,
           }}
         >
           <Lines_Line
@@ -78,58 +64,16 @@ export const PicsHudLeft: FC<
               left: s.m05,
             }}
           />
-          {/* <motion.div
-            className="absolute left-0 bottom-0"
-            style={{
-              bottom: -s.m2,
-              x: 0,
-              y: dragger.y06,
-            }}
-          >
-            <ControlsPlayer
-              isLabel={isIdle}
-            >
-              <div
-                className="absolute flex-col flex items-end justify-center left-0 bottom-0 bg-white dark:bg-black"
-                style={{
-                  height: 0,
-                  left: s.m05,
-                  bottom: s.m05,
-                  width:
-                    dimensions.width,
-                }}
-              >
-                <div className="absolute inset-0 row justify-center">
-                  <PlaybackTimer />
-                </div>
-                <div
-                  className="absolute row justify-center w-full"
-                  style={{
-                    height:0,// s.m025,
-                    left:
-                      s.m025 + s.m0125,
-                    width:
-                      dimensions.width -
-                      s.m,
-                    bottom: -s.m,
-                  }}
-                >
-                  <PlaybackProgressSeeker />
-                </div>
-                <Download direction="rtl" />
-              </div>
-            </ControlsPlayer>
-          </motion.div> */}
           <HudLeftVideo
             isLabel={isIdle}
-            container={dimensions}
+            container={container}
             siblings={
               <>
                 <motion.div
                   layout
                   className="relative row-space"
                   style={{
-                    width: s.m4*2,
+                    width: s.m4 + s.m,
                     height: 0,
                     left: s.m15,
                     bottom:
@@ -137,7 +81,7 @@ export const PicsHudLeft: FC<
                     // s.m025 +
                     // s.m0125 / 2,
                     gap: s.m05,
-                    x: 0,
+                    x: dragger.x025,
                     y: dragger.y,
                   }}
                 >
@@ -148,7 +92,7 @@ export const PicsHudLeft: FC<
                   className="absolute bottom-0"
                   style={{
                     left:
-                      dimensions.width +
+                      container.width +
                       s.m,
                     bottom: 0,
                     x: "-100%",
@@ -183,8 +127,7 @@ export const PicsHudLeft: FC<
               className="absolute bottom-0"
               style={{
                 left:
-                  dimensions.width +
-                  s.m,
+                  container.width + s.m,
                 x: "-100%",
               }}
             >

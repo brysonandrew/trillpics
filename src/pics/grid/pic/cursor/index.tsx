@@ -4,107 +4,168 @@ import {
   motion,
   MotionConfig,
 } from "framer-motion";
-import { useTrillPicsStore } from "~/store/middleware";
 import { useContextGrid } from "~/context";
-import { useReady } from "~/hooks/use-ready";
 import { resolveCompositeKey } from "@brysonandrew/utils-key";
 import { CursorCorners } from "~/pics/grid/pic/cursor/corners";
 import { TPropsWithChildren } from "@brysonandrew/config-types";
 import { useCellOver } from "~/hooks/pic/cell/over/hook";
 import { resolvePositionFromCell } from "~/pics/grid/pic/cursor/position-from-cell";
 import {
-  DELAY_04_TRANSITION_PROPS,
   DELAY_TRANSITION_PROPS,
   PRESENCE_OPACITY_06,
 } from "~/constants/animation";
 import { boxRadius } from "~/constants/box/radius";
+import { PRESENCE_OPACITY } from "@brysonandrew/motion-config-constants";
+import {
+  TUseShowCursorConfig,
+  useShowCursor,
+} from "~/pics/grid/pic/cursor/use-show-cursor";
+import { PicCursorSquare } from "~/pics/grid/pic/cursor/square";
+import { TUsePicSelected } from "~/hooks/pic/selected";
+import { useTrillPicsStore } from "~/store/middleware";
 
 export const PicCursor: FC<
-  TPropsWithChildren<{
-    isDisabled?: boolean;
-    onClick?(): void;
-  }>
-> = ({
-  onClick,
-  children,
-  isDisabled,
-}) => {
-  const cellOverResult = useCellOver();
-  const { scrollY } = useContextGrid();
+  TPropsWithChildren<
+    TUseShowCursorConfig &
+      TUsePicSelected
+  >
+> = ({ children, ...props }) => {
   const {
-    isScrolling,
-    isOnscreen,
-    isControls,
-    isActiveHover,
-  } = useTrillPicsStore(
-    ({
-      isScrolling,
-      isOnscreen,
-      isControls,
-      isActiveHover,
-    }) => ({
-      isScrolling,
-      isOnscreen,
-      isControls,
-      isActiveHover,
-    })
-  );
-
-  const isReady = useReady();
-  const position =
-    resolvePositionFromCell(
-      cellOverResult
+    currCell,
+    size,
+    currKey,
+    currName,
+  } = props;
+  const {
+    scrollY,
+    main: { cursor },
+  } = useContextGrid();
+  const { isOnscreen, isScrolling ,hoverKeys} =
+    useTrillPicsStore(
+      ({
+        hoverKeys,
+        isOnscreen,
+        isScrolling,
+      }) => ({
+        hoverKeys,
+        isOnscreen,
+        isScrolling,
+      })
     );
+    const {
+      isControls,
+      isActiveHover,
+    } = useTrillPicsStore(
+      ({
+        isScrolling,
+        isOnscreen,
+        isControls,
+        isActiveHover,
+      }) => ({
+        isScrolling,
+        isOnscreen,
+        isControls,
+        isActiveHover,
+      })
+    );
+  
+  const position =
+    resolvePositionFromCell({
+      cell: currCell,
+      size,
+    });
   const borderRadus = boxRadius();
-
   const io = {
     opacity: 0,
     scale: 1,
     ...position,
   };
+  const isShown = useShowCursor(props);
+
   return (
-    <MotionConfig
-      transition={{
-        ease: "linear",
-        duration: isScrolling ? 0 : 0.2,
-      }}
-    >
-      <motion.div
-        key={resolveCompositeKey(
-          "scroller",
-          `${isReady}`
-        )}
-        className="fill center text-2xl cursor-pointer pointer-events-none"
-        style={{
-          y: scrollY,
-          ...position,
+    <>
+      <MotionConfig
+        transition={{
+          ease: "linear",
+          duration: 0.2,
         }}
-        whileInView={{
-          opacity: 1,
-        }}
-        initial={io}
-        animate={{
-          opacity: 0,
-          ...position,
-        }}
-        exit={io}
       >
-        <MotionConfig
-          transition={{
-            ease: "linear",
-            duration: isScrolling
-              ? 0
-              : 0.2,
+        <motion.div
+          className="absolute top-0 left-0 w-0 h-0 pointer-events-none"
+          style={{
+            x: cursor.x,
+            y: cursor.y,
           }}
         >
+          <span className="column-start absolute bottom-1 right-1">
+            {/* {isActiveHover && <div>active hover</div>} */}
+
+            <div>hk: {hoverKeys.join(" - ")}</div>
+            {!isOnscreen && (
+              <span>AFK</span>
+            )}
+            {isScrolling && (
+              <span>scrolling...</span>
+            )}
+            {props.currName ? (
+              <div>
+                {props.currName}
+              </div>
+            ) : (
+              <div>
+                no cell
+              </div>
+            )}
+          </span>
+        </motion.div>
+      </MotionConfig>
+      <MotionConfig
+        transition={{
+          ease: "linear",
+          duration: 0.2,
+        }}
+      >
+        <motion.div
+          key={resolveCompositeKey(
+            currKey,
+            "scroller",
+            `${isShown}`
+          )}
+          className="fill center text-2xl cursor-pointer pointer-events-none"
+          style={{
+            y: scrollY,
+            ...position,
+          }}
+          whileInView={{
+            opacity: 0.5,
+          }}
+          initial={io}
+          animate={{
+            opacity: 0,
+            ...position,
+          }}
+          exit={io}
+        >
+          {/* <MotionConfig
+          transition={{
+            ease: "linear",
+            duration: 0.2,
+          }}
+        > */}
           <AnimatePresence>
-            {!isActiveHover &&
-              !isDisabled &&
-              isOnscreen &&
-              isControls && (
+            {isShown && (
+              <motion.div
+                className="fill center"
+                key={resolveCompositeKey(
+                  currKey,
+                  "display"
+                )}
+                {...PRESENCE_OPACITY}
+              >
                 <motion.div
                   className="fill center"
                   key={resolveCompositeKey(
+                    currKey,
                     "display"
                   )}
                   {...PRESENCE_OPACITY_06}
@@ -131,38 +192,31 @@ export const PicCursor: FC<
                   >
                     <CursorCorners />
                   </motion.div>
-                  <motion.div
-                    key="inner-square"
-                    className="absolute left-1/6 top-1/6 w-2/3 h-2/3 border border-white dark:border-black opacity-60"
-                    style={{
-                      borderRadius:
-                        borderRadus,
-                    }}
-                    initial={{
-                      opacity: 0.1,
-                      scale: 1,
-                    }}
-                    animate={{
-                      scale: 0.8,
-                      opacity: 1,
-                    }}
-                    exit={{
-                      scale: 1,
-                      opacity: 0.1,
-                    }}
-                    {...DELAY_04_TRANSITION_PROPS}
-                  ></motion.div>
+                  <PicCursorSquare
+                    key={resolveCompositeKey(
+                      "inner-square",
+                      currKey
+                    )}
+                  />
                 </motion.div>
-              )}
-            <div
-              className="grayscale-10 contrast-80 _outline-filter"
-              key="children"
-            >
-              {children}
-            </div>
+                {isShown && (
+                  <motion.div
+                    className="grayscale-10 contrast-80 _outline-filter"
+                    key={resolveCompositeKey(
+                      "children",
+                      currKey
+                    )}
+                    {...PRESENCE_OPACITY}
+                  >
+                    {children}
+                  </motion.div>
+                )}
+              </motion.div>
+            )}
           </AnimatePresence>
-        </MotionConfig>
-      </motion.div>
-    </MotionConfig>
+          {/* </MotionConfig> */}
+        </motion.div>
+      </MotionConfig>
+    </>
   );
 };

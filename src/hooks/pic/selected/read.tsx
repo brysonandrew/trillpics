@@ -1,8 +1,8 @@
 import { useSearchParams } from "react-router-dom";
-import { TCell } from "~/pics/grid/pic";
-import { SELECTED_PARAM_KEY } from "~/hooks/pic/constants";
-import { useDetailsFromCell } from "~/hooks/pic/cell/over/details/hook";
-import { decryptRemoving, removingCheck, videoReadEntries } from "~/hooks/pic/video/read/entries";
+import {
+  REMOVING_PARAM_KEY,
+  SELECTED_PARAM_KEY,
+} from "~/hooks/pic/constants";
 
 export const usePicSelectedRead = (
   name: string,
@@ -12,18 +12,13 @@ export const usePicSelectedRead = (
     useSearchParams();
   const paramValues =
     searchParams.getAll(key);
-
-  const removingInValuesCheck = (
-    name: string
-  ) =>
-    paramValues.some(
-      (v) =>
-        removingCheck(v) &&
-        decryptRemoving(v) === name
+  const removingParamValues =
+    searchParams.getAll(
+      REMOVING_PARAM_KEY
     );
 
   const isRemoving =
-  removingInValuesCheck(name);
+    removingParamValues.includes(name);
 
   return {
     isSelected:

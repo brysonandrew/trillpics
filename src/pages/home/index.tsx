@@ -10,12 +10,14 @@ import { GridOptions } from "~/pics/hud/left/grid-options";
 import { IconsOpen80 } from "~/components/icons/open/X";
 
 export const Home: FC = () => {
+  const cursorProps =
+    useHomeClickSelect();
   const {
     isSelectedPics,
     names,
     cells,
     isRemoving,
-  } = useHomeClickSelect();
+  } = cursorProps;
   const isDisabled = Boolean(
     isSelectedPics || isRemoving
   );
@@ -48,6 +50,7 @@ export const Home: FC = () => {
 
       <PicCursor
         isDisabled={isDisabled}
+        {...cursorProps}
       >
         <IconsOpen80 />
       </PicCursor>

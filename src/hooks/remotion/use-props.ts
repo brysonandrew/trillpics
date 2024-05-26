@@ -3,28 +3,25 @@ import { useImageDimensions } from "@brysonandrew/measure";
 import { DIMENSIONS } from "~/constants/remotion";
 import { useTrillPicsStore } from "~/store/middleware";
 import { DEFAULT_INPUT } from "~/pages/video/player/_header/download";
+import { useContextGrid } from "~/context";
 
 export const useRemotionProps = (
   picVideoInputs = DEFAULT_INPUT[
     "input"
   ]
 ) => {
-  const {
-    screen,
-    fps,
-    pics: allPics,
-  } = useTrillPicsStore(
-    ({ screen, fps, pics }) => ({
-      screen,
-      fps,
-      pics,
-    })
-  );
+  const { fps, pics: allPics } =
+    useTrillPicsStore(
+      ({ fps, pics }) => ({
+        fps,
+        pics,
+      })
+    );
+    const { screen } = useContextGrid();
+
   const dimensions = useImageDimensions(
     {
-      box: screen.isDimensions
-        ? screen.container
-        : null,
+      box: screen.container,
       image: DIMENSIONS,
     }
   );

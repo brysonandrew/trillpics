@@ -1,6 +1,5 @@
 import type { FC } from "react";
 import { TUseDarkMode } from "@brysonandrew/dark-mode";
-import { GRADIENT_MESH_LIGHT } from "~app/color/gradient/mesh";
 import {
   SCROLLBAR_BORDER_WIDTH,
   SCROLLBAR_WIDTH,
@@ -11,23 +10,18 @@ export const ShellBackground: FC<
 > = ({ isDarkMode }) => {
   return (
     <div
-      className="fill brightness-20"
+      className="fill brightness-20 _gradient-mesh"
       style={{
         minHeight: "100vh",
-        ...GRADIENT_MESH_LIGHT,
-        backgroundSize: "4px 4px",
       }}
     >
       <div
-        className="fill inset-3"
+        className="fill inset-3 _gradient-mesh"
         style={{
           right: `calc(0.75rem + ${
             SCROLLBAR_WIDTH +
             SCROLLBAR_BORDER_WIDTH * 2
           }px)`,
-          ...GRADIENT_MESH_LIGHT,
-          backgroundSize: "4px 4px",
-          borderRadius: 4,
         }}
       >
         <img

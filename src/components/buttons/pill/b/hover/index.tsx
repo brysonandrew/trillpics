@@ -52,7 +52,6 @@ export const PillBHover: FC<
       >
         {children}
       </PillBHoverOverlay>
-
       <PillB
         title={title}
         onClick={handleClick}

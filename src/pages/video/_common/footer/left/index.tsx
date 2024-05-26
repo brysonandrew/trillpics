@@ -1,24 +1,19 @@
 import { FC } from "react";
 import { useTrillPicsStore } from "~/store/middleware";
 import { boxSize } from "~/constants/box/size";
-import { LinesVertical } from "~/pages/video/_common/footer/left/lines/vertical";
+import { LinesVertical } from "~/components/lines/vertical";
 import { FooterNavDelete } from "~/pages/video/_common/footer/left/delete";
 import { FooterNavAdd } from "~/pages/video/_common/footer/left/add";
 import { usePicVideoReadInputs } from "~/hooks/pic/video/read/inputs/hook";
+import { useContextGrid } from "~/context";
 
 export const _CommonFooterLeft: FC =
   () => {
-    const { screen } =
-      useTrillPicsStore(
-        ({ screen }) => ({
-          screen,
-        })
-      );
+    const { screen } = useContextGrid();
     const { count } =
       usePicVideoReadInputs();
     const isVideoPics = count > 0;
     const container =
-      screen.isDimensions &&
       screen.container;
     if (!container) return null;
 

@@ -12,15 +12,17 @@ import {
   useNavigate,
   useSearchParams,
 } from "react-router-dom";
-import { CELL_PARAM_KEY } from "~/hooks/pic/constants";
+import { OVER_CELL_PARAM_KEY } from "~/hooks/pic/constants";
+import { usePicCell } from "~/hooks/pic/cell";
 
 type TConfig = Pick<
   TVirtualizeContext,
-  "scrollY" | "ref"
+  "scrollY" | "ref" | 'main'
 >;
 export const useScrollUpdateHandler = ({
   scrollY,
   ref: handle,
+  main
 }: TConfig) => {
   const [searchParams] =
     useSearchParams();
@@ -42,6 +44,7 @@ export const useScrollUpdateHandler = ({
         set,
       })
     );
+    const {move} = usePicCell(main,scrollY)
 
   const handler = (
     props: ListOnScrollProps
@@ -49,9 +52,7 @@ export const useScrollUpdateHandler = ({
     const {
       scrollOffset,
       scrollDirection,
-      scrollUpdateWasRequested,
     } = props;
-
     scrollY.set(-scrollOffset);
 
     const scrollDelta = Math.abs(
@@ -68,7 +69,7 @@ export const useScrollUpdateHandler = ({
         scrollDelta,
       });
       searchParams.delete(
-        CELL_PARAM_KEY
+        OVER_CELL_PARAM_KEY
       );
       navigate(
         `${pathname}?${searchParams}`
@@ -83,6 +84,9 @@ export const useScrollUpdateHandler = ({
           scrollDirection: null,
           scrollDelta,
         });
+        console.log(window)
+        move();
+        console.log('scroll false')
       },
       SCROLL_COOLDOWN
     );

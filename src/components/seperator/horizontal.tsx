@@ -1,5 +1,5 @@
 import type { FC } from "react";
-import { Seperator } from "~/pages/video/_common/footer/left/seperator";
+import { Seperator } from "~/components/seperator";
 
 export const SeperatorHorizontal: FC =
   () => (

@@ -4,11 +4,11 @@ import {
   motion,
 } from "framer-motion";
 import { isString } from "~/utils/validation/is/string";
-import { LinesHorizontal } from "~/pages/video/_common/footer/left/lines/horizontal";
+import { LinesHorizontal } from "~/components/lines/horizontal";
 import clsx from "clsx";
 import { PortalBody } from "@brysonandrew/layout-portal";
 import { TPillBHoverProps } from "~/components/buttons/pill/b/hover";
-import { LinesHorizontalShadow } from "~/pages/video/_common/footer/left/lines/horizontal/shadow";
+import { LinesHorizontalShadow } from "~/components/lines/horizontal/shadow";
 
 type TProps = Pick<
   TPillBHoverProps,

@@ -5,22 +5,22 @@ import { usePicSelected } from "~/hooks/pic/selected";
 
 export const useHomeClickSelect =
   () => {
-    const {ref} = useContextGrid()
+    const { ref } = useContextGrid();
     const props = usePicSelected(
       ZOOM_PARAM_KEY
     );
     const handleClick = () => {
       if (props.isSelectedPics) {
-        console.log("DESELCT")
-        ref.current?.enableScroll()
-
+        ref.current?.enableScroll();
         props.deselect();
         return;
       }
 
-      ref.current?.disableScroll()
-      props.select();
+      if (props.currName) {
+        ref.current?.disableScroll();
+        props.select();
+      }
     };
     useClickGrid(handleClick);
-    return {onClick:handleClick, ...props};
+    return { ...props };
   };
