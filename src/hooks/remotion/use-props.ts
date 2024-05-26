@@ -1,10 +1,12 @@
 import { useMemo } from "react";
-import { useImageDimensions } from "@brysonandrew/measure";
-import { DIMENSIONS } from "~/constants/remotion";
+import {
+  DIMENSIONS,
+  PIC_DIMENSIONS,
+} from "~/constants/remotion";
 import { useTrillPicsStore } from "~/store/middleware";
 import { DEFAULT_INPUT } from "~/pages/video/player/_header/download";
-import { useContextGrid } from "~/context";
 import { resolvePicRandoms } from "~/hooks/pic/randoms";
+import { dimensionsWithinPlayerBounds } from "~/hooks/within-player-bounds";
 
 export const useRemotionProps = (
   picVideoInputs = DEFAULT_INPUT[
@@ -18,15 +20,13 @@ export const useRemotionProps = (
         pics,
       })
     );
-  const { screen } = useContextGrid();
-
-  const dimensions = useImageDimensions(
-    {
-      box: screen.container,
-      image: DIMENSIONS,
-    }
-  );
-
+    const canvasDimensions= DIMENSIONS
+  const dimensions =
+    dimensionsWithinPlayerBounds({
+      canvasDimensions,
+      ...PIC_DIMENSIONS,
+      fillMode: "cover",
+    });
   const pics = useMemo(() => {
     return picVideoInputs.isPics
       ? picVideoInputs.pics
@@ -35,10 +35,9 @@ export const useRemotionProps = (
         });
   }, [picVideoInputs]);
 
-  const seconds =
-    picVideoInputs.seconds || 10;
   const count = pics.length;
-
+  const seconds =
+    picVideoInputs.seconds || count * 2;
   return {
     fps,
     props: {
@@ -46,9 +45,9 @@ export const useRemotionProps = (
       count,
       seconds,
       isPics: count > 0,
+      dimensions
     },
-    ...(dimensions.isDimensions
-      ? dimensions
-      : DIMENSIONS),
+    ...canvasDimensions,
+    // ...dimensions
   };
 };

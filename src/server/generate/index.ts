@@ -14,6 +14,8 @@ import { onProgress } from "~/server/generate/webpack/on-progress";
 import { onDownload } from "~/server/generate/media/on-download";
 import { REMOTION_ENTRY_POINT } from "~root/remotion.config";
 import { TGenerateOutput } from "~/types/trpc/generate";
+import d from "dotenv";
+d.config();
 
 export type TGenerateProps = {
   input: TPicSeriesProps;

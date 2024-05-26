@@ -30,8 +30,9 @@ export const PicSeries: FC<
   const { pics, seconds, count } =
     inputProps;
   const frame = useCurrentFrame();
-  const { fps,width, height } =
+  const { fps, width, height } =
     useVideoConfig();
+  console.log(width, height);
 
   const unitSeconds = seconds / count;
   const unitFrames = unitSeconds * fps;
@@ -39,7 +40,7 @@ export const PicSeries: FC<
     frame % unitFrames;
   const secondInUnit =
     frameInUnit / (fps * unitSeconds);
-
+  const delta = height - inputProps.dimensions.height;
   const audioSrcPath = resolveAudioSrc(
     "insurrection-10941"
   );
@@ -55,8 +56,7 @@ export const PicSeries: FC<
             resolvePicSrc(pic);
           const src =
             staticFile(srcPath);
-          const delta =
-            height - PIC_SIZE;
+
           const top = `${Math.floor(
             (delta / height) *
               secondInUnit *
@@ -79,7 +79,10 @@ export const PicSeries: FC<
                 <Img
                   src={src}
                   alt={`${pic}`}
-                  {...{width, height:width}}
+                  {...{
+                    width,
+                    height: width,
+                  }}
                 />
               </div>
             </Series.Sequence>

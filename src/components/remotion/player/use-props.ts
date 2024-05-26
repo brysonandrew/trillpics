@@ -5,19 +5,20 @@ import { PlayerRef } from "@remotion/player";
 
 export const useRemotionPlayerProps =
   () => {
+    const { playerInstance, set } =
+      useTrillPicsStore(
+        ({ playerInstance, set }) => ({
+          playerInstance,
+          set,
+        })
+      );
     const {
-      playerInstance,
-      set,
-    } = useTrillPicsStore(
-      ({
-        playerInstance,
-        set,
-      }) => ({
-        playerInstance,
-        set,
-      })
-    );
-    const {
+      // width,
+      // height,
+      // canvasDimensions: {
+      //   width: compositionWidth,
+      //   height: compositionHeight,
+      // },
       width: compositionWidth,
       height: compositionHeight,
       props: inputProps,
@@ -40,9 +41,8 @@ export const useRemotionPlayerProps =
       compositionWidth,
       compositionHeight,
       style: {
-        
         cursor: "pointer",
-        width:'100%',
+        width: "100%",
       },
       inputProps,
       ...props,

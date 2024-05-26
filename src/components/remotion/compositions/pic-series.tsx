@@ -37,7 +37,6 @@ export const CompositionsPicSeries: FC =
         durationInFrames={
           durationInFrames
         }
-        {...DIMENSIONS}
         {...props}
       />
     );

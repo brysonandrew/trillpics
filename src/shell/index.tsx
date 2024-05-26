@@ -15,6 +15,7 @@ import { SvgFilters } from "~/shell/global/svg/filters";
 import { NetworkProvider } from "@brysonandrew/network";
 import { VirtualizeContextProvider } from "~/context";
 import { useScreenMeasure } from "~/shell/init/measure";
+import { ProvidersApi } from "~/shell/providers/api";
 
 export const Shell = () => {
   const {
@@ -46,7 +47,7 @@ export const Shell = () => {
           <VirtualizeContextProvider
             screen={screen}
           >
-            <>
+            <ProvidersApi>
               <SvgFilters />
               <BlurXyWrap>
                 <Outlet />
@@ -61,7 +62,7 @@ export const Shell = () => {
                   }
                 />
               )}
-            </>
+            </ProvidersApi>
           </VirtualizeContextProvider>
         )}
       </DarkModeProvider>

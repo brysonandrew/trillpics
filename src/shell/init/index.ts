@@ -43,7 +43,6 @@ export const useInit = () => {
             draft.screen = screen;
           }
         );
-        console.log(screen)
         if (
           screen.isDimensions &&
           !screen.isResizing

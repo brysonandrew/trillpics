@@ -23,6 +23,7 @@ import { IconsDownload } from "~/components/icons/download";
 import { PillBHover } from "~/components/buttons/pill/b/hover";
 import { boxSize } from "~/constants/box/size";
 import { resolveSquare } from "@brysonandrew/measure";
+import { PIC_DIMENSIONS } from "~/constants/remotion";
 
 export const DEFAULT_INPUT: TGenerateInput =
   {
@@ -31,6 +32,7 @@ export const DEFAULT_INPUT: TGenerateInput =
       count: 0,
       seconds: 1,
       isPics: false,
+      dimensions: { ...PIC_DIMENSIONS },
     },
     fps: 3,
   };
@@ -48,7 +50,10 @@ export const Download: FC<
   const { handlers, isHover } =
     useHoverKey();
 
-  input.seconds = input.seconds || (input.count * 2) || 10;
+  input.seconds =
+    input.seconds ||
+    input.count * 2 ||
+    10;
   const config: TGenerateProps = {
     input,
     fps,
