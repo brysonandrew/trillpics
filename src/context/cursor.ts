@@ -8,6 +8,8 @@ import {
 export type TCursorPosition =
   TMotionPoint & {
     isDragging: boolean;
+
+    isOnGrid: boolean;
     isHoverIdle: boolean;
     prev: {
       column: null | number;
@@ -28,6 +30,7 @@ export const useCursor = () => {
       return {
         x,
         y,
+        isOnGrid: false,
         isDragging: false,
         isHoverIdle: false,
         prev: {

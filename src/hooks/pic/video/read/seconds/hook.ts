@@ -4,6 +4,7 @@ import {
   SELECTED_PARAM_KEY,
 } from "~/hooks/pic/constants";
 import { picVideoReadCount } from "~/hooks/pic/video/read/count";
+import { resolveSecondsFromCount } from "~/hooks/pic/video/read/seconds/from-count";
 
 export const usePicVideoReadSeconds =
   () => {
@@ -21,5 +22,8 @@ export const usePicVideoReadSeconds =
     const count = picVideoReadCount(
       paramValues
     );
-    return seconds || count;
+    return (
+      seconds ||
+      resolveSecondsFromCount(count)
+    );
   };

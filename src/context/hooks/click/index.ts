@@ -15,15 +15,15 @@ export const useClickGrid = (
     set({hoverKeys:[]})
     if (isDisabled) return;
     main.cursor.isHoverIdle = true;
-    const isHovering =
-      ref.current?.isHovering();
+    // const isHovering =
+    //   ref.current?.isHovering();
     if (
-      isHovering &&
-      !main.cursor.isDragging
+      // isHovering &&
+      !main.cursor.isDragging &&
+      main.cursor.isOnGrid
     ) {
       trigger();
     }
-    main.cursor.isDragging = false;
   };
   useEventListener(
     "click",

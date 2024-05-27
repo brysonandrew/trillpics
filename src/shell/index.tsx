@@ -1,4 +1,3 @@
-import { Outlet } from "react-router";
 import { useInit } from "~/shell/init";
 import { GradientsBluePinkYellow } from "~/shell/global/svg/gradients/blue-pink-yellow";
 import { GlobalCss } from "~/shell/global/css";
@@ -18,6 +17,7 @@ import { useScreenMeasure } from "~/shell/init/measure";
 import { ProvidersApi } from "~/shell/providers/api";
 import { Pics } from "~/pics";
 import { SoundProvider } from "~/context/sound";
+import { Outlet } from "react-router";
 
 export const Shell = () => {
   const {
@@ -44,7 +44,6 @@ export const Shell = () => {
           />
           <GlobalCss />
           <ShellBackground
-            isDarkMode={isDarkMode}
           />
           {screen.isDimensions && (
             <VirtualizeContextProvider
@@ -54,6 +53,7 @@ export const Shell = () => {
                 <SvgFilters />
                 <BlurXyWrap>
                   <Pics />
+                  <Outlet />
                 </BlurXyWrap>
                 {isControls && (
                   <Hud

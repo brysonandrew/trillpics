@@ -67,6 +67,8 @@ const Inner = forwardRef<
     const handleEnter: PointerEventHandler<
       HTMLUListElement
     > = (e) => {
+      main.cursor.isOnGrid = true;
+
       const target = e.currentTarget;
       const bb =
         target.getBoundingClientRect();
@@ -76,8 +78,9 @@ const Inner = forwardRef<
       if (hoverKeys.length > 0) {
         set({ hoverKeys: [] });
       }
-      eventRef.current.isHovering =
-        true;
+      // eventRef.current.isHovering =
+      //   true;
+
       main.cursor.x.set(e.pageX);
       main.cursor.y.set(e.pageY);
     };
@@ -87,6 +90,7 @@ const Inner = forwardRef<
       // console.log(e);
       main.cursor.x.set(e.pageX);
       main.cursor.y.set(e.pageY);
+      main.cursor.isOnGrid = false;
 
       // if (hoverKeys.length > 0) {
       //   set({ hoverKeys: [] });

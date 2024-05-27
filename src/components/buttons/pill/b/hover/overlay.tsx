@@ -27,13 +27,13 @@ export const PillBHoverOverlay: FC<
 }) => {
   return (
     <PortalBody>
-      <AnimatePresence mode="wait">
+      <AnimatePresence >
         {isShown && (
           <>
             <motion.div
-              className="fill bg-white dark:bg-gray rounded-lg z-0 pointer-events-none"
+              className="fill bg-gray dark:bg-gray rounded-lg z-0 pointer-events-none"
               initial={{ opacity: 0 }}
-              animate={{ opacity: 0.2 }}
+              animate={{ opacity: 0.6 }}
               exit={{ opacity: 0 }}
              
             />
@@ -45,7 +45,7 @@ export const PillBHoverOverlay: FC<
                   ? "right-0"
                   : "left-0"
               )}
-              {...PRESENCE_OPACITY_ANIMATE_DELAY_02}
+              // {...PRESENCE_OPACITY_ANIMATE_DELAY_02}
             >
               {isString(children) ? (
                 <div

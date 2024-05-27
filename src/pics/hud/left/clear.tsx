@@ -8,13 +8,13 @@ import { TVideoFooterProps } from "~/pages/video/_common/footer/types";
 import { useNavigationControls } from "~/hooks/navigation/controls";
 import { VIDEO_ROUTE } from "~/constants/params";
 import { resolvePicSrc } from "~/utils/src";
-import { useTrillPicsStore } from "~/store/middleware";
 import { useBlurAnimate } from "~/hooks/animate/blur/animate";
 import { IconsTrash } from "~/components/icons/video/trash";
 import { MAX_COUNT } from "~/pages/video/_root/reorder/constants";
 import { usePicVideoWriteInputs } from "~/hooks/pic/video/write/inputs/hook";
 import { boxSize } from "~/constants/box/size";
 import { useContextGrid } from "~/context";
+
 export const LEFT_BUTTONS_CLEAR_TITLE =
   "Delete all";
 
@@ -36,10 +36,11 @@ export const LeftButtonsClear: FC<
   const { screen } = useContextGrid();
   const handler = useBlurAnimate();
 
-  if (!isVideoPics) return <div/>;
+  if (!isVideoPics) return <div />;
   const container = screen.container;
   const unitSize =
     container.width / MAX_COUNT;
+    
   const handleClear = () => {
     handler();
     if (!isActive) {
@@ -47,6 +48,7 @@ export const LeftButtonsClear: FC<
     }
     clear();
   };
+  
   const s = boxSize();
   const title =
     LEFT_BUTTONS_CLEAR_TITLE;
@@ -76,9 +78,10 @@ export const LeftButtonsClear: FC<
                 <motion.img
                   layoutId={name}
                   alt={name}
-                  src={resolvePicSrc(
-                    name
-                  )}
+                  src={resolvePicSrc({
+                    base: "remotion",
+                    name,
+                  })}
                   width={unitSize}
                   height={unitSize}
                 />

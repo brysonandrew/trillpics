@@ -159,3 +159,5 @@ export const usePicCell = (
     clear,
   };
 };
+
+export type TUsePicCell = ReturnType<typeof usePicCell>

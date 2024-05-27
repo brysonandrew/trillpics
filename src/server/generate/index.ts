@@ -6,7 +6,7 @@ import {
   type RenderMediaOptions,
   type SelectCompositionOptions,
 } from "@remotion/renderer";
-import { isLocal } from "~/server/generate/is-local";
+import { localCheck } from "~/server/generate/is-local";
 import { bundle } from "@remotion/bundler";
 import { webpackOverride } from "~/server/generate/webpack/override";
 import path from "path";
@@ -26,13 +26,12 @@ export const generate = async ({
   fps,
 }: TGenerateProps) => {
   const id = "pic-series";
-  const isLocalMode = isLocal();
-  console.log("ISLOCAL ",isLocalMode)
-  const serveUrl = isLocalMode
+  const isLocal = localCheck();
+  const serveUrl = isLocal
     ? await bundle({
         publicDir: path.join(
           process.cwd(),
-          "./assets"
+          "./assets/remotion"
         ),
         entryPoint: path.join(
           process.cwd(),
@@ -51,6 +50,7 @@ export const generate = async ({
     fps,
     durationInFrames,
   };
+  console.log(inputProps, isLocal)
   const compositionOptions: SelectCompositionOptions =
     {
       serveUrl,
@@ -58,7 +58,6 @@ export const generate = async ({
       inputProps,
       logLevel: "verbose",
       onBrowserLog,
-      // webpackOverride,
     };
 
   const composition =

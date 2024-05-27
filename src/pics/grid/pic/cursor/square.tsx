@@ -1,16 +1,16 @@
 import type { FC } from "react";
 import { motion } from "framer-motion";
-import { DELAY_04_TRANSITION_PROPS, DELAY_TRANSITION_PROPS } from "~/constants/animation";
+import { DELAY_TRANSITION_PROPS } from "~/constants/animation";
 import { boxRadius } from "~/constants/box/radius";
 
 export const PicCursorSquare: FC =
   () => {
-    const borderRadus = boxRadius();
+    const borderRadius = boxRadius();
     return (
       <motion.div
-        className="center absolute left-1/6 top-1/6 w-2/3 h-2/3 border border-white dark:border-black opacity-60"
+        className="center absolute left-1/6 top-1/6 w-2/3 h-2/3 border border-current"
         style={{
-          borderRadius: borderRadus,
+          borderRadius,
         }}
         initial={{
           opacity: 0.4,

@@ -1,9 +1,7 @@
 import { FC } from "react";
-import { useTrillPicsStore } from "~/store/middleware";
 import { boxSize } from "~/constants/box/size";
 import { LinesVertical } from "~/components/lines/vertical";
 import { FooterNavDelete } from "~/pages/video/_common/footer/left/delete";
-import { FooterNavAdd } from "~/pages/video/_common/footer/left/add";
 import { usePicVideoReadInputs } from "~/hooks/pic/video/read/inputs/hook";
 import { useContextGrid } from "~/context";
 
@@ -35,7 +33,7 @@ export const _CommonFooterLeft: FC =
           <FooterNavDelete />
         )}
 
-        <FooterNavAdd />
+        {/* <FooterNavAdd /> */}
         <div
           className="absolute w-0"
           style={{

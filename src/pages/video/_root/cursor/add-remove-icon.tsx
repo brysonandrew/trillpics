@@ -10,7 +10,7 @@ export const AddRemoveIcon: FC<
   const rotate = isAdded ? -45 : 0;
   return (
     <motion.h4
-      className="relative origin-center "
+      className="relative origin-center"
       initial={{
         opacity: 0,
         scale: 0,
@@ -18,7 +18,7 @@ export const AddRemoveIcon: FC<
       }}
       animate={{
         opacity: 1,
-        scale:4,
+        scale: 4,
         rotate,
         transition: {
           ...TRANSITION,
@@ -33,10 +33,9 @@ export const AddRemoveIcon: FC<
       layout
     >
       <IconsPlus
-        strokeWidth={0.4}
-        style={{
-          transform: "scale(1.2)",
-        }}
+        fill="none"
+        strokeWidth="0.15"
+        stroke="currentColor"
       />
     </motion.h4>
   );

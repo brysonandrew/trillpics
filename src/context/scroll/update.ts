@@ -18,13 +18,13 @@ import { usePicCell } from "~/hooks/pic/cell";
 type TConfig = Pick<
   TVirtualizeContext,
   | "scrollY"
-  | "ref"
+  | "move"
   | "main"
   | "scrollTimeoutRef"
 >;
 export const useScrollUpdateHandler = ({
   scrollY,
-  ref: handle,
+  move,
   main,
   scrollTimeoutRef,
 }: TConfig) => {
@@ -49,10 +49,7 @@ export const useScrollUpdateHandler = ({
         set,
       })
     );
-  const { move } = usePicCell(
-    main,
-    scrollY
-  );
+
 
   const handler = (
     props: ListOnScrollProps

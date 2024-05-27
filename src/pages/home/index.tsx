@@ -19,7 +19,6 @@ export const Home: FC = () => {
     isRemoving,
   } = cursorProps;
 
-
   return (
     <>
       <Helmet>
@@ -32,12 +31,11 @@ export const Home: FC = () => {
           {isSelectedPics && (
             <PortalBody>
               <PicBackdrop
-
                 onClick={
                   cursorProps.onClick
                 }
                 style={{
-                  cursor:'pointer',
+                  cursor: "pointer",
                   zIndex: FULLSCREEN_Z,
                 }}
               />
@@ -51,10 +49,12 @@ export const Home: FC = () => {
         </>
       )}
 
-      <PicCursor
-        {...cursorProps}
-      >
-        <IconsOpen80 />
+      <PicCursor {...cursorProps}>
+        <IconsOpen80
+          fill="none"
+          strokeWidth="0.2"
+          stroke="currentColor"
+        />
       </PicCursor>
       <GridOptions />
     </>

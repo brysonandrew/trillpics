@@ -1,7 +1,6 @@
 import { FC, memo } from "react";
 import { useCurrentPlayerFrame } from "~/hooks/remotion/use-current-player-frame";
 import { TDurationInFramesProps } from "~/types/props";
-import { LightingGlow } from "~/components/layout/lighting/glow";
 import { boxRadius } from "~/constants/box/radius";
 
 type TProps = TDurationInFramesProps;
@@ -12,15 +11,26 @@ export const TimerCurrentProgress: FC<TProps> =
     const progress =
       currentFrame / durationInFrames;
     const borderRadius = boxRadius();
+    if (progress === 0) return null;
     return (
       <div
         style={{
           width: `${progress * 100}%`,
           borderRadius,
         }}
-        className="fill _gradient-radial pointer-events-none m-1"
+        className="absolute inset-1 _gradient-radial pointer-events-none"
       >
-        <LightingGlow classValue="fill" />
+        {progress > 0 && (
+          <div
+            style={{
+              borderRadius,
+              opacity:
+                (1 - progress) / 12 +
+                0.2,
+            }}
+            className="absolute -inset-4 _gradient-radial-inverted blur-lg"
+          />
+        )}
       </div>
     );
   });

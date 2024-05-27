@@ -16,21 +16,11 @@ export const PicDisplay: FC<
   TPicDisplayProps
 > = ({
   name,
-  src = resolvePicSrc(name),
+  src = resolvePicSrc({base:'remotion',name}),
   classValue,
   style,
   ...props
 }) => {
-  // const isRemoving =
-  // removingCheck(name);
-  // if (isRemoving) {
-  //   console.log(name)
-  // }
-  // src =
-  //   src ?? resolvePicSrc(isRemoving
-  //     ? decryptRemoving(name)
-  //     : name);
-
   return (
     <motion.img
       className={clsx(
@@ -44,16 +34,6 @@ export const PicDisplay: FC<
       style={{
         ...style,
       }}
-      // onError={
-      //   name === "11"
-      //     ? console.log
-      //     : NOOP
-      // }
-      // onLoad={
-      //   name === "11"
-      //     ? console.log
-      //     : NOOP
-      // }
       {...props}
     />
   );

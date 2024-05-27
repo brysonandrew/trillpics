@@ -7,20 +7,19 @@ export const PlaybackButtonsBack: FC =
   () => {
     const {
       playerInstance,
-      isPlaying,
+      isStarted,
     } = useTrillPicsStore(
       ({
         playerInstance,
-        isPlaying,
+        isStarted,
       }) => ({
         playerInstance,
-        isPlaying,
+        isStarted,
       })
     );
-    const isDisabled = !isPlaying;
-
+    const isDisabled = !isStarted;
     const handleClick = async () => {
-      if (playerInstance) {
+      if (playerInstance && !isDisabled) {
         playerInstance.pauseAndReturnToPlayStart();
       }
     };

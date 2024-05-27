@@ -12,20 +12,14 @@ import { resolvePositionFromCell } from "~/pics/grid/pic/cursor/position-from-ce
 import {
   DELAY_TRANSITION_PROPS,
   PRESENCE_OPACITY_04,
-  PRESENCE_OPACITY_06,
 } from "~/constants/animation";
 import { boxRadius } from "~/constants/box/radius";
-import {
-  PRESENCE_OPACITY,
-} from "@brysonandrew/motion-config-constants";
+import { PRESENCE_OPACITY } from "@brysonandrew/motion-config-constants";
 import {
   TUseShowCursorConfig,
   useShowCursor,
 } from "~/pics/grid/pic/cursor/use-show-cursor";
 import { PicCursorSquare } from "~/pics/grid/pic/cursor/square";
-import { useTrillPicsStore } from "~/store/middleware";
-import { Sight } from "~/components/cursor";
-import { Box } from "~/components/cursor/box";
 
 export const PicCursor: FC<
   TPropsWithChildren<TUseShowCursorConfig>
@@ -33,28 +27,13 @@ export const PicCursor: FC<
   const { currCell, size, currKey } =
     props;
   const { scrollY } = useContextGrid();
-  const {
-    isOnscreen,
-    isScrolling,
-    hoverKeys,
-  } = useTrillPicsStore(
-    ({
-      hoverKeys,
-      isOnscreen,
-      isScrolling,
-    }) => ({
-      hoverKeys,
-      isOnscreen,
-      isScrolling,
-    })
-  );
 
   const position =
     resolvePositionFromCell({
       cell: currCell,
       size,
     });
-  const borderRadus = boxRadius();
+  const borderRadius = boxRadius();
   const io = {
     opacity: 0,
     scale: 1,
@@ -109,7 +88,7 @@ export const PicCursor: FC<
             currKey,
             "scroller"
           )}
-          className="fill center text-2xl pointer-events-none"
+          className="fill center text-2xl _outline-filter text-black-6 dark:text-white-5 pointer-events-none"
           style={{
             y: scrollY,
             ...position,
@@ -127,65 +106,53 @@ export const PicCursor: FC<
           <AnimatePresence>
             {isShown && (
               <motion.div
-                className="fill center bg-gray-04"
-                key={resolveCompositeKey(
-                  currKey,
-                  "display"
-                )}
-                {...PRESENCE_OPACITY_06}
+              key="cursor"
+                className="fill bg-white dark:bg-black"
+                {...PRESENCE_OPACITY_04}
+                transition={{
+                  duration: 0.4,
+                }}
               >
                 <motion.div
-                  className="fill center"
-                  key={resolveCompositeKey(
-                    currKey,
-                    "display"
-                  )}
-                  {...PRESENCE_OPACITY_04}
+                  className="fill"
+                  key="corners"
+                  style={{
+                    borderRadius,
+                  }}
+                  initial={{
+                    scale: 0.8,
+                  }}
+                  animate={{
+                    scale: [0.84, 0.9],
+                  }}
+                  exit={{
+                    scale: 0.8,
+                  }}
+                  {...DELAY_TRANSITION_PROPS}
                 >
-                  <motion.div
-                    className="fill"
-                    key="corners"
-                    style={{
-                      borderRadius:
-                        borderRadus,
-                    }}
-                    initial={{
-                      scale: 0.8,
-                    }}
-                    animate={{
-                      scale: [
-                        0.84, 0.9,
-                      ],
-                    }}
-                    exit={{
-                      scale: 0.8,
-                    }}
-                    {...DELAY_TRANSITION_PROPS}
-
-                  >
-                    <CursorCorners />
-                  </motion.div>
-                  <PicCursorSquare
-                    key={resolveCompositeKey(
-                      "inner-square",
-                      currKey
-                    )}
-                  />
+                  <CursorCorners />
                 </motion.div>
-                {isShown && (
-                  <motion.div
-                    className="grayscale-10 contrast-80"
-                    key={resolveCompositeKey(
-                      "children",
-                      currKey
-                    )}
-                    {...PRESENCE_OPACITY}
-                  >
-                    {children}
-                  </motion.div>
-                )}
+                <PicCursorSquare
+                  key={resolveCompositeKey(
+                    "inner-square",
+                    currKey
+                  )}
+                />
               </motion.div>
             )}
+            <>
+              {isShown && (
+                <motion.div
+                  key={resolveCompositeKey(
+                    "children",
+                    currKey
+                  )}
+                  {...PRESENCE_OPACITY}
+                >
+                  {children}
+                </motion.div>
+              )}
+            </>
           </AnimatePresence>
         </motion.div>
       </MotionConfig>

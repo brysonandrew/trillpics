@@ -3,8 +3,7 @@ import type {
   PropsWithChildren,
 } from "react";
 import { motion } from "framer-motion";
-import { useTrillPicsStore } from "~/store/middleware";
-import { TDivMotionProps, TLinkProps } from "@brysonandrew/config-types";
+import { TDivMotionProps } from "@brysonandrew/config-types";
 import clsx from "clsx";
 import { FULLSCREEN_Z } from "~/constants/dom";
 import { useContextGrid } from "~/context";
@@ -33,7 +32,7 @@ export const PicBackdrop: FC<
       style={{
         ...(screenDimensions ?? {}),
         backdropFilter:
-          "blur(28px) grayscale(80%)",
+          "blur(28px) brightness(120%)",
         zIndex: FULLSCREEN_Z,
         ...style,
       }}
@@ -44,7 +43,7 @@ export const PicBackdrop: FC<
       }}
       {...props}
     >
-      <div className="fill _r-dots opacity-20"/>
+      <div className="fill _box-dots opacity-20"/>
     </motion.div>
   );
 };

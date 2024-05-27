@@ -1,11 +1,10 @@
 import { DEFAULT_FPS } from "~/constants/remotion";
-import { TStateCreatorParameters } from "~/store/types";
 
-export const videoState = (
-  ...args: TStateCreatorParameters
-) => {
+export const videoState = () => {
   return {
-    fps: DEFAULT_FPS,
+    isStarted: false,
+    isMuted: false,
     isPlaying: false,
+    fps: DEFAULT_FPS,
   };
 };

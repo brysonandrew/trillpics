@@ -5,7 +5,6 @@ import { TimerDisplay } from "~/components/remotion/player/playback/timer/displa
 const _TimerCurrent: FC = () => {
   const currentFrame =
     useCurrentPlayerFrame();
-
   return (
     <TimerDisplay
       frame={currentFrame}

@@ -5,13 +5,11 @@ import {
 import { shuffle } from "~/utils/array/shuffle";
 import { TStateHandler } from "~/store/types";
 import precachePics from "~app/precache.json";
-const min = 45;
-const max = 973
 const { length: picsCount } =
   precachePics;
 const INIT_PICS = [
-  ...Array(max-min),
-].map((_, index) => `${index+min}`);
+  ...Array(picsCount),
+].map((_, index) => `${index + 1}`);
 const shuffledPics = shuffle(INIT_PICS);
 
 export const picsState: TStateHandler<

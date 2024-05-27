@@ -11,7 +11,7 @@ export const TitleText: FC = memo(
         }}
         className="relative z-10 font-title opacity-100 text-left text-3xl sm:text-3.5xl md:text-4xl"
       >
-        <span className="relative dark:text-black text-white-8 uppercase whitespace-nowrap font-sans _outline-filter">
+        <span className="relative dark:text-black text-white-8 uppercase whitespace-nowrap font-sans _outline-filter _gradient-text">
           {APP_TITLE}
         </span>
       </motion.h1>

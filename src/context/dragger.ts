@@ -10,7 +10,7 @@ import {
 export type TDraggerMotion = {
   x: MotionValue<number>;
   y: MotionValue<number>;
-  x025: MotionValue<number>;
+  x05: MotionValue<number>;
   y075: MotionValue<number>;
   y06: MotionValue<number>;
   prevY: number;
@@ -19,9 +19,9 @@ export type TDraggerMotion = {
 export const useDragger = () => {
   const x = useMotionValue(0);
   const y = useMotionValue(0);
-  const x025 = useTransform(
+  const x05 = useTransform(
     x,
-    (v) => v * 0.25
+    (v) => v * 0.5
   );
   const y075 = useTransform(
     y,
@@ -38,7 +38,7 @@ export const useDragger = () => {
       return {
         x,
         y,
-        x025,
+        x05,
         y075,
         y06,
         prevY: 0,

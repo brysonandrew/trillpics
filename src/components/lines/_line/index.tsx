@@ -1,11 +1,11 @@
 import type { FC } from "react";
-import { TDivMotionProps } from "@brysonandrew/config-types";
 import clsx from "clsx";
 import { TLinesOptions } from "~/components/lines/types";
 import { motion } from "framer-motion";
 
 export type TLines_LineProps =TLinesOptions;
 export const Lines_Line: FC<TLines_LineProps> = ({
+  positionClass,
   colorClass,
   classValue,
   opacityClass,
@@ -16,7 +16,8 @@ export const Lines_Line: FC<TLines_LineProps> = ({
   return (
     <motion.div
       className={clsx(
-        "relative grow pointer-events-none",
+        "grow pointer-events-none",
+        positionClass ?? "relative",
         sizeClass ?? "border",
         colorClass ?? "border-white dark:border-black",
         opacityClass ??"opacity-50",

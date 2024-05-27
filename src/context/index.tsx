@@ -22,6 +22,7 @@ import { useFonts } from "~/context/fonts";
 import { useMove } from "~/context/hooks/move";
 import { useDragger } from "~/context/dragger";
 import { useTimeoutRef } from "@brysonandrew/hooks-window";
+import { usePicCell } from "~/hooks/pic/cell";
 
 const VirtualizeContext = createContext(
   {} as TVirtualizeContext
@@ -56,6 +57,13 @@ export const VirtualizeContextProvider: FC<
     };
   }, []);
 
+  const picCellResult = usePicCell(
+    main,
+    scrollY
+  );
+
+  const { move } = picCellResult
+
   const resetLayout = () => {
     updateFoundation(null);
   };
@@ -63,14 +71,14 @@ export const VirtualizeContextProvider: FC<
   const { handler: handleScroll } =
     useScrollUpdateHandler({
       scrollY,
-      ref,
+      move,
       main,
       scrollTimeoutRef
     });
   const isIdle = useMove({
     main,
     isOnscreen,
-    scrollY,
+    move,
     scrollTimeoutRef
   });
 
@@ -89,7 +97,8 @@ export const VirtualizeContextProvider: FC<
         updateFoundation,
         resetLayout,
         screen,
-        scrollTimeoutRef
+        scrollTimeoutRef,
+        ...picCellResult
       }}
     >
       {children}

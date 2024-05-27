@@ -9,7 +9,7 @@ export const resolvePicRandoms = ({
   return [...Array(count)].map(
     () =>
       `${Math.floor(
-        pics.length * Math.random()
+        (pics.length - 1) * Math.random() + 1
       )}`
   );
 };

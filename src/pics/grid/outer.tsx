@@ -1,13 +1,8 @@
 import {
   forwardRef,
   PropsWithChildren,
-  useImperativeHandle,
-  useRef,
 } from "react";
 import clsx from "clsx";
-import { SpeedlinesBackward } from "~/pics/grid/speedlines/backward";
-import { SpeedlinesForward } from "~/pics/grid/speedlines/forward";
-import { MOTION_BLUR_FILTER_SPEEDLINES_PROPS } from "~/shell/global/svg/filters/blur/constants";
 
 export type TOuterHandle = {
   isHovering: () => boolean;
@@ -76,8 +71,6 @@ const Outer = forwardRef<
 
         {...props}
       >
-      
-
         {children}
       </div>
     );

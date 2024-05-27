@@ -4,11 +4,7 @@ import {
   motion,
 } from "framer-motion";
 import { useTrillPicsStore } from "~/store/middleware";
-import {
-  PillB,
-  TPillBProps,
-} from "~/components/buttons/pill/b";
-import { IconsGenerate } from "~/components/icons/video/generate";
+import { TPillBProps } from "~/components/buttons/pill/b";
 import { trpc } from "~/utils/trpc";
 import { TGenerateProps } from "~/server/generate";
 import { downloadMedia } from "~/pages/video/player/_header/download/media";

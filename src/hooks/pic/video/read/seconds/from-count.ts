@@ -1,0 +1,1 @@
+export const resolveSecondsFromCount = (count:number) => count * 2;

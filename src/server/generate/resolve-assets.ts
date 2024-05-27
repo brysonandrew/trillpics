@@ -1,13 +1,13 @@
-import { isLocal } from "~/server/generate/is-local";
+import { localCheck } from "~/server/generate/is-local";
 
 export const resolveAssets = (
   path: string
 ) => {
-  const isLocalMode = isLocal();
-  // console.log(isLocalMode);
-  // console.log(process.env);
-  return isLocalMode
-    ? //process.env.NETLIFY_LOCAL
-      `assets/${path}`
+  const isLocal = localCheck();
+  console.log(isLocal);
+  console.log(process.env);
+  return isLocal
+    ? 
+      `assets/remotion/${path}`
     : path;
 };

@@ -1,5 +1,5 @@
 import type { FC } from "react";
-import { PlaybackButtons } from "~/components/remotion/player/playback/buttons";
+import { PlaybackButtons } from "~/components/remotion/player/playback/buttons/left";
 import { PlaybackTimer } from "~/components/remotion/player/playback/timer";
 import { LightingGlow } from "~/components/layout/lighting/glow";
 import clsx from "clsx";
@@ -22,14 +22,14 @@ export const PlayerPlayback: FC =
             "relative flex items-center gap-6 z-10"
           )}
         >
-          <LightingGlow
+          {/* <LightingGlow
             classValue="fill opacity-20"
             style={borderStyle}
           />
           <div
-            className="absolute -inset-1 background opacity-80  _gradient-radial"
+            className="absolute -inset-1 background opacity-80 gradient-radial"
             style={borderStyle}
-          />
+          /> */}
           <PlaybackButtons />
           <PlaybackTimer />
         </div>

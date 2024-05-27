@@ -5,6 +5,7 @@ import {
 import {
   animate,
   motion,
+  useMotionValueEvent,
 } from "framer-motion";
 import { useContextGrid } from "~/context";
 import { useHoverKey } from "~/hooks/use-hover-key";
@@ -12,10 +13,7 @@ import clsx from "clsx";
 import { resolveAccessibilityTitles } from "@brysonandrew/utils-attributes";
 import { boxSize } from "~/constants/box/size";
 import { TDraggerMotion } from "~/context/dragger";
-import { LinesHorizontal1 } from "~/components/lines/horizontal/1";
 import { THudContainer } from "~/pics/hud";
-import { useDraggerReset } from "~/pages/video/_root/reorder/use-dragger-reset";
-import { TDimensions } from "@brysonandrew/config-types";
 
 type TProps = {
   container: THudContainer;
@@ -37,16 +35,17 @@ export const _RootReorderDragger: FC<
   children,
   ...props
 }) => {
-  const { main, dragger } =
+  const { main, dragger, move } =
     useContextGrid();
   const { x, y } = dragger;
-  const title = "Drag video pics";
+  const title =
+    "Drag video pic position";
 
   const start = () => {
-    main.cursor.isDragging = true;
+    main.cursor.isOnGrid = false;
   };
   const stop = () => {
-    main.cursor.isDragging = true;
+    main.cursor.isOnGrid = true;
   };
 
   const { isHover, motionHandlers } =
@@ -67,6 +66,8 @@ export const _RootReorderDragger: FC<
     props.left + width / 2 - s.m;
 
   const handlePointerUp = () => {
+    main.cursor.isDragging = false;
+
     const y = main.dragger.y.get();
     if (y === main.dragger.prevY) {
       const openY =
@@ -85,6 +86,21 @@ export const _RootReorderDragger: FC<
       );
     }
   };
+  const handleAnimationComplete =
+    () => {
+      main.cursor.isDragging = false;
+      move();
+    };
+  useMotionValueEvent(
+    dragger.y,
+    "animationComplete",
+    handleAnimationComplete
+  );
+  useMotionValueEvent(
+    dragger.y,
+    "animationCancel",
+    handleAnimationComplete
+  );
   const size = _size ?? s.m125;
   return (
     <>
@@ -93,7 +109,7 @@ export const _RootReorderDragger: FC<
         drag
         dragConstraints={{
           left: 0, // -container.width * 0.5,
-          bottom: bottom-s.m05,
+          bottom: bottom - s.m05,
           right: 0, // container.width * 0.5,
           top: -container.height * 0.5,
         }}
@@ -120,12 +136,11 @@ export const _RootReorderDragger: FC<
         onPointerUp={handlePointerUp}
         {...motionHandlers(title)}
       >
-        {/* <LinesHorizontal1 /> */}
         <div
-          className="relative rounded-md _r-dots cursor-grab focus:cursor-grabbing"
+          className="relative rounded-md _box-dots cursor-grab focus:cursor-grabbing"
           style={{
-            width: size - size / 8,
-            height: size - size / 8,
+            width: size - size / 12,
+            height: size - size / 12,
           }}
         />
       </motion.button>
