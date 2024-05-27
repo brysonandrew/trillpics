@@ -7,6 +7,7 @@ import { useTrillPicsStore } from "~/store/middleware";
 import { DEFAULT_INPUT } from "~/pages/video/player/_header/download";
 import { resolvePicRandoms } from "~/hooks/pic/randoms";
 import { dimensionsWithinPlayerBounds } from "~/hooks/within-player-bounds";
+import { resolveSecondsFromCount } from "~/hooks/pic/video/read/seconds/from-count";
 
 export const useRemotionProps = (
   picVideoInputs = DEFAULT_INPUT[
@@ -20,7 +21,7 @@ export const useRemotionProps = (
         pics,
       })
     );
-    const canvasDimensions= DIMENSIONS
+  const canvasDimensions = DIMENSIONS;
   const dimensions =
     dimensionsWithinPlayerBounds({
       canvasDimensions,
@@ -34,20 +35,22 @@ export const useRemotionProps = (
           pics: allPics,
         });
   }, [picVideoInputs]);
-
   const count = pics.length;
   const seconds =
-    picVideoInputs.seconds || count * 2;
+    picVideoInputs.seconds || resolveSecondsFromCount(count);
+  const durationInFrames =
+    seconds * fps;
+
   return {
+    durationInFrames,
     fps,
     props: {
       pics,
       count,
       seconds,
       isPics: count > 0,
-      dimensions
+      dimensions,
     },
     ...canvasDimensions,
-    // ...dimensions
   };
 };

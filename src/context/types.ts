@@ -17,6 +17,7 @@ import { TCell } from "~/pics/grid/pic";
 import { TDraggerMotion } from "~/context/dragger";
 import { TReadyScreen } from "~/shell/init/measure";
 import { useTimeoutRef } from "@brysonandrew/hooks-window";
+import { TUsePicCell } from "~/hooks/pic/cell";
 
 export type TScreenReadyProps = {
   screen: TReadyScreen;
@@ -53,24 +54,27 @@ export type TElementValue =
 export type TMain = {
   blur: TBlur;
   cursor: TCursor;
-  dragger: TDraggerMotion
+  dragger: TDraggerMotion;
 };
 export type TVirtualizeContext =
-  TScreenReadyProps & {
-    isIdle: boolean;
-    foundationValue: TFoundationValue;
-    updateFoundation: Dispatch<
-      SetStateAction<TFoundationValue>
-    >;
-    isOnscreen: boolean;
-    ref: TRefMutable<TGridHandle>;
-    main: TMain;
-    fonts: TFontsResult;
-    scrollY: MotionValue<number>;
-    scrollTimeoutRef: ReturnType<typeof useTimeoutRef>
-    onScroll(
-      props: ListOnScrollProps
-    ): void;
-    resetLayout(): void;
-    dragger: TDraggerMotion;
-  };
+  TUsePicCell &
+    TScreenReadyProps & {
+      isIdle: boolean;
+      foundationValue: TFoundationValue;
+      updateFoundation: Dispatch<
+        SetStateAction<TFoundationValue>
+      >;
+      isOnscreen: boolean;
+      ref: TRefMutable<TGridHandle>;
+      main: TMain;
+      fonts: TFontsResult;
+      scrollY: MotionValue<number>;
+      scrollTimeoutRef: ReturnType<
+        typeof useTimeoutRef
+      >;
+      onScroll(
+        props: ListOnScrollProps
+      ): void;
+      resetLayout(): void;
+      dragger: TDraggerMotion;
+    };

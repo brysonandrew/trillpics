@@ -97,7 +97,7 @@ export const PillB: FC<TPillBProps> = ({
       <>
         {isSelected && (
           <motion.div
-            className="absolute _gradient-radial pointer-events-none"
+            className="absolute bg-black pointer-events-none"
             // layoutId="selected pill b"
             layout
             style={{
@@ -112,7 +112,7 @@ export const PillB: FC<TPillBProps> = ({
               opacity: 0,
             }}
             animate={{
-              scale: 1.2,
+              scale: 1.075,
               opacity: 1,
             }}
             exit={{
@@ -164,7 +164,7 @@ export const PillB: FC<TPillBProps> = ({
                     borderRadius,
                   }}
                 />
-                <span className="relative dark:text-black text-white-8 _outline-filter pointer-events-none">
+                <span className="relative dark:text-black text-white-8 _outline-filter whitespace-nowrap pointer-events-none">
                   {children}
                 </span>
               </div>

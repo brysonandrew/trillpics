@@ -2,8 +2,12 @@ export const SHORTCUTS_BOX_BACKGROUND_IMAGE =
   {
     "_gradient-mesh":
       "dark:_dark-gradient-mesh _light-gradient-mesh",
+    "_gradient-mesh-inverted":
+      "dark:_light-gradient-mesh _dark-gradient-mesh",
     "_gradient-radial":
       "dark:_dark-radial-gradient _light-radial-gradient",
+    "_gradient-radial-inverted":
+      "dark:_light-radial-gradient _dark-radial-gradient",
   };
 
 export type TBackgroundImageShortcut =

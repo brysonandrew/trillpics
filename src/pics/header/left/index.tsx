@@ -36,7 +36,6 @@ export const HeaderLeft: FC = memo(
     const isHome =
       pathname === HOME_ROUTE;
     const handleHoverStart = () => {
-      console.log('idle ',isIdle)
       set({ isIdle: true });
     };
     const title = TITLE_HOVER_KEY;

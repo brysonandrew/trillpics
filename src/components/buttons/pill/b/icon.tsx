@@ -1,6 +1,5 @@
 import { FC } from "react";
 import { resolveUrlId } from "@brysonandrew/utils-attributes";
-import { boxStyle } from "~/constants/box/style";
 import { boxSize } from "~/constants/box/size";
 import { useDarkMode } from "@brysonandrew/dark-mode";
 import { LINEAR_GRADIENT_SVG_ID } from "~/shell/global/svg/gradients/blue-pink-yellow";
@@ -48,14 +47,16 @@ export const ButtonPillBIcon: FC<
   const { isDarkMode } = useDarkMode();
   return (
     <div
-      className="center relative shrink-0 border border-transparent _gradient-mesh bg-gray-04 dark:bg-black-04 pointer-events-none"
+      className="center relative shrink-0 border-1 border-transparent _gradient-mesh bg-gray-04 dark:bg-black-04 pointer-events-none"
       style={{
         borderRadius,
         height: s.m,
         width: s.m,
-        backgroundClip: isSelected
-          ? "border-box"
-          : "padding-box",
+        backgroundClip: 
+        isSelected
+          ? "content-box"
+          :
+           "padding-box",
         ...style,
       }}
       {...props}
@@ -67,6 +68,7 @@ export const ButtonPillBIcon: FC<
       </>
       {Icon && (
         <Icon
+        stroke="none"
           fill={
             isDarkMode
               ? resolveUrlId(

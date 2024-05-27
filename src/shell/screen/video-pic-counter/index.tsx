@@ -5,6 +5,7 @@ import {
 } from "~/components/layout/pill";
 import clsx from "clsx";
 import { usePicVideoReadCount } from "~/hooks/pic/video/read/count/hook";
+import { boxSize } from "~/constants/box/size";
 
 export const VideoPicsCounter: FC<
   Partial<
@@ -22,22 +23,19 @@ export const VideoPicsCounter: FC<
   ...props
 }) => {
   const count = usePicVideoReadCount();
-
-  const charCount =
-    count.toFixed(0).length;
-  const isCircle = false; // charCount === 1 && !isDefined(children);
+  const s = boxSize();
   return (
     <Pill
-      isCircle={isCircle}
-      sizeClass={
-        "h-6" + (isCircle ? " w-6" : "")
-      }
       layoutId="VideoPicsCounter"
       classValue={clsx(
         "pointer-events-none",
         classValue ?? "relative"
       )}
-      style={{ ...style }}
+      style={{
+        height: s.m05,
+
+        ...style,
+      }}
       layout
       {...props}
     >

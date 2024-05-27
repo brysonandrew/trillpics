@@ -1,29 +1,20 @@
 import type { FC } from "react";
-import { TUseDarkMode } from "@brysonandrew/dark-mode";
-import {
-  SCROLLBAR_BORDER_WIDTH,
-  SCROLLBAR_WIDTH,
-} from "~uno/preflights";
 
-export const ShellBackground: FC<
-  Pick<TUseDarkMode, "isDarkMode">
-> = ({ isDarkMode }) => {
-  return (
-    <div
-      className="fill _gradient-mesh bg-gray"
-      style={{
-        minHeight: "100vh",
-      }}
-    >
+export const ShellBackground: FC =
+  () => {
+    return (
       <div
-        className="fill inset-1 _r-dots opacity-10"
+        className="fill bg-black-7 dark:bg-black-3"
         style={{
-          right: `calc(0.25rem + ${
-            SCROLLBAR_WIDTH +
-            SCROLLBAR_BORDER_WIDTH * 2
-          }px)`,
+          minHeight: "100vh",
         }}
-     />
-    </div>
-  );
-};
+      >
+        {/* <div
+          style={{ opacity: 0.4 }}
+          className="fill _gradient-mesh"
+        /> */}
+
+        {/* <div style={{opacity: 0.05}} className="fill inset-0 _gradient-radial-inverted dark:opacity-20" /> */}
+      </div>
+    );
+  };

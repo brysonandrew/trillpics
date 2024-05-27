@@ -1,8 +1,4 @@
 import { FC } from "react";
-import {
-  PIC_SIZE,
-  ASPECT_RATIO,
-} from "~/constants/remotion";
 import { TPicSeriesProps } from "~/components/remotion/pic-series/types";
 import {
   resolveAudioSrc,
@@ -27,24 +23,27 @@ export const PicSeries: FC<
     ...props,
     ...INPUT_PROPS,
   };
-  const { pics, seconds, count } =
+  const { pics, seconds, count, base } =
     inputProps;
   const frame = useCurrentFrame();
   const { fps, width, height } =
     useVideoConfig();
-    // const source = new AudioBufferSourceNode(offlineCtx, {
-    //   buffer: decodedBuffer,
-    // });
+  // const source = new AudioBufferSourceNode(offlineCtx, {
+  //   buffer: decodedBuffer,
+  // });
   const unitSeconds = seconds / count;
   const unitFrames = unitSeconds * fps;
   const frameInUnit =
     frame % unitFrames;
   const secondInUnit =
     frameInUnit / (fps * unitSeconds);
-  const delta = height - inputProps.dimensions.height;
-  const audioSrcPath = resolveAudioSrc(
-    "insurrection-10941"
-  );
+  const delta =
+    height -
+    inputProps.dimensions.height;
+  const audioSrcPath = resolveAudioSrc({
+    base,
+    name: "insurrection-10941",
+  });
   const audioSrc = staticFile(
     audioSrcPath
   );
@@ -53,8 +52,9 @@ export const PicSeries: FC<
       <Audio src={audioSrc} />
       <Series>
         {pics.map((pic) => {
-          const srcPath =
-            resolvePicSrc(pic);
+          const srcPath = resolvePicSrc(
+            { base, name: pic }
+          );
           const src =
             staticFile(srcPath);
 

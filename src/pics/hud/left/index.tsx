@@ -1,7 +1,6 @@
 import {
   FC,
   PropsWithChildren,
-  useState,
 } from "react";
 import {
   AnimatePresence,
@@ -19,7 +18,6 @@ import { useVideoPicsCheck } from "~/hooks/pic/video/read/video-pics-check/hook"
 import { HudLeftAddRandom } from "~/pics/hud/left/add-random";
 import { VideoPicsCounter } from "~/shell/screen/video-pic-counter";
 import { THudContainer } from "~/pics/hud";
-import { usePicTableReadSize } from "~/hooks/pic/table/read/size";
 import { Pill } from "~/components/layout/pill";
 import { SubtitleText } from "~/pics/header/subtitle/text";
 import { _RootReorderDragger } from "~/pages/video/_root/reorder/dragger";
@@ -28,17 +26,11 @@ import clsx from "clsx";
 type TProps = PropsWithChildren<{
   foundation: DOMRect;
   container: THudContainer;
-  playerHeight: number;
   isVerticalScroll: boolean;
 }>;
 export const PicsHudLeft: FC<
   TProps
-> = ({
-  foundation,
-  playerHeight,
-  container,
-}) => {
-
+> = ({ foundation, container }) => {
   const { dragger, isIdle } =
     useContextGrid();
   const s = boxSize();
@@ -51,10 +43,7 @@ export const PicsHudLeft: FC<
         <motion.div
           key="root"
           className={clsx(
-            "absolute flex flex-col justify-start items-start w-0 shrink-0",
-            // isMoving
-            //   ? "pointer-events-none"
-            //   : ""
+            "absolute flex flex-col justify-start items-start w-0 shrink-0"
           )}
           style={{
             left: -s.m05,
@@ -91,16 +80,10 @@ export const PicsHudLeft: FC<
                     s.m,
                   bottom:
                     s.m2 - s.m0125,
-                  x: dragger.x025,
+                  x: dragger.x05,
                   left: 0,
                   y: dragger.y,
                 }}
-                // onLayoutAnimationStart={() =>
-                //   setMoving(true)
-                // }
-                // onLayoutAnimationComplete={() =>
-                //   setMoving(false)
-                // }
               >
                 <div
                   style={{
@@ -126,7 +109,6 @@ export const PicsHudLeft: FC<
                     top:
                       container.height +
                       s.m,
-                    // y: dragger.y075,
                   }}
                 >
                   <_RootReorderDragger
@@ -139,7 +121,6 @@ export const PicsHudLeft: FC<
                   />
                   <div />
                 </motion.div>
-
                 <motion.div
                   className="absolute row-space"
                   style={{
@@ -156,23 +137,13 @@ export const PicsHudLeft: FC<
                 >
                   <HudLeftAddRandom
                     isLabel={isIdle}
-
-                    // positionClass="absolute"
                   />
                   <LeftButtonsClear
                     isLabel={isIdle}
                   />
                 </motion.div>
-
                 {isVideoPics && (
                   <motion.div
-                    // layout
-                    // onLayoutAnimationStart={() =>
-                    //   setMoving(true)
-                    // }
-                    // onLayoutAnimationComplete={() =>
-                    //   setMoving(false)
-                    // }
                     className="absolute row-space"
                     style={{
                       height: 0,
@@ -181,8 +152,9 @@ export const PicsHudLeft: FC<
                         s.m,
                       bottom:
                         s.m2 + s.m0125,
-                      x: dragger.x025,
+                      x: dragger.x05,
                       left: 0,
+                      right: 0,
                       y: dragger.y,
                     }}
                   >
@@ -191,16 +163,22 @@ export const PicsHudLeft: FC<
                       style={{
                         top: s.m025,
                         gap: s.m05,
+                        width: s.m4
                       }}
                     >
-                      <div
+                      <motion.div
+                        className="relative h-px _gradient-radial"
                         style={{
-                          width: s.m,
+                          left: s.m05,
+                          bottom: s.m05,
+                          width: s.m15,
+                          rotate: -35,
                         }}
                       />
                       <VideoPicsCounter
                         classValue="relative pointer-events-none"
                         style={{
+                          left:-s.m075,
                           bottom: s.m,
                         }}
                       >
@@ -212,16 +190,17 @@ export const PicsHudLeft: FC<
                     <div
                       className="relative row h-0"
                       style={{
+                        left: 0,
                         top: s.m025,
                         gap: s.m05,
+                        width: s.m4
                       }}
                     >
                       <Pill
                         classValue="relative pointer-events-none"
-                        sizeClass={
-                          "h-6"
-                        }
                         style={{
+                          height: s.m05,
+                          left:s.m,
                           bottom: s.m,
                         }}
                       >
@@ -229,10 +208,18 @@ export const PicsHudLeft: FC<
                           watch
                         </SubtitleText>
                       </Pill>
-                      <ControlsPlayer
-
+                      <motion.div
+                        className="absolute h-px _gradient-radial"
                         style={{
-                          width: s.m,
+                          right: s.m05,
+                          bottom: s.m05,
+                          width: s.m15,
+                          rotate: 35,
+                        }}
+                      />
+                      <ControlsPlayer
+                        style={{
+                          right:-s.m05,
                         }}
                         isLabel={isIdle}
                       />

@@ -36,7 +36,7 @@ export const _CommonReorderControlsButton: FC<
       {...props}
     >
       <div
-        className="absolute -inset-0.25 _gradient-radial"
+        className="absolute -inset-0.125 _gradient-radial"
         style={{ borderRadius }}
       />
       <ButtonPillBIcon

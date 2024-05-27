@@ -19,7 +19,7 @@ type TConfig = {
     start?: THandler;
     stop?: THandler;
   };
-  isDisabled?:boolean
+  isDisabled?: boolean;
 };
 export const useHoverKey = (
   config?: TConfig
@@ -49,11 +49,13 @@ export const useHoverKey = (
   );
 
   const { isArmed, trigger, disarm } =
-    useTimebomb(1000, cooldownEnd);
+    useTimebomb(1600, cooldownEnd);
 
   const onStart: TEventHandler =
     (key: THoverKey) =>
     (event: TEventUnion) => {
+      disarm();
+
       if (main.cursor.isHoverIdle) {
         return;
       }
@@ -74,21 +76,25 @@ export const useHoverKey = (
       trigger();
     };
   const handlers = (key: THoverKey) =>
-    (isDisabled ? {} : {
-      onPointerEnter: onStart(key),
-      onPointerOut: onStop(key),
-      onPointerLeave: onStop(key),
-      onMouseLeave: onStop(key),
-    } as const);
+    isDisabled
+      ? {}
+      : ({
+          onPointerEnter: onStart(key),
+          onPointerOut: onStop(key),
+          onPointerLeave: onStop(key),
+          onMouseLeave: onStop(key),
+        } as const);
   const motionHandlers = (
     key: THoverKey
   ) =>
-    (isDisabled ? {} : {
-      onHoverStart: onStart(key),
-      onHoverEnd: onStop(key),
-      onPointerLeave: onStop(key),
-      onMouseLeave: onStop(key),
-    } as const);
+    isDisabled
+      ? {}
+      : ({
+          onHoverStart: onStart(key),
+          onHoverEnd: onStop(key),
+          onPointerLeave: onStop(key),
+          onMouseLeave: onStop(key),
+        } as const);
 
   const clear = hover;
 

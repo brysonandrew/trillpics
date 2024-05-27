@@ -8,7 +8,7 @@ import { boxStyle } from "~/constants/box/style";
 import { CircleIcon } from "~/components/layout/circle/icon";
 
 export const PlaybackButtonsB: FC<
-  TButtonProps & { Icon: FC<TSvgProps> }
+  TButtonProps & { Icon: FC<TSvgProps> } 
 > = ({
   Icon,
   classValue,

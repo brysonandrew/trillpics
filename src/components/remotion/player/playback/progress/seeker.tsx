@@ -1,12 +1,11 @@
 import { type FC } from "react";
 import { useSeek } from "~/components/remotion/player/playback/progress/use-seek";
 import { TimerCurrentProgress } from "~/components/remotion/player/playback/progress";
-import { LightingGlow } from "~/components/layout/lighting/glow";
 import clsx from "clsx";
-import { TexturesMeshRounded } from "~/components/textures/mesh/rounded";
+import { withPlayerInstanceCheck } from "~/hoc/ref/with-player-instance-check";
 
 export const PlaybackProgressSeeker: FC =
-  () => {
+  withPlayerInstanceCheck(() => {
     const {
       handler,
       durationInFrames,
@@ -14,13 +13,14 @@ export const PlaybackProgressSeeker: FC =
     return (
       <div
         className={clsx(
-          "relative flex grow w-full h-4 bg-transparent border border-white-05 dark:border-black rounded-md"
+          "relative flex grow w-full h-4 bg-transparent"
+          // "border border-white-05 dark:border-black"
         )}
         onPointerDown={handler}
         // onPointerUp={handler}
       >
-        <LightingGlow classValue="fill opacity-20" />
-        <TexturesMeshRounded />
+        {/* <div className="absolute inset-0 rounded-lg _gradient-mesh blur-lg opacity-100"/> */}
+        {/* <div className="absolute -inset-2 rounded-lg _gradient-mesh blur-lg opacity-100"/> */}
         <TimerCurrentProgress
           durationInFrames={
             durationInFrames
@@ -28,4 +28,4 @@ export const PlaybackProgressSeeker: FC =
         />
       </div>
     );
-  };
+  });

@@ -14,16 +14,16 @@ import { useTrillPicsStore } from "~/store/middleware";
 import { boxSize } from "~/constants/box/size";
 import { TUsePicSelected } from "~/hooks/pic/selected";
 import { _CommonReorderPlaceholder } from "~/pages/video/_root/reorder/placeholder";
-import { _CommonReorderControls } from "~/pages/video/_root/reorder/controls/controls";
 import {
   TOTAL_GAP,
   MAX_COUNT,
 } from "~/pages/video/_root/reorder/constants";
-import { PRESENCE_OPACITY } from "@brysonandrew/motion-config-constants";
-import { CONTROLS_PLAYER_TITLE } from "~/pics/hud/left/player";
 import { useHoverKey } from "~/hooks/use-hover-key";
 import { LEFT_BUTTONS_CLEAR_TITLE } from "~/pics/hud/left/clear";
 import { useContextGrid } from "~/context";
+import { _CommonReorderControls } from "~/pages/video/_root/reorder/controls";
+import { HUD_LEFT_ADD_RANDOM_HOVER_KEY } from "~/pics/hud/left/add-random";
+import { resolveCompositeKey } from "@brysonandrew/utils-key";
 
 type TProps = TUsePicSelected;
 export const _CommonReorder: FC<
@@ -56,11 +56,12 @@ export const _CommonReorder: FC<
 
   const isVideoPlayerButtonHover =
     hoverKeys.includes(
-      CONTROLS_PLAYER_TITLE
+      LEFT_BUTTONS_CLEAR_TITLE
     );
-  const { handlers } = useHoverKey();
-
-  if (!isControls) return null;
+  const is5RandomPicsHover =
+    hoverKeys.includes(
+      HUD_LEFT_ADD_RANDOM_HOVER_KEY
+    );
 
   const s = boxSize();
   const width =
@@ -84,9 +85,19 @@ export const _CommonReorder: FC<
     style: boxStyle,
   } as const;
   const itemStyle = resolveSquare(size);
-  const itemProps = {
-    style: itemStyle,
-  } as const;
+
+  const { main } = useContextGrid();
+  const start = () => {
+    main.cursor.isOnGrid = false;
+  };
+  const stop = () => {
+    main.cursor.isOnGrid = true;
+  };
+  const { motionHandlers } =
+    useHoverKey({
+      handlers: { start, stop },
+    });
+  if (!isControls) return null;
 
   return (
     <_RootReorderDragger
@@ -95,12 +106,9 @@ export const _CommonReorder: FC<
       bottom={s.m05}
       container={screen.container}
     >
-      {({ x025, y06, y075, x, y }) => {
+      {({ x05, y06, y075, x, y }) => {
         return (
-          <div
-            className="relative"
-            {...handlers("dragger")}
-          >
+          <div className="relative">
             {children}
             <_CommonReorderControls
               add={add}
@@ -108,9 +116,9 @@ export const _CommonReorder: FC<
               names={names}
               deselect={deselect}
               boxProps={boxProps}
-              itemProps={itemProps}
-              x={x025}
-              y={y075}
+              itemStyle={itemStyle}
+              x={x05}
+              y={y}
             />
             <motion.div
               style={{
@@ -120,7 +128,7 @@ export const _CommonReorder: FC<
             >
               <_CommonReorderPlaceholder
                 boxProps={boxProps}
-                itemProps={itemProps}
+                itemStyle={itemStyle}
               />
             </motion.div>
             <Reorder.Group
@@ -134,21 +142,33 @@ export const _CommonReorder: FC<
             >
               {names.map((name) => {
                 isVNumber(size);
-
+                const key =
+                  resolveCompositeKey(
+                    "reorder",
+                    name
+                  );
                 return (
                   <Reorder.Item
-                    key={name}
+                    key={key}
                     value={name}
-                    {...itemProps}
                     whileDrag={{
                       cursor:
                         "grabbing",
                     }}
                     style={{
-                      ...itemProps.style,
+                      ...itemStyle,
+                      filter:
+                        is5RandomPicsHover
+                          ? "blur(6px)"
+                          : "",
+                      // must be top not y
+                      // top:0,
+                      left: 0,
                       cursor: "grab",
-                      // y: y06,
                     }}
+                    {...motionHandlers(
+                      key
+                    )}
                   >
                     {!isHover(
                       LEFT_BUTTONS_CLEAR_TITLE
@@ -156,19 +176,25 @@ export const _CommonReorder: FC<
                       <>
                         {!isVideoPlayerButtonHover && (
                           <PicDisplay
-                            key="added"
+                            key={resolveCompositeKey(
+                              "pic-display",
+                              name
+                            )}
                             name={name}
                             whileTap={{
                               cursor:
                                 "grabbing",
                             }}
-                            {...itemProps}
-                            {...PRESENCE_OPACITY}
+                            // {...PRESENCE_OPACITY_ANIMATE_DELAY_02}
+
+                            // {...PRESENCE_OPACITY}
                             style={{
-                              position:
-                                "absolute",
-                              ...itemProps.style,
-                              top: y06, // must be top not y
+                              // position:
+                              //   "absolute",
+                              // top: "0",
+                              left: 0,
+                              top: y06,
+                              ...itemStyle,
                             }}
                             transition={{
                               duration: 0.6,
@@ -188,42 +214,3 @@ export const _CommonReorder: FC<
     </_RootReorderDragger>
   );
 };
-
-{
-  /* {removingParamValues.map(
-                (name) => {
-                  return (
-                    <Reorder.Item
-                      key={name}
-                      value={name}
-                      {...itemProps}
-                      style={{
-                        ...itemProps.style,
-                        cursor:
-                          "not-allowed",
-                        y: y06,
-                      }}
-                    >
-                      <PicDisplay
-                        key="removing"
-                        name={name}
-                        style={{
-                          ...itemProps.style,
-                          opacity: 1,
-                          top: 0,
-                          left: 0,
-                          right: 0,
-                          bottom: 0,
-                          filter:
-                            "blur(4px)",
-                        }}
-                        transition={{
-                          duration: 1,
-                          ease: "easeIn",
-                        }}
-                      />
-                    </Reorder.Item>
-                  );
-                }
-              )} */
-}

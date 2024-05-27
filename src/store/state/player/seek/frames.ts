@@ -1,5 +1,6 @@
 import { TPlayerSeekFramesState } from "~/store/state/player/types";
 import { TStateHandler } from "~/store/types";
+import { isNull } from "~/utils/validation/is/null";
 
 export const playerSeekFramesState: TStateHandler<
   TPlayerSeekFramesState
@@ -8,7 +9,7 @@ export const playerSeekFramesState: TStateHandler<
   return {
     seekFrames: (nextFrame: number) => {
       const { playerInstance } = get();
-      if (!playerInstance) return;
+      if (isNull(playerInstance)) return;
       playerInstance.seekTo(nextFrame);
     },
   };

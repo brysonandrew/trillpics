@@ -6,6 +6,7 @@ import {
 } from "~/pics/grid/pic";
 import { padBox } from "~/pics/grid/pic/pad-box";
 import { usePicTableReadSize } from "~/hooks/pic/table/read/size";
+import { resolveSquare } from "@brysonandrew/measure";
 
 type TBaseBoxChildProps = TPicProps & {
   style: TDimensions & {
@@ -22,7 +23,6 @@ type TProps = TCell &
   };
 export const Box: FC<TProps> = ({
   children,
-
   column,
   row,
   ...props
@@ -32,16 +32,14 @@ export const Box: FC<TProps> = ({
 
   return (
     <>
-      <div
+      {/* <div
         className="_gradient-mesh"
         style={{
           position: "absolute",
-          ...padBox({
-            size: size,
-            left,
-          }),
+          left,
+          ...resolveSquare(size)
         }}
-      />
+      /> */}
       <>
         {children({
           ...props,

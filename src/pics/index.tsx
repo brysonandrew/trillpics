@@ -1,16 +1,9 @@
 import { FC } from "react";
 import { ScrollbarSeam } from "~/components/layout/scrollbar-seam";
 import { useTrillPicsStore } from "~/store/middleware";
-import { TPartialFixedTableProps } from "~/store/state/table/types";
 import { Grid } from "~/pics/grid";
-import {
-  useContextGrid,
-  VirtualizeContextProvider,
-} from "~/context";
-import { Outlet } from "react-router";
-import { TScreenReadyProps } from "~/context/types";
+import { useContextGrid } from "~/context";
 
-type TProps = TScreenReadyProps;
 export const Pics: FC = () => {
   const { onScroll, ref, screen } =
     useContextGrid();
@@ -34,7 +27,6 @@ export const Pics: FC = () => {
         width={screen.width}
         height={screen.height}
       />
-      <Outlet context={{ screen }} />
     </>
   );
 };

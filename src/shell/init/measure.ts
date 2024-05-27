@@ -7,7 +7,6 @@ import {
   TDimensionsReady,
 } from "@brysonandrew/config-types";
 import { measureContainer } from "~/shell/init/container";
-import { useBlurAnimate } from "~/hooks/animate/blur/animate";
 
 export const RESIZE_COOLDOWN = 400;
 
@@ -86,7 +85,6 @@ export const useScreenMeasure = (
         isDimensions,
         isResizing,
       } as TReady;
-      console.log(ready, config);
       if (config.onReady) {
         config.onReady(ready);
       }
@@ -96,19 +94,15 @@ export const useScreenMeasure = (
 
     setScreen(next ?? INIT_SCREEN);
   };
-  // const handler = useBlurAnimate();
 
   const handleResize = () => {
     handleSize({
       ...INIT_SCREEN,
       isResizing: true,
     });
-
-    // handler();
     endTimeout();
     timeoutRef.current = setTimeout(
       () => {
-        console.log("init")
         handleSize(INIT_SCREEN);
       },
       RESIZE_COOLDOWN

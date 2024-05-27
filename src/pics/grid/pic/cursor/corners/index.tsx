@@ -41,7 +41,9 @@ export const CursorCorners: FC = () => {
           size: CORNER_SIZE,
           thickness: 0.4,
         }}
-        className="stroke-white dark:stroke-black"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        // className="text-white dark:text-black"
         stroke="currentColor"
         inset={2}
       />

@@ -7,7 +7,6 @@ import {
   OVER_CELL_PARAM_KEY,
   COLUMNS_COUNT_PARAM_KEY,
   SELECTED_PARAM_KEY,
-  SIZE_PARAM_KEY,
   REMOVING_PARAM_KEY,
 } from "~/hooks/pic/constants";
 import { paramsMoveToEnd } from "~/utils/params/move-to-end";
@@ -16,7 +15,6 @@ import { videoPicsCheck } from "~/hooks/pic/video/read/video-pics-check";
 import { detailsFromSearchParams } from "~/hooks/pic/cell/over/details/from-search-params";
 import { useTrillPicsStore } from "~/store/middleware";
 import { detailsFromCell } from "~/hooks/pic/cell/over/details/from-cell";
-import { TCell } from "~/pics/grid/pic";
 import { isValue } from "~/utils/validation/is/value";
 import { videoReadEntries } from "~/hooks/pic/video/read/entries";
 import { TPic } from "~/store/state/pics/types";

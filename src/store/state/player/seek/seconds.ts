@@ -10,23 +10,18 @@ export const playerSeekSecondsState: TStateHandler<
   return {
     seekSeconds: (seconds: number) => {
       const state = get();
-      if (
-        !isNull(state.playerInstance)
-      ) {
-        const min =
-          state.fps * seconds;
-        const max =
-          state.fps *
-          seconds *
-          Infinity;
-
-        state.playerInstance?.seekTo(
-          clampNumbers({
-            min,
-            max,
-          })
-        );
-      }
+      if (isNull(state.playerInstance))
+        return;
+      const min = state.fps * seconds;
+      const max =
+        state.fps * seconds * Infinity;
+      const nextFrame = clampNumbers({
+        min,
+        max,
+      });
+      state.playerInstance.seekTo(
+        nextFrame
+      );
     },
   };
 };

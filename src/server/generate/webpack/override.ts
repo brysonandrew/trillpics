@@ -90,7 +90,6 @@ export const webpackOverride: WebpackOverrideFn =
           ...currentConfig.resolve
             ?.alias,
           ...record,
-          // ...configRecord,
         },
       },
     };

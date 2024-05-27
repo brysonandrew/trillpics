@@ -7,12 +7,12 @@ import {
   PillB,
   TPillBProps,
 } from "~/components/buttons/pill/b";
-import { useLoop } from "~/hooks/sound/koolasuchas/useLoop";
+import { isNull } from "~/utils/validation/is/null";
 
 export const PlaybackButtonsPlay: FC<
   Partial<TPillBProps>
 > = (props) => {
-  const { playerInstance, isPlaying } =
+  const { playerInstance, isPlaying:_isPlaying } =
     useTrillPicsStore(
       ({
         playerInstance,
@@ -23,17 +23,23 @@ export const PlaybackButtonsPlay: FC<
       })
     );
 
+  const handlePlay = () => {
+    if (isNull(playerInstance)) {
+      console.log("NO player instance");
+      return;
+    }
+    playerInstance.unmute();
+    playerInstance.toggle();
+  };
+
   return (
     <PillB
       {...resolveAccessibilityTitles(
-        isPlaying ? "pause" : "play"
+        _isPlaying ? "pause" : "play"
       )}
-      onClick={() => {
-        // play();
-        playerInstance?.toggle();
-      }}
+      onClick={handlePlay}
       Icon={
-        isPlaying
+        _isPlaying
           ? IconsPause
           : IconsPlay
       }

@@ -12,6 +12,7 @@ export const Video_RootCursor: FC =
       <>
         <PicCursor {...props}>
           <AddRemoveIcon
+          
             isAdded={props.isAdded}
           />
         </PicCursor>

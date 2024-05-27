@@ -17,13 +17,13 @@ export const TimerDisplay: FC<
     Math.floor(totalSeconds % 60)
   ).padStart(2, "0");
   const ms = String(
-    Math.floor(frame * (60 / fps)) % 60
+    Math.ceil(frame * (60 / fps)) % 60
   ).padStart(2, "0");
 
   return (
     <div className="row">
       <MonoChars>{m}</MonoChars>:
-      <MonoChars>{s}</MonoChars>.
+      <MonoChars>{s}</MonoChars>:
       <MonoChars>{ms}</MonoChars>
     </div>
   );

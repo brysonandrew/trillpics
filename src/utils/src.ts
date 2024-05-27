@@ -1,13 +1,33 @@
+type TConfig = {
+  base?: string;
+  name: string | number;
+};
 const resolveSrc = (
-  dir: string,
-  name: string | number,
+  { base, name }: TConfig,
   ext = "avif"
-) => `remotion/${dir}/${name}.${ext}`;
+) => `${base}/${name}.${ext}`;
 
-export const resolvePicSrc = (
-  name: string | number
-) => resolveSrc("pics", name);
+const resolveBase = (
+  base: string,
+  tail: string
+) => `${base ? `${base}/` : ""}${tail}`;
+export const resolvePicSrc = ({
+  base = "",
+  name,
+}: TConfig) =>
+  resolveSrc({
+    base: resolveBase(base, "pics"),
+    name,
+  });
 
-export const resolveAudioSrc = (
-  name: string | number
-) => resolveSrc("audio", name, "mp3");
+export const resolveAudioSrc = ({
+  base = "",
+  name,
+}: TConfig) =>
+  resolveSrc(
+    {
+      base: resolveBase(base, "audio"),
+      name,
+    },
+    "mp3"
+  );

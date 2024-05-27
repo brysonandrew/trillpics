@@ -15,7 +15,7 @@ export const initState = (
     ...coreState(...a),
     ...scrollState(...a),
     ...tableState(...a),
-    ...videoState(...a),
+    ...videoState(),
     ...picsState(...a),
     ...hoverState(...a),
     ...playerState(...a),

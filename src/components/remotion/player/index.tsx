@@ -13,25 +13,17 @@ import {
 export const RemotionPlayer: FC<
   TPicSeriesProps
 > = (_inputProps) => {
-  const {
-    inputProps: __inputProps,
-    ...props
-  } = useRemotionPlayerProps();
+  const { inputProps, ...props } =
+    useRemotionPlayerProps(_inputProps);
   const renderLoading = useLoading();
   usePlayerListeners();
 
-  const inputProps = {
-    ...__inputProps,
-    ..._inputProps,
-  };
-  inputProps.seconds =
-    inputProps.seconds || inputProps.count || 10;
-  const durationInFrames  = inputProps.seconds * props.fps;
   return (
     <Player<
       TPicSeriesSchema,
       TPicSeriesProps
     >
+      moveToBeginningWhenEnded={false}
       spaceKeyToPlayOrPause
       clickToPlay
       doubleClickToFullscreen
@@ -39,9 +31,7 @@ export const RemotionPlayer: FC<
       component={PicSeries}
       schema={PIC_SERIES_SCHEMA}
       inputProps={inputProps}
-      durationInFrames={durationInFrames}
       {...props}
-
     />
   );
 };

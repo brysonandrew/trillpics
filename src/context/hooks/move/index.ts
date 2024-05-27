@@ -1,26 +1,21 @@
 import { useState } from "react";
-import { MotionValue } from "framer-motion";
 import { useEventListener } from "@brysonandrew/hooks-events";
 import { useTrillPicsStore } from "~/store/middleware";
 import { usePicCell } from "~/hooks/pic/cell";
 import { useTimeoutRef } from "@brysonandrew/hooks-window";
-import {
-  TMain,
-  TVirtualizeContext,
-} from "~/context/types";
-import { useCursorOffset } from "~/context/hooks/move/offset";
+import { TVirtualizeContext } from "~/context/types";
 import { TITLE_HOVER_KEY } from "~/pics/header/left";
 
 type TConfig = Pick<
   TVirtualizeContext,
-  | "scrollY"
+  | "move"
   | "main"
   | "scrollTimeoutRef"
   | "isOnscreen"
 >;
 export const useMove = ({
   main,
-  scrollY,
+  move,
   isOnscreen,
   scrollTimeoutRef,
 }: TConfig) => {
@@ -46,10 +41,10 @@ export const useMove = ({
     useTimeoutRef();
   const [isCursorMove, setCursorMove] =
     useState(false);
-  const { move } = usePicCell(
-    main,
-    scrollY
-  );
+  // const { move } = usePicCell(
+  //   main,
+  //   scrollY
+  // );
   // const handler = useCursorOffset(main);
 
   const handleMove = (
@@ -71,7 +66,7 @@ export const useMove = ({
           hoverKeys: [],
           isScrolling: false,
         });
-        main.cursor.isDragging = false;
+        // main.cursor.isOnGrid = false;
       },
       60000
     );
@@ -96,6 +91,7 @@ export const useMove = ({
     }
     if (
       main.cursor.isDragging ||
+      !main.cursor.isOnGrid ||
       hoverKeys.length > 0
     )
       return;
@@ -132,6 +128,17 @@ export const useMove = ({
   useEventListener<"pointermove">(
     "pointermove",
     handleMove
+  );
+
+  const handleUp = () => {
+    // if (main.cursor.isOnGrid) {
+    //   main.cursor.isDragging = false;
+    // }
+  }
+
+  useEventListener<"pointerup">(
+    "pointerup",
+    handleUp
   );
 
   return isIdle;

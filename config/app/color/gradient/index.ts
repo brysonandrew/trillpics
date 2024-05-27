@@ -73,7 +73,7 @@ export const GRADIENT_TEXT_COMMON = {
   }),
   "-webkit-background-clip": "text",
   "-webkit-text-stroke":
-    "8px transparent",
+    "2px transparent",
 };
 
 export const GRADIENT_ZEBRA = {

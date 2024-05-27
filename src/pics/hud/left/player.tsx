@@ -1,8 +1,4 @@
-import {
-  FC,
-  PropsWithChildren,
-  useState,
-} from "react";
+import { FC, PropsWithChildren } from "react";
 import { IconsPlay } from "~/components/icons/playback/play";
 import {
   PillBHover,
@@ -10,15 +6,11 @@ import {
 } from "~/components/buttons/pill/b/hover";
 import { useNavigationControls } from "~/hooks/navigation/controls";
 import { TVideoFooterProps } from "~/pages/video/_common/footer/types";
-import {
-  HOME_ROUTE,
-  VIDEO_PLAYER_ROUTE,
-  VIDEO_ROUTE,
-} from "~/constants/params";
+import { HOME_ROUTE, VIDEO_PLAYER_ROUTE } from "~/constants/params";
 import { usePicVideoReadCount } from "~/hooks/pic/video/read/count/hook";
-import { IconsVideo } from "~/components/icons/video/video";
 import { IconsHome } from "~/components/icons/home";
 import { useTrillPicsStore } from "~/store/middleware";
+
 export const CONTROLS_PLAYER_TITLE =
   "Viewing room";
 type TProps = TVideoFooterProps &
@@ -62,9 +54,7 @@ export const ControlsPlayer: FC<
     <Button
       direction="rtl"
       isSelected={isActive}
-     
       title={title}
-  
       subtitle={
         !isActive
           ? count === 0
