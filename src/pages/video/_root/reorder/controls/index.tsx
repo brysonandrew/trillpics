@@ -16,6 +16,7 @@ import { IconsPlusQuestion } from "~/components/icons/plus";
 import { boxRadius } from "~/constants/box/radius";
 import { PRESENCE_OPACITY } from "@brysonandrew/motion-config-constants";
 import { useContextReady } from "~/shell/ready/context";
+import { _CommonReorderControl } from "~/pages/video/_root/reorder/controls/control";
 
 type TProps = TMotionPoint &
   TCommonProps &
@@ -56,7 +57,7 @@ export const _CommonReorderControls: FC<
 
   return (
     <motion.div
-      className="absolute"
+      className="absolute z-0"
       style={{
         x,
         y,
@@ -64,7 +65,7 @@ export const _CommonReorderControls: FC<
         top: s.m075,
       }}
     >
-      <motion.ul
+      <motion.div
         className={clsx(
           "absolute left-0 top-0 w-full",
           isColumn ? "column" : "row"
@@ -79,67 +80,21 @@ export const _CommonReorderControls: FC<
               name,
               "delete"
             );
-          return (
-            <motion.li
-              key={`group-${index}`}
-              className="relative"
-              style={{
-                ...itemDimensions,
-                top: 0, // -s.m025 - s.m0125,
-                zIndex: index,
-              }}
-              {...motionHandlers(key)}
-            >
-              <AnimatePresence>
-                <motion.div
-                  key={`group-${index}`}
-                  className="absolute w-full row-start-space border border-white-06 dark:border-black-06 bg-white-01 dark:bg-black-01 backdrop-blur-sm"
-                  style={{
-                    borderRadius:
-                      borderRadius / 2,
-                    padding: s.padding,
-                    ...itemDimensions,
-                  }}
-                  {...PRESENCE_OPACITY}
-                >
-                  <_CommonReorderControlsButton
-                    title="Replace with random pic"
-                    onClick={() => {
-                      const randomName =
-                        pics[
-                          ~~(
-                            (pics.length -
-                              1) *
-                            Math.random()
-                          )
-                        ];
-
-                      add(
-                        randomName,
-                        name
-                      );
-                    }}
-                    iconProps={{
-                      Icon: IconsPlusQuestion,
-                    }}
-                    currName={name}
-                  />
-                  <_CommonReorderControlsButton
-                    title={`Delete pic from video`}
-                    onClick={() =>
-                      deselect(name)
-                    }
-                    iconProps={{
-                      Icon: IconsTrash,
-                    }}
-                    currName={name}
-                  />
-                </motion.div>
-              </AnimatePresence>
-            </motion.li>
-          );
+          return null;
+          // <_CommonReorderControl
+          //   key={key}
+          //   name={name}
+          //   title={key}
+          //   index={index}
+          //   itemDimensions={
+          //     itemDimensions
+          //   }
+          //   deselect={deselect}
+          //   add={add}
+          //   pics={pics}
+          // />
         })}
-      </motion.ul>
+      </motion.div>
     </motion.div>
   );
 };

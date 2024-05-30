@@ -20,13 +20,7 @@ export const VideoPlayer_Screen =
     const width =
       container.width - s.m3;
     return (
-      <div
-        className="relative"
-        style={{
-          gap: s.m05,
-          width,
-          height: width * (9 / 16),
-        }}
+      <
       >
         <PlayerBackgroundOpaque />
         <PlayerBackground />
@@ -34,6 +28,6 @@ export const VideoPlayer_Screen =
           {...inputProps}
           base="remotion"
         />
-      </div>
+      </>
     );
   };

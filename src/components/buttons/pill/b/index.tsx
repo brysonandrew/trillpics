@@ -82,7 +82,6 @@ export const PillB: FC<TPillBProps> = ({
           ? "row"
           : "row-reverse"
       )}
-      layout
       style={{
         ...(isFlat
           ? { boxShadow }
@@ -99,7 +98,6 @@ export const PillB: FC<TPillBProps> = ({
           <motion.div
             className="absolute bg-black pointer-events-none"
             // layoutId="selected pill b"
-            layout
             style={{
               borderRadius,
               ...direction === 'ltr' ? {left:0} : {right:0},
@@ -133,7 +131,6 @@ export const PillB: FC<TPillBProps> = ({
               ? ""
               : "_gradient-radial"
           )}
-          layout
           style={{
             height,
             borderRadius,

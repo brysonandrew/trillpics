@@ -29,7 +29,7 @@ export const useDragger = () => {
 
   const y06 = useTransform(
     y,
-    (v) => v * 0.8
+    (v) => v * 0.7
   );
 
   const dragger =

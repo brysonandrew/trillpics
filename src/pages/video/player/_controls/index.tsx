@@ -16,49 +16,27 @@ export const VideoPlayer_Controls =
 
     const s = boxSize();
     const borderRadius = boxRadius();
-    const container = screen.container;
+
     return (
-      <div
-        className="relative flex-col flex justify-center"
-        style={{
-          gap: s.m025,
-          width: container.width - s.m3,
-        }}
-      >
+      <>
+        <PlaybackButtons />
         <div
-          className="relative flex-col flex justify-center"
+          className="relative w-full"
           style={{
-            gap:s.m05,
-            width:
-              container.width - s.m3,
+            borderRadius,
           }}
         >
-          <PlaybackButtons />
+          <PlayerBackgroundOpaque />
           <div
-            className="relative w-full"
+            className="absolute inset-0 _gradient-radial"
             style={{
               borderRadius,
-              left: 0,
-              width:
-                container.width - s.m3,
             }}
-          >
-            <PlayerBackgroundOpaque />
-            <div
-              className="absolute inset-0 _gradient-radial"
-              style={{
-                borderRadius,
-                left: 0,
-                width:
-                  container.width -
-                  s.m3,
-              }}
-            />
-            <PlayerBackground />
-            <div className="absolute inset-0 bg-black-05 rounded-lg _gradient-mesh opacity-60" />
-            <PlaybackProgressSeeker />
-          </div>
+          />
+          <PlayerBackground />
+          <div className="absolute inset-0 bg-black-05 rounded-lg _gradient-mesh opacity-60" />
+          <PlaybackProgressSeeker />
         </div>
-      </div>
+      </>
     );
   };

@@ -25,6 +25,7 @@ import { _CommonReorderControls } from "~/pages/video/_root/reorder/controls";
 import { HUD_LEFT_ADD_RANDOM_HOVER_KEY } from "~/pics/hud/left/add-random";
 import { resolveCompositeKey } from "@brysonandrew/utils-key";
 import clsx from "clsx";
+import { _CommonReorderControl } from "~/pages/video/_root/reorder/controls/control";
 
 type TProps = TUsePicSelected;
 export const _CommonReorder: FC<
@@ -78,8 +79,7 @@ export const _CommonReorder: FC<
   const size =
     (width - TOTAL_GAP) /
     (isColumn ? 1 : MAX_COUNT);
-  const height =
-    size;
+  const height = size;
   const boxStyle = {
     gap,
     height,
@@ -89,7 +89,7 @@ export const _CommonReorder: FC<
   };
   const boxProps = {
     className: clsx(
-      "absolute",
+      "absolute z-0",
       isColumn ? "column" : "row"
     ),
     style: boxStyle,
@@ -98,7 +98,8 @@ export const _CommonReorder: FC<
     resolveSquare(size);
   const itemDimensions = isColumn
     ? {
-        height: (size / MAX_COUNT) + s.m05,
+        height:
+          size / MAX_COUNT + s.m05,
         width: size,
       }
     : imageDimensions;
@@ -118,7 +119,7 @@ export const _CommonReorder: FC<
 
   return (
     <_RootReorderDragger
-    isColumn={isColumn}
+      isColumn={isColumn}
       width={width}
       left={left}
       bottom={s.m05}
@@ -128,7 +129,7 @@ export const _CommonReorder: FC<
         return (
           <div className="relative">
             {children}
-            <_CommonReorderControls
+            {/* <_CommonReorderControls
               add={add}
               pics={pics}
               names={names}
@@ -140,8 +141,9 @@ export const _CommonReorder: FC<
               x={x05}
               y={y}
               isColumn={isColumn}
-            />
+            /> */}
             <motion.div
+              className="absolute z-0"
               style={{
                 ...boxStyle,
                 y: y06,
@@ -174,6 +176,11 @@ export const _CommonReorder: FC<
                       "reorder",
                       name
                     );
+                  const controlKey =
+                    resolveCompositeKey(
+                      name,
+                      "control"
+                    );
                   return (
                     <Reorder.Item
                       key={key}
@@ -192,12 +199,33 @@ export const _CommonReorder: FC<
                         // top:0,
                         left: 0,
                         cursor: "grab",
-                        zIndex: index,
+                        // zIndex:
+                        //   index * 2,
                       }}
                       {...motionHandlers(
                         key
                       )}
                     >
+                      <_CommonReorderControl
+                        x={x}
+                        y={y075}
+                        key={controlKey}
+                        name={name}
+                        title={
+                          controlKey
+                        }
+                        isColumn={isColumn}
+                        index={index}
+                        itemDimensions={
+                          itemDimensions
+                        }
+                        imageDimensions={imageDimensions}
+                        deselect={
+                          deselect
+                        }
+                        add={add}
+                        pics={pics}
+                      />
                       {!isHover(
                         LEFT_BUTTONS_CLEAR_TITLE
                       ) && (
@@ -224,6 +252,7 @@ export const _CommonReorder: FC<
                                 // top: "0",
                                 left: 0,
                                 top: y06,
+                                zIndex:index +2,
                                 ...imageDimensions,
                               }}
                               transition={{

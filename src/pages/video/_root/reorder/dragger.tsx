@@ -65,7 +65,9 @@ export const _RootReorderDragger: FC<
   const s = boxSize();
 
   const left =
-    props.left + width / 2 - (isColumn  ? s.m05 : s.m);
+    props.left +
+    width / 2 -
+    (isColumn ? s.m05 : s.m);
 
   const handlePointerUp = () => {
     main.cursor.isDragging = false;
@@ -113,7 +115,9 @@ export const _RootReorderDragger: FC<
           left: 0, // -container.width * 0.5,
           bottom: bottom - s.m05,
           right: 0, // container.width * 0.5,
-          top: -container.height * 0.5,
+          top:
+            -container.height *
+            (isColumn ? 0.8 : 0.4),
         }}
         className={clsx(
           "center absolute rounded-md _gradient-radial",

@@ -15,7 +15,35 @@ export const OVERFLOW_HIDDEN =
 export const VideoPlayer = () => {
   const { screen } = useContextReady();
   const s = boxSize();
-  const paddingY = screen.container.top;
+  const container = screen.container;
+  const left = container.isMobile
+    ? s.m05
+    : container.isTablet
+    ? s.m05
+    : s.m15 + screen.container.left;
+  const width =
+    container.width +
+    (container.isMobile
+      ? s.m
+      : container.isTablet
+      ? s.m
+      : -s.m25);
+  const paddingY = container.isMobile
+    ? screen.container.top
+    : screen.container.top;
+  // const container = screen.container;
+  // const left = container.isMobile
+  //   ? -s.m15
+  //   : container.isTablet
+  //   ? -s.m
+  //   : 0;
+  // const width =
+  //   container.width -
+  //   (container.isMobile
+  //     ? 0
+  //     : container.isTablet
+  //     ? s.m05
+  //     : s.m3);
   return (
     <>
       <Helmet>
@@ -29,9 +57,7 @@ export const VideoPlayer = () => {
         style={{
           zIndex: 0,
           paddingTop: paddingY + s.m15,
-          paddingLeft:
-            screen.container.left +
-            s.m15,
+          // paddingLeft,
           paddingBottom: paddingY,
           gap: s.m,
         }}
@@ -40,7 +66,18 @@ export const VideoPlayer = () => {
           {(playerInstance) => {
             return (
               <>
-                <VideoPlayer_Screen />
+                <div
+                  className="relative"
+                  style={{
+                    gap: s.m05,
+                    left,
+                    width,
+                    height:
+                      width * (9 / 16),
+                  }}
+                >
+                  <VideoPlayer_Screen />
+                </div>
                 <div
                   style={{
                     height: s.m05,
@@ -54,14 +91,20 @@ export const VideoPlayer = () => {
                       playerInstance
                     }
                   >
-                    <>
+                    <div
+                      className="relative flex-col flex justify-center"
+                      style={{
+                        left,
+                        gap: s.m05,
+                        width,
+                      }}
+                    >
                       <VideoPlayer_Controls />
-                    </>
+                    </div>
                   </Player_ReadyContextProvider>
                 )}
               </>
             );
-            return <div>no player</div>;
           }}
         </Player_InitContextProvider>
       </div>

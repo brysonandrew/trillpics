@@ -11,11 +11,7 @@ export const measureContainer = (
   const isMobile = screen.width < 450;
   const isTablet = screen.width < 600;
 
-  const padding = isMobile
-    ? s.m15
-    : isTablet
-    ? s.m
-    : s.m2;
+  const padding =   s.m2;
   const width =
     Math.min(screen.width, MAX_WIDTH) -
     padding;
@@ -41,6 +37,8 @@ export const measureContainer = (
     right: pX05 + s.m0125,
     top: pY05,
     bottom: pY05,
+    isMobile,
+    isTablet,
   } as const;
 };
 
