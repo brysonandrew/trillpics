@@ -1,9 +1,9 @@
 import { animate } from "framer-motion";
-import { useContextGrid } from "~/context";
+import { useContextReady } from "~/shell/ready/context";
 import { isValue } from "~/utils/validation/is/value";
 
 export const useBlurAnimate = (axis:'x'|'y' ='x') => {
-  const { main } = useContextGrid();
+  const { main } = useContextReady();
   const handler = () => {
     if (isValue(main.blur.control[axis])) {
       main.blur.control[axis]?.cancel();

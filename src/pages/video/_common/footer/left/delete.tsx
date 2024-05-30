@@ -2,11 +2,11 @@ import type { FC } from "react";
 import { boxSize } from "~/constants/box/size";
 import { LeftButtonsClear } from "~/pics/hud/left/clear";
 import { LinesVertical } from "~/components/lines/vertical";
-import { useContextGrid } from "~/context";
+import { useContextReady } from "~/shell/ready/context";
 
 export const FooterNavDelete: FC =
   () => {
-    const { screen } = useContextGrid();
+    const { screen } = useContextReady();
 
     const container = screen.container;
     const bSize = boxSize();

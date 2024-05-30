@@ -12,11 +12,11 @@ import { HudLeftVideo } from "~/pics/hud/left/video";
 import { ControlsPlayer } from "~/pics/hud/left/player";
 import { boxRadius } from "~/constants/box/radius";
 import { Lines_Line } from "~/components/lines/_line";
-import { useContextGrid } from "~/context";
+import { useContextReady } from "~/shell/ready/context";
 import { LeftButtonsClear } from "~/pics/hud/left/clear";
 import { useVideoPicsCheck } from "~/hooks/pic/video/read/video-pics-check/hook";
 import { HudLeftAddRandom } from "~/pics/hud/left/add-random";
-import { VideoPicsCounter } from "~/shell/screen/video-pic-counter";
+import { VideoPicsCounter } from "~/pics/hud/left/video/pic-counter";
 import { THudContainer } from "~/pics/hud";
 import { Pill } from "~/components/layout/pill";
 import { SubtitleText } from "~/pics/header/subtitle/text";
@@ -26,13 +26,15 @@ import clsx from "clsx";
 type TProps = PropsWithChildren<{
   foundation: DOMRect;
   container: THudContainer;
-  isVerticalScroll: boolean;
 }>;
 export const PicsHudLeft: FC<
   TProps
 > = ({ foundation, container }) => {
-  const { dragger, isIdle } =
-    useContextGrid();
+  const {
+    main: { dragger },
+    isIdle,
+  } = useContextReady();
+
   const s = boxSize();
   const rounded = boxRadius();
   const isVideoPics =
@@ -163,7 +165,7 @@ export const PicsHudLeft: FC<
                       style={{
                         top: s.m025,
                         gap: s.m05,
-                        width: s.m4
+                        width: s.m4,
                       }}
                     >
                       <motion.div
@@ -178,7 +180,7 @@ export const PicsHudLeft: FC<
                       <VideoPicsCounter
                         classValue="relative pointer-events-none"
                         style={{
-                          left:-s.m075,
+                          left: -s.m075,
                           bottom: s.m,
                         }}
                       >
@@ -193,14 +195,14 @@ export const PicsHudLeft: FC<
                         left: 0,
                         top: s.m025,
                         gap: s.m05,
-                        width: s.m4
+                        width: s.m4,
                       }}
                     >
                       <Pill
                         classValue="relative pointer-events-none"
                         style={{
                           height: s.m05,
-                          left:s.m,
+                          left: s.m,
                           bottom: s.m,
                         }}
                       >
@@ -219,7 +221,7 @@ export const PicsHudLeft: FC<
                       />
                       <ControlsPlayer
                         style={{
-                          right:-s.m05,
+                          right: -s.m05,
                         }}
                         isLabel={isIdle}
                       />

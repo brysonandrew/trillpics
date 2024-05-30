@@ -1,12 +1,12 @@
 import { animate } from "framer-motion";
-import { useContextGrid } from "~/context";
+import { useContextReady } from "~/shell/ready/context";
 import { isValue } from "~/utils/validation/is/value";
 
 export const useBlurInertia = (
   axis: "x" | "y" = "x",
   source: number
 ) => {
-  const { main } = useContextGrid();
+  const { main } = useContextReady();
   const handler = () => {
     if (
       isValue(main.blur.control[axis])

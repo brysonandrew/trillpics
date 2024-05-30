@@ -1,6 +1,6 @@
 import type { TMultiOptions } from "react-synthwave";
 import { useSynthMulti } from "react-synthwave";
-import { useSoundContext } from "~/context/sound";
+import { useSoundContext } from "~/shell/global/sound";
 
 export const usePitch = () => {
   const { context, master } =

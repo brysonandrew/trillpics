@@ -11,13 +11,11 @@ import {
 } from "react-router-dom";
 import { Boundary } from "@brysonandrew/boundary";
 import { HelmetProvider } from "react-helmet-async";
-import { ProvidersApi } from "~/shell/providers/api";
-import { ROUTES } from "~/shell/routes/index";
+import { ROUTES } from "~/routes/index";
 import { MOTION_CONFIG } from "@brysonandrew/motion-config-constants";
 
 window.React = React;
 window.ReactDOM = ReactDOM;
-// window['development'] = 'test';
 
 import "virtual:uno.css";
 import "~/css/fonts.css";
@@ -42,13 +40,11 @@ if (root) {
           <MotionConfig
             {...MOTION_CONFIG}
           >
-    
-              <Suspense fallback={null}>
-                <RouterProvider
-                  router={router}
-                />
-              </Suspense>
-      
+            <Suspense fallback={null}>
+              <RouterProvider
+                router={router}
+              />
+            </Suspense>
           </MotionConfig>
         </Boundary>
       </HelmetProvider>

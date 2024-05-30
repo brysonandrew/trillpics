@@ -16,9 +16,9 @@ import { cellEncrypt } from "~/hooks/pic/cell/encrypt";
 import { cellDecrypt } from "~/hooks/pic/cell/decrypt";
 import { useTrillPicsStore } from "~/store/middleware";
 import { useTimeoutRef } from "@brysonandrew/hooks-window";
-import { TCursor } from "~/context/cursor";
 import { isString } from "~/utils/validation/is/string";
 import { isDefined } from "~/utils/validation/is/defined";
+import { TCursor } from "~/shell/init/context/cursor";
 
 export const usePicCell = (
   main: {

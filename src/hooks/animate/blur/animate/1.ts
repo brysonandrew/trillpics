@@ -2,13 +2,13 @@ import {
   animate,
   MotionValue,
 } from "framer-motion";
-import { useContextGrid } from "~/context";
+import { useContextReady } from "~/shell/ready/context";
 import { useTrillPicsStore } from "~/store/middleware";
 
 export const useBlurAnimate1 = (
   axis: "x" | "y" = "x"
 ) => {
-  const { main } = useContextGrid();
+  const { main } = useContextReady();
   const { set } = useTrillPicsStore(
     ({ set }) => ({
       set,

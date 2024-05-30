@@ -2,11 +2,11 @@ import type {
   FC,
   PropsWithChildren,
 } from "react";
-import { useContextGrid } from "~/context";
+import { useContextReady } from "~/shell/ready/context";
 import {
   MOTION_BLUR_FILTER_X_PROPS,
   MOTION_BLUR_FILTER_Y_PROPS,
-} from "~/shell/global/svg/filters/blur/constants";
+} from "~/shell/init/svg/filters/blur/constants";
 
 export const BlurXyWrap: FC<
   PropsWithChildren

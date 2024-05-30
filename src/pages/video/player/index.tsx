@@ -9,8 +9,8 @@ import {
   Link,
   useSearchParams,
 } from "react-router-dom";
-import { VIDEO_ROUTE } from "~/shell/routes";
-import { useContextGrid } from "~/context";
+import { VIDEO_ROUTE } from "~/routes";
+import { useContextReady } from "~/shell/ready/context";
 import { PlayerBackground } from "~/pages/video/player/_background";
 import { boxRadius } from "~/constants/box/radius";
 import { PlayerBackgroundOpaque } from "~/pages/video/player/_background/opaque";
@@ -22,7 +22,7 @@ export const OVERFLOW_HIDDEN =
 export const VideoPlayer = () => {
   const [searchParams] =
     useSearchParams();
-  const { screen } = useContextGrid();
+  const { screen } = useContextReady();
 
   const inputProps =
     usePicVideoReadInputs();

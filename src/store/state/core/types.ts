@@ -1,4 +1,4 @@
-import { TScreen } from "~/shell/init/measure";
+import { TScreen } from "~/shell/init/hooks/measure/measure";
 import { TMilestones } from "~/types/milestones";
 
 export type TCoreKey = string | number;

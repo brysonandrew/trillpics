@@ -20,7 +20,7 @@ import {
 } from "~/pages/video/_root/reorder/constants";
 import { useHoverKey } from "~/hooks/use-hover-key";
 import { LEFT_BUTTONS_CLEAR_TITLE } from "~/pics/hud/left/clear";
-import { useContextGrid } from "~/context";
+import { useContextReady } from "~/shell/ready/context";
 import { _CommonReorderControls } from "~/pages/video/_root/reorder/controls";
 import { HUD_LEFT_ADD_RANDOM_HOVER_KEY } from "~/pics/hud/left/add-random";
 import { resolveCompositeKey } from "@brysonandrew/utils-key";
@@ -52,7 +52,7 @@ export const _CommonReorder: FC<
       isHover,
     })
   );
-  const { screen } = useContextGrid();
+  const { screen } = useContextReady();
 
   const isVideoPlayerButtonHover =
     hoverKeys.includes(
@@ -86,7 +86,7 @@ export const _CommonReorder: FC<
   } as const;
   const itemStyle = resolveSquare(size);
 
-  const { main } = useContextGrid();
+  const { main } = useContextReady();
   const start = () => {
     main.cursor.isOnGrid = false;
   };

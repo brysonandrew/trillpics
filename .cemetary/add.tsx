@@ -2,7 +2,7 @@ import type { FC } from "react";
 import { boxSize } from "~/constants/box/size";
 import { LinesVertical } from "~/components/lines/vertical";
 import { HudLeftAddRandom } from "~/pics/hud/left/add-random";
-import { useContextGrid } from "~/context";
+import { useContextGrid } from "~/shell/ready/context";
 
 export const FooterNavAdd: FC = () => {
   const { screen } = useContextGrid();

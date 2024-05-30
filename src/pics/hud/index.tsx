@@ -1,8 +1,8 @@
 import { FC } from "react";
 import { AnimatePresence } from "framer-motion";
 import clsx from "clsx";
-import { TMeasureContainerResult } from "~/shell/init/container";
-import { useContextGrid } from "~/context";
+import { TMeasureContainerResult } from "~/shell/init/hooks/measure/container";
+import { useContextReady } from "~/shell/ready/context";
 import { PicsHudHeader } from "~/pics/hud/header";
 import { PicsHudLeft } from "~/pics/hud/left";
 import { boxSize } from "~/constants/box/size";
@@ -11,17 +11,13 @@ export type THudContainer = Extract<
   TMeasureContainerResult,
   { isDimensions: true }
 >;
-type TProps = {
-  container: THudContainer;
-  isVerticalScroll: boolean;
-};
-export const Hud: FC<TProps> = ({
-  container,
-  isVerticalScroll,
-}) => {
-  const { foundationValue, isIdle } =
-    useContextGrid();
+export const Hud: FC = () => {
+  const {
+    foundationValue,
+    screen,
+  } = useContextReady();
   const s = boxSize();
+  const container = screen.container;
   return (
     <>
       <div
@@ -45,9 +41,6 @@ export const Hud: FC<TProps> = ({
             <PicsHudHeader
               key="PicsHudHeader"
               container={container}
-              isVerticalScroll={
-                isVerticalScroll
-              }
             />
             <div
               key="left"
@@ -63,14 +56,8 @@ export const Hud: FC<TProps> = ({
                 <PicsHudLeft
                   key="PicsHudLeft"
                   container={container}
-                  playerHeight={
-                    container.playerHeight
-                  }
                   foundation={
                     foundationValue
-                  }
-                  isVerticalScroll={
-                    isVerticalScroll
                   }
                 />
               )}
@@ -81,16 +68,3 @@ export const Hud: FC<TProps> = ({
     </>
   );
 };
-{
-  /* <SpeedlinesBackward /> */
-}
-{
-  /* {scrollDirection ===
-          "forward" && (
-          <SpeedlinesForward />
-        )}
-        {scrollDirection ===
-          "backward" && (
-          <SpeedlinesBackward />
-        )} */
-}

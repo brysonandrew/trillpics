@@ -1,11 +1,11 @@
-import { useContextGrid } from "~/context";
-import { useClickGrid } from "~/context/hooks/click";
+import { useContextReady } from "~/shell/ready/context";
+import { useClickGrid } from "~/shell/ready/context/hooks/click";
 import { ZOOM_PARAM_KEY } from "~/hooks/pic/constants";
 import { usePicSelected } from "~/hooks/pic/selected";
 
 export const useHomeClickSelect =
   () => {
-    const { ref } = useContextGrid();
+    const { ref } = useContextReady();
     const props = usePicSelected(
       ZOOM_PARAM_KEY
     );

@@ -9,7 +9,7 @@ import clsx from "clsx";
 import { PortalBody } from "@brysonandrew/layout-portal";
 import { TPillBHoverProps } from "~/components/buttons/pill/b/hover";
 import { LinesHorizontalShadow } from "~/components/lines/horizontal/shadow";
-import { useContextGrid } from "~/context";
+import { useContextReady } from "~/shell/ready/context";
 import { PRESENCE_OPACITY } from "@brysonandrew/motion-config-constants";
 import { PRESENCE_OPACITY_ANIMATE_DELAY_02 } from "~/constants/animation";
 

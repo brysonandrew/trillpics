@@ -4,7 +4,7 @@ import {
   motion,
   MotionConfig,
 } from "framer-motion";
-import { useContextGrid } from "~/context";
+import { useContextReady } from "~/shell/ready/context";
 import { resolveCompositeKey } from "@brysonandrew/utils-key";
 import { CursorCorners } from "~/pics/grid/pic/cursor/corners";
 import { TPropsWithChildren } from "@brysonandrew/config-types";
@@ -26,7 +26,7 @@ export const PicCursor: FC<
 > = ({ children, ...props }) => {
   const { currCell, size, currKey } =
     props;
-  const { scrollY } = useContextGrid();
+  const { scrollY } = useContextReady();
 
   const position =
     resolvePositionFromCell({
@@ -88,7 +88,7 @@ export const PicCursor: FC<
             currKey,
             "scroller"
           )}
-          className="fill center text-2xl _outline-filter text-black-6 dark:text-white-5 pointer-events-none"
+          className="fill center text-2xl _outline-filter-inverted text-white dark:text-black pointer-events-none"
           style={{
             y: scrollY,
             ...position,

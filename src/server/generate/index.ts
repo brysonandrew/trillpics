@@ -50,7 +50,7 @@ export const generate = async ({
     fps,
     durationInFrames,
   };
-  console.log(inputProps, isLocal)
+  // console.log(inputProps, isLocal)
   const compositionOptions: SelectCompositionOptions =
     {
       serveUrl,

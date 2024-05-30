@@ -7,13 +7,13 @@ import {
   motion,
   useMotionValueEvent,
 } from "framer-motion";
-import { useContextGrid } from "~/context";
+import { useContextReady } from "~/shell/ready/context";
 import { useHoverKey } from "~/hooks/use-hover-key";
 import clsx from "clsx";
 import { resolveAccessibilityTitles } from "@brysonandrew/utils-attributes";
 import { boxSize } from "~/constants/box/size";
-import { TDraggerMotion } from "~/context/dragger";
 import { THudContainer } from "~/pics/hud";
+import { TDraggerMotion } from "~/shell/init/context/dragger";
 
 type TProps = {
   container: THudContainer;
@@ -35,9 +35,9 @@ export const _RootReorderDragger: FC<
   children,
   ...props
 }) => {
-  const { main, dragger, move } =
-    useContextGrid();
-  const { x, y } = dragger;
+  const { main, move } =
+    useContextReady();
+  const { x, y } = main.dragger;
   const title =
     "Drag video pic position";
 
@@ -92,19 +92,19 @@ export const _RootReorderDragger: FC<
       move();
     };
   useMotionValueEvent(
-    dragger.y,
+    main.dragger.y,
     "animationComplete",
     handleAnimationComplete
   );
   useMotionValueEvent(
-    dragger.y,
+    main.dragger.y,
     "animationCancel",
     handleAnimationComplete
   );
   const size = _size ?? s.m125;
   return (
     <>
-      {children?.(dragger)}
+      {children?.(main.dragger)}
       <motion.button
         drag
         dragConstraints={{

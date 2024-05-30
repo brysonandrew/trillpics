@@ -12,8 +12,6 @@ type TProps = {
   foundation: DOMRect;
   container: TDimensions;
   isIdle: boolean;
-  playerHeight: number;
-  isVerticalScroll: boolean;
 };
 export const PicsHudRight: FC<
   TProps

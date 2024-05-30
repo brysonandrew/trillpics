@@ -1,12 +1,12 @@
 import type { FC } from "react";
 import { BlurMotion2 } from "@brysonandrew/svg-filter";
-import { MOTION_BLUR_FILTER_SPEEDLINES_ID } from "~/shell/global/svg/filters/blur/constants";
-import { useContextGrid } from "~/context";
+import { MOTION_BLUR_FILTER_SPEEDLINES_ID } from "~/shell/init/svg/filters/blur/constants";
+import { useContextReady } from "~/shell/ready/context";
 
 export const SpeedlinesForward: FC =
   () => {
     const { scrollY } =
-      useContextGrid();
+      useContextReady();
 
     return (
       <BlurMotion2

@@ -13,7 +13,7 @@ import { IconsTrash } from "~/components/icons/video/trash";
 import { MAX_COUNT } from "~/pages/video/_root/reorder/constants";
 import { usePicVideoWriteInputs } from "~/hooks/pic/video/write/inputs/hook";
 import { boxSize } from "~/constants/box/size";
-import { useContextGrid } from "~/context";
+import { useContextReady } from "~/shell/ready/context";
 
 export const LEFT_BUTTONS_CLEAR_TITLE =
   "Delete all";
@@ -33,7 +33,7 @@ export const LeftButtonsClear: FC<
   } = usePicVideoWriteInputs();
   const { togglePathValue, isActive } =
     useNavigationControls(VIDEO_ROUTE);
-  const { screen } = useContextGrid();
+  const { screen } = useContextReady();
   const handler = useBlurAnimate();
 
   if (!isVideoPics) return <div />;
