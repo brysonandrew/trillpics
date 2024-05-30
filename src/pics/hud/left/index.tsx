@@ -230,7 +230,7 @@ export const PicsHudLeft: FC<
                 )}
               </>
             }
-          ></HudLeftVideo>
+       />
         </motion.div>
       </AnimatePresence>
     </LayoutGroup>

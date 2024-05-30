@@ -6,12 +6,13 @@ import { useContextReady } from "~/shell/ready/context";
 import { PicsHudHeader } from "~/pics/hud/header";
 import { PicsHudLeft } from "~/pics/hud/left";
 import { boxSize } from "~/constants/box/size";
+import { withControlsCheck } from "~/store/hocs/with-controls-check";
 
 export type THudContainer = Extract<
   TMeasureContainerResult,
   { isDimensions: true }
 >;
-export const Hud: FC = () => {
+export const Hud: FC = withControlsCheck(() => {
   const {
     foundationValue,
     screen,
@@ -67,4 +68,4 @@ export const Hud: FC = () => {
       </div>
     </>
   );
-};
+});

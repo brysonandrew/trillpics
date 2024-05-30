@@ -27,7 +27,7 @@ export const VideoPlayer = () => {
       <div
         className="fill overflow-auto"
         style={{
-          zIndex: FULLSCREEN_Z,
+          zIndex: 0,
           paddingTop: paddingY + s.m15,
           paddingLeft:
             screen.container.left +

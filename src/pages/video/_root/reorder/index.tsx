@@ -68,16 +68,18 @@ export const _CommonReorder: FC<
   const isColumn =
     screen.container.width < 600;
   const width =
-    screen.container.width - s.m3;
+    screen.container.width -
+    (isColumn ? s.m : s.m3);
   const left =
-    screen.container.left + s.m15;
+    screen.container.left +
+    (isColumn ? s.m05 : s.m15);
   const gap =
     TOTAL_GAP / (MAX_COUNT - 1);
   const size =
     (width - TOTAL_GAP) /
     (isColumn ? 1 : MAX_COUNT);
   const height =
-    size / (isColumn ? MAX_COUNT : 1);
+    size;
   const boxStyle = {
     gap,
     height,
@@ -95,7 +97,10 @@ export const _CommonReorder: FC<
   const imageDimensions =
     resolveSquare(size);
   const itemDimensions = isColumn
-    ? { height: size / MAX_COUNT, width: size }
+    ? {
+        height: (size / MAX_COUNT) + s.m05,
+        width: size,
+      }
     : imageDimensions;
 
   const { main } = useContextReady();
@@ -113,6 +118,7 @@ export const _CommonReorder: FC<
 
   return (
     <_RootReorderDragger
+    isColumn={isColumn}
       width={width}
       left={left}
       bottom={s.m05}

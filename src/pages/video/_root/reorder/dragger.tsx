@@ -17,6 +17,7 @@ import { TDraggerMotion } from "~/shell/init/context/dragger";
 
 type TProps = {
   container: THudContainer;
+  isColumn: boolean;
   left: number;
   width: number;
   size?: number;
@@ -33,6 +34,7 @@ export const _RootReorderDragger: FC<
   size: _size,
   width,
   children,
+  isColumn,
   ...props
 }) => {
   const { main, move } =
@@ -63,7 +65,7 @@ export const _RootReorderDragger: FC<
   const s = boxSize();
 
   const left =
-    props.left + width / 2 - s.m;
+    props.left + width / 2 - (isColumn  ? s.m05 : s.m);
 
   const handlePointerUp = () => {
     main.cursor.isDragging = false;

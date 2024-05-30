@@ -33,7 +33,7 @@ export const PicBackdrop: FC<
         ...(screenDimensions ?? {}),
         backdropFilter:
           "blur(28px) brightness(120%)",
-        zIndex: FULLSCREEN_Z,
+        zIndex: 0,
         ...style,
       }}
       transition={{

@@ -36,8 +36,8 @@ export const ReadyContextProvider: FC<
     foundationValue,
     updateFoundation,
   ] = useState<TFoundationValue>(null);
-
   const isOnscreen = useOnscreen();
+
   const ref: TRefMutable<TGridHandle> =
     useRef<TGridHandle | null>(null);
   const fonts = useFonts();

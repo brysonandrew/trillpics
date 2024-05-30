@@ -3,6 +3,7 @@ import { TPropsWithChildren } from "@brysonandrew/config-types";
 import { TScreen } from "~/shell/init/hooks/measure/measure";
 import { ReadyContextProvider } from "~/shell/ready/context";
 import { ScreenTooSmallOverlay } from "~/shell/ready/too-small-overlay";
+import { useOnscreen } from "~/shell/ready/context/hooks/onscreen";
 
 type TProps =
   TPropsWithChildren<TScreen>;

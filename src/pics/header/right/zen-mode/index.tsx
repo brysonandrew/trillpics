@@ -12,19 +12,16 @@ export const HideControls: FC<
 > = (props) => {
   const { resetLayout } =
     useContextReady();
-  const { isControls, toggleControls } =
+  const { toggleControls } =
     useTrillPicsStore(
       ({
-        isControls,
         toggleControls,
       }) => ({
-        isControls,
         toggleControls,
       })
     );
 
   const handleClick = () => {
-    resetLayout();
     toggleControls(false);
   };
   const handleShow = () => {

@@ -8,19 +8,28 @@ export const measureContainer = (
   >
 ) => {
   const s = boxSize();
+  const isMobile = screen.width < 450;
+  const isTablet = screen.width < 600;
+
+  const padding = isMobile
+    ? s.m15
+    : isTablet
+    ? s.m
+    : s.m2;
   const width =
     Math.min(screen.width, MAX_WIDTH) -
-    s.m2;
+    padding;
   const playerHeight = (width * 9) / 16;
-  const height = screen.height - s.m2;
+  const height =
+    screen.height - padding;
   const paddingX = Math.max(
     screen.width - width,
-    s.m
+    padding
   );
   const pX05 = paddingX / 2;
   const paddingY = Math.max(
     screen.height - height,
-    s.m
+    padding
   );
   const pY05 = paddingY / 2;
   return {

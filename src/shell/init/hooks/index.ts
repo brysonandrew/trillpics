@@ -14,18 +14,15 @@ export const useInit = () => {
     table,
     set,
     screen,
-    isControls,
   } = useTrillPicsStore(
     ({
       table,
       screen,
       set,
-      isControls,
     }) => ({
       table,
       screen,
       set,
-      isControls,
     })
   );
   const { update } = usePicTableWrite();
@@ -59,7 +56,6 @@ export const useInit = () => {
   return {
     table,
     screen,
-    isControls,
     onReady: handleScreenReady,
   };
 };

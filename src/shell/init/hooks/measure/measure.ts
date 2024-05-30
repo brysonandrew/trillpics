@@ -9,7 +9,7 @@ import {
 import { measureContainer } from "~/shell/init/hooks/measure/container";
 
 export const RESIZE_COOLDOWN = 400;
-export const MIN_DEVICE_WIDTH =450;// 769;
+export const MIN_DEVICE_WIDTH =250;// 769;
 
 type TInit = TDimensionsInit & {
   isResizing: boolean;

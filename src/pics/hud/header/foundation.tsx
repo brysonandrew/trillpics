@@ -27,7 +27,6 @@ export const PicsHudHeaderFoundation: FC<
   ) => {
     const rect =
       instance.getBoundingClientRect();
-
     updateFoundation(rect);
   };
 
@@ -35,7 +34,6 @@ export const PicsHudHeaderFoundation: FC<
     trigger,
     isArmed: isSavingDelayed,
   } = useTimebomb(100, saveFoundation);
-  const s = boxSize();
 
   return (
     <>
