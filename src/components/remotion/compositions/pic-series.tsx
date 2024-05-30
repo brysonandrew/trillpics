@@ -10,17 +10,20 @@ import {
   TPicSeriesProps,
   TPicSeriesSchema,
 } from "~/components/remotion/pic-series/types";
-const INPUT_PROPS = getInputProps();
+const INPUT_PROPS =
+  getInputProps<TPicSeriesProps>();
 export const CompositionsPicSeries: FC<
-  TPicSeriesProps
-> = (__inputProps) => {
+  Partial<TPicSeriesProps>
+> = (__inputPropsPartial) => {
   const {
     props: inputProps,
     ...props
   } = useRemotionProps({
-    ...__inputProps,
+    ...__inputPropsPartial,
     ...INPUT_PROPS,
   });
+  const { fps, durationInFrames } =
+    inputProps;
 
   return (
     <Composition<
@@ -31,6 +34,7 @@ export const CompositionsPicSeries: FC<
       component={PicSeries}
       schema={PIC_SERIES_SCHEMA}
       defaultProps={inputProps}
+      {...{ fps, durationInFrames }}
       {...props}
     />
   );

@@ -1,5 +1,5 @@
-export const SEEK_BACKWARD_SECONDS = -5;
-export const SEEK_FORWARD_SECONDS = 5;
+export const SEEK_BACKWARD_SECONDS = -1;
+export const SEEK_FORWARD_SECONDS = 1;
 
 export const DEFAULT_CANVAS_COLOR = '#141322';
 

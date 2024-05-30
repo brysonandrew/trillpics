@@ -41,7 +41,6 @@ export const Pill: FC<TPillProps> = ({
         classValue
       )}
       style={{ borderRadius, ...style }}
-      layout
       {...props}
     >
       <div

@@ -12,10 +12,8 @@ export type TSlowFrame = {
   time: number;
 };
 
-export type TGenerateInput = {
-  input: TPicSeriesProps;
-  fps: number;
-};
+export type TGenerateInput =
+  TPicSeriesProps;
 
 export type TGenerateOutput = Awaited<
   ReturnType<typeof renderMedia>

@@ -1,6 +1,6 @@
 import { FC } from "react";
-import { TimerDisplay } from "~/components/remotion/player/playback/timer/display";
-import { TimerCurrent } from "~/components/remotion/player/playback/timer/current";
+import { TimerDisplay } from "~/pages/video/player/_controls/playback/timer/display";
+import { TimerCurrent } from "~/pages/video/player/_controls/playback/timer/current";
 import { usePicVideoReadSeconds } from "~/hooks/pic/video/read/seconds/hook";
 import clsx from "clsx";
 import { useContextPlayer_Init } from "~/pages/video/player/_context/init";

@@ -47,6 +47,7 @@ export const PicsHudRight: FC<
         >
           <DarkMode isLabel={isIdle} />
           <LinesVertical
+          classValue="hidden md:flex"
             style={{ left: -s.m05 }}
           />
           <HideControls
@@ -55,23 +56,12 @@ export const PicsHudRight: FC<
           />
         </div>
         <LinesVertical
+                  classValue="opacity-0 md:opacity-100"
+
           style={{
             left: -s.m05,
           }}
         />
-        {/* <motion.div
-          className="relative bottom-0 right-0 row-space w-0"
-          style={{
-            top: s.m15,
-            y: dragger.y06,
-            left: -s.m05,
-            x: -s.m,
-            top: s.m4 + s.m05,
-          }}
-        >
-          <div />
-          <Download direction="rtl" />
-        </motion.div> */}
       </motion.div>
     </LayoutGroup>
   );

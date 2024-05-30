@@ -8,6 +8,7 @@ import { VideoPlayer_Controls } from "~/pages/video/player/_controls";
 import { Player_InitContextProvider } from "~/pages/video/player/_context/init";
 import { isPlayerInstance } from "~/utils/validation/is/player";
 import { Player_ReadyContextProvider } from "~/pages/video/player/_context/ready";
+import { useAddRandomEffect } from "~/hooks/pic/add-random/effect";
 
 export const OVERFLOW_HIDDEN =
   "overflow: hidden;";
@@ -28,9 +29,7 @@ export const VideoPlayer = () => {
       : container.isTablet
       ? s.m
       : -s.m25);
-  const paddingY = container.isMobile
-    ? screen.container.top
-    : screen.container.top;
+  const paddingY = screen.container.top;
   // const container = screen.container;
   // const left = container.isMobile
   //   ? -s.m15
@@ -43,6 +42,7 @@ export const VideoPlayer = () => {
   //     ? 0
   //     : container.isTablet
   //     ? s.m05
+  useAddRandomEffect();
   //     : s.m3);
   return (
     <>
@@ -53,13 +53,11 @@ export const VideoPlayer = () => {
       </Helmet>
       <VideoPlayer_Backdrop />
       <div
-        className="fill overflow-auto"
+        className="fill column-start justify-center overflow-auto"
         style={{
-          zIndex: 0,
           paddingTop: paddingY + s.m15,
-          // paddingLeft,
           paddingBottom: paddingY,
-          gap: s.m,
+          gap: s.m05,
         }}
       >
         <Player_InitContextProvider>
@@ -78,11 +76,6 @@ export const VideoPlayer = () => {
                 >
                   <VideoPlayer_Screen />
                 </div>
-                <div
-                  style={{
-                    height: s.m05,
-                  }}
-                />
                 {isPlayerInstance(
                   playerInstance
                 ) && (

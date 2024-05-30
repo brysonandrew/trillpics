@@ -12,15 +12,13 @@ export type THudContainer = Extract<
   TMeasureContainerResult,
   { isDimensions: true }
 >;
-export const Hud: FC = withControlsCheck(() => {
-  const {
-    foundationValue,
-    screen,
-  } = useContextReady();
-  const s = boxSize();
-  const container = screen.container;
-  return (
-    <>
+export const Hud: FC =
+  withControlsCheck(() => {
+    const { foundationValue, screen } =
+      useContextReady();
+    const s = boxSize();
+    const container = screen.container;
+    return (
       <div
         className="fixed w-0 z-0"
         style={{
@@ -66,6 +64,5 @@ export const Hud: FC = withControlsCheck(() => {
           </AnimatePresence>
         </div>
       </div>
-    </>
-  );
-});
+    );
+  });

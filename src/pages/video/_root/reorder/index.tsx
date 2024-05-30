@@ -194,13 +194,9 @@ export const _CommonReorder: FC<
                         filter:
                           is5RandomPicsHover
                             ? "blur(6px)"
-                            : "",
-                        // must be top not y
-                        // top:0,
+                            : "",        
                         left: 0,
                         cursor: "grab",
-                        // zIndex:
-                        //   index * 2,
                       }}
                       {...motionHandlers(
                         key
@@ -243,13 +239,7 @@ export const _CommonReorder: FC<
                                 cursor:
                                   "grabbing",
                               }}
-                              // {...PRESENCE_OPACITY_ANIMATE_DELAY_02}
-
-                              // {...PRESENCE_OPACITY}
                               style={{
-                                // position:
-                                //   "absolute",
-                                // top: "0",
                                 left: 0,
                                 top: y06,
                                 zIndex:index +2,

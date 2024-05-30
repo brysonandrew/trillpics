@@ -4,9 +4,11 @@ import {
   SECONDS_PARAM_KEY,
   SELECTED_PARAM_KEY,
 } from "~/hooks/pic/constants";
+import { resolveSecondsFromCount } from "~/hooks/pic/video/read/seconds/from-count";
 
 export const picVideoReadInputs = (
-  searchParams: URLSearchParams
+  searchParams: URLSearchParams,
+  fps: number
 ): TPicSeriesProps => {
   const seconds = Number(
     searchParams.get(SECONDS_PARAM_KEY)
@@ -17,10 +19,14 @@ export const picVideoReadInputs = (
   const count = pics.length;
   const isPics = count > 0;
   return {
-    seconds,
+    seconds:
+      seconds ||
+      resolveSecondsFromCount(count),
     pics,
     count,
     isPics,
     dimensions: PIC_DIMENSIONS,
+    fps,
+    durationInFrames: fps * seconds,
   };
 };

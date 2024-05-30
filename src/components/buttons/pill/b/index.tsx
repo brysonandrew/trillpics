@@ -75,6 +75,7 @@ export const PillB: FC<TPillBProps> = ({
       className={clsx(
         positionClass?? "relative",
         "shrink-0",
+        "cursor-pointer",
         "disabled:(grayscale-100 brightness-60 opacity-80 cursor-not-allowed)",
         "hover:grayscale-100",
         classValue,
@@ -97,7 +98,6 @@ export const PillB: FC<TPillBProps> = ({
         {isSelected && (
           <motion.div
             className="absolute bg-black pointer-events-none"
-            // layoutId="selected pill b"
             style={{
               borderRadius,
               ...direction === 'ltr' ? {left:0} : {right:0},

@@ -3,10 +3,8 @@ import {
   AnimatePresence,
   motion,
 } from "framer-motion";
-import { useTrillPicsStore } from "~/store/middleware";
 import { TPillBProps } from "~/components/buttons/pill/b";
 import { trpc } from "~/utils/trpc";
-import { TGenerateProps } from "~/server/generate";
 import { downloadMedia } from "~/pages/video/player/_controls/download/media";
 import { AURA } from "@brysonandrew/svg-filter";
 import { resolvePresence } from "~/utils/animation";
@@ -19,19 +17,21 @@ import { IconsDownload } from "~/components/icons/download";
 import { PillBHover } from "~/components/buttons/pill/b/hover";
 import { boxSize } from "~/constants/box/size";
 import { resolveSquare } from "@brysonandrew/measure";
-import { PIC_DIMENSIONS } from "~/constants/remotion";
+import {
+  DEFAULT_FPS,
+  PIC_DIMENSIONS,
+} from "~/constants/remotion";
 import { useContextPlayer_Init } from "~/pages/video/player/_context/init";
 
 export const DEFAULT_INPUT: TGenerateInput =
   {
-    input: {
-      pics: [],
-      count: 0,
-      seconds: 1,
-      isPics: false,
-      dimensions: { ...PIC_DIMENSIONS },
-    },
-    fps: 3,
+    fps: DEFAULT_FPS,
+    durationInFrames: 1,
+    pics: [],
+    count: 0,
+    seconds: 1,
+    isPics: false,
+    dimensions: { ...PIC_DIMENSIONS },
   };
 
 export const Download: FC<
@@ -44,14 +44,6 @@ export const Download: FC<
   const { handlers, isHover } =
     useHoverKey();
 
-  input.seconds =
-    input.seconds ||
-    input.count * 2 ||
-    10;
-  const config: TGenerateProps = {
-    input,
-    fps,
-  };
   const {
     width,
     minWidth,
@@ -72,7 +64,18 @@ export const Download: FC<
   // > = async (input) => {
   //   return null as any;
   // };
+  const x =
+    trpc.onProgress.useSubscription();
+  // const y =
+  //   trpc.randomNumber.useSubscription({
+  //     onData() {
+  //       console.log(state); // initial
+  //     },
+  //   });
 
+  //   trpc.socket.useSubscription({
+
+  // })
   const {
     isError,
     isIdle,
@@ -99,9 +102,12 @@ export const Download: FC<
     },
   });
   const handleGenerate = () => {
-    console.log(config);
-
-    mutate(config);
+    // input.onProgress = (
+    //   ...args: any[]
+    // ) => {
+    //   console.log(args);
+    // };
+    mutate(input);
   };
 
   const isAura =

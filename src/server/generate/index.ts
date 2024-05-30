@@ -12,21 +12,19 @@ import { webpackOverride } from "~/server/generate/webpack/override";
 import path from "path";
 import { onProgress } from "~/server/generate/webpack/on-progress";
 import { onDownload } from "~/server/generate/media/on-download";
-import { REMOTION_ENTRY_POINT } from "~root/remotion.config";
 import { TGenerateOutput } from "~/types/trpc/generate";
 import d from "dotenv";
+import { REMOTION_ENTRY_POINT } from "~root/remotion.config";
 d.config();
 
-export type TGenerateProps = {
-  input: TPicSeriesProps;
-  fps: number;
-};
-export const generate = async ({
-  input,
-  fps,
-}: TGenerateProps) => {
+export type TGenerateProps =
+  TPicSeriesProps;
+export const generate = async (
+  inputProps: TGenerateProps
+) => {
   const id = "pic-series";
   const isLocal = localCheck();
+
   const serveUrl = isLocal
     ? await bundle({
         publicDir: path.join(
@@ -37,19 +35,19 @@ export const generate = async ({
           process.cwd(),
           REMOTION_ENTRY_POINT
         ),
-        onProgress,
+        onProgress:inputProps.onProgress??console.log,
         webpackOverride,
       })
     : "https://brysonandrew.github.io/trillpics";
 
   const durationInFrames =
-    fps * input.seconds;
-
-  const inputProps = {
-    ...input,
-    fps,
-    durationInFrames,
-  };
+    inputProps.fps * inputProps.seconds;
+  console.log(inputProps);
+  // const inputProps = {
+  //   ...input,
+  //   fps:input.i,
+  //   durationInFrames,
+  // };
   // console.log(inputProps, isLocal)
   const compositionOptions: SelectCompositionOptions =
     {
@@ -58,6 +56,7 @@ export const generate = async ({
       inputProps,
       logLevel: "verbose",
       onBrowserLog,
+      // durationInFrames,
     };
 
   const composition =

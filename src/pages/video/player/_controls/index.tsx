@@ -1,20 +1,14 @@
-import { boxSize } from "~/constants/box/size";
-import { PlaybackProgressSeeker } from "~/components/remotion/player/playback/progress/seeker";
-import { useContextReady } from "~/shell/ready/context";
+import { PlaybackProgressSeeker } from "~/pages/video/player/_controls/playback/progress/seeker";
 import { PlayerBackground } from "~/pages/video/player/_background";
 import { boxRadius } from "~/constants/box/radius";
 import { PlayerBackgroundOpaque } from "~/pages/video/player/_background/opaque";
-import { PlaybackButtons } from "~/components/remotion/player/playback/buttons";
+import { PlaybackButtons } from "~/pages/video/player/_controls/playback/buttons";
 
 export const OVERFLOW_HIDDEN =
   "overflow: hidden;";
 
 export const VideoPlayer_Controls =
   () => {
-    const { screen } =
-      useContextReady();
-
-    const s = boxSize();
     const borderRadius = boxRadius();
 
     return (

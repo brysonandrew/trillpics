@@ -8,15 +8,11 @@ import { DEFAULT_INPUT } from "~/pages/video/player/_controls/download";
 import { resolvePicRandoms } from "~/hooks/pic/randoms";
 import { dimensionsWithinPlayerBounds } from "~/hooks/within-player-bounds";
 import { resolveSecondsFromCount } from "~/hooks/pic/video/read/seconds/from-count";
-import { useContextPlayer_Init } from "~/pages/video/player/_context/init";
+import { TGenerateInput } from "~/types/trpc/generate";
 
 export const useRemotionProps = (
-  picVideoInputs = DEFAULT_INPUT[
-    "input"
-  ]
+  picVideoInputs: TGenerateInput = DEFAULT_INPUT
 ) => {
-  const { fps } =
-    useContextPlayer_Init();
   const { pics: allPics } =
     useTrillPicsStore(({ pics }) => ({
       pics,
@@ -39,13 +35,10 @@ export const useRemotionProps = (
   const seconds =
     picVideoInputs.seconds ||
     resolveSecondsFromCount(count);
-  const durationInFrames =
-    seconds * fps;
 
   return {
-    durationInFrames,
-    fps,
     props: {
+      ...picVideoInputs,
       pics,
       count,
       seconds,

@@ -18,17 +18,10 @@ export const playerSeekHandlers: TPlayerSeek =
   ) => {
     return {
       seconds: (value: number) => {
-        if (isNull(playerInstance))
-          return;
-        const min = fps * value;
-        const max =
-          fps * value * Infinity;
-        const nextFrame = clampNumbers({
-          min,
-          max,
-        });
+        const frames = fps * value;
+        const curr = playerInstance.getCurrentFrame();
         playerInstance.seekTo(
-          nextFrame
+          (curr + frames)
         );
       },
       frames: (value: number) => {

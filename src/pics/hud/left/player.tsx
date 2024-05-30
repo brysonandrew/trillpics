@@ -1,4 +1,7 @@
-import { FC, PropsWithChildren } from "react";
+import {
+  FC,
+  PropsWithChildren,
+} from "react";
 import { IconsPlay } from "~/components/icons/playback/play";
 import {
   PillBHover,
@@ -6,7 +9,10 @@ import {
 } from "~/components/buttons/pill/b/hover";
 import { useNavigationControls } from "~/hooks/navigation/controls";
 import { TVideoFooterProps } from "~/pages/video/_common/footer/types";
-import { HOME_ROUTE, VIDEO_PLAYER_ROUTE } from "~/constants/params";
+import {
+  HOME_ROUTE,
+  VIDEO_PLAYER_ROUTE,
+} from "~/constants/params";
 import { usePicVideoReadCount } from "~/hooks/pic/video/read/count/hook";
 import { IconsHome } from "~/components/icons/home";
 import { useTrillPicsStore } from "~/store/middleware";
@@ -25,8 +31,6 @@ export const ControlsPlayer: FC<
   isShowOnlyActive,
   ...props
 }) => {
-
-
   const count = usePicVideoReadCount();
   const { isActiveHover } =
     useTrillPicsStore(
@@ -41,6 +45,7 @@ export const ControlsPlayer: FC<
   const title = isActive
     ? "Exit viewing room"
     : CONTROLS_PLAYER_TITLE;
+
   const handleClick = () => {
     togglePathValue(
       isActive

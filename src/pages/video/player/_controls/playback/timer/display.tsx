@@ -1,5 +1,5 @@
 import { FC } from "react";
-import { MonoChars } from "~/components/remotion/player/playback/timer/numbers";
+import { MonoChars } from "~/pages/video/player/_controls/playback/timer/numbers";
 import { useContextPlayer_Init } from "~/pages/video/player/_context/init";
 
 type TProps = { frame: number };

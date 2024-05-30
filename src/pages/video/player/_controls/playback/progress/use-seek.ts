@@ -10,7 +10,6 @@ export const useSeek = () => {
     useContextPlayer_Ready();
   const seconds =
     usePicVideoReadSeconds();
-
   const handleSeek = (
     progress: number
   ) => {

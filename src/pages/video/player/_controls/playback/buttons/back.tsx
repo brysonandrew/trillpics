@@ -8,11 +8,17 @@ export const PlaybackButtonsBack: FC =
     const {
       playerInstance,
       isStarted,
+      updateState,
+      seek,
     } = useContextPlayer_Ready();
     const isDisabled = !isStarted;
     const handleClick = async () => {
       if (!isDisabled) {
-        playerInstance.pauseAndReturnToPlayStart();
+        seek.frames(0);
+        playerInstance.pause();
+        updateState({
+          isStarted: false,
+        });
       }
     };
     return (

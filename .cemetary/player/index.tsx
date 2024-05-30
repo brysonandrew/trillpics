@@ -1,7 +1,7 @@
 import type { FC } from "react";
-import { PlaybackTimer } from "~/components/remotion/player/playback/timer";
+import { PlaybackTimer } from "~/pages/video/player/_controls/playback/timer";
 import clsx from "clsx";
-import { PlaybackButtons } from "~/components/remotion/player/playback/buttons";
+import { PlaybackButtons } from "~/pages/video/player/_controls/playback/buttons";
 
 export const PlayerPlayback: FC =
   () => {

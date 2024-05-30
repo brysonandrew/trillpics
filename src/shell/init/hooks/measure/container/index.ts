@@ -9,9 +9,9 @@ export const measureContainer = (
 ) => {
   const s = boxSize();
   const isMobile = screen.width < 450;
-  const isTablet = screen.width < 600;
+  const isTablet = screen.width < 769;
 
-  const padding =   s.m2;
+  const padding = s.m2;
   const width =
     Math.min(screen.width, MAX_WIDTH) -
     padding;

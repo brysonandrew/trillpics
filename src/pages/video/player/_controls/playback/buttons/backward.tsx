@@ -1,5 +1,5 @@
 import { type FC } from "react";
-import { SEEK_BACKWARD_SECONDS } from "~/components/remotion/player/playback/constants";
+import { SEEK_BACKWARD_SECONDS } from "~/pages/video/player/_controls/playback/constants";
 import { IconsChevronsLeft } from "~/components/icons/chevrons/left";
 import { PillB } from "~/components/buttons/pill/b";
 import { useContextPlayer_Ready } from "~/pages/video/player/_context/ready";

@@ -34,9 +34,9 @@ export const usePlayerListeners = (
     });
   };
 
-  const handleTimeupdate: CallbackListener<
-    "timeupdate"
-  > = ({ detail: { frame } }) => {
+  const updateStarted = (
+    frame: number
+  ) => {
     if (frame > 0) {
       if (!state.isStarted) {
         updateState({
@@ -50,6 +50,18 @@ export const usePlayerListeners = (
         });
       }
     }
+  };
+
+  const handleTimeupdate: CallbackListener<
+    "timeupdate"
+  > = ({ detail: { frame } }) => {
+    updateStarted(frame);
+  };
+
+  const handleSeeked: CallbackListener<
+    "seeked"
+  > = ({ detail: { frame } }) => {
+    updateStarted(frame);
   };
 
   useEffect(() => {
@@ -72,6 +84,10 @@ export const usePlayerListeners = (
       handleTimeupdate
     );
     playerInstance.addEventListener(
+      "seeked",
+      handleSeeked
+    );
+    playerInstance.addEventListener(
       "ended",
       handleEnded
     );
@@ -92,6 +108,10 @@ export const usePlayerListeners = (
       playerInstance.removeEventListener(
         "timeupdate",
         handleTimeupdate
+      );
+      playerInstance.removeEventListener(
+        "seeked",
+        handleSeeked
       );
       playerInstance.removeEventListener(
         "ended",

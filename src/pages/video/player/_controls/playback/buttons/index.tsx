@@ -1,11 +1,11 @@
 import type { FC } from "react";
-import { PlaybackButtonsBack } from "~/components/remotion/player/playback/buttons/back";
-import { PlaybackButtonsBackward } from "~/components/remotion/player/playback/buttons/backward";
-import { PlaybackButtonsForward } from "~/components/remotion/player/playback/buttons/forward";
-import { PlaybackButtonsFullscreen } from "~/components/remotion/player/playback/buttons/fullscreen";
-import { PlaybackButtonsMute } from "~/components/remotion/player/playback/buttons/mute";
-import { PlaybackButtonsPlay } from "~/components/remotion/player/playback/buttons/play";
-import { PlaybackTimer } from "~/components/remotion/player/playback/timer";
+import { PlaybackButtonsBack } from "~/pages/video/player/_controls/playback/buttons/back";
+import { PlaybackButtonsBackward } from "~/pages/video/player/_controls/playback/buttons/backward";
+import { PlaybackButtonsForward } from "~/pages/video/player/_controls/playback/buttons/forward";
+import { PlaybackButtonsFullscreen } from "~/pages/video/player/_controls/playback/buttons/fullscreen";
+import { PlaybackButtonsMute } from "~/pages/video/player/_controls/playback/buttons/mute";
+import { PlaybackButtonsPlay } from "~/pages/video/player/_controls/playback/buttons/play";
+import { PlaybackTimer } from "~/pages/video/player/_controls/playback/timer";
 import { boxSize } from "~/constants/box/size";
 import { PlayerBackground } from "~/pages/video/player/_background";
 import { PlayerBackgroundOpaque } from "~/pages/video/player/_background/opaque";

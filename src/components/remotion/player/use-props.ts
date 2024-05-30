@@ -3,10 +3,12 @@ import { useRemotionProps } from "~/hooks/remotion/use-props";
 import { PlayerRef } from "@remotion/player";
 import { TPicSeriesProps } from "~/components/remotion/pic-series/types";
 import { useContextPlayer_Init } from "~/pages/video/player/_context/init";
+import { TGenerateInput } from "~/types/trpc/generate";
 
 export const useRemotionPlayerProps = (
-  _inputProps: TPicSeriesProps
+  _inputProps: TGenerateInput
 ) => {
+  const {fps} = useContextPlayer_Init()
   const {
     playerInstance,
     updatePlayerInstance,
@@ -30,6 +32,8 @@ export const useRemotionPlayerProps = (
     ref: resolveRef,
     compositionWidth,
     compositionHeight,
+    fps,
+    durationInFrames: fps * inputProps.seconds,
     style: {
       cursor: "pointer",
       width: "100%",
