@@ -1,16 +1,12 @@
 import type { FC } from "react";
-import { useTrillPicsStore } from "~/store/middleware";
 import { PillBHover } from "~/components/buttons/pill/b/hover";
 import { IconsFullscreen } from "~/components/icons/playback/fullscreen";
+import { useContextPlayer_Ready } from "~/pages/video/player/_context/ready";
 
 export const PlayerFooterButtonsFullscreen: FC =
   () => {
     const { playerInstance } =
-      useTrillPicsStore(
-        ({ playerInstance }) => ({
-          playerInstance,
-        })
-      );
+      useContextPlayer_Ready();
     const handleClick = async () => {
       if (playerInstance) {
         playerInstance.requestFullscreen();

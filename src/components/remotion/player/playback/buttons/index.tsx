@@ -8,12 +8,12 @@ import { PlaybackButtonsPlay } from "~/components/remotion/player/playback/butto
 import { PlaybackTimer } from "~/components/remotion/player/playback/timer";
 import { PlayerBackground } from "~/pages/video/player/_background";
 import { PlayerBackgroundOpaque } from "~/pages/video/player/_background/opaque";
-import { Download } from "~/pages/video/player/_header/download";
+import { Download } from "~/pages/video/player/_controls/download";
 
 export const PlaybackButtons: FC =
   () => {
     return (
-      <div className="relative row-space">
+      <div className="relative row-wrap md:row-space">
         <PlayerBackgroundOpaque />
         <PlayerBackground />
         <div className="relative row gap-6">

@@ -1,4 +1,3 @@
-import { useSearchParams } from "react-router-dom";
 import { TPicSeriesProps } from "~/components/remotion/pic-series/types";
 import { PIC_DIMENSIONS } from "~/constants/remotion";
 import {

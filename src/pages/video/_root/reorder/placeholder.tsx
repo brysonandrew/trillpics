@@ -8,8 +8,7 @@ import { boxSize } from "~/constants/box/size";
 type TProps = TCommonProps;
 export const _CommonReorderPlaceholder: FC<
   TProps
-> = ({ itemStyle, boxProps }) => {
-  const gap = boxProps.style?.gap ?? 0;
+> = ({ itemDimensions, boxProps,isColumn }) => {
   const s = boxSize();
   const borderRadius = boxRadius();
   return (
@@ -20,14 +19,15 @@ export const _CommonReorderPlaceholder: FC<
       {/* <LinesHorizontal1
         style={{
           top:
-            itemStyle.height /
+            itemDimensions.height /
               2 ?? 0,
         }}
       /> */}
 
       <ul
         className={clsx(
-          "absolute row left-0 top-0 w-full"
+          "absolute left-0 top-0 w-full",
+          isColumn ?"column" : "row"
         )}
         style={{
           // x,
@@ -45,15 +45,16 @@ export const _CommonReorderPlaceholder: FC<
               )}
               style={{
                 width:
-                  itemStyle.width,
+                  itemDimensions.width,
                 height:
-                  itemStyle
+                  itemDimensions
                     .height, /// s.m+s.m025,
 
                 top: 0,
                 borderRadius:
                   borderRadius / 2,
                 padding: s.padding,
+                zIndex:index
               }}
             ></li>
           )

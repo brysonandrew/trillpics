@@ -1,5 +1,5 @@
 import { FC, memo } from "react";
-import { useCurrentPlayerFrame } from "~/hooks/remotion/use-current-player-frame";
+import { useCurrentPlayerFrame } from "~/pages/video/player/_context/ready/hooks/use-current-player-frame";
 import { TimerDisplay } from "~/components/remotion/player/playback/timer/display";
 
 const _TimerCurrent: FC = () => {

@@ -9,34 +9,32 @@ import clsx from "clsx";
 import { PortalBody } from "@brysonandrew/layout-portal";
 import { TPillBHoverProps } from "~/components/buttons/pill/b/hover";
 import { LinesHorizontalShadow } from "~/components/lines/horizontal/shadow";
-import { useContextReady } from "~/shell/ready/context";
-import { PRESENCE_OPACITY } from "@brysonandrew/motion-config-constants";
-import { PRESENCE_OPACITY_ANIMATE_DELAY_02 } from "~/constants/animation";
+import { LayoutOverlayBackdrop } from "~/components/layout/overlay/backdrop";
+import { boxSize } from "~/constants/box/size";
 
 type TProps = Pick<
   TPillBHoverProps,
   "children" | "subtitle" | "direction"
-> & { isShown: boolean };
-export const PillBHoverOverlay: FC<
+> & {
+  isShown?: boolean;
+  backdrop?: JSX.Element;
+};
+export const LayoutOverlay: FC<
   TProps
 > = ({
   children,
   subtitle,
   direction = "ltr",
-  isShown,
+  isShown = true,
+  backdrop = <LayoutOverlayBackdrop />,
 }) => {
+  const s  = boxSize()
   return (
     <PortalBody>
-      <AnimatePresence >
+      <AnimatePresence>
         {isShown && (
           <>
-            <motion.div
-              className="fill bg-gray dark:bg-gray rounded-lg z-0 pointer-events-none"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 0.6 }}
-              exit={{ opacity: 0 }}
-             
-            />
+            {backdrop}
             <motion.div
               style={{ maxWidth: 1200 }}
               className={clsx(
@@ -45,18 +43,18 @@ export const PillBHoverOverlay: FC<
                   ? "right-0"
                   : "left-0"
               )}
-              // {...PRESENCE_OPACITY_ANIMATE_DELAY_02}
             >
               {isString(children) ? (
                 <div
                   className={clsx(
-                    "relative center min-w-0 px-2 w-full sm:px-4 lg:px-24 xl:px-32 xl:w-xl top-0 left-1/2 -translate-x-1/2",
+                    "relative center min-w-0 w-full sm:px-4 lg:px-24 xl:px-32 xl:w-xl top-0 left-1/2 -translate-x-1/2",
                     direction === "ltr"
                       ? "column-end text-right"
                       : "column-start text-left"
                   )}
+                  style={{ gap: s.m05 }}
                 >
-                  <h3 className="text-4xl sm:text-6xl xl:text-8xl char-gap-6 text-white-8 dark:text-black-2 font-title _outline-filter">
+                  <h3 className="px-2 text-5xl sm:text-6xl xl:text-8xl char-gap-6 text-white-8 dark:text-black-2 font-title _outline-filter">
                     {children}
                   </h3>
                   {subtitle && (
@@ -73,12 +71,11 @@ export const PillBHoverOverlay: FC<
                           sizeClass="border-t-4"
                         />
                       </div>
-                      <div className="h-4" />
-                      <div className="relative text-4xl xl:text-5xl font-sans mix-blend-soft-light">
+                      <div className="px-2 relative text-3.5xl md:text-4xl xl:text-5xl font-sans mix-blend-soft-light">
                         <LinesHorizontalShadow />
                         <div
                           className={clsx(
-                            "relative text-teal dark:text-black",
+                            "relative leading-normal text-teal dark:text-black",
                             direction ===
                               "ltr"
                               ? "text-right"

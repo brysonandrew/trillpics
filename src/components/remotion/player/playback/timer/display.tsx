@@ -1,14 +1,13 @@
 import { FC } from "react";
-import { useTrillPicsStore } from "~/store/middleware";
 import { MonoChars } from "~/components/remotion/player/playback/timer/numbers";
+import { useContextPlayer_Init } from "~/pages/video/player/_context/init";
 
 type TProps = { frame: number };
 export const TimerDisplay: FC<
   TProps
 > = ({ frame }) => {
-  const { fps } = useTrillPicsStore(
-    ({ fps }) => ({ fps })
-  );
+  const { fps } =
+    useContextPlayer_Init();
   const totalSeconds = frame / fps;
   const m = String(
     Math.floor(totalSeconds / 60)

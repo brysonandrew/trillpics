@@ -7,7 +7,7 @@ import { useTrillPicsStore } from "~/store/middleware";
 import { TPillBProps } from "~/components/buttons/pill/b";
 import { trpc } from "~/utils/trpc";
 import { TGenerateProps } from "~/server/generate";
-import { downloadMedia } from "~/pages/video/player/_header/download/media";
+import { downloadMedia } from "~/pages/video/player/_controls/download/media";
 import { AURA } from "@brysonandrew/svg-filter";
 import { resolvePresence } from "~/utils/animation";
 import { resolveCompositeKey } from "@brysonandrew/utils-key";
@@ -20,6 +20,7 @@ import { PillBHover } from "~/components/buttons/pill/b/hover";
 import { boxSize } from "~/constants/box/size";
 import { resolveSquare } from "@brysonandrew/measure";
 import { PIC_DIMENSIONS } from "~/constants/remotion";
+import { useContextPlayer_Init } from "~/pages/video/player/_context/init";
 
 export const DEFAULT_INPUT: TGenerateInput =
   {
@@ -36,11 +37,8 @@ export const DEFAULT_INPUT: TGenerateInput =
 export const Download: FC<
   Partial<TPillBProps>
 > = ({ children, ...props }) => {
-  const { fps } = useTrillPicsStore(
-    ({ fps }) => ({
-      fps,
-    })
-  );
+  const { fps } =
+    useContextPlayer_Init();
   const s = boxSize();
   const input = usePicVideoReadInputs();
   const { handlers, isHover } =

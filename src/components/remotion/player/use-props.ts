@@ -1,19 +1,16 @@
 import { LegacyRef } from "react";
 import { useRemotionProps } from "~/hooks/remotion/use-props";
-import { useTrillPicsStore } from "~/store/middleware";
 import { PlayerRef } from "@remotion/player";
 import { TPicSeriesProps } from "~/components/remotion/pic-series/types";
+import { useContextPlayer_Init } from "~/pages/video/player/_context/init";
 
 export const useRemotionPlayerProps = (
   _inputProps: TPicSeriesProps
 ) => {
-  const { playerInstance, set } =
-    useTrillPicsStore(
-      ({ playerInstance, set }) => ({
-        playerInstance,
-        set,
-      })
-    );
+  const {
+    playerInstance,
+    updatePlayerInstance,
+  } = useContextPlayer_Init();
   const {
     width: compositionWidth,
     height: compositionHeight,
@@ -25,9 +22,7 @@ export const useRemotionPlayerProps = (
     PlayerRef | null
   > = (instance: PlayerRef | null) => {
     if (instance && !playerInstance) {
-      set({
-        playerInstance: instance,
-      });
+      updatePlayerInstance(instance);
     }
   };
 

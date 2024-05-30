@@ -1,25 +1,17 @@
 import { type FC } from "react";
-import { useTrillPicsStore } from "~/store/middleware";
 import { PillB } from "~/components/buttons/pill/b";
 import { IconsPlaybackBack } from "~/components/icons/playback/back";
+import { useContextPlayer_Ready } from "~/pages/video/player/_context/ready";
 
 export const PlaybackButtonsBack: FC =
   () => {
     const {
       playerInstance,
       isStarted,
-    } = useTrillPicsStore(
-      ({
-        playerInstance,
-        isStarted,
-      }) => ({
-        playerInstance,
-        isStarted,
-      })
-    );
+    } = useContextPlayer_Ready();
     const isDisabled = !isStarted;
     const handleClick = async () => {
-      if (playerInstance && !isDisabled) {
+      if (!isDisabled) {
         playerInstance.pauseAndReturnToPlayStart();
       }
     };

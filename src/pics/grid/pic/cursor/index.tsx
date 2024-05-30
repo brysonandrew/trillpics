@@ -88,7 +88,7 @@ export const PicCursor: FC<
             currKey,
             "scroller"
           )}
-          className="fill center text-2xl _outline-filter-inverted text-white dark:text-black pointer-events-none"
+          className="fill center text-2xl _outline-filter-inverted text-black-5 dark:text-gray-9 pointer-events-none"
           style={{
             y: scrollY,
             ...position,

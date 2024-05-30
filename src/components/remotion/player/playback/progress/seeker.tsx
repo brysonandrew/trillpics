@@ -1,11 +1,11 @@
-import { type FC } from "react";
+import { memo, type FC } from "react";
 import { useSeek } from "~/components/remotion/player/playback/progress/use-seek";
 import { TimerCurrentProgress } from "~/components/remotion/player/playback/progress";
 import clsx from "clsx";
-import { withPlayerInstanceCheck } from "~/hoc/ref/with-player-instance-check";
+import {  } from "~/hoc/ref/with-player-instance-check";
 
 export const PlaybackProgressSeeker: FC =
-  withPlayerInstanceCheck(() => {
+  memo(() => {
     const {
       handler,
       durationInFrames,

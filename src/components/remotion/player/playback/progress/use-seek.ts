@@ -1,23 +1,22 @@
 import { PointerEventHandler } from "react";
 import { usePicVideoReadSeconds } from "~/hooks/pic/video/read/seconds/hook";
-import { useTrillPicsStore } from "~/store/middleware";
+import { useContextPlayer_Init } from "~/pages/video/player/_context/init";
+import { useContextPlayer_Ready } from "~/pages/video/player/_context/ready";
 
 export const useSeek = () => {
-  const { fps, seekSeconds } =
-    useTrillPicsStore(
-      ({ fps, seekSeconds }) => ({
-        fps,
-        seekSeconds,
-      })
-    );
-  const  seconds = usePicVideoReadSeconds();
+  const { fps } =
+    useContextPlayer_Init();
+  const { seek } =
+    useContextPlayer_Ready();
+  const seconds =
+    usePicVideoReadSeconds();
 
   const handleSeek = (
     progress: number
   ) => {
     const progressInSeconds =
       seconds * progress;
-    seekSeconds(progressInSeconds);
+    seek.seconds(progressInSeconds);
   };
 
   const handler: PointerEventHandler<

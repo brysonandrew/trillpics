@@ -3,17 +3,12 @@ import {
   useSyncExternalStore,
 } from "react";
 import { type CallbackListener } from "@remotion/player";
-import { useTrillPicsStore } from "~/store/middleware";
-import { isNull } from "~/utils/validation/is/null";
+import { useContextPlayer_Ready } from "~/pages/video/player/_context/ready";
 
 export const useCurrentPlayerFrame =
   () => {
     const { playerInstance } =
-      useTrillPicsStore(
-        ({ playerInstance }) => ({
-          playerInstance,
-        })
-      );
+      useContextPlayer_Ready();
 
     const subscribe = useCallback(
       (
@@ -21,13 +16,6 @@ export const useCurrentPlayerFrame =
           newVal: number
         ) => void
       ) => {
-        if (
-          isNull(
-            playerInstance
-          )
-        ) {
-          return () => undefined;
-        }
         const updater: CallbackListener<
           "frameupdate"
         > = ({ detail }) => {
@@ -38,28 +26,20 @@ export const useCurrentPlayerFrame =
           updater
         );
         return () => {
-          if (
-            isNull(
-              playerInstance
-            )
-          ) {
-            return;
-          }
           playerInstance.removeEventListener(
             "frameupdate",
             updater
           );
         };
       },
-      [playerInstance]
+      []
     );
 
     const data =
       useSyncExternalStore<number>(
         subscribe,
         () =>
-          playerInstance?.getCurrentFrame?.() ??
-          0,
+          playerInstance.getCurrentFrame(),
         () => 0
       );
 

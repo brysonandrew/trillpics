@@ -9,6 +9,7 @@ import {
 import { measureContainer } from "~/shell/init/hooks/measure/container";
 
 export const RESIZE_COOLDOWN = 400;
+export const MIN_DEVICE_WIDTH =450;// 769;
 
 type TInit = TDimensionsInit & {
   isResizing: boolean;
@@ -85,7 +86,7 @@ export const useScreenMeasure = (
           width < height && width < 700,
         isDimensions,
         isResizing,
-        isWideEnough: width > 700,
+        isWideEnough: width > MIN_DEVICE_WIDTH,
       };
       if (config.onReady) {
         config.onReady(ready);

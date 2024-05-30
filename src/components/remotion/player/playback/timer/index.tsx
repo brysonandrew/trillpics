@@ -1,21 +1,15 @@
 import { FC } from "react";
-import { useTrillPicsStore } from "~/store/middleware";
 import { TimerDisplay } from "~/components/remotion/player/playback/timer/display";
 import { TimerCurrent } from "~/components/remotion/player/playback/timer/current";
 import { usePicVideoReadSeconds } from "~/hooks/pic/video/read/seconds/hook";
 import clsx from "clsx";
+import { useContextPlayer_Init } from "~/pages/video/player/_context/init";
 
 export const PlaybackTimer: FC = () => {
   const seconds =
     usePicVideoReadSeconds();
-  const { fps, isPlaying } =
-    useTrillPicsStore(
-      ({ fps, isPlaying }) => ({
-        fps,
-        isPlaying,
-      })
-    );
-
+    const { fps } =
+    useContextPlayer_Init();
   return (
     <div
       className={clsx(

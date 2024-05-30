@@ -1,9 +1,9 @@
 import { TemporalState } from "zundo";
+import { TInitVideoState } from "~/pages/video/player/_context/init/types";
 import { TPicsState } from "~/store/state/pics/types";
-import { TVideoState } from "~/store/state/video/types";
 
 export type TTemporalPartializedState =
-  Pick<TVideoState, "fps"> &
+  Pick<TInitVideoState, "fps"> &
     Pick<TPicsState, "pics">;
 
 export type TTemporalState =

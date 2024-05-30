@@ -1,27 +1,22 @@
 import { type FC } from "react";
-import { useTrillPicsStore } from "~/store/middleware";
 import {
   PillB,
   TPillBProps,
 } from "~/components/buttons/pill/b";
 import { IconsFullscreen } from "~/components/icons/playback/fullscreen";
+import { useContextPlayer_Ready } from "~/pages/video/player/_context/ready";
 
 export const PlaybackButtonsFullscreen: FC<
   Partial<TPillBProps>
 > = () => {
   const { playerInstance } =
-    useTrillPicsStore(
-      ({ playerInstance }) => ({
-        playerInstance,
-      })
-    );
+    useContextPlayer_Ready();
+
   return (
     <PillB
       title="seek backward"
       onClick={() => {
-        if (playerInstance) {
-          playerInstance.requestFullscreen();
-        }
+        playerInstance.requestFullscreen();
       }}
       Icon={IconsFullscreen}
     />

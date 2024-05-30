@@ -1,5 +1,4 @@
 import { type FC } from "react";
-import { useTrillPicsStore } from "~/store/middleware";
 import { resolveAccessibilityTitles } from "@brysonandrew/utils-attributes";
 import {
   PillB,
@@ -8,23 +7,13 @@ import {
 import { isNull } from "~/utils/validation/is/null";
 import { IconsUnmute } from "~/components/icons/playback/unmute";
 import { IconsMute } from "~/components/icons/playback/mute";
+import { useContextPlayer_Ready } from "~/pages/video/player/_context/ready";
 
 export const PlaybackButtonsMute: FC<
   Partial<TPillBProps>
 > = (props) => {
-  const { playerInstance, isMuted } =
-    useTrillPicsStore(
-      ({
-        playerInstance,
-        isMuted,
-      }) => ({
-        playerInstance,
-        isMuted,
-      })
-    );
-  // const isMuted =
-  //   !isNull(playerInstance) &&
-  //   playerInstance.isMuted();
+  const { playerInstance,isMuted } =
+    useContextPlayer_Ready();
 
   return (
     <PillB

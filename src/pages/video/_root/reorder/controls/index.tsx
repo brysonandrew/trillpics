@@ -33,11 +33,12 @@ export const _CommonReorderControls: FC<
   x,
   y,
   names,
-  itemStyle,
+  itemDimensions,
   boxProps,
   deselect,
   add,
   pics,
+  isColumn,
 }) => {
   const s = boxSize();
   const borderRadius = boxRadius();
@@ -48,9 +49,10 @@ export const _CommonReorderControls: FC<
   const stop = () => {
     main.cursor.isOnGrid = true;
   };
-  const { motionHandlers } = useHoverKey({
-    handlers: { start, stop },
-  });
+  const { motionHandlers } =
+    useHoverKey({
+      handlers: { start, stop },
+    });
 
   return (
     <motion.div
@@ -64,7 +66,8 @@ export const _CommonReorderControls: FC<
     >
       <motion.ul
         className={clsx(
-          "absolute row left-0 top-0 w-full"
+          "absolute left-0 top-0 w-full",
+          isColumn ? "column" : "row"
         )}
         style={{
           gap: boxProps.style?.gap,
@@ -81,8 +84,9 @@ export const _CommonReorderControls: FC<
               key={`group-${index}`}
               className="relative"
               style={{
-               ...itemStyle,
-                top:0,// -s.m025 - s.m0125,
+                ...itemDimensions,
+                top: 0, // -s.m025 - s.m0125,
+                zIndex: index,
               }}
               {...motionHandlers(key)}
             >
@@ -94,7 +98,7 @@ export const _CommonReorderControls: FC<
                     borderRadius:
                       borderRadius / 2,
                     padding: s.padding,
-              ...itemStyle
+                    ...itemDimensions,
                   }}
                   {...PRESENCE_OPACITY}
                 >

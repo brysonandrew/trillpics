@@ -1,6 +1,5 @@
 import { useMemo } from "react";
 import {
-  AnimationControls,
   AnimationPlaybackControls,
   MotionValue,
   useMotionValue,
@@ -30,7 +29,7 @@ export const useDragger = () => {
 
   const y06 = useTransform(
     y,
-    (v) => v * 0.6
+    (v) => v * 0.8
   );
 
   const dragger =

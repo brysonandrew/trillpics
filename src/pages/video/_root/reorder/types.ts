@@ -5,5 +5,6 @@ import {
 
 export type TCommonProps = {
   boxProps: TDivProps;
-  itemStyle: TDimensions;
+  itemDimensions: TDimensions;
+  isColumn:boolean
 };

@@ -24,6 +24,7 @@ import { useContextReady } from "~/shell/ready/context";
 import { _CommonReorderControls } from "~/pages/video/_root/reorder/controls";
 import { HUD_LEFT_ADD_RANDOM_HOVER_KEY } from "~/pics/hud/left/add-random";
 import { resolveCompositeKey } from "@brysonandrew/utils-key";
+import clsx from "clsx";
 
 type TProps = TUsePicSelected;
 export const _CommonReorder: FC<
@@ -64,6 +65,8 @@ export const _CommonReorder: FC<
     );
 
   const s = boxSize();
+  const isColumn =
+    screen.container.width < 600;
   const width =
     screen.container.width - s.m3;
   const left =
@@ -71,8 +74,10 @@ export const _CommonReorder: FC<
   const gap =
     TOTAL_GAP / (MAX_COUNT - 1);
   const size =
-    (width - TOTAL_GAP) / MAX_COUNT;
-  const height = size;
+    (width - TOTAL_GAP) /
+    (isColumn ? 1 : MAX_COUNT);
+  const height =
+    size / (isColumn ? MAX_COUNT : 1);
   const boxStyle = {
     gap,
     height,
@@ -81,10 +86,17 @@ export const _CommonReorder: FC<
     top: 0,
   };
   const boxProps = {
-    className: "absolute row",
+    className: clsx(
+      "absolute",
+      isColumn ? "column" : "row"
+    ),
     style: boxStyle,
   } as const;
-  const itemStyle = resolveSquare(size);
+  const imageDimensions =
+    resolveSquare(size);
+  const itemDimensions = isColumn
+    ? { height: size / MAX_COUNT, width: size }
+    : imageDimensions;
 
   const { main } = useContextReady();
   const start = () => {
@@ -116,9 +128,12 @@ export const _CommonReorder: FC<
               names={names}
               deselect={deselect}
               boxProps={boxProps}
-              itemStyle={itemStyle}
+              itemDimensions={
+                itemDimensions
+              }
               x={x05}
               y={y}
+              isColumn={isColumn}
             />
             <motion.div
               style={{
@@ -128,11 +143,16 @@ export const _CommonReorder: FC<
             >
               <_CommonReorderPlaceholder
                 boxProps={boxProps}
-                itemStyle={itemStyle}
+                itemDimensions={
+                  itemDimensions
+                }
+                isColumn={isColumn}
               />
             </motion.div>
             <Reorder.Group
-              axis="x"
+              axis={
+                isColumn ? "y" : "x"
+              }
               values={names}
               onReorder={select}
               {...boxProps}
@@ -140,73 +160,78 @@ export const _CommonReorder: FC<
                 ...boxStyle,
               }}
             >
-              {names.map((name) => {
-                isVNumber(size);
-                const key =
-                  resolveCompositeKey(
-                    "reorder",
-                    name
-                  );
-                return (
-                  <Reorder.Item
-                    key={key}
-                    value={name}
-                    whileDrag={{
-                      cursor:
-                        "grabbing",
-                    }}
-                    style={{
-                      ...itemStyle,
-                      filter:
-                        is5RandomPicsHover
-                          ? "blur(6px)"
-                          : "",
-                      // must be top not y
-                      // top:0,
-                      left: 0,
-                      cursor: "grab",
-                    }}
-                    {...motionHandlers(
-                      key
-                    )}
-                  >
-                    {!isHover(
-                      LEFT_BUTTONS_CLEAR_TITLE
-                    ) && (
-                      <>
-                        {!isVideoPlayerButtonHover && (
-                          <PicDisplay
-                            key={resolveCompositeKey(
-                              "pic-display",
-                              name
-                            )}
-                            name={name}
-                            whileTap={{
-                              cursor:
-                                "grabbing",
-                            }}
-                            // {...PRESENCE_OPACITY_ANIMATE_DELAY_02}
+              {names.map(
+                (name, index) => {
+                  isVNumber(size);
+                  const key =
+                    resolveCompositeKey(
+                      "reorder",
+                      name
+                    );
+                  return (
+                    <Reorder.Item
+                      key={key}
+                      value={name}
+                      whileDrag={{
+                        cursor:
+                          "grabbing",
+                      }}
+                      style={{
+                        ...itemDimensions,
+                        filter:
+                          is5RandomPicsHover
+                            ? "blur(6px)"
+                            : "",
+                        // must be top not y
+                        // top:0,
+                        left: 0,
+                        cursor: "grab",
+                        zIndex: index,
+                      }}
+                      {...motionHandlers(
+                        key
+                      )}
+                    >
+                      {!isHover(
+                        LEFT_BUTTONS_CLEAR_TITLE
+                      ) && (
+                        <>
+                          {!isVideoPlayerButtonHover && (
+                            <PicDisplay
+                              key={resolveCompositeKey(
+                                "pic-display",
+                                name
+                              )}
+                              name={
+                                name
+                              }
+                              whileTap={{
+                                cursor:
+                                  "grabbing",
+                              }}
+                              // {...PRESENCE_OPACITY_ANIMATE_DELAY_02}
 
-                            // {...PRESENCE_OPACITY}
-                            style={{
-                              // position:
-                              //   "absolute",
-                              // top: "0",
-                              left: 0,
-                              top: y06,
-                              ...itemStyle,
-                            }}
-                            transition={{
-                              duration: 0.6,
-                              ease: "easeIn",
-                            }}
-                          />
-                        )}
-                      </>
-                    )}
-                  </Reorder.Item>
-                );
-              })}
+                              // {...PRESENCE_OPACITY}
+                              style={{
+                                // position:
+                                //   "absolute",
+                                // top: "0",
+                                left: 0,
+                                top: y06,
+                                ...imageDimensions,
+                              }}
+                              transition={{
+                                duration: 0.6,
+                                ease: "easeIn",
+                              }}
+                            />
+                          )}
+                        </>
+                      )}
+                    </Reorder.Item>
+                  );
+                }
+              )}
             </Reorder.Group>
           </div>
         );

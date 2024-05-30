@@ -6,6 +6,7 @@ import { isDefined } from "~/utils/validation/is/defined";
 export const coreScreenState: TStateHandler<
   TCoreScreenState
 > = (set, get) => ({
+  
   screen: INIT_SCREEN,
   isOnscreen: false,
   toggleOnscreen: (next?: boolean) => {

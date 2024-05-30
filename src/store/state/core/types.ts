@@ -1,3 +1,4 @@
+import { TInitVideoState } from "~/pages/video/player/_context/init/types";
 import { TScreen } from "~/shell/init/hooks/measure/measure";
 import { TMilestones } from "~/types/milestones";
 
@@ -9,12 +10,13 @@ export type TCoreScreenState = {
   toggleOnscreen(next?: boolean): void;
 };
 export type TCoreControlsState = {
-  isIdle: boolean
+  isIdle: boolean;
   isControls: boolean;
   toggleControls(next?: boolean): void;
 };
 export type TCoreState =
-  TCoreControlsState &
+  TInitVideoState &
+    TCoreControlsState &
     TCoreScreenState & {
       milestones: TMilestones;
     };

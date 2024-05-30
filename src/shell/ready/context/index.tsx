@@ -73,7 +73,6 @@ export const ReadyContextProvider: FC<
     <ReadyContext.Provider
       value={{
         isIdle,
-        isOnscreen,
         ref,
         fonts,
         onScroll: handleScroll,

@@ -58,7 +58,6 @@ export type TReadyContext =
       updateFoundation: Dispatch<
         SetStateAction<TFoundationValue>
       >;
-      isOnscreen: boolean;
       ref: TRefMutable<TGridHandle>;
       fonts: TFontsResult;
       scrollTimeoutRef: ReturnType<

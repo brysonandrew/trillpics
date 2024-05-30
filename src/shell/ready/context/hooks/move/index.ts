@@ -7,11 +7,8 @@ import { TITLE_HOVER_KEY } from "~/pics/header/left";
 
 type TConfig = Pick<
   TReadyContext,
-  | "move"
-  | "main"
-  | "scrollTimeoutRef"
-  | "isOnscreen"
->;
+  "move" | "main" | "scrollTimeoutRef"
+> & { isOnscreen: boolean };
 export const useMove = ({
   main,
   move,
@@ -123,7 +120,7 @@ export const useMove = ({
     // if (main.cursor.isOnGrid) {
     //   main.cursor.isDragging = false;
     // }
-  }
+  };
 
   useEventListener<"pointerup">(
     "pointerup",
