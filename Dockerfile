@@ -1,8 +1,6 @@
-FROM debian:bookworm
-
+FROM node:20-bookworm
 RUN apt-get update
-
-RUN apt-get install -y nodejs npm chromium
+RUN apt-get install -y chromium
 
 WORKDIR /app
 
