@@ -16625,10 +16625,15 @@ const PIC_SERIES_SCHEMA = lib.z.object({
   seconds: lib.z.number(),
   count: lib.z.number(),
   isPics: lib.z.boolean(),
+  fps: lib.z.number(),
+  durationInFrames: lib.z.number(),
   dimensions: lib.z.object({
     height: lib.z.number(),
     width: lib.z.number()
-  })
+  }),
+  onProgress: lib.z["function"]().optional(),
+  onBrowserLog: lib.z["function"]().optional(),
+  onDownload: lib.z["function"]().optional()
 });
 
 // EXTERNAL MODULE: ./node_modules/react/index.js
@@ -16657,6 +16662,49 @@ const remotion_DIMENSIONS = {
 const remotion_PIC_DIMENSIONS = {
   width: PIC_SIZE,
   height: PIC_SIZE
+};
+
+;// CONCATENATED MODULE: ./src/pages/video/player/_context/init/index.tsx
+
+
+
+const INIT_VIDEO_STATE = {
+  fps: DEFAULT_FPS
+};
+const InitContext = (0,react.createContext)(
+  {}
+);
+const init_useContextPlayer_Init = () => useContext(InitContext);
+const Player_InitContextProvider = ({ children }) => {
+  const [
+    playerInstance,
+    setPlayerInstance
+  ] = useState(null);
+  const [
+    initVideoState,
+    setVideoState
+  ] = useLocalStorage(
+    "INIT_VIDEO_STATE",
+    INIT_VIDEO_STATE
+  );
+  const updateState = (partial) => {
+    setVideoState((state) => ({
+      ...state,
+      partial
+    }));
+  };
+  return /* @__PURE__ */ React.createElement(
+    InitContext.Provider,
+    {
+      value: {
+        playerInstance,
+        updatePlayerInstance: setPlayerInstance,
+        updateState,
+        ...initVideoState
+      }
+    },
+    children(playerInstance)
+  );
 };
 
 ;// CONCATENATED MODULE: ./src/store/state/core/controls/index.ts
@@ -16720,22 +16768,25 @@ const size_boxSize = (key) => {
   };
 };
 
-;// CONCATENATED MODULE: ./src/shell/init/container/index.ts
+;// CONCATENATED MODULE: ./src/shell/init/hooks/measure/container/index.ts
 
 const MAX_WIDTH = 1280;
 const container_measureContainer = (screen) => {
   const s = boxSize();
-  const width = Math.min(screen.width, MAX_WIDTH) - s.m2;
+  const isMobile = screen.width < 450;
+  const isTablet = screen.width < 769;
+  const padding = s.m2;
+  const width = Math.min(screen.width, MAX_WIDTH) - padding;
   const playerHeight = width * 9 / 16;
-  const height = screen.height - s.m2;
+  const height = screen.height - padding;
   const paddingX = Math.max(
     screen.width - width,
-    s.m
+    padding
   );
   const pX05 = paddingX / 2;
   const paddingY = Math.max(
     screen.height - height,
-    s.m
+    padding
   );
   const pY05 = paddingY / 2;
   return {
@@ -16746,17 +16797,20 @@ const container_measureContainer = (screen) => {
     left: pX05 - s.m0125,
     right: pX05 + s.m0125,
     top: pY05,
-    bottom: pY05
+    bottom: pY05,
+    isMobile,
+    isTablet
   };
 };
 
-;// CONCATENATED MODULE: ./src/shell/init/measure.ts
+;// CONCATENATED MODULE: ./src/shell/init/hooks/measure/measure.ts
 
 
 
 
 
 const RESIZE_COOLDOWN = 400;
+const MIN_DEVICE_WIDTH = 250;
 const INIT_SCREEN = {
   isResizing: false,
   isDimensions: false
@@ -16789,7 +16843,8 @@ const useScreenMeasure = (config = {}) => {
         halfHeight: height * 0.5,
         isVertical: width < height && width < 700,
         isDimensions,
-        isResizing
+        isResizing,
+        isWideEnough: width > MIN_DEVICE_WIDTH
       };
       if (config.onReady) {
         config.onReady(ready);
@@ -16847,24 +16902,22 @@ const coreScreenState = (set, get) => ({
 ;// CONCATENATED MODULE: ./src/store/state/core/state.ts
 
 
+
 const coreState = (...args) => {
   return {
+    ...INIT_VIDEO_STATE,
     ...coreScreenState(...args),
     ...coreControlsState(...args),
     milestones: []
   };
 };
 
-;// CONCATENATED MODULE: ./src/store/state/video/state.ts
-
-const videoState = () => {
-  return {
-    isStarted: false,
-    isMuted: false,
-    isPlaying: false,
-    fps: DEFAULT_FPS
-  };
-};
+;// CONCATENATED MODULE: ./src/store/state/generate/index.ts
+const generateState = () => ({
+  isStarted: false,
+  progress: 0,
+  error: ""
+});
 
 ;// CONCATENATED MODULE: ./src/store/state/hover/checks/active/index.ts
 const hoverChecksActive = (get) => (config = {}) => {
@@ -16994,67 +17047,6 @@ const picsState = (set, get) => ({
     });
   }
 });
-
-;// CONCATENATED MODULE: ./src/utils/validation/is/null.ts
-
-const isNull = (value) => {
-  if (defined_isDefined(value) && value === null)
-    return true;
-  return false;
-};
-
-;// CONCATENATED MODULE: ./src/store/state/player/seek/frames.ts
-
-const playerSeekFramesState = (...args) => {
-  const [_, get] = args;
-  return {
-    seekFrames: (nextFrame) => {
-      const { playerInstance } = get();
-      if (isNull(playerInstance))
-        return;
-      playerInstance.seekTo(nextFrame);
-    }
-  };
-};
-
-;// CONCATENATED MODULE: ./src/utils/number/clamp-numbers.ts
-const clampNumbers = ({ min, max }) => {
-  return Math.min(Math.max(min, 0), max);
-};
-
-;// CONCATENATED MODULE: ./src/store/state/player/seek/seconds.ts
-
-
-const playerSeekSecondsState = (...args) => {
-  const [_, get] = args;
-  return {
-    seekSeconds: (seconds) => {
-      const state = get();
-      if (isNull(state.playerInstance))
-        return;
-      const min = state.fps * seconds;
-      const max = state.fps * seconds * Infinity;
-      const nextFrame = clampNumbers({
-        min,
-        max
-      });
-      state.playerInstance.seekTo(
-        nextFrame
-      );
-    }
-  };
-};
-
-;// CONCATENATED MODULE: ./src/store/state/player/state.ts
-
-
-const playerState = (...args) => {
-  return {
-    playerInstance: null,
-    ...playerSeekFramesState(...args),
-    ...playerSeekSecondsState(...args)
-  };
-};
 
 ;// CONCATENATED MODULE: ./src/store/state/scroll/index.ts
 const scroll_SCROLL = 240;
@@ -17630,16 +17622,14 @@ const tableState = (...args) => {
 
 
 
-
 const initState = (...a) => {
   return {
     ...coreState(...a),
     ...scrollState(...a),
     ...tableState(...a),
-    ...videoState(),
     ...picsState(...a),
     ...hoverState(...a),
-    ...playerState(...a),
+    ...generateState(...a),
     ...setState(a[0])
   };
 };
@@ -20387,7 +20377,7 @@ class TransformResultError extends Error {
 /**
  * Transforms and validates that the result is a valid TRPCResponse
  * @internal
- */ function transformResult_ace864b8_transformResult(response, runtime) {
+ */ function transformResult(response, runtime) {
     let result;
     try {
         // Use the data transformers on the JSON-response
@@ -20412,7 +20402,7 @@ class TransformResultError extends Error {
 
 
 function isTRPCClientError(cause) {
-    return cause instanceof TRPCClientError_38f9a32a_TRPCClientError || /**
+    return cause instanceof TRPCClientError || /**
      * @deprecated
      * Delete in next major
      */ cause instanceof Error && cause.name === 'TRPCClientError';
@@ -20420,7 +20410,7 @@ function isTRPCClientError(cause) {
 function isTRPCErrorResponse(obj) {
     return transformResult_ace864b8_isObject(obj) && transformResult_ace864b8_isObject(obj.error) && typeof obj.error.code === 'number' && typeof obj.error.message === 'string';
 }
-class TRPCClientError_38f9a32a_TRPCClientError extends Error {
+class TRPCClientError extends Error {
     static from(_cause, opts = {}) {
         const cause = _cause;
         if (isTRPCClientError(cause)) {
@@ -20434,18 +20424,18 @@ class TRPCClientError_38f9a32a_TRPCClientError extends Error {
             return cause;
         }
         if (isTRPCErrorResponse(cause)) {
-            return new TRPCClientError_38f9a32a_TRPCClientError(cause.error.message, {
+            return new TRPCClientError(cause.error.message, {
                 ...opts,
                 result: cause
             });
         }
         if (!(cause instanceof Error)) {
-            return new TRPCClientError_38f9a32a_TRPCClientError('Unknown error', {
+            return new TRPCClientError('Unknown error', {
                 ...opts,
                 cause: cause
             });
         }
-        return new TRPCClientError_38f9a32a_TRPCClientError(cause.message, {
+        return new TRPCClientError(cause.message, {
             ...opts,
             cause: getCauseFromUnknown(cause)
         });
@@ -20462,7 +20452,7 @@ class TRPCClientError_38f9a32a_TRPCClientError extends Error {
         this.shape = opts?.result?.error;
         this.data = opts?.result?.error.data;
         this.name = 'TRPCClientError';
-        Object.setPrototypeOf(this, TRPCClientError_38f9a32a_TRPCClientError.prototype);
+        Object.setPrototypeOf(this, TRPCClientError.prototype);
     }
 }
 
@@ -20596,7 +20586,7 @@ function httpRequest(opts) {
             });
         }).catch((err)=>{
             done = true;
-            reject(TRPCClientError_38f9a32a_TRPCClientError.from(err, {
+            reject(TRPCClientError.from(err, {
                 meta
             }));
         });
@@ -20801,9 +20791,9 @@ function httpRequest(opts) {
                     let _res = undefined;
                     promise.then((res)=>{
                         _res = res;
-                        const transformed = transformResult_ace864b8_transformResult(res.json, runtime);
+                        const transformed = transformResult(res.json, runtime);
                         if (!transformed.ok) {
-                            observer.error(TRPCClientError_38f9a32a_TRPCClientError.from(transformed.error, {
+                            observer.error(TRPCClientError.from(transformed.error, {
                                 meta: res.meta
                             }));
                             return;
@@ -20814,7 +20804,7 @@ function httpRequest(opts) {
                         });
                         observer.complete();
                     }).catch((err)=>{
-                        observer.error(TRPCClientError_38f9a32a_TRPCClientError.from(err, {
+                        observer.error(TRPCClientError.from(err, {
                             meta: _res?.meta
                         }));
                     });
@@ -20897,9 +20887,9 @@ function httpLinkFactory(factoryOpts) {
                     let meta = undefined;
                     promise.then((res)=>{
                         meta = res.meta;
-                        const transformed = transformResult_ace864b8_transformResult(res.json, runtime);
+                        const transformed = transformResult(res.json, runtime);
                         if (!transformed.ok) {
-                            observer.error(TRPCClientError_38f9a32a_TRPCClientError.from(transformed.error, {
+                            observer.error(TRPCClientError.from(transformed.error, {
                                 meta
                             }));
                             return;
@@ -20910,7 +20900,7 @@ function httpLinkFactory(factoryOpts) {
                         });
                         observer.complete();
                     }).catch((cause)=>{
-                        observer.error(TRPCClientError_38f9a32a_TRPCClientError.from(cause, {
+                        observer.error(TRPCClientError.from(cause, {
                             meta
                         }));
                     });
@@ -21340,7 +21330,7 @@ class TRPCWebSocketClosedError extends Error {
     return (runtime)=>{
         const { client  } = opts;
         return ({ op  })=>{
-            return observable((observer)=>{
+            return observable_ade1bad8_observable((observer)=>{
                 const { type , path , id , context  } = op;
                 const input = runtime.transformer.serialize(op.input);
                 const unsub = client.request({
@@ -21422,7 +21412,7 @@ class TRPCUntypedClient {
             promise.then((envelope)=>{
                 resolve(envelope.result.data);
             }).catch((err)=>{
-                reject(TRPCClientError_38f9a32a_TRPCClientError.from(err));
+                reject(TRPCClientError.from(err));
             });
         });
         return abortablePromise;
@@ -25032,8 +25022,14 @@ const SERVER_PATH = "/api";
 const trpc_trpc = createTRPCReact();
 const SERVER_ORIGIN = ( null ?? process.env)._IS_LOCAL ? `http://localhost:${API_PORT}` : "https://trillpics.onrender.com";
 const url = `${SERVER_ORIGIN}${SERVER_PATH}`;
+const wsClient = createWSClient({
+  url: `ws://localhost:${API_PORT}`
+});
 const trpcClient = trpc_trpc.createClient({
   links: [
+    wsLink({
+      client: wsClient
+    }),
     httpBatchLink({
       url
     })
@@ -25072,7 +25068,7 @@ const isNumberFinite = (value) => {
 ;// CONCATENATED MODULE: ./src/hooks/use-time-bomb.ts
 
 
-const useTimebomb = (countdown = 1e3, target) => {
+const use_time_bomb_useTimebomb = (countdown = 1e3, target) => {
   const [isArmed, arm] = (0,react.useState)(false);
   const bomb = (0,react.useMemo)(() => ({ fuse: null }), []);
   const cancel = () => {
@@ -25123,7 +25119,7 @@ const use_screen_presence_useScreenPresence = ({
   );
 };
 
-;// CONCATENATED MODULE: ./src/context/hooks/onscreen.ts
+;// CONCATENATED MODULE: ./src/shell/ready/context/hooks/onscreen.ts
 
 
 
@@ -25149,6 +25145,7 @@ const onscreen_useOnscreen = () => {
   );
   const onPointerEnter = () => {
     if (pointerLeaveWhileNoControlsCheck.current) {
+      console.log("OON");
       toggleControls(true);
       pointerLeaveWhileNoControlsCheck.current = false;
     }
@@ -25167,60 +25164,7 @@ const onscreen_useOnscreen = () => {
   return isOnscreen;
 };
 
-;// CONCATENATED MODULE: ./src/context/blur.ts
-
-
-const blur_useBlur = () => {
-  const blurX = useMotionValue(0);
-  const blurY = useMotionValue(0);
-  const blur = useMemo(() => {
-    return {
-      control: {
-        x: null,
-        y: null
-      },
-      value: {
-        x: blurX,
-        y: blurY
-      }
-    };
-  }, []);
-  return blur;
-};
-
-;// CONCATENATED MODULE: ./src/context/cursor.ts
-
-
-const cursor_useCursor = () => {
-  const x = useMotionValue(0);
-  const y = useMotionValue(0);
-  const labelX = useMotionValue(``);
-  const labelY = useMotionValue(``);
-  const cursor = useMemo(() => {
-    return {
-      x,
-      y,
-      isOnGrid: false,
-      isDragging: false,
-      isHoverIdle: false,
-      prev: {
-        column: null,
-        row: null
-      },
-      offset: {
-        x: 1,
-        y: -1
-      },
-      label: {
-        x: labelX,
-        y: labelY
-      }
-    };
-  }, []);
-  return cursor;
-};
-
-;// CONCATENATED MODULE: ./src/context/scroll/update.ts
+;// CONCATENATED MODULE: ./src/shell/ready/context/scroll/update.ts
 
 
 
@@ -25228,8 +25172,6 @@ const cursor_useCursor = () => {
 
 const update_useScrollUpdateHandler = ({
   scrollY,
-  move,
-  main,
   scrollTimeoutRef
 }) => {
   const { timeoutRef, endTimeout } = scrollTimeoutRef;
@@ -25322,7 +25264,7 @@ const FONTS = FONT_NAMES.map(([name, key]) => ({
   provider: "none"
 }));
 
-;// CONCATENATED MODULE: ./src/context/fonts.ts
+;// CONCATENATED MODULE: ./src/shell/ready/context/fonts.ts
 
 
 
@@ -44073,7 +44015,7 @@ const animate = createScopedAnimate();
 
 
 const useBlurAnimate1 = (axis = "x") => {
-  const { main } = useContextGrid();
+  const { main } = useContextReady();
   const { set } = middleware_useTrillPicsStore(
     ({ set: set2 }) => ({
       set: set2
@@ -44103,11 +44045,11 @@ const useBlurAnimate1 = (axis = "x") => {
   return handler;
 };
 
-;// CONCATENATED MODULE: ./src/context/scroll/top.ts
+;// CONCATENATED MODULE: ./src/shell/ready/context/scroll/top.ts
 
 
 const useScrollTopHandler = () => {
-  const { scrollY, ref } = useContextGrid();
+  const { scrollY, ref } = useContextReady();
   const handleBlur = useBlurAnimate1("y");
   const handler = () => {
     if (!ref.current)
@@ -44183,7 +44125,7 @@ const HeaderLeft = (0,react.memo)(
   }
 );
 
-;// CONCATENATED MODULE: ./src/context/hooks/move/index.ts
+;// CONCATENATED MODULE: ./src/shell/ready/context/hooks/move/index.ts
 
 
 
@@ -44282,38 +44224,6 @@ const move_useMove = ({
     handleUp
   );
   return isIdle;
-};
-
-;// CONCATENATED MODULE: ./src/context/dragger.ts
-
-
-const dragger_useDragger = () => {
-  const x = useMotionValue(0);
-  const y = useMotionValue(0);
-  const x05 = useTransform(
-    x,
-    (v) => v * 0.5
-  );
-  const y075 = useTransform(
-    y,
-    (v) => v * 0.95
-  );
-  const y06 = useTransform(
-    y,
-    (v) => v * 0.6
-  );
-  const dragger = useMemo(() => {
-    return {
-      x,
-      y,
-      x05,
-      y075,
-      y06,
-      prevY: 0,
-      animateY: null
-    };
-  }, []);
-  return dragger;
 };
 
 ;// CONCATENATED MODULE: ./src/hooks/pic/cell/index.tsx
@@ -44425,34 +44335,105 @@ const cell_usePicCell = (main, scrollY) => {
   };
 };
 
-;// CONCATENATED MODULE: ./src/context/index.tsx
+;// CONCATENATED MODULE: ./src/shell/init/context/blur.ts
+
+
+const blur_useBlur = () => {
+  const blurX = useMotionValue(0);
+  const blurY = useMotionValue(0);
+  const blur = useMemo(() => {
+    return {
+      control: {
+        x: null,
+        y: null
+      },
+      value: {
+        x: blurX,
+        y: blurY
+      }
+    };
+  }, []);
+  return blur;
+};
+
+;// CONCATENATED MODULE: ./src/shell/init/context/cursor.ts
+
+
+const cursor_useCursor = () => {
+  const x = useMotionValue(0);
+  const y = useMotionValue(0);
+  const labelX = useMotionValue(``);
+  const labelY = useMotionValue(``);
+  const cursor = useMemo(() => {
+    return {
+      x,
+      y,
+      isOnGrid: false,
+      isDragging: false,
+      isHoverIdle: false,
+      prev: {
+        column: null,
+        row: null
+      },
+      offset: {
+        x: 1,
+        y: -1
+      },
+      label: {
+        x: labelX,
+        y: labelY
+      }
+    };
+  }, []);
+  return cursor;
+};
+
+;// CONCATENATED MODULE: ./src/shell/init/context/dragger.ts
+
+
+const dragger_useDragger = () => {
+  const x = useMotionValue(0);
+  const y = useMotionValue(0);
+  const x05 = useTransform(
+    x,
+    (v) => v * 0.5
+  );
+  const y075 = useTransform(
+    y,
+    (v) => v * 0.95
+  );
+  const y06 = useTransform(
+    y,
+    (v) => v * 0.7
+  );
+  const dragger = useMemo(() => {
+    return {
+      x,
+      y,
+      x05,
+      y075,
+      y06,
+      prevY: 0,
+      animateY: null
+    };
+  }, []);
+  return dragger;
+};
+
+;// CONCATENATED MODULE: ./src/shell/init/context/index.tsx
 
 
 
 
 
-
-
-
-
-
-
-const VirtualizeContext = (0,react.createContext)(
+const context_InitContext = (0,react.createContext)(
   {}
 );
-const useContextGrid = () => (0,react.useContext)(VirtualizeContext);
-const VirtualizeContextProvider = ({ children, screen }) => {
-  const [
-    foundationValue,
-    updateFoundation
-  ] = useState(null);
-  const isOnscreen = useOnscreen();
-  const ref = useRef(null);
-  const fonts = useFonts();
+const context_useInitContext = () => useContext(context_InitContext);
+const InitContextProvider = ({ children }) => {
   const blur = useBlur();
   const cursor = useCursor();
   const dragger = useDragger();
-  const scrollTimeoutRef = useTimeoutRef();
   const scrollY = useMotionValue(0);
   const main = useMemo(() => {
     return {
@@ -44461,9 +44442,46 @@ const VirtualizeContextProvider = ({ children, screen }) => {
       blur
     };
   }, []);
+  return /* @__PURE__ */ React.createElement(
+    context_InitContext.Provider,
+    {
+      value: {
+        scrollY,
+        main
+      }
+    },
+    children
+  );
+};
+
+;// CONCATENATED MODULE: ./src/shell/ready/context/index.tsx
+
+
+
+
+
+
+
+
+
+const ReadyContext = (0,react.createContext)(
+  {}
+);
+const useContextReady = () => (0,react.useContext)(ReadyContext);
+const ReadyContextProvider = ({ children, screen }) => {
+  const initContext = useInitContext();
+  const [
+    foundationValue,
+    updateFoundation
+  ] = useState(null);
+  const isOnscreen = useOnscreen();
+  const ref = useRef(null);
+  const fonts = useFonts();
+  const scrollTimeoutRef = useTimeoutRef();
+  const scrollY = useMotionValue(0);
   const picCellResult = usePicCell(
-    main,
-    scrollY
+    initContext.main,
+    initContext.scrollY
   );
   const { move } = picCellResult;
   const resetLayout = () => {
@@ -44471,34 +44489,29 @@ const VirtualizeContextProvider = ({ children, screen }) => {
   };
   const { handler: handleScroll } = useScrollUpdateHandler({
     scrollY,
-    move,
-    main,
     scrollTimeoutRef
   });
   const isIdle = useMove({
-    main,
+    main: initContext.main,
     isOnscreen,
     move,
     scrollTimeoutRef
   });
   return /* @__PURE__ */ React.createElement(
-    VirtualizeContext.Provider,
+    ReadyContext.Provider,
     {
       value: {
         isIdle,
-        isOnscreen,
-        scrollY,
         ref,
-        main,
         fonts,
-        dragger,
         onScroll: handleScroll,
         foundationValue,
         updateFoundation,
         resetLayout,
-        screen,
         scrollTimeoutRef,
-        ...picCellResult
+        screen,
+        ...picCellResult,
+        ...initContext
       }
     },
     children
@@ -44511,7 +44524,7 @@ const VirtualizeContextProvider = ({ children, screen }) => {
 
 const use_hover_key_useHoverKey = (config) => {
   const isDisabled = config == null ? void 0 : config.isDisabled;
-  const { main } = useContextGrid();
+  const { main } = useContextReady();
   const {
     hoverKeys,
     isHover,
@@ -44533,7 +44546,7 @@ const use_hover_key_useHoverKey = (config) => {
       cooldownEnd: cooldownEnd2
     })
   );
-  const { isArmed, trigger, disarm } = useTimebomb(1600, cooldownEnd);
+  const { isArmed, trigger, disarm } = use_time_bomb_useTimebomb(1600, cooldownEnd);
   const onStart = (key) => (event) => {
     var _a, _b, _c;
     disarm();
@@ -44702,7 +44715,8 @@ const style_boxStyle = ({
 ;// CONCATENATED MODULE: ./src/hooks/pic/video/read/inputs/index.ts
 
 
-const inputs_picVideoReadInputs = (searchParams) => {
+
+const inputs_picVideoReadInputs = (searchParams, fps) => {
   const seconds = Number(
     searchParams.get(SECONDS_PARAM_KEY)
   );
@@ -44712,11 +44726,13 @@ const inputs_picVideoReadInputs = (searchParams) => {
   const count = pics.length;
   const isPics = count > 0;
   return {
-    seconds,
+    seconds: seconds || resolveSecondsFromCount(count),
     pics,
     count,
     isPics,
-    dimensions: PIC_DIMENSIONS
+    dimensions: PIC_DIMENSIONS,
+    fps,
+    durationInFrames: fps * seconds
   };
 };
 
@@ -44725,15 +44741,18 @@ const inputs_picVideoReadInputs = (searchParams) => {
 
 
 
+
 const hook_usePicVideoReadInputs = () => {
   const [searchParams] = useSearchParams();
+  const { fps } = useContextPlayer_Init();
   const {
     seconds,
     pics,
     isPics,
     count
   } = picVideoReadInputs(
-    searchParams
+    searchParams,
+    fps
   );
   const canvasDimensions = DIMENSIONS;
   const dimensions = dimensionsWithinPlayerBounds({
@@ -44741,16 +44760,19 @@ const hook_usePicVideoReadInputs = () => {
     ...PIC_DIMENSIONS,
     fillMode: "cover"
   });
-  return {
+  const result = {
     seconds,
     pics,
     count,
     isPics,
-    dimensions
+    dimensions,
+    durationInFrames: seconds * fps,
+    fps
   };
+  return result;
 };
 
-;// CONCATENATED MODULE: ./src/shell/global/svg/gradients/blue-pink-yellow.tsx
+;// CONCATENATED MODULE: ./src/shell/init/svg/gradients/blue-pink-yellow.tsx
 
 
 const blue_pink_yellow_LINEAR_GRADIENT_SVG_ID = "linear-gradient-blue-pink-yellow-svg";
@@ -45273,12 +45295,12 @@ const b_PillB = ({
       className: clsx(
         positionClass ?? "relative",
         "shrink-0",
+        "cursor-pointer",
         "disabled:(grayscale-100 brightness-60 opacity-80 cursor-not-allowed)",
         "hover:grayscale-100",
         classValue,
         direction === "ltr" ? "row" : "row-reverse"
       ),
-      layout: true,
       style: {
         ...isFlat ? { boxShadow } : {},
         gap: s.m05,
@@ -45292,7 +45314,6 @@ const b_PillB = ({
       motion.div,
       {
         className: "absolute bg-black pointer-events-none",
-        layout: true,
         style: {
           borderRadius,
           ...direction === "ltr" ? { left: 0 } : { right: 0 },
@@ -45324,7 +45345,6 @@ const b_PillB = ({
           "center relative bg-white dark:bg-black pointer-events-none",
           isFlat ? "" : "_gradient-radial"
         ),
-        layout: true,
         style: {
           height,
           borderRadius,
@@ -45360,6 +45380,69 @@ const b_PillB = ({
       ), /* @__PURE__ */ React.createElement("span", { className: "relative dark:text-black text-white-8 _outline-filter whitespace-nowrap pointer-events-none" }, children))
     ) : /* @__PURE__ */ React.createElement(React.Fragment, null, children)))
   );
+};
+
+;// CONCATENATED MODULE: ./src/components/layout/overlay/index.tsx
+
+
+
+
+
+
+
+
+const overlay_LayoutOverlay = ({
+  children,
+  subtitle,
+  direction = "ltr",
+  isShown = true,
+  backdrop = /* @__PURE__ */ React.createElement(LayoutOverlayBackdrop, null)
+}) => {
+  const s = boxSize();
+  return /* @__PURE__ */ React.createElement(PortalBody, null, /* @__PURE__ */ React.createElement(AnimatePresence, null, isShown && /* @__PURE__ */ React.createElement(React.Fragment, null, backdrop, /* @__PURE__ */ React.createElement(
+    motion.div,
+    {
+      style: { maxWidth: 1200 },
+      className: clsx(
+        "absolute flex flex-col justify-center items-end h-screen z-0 pointer-events-none",
+        direction === "ltr" ? "right-0" : "left-0"
+      )
+    },
+    isString(children) ? /* @__PURE__ */ React.createElement(
+      "div",
+      {
+        className: clsx(
+          "relative center min-w-0 w-full sm:px-4 lg:px-24 xl:px-32 xl:w-xl top-0 left-1/2 -translate-x-1/2",
+          direction === "ltr" ? "column-end text-right" : "column-start text-left"
+        ),
+        style: { gap: s.m05 }
+      },
+      /* @__PURE__ */ React.createElement("h3", { className: "px-2 text-5xl sm:text-6xl xl:text-8xl char-gap-6 text-white-8 dark:text-black-2 font-title _outline-filter" }, children),
+      subtitle && /* @__PURE__ */ React.createElement(React.Fragment, null, /* @__PURE__ */ React.createElement("div", { className: "relative w-full" }, /* @__PURE__ */ React.createElement(
+        LinesHorizontal,
+        {
+          colorClass: "text-teal dark:text-blue border-t-current _gradient-border",
+          opacityClass: "opacity-100",
+          sizeClass: "border-t-4"
+        }
+      ), /* @__PURE__ */ React.createElement("div", { className: "h-1" }), /* @__PURE__ */ React.createElement(
+        LinesHorizontal,
+        {
+          opacityClass: "opacity-100",
+          sizeClass: "border-t-4"
+        }
+      )), /* @__PURE__ */ React.createElement("div", { className: "px-2 relative text-3.5xl md:text-4xl xl:text-5xl font-sans mix-blend-soft-light" }, /* @__PURE__ */ React.createElement(LinesHorizontalShadow, null), /* @__PURE__ */ React.createElement(
+        "div",
+        {
+          className: clsx(
+            "relative leading-normal text-teal dark:text-black",
+            direction === "ltr" ? "text-right" : "text-left"
+          )
+        },
+        subtitle
+      )))
+    ) : /* @__PURE__ */ React.createElement(React.Fragment, null, children)
+  ))));
 };
 
 ;// CONCATENATED MODULE: ./src/components/buttons/pill/b/hover/index.tsx
@@ -45406,7 +45489,7 @@ const hover_PillBHover = ({
     }
   };
   return /* @__PURE__ */ React.createElement(React.Fragment, null, /* @__PURE__ */ React.createElement(
-    PillBHoverOverlay,
+    LayoutOverlay,
     {
       isShown: isHovering && !isMoving,
       key: title,
@@ -45426,7 +45509,8 @@ const hover_PillBHover = ({
   ));
 };
 
-;// CONCATENATED MODULE: ./src/pages/video/player/_header/download/index.tsx
+;// CONCATENATED MODULE: ./src/pages/video/player/_controls/download/index.tsx
+
 
 
 
@@ -45443,29 +45527,21 @@ const hover_PillBHover = ({
 
 
 const DEFAULT_INPUT = {
-  input: {
-    pics: [],
-    count: 0,
-    seconds: 1,
-    isPics: false,
-    dimensions: { ...remotion_PIC_DIMENSIONS }
-  },
-  fps: 3
+  fps: DEFAULT_FPS,
+  durationInFrames: 1,
+  pics: [],
+  count: 0,
+  seconds: 1,
+  isPics: false,
+  dimensions: { ...remotion_PIC_DIMENSIONS }
 };
 const Download = ({ children, ...props }) => {
-  const { fps } = useTrillPicsStore(
-    ({ fps: fps2 }) => ({
-      fps: fps2
-    })
-  );
   const s = boxSize();
-  const input = usePicVideoReadInputs();
+  const input2 = usePicVideoReadInputs();
+  const { set: set2 } = useTrillPicsStore(
+    ({ set: set3 }) => ({ set: set3 })
+  );
   const { handlers, isHover } = useHoverKey();
-  input.seconds = input.seconds || input.count * 2 || 10;
-  const config = {
-    input,
-    fps
-  };
   const {
     width,
     minWidth,
@@ -45475,7 +45551,26 @@ const Download = ({ children, ...props }) => {
     borderRadius: "xl",
     size: "m"
   });
-  const title = "Download video";
+  const title2 = "Download video";
+  trpc.onProgress.useSubscription(
+    {},
+    {
+      onData: (value) => set2({ progress: value }),
+      onError: (v) => {
+        set2({ error: v });
+      },
+      onStarted: () => {
+        console.log("start");
+      }
+    }
+  );
+  const { trigger } = useTimebomb(
+    200,
+    () => set2({
+      progress: 0,
+      error: ""
+    })
+  );
   const {
     isError,
     isIdle,
@@ -45496,13 +45591,17 @@ const Download = ({ children, ...props }) => {
         const blob = new Blob([arr]);
         await downloadMedia(blob);
       }
+      set2({
+        isStarted: false
+      });
+      trigger();
     }
   });
   const handleGenerate = () => {
-    console.log(config);
-    mutate(config);
+    set2({ isStarted: true });
+    mutate(input2);
   };
-  const isAura = isHover(title) || isLoading;
+  const isAura = isHover(title2) || isLoading;
   const AURA_TRANSITION = {
     transition: {
       duration: 0.6,
@@ -45515,7 +45614,7 @@ const Download = ({ children, ...props }) => {
       }
     )
   };
-  const isHovering = isHover(title);
+  const isHovering = isHover(title2);
   return /* @__PURE__ */ React.createElement(
     "div",
     {
@@ -45542,7 +45641,7 @@ const Download = ({ children, ...props }) => {
     ))), /* @__PURE__ */ React.createElement(
       PillBHover,
       {
-        title,
+        title: title2,
         isSelected: isHovering,
         style: {
           ...resolveSquare(s.m)
@@ -45564,9 +45663,9 @@ const Download = ({ children, ...props }) => {
         Icon: IconsDownload,
         onClick: handleGenerate,
         ...props,
-        ...handlers(title)
+        ...handlers(title2)
       },
-      title
+      title2
     ))
   );
 };
@@ -45634,7 +45733,7 @@ const within_player_bounds_dimensionsWithinPlayerBounds = ({
 };
 
 ;// CONCATENATED MODULE: ./src/hooks/pic/video/read/seconds/from-count.ts
-const resolveSecondsFromCount = (count) => count * 2;
+const from_count_resolveSecondsFromCount = (count) => count * 2;
 
 ;// CONCATENATED MODULE: ./src/hooks/remotion/use-props.ts
 
@@ -45644,13 +45743,10 @@ const resolveSecondsFromCount = (count) => count * 2;
 
 
 
-const useRemotionProps = (picVideoInputs = DEFAULT_INPUT.input) => {
-  const { fps, pics: allPics } = middleware_useTrillPicsStore(
-    ({ fps: fps2, pics: pics2 }) => ({
-      fps: fps2,
-      pics: pics2
-    })
-  );
+const useRemotionProps = (picVideoInputs = DEFAULT_INPUT) => {
+  const { pics: allPics } = middleware_useTrillPicsStore(({ pics: pics2 }) => ({
+    pics: pics2
+  }));
   const canvasDimensions = remotion_DIMENSIONS;
   const dimensions = within_player_bounds_dimensionsWithinPlayerBounds({
     canvasDimensions,
@@ -45663,12 +45759,10 @@ const useRemotionProps = (picVideoInputs = DEFAULT_INPUT.input) => {
     });
   }, [picVideoInputs]);
   const count = pics.length;
-  const seconds = picVideoInputs.seconds || resolveSecondsFromCount(count);
-  const durationInFrames = seconds * fps;
+  const seconds = picVideoInputs.seconds || from_count_resolveSecondsFromCount(count);
   return {
-    durationInFrames,
-    fps,
     props: {
+      ...picVideoInputs,
       pics,
       count,
       seconds,
@@ -45685,14 +45779,15 @@ const useRemotionProps = (picVideoInputs = DEFAULT_INPUT.input) => {
 
 
 const pic_series_INPUT_PROPS = (0,cjs.getInputProps)();
-const CompositionsPicSeries = (__inputProps) => {
+const CompositionsPicSeries = (__inputPropsPartial) => {
   const {
     props: inputProps,
     ...props
   } = useRemotionProps({
-    ...__inputProps,
+    ...__inputPropsPartial,
     ...pic_series_INPUT_PROPS
   });
+  const { fps, durationInFrames } = inputProps;
   return /* @__PURE__ */ React.createElement(
     cjs.Composition,
     {
@@ -45700,6 +45795,7 @@ const CompositionsPicSeries = (__inputProps) => {
       component: PicSeries,
       schema: PIC_SERIES_SCHEMA,
       defaultProps: inputProps,
+      ...{ fps, durationInFrames },
       ...props
     }
   );
@@ -45707,8 +45803,14 @@ const CompositionsPicSeries = (__inputProps) => {
 
 ;// CONCATENATED MODULE: ./src/remotion/root.tsx
 
+
 const Root = () => {
-  return /* @__PURE__ */ React.createElement(CompositionsPicSeries, null);
+  return /* @__PURE__ */ React.createElement(
+    CompositionsPicSeries,
+    {
+      ...DEFAULT_INPUT
+    }
+  );
 };
 
 ;// CONCATENATED MODULE: ./src/remotion/index.tsx
