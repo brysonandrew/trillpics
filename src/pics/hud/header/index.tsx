@@ -11,7 +11,7 @@ type TProps = {
 export const PicsHudHeader: FC<
   TProps
 > = ({ container }) => {
-  const { foundationValue, isIdle } =
+  const { foundationValue } =
     useContextReady();
   return (
     <header style={{ height: 0 }}>
@@ -24,11 +24,9 @@ export const PicsHudHeader: FC<
             key="PicsHudHeaderRight"
             foundation={foundationValue}
             container={container}
-            isIdle={isIdle}
           />
           <PicsHudRight
             key="PicsHudRight"
-            isIdle={isIdle}
             foundation={foundationValue}
             container={container}
           />

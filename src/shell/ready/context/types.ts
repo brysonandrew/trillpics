@@ -53,7 +53,6 @@ export type TReadyContext =
   TInitContext &
     TUsePicCell &
     TScreenReadyProps & {
-      isIdle: boolean;
       foundationValue: TFoundationValue;
       updateFoundation: Dispatch<
         SetStateAction<TFoundationValue>

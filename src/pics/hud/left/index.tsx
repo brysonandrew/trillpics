@@ -32,7 +32,6 @@ export const PicsHudLeft: FC<
 > = ({ foundation, container }) => {
   const {
     main: { dragger },
-    isIdle,
   } = useContextReady();
 
   const s = boxSize();
@@ -70,8 +69,6 @@ export const PicsHudLeft: FC<
           />
 
           <HudLeftVideo
-            isLabel={isIdle}
-            container={container}
             inActiveSiblings={
               <motion.div
                 layout
@@ -93,9 +90,7 @@ export const PicsHudLeft: FC<
                     width: s.m,
                   }}
                 />
-                <ControlsPlayer
-                  isLabel={isIdle}
-                />
+                <ControlsPlayer />
               </motion.div>
             }
             siblings={
@@ -115,6 +110,7 @@ export const PicsHudLeft: FC<
                   }}
                 >
                   <_RootReorderDragger
+                    title="drag controls from left"
                     container={
                       container
                     }
@@ -125,6 +121,7 @@ export const PicsHudLeft: FC<
                   />
                   <div />
                 </motion.div>
+
                 <motion.div
                   className="absolute row-space"
                   style={{
@@ -139,12 +136,8 @@ export const PicsHudLeft: FC<
                     y: dragger.y06,
                   }}
                 >
-                  <HudLeftAddRandom
-                    isLabel={isIdle}
-                  />
-                  <LeftButtonsClear
-                    isLabel={isIdle}
-                  />
+                  <HudLeftAddRandom />
+                  <LeftButtonsClear />
                 </motion.div>
 
                 <motion.div
@@ -225,14 +218,28 @@ export const PicsHudLeft: FC<
                         rotate: 35,
                       }}
                     />
+
                     <ControlsPlayer
                       style={{
                         right: -s.m05,
                       }}
-                      isLabel={isIdle}
                     />
                   </div>
                 </motion.div>
+                <div
+                  style={{
+                    height: s.m2,
+                  }}
+                />
+                <_RootReorderDragger
+                  title="drag controls from right"
+                  container={container}
+                  width={s.m2}
+                  size={s.m}
+                  left={container.width}
+                  bottom={-s.m05-s.m025 - s.m0125}
+                  isColumn={false}
+                />
               </>
             }
           />

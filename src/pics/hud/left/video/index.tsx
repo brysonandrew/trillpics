@@ -15,22 +15,17 @@ import { useVideoPicsCheck } from "~/hooks/pic/video/read/video-pics-check/hook"
 import { boxSize } from "~/constants/box/size";
 import { useContextReady } from "~/shell/ready/context";
 import { TChildren } from "@brysonandrew/config-types";
-import { THudContainer } from "~/pics/hud";
 import { IconsHome } from "~/components/icons/home";
 import { useDraggerReset } from "~/pages/video/_root/reorder/use-dragger-reset";
 
 type TProps = {
-  isLabel: boolean;
-  container: THudContainer;
   siblings: TChildren;
   inActiveSiblings: TChildren;
 };
 export const HudLeftVideo: FC<
   PropsWithChildren<TProps>
 > = ({
-  isLabel,
   children,
-  container,
   siblings,
   inActiveSiblings,
 }) => {
@@ -67,7 +62,7 @@ export const HudLeftVideo: FC<
         style={{
           bottom: s.m15 - s.m0125,
           y: main.dragger.y,
-          x: 0,
+          x: main.dragger.x05,
         }}
       >
         <PillBHover
@@ -79,7 +74,6 @@ export const HudLeftVideo: FC<
           }
           onClick={handleClick}
           isSelected={isActive}
-          isLabel={isLabel}
           Icon={
             isActive
               ? IconsHome

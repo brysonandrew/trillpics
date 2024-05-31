@@ -1,9 +1,8 @@
 import type { FC } from "react";
 
 import { SvgWrap } from "@brysonandrew/svg-dimensionless";
-import { GRADIENT_BLUE_PINK_YELLOW_COLORS, GRADIENT_TEAL_YELLOW_PINK_COLORS } from "~app/color/gradient";
-export const LINEAR_GRADIENT_SVG_ID =
-  "linear-gradient-blue-pink-yellow-svg";
+import { GRADIENT_BLUE_PINK_YELLOW_COLORS, GRADIENT_TEAL_YELLOW_PINK_COLORS, LINEAR_GRADIENT_SVG_ID } from "~app/color/gradient";
+
 type TProps = { isDarkMode: boolean };
 
 export const GradientsBluePinkYellow: FC<

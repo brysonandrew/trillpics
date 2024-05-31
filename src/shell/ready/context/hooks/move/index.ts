@@ -127,7 +127,6 @@ export const useMove = ({
     handleUp
   );
 
-  return isIdle;
 };
 export type TUseMoveResult = ReturnType<
   typeof useMove

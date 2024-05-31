@@ -4,7 +4,9 @@ import { TStateHandler } from "~/store/types";
 export const generateState: TStateHandler<
   TGenerateState
 > = () => ({
-  isStarted: false,
-  progress: 0,
-  error: "",
+  isDownloadComplete: false,
+  logs:[],
+  progress: null,
+  download:null,
+  error: null,
 });

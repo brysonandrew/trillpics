@@ -14,10 +14,10 @@ import { useTrillPicsStore } from "~/store/middleware";
 import { LayoutOverlay } from "~/components/layout/overlay";
 import { useLocation } from "react-router";
 import { useTimeoutRef } from "@brysonandrew/hooks-window";
+import { TITLE_HOVER_KEY } from "~/pics/header/left";
 
 export type TPillBHoverProps =
   TPillBProps & {
-    isLabel?: boolean;
     subtitle?: string | JSX.Element;
   };
 export const PillBHover: FC<
@@ -26,7 +26,6 @@ export const PillBHover: FC<
   title,
   subtitle,
   children = title,
-  isLabel,
   onClick,
   ...props
 }) => {
@@ -35,9 +34,11 @@ export const PillBHover: FC<
   const { pathname } = useLocation();
   const [isMoving, setMoving] =
     useState(false);
-  const { set } = useTrillPicsStore(
-    ({ set }) => ({ set })
+  const { set, isIdle } = useTrillPicsStore(
+    ({ set,isIdle }) => ({ set,isIdle })
   );
+  const { motionHandlers, isHover } =
+  useHoverKey();
 
   useEffect(() => {
     endTimeout();
@@ -51,8 +52,7 @@ export const PillBHover: FC<
       500
     );
   }, [pathname]);
-    const { motionHandlers, isHover } =
-    useHoverKey();
+
   const isHovering =
     isDefined<typeof title>(title) &&
     isHover(title);
@@ -81,7 +81,7 @@ export const PillBHover: FC<
         {...motionHandlers(title)}
         {...props}
       >
-        {!isHovering && isLabel
+        {(!isHovering && isIdle) || isHover(TITLE_HOVER_KEY)
           ? title
           : null}
       </PillB>
