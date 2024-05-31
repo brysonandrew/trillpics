@@ -17,16 +17,22 @@ export const trpc =
 const isLocal = (
   import.meta.env ?? process.env
 )._IS_LOCAL;
-const SERVER_ORIGIN = isLocal
-  ? `http://localhost:${API_PORT}`
-  : "https://trillpics.onrender.com";
+const PROD_ORIGIN = "://trillpics.onrender.com"
+const SERVER_ORIGIN = 
+// isLocal
+//   ? `http://localhost:${API_PORT}`
+//   : 
+`https${PROD_ORIGIN}`;
 
 const url = `${SERVER_ORIGIN}${SERVER_PATH}`;
 
-const WS_SERVER_ORIGIN = isLocal
-  ? `ws://localhost:${API_PORT}`
-  : "wss://trillpics.onrender.com";
-// create persistent WebSocket connection
+const WS_SERVER_ORIGIN =// `ws://localhost:${API_PORT}`
+// isLocal
+//   ? `ws://localhost:${API_PORT}`
+//   : 
+`wss${PROD_ORIGIN}`;
+ //"wss://trillpics.onrender.com";
+
 const wsClient = createWSClient({
   url: WS_SERVER_ORIGIN,
 });

@@ -13,7 +13,7 @@ import {webpackOverride} from './src/server/generate/webpack/override';
 export const REMOTION_ENTRY_POINT = "./src/remotion/index.tsx"
 export const REMOTION_PUBLIC_DIR = "./assets/remotion";//"./assets";//
 export const SERVE_URL = "https://brysonandrew.github.io/trillpics";
-
+``
 Config.overrideWebpackConfig(webpackOverride);
 Config.setChromiumDisableWebSecurity(true);
 Config.setVideoImageFormat('jpeg');
