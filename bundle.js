@@ -25006,15 +25006,13 @@ function createTRPCReact(opts) {
 
 ;// CONCATENATED MODULE: ./src/constants/api.ts
 const CLIENT_ORIGINS = (/* unused pure expression or super */ null && ([
-  // "https://trill-pics.fly.dev",
   "https://trill.pics/",
   "https://www.trill.pics/",
   "https://trill.pics",
-  "https://trillpics-1.onrender.com/api",
+  "https://trillpics.onrender.com/api",
+  "wss://trillpics.onrender.com/api",
   "http://localhost:3000",
-  "http://localhost:3001",
-  "http://localhost:8888",
-  "http://localhost:5173"
+  "http://localhost:3001"
 ]));
 const API_PORT = 3002;
 const SERVER_PATH = "/api";
@@ -25025,20 +25023,10 @@ const SERVER_PATH = "/api";
 const trpc_trpc = createTRPCReact();
 const isLocal = ( null ?? process.env)._IS_LOCAL;
 const PROD_ORIGIN = "://trillpics.onrender.com";
-const SERVER_ORIGIN = (
-  // isLocal
-  //   ? `http://localhost:${API_PORT}`
-  //   : 
-  `https${PROD_ORIGIN}`
-);
+const DEV_ORIGIN = `://localhost:${API_PORT}`;
+const SERVER_ORIGIN = isLocal ? `http${DEV_ORIGIN}` : `https${PROD_ORIGIN}`;
 const url = `${SERVER_ORIGIN}${SERVER_PATH}`;
-const WS_SERVER_ORIGIN = (
-  // `ws://localhost:${API_PORT}`
-  // isLocal
-  //   ? `ws://localhost:${API_PORT}`
-  //   : 
-  `wss${PROD_ORIGIN}`
-);
+const WS_SERVER_ORIGIN = isLocal ? `ws${DEV_ORIGIN}` : `wss${PROD_ORIGIN}`;
 const wsClient = createWSClient({
   url: WS_SERVER_ORIGIN
 });
