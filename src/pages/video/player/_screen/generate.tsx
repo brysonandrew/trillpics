@@ -3,10 +3,7 @@ import {
   useEffect,
   useRef,
 } from "react";
-import {
-  AnimatePresence,
-  motion,
-} from "framer-motion";
+import { motion } from "framer-motion";
 import { useTrillPicsStore } from "~/store/middleware";
 import { PRESENCE_OPACITY } from "@brysonandrew/motion-config-constants";
 import clsx from "clsx";
@@ -15,8 +12,6 @@ import { MonoChars } from "~/pages/video/player/_controls/playback/timer/numbers
 import { LinesHorizontal } from "~/components/lines/horizontal";
 import { boxSize } from "~/constants/box/size";
 import { LinesVertical } from "~/components/lines/vertical";
-import { resolveCompositeKey } from "@brysonandrew/utils-key";
-import { AURA } from "@brysonandrew/svg-filter";
 
 export const OVERFLOW_HIDDEN =
   "overflow: hidden;";
@@ -65,7 +60,7 @@ export const VideoPlayer_ScreenGenerate: FC<
      
       <div className="flex flex-row h-auto uppercase font-slab">
         <div
-          className="flex flex-col w-2/3 grow text-2.5xl bg-gray-04"
+          className="hidden xl:flex flex-col w-2/3 grow text-2.5xl bg-gray-04"
           style={{     gap: s.m025,
             margin: s.m025,
             padding: s.m, }}
@@ -100,13 +95,12 @@ export const VideoPlayer_ScreenGenerate: FC<
             </div>
           </h4>
         </div>
-        <LinesVertical />
+        <LinesVertical classValue="hidden xl:flex" />
         <h3
-          className="flex flex-col text-right items-end w-1/3 text-3xl  bg-gray-04"
+          className="w-full center h-full text-left items-start flex flex-col text-3xl bg-gray-04 xl:(text-right h-auto items-center w-1/3)"
           style={{
             gap: s.m025,
               margin: s.m025,
-              padding: s.m,
           }}
         >
           <div className="whitespace-nowrap">
@@ -124,10 +118,10 @@ export const VideoPlayer_ScreenGenerate: FC<
           </div>
         </h3>
       </div>
-      <LinesHorizontal />
+      <LinesHorizontal classValue="hidden xl:flex" />
       <div
         ref={ref}
-        className="grow h-2/3 overflow-auto bg-gray-04"
+        className="hidden xl:flex grow h-2/3 overflow-auto bg-gray-04"
         style={{
           margin: s.m025,
           paddingLeft: s.m05,

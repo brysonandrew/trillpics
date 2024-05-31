@@ -62,7 +62,7 @@ export const HudLeftVideo: FC<
         style={{
           bottom: s.m15 - s.m0125,
           y: main.dragger.y,
-          x: 0,
+          x: main.dragger.x05,
         }}
       >
         <PillBHover

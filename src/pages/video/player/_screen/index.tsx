@@ -50,7 +50,7 @@ export const VideoPlayer_Screen =
                 ease: "linear",
               }}
             >
-              <h3 className="uppercase font-slab tracking-wide text-8xl text-center _gradient-text">
+              <h3 className="uppercase font-slab tracking-wide text-2xl md:text-6xl lg:text-8xl text-center _gradient-text">
                 Download complete
               </h3>
             </motion.div>

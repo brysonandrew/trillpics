@@ -34,7 +34,7 @@ export const VideoPlayer = () => {
       <div
         className="fill column-start justify-center overflow-auto"
         style={{
-          paddingTop: y,
+          paddingTop: y*1.5,
           paddingBottom: y,
           gap,
         }}

@@ -90,8 +90,7 @@ export const PicsHudLeft: FC<
                     width: s.m,
                   }}
                 />
-                <ControlsPlayer
-                />
+                <ControlsPlayer />
               </motion.div>
             }
             siblings={
@@ -111,6 +110,7 @@ export const PicsHudLeft: FC<
                   }}
                 >
                   <_RootReorderDragger
+                    title="drag controls from left"
                     container={
                       container
                     }
@@ -121,6 +121,7 @@ export const PicsHudLeft: FC<
                   />
                   <div />
                 </motion.div>
+
                 <motion.div
                   className="absolute row-space"
                   style={{
@@ -135,10 +136,8 @@ export const PicsHudLeft: FC<
                     y: dragger.y06,
                   }}
                 >
-                  <HudLeftAddRandom
-                  />
-                  <LeftButtonsClear
-                  />
+                  <HudLeftAddRandom />
+                  <LeftButtonsClear />
                 </motion.div>
 
                 <motion.div
@@ -219,6 +218,7 @@ export const PicsHudLeft: FC<
                         rotate: 35,
                       }}
                     />
+
                     <ControlsPlayer
                       style={{
                         right: -s.m05,
@@ -226,6 +226,20 @@ export const PicsHudLeft: FC<
                     />
                   </div>
                 </motion.div>
+                <div
+                  style={{
+                    height: s.m2,
+                  }}
+                />
+                <_RootReorderDragger
+                  title="drag controls from right"
+                  container={container}
+                  width={s.m2}
+                  size={s.m}
+                  left={container.width}
+                  bottom={-s.m05-s.m025 - s.m0125}
+                  isColumn={false}
+                />
               </>
             }
           />

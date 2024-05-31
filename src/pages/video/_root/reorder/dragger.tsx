@@ -14,8 +14,9 @@ import { resolveAccessibilityTitles } from "@brysonandrew/utils-attributes";
 import { boxSize } from "~/constants/box/size";
 import { THudContainer } from "~/pics/hud";
 import { TDraggerMotion } from "~/shell/init/context/dragger";
+import { TButtonMotionProps } from "@brysonandrew/config-types";
 
-type TProps = {
+type TProps = TButtonMotionProps & {
   container: THudContainer;
   isColumn: boolean;
   left: number;
@@ -35,6 +36,8 @@ export const _RootReorderDragger: FC<
   width,
   children,
   isColumn,
+  style,
+  left,
   ...props
 }) => {
   const { main, move } =
@@ -64,8 +67,8 @@ export const _RootReorderDragger: FC<
   };
   const s = boxSize();
 
-  const left =
-    props.left +
+  const leftAdj =
+    left +
     width / 2 -
     (isColumn ? s.m05 : s.m);
 
@@ -129,9 +132,10 @@ export const _RootReorderDragger: FC<
           x,
           y,
           bottom,
-          left,
+          left: leftAdj,
           width: size,
           height: size,
+          ...style,
         }}
         {...resolveAccessibilityTitles(
           title
@@ -141,6 +145,7 @@ export const _RootReorderDragger: FC<
         }
         onPointerUp={handlePointerUp}
         {...motionHandlers(title)}
+        {...props}
       >
         <div
           className="relative rounded-md _box-dots cursor-grab focus:cursor-grabbing"
