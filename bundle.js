@@ -45634,6 +45634,7 @@ const Download = ({ children, ...props }) => {
     }
   });
   const handleGenerate = () => {
+    console.log(input2);
     set2({ logs: [], progress: null });
     mutate(input2);
   };
