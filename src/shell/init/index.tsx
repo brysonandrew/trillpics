@@ -38,6 +38,7 @@ export const ShellInit: FC<TProps> = ({
         <GradientsBluePinkYellow
           isDarkMode={isDarkMode}
         />
+        <ShellGlobalBackground />
         {children(screen)}
       </>
     </InitContextProvider>

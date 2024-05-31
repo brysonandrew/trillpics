@@ -15,27 +15,28 @@ export const BlurXyWrap: FC<
 > = ({ children }) => {
   return (
     <div
-      className="fill flex flex-col text-8xl center"
+    className="fill"
+      // className="fill flex flex-col text-8xl center"
       style={{
-        ...EMBERS_FILTER_SVG_PROPS,
-        // ...MOTION_BLUR_FILTER_X_PROPS,
+        // ...EMBERS_FILTER_SVG_PROPS,
+        ...MOTION_BLUR_FILTER_X_PROPS,
       }}
     >
-      <ShellGlobalBackground />
+      {/* <ShellGlobalBackground />
       <span className="relative">
         hello world
       </span>
       <span className="relative opacity-50">
         hello world
-      </span>
-      {/* <div
+      </span> */}
+      <div
         className="fill"
         style={{
           ...MOTION_BLUR_FILTER_Y_PROPS,
         }}
       >
         {children}
-      </div> */}
+      </div>
     </div>
   );
 };
