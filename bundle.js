@@ -25024,9 +25024,21 @@ const SERVER_PATH = "/api";
 
 const trpc_trpc = createTRPCReact();
 const isLocal = ( null ?? process.env)._IS_LOCAL;
-const SERVER_ORIGIN = isLocal ? `http://localhost:${API_PORT}` : "https://trillpics.onrender.com";
+const PROD_ORIGIN = "://trillpics.onrender.com";
+const SERVER_ORIGIN = (
+  // isLocal
+  //   ? `http://localhost:${API_PORT}`
+  //   : 
+  `https${PROD_ORIGIN}`
+);
 const url = `${SERVER_ORIGIN}${SERVER_PATH}`;
-const WS_SERVER_ORIGIN = isLocal ? `ws://localhost:${API_PORT}` : "wss://trillpics.onrender.com";
+const WS_SERVER_ORIGIN = (
+  // `ws://localhost:${API_PORT}`
+  // isLocal
+  //   ? `ws://localhost:${API_PORT}`
+  //   : 
+  `wss${PROD_ORIGIN}`
+);
 const wsClient = createWSClient({
   url: WS_SERVER_ORIGIN
 });
