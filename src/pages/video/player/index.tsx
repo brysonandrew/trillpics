@@ -10,6 +10,7 @@ import { useVideoPlayerStyle } from "~/pages/video/player/style";
 import { useLoop } from "~/hooks/sound/koolasuchas/useLoop";
 import { IconsGroup } from "~/components/icons/group";
 import { useSoundContext } from "~/shell/global/sound";
+import { useRef } from "react";
 
 export const OVERFLOW_HIDDEN =
   "overflow: hidden;";
@@ -24,7 +25,7 @@ export const VideoPlayer = () => {
   useAddRandomEffect();
   const { play, stop: stopLoop } =
     useLoop();
-  const { stop, start, sound } =
+  const { stop, start, sound,context } =
     useSoundContext();
   const handleClick = () => {
     console.log(sound.recorder.state);
@@ -40,6 +41,12 @@ export const VideoPlayer = () => {
       start();
     }
   };
+  // const mediaElement = useRef(new Audio())
+  // const streamSource  = context.createMediaStreamSource(sound.destination.stream);
+  // const srcObject = context.createMediaElementSource(mediaElement.current)
+  // const src = URL.createObjectURL(srcObject) 
+  const recordedBlob = new Blob(sound.chunks, { type: "video/webm" });
+ const src = URL.createObjectURL(recordedBlob);
   return (
     <>
       <Helmet>
@@ -86,7 +93,8 @@ export const VideoPlayer = () => {
                     >
                       <VideoPlayer_Controls />
                     </div>
-                    {/* <div
+                    <audio src={src} controls />
+                    <div
                       className="relative flex-col flex justify-center"
                       style={{
                         ...playerStyle,
@@ -99,7 +107,7 @@ export const VideoPlayer = () => {
                       >
                         <IconsGroup />
                       </button>
-                    </div> */}
+                    </div>
                   </Player_ReadyContextProvider>
                 )}
               </>
