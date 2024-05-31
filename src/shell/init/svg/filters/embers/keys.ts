@@ -1,6 +1,6 @@
 import { resolveCompositeKey } from '@brysonandrew/utils-key';
 
-export const resolveBlurMotionKeys = (id: string) => {
+export const resolveEmberKeys = (id: string) => {
   const TURBULANCE_KEY = resolveCompositeKey(
     id,
     'TURBULANCE'

@@ -5,7 +5,7 @@ import {
 } from "@brysonandrew/config-types";
 import { SvgWrap } from "@brysonandrew/svg-dimensionless";
 import { resolveUrlId } from "@brysonandrew/utils-attributes";
-import { resolveBlurMotionKeys } from "~/shell/init/svg/filters/anti-camo/keys";
+import { resolveBlurMotionKeys } from "~/shell/init/svg/filters/embers/keys";
 
 export const GLITCH_FILTER_ID =
   "GLITCH_FILTER_ID";

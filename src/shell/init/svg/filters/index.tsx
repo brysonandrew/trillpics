@@ -6,7 +6,7 @@ import { SvgFiltersFat } from "~/shell/init/svg/filters/fat";
 import { SvgFiltersFat1 } from "~/shell/init/svg/filters/fat/1";
 import { SvgFiltersFat2 } from "~/shell/init/svg/filters/fat/2";
 import { SvgFiltersFat4 } from "~/shell/init/svg/filters/fat/4";
-import { AntiCamoFilter } from "~/shell/init/svg/filters/anti-camo";
+import { AntiCamoFilter } from "~/shell/init/svg/filters/embers";
 import { OutlineDarkFilter } from "~/shell/init/svg/filters/outline/dark";
 import { OutlineFilter } from "~/shell/init/svg/filters/outline";
 import { InlineFilter } from "~/shell/init/svg/filters/inline";
