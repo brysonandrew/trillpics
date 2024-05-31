@@ -18,14 +18,15 @@ export const InlineFilter: FC<
   const { OUTLINE, COLOR, EROSION } =
     resolveInlineKeys(id);
   return (
-    <SvgWrap
-      x="-20%"
-      y="-20%"
-      width="140%"
-      height="140%"
-      colorInterpolationFilters="sRGB"
-    >
-      <filter id={id}>
+    <SvgWrap>
+      <filter
+        x="-20%"
+        y="-20%"
+        width="140%"
+        height="140%"
+        colorInterpolationFilters="sRGB"
+        id={id}
+      >
         <feMorphology
           operator="erode"
           radius={mRadius}
@@ -46,7 +47,6 @@ export const InlineFilter: FC<
         <feMerge>
           <feMergeNode in="SourceGraphic" />
           <feMergeNode in={OUTLINE} />
-
         </feMerge>
       </filter>
     </SvgWrap>

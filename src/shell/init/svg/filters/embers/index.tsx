@@ -1,18 +1,20 @@
 import {
   TSvgDisplacementProps,
   TSvgFilterMorphologyProps,
-} from '@brysonandrew/config-types';
-import { SvgWrap } from '@brysonandrew/svg-dimensionless';
-import { resolveUrlId } from '@brysonandrew/utils-attributes';
-import type { FC } from 'react';
-import { resolveBlurMotionKeys } from '~/shell/init/svg/filters/anti-camo/keys';
+} from "@brysonandrew/config-types";
+import { SvgWrap } from "@brysonandrew/svg-dimensionless";
+import { resolveUrlId } from "@brysonandrew/utils-attributes";
+import type { FC } from "react";
+import { resolveEmbersKeys } from "~/shell/init/svg/filters/embers/keys";
 
-export const ANTI_CAMO_FILTER_ID = 'ANTI_CAMO_FILTER_ID';
-export const ANTI_CAMO_FILTER_SVG_PROPS = {
-  filter: resolveUrlId(
-    ANTI_CAMO_FILTER_ID
-  ),
-};
+export const EMBERS_FILTER_ID =
+  "EMBERS_FILTER_ID";
+export const EMBERS_FILTER_SVG_PROPS =
+  {
+    filter: resolveUrlId(
+      EMBERS_FILTER_ID
+    ),
+  };
 type TProps = {
   id?: string;
   radius?: number;
@@ -21,10 +23,12 @@ type TProps = {
   morphProps?: TSvgFilterMorphologyProps;
   displacementProps?: TSvgDisplacementProps;
 };
-export const AntiCamoFilter: FC<TProps> = ({
-  id = ANTI_CAMO_FILTER_ID,
-  dmScale = 1,
-  fmRadius = 1,
+export const EmbersFilter: FC<
+  TProps
+> = ({
+  id = EMBERS_FILTER_ID,
+  dmScale = 15,
+  fmRadius = 0,
   morphProps,
   displacementProps,
 }) => {
@@ -33,7 +37,7 @@ export const AntiCamoFilter: FC<TProps> = ({
     DISPLACEMENT_KEY,
     OFFSET_KEY,
     COMPOSITE_KEY,
-  } = resolveBlurMotionKeys(id);
+  } = resolveEmbersKeys(id);
   return (
     <SvgWrap>
       <filter
@@ -52,7 +56,7 @@ export const AntiCamoFilter: FC<TProps> = ({
           {...morphProps}
         />
         <feDisplacementMap
-          in="SourceAlpha"
+          in="SourceGraphic"
           in2={MORPH_KEY}
           scale={dmScale}
           xChannelSelector="B"
@@ -60,30 +64,39 @@ export const AntiCamoFilter: FC<TProps> = ({
           result={DISPLACEMENT_KEY}
           {...displacementProps}
         />
-        <feOffset
+        <feMerge>
+          <feMergeNode
+            in={DISPLACEMENT_KEY}
+          />
+          {/* <feMergeNode in="SourceGraphic" /> */}
+        </feMerge>
+      </filter>
+    </SvgWrap>
+  );
+};
+
+{
+  /* <feOffset
           result={OFFSET_KEY}
           dx="1"
           dy="-1"
           in={DISPLACEMENT_KEY}
-        />
-        <feComposite
+        /> */
+}
+{
+  /* <feComposite
           result={COMPOSITE_KEY}
           operator="arithmetic"
           k2="-1"
           k3="1"
           in={OFFSET_KEY}
           in2="SourceAlpha"
-        />
-        <feColorMatrix
+        /> */
+}
+{
+  /* <feColorMatrix
           values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.09 0"
           in={COMPOSITE_KEY}
           result="MATRIX"
-        />
-         <feMerge>
-          <feMergeNode in="MATRIX"/>
-          <feMergeNode in="SourceGraphic" />
-        </feMerge>
-      </filter>
-    </SvgWrap>
-  );
-};
+        /> */
+}

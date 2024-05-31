@@ -14,7 +14,6 @@ export const ShellGlobal: FC<
     <ShellSoundProvider>
       <DarkModeProvider>
         <ShellGlobalCss />
-        <ShellGlobalBackground />
         <GlobalProvidersApi>
           {children}
         </GlobalProvidersApi>
