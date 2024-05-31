@@ -44269,22 +44269,31 @@ const move_useMove = ({
     }
   };
   useEventListener(
-    "pointerenter",
-    handleMove
-  );
-  useEventListener(
-    "pointerover",
-    handleMove
-  );
-  useEventListener(
     "pointermove",
     handleMove
   );
-  const handleUp = () => {
+  const handleTouchEnd = (event) => {
+    if (event.touches.length === 0)
+      return;
+    const mx = event.touches[0].pageX;
+    const my = event.touches[0].pageY;
+    const prevX = main.cursor.x.get();
+    const prevY = main.cursor.y.get();
+    const d = Math.sqrt(
+      Math.pow(mx - prevX, 2) + Math.pow(my - prevY, 2)
+    );
+    if (Math.abs(d) > 1) {
+      main.cursor.isHoverIdle = false;
+      main.cursor.x.set(mx);
+      main.cursor.y.set(my);
+    }
+    if (!isScrolling) {
+      move(mx, my);
+    }
   };
   useEventListener(
-    "pointerup",
-    handleUp
+    "touchend",
+    handleTouchEnd
   );
 };
 
