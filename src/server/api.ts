@@ -12,6 +12,7 @@ import { router } from "./router";
 import { createContext } from "~/server/context";
 
 const api = express();
+const port = process.env.PORT || API_PORT;
 
 api.use(express.json());
 api.use(
@@ -29,10 +30,10 @@ api.use(
 );
 
 const server = api.listen(
-  API_PORT,
+  port,
   () =>
     console.log(
-      `Listening on port ${API_PORT}.`,
+      `Listening on port ${port}.`,
       `Allowed foundations: ${CLIENT_ORIGINS}`
     )
 );
