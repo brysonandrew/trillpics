@@ -153,6 +153,7 @@ export const Download: FC<
     },
   });
   const handleGenerate = () => {
+    console.log(input)
     set({ logs: [], progress: null });
     mutate(input);
   };

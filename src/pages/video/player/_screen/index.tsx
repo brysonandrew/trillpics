@@ -3,9 +3,7 @@ import {
   motion,
 } from "framer-motion";
 import { RemotionPlayer } from "~/components/remotion/player";
-import { boxSize } from "~/constants/box/size";
 import { usePicVideoReadInputs } from "~/hooks/pic/video/read/inputs/hook";
-import { useContextReady } from "~/shell/ready/context";
 import { PlayerBackground } from "~/pages/video/player/_background";
 import { PlayerBackgroundOpaque } from "~/pages/video/player/_background/opaque";
 import { useTrillPicsStore } from "~/store/middleware";
@@ -50,7 +48,7 @@ export const VideoPlayer_Screen =
                 ease: "linear",
               }}
             >
-              <h3 className="uppercase font-slab tracking-wide text-2xl md:text-6xl lg:text-8xl text-center _gradient-text">
+              <h3 className="dark:text-black text-white uppercase font-slab tracking-wide text-2xl md:text-6xl lg:text-8xl text-center _gradient-text">
                 Download complete
               </h3>
             </motion.div>

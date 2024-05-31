@@ -28,7 +28,7 @@ export const useVideoPlayerStyle =
           width,
           gap: s.m05,
         },
-        y: container.top * 2,
+        y: container.top +s.m15,
         gap: s.m05,
         screenHeight: width * (9 / 16),
       };

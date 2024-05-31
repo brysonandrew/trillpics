@@ -17,9 +17,12 @@ export const IconsPlus: FC<
 
 export const IconsPlusQuestion: FC<
   TSvgProps
-> = ({ ...props }) => {
+> = ({ classValue, ...props }) => {
   return (
-    <IconsSvgGradient24 {...props}>
+    <IconsSvgGradient24
+      classValue={classValue}
+      {...props}
+    >
       <text
         x="32%"
         y="32%"
