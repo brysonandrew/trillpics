@@ -1,40 +1,153 @@
-import { motion } from "framer-motion";
+import {
+  FC,
+  useEffect,
+  useRef,
+} from "react";
+import {
+  AnimatePresence,
+  motion,
+} from "framer-motion";
 import { useTrillPicsStore } from "~/store/middleware";
 import { PRESENCE_OPACITY } from "@brysonandrew/motion-config-constants";
 import clsx from "clsx";
+import { TGenerateProgressData } from "~/store/state/generate/types";
+import { MonoChars } from "~/pages/video/player/_controls/playback/timer/numbers";
+import { LinesHorizontal } from "~/components/lines/horizontal";
+import { boxSize } from "~/constants/box/size";
+import { LinesVertical } from "~/components/lines/vertical";
+import { resolveCompositeKey } from "@brysonandrew/utils-key";
+import { AURA } from "@brysonandrew/svg-filter";
 
 export const OVERFLOW_HIDDEN =
   "overflow: hidden;";
 
-export const VideoPlayer_ScreenGenerate =
-  () => {
-    const { progress } =
-      useTrillPicsStore(
-        ({ progress }) => ({
-          progress,
-        })
-      );
-    return (
-      <motion.div
-        className="fill flex flex-col items-center justify-center inset-2 -outline-filter"
-        {...PRESENCE_OPACITY}
-      >
-        <div className="fill rounded-lg _box-dots opacity-10" />
-        <div className="fill rounded-lg _gradient-radial opacity-20" />
+export const VideoPlayer_ScreenGenerate: FC<
+  TGenerateProgressData
+> = (props = {} as any) => {
+  const {
+    stitchStage,
+    encodedFrames,
+    encodedDoneIn,
+    renderedFrames,
+    renderedDoneIn,
+    progress,
+  } = props;
+  const ref =
+    useRef<HTMLDivElement | null>(null);
 
-        <h3 className="font-slab text-7xl uppercase">
-          generating video
-        </h3>
-        <h4
-          className={clsx(
-            "font-slab text-8xl",
-            progress === 100
-              ? "_gradient-text text-white"
-              : ""
-          )}
-        >
-          {progress}%
-        </h4>
-      </motion.div>
+  const { logs } =
+    useTrillPicsStore(
+      ({
+        progress,
+        logs,
+        download,
+      }) => ({
+        progress,
+        logs,
+        download,
+      })
     );
-  };
+
+  useEffect(() => {
+    if (ref.current) {
+      ref.current.scrollTop =
+        ref.current.scrollHeight;
+    }
+  }, [logs.length]);
+  const s = boxSize();
+  return (
+    <motion.div
+      className="fill flex flex-col items-stretch inset-2 -outline-filter text-white dark:text-black"
+      {...PRESENCE_OPACITY}
+    >
+      <div className="fill rounded-lg _box-dots opacity-20" />
+      <div className="fill rounded-lg _gradient-radial opacity-10" />
+     
+      <div className="flex flex-row h-auto uppercase font-slab">
+        <div
+          className="flex flex-col w-2/3 grow text-2.5xl bg-gray-04"
+          style={{     gap: s.m025,
+            margin: s.m025,
+            padding: s.m, }}
+        >
+          <h3
+            className="row-space"
+            style={{ gap: s.m025 }}
+          >
+            <div>current process</div>
+            <b>{stitchStage}</b>
+          </h3>
+          <h4
+            className={clsx("row-space")}
+            style={{ gap: s.m025 }}
+          >
+            <div>frames encoded</div>
+            <div className="inline-flex flex-row items-center">
+              <MonoChars width={20}>
+                {String(encodedFrames)}
+              </MonoChars>
+            </div>
+          </h4>
+          <h4
+            className={clsx("row-space")}
+            style={{ gap: s.m025 }}
+          >
+            <div>frames rendered</div>
+            <div className="inline-flex flex-row items-center">
+              <MonoChars width={20}>
+                {String(renderedFrames)}
+              </MonoChars>
+            </div>
+          </h4>
+        </div>
+        <LinesVertical />
+        <h3
+          className="flex flex-col text-right items-end w-1/3 text-3xl  bg-gray-04"
+          style={{
+            gap: s.m025,
+              margin: s.m025,
+              padding: s.m,
+          }}
+        >
+          <div className="whitespace-nowrap">
+            generating
+          </div>
+          <div className="inline-flex flex-row items-center text-6xl">
+            <MonoChars width={50}>
+              {(progress * 100).toFixed(
+                0
+              )}
+            </MonoChars>
+            <span className="text-4.5xl pl-4">
+              %
+            </span>
+          </div>
+        </h3>
+      </div>
+      <LinesHorizontal />
+      <div
+        ref={ref}
+        className="grow h-2/3 overflow-auto bg-gray-04"
+        style={{
+          margin: s.m025,
+          paddingLeft: s.m05,
+          paddingRight: s.m05,
+        }}
+      >
+        <ul>
+          {logs.map((log, index) => (
+            <li
+              key={`${index}`}
+              className="font-slab"
+            >
+              {log.type === "warning"
+                ? "⚠ "
+                : ""}
+              {log.text}
+            </li>
+          ))}
+        </ul>
+      </div>
+    </motion.div>
+  );
+};

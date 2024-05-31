@@ -11,15 +11,10 @@ import { DarkMode } from "~/pics/header/right/dark-mode";
 type TProps = {
   foundation: DOMRect;
   container: TDimensions;
-  isIdle: boolean;
 };
 export const PicsHudRight: FC<
   TProps
-> = ({
-  foundation,
-  container,
-  isIdle,
-}) => {
+> = ({ foundation, container }) => {
   const s = boxSize();
   return (
     <LayoutGroup>
@@ -45,19 +40,15 @@ export const PicsHudRight: FC<
             height: s.m3,
           }}
         >
-          <DarkMode isLabel={isIdle} />
+          <DarkMode />
           <LinesVertical
-          classValue="hidden md:flex"
+            classValue="hidden md:flex"
             style={{ left: -s.m05 }}
           />
-          <HideControls
-            isLabel={isIdle}
-            direction="rtl"
-          />
+          <HideControls direction="rtl" />
         </div>
         <LinesVertical
-                  classValue="opacity-0 md:opacity-100"
-
+          classValue="opacity-0 md:opacity-100"
           style={{
             left: -s.m05,
           }}

@@ -11,7 +11,6 @@ export const GridOptions: FC =
   withControlsCheck(() => {
     const {
       foundationValue,
-      isIdle,
       screen,
     } = useContextReady();
     const { isScroll } =
@@ -39,13 +38,11 @@ export const GridOptions: FC =
         }}
       >
         <HudLeftShuffle
-          isLabel={isIdle}
         />
         {isScrollTopShown && (
           <>
             <LinesHorizontal />
             <PicsHeaderScrollTop
-              isLabel={isIdle}
             />
           </>
         )}

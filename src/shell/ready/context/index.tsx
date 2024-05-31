@@ -62,7 +62,7 @@ export const ReadyContextProvider: FC<
       scrollTimeoutRef,
     });
 
-  const isIdle = useMove({
+useMove({
     main: initContext.main,
     isOnscreen,
     move,
@@ -72,7 +72,6 @@ export const ReadyContextProvider: FC<
   return (
     <ReadyContext.Provider
       value={{
-        isIdle,
         ref,
         fonts,
         onScroll: handleScroll,

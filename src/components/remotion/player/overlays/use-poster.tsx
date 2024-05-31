@@ -1,8 +1,8 @@
 import { useCallback } from "react";
-import { Loading } from "@brysonandrew/loading";
 import { RenderPoster } from "@remotion/player";
 import { OverlaysContent } from "~/components/remotion/player/overlays/content";
 import { IconsPlayLarge } from "~/components/icons/playback/play";
+import { IconsLoader } from "~/components/icons/loader";
 
 export const OVERLAYS_POSTER_PROPS = {
   children: `Pics are random, go back to
@@ -19,7 +19,7 @@ export const usePoster = () => {
   const renderPoster: RenderPoster =
     useCallback(({ isBuffering }) => {
       if (isBuffering) {
-        return <Loading />;
+        return <IconsLoader />;
       }
       return (
         <OverlaysContent

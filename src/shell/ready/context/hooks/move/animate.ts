@@ -4,9 +4,6 @@ import {
   animate,
 } from 'framer-motion';
 import { useEffect, useRef } from 'react';
-import {
-  THoverKey,
-} from '@brysonandrew/motion-cursor/config/constants';
 import { TAnimationControlsPoint } from '@brysonandrew/motion-config-types';
 import { TSign } from '~/shell/ready/context/hooks/move/types';
 import { TMain } from '~/shell/init/context/types';
@@ -26,7 +23,7 @@ const ANIMATION_OPTIONS: ValueAnimationTransition = {
 };
 
 type THandlerConfig = {
-  nextHoverKey?: THoverKey;
+  nextHoverKey?: string;
   nextSignX?: TSign;
   nextSignY?: TSign;
 };

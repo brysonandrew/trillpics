@@ -2,12 +2,9 @@ import { FC, memo } from "react";
 import { IconsShuffle } from "~/components/icons/pic/shuffle";
 import { useTrillPicsStore } from "~/store/middleware";
 import { PillBHover } from "~/components/buttons/pill/b/hover";
-import { PRESENCE_OPACITY } from "@brysonandrew/motion-config-constants";
 import { useBlurAnimate } from "~/hooks/animate/blur/animate";
 
-export const HudLeftShuffle: FC<{
-  isLabel: boolean;
-}> = memo(({ isLabel }) => {
+export const HudLeftShuffle: FC = memo(() => {
   const { updatePics } =
     useTrillPicsStore(
       ({ updatePics }) => ({
@@ -26,7 +23,6 @@ export const HudLeftShuffle: FC<{
     <PillBHover
       key={title}
       title={title}
-      isLabel={isLabel}
       subtitle="Re-arrange pics at random."
       onClick={handleClick}
       Icon={IconsShuffle}

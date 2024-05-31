@@ -1,11 +1,10 @@
 import type { FC } from "react";
-import { ContactList } from "@brysonandrew/contact-list";
 import { EMAIL, PHONE, PHONE_WITH_TRUNK } from "~/components/footer/config";
 
 export const Contact: FC = () => {
   return (
     <footer className="relative container column-end py-16 z-50">
-      <ContactList
+      {/* <ContactList
         isCopy
         email={EMAIL}
         phone={{
@@ -14,7 +13,7 @@ export const Contact: FC = () => {
         }}
         classValue="gap-2"
         className="text-sm mt-1 mr-4"
-      />
+      /> */}
     </footer>
   );
 };

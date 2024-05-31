@@ -32,7 +32,6 @@ export const PicsHudLeft: FC<
 > = ({ foundation, container }) => {
   const {
     main: { dragger },
-    isIdle,
   } = useContextReady();
 
   const s = boxSize();
@@ -70,8 +69,6 @@ export const PicsHudLeft: FC<
           />
 
           <HudLeftVideo
-            isLabel={isIdle}
-            container={container}
             inActiveSiblings={
               <motion.div
                 layout
@@ -94,7 +91,6 @@ export const PicsHudLeft: FC<
                   }}
                 />
                 <ControlsPlayer
-                  isLabel={isIdle}
                 />
               </motion.div>
             }
@@ -140,10 +136,8 @@ export const PicsHudLeft: FC<
                   }}
                 >
                   <HudLeftAddRandom
-                    isLabel={isIdle}
                   />
                   <LeftButtonsClear
-                    isLabel={isIdle}
                   />
                 </motion.div>
 
@@ -229,7 +223,6 @@ export const PicsHudLeft: FC<
                       style={{
                         right: -s.m05,
                       }}
-                      isLabel={isIdle}
                     />
                   </div>
                 </motion.div>

@@ -9,6 +9,7 @@ import { LAYOUT } from "./layout";
 export const SHORTCUTS: StaticShortcutMap =
   {
     ..._SHORTCUTS,
+    "_icon-fill": "dark:_dark-fill _light-fill",
     "border-main":
       "border-gray-8 dark:border-gray-2",
     "border-main-inverted":

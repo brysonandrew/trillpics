@@ -16,14 +16,12 @@ export const PicsHeaderScrollTop: FC<
   Partial<TPillBHoverProps>
 > = ({ ...props }) => {
   const handler = useScrollTopHandler();
-  const { isIdle } = useContextReady();
   const title = SCROLL_TOP_HOVER_KEY;
 
   return (
     <PillBHover
       key={resolveCompositeKey(title)}
       title={title}
-      isLabel={isIdle}
       subtitle="Return to the start of the page."
       onClick={handler}
       Icon={IconsArrowsUp2}

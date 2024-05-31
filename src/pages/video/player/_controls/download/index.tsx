@@ -26,6 +26,8 @@ import { useTrillPicsStore } from "~/store/middleware";
 import { useTimebomb } from "~/hooks/use-time-bomb";
 import { title } from "process";
 import { set } from "zod";
+import { UGenerateSubscriptionResult } from "~/store/state/generate/types";
+import { TState } from "~/store/types";
 import { input } from "~root/build/612.bundle";
 
 export const DEFAULT_INPUT: TGenerateInput =
@@ -70,11 +72,35 @@ export const Download: FC<
   // > = async (input) => {
   //   return null as any;
   // };
-  trpc.onProgress.useSubscription(
+  trpc.progress.useSubscription(
     {},
     {
-      onData: (value: number) =>
-        set({ progress: value }),
+      onData: ({
+        type,
+        data,
+      }: UGenerateSubscriptionResult) => {
+        switch (type) {
+          case "progress": {
+            set({ progress: data });
+            break;
+          }
+          case "log": {
+            if (data) {
+              set((prev: TState) => ({
+                logs: [
+                  ...prev.logs,
+                  data,
+                ],
+              }));
+            }
+            break;
+          }
+          case "download": {
+            set({ download: data });
+            break;
+          }
+        }
+      },
       onError: (v: any) => {
         set({ error: v });
       },
@@ -83,17 +109,26 @@ export const Download: FC<
       },
     }
   );
-  const { trigger } = useTimebomb(
-    200,
-    () =>
+  const { trigger: trigger1 } =
+    useTimebomb(2800, () =>
       set({
-        progress: 0,
-        error: "",
+        isDownloadComplete: false,
       })
+    );
+  const { trigger } = useTimebomb(
+    1400,
+    () => {
+      set({
+        download: null,
+        progress: null,
+        error: null,
+        logs: [],
+        isDownloadComplete: true,
+      });
+      trigger1();
+    }
   );
-  // const y =
-  //   trpc.randomNumber.useSubscription({rand});
-  // console.log();
+
   const {
     isError,
     isIdle,
@@ -116,21 +151,12 @@ export const Download: FC<
         );
         const blob = new Blob([arr]);
         await downloadMedia(blob);
+        trigger();
       }
-      set({
-        isStarted: false,
-      })
-      trigger();
     },
   });
   const handleGenerate = () => {
-    // input.onProgress = (
-    //   ...args: any[]
-    // ) => {
-    //   console.log(args);
-    // };
-    set({ isStarted: true });
-
+    set({ logs: [], progress: null });
     mutate(input);
   };
 

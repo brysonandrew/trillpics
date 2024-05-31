@@ -9,6 +9,9 @@ import {
   TValues,
 } from "../config/constants";
 
+export const LINEAR_GRADIENT_SVG_ID =
+  "linear-gradient-blue-pink-yellow-svg";
+  
 export const GRADIENT_BLUE_PINK_YELLOW_COLORS =
   [
     ...(Object.values(

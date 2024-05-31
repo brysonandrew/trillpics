@@ -6,7 +6,6 @@ import { HeaderSubtitle } from "~/pics/header/subtitle";
 import { THudContainer } from "~/pics/hud";
 
 type TProps = {
-  isIdle: boolean;
   container: THudContainer;
   foundation: DOMRect;
 };
