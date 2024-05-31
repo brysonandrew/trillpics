@@ -40,5 +40,5 @@
     "**/*.js",
     "**/*.jsx",
     "**/*.tsx"
-, ".cemetary/player/index.tsx"  ]
+  ]
 }

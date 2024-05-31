@@ -9,34 +9,45 @@ import {
 } from "~/shell/init/svg/filters/blur/constants";
 import { EMBERS_FILTER_SVG_PROPS } from "~/shell/init/svg/filters/embers";
 import { ShellGlobalBackground } from "~/shell/global/background";
+import { motion } from "framer-motion";
 
 export const BlurXyWrap: FC<
   PropsWithChildren
 > = ({ children }) => {
   return (
     <div
-    className="fill"
-      // className="fill flex flex-col text-8xl center"
+      // className="fill"
+      className="fill bg-white"
       style={{
         // ...EMBERS_FILTER_SVG_PROPS,
         ...MOTION_BLUR_FILTER_X_PROPS,
       }}
     >
-      {/* <ShellGlobalBackground />
-      <span className="relative">
-        hello world
-      </span>
-      <span className="relative opacity-50">
-        hello world
-      </span> */}
-      <div
-        className="fill"
+      <ShellGlobalBackground />
+      {children}
+  
+      {/* <motion.div
+        className="fill flex flex-col text-6xl center font-black"
         style={{
-          ...MOTION_BLUR_FILTER_Y_PROPS,
+          scale: 2,
+          ...EMBERS_FILTER_SVG_PROPS,
+          // ...MOTION_BLUR_FILTER_Y_PROPS,
         }}
       >
-        {children}
-      </div>
+        <span className="relative text-green">
+          hello world
+        </span>
+        <span className="relative text-blue">
+          hello world
+        </span>
+        <span className="relative text-red">
+          hello world
+        </span>
+        <span className="relative opacity-50">
+          hello world
+        </span>
+      </motion.div> */}
+      
     </div>
   );
 };

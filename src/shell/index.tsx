@@ -11,13 +11,13 @@ export const Shell = () => {
     <ShellGlobal>
       <ShellInit>
         {(screenInit) => (
-          <ShellReady {...screenInit}>
-            <BlurXyWrap>
+          <BlurXyWrap>
+            <ShellReady {...screenInit}>
               <Pics />
               <Outlet />
-            </BlurXyWrap>
-            <Hud />
-          </ShellReady>
+              <Hud />
+            </ShellReady>
+          </BlurXyWrap>
         )}
       </ShellInit>
     </ShellGlobal>
