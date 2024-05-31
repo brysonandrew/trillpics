@@ -104,9 +104,6 @@ export const Download: FC<
       onError: (v: any) => {
         set({ error: v });
       },
-      onStarted: () => {
-        console.log("start");
-      },
     }
   );
   const { trigger: trigger1 } =

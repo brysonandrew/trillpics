@@ -3,7 +3,6 @@ import {
   httpBatchLink,
   wsLink,
   createWSClient,
-
 } from "@trpc/react-query";
 import { TRouter } from "~/server/router";
 import {
@@ -15,16 +14,21 @@ import {
 export const trpc =
   createTRPCReact<TRouter>();
 
-const SERVER_ORIGIN = (
+const isLocal = (
   import.meta.env ?? process.env
-)._IS_LOCAL
+)._IS_LOCAL;
+const SERVER_ORIGIN = isLocal
   ? `http://localhost:${API_PORT}`
   : "https://trillpics.onrender.com";
 
 const url = `${SERVER_ORIGIN}${SERVER_PATH}`;
+
+const WS_SERVER_ORIGIN = isLocal
+  ? `ws://localhost:${API_PORT}`
+  : "wss://trillpics.onrender.com";
 // create persistent WebSocket connection
 const wsClient = createWSClient({
-  url: `ws://localhost:${API_PORT}`,
+  url: WS_SERVER_ORIGIN,
 });
 
 export const trpcClient =
