@@ -5,7 +5,7 @@ FROM node:20-bookworm
 
 RUN apt-get update
 # RUN apt-get install -y node
-RUN apt-get install -y chromium
+# RUN apt-get install -y chromium
 
 WORKDIR /app
 
