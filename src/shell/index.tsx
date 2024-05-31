@@ -12,6 +12,7 @@ export const Shell = () => {
       <ShellInit>
         {(screenInit) => (
           <ShellReady {...screenInit}>
+            
             <BlurXyWrap>
               <Pics />
               <Outlet />

@@ -7,12 +7,12 @@ import { resolveUrlId } from "@brysonandrew/utils-attributes";
 import type { FC } from "react";
 import { resolveEmbersKeys } from "~/shell/init/svg/filters/embers/keys";
 
-export const ANTI_CAMO_FILTER_ID =
-  "ANTI_CAMO_FILTER_ID";
-export const ANTI_CAMO_FILTER_SVG_PROPS =
+export const EMBERS_FILTER_ID =
+  "EMBERS_FILTER_ID";
+export const EMBERS_FILTER_SVG_PROPS =
   {
     filter: resolveUrlId(
-      ANTI_CAMO_FILTER_ID
+      EMBERS_FILTER_ID
     ),
   };
 type TProps = {
@@ -26,9 +26,9 @@ type TProps = {
 export const EmbersFilter: FC<
   TProps
 > = ({
-  id = ANTI_CAMO_FILTER_ID,
-  dmScale = 1.4,
-  fmRadius = 1.4,
+  id = EMBERS_FILTER_ID,
+  dmScale = 15,
+  fmRadius = 0,
   morphProps,
   displacementProps,
 }) => {
@@ -68,7 +68,7 @@ export const EmbersFilter: FC<
           <feMergeNode
             in={DISPLACEMENT_KEY}
           />
-          <feMergeNode in="SourceGraphic" />
+          {/* <feMergeNode in="SourceGraphic" /> */}
         </feMerge>
       </filter>
     </SvgWrap>
