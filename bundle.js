@@ -25023,10 +25023,12 @@ const SERVER_PATH = "/api";
 
 
 const trpc_trpc = createTRPCReact();
-const SERVER_ORIGIN = ( null ?? process.env)._IS_LOCAL ? `http://localhost:${API_PORT}` : "https://trillpics.onrender.com";
+const isLocal = ( null ?? process.env)._IS_LOCAL;
+const SERVER_ORIGIN = isLocal ? `http://localhost:${API_PORT}` : "https://trillpics.onrender.com";
 const url = `${SERVER_ORIGIN}${SERVER_PATH}`;
+const WS_SERVER_ORIGIN = isLocal ? `ws://localhost:${API_PORT}` : "wss://trillpics.onrender.com";
 const wsClient = createWSClient({
-  url: `ws://localhost:${API_PORT}`
+  url: WS_SERVER_ORIGIN
 });
 const trpcClient = trpc_trpc.createClient({
   links: [
@@ -45586,9 +45588,6 @@ const Download = ({ children, ...props }) => {
       },
       onError: (v) => {
         set2({ error: v });
-      },
-      onStarted: () => {
-        console.log("start");
       }
     }
   );
