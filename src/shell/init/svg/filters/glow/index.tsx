@@ -5,7 +5,6 @@ import {
 } from "@brysonandrew/config-types";
 import { SvgWrap } from "@brysonandrew/svg-dimensionless";
 import { resolveUrlId } from "@brysonandrew/utils-attributes";
-import { resolveBlurMotionKeys } from "~/shell/init/svg/filters/embers/keys";
 
 export const GLOW_FILTER_ID =
   "GLOW_FILTER_ID";
@@ -27,12 +26,6 @@ export const GlowFilter: FC<TProps> = ({
   morphProps,
   displacementProps,
 }) => {
-  const {
-    MORPH_KEY,
-    DISPLACEMENT_KEY,
-    OFFSET_KEY,
-    COMPOSITE_KEY,
-  } = resolveBlurMotionKeys(id);
   return (
     <SvgWrap>
       <filter

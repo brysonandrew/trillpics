@@ -5,7 +5,7 @@ import {
 } from "@brysonandrew/config-types";
 import { SvgWrap } from "@brysonandrew/svg-dimensionless";
 import { resolveUrlId } from "@brysonandrew/utils-attributes";
-import { resolveBlurMotionKeys } from "~/shell/init/svg/filters/embers/keys";
+import { resolveGlitchKeys } from "~/shell/init/svg/filters/glitch/keys";
 
 export const GLITCH_FILTER_ID =
   "GLITCH_FILTER_ID";
@@ -36,7 +36,7 @@ export const GlitchFilter: FC<
     DISPLACEMENT_KEY,
     OFFSET_KEY,
     COMPOSITE_KEY,
-  } = resolveBlurMotionKeys(id);
+  } = resolveGlitchKeys(id);
   return (
     <SvgWrap>
       <filter

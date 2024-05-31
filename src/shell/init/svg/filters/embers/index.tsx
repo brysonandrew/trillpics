@@ -1,18 +1,20 @@
 import {
   TSvgDisplacementProps,
   TSvgFilterMorphologyProps,
-} from '@brysonandrew/config-types';
-import { SvgWrap } from '@brysonandrew/svg-dimensionless';
-import { resolveUrlId } from '@brysonandrew/utils-attributes';
-import type { FC } from 'react';
-import { resolveBlurMotionKeys, resolveEmberKeys } from '~/shell/init/svg/filters/embers/keys';
+} from "@brysonandrew/config-types";
+import { SvgWrap } from "@brysonandrew/svg-dimensionless";
+import { resolveUrlId } from "@brysonandrew/utils-attributes";
+import type { FC } from "react";
+import { resolveEmbersKeys } from "~/shell/init/svg/filters/embers/keys";
 
-export const ANTI_CAMO_FILTER_ID = 'ANTI_CAMO_FILTER_ID';
-export const ANTI_CAMO_FILTER_SVG_PROPS = {
-  filter: resolveUrlId(
-    ANTI_CAMO_FILTER_ID
-  ),
-};
+export const ANTI_CAMO_FILTER_ID =
+  "ANTI_CAMO_FILTER_ID";
+export const ANTI_CAMO_FILTER_SVG_PROPS =
+  {
+    filter: resolveUrlId(
+      ANTI_CAMO_FILTER_ID
+    ),
+  };
 type TProps = {
   id?: string;
   radius?: number;
@@ -21,7 +23,9 @@ type TProps = {
   morphProps?: TSvgFilterMorphologyProps;
   displacementProps?: TSvgDisplacementProps;
 };
-export const EmbersFilter: FC<TProps> = ({
+export const EmbersFilter: FC<
+  TProps
+> = ({
   id = ANTI_CAMO_FILTER_ID,
   dmScale = 1.4,
   fmRadius = 1.4,
@@ -33,7 +37,7 @@ export const EmbersFilter: FC<TProps> = ({
     DISPLACEMENT_KEY,
     OFFSET_KEY,
     COMPOSITE_KEY,
-  } = resolveEmberKeys(id);
+  } = resolveEmbersKeys(id);
   return (
     <SvgWrap>
       <filter
@@ -60,8 +64,10 @@ export const EmbersFilter: FC<TProps> = ({
           result={DISPLACEMENT_KEY}
           {...displacementProps}
         />
-         <feMerge>
-          <feMergeNode in={DISPLACEMENT_KEY}/>
+        <feMerge>
+          <feMergeNode
+            in={DISPLACEMENT_KEY}
+          />
           <feMergeNode in="SourceGraphic" />
         </feMerge>
       </filter>
@@ -69,22 +75,28 @@ export const EmbersFilter: FC<TProps> = ({
   );
 };
 
-      {/* <feOffset
+{
+  /* <feOffset
           result={OFFSET_KEY}
           dx="1"
           dy="-1"
           in={DISPLACEMENT_KEY}
-        /> */}
-        {/* <feComposite
+        /> */
+}
+{
+  /* <feComposite
           result={COMPOSITE_KEY}
           operator="arithmetic"
           k2="-1"
           k3="1"
           in={OFFSET_KEY}
           in2="SourceAlpha"
-        /> */}
-        {/* <feColorMatrix
+        /> */
+}
+{
+  /* <feColorMatrix
           values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.09 0"
           in={COMPOSITE_KEY}
           result="MATRIX"
-        /> */}
+        /> */
+}
