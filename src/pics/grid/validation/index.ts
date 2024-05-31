@@ -1,4 +1,4 @@
-import { TGrid } from "~/context/types";
+import { TGrid } from "~/shell/ready/context/types";
 
 export const isVirtualizeListCheck = 
   (config?: TGrid | null) =>

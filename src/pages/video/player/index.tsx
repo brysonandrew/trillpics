@@ -1,37 +1,49 @@
-import { PicBackdrop } from "~/pics/grid/pic/backdrop";
-import { RemotionPlayer } from "~/components/remotion/player";
 import { Helmet } from "react-helmet-async";
 import { boxSize } from "~/constants/box/size";
-import { usePicVideoReadInputs } from "~/hooks/pic/video/read/inputs/hook";
 import { FULLSCREEN_Z } from "~/constants/dom";
-import { PlaybackProgressSeeker } from "~/components/remotion/player/playback/progress/seeker";
-import {
-  Link,
-  useSearchParams,
-} from "react-router-dom";
-import { VIDEO_ROUTE } from "~/shell/routes";
-import { useContextGrid } from "~/context";
-import { PlayerBackground } from "~/pages/video/player/_background";
-import { boxRadius } from "~/constants/box/radius";
-import { PlayerBackgroundOpaque } from "~/pages/video/player/_background/opaque";
-import { PlaybackButtons } from "~/components/remotion/player/playback/buttons";
+import { useContextReady } from "~/shell/ready/context";
+import { VideoPlayer_Backdrop } from "~/pages/video/player/_backdrop";
+import { VideoPlayer_Screen } from "~/pages/video/player/_screen";
+import { VideoPlayer_Controls } from "~/pages/video/player/_controls";
+import { Player_InitContextProvider } from "~/pages/video/player/_context/init";
+import { isPlayerInstance } from "~/utils/validation/is/player";
+import { Player_ReadyContextProvider } from "~/pages/video/player/_context/ready";
+import { useAddRandomEffect } from "~/hooks/pic/add-random/effect";
 
 export const OVERFLOW_HIDDEN =
   "overflow: hidden;";
 
 export const VideoPlayer = () => {
-  const [searchParams] =
-    useSearchParams();
-  const { screen } = useContextGrid();
-
-  const inputProps =
-    usePicVideoReadInputs();
-
+  const { screen } = useContextReady();
   const s = boxSize();
-  const borderRadius = boxRadius();
   const container = screen.container;
-  const width = container.width - s.m3;
+  const left = container.isMobile
+    ? s.m05
+    : container.isTablet
+    ? s.m05
+    : s.m15 + screen.container.left;
+  const width =
+    container.width +
+    (container.isMobile
+      ? s.m
+      : container.isTablet
+      ? s.m
+      : -s.m25);
   const paddingY = screen.container.top;
+  // const container = screen.container;
+  // const left = container.isMobile
+  //   ? -s.m15
+  //   : container.isTablet
+  //   ? -s.m
+  //   : 0;
+  // const width =
+  //   container.width -
+  //   (container.isMobile
+  //     ? 0
+  //     : container.isTablet
+  //     ? s.m05
+  useAddRandomEffect();
+  //     : s.m3);
   return (
     <>
       <Helmet>
@@ -39,92 +51,55 @@ export const VideoPlayer = () => {
           Trill Pics | Viewing Room
         </title>
       </Helmet>
-      <Link
-        className="fill"
-        to={`${VIDEO_ROUTE}?${searchParams}`}
-      >
-        <PicBackdrop />
-      </Link>
+      <VideoPlayer_Backdrop />
       <div
-        className="fill overflow-auto"
+        className="fill column-start justify-center overflow-auto"
         style={{
-          zIndex: FULLSCREEN_Z,
           paddingTop: paddingY + s.m15,
-          paddingLeft:
-            screen.container.left +
-            s.m15,
           paddingBottom: paddingY,
-          // paddingLeft:
-          // screen.container.left +
-          // s.m15,
-          gap: s.m,
+          gap: s.m05,
         }}
       >
-        <div
-          className="relative"
-          style={{
-            gap: s.m05,
-            width,
-            height: width * (9 / 16),
+        <Player_InitContextProvider>
+          {(playerInstance) => {
+            return (
+              <>
+                <div
+                  className="relative"
+                  style={{
+                    gap: s.m05,
+                    left,
+                    width,
+                    height:
+                      width * (9 / 16),
+                  }}
+                >
+                  <VideoPlayer_Screen />
+                </div>
+                {isPlayerInstance(
+                  playerInstance
+                ) && (
+                  <Player_ReadyContextProvider
+                    playerInstance={
+                      playerInstance
+                    }
+                  >
+                    <div
+                      className="relative flex-col flex justify-center"
+                      style={{
+                        left,
+                        gap: s.m05,
+                        width,
+                      }}
+                    >
+                      <VideoPlayer_Controls />
+                    </div>
+                  </Player_ReadyContextProvider>
+                )}
+              </>
+            );
           }}
-        >
-          <PlayerBackgroundOpaque />
-          <PlayerBackground />
-          <RemotionPlayer
-            {...inputProps}
-            base="remotion"
-          />
-        </div>
-        <div
-          style={{ height: s.m05 }}
-        />
-        <div
-          className="relative flex-col flex justify-center"
-          style={{
-            gap: s.m025,
-            width:
-              container.width - s.m3,
-          }}
-        >
-          <div
-            className="relative flex-col flex justify-center"
-            style={{
-              width:
-                container.width - s.m3,
-            }}
-          >
-            <PlaybackButtons />
-            <div
-              style={{ height: s.m05 }}
-            />
-
-            <div
-              className="relative w-full"
-              style={{
-                borderRadius,
-                left: 0,
-                width:
-                  container.width -
-                  s.m3,
-              }}
-            >
-              <PlayerBackgroundOpaque />
-              <div
-                className="absolute inset-0 _gradient-radial"
-                style={{
-                  borderRadius,
-                  left: 0,
-                  width:
-                    container.width -
-                    s.m3,
-                }}
-              />
-              <PlayerBackground />
-              <div className="absolute inset-0 bg-black-05 rounded-lg _gradient-mesh opacity-60" />
-              <PlaybackProgressSeeker />
-            </div>
-          </div>
-        </div>
+        </Player_InitContextProvider>
       </div>
       <div
         style={{ height: paddingY }}

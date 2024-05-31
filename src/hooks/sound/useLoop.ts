@@ -2,7 +2,7 @@ import {
   useEffect,
   useRef,
 } from "react";
-import { useSoundContext } from "~/context/sound";
+import { useSoundContext } from "~/shell/global/sound";
 const BEATS = [1, 0, 1, 0, 1, 0, 1, 0];
 const BEATS_COUNT = BEATS.length;
 const BEAT_DURATION = 1000;

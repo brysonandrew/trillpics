@@ -4,27 +4,24 @@ import {
   TPillBHoverProps,
 } from "~/components/buttons/pill/b/hover";
 import { IconsVisible } from "~/components/icons/video/visible";
-import { useContextGrid } from "~/context";
+import { useContextReady } from "~/shell/ready/context";
 import { useTrillPicsStore } from "~/store/middleware";
 
 export const HideControls: FC<
   Partial<TPillBHoverProps>
 > = (props) => {
   const { resetLayout } =
-    useContextGrid();
-  const { isControls, toggleControls } =
+    useContextReady();
+  const { toggleControls } =
     useTrillPicsStore(
       ({
-        isControls,
         toggleControls,
       }) => ({
-        isControls,
         toggleControls,
       })
     );
 
   const handleClick = () => {
-    resetLayout();
     toggleControls(false);
   };
   const handleShow = () => {

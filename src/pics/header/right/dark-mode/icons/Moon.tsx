@@ -2,7 +2,7 @@ import { FC } from "react";
 import { SVGMotionProps } from "framer-motion";
 import { ClassValue } from "clsx";
 import { resolveUrlId } from "@brysonandrew/utils-attributes";
-import { LINEAR_GRADIENT_SVG_ID } from "~/shell/global/svg/gradients/blue-pink-yellow";
+import { LINEAR_GRADIENT_SVG_ID } from "~/shell/init/svg/gradients/blue-pink-yellow";
 import { resolveSquare } from "@brysonandrew/measure";
 import { IconsSvgGradient18vb24 } from "~/components/icons/svg/gradient/16vb24";
 

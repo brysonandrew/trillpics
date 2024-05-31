@@ -8,57 +8,48 @@ import { boxSize } from "~/constants/box/size";
 type TProps = TCommonProps;
 export const _CommonReorderPlaceholder: FC<
   TProps
-> = ({ itemStyle, boxProps }) => {
-  const gap = boxProps.style?.gap ?? 0;
+> = ({
+  itemDimensions,
+  boxProps,
+  isColumn,
+}) => {
   const s = boxSize();
   const borderRadius = boxRadius();
   return (
-    <div
-      className="absolute"
-      {...boxProps}
+    <ul
+      className={clsx(
+        "absolute left-0 top-0 w-full z-0",
+        isColumn ? "column" : "row"
+      )}
+      style={{
+        // x,
+        // y,
+        gap: boxProps.style?.gap,
+      }}
     >
-      {/* <LinesHorizontal1
-        style={{
-          top:
-            itemStyle.height /
-              2 ?? 0,
-        }}
-      /> */}
+      {[...Array(MAX_COUNT)].map(
+        (_, index) => (
+          <li
+            key={`${index}`}
+            className={clsx(
+              "relative",
+              "border border-white-02 dark:border-black-02 bg-white-01 dark:bg-black-01 backdrop-blur-sm opacity-50"
+            )}
+            style={{
+              width:
+                itemDimensions.width,
+              height:
+                itemDimensions.height, /// s.m+s.m025,
 
-      <ul
-        className={clsx(
-          "absolute row left-0 top-0 w-full"
-        )}
-        style={{
-          // x,
-          // y,
-          gap: boxProps.style?.gap,
-        }}
-      >
-        {[...Array(MAX_COUNT)].map(
-          (_, index) => (
-            <li
-              key={`${index}`}
-              className={clsx(
-                "relative",
-                "border border-white-02 dark:border-black-02 bg-white-01 dark:bg-black-01 backdrop-blur-sm opacity-50"
-              )}
-              style={{
-                width:
-                  itemStyle.width,
-                height:
-                  itemStyle
-                    .height, /// s.m+s.m025,
-
-                top: 0,
-                borderRadius:
-                  borderRadius / 2,
-                padding: s.padding,
-              }}
-            ></li>
-          )
-        )}
-      </ul>
-    </div>
+              top: 0,
+              borderRadius:
+                borderRadius / 2,
+              padding: s.padding,
+              zIndex: index * 2 + 2,
+            }}
+          ></li>
+        )
+      )}
+    </ul>
   );
 };

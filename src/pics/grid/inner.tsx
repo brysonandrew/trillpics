@@ -7,7 +7,7 @@ import {
 } from "react";
 import clsx from "clsx";
 import { useTrillPicsStore } from "~/store/middleware";
-import { useContextGrid } from "~/context";
+import { useContextReady } from "~/shell/ready/context";
 
 export type TInnerHandle = {
   isHovering(): boolean;
@@ -27,7 +27,7 @@ const Inner = forwardRef<
     ref
   ) => {
     const { main, scrollY } =
-      useContextGrid();
+      useContextReady();
     const {
       hoverKeys,
       set,

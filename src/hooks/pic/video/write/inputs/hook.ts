@@ -1,9 +1,15 @@
-import { useLocation, useNavigate, useSearchParams } from "react-router-dom";
+import {
+  useLocation,
+  useNavigate,
+  useSearchParams,
+} from "react-router-dom";
 import { SELECTED_PARAM_KEY } from "~/hooks/pic/constants";
 import { picVideoReadInputs } from "~/hooks/pic/video/read/inputs";
+import { useContextPlayer_Init } from "~/pages/video/player/_context/init";
 
 export const usePicVideoWriteInputs =
   () => {
+    const {fps} = useContextPlayer_Init();
     const { pathname } = useLocation();
     const navigate = useNavigate();
     const [searchParams] =
@@ -14,7 +20,8 @@ export const usePicVideoWriteInputs =
       isPics,
       count,
     } = picVideoReadInputs(
-      searchParams
+      searchParams,
+      fps
     );
 
     const clear = () => {

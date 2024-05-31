@@ -6,7 +6,7 @@ import { motion } from "framer-motion";
 import { TDivMotionProps } from "@brysonandrew/config-types";
 import clsx from "clsx";
 import { FULLSCREEN_Z } from "~/constants/dom";
-import { useContextGrid } from "~/context";
+import { useContextReady } from "~/shell/ready/context";
 
 type TProps = PropsWithChildren<
   Partial<TDivMotionProps>
@@ -19,7 +19,7 @@ export const PicBackdrop: FC<
   classValue,
   ...props
 }) => {
-  const { screen } = useContextGrid();
+  const { screen } = useContextReady();
   const screenDimensions = {
     width: screen.width,
     height: screen.height,
@@ -33,7 +33,7 @@ export const PicBackdrop: FC<
         ...(screenDimensions ?? {}),
         backdropFilter:
           "blur(28px) brightness(120%)",
-        zIndex: FULLSCREEN_Z,
+        zIndex: 0,
         ...style,
       }}
       transition={{

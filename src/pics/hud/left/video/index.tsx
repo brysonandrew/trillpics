@@ -5,7 +5,7 @@ import {
 import { motion } from "framer-motion";
 import { useNavigationControls } from "~/hooks/navigation/controls";
 import { IconsVideo } from "~/components/icons/video/video";
-import { VideoPicCounterFloating } from "~/shell/screen/video-pic-counter/floating";
+import { VideoPicCounterFloating } from "~/pics/hud/left/video/pic-counter/floating";
 import { PillBHover } from "~/components/buttons/pill/b/hover";
 import {
   HOME_ROUTE,
@@ -13,7 +13,7 @@ import {
 } from "~/constants/params";
 import { useVideoPicsCheck } from "~/hooks/pic/video/read/video-pics-check/hook";
 import { boxSize } from "~/constants/box/size";
-import { useContextGrid } from "~/context";
+import { useContextReady } from "~/shell/ready/context";
 import { TChildren } from "@brysonandrew/config-types";
 import { THudContainer } from "~/pics/hud";
 import { IconsHome } from "~/components/icons/home";
@@ -35,8 +35,8 @@ export const HudLeftVideo: FC<
   inActiveSiblings,
 }) => {
   const s = boxSize();
-  const { dragger, main } =
-    useContextGrid();
+  const {  main } =
+    useContextReady();
   const isVideoPics =
     useVideoPicsCheck();
   const { togglePathValue, isActive } =
@@ -66,7 +66,7 @@ export const HudLeftVideo: FC<
         className="absolute left-0 bottom-0"
         style={{
           bottom: s.m15 - s.m0125,
-          y: dragger.y,
+          y: main.dragger.y,
           x: 0,
         }}
       >

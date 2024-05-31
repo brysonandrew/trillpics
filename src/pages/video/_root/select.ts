@@ -1,4 +1,4 @@
-import { useClickGrid } from "~/context/hooks/click";
+import { useClickGrid } from "~/shell/ready/context/hooks/click";
 import { usePicSelected } from "~/hooks/pic/selected";
 
 export const useVideoClickSelect =

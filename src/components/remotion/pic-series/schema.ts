@@ -7,8 +7,13 @@ export const PIC_SERIES_SCHEMA =
     seconds: z.number(),
     count: z.number(),
     isPics: z.boolean(),
+    fps: z.number(),
+    durationInFrames: z.number(),
     dimensions: z.object({
       height: z.number(),
       width: z.number(),
     }),
+    onProgress:z.function().optional(),
+    onBrowserLog:z.function().optional(),
+    onDownload:z.function().optional(),
   });

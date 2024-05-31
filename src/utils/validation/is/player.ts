@@ -1,10 +1,10 @@
-import { TPlayerInstance } from "~/store/state/player/types";
+import { TPlayerInstance, TPlayerInstanceReady } from "~/pages/video/player/_context/ready/types";
 import { isDefined } from "~/utils/validation/is/defined";
 import { isNull } from "~/utils/validation/is/null";
 
 export const isPlayerInstance = (
   value?: unknown | TPlayerInstance
-): value is TPlayerInstance => {
+): value is TPlayerInstanceReady => {
   if (
     (isDefined(value),
     typeof value === 'object' &&

@@ -20,10 +20,12 @@ import {
 } from "~/pages/video/_root/reorder/constants";
 import { useHoverKey } from "~/hooks/use-hover-key";
 import { LEFT_BUTTONS_CLEAR_TITLE } from "~/pics/hud/left/clear";
-import { useContextGrid } from "~/context";
+import { useContextReady } from "~/shell/ready/context";
 import { _CommonReorderControls } from "~/pages/video/_root/reorder/controls";
 import { HUD_LEFT_ADD_RANDOM_HOVER_KEY } from "~/pics/hud/left/add-random";
 import { resolveCompositeKey } from "@brysonandrew/utils-key";
+import clsx from "clsx";
+import { _CommonReorderControl } from "~/pages/video/_root/reorder/controls/control";
 
 type TProps = TUsePicSelected;
 export const _CommonReorder: FC<
@@ -52,7 +54,7 @@ export const _CommonReorder: FC<
       isHover,
     })
   );
-  const { screen } = useContextGrid();
+  const { screen } = useContextReady();
 
   const isVideoPlayerButtonHover =
     hoverKeys.includes(
@@ -64,14 +66,19 @@ export const _CommonReorder: FC<
     );
 
   const s = boxSize();
+  const isColumn =
+    screen.container.width < 600;
   const width =
-    screen.container.width - s.m3;
+    screen.container.width -
+    (isColumn ? s.m : s.m3);
   const left =
-    screen.container.left + s.m15;
+    screen.container.left +
+    (isColumn ? s.m05 : s.m15);
   const gap =
     TOTAL_GAP / (MAX_COUNT - 1);
   const size =
-    (width - TOTAL_GAP) / MAX_COUNT;
+    (width - TOTAL_GAP) /
+    (isColumn ? 1 : MAX_COUNT);
   const height = size;
   const boxStyle = {
     gap,
@@ -81,12 +88,23 @@ export const _CommonReorder: FC<
     top: 0,
   };
   const boxProps = {
-    className: "absolute row",
+    className: clsx(
+      "absolute z-0",
+      isColumn ? "column" : "row"
+    ),
     style: boxStyle,
   } as const;
-  const itemStyle = resolveSquare(size);
+  const imageDimensions =
+    resolveSquare(size);
+  const itemDimensions = isColumn
+    ? {
+        height:
+          size / MAX_COUNT + s.m05,
+        width: size,
+      }
+    : imageDimensions;
 
-  const { main } = useContextGrid();
+  const { main } = useContextReady();
   const start = () => {
     main.cursor.isOnGrid = false;
   };
@@ -101,6 +119,7 @@ export const _CommonReorder: FC<
 
   return (
     <_RootReorderDragger
+      isColumn={isColumn}
       width={width}
       left={left}
       bottom={s.m05}
@@ -110,17 +129,21 @@ export const _CommonReorder: FC<
         return (
           <div className="relative">
             {children}
-            <_CommonReorderControls
+            {/* <_CommonReorderControls
               add={add}
               pics={pics}
               names={names}
               deselect={deselect}
               boxProps={boxProps}
-              itemStyle={itemStyle}
+              itemDimensions={
+                itemDimensions
+              }
               x={x05}
               y={y}
-            />
+              isColumn={isColumn}
+            /> */}
             <motion.div
+              className="absolute z-0"
               style={{
                 ...boxStyle,
                 y: y06,
@@ -128,11 +151,16 @@ export const _CommonReorder: FC<
             >
               <_CommonReorderPlaceholder
                 boxProps={boxProps}
-                itemStyle={itemStyle}
+                itemDimensions={
+                  itemDimensions
+                }
+                isColumn={isColumn}
               />
             </motion.div>
             <Reorder.Group
-              axis="x"
+              axis={
+                isColumn ? "y" : "x"
+              }
               values={names}
               onReorder={select}
               {...boxProps}
@@ -140,73 +168,95 @@ export const _CommonReorder: FC<
                 ...boxStyle,
               }}
             >
-              {names.map((name) => {
-                isVNumber(size);
-                const key =
-                  resolveCompositeKey(
-                    "reorder",
-                    name
+              {names.map(
+                (name, index) => {
+                  isVNumber(size);
+                  const key =
+                    resolveCompositeKey(
+                      "reorder",
+                      name
+                    );
+                  const controlKey =
+                    resolveCompositeKey(
+                      name,
+                      "control"
+                    );
+                  return (
+                    <Reorder.Item
+                      key={key}
+                      value={name}
+                      whileDrag={{
+                        cursor:
+                          "grabbing",
+                      }}
+                      style={{
+                        ...itemDimensions,
+                        filter:
+                          is5RandomPicsHover
+                            ? "blur(6px)"
+                            : "",        
+                        left: 0,
+                        cursor: "grab",
+                      }}
+                      {...motionHandlers(
+                        key
+                      )}
+                    >
+                      <_CommonReorderControl
+                        x={x}
+                        y={y075}
+                        key={controlKey}
+                        name={name}
+                        title={
+                          controlKey
+                        }
+                        isColumn={isColumn}
+                        index={index}
+                        itemDimensions={
+                          itemDimensions
+                        }
+                        imageDimensions={imageDimensions}
+                        deselect={
+                          deselect
+                        }
+                        add={add}
+                        pics={pics}
+                      />
+                      {!isHover(
+                        LEFT_BUTTONS_CLEAR_TITLE
+                      ) && (
+                        <>
+                          {!isVideoPlayerButtonHover && (
+                            <PicDisplay
+                              key={resolveCompositeKey(
+                                "pic-display",
+                                name
+                              )}
+                              name={
+                                name
+                              }
+                              whileTap={{
+                                cursor:
+                                  "grabbing",
+                              }}
+                              style={{
+                                left: 0,
+                                top: y06,
+                                zIndex:index +2,
+                                ...imageDimensions,
+                              }}
+                              transition={{
+                                duration: 0.6,
+                                ease: "easeIn",
+                              }}
+                            />
+                          )}
+                        </>
+                      )}
+                    </Reorder.Item>
                   );
-                return (
-                  <Reorder.Item
-                    key={key}
-                    value={name}
-                    whileDrag={{
-                      cursor:
-                        "grabbing",
-                    }}
-                    style={{
-                      ...itemStyle,
-                      filter:
-                        is5RandomPicsHover
-                          ? "blur(6px)"
-                          : "",
-                      // must be top not y
-                      // top:0,
-                      left: 0,
-                      cursor: "grab",
-                    }}
-                    {...motionHandlers(
-                      key
-                    )}
-                  >
-                    {!isHover(
-                      LEFT_BUTTONS_CLEAR_TITLE
-                    ) && (
-                      <>
-                        {!isVideoPlayerButtonHover && (
-                          <PicDisplay
-                            key={resolveCompositeKey(
-                              "pic-display",
-                              name
-                            )}
-                            name={name}
-                            whileTap={{
-                              cursor:
-                                "grabbing",
-                            }}
-                            // {...PRESENCE_OPACITY_ANIMATE_DELAY_02}
-
-                            // {...PRESENCE_OPACITY}
-                            style={{
-                              // position:
-                              //   "absolute",
-                              // top: "0",
-                              left: 0,
-                              top: y06,
-                              ...itemStyle,
-                            }}
-                            transition={{
-                              duration: 0.6,
-                              ease: "easeIn",
-                            }}
-                          />
-                        )}
-                      </>
-                    )}
-                  </Reorder.Item>
-                );
-              })}
+                }
+              )}
             </Reorder.Group>
           </div>
         );

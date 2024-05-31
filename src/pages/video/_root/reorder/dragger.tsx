@@ -7,16 +7,17 @@ import {
   motion,
   useMotionValueEvent,
 } from "framer-motion";
-import { useContextGrid } from "~/context";
+import { useContextReady } from "~/shell/ready/context";
 import { useHoverKey } from "~/hooks/use-hover-key";
 import clsx from "clsx";
 import { resolveAccessibilityTitles } from "@brysonandrew/utils-attributes";
 import { boxSize } from "~/constants/box/size";
-import { TDraggerMotion } from "~/context/dragger";
 import { THudContainer } from "~/pics/hud";
+import { TDraggerMotion } from "~/shell/init/context/dragger";
 
 type TProps = {
   container: THudContainer;
+  isColumn: boolean;
   left: number;
   width: number;
   size?: number;
@@ -33,11 +34,12 @@ export const _RootReorderDragger: FC<
   size: _size,
   width,
   children,
+  isColumn,
   ...props
 }) => {
-  const { main, dragger, move } =
-    useContextGrid();
-  const { x, y } = dragger;
+  const { main, move } =
+    useContextReady();
+  const { x, y } = main.dragger;
   const title =
     "Drag video pic position";
 
@@ -63,7 +65,9 @@ export const _RootReorderDragger: FC<
   const s = boxSize();
 
   const left =
-    props.left + width / 2 - s.m;
+    props.left +
+    width / 2 -
+    (isColumn ? s.m05 : s.m);
 
   const handlePointerUp = () => {
     main.cursor.isDragging = false;
@@ -92,26 +96,28 @@ export const _RootReorderDragger: FC<
       move();
     };
   useMotionValueEvent(
-    dragger.y,
+    main.dragger.y,
     "animationComplete",
     handleAnimationComplete
   );
   useMotionValueEvent(
-    dragger.y,
+    main.dragger.y,
     "animationCancel",
     handleAnimationComplete
   );
   const size = _size ?? s.m125;
   return (
     <>
-      {children?.(dragger)}
+      {children?.(main.dragger)}
       <motion.button
         drag
         dragConstraints={{
           left: 0, // -container.width * 0.5,
           bottom: bottom - s.m05,
           right: 0, // container.width * 0.5,
-          top: -container.height * 0.5,
+          top:
+            -container.height *
+            (isColumn ? 0.8 : 0.4),
         }}
         className={clsx(
           "center absolute rounded-md _gradient-radial",

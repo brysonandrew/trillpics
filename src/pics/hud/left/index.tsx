@@ -12,11 +12,11 @@ import { HudLeftVideo } from "~/pics/hud/left/video";
 import { ControlsPlayer } from "~/pics/hud/left/player";
 import { boxRadius } from "~/constants/box/radius";
 import { Lines_Line } from "~/components/lines/_line";
-import { useContextGrid } from "~/context";
+import { useContextReady } from "~/shell/ready/context";
 import { LeftButtonsClear } from "~/pics/hud/left/clear";
 import { useVideoPicsCheck } from "~/hooks/pic/video/read/video-pics-check/hook";
 import { HudLeftAddRandom } from "~/pics/hud/left/add-random";
-import { VideoPicsCounter } from "~/shell/screen/video-pic-counter";
+import { VideoPicsCounter } from "~/pics/hud/left/video/pic-counter";
 import { THudContainer } from "~/pics/hud";
 import { Pill } from "~/components/layout/pill";
 import { SubtitleText } from "~/pics/header/subtitle/text";
@@ -26,13 +26,15 @@ import clsx from "clsx";
 type TProps = PropsWithChildren<{
   foundation: DOMRect;
   container: THudContainer;
-  isVerticalScroll: boolean;
 }>;
 export const PicsHudLeft: FC<
   TProps
 > = ({ foundation, container }) => {
-  const { dragger, isIdle } =
-    useContextGrid();
+  const {
+    main: { dragger },
+    isIdle,
+  } = useContextReady();
+
   const s = boxSize();
   const rounded = boxRadius();
   const isVideoPics =
@@ -56,6 +58,7 @@ export const PicsHudLeft: FC<
           }}
         >
           <Lines_Line
+            classValue="hidden md:flex"
             sizeClass="border-t border-l pointer-events-none"
             style={{
               borderTopLeftRadius:
@@ -118,6 +121,7 @@ export const PicsHudLeft: FC<
                     width={s.m2}
                     size={s.m}
                     left={0}
+                    isColumn={false}
                   />
                   <div />
                 </motion.div>
@@ -142,28 +146,29 @@ export const PicsHudLeft: FC<
                     isLabel={isIdle}
                   />
                 </motion.div>
-                {isVideoPics && (
-                  <motion.div
-                    className="absolute row-space"
-                    style={{
-                      height: 0,
-                      width:
-                        container.width +
-                        s.m,
-                      bottom:
-                        s.m2 + s.m0125,
-                      x: dragger.x05,
-                      left: 0,
-                      right: 0,
-                      y: dragger.y,
-                    }}
-                  >
+
+                <motion.div
+                  className="absolute row-space"
+                  style={{
+                    height: 0,
+                    width:
+                      container.width +
+                      s.m,
+                    bottom:
+                      s.m2 + s.m0125,
+                    x: dragger.x05,
+                    left: 0,
+                    right: 0,
+                    y: dragger.y,
+                  }}
+                >
+                  {isVideoPics ? (
                     <div
                       className="relative row h-0"
                       style={{
                         top: s.m025,
                         gap: s.m05,
-                        width: s.m4
+                        width: s.m4,
                       }}
                     >
                       <motion.div
@@ -178,7 +183,7 @@ export const PicsHudLeft: FC<
                       <VideoPicsCounter
                         classValue="relative pointer-events-none"
                         style={{
-                          left:-s.m075,
+                          left: -s.m075,
                           bottom: s.m,
                         }}
                       >
@@ -187,48 +192,50 @@ export const PicsHudLeft: FC<
                         )}
                       </VideoPicsCounter>
                     </div>
-                    <div
-                      className="relative row h-0"
+                  ) : (
+                    <div />
+                  )}
+                  <div
+                    className="relative row h-0"
+                    style={{
+                      left: 0,
+                      top: s.m025,
+                      gap: s.m05,
+                      width: s.m4,
+                    }}
+                  >
+                    <Pill
+                      classValue="relative pointer-events-none"
                       style={{
-                        left: 0,
-                        top: s.m025,
-                        gap: s.m05,
-                        width: s.m4
+                        height: s.m05,
+                        left: s.m,
+                        bottom: s.m,
                       }}
                     >
-                      <Pill
-                        classValue="relative pointer-events-none"
-                        style={{
-                          height: s.m05,
-                          left:s.m,
-                          bottom: s.m,
-                        }}
-                      >
-                        <SubtitleText>
-                          watch
-                        </SubtitleText>
-                      </Pill>
-                      <motion.div
-                        className="absolute h-px _gradient-radial"
-                        style={{
-                          right: s.m05,
-                          bottom: s.m05,
-                          width: s.m15,
-                          rotate: 35,
-                        }}
-                      />
-                      <ControlsPlayer
-                        style={{
-                          right:-s.m05,
-                        }}
-                        isLabel={isIdle}
-                      />
-                    </div>
-                  </motion.div>
-                )}
+                      <SubtitleText>
+                        watch
+                      </SubtitleText>
+                    </Pill>
+                    <motion.div
+                      className="absolute h-px _gradient-radial"
+                      style={{
+                        right: s.m05,
+                        bottom: s.m05,
+                        width: s.m15,
+                        rotate: 35,
+                      }}
+                    />
+                    <ControlsPlayer
+                      style={{
+                        right: -s.m05,
+                      }}
+                      isLabel={isIdle}
+                    />
+                  </div>
+                </motion.div>
               </>
             }
-          ></HudLeftVideo>
+          />
         </motion.div>
       </AnimatePresence>
     </LayoutGroup>

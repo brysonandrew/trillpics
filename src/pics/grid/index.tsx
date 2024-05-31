@@ -21,9 +21,9 @@ import {
 import {
   TGridHandle,
   TGrid,
-} from "~/context/types";
+} from "~/shell/ready/context/types";
 import { TTableUpdateCountResult } from "~/store/state/table/update/count";
-import { useContextGrid } from "~/context";
+import { useContextReady } from "~/shell/ready/context";
 import { CSSDeclarationList } from "tailwindcss/types/generated/default-theme";
 
 type TProps = TPartialFixedTableProps &

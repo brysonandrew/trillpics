@@ -3,7 +3,7 @@ import {
   useRef,
 } from "react";
 import { useEventListener } from "@brysonandrew/hooks-events";
-import { TElementValue } from "~/context/types";
+import { TElementValue } from "~/shell/ready/context/types";
 
 export type TConfig = {
   onPointerEnter(

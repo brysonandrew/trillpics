@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { animate } from "framer-motion";
-import { TMain } from "~/context/types";
+import { TMain } from "~/shell/init/context/types";
 
 type TConfig = {
   toY: number;

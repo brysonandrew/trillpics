@@ -104,6 +104,7 @@
     "class-variance-authority": "^0.7.0",
     "clsx": "^1.2.1",
     "dotenv": "^16.4.5",
+    "express-ws": "^5.0.2",
     "fast-glob": "^3.3.2",
     "framer-motion": "*",
     "immer": "^10.0.4",
@@ -128,6 +129,7 @@
     "trpc-netlify-functions": "^0.5.0",
     "uuid": "^9.0.1",
     "webfontloader": "^1.6.28",
+    "ws": "^8.17.0",
     "zod": "^3.22.2",
     "zundo": "^2.1.0",
     "zustand": "^4.5.2"
@@ -151,6 +153,7 @@
     "@types/react-window": "^1.8.8",
     "@types/uuid": "^9.0.7",
     "@types/webfontloader": "^1.6.38",
+    "@types/ws": "^8.5.10",
     "@typescript-eslint/eslint-plugin": "^5.14.0",
     "@typescript-eslint/parser": "^5.0.0",
     "@unocss/preset-icons": "^0.56.5",

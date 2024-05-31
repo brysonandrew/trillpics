@@ -1,19 +1,18 @@
 import { LegacyRef } from "react";
 import { useRemotionProps } from "~/hooks/remotion/use-props";
-import { useTrillPicsStore } from "~/store/middleware";
 import { PlayerRef } from "@remotion/player";
 import { TPicSeriesProps } from "~/components/remotion/pic-series/types";
+import { useContextPlayer_Init } from "~/pages/video/player/_context/init";
+import { TGenerateInput } from "~/types/trpc/generate";
 
 export const useRemotionPlayerProps = (
-  _inputProps: TPicSeriesProps
+  _inputProps: TGenerateInput
 ) => {
-  const { playerInstance, set } =
-    useTrillPicsStore(
-      ({ playerInstance, set }) => ({
-        playerInstance,
-        set,
-      })
-    );
+  const {fps} = useContextPlayer_Init()
+  const {
+    playerInstance,
+    updatePlayerInstance,
+  } = useContextPlayer_Init();
   const {
     width: compositionWidth,
     height: compositionHeight,
@@ -25,9 +24,7 @@ export const useRemotionPlayerProps = (
     PlayerRef | null
   > = (instance: PlayerRef | null) => {
     if (instance && !playerInstance) {
-      set({
-        playerInstance: instance,
-      });
+      updatePlayerInstance(instance);
     }
   };
 
@@ -35,6 +32,8 @@ export const useRemotionPlayerProps = (
     ref: resolveRef,
     compositionWidth,
     compositionHeight,
+    fps,
+    durationInFrames: fps * inputProps.seconds,
     style: {
       cursor: "pointer",
       width: "100%",

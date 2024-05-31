@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 import clsx from "clsx";
 import { TChildren } from "@brysonandrew/config-types/dom/main";
 import { TDivMotionProps } from "@brysonandrew/config-types/dom/motion";
-import { useContextGrid } from "~/context";
+import { useContextReady } from "~/shell/ready/context";
 
 const DEFAULT_ANIMATE = {
   opacity: 1,
@@ -31,7 +31,7 @@ export const Sight: FC<TProps> = ({
 }) => {
   const {
     main,
-  } = useContextGrid();
+  } = useContextReady();
   return (
     <motion.div
       style={{

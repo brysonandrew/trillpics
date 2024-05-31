@@ -11,7 +11,7 @@ import {
 import { useHoverKey } from "~/hooks/use-hover-key";
 import { isDefined } from "~/utils/validation/is/defined";
 import { useTrillPicsStore } from "~/store/middleware";
-import { PillBHoverOverlay } from "~/components/buttons/pill/b/hover/overlay";
+import { LayoutOverlay } from "~/components/layout/overlay";
 import { useLocation } from "react-router";
 import { useTimeoutRef } from "@brysonandrew/hooks-window";
 
@@ -67,14 +67,14 @@ export const PillBHover: FC<
   };
   return (
     <>
-      <PillBHoverOverlay
+      <LayoutOverlay
         isShown={isHovering && !isMoving}
         key={title}
         direction={props.direction}
         subtitle={subtitle}
       >
         {children}
-      </PillBHoverOverlay>
+      </LayoutOverlay>
       <PillB
         title={title}
         onClick={handleClick}

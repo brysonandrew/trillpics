@@ -2,7 +2,7 @@ import { FC } from "react";
 import { resolveUrlId } from "@brysonandrew/utils-attributes";
 import { boxSize } from "~/constants/box/size";
 import { useDarkMode } from "@brysonandrew/dark-mode";
-import { LINEAR_GRADIENT_SVG_ID } from "~/shell/global/svg/gradients/blue-pink-yellow";
+import { LINEAR_GRADIENT_SVG_ID } from "~/shell/init/svg/gradients/blue-pink-yellow";
 import { TPillBProps } from "~/components/buttons/pill/b";
 import {
   TDivProps,

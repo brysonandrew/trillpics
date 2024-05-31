@@ -75,6 +75,7 @@ export const PillB: FC<TPillBProps> = ({
       className={clsx(
         positionClass?? "relative",
         "shrink-0",
+        "cursor-pointer",
         "disabled:(grayscale-100 brightness-60 opacity-80 cursor-not-allowed)",
         "hover:grayscale-100",
         classValue,
@@ -82,7 +83,6 @@ export const PillB: FC<TPillBProps> = ({
           ? "row"
           : "row-reverse"
       )}
-      layout
       style={{
         ...(isFlat
           ? { boxShadow }
@@ -98,8 +98,6 @@ export const PillB: FC<TPillBProps> = ({
         {isSelected && (
           <motion.div
             className="absolute bg-black pointer-events-none"
-            // layoutId="selected pill b"
-            layout
             style={{
               borderRadius,
               ...direction === 'ltr' ? {left:0} : {right:0},
@@ -133,7 +131,6 @@ export const PillB: FC<TPillBProps> = ({
               ? ""
               : "_gradient-radial"
           )}
-          layout
           style={{
             height,
             borderRadius,
