@@ -16,6 +16,7 @@ export type TGenerateProps =
 export const generate = async (
   inputProps: TGenerateProps
 ) => {
+  console.log(SERVE_URL)
   // const isLocal = (
   //   import.meta.env ?? process.env
   // )._IS_LOCAL;
@@ -30,20 +31,20 @@ export const generate = async (
         //   : { base: "remotion" }),
       },
       logLevel: "verbose",
-      onBrowserLog:
-        inputProps.onLog ?? console.log,
+      // onBrowserLog:
+      //   inputProps.onLog ?? console.log,
     };
 
-  inputProps?.onLog?.(
-    "Selecting composition..."
-  );
+  // inputProps?.onLog?.(
+  //   "Selecting composition..."
+  // );
   const composition =
     await selectComposition(
       compositionOptions
     );
-  inputProps?.onLog?.(
-    "Selecting composition... DONE"
-  );
+  // inputProps?.onLog?.(
+  //   "Selecting composition... DONE"
+  // );
 
   const renderMediaOption: RenderMediaOptions =
     {

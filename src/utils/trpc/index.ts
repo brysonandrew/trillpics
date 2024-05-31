@@ -17,21 +17,19 @@ export const trpc =
 const isLocal = (
   import.meta.env ?? process.env
 )._IS_LOCAL;
-const PROD_ORIGIN = "://trillpics.onrender.com"
-const SERVER_ORIGIN = 
-// isLocal
-//   ? `http://localhost:${API_PORT}`
-//   : 
-`https${PROD_ORIGIN}`;
+const PROD_ORIGIN =
+  "://trillpics.onrender.com";
+const DEV_ORIGIN = `://localhost:${API_PORT}` as const;
+const SERVER_ORIGIN = isLocal
+  ? `http${DEV_ORIGIN}` as const
+  : `https${PROD_ORIGIN}` as const;
 
 const url = `${SERVER_ORIGIN}${SERVER_PATH}`;
 
-const WS_SERVER_ORIGIN =// `ws://localhost:${API_PORT}`
-// isLocal
-//   ? `ws://localhost:${API_PORT}`
-//   : 
-`wss${PROD_ORIGIN}`;
- //"wss://trillpics.onrender.com";
+const WS_SERVER_ORIGIN =
+  isLocal
+    ? `ws${DEV_ORIGIN}` as const
+    : `wss${PROD_ORIGIN}` as const;
 
 const wsClient = createWSClient({
   url: WS_SERVER_ORIGIN,
