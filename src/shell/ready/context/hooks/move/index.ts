@@ -101,33 +101,53 @@ export const useMove = ({
     }
   };
 
-  useEventListener<"pointerenter">(
-    "pointerenter",
-    handleMove
-  );
+  // useEventListener<"pointerenter">(
+  //   "pointerenter",
+  //   handleMove
+  // );
 
-  useEventListener<"pointerover">(
-    "pointerover",
-    handleMove
-  );
+  // useEventListener<"pointerover">(
+  //   "pointerover",
+  //   handleMove
+  // );
+
+  // useEventListener<"pointerup">(
+  //   "pointerup",
+  //   handleUp
+  // );
 
   useEventListener<"pointermove">(
     "pointermove",
     handleMove
   );
 
-  const handleUp = () => {
-    // if (main.cursor.isOnGrid) {
-    //   main.cursor.isDragging = false;
-    // }
+  const handleTouchEnd = (
+    event: TouchEvent
+  ) => {
+    if (event.touches.length === 0)
+      return;
+    const mx = event.touches[0].pageX;
+    const my = event.touches[0].pageY;
+
+    const prevX = main.cursor.x.get();
+    const prevY = main.cursor.y.get();
+
+    const d = Math.sqrt(
+      Math.pow(mx - prevX, 2) +
+        Math.pow(my - prevY, 2)
+    );
+    if (Math.abs(d) > 1) {
+      main.cursor.isHoverIdle = false;
+      main.cursor.x.set(mx);
+      main.cursor.y.set(my);
+    }
+    if (!isScrolling) {
+      move(mx, my);
+    }
   };
 
-  useEventListener<"pointerup">(
-    "pointerup",
-    handleUp
+  useEventListener<"touchend">(
+    "touchend",
+    handleTouchEnd
   );
-
 };
-export type TUseMoveResult = ReturnType<
-  typeof useMove
->;
