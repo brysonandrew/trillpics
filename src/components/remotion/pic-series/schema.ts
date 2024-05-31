@@ -13,5 +13,7 @@ export const PIC_SERIES_SCHEMA =
       height: z.number(),
       width: z.number(),
     }),
-    onProgress:z.function().optional()
+    onProgress:z.function().optional(),
+    onBrowserLog:z.function().optional(),
+    onDownload:z.function().optional(),
   });

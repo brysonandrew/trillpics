@@ -8,9 +8,11 @@ import {
 import { TTableState } from "~/store/state/table/types";
 import { TScrollState } from "~/store/state/scroll/types";
 import { TStateWithMiddleware } from "~/store/middleware";
+import { TGenerateState } from "~/store/state/generate/types";
 
 export type TState = TCoreState &
   TScrollState &
+  TGenerateState &
   TTableState &
   TPicsState &
   THoverState &

@@ -40,22 +40,14 @@ export const generate = async (
       })
     : "https://brysonandrew.github.io/trillpics";
 
-  const durationInFrames =
-    inputProps.fps * inputProps.seconds;
-  console.log(inputProps);
-  // const inputProps = {
-  //   ...input,
-  //   fps:input.i,
-  //   durationInFrames,
-  // };
-  // console.log(inputProps, isLocal)
+
   const compositionOptions: SelectCompositionOptions =
     {
       serveUrl,
       id,
       inputProps,
       logLevel: "verbose",
-      onBrowserLog,
+      onBrowserLog:inputProps.onBrowserLog??console.log,
       // durationInFrames,
     };
 
@@ -69,7 +61,7 @@ export const generate = async (
       composition,
       serveUrl,
       codec: "h264",
-      onDownload,
+      onDownload:(inputProps.onDownload??console.log as any),
       inputProps,
       logLevel: "verbose",
     };

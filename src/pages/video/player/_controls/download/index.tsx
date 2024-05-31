@@ -22,6 +22,11 @@ import {
   PIC_DIMENSIONS,
 } from "~/constants/remotion";
 import { useContextPlayer_Init } from "~/pages/video/player/_context/init";
+import { useTrillPicsStore } from "~/store/middleware";
+import { useTimebomb } from "~/hooks/use-time-bomb";
+import { title } from "process";
+import { set } from "zod";
+import { input } from "~root/build/612.bundle";
 
 export const DEFAULT_INPUT: TGenerateInput =
   {
@@ -37,10 +42,11 @@ export const DEFAULT_INPUT: TGenerateInput =
 export const Download: FC<
   Partial<TPillBProps>
 > = ({ children, ...props }) => {
-  const { fps } =
-    useContextPlayer_Init();
   const s = boxSize();
   const input = usePicVideoReadInputs();
+  const { set } = useTrillPicsStore(
+    ({ set }) => ({ set })
+  );
   const { handlers, isHover } =
     useHoverKey();
 
@@ -64,18 +70,30 @@ export const Download: FC<
   // > = async (input) => {
   //   return null as any;
   // };
-  const x =
-    trpc.onProgress.useSubscription();
+  trpc.onProgress.useSubscription(
+    {},
+    {
+      onData: (value: number) =>
+        set({ progress: value }),
+      onError: (v: any) => {
+        set({ error: v });
+      },
+      onStarted: () => {
+        console.log("start");
+      },
+    }
+  );
+  const { trigger } = useTimebomb(
+    200,
+    () =>
+      set({
+        progress: 0,
+        error: "",
+      })
+  );
   // const y =
-  //   trpc.randomNumber.useSubscription({
-  //     onData() {
-  //       console.log(state); // initial
-  //     },
-  //   });
-
-  //   trpc.socket.useSubscription({
-
-  // })
+  //   trpc.randomNumber.useSubscription({rand});
+  // console.log();
   const {
     isError,
     isIdle,
@@ -99,6 +117,10 @@ export const Download: FC<
         const blob = new Blob([arr]);
         await downloadMedia(blob);
       }
+      set({
+        isStarted: false,
+      })
+      trigger();
     },
   });
   const handleGenerate = () => {
@@ -107,6 +129,8 @@ export const Download: FC<
     // ) => {
     //   console.log(args);
     // };
+    set({ isStarted: true });
+
     mutate(input);
   };
 

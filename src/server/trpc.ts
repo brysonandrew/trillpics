@@ -10,7 +10,7 @@ export type TApiContext =
   >;
 
 const t = initTRPC
-  .context<any>()
+  .context<TApiContext>()
   .create();
 
 export const middleware = t.middleware;
