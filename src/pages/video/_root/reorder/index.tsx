@@ -119,6 +119,7 @@ export const _CommonReorder: FC<
 
   return (
     <_RootReorderDragger
+      title="Drag video pics grid"
       isColumn={isColumn}
       width={width}
       left={left}
@@ -128,20 +129,7 @@ export const _CommonReorder: FC<
       {({ x05, y06, y075, x, y }) => {
         return (
           <div className="relative">
-            {children}
-            {/* <_CommonReorderControls
-              add={add}
-              pics={pics}
-              names={names}
-              deselect={deselect}
-              boxProps={boxProps}
-              itemDimensions={
-                itemDimensions
-              }
-              x={x05}
-              y={y}
-              isColumn={isColumn}
-            /> */}
+            <>{children}</>
             <motion.div
               className="absolute z-0"
               style={{
@@ -194,7 +182,7 @@ export const _CommonReorder: FC<
                         filter:
                           is5RandomPicsHover
                             ? "blur(6px)"
-                            : "",        
+                            : "",
                         left: 0,
                         cursor: "grab",
                       }}
@@ -210,12 +198,16 @@ export const _CommonReorder: FC<
                         title={
                           controlKey
                         }
-                        isColumn={isColumn}
+                        isColumn={
+                          isColumn
+                        }
                         index={index}
                         itemDimensions={
                           itemDimensions
                         }
-                        imageDimensions={imageDimensions}
+                        imageDimensions={
+                          imageDimensions
+                        }
                         deselect={
                           deselect
                         }
@@ -224,35 +216,32 @@ export const _CommonReorder: FC<
                       />
                       {!isHover(
                         LEFT_BUTTONS_CLEAR_TITLE
-                      ) && (
-                        <>
-                          {!isVideoPlayerButtonHover && (
-                            <PicDisplay
-                              key={resolveCompositeKey(
-                                "pic-display",
-                                name
-                              )}
-                              name={
-                                name
-                              }
-                              whileTap={{
-                                cursor:
-                                  "grabbing",
-                              }}
-                              style={{
-                                left: 0,
-                                top: y06,
-                                zIndex:index +2,
-                                ...imageDimensions,
-                              }}
-                              transition={{
-                                duration: 0.6,
-                                ease: "easeIn",
-                              }}
-                            />
-                          )}
-                        </>
-                      )}
+                      ) &&
+                        !isVideoPlayerButtonHover && (
+                          <PicDisplay
+                            key={resolveCompositeKey(
+                              "pic-display",
+                              name
+                            )}
+                            name={name}
+                            whileTap={{
+                              cursor:
+                                "grabbing",
+                            }}
+                            style={{
+                              left: 0,
+                              top: y06,
+                              zIndex:
+                                index +
+                                2,
+                              ...imageDimensions,
+                            }}
+                            transition={{
+                              duration: 0.6,
+                              ease: "easeIn",
+                            }}
+                          />
+                        )}
                     </Reorder.Item>
                   );
                 }
@@ -264,3 +253,18 @@ export const _CommonReorder: FC<
     </_RootReorderDragger>
   );
 };
+{
+  /* <_CommonReorderControls
+              add={add}
+              pics={pics}
+              names={names}
+              deselect={deselect}
+              boxProps={boxProps}
+              itemDimensions={
+                itemDimensions
+              }
+              x={x05}
+              y={y}
+              isColumn={isColumn}
+            /> */
+}

@@ -1,6 +1,4 @@
-import { useContext } from "@state/app/Context";
-
-import { serializeError } from "serialize-error";
+import { useSoundContext } from "~/shell/global/sound";
 
 interface ICustomWindow extends Window {
   stream?: MediaStream;
@@ -13,27 +11,29 @@ interface ICustomWindow extends Window {
 declare const window: ICustomWindow;
 
 export const useStop = () => {
-  const { log, stream } = useContext();
+  const { sound } = useSoundContext();
 
   return async () => {
     try {
-      if (!stream) {
+      if (!sound.destination.stream) {
         throw new Error("No stream");
       }
-      const tracks = stream.getTracks();
+      const tracks = sound.destination.stream.getTracks();
 
-      tracks.forEach((track: MediaStreamTrack) => {
-        track.stop();
-      });
+      tracks.forEach(
+        (track: MediaStreamTrack) => {
+          track.stop();
+        }
+      );
 
-      log(`Stopping stream`);
+      console.log(`Stopping stream`);
       delete window.stream;
     } catch (error) {
-      const serializedError = serializeError(error);
+      const serializedError = error;
       console.error(error);
-      log(
-        `navigator.getUserMedia error:${serializedError?.message?.toString()}`
-      );
+      // console.log(
+      //   `navigator.getUserMedia error:${serializedError?.message?.toString()}`
+      // );
     }
   };
 };

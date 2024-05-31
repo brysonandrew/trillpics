@@ -16,18 +16,18 @@ export type TGenerateProps =
 export const generate = async (
   inputProps: TGenerateProps
 ) => {
-  const isLocal = (
-    import.meta.env ?? process.env
-  )._IS_LOCAL;
+  // const isLocal = (
+  //   import.meta.env ?? process.env
+  // )._IS_LOCAL;
   const compositionOptions: SelectCompositionOptions =
     {
       serveUrl: SERVE_URL,
       id: "pic-series",
       inputProps: {
         ...inputProps,
-        ...(isLocal
-          ? {}
-          : { base: "remotion" }),
+        // ...(isLocal
+        //   ? {}
+        //   : { base: "remotion" }),
       },
       logLevel: "verbose",
       onBrowserLog:
