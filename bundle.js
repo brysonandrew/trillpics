@@ -16632,7 +16632,7 @@ const PIC_SERIES_SCHEMA = lib.z.object({
     width: lib.z.number()
   }),
   onProgress: lib.z["function"]().optional(),
-  onBrowserLog: lib.z["function"]().optional(),
+  onLog: lib.z["function"]().optional(),
   onDownload: lib.z["function"]().optional()
 });
 
@@ -16914,9 +16914,11 @@ const coreState = (...args) => {
 
 ;// CONCATENATED MODULE: ./src/store/state/generate/index.ts
 const generateState = () => ({
-  isStarted: false,
-  progress: 0,
-  error: ""
+  isDownloadComplete: false,
+  logs: [],
+  progress: null,
+  download: null,
+  error: null
 });
 
 ;// CONCATENATED MODULE: ./src/store/state/hover/checks/active/index.ts
@@ -17240,12 +17242,13 @@ const VARIABLES_RECORD = {
 
 
 
-const gradient_GRADIENT_BLUE_PINK_YELLOW_COLORS = [
+const gradient_LINEAR_GRADIENT_SVG_ID = "linear-gradient-blue-pink-yellow-svg";
+const GRADIENT_BLUE_PINK_YELLOW_COLORS = [
   ...Object.values(
     DARK_LOGO
   )
 ];
-const gradient_GRADIENT_TEAL_YELLOW_PINK_COLORS = [
+const GRADIENT_TEAL_YELLOW_PINK_COLORS = [
   ...Object.values(
     LIGHT_LOGO
   )
@@ -17254,28 +17257,28 @@ const gradient_GRADIENT_BLUE_PINK_YELLOW = resolveGradient_resolveGradient({
   name: "linear-gradient",
   parts: [
     "to left top",
-    ...gradient_GRADIENT_BLUE_PINK_YELLOW_COLORS
+    ...GRADIENT_BLUE_PINK_YELLOW_COLORS
   ]
 });
 const gradient_GRADIENT_TEAL_YELLOW_PINK = resolveGradient_resolveGradient({
   name: "linear-gradient",
   parts: [
     "to left top",
-    ...gradient_GRADIENT_TEAL_YELLOW_PINK_COLORS
+    ...GRADIENT_TEAL_YELLOW_PINK_COLORS
   ]
 });
 const RADIAL_BLUE_PINK_YELLOW = resolveGradient_resolveGradient({
   name: "radial-gradient",
   parts: [
     "circle at 100%",
-    ...gradient_GRADIENT_BLUE_PINK_YELLOW_COLORS
+    ...GRADIENT_BLUE_PINK_YELLOW_COLORS
   ]
 });
 const RADIAL_TEAL_YELLOW_PINK = resolveGradient_resolveGradient({
   name: "radial-gradient",
   parts: [
     "circle at 100%",
-    ...gradient_GRADIENT_TEAL_YELLOW_PINK_COLORS
+    ...GRADIENT_TEAL_YELLOW_PINK_COLORS
   ]
 });
 const GRADIENT_BORDER_COMMON = {
@@ -28537,14 +28540,17 @@ class DOMKeyframesResolver extends KeyframeResolver {
          * If any keyframe is a CSS variable, we need to find its value by sampling the element
          */
         for (let i = 0; i < unresolvedKeyframes.length; i++) {
-            const keyframe = unresolvedKeyframes[i];
-            if (typeof keyframe === "string" && isCSSVariableToken(keyframe)) {
-                const resolved = getVariableValue(keyframe, element.current);
-                if (resolved !== undefined) {
-                    unresolvedKeyframes[i] = resolved;
-                }
-                if (i === unresolvedKeyframes.length - 1) {
-                    this.finalKeyframe = keyframe;
+            let keyframe = unresolvedKeyframes[i];
+            if (typeof keyframe === "string") {
+                keyframe = keyframe.trim();
+                if (isCSSVariableToken(keyframe)) {
+                    const resolved = getVariableValue(keyframe, element.current);
+                    if (resolved !== undefined) {
+                        unresolvedKeyframes[i] = resolved;
+                    }
+                    if (i === unresolvedKeyframes.length - 1) {
+                        this.finalKeyframe = keyframe;
+                    }
                 }
             }
         }
@@ -29395,7 +29401,15 @@ function hslaToRgba({ hue, saturation, lightness, alpha }) {
 
 
 
+;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/utils/mix/immediate.mjs
+function mixImmediate(a, b) {
+    return (p) => (p > 0 ? b : a);
+}
+
+
+
 ;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/utils/mix/color.mjs
+
 
 
 
@@ -29415,7 +29429,9 @@ const colorTypes = [hex, rgba, hsla];
 const getColorType = (v) => colorTypes.find((type) => type.test(v));
 function asRGBA(color) {
     const type = getColorType(color);
-    invariant(Boolean(type), `'${color}' is not an animatable color. Use the equivalent color code instead.`);
+    warning(Boolean(type), `'${color}' is not an animatable color. Use the equivalent color code instead.`);
+    if (!Boolean(type))
+        return false;
     let model = type.parse(color);
     if (type === hsla) {
         // TODO Remove this cast - needed since Framer Motion's stricter typing
@@ -29426,6 +29442,9 @@ function asRGBA(color) {
 const mixColor = (from, to) => {
     const fromRGBA = asRGBA(from);
     const toRGBA = asRGBA(to);
+    if (!fromRGBA || !toRGBA) {
+        return mixImmediate(from, to);
+    }
     const blended = { ...fromRGBA };
     return (v) => {
         blended.red = mixLinearColor(fromRGBA.red, toRGBA.red, v);
@@ -29466,9 +29485,7 @@ function mixVisibility(origin, target) {
 
 
 
-function mixImmediate(a, b) {
-    return (p) => (p > 0 ? b : a);
-}
+
 function complex_mixNumber(a, b) {
     return (p) => mixNumber(a, b, p);
 }
@@ -30521,7 +30538,117 @@ class AcceleratedAnimation extends BaseAnimation {
 
 
 
+;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/render/dom/scroll/observe.mjs
+
+
+function observeTimeline(update, timeline) {
+    let prevProgress;
+    const onFrame = () => {
+        const { currentTime } = timeline;
+        const percentage = currentTime === null ? 0 : currentTime.value;
+        const progress = percentage / 100;
+        if (prevProgress !== progress) {
+            update(progress);
+        }
+        prevProgress = progress;
+    };
+    frame_frame.update(onFrame, true);
+    return () => cancelFrame(onFrame);
+}
+
+
+
+;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/render/dom/scroll/supports.mjs
+
+
+const supportsScrollTimeline = memo(() => window.ScrollTimeline !== undefined);
+
+
+
+;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/animation/GroupPlaybackControls.mjs
+
+
+
+class GroupPlaybackControls {
+    constructor(animations) {
+        // Bound to accomodate common `return animation.stop` pattern
+        this.stop = () => this.runAll("stop");
+        this.animations = animations.filter(Boolean);
+    }
+    then(onResolve, onReject) {
+        return Promise.all(this.animations).then(onResolve).catch(onReject);
+    }
+    /**
+     * TODO: Filter out cancelled or stopped animations before returning
+     */
+    getAll(propName) {
+        return this.animations[0][propName];
+    }
+    setAll(propName, newValue) {
+        for (let i = 0; i < this.animations.length; i++) {
+            this.animations[i][propName] = newValue;
+        }
+    }
+    attachTimeline(timeline) {
+        const cancelAll = this.animations.map((animation) => {
+            if (supportsScrollTimeline() && animation.attachTimeline) {
+                animation.attachTimeline(timeline);
+            }
+            else {
+                animation.pause();
+                return observeTimeline((progress) => {
+                    animation.time = animation.duration * progress;
+                }, timeline);
+            }
+        });
+        return () => {
+            cancelAll.forEach((cancelTimeline, i) => {
+                if (cancelTimeline)
+                    cancelTimeline();
+                this.animations[i].stop();
+            });
+        };
+    }
+    get time() {
+        return this.getAll("time");
+    }
+    set time(time) {
+        this.setAll("time", time);
+    }
+    get speed() {
+        return this.getAll("speed");
+    }
+    set speed(speed) {
+        this.setAll("speed", speed);
+    }
+    get duration() {
+        let max = 0;
+        for (let i = 0; i < this.animations.length; i++) {
+            max = Math.max(max, this.animations[i].duration);
+        }
+        return max;
+    }
+    runAll(methodName) {
+        this.animations.forEach((controls) => controls[methodName]());
+    }
+    play() {
+        this.runAll("play");
+    }
+    pause() {
+        this.runAll("pause");
+    }
+    cancel() {
+        this.runAll("cancel");
+    }
+    complete() {
+        this.runAll("complete");
+    }
+}
+
+
+
 ;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/animation/interfaces/motion-value.mjs
+
 
 
 
@@ -30614,7 +30741,9 @@ const animateMotionValue = (name, value, target, transition = {}, element, isHan
                 options.onUpdate(finalKeyframe);
                 options.onComplete();
             });
-            return;
+            // We still want to return some animation controls here rather
+            // than returning undefined
+            return new GroupPlaybackControls([]);
         }
     }
     /**
@@ -30743,7 +30872,7 @@ class MotionValue {
          * This will be replaced by the build step with the latest version number.
          * When MotionValues are provided to motion components, warn if versions are mixed.
          */
-        this.version = "11.2.6";
+        this.version = "11.2.10";
         /**
          * Tracks whether this value can output a velocity. Currently this is only true
          * if the value is numerical, but we might be able to widen the scope here and support
@@ -31054,6 +31183,15 @@ function setTarget(visualElement, definition) {
 
 
 
+;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/animation/optimized-appear/get-appear-id.mjs
+
+
+function getOptimisedAppearId(visualElement) {
+    return visualElement.getProps()[optimizedAppearDataAttribute];
+}
+
+
+
 ;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/animation/interfaces/visual-element-target.mjs
 
 
@@ -31103,8 +31241,7 @@ function animateTarget(visualElement, targetAndTransition, { delay = 0, transiti
          */
         let isHandoff = false;
         if (window.HandoffAppearAnimations) {
-            const props = visualElement.getProps();
-            const appearId = props[optimizedAppearDataAttribute];
+            const appearId = getOptimisedAppearId(visualElement);
             if (appearId) {
                 const elapsed = window.HandoffAppearAnimations(appearId, key, value, frame_frame);
                 if (elapsed !== null) {
@@ -33580,6 +33717,7 @@ function animateSingleValue(value, keyframes, options) {
 
 
 
+
 const transformAxes = ["", "X", "Y", "Z"];
 const hiddenVisibility = { visibility: "hidden" };
 /**
@@ -33607,6 +33745,25 @@ function resetDistortingTransform(key, visualElement, values, sharedAnimationVal
         if (sharedAnimationValues) {
             sharedAnimationValues[key] = 0;
         }
+    }
+}
+function isOptimisedAppearTree(projectionNode) {
+    projectionNode.hasCheckedOptimisedAppear = true;
+    if (projectionNode.root === projectionNode)
+        return false;
+    const { visualElement } = projectionNode.options;
+    if (!visualElement) {
+        return false;
+    }
+    else if (getOptimisedAppearId(visualElement)) {
+        return true;
+    }
+    else if (projectionNode.parent &&
+        !projectionNode.parent.hasCheckedOptimisedAppear) {
+        return isOptimisedAppearTree(projectionNode.parent);
+    }
+    else {
+        return false;
     }
 }
 function createProjectionNode({ attachResizeListener, defaultParent, measureScroll, checkIsScrollRoot, resetTransform, }) {
@@ -33684,6 +33841,13 @@ function createProjectionNode({ attachResizeListener, defaultParent, measureScro
              * Flags whether this node should have its transform reset prior to measuring.
              */
             this.shouldResetTransform = false;
+            /**
+             * Store whether this node has been checked for optimised appear animations. As
+             * effects fire bottom-up, and we want to look up the tree for appear animations,
+             * this makes sure we only check each path once, stopping at nodes that
+             * have already been checked.
+             */
+            this.hasCheckedOptimisedAppear = false;
             /**
              * An object representing the calculated contextual/accumulated/tree scale.
              * This will be used to scale calculcated projection transforms, as these are
@@ -33889,15 +34053,6 @@ function createProjectionNode({ attachResizeListener, defaultParent, measureScro
             if (this.isUpdateBlocked())
                 return;
             this.isUpdating = true;
-            /**
-             * If we're running optimised appear animations then these must be
-             * cancelled before measuring the DOM. This is so we can measure
-             * the true layout of the element rather than the WAAPI animation
-             * which will be unaffected by the resetSkewAndRotate step.
-             */
-            if (window.HandoffCancelAllAnimations) {
-                window.HandoffCancelAllAnimations();
-            }
             this.nodes && this.nodes.forEach(resetSkewAndRotation);
             this.animationId++;
         }
@@ -33910,6 +34065,22 @@ function createProjectionNode({ attachResizeListener, defaultParent, measureScro
             if (this.root.isUpdateBlocked()) {
                 this.options.onExitComplete && this.options.onExitComplete();
                 return;
+            }
+            /**
+             * If we're running optimised appear animations then these must be
+             * cancelled before measuring the DOM. This is so we can measure
+             * the true layout of the element rather than the WAAPI animation
+             * which will be unaffected by the resetSkewAndRotate step.
+             *
+             * Note: This is a DOM write. Worst case scenario is this is sandwiched
+             * between other snapshot reads which will cause unnecessary style recalculations.
+             * This has to happen here though, as we don't yet know which nodes will need
+             * snapshots in startUpdate(), but we only want to cancel optimised animations
+             * if a layout animation measurement is actually going to be affected by them.
+             */
+            if (window.HandoffCancelAllAnimations &&
+                isOptimisedAppearTree(this)) {
+                window.HandoffCancelAllAnimations();
             }
             !this.root.isUpdating && this.root.startUpdate();
             if (this.isLayoutDirty)
@@ -43373,7 +43544,7 @@ const constants_DARK_MODE = (0,react.createContext)(
 
 
 
-const DarkModeProvider_useDarkMode = () => (0,react.useContext)(constants_DARK_MODE);
+const useDarkMode = () => (0,react.useContext)(constants_DARK_MODE);
 const DarkModeProvider = ({
   children
 }) => {
@@ -43384,7 +43555,7 @@ const DarkModeProvider = ({
 ;// CONCATENATED MODULE: ./src/pics/header/left/title/sparkle-button.tsx
 
 const SparkleButton = () => {
-  const { darkKey } = DarkModeProvider_useDarkMode();
+  const { darkKey } = useDarkMode();
   return /* @__PURE__ */ React.createElement("div", { className: "relative uppercase h-8 w-7 sm:(h-10 w-10)" }, /* @__PURE__ */ React.createElement(
     "img",
     {
@@ -43428,116 +43599,6 @@ function resolveElements(elements, scope, selectorCache) {
      * Return an empty array
      */
     return Array.from(elements || []);
-}
-
-
-
-;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/render/dom/scroll/observe.mjs
-
-
-function observeTimeline(update, timeline) {
-    let prevProgress;
-    const onFrame = () => {
-        const { currentTime } = timeline;
-        const percentage = currentTime === null ? 0 : currentTime.value;
-        const progress = percentage / 100;
-        if (prevProgress !== progress) {
-            update(progress);
-        }
-        prevProgress = progress;
-    };
-    frame_frame.update(onFrame, true);
-    return () => cancelFrame(onFrame);
-}
-
-
-
-;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/render/dom/scroll/supports.mjs
-
-
-const supportsScrollTimeline = memo(() => window.ScrollTimeline !== undefined);
-
-
-
-;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/animation/GroupPlaybackControls.mjs
-
-
-
-class GroupPlaybackControls {
-    constructor(animations) {
-        this.animations = animations.filter(Boolean);
-    }
-    then(onResolve, onReject) {
-        return Promise.all(this.animations).then(onResolve).catch(onReject);
-    }
-    /**
-     * TODO: Filter out cancelled or stopped animations before returning
-     */
-    getAll(propName) {
-        return this.animations[0][propName];
-    }
-    setAll(propName, newValue) {
-        for (let i = 0; i < this.animations.length; i++) {
-            this.animations[i][propName] = newValue;
-        }
-    }
-    attachTimeline(timeline) {
-        const cancelAll = this.animations.map((animation) => {
-            if (supportsScrollTimeline() && animation.attachTimeline) {
-                animation.attachTimeline(timeline);
-            }
-            else {
-                animation.pause();
-                return observeTimeline((progress) => {
-                    animation.time = animation.duration * progress;
-                }, timeline);
-            }
-        });
-        return () => {
-            cancelAll.forEach((cancelTimeline, i) => {
-                if (cancelTimeline)
-                    cancelTimeline();
-                this.animations[i].stop();
-            });
-        };
-    }
-    get time() {
-        return this.getAll("time");
-    }
-    set time(time) {
-        this.setAll("time", time);
-    }
-    get speed() {
-        return this.getAll("speed");
-    }
-    set speed(speed) {
-        this.setAll("speed", speed);
-    }
-    get duration() {
-        let max = 0;
-        for (let i = 0; i < this.animations.length; i++) {
-            max = Math.max(max, this.animations[i].duration);
-        }
-        return max;
-    }
-    runAll(methodName) {
-        this.animations.forEach((controls) => controls[methodName]());
-    }
-    play() {
-        this.runAll("play");
-    }
-    pause() {
-        this.runAll("pause");
-    }
-    stop() {
-        this.runAll("stop");
-    }
-    cancel() {
-        this.runAll("cancel");
-    }
-    complete() {
-        this.runAll("complete");
-    }
 }
 
 
@@ -44075,41 +44136,29 @@ const HeaderLeft = (0,react.memo)(
     const [searchParams] = dist_useSearchParams();
     const { pathname } = dist_useLocation();
     const handler = useScrollTopHandler();
-    const { isScroll, isIdle, set } = middleware_useTrillPicsStore(
-      ({
-        isScroll: isScroll2,
-        isIdle: isIdle2,
-        set: set2
-      }) => ({
-        isScroll: isScroll2,
-        isIdle: isIdle2,
-        set: set2
+    const { isScroll } = middleware_useTrillPicsStore(
+      ({ isScroll: isScroll2 }) => ({
+        isScroll: isScroll2
       })
     );
     const isHome = pathname === HOME_ROUTE;
-    const handleHoverStart = () => {
-      set({ isIdle: true });
-    };
-    const title = left_TITLE_HOVER_KEY;
-    const { motionHandlers } = use_hover_key_useHoverKey({
-      handlers: {
-        start: handleHoverStart
-      }
-    });
+    const { motionHandlers } = use_hover_key_useHoverKey();
     return /* @__PURE__ */ React.createElement(
       motion_motion.div,
       {
         className: "relative -top-1 left-2 shrink-0 grow-0",
-        ...motionHandlers(title)
+        ...motionHandlers(
+          left_TITLE_HOVER_KEY
+        )
       },
       isHome ? /* @__PURE__ */ React.createElement(React.Fragment, null, isScroll ? /* @__PURE__ */ React.createElement(
         motion_motion.button,
         {
           key: "title",
-          title,
+          title: left_TITLE_HOVER_KEY,
           onClick: handler,
           ...motionHandlers(
-            title
+            left_TITLE_HOVER_KEY
           )
         },
         /* @__PURE__ */ React.createElement(Title, null)
@@ -44223,7 +44272,6 @@ const move_useMove = ({
     "pointerup",
     handleUp
   );
-  return isIdle;
 };
 
 ;// CONCATENATED MODULE: ./src/hooks/pic/cell/index.tsx
@@ -44491,7 +44539,7 @@ const ReadyContextProvider = ({ children, screen }) => {
     scrollY,
     scrollTimeoutRef
   });
-  const isIdle = useMove({
+  useMove({
     main: initContext.main,
     isOnscreen,
     move,
@@ -44501,7 +44549,6 @@ const ReadyContextProvider = ({ children, screen }) => {
     ReadyContext.Provider,
     {
       value: {
-        isIdle,
         ref,
         fonts,
         onScroll: handleScroll,
@@ -44770,33 +44817,6 @@ const hook_usePicVideoReadInputs = () => {
     fps
   };
   return result;
-};
-
-;// CONCATENATED MODULE: ./src/shell/init/svg/gradients/blue-pink-yellow.tsx
-
-
-const blue_pink_yellow_LINEAR_GRADIENT_SVG_ID = "linear-gradient-blue-pink-yellow-svg";
-const GradientsBluePinkYellow = ({ isDarkMode }) => {
-  return /* @__PURE__ */ React.createElement(SvgWrap, { className: "absolute" }, /* @__PURE__ */ React.createElement(
-    "linearGradient",
-    {
-      id: blue_pink_yellow_LINEAR_GRADIENT_SVG_ID,
-      x1: "0",
-      x2: "0",
-      y1: "0",
-      y2: "1"
-    },
-    (isDarkMode ? GRADIENT_BLUE_PINK_YELLOW_COLORS : GRADIENT_TEAL_YELLOW_PINK_COLORS).map(
-      (color, index, { length: count }) => /* @__PURE__ */ React.createElement(
-        "stop",
-        {
-          key: `${index}`,
-          offset: `${100 / (count - 1) * index}%`,
-          stopColor: color
-        }
-      )
-    )
-  ));
 };
 
 ;// CONCATENATED MODULE: ./src/components/icons/svg/gradient/index.tsx
@@ -45189,31 +45209,16 @@ const PRESENCE_OPACITY_06 = {
 ;// CONCATENATED MODULE: ./src/components/buttons/pill/b/icon.tsx
 
 
-
-
-
 const icon_ButtonPillBIcon = ({
-  // Root = motion.button,
   isSelected,
   Icon,
-  // title,
-  // iconProps,
-  // circleProps,
-  // children,
-  // classValue,
   outerCircle,
-  // isFlat,
-  // style,
-  // size = "s",
-  // direction = "ltr",
-  // disabled,
   iconProps,
   style,
   ...props
 }) => {
   const borderRadius = boxRadius();
   const s = boxSize();
-  const { isDarkMode } = useDarkMode();
   return /* @__PURE__ */ React.createElement(
     "div",
     {
@@ -45232,9 +45237,7 @@ const icon_ButtonPillBIcon = ({
       Icon,
       {
         stroke: "none",
-        fill: isDarkMode ? resolveUrlId(
-          LINEAR_GRADIENT_SVG_ID
-        ) : "#ffffff",
+        classValue: "_icon-fill",
         ...iconProps
       }
     )
@@ -45454,20 +45457,21 @@ const overlay_LayoutOverlay = ({
 
 
 
+
 const hover_PillBHover = ({
   title,
   subtitle,
   children = title,
-  isLabel,
   onClick,
   ...props
 }) => {
   const { endTimeout, timeoutRef } = useTimeoutRef();
   const { pathname } = useLocation();
   const [isMoving, setMoving] = useState(false);
-  const { set } = useTrillPicsStore(
-    ({ set: set2 }) => ({ set: set2 })
+  const { set, isIdle } = useTrillPicsStore(
+    ({ set: set2, isIdle: isIdle2 }) => ({ set: set2, isIdle: isIdle2 })
   );
+  const { motionHandlers, isHover } = useHoverKey();
   useEffect(() => {
     endTimeout();
     if (!isMoving) {
@@ -45480,7 +45484,6 @@ const hover_PillBHover = ({
       500
     );
   }, [pathname]);
-  const { motionHandlers, isHover } = useHoverKey();
   const isHovering = isDefined(title) && isHover(title);
   const handleClick = (event) => {
     if (onClick) {
@@ -45505,7 +45508,7 @@ const hover_PillBHover = ({
       ...motionHandlers(title),
       ...props
     },
-    !isHovering && isLabel ? title : null
+    !isHovering && isIdle || isHover(TITLE_HOVER_KEY) ? title : null
   ));
 };
 
@@ -45552,10 +45555,35 @@ const Download = ({ children, ...props }) => {
     size: "m"
   });
   const title2 = "Download video";
-  trpc.onProgress.useSubscription(
+  trpc.progress.useSubscription(
     {},
     {
-      onData: (value) => set2({ progress: value }),
+      onData: ({
+        type,
+        data
+      }) => {
+        switch (type) {
+          case "progress": {
+            set2({ progress: data });
+            break;
+          }
+          case "log": {
+            if (data) {
+              set2((prev) => ({
+                logs: [
+                  ...prev.logs,
+                  data
+                ]
+              }));
+            }
+            break;
+          }
+          case "download": {
+            set2({ download: data });
+            break;
+          }
+        }
+      },
       onError: (v) => {
         set2({ error: v });
       },
@@ -45564,12 +45592,24 @@ const Download = ({ children, ...props }) => {
       }
     }
   );
-  const { trigger } = useTimebomb(
-    200,
+  const { trigger: trigger1 } = useTimebomb(
+    2800,
     () => set2({
-      progress: 0,
-      error: ""
+      isDownloadComplete: false
     })
+  );
+  const { trigger } = useTimebomb(
+    1400,
+    () => {
+      set2({
+        download: null,
+        progress: null,
+        error: null,
+        logs: [],
+        isDownloadComplete: true
+      });
+      trigger1();
+    }
   );
   const {
     isError,
@@ -45590,15 +45630,12 @@ const Download = ({ children, ...props }) => {
         );
         const blob = new Blob([arr]);
         await downloadMedia(blob);
+        trigger();
       }
-      set2({
-        isStarted: false
-      });
-      trigger();
     }
   });
   const handleGenerate = () => {
-    set2({ isStarted: true });
+    set2({ logs: [], progress: null });
     mutate(input2);
   };
   const isAura = isHover(title2) || isLoading;
