@@ -21,14 +21,10 @@ import {
   DEFAULT_FPS,
   PIC_DIMENSIONS,
 } from "~/constants/remotion";
-import { useContextPlayer_Init } from "~/pages/video/player/_context/init";
 import { useTrillPicsStore } from "~/store/middleware";
 import { useTimebomb } from "~/hooks/use-time-bomb";
-import { title } from "process";
-import { set } from "zod";
 import { UGenerateSubscriptionResult } from "~/store/state/generate/types";
 import { TState } from "~/store/types";
-import { input } from "~root/build/612.bundle";
 
 export const DEFAULT_INPUT: TGenerateInput =
   {
