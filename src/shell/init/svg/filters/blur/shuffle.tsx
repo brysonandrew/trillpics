@@ -26,16 +26,15 @@ export const FiltersBlurShuffle = ({
     useVelocity(velocity);
   const turbulence = useMotionTemplate`${acceleration} ${velocity}`;
   const blur = useMotionTemplate`${velocity} ${motionValue}`;
-  let o = -(dScale / 2);
-  if (tType === "fractalNoise") {
-    o = 0;
-  }
+
   return (
     <FiltersBlur
       id={MOTION_BLUR_SHUFFLE_ID}
       turbulence={turbulence}
       blur={blur}
       morph={0.1}
+      offsetX={motionValue}
+      offsetY={motionValue}
       displacement={dScale}
     />
   );

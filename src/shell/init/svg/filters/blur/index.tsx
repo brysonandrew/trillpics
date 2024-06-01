@@ -6,7 +6,7 @@ import {
 import { SvgWrap } from "@brysonandrew/svg-dimensionless";
 import { TPropsWithChildren } from "@brysonandrew/config-types";
 
-type TProps = TPropsWithChildren<{
+type TProps ={
   id: string;
   tType?: string;
   tBase?: string;
@@ -16,23 +16,26 @@ type TProps = TPropsWithChildren<{
   blur: MotionValue;
   morph: number;
   displacement: number;
-}>;
+  offsetX?: MotionValue | number;
+  offsetY?: MotionValue | number;
+}
 export const FiltersBlur: FC<
   TProps
 > = ({
   id,
-  tType = "turbulence", // "fractalNoise",
+  tType =  "fractalNoise",
   dScale = 12,
   turbulence,
   blur,
   morph,
   displacement,
-  children,
+  offsetX=0,
+  offsetY=0,
 }) => {
-  let o = -(dScale / 2);
-  if (tType === "fractalNoise") {
-    o = 0;
-  }
+  // let o = -(dScale / 2);
+  // if (tType === "fractalNoise") {
+  //   o = 0;
+  // }
   return (
     <SvgWrap>
       <filter id={id}>
@@ -42,9 +45,9 @@ export const FiltersBlur: FC<
           numOctaves={1}
           result="T0"
         />
-        <feOffset
-          dx={o}
-          dy={o}
+        <motion.feOffset
+          dx={offsetX}
+          dy={offsetY}
           in="SourceGraphic"
           result="sgo"
         />

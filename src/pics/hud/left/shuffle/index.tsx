@@ -14,7 +14,7 @@ export const HudLeftShuffle: FC = memo(() => {
   const handleBlur = useBlurAnimate('shuffle');
 
   const handleClick = () => {
-    handleBlur();
+    handleBlur(4);
     updatePics();
   };
   const title = "Shuffle pics";

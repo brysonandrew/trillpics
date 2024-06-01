@@ -34,7 +34,7 @@ export const LeftButtonsClear: FC<
   const { togglePathValue, isActive } =
     useNavigationControls(VIDEO_ROUTE);
   const { screen } = useContextReady();
-  const handler = useBlurAnimate();
+  const handler = useBlurAnimate('addRandom');
 
   if (!isVideoPics) return <div />;
   const container = screen.container;

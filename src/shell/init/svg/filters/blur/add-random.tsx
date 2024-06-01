@@ -29,10 +29,7 @@ export const FiltersBlurAddRandom = ({
     useVelocity(velocity);
   const turbulence = useMotionTemplate`${acceleration} ${velocity}`;
   const blur = useMotionTemplate`${velocity} ${motionValue}`;
-  let o = -(dScale / 2);
-  if (tType === "fractalNoise") {
-    o = 0;
-  }
+
   return (
     <FiltersBlur
       id={MOTION_BLUR_ADD_RANDOM_ID}
