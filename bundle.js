@@ -45573,9 +45573,9 @@ const DEFAULT_INPUT = {
 };
 const Download = ({ children, ...props }) => {
   const s = boxSize();
-  const input2 = usePicVideoReadInputs();
-  const { set: set2 } = useTrillPicsStore(
-    ({ set: set3 }) => ({ set: set3 })
+  const input = usePicVideoReadInputs();
+  const { set } = useTrillPicsStore(
+    ({ set: set2 }) => ({ set: set2 })
   );
   const { handlers, isHover } = useHoverKey();
   const {
@@ -45587,7 +45587,7 @@ const Download = ({ children, ...props }) => {
     borderRadius: "xl",
     size: "m"
   });
-  const title2 = "Download video";
+  const title = "Download video";
   trpc.progress.useSubscription(
     {},
     {
@@ -45597,12 +45597,12 @@ const Download = ({ children, ...props }) => {
       }) => {
         switch (type) {
           case "progress": {
-            set2({ progress: data });
+            set({ progress: data });
             break;
           }
           case "log": {
             if (data) {
-              set2((prev) => ({
+              set((prev) => ({
                 logs: [
                   ...prev.logs,
                   data
@@ -45612,26 +45612,26 @@ const Download = ({ children, ...props }) => {
             break;
           }
           case "download": {
-            set2({ download: data });
+            set({ download: data });
             break;
           }
         }
       },
       onError: (v) => {
-        set2({ error: v });
+        set({ error: v });
       }
     }
   );
   const { trigger: trigger1 } = useTimebomb(
     2800,
-    () => set2({
+    () => set({
       isDownloadComplete: false
     })
   );
   const { trigger } = useTimebomb(
     1400,
     () => {
-      set2({
+      set({
         download: null,
         progress: null,
         error: null,
@@ -45665,11 +45665,11 @@ const Download = ({ children, ...props }) => {
     }
   });
   const handleGenerate = () => {
-    console.log(input2);
-    set2({ logs: [], progress: null });
-    mutate(input2);
+    console.log(input);
+    set({ logs: [], progress: null });
+    mutate(input);
   };
-  const isAura = isHover(title2) || isLoading;
+  const isAura = isHover(title) || isLoading;
   const AURA_TRANSITION = {
     transition: {
       duration: 0.6,
@@ -45682,7 +45682,7 @@ const Download = ({ children, ...props }) => {
       }
     )
   };
-  const isHovering = isHover(title2);
+  const isHovering = isHover(title);
   return /* @__PURE__ */ React.createElement(
     "div",
     {
@@ -45709,7 +45709,7 @@ const Download = ({ children, ...props }) => {
     ))), /* @__PURE__ */ React.createElement(
       PillBHover,
       {
-        title: title2,
+        title,
         isSelected: isHovering,
         style: {
           ...resolveSquare(s.m)
@@ -45731,9 +45731,9 @@ const Download = ({ children, ...props }) => {
         Icon: IconsDownload,
         onClick: handleGenerate,
         ...props,
-        ...handlers(title2)
+        ...handlers(title)
       },
-      title2
+      title
     ))
   );
 };
