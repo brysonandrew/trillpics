@@ -5,13 +5,13 @@ export const useScrollTopHandler =
   () => {
     const {  ref } =
       useContextReady();
-    const handleBlur = useBlurAnimate(
-      "scrollY",
-      20
-    );
+    // const handleBlur = useBlurAnimate(
+    //   "scrollY",
+    //   20
+    // );
     const handler = () => {
       if (!ref.current) return;
-      handleBlur();
+      // handleBlur();
       ref.current.scrollTop();
     };
 

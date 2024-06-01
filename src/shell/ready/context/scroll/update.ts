@@ -33,11 +33,8 @@ export const useScrollUpdateHandler = ({
   const navigate = useNavigate();
   const prevScrollOffsetRef =
     useRef<number>(0);
-  const handleBlur = useBlurAnimate(
-    "scrollY",
-    2,
-    main
-  );
+  const handleBlur =
+    useBlurAnimate("scrollY");
   const { isScroll, isScrolling, set } =
     useTrillPicsStore(
       ({
@@ -58,18 +55,18 @@ export const useScrollUpdateHandler = ({
       scrollOffset,
       scrollDirection,
     } = props;
-    scrollY.set(-scrollOffset);
+    scrollY.set(scrollOffset);
 
-    const scrollDelta = Math.abs(
+    const scrollDelta =
       prevScrollOffsetRef.current -
-        scrollOffset
-    );
+      scrollOffset;
+      
 
     if (
       !isScrolling &&
-      scrollDelta > 0
+      Math.abs(scrollDelta) > 0
     ) {
-      handleBlur(scrollDelta * 2);
+    handleBlur(scrollDelta);
 
       set({
         isScrolling: true,

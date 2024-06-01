@@ -3,7 +3,10 @@ import {
   PropsWithChildren,
   SetStateAction,
 } from "react";
-import { MotionValue } from "framer-motion";
+import {
+  MotionValue,
+  ValueAnimationTransition,
+} from "framer-motion";
 import {
   FixedSizeList,
   ListOnScrollProps,
@@ -38,7 +41,11 @@ export type TGrid = any &
 export type TGridHandle = {
   enableScroll: () => void;
   disableScroll: () => void;
-  scrollTop: () => void;
+  scrollTop: (
+    animateOptions?: Partial<
+      ValueAnimationTransition<number>
+    >
+  ) => void;
   scrollToRandom: () => TCell | void;
   isScrolling: () => boolean;
   isHovering: () => boolean;

@@ -3,6 +3,10 @@ import {
   useImperativeHandle,
   useRef,
 } from "react";
+import {
+  animate,
+  ValueAnimationTransition,
+} from "framer-motion";
 import { FixedSizeList } from "react-window";
 import { Row } from "~/pics/grid/row";
 import {
@@ -14,7 +18,10 @@ import {
   Inner,
   TInnerHandle,
 } from "~/pics/grid/inner";
-import { Outer } from "~/pics/grid/outer";
+import {
+  Outer,
+  TOuterHandle,
+} from "~/pics/grid/outer";
 import {
   TGridHandle,
   TGrid,
@@ -40,9 +47,8 @@ export const Grid = forwardRef<
     }: TProps,
     handleRef
   ) => {
-    const outerHandle = useRef<
-      any | null
-    >(null);
+    const outerHandle =
+      useRef<TOuterHandle | null>(null);
     const innerHandle =
       useRef<TInnerHandle | null>(null);
     const sourceRef =
@@ -52,36 +58,30 @@ export const Grid = forwardRef<
       handleRef,
       () => {
         return {
-          disableScroll: () => {
-            // console.log(sourceRef.current)
-            if (!outerHandle.current)
-              return;
-
-            (
-              outerHandle.current
-                .style as CSSStyleDeclaration
-            ).setProperty(
-              "overflow",
-              "hidden"
-            );
-          },
-          enableScroll: () => {
-            // console.log(sourceRef.current)
-            if (!outerHandle.current)
-              return;
-            (
-              outerHandle.current
-                .style as CSSStyleDeclaration
-            ).setProperty(
-              "overflow",
-              "auto"
-            );
-          },
-          scrollTop: () => {
+          disableScroll: () =>
+            outerHandle.current?.disableScroll(),
+          enableScroll: () =>
+            outerHandle.current?.enableScroll(),
+          scrollTop: (
+            animateOptions: Partial<
+              ValueAnimationTransition<number>
+            > = {}
+          ) => {
             if (sourceRef.current) {
-              sourceRef.current.scrollTo(
-                0
-              );
+              const distance =
+                sourceRef.current.state
+                  .scrollOffset;
+              animate(distance, 0, {
+                onUpdate: (latest) => {
+                  outerHandle.current?.scrollTo(
+                    latest
+                  );
+                },
+                ...animateOptions,
+              });
+              // sourceRef.current.scrollTo(
+              //   0
+              // );
             }
           },
           scrollToRandom: () => {

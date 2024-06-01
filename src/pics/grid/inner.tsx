@@ -8,7 +8,10 @@ import {
 import clsx from "clsx";
 import { useTrillPicsStore } from "~/store/middleware";
 import { useContextReady } from "~/shell/ready/context";
-import { MOTION_BLUR_SHUFFLE_PROPS } from "~/shell/init/svg/filters/blur/constants";
+import {
+  MOTION_BLUR_FILTER_SCROLL_Y_PROPS,
+  MOTION_BLUR_SHUFFLE_PROPS,
+} from "~/shell/init/svg/filters/blur/constants";
 import { DUO_TONE_PROPS } from "~/shell/init/svg/filters/duo-tone";
 
 export type TInnerHandle = {
@@ -127,6 +130,7 @@ const Inner = forwardRef<
           cursor: "pointer",
           // ...DUO_TONE_PROPS,
           ...MOTION_BLUR_SHUFFLE_PROPS,
+
           ...style,
         }}
         {...props}

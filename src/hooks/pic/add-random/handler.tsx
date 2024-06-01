@@ -12,13 +12,12 @@ export const useAddRandomHandler =
     );
     const handleBlur = useBlurAnimate(
       "addRandom",
-      8
     );
 
     const select =
       usePicSelectedWrite();
     const handleClick = () => {
-      handleBlur();
+      handleBlur(10);
       const randoms = resolvePicRandoms(
         {
           pics,
