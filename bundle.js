@@ -1,7 +1,7 @@
 /******/ (() => { // webpackBootstrap
 /******/ 	var __webpack_modules__ = ({
 
-/***/ 69483:
+/***/ 9483:
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
 /*!
@@ -2824,7 +2824,7 @@ module.exports = localforage_js;
 
 /***/ }),
 
-/***/ 64448:
+/***/ 4448:
 /***/ ((__unused_webpack_module, exports, __webpack_require__) => {
 
 "use strict";
@@ -2840,7 +2840,7 @@ module.exports = localforage_js;
 /*
  Modernizr 3.0.0pre (Custom Build) | MIT
 */
-var aa=__webpack_require__(67294),ca=__webpack_require__(63840);function p(a){for(var b="https://reactjs.org/docs/error-decoder.html?invariant="+a,c=1;c<arguments.length;c++)b+="&args[]="+encodeURIComponent(arguments[c]);return"Minified React error #"+a+"; visit "+b+" for the full message or use the non-minified dev environment for full errors and additional helpful warnings."}var da=new Set,ea={};function fa(a,b){ha(a,b);ha(a+"Capture",b)}
+var aa=__webpack_require__(7294),ca=__webpack_require__(3840);function p(a){for(var b="https://reactjs.org/docs/error-decoder.html?invariant="+a,c=1;c<arguments.length;c++)b+="&args[]="+encodeURIComponent(arguments[c]);return"Minified React error #"+a+"; visit "+b+" for the full message or use the non-minified dev environment for full errors and additional helpful warnings."}var da=new Set,ea={};function fa(a,b){ha(a,b);ha(a+"Capture",b)}
 function ha(a,b){ea[a]=b;for(a=0;a<b.length;a++)da.add(b[a])}
 var ia=!("undefined"===typeof window||"undefined"===typeof window.document||"undefined"===typeof window.document.createElement),ja=Object.prototype.hasOwnProperty,ka=/^[:A-Z_a-z\u00C0-\u00D6\u00D8-\u00F6\u00F8-\u02FF\u0370-\u037D\u037F-\u1FFF\u200C-\u200D\u2070-\u218F\u2C00-\u2FEF\u3001-\uD7FF\uF900-\uFDCF\uFDF0-\uFFFD][:A-Z_a-z\u00C0-\u00D6\u00D8-\u00F6\u00F8-\u02FF\u0370-\u037D\u037F-\u1FFF\u200C-\u200D\u2070-\u218F\u2C00-\u2FEF\u3001-\uD7FF\uF900-\uFDCF\uFDF0-\uFFFD\-.0-9\u00B7\u0300-\u036F\u203F-\u2040]*$/,la=
 {},ma={};function oa(a){if(ja.call(ma,a))return!0;if(ja.call(la,a))return!1;if(ka.test(a))return ma[a]=!0;la[a]=!0;return!1}function pa(a,b,c,d){if(null!==c&&0===c.type)return!1;switch(typeof b){case "function":case "symbol":return!0;case "boolean":if(d)return!1;if(null!==c)return!c.acceptsBooleans;a=a.toLowerCase().slice(0,5);return"data-"!==a&&"aria-"!==a;default:return!1}}
@@ -3154,13 +3154,13 @@ exports.unstable_renderSubtreeIntoContainer=function(a,b,c,d){if(!ol(c))throw Er
 
 /***/ }),
 
-/***/ 20745:
+/***/ 745:
 /***/ ((__unused_webpack_module, exports, __webpack_require__) => {
 
 "use strict";
 
 
-var m = __webpack_require__(73935);
+var m = __webpack_require__(3935);
 if (true) {
   exports.createRoot = m.createRoot;
   exports.hydrateRoot = m.hydrateRoot;
@@ -3169,7 +3169,7 @@ if (true) {
 
 /***/ }),
 
-/***/ 73935:
+/***/ 3935:
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
 "use strict";
@@ -3198,13 +3198,13 @@ if (true) {
   // DCE check should happen before ReactDOM bundle executes so that
   // DevTools can report bad minification during injection.
   checkDCE();
-  module.exports = __webpack_require__(64448);
+  module.exports = __webpack_require__(4448);
 } else {}
 
 
 /***/ }),
 
-/***/ 75251:
+/***/ 5251:
 /***/ ((__unused_webpack_module, exports, __webpack_require__) => {
 
 "use strict";
@@ -3217,13 +3217,13 @@ if (true) {
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  */
-var f=__webpack_require__(67294),k=Symbol.for("react.element"),l=Symbol.for("react.fragment"),m=Object.prototype.hasOwnProperty,n=f.__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED.ReactCurrentOwner,p={key:!0,ref:!0,__self:!0,__source:!0};
+var f=__webpack_require__(7294),k=Symbol.for("react.element"),l=Symbol.for("react.fragment"),m=Object.prototype.hasOwnProperty,n=f.__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED.ReactCurrentOwner,p={key:!0,ref:!0,__self:!0,__source:!0};
 function q(c,a,g){var b,d={},e=null,h=null;void 0!==g&&(e=""+g);void 0!==a.key&&(e=""+a.key);void 0!==a.ref&&(h=a.ref);for(b in a)m.call(a,b)&&!p.hasOwnProperty(b)&&(d[b]=a[b]);if(c&&c.defaultProps)for(b in a=c.defaultProps,a)void 0===d[b]&&(d[b]=a[b]);return{$$typeof:k,type:c,key:e,ref:h,props:d,_owner:n.current}}exports.Fragment=l;exports.jsx=q;exports.jsxs=q;
 
 
 /***/ }),
 
-/***/ 72408:
+/***/ 2408:
 /***/ ((__unused_webpack_module, exports) => {
 
 "use strict";
@@ -3257,41 +3257,41 @@ exports.useMemo=function(a,b){return U.current.useMemo(a,b)};exports.useReducer=
 
 /***/ }),
 
-/***/ 67294:
+/***/ 7294:
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
 "use strict";
 
 
 if (true) {
-  module.exports = __webpack_require__(72408);
+  module.exports = __webpack_require__(2408);
 } else {}
 
 
 /***/ }),
 
-/***/ 85893:
+/***/ 5893:
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
 "use strict";
 
 
 if (true) {
-  module.exports = __webpack_require__(75251);
+  module.exports = __webpack_require__(5251);
 } else {}
 
 
 /***/ }),
 
-/***/ 92640:
+/***/ 2640:
 /***/ ((__unused_webpack_module, exports, __webpack_require__) => {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.AbsoluteFill = void 0;
-const jsx_runtime_1 = __webpack_require__(85893);
-const react_1 = __webpack_require__(67294);
+const jsx_runtime_1 = __webpack_require__(5893);
+const react_1 = __webpack_require__(7294);
 const AbsoluteFillRefForwarding = (props, ref) => {
     const { style, ...other } = props;
     const actualStyle = (0, react_1.useMemo)(() => {
@@ -3319,15 +3319,15 @@ exports.AbsoluteFill = (0, react_1.forwardRef)(AbsoluteFillRefForwarding);
 
 /***/ }),
 
-/***/ 44144:
+/***/ 4144:
 /***/ ((__unused_webpack_module, exports, __webpack_require__) => {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.CanUseRemotionHooksProvider = exports.CanUseRemotionHooks = void 0;
-const jsx_runtime_1 = __webpack_require__(85893);
-const react_1 = __webpack_require__(67294);
+const jsx_runtime_1 = __webpack_require__(5893);
+const react_1 = __webpack_require__(7294);
 exports.CanUseRemotionHooks = (0, react_1.createContext)(false);
 const CanUseRemotionHooksProvider = ({ children }) => {
     return ((0, jsx_runtime_1.jsx)(exports.CanUseRemotionHooks.Provider, { value: true, children: children }));
@@ -3337,14 +3337,14 @@ exports.CanUseRemotionHooksProvider = CanUseRemotionHooksProvider;
 
 /***/ }),
 
-/***/ 72434:
+/***/ 2434:
 /***/ ((__unused_webpack_module, exports, __webpack_require__) => {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.Clipper = void 0;
-const react_1 = __webpack_require__(67294);
+const react_1 = __webpack_require__(7294);
 const NativeLayers_js_1 = __webpack_require__(2425);
 const Clipper = ({ height, width, x, y }) => {
     const { setClipRegion } = (0, react_1.useContext)(NativeLayers_js_1.NativeLayersContext);
@@ -3369,32 +3369,32 @@ exports.Clipper = Clipper;
 
 /***/ }),
 
-/***/ 63013:
+/***/ 3013:
 /***/ ((__unused_webpack_module, exports, __webpack_require__) => {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.Composition = exports.ClipComposition = void 0;
-const jsx_runtime_1 = __webpack_require__(85893);
-const react_1 = __webpack_require__(67294);
-const react_dom_1 = __webpack_require__(73935);
-const AbsoluteFill_js_1 = __webpack_require__(92640);
-const CanUseRemotionHooks_js_1 = __webpack_require__(44144);
-const CompositionManagerContext_js_1 = __webpack_require__(13898);
-const delay_render_js_1 = __webpack_require__(22663);
-const Folder_js_1 = __webpack_require__(49512);
-const get_remotion_environment_js_1 = __webpack_require__(48288);
-const is_player_js_1 = __webpack_require__(50606);
-const loading_indicator_js_1 = __webpack_require__(95490);
+const jsx_runtime_1 = __webpack_require__(5893);
+const react_1 = __webpack_require__(7294);
+const react_dom_1 = __webpack_require__(3935);
+const AbsoluteFill_js_1 = __webpack_require__(2640);
+const CanUseRemotionHooks_js_1 = __webpack_require__(4144);
+const CompositionManagerContext_js_1 = __webpack_require__(3898);
+const Folder_js_1 = __webpack_require__(9512);
 const NativeLayers_js_1 = __webpack_require__(2425);
-const nonce_js_1 = __webpack_require__(98054);
-const portal_node_js_1 = __webpack_require__(91734);
-const ResolveCompositionConfig_js_1 = __webpack_require__(95014);
-const use_lazy_component_js_1 = __webpack_require__(44858);
+const ResolveCompositionConfig_js_1 = __webpack_require__(5014);
+const delay_render_js_1 = __webpack_require__(2663);
+const get_remotion_environment_js_1 = __webpack_require__(8288);
+const is_player_js_1 = __webpack_require__(606);
+const loading_indicator_js_1 = __webpack_require__(5490);
+const nonce_js_1 = __webpack_require__(8054);
+const portal_node_js_1 = __webpack_require__(1734);
+const use_lazy_component_js_1 = __webpack_require__(4858);
 const use_video_js_1 = __webpack_require__(3141);
-const validate_composition_id_js_1 = __webpack_require__(86303);
-const validate_default_props_js_1 = __webpack_require__(80607);
+const validate_composition_id_js_1 = __webpack_require__(6303);
+const validate_default_props_js_1 = __webpack_require__(607);
 const ClipComposition = ({ children }) => {
     const { clipRegion } = (0, react_1.useContext)(NativeLayers_js_1.NativeLayersContext);
     const style = (0, react_1.useMemo)(() => {
@@ -3530,13 +3530,13 @@ var __importStar = (this && this.__importStar) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.CompositionManagerProvider = exports.compositionsRef = void 0;
-const jsx_runtime_1 = __webpack_require__(85893);
-const react_1 = __importStar(__webpack_require__(67294));
+const jsx_runtime_1 = __webpack_require__(5893);
+const react_1 = __importStar(__webpack_require__(7294));
+const CompositionManagerContext_js_1 = __webpack_require__(3898);
+const RenderAssetManager_js_1 = __webpack_require__(6770);
+const ResolveCompositionConfig_js_1 = __webpack_require__(5014);
+const SequenceManager_js_1 = __webpack_require__(829);
 const shared_audio_tags_js_1 = __webpack_require__(3161);
-const CompositionManagerContext_js_1 = __webpack_require__(13898);
-const RenderAssetManager_js_1 = __webpack_require__(26770);
-const ResolveCompositionConfig_js_1 = __webpack_require__(95014);
-const SequenceManager_js_1 = __webpack_require__(80829);
 exports.compositionsRef = react_1.default.createRef();
 const CompositionManagerProvider = ({ children, numberOfAudioTags }) => {
     var _a;
@@ -3597,6 +3597,20 @@ const CompositionManagerProvider = ({ children, numberOfAudioTags }) => {
     const composition = compositions.find((c) => (canvasContent === null || canvasContent === void 0 ? void 0 : canvasContent.type) === 'composition'
         ? c.id === canvasContent.compositionId
         : null);
+    const updateCompositionDefaultProps = (0, react_1.useCallback)((id, newDefaultProps) => {
+        setCompositions((comps) => {
+            const updated = comps.map((c) => {
+                if (c.id === id) {
+                    return {
+                        ...c,
+                        defaultProps: newDefaultProps,
+                    };
+                }
+                return c;
+            });
+            return updated;
+        });
+    }, []);
     const contextValue = (0, react_1.useMemo)(() => {
         return {
             compositions,
@@ -3609,6 +3623,7 @@ const CompositionManagerProvider = ({ children, numberOfAudioTags }) => {
             setCurrentCompositionMetadata,
             canvasContent,
             setCanvasContent,
+            updateCompositionDefaultProps,
         };
     }, [
         compositions,
@@ -3619,7 +3634,7 @@ const CompositionManagerProvider = ({ children, numberOfAudioTags }) => {
         unregisterFolder,
         currentCompositionMetadata,
         canvasContent,
-        setCanvasContent,
+        updateCompositionDefaultProps,
     ]);
     return ((0, jsx_runtime_1.jsx)(CompositionManagerContext_js_1.CompositionManager.Provider, { value: contextValue, children: (0, jsx_runtime_1.jsx)(SequenceManager_js_1.SequenceManagerProvider, { children: (0, jsx_runtime_1.jsx)(RenderAssetManager_js_1.RenderAssetManagerProvider, { children: (0, jsx_runtime_1.jsx)(ResolveCompositionConfig_js_1.ResolveCompositionConfig, { children: (0, jsx_runtime_1.jsx)(shared_audio_tags_js_1.SharedAudioContextProvider, { numberOfAudioTags: numberOfAudioTags, component: (_a = composition === null || composition === void 0 ? void 0 : composition.component) !== null && _a !== void 0 ? _a : null, children: children }) }) }) }) }));
 };
@@ -3628,14 +3643,14 @@ exports.CompositionManagerProvider = CompositionManagerProvider;
 
 /***/ }),
 
-/***/ 13898:
+/***/ 3898:
 /***/ ((__unused_webpack_module, exports, __webpack_require__) => {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.CompositionManager = void 0;
-const react_1 = __webpack_require__(67294);
+const react_1 = __webpack_require__(7294);
 exports.CompositionManager = (0, react_1.createContext)({
     compositions: [],
     registerComposition: () => undefined,
@@ -3643,6 +3658,7 @@ exports.CompositionManager = (0, react_1.createContext)({
     registerFolder: () => undefined,
     unregisterFolder: () => undefined,
     setCurrentCompositionMetadata: () => undefined,
+    updateCompositionDefaultProps: () => undefined,
     folders: [],
     currentCompositionMetadata: null,
     canvasContent: null,
@@ -3652,7 +3668,7 @@ exports.CompositionManager = (0, react_1.createContext)({
 
 /***/ }),
 
-/***/ 75550:
+/***/ 5550:
 /***/ (function(__unused_webpack_module, exports, __webpack_require__) {
 
 "use strict";
@@ -3681,15 +3697,19 @@ var __importStar = (this && this.__importStar) || function (mod) {
     return result;
 };
 Object.defineProperty(exports, "__esModule", ({ value: true }));
-exports.EditorPropsProvider = exports.EditorPropsContext = void 0;
-const jsx_runtime_1 = __webpack_require__(85893);
-const react_1 = __importStar(__webpack_require__(67294));
+exports.EditorPropsProvider = exports.editorPropsProviderRef = exports.EditorPropsContext = void 0;
+const jsx_runtime_1 = __webpack_require__(5893);
+const react_1 = __importStar(__webpack_require__(7294));
 exports.EditorPropsContext = (0, react_1.createContext)({
     props: {},
     updateProps: () => {
         throw new Error('Not implemented');
     },
+    resetUnsaved: () => {
+        throw new Error('Not implemented');
+    },
 });
+exports.editorPropsProviderRef = react_1.default.createRef();
 const EditorPropsProvider = ({ children }) => {
     const [props, setProps] = react_1.default.useState({});
     const updateProps = (0, react_1.useCallback)(({ defaultProps, id, newProps, }) => {
@@ -3703,9 +3723,18 @@ const EditorPropsProvider = ({ children }) => {
             };
         });
     }, []);
+    const resetUnsaved = (0, react_1.useCallback)(() => {
+        setProps({});
+    }, []);
+    (0, react_1.useImperativeHandle)(exports.editorPropsProviderRef, () => {
+        return {
+            getProps: () => props,
+            setProps,
+        };
+    }, [props]);
     const ctx = (0, react_1.useMemo)(() => {
-        return { props, updateProps };
-    }, [props, updateProps]);
+        return { props, updateProps, resetUnsaved };
+    }, [props, resetUnsaved, updateProps]);
     return ((0, jsx_runtime_1.jsx)(exports.EditorPropsContext.Provider, { value: ctx, children: children }));
 };
 exports.EditorPropsProvider = EditorPropsProvider;
@@ -3713,18 +3742,18 @@ exports.EditorPropsProvider = EditorPropsProvider;
 
 /***/ }),
 
-/***/ 49512:
+/***/ 9512:
 /***/ ((__unused_webpack_module, exports, __webpack_require__) => {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.Folder = exports.FolderContext = void 0;
-const jsx_runtime_1 = __webpack_require__(85893);
-const react_1 = __webpack_require__(67294);
-const CompositionManagerContext_js_1 = __webpack_require__(13898);
+const jsx_runtime_1 = __webpack_require__(5893);
+const react_1 = __webpack_require__(7294);
+const CompositionManagerContext_js_1 = __webpack_require__(3898);
 const truthy_js_1 = __webpack_require__(3928);
-const validate_folder_name_js_1 = __webpack_require__(80487);
+const validate_folder_name_js_1 = __webpack_require__(487);
 exports.FolderContext = (0, react_1.createContext)({
     folderName: null,
     parentName: null,
@@ -3758,18 +3787,21 @@ exports.Folder = Folder;
 
 /***/ }),
 
-/***/ 35139:
+/***/ 5139:
 /***/ ((__unused_webpack_module, exports, __webpack_require__) => {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.IFrame = void 0;
-const jsx_runtime_1 = __webpack_require__(85893);
-const react_1 = __webpack_require__(67294);
-const delay_render_js_1 = __webpack_require__(22663);
-const IFrameRefForwarding = ({ onLoad, onError, ...props }, ref) => {
-    const [handle] = (0, react_1.useState)(() => (0, delay_render_js_1.delayRender)(`Loading <IFrame> with source ${props.src}`));
+const jsx_runtime_1 = __webpack_require__(5893);
+const react_1 = __webpack_require__(7294);
+const delay_render_js_1 = __webpack_require__(2663);
+const IFrameRefForwarding = ({ onLoad, onError, delayRenderRetries, delayRenderTimeoutInMilliseconds, ...props }, ref) => {
+    const [handle] = (0, react_1.useState)(() => (0, delay_render_js_1.delayRender)(`Loading <IFrame> with source ${props.src}`, {
+        retries: delayRenderRetries !== null && delayRenderRetries !== void 0 ? delayRenderRetries : undefined,
+        timeoutInMilliseconds: delayRenderTimeoutInMilliseconds !== null && delayRenderTimeoutInMilliseconds !== void 0 ? delayRenderTimeoutInMilliseconds : undefined,
+    }));
     const didLoad = (0, react_1.useCallback)((e) => {
         (0, delay_render_js_1.continueRender)(handle);
         onLoad === null || onLoad === void 0 ? void 0 : onLoad(e);
@@ -3795,26 +3827,28 @@ exports.IFrame = (0, react_1.forwardRef)(IFrameRefForwarding);
 
 /***/ }),
 
-/***/ 10074:
+/***/ 74:
 /***/ ((__unused_webpack_module, exports, __webpack_require__) => {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.Img = void 0;
-const jsx_runtime_1 = __webpack_require__(85893);
-const react_1 = __webpack_require__(67294);
-const cancel_render_js_1 = __webpack_require__(88113);
-const delay_render_js_1 = __webpack_require__(22663);
-const prefetch_js_1 = __webpack_require__(32595);
-const use_buffer_state_js_1 = __webpack_require__(89075);
+const jsx_runtime_1 = __webpack_require__(5893);
+const react_1 = __webpack_require__(7294);
+const SequenceContext_js_1 = __webpack_require__(3759);
+const cancel_render_js_1 = __webpack_require__(8113);
+const delay_render_js_1 = __webpack_require__(2663);
+const prefetch_js_1 = __webpack_require__(2595);
+const use_buffer_state_js_1 = __webpack_require__(9075);
 function exponentialBackoff(errorCount) {
     return 1000 * 2 ** (errorCount - 1);
 }
-const ImgRefForwarding = ({ onError, maxRetries = 2, src, pauseWhenLoading, ...props }, ref) => {
+const ImgRefForwarding = ({ onError, maxRetries = 2, src, pauseWhenLoading, delayRenderRetries, delayRenderTimeoutInMilliseconds, ...props }, ref) => {
     const imageRef = (0, react_1.useRef)(null);
     const errors = (0, react_1.useRef)({});
     const { delayPlayback } = (0, use_buffer_state_js_1.useBufferState)();
+    const sequenceContext = (0, react_1.useContext)(SequenceContext_js_1.SequenceContext);
     if (!src) {
         throw new Error('No "src" prop was passed to <Img>.');
     }
@@ -3864,11 +3898,18 @@ const ImgRefForwarding = ({ onError, maxRetries = 2, src, pauseWhenLoading, ...p
         (0, cancel_render_js_1.cancelRender)('Error loading image with src: ' + ((_l = imageRef.current) === null || _l === void 0 ? void 0 : _l.src));
     }, [maxRetries, onError, retryIn]);
     if (typeof window !== 'undefined') {
+        const isPremounting = Boolean(sequenceContext === null || sequenceContext === void 0 ? void 0 : sequenceContext.premounting);
         // eslint-disable-next-line react-hooks/rules-of-hooks
         (0, react_1.useLayoutEffect)(() => {
-            if (false) {}
-            const newHandle = (0, delay_render_js_1.delayRender)('Loading <Img> with src=' + actualSrc);
-            const unblock = pauseWhenLoading
+            var _a, _b;
+            if (((_b = (_a = window.process) === null || _a === void 0 ? void 0 : _a.env) === null || _b === void 0 ? void 0 : _b.NODE_ENV) === 'test') {
+                return;
+            }
+            const newHandle = (0, delay_render_js_1.delayRender)('Loading <Img> with src=' + actualSrc, {
+                retries: delayRenderRetries !== null && delayRenderRetries !== void 0 ? delayRenderRetries : undefined,
+                timeoutInMilliseconds: delayRenderTimeoutInMilliseconds !== null && delayRenderTimeoutInMilliseconds !== void 0 ? delayRenderTimeoutInMilliseconds : undefined,
+            });
+            const unblock = pauseWhenLoading && !isPremounting
                 ? delayPlayback().unblock
                 : () => undefined;
             const { current } = imageRef;
@@ -3897,7 +3938,14 @@ const ImgRefForwarding = ({ onError, maxRetries = 2, src, pauseWhenLoading, ...p
                 unblock();
                 (0, delay_render_js_1.continueRender)(newHandle);
             };
-        }, [actualSrc, delayPlayback, pauseWhenLoading]);
+        }, [
+            actualSrc,
+            delayPlayback,
+            delayRenderRetries,
+            delayRenderTimeoutInMilliseconds,
+            pauseWhenLoading,
+            isPremounting,
+        ]);
     }
     return ((0, jsx_runtime_1.jsx)("img", { ...props, ref: imageRef, src: actualSrc, onError: didGetError }));
 };
@@ -3917,8 +3965,8 @@ exports.Img = (0, react_1.forwardRef)(ImgRefForwarding);
 
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.NativeLayersProvider = exports.NativeLayersContext = void 0;
-const jsx_runtime_1 = __webpack_require__(85893);
-const react_1 = __webpack_require__(67294);
+const jsx_runtime_1 = __webpack_require__(5893);
+const react_1 = __webpack_require__(7294);
 exports.NativeLayersContext = (0, react_1.createContext)({
     setClipRegion: () => {
         throw new Error('NativeLayers not set');
@@ -3948,14 +3996,14 @@ exports.NativeLayersProvider = NativeLayersProvider;
 
 /***/ }),
 
-/***/ 74675:
+/***/ 4675:
 /***/ ((__unused_webpack_module, exports, __webpack_require__) => {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.Null = void 0;
-const react_1 = __webpack_require__(67294);
+const react_1 = __webpack_require__(7294);
 const NativeLayers_js_1 = __webpack_require__(2425);
 const Null = () => {
     const { setClipRegion } = (0, react_1.useContext)(NativeLayers_js_1.NativeLayersContext);
@@ -3981,25 +4029,25 @@ exports.Null = Null;
 
 /***/ }),
 
-/***/ 87929:
+/***/ 7929:
 /***/ ((module, exports, __webpack_require__) => {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.RemotionRoot = void 0;
-const jsx_runtime_1 = __webpack_require__(85893);
-const react_1 = __webpack_require__(67294);
-const buffering_js_1 = __webpack_require__(45775);
+const jsx_runtime_1 = __webpack_require__(5893);
+const react_1 = __webpack_require__(7294);
 const CompositionManager_js_1 = __webpack_require__(4932);
-const delay_render_js_1 = __webpack_require__(22663);
-const EditorProps_js_1 = __webpack_require__(75550);
+const EditorProps_js_1 = __webpack_require__(5550);
 const NativeLayers_js_1 = __webpack_require__(2425);
-const nonce_js_1 = __webpack_require__(98054);
-const prefetch_state_js_1 = __webpack_require__(15819);
-const random_js_1 = __webpack_require__(34264);
-const timeline_position_state_js_1 = __webpack_require__(47083);
-const duration_state_js_1 = __webpack_require__(19099);
+const buffering_js_1 = __webpack_require__(5775);
+const delay_render_js_1 = __webpack_require__(2663);
+const nonce_js_1 = __webpack_require__(8054);
+const prefetch_state_js_1 = __webpack_require__(5819);
+const random_js_1 = __webpack_require__(4264);
+const timeline_position_state_js_1 = __webpack_require__(7083);
+const duration_state_js_1 = __webpack_require__(9099);
 const RemotionRoot = ({ children, numberOfAudioTags }) => {
     const [remotionRootId] = (0, react_1.useState)(() => String((0, random_js_1.random)(null)));
     const [frame, setFrame] = (0, react_1.useState)(() => (0, timeline_position_state_js_1.getInitialFrameState)());
@@ -4011,13 +4059,30 @@ const RemotionRoot = ({ children, numberOfAudioTags }) => {
     if (typeof window !== 'undefined') {
         // eslint-disable-next-line react-hooks/rules-of-hooks
         (0, react_1.useLayoutEffect)(() => {
-            window.remotion_setFrame = (f, composition) => {
+            window.remotion_setFrame = (f, composition, attempt) => {
+                window.remotion_attempt = attempt;
                 const id = (0, delay_render_js_1.delayRender)(`Setting the current frame to ${f}`);
-                setFrame((s) => ({
-                    ...s,
-                    [composition]: f,
-                }));
-                requestAnimationFrame(() => (0, delay_render_js_1.continueRender)(id));
+                let asyncUpdate = true;
+                setFrame((s) => {
+                    var _a;
+                    const currentFrame = (_a = s[composition]) !== null && _a !== void 0 ? _a : window.remotion_initialFrame;
+                    // Avoid cloning the object
+                    if (currentFrame === f) {
+                        asyncUpdate = false;
+                        return s;
+                    }
+                    return {
+                        ...s,
+                        [composition]: f,
+                    };
+                });
+                // After setting the state, need to wait until it is applied in the next cycle
+                if (asyncUpdate) {
+                    requestAnimationFrame(() => (0, delay_render_js_1.continueRender)(id));
+                }
+                else {
+                    (0, delay_render_js_1.continueRender)(id);
+                }
             };
             window.remotion_isPlayer = false;
         }, []);
@@ -4064,15 +4129,15 @@ exports.RemotionRoot = RemotionRoot;
 
 /***/ }),
 
-/***/ 26770:
+/***/ 6770:
 /***/ ((__unused_webpack_module, exports, __webpack_require__) => {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.RenderAssetManagerProvider = exports.RenderAssetManager = void 0;
-const jsx_runtime_1 = __webpack_require__(85893);
-const react_1 = __webpack_require__(67294);
+const jsx_runtime_1 = __webpack_require__(5893);
+const react_1 = __webpack_require__(7294);
 exports.RenderAssetManager = (0, react_1.createContext)({
     // Must be undefined, otherwise error in Player
     registerRenderAsset: () => undefined,
@@ -4113,22 +4178,23 @@ exports.RenderAssetManagerProvider = RenderAssetManagerProvider;
 
 /***/ }),
 
-/***/ 95014:
+/***/ 5014:
 /***/ ((__unused_webpack_module, exports, __webpack_require__) => {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", ({ value: true }));
-exports.useResolvedVideoConfig = exports.ResolveCompositionConfig = exports.needsResolution = exports.resolveCompositionsRef = exports.ResolveCompositionContext = void 0;
-const jsx_runtime_1 = __webpack_require__(85893);
-const react_1 = __webpack_require__(67294);
-const CompositionManagerContext_js_1 = __webpack_require__(13898);
-const input_props_js_1 = __webpack_require__(35287);
-const EditorProps_js_1 = __webpack_require__(75550);
-const get_remotion_environment_js_1 = __webpack_require__(48288);
-const resolve_video_config_js_1 = __webpack_require__(28832);
-const validate_dimensions_js_1 = __webpack_require__(71162);
-const validate_duration_in_frames_js_1 = __webpack_require__(52363);
+exports.useResolvedVideoConfig = exports.ResolveCompositionConfig = exports.PROPS_UPDATED_EXTERNALLY = exports.needsResolution = exports.resolveCompositionsRef = exports.ResolveCompositionContext = void 0;
+const jsx_runtime_1 = __webpack_require__(5893);
+const react_1 = __webpack_require__(7294);
+const CompositionManagerContext_js_1 = __webpack_require__(3898);
+const EditorProps_js_1 = __webpack_require__(5550);
+const input_props_js_1 = __webpack_require__(5287);
+const get_remotion_environment_js_1 = __webpack_require__(8288);
+const nonce_js_1 = __webpack_require__(8054);
+const resolve_video_config_js_1 = __webpack_require__(8832);
+const validate_dimensions_js_1 = __webpack_require__(1162);
+const validate_duration_in_frames_js_1 = __webpack_require__(2363);
 const validate_fps_js_1 = __webpack_require__(5868);
 exports.ResolveCompositionContext = (0, react_1.createContext)(null);
 exports.resolveCompositionsRef = (0, react_1.createRef)();
@@ -4136,14 +4202,24 @@ const needsResolution = (composition) => {
     return Boolean(composition.calculateMetadata);
 };
 exports.needsResolution = needsResolution;
+exports.PROPS_UPDATED_EXTERNALLY = 'remotion.propsUpdatedExternally';
 const ResolveCompositionConfig = ({ children }) => {
     const [currentRenderModalComposition, setCurrentRenderModalComposition] = (0, react_1.useState)(null);
     const { compositions, canvasContent, currentCompositionMetadata } = (0, react_1.useContext)(CompositionManagerContext_js_1.CompositionManager);
-    const selectedComposition = compositions.find((c) => canvasContent &&
-        canvasContent.type === 'composition' &&
-        canvasContent.compositionId === c.id);
+    const { fastRefreshes } = (0, react_1.useContext)(nonce_js_1.NonceContext);
+    const selectedComposition = (0, react_1.useMemo)(() => {
+        return compositions.find((c) => canvasContent &&
+            canvasContent.type === 'composition' &&
+            canvasContent.compositionId === c.id);
+    }, [canvasContent, compositions]);
     const renderModalComposition = compositions.find((c) => c.id === currentRenderModalComposition);
     const { props: allEditorProps } = (0, react_1.useContext)(EditorProps_js_1.EditorPropsContext);
+    const inputProps = (0, react_1.useMemo)(() => {
+        var _a;
+        return typeof window === 'undefined' || (0, get_remotion_environment_js_1.getRemotionEnvironment)().isPlayer
+            ? {}
+            : (_a = (0, input_props_js_1.getInputProps)()) !== null && _a !== void 0 ? _a : {};
+    }, []);
     const [resolvedConfigs, setResolvedConfigs] = (0, react_1.useState)({});
     const selectedEditorProps = (0, react_1.useMemo)(() => {
         var _a;
@@ -4157,29 +4233,44 @@ const ResolveCompositionConfig = ({ children }) => {
             ? (_a = allEditorProps[renderModalComposition.id]) !== null && _a !== void 0 ? _a : {}
             : {};
     }, [allEditorProps, renderModalComposition]);
-    const doResolution = (0, react_1.useCallback)((composition, editorProps) => {
-        var _a;
+    const hasResolution = Boolean(currentCompositionMetadata);
+    const doResolution = (0, react_1.useCallback)(({ calculateMetadata, combinedProps, compositionDurationInFrames, compositionFps, compositionHeight, compositionId, compositionWidth, defaultProps, }) => {
         const controller = new AbortController();
-        if (currentCompositionMetadata) {
+        if (hasResolution) {
             return controller;
         }
-        const inputProps = typeof window === 'undefined' || (0, get_remotion_environment_js_1.getRemotionEnvironment)().isPlayer
-            ? {}
-            : (_a = (0, input_props_js_1.getInputProps)()) !== null && _a !== void 0 ? _a : {};
         const { signal } = controller;
         const promOrNot = (0, resolve_video_config_js_1.resolveVideoConfig)({
-            composition,
-            editorProps,
-            inputProps,
+            compositionId,
+            calculateMetadata,
+            originalProps: combinedProps,
             signal,
+            defaultProps,
+            compositionDurationInFrames,
+            compositionFps,
+            compositionHeight,
+            compositionWidth,
         });
         if (typeof promOrNot === 'object' && 'then' in promOrNot) {
-            setResolvedConfigs((r) => ({
-                ...r,
-                [composition.id]: {
-                    type: 'loading',
-                },
-            }));
+            setResolvedConfigs((r) => {
+                const prev = r[compositionId];
+                if ((prev === null || prev === void 0 ? void 0 : prev.type) === 'success' ||
+                    (prev === null || prev === void 0 ? void 0 : prev.type) === 'success-and-refreshing') {
+                    return {
+                        ...r,
+                        [compositionId]: {
+                            type: 'success-and-refreshing',
+                            result: prev.result,
+                        },
+                    };
+                }
+                return {
+                    ...r,
+                    [compositionId]: {
+                        type: 'loading',
+                    },
+                };
+            });
             promOrNot
                 .then((c) => {
                 if (controller.signal.aborted) {
@@ -4187,7 +4278,7 @@ const ResolveCompositionConfig = ({ children }) => {
                 }
                 setResolvedConfigs((r) => ({
                     ...r,
-                    [composition.id]: {
+                    [compositionId]: {
                         type: 'success',
                         result: c,
                     },
@@ -4199,7 +4290,7 @@ const ResolveCompositionConfig = ({ children }) => {
                 }
                 setResolvedConfigs((r) => ({
                     ...r,
-                    [composition.id]: {
+                    [compositionId]: {
                         type: 'error',
                         error: err,
                     },
@@ -4209,14 +4300,14 @@ const ResolveCompositionConfig = ({ children }) => {
         else {
             setResolvedConfigs((r) => ({
                 ...r,
-                [composition.id]: {
+                [compositionId]: {
                     type: 'success',
                     result: promOrNot,
                 },
             }));
         }
         return controller;
-    }, [currentCompositionMetadata]);
+    }, [hasResolution]);
     const currentComposition = (canvasContent === null || canvasContent === void 0 ? void 0 : canvasContent.type) === 'composition' ? canvasContent.compositionId : null;
     (0, react_1.useImperativeHandle)(exports.resolveCompositionsRef, () => {
         return {
@@ -4224,7 +4315,7 @@ const ResolveCompositionConfig = ({ children }) => {
                 setCurrentRenderModalComposition(id);
             },
             reloadCurrentlySelectedComposition: () => {
-                var _a;
+                var _a, _b, _c, _d, _e, _f;
                 if (!currentComposition) {
                     return;
                 }
@@ -4233,27 +4324,124 @@ const ResolveCompositionConfig = ({ children }) => {
                     throw new Error(`Could not find composition with id ${currentComposition}`);
                 }
                 const editorProps = (_a = allEditorProps[currentComposition]) !== null && _a !== void 0 ? _a : {};
-                doResolution(composition, editorProps);
+                const defaultProps = {
+                    ...((_b = composition.defaultProps) !== null && _b !== void 0 ? _b : {}),
+                    ...(editorProps !== null && editorProps !== void 0 ? editorProps : {}),
+                };
+                const props = {
+                    ...(inputProps !== null && inputProps !== void 0 ? inputProps : {}),
+                };
+                doResolution({
+                    defaultProps,
+                    calculateMetadata: composition.calculateMetadata,
+                    combinedProps: props,
+                    compositionDurationInFrames: (_c = composition.durationInFrames) !== null && _c !== void 0 ? _c : null,
+                    compositionFps: (_d = composition.fps) !== null && _d !== void 0 ? _d : null,
+                    compositionHeight: (_e = composition.height) !== null && _e !== void 0 ? _e : null,
+                    compositionWidth: (_f = composition.width) !== null && _f !== void 0 ? _f : null,
+                    compositionId: composition.id,
+                });
             },
         };
-    }, [allEditorProps, compositions, currentComposition, doResolution]);
+    }, [
+        allEditorProps,
+        compositions,
+        currentComposition,
+        doResolution,
+        inputProps,
+    ]);
     const isTheSame = (selectedComposition === null || selectedComposition === void 0 ? void 0 : selectedComposition.id) === (renderModalComposition === null || renderModalComposition === void 0 ? void 0 : renderModalComposition.id);
+    const currentDefaultProps = (0, react_1.useMemo)(() => {
+        var _a;
+        return {
+            ...((_a = selectedComposition === null || selectedComposition === void 0 ? void 0 : selectedComposition.defaultProps) !== null && _a !== void 0 ? _a : {}),
+            ...(selectedEditorProps !== null && selectedEditorProps !== void 0 ? selectedEditorProps : {}),
+        };
+    }, [selectedComposition === null || selectedComposition === void 0 ? void 0 : selectedComposition.defaultProps, selectedEditorProps]);
+    const originalProps = (0, react_1.useMemo)(() => {
+        return {
+            ...currentDefaultProps,
+            ...(inputProps !== null && inputProps !== void 0 ? inputProps : {}),
+        };
+    }, [currentDefaultProps, inputProps]);
+    const canResolve = selectedComposition && (0, exports.needsResolution)(selectedComposition);
+    const shouldIgnoreUpdate = typeof window !== 'undefined' &&
+        window.remotion_ignoreFastRefreshUpdate &&
+        fastRefreshes <= window.remotion_ignoreFastRefreshUpdate;
     (0, react_1.useEffect)(() => {
-        if (selectedComposition && (0, exports.needsResolution)(selectedComposition)) {
-            const controller = doResolution(selectedComposition, selectedEditorProps);
+        var _a, _b, _c, _d;
+        if (shouldIgnoreUpdate) {
+            // We already have the current state, we just saved it back
+            // to the file
+            return;
+        }
+        if (canResolve) {
+            const controller = doResolution({
+                calculateMetadata: selectedComposition.calculateMetadata,
+                combinedProps: originalProps,
+                compositionDurationInFrames: (_a = selectedComposition.durationInFrames) !== null && _a !== void 0 ? _a : null,
+                compositionFps: (_b = selectedComposition.fps) !== null && _b !== void 0 ? _b : null,
+                compositionHeight: (_c = selectedComposition.height) !== null && _c !== void 0 ? _c : null,
+                compositionWidth: (_d = selectedComposition.width) !== null && _d !== void 0 ? _d : null,
+                defaultProps: currentDefaultProps,
+                compositionId: selectedComposition.id,
+            });
             return () => {
                 controller.abort();
             };
         }
-    }, [doResolution, selectedComposition, selectedEditorProps]);
+    }, [
+        canResolve,
+        currentDefaultProps,
+        doResolution,
+        originalProps,
+        selectedComposition === null || selectedComposition === void 0 ? void 0 : selectedComposition.calculateMetadata,
+        selectedComposition === null || selectedComposition === void 0 ? void 0 : selectedComposition.durationInFrames,
+        selectedComposition === null || selectedComposition === void 0 ? void 0 : selectedComposition.fps,
+        selectedComposition === null || selectedComposition === void 0 ? void 0 : selectedComposition.height,
+        selectedComposition === null || selectedComposition === void 0 ? void 0 : selectedComposition.id,
+        selectedComposition === null || selectedComposition === void 0 ? void 0 : selectedComposition.width,
+        shouldIgnoreUpdate,
+    ]);
     (0, react_1.useEffect)(() => {
+        if (shouldIgnoreUpdate) {
+            // We already have the current state, we just saved it back
+            // to the file
+            return;
+        }
+        window.dispatchEvent(new CustomEvent('remotion.propsUpdatedExternally'));
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [fastRefreshes]);
+    (0, react_1.useEffect)(() => {
+        var _a, _b, _c, _d, _e;
         if (renderModalComposition && !isTheSame) {
-            const controller = doResolution(renderModalComposition, renderModalProps);
+            const combinedProps = {
+                ...((_a = renderModalComposition.defaultProps) !== null && _a !== void 0 ? _a : {}),
+                ...(renderModalProps !== null && renderModalProps !== void 0 ? renderModalProps : {}),
+                ...(inputProps !== null && inputProps !== void 0 ? inputProps : {}),
+            };
+            const controller = doResolution({
+                calculateMetadata: renderModalComposition.calculateMetadata,
+                compositionDurationInFrames: (_b = renderModalComposition.durationInFrames) !== null && _b !== void 0 ? _b : null,
+                compositionFps: (_c = renderModalComposition.fps) !== null && _c !== void 0 ? _c : null,
+                compositionHeight: (_d = renderModalComposition.height) !== null && _d !== void 0 ? _d : null,
+                compositionId: renderModalComposition.id,
+                compositionWidth: (_e = renderModalComposition.width) !== null && _e !== void 0 ? _e : null,
+                defaultProps: currentDefaultProps,
+                combinedProps,
+            });
             return () => {
                 controller.abort();
             };
         }
-    }, [doResolution, isTheSame, renderModalComposition, renderModalProps]);
+    }, [
+        currentDefaultProps,
+        doResolution,
+        inputProps,
+        isTheSame,
+        renderModalComposition,
+        renderModalProps,
+    ]);
     const resolvedConfigsIncludingStaticOnes = (0, react_1.useMemo)(() => {
         const staticComps = compositions.filter((c) => {
             return c.calculateMetadata === null;
@@ -4343,23 +4531,26 @@ exports.useResolvedVideoConfig = useResolvedVideoConfig;
 
 /***/ }),
 
-/***/ 97080:
+/***/ 7080:
 /***/ ((__unused_webpack_module, exports, __webpack_require__) => {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.Sequence = void 0;
-const jsx_runtime_1 = __webpack_require__(85893);
-const react_1 = __webpack_require__(67294);
-const AbsoluteFill_js_1 = __webpack_require__(92640);
-const get_remotion_environment_js_1 = __webpack_require__(48288);
-const nonce_js_1 = __webpack_require__(98054);
-const SequenceContext_js_1 = __webpack_require__(73759);
-const SequenceManager_js_1 = __webpack_require__(80829);
-const timeline_position_state_js_1 = __webpack_require__(47083);
-const use_video_config_js_1 = __webpack_require__(73347);
-const SequenceRefForwardingFunction = ({ from = 0, durationInFrames = Infinity, children, name, height, width, showInTimeline = true, loopDisplay, stack, ...other }, ref) => {
+const jsx_runtime_1 = __webpack_require__(5893);
+/* eslint-disable @typescript-eslint/no-use-before-define */
+const react_1 = __webpack_require__(7294);
+const AbsoluteFill_js_1 = __webpack_require__(2640);
+const SequenceContext_js_1 = __webpack_require__(3759);
+const SequenceManager_js_1 = __webpack_require__(829);
+const get_remotion_environment_js_1 = __webpack_require__(8288);
+const nonce_js_1 = __webpack_require__(8054);
+const timeline_position_state_js_1 = __webpack_require__(7083);
+const use_video_config_js_1 = __webpack_require__(3347);
+const freeze_js_1 = __webpack_require__(7587);
+const use_current_frame_1 = __webpack_require__(9727);
+const RegularSequenceRefForwardingFunction = ({ from = 0, durationInFrames = Infinity, children, name, height, width, showInTimeline = true, _remotionInternalLoopDisplay: loopDisplay, _remotionInternalStack: stack, _remotionInternalPremountDisplay: premountDisplay, ...other }, ref) => {
     var _a;
     const { layout = 'absolute-fill' } = other;
     const [id] = (0, react_1.useState)(() => String(Math.random()));
@@ -4396,6 +4587,10 @@ const SequenceRefForwardingFunction = ({ from = 0, durationInFrames = Infinity, 
     const actualDurationInFrames = Math.max(0, Math.min(videoConfig.durationInFrames - from, parentSequenceDuration));
     const { registerSequence, unregisterSequence } = (0, react_1.useContext)(SequenceManager_js_1.SequenceManager);
     const { hidden } = (0, react_1.useContext)(SequenceManager_js_1.SequenceVisibilityToggleContext);
+    const premounting = (0, react_1.useMemo)(() => {
+        var _a;
+        return ((_a = parentSequence === null || parentSequence === void 0 ? void 0 : parentSequence.premounting) !== null && _a !== void 0 ? _a : Boolean(other._remotionInternalIsPremounting));
+    }, [other._remotionInternalIsPremounting, parentSequence === null || parentSequence === void 0 ? void 0 : parentSequence.premounting]);
     const contextValue = (0, react_1.useMemo)(() => {
         var _a, _b, _c;
         return {
@@ -4406,6 +4601,7 @@ const SequenceRefForwardingFunction = ({ from = 0, durationInFrames = Infinity, 
             id,
             height: (_b = height !== null && height !== void 0 ? height : parentSequence === null || parentSequence === void 0 ? void 0 : parentSequence.height) !== null && _b !== void 0 ? _b : null,
             width: (_c = width !== null && width !== void 0 ? width : parentSequence === null || parentSequence === void 0 ? void 0 : parentSequence.width) !== null && _c !== void 0 ? _c : null,
+            premounting,
         };
     }, [
         cumulatedFrom,
@@ -4415,6 +4611,7 @@ const SequenceRefForwardingFunction = ({ from = 0, durationInFrames = Infinity, 
         id,
         height,
         width,
+        premounting,
     ]);
     const timelineClipName = (0, react_1.useMemo)(() => {
         return name !== null && name !== void 0 ? name : '';
@@ -4436,6 +4633,7 @@ const SequenceRefForwardingFunction = ({ from = 0, durationInFrames = Infinity, 
             nonce,
             loopDisplay,
             stack: stack !== null && stack !== void 0 ? stack : null,
+            premountDisplay: premountDisplay !== null && premountDisplay !== void 0 ? premountDisplay : null,
         });
         return () => {
             unregisterSequence(id);
@@ -4455,6 +4653,7 @@ const SequenceRefForwardingFunction = ({ from = 0, durationInFrames = Infinity, 
         nonce,
         loopDisplay,
         stack,
+        premountDisplay,
     ]);
     // Ceil to support floats
     // https://github.com/remotion-dev/remotion/issues/2958
@@ -4482,6 +4681,35 @@ const SequenceRefForwardingFunction = ({ from = 0, durationInFrames = Infinity, 
     }
     return ((0, jsx_runtime_1.jsx)(SequenceContext_js_1.SequenceContext.Provider, { value: contextValue, children: content === null ? null : other.layout === 'none' ? (content) : ((0, jsx_runtime_1.jsx)(AbsoluteFill_js_1.AbsoluteFill, { ref: ref, style: defaultStyle, className: other.className, children: content })) }));
 };
+const RegularSequence = (0, react_1.forwardRef)(RegularSequenceRefForwardingFunction);
+const PremountedSequenceRefForwardingFunction = (props, ref) => {
+    const frame = (0, use_current_frame_1.useCurrentFrame)();
+    if (props.layout === 'none') {
+        throw new Error('`<Sequence>` with `premountFor` prop does not support layout="none"');
+    }
+    const { style: passedStyle, from = 0, premountFor = 0, ...otherProps } = props;
+    const premountingActive = frame < from && frame >= from - premountFor;
+    const style = (0, react_1.useMemo)(() => {
+        var _a;
+        return {
+            ...passedStyle,
+            opacity: premountingActive ? 0 : 1,
+            pointerEvents: premountingActive
+                ? 'none'
+                : (_a = passedStyle === null || passedStyle === void 0 ? void 0 : passedStyle.pointerEvents) !== null && _a !== void 0 ? _a : undefined,
+        };
+    }, [premountingActive, passedStyle]);
+    return ((0, jsx_runtime_1.jsx)(freeze_js_1.Freeze, { frame: from, active: premountingActive, children: (0, jsx_runtime_1.jsx)(exports.Sequence, { ref: ref, from: from, style: style, _remotionInternalPremountDisplay: premountFor, _remotionInternalIsPremounting: premountingActive, ...otherProps }) }));
+};
+const PremountedSequence = (0, react_1.forwardRef)(PremountedSequenceRefForwardingFunction);
+const SequenceRefForwardingFunction = (props, ref) => {
+    if (props.layout !== 'none' &&
+        props.premountFor &&
+        !(0, get_remotion_environment_js_1.getRemotionEnvironment)().isRendering) {
+        return (0, jsx_runtime_1.jsx)(PremountedSequence, { ...props, ref: ref });
+    }
+    return (0, jsx_runtime_1.jsx)(RegularSequence, { ...props, ref: ref });
+};
 /**
  * @description A component that time-shifts its children and wraps them in an absolutely positioned <div>.
  * @see [Documentation](https://www.remotion.dev/docs/sequence)
@@ -4491,20 +4719,20 @@ exports.Sequence = (0, react_1.forwardRef)(SequenceRefForwardingFunction);
 
 /***/ }),
 
-/***/ 73759:
+/***/ 3759:
 /***/ ((__unused_webpack_module, exports, __webpack_require__) => {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.SequenceContext = void 0;
-const react_1 = __webpack_require__(67294);
+const react_1 = __webpack_require__(7294);
 exports.SequenceContext = (0, react_1.createContext)(null);
 
 
 /***/ }),
 
-/***/ 80829:
+/***/ 829:
 /***/ (function(__unused_webpack_module, exports, __webpack_require__) {
 
 "use strict";
@@ -4534,8 +4762,8 @@ var __importStar = (this && this.__importStar) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.SequenceManagerProvider = exports.SequenceVisibilityToggleContext = exports.SequenceManager = void 0;
-const jsx_runtime_1 = __webpack_require__(85893);
-const react_1 = __importStar(__webpack_require__(67294));
+const jsx_runtime_1 = __webpack_require__(5893);
+const react_1 = __importStar(__webpack_require__(7294));
 exports.SequenceManager = react_1.default.createContext({
     registerSequence: () => {
         throw new Error('SequenceManagerContext not initialized');
@@ -4582,7 +4810,7 @@ exports.SequenceManagerProvider = SequenceManagerProvider;
 
 /***/ }),
 
-/***/ 18876:
+/***/ 8876:
 /***/ (function(__unused_webpack_module, exports, __webpack_require__) {
 
 "use strict";
@@ -4592,8 +4820,8 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.Still = void 0;
-const react_1 = __importDefault(__webpack_require__(67294));
-const Composition_js_1 = __webpack_require__(63013);
+const react_1 = __importDefault(__webpack_require__(7294));
+const Composition_js_1 = __webpack_require__(3013);
 /**
  * @description A `<Still />` is a `<Composition />` that is only 1 frame long.
  * @see [Documentation](https://www.remotion.dev/docs/still)
@@ -4612,7 +4840,7 @@ exports.Still = Still;
 
 /***/ }),
 
-/***/ 74710:
+/***/ 4710:
 /***/ ((__unused_webpack_module, exports) => {
 
 "use strict";
@@ -4630,7 +4858,7 @@ exports.getAbsoluteSrc = getAbsoluteSrc;
 
 /***/ }),
 
-/***/ 55449:
+/***/ 5449:
 /***/ (() => {
 
 "use strict";
@@ -4639,30 +4867,30 @@ exports.getAbsoluteSrc = getAbsoluteSrc;
 
 /***/ }),
 
-/***/ 24387:
+/***/ 4387:
 /***/ ((__unused_webpack_module, exports, __webpack_require__) => {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.Audio = void 0;
-const jsx_runtime_1 = __webpack_require__(85893);
+const jsx_runtime_1 = __webpack_require__(5893);
 /* eslint-disable @typescript-eslint/no-use-before-define */
-const react_1 = __webpack_require__(67294);
-const absolute_src_js_1 = __webpack_require__(74710);
-const calculate_loop_js_1 = __webpack_require__(46822);
-const cancel_render_js_1 = __webpack_require__(88113);
-const enable_sequence_stack_traces_js_1 = __webpack_require__(12196);
-const get_remotion_environment_js_1 = __webpack_require__(48288);
+const react_1 = __webpack_require__(7294);
+const Sequence_js_1 = __webpack_require__(7080);
+const absolute_src_js_1 = __webpack_require__(4710);
+const calculate_loop_js_1 = __webpack_require__(6822);
+const cancel_render_js_1 = __webpack_require__(8113);
+const enable_sequence_stack_traces_js_1 = __webpack_require__(2196);
+const get_remotion_environment_js_1 = __webpack_require__(8288);
 const index_js_1 = __webpack_require__(4432);
-const prefetch_js_1 = __webpack_require__(32595);
-const Sequence_js_1 = __webpack_require__(97080);
-const use_video_config_js_1 = __webpack_require__(73347);
-const validate_media_props_js_1 = __webpack_require__(15480);
+const prefetch_js_1 = __webpack_require__(2595);
+const use_video_config_js_1 = __webpack_require__(3347);
+const validate_media_props_js_1 = __webpack_require__(5480);
 const validate_start_from_props_js_1 = __webpack_require__(444);
-const duration_state_js_1 = __webpack_require__(19099);
-const AudioForPreview_js_1 = __webpack_require__(69605);
-const AudioForRendering_js_1 = __webpack_require__(98049);
+const duration_state_js_1 = __webpack_require__(9099);
+const AudioForPreview_js_1 = __webpack_require__(9605);
+const AudioForRendering_js_1 = __webpack_require__(8049);
 const shared_audio_tags_js_1 = __webpack_require__(3161);
 const AudioRefForwardingFunction = (props, ref) => {
     var _a, _b, _c;
@@ -4727,37 +4955,38 @@ exports.Audio = (0, react_1.forwardRef)(AudioRefForwardingFunction);
 
 /***/ }),
 
-/***/ 69605:
+/***/ 9605:
 /***/ ((__unused_webpack_module, exports, __webpack_require__) => {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.AudioForPreview = void 0;
-const jsx_runtime_1 = __webpack_require__(85893);
-const react_1 = __webpack_require__(67294);
-const prefetch_js_1 = __webpack_require__(32595);
-const random_js_1 = __webpack_require__(34264);
-const SequenceContext_js_1 = __webpack_require__(73759);
-const SequenceManager_js_1 = __webpack_require__(80829);
-const use_media_buffering_js_1 = __webpack_require__(16801);
-const use_media_in_timeline_js_1 = __webpack_require__(17476);
-const use_media_playback_js_1 = __webpack_require__(95069);
+const jsx_runtime_1 = __webpack_require__(5893);
+const react_1 = __webpack_require__(7294);
+const SequenceContext_js_1 = __webpack_require__(3759);
+const SequenceManager_js_1 = __webpack_require__(829);
+const prefetch_js_1 = __webpack_require__(2595);
+const random_js_1 = __webpack_require__(4264);
+const use_media_buffering_js_1 = __webpack_require__(6801);
+const use_media_in_timeline_js_1 = __webpack_require__(7476);
+const use_media_playback_js_1 = __webpack_require__(5069);
 const use_media_tag_volume_js_1 = __webpack_require__(7126);
-const use_sync_volume_with_media_tag_js_1 = __webpack_require__(38875);
-const volume_position_state_js_1 = __webpack_require__(51399);
+const use_sync_volume_with_media_tag_js_1 = __webpack_require__(8875);
+const volume_position_state_js_1 = __webpack_require__(1399);
+const volume_prop_js_1 = __webpack_require__(9022);
 const shared_audio_tags_js_1 = __webpack_require__(3161);
-const use_audio_frame_js_1 = __webpack_require__(66873);
+const use_audio_frame_js_1 = __webpack_require__(6873);
 const AudioForDevelopmentForwardRefFunction = (props, ref) => {
     var _a;
     const [initialShouldPreMountAudioElements] = (0, react_1.useState)(props.shouldPreMountAudioTags);
     if (props.shouldPreMountAudioTags !== initialShouldPreMountAudioElements) {
         throw new Error('Cannot change the behavior for pre-mounting audio tags dynamically.');
     }
+    const { volume, muted, playbackRate, shouldPreMountAudioTags, src, onDuration, acceptableTimeShiftInSeconds, _remotionInternalNeedsDurationCalculation, _remotionInternalNativeLoopPassed, _remotionInternalStack, allowAmplificationDuringRender, name, pauseWhenBuffering, showInTimeline, loopVolumeCurveBehavior, stack, ...nativeProps } = props;
     const [mediaVolume] = (0, volume_position_state_js_1.useMediaVolumeState)();
     const [mediaMuted] = (0, volume_position_state_js_1.useMediaMutedState)();
-    const volumePropFrame = (0, use_audio_frame_js_1.useFrameForVolumeProp)();
-    const { volume, muted, playbackRate, shouldPreMountAudioTags, src, onDuration, acceptableTimeShiftInSeconds, _remotionInternalNeedsDurationCalculation, _remotionInternalNativeLoopPassed, _remotionInternalStack, allowAmplificationDuringRender, name, pauseWhenBuffering, showInTimeline, ...nativeProps } = props;
+    const volumePropFrame = (0, use_audio_frame_js_1.useFrameForVolumeProp)(loopVolumeCurveBehavior !== null && loopVolumeCurveBehavior !== void 0 ? loopVolumeCurveBehavior : 'repeat');
     const { hidden } = (0, react_1.useContext)(SequenceManager_js_1.SequenceVisibilityToggleContext);
     if (!src) {
         throw new TypeError("No 'src' was passed to <Audio>.");
@@ -4766,9 +4995,15 @@ const AudioForDevelopmentForwardRefFunction = (props, ref) => {
     const sequenceContext = (0, react_1.useContext)(SequenceContext_js_1.SequenceContext);
     const [timelineId] = (0, react_1.useState)(() => String(Math.random()));
     const isSequenceHidden = (_a = hidden[timelineId]) !== null && _a !== void 0 ? _a : false;
+    const userPreferredVolume = (0, volume_prop_js_1.evaluateVolume)({
+        frame: volumePropFrame,
+        volume,
+        mediaVolume,
+        allowAmplificationDuringRender: false,
+    });
     const propsToPass = (0, react_1.useMemo)(() => {
         return {
-            muted: muted || mediaMuted || isSequenceHidden,
+            muted: muted || mediaMuted || isSequenceHidden || userPreferredVolume <= 0,
             src: preloadedSrc,
             loop: _remotionInternalNativeLoopPassed,
             ...nativeProps,
@@ -4780,6 +5015,7 @@ const AudioForDevelopmentForwardRefFunction = (props, ref) => {
         muted,
         nativeProps,
         preloadedSrc,
+        userPreferredVolume,
     ]);
     // Generate a string that's as unique as possible for this asset
     // but at the same time deterministic. We use it to combat strict mode issues.
@@ -4811,6 +5047,7 @@ const AudioForDevelopmentForwardRefFunction = (props, ref) => {
         id: timelineId,
         stack: _remotionInternalStack,
         showInTimeline,
+        premountDisplay: null,
     });
     (0, use_media_playback_js_1.useMediaPlayback)({
         mediaRef: audioRef,
@@ -4820,7 +5057,11 @@ const AudioForDevelopmentForwardRefFunction = (props, ref) => {
         onlyWarnForMediaSeekingError: false,
         acceptableTimeshift: acceptableTimeShiftInSeconds !== null && acceptableTimeShiftInSeconds !== void 0 ? acceptableTimeShiftInSeconds : use_media_playback_js_1.DEFAULT_ACCEPTABLE_TIMESHIFT,
     });
-    (0, use_media_buffering_js_1.useMediaBuffering)(audioRef, pauseWhenBuffering);
+    (0, use_media_buffering_js_1.useMediaBuffering)({
+        element: audioRef,
+        shouldBuffer: pauseWhenBuffering,
+        isPremounting: Boolean(sequenceContext === null || sequenceContext === void 0 ? void 0 : sequenceContext.premounting),
+    });
     (0, react_1.useImperativeHandle)(ref, () => {
         return audioRef.current;
     }, [audioRef]);
@@ -4855,28 +5096,29 @@ exports.AudioForPreview = (0, react_1.forwardRef)(AudioForDevelopmentForwardRefF
 
 /***/ }),
 
-/***/ 98049:
+/***/ 8049:
 /***/ ((__unused_webpack_module, exports, __webpack_require__) => {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.AudioForRendering = void 0;
-const jsx_runtime_1 = __webpack_require__(85893);
-const react_1 = __webpack_require__(67294);
-const absolute_src_js_1 = __webpack_require__(74710);
-const delay_render_js_1 = __webpack_require__(22663);
-const random_js_1 = __webpack_require__(34264);
-const RenderAssetManager_js_1 = __webpack_require__(26770);
-const SequenceContext_js_1 = __webpack_require__(73759);
-const timeline_position_state_js_1 = __webpack_require__(47083);
-const use_current_frame_js_1 = __webpack_require__(39727);
-const volume_prop_js_1 = __webpack_require__(39022);
-const use_audio_frame_js_1 = __webpack_require__(66873);
+const jsx_runtime_1 = __webpack_require__(5893);
+const react_1 = __webpack_require__(7294);
+const RenderAssetManager_js_1 = __webpack_require__(6770);
+const SequenceContext_js_1 = __webpack_require__(3759);
+const absolute_src_js_1 = __webpack_require__(4710);
+const delay_render_js_1 = __webpack_require__(2663);
+const random_js_1 = __webpack_require__(4264);
+const timeline_position_state_js_1 = __webpack_require__(7083);
+const use_current_frame_js_1 = __webpack_require__(9727);
+const volume_prop_js_1 = __webpack_require__(9022);
+const use_audio_frame_js_1 = __webpack_require__(6873);
 const AudioForRenderingRefForwardingFunction = (props, ref) => {
     const audioRef = (0, react_1.useRef)(null);
+    const { volume: volumeProp, playbackRate, allowAmplificationDuringRender, onDuration, toneFrequency, _remotionInternalNeedsDurationCalculation, _remotionInternalNativeLoopPassed, acceptableTimeShiftInSeconds, name, onError, delayRenderRetries, delayRenderTimeoutInMilliseconds, loopVolumeCurveBehavior, pauseWhenBuffering, ...nativeProps } = props;
     const absoluteFrame = (0, timeline_position_state_js_1.useTimelinePosition)();
-    const volumePropFrame = (0, use_audio_frame_js_1.useFrameForVolumeProp)();
+    const volumePropFrame = (0, use_audio_frame_js_1.useFrameForVolumeProp)(loopVolumeCurveBehavior !== null && loopVolumeCurveBehavior !== void 0 ? loopVolumeCurveBehavior : 'repeat');
     const frame = (0, use_current_frame_js_1.useCurrentFrame)();
     const sequenceContext = (0, react_1.useContext)(SequenceContext_js_1.SequenceContext);
     const { registerRenderAsset, unregisterRenderAsset } = (0, react_1.useContext)(RenderAssetManager_js_1.RenderAssetManager);
@@ -4891,7 +5133,6 @@ const AudioForRenderingRefForwardingFunction = (props, ref) => {
         sequenceContext === null || sequenceContext === void 0 ? void 0 : sequenceContext.cumulatedFrom,
         sequenceContext === null || sequenceContext === void 0 ? void 0 : sequenceContext.durationInFrames,
     ]);
-    const { volume: volumeProp, playbackRate, allowAmplificationDuringRender, onDuration, toneFrequency, _remotionInternalNeedsDurationCalculation, _remotionInternalNativeLoopPassed, acceptableTimeShiftInSeconds, name, onError, ...nativeProps } = props;
     const volume = (0, volume_prop_js_1.evaluateVolume)({
         volume: volumeProp,
         frame: volumePropFrame,
@@ -4902,7 +5143,7 @@ const AudioForRenderingRefForwardingFunction = (props, ref) => {
         return audioRef.current;
     }, []);
     (0, react_1.useEffect)(() => {
-        var _a;
+        var _a, _b;
         if (!props.src) {
             throw new Error('No src passed');
         }
@@ -4925,6 +5166,7 @@ const AudioForRenderingRefForwardingFunction = (props, ref) => {
             playbackRate: (_a = props.playbackRate) !== null && _a !== void 0 ? _a : 1,
             allowAmplificationDuringRender: allowAmplificationDuringRender !== null && allowAmplificationDuringRender !== void 0 ? allowAmplificationDuringRender : false,
             toneFrequency: toneFrequency !== null && toneFrequency !== void 0 ? toneFrequency : null,
+            audioStartFrame: Math.max(0, -((_b = sequenceContext === null || sequenceContext === void 0 ? void 0 : sequenceContext.relativeFrom) !== null && _b !== void 0 ? _b : 0)),
         });
         return () => unregisterRenderAsset(id);
     }, [
@@ -4941,6 +5183,7 @@ const AudioForRenderingRefForwardingFunction = (props, ref) => {
         props.playbackRate,
         allowAmplificationDuringRender,
         toneFrequency,
+        sequenceContext === null || sequenceContext === void 0 ? void 0 : sequenceContext.relativeFrom,
     ]);
     const { src } = props;
     // The <audio> tag is only rendered if the duration needs to be calculated for the `loop`
@@ -4948,11 +5191,17 @@ const AudioForRenderingRefForwardingFunction = (props, ref) => {
     const needsToRenderAudioTag = ref || _remotionInternalNeedsDurationCalculation;
     // If audio source switches, make new handle
     (0, react_1.useLayoutEffect)(() => {
-        if (false) {}
+        var _a, _b;
+        if (((_b = (_a = window.process) === null || _a === void 0 ? void 0 : _a.env) === null || _b === void 0 ? void 0 : _b.NODE_ENV) === 'test') {
+            return;
+        }
         if (!needsToRenderAudioTag) {
             return;
         }
-        const newHandle = (0, delay_render_js_1.delayRender)('Loading <Audio> duration with src=' + src);
+        const newHandle = (0, delay_render_js_1.delayRender)('Loading <Audio> duration with src=' + src, {
+            retries: delayRenderRetries !== null && delayRenderRetries !== void 0 ? delayRenderRetries : undefined,
+            timeoutInMilliseconds: delayRenderTimeoutInMilliseconds !== null && delayRenderTimeoutInMilliseconds !== void 0 ? delayRenderTimeoutInMilliseconds : undefined,
+        });
         const { current } = audioRef;
         const didLoad = () => {
             if (current === null || current === void 0 ? void 0 : current.duration) {
@@ -4972,7 +5221,13 @@ const AudioForRenderingRefForwardingFunction = (props, ref) => {
             current === null || current === void 0 ? void 0 : current.removeEventListener('loadedmetadata', didLoad);
             (0, delay_render_js_1.continueRender)(newHandle);
         };
-    }, [src, onDuration, needsToRenderAudioTag]);
+    }, [
+        src,
+        onDuration,
+        needsToRenderAudioTag,
+        delayRenderRetries,
+        delayRenderTimeoutInMilliseconds,
+    ]);
     if (!needsToRenderAudioTag) {
         return null;
     }
@@ -4983,7 +5238,7 @@ exports.AudioForRendering = (0, react_1.forwardRef)(AudioForRenderingRefForwardi
 
 /***/ }),
 
-/***/ 24533:
+/***/ 4533:
 /***/ (function(__unused_webpack_module, exports, __webpack_require__) {
 
 "use strict";
@@ -5003,13 +5258,13 @@ var __exportStar = (this && this.__exportStar) || function(m, exports) {
     for (var p in m) if (p !== "default" && !Object.prototype.hasOwnProperty.call(exports, p)) __createBinding(exports, m, p);
 };
 Object.defineProperty(exports, "__esModule", ({ value: true }));
-__exportStar(__webpack_require__(24387), exports);
-__exportStar(__webpack_require__(98796), exports);
+__exportStar(__webpack_require__(4387), exports);
+__exportStar(__webpack_require__(8796), exports);
 
 
 /***/ }),
 
-/***/ 98796:
+/***/ 8796:
 /***/ ((__unused_webpack_module, exports) => {
 
 "use strict";
@@ -5049,9 +5304,9 @@ var __importStar = (this && this.__importStar) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.useSharedAudio = exports.SharedAudioContextProvider = exports.SharedAudioContext = void 0;
-const jsx_runtime_1 = __webpack_require__(85893);
-const react_1 = __importStar(__webpack_require__(67294));
-const play_and_handle_not_allowed_error_js_1 = __webpack_require__(15091);
+const jsx_runtime_1 = __webpack_require__(5893);
+const react_1 = __importStar(__webpack_require__(7294));
+const play_and_handle_not_allowed_error_js_1 = __webpack_require__(5091);
 const EMPTY_AUDIO = 'data:audio/mp3;base64,/+MYxAAJcAV8AAgAABn//////+/gQ5BAMA+D4Pg+BAQBAEAwD4Pg+D4EBAEAQDAPg++hYBH///hUFQVBUFREDQNHmf///////+MYxBUGkAGIMAAAAP/29Xt6lUxBTUUzLjEwMFVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV/+MYxDUAAANIAAAAAFVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV';
 const compareProps = (obj1, obj2) => {
     const keysA = Object.keys(obj1).sort();
@@ -5272,16 +5527,17 @@ exports.useSharedAudio = useSharedAudio;
 
 /***/ }),
 
-/***/ 66873:
+/***/ 6873:
 /***/ ((__unused_webpack_module, exports, __webpack_require__) => {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.useFrameForVolumeProp = exports.useMediaStartsAt = void 0;
-const react_1 = __webpack_require__(67294);
-const SequenceContext_js_1 = __webpack_require__(73759);
-const use_current_frame_js_1 = __webpack_require__(39727);
+const react_1 = __webpack_require__(7294);
+const SequenceContext_js_1 = __webpack_require__(3759);
+const index_js_1 = __webpack_require__(4432);
+const use_current_frame_js_1 = __webpack_require__(9727);
 const useMediaStartsAt = () => {
     var _a;
     const parentSequence = (0, react_1.useContext)(SequenceContext_js_1.SequenceContext);
@@ -5293,17 +5549,21 @@ exports.useMediaStartsAt = useMediaStartsAt;
  * When passing a function as the prop for `volume`,
  * we calculate the way more intuitive value for currentFrame
  */
-const useFrameForVolumeProp = () => {
+const useFrameForVolumeProp = (behavior) => {
+    const loop = index_js_1.Loop.useLoop();
     const frame = (0, use_current_frame_js_1.useCurrentFrame)();
     const startsAt = (0, exports.useMediaStartsAt)();
-    return frame + startsAt;
+    if (behavior === 'repeat' || loop === null) {
+        return frame + startsAt;
+    }
+    return frame + startsAt + loop.durationInFrames * loop.iteration;
 };
 exports.useFrameForVolumeProp = useFrameForVolumeProp;
 
 
 /***/ }),
 
-/***/ 32219:
+/***/ 2219:
 /***/ ((__unused_webpack_module, exports) => {
 
 "use strict";
@@ -5425,7 +5685,7 @@ exports.bezier = bezier;
 
 /***/ }),
 
-/***/ 45775:
+/***/ 5775:
 /***/ (function(__unused_webpack_module, exports, __webpack_require__) {
 
 "use strict";
@@ -5455,8 +5715,8 @@ var __importStar = (this && this.__importStar) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.BufferingProvider = exports.BufferingContextReact = void 0;
-const jsx_runtime_1 = __webpack_require__(85893);
-const react_1 = __importStar(__webpack_require__(67294));
+const jsx_runtime_1 = __webpack_require__(5893);
+const react_1 = __importStar(__webpack_require__(7294));
 const useBufferManager = () => {
     const [blocks, setBlocks] = (0, react_1.useState)([]);
     const [onBufferingCallbacks, setOnBufferingCallbacks] = (0, react_1.useState)([]);
@@ -5466,7 +5726,13 @@ const useBufferManager = () => {
         setBlocks((b) => [...b, block]);
         return {
             unblock: () => {
-                setBlocks((b) => b.filter((bx) => bx !== block));
+                setBlocks((b) => {
+                    const newArr = b.filter((bx) => bx !== block);
+                    if (newArr.length === b.length) {
+                        return b;
+                    }
+                    return newArr;
+                });
             },
         };
     }, []);
@@ -5490,10 +5756,20 @@ const useBufferManager = () => {
         if (blocks.length > 0) {
             onBufferingCallbacks.forEach((c) => c());
         }
-        else {
+        // Intentionally only firing when blocks change, not the callbacks
+        // otherwise a buffering callback might remove itself after being called
+        // and trigger again
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [blocks]);
+    (0, react_1.useEffect)(() => {
+        if (blocks.length === 0) {
             onResumeCallbacks.forEach((c) => c());
         }
-    }, [blocks, onBufferingCallbacks, onResumeCallbacks]);
+        // Intentionally only firing when blocks change, not the callbacks
+        // otherwise a resume callback might remove itself after being called
+        // and trigger again
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [blocks]);
     return (0, react_1.useMemo)(() => {
         return { addBlock, listenForBuffering, listenForResume, buffering };
     }, [addBlock, buffering, listenForBuffering, listenForResume]);
@@ -5508,7 +5784,7 @@ exports.BufferingProvider = BufferingProvider;
 
 /***/ }),
 
-/***/ 46822:
+/***/ 6822:
 /***/ ((__unused_webpack_module, exports) => {
 
 "use strict";
@@ -5533,7 +5809,7 @@ exports.calculateLoopDuration = calculateLoopDuration;
 
 /***/ }),
 
-/***/ 88113:
+/***/ 8113:
 /***/ ((__unused_webpack_module, exports) => {
 
 "use strict";
@@ -5588,7 +5864,7 @@ exports.cancelRender = cancelRender;
 
 /***/ }),
 
-/***/ 30851:
+/***/ 851:
 /***/ ((__unused_webpack_module, exports) => {
 
 "use strict";
@@ -5613,15 +5889,15 @@ exports.DEFAULT_CODEC = 'h264';
 
 /***/ }),
 
-/***/ 35287:
+/***/ 5287:
 /***/ ((__unused_webpack_module, exports, __webpack_require__) => {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.getInputProps = void 0;
-const get_remotion_environment_js_1 = __webpack_require__(48288);
-const input_props_serialization_js_1 = __webpack_require__(89203);
+const get_remotion_environment_js_1 = __webpack_require__(8288);
+const input_props_serialization_js_1 = __webpack_require__(9203);
 let didWarnSSRImport = false;
 const warnOnceSSRImport = () => {
     if (didWarnSSRImport) {
@@ -5655,13 +5931,13 @@ exports.getInputProps = getInputProps;
 
 /***/ }),
 
-/***/ 57524:
+/***/ 7524:
 /***/ ((__unused_webpack_module, exports) => {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", ({ value: true }));
-exports.makeDefaultCSS = exports.OFFTHREAD_VIDEO_CLASS_NAME = exports.injectCSS = void 0;
+exports.makeDefaultPreviewCSS = exports.OFFTHREAD_VIDEO_CLASS_NAME = exports.injectCSS = void 0;
 const injected = {};
 const injectCSS = (css) => {
     // Skip in node
@@ -5679,7 +5955,7 @@ const injectCSS = (css) => {
 };
 exports.injectCSS = injectCSS;
 exports.OFFTHREAD_VIDEO_CLASS_NAME = '__remotion_offthreadvideo';
-const makeDefaultCSS = (scope, backgroundColor) => {
+const makeDefaultPreviewCSS = (scope, backgroundColor) => {
     if (!scope) {
         return `
     * {
@@ -5707,19 +5983,20 @@ const makeDefaultCSS = (scope, backgroundColor) => {
     }
   `;
 };
-exports.makeDefaultCSS = makeDefaultCSS;
+exports.makeDefaultPreviewCSS = makeDefaultPreviewCSS;
 
 
 /***/ }),
 
-/***/ 22663:
+/***/ 2663:
 /***/ ((__unused_webpack_module, exports, __webpack_require__) => {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", ({ value: true }));
-exports.continueRender = exports.delayRender = exports.DELAY_RENDER_CALLSTACK_TOKEN = void 0;
-const get_remotion_environment_js_1 = __webpack_require__(48288);
+exports.continueRender = exports.delayRender = exports.DELAY_RENDER_RETRY_TOKEN = exports.DELAY_RENDER_RETRIES_LEFT = exports.DELAY_RENDER_CALLSTACK_TOKEN = void 0;
+const cancel_render_js_1 = __webpack_require__(8113);
+const get_remotion_environment_js_1 = __webpack_require__(8288);
 const truthy_js_1 = __webpack_require__(3928);
 if (typeof window !== 'undefined') {
     window.remotion_renderReady = false;
@@ -5729,6 +6006,8 @@ if (typeof window !== 'undefined') {
     window.remotion_delayRenderTimeouts = {};
 }
 exports.DELAY_RENDER_CALLSTACK_TOKEN = 'The delayRender was called:';
+exports.DELAY_RENDER_RETRIES_LEFT = 'Retries left: ';
+exports.DELAY_RENDER_RETRY_TOKEN = '- Rendering the frame will be retried.';
 const defaultTimeout = 30000;
 /**
  * @description Call this function to tell Remotion to wait before capturing this frame until data has loaded. Use continueRender() to unblock the render.
@@ -5736,8 +6015,8 @@ const defaultTimeout = 30000;
  * @returns {number} An identifier to be passed to continueRender().
  * @see [Documentation](https://www.remotion.dev/docs/delay-render)
  */
-const delayRender = (label) => {
-    var _a, _b, _c;
+const delayRender = (label, options) => {
+    var _a, _b, _c, _d, _e;
     if (typeof label !== 'string' && typeof label !== 'undefined') {
         throw new Error('The label parameter of delayRender() must be a string or undefined, got: ' +
             JSON.stringify(label));
@@ -5746,10 +6025,11 @@ const delayRender = (label) => {
     handles.push(handle);
     const called = (_b = (_a = Error().stack) === null || _a === void 0 ? void 0 : _a.replace(/^Error/g, '')) !== null && _b !== void 0 ? _b : '';
     if ((0, get_remotion_environment_js_1.getRemotionEnvironment)().isRendering) {
-        const timeoutToUse = typeof window === 'undefined'
+        const timeoutToUse = ((_c = options === null || options === void 0 ? void 0 : options.timeoutInMilliseconds) !== null && _c !== void 0 ? _c : (typeof window === 'undefined'
             ? defaultTimeout
-            : ((_c = window.remotion_puppeteerTimeout) !== null && _c !== void 0 ? _c : defaultTimeout) - 2000;
+            : (_d = window.remotion_puppeteerTimeout) !== null && _d !== void 0 ? _d : defaultTimeout)) - 2000;
         if (typeof window !== 'undefined') {
+            const retriesLeft = ((_e = options === null || options === void 0 ? void 0 : options.retries) !== null && _e !== void 0 ? _e : 0) - (window.remotion_attempt - 1);
             window.remotion_delayRenderTimeouts[handle] = {
                 label: label !== null && label !== void 0 ? label : null,
                 timeout: setTimeout(() => {
@@ -5757,12 +6037,14 @@ const delayRender = (label) => {
                         `A delayRender()`,
                         label ? `"${label}"` : null,
                         `was called but not cleared after ${timeoutToUse}ms. See https://remotion.dev/docs/timeout for help.`,
+                        retriesLeft > 0 ? exports.DELAY_RENDER_RETRIES_LEFT + retriesLeft : null,
+                        retriesLeft > 0 ? exports.DELAY_RENDER_RETRY_TOKEN : null,
                         exports.DELAY_RENDER_CALLSTACK_TOKEN,
                         called,
                     ]
                         .filter(truthy_js_1.truthy)
                         .join(' ');
-                    throw new Error(message);
+                    (0, cancel_render_js_1.cancelRender)(Error(message));
                 }, timeoutToUse),
             };
         }
@@ -5805,7 +6087,7 @@ exports.continueRender = continueRender;
 
 /***/ }),
 
-/***/ 65514:
+/***/ 5514:
 /***/ ((__unused_webpack_module, exports, __webpack_require__) => {
 
 "use strict";
@@ -5813,7 +6095,7 @@ exports.continueRender = continueRender;
 // Taken from https://github.com/facebook/react-native/blob/0b9ea60b4fee8cacc36e7160e31b91fc114dbc0d/Libraries/Animated/src/Easing.js
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.Easing = void 0;
-const bezier_js_1 = __webpack_require__(32219);
+const bezier_js_1 = __webpack_require__(2219);
 /**
  * @description The Easing module implements common easing functions. You can use it with the interpolate() API.
  * @see [Documentation](https://www.remotion.dev/docs/easing)
@@ -5894,7 +6176,7 @@ exports.Easing = Easing;
 
 /***/ }),
 
-/***/ 12196:
+/***/ 2196:
 /***/ (function(__unused_webpack_module, exports, __webpack_require__) {
 
 "use strict";
@@ -5904,8 +6186,8 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.addSequenceStackTraces = exports.enableSequenceStackTraces = void 0;
-const react_1 = __importDefault(__webpack_require__(67294));
-const get_remotion_environment_1 = __webpack_require__(48288);
+const react_1 = __importDefault(__webpack_require__(7294));
+const get_remotion_environment_1 = __webpack_require__(8288);
 const originalCreateElement = react_1.default.createElement;
 const componentsToAddStacksTo = [];
 // Gets called when a new component is added,
@@ -5939,24 +6221,25 @@ exports.addSequenceStackTraces = addSequenceStackTraces;
 
 /***/ }),
 
-/***/ 47587:
+/***/ 7587:
 /***/ ((__unused_webpack_module, exports, __webpack_require__) => {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.Freeze = void 0;
-const jsx_runtime_1 = __webpack_require__(85893);
-const react_1 = __webpack_require__(67294);
-const SequenceContext_js_1 = __webpack_require__(73759);
-const timeline_position_state_js_1 = __webpack_require__(47083);
-const use_current_frame_js_1 = __webpack_require__(39727);
-const use_video_config_js_1 = __webpack_require__(73347);
+const jsx_runtime_1 = __webpack_require__(5893);
+const react_1 = __webpack_require__(7294);
+const SequenceContext_js_1 = __webpack_require__(3759);
+const timeline_position_state_js_1 = __webpack_require__(7083);
+const use_current_frame_js_1 = __webpack_require__(9727);
+const use_video_config_js_1 = __webpack_require__(3347);
 /**
  * @description This method freezes all of its children to the frame that you specify as a prop
  * @see [Documentation](https://www.remotion.dev/docs/freeze)
  */
 const Freeze = ({ frame: frameToFreeze, children, active = true, }) => {
+    var _a;
     const frame = (0, use_current_frame_js_1.useCurrentFrame)();
     const videoConfig = (0, use_video_config_js_1.useVideoConfig)();
     if (typeof frameToFreeze === 'undefined') {
@@ -5981,6 +6264,7 @@ const Freeze = ({ frame: frameToFreeze, children, active = true, }) => {
     }, [active, frame]);
     const timelineContext = (0, react_1.useContext)(timeline_position_state_js_1.TimelineContext);
     const sequenceContext = (0, react_1.useContext)(SequenceContext_js_1.SequenceContext);
+    const relativeFrom = (_a = sequenceContext === null || sequenceContext === void 0 ? void 0 : sequenceContext.relativeFrom) !== null && _a !== void 0 ? _a : 0;
     const timelineValue = (0, react_1.useMemo)(() => {
         if (!isActive) {
             return timelineContext;
@@ -5992,24 +6276,18 @@ const Freeze = ({ frame: frameToFreeze, children, active = true, }) => {
                 current: false,
             },
             frame: {
-                [videoConfig.id]: frameToFreeze,
+                [videoConfig.id]: frameToFreeze + relativeFrom,
             },
         };
-    }, [timelineContext, frameToFreeze, isActive, videoConfig.id]);
-    const sequenceValue = (0, react_1.useMemo)(() => {
-        if (isActive) {
-            return null;
-        }
-        return sequenceContext;
-    }, [isActive, sequenceContext]);
-    return ((0, jsx_runtime_1.jsx)(timeline_position_state_js_1.TimelineContext.Provider, { value: timelineValue, children: (0, jsx_runtime_1.jsx)(SequenceContext_js_1.SequenceContext.Provider, { value: sequenceValue, children: children }) }));
+    }, [isActive, timelineContext, videoConfig.id, frameToFreeze, relativeFrom]);
+    return ((0, jsx_runtime_1.jsx)(timeline_position_state_js_1.TimelineContext.Provider, { value: timelineValue, children: children }));
 };
 exports.Freeze = Freeze;
 
 
 /***/ }),
 
-/***/ 76644:
+/***/ 6644:
 /***/ ((__unused_webpack_module, exports) => {
 
 "use strict";
@@ -6031,7 +6309,7 @@ exports.getAssetDisplayName = getAssetDisplayName;
 
 /***/ }),
 
-/***/ 83595:
+/***/ 3595:
 /***/ ((__unused_webpack_module, exports) => {
 
 "use strict";
@@ -6047,23 +6325,33 @@ exports.getPreviewDomElement = getPreviewDomElement;
 
 /***/ }),
 
-/***/ 48288:
+/***/ 8288:
 /***/ ((__unused_webpack_module, exports) => {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.getRemotionEnvironment = void 0;
+// Avoid VITE obfuscation
+function getNodeEnvString() {
+    return ['NOD', 'E_EN', 'V'].join('');
+}
+const getEnvString = () => {
+    return ['e', 'nv'].join('');
+};
 /**
  * @description Provides information about the Remotion Environment
  * @see [Documentation](https://www.remotion.dev/docs/get-remotion-environment)
  */
 const getRemotionEnvironment = () => {
     const isPlayer = typeof window !== 'undefined' && window.remotion_isPlayer;
-    const isRendering =  false ||
-        ( true &&
-            typeof window !== 'undefined' &&
-            typeof window.remotion_puppeteerTimeout !== 'undefined');
+    const isRendering = typeof window !== 'undefined' &&
+        typeof window.process !== 'undefined' &&
+        typeof window.process.env !== 'undefined' &&
+        (window.process[getEnvString()][getNodeEnvString()] === 'test' ||
+            (window.process[getEnvString()][getNodeEnvString()] === 'production' &&
+                typeof window !== 'undefined' &&
+                typeof window.remotion_puppeteerTimeout !== 'undefined'));
     const isStudio = typeof window !== 'undefined' && window.remotion_isStudio;
     return {
         isStudio,
@@ -6076,13 +6364,14 @@ exports.getRemotionEnvironment = getRemotionEnvironment;
 
 /***/ }),
 
-/***/ 25357:
-/***/ ((__unused_webpack_module, exports) => {
+/***/ 5357:
+/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.getStaticFiles = void 0;
+const v5_flag_1 = __webpack_require__(6844);
 let warnedServer = false;
 let warnedPlayer = false;
 const warnServerOnce = () => {
@@ -6106,6 +6395,9 @@ const warnPlayerOnce = () => {
  * @see [Documentation](https://www.remotion.dev/docs/getstaticfiles)
  */
 const getStaticFiles = () => {
+    if (v5_flag_1.ENABLE_V5_BREAKING_CHANGES) {
+        throw new Error('getStaticFiles() has moved into the `@remotion/studio` package. Update your imports.');
+    }
     if (typeof document === 'undefined') {
         warnServerOnce();
         return [];
@@ -6121,7 +6413,7 @@ exports.getStaticFiles = getStaticFiles;
 
 /***/ }),
 
-/***/ 27982:
+/***/ 7982:
 /***/ (function(__unused_webpack_module, exports, __webpack_require__) {
 
 "use strict";
@@ -6142,66 +6434,66 @@ var __exportStar = (this && this.__exportStar) || function(m, exports) {
 };
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.Config = exports.Experimental = exports.watchStaticFile = exports.useCurrentScale = exports.useCurrentFrame = exports.useBufferState = exports.staticFile = exports.Series = exports.Sequence = exports.registerRoot = exports.prefetch = exports.random = exports.interpolate = exports.Loop = exports.interpolateColors = exports.Img = exports.getStaticFiles = exports.getRemotionEnvironment = exports.delayRender = exports.continueRender = exports.getInputProps = exports.Composition = exports.cancelRender = void 0;
-__webpack_require__(55449);
-const Clipper_js_1 = __webpack_require__(72434);
-const enable_sequence_stack_traces_js_1 = __webpack_require__(12196);
-const is_player_js_1 = __webpack_require__(50606);
-const multiple_versions_warning_js_1 = __webpack_require__(90469);
-const Null_js_1 = __webpack_require__(74675);
-const Sequence_js_1 = __webpack_require__(97080);
+__webpack_require__(5449);
+const Clipper_js_1 = __webpack_require__(2434);
+const enable_sequence_stack_traces_js_1 = __webpack_require__(2196);
+const is_player_js_1 = __webpack_require__(606);
+const multiple_versions_warning_js_1 = __webpack_require__(469);
+const Null_js_1 = __webpack_require__(4675);
+const Sequence_js_1 = __webpack_require__(7080);
 (0, multiple_versions_warning_js_1.checkMultipleRemotionVersions)();
-__exportStar(__webpack_require__(92640), exports);
-__exportStar(__webpack_require__(24533), exports);
-var cancel_render_js_1 = __webpack_require__(88113);
+__exportStar(__webpack_require__(2640), exports);
+__exportStar(__webpack_require__(4533), exports);
+var cancel_render_js_1 = __webpack_require__(8113);
 Object.defineProperty(exports, "cancelRender", ({ enumerable: true, get: function () { return cancel_render_js_1.cancelRender; } }));
-var Composition_js_1 = __webpack_require__(63013);
+var Composition_js_1 = __webpack_require__(3013);
 Object.defineProperty(exports, "Composition", ({ enumerable: true, get: function () { return Composition_js_1.Composition; } }));
-var input_props_js_1 = __webpack_require__(35287);
+var input_props_js_1 = __webpack_require__(5287);
 Object.defineProperty(exports, "getInputProps", ({ enumerable: true, get: function () { return input_props_js_1.getInputProps; } }));
-var delay_render_js_1 = __webpack_require__(22663);
+var delay_render_js_1 = __webpack_require__(2663);
 Object.defineProperty(exports, "continueRender", ({ enumerable: true, get: function () { return delay_render_js_1.continueRender; } }));
 Object.defineProperty(exports, "delayRender", ({ enumerable: true, get: function () { return delay_render_js_1.delayRender; } }));
-__exportStar(__webpack_require__(65514), exports);
-__exportStar(__webpack_require__(49512), exports);
-__exportStar(__webpack_require__(47587), exports);
-var get_remotion_environment_js_1 = __webpack_require__(48288);
+__exportStar(__webpack_require__(5514), exports);
+__exportStar(__webpack_require__(9512), exports);
+__exportStar(__webpack_require__(7587), exports);
+var get_remotion_environment_js_1 = __webpack_require__(8288);
 Object.defineProperty(exports, "getRemotionEnvironment", ({ enumerable: true, get: function () { return get_remotion_environment_js_1.getRemotionEnvironment; } }));
-var get_static_files_js_1 = __webpack_require__(25357);
+var get_static_files_js_1 = __webpack_require__(5357);
 Object.defineProperty(exports, "getStaticFiles", ({ enumerable: true, get: function () { return get_static_files_js_1.getStaticFiles; } }));
-__exportStar(__webpack_require__(35139), exports);
-var Img_js_1 = __webpack_require__(10074);
+__exportStar(__webpack_require__(5139), exports);
+var Img_js_1 = __webpack_require__(74);
 Object.defineProperty(exports, "Img", ({ enumerable: true, get: function () { return Img_js_1.Img; } }));
-__exportStar(__webpack_require__(88456), exports);
+__exportStar(__webpack_require__(8456), exports);
 var interpolate_colors_js_1 = __webpack_require__(4354);
 Object.defineProperty(exports, "interpolateColors", ({ enumerable: true, get: function () { return interpolate_colors_js_1.interpolateColors; } }));
 var index_js_1 = __webpack_require__(4432);
 Object.defineProperty(exports, "Loop", ({ enumerable: true, get: function () { return index_js_1.Loop; } }));
-var no_react_1 = __webpack_require__(60808);
+var no_react_1 = __webpack_require__(808);
 Object.defineProperty(exports, "interpolate", ({ enumerable: true, get: function () { return no_react_1.interpolate; } }));
 Object.defineProperty(exports, "random", ({ enumerable: true, get: function () { return no_react_1.random; } }));
-var prefetch_js_1 = __webpack_require__(32595);
+var prefetch_js_1 = __webpack_require__(2595);
 Object.defineProperty(exports, "prefetch", ({ enumerable: true, get: function () { return prefetch_js_1.prefetch; } }));
-var register_root_js_1 = __webpack_require__(74440);
+var register_root_js_1 = __webpack_require__(4440);
 Object.defineProperty(exports, "registerRoot", ({ enumerable: true, get: function () { return register_root_js_1.registerRoot; } }));
-var Sequence_js_2 = __webpack_require__(97080);
+var Sequence_js_2 = __webpack_require__(7080);
 Object.defineProperty(exports, "Sequence", ({ enumerable: true, get: function () { return Sequence_js_2.Sequence; } }));
-var index_js_2 = __webpack_require__(93864);
+var index_js_2 = __webpack_require__(3864);
 Object.defineProperty(exports, "Series", ({ enumerable: true, get: function () { return index_js_2.Series; } }));
-__exportStar(__webpack_require__(37636), exports);
-var static_file_js_1 = __webpack_require__(96840);
+__exportStar(__webpack_require__(7636), exports);
+var static_file_js_1 = __webpack_require__(6840);
 Object.defineProperty(exports, "staticFile", ({ enumerable: true, get: function () { return static_file_js_1.staticFile; } }));
-__exportStar(__webpack_require__(18876), exports);
-var use_buffer_state_1 = __webpack_require__(89075);
+__exportStar(__webpack_require__(8876), exports);
+var use_buffer_state_1 = __webpack_require__(9075);
 Object.defineProperty(exports, "useBufferState", ({ enumerable: true, get: function () { return use_buffer_state_1.useBufferState; } }));
-var use_current_frame_js_1 = __webpack_require__(39727);
+var use_current_frame_js_1 = __webpack_require__(9727);
 Object.defineProperty(exports, "useCurrentFrame", ({ enumerable: true, get: function () { return use_current_frame_js_1.useCurrentFrame; } }));
-var use_current_scale_1 = __webpack_require__(99267);
+var use_current_scale_1 = __webpack_require__(9267);
 Object.defineProperty(exports, "useCurrentScale", ({ enumerable: true, get: function () { return use_current_scale_1.useCurrentScale; } }));
-__exportStar(__webpack_require__(73347), exports);
-__exportStar(__webpack_require__(93648), exports);
-__exportStar(__webpack_require__(87778), exports);
+__exportStar(__webpack_require__(3347), exports);
+__exportStar(__webpack_require__(3648), exports);
+__exportStar(__webpack_require__(7778), exports);
 __exportStar(__webpack_require__(4134), exports);
-var watch_static_file_js_1 = __webpack_require__(74295);
+var watch_static_file_js_1 = __webpack_require__(4295);
 Object.defineProperty(exports, "watchStaticFile", ({ enumerable: true, get: function () { return watch_static_file_js_1.watchStaticFile; } }));
 exports.Experimental = {
     /**
@@ -6247,7 +6539,7 @@ exports.Config = new Proxy(proxyObj, {
 
 /***/ }),
 
-/***/ 89203:
+/***/ 9203:
 /***/ ((__unused_webpack_module, exports, __webpack_require__) => {
 
 "use strict";
@@ -6255,7 +6547,7 @@ exports.Config = new Proxy(proxyObj, {
 // Must keep this file in sync with the one in packages/lambda/src/shared/serialize-props.ts!
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.deserializeJSONWithCustomFields = exports.serializeJSONWithDate = exports.FILE_TOKEN = exports.DATE_TOKEN = void 0;
-const static_file_js_1 = __webpack_require__(96840);
+const static_file_js_1 = __webpack_require__(6840);
 exports.DATE_TOKEN = 'remotion-date:';
 exports.FILE_TOKEN = 'remotion-file:';
 const serializeJSONWithDate = ({ data, indent, staticBase, }) => {
@@ -6304,7 +6596,7 @@ exports.deserializeJSONWithCustomFields = deserializeJSONWithCustomFields;
 
 /***/ }),
 
-/***/ 88456:
+/***/ 8456:
 /***/ (function(__unused_webpack_module, exports, __webpack_require__) {
 
 "use strict";
@@ -6335,46 +6627,44 @@ var __importStar = (this && this.__importStar) || function (mod) {
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.Internals = void 0;
 const shared_audio_tags_js_1 = __webpack_require__(3161);
-const use_audio_frame_js_1 = __webpack_require__(66873);
-const buffering_js_1 = __webpack_require__(45775);
-const CanUseRemotionHooks_js_1 = __webpack_require__(44144);
-const Composition_js_1 = __webpack_require__(63013);
+const use_audio_frame_js_1 = __webpack_require__(6873);
+const buffering_js_1 = __webpack_require__(5775);
+const CanUseRemotionHooks_js_1 = __webpack_require__(4144);
+const Composition_js_1 = __webpack_require__(3013);
 const CompositionManager_js_1 = __webpack_require__(4932);
-const CompositionManagerContext_js_1 = __webpack_require__(13898);
-const CSSUtils = __importStar(__webpack_require__(57524));
-const EditorProps_js_1 = __webpack_require__(75550);
-const enable_sequence_stack_traces_js_1 = __webpack_require__(12196);
-const get_preview_dom_element_js_1 = __webpack_require__(83595);
-const get_remotion_environment_js_1 = __webpack_require__(48288);
-const input_props_serialization_js_1 = __webpack_require__(89203);
-const interpolate_colors_js_1 = __webpack_require__(4354);
-const is_player_js_1 = __webpack_require__(50606);
+const CompositionManagerContext_js_1 = __webpack_require__(3898);
+const CSSUtils = __importStar(__webpack_require__(7524));
+const EditorProps_js_1 = __webpack_require__(5550);
+const enable_sequence_stack_traces_js_1 = __webpack_require__(2196);
+const get_preview_dom_element_js_1 = __webpack_require__(3595);
+const get_remotion_environment_js_1 = __webpack_require__(8288);
+const is_player_js_1 = __webpack_require__(606);
 const NativeLayers_js_1 = __webpack_require__(2425);
-const nonce_js_1 = __webpack_require__(98054);
-const portal_node_js_1 = __webpack_require__(91734);
-const prefetch_state_js_1 = __webpack_require__(15819);
-const prefetch_js_1 = __webpack_require__(32595);
-const register_root_js_1 = __webpack_require__(74440);
-const RemotionRoot_js_1 = __webpack_require__(87929);
-const RenderAssetManager_js_1 = __webpack_require__(26770);
-const resolve_video_config_js_1 = __webpack_require__(28832);
-const ResolveCompositionConfig_js_1 = __webpack_require__(95014);
-const SequenceContext_js_1 = __webpack_require__(73759);
-const SequenceManager_js_1 = __webpack_require__(80829);
-const setup_env_variables_js_1 = __webpack_require__(28498);
-const TimelinePosition = __importStar(__webpack_require__(47083));
-const timeline_position_state_js_1 = __webpack_require__(47083);
+const nonce_js_1 = __webpack_require__(8054);
+const portal_node_js_1 = __webpack_require__(1734);
+const prefetch_state_js_1 = __webpack_require__(5819);
+const prefetch_js_1 = __webpack_require__(2595);
+const register_root_js_1 = __webpack_require__(4440);
+const RemotionRoot_js_1 = __webpack_require__(7929);
+const RenderAssetManager_js_1 = __webpack_require__(6770);
+const resolve_video_config_js_1 = __webpack_require__(8832);
+const ResolveCompositionConfig_js_1 = __webpack_require__(5014);
+const SequenceContext_js_1 = __webpack_require__(3759);
+const SequenceManager_js_1 = __webpack_require__(829);
+const setup_env_variables_js_1 = __webpack_require__(8498);
+const TimelinePosition = __importStar(__webpack_require__(7083));
+const timeline_position_state_js_1 = __webpack_require__(7083);
 const truthy_js_1 = __webpack_require__(3928);
-const use_current_scale_js_1 = __webpack_require__(99267);
-const use_lazy_component_js_1 = __webpack_require__(44858);
-const use_unsafe_video_config_js_1 = __webpack_require__(53095);
+const use_current_scale_js_1 = __webpack_require__(9267);
+const use_lazy_component_js_1 = __webpack_require__(4858);
+const use_unsafe_video_config_js_1 = __webpack_require__(3095);
 const use_video_js_1 = __webpack_require__(3141);
-const validate_composition_id_js_1 = __webpack_require__(86303);
-const duration_state_js_1 = __webpack_require__(19099);
-const video_fragment_js_1 = __webpack_require__(51527);
-const volume_position_state_js_1 = __webpack_require__(51399);
-const watch_static_file_js_1 = __webpack_require__(74295);
-const wrap_remotion_context_js_1 = __webpack_require__(69887);
+const validate_composition_id_js_1 = __webpack_require__(6303);
+const duration_state_js_1 = __webpack_require__(9099);
+const video_fragment_js_1 = __webpack_require__(1527);
+const volume_position_state_js_1 = __webpack_require__(1399);
+const watch_static_file_js_1 = __webpack_require__(4295);
+const wrap_remotion_context_js_1 = __webpack_require__(9887);
 // Mark them as Internals so use don't assume this is public
 // API and are less likely to use it
 exports.Internals = {
@@ -6424,8 +6714,6 @@ exports.Internals = {
     RenderAssetManager: RenderAssetManager_js_1.RenderAssetManager,
     persistCurrentFrame: timeline_position_state_js_1.persistCurrentFrame,
     useTimelineSetFrame: timeline_position_state_js_1.useTimelineSetFrame,
-    FILE_TOKEN: input_props_serialization_js_1.FILE_TOKEN,
-    DATE_TOKEN: input_props_serialization_js_1.DATE_TOKEN,
     NativeLayersProvider: NativeLayers_js_1.NativeLayersProvider,
     ClipComposition: Composition_js_1.ClipComposition,
     isIosSafari: video_fragment_js_1.isIosSafari,
@@ -6435,10 +6723,11 @@ exports.Internals = {
     BufferingProvider: buffering_js_1.BufferingProvider,
     BufferingContextReact: buffering_js_1.BufferingContextReact,
     enableSequenceStackTraces: enable_sequence_stack_traces_js_1.enableSequenceStackTraces,
-    colorNames: interpolate_colors_js_1.colorNames,
     CurrentScaleContext: use_current_scale_js_1.CurrentScaleContext,
     PreviewSizeContext: use_current_scale_js_1.PreviewSizeContext,
     calculateScale: use_current_scale_js_1.calculateScale,
+    editorPropsProviderRef: EditorProps_js_1.editorPropsProviderRef,
+    PROPS_UPDATED_EXTERNALLY: ResolveCompositionConfig_js_1.PROPS_UPDATED_EXTERNALLY,
 };
 
 
@@ -6456,7 +6745,7 @@ exports.Internals = {
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.interpolateColors = exports.processColor = exports.colorNames = void 0;
 /* eslint no-bitwise: 0 */
-const interpolate_js_1 = __webpack_require__(92297);
+const interpolate_js_1 = __webpack_require__(2297);
 // var INTEGER = '[-+]?\\d+';
 const NUMBER = '[-+]?\\d*\\.?\\d+';
 const PERCENTAGE = NUMBER + '%';
@@ -6851,7 +7140,7 @@ exports.interpolateColors = interpolateColors;
 
 /***/ }),
 
-/***/ 92297:
+/***/ 2297:
 /***/ ((__unused_webpack_module, exports) => {
 
 "use strict";
@@ -6917,7 +7206,7 @@ function findRange(input, inputRange) {
 function checkValidInputRange(arr) {
     for (let i = 1; i < arr.length; ++i) {
         if (!(arr[i] > arr[i - 1])) {
-            throw new Error(`inputRange must be strictly monotonically non-decreasing but got [${arr.join(',')}]`);
+            throw new Error(`inputRange must be strictly monotonically increasing but got [${arr.join(',')}]`);
         }
     }
 }
@@ -6925,11 +7214,11 @@ function checkInfiniteRange(name, arr) {
     if (arr.length < 2) {
         throw new Error(name + ' must have at least 2 elements');
     }
-    for (const index in arr) {
-        if (typeof arr[index] !== 'number') {
+    for (const element of arr) {
+        if (typeof element !== 'number') {
             throw new Error(`${name} must contain only numbers`);
         }
-        if (arr[index] === -Infinity || arr[index] === Infinity) {
+        if (!Number.isFinite(element)) {
             throw new Error(`${name} must contain only finite numbers, but got [${arr.join(',')}]`);
         }
     }
@@ -6990,7 +7279,7 @@ exports.interpolate = interpolate;
 
 /***/ }),
 
-/***/ 26614:
+/***/ 6614:
 /***/ ((__unused_webpack_module, exports) => {
 
 "use strict";
@@ -7006,15 +7295,15 @@ exports.isApproximatelyTheSame = isApproximatelyTheSame;
 
 /***/ }),
 
-/***/ 50606:
+/***/ 606:
 /***/ ((__unused_webpack_module, exports, __webpack_require__) => {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.useIsPlayer = exports.IsPlayerContextProvider = void 0;
-const jsx_runtime_1 = __webpack_require__(85893);
-const react_1 = __webpack_require__(67294);
+const jsx_runtime_1 = __webpack_require__(5893);
+const react_1 = __webpack_require__(7294);
 const IsPlayerContext = (0, react_1.createContext)(false);
 const IsPlayerContextProvider = ({ children, }) => {
     return (0, jsx_runtime_1.jsx)(IsPlayerContext.Provider, { value: true, children: children });
@@ -7028,15 +7317,15 @@ exports.useIsPlayer = useIsPlayer;
 
 /***/ }),
 
-/***/ 95490:
+/***/ 5490:
 /***/ ((__unused_webpack_module, exports, __webpack_require__) => {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.Loading = void 0;
-const jsx_runtime_1 = __webpack_require__(85893);
-const AbsoluteFill_js_1 = __webpack_require__(92640);
+const jsx_runtime_1 = __webpack_require__(5893);
+const AbsoluteFill_js_1 = __webpack_require__(2640);
 const rotate = {
     transform: `rotate(90deg)`,
 };
@@ -7072,18 +7361,45 @@ exports.Loading = Loading;
 /***/ }),
 
 /***/ 4432:
-/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+/***/ (function(__unused_webpack_module, exports, __webpack_require__) {
 
 "use strict";
 
+var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    var desc = Object.getOwnPropertyDescriptor(m, k);
+    if (!desc || ("get" in desc ? !m.__esModule : desc.writable || desc.configurable)) {
+      desc = { enumerable: true, get: function() { return m[k]; } };
+    }
+    Object.defineProperty(o, k2, desc);
+}) : (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    o[k2] = m[k];
+}));
+var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {
+    Object.defineProperty(o, "default", { enumerable: true, value: v });
+}) : function(o, v) {
+    o["default"] = v;
+});
+var __importStar = (this && this.__importStar) || function (mod) {
+    if (mod && mod.__esModule) return mod;
+    var result = {};
+    if (mod != null) for (var k in mod) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
+    __setModuleDefault(result, mod);
+    return result;
+};
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.Loop = void 0;
-const jsx_runtime_1 = __webpack_require__(85893);
-const react_1 = __webpack_require__(67294);
-const Sequence_js_1 = __webpack_require__(97080);
-const use_current_frame_js_1 = __webpack_require__(39727);
-const use_video_config_js_1 = __webpack_require__(73347);
-const validate_duration_in_frames_js_1 = __webpack_require__(52363);
+const jsx_runtime_1 = __webpack_require__(5893);
+const react_1 = __importStar(__webpack_require__(7294));
+const Sequence_js_1 = __webpack_require__(7080);
+const use_current_frame_js_1 = __webpack_require__(9727);
+const use_video_config_js_1 = __webpack_require__(3347);
+const validate_duration_in_frames_js_1 = __webpack_require__(2363);
+const LoopContext = (0, react_1.createContext)(null);
+const useLoop = () => {
+    return react_1.default.useContext(LoopContext);
+};
 /**
  * @description This component allows you to quickly lay out an animation so it repeats itself.
  * @see [Documentation](https://www.remotion.dev/docs/loop)
@@ -7108,7 +7424,8 @@ const Loop = ({ durationInFrames, times = Infinity, children, name, ...props }) 
     const actualTimes = Math.min(maxTimes, times);
     const style = props.layout === 'none' ? undefined : props.style;
     const maxFrame = durationInFrames * (actualTimes - 1);
-    const start = Math.floor(currentFrame / durationInFrames) * durationInFrames;
+    const iteration = Math.floor(currentFrame / durationInFrames);
+    const start = iteration * durationInFrames;
     const from = Math.min(start, maxFrame);
     const loopDisplay = (0, react_1.useMemo)(() => {
         return {
@@ -7117,14 +7434,21 @@ const Loop = ({ durationInFrames, times = Infinity, children, name, ...props }) 
             durationInFrames,
         };
     }, [actualTimes, durationInFrames, from]);
-    return ((0, jsx_runtime_1.jsx)(Sequence_js_1.Sequence, { durationInFrames: durationInFrames, from: from, name: name !== null && name !== void 0 ? name : '<Loop>', loopDisplay: loopDisplay, layout: props.layout, style: style, children: children }));
+    const loopContext = (0, react_1.useMemo)(() => {
+        return {
+            iteration: Math.floor(currentFrame / durationInFrames),
+            durationInFrames,
+        };
+    }, [currentFrame, durationInFrames]);
+    return ((0, jsx_runtime_1.jsx)(LoopContext.Provider, { value: loopContext, children: (0, jsx_runtime_1.jsx)(Sequence_js_1.Sequence, { durationInFrames: durationInFrames, from: from, name: name !== null && name !== void 0 ? name : '<Loop>', _remotionInternalLoopDisplay: loopDisplay, layout: props.layout, style: style, children: children }) }));
 };
 exports.Loop = Loop;
+exports.Loop.useLoop = useLoop;
 
 
 /***/ }),
 
-/***/ 90469:
+/***/ 469:
 /***/ ((__unused_webpack_module, exports, __webpack_require__) => {
 
 "use strict";
@@ -7132,7 +7456,7 @@ exports.Loop = Loop;
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.checkMultipleRemotionVersions = void 0;
 const truthy_js_1 = __webpack_require__(3928);
-const version_js_1 = __webpack_require__(93648);
+const version_js_1 = __webpack_require__(3648);
 const checkMultipleRemotionVersions = () => {
     if (typeof globalThis === 'undefined') {
         return;
@@ -7164,28 +7488,30 @@ exports.checkMultipleRemotionVersions = checkMultipleRemotionVersions;
 
 /***/ }),
 
-/***/ 60808:
+/***/ 808:
 /***/ ((__unused_webpack_module, exports, __webpack_require__) => {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.NoReactInternals = exports.random = exports.interpolate = void 0;
-var interpolate_1 = __webpack_require__(92297);
+var interpolate_1 = __webpack_require__(2297);
 Object.defineProperty(exports, "interpolate", ({ enumerable: true, get: function () { return interpolate_1.interpolate; } }));
-var random_js_1 = __webpack_require__(34264);
+var random_js_1 = __webpack_require__(4264);
 Object.defineProperty(exports, "random", ({ enumerable: true, get: function () { return random_js_1.random; } }));
-const delay_render_1 = __webpack_require__(22663);
-const input_props_serialization_1 = __webpack_require__(89203);
+const delay_render_1 = __webpack_require__(2663);
+const input_props_serialization_1 = __webpack_require__(9203);
+const input_props_serialization_js_1 = __webpack_require__(9203);
 const interpolate_colors_1 = __webpack_require__(4354);
 const truthy_1 = __webpack_require__(3928);
+const v5_flag_1 = __webpack_require__(6844);
 const validate_frame_1 = __webpack_require__(3871);
-const validate_default_props_1 = __webpack_require__(80607);
-const validate_dimensions_1 = __webpack_require__(71162);
-const validate_duration_in_frames_1 = __webpack_require__(52363);
+const validate_default_props_1 = __webpack_require__(607);
+const validate_dimensions_1 = __webpack_require__(1162);
+const validate_duration_in_frames_1 = __webpack_require__(2363);
 const validate_fps_1 = __webpack_require__(5868);
-const get_current_time_1 = __webpack_require__(84956);
-const offthread_video_source_1 = __webpack_require__(53998);
+const get_current_time_1 = __webpack_require__(4956);
+const offthread_video_source_1 = __webpack_require__(3998);
 exports.NoReactInternals = {
     processColor: interpolate_colors_1.processColor,
     truthy: truthy_1.truthy,
@@ -7199,21 +7525,29 @@ exports.NoReactInternals = {
     bundleMapName: 'bundle.js.map',
     deserializeJSONWithCustomFields: input_props_serialization_1.deserializeJSONWithCustomFields,
     DELAY_RENDER_CALLSTACK_TOKEN: delay_render_1.DELAY_RENDER_CALLSTACK_TOKEN,
+    DELAY_RENDER_RETRY_TOKEN: delay_render_1.DELAY_RENDER_RETRY_TOKEN,
+    DELAY_RENDER_ATTEMPT_TOKEN: delay_render_1.DELAY_RENDER_RETRIES_LEFT,
     getOffthreadVideoSource: offthread_video_source_1.getOffthreadVideoSource,
     getExpectedMediaFrameUncorrected: get_current_time_1.getExpectedMediaFrameUncorrected,
+    ENABLE_V5_BREAKING_CHANGES: v5_flag_1.ENABLE_V5_BREAKING_CHANGES,
+    MIN_NODE_VERSION: v5_flag_1.ENABLE_V5_BREAKING_CHANGES ? 18 : 16,
+    MIN_BUN_VERSION: v5_flag_1.ENABLE_V5_BREAKING_CHANGES ? '1.1.3' : '1.0.3',
+    colorNames: interpolate_colors_1.colorNames,
+    DATE_TOKEN: input_props_serialization_js_1.DATE_TOKEN,
+    FILE_TOKEN: input_props_serialization_js_1.FILE_TOKEN,
 };
 
 
 /***/ }),
 
-/***/ 98054:
+/***/ 8054:
 /***/ ((__unused_webpack_module, exports, __webpack_require__) => {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.useNonce = exports.NonceContext = void 0;
-const react_1 = __webpack_require__(67294);
+const react_1 = __webpack_require__(7294);
 exports.NonceContext = (0, react_1.createContext)({
     getNonce: () => 0,
     fastRefreshes: 0,
@@ -7237,7 +7571,7 @@ exports.useNonce = useNonce;
 
 /***/ }),
 
-/***/ 15091:
+/***/ 5091:
 /***/ ((__unused_webpack_module, exports) => {
 
 "use strict";
@@ -7291,7 +7625,7 @@ exports.playAndHandleNotAllowedError = playAndHandleNotAllowedError;
 
 /***/ }),
 
-/***/ 91734:
+/***/ 1734:
 /***/ ((__unused_webpack_module, exports) => {
 
 "use strict";
@@ -7327,15 +7661,15 @@ exports.portalNode = portalNode;
 
 /***/ }),
 
-/***/ 15819:
+/***/ 5819:
 /***/ ((__unused_webpack_module, exports, __webpack_require__) => {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.PrefetchProvider = exports.setPreloads = exports.PreloadContext = void 0;
-const jsx_runtime_1 = __webpack_require__(85893);
-const react_1 = __webpack_require__(67294);
+const jsx_runtime_1 = __webpack_require__(5893);
+const react_1 = __webpack_require__(7294);
 exports.PreloadContext = (0, react_1.createContext)({});
 let preloads = {};
 let updaters = [];
@@ -7362,16 +7696,16 @@ exports.PrefetchProvider = PrefetchProvider;
 
 /***/ }),
 
-/***/ 32595:
+/***/ 2595:
 /***/ ((__unused_webpack_module, exports, __webpack_require__) => {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.prefetch = exports.usePreload = void 0;
-const react_1 = __webpack_require__(67294);
-const get_remotion_environment_js_1 = __webpack_require__(48288);
-const prefetch_state_js_1 = __webpack_require__(15819);
+const react_1 = __webpack_require__(7294);
+const get_remotion_environment_js_1 = __webpack_require__(8288);
+const prefetch_state_js_1 = __webpack_require__(5819);
 const usePreload = (src) => {
     var _a;
     const preloads = (0, react_1.useContext)(prefetch_state_js_1.PreloadContext);
@@ -7532,7 +7866,7 @@ exports.prefetch = prefetch;
 
 /***/ }),
 
-/***/ 34264:
+/***/ 4264:
 /***/ ((__unused_webpack_module, exports) => {
 
 "use strict";
@@ -7581,7 +7915,7 @@ exports.random = random;
 
 /***/ }),
 
-/***/ 74440:
+/***/ 4440:
 /***/ ((__unused_webpack_module, exports) => {
 
 "use strict";
@@ -7626,91 +7960,94 @@ exports.waitForRoot = waitForRoot;
 
 /***/ }),
 
-/***/ 28832:
+/***/ 8832:
 /***/ ((__unused_webpack_module, exports, __webpack_require__) => {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.resolveVideoConfig = void 0;
-const validate_default_codec_js_1 = __webpack_require__(54985);
-const validate_dimensions_js_1 = __webpack_require__(71162);
-const validate_duration_in_frames_js_1 = __webpack_require__(52363);
+const validate_default_codec_js_1 = __webpack_require__(4985);
+const validate_dimensions_js_1 = __webpack_require__(1162);
+const validate_duration_in_frames_js_1 = __webpack_require__(2363);
 const validate_fps_js_1 = __webpack_require__(5868);
-const validateCalculated = ({ composition, calculated, }) => {
+const validateCalculated = ({ calculated, compositionId, compositionFps, compositionHeight, compositionWidth, compositionDurationInFrames, }) => {
     var _a, _b, _c, _d, _e, _f, _g, _h;
-    const calculateMetadataErrorLocation = `calculated by calculateMetadata() for the composition "${composition.id}"`;
-    const defaultErrorLocation = `of the "<Composition />" component with the id "${composition.id}"`;
-    const width = (_b = (_a = calculated === null || calculated === void 0 ? void 0 : calculated.width) !== null && _a !== void 0 ? _a : composition.width) !== null && _b !== void 0 ? _b : undefined;
+    const calculateMetadataErrorLocation = `calculated by calculateMetadata() for the composition "${compositionId}"`;
+    const defaultErrorLocation = `of the "<Composition />" component with the id "${compositionId}"`;
+    const width = (_b = (_a = calculated === null || calculated === void 0 ? void 0 : calculated.width) !== null && _a !== void 0 ? _a : compositionWidth) !== null && _b !== void 0 ? _b : undefined;
     (0, validate_dimensions_js_1.validateDimension)(width, 'width', (calculated === null || calculated === void 0 ? void 0 : calculated.width) ? calculateMetadataErrorLocation : defaultErrorLocation);
-    const height = (_d = (_c = calculated === null || calculated === void 0 ? void 0 : calculated.height) !== null && _c !== void 0 ? _c : composition.height) !== null && _d !== void 0 ? _d : undefined;
+    const height = (_d = (_c = calculated === null || calculated === void 0 ? void 0 : calculated.height) !== null && _c !== void 0 ? _c : compositionHeight) !== null && _d !== void 0 ? _d : undefined;
     (0, validate_dimensions_js_1.validateDimension)(height, 'height', (calculated === null || calculated === void 0 ? void 0 : calculated.height) ? calculateMetadataErrorLocation : defaultErrorLocation);
-    const fps = (_f = (_e = calculated === null || calculated === void 0 ? void 0 : calculated.fps) !== null && _e !== void 0 ? _e : composition.fps) !== null && _f !== void 0 ? _f : null;
+    const fps = (_f = (_e = calculated === null || calculated === void 0 ? void 0 : calculated.fps) !== null && _e !== void 0 ? _e : compositionFps) !== null && _f !== void 0 ? _f : null;
     (0, validate_fps_js_1.validateFps)(fps, (calculated === null || calculated === void 0 ? void 0 : calculated.fps) ? calculateMetadataErrorLocation : defaultErrorLocation, false);
-    const durationInFrames = (_h = (_g = calculated === null || calculated === void 0 ? void 0 : calculated.durationInFrames) !== null && _g !== void 0 ? _g : composition.durationInFrames) !== null && _h !== void 0 ? _h : null;
+    const durationInFrames = (_h = (_g = calculated === null || calculated === void 0 ? void 0 : calculated.durationInFrames) !== null && _g !== void 0 ? _g : compositionDurationInFrames) !== null && _h !== void 0 ? _h : null;
     (0, validate_duration_in_frames_js_1.validateDurationInFrames)(durationInFrames, {
         allowFloats: false,
-        component: `of the "<Composition />" component with the id "${composition.id}"`,
+        component: `of the "<Composition />" component with the id "${compositionId}"`,
     });
     const defaultCodec = calculated === null || calculated === void 0 ? void 0 : calculated.defaultCodec;
     (0, validate_default_codec_js_1.validateDefaultCodec)(defaultCodec, calculateMetadataErrorLocation);
     return { width, height, fps, durationInFrames, defaultCodec };
 };
-const resolveVideoConfig = ({ composition, editorProps: editorPropsOrUndefined, signal, inputProps, }) => {
-    var _a, _b, _c, _d, _e, _f;
-    const originalProps = {
-        ...((_a = composition.defaultProps) !== null && _a !== void 0 ? _a : {}),
-        ...(editorPropsOrUndefined !== null && editorPropsOrUndefined !== void 0 ? editorPropsOrUndefined : {}),
-        ...(inputProps !== null && inputProps !== void 0 ? inputProps : {}),
-    };
-    const calculatedProm = composition.calculateMetadata
-        ? composition.calculateMetadata({
-            defaultProps: (_b = composition.defaultProps) !== null && _b !== void 0 ? _b : {},
+const resolveVideoConfig = ({ calculateMetadata, signal, defaultProps, originalProps, compositionId, compositionDurationInFrames, compositionFps, compositionHeight, compositionWidth, }) => {
+    var _a, _b;
+    const calculatedProm = calculateMetadata
+        ? calculateMetadata({
+            defaultProps,
             props: originalProps,
             abortSignal: signal,
-            compositionId: composition.id,
+            compositionId,
         })
         : null;
     if (calculatedProm !== null &&
         typeof calculatedProm === 'object' &&
         'then' in calculatedProm) {
         return calculatedProm.then((c) => {
-            var _a, _b;
+            var _a;
             const { height, width, durationInFrames, fps, defaultCodec } = validateCalculated({
                 calculated: c,
-                composition,
+                compositionDurationInFrames,
+                compositionFps,
+                compositionHeight,
+                compositionWidth,
+                compositionId,
             });
             return {
                 width,
                 height,
                 fps,
                 durationInFrames,
-                id: composition.id,
-                defaultProps: (_a = composition.defaultProps) !== null && _a !== void 0 ? _a : {},
-                props: (_b = c.props) !== null && _b !== void 0 ? _b : originalProps,
+                id: compositionId,
+                defaultProps,
+                props: (_a = c.props) !== null && _a !== void 0 ? _a : originalProps,
                 defaultCodec: defaultCodec !== null && defaultCodec !== void 0 ? defaultCodec : null,
             };
         });
     }
     const data = validateCalculated({
         calculated: calculatedProm,
-        composition,
+        compositionDurationInFrames,
+        compositionFps,
+        compositionHeight,
+        compositionWidth,
+        compositionId,
     });
     if (calculatedProm === null) {
         return {
             ...data,
-            id: composition.id,
-            defaultProps: (_c = composition.defaultProps) !== null && _c !== void 0 ? _c : {},
+            id: compositionId,
+            defaultProps: defaultProps !== null && defaultProps !== void 0 ? defaultProps : {},
             props: originalProps,
             defaultCodec: null,
         };
     }
     return {
         ...data,
-        id: composition.id,
-        defaultProps: (_d = composition.defaultProps) !== null && _d !== void 0 ? _d : {},
-        props: (_e = calculatedProm.props) !== null && _e !== void 0 ? _e : originalProps,
-        defaultCodec: (_f = calculatedProm.defaultCodec) !== null && _f !== void 0 ? _f : null,
+        id: compositionId,
+        defaultProps: defaultProps !== null && defaultProps !== void 0 ? defaultProps : {},
+        props: (_a = calculatedProm.props) !== null && _a !== void 0 ? _a : originalProps,
+        defaultCodec: (_b = calculatedProm.defaultCodec) !== null && _b !== void 0 ? _b : null,
     };
 };
 exports.resolveVideoConfig = resolveVideoConfig;
@@ -7718,7 +8055,7 @@ exports.resolveVideoConfig = resolveVideoConfig;
 
 /***/ }),
 
-/***/ 67693:
+/***/ 7693:
 /***/ (function(__unused_webpack_module, exports, __webpack_require__) {
 
 "use strict";
@@ -7728,7 +8065,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.flattenChildren = void 0;
-const react_1 = __importDefault(__webpack_require__(67294));
+const react_1 = __importDefault(__webpack_require__(7294));
 const flattenChildren = (children) => {
     const childrenArray = react_1.default.Children.toArray(children);
     return childrenArray.reduce((flatChildren, child) => {
@@ -7745,33 +8082,36 @@ exports.flattenChildren = flattenChildren;
 
 /***/ }),
 
-/***/ 93864:
+/***/ 3864:
 /***/ ((__unused_webpack_module, exports, __webpack_require__) => {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.Series = void 0;
-const jsx_runtime_1 = __webpack_require__(85893);
-const react_1 = __webpack_require__(67294);
-const enable_sequence_stack_traces_js_1 = __webpack_require__(12196);
-const Sequence_js_1 = __webpack_require__(97080);
-const validate_duration_in_frames_js_1 = __webpack_require__(52363);
-const flatten_children_js_1 = __webpack_require__(67693);
+const jsx_runtime_1 = __webpack_require__(5893);
+const react_1 = __webpack_require__(7294);
+const Sequence_js_1 = __webpack_require__(7080);
+const enable_sequence_stack_traces_js_1 = __webpack_require__(2196);
+const v5_flag_js_1 = __webpack_require__(6844);
+const validate_duration_in_frames_js_1 = __webpack_require__(2363);
+const flatten_children_js_1 = __webpack_require__(7693);
+const is_inside_series_js_1 = __webpack_require__(7907);
 const SeriesSequenceRefForwardingFunction = ({ children }, _ref) => {
+    (0, is_inside_series_js_1.useRequireToBeInsideSeries)();
     // Discard ref
     // eslint-disable-next-line react/jsx-no-useless-fragment
-    return (0, jsx_runtime_1.jsx)(jsx_runtime_1.Fragment, { children: children });
+    return (0, jsx_runtime_1.jsx)(is_inside_series_js_1.IsNotInsideSeriesProvider, { children: children });
 };
 const SeriesSequence = (0, react_1.forwardRef)(SeriesSequenceRefForwardingFunction);
 /**
  * @description with this component, you can easily stitch together scenes that should play sequentially after another.
  * @see [Documentation](https://www.remotion.dev/docs/series)
  */
-const Series = ({ children }) => {
+const Series = (props) => {
     const childrenValue = (0, react_1.useMemo)(() => {
         let startFrame = 0;
-        const flattenedChildren = (0, flatten_children_js_1.flattenChildren)(children);
+        const flattenedChildren = (0, flatten_children_js_1.flattenChildren)(props.children);
         return react_1.Children.map(flattenedChildren, (child, i) => {
             var _a;
             const castedChild = child;
@@ -7812,9 +8152,11 @@ const Series = ({ children }) => {
             startFrame += durationInFramesProp + offset;
             return ((0, jsx_runtime_1.jsx)(Sequence_js_1.Sequence, { name: name || '<Series.Sequence>', from: currentStartFrame, durationInFrames: durationInFramesProp, ...passedProps, ref: castedChild.ref, children: child }));
         });
-    }, [children]);
-    /* eslint-disable react/jsx-no-useless-fragment */
-    return (0, jsx_runtime_1.jsx)(jsx_runtime_1.Fragment, { children: childrenValue });
+    }, [props.children]);
+    if (v5_flag_js_1.ENABLE_V5_BREAKING_CHANGES) {
+        return ((0, jsx_runtime_1.jsx)(is_inside_series_js_1.IsInsideSeriesContainer, { children: (0, jsx_runtime_1.jsx)(Sequence_js_1.Sequence, { ...props, children: childrenValue }) }));
+    }
+    return (0, jsx_runtime_1.jsx)(is_inside_series_js_1.IsInsideSeriesContainer, { children: childrenValue });
 };
 exports.Series = Series;
 Series.Sequence = SeriesSequence;
@@ -7823,14 +8165,66 @@ Series.Sequence = SeriesSequence;
 
 /***/ }),
 
-/***/ 28498:
+/***/ 7907:
+/***/ (function(__unused_webpack_module, exports, __webpack_require__) {
+
+"use strict";
+
+var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    var desc = Object.getOwnPropertyDescriptor(m, k);
+    if (!desc || ("get" in desc ? !m.__esModule : desc.writable || desc.configurable)) {
+      desc = { enumerable: true, get: function() { return m[k]; } };
+    }
+    Object.defineProperty(o, k2, desc);
+}) : (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    o[k2] = m[k];
+}));
+var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {
+    Object.defineProperty(o, "default", { enumerable: true, value: v });
+}) : function(o, v) {
+    o["default"] = v;
+});
+var __importStar = (this && this.__importStar) || function (mod) {
+    if (mod && mod.__esModule) return mod;
+    var result = {};
+    if (mod != null) for (var k in mod) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
+    __setModuleDefault(result, mod);
+    return result;
+};
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+exports.useRequireToBeInsideSeries = exports.IsNotInsideSeriesProvider = exports.IsInsideSeriesContainer = exports.IsInsideSeriesContext = void 0;
+const jsx_runtime_1 = __webpack_require__(5893);
+const react_1 = __importStar(__webpack_require__(7294));
+exports.IsInsideSeriesContext = (0, react_1.createContext)(false);
+const IsInsideSeriesContainer = ({ children }) => {
+    return ((0, jsx_runtime_1.jsx)(exports.IsInsideSeriesContext.Provider, { value: true, children: children }));
+};
+exports.IsInsideSeriesContainer = IsInsideSeriesContainer;
+const IsNotInsideSeriesProvider = ({ children }) => {
+    return ((0, jsx_runtime_1.jsx)(exports.IsInsideSeriesContext.Provider, { value: false, children: children }));
+};
+exports.IsNotInsideSeriesProvider = IsNotInsideSeriesProvider;
+const useRequireToBeInsideSeries = () => {
+    const isInsideSeries = react_1.default.useContext(exports.IsInsideSeriesContext);
+    if (!isInsideSeries) {
+        throw new Error('This component must be inside a <Series /> component.');
+    }
+};
+exports.useRequireToBeInsideSeries = useRequireToBeInsideSeries;
+
+
+/***/ }),
+
+/***/ 8498:
 /***/ ((__unused_webpack_module, exports, __webpack_require__) => {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.setupEnvVariables = void 0;
-const get_remotion_environment_js_1 = __webpack_require__(48288);
+const get_remotion_environment_js_1 = __webpack_require__(8288);
 // https://github.com/remotion-dev/remotion/issues/3412#issuecomment-1910120552
 // eslint-disable-next-line no-useless-concat
 function getEnvVar() {
@@ -7869,18 +8263,19 @@ exports.setupEnvVariables = setupEnvVariables;
 
 /***/ }),
 
-/***/ 37636:
+/***/ 7636:
 /***/ ((__unused_webpack_module, exports, __webpack_require__) => {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.measureSpring = exports.spring = void 0;
+const interpolate_js_1 = __webpack_require__(2297);
 const validate_frame_js_1 = __webpack_require__(3871);
 const validate_fps_js_1 = __webpack_require__(5868);
-const validation_spring_duration_js_1 = __webpack_require__(91569);
-const measure_spring_js_1 = __webpack_require__(18897);
-const spring_utils_js_1 = __webpack_require__(60961);
+const validation_spring_duration_js_1 = __webpack_require__(1569);
+const measure_spring_js_1 = __webpack_require__(8897);
+const spring_utils_js_1 = __webpack_require__(961);
 /**
  * @description Calculates a position based on physical parameters, start and end value, and time.
  * @see [Documentation](https://www.remotion.dev/docs/spring)
@@ -7911,8 +8306,6 @@ function spring({ frame: passedFrame, fps, config = {}, from = 0, to = 1, durati
         ? (0, measure_spring_js_1.measureSpring)({
             fps,
             config,
-            from,
-            to,
             threshold: durationRestThreshold,
         })
         : undefined;
@@ -7939,25 +8332,23 @@ function spring({ frame: passedFrame, fps, config = {}, from = 0, to = 1, durati
         fps,
         frame: durationProcessed,
         config,
-        from,
-        to,
     });
-    if (!config.overshootClamping) {
-        return spr.current;
-    }
-    if (to >= from) {
-        return Math.min(spr.current, to);
-    }
-    return Math.max(spr.current, to);
+    const inner = config.overshootClamping
+        ? to >= from
+            ? Math.min(spr.current, to)
+            : Math.max(spr.current, to)
+        : spr.current;
+    const interpolated = from === 0 && to === 1 ? inner : (0, interpolate_js_1.interpolate)(inner, [0, 1], [from, to]);
+    return interpolated;
 }
 exports.spring = spring;
-var measure_spring_js_2 = __webpack_require__(18897);
+var measure_spring_js_2 = __webpack_require__(8897);
 Object.defineProperty(exports, "measureSpring", ({ enumerable: true, get: function () { return measure_spring_js_2.measureSpring; } }));
 
 
 /***/ }),
 
-/***/ 18897:
+/***/ 8897:
 /***/ ((__unused_webpack_module, exports, __webpack_require__) => {
 
 "use strict";
@@ -7965,13 +8356,13 @@ Object.defineProperty(exports, "measureSpring", ({ enumerable: true, get: functi
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.measureSpring = void 0;
 const validate_fps_js_1 = __webpack_require__(5868);
-const spring_utils_js_1 = __webpack_require__(60961);
+const spring_utils_js_1 = __webpack_require__(961);
 const cache = new Map();
 /**
  * @description The function returns how long it takes for a spring animation to settle
  * @see [Documentation](https://www.remotion.dev/docs/measure-spring)
  */
-function measureSpring({ fps, config = {}, threshold = 0.005, from = 0, to = 1, }) {
+function measureSpring({ fps, config = {}, threshold = 0.005, }) {
     if (typeof threshold !== 'number') {
         throw new TypeError(`threshold must be a number, got ${threshold} of type ${typeof threshold}`);
     }
@@ -7996,15 +8387,12 @@ function measureSpring({ fps, config = {}, threshold = 0.005, from = 0, to = 1, 
         config.mass,
         config.overshootClamping,
         config.stiffness,
-        from,
-        to,
         threshold,
     ].join('-');
     if (cache.has(cacheKey)) {
         return cache.get(cacheKey);
     }
     (0, validate_fps_js_1.validateFps)(fps, 'to the measureSpring() function', false);
-    const range = Math.abs(from - to);
     let frame = 0;
     let finishedFrame = 0;
     const calc = () => {
@@ -8012,14 +8400,11 @@ function measureSpring({ fps, config = {}, threshold = 0.005, from = 0, to = 1, 
             fps,
             frame,
             config,
-            from,
-            to,
         });
     };
     let animation = calc();
     const calcDifference = () => {
-        return (Math.abs(animation.current - animation.toValue) /
-            (range === 0 ? 1 : range));
+        return Math.abs(animation.current - animation.toValue);
     };
     let difference = calcDifference();
     while (difference >= threshold) {
@@ -8048,7 +8433,7 @@ exports.measureSpring = measureSpring;
 
 /***/ }),
 
-/***/ 60961:
+/***/ 961:
 /***/ ((__unused_webpack_module, exports) => {
 
 "use strict";
@@ -8065,6 +8450,9 @@ const advanceCache = {};
 function advance({ animation, now, config, }) {
     const { toValue, lastTimestamp, current, velocity } = animation;
     const deltaTime = Math.min(now - lastTimestamp, 64);
+    if (config.damping <= 0) {
+        throw new Error('Spring damping must be greater than 0, otherwise the spring() animation will never end, causing an infinite loop.');
+    }
     const c = config.damping;
     const m = config.mass;
     const k = config.stiffness;
@@ -8114,10 +8502,10 @@ function advance({ animation, now, config, }) {
     return animationNode;
 }
 const calculationCache = {};
-function springCalculation({ from = 0, to = 1, frame, fps, config = {}, }) {
+function springCalculation({ frame, fps, config = {}, }) {
+    const from = 0;
+    const to = 1;
     const cacheKey = [
-        from,
-        to,
         frame,
         fps,
         config.damping,
@@ -8159,7 +8547,7 @@ exports.springCalculation = springCalculation;
 
 /***/ }),
 
-/***/ 96840:
+/***/ 6840:
 /***/ ((__unused_webpack_module, exports) => {
 
 "use strict";
@@ -8267,14 +8655,15 @@ exports.staticFile = staticFile;
 
 /***/ }),
 
-/***/ 47083:
+/***/ 7083:
 /***/ ((__unused_webpack_module, exports, __webpack_require__) => {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.usePlayingState = exports.useTimelineSetFrame = exports.useTimelinePosition = exports.getFrameForComposition = exports.getInitialFrameState = exports.persistCurrentFrame = exports.SetTimelineContext = exports.TimelineContext = void 0;
-const react_1 = __webpack_require__(67294);
+const react_1 = __webpack_require__(7294);
+const get_remotion_environment_js_1 = __webpack_require__(8288);
 const use_video_js_1 = __webpack_require__(3141);
 exports.TimelineContext = (0, react_1.createContext)({
     frame: {},
@@ -8312,12 +8701,16 @@ const getInitialFrameState = () => {
 };
 exports.getInitialFrameState = getInitialFrameState;
 const getFrameForComposition = (composition) => {
-    var _a, _b, _c;
+    var _a, _b;
     const item = (_a = localStorage.getItem(makeKey())) !== null && _a !== void 0 ? _a : '{}';
     const obj = JSON.parse(item);
-    return obj[composition]
-        ? Number(obj[composition])
-        : (_c = (typeof window === 'undefined' ? 0 : (_b = window.remotion_initialFrame) !== null && _b !== void 0 ? _b : 0)) !== null && _c !== void 0 ? _c : 0;
+    if (obj[composition] !== undefined) {
+        return Number(obj[composition]);
+    }
+    if (typeof window === 'undefined') {
+        return 0;
+    }
+    return (_b = window.remotion_initialFrame) !== null && _b !== void 0 ? _b : 0;
 };
 exports.getFrameForComposition = getFrameForComposition;
 const useTimelinePosition = () => {
@@ -8329,7 +8722,7 @@ const useTimelinePosition = () => {
             ? 0
             : (_a = window.remotion_initialFrame) !== null && _a !== void 0 ? _a : 0;
     }
-    const unclamped = (_b = state.frame[videoConfig.id]) !== null && _b !== void 0 ? _b : (typeof window !== 'undefined' && window.remotion_isPlayer
+    const unclamped = (_b = state.frame[videoConfig.id]) !== null && _b !== void 0 ? _b : ((0, get_remotion_environment_js_1.getRemotionEnvironment)().isPlayer
         ? 0
         : (0, exports.getFrameForComposition)(videoConfig.id));
     return Math.min(videoConfig.durationInFrames - 1, unclamped);
@@ -8365,15 +8758,15 @@ exports.truthy = truthy;
 
 /***/ }),
 
-/***/ 89075:
+/***/ 9075:
 /***/ ((__unused_webpack_module, exports, __webpack_require__) => {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.useBufferState = void 0;
-const react_1 = __webpack_require__(67294);
-const buffering_1 = __webpack_require__(45775);
+const react_1 = __webpack_require__(7294);
+const buffering_1 = __webpack_require__(5775);
 const useBufferState = () => {
     const buffer = (0, react_1.useContext)(buffering_1.BufferingContextReact);
     return (0, react_1.useMemo)(() => ({
@@ -8393,17 +8786,18 @@ exports.useBufferState = useBufferState;
 
 /***/ }),
 
-/***/ 39727:
+/***/ 9727:
 /***/ ((__unused_webpack_module, exports, __webpack_require__) => {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.useCurrentFrame = void 0;
-const react_1 = __webpack_require__(67294);
-const CanUseRemotionHooks_js_1 = __webpack_require__(44144);
-const SequenceContext_js_1 = __webpack_require__(73759);
-const timeline_position_state_js_1 = __webpack_require__(47083);
+const react_1 = __webpack_require__(7294);
+const CanUseRemotionHooks_js_1 = __webpack_require__(4144);
+const SequenceContext_js_1 = __webpack_require__(3759);
+const get_remotion_environment_js_1 = __webpack_require__(8288);
+const timeline_position_state_js_1 = __webpack_require__(7083);
 /**
  * @description Get the current frame of the video. Frames are 0-indexed, meaning the first frame is 0, the last frame is the duration of the composition in frames minus one.
  * @see [Documentation](https://remotion.dev/docs/use-current-frame)
@@ -8411,7 +8805,7 @@ const timeline_position_state_js_1 = __webpack_require__(47083);
 const useCurrentFrame = () => {
     const canUseRemotionHooks = (0, react_1.useContext)(CanUseRemotionHooks_js_1.CanUseRemotionHooks);
     if (!canUseRemotionHooks) {
-        if (typeof window !== 'undefined' && window.remotion_isPlayer) {
+        if ((0, get_remotion_environment_js_1.getRemotionEnvironment)().isPlayer) {
             throw new Error(`useCurrentFrame can only be called inside a component that was passed to <Player>. See: https://www.remotion.dev/docs/player/examples`);
         }
         throw new Error(`useCurrentFrame() can only be called inside a component that was registered as a composition. See https://www.remotion.dev/docs/the-fundamentals#defining-compositions`);
@@ -8428,7 +8822,7 @@ exports.useCurrentFrame = useCurrentFrame;
 
 /***/ }),
 
-/***/ 99267:
+/***/ 9267:
 /***/ (function(__unused_webpack_module, exports, __webpack_require__) {
 
 "use strict";
@@ -8458,9 +8852,9 @@ var __importStar = (this && this.__importStar) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.useCurrentScale = exports.calculateScale = exports.PreviewSizeContext = exports.CurrentScaleContext = void 0;
-const react_1 = __importStar(__webpack_require__(67294));
-const get_remotion_environment_1 = __webpack_require__(48288);
-const use_unsafe_video_config_1 = __webpack_require__(53095);
+const react_1 = __importStar(__webpack_require__(7294));
+const get_remotion_environment_1 = __webpack_require__(8288);
+const use_unsafe_video_config_1 = __webpack_require__(3095);
 exports.CurrentScaleContext = react_1.default.createContext(null);
 exports.PreviewSizeContext = (0, react_1.createContext)({
     setSize: () => undefined,
@@ -8510,7 +8904,7 @@ exports.useCurrentScale = useCurrentScale;
 
 /***/ }),
 
-/***/ 44858:
+/***/ 4858:
 /***/ (function(__unused_webpack_module, exports, __webpack_require__) {
 
 "use strict";
@@ -8540,7 +8934,7 @@ var __importStar = (this && this.__importStar) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.useLazyComponent = void 0;
-const react_1 = __importStar(__webpack_require__(67294));
+const react_1 = __importStar(__webpack_require__(7294));
 // Expected, it can be any component props
 const useLazyComponent = (compProps) => {
     const lazy = (0, react_1.useMemo)(() => {
@@ -8567,19 +8961,19 @@ exports.useLazyComponent = useLazyComponent;
 
 /***/ }),
 
-/***/ 16801:
+/***/ 6801:
 /***/ ((__unused_webpack_module, exports, __webpack_require__) => {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.useMediaBuffering = void 0;
-const react_1 = __webpack_require__(67294);
-const use_buffer_state_1 = __webpack_require__(89075);
-const useMediaBuffering = (element, shouldBuffer) => {
+const react_1 = __webpack_require__(7294);
+const use_buffer_state_1 = __webpack_require__(9075);
+const useMediaBuffering = ({ element, shouldBuffer, isPremounting, }) => {
     const buffer = (0, use_buffer_state_1.useBufferState)();
     (0, react_1.useEffect)(() => {
-        let cleanup = () => undefined;
+        let cleanupFns = [];
         const { current } = element;
         if (!current) {
             return;
@@ -8587,54 +8981,91 @@ const useMediaBuffering = (element, shouldBuffer) => {
         if (!shouldBuffer) {
             return;
         }
+        if (isPremounting) {
+            return;
+        }
+        const cleanup = () => {
+            cleanupFns.forEach((fn) => fn());
+            cleanupFns = [];
+        };
         const onWaiting = () => {
             const { unblock } = buffer.delayPlayback();
             const onCanPlay = () => {
-                unblock();
+                cleanup();
+                // eslint-disable-next-line @typescript-eslint/no-use-before-define
+                init();
+            };
+            const onError = () => {
+                cleanup();
+                // eslint-disable-next-line @typescript-eslint/no-use-before-define
+                init();
             };
             current.addEventListener('canplay', onCanPlay, {
                 once: true,
             });
-            cleanup = () => {
+            cleanupFns.push(() => {
                 current.removeEventListener('canplay', onCanPlay);
+            });
+            current.addEventListener('error', onError, {
+                once: true,
+            });
+            cleanupFns.push(() => {
+                current.removeEventListener('error', onError);
+            });
+            cleanupFns.push(() => {
                 unblock();
-                return undefined;
-            };
+            });
         };
-        if (current.readyState < current.HAVE_FUTURE_DATA) {
-            onWaiting();
-        }
-        else {
-            current.addEventListener('waiting', onWaiting);
-        }
+        const init = () => {
+            if (current.readyState < current.HAVE_FUTURE_DATA) {
+                onWaiting();
+                // Needed by iOS Safari which will not load by default
+                // and therefore not fire the canplay event.
+                // Be cautious about using `current.load()` as it will
+                // reset if a video is already playing.
+                // Therefore only calling it after checking if the video
+                // has no future data.
+                // Breaks on Firefox though: https://github.com/remotion-dev/remotion/issues/3915
+                if (!navigator.userAgent.includes('Firefox/')) {
+                    current.load();
+                }
+            }
+            else {
+                current.addEventListener('waiting', onWaiting);
+                cleanupFns.push(() => {
+                    current.removeEventListener('waiting', onWaiting);
+                });
+            }
+        };
+        init();
         return () => {
             cleanup();
         };
-    }, [buffer, element, shouldBuffer]);
+    }, [buffer, element, isPremounting, shouldBuffer]);
 };
 exports.useMediaBuffering = useMediaBuffering;
 
 
 /***/ }),
 
-/***/ 17476:
+/***/ 7476:
 /***/ ((__unused_webpack_module, exports, __webpack_require__) => {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.useMediaInTimeline = void 0;
-const react_1 = __webpack_require__(67294);
-const use_audio_frame_js_1 = __webpack_require__(66873);
-const get_asset_file_name_js_1 = __webpack_require__(76644);
-const get_remotion_environment_js_1 = __webpack_require__(48288);
-const nonce_js_1 = __webpack_require__(98054);
-const play_and_handle_not_allowed_error_js_1 = __webpack_require__(15091);
-const SequenceContext_js_1 = __webpack_require__(73759);
-const SequenceManager_js_1 = __webpack_require__(80829);
-const timeline_position_state_js_1 = __webpack_require__(47083);
-const use_video_config_js_1 = __webpack_require__(73347);
-const volume_prop_js_1 = __webpack_require__(39022);
+const react_1 = __webpack_require__(7294);
+const SequenceContext_js_1 = __webpack_require__(3759);
+const SequenceManager_js_1 = __webpack_require__(829);
+const use_audio_frame_js_1 = __webpack_require__(6873);
+const get_asset_file_name_js_1 = __webpack_require__(6644);
+const get_remotion_environment_js_1 = __webpack_require__(8288);
+const nonce_js_1 = __webpack_require__(8054);
+const play_and_handle_not_allowed_error_js_1 = __webpack_require__(5091);
+const timeline_position_state_js_1 = __webpack_require__(7083);
+const use_video_config_js_1 = __webpack_require__(3347);
+const volume_prop_js_1 = __webpack_require__(9022);
 const didWarn = {};
 const warnOnce = (message) => {
     if (didWarn[message]) {
@@ -8644,7 +9075,7 @@ const warnOnce = (message) => {
     console.warn(message);
     didWarn[message] = true;
 };
-const useMediaInTimeline = ({ volume, mediaVolume, mediaRef, src, mediaType, playbackRate, displayName, id, stack, showInTimeline, }) => {
+const useMediaInTimeline = ({ volume, mediaVolume, mediaRef, src, mediaType, playbackRate, displayName, id, stack, showInTimeline, premountDisplay, }) => {
     const videoConfig = (0, use_video_config_js_1.useVideoConfig)();
     const { rootId, audioAndVideoTags } = (0, react_1.useContext)(timeline_position_state_js_1.TimelineContext);
     const parentSequence = (0, react_1.useContext)(SequenceContext_js_1.SequenceContext);
@@ -8682,14 +9113,15 @@ const useMediaInTimeline = ({ volume, mediaVolume, mediaRef, src, mediaType, pla
         }
     }, [initialVolume, mediaType, src, volume]);
     (0, react_1.useEffect)(() => {
-        var _a;
+        var _a, _b, _c;
         if (!mediaRef.current) {
             return;
         }
         if (!src) {
             throw new Error('No src passed');
         }
-        if (!(0, get_remotion_environment_js_1.getRemotionEnvironment)().isStudio && "production" !== 'test') {
+        if (!(0, get_remotion_environment_js_1.getRemotionEnvironment)().isStudio &&
+            ((_b = (_a = window.process) === null || _a === void 0 ? void 0 : _a.env) === null || _b === void 0 ? void 0 : _b.NODE_ENV) !== 'test') {
             return;
         }
         if (!showInTimeline) {
@@ -8701,7 +9133,7 @@ const useMediaInTimeline = ({ volume, mediaVolume, mediaRef, src, mediaType, pla
             id,
             duration,
             from: 0,
-            parent: (_a = parentSequence === null || parentSequence === void 0 ? void 0 : parentSequence.id) !== null && _a !== void 0 ? _a : null,
+            parent: (_c = parentSequence === null || parentSequence === void 0 ? void 0 : parentSequence.id) !== null && _c !== void 0 ? _c : null,
             displayName: displayName !== null && displayName !== void 0 ? displayName : (0, get_asset_file_name_js_1.getAssetDisplayName)(src),
             rootId,
             volume: volumes,
@@ -8712,6 +9144,7 @@ const useMediaInTimeline = ({ volume, mediaVolume, mediaRef, src, mediaType, pla
             loopDisplay: undefined,
             playbackRate,
             stack,
+            premountDisplay,
         });
         return () => {
             unregisterSequence(id);
@@ -8736,6 +9169,7 @@ const useMediaInTimeline = ({ volume, mediaVolume, mediaRef, src, mediaType, pla
         displayName,
         stack,
         showInTimeline,
+        premountDisplay,
     ]);
     (0, react_1.useEffect)(() => {
         const tag = {
@@ -8759,23 +9193,23 @@ exports.useMediaInTimeline = useMediaInTimeline;
 
 /***/ }),
 
-/***/ 95069:
+/***/ 5069:
 /***/ ((__unused_webpack_module, exports, __webpack_require__) => {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.useMediaPlayback = exports.DEFAULT_ACCEPTABLE_TIMESHIFT = void 0;
-const react_1 = __webpack_require__(67294);
-const use_audio_frame_js_1 = __webpack_require__(66873);
-const buffering_js_1 = __webpack_require__(45775);
-const play_and_handle_not_allowed_error_js_1 = __webpack_require__(15091);
-const timeline_position_state_js_1 = __webpack_require__(47083);
-const use_current_frame_js_1 = __webpack_require__(39727);
-const use_video_config_js_1 = __webpack_require__(73347);
-const get_current_time_js_1 = __webpack_require__(84956);
-const video_fragment_js_1 = __webpack_require__(51527);
-const warn_about_non_seekable_media_js_1 = __webpack_require__(72187);
+const react_1 = __webpack_require__(7294);
+const use_audio_frame_js_1 = __webpack_require__(6873);
+const buffering_js_1 = __webpack_require__(5775);
+const play_and_handle_not_allowed_error_js_1 = __webpack_require__(5091);
+const timeline_position_state_js_1 = __webpack_require__(7083);
+const use_current_frame_js_1 = __webpack_require__(9727);
+const use_video_config_js_1 = __webpack_require__(3347);
+const get_current_time_js_1 = __webpack_require__(4956);
+const video_fragment_js_1 = __webpack_require__(1527);
+const warn_about_non_seekable_media_js_1 = __webpack_require__(2187);
 exports.DEFAULT_ACCEPTABLE_TIMESHIFT = 0.45;
 const seek = (mediaRef, time) => {
     if (!mediaRef.current) {
@@ -8892,7 +9326,7 @@ exports.useMediaPlayback = useMediaPlayback;
 
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.useMediaTagVolume = void 0;
-const react_1 = __webpack_require__(67294);
+const react_1 = __webpack_require__(7294);
 // Returns the real volume of the audio or video while playing,
 // no matter what the supposed volume should be
 const useMediaTagVolume = (mediaRef) => {
@@ -8924,16 +9358,16 @@ exports.useMediaTagVolume = useMediaTagVolume;
 
 /***/ }),
 
-/***/ 38875:
+/***/ 8875:
 /***/ ((__unused_webpack_module, exports, __webpack_require__) => {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.useSyncVolumeWithMediaTag = void 0;
-const react_1 = __webpack_require__(67294);
-const is_approximately_the_same_js_1 = __webpack_require__(26614);
-const volume_prop_js_1 = __webpack_require__(39022);
+const react_1 = __webpack_require__(7294);
+const is_approximately_the_same_js_1 = __webpack_require__(6614);
+const volume_prop_js_1 = __webpack_require__(9022);
 const useSyncVolumeWithMediaTag = ({ volumePropFrame, actualVolume, volume, mediaVolume, mediaRef, }) => {
     (0, react_1.useEffect)(() => {
         const userPreferredVolume = (0, volume_prop_js_1.evaluateVolume)({
@@ -8953,15 +9387,15 @@ exports.useSyncVolumeWithMediaTag = useSyncVolumeWithMediaTag;
 
 /***/ }),
 
-/***/ 53095:
+/***/ 3095:
 /***/ ((__unused_webpack_module, exports, __webpack_require__) => {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.useUnsafeVideoConfig = void 0;
-const react_1 = __webpack_require__(67294);
-const SequenceContext_js_1 = __webpack_require__(73759);
+const react_1 = __webpack_require__(7294);
+const SequenceContext_js_1 = __webpack_require__(3759);
 const use_video_js_1 = __webpack_require__(3141);
 const useUnsafeVideoConfig = () => {
     var _a, _b, _c;
@@ -8992,22 +9426,21 @@ exports.useUnsafeVideoConfig = useUnsafeVideoConfig;
 
 /***/ }),
 
-/***/ 73347:
+/***/ 3347:
 /***/ ((__unused_webpack_module, exports, __webpack_require__) => {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.useVideoConfig = void 0;
-const react_1 = __webpack_require__(67294);
-const CanUseRemotionHooks_js_1 = __webpack_require__(44144);
-const is_player_js_1 = __webpack_require__(50606);
-const use_unsafe_video_config_js_1 = __webpack_require__(53095);
+const react_1 = __webpack_require__(7294);
+const CanUseRemotionHooks_js_1 = __webpack_require__(4144);
+const is_player_js_1 = __webpack_require__(606);
+const use_unsafe_video_config_js_1 = __webpack_require__(3095);
 /**
- * /**
  * @description Get some info about the context of the video that you are making.
  * @see [Documentation](https://www.remotion.dev/docs/use-video-config)
- * @returns Returns an object containing `fps`, `width`, `height` and `durationInFrames`, all of type `number`.
+ * @returns Returns an object containing `fps`, `width`, `height`, `durationInFrames`, `id` and `defaultProps`.
  */
 const useVideoConfig = () => {
     const videoConfig = (0, use_unsafe_video_config_js_1.useUnsafeVideoConfig)();
@@ -9041,9 +9474,9 @@ exports.useVideoConfig = useVideoConfig;
 
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.useVideo = void 0;
-const react_1 = __webpack_require__(67294);
-const CompositionManagerContext_js_1 = __webpack_require__(13898);
-const ResolveCompositionConfig_js_1 = __webpack_require__(95014);
+const react_1 = __webpack_require__(7294);
+const CompositionManagerContext_js_1 = __webpack_require__(3898);
+const ResolveCompositionConfig_js_1 = __webpack_require__(5014);
 const useVideo = () => {
     var _a;
     const { canvasContent, compositions, currentCompositionMetadata } = (0, react_1.useContext)(CompositionManagerContext_js_1.CompositionManager);
@@ -9082,6 +9515,18 @@ exports.useVideo = useVideo;
 
 /***/ }),
 
+/***/ 6844:
+/***/ ((__unused_webpack_module, exports) => {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+exports.ENABLE_V5_BREAKING_CHANGES = void 0;
+exports.ENABLE_V5_BREAKING_CHANGES = false;
+
+
+/***/ }),
+
 /***/ 3871:
 /***/ ((__unused_webpack_module, exports) => {
 
@@ -9114,7 +9559,7 @@ exports.validateFrame = validateFrame;
 
 /***/ }),
 
-/***/ 15480:
+/***/ 5480:
 /***/ ((__unused_webpack_module, exports) => {
 
 "use strict";
@@ -9185,7 +9630,7 @@ exports.validateStartFromProps = validateStartFromProps;
 
 /***/ }),
 
-/***/ 86303:
+/***/ 6303:
 /***/ ((__unused_webpack_module, exports) => {
 
 "use strict";
@@ -9206,14 +9651,14 @@ exports.invalidCompositionErrorMessage = `Composition ID must match ${String(get
 
 /***/ }),
 
-/***/ 54985:
+/***/ 4985:
 /***/ ((__unused_webpack_module, exports, __webpack_require__) => {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.validateDefaultCodec = void 0;
-const codec_1 = __webpack_require__(30851);
+const codec_1 = __webpack_require__(851);
 function validateDefaultCodec(defaultCodec, location) {
     if (typeof defaultCodec === 'undefined') {
         return;
@@ -9230,7 +9675,7 @@ exports.validateDefaultCodec = validateDefaultCodec;
 
 /***/ }),
 
-/***/ 80607:
+/***/ 607:
 /***/ ((__unused_webpack_module, exports) => {
 
 "use strict";
@@ -9253,7 +9698,7 @@ exports.validateDefaultAndInputProps = validateDefaultAndInputProps;
 
 /***/ }),
 
-/***/ 71162:
+/***/ 1162:
 /***/ ((__unused_webpack_module, exports) => {
 
 "use strict";
@@ -9282,7 +9727,7 @@ exports.validateDimension = validateDimension;
 
 /***/ }),
 
-/***/ 52363:
+/***/ 2363:
 /***/ ((__unused_webpack_module, exports) => {
 
 "use strict";
@@ -9312,7 +9757,7 @@ exports.validateDurationInFrames = validateDurationInFrames;
 
 /***/ }),
 
-/***/ 80487:
+/***/ 487:
 /***/ ((__unused_webpack_module, exports) => {
 
 "use strict";
@@ -9368,7 +9813,7 @@ exports.validateFps = validateFps;
 
 /***/ }),
 
-/***/ 91569:
+/***/ 1569:
 /***/ ((__unused_webpack_module, exports) => {
 
 "use strict";
@@ -9397,20 +9842,25 @@ exports.validateSpringDuration = validateSpringDuration;
 
 /***/ }),
 
-/***/ 93648:
+/***/ 3648:
 /***/ ((__unused_webpack_module, exports) => {
 
 "use strict";
 
+// Automatically generated on publish
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.VERSION = void 0;
-// Automatically generated on publish
-exports.VERSION = '4.0.128';
+/**
+ * @description Provides the current version number of the Remotion library.
+ * @see [Documentation](https://remotion.dev/docs/version)
+ * @returns {string} The current version of the remotion package
+ */
+exports.VERSION = '4.0.167';
 
 
 /***/ }),
 
-/***/ 87778:
+/***/ 7778:
 /***/ ((__unused_webpack_module, exports) => {
 
 "use strict";
@@ -9420,21 +9870,21 @@ Object.defineProperty(exports, "__esModule", ({ value: true }));
 
 /***/ }),
 
-/***/ 32714:
+/***/ 2714:
 /***/ ((__unused_webpack_module, exports, __webpack_require__) => {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.OffthreadVideo = void 0;
-const jsx_runtime_1 = __webpack_require__(85893);
-const react_1 = __webpack_require__(67294);
-const get_remotion_environment_js_1 = __webpack_require__(48288);
-const Sequence_js_1 = __webpack_require__(97080);
-const validate_media_props_js_1 = __webpack_require__(15480);
+const jsx_runtime_1 = __webpack_require__(5893);
+const react_1 = __webpack_require__(7294);
+const Sequence_js_1 = __webpack_require__(7080);
+const get_remotion_environment_js_1 = __webpack_require__(8288);
+const validate_media_props_js_1 = __webpack_require__(5480);
 const validate_start_from_props_js_1 = __webpack_require__(444);
-const OffthreadVideoForRendering_js_1 = __webpack_require__(83905);
-const VideoForPreview_js_1 = __webpack_require__(36021);
+const OffthreadVideoForRendering_js_1 = __webpack_require__(3905);
+const VideoForPreview_js_1 = __webpack_require__(6021);
 /**
  * @description This method imports and displays a video, similar to <Video />. During rendering, it extracts the exact frame from the video and displays it in an <img> tag
  * @see [Documentation](https://www.remotion.dev/docs/offthreadvideo)
@@ -9469,34 +9919,34 @@ exports.OffthreadVideo = OffthreadVideo;
 
 /***/ }),
 
-/***/ 83905:
+/***/ 3905:
 /***/ ((__unused_webpack_module, exports, __webpack_require__) => {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.OffthreadVideoForRendering = void 0;
-const jsx_runtime_1 = __webpack_require__(85893);
-const react_1 = __webpack_require__(67294);
-const absolute_src_js_1 = __webpack_require__(74710);
-const use_audio_frame_js_1 = __webpack_require__(66873);
-const cancel_render_js_1 = __webpack_require__(88113);
-const default_css_js_1 = __webpack_require__(57524);
-const Img_js_1 = __webpack_require__(10074);
-const random_js_1 = __webpack_require__(34264);
-const RenderAssetManager_js_1 = __webpack_require__(26770);
-const SequenceContext_js_1 = __webpack_require__(73759);
-const timeline_position_state_js_1 = __webpack_require__(47083);
+const jsx_runtime_1 = __webpack_require__(5893);
+const react_1 = __webpack_require__(7294);
+const Img_js_1 = __webpack_require__(74);
+const RenderAssetManager_js_1 = __webpack_require__(6770);
+const SequenceContext_js_1 = __webpack_require__(3759);
+const absolute_src_js_1 = __webpack_require__(4710);
+const use_audio_frame_js_1 = __webpack_require__(6873);
+const cancel_render_js_1 = __webpack_require__(8113);
+const default_css_js_1 = __webpack_require__(7524);
+const random_js_1 = __webpack_require__(4264);
+const timeline_position_state_js_1 = __webpack_require__(7083);
 const truthy_js_1 = __webpack_require__(3928);
-const use_current_frame_js_1 = __webpack_require__(39727);
-const use_unsafe_video_config_js_1 = __webpack_require__(53095);
-const volume_prop_js_1 = __webpack_require__(39022);
-const get_current_time_js_1 = __webpack_require__(84956);
-const offthread_video_source_js_1 = __webpack_require__(53998);
-const OffthreadVideoForRendering = ({ onError, volume: volumeProp, playbackRate, src, muted, allowAmplificationDuringRender, transparent = false, toneMapped = true, toneFrequency, name, ...props }) => {
+const use_current_frame_js_1 = __webpack_require__(9727);
+const use_unsafe_video_config_js_1 = __webpack_require__(3095);
+const volume_prop_js_1 = __webpack_require__(9022);
+const get_current_time_js_1 = __webpack_require__(4956);
+const offthread_video_source_js_1 = __webpack_require__(3998);
+const OffthreadVideoForRendering = ({ onError, volume: volumeProp, playbackRate, src, muted, allowAmplificationDuringRender, transparent = false, toneMapped = true, toneFrequency, name, loopVolumeCurveBehavior, ...props }) => {
     const absoluteFrame = (0, timeline_position_state_js_1.useTimelinePosition)();
     const frame = (0, use_current_frame_js_1.useCurrentFrame)();
-    const volumePropsFrame = (0, use_audio_frame_js_1.useFrameForVolumeProp)();
+    const volumePropsFrame = (0, use_audio_frame_js_1.useFrameForVolumeProp)(loopVolumeCurveBehavior !== null && loopVolumeCurveBehavior !== void 0 ? loopVolumeCurveBehavior : 'repeat');
     const videoConfig = (0, use_unsafe_video_config_js_1.useUnsafeVideoConfig)();
     const sequenceContext = (0, react_1.useContext)(SequenceContext_js_1.SequenceContext);
     const mediaStartsAt = (0, use_audio_frame_js_1.useMediaStartsAt)();
@@ -9522,6 +9972,7 @@ const OffthreadVideoForRendering = ({ onError, volume: volumeProp, playbackRate,
         allowAmplificationDuringRender: allowAmplificationDuringRender !== null && allowAmplificationDuringRender !== void 0 ? allowAmplificationDuringRender : false,
     });
     (0, react_1.useEffect)(() => {
+        var _a;
         if (!src) {
             throw new Error('No src passed');
         }
@@ -9544,6 +9995,7 @@ const OffthreadVideoForRendering = ({ onError, volume: volumeProp, playbackRate,
             playbackRate: playbackRate !== null && playbackRate !== void 0 ? playbackRate : 1,
             allowAmplificationDuringRender: allowAmplificationDuringRender !== null && allowAmplificationDuringRender !== void 0 ? allowAmplificationDuringRender : false,
             toneFrequency: toneFrequency !== null && toneFrequency !== void 0 ? toneFrequency : null,
+            audioStartFrame: Math.max(0, -((_a = sequenceContext === null || sequenceContext === void 0 ? void 0 : sequenceContext.relativeFrom) !== null && _a !== void 0 ? _a : 0)),
         });
         return () => unregisterRenderAsset(id);
     }, [
@@ -9558,6 +10010,7 @@ const OffthreadVideoForRendering = ({ onError, volume: volumeProp, playbackRate,
         playbackRate,
         allowAmplificationDuringRender,
         toneFrequency,
+        sequenceContext === null || sequenceContext === void 0 ? void 0 : sequenceContext.relativeFrom,
     ]);
     const currentTime = (0, react_1.useMemo)(() => {
         return ((0, get_current_time_js_1.getExpectedMediaFrameUncorrected)({
@@ -9594,29 +10047,29 @@ exports.OffthreadVideoForRendering = OffthreadVideoForRendering;
 
 /***/ }),
 
-/***/ 57307:
+/***/ 7307:
 /***/ ((__unused_webpack_module, exports, __webpack_require__) => {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.Video = void 0;
-const jsx_runtime_1 = __webpack_require__(85893);
+const jsx_runtime_1 = __webpack_require__(5893);
 /* eslint-disable @typescript-eslint/no-use-before-define */
-const react_1 = __webpack_require__(67294);
-const absolute_src_js_1 = __webpack_require__(74710);
-const calculate_loop_js_1 = __webpack_require__(46822);
-const enable_sequence_stack_traces_js_1 = __webpack_require__(12196);
-const get_remotion_environment_js_1 = __webpack_require__(48288);
+const react_1 = __webpack_require__(7294);
+const Sequence_js_1 = __webpack_require__(7080);
+const absolute_src_js_1 = __webpack_require__(4710);
+const calculate_loop_js_1 = __webpack_require__(6822);
+const enable_sequence_stack_traces_js_1 = __webpack_require__(2196);
+const get_remotion_environment_js_1 = __webpack_require__(8288);
 const index_js_1 = __webpack_require__(4432);
-const prefetch_js_1 = __webpack_require__(32595);
-const Sequence_js_1 = __webpack_require__(97080);
-const use_video_config_js_1 = __webpack_require__(73347);
-const validate_media_props_js_1 = __webpack_require__(15480);
+const prefetch_js_1 = __webpack_require__(2595);
+const use_video_config_js_1 = __webpack_require__(3347);
+const validate_media_props_js_1 = __webpack_require__(5480);
 const validate_start_from_props_js_1 = __webpack_require__(444);
-const duration_state_js_1 = __webpack_require__(19099);
-const VideoForPreview_js_1 = __webpack_require__(36021);
-const VideoForRendering_js_1 = __webpack_require__(78908);
+const VideoForPreview_js_1 = __webpack_require__(6021);
+const VideoForRendering_js_1 = __webpack_require__(8908);
+const duration_state_js_1 = __webpack_require__(9099);
 const VideoForwardingFunction = (props, ref) => {
     var _a, _b;
     const { startFrom, endAt, name, pauseWhenBuffering, stack, _remotionInternalNativeLoopPassed, showInTimeline, ...otherProps } = props;
@@ -9668,39 +10121,39 @@ exports.Video = (0, react_1.forwardRef)(VideoForwardingFunction);
 
 /***/ }),
 
-/***/ 36021:
+/***/ 6021:
 /***/ ((__unused_webpack_module, exports, __webpack_require__) => {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.VideoForPreview = void 0;
-const jsx_runtime_1 = __webpack_require__(85893);
-const react_1 = __webpack_require__(67294);
-const use_audio_frame_js_1 = __webpack_require__(66873);
-const prefetch_js_1 = __webpack_require__(32595);
-const SequenceContext_js_1 = __webpack_require__(73759);
-const SequenceManager_js_1 = __webpack_require__(80829);
-const use_media_buffering_js_1 = __webpack_require__(16801);
-const use_media_in_timeline_js_1 = __webpack_require__(17476);
-const use_media_playback_js_1 = __webpack_require__(95069);
+const jsx_runtime_1 = __webpack_require__(5893);
+const react_1 = __webpack_require__(7294);
+const SequenceContext_js_1 = __webpack_require__(3759);
+const SequenceManager_js_1 = __webpack_require__(829);
+const use_audio_frame_js_1 = __webpack_require__(6873);
+const prefetch_js_1 = __webpack_require__(2595);
+const use_media_buffering_js_1 = __webpack_require__(6801);
+const use_media_in_timeline_js_1 = __webpack_require__(7476);
+const use_media_playback_js_1 = __webpack_require__(5069);
 const use_media_tag_volume_js_1 = __webpack_require__(7126);
-const use_sync_volume_with_media_tag_js_1 = __webpack_require__(38875);
-const use_video_config_js_1 = __webpack_require__(73347);
-const volume_position_state_js_1 = __webpack_require__(51399);
-const video_fragment_js_1 = __webpack_require__(51527);
+const use_sync_volume_with_media_tag_js_1 = __webpack_require__(8875);
+const use_video_config_js_1 = __webpack_require__(3347);
+const volume_position_state_js_1 = __webpack_require__(1399);
+const video_fragment_js_1 = __webpack_require__(1527);
 const VideoForDevelopmentRefForwardingFunction = (props, ref) => {
     var _a, _b, _c;
     const videoRef = (0, react_1.useRef)(null);
-    const volumePropFrame = (0, use_audio_frame_js_1.useFrameForVolumeProp)();
+    const { volume, muted, playbackRate, onlyWarnForMediaSeekingError, src, onDuration, 
+    // @ts-expect-error
+    acceptableTimeShift, acceptableTimeShiftInSeconds, toneFrequency, name, _remotionInternalNativeLoopPassed, _remotionInternalStack, style, pauseWhenBuffering, showInTimeline, loopVolumeCurveBehavior, ...nativeProps } = props;
+    const volumePropFrame = (0, use_audio_frame_js_1.useFrameForVolumeProp)(loopVolumeCurveBehavior !== null && loopVolumeCurveBehavior !== void 0 ? loopVolumeCurveBehavior : 'repeat');
     const { fps, durationInFrames } = (0, use_video_config_js_1.useVideoConfig)();
     const parentSequence = (0, react_1.useContext)(SequenceContext_js_1.SequenceContext);
     const { hidden } = (0, react_1.useContext)(SequenceManager_js_1.SequenceVisibilityToggleContext);
     const [timelineId] = (0, react_1.useState)(() => String(Math.random()));
     const isSequenceHidden = (_a = hidden[timelineId]) !== null && _a !== void 0 ? _a : false;
-    const { volume, muted, playbackRate, onlyWarnForMediaSeekingError, src, onDuration, 
-    // @ts-expect-error
-    acceptableTimeShift, acceptableTimeShiftInSeconds, toneFrequency, name, _remotionInternalNativeLoopPassed, _remotionInternalStack, style, pauseWhenBuffering, showInTimeline, ...nativeProps } = props;
     if (typeof acceptableTimeShift !== 'undefined') {
         throw new Error('acceptableTimeShift has been removed. Use acceptableTimeShiftInSeconds instead.');
     }
@@ -9718,6 +10171,7 @@ const VideoForDevelopmentRefForwardingFunction = (props, ref) => {
         id: timelineId,
         stack: _remotionInternalStack,
         showInTimeline,
+        premountDisplay: null,
     });
     (0, use_sync_volume_with_media_tag_js_1.useSyncVolumeWithMediaTag)({
         volumePropFrame,
@@ -9734,10 +10188,12 @@ const VideoForDevelopmentRefForwardingFunction = (props, ref) => {
         onlyWarnForMediaSeekingError,
         acceptableTimeshift: acceptableTimeShiftInSeconds !== null && acceptableTimeShiftInSeconds !== void 0 ? acceptableTimeShiftInSeconds : use_media_playback_js_1.DEFAULT_ACCEPTABLE_TIMESHIFT,
     });
-    (0, use_media_buffering_js_1.useMediaBuffering)(videoRef, pauseWhenBuffering);
-    const actualFrom = parentSequence
-        ? parentSequence.relativeFrom + parentSequence.cumulatedFrom
-        : 0;
+    (0, use_media_buffering_js_1.useMediaBuffering)({
+        element: videoRef,
+        shouldBuffer: pauseWhenBuffering,
+        isPremounting: Boolean(parentSequence === null || parentSequence === void 0 ? void 0 : parentSequence.premounting),
+    });
+    const actualFrom = parentSequence ? parentSequence.relativeFrom : 0;
     const duration = parentSequence
         ? Math.min(parentSequence.durationInFrames, durationInFrames)
         : durationInFrames;
@@ -9827,33 +10283,33 @@ exports.VideoForPreview = (0, react_1.forwardRef)(VideoForDevelopmentRefForwardi
 
 /***/ }),
 
-/***/ 78908:
+/***/ 8908:
 /***/ ((__unused_webpack_module, exports, __webpack_require__) => {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.VideoForRendering = void 0;
-const jsx_runtime_1 = __webpack_require__(85893);
-const react_1 = __webpack_require__(67294);
-const absolute_src_js_1 = __webpack_require__(74710);
-const use_audio_frame_js_1 = __webpack_require__(66873);
-const delay_render_js_1 = __webpack_require__(22663);
-const get_remotion_environment_js_1 = __webpack_require__(48288);
-const is_approximately_the_same_js_1 = __webpack_require__(26614);
-const random_js_1 = __webpack_require__(34264);
-const RenderAssetManager_js_1 = __webpack_require__(26770);
-const SequenceContext_js_1 = __webpack_require__(73759);
-const timeline_position_state_js_1 = __webpack_require__(47083);
-const use_current_frame_js_1 = __webpack_require__(39727);
-const use_unsafe_video_config_js_1 = __webpack_require__(53095);
-const volume_prop_js_1 = __webpack_require__(39022);
-const get_current_time_js_1 = __webpack_require__(84956);
-const seek_until_right_js_1 = __webpack_require__(26082);
-const VideoForRenderingForwardFunction = ({ onError, volume: volumeProp, allowAmplificationDuringRender, playbackRate, onDuration, toneFrequency, name, acceptableTimeShiftInSeconds, ...props }, ref) => {
+const jsx_runtime_1 = __webpack_require__(5893);
+const react_1 = __webpack_require__(7294);
+const RenderAssetManager_js_1 = __webpack_require__(6770);
+const SequenceContext_js_1 = __webpack_require__(3759);
+const absolute_src_js_1 = __webpack_require__(4710);
+const use_audio_frame_js_1 = __webpack_require__(6873);
+const delay_render_js_1 = __webpack_require__(2663);
+const get_remotion_environment_js_1 = __webpack_require__(8288);
+const is_approximately_the_same_js_1 = __webpack_require__(6614);
+const random_js_1 = __webpack_require__(4264);
+const timeline_position_state_js_1 = __webpack_require__(7083);
+const use_current_frame_js_1 = __webpack_require__(9727);
+const use_unsafe_video_config_js_1 = __webpack_require__(3095);
+const volume_prop_js_1 = __webpack_require__(9022);
+const get_current_time_js_1 = __webpack_require__(4956);
+const seek_until_right_js_1 = __webpack_require__(6082);
+const VideoForRenderingForwardFunction = ({ onError, volume: volumeProp, allowAmplificationDuringRender, playbackRate, onDuration, toneFrequency, name, acceptableTimeShiftInSeconds, delayRenderRetries, delayRenderTimeoutInMilliseconds, loopVolumeCurveBehavior, ...props }, ref) => {
     const absoluteFrame = (0, timeline_position_state_js_1.useTimelinePosition)();
     const frame = (0, use_current_frame_js_1.useCurrentFrame)();
-    const volumePropsFrame = (0, use_audio_frame_js_1.useFrameForVolumeProp)();
+    const volumePropsFrame = (0, use_audio_frame_js_1.useFrameForVolumeProp)(loopVolumeCurveBehavior !== null && loopVolumeCurveBehavior !== void 0 ? loopVolumeCurveBehavior : 'repeat');
     const videoConfig = (0, use_unsafe_video_config_js_1.useUnsafeVideoConfig)();
     const videoRef = (0, react_1.useRef)(null);
     const sequenceContext = (0, react_1.useContext)(SequenceContext_js_1.SequenceContext);
@@ -9881,6 +10337,7 @@ const VideoForRenderingForwardFunction = ({ onError, volume: volumeProp, allowAm
         allowAmplificationDuringRender: allowAmplificationDuringRender !== null && allowAmplificationDuringRender !== void 0 ? allowAmplificationDuringRender : false,
     });
     (0, react_1.useEffect)(() => {
+        var _a;
         if (!props.src) {
             throw new Error('No src passed');
         }
@@ -9903,6 +10360,7 @@ const VideoForRenderingForwardFunction = ({ onError, volume: volumeProp, allowAm
             playbackRate: playbackRate !== null && playbackRate !== void 0 ? playbackRate : 1,
             allowAmplificationDuringRender: allowAmplificationDuringRender !== null && allowAmplificationDuringRender !== void 0 ? allowAmplificationDuringRender : false,
             toneFrequency: toneFrequency !== null && toneFrequency !== void 0 ? toneFrequency : null,
+            audioStartFrame: Math.max(0, -((_a = sequenceContext === null || sequenceContext === void 0 ? void 0 : sequenceContext.relativeFrom) !== null && _a !== void 0 ? _a : 0)),
         });
         return () => unregisterRenderAsset(id);
     }, [
@@ -9917,11 +10375,13 @@ const VideoForRenderingForwardFunction = ({ onError, volume: volumeProp, allowAm
         playbackRate,
         allowAmplificationDuringRender,
         toneFrequency,
+        sequenceContext === null || sequenceContext === void 0 ? void 0 : sequenceContext.relativeFrom,
     ]);
     (0, react_1.useImperativeHandle)(ref, () => {
         return videoRef.current;
     }, []);
     (0, react_1.useEffect)(() => {
+        var _a, _b;
         if (!window.remotion_videoEnabled) {
             return;
         }
@@ -9935,8 +10395,14 @@ const VideoForRenderingForwardFunction = ({ onError, volume: volumeProp, allowAm
             startFrom: -mediaStartsAt,
             fps: videoConfig.fps,
         });
-        const handle = (0, delay_render_js_1.delayRender)(`Rendering <Video /> with src="${props.src}"`);
-        if (false) {}
+        const handle = (0, delay_render_js_1.delayRender)(`Rendering <Video /> with src="${props.src}"`, {
+            retries: delayRenderRetries !== null && delayRenderRetries !== void 0 ? delayRenderRetries : undefined,
+            timeoutInMilliseconds: delayRenderTimeoutInMilliseconds !== null && delayRenderTimeoutInMilliseconds !== void 0 ? delayRenderTimeoutInMilliseconds : undefined,
+        });
+        if (((_b = (_a = window.process) === null || _a === void 0 ? void 0 : _a.env) === null || _b === void 0 ? void 0 : _b.NODE_ENV) === 'test') {
+            (0, delay_render_js_1.continueRender)(handle);
+            return;
+        }
         if ((0, is_approximately_the_same_js_1.isApproximatelyTheSame)(current.currentTime, currentTime)) {
             if (current.readyState >= 2) {
                 (0, delay_render_js_1.continueRender)(handle);
@@ -9989,14 +10455,22 @@ const VideoForRenderingForwardFunction = ({ onError, volume: volumeProp, allowAm
         frame,
         mediaStartsAt,
         onError,
+        delayRenderRetries,
+        delayRenderTimeoutInMilliseconds,
     ]);
     const { src } = props;
     // If video source switches, make new handle
     if (environment.isRendering) {
         // eslint-disable-next-line react-hooks/rules-of-hooks
         (0, react_1.useLayoutEffect)(() => {
-            if (false) {}
-            const newHandle = (0, delay_render_js_1.delayRender)('Loading <Video> duration with src=' + src);
+            var _a, _b;
+            if (((_b = (_a = window.process) === null || _a === void 0 ? void 0 : _a.env) === null || _b === void 0 ? void 0 : _b.NODE_ENV) === 'test') {
+                return;
+            }
+            const newHandle = (0, delay_render_js_1.delayRender)('Loading <Video> duration with src=' + src, {
+                retries: delayRenderRetries !== null && delayRenderRetries !== void 0 ? delayRenderRetries : undefined,
+                timeoutInMilliseconds: delayRenderTimeoutInMilliseconds !== null && delayRenderTimeoutInMilliseconds !== void 0 ? delayRenderTimeoutInMilliseconds : undefined,
+            });
             const { current } = videoRef;
             const didLoad = () => {
                 if (current === null || current === void 0 ? void 0 : current.duration) {
@@ -10016,7 +10490,7 @@ const VideoForRenderingForwardFunction = ({ onError, volume: volumeProp, allowAm
                 current === null || current === void 0 ? void 0 : current.removeEventListener('loadedmetadata', didLoad);
                 (0, delay_render_js_1.continueRender)(newHandle);
             };
-        }, [src, onDuration]);
+        }, [src, onDuration, delayRenderRetries, delayRenderTimeoutInMilliseconds]);
     }
     return (0, jsx_runtime_1.jsx)("video", { ref: videoRef, ...props, onError: onError });
 };
@@ -10025,16 +10499,16 @@ exports.VideoForRendering = (0, react_1.forwardRef)(VideoForRenderingForwardFunc
 
 /***/ }),
 
-/***/ 19099:
+/***/ 9099:
 /***/ ((__unused_webpack_module, exports, __webpack_require__) => {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.DurationsContextProvider = exports.DurationsContext = exports.durationReducer = void 0;
-const jsx_runtime_1 = __webpack_require__(85893);
-const react_1 = __webpack_require__(67294);
-const absolute_src_js_1 = __webpack_require__(74710);
+const jsx_runtime_1 = __webpack_require__(5893);
+const react_1 = __webpack_require__(7294);
+const absolute_src_js_1 = __webpack_require__(4710);
 const durationReducer = (state, action) => {
     switch (action.type) {
         case 'got-duration':
@@ -10068,7 +10542,7 @@ exports.DurationsContextProvider = DurationsContextProvider;
 
 /***/ }),
 
-/***/ 84956:
+/***/ 4956:
 /***/ ((__unused_webpack_module, exports, __webpack_require__) => {
 
 "use strict";
@@ -10076,7 +10550,7 @@ exports.DurationsContextProvider = DurationsContextProvider;
 // Calculate the `.currentTime` of a video or audio element
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.getMediaTime = exports.getExpectedMediaFrameUncorrected = void 0;
-const interpolate_js_1 = __webpack_require__(92297);
+const interpolate_js_1 = __webpack_require__(2297);
 const getExpectedMediaFrameUncorrected = ({ frame, playbackRate, startFrom, }) => {
     return (0, interpolate_js_1.interpolate)(frame, [-1, startFrom, startFrom + 1], [-1, startFrom, startFrom + playbackRate]);
 };
@@ -10102,22 +10576,22 @@ exports.getMediaTime = getMediaTime;
 
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.Video = exports.OffthreadVideo = void 0;
-var OffthreadVideo_js_1 = __webpack_require__(32714);
+var OffthreadVideo_js_1 = __webpack_require__(2714);
 Object.defineProperty(exports, "OffthreadVideo", ({ enumerable: true, get: function () { return OffthreadVideo_js_1.OffthreadVideo; } }));
-var Video_js_1 = __webpack_require__(57307);
+var Video_js_1 = __webpack_require__(7307);
 Object.defineProperty(exports, "Video", ({ enumerable: true, get: function () { return Video_js_1.Video; } }));
 
 
 /***/ }),
 
-/***/ 53998:
+/***/ 3998:
 /***/ ((__unused_webpack_module, exports, __webpack_require__) => {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.getOffthreadVideoSource = void 0;
-const absolute_src_1 = __webpack_require__(74710);
+const absolute_src_1 = __webpack_require__(4710);
 const getOffthreadVideoSource = ({ src, transparent, currentTime, toneMapped, }) => {
     return `http://localhost:${window.remotion_proxyPort}/proxy?src=${encodeURIComponent((0, absolute_src_1.getAbsoluteSrc)(src))}&time=${encodeURIComponent(currentTime)}&transparent=${String(transparent)}&toneMapped=${String(toneMapped)}`;
 };
@@ -10126,7 +10600,7 @@ exports.getOffthreadVideoSource = getOffthreadVideoSource;
 
 /***/ }),
 
-/***/ 26082:
+/***/ 6082:
 /***/ ((__unused_webpack_module, exports) => {
 
 "use strict";
@@ -10227,14 +10701,14 @@ exports.seekToTimeMultipleUntilRight = seekToTimeMultipleUntilRight;
 
 /***/ }),
 
-/***/ 51527:
+/***/ 1527:
 /***/ ((__unused_webpack_module, exports, __webpack_require__) => {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.useAppendVideoFragment = exports.appendVideoFragment = exports.isIosSafari = void 0;
-const react_1 = __webpack_require__(67294);
+const react_1 = __webpack_require__(7294);
 const toSeconds = (time, fps) => {
     return Math.round((time / fps) * 100) / 100;
 };
@@ -10274,15 +10748,19 @@ const appendVideoFragment = ({ actualSrc, actualFrom, duration, fps, }) => {
     return actualSrc;
 };
 exports.appendVideoFragment = appendVideoFragment;
-const isSubsetOfDuration = (prevStartFrom, newStartFrom, prevDuration, newDuration) => {
-    return (prevStartFrom <= newStartFrom &&
-        prevStartFrom + prevDuration >= newStartFrom + newDuration);
-};
+const isSubsetOfDuration = ({ prevStartFrom, newStartFrom, prevDuration, newDuration, }) => prevStartFrom <= newStartFrom &&
+    prevStartFrom + prevDuration >= newStartFrom + newDuration;
 const useAppendVideoFragment = ({ actualSrc: initialActualSrc, actualFrom: initialActualFrom, duration: initialDuration, fps, }) => {
     const actualFromRef = (0, react_1.useRef)(initialActualFrom);
     const actualDuration = (0, react_1.useRef)(initialDuration);
     const actualSrc = (0, react_1.useRef)(initialActualSrc);
-    if (!isSubsetOfDuration || initialActualSrc !== actualSrc.current) {
+    if (!isSubsetOfDuration({
+        prevStartFrom: actualFromRef.current,
+        newStartFrom: initialActualFrom,
+        prevDuration: actualDuration.current,
+        newDuration: initialDuration,
+    }) ||
+        initialActualSrc !== actualSrc.current) {
         actualFromRef.current = initialActualFrom;
         actualDuration.current = initialDuration;
         actualSrc.current = initialActualSrc;
@@ -10300,14 +10778,14 @@ exports.useAppendVideoFragment = useAppendVideoFragment;
 
 /***/ }),
 
-/***/ 51399:
+/***/ 1399:
 /***/ ((__unused_webpack_module, exports, __webpack_require__) => {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.useMediaMutedState = exports.useMediaVolumeState = exports.SetMediaVolumeContext = exports.MediaVolumeContext = void 0;
-const react_1 = __webpack_require__(67294);
+const react_1 = __webpack_require__(7294);
 exports.MediaVolumeContext = (0, react_1.createContext)({
     mediaMuted: false,
     mediaVolume: 1,
@@ -10340,7 +10818,7 @@ exports.useMediaMutedState = useMediaMutedState;
 
 /***/ }),
 
-/***/ 39022:
+/***/ 9022:
 /***/ ((__unused_webpack_module, exports) => {
 
 "use strict";
@@ -10372,7 +10850,7 @@ exports.evaluateVolume = evaluateVolume;
 
 /***/ }),
 
-/***/ 72187:
+/***/ 2187:
 /***/ ((__unused_webpack_module, exports) => {
 
 "use strict";
@@ -10422,14 +10900,15 @@ exports.warnAboutNonSeekableMedia = warnAboutNonSeekableMedia;
 
 /***/ }),
 
-/***/ 74295:
+/***/ 4295:
 /***/ ((__unused_webpack_module, exports, __webpack_require__) => {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.watchStaticFile = exports.WATCH_REMOTION_STATIC_FILES = void 0;
-const get_remotion_environment_1 = __webpack_require__(48288);
+const get_remotion_environment_1 = __webpack_require__(8288);
+const v5_flag_1 = __webpack_require__(6844);
 exports.WATCH_REMOTION_STATIC_FILES = 'remotion_staticFilesChanged';
 /**
  * @description Watch for changes in a specific static file.
@@ -10439,6 +10918,9 @@ exports.WATCH_REMOTION_STATIC_FILES = 'remotion_staticFilesChanged';
  * @see [Documentation](https://www.remotion.dev/docs/watchstaticfile)
  */
 const watchStaticFile = (fileName, callback) => {
+    if (v5_flag_1.ENABLE_V5_BREAKING_CHANGES) {
+        throw new Error('watchStaticFile() has moved into the `@remotion/studio` package. Update your imports.');
+    }
     // Check if function is called in Remotion Studio
     if (!(0, get_remotion_environment_1.getRemotionEnvironment)().isStudio) {
         // eslint-disable-next-line no-console
@@ -10482,7 +10964,7 @@ exports.watchStaticFile = watchStaticFile;
 
 /***/ }),
 
-/***/ 69887:
+/***/ 9887:
 /***/ (function(__unused_webpack_module, exports, __webpack_require__) {
 
 "use strict";
@@ -10512,22 +10994,22 @@ var __importStar = (this && this.__importStar) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.RemotionContextProvider = exports.useRemotionContexts = void 0;
-const jsx_runtime_1 = __webpack_require__(85893);
+const jsx_runtime_1 = __webpack_require__(5893);
 // This is used for when other reconcilers are being used
 // such as in React Three Fiber. All the contexts need to be passed again
 // for them to be useable
-const react_1 = __importStar(__webpack_require__(67294));
-const buffering_js_1 = __webpack_require__(45775);
-const CanUseRemotionHooks_js_1 = __webpack_require__(44144);
-const CompositionManagerContext_js_1 = __webpack_require__(13898);
+const react_1 = __importStar(__webpack_require__(7294));
+const CanUseRemotionHooks_js_1 = __webpack_require__(4144);
+const CompositionManagerContext_js_1 = __webpack_require__(3898);
 const NativeLayers_js_1 = __webpack_require__(2425);
-const nonce_js_1 = __webpack_require__(98054);
-const prefetch_state_js_1 = __webpack_require__(15819);
-const RenderAssetManager_js_1 = __webpack_require__(26770);
-const ResolveCompositionConfig_js_1 = __webpack_require__(95014);
-const SequenceContext_js_1 = __webpack_require__(73759);
-const SequenceManager_js_1 = __webpack_require__(80829);
-const timeline_position_state_js_1 = __webpack_require__(47083);
+const RenderAssetManager_js_1 = __webpack_require__(6770);
+const ResolveCompositionConfig_js_1 = __webpack_require__(5014);
+const SequenceContext_js_1 = __webpack_require__(3759);
+const SequenceManager_js_1 = __webpack_require__(829);
+const buffering_js_1 = __webpack_require__(5775);
+const nonce_js_1 = __webpack_require__(8054);
+const prefetch_state_js_1 = __webpack_require__(5819);
+const timeline_position_state_js_1 = __webpack_require__(7083);
 function useRemotionContexts() {
     const compositionManagerCtx = react_1.default.useContext(CompositionManagerContext_js_1.CompositionManager);
     const timelineContext = react_1.default.useContext(timeline_position_state_js_1.TimelineContext);
@@ -10579,7 +11061,7 @@ exports.RemotionContextProvider = RemotionContextProvider;
 
 /***/ }),
 
-/***/ 60053:
+/***/ 53:
 /***/ ((__unused_webpack_module, exports) => {
 
 "use strict";
@@ -10606,29 +11088,29 @@ exports.unstable_shouldYield=M;exports.unstable_wrapCallback=function(a){var b=y
 
 /***/ }),
 
-/***/ 63840:
+/***/ 3840:
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
 "use strict";
 
 
 if (true) {
-  module.exports = __webpack_require__(60053);
+  module.exports = __webpack_require__(53);
 } else {}
 
 
 /***/ }),
 
-/***/ 75874:
+/***/ 5874:
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
-let defaultTheme = __webpack_require__(68737)
+let defaultTheme = __webpack_require__(8737)
 module.exports = (defaultTheme.__esModule ? defaultTheme : { default: defaultTheme }).default
 
 
 /***/ }),
 
-/***/ 68737:
+/***/ 8737:
 /***/ ((__unused_webpack_module, exports, __webpack_require__) => {
 
 "use strict";
@@ -10642,8 +11124,8 @@ Object.defineProperty(exports, "default", ({
         return _default;
     }
 }));
-const _cloneDeep = __webpack_require__(39392);
-const _configfull = /*#__PURE__*/ _interop_require_default(__webpack_require__(49924));
+const _cloneDeep = __webpack_require__(9392);
+const _configfull = /*#__PURE__*/ _interop_require_default(__webpack_require__(9924));
 function _interop_require_default(obj) {
     return obj && obj.__esModule ? obj : {
         default: obj
@@ -10654,7 +11136,7 @@ const _default = (0, _cloneDeep.cloneDeep)(_configfull.default.theme);
 
 /***/ }),
 
-/***/ 39392:
+/***/ 9392:
 /***/ ((__unused_webpack_module, exports) => {
 
 "use strict";
@@ -10684,7 +11166,7 @@ function cloneDeep(value) {
 
 /***/ }),
 
-/***/ 49924:
+/***/ 9924:
 /***/ ((module) => {
 
 module.exports = {
@@ -11753,7 +12235,7 @@ module.exports = {
 
 /***/ }),
 
-/***/ 53250:
+/***/ 3250:
 /***/ ((__unused_webpack_module, exports, __webpack_require__) => {
 
 "use strict";
@@ -11766,26 +12248,26 @@ module.exports = {
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  */
-var e=__webpack_require__(67294);function h(a,b){return a===b&&(0!==a||1/a===1/b)||a!==a&&b!==b}var k="function"===typeof Object.is?Object.is:h,l=e.useState,m=e.useEffect,n=e.useLayoutEffect,p=e.useDebugValue;function q(a,b){var d=b(),f=l({inst:{value:d,getSnapshot:b}}),c=f[0].inst,g=f[1];n(function(){c.value=d;c.getSnapshot=b;r(c)&&g({inst:c})},[a,d,b]);m(function(){r(c)&&g({inst:c});return a(function(){r(c)&&g({inst:c})})},[a]);p(d);return d}
+var e=__webpack_require__(7294);function h(a,b){return a===b&&(0!==a||1/a===1/b)||a!==a&&b!==b}var k="function"===typeof Object.is?Object.is:h,l=e.useState,m=e.useEffect,n=e.useLayoutEffect,p=e.useDebugValue;function q(a,b){var d=b(),f=l({inst:{value:d,getSnapshot:b}}),c=f[0].inst,g=f[1];n(function(){c.value=d;c.getSnapshot=b;r(c)&&g({inst:c})},[a,d,b]);m(function(){r(c)&&g({inst:c});return a(function(){r(c)&&g({inst:c})})},[a]);p(d);return d}
 function r(a){var b=a.getSnapshot;a=a.value;try{var d=b();return!k(a,d)}catch(f){return!0}}function t(a,b){return b()}var u="undefined"===typeof window||"undefined"===typeof window.document||"undefined"===typeof window.document.createElement?t:q;exports.useSyncExternalStore=void 0!==e.useSyncExternalStore?e.useSyncExternalStore:u;
 
 
 /***/ }),
 
-/***/ 61688:
+/***/ 1688:
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
 "use strict";
 
 
 if (true) {
-  module.exports = __webpack_require__(53250);
+  module.exports = __webpack_require__(3250);
 } else {}
 
 
 /***/ }),
 
-/***/ 75933:
+/***/ 5933:
 /***/ ((module, exports, __webpack_require__) => {
 
 var __WEBPACK_AMD_DEFINE_RESULT__;/* Web Font Loader v1.6.28 - (c) Adobe Systems, Google. License: Apache 2.0 */(function(){function aa(a,b,c){return a.call.apply(a.bind,arguments)}function ba(a,b,c){if(!a)throw Error();if(2<arguments.length){var d=Array.prototype.slice.call(arguments,2);return function(){var c=Array.prototype.slice.call(arguments);Array.prototype.unshift.apply(c,d);return a.apply(b,c)}}return function(){return a.apply(b,arguments)}}function p(a,b,c){p=Function.prototype.bind&&-1!=Function.prototype.bind.toString().indexOf("native code")?aa:ba;return p.apply(null,arguments)}var q=Date.now||function(){return+new Date};function ca(a,b){this.a=a;this.o=b||a;this.c=this.o.document}var da=!!window.FontFace;function t(a,b,c,d){b=a.c.createElement(b);if(c)for(var e in c)c.hasOwnProperty(e)&&("style"==e?b.style.cssText=c[e]:b.setAttribute(e,c[e]));d&&b.appendChild(a.c.createTextNode(d));return b}function u(a,b,c){a=a.c.getElementsByTagName(b)[0];a||(a=document.documentElement);a.insertBefore(c,a.lastChild)}function v(a){a.parentNode&&a.parentNode.removeChild(a)}
@@ -11810,7 +12292,7 @@ g,0<d.length&&(d=za[d[0]])&&(a.c[e]=d))}a.c[e]||(d=za[e])&&(a.c[e]=d);for(d=0;d<
 
 /***/ }),
 
-/***/ 26849:
+/***/ 6849:
 /***/ ((__unused_webpack_module, exports, __webpack_require__) => {
 
 "use strict";
@@ -11823,13 +12305,13 @@ g,0<d.length&&(d=za[d[0]])&&(a.c[e]=d))}a.c[e]||(d=za[e])&&(a.c[e]=d);for(d=0;d<
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  */
-var e=__webpack_require__(67294);function h(a,b){return a===b&&(0!==a||1/a===1/b)||a!==a&&b!==b}var k="function"===typeof Object.is?Object.is:h,l=e.useState,m=e.useEffect,n=e.useLayoutEffect,p=e.useDebugValue;function q(a,b){var d=b(),f=l({inst:{value:d,getSnapshot:b}}),c=f[0].inst,g=f[1];n(function(){c.value=d;c.getSnapshot=b;r(c)&&g({inst:c})},[a,d,b]);m(function(){r(c)&&g({inst:c});return a(function(){r(c)&&g({inst:c})})},[a]);p(d);return d}
+var e=__webpack_require__(7294);function h(a,b){return a===b&&(0!==a||1/a===1/b)||a!==a&&b!==b}var k="function"===typeof Object.is?Object.is:h,l=e.useState,m=e.useEffect,n=e.useLayoutEffect,p=e.useDebugValue;function q(a,b){var d=b(),f=l({inst:{value:d,getSnapshot:b}}),c=f[0].inst,g=f[1];n(function(){c.value=d;c.getSnapshot=b;r(c)&&g({inst:c})},[a,d,b]);m(function(){r(c)&&g({inst:c});return a(function(){r(c)&&g({inst:c})})},[a]);p(d);return d}
 function r(a){var b=a.getSnapshot;a=a.value;try{var d=b();return!k(a,d)}catch(f){return!0}}function t(a,b){return b()}var u="undefined"===typeof window||"undefined"===typeof window.document||"undefined"===typeof window.document.createElement?t:q;exports.useSyncExternalStore=void 0!==e.useSyncExternalStore?e.useSyncExternalStore:u;
 
 
 /***/ }),
 
-/***/ 49743:
+/***/ 9743:
 /***/ ((__unused_webpack_module, exports, __webpack_require__) => {
 
 "use strict";
@@ -11842,34 +12324,34 @@ function r(a){var b=a.getSnapshot;a=a.value;try{var d=b();return!k(a,d)}catch(f)
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  */
-var h=__webpack_require__(67294),n=__webpack_require__(54652);function p(a,b){return a===b&&(0!==a||1/a===1/b)||a!==a&&b!==b}var q="function"===typeof Object.is?Object.is:p,r=n.useSyncExternalStore,t=h.useRef,u=h.useEffect,v=h.useMemo,w=h.useDebugValue;
+var h=__webpack_require__(7294),n=__webpack_require__(4652);function p(a,b){return a===b&&(0!==a||1/a===1/b)||a!==a&&b!==b}var q="function"===typeof Object.is?Object.is:p,r=n.useSyncExternalStore,t=h.useRef,u=h.useEffect,v=h.useMemo,w=h.useDebugValue;
 exports.useSyncExternalStoreWithSelector=function(a,b,e,l,g){var c=t(null);if(null===c.current){var f={hasValue:!1,value:null};c.current=f}else f=c.current;c=v(function(){function a(a){if(!c){c=!0;d=a;a=l(a);if(void 0!==g&&f.hasValue){var b=f.value;if(g(b,a))return k=b}return k=a}b=k;if(q(d,a))return b;var e=l(a);if(void 0!==g&&g(b,e))return b;d=a;return k=e}var c=!1,d,k,m=void 0===e?null:e;return[function(){return a(b())},null===m?void 0:function(){return a(m())}]},[b,e,l,g]);var d=r(a,c[0],c[1]);
 u(function(){f.hasValue=!0;f.value=d},[d]);w(d);return d};
 
 
 /***/ }),
 
-/***/ 54652:
+/***/ 4652:
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
 "use strict";
 
 
 if (true) {
-  module.exports = __webpack_require__(26849);
+  module.exports = __webpack_require__(6849);
 } else {}
 
 
 /***/ }),
 
-/***/ 28258:
+/***/ 8258:
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
 "use strict";
 
 
 if (true) {
-  module.exports = __webpack_require__(49743);
+  module.exports = __webpack_require__(9743);
 } else {}
 
 
@@ -11879,10 +12361,117 @@ if (true) {
 /***/ ((__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
+__webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   BRAND: () => (/* binding */ BRAND),
+/* harmony export */   DIRTY: () => (/* binding */ DIRTY),
+/* harmony export */   EMPTY_PATH: () => (/* binding */ EMPTY_PATH),
+/* harmony export */   INVALID: () => (/* binding */ INVALID),
+/* harmony export */   NEVER: () => (/* binding */ NEVER),
+/* harmony export */   OK: () => (/* binding */ OK),
+/* harmony export */   ParseStatus: () => (/* binding */ ParseStatus),
+/* harmony export */   Schema: () => (/* binding */ ZodType),
+/* harmony export */   ZodAny: () => (/* binding */ ZodAny),
+/* harmony export */   ZodArray: () => (/* binding */ ZodArray),
+/* harmony export */   ZodBigInt: () => (/* binding */ ZodBigInt),
+/* harmony export */   ZodBoolean: () => (/* binding */ ZodBoolean),
+/* harmony export */   ZodBranded: () => (/* binding */ ZodBranded),
+/* harmony export */   ZodCatch: () => (/* binding */ ZodCatch),
+/* harmony export */   ZodDate: () => (/* binding */ ZodDate),
+/* harmony export */   ZodDefault: () => (/* binding */ ZodDefault),
+/* harmony export */   ZodDiscriminatedUnion: () => (/* binding */ ZodDiscriminatedUnion),
+/* harmony export */   ZodEffects: () => (/* binding */ ZodEffects),
+/* harmony export */   ZodEnum: () => (/* binding */ ZodEnum),
+/* harmony export */   ZodError: () => (/* binding */ ZodError),
+/* harmony export */   ZodFirstPartyTypeKind: () => (/* binding */ ZodFirstPartyTypeKind),
+/* harmony export */   ZodFunction: () => (/* binding */ ZodFunction),
+/* harmony export */   ZodIntersection: () => (/* binding */ ZodIntersection),
+/* harmony export */   ZodIssueCode: () => (/* binding */ ZodIssueCode),
+/* harmony export */   ZodLazy: () => (/* binding */ ZodLazy),
+/* harmony export */   ZodLiteral: () => (/* binding */ ZodLiteral),
+/* harmony export */   ZodMap: () => (/* binding */ ZodMap),
+/* harmony export */   ZodNaN: () => (/* binding */ ZodNaN),
+/* harmony export */   ZodNativeEnum: () => (/* binding */ ZodNativeEnum),
+/* harmony export */   ZodNever: () => (/* binding */ ZodNever),
+/* harmony export */   ZodNull: () => (/* binding */ ZodNull),
+/* harmony export */   ZodNullable: () => (/* binding */ ZodNullable),
+/* harmony export */   ZodNumber: () => (/* binding */ ZodNumber),
+/* harmony export */   ZodObject: () => (/* binding */ ZodObject),
+/* harmony export */   ZodOptional: () => (/* binding */ ZodOptional),
+/* harmony export */   ZodParsedType: () => (/* binding */ ZodParsedType),
+/* harmony export */   ZodPipeline: () => (/* binding */ ZodPipeline),
+/* harmony export */   ZodPromise: () => (/* binding */ ZodPromise),
+/* harmony export */   ZodReadonly: () => (/* binding */ ZodReadonly),
+/* harmony export */   ZodRecord: () => (/* binding */ ZodRecord),
+/* harmony export */   ZodSchema: () => (/* binding */ ZodType),
+/* harmony export */   ZodSet: () => (/* binding */ ZodSet),
+/* harmony export */   ZodString: () => (/* binding */ ZodString),
+/* harmony export */   ZodSymbol: () => (/* binding */ ZodSymbol),
+/* harmony export */   ZodTransformer: () => (/* binding */ ZodEffects),
+/* harmony export */   ZodTuple: () => (/* binding */ ZodTuple),
+/* harmony export */   ZodType: () => (/* binding */ ZodType),
+/* harmony export */   ZodUndefined: () => (/* binding */ ZodUndefined),
+/* harmony export */   ZodUnion: () => (/* binding */ ZodUnion),
+/* harmony export */   ZodUnknown: () => (/* binding */ ZodUnknown),
+/* harmony export */   ZodVoid: () => (/* binding */ ZodVoid),
+/* harmony export */   addIssueToContext: () => (/* binding */ addIssueToContext),
+/* harmony export */   any: () => (/* binding */ anyType),
+/* harmony export */   array: () => (/* binding */ arrayType),
+/* harmony export */   bigint: () => (/* binding */ bigIntType),
+/* harmony export */   boolean: () => (/* binding */ booleanType),
+/* harmony export */   coerce: () => (/* binding */ coerce),
+/* harmony export */   custom: () => (/* binding */ custom),
+/* harmony export */   date: () => (/* binding */ dateType),
+/* harmony export */   "default": () => (/* binding */ z),
+/* harmony export */   defaultErrorMap: () => (/* binding */ errorMap),
+/* harmony export */   discriminatedUnion: () => (/* binding */ discriminatedUnionType),
+/* harmony export */   effect: () => (/* binding */ effectsType),
+/* harmony export */   "enum": () => (/* binding */ enumType),
+/* harmony export */   "function": () => (/* binding */ functionType),
+/* harmony export */   getErrorMap: () => (/* binding */ getErrorMap),
+/* harmony export */   getParsedType: () => (/* binding */ getParsedType),
+/* harmony export */   "instanceof": () => (/* binding */ instanceOfType),
+/* harmony export */   intersection: () => (/* binding */ intersectionType),
+/* harmony export */   isAborted: () => (/* binding */ isAborted),
+/* harmony export */   isAsync: () => (/* binding */ isAsync),
+/* harmony export */   isDirty: () => (/* binding */ isDirty),
+/* harmony export */   isValid: () => (/* binding */ isValid),
+/* harmony export */   late: () => (/* binding */ late),
+/* harmony export */   lazy: () => (/* binding */ lazyType),
+/* harmony export */   literal: () => (/* binding */ literalType),
+/* harmony export */   makeIssue: () => (/* binding */ makeIssue),
+/* harmony export */   map: () => (/* binding */ mapType),
+/* harmony export */   nan: () => (/* binding */ nanType),
+/* harmony export */   nativeEnum: () => (/* binding */ nativeEnumType),
+/* harmony export */   never: () => (/* binding */ neverType),
+/* harmony export */   "null": () => (/* binding */ nullType),
+/* harmony export */   nullable: () => (/* binding */ nullableType),
+/* harmony export */   number: () => (/* binding */ numberType),
+/* harmony export */   object: () => (/* binding */ objectType),
+/* harmony export */   objectUtil: () => (/* binding */ objectUtil),
+/* harmony export */   oboolean: () => (/* binding */ oboolean),
+/* harmony export */   onumber: () => (/* binding */ onumber),
+/* harmony export */   optional: () => (/* binding */ optionalType),
+/* harmony export */   ostring: () => (/* binding */ ostring),
+/* harmony export */   pipeline: () => (/* binding */ pipelineType),
+/* harmony export */   preprocess: () => (/* binding */ preprocessType),
+/* harmony export */   promise: () => (/* binding */ promiseType),
+/* harmony export */   quotelessJson: () => (/* binding */ quotelessJson),
+/* harmony export */   record: () => (/* binding */ recordType),
+/* harmony export */   set: () => (/* binding */ setType),
+/* harmony export */   setErrorMap: () => (/* binding */ setErrorMap),
+/* harmony export */   strictObject: () => (/* binding */ strictObjectType),
+/* harmony export */   string: () => (/* binding */ stringType),
+/* harmony export */   symbol: () => (/* binding */ symbolType),
+/* harmony export */   transformer: () => (/* binding */ effectsType),
+/* harmony export */   tuple: () => (/* binding */ tupleType),
+/* harmony export */   undefined: () => (/* binding */ undefinedType),
+/* harmony export */   union: () => (/* binding */ unionType),
+/* harmony export */   unknown: () => (/* binding */ unknownType),
+/* harmony export */   util: () => (/* binding */ util),
+/* harmony export */   "void": () => (/* binding */ voidType),
 /* harmony export */   z: () => (/* binding */ z)
 /* harmony export */ });
-/* unused harmony exports BRAND, DIRTY, EMPTY_PATH, INVALID, NEVER, OK, ParseStatus, Schema, ZodAny, ZodArray, ZodBigInt, ZodBoolean, ZodBranded, ZodCatch, ZodDate, ZodDefault, ZodDiscriminatedUnion, ZodEffects, ZodEnum, ZodError, ZodFirstPartyTypeKind, ZodFunction, ZodIntersection, ZodIssueCode, ZodLazy, ZodLiteral, ZodMap, ZodNaN, ZodNativeEnum, ZodNever, ZodNull, ZodNullable, ZodNumber, ZodObject, ZodOptional, ZodParsedType, ZodPipeline, ZodPromise, ZodReadonly, ZodRecord, ZodSchema, ZodSet, ZodString, ZodSymbol, ZodTransformer, ZodTuple, ZodType, ZodUndefined, ZodUnion, ZodUnknown, ZodVoid, addIssueToContext, any, array, bigint, boolean, coerce, custom, date, datetimeRegex, default, defaultErrorMap, discriminatedUnion, effect, enum, function, getErrorMap, getParsedType, instanceof, intersection, isAborted, isAsync, isDirty, isValid, late, lazy, literal, makeIssue, map, nan, nativeEnum, never, null, nullable, number, object, objectUtil, oboolean, onumber, optional, ostring, pipeline, preprocess, promise, quotelessJson, record, set, setErrorMap, strictObject, string, symbol, transformer, tuple, undefined, union, unknown, util, void */
 var util;
 (function (util) {
     util.assertEqual = (val) => val;
@@ -12117,11 +12706,6 @@ class ZodError extends Error {
         processError(this);
         return fieldErrors;
     }
-    static assert(value) {
-        if (!(value instanceof ZodError)) {
-            throw new Error(`Not a ZodError: ${value}`);
-        }
-    }
     toString() {
         return this.message;
     }
@@ -12294,13 +12878,6 @@ const makeIssue = (params) => {
         ...issueData,
         path: fullPath,
     };
-    if (issueData.message !== undefined) {
-        return {
-            ...issueData,
-            path: fullPath,
-            message: issueData.message,
-        };
-    }
     let errorMessage = "";
     const maps = errorMaps
         .filter((m) => !!m)
@@ -12312,12 +12889,11 @@ const makeIssue = (params) => {
     return {
         ...issueData,
         path: fullPath,
-        message: errorMessage,
+        message: issueData.message || errorMessage,
     };
 };
 const EMPTY_PATH = [];
 function addIssueToContext(ctx, issueData) {
-    const overrideMap = getErrorMap();
     const issue = makeIssue({
         issueData: issueData,
         data: ctx.data,
@@ -12325,8 +12901,8 @@ function addIssueToContext(ctx, issueData) {
         errorMaps: [
             ctx.common.contextualErrorMap,
             ctx.schemaErrorMap,
-            overrideMap,
-            overrideMap === errorMap ? undefined : errorMap, // then global default map
+            getErrorMap(),
+            errorMap, // then global default map
         ].filter((x) => !!x),
     });
     ctx.common.issues.push(issue);
@@ -12357,11 +12933,9 @@ class ParseStatus {
     static async mergeObjectAsync(status, pairs) {
         const syncPairs = [];
         for (const pair of pairs) {
-            const key = await pair.key;
-            const value = await pair.value;
             syncPairs.push({
-                key,
-                value,
+                key: await pair.key,
+                value: await pair.value,
             });
         }
         return ParseStatus.mergeObjectSync(status, syncPairs);
@@ -12396,46 +12970,12 @@ const isDirty = (x) => x.status === "dirty";
 const isValid = (x) => x.status === "valid";
 const isAsync = (x) => typeof Promise !== "undefined" && x instanceof Promise;
 
-/******************************************************************************
-Copyright (c) Microsoft Corporation.
-
-Permission to use, copy, modify, and/or distribute this software for any
-purpose with or without fee is hereby granted.
-
-THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES WITH
-REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF MERCHANTABILITY
-AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR ANY SPECIAL, DIRECT,
-INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES WHATSOEVER RESULTING FROM
-LOSS OF USE, DATA OR PROFITS, WHETHER IN AN ACTION OF CONTRACT, NEGLIGENCE OR
-OTHER TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE OR
-PERFORMANCE OF THIS SOFTWARE.
-***************************************************************************** */
-
-function __classPrivateFieldGet(receiver, state, kind, f) {
-    if (kind === "a" && !f) throw new TypeError("Private accessor was defined without a getter");
-    if (typeof state === "function" ? receiver !== state || !f : !state.has(receiver)) throw new TypeError("Cannot read private member from an object whose class did not declare it");
-    return kind === "m" ? f : kind === "a" ? f.call(receiver) : f ? f.value : state.get(receiver);
-}
-
-function __classPrivateFieldSet(receiver, state, value, kind, f) {
-    if (kind === "m") throw new TypeError("Private method is not writable");
-    if (kind === "a" && !f) throw new TypeError("Private accessor was defined without a setter");
-    if (typeof state === "function" ? receiver !== state || !f : !state.has(receiver)) throw new TypeError("Cannot write private member to an object whose class did not declare it");
-    return (kind === "a" ? f.call(receiver, value) : f ? f.value = value : state.set(receiver, value)), value;
-}
-
-typeof SuppressedError === "function" ? SuppressedError : function (error, suppressed, message) {
-    var e = new Error(message);
-    return e.name = "SuppressedError", e.error = error, e.suppressed = suppressed, e;
-};
-
 var errorUtil;
 (function (errorUtil) {
     errorUtil.errToObj = (message) => typeof message === "string" ? { message } : message || {};
     errorUtil.toString = (message) => typeof message === "string" ? message : message === null || message === void 0 ? void 0 : message.message;
 })(errorUtil || (errorUtil = {}));
 
-var _ZodEnum_cache, _ZodNativeEnum_cache;
 class ParseInputLazyPath {
     constructor(parent, value, path, key) {
         this._cachedPath = [];
@@ -12486,17 +13026,12 @@ function processCreateParams(params) {
     if (errorMap)
         return { errorMap: errorMap, description };
     const customMap = (iss, ctx) => {
-        var _a, _b;
-        const { message } = params;
-        if (iss.code === "invalid_enum_value") {
-            return { message: message !== null && message !== void 0 ? message : ctx.defaultError };
-        }
-        if (typeof ctx.data === "undefined") {
-            return { message: (_a = message !== null && message !== void 0 ? message : required_error) !== null && _a !== void 0 ? _a : ctx.defaultError };
-        }
         if (iss.code !== "invalid_type")
             return { message: ctx.defaultError };
-        return { message: (_b = message !== null && message !== void 0 ? message : invalid_type_error) !== null && _b !== void 0 ? _b : ctx.defaultError };
+        if (typeof ctx.data === "undefined") {
+            return { message: required_error !== null && required_error !== void 0 ? required_error : ctx.defaultError };
+        }
+        return { message: invalid_type_error !== null && invalid_type_error !== void 0 ? invalid_type_error : ctx.defaultError };
     };
     return { errorMap: customMap, description };
 }
@@ -12754,13 +13289,11 @@ class ZodType {
     }
 }
 const cuidRegex = /^c[^\s-]{8,}$/i;
-const cuid2Regex = /^[0-9a-z]+$/;
-const ulidRegex = /^[0-9A-HJKMNP-TV-Z]{26}$/;
+const cuid2Regex = /^[a-z][a-z0-9]*$/;
+const ulidRegex = /[0-9A-HJKMNP-TV-Z]{26}/;
 // const uuidRegex =
 //   /^([a-f0-9]{8}-[a-f0-9]{4}-[1-5][a-f0-9]{3}-[a-f0-9]{4}-[a-f0-9]{12}|00000000-0000-0000-0000-000000000000)$/i;
 const uuidRegex = /^[0-9a-fA-F]{8}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F]{12}$/i;
-const nanoidRegex = /^[a-z0-9_-]{21}$/i;
-const durationRegex = /^[-+]?P(?!$)(?:(?:[-+]?\d+Y)|(?:[-+]?\d+[.,]\d+Y$))?(?:(?:[-+]?\d+M)|(?:[-+]?\d+[.,]\d+M$))?(?:(?:[-+]?\d+W)|(?:[-+]?\d+[.,]\d+W$))?(?:(?:[-+]?\d+D)|(?:[-+]?\d+[.,]\d+D$))?(?:T(?=[\d+-])(?:(?:[-+]?\d+H)|(?:[-+]?\d+[.,]\d+H$))?(?:(?:[-+]?\d+M)|(?:[-+]?\d+[.,]\d+M$))?(?:[-+]?\d+(?:[.,]\d+)?S)?)??$/;
 // from https://stackoverflow.com/a/46181/1550155
 // old version: too slow, didn't support unicode
 // const emailRegex = /^((([a-z]|\d|[!#\$%&'\*\+\-\/=\?\^_`{\|}~]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])+(\.([a-z]|\d|[!#\$%&'\*\+\-\/=\?\^_`{\|}~]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])+)*)|((\x22)((((\x20|\x09)*(\x0d\x0a))?(\x20|\x09)+)?(([\x01-\x08\x0b\x0c\x0e-\x1f\x7f]|\x21|[\x23-\x5b]|[\x5d-\x7e]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(\\([\x01-\x09\x0b\x0c\x0d-\x7f]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]))))*(((\x20|\x09)*(\x0d\x0a))?(\x20|\x09)+)?(\x22)))@((([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])*([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])))\.)+(([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])*([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])))$/i;
@@ -12773,48 +13306,40 @@ const durationRegex = /^[-+]?P(?!$)(?:(?:[-+]?\d+Y)|(?:[-+]?\d+[.,]\d+Y$))?(?:(?
 //   /^[a-zA-Z0-9\.\!\#\$\%\&\'\*\+\/\=\?\^\_\`\{\|\}\~\-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/;
 // const emailRegex =
 //   /^(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*|"(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21\x23-\x5b\x5d-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])*")@(?:(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\[(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?|[a-z0-9-]*[a-z0-9]:(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21-\x5a\x53-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])+)\])$/i;
-const emailRegex = /^(?!\.)(?!.*\.\.)([A-Z0-9_'+\-\.]*)[A-Z0-9_+-]@([A-Z0-9][A-Z0-9\-]*\.)+[A-Z]{2,}$/i;
+const emailRegex = /^(?!\.)(?!.*\.\.)([A-Z0-9_+-\.]*)[A-Z0-9_+-]@([A-Z0-9][A-Z0-9\-]*\.)+[A-Z]{2,}$/i;
 // const emailRegex =
 //   /^[a-z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-z0-9-]+(?:\.[a-z0-9\-]+)*$/i;
 // from https://thekevinscott.com/emojis-in-javascript/#writing-a-regular-expression
-const _emojiRegex = `^(\\p{Extended_Pictographic}|\\p{Emoji_Component})+$`;
-let emojiRegex;
-// faster, simpler, safer
-const ipv4Regex = /^(?:(?:25[0-5]|2[0-4][0-9]|1[0-9][0-9]|[1-9][0-9]|[0-9])\.){3}(?:25[0-5]|2[0-4][0-9]|1[0-9][0-9]|[1-9][0-9]|[0-9])$/;
+const emojiRegex = /^(\p{Extended_Pictographic}|\p{Emoji_Component})+$/u;
+const ipv4Regex = /^(((25[0-5])|(2[0-4][0-9])|(1[0-9]{2})|([0-9]{1,2}))\.){3}((25[0-5])|(2[0-4][0-9])|(1[0-9]{2})|([0-9]{1,2}))$/;
 const ipv6Regex = /^(([a-f0-9]{1,4}:){7}|::([a-f0-9]{1,4}:){0,6}|([a-f0-9]{1,4}:){1}:([a-f0-9]{1,4}:){0,5}|([a-f0-9]{1,4}:){2}:([a-f0-9]{1,4}:){0,4}|([a-f0-9]{1,4}:){3}:([a-f0-9]{1,4}:){0,3}|([a-f0-9]{1,4}:){4}:([a-f0-9]{1,4}:){0,2}|([a-f0-9]{1,4}:){5}:([a-f0-9]{1,4}:){0,1})([a-f0-9]{1,4}|(((25[0-5])|(2[0-4][0-9])|(1[0-9]{2})|([0-9]{1,2}))\.){3}((25[0-5])|(2[0-4][0-9])|(1[0-9]{2})|([0-9]{1,2})))$/;
-// https://stackoverflow.com/questions/7860392/determine-if-string-is-in-base64-using-javascript
-const base64Regex = /^([0-9a-zA-Z+/]{4})*(([0-9a-zA-Z+/]{2}==)|([0-9a-zA-Z+/]{3}=))?$/;
-// simple
-// const dateRegexSource = `\\d{4}-\\d{2}-\\d{2}`;
-// no leap year validation
-// const dateRegexSource = `\\d{4}-((0[13578]|10|12)-31|(0[13-9]|1[0-2])-30|(0[1-9]|1[0-2])-(0[1-9]|1\\d|2\\d))`;
-// with leap year validation
-const dateRegexSource = `((\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-((0[13578]|1[02])-(0[1-9]|[12]\\d|3[01])|(0[469]|11)-(0[1-9]|[12]\\d|30)|(02)-(0[1-9]|1\\d|2[0-8])))`;
-const dateRegex = new RegExp(`^${dateRegexSource}$`);
-function timeRegexSource(args) {
-    // let regex = `\\d{2}:\\d{2}:\\d{2}`;
-    let regex = `([01]\\d|2[0-3]):[0-5]\\d:[0-5]\\d`;
-    if (args.precision) {
-        regex = `${regex}\\.\\d{${args.precision}}`;
-    }
-    else if (args.precision == null) {
-        regex = `${regex}(\\.\\d+)?`;
-    }
-    return regex;
-}
-function timeRegex(args) {
-    return new RegExp(`^${timeRegexSource(args)}$`);
-}
 // Adapted from https://stackoverflow.com/a/3143231
-function datetimeRegex(args) {
-    let regex = `${dateRegexSource}T${timeRegexSource(args)}`;
-    const opts = [];
-    opts.push(args.local ? `Z?` : `Z`);
-    if (args.offset)
-        opts.push(`([+-]\\d{2}:?\\d{2})`);
-    regex = `${regex}(${opts.join("|")})`;
-    return new RegExp(`^${regex}$`);
-}
+const datetimeRegex = (args) => {
+    if (args.precision) {
+        if (args.offset) {
+            return new RegExp(`^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}\\.\\d{${args.precision}}(([+-]\\d{2}(:?\\d{2})?)|Z)$`);
+        }
+        else {
+            return new RegExp(`^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}\\.\\d{${args.precision}}Z$`);
+        }
+    }
+    else if (args.precision === 0) {
+        if (args.offset) {
+            return new RegExp(`^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}(([+-]\\d{2}(:?\\d{2})?)|Z)$`);
+        }
+        else {
+            return new RegExp(`^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}Z$`);
+        }
+    }
+    else {
+        if (args.offset) {
+            return new RegExp(`^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}(\\.\\d+)?(([+-]\\d{2}(:?\\d{2})?)|Z)$`);
+        }
+        else {
+            return new RegExp(`^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}(\\.\\d+)?Z$`);
+        }
+    }
+};
 function isValidIP(ip, version) {
     if ((version === "v4" || !version) && ipv4Regex.test(ip)) {
         return true;
@@ -12825,6 +13350,31 @@ function isValidIP(ip, version) {
     return false;
 }
 class ZodString extends ZodType {
+    constructor() {
+        super(...arguments);
+        this._regex = (regex, validation, message) => this.refinement((data) => regex.test(data), {
+            validation,
+            code: ZodIssueCode.invalid_string,
+            ...errorUtil.errToObj(message),
+        });
+        /**
+         * @deprecated Use z.string().min(1) instead.
+         * @see {@link ZodString.min}
+         */
+        this.nonempty = (message) => this.min(1, errorUtil.errToObj(message));
+        this.trim = () => new ZodString({
+            ...this._def,
+            checks: [...this._def.checks, { kind: "trim" }],
+        });
+        this.toLowerCase = () => new ZodString({
+            ...this._def,
+            checks: [...this._def.checks, { kind: "toLowerCase" }],
+        });
+        this.toUpperCase = () => new ZodString({
+            ...this._def,
+            checks: [...this._def.checks, { kind: "toUpperCase" }],
+        });
+    }
     _parse(input) {
         if (this._def.coerce) {
             input.data = String(input.data);
@@ -12836,7 +13386,9 @@ class ZodString extends ZodType {
                 code: ZodIssueCode.invalid_type,
                 expected: ZodParsedType.string,
                 received: ctx.parsedType,
-            });
+            }
+            //
+            );
             return INVALID;
         }
         const status = new ParseStatus();
@@ -12910,9 +13462,6 @@ class ZodString extends ZodType {
                 }
             }
             else if (check.kind === "emoji") {
-                if (!emojiRegex) {
-                    emojiRegex = new RegExp(_emojiRegex, "u");
-                }
                 if (!emojiRegex.test(input.data)) {
                     ctx = this._getOrReturnCtx(input, ctx);
                     addIssueToContext(ctx, {
@@ -12928,17 +13477,6 @@ class ZodString extends ZodType {
                     ctx = this._getOrReturnCtx(input, ctx);
                     addIssueToContext(ctx, {
                         validation: "uuid",
-                        code: ZodIssueCode.invalid_string,
-                        message: check.message,
-                    });
-                    status.dirty();
-                }
-            }
-            else if (check.kind === "nanoid") {
-                if (!nanoidRegex.test(input.data)) {
-                    ctx = this._getOrReturnCtx(input, ctx);
-                    addIssueToContext(ctx, {
-                        validation: "nanoid",
                         code: ZodIssueCode.invalid_string,
                         message: check.message,
                     });
@@ -13059,41 +13597,6 @@ class ZodString extends ZodType {
                     status.dirty();
                 }
             }
-            else if (check.kind === "date") {
-                const regex = dateRegex;
-                if (!regex.test(input.data)) {
-                    ctx = this._getOrReturnCtx(input, ctx);
-                    addIssueToContext(ctx, {
-                        code: ZodIssueCode.invalid_string,
-                        validation: "date",
-                        message: check.message,
-                    });
-                    status.dirty();
-                }
-            }
-            else if (check.kind === "time") {
-                const regex = timeRegex(check);
-                if (!regex.test(input.data)) {
-                    ctx = this._getOrReturnCtx(input, ctx);
-                    addIssueToContext(ctx, {
-                        code: ZodIssueCode.invalid_string,
-                        validation: "time",
-                        message: check.message,
-                    });
-                    status.dirty();
-                }
-            }
-            else if (check.kind === "duration") {
-                if (!durationRegex.test(input.data)) {
-                    ctx = this._getOrReturnCtx(input, ctx);
-                    addIssueToContext(ctx, {
-                        validation: "duration",
-                        code: ZodIssueCode.invalid_string,
-                        message: check.message,
-                    });
-                    status.dirty();
-                }
-            }
             else if (check.kind === "ip") {
                 if (!isValidIP(input.data, check.version)) {
                     ctx = this._getOrReturnCtx(input, ctx);
@@ -13105,29 +13608,11 @@ class ZodString extends ZodType {
                     status.dirty();
                 }
             }
-            else if (check.kind === "base64") {
-                if (!base64Regex.test(input.data)) {
-                    ctx = this._getOrReturnCtx(input, ctx);
-                    addIssueToContext(ctx, {
-                        validation: "base64",
-                        code: ZodIssueCode.invalid_string,
-                        message: check.message,
-                    });
-                    status.dirty();
-                }
-            }
             else {
                 util.assertNever(check);
             }
         }
         return { status: status.value, value: input.data };
-    }
-    _regex(regex, validation, message) {
-        return this.refinement((data) => regex.test(data), {
-            validation,
-            code: ZodIssueCode.invalid_string,
-            ...errorUtil.errToObj(message),
-        });
     }
     _addCheck(check) {
         return new ZodString({
@@ -13147,9 +13632,6 @@ class ZodString extends ZodType {
     uuid(message) {
         return this._addCheck({ kind: "uuid", ...errorUtil.errToObj(message) });
     }
-    nanoid(message) {
-        return this._addCheck({ kind: "nanoid", ...errorUtil.errToObj(message) });
-    }
     cuid(message) {
         return this._addCheck({ kind: "cuid", ...errorUtil.errToObj(message) });
     }
@@ -13159,20 +13641,16 @@ class ZodString extends ZodType {
     ulid(message) {
         return this._addCheck({ kind: "ulid", ...errorUtil.errToObj(message) });
     }
-    base64(message) {
-        return this._addCheck({ kind: "base64", ...errorUtil.errToObj(message) });
-    }
     ip(options) {
         return this._addCheck({ kind: "ip", ...errorUtil.errToObj(options) });
     }
     datetime(options) {
-        var _a, _b;
+        var _a;
         if (typeof options === "string") {
             return this._addCheck({
                 kind: "datetime",
                 precision: null,
                 offset: false,
-                local: false,
                 message: options,
             });
         }
@@ -13180,29 +13658,8 @@ class ZodString extends ZodType {
             kind: "datetime",
             precision: typeof (options === null || options === void 0 ? void 0 : options.precision) === "undefined" ? null : options === null || options === void 0 ? void 0 : options.precision,
             offset: (_a = options === null || options === void 0 ? void 0 : options.offset) !== null && _a !== void 0 ? _a : false,
-            local: (_b = options === null || options === void 0 ? void 0 : options.local) !== null && _b !== void 0 ? _b : false,
             ...errorUtil.errToObj(options === null || options === void 0 ? void 0 : options.message),
         });
-    }
-    date(message) {
-        return this._addCheck({ kind: "date", message });
-    }
-    time(options) {
-        if (typeof options === "string") {
-            return this._addCheck({
-                kind: "time",
-                precision: null,
-                message: options,
-            });
-        }
-        return this._addCheck({
-            kind: "time",
-            precision: typeof (options === null || options === void 0 ? void 0 : options.precision) === "undefined" ? null : options === null || options === void 0 ? void 0 : options.precision,
-            ...errorUtil.errToObj(options === null || options === void 0 ? void 0 : options.message),
-        });
-    }
-    duration(message) {
-        return this._addCheck({ kind: "duration", ...errorUtil.errToObj(message) });
     }
     regex(regex, message) {
         return this._addCheck({
@@ -13254,42 +13711,8 @@ class ZodString extends ZodType {
             ...errorUtil.errToObj(message),
         });
     }
-    /**
-     * @deprecated Use z.string().min(1) instead.
-     * @see {@link ZodString.min}
-     */
-    nonempty(message) {
-        return this.min(1, errorUtil.errToObj(message));
-    }
-    trim() {
-        return new ZodString({
-            ...this._def,
-            checks: [...this._def.checks, { kind: "trim" }],
-        });
-    }
-    toLowerCase() {
-        return new ZodString({
-            ...this._def,
-            checks: [...this._def.checks, { kind: "toLowerCase" }],
-        });
-    }
-    toUpperCase() {
-        return new ZodString({
-            ...this._def,
-            checks: [...this._def.checks, { kind: "toUpperCase" }],
-        });
-    }
     get isDatetime() {
         return !!this._def.checks.find((ch) => ch.kind === "datetime");
-    }
-    get isDate() {
-        return !!this._def.checks.find((ch) => ch.kind === "date");
-    }
-    get isTime() {
-        return !!this._def.checks.find((ch) => ch.kind === "time");
-    }
-    get isDuration() {
-        return !!this._def.checks.find((ch) => ch.kind === "duration");
     }
     get isEmail() {
         return !!this._def.checks.find((ch) => ch.kind === "email");
@@ -13303,9 +13726,6 @@ class ZodString extends ZodType {
     get isUUID() {
         return !!this._def.checks.find((ch) => ch.kind === "uuid");
     }
-    get isNANOID() {
-        return !!this._def.checks.find((ch) => ch.kind === "nanoid");
-    }
     get isCUID() {
         return !!this._def.checks.find((ch) => ch.kind === "cuid");
     }
@@ -13317,9 +13737,6 @@ class ZodString extends ZodType {
     }
     get isIP() {
         return !!this._def.checks.find((ch) => ch.kind === "ip");
-    }
-    get isBase64() {
-        return !!this._def.checks.find((ch) => ch.kind === "base64");
     }
     get minLength() {
         let min = null;
@@ -14308,10 +14725,9 @@ class ZodObject extends ZodType {
                 const syncPairs = [];
                 for (const pair of pairs) {
                     const key = await pair.key;
-                    const value = await pair.value;
                     syncPairs.push({
                         key,
-                        value,
+                        value: await pair.value,
                         alwaysSet: pair.alwaysSet,
                     });
                 }
@@ -14685,7 +15101,7 @@ const getDiscriminator = (type) => {
     }
     else if (type instanceof ZodNativeEnum) {
         // eslint-disable-next-line ban/ban
-        return util.objectValues(type.enum);
+        return Object.keys(type.enum);
     }
     else if (type instanceof ZodDefault) {
         return getDiscriminator(type._def.innerType);
@@ -14696,23 +15112,8 @@ const getDiscriminator = (type) => {
     else if (type instanceof ZodNull) {
         return [null];
     }
-    else if (type instanceof ZodOptional) {
-        return [undefined, ...getDiscriminator(type.unwrap())];
-    }
-    else if (type instanceof ZodNullable) {
-        return [null, ...getDiscriminator(type.unwrap())];
-    }
-    else if (type instanceof ZodBranded) {
-        return getDiscriminator(type.unwrap());
-    }
-    else if (type instanceof ZodReadonly) {
-        return getDiscriminator(type.unwrap());
-    }
-    else if (type instanceof ZodCatch) {
-        return getDiscriminator(type._def.innerType);
-    }
     else {
-        return [];
+        return null;
     }
 };
 class ZodDiscriminatedUnion extends ZodType {
@@ -14775,7 +15176,7 @@ class ZodDiscriminatedUnion extends ZodType {
         // try {
         for (const type of options) {
             const discriminatorValues = getDiscriminator(type.shape[discriminator]);
-            if (!discriminatorValues.length) {
+            if (!discriminatorValues) {
                 throw new Error(`A discriminator value for key \`${discriminator}\` could not be extracted from all schema options`);
             }
             for (const value of discriminatorValues) {
@@ -14988,7 +15389,6 @@ class ZodRecord extends ZodType {
             pairs.push({
                 key: keyType._parse(new ParseInputLazyPath(ctx, key, ctx.path, key)),
                 value: valueType._parse(new ParseInputLazyPath(ctx, ctx.data[key], ctx.path, key)),
-                alwaysSet: key in ctx.data,
             });
         }
         if (ctx.common.async) {
@@ -15348,10 +15748,6 @@ function createZodEnum(values, params) {
     });
 }
 class ZodEnum extends ZodType {
-    constructor() {
-        super(...arguments);
-        _ZodEnum_cache.set(this, void 0);
-    }
     _parse(input) {
         if (typeof input.data !== "string") {
             const ctx = this._getOrReturnCtx(input);
@@ -15363,10 +15759,7 @@ class ZodEnum extends ZodType {
             });
             return INVALID;
         }
-        if (!__classPrivateFieldGet(this, _ZodEnum_cache, "f")) {
-            __classPrivateFieldSet(this, _ZodEnum_cache, new Set(this._def.values), "f");
-        }
-        if (!__classPrivateFieldGet(this, _ZodEnum_cache, "f").has(input.data)) {
+        if (this._def.values.indexOf(input.data) === -1) {
             const ctx = this._getOrReturnCtx(input);
             const expectedValues = this._def.values;
             addIssueToContext(ctx, {
@@ -15402,26 +15795,15 @@ class ZodEnum extends ZodType {
         }
         return enumValues;
     }
-    extract(values, newDef = this._def) {
-        return ZodEnum.create(values, {
-            ...this._def,
-            ...newDef,
-        });
+    extract(values) {
+        return ZodEnum.create(values);
     }
-    exclude(values, newDef = this._def) {
-        return ZodEnum.create(this.options.filter((opt) => !values.includes(opt)), {
-            ...this._def,
-            ...newDef,
-        });
+    exclude(values) {
+        return ZodEnum.create(this.options.filter((opt) => !values.includes(opt)));
     }
 }
-_ZodEnum_cache = new WeakMap();
 ZodEnum.create = createZodEnum;
 class ZodNativeEnum extends ZodType {
-    constructor() {
-        super(...arguments);
-        _ZodNativeEnum_cache.set(this, void 0);
-    }
     _parse(input) {
         const nativeEnumValues = util.getValidEnumValues(this._def.values);
         const ctx = this._getOrReturnCtx(input);
@@ -15435,10 +15817,7 @@ class ZodNativeEnum extends ZodType {
             });
             return INVALID;
         }
-        if (!__classPrivateFieldGet(this, _ZodNativeEnum_cache, "f")) {
-            __classPrivateFieldSet(this, _ZodNativeEnum_cache, new Set(util.getValidEnumValues(this._def.values)), "f");
-        }
-        if (!__classPrivateFieldGet(this, _ZodNativeEnum_cache, "f").has(input.data)) {
+        if (nativeEnumValues.indexOf(input.data) === -1) {
             const expectedValues = util.objectValues(nativeEnumValues);
             addIssueToContext(ctx, {
                 received: ctx.data,
@@ -15453,7 +15832,6 @@ class ZodNativeEnum extends ZodType {
         return this._def.values;
     }
 }
-_ZodNativeEnum_cache = new WeakMap();
 ZodNativeEnum.create = (values, params) => {
     return new ZodNativeEnum({
         values: values,
@@ -15523,43 +15901,33 @@ class ZodEffects extends ZodType {
         checkCtx.addIssue = checkCtx.addIssue.bind(checkCtx);
         if (effect.type === "preprocess") {
             const processed = effect.transform(ctx.data, checkCtx);
+            if (ctx.common.issues.length) {
+                return {
+                    status: "dirty",
+                    value: ctx.data,
+                };
+            }
             if (ctx.common.async) {
-                return Promise.resolve(processed).then(async (processed) => {
-                    if (status.value === "aborted")
-                        return INVALID;
-                    const result = await this._def.schema._parseAsync({
+                return Promise.resolve(processed).then((processed) => {
+                    return this._def.schema._parseAsync({
                         data: processed,
                         path: ctx.path,
                         parent: ctx,
                     });
-                    if (result.status === "aborted")
-                        return INVALID;
-                    if (result.status === "dirty")
-                        return DIRTY(result.value);
-                    if (status.value === "dirty")
-                        return DIRTY(result.value);
-                    return result;
                 });
             }
             else {
-                if (status.value === "aborted")
-                    return INVALID;
-                const result = this._def.schema._parseSync({
+                return this._def.schema._parseSync({
                     data: processed,
                     path: ctx.path,
                     parent: ctx,
                 });
-                if (result.status === "aborted")
-                    return INVALID;
-                if (result.status === "dirty")
-                    return DIRTY(result.value);
-                if (status.value === "dirty")
-                    return DIRTY(result.value);
-                return result;
             }
         }
         if (effect.type === "refinement") {
-            const executeRefinement = (acc) => {
+            const executeRefinement = (acc
+            // effect: RefinementEffect<any>
+            ) => {
                 const result = effect.refinement(acc, checkCtx);
                 if (ctx.common.async) {
                     return Promise.resolve(result);
@@ -15862,18 +16230,10 @@ class ZodPipeline extends ZodType {
 class ZodReadonly extends ZodType {
     _parse(input) {
         const result = this._def.innerType._parse(input);
-        const freeze = (data) => {
-            if (isValid(data)) {
-                data.value = Object.freeze(data.value);
-            }
-            return data;
-        };
-        return isAsync(result)
-            ? result.then((data) => freeze(data))
-            : freeze(result);
-    }
-    unwrap() {
-        return this._def.innerType;
+        if (isValid(result)) {
+            result.value = Object.freeze(result.value);
+        }
+        return result;
     }
 }
 ZodReadonly.create = (type, params) => {
@@ -15883,8 +16243,8 @@ ZodReadonly.create = (type, params) => {
         ...processCreateParams(params),
     });
 };
-function custom(check, params = {}, 
-/**
+const custom = (check, params = {}, 
+/*
  * @deprecated
  *
  * Pass `fatal` into the params object instead:
@@ -15894,7 +16254,7 @@ function custom(check, params = {},
  * ```
  *
  */
-fatal) {
+fatal) => {
     if (check)
         return ZodAny.create().superRefine((data, ctx) => {
             var _a, _b;
@@ -15910,7 +16270,7 @@ fatal) {
             }
         });
     return ZodAny.create();
-}
+};
 const late = {
     object: ZodObject.lazycreate,
 };
@@ -16028,7 +16388,6 @@ var z = /*#__PURE__*/Object.freeze({
     ZodParsedType: ZodParsedType,
     getParsedType: getParsedType,
     ZodType: ZodType,
-    datetimeRegex: datetimeRegex,
     ZodString: ZodString,
     ZodNumber: ZodNumber,
     ZodBigInt: ZodBigInt,
@@ -16137,7 +16496,7 @@ var z = /*#__PURE__*/Object.freeze({
 /******/ 		}
 /******/ 		// Create a new module (and put it into the cache)
 /******/ 		var module = __webpack_module_cache__[moduleId] = {
-/******/ 			id: moduleId,
+/******/ 			// no module.id needed
 /******/ 			// no module.loaded needed
 /******/ 			exports: {}
 /******/ 		};
@@ -16415,11 +16774,6 @@ var z = /*#__PURE__*/Object.freeze({
 /******/ 		chunkLoadingGlobal.push = webpackJsonpCallback.bind(null, chunkLoadingGlobal.push.bind(chunkLoadingGlobal));
 /******/ 	})();
 /******/ 	
-/******/ 	/* webpack/runtime/nonce */
-/******/ 	(() => {
-/******/ 		__webpack_require__.nc = undefined;
-/******/ 	})();
-/******/ 	
 /************************************************************************/
 var __webpack_exports__ = {};
 // This entry need to be wrapped in an IIFE because it need to be in strict mode.
@@ -16429,7 +16783,7 @@ var exports = {};
 var __webpack_unused_export__;
 
 __webpack_unused_export__ = ({ value: true });
-const remotion_1 = __webpack_require__(27982);
+const remotion_1 = __webpack_require__(7982);
 remotion_1.Internals.setupEnvVariables();
 remotion_1.Internals.CSSUtils.injectCSS(`
   .css-reset, .css-reset * {
@@ -16530,7 +16884,7 @@ remotion_1.Internals.CSSUtils.injectCSS(`
 "use strict";
 
 // EXTERNAL MODULE: ./node_modules/remotion/dist/cjs/index.js
-var cjs = __webpack_require__(27982);
+var cjs = __webpack_require__(7982);
 ;// CONCATENATED MODULE: ./src/utils/src.ts
 const resolveSrc = ({ base, name }, ext = "avif") => `${base}/${name}.${ext}`;
 const resolveBase = (base, tail) => `${base ? `${base}/` : ""}${tail}`;
@@ -16637,7 +16991,7 @@ const PIC_SERIES_SCHEMA = lib.z.object({
 });
 
 // EXTERNAL MODULE: ./node_modules/react/index.js
-var react = __webpack_require__(67294);
+var react = __webpack_require__(7294);
 var react_namespaceObject = /*#__PURE__*/__webpack_require__.t(react, 2);
 ;// CONCATENATED MODULE: ./src/constants/remotion.ts
 const DEFAULT_FPS = 24;
@@ -17680,7 +18034,7 @@ var vanilla = (createState) => {
 
 
 // EXTERNAL MODULE: ./node_modules/zustand/node_modules/use-sync-external-store/shim/with-selector.js
-var with_selector = __webpack_require__(28258);
+var with_selector = __webpack_require__(8258);
 ;// CONCATENATED MODULE: ./node_modules/zustand/esm/index.mjs
 
 
@@ -19685,7 +20039,7 @@ const resolve_composite_key_resolveCompositeKey = (...args) => args.filter(Boole
 
 
 // EXTERNAL MODULE: ./node_modules/localforage/dist/localforage.js
-var localforage = __webpack_require__(69483);
+var localforage = __webpack_require__(9483);
 var localforage_default = /*#__PURE__*/__webpack_require__.n(localforage);
 ;// CONCATENATED MODULE: ./src/store/middleware/3.persist/json.ts
 
@@ -23170,7 +23524,7 @@ function shouldAssignObserverCurrentProperties(observer, optimisticResult, optio
 //# sourceMappingURL=queryObserver.mjs.map
 
 // EXTERNAL MODULE: ./node_modules/use-sync-external-store/shim/index.js
-var shim = __webpack_require__(61688);
+var shim = __webpack_require__(1688);
 ;// CONCATENATED MODULE: ./node_modules/@tanstack/react-query/build/lib/useSyncExternalStore.mjs
 'use client';
 
@@ -31374,9 +31728,9 @@ const update_useScrollUpdateHandler = ({
 };
 
 // EXTERNAL MODULE: ./node_modules/webfontloader/webfontloader.js
-var webfontloader = __webpack_require__(75933);
+var webfontloader = __webpack_require__(5933);
 // EXTERNAL MODULE: ./node_modules/tailwindcss/defaultTheme.js
-var defaultTheme = __webpack_require__(75874);
+var defaultTheme = __webpack_require__(5874);
 var defaultTheme_default = /*#__PURE__*/__webpack_require__.n(defaultTheme);
 ;// CONCATENATED MODULE: ./config/app/base/fonts.ts
 
@@ -31450,7 +31804,7 @@ const fonts_useFonts = () => {
 };
 
 // EXTERNAL MODULE: ./node_modules/react/jsx-runtime.js
-var jsx_runtime = __webpack_require__(85893);
+var jsx_runtime = __webpack_require__(5893);
 ;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/context/MotionConfigContext.mjs
 
 
@@ -36725,7 +37079,7 @@ function createDomMotionComponent(key) {
 
 
 // EXTERNAL MODULE: ./node_modules/react-dom/index.js
-var react_dom = __webpack_require__(73935);
+var react_dom = __webpack_require__(3935);
 var react_dom_namespaceObject = /*#__PURE__*/__webpack_require__.t(react_dom, 2);
 ;// CONCATENATED MODULE: ./node_modules/@remix-run/router/dist/router.js
 /**
@@ -45440,7 +45794,7 @@ const overlay_LayoutOverlay = ({
     {
       style: { maxWidth: 1200 },
       className: clsx(
-        "absolute flex flex-col justify-center items-end h-screen z-0 pointer-events-none",
+        "absolute top-0 flex flex-col justify-center items-end h-screen z-0 pointer-events-none",
         direction === "ltr" ? "right-0" : "left-0"
       )
     },
@@ -45892,7 +46246,7 @@ const Root = () => {
 (() => {
 "use strict";
 var react__WEBPACK_IMPORTED_MODULE_0___namespace_cache;
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(67294);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(7294);
 
 
 if (typeof globalThis === 'undefined') {
@@ -45907,11 +46261,11 @@ if (typeof globalThis === 'undefined') {
 (() => {
 "use strict";
 /* unused harmony export setBundleModeAndUpdate */
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(67294);
-/* harmony import */ var react_dom_client__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(20745);
-/* harmony import */ var remotion__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(27982);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(7294);
+/* harmony import */ var react_dom_client__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(745);
+/* harmony import */ var remotion__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(7982);
 /* harmony import */ var remotion__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(remotion__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var remotion_no_react__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(60808);
+/* harmony import */ var remotion_no_react__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(808);
 
 
 
@@ -45926,7 +46280,7 @@ const getBundleMode = () => {
   return currentBundleMode;
 };
 remotion__WEBPACK_IMPORTED_MODULE_2__.Internals.CSSUtils.injectCSS(
-  remotion__WEBPACK_IMPORTED_MODULE_2__.Internals.CSSUtils.makeDefaultCSS(null, "#1f2428")
+  remotion__WEBPACK_IMPORTED_MODULE_2__.Internals.CSSUtils.makeDefaultPreviewCSS(null, "#1f2428")
 );
 const getCanSerializeDefaultProps = (object) => {
   try {
@@ -46067,14 +46421,19 @@ const getRootForElement = () => {
   return root;
 };
 const renderToDOM = (content) => {
-  if (react_dom_client__WEBPACK_IMPORTED_MODULE_1__.createRoot) {
-    getRootForElement().render(content);
-  } else {
+  if (!react_dom_client__WEBPACK_IMPORTED_MODULE_1__.createRoot) {
+    if (remotion_no_react__WEBPACK_IMPORTED_MODULE_3__.NoReactInternals.ENABLE_V5_BREAKING_CHANGES) {
+      throw new Error(
+        "Remotion 5.0 does only support React 18+. However, ReactDOM.createRoot() is undefined."
+      );
+    }
     react_dom_client__WEBPACK_IMPORTED_MODULE_1__.render(
       content,
       videoContainer
     );
+    return;
   }
+  getRootForElement().render(content);
 };
 const renderContent = (Root) => {
   const bundleMode = getBundleMode();
@@ -46093,8 +46452,8 @@ const renderContent = (Root) => {
     renderToDOM(
       /* @__PURE__ */ react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /* @__PURE__ */ react__WEBPACK_IMPORTED_MODULE_0__.createElement(DelayedSpinner, null))
     );
-    __webpack_require__.e(/* import() */ 612).then(__webpack_require__.bind(__webpack_require__, 78612)).then(({ Studio }) => {
-      renderToDOM(/* @__PURE__ */ react__WEBPACK_IMPORTED_MODULE_0__.createElement(Studio, { readOnly: true, rootComponent: Root }));
+    __webpack_require__.e(/* import() */ 430).then(__webpack_require__.bind(__webpack_require__, 430)).then(({ StudioInternals }) => {
+      renderToDOM(/* @__PURE__ */ react__WEBPACK_IMPORTED_MODULE_0__.createElement(StudioInternals.Studio, { readOnly: true, rootComponent: Root }));
     }).catch((err) => {
       renderToDOM(/* @__PURE__ */ react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, "Failed to load Remotion Studio: ", err.message));
     });
@@ -46156,11 +46515,20 @@ if (typeof window !== "undefined") {
         const handle = (0,remotion__WEBPACK_IMPORTED_MODULE_2__.delayRender)(
           `Running calculateMetadata() for composition ${c.id}. If you didn't want to evaluate this composition, use "selectComposition()" instead of "getCompositions()"`
         );
+        const originalProps = {
+          ...c.defaultProps ?? {},
+          ...inputProps ?? {}
+        };
         const comp = remotion__WEBPACK_IMPORTED_MODULE_2__.Internals.resolveVideoConfig({
-          composition: c,
-          editorProps: {},
+          calculateMetadata: c.calculateMetadata,
+          compositionDurationInFrames: c.durationInFrames ?? null,
+          compositionFps: c.fps ?? null,
+          compositionHeight: c.height ?? null,
+          compositionWidth: c.width ?? null,
           signal: new AbortController().signal,
-          inputProps
+          originalProps,
+          defaultProps: c.defaultProps ?? {},
+          compositionId: c.id
         });
         const resolved = await Promise.resolve(comp);
         (0,remotion__WEBPACK_IMPORTED_MODULE_2__.continueRender)(handle);
@@ -46197,12 +46565,21 @@ if (typeof window !== "undefined") {
       `Running the calculateMetadata() function for composition ${compId}`
     );
     const inputProps = typeof window === "undefined" || (0,remotion__WEBPACK_IMPORTED_MODULE_2__.getRemotionEnvironment)().isPlayer ? {} : (0,remotion__WEBPACK_IMPORTED_MODULE_2__.getInputProps)() ?? {};
+    const originalProps = {
+      ...selectedComp.defaultProps ?? {},
+      ...inputProps ?? {}
+    };
     const prom = await Promise.resolve(
       remotion__WEBPACK_IMPORTED_MODULE_2__.Internals.resolveVideoConfig({
-        composition: selectedComp,
-        editorProps: {},
+        calculateMetadata: selectedComp.calculateMetadata,
+        compositionDurationInFrames: selectedComp.durationInFrames ?? null,
+        compositionFps: selectedComp.fps ?? null,
+        compositionHeight: selectedComp.height ?? null,
+        compositionWidth: selectedComp.width ?? null,
+        originalProps,
         signal: abortController.signal,
-        inputProps
+        defaultProps: selectedComp.defaultProps ?? {},
+        compositionId: selectedComp.id
       })
     );
     (0,remotion__WEBPACK_IMPORTED_MODULE_2__.continueRender)(handle);
@@ -46221,7 +46598,7 @@ if (typeof window !== "undefined") {
       }).serializedString
     };
   };
-  window.siteVersion = "10";
+  window.siteVersion = "11";
   window.remotion_version = remotion__WEBPACK_IMPORTED_MODULE_2__.VERSION;
   window.remotion_setBundleMode = setBundleModeAndUpdate;
 }
