@@ -12,12 +12,15 @@ import { TCircleProps } from "~/components/layout/circle/circle";
 import { resolveAccessibilityTitles } from "@brysonandrew/utils-attributes";
 import { TFlatProps } from "~/types/ui";
 import { FADE_PRESENCE_DELAY_02 } from "~/constants/animation";
-import { boxStyle } from "~/constants/box/style";
-import { boxSize } from "~/constants/box/size";
+import {
+  boxSize,
+  TBoxSizesKey,
+} from "~uno/rules/box/size";
 import { resolveCompositeKey } from "@brysonandrew/utils-key";
 import { isString } from "~/utils/validation/is/string";
-import { TBoxSizesKey } from "~/constants/box/size/constants";
 import { ButtonPillBIcon } from "~/components/buttons/pill/b/icon";
+import { BOX_SHADOW_FLAT } from "~uno/rules/box";
+import { boxRadius } from "~uno/rules/box/radius";
 
 export type TPillBProps =
   TButtonMotionProps &
@@ -30,7 +33,7 @@ export type TPillBProps =
       size?: TBoxSizesKey;
       isSelected?: boolean;
       direction?: "ltr" | "rtl";
-      positionClass?:string
+      positionClass?: string;
     };
 export const PillB: FC<TPillBProps> = ({
   Root = motion.button,
@@ -50,18 +53,8 @@ export const PillB: FC<TPillBProps> = ({
   positionClass,
   ...props
 }) => {
-  const box = boxStyle({
-    layer: "flat",
-    borderRadius: "xl",
-    size,
-  });
-  const {
-    width,
-    height,
-    boxShadow,
-    borderRadius,
-  } = box;
-  const s = boxSize(size);
+  const s = boxSize();
+  const borderRadius = boxRadius();
   return (
     <Root
       key={resolveCompositeKey(
@@ -73,7 +66,7 @@ export const PillB: FC<TPillBProps> = ({
       )}
       disabled={disabled}
       className={clsx(
-        positionClass?? "relative",
+        positionClass ?? "relative",
         "shrink-0",
         "cursor-pointer",
         "disabled:(grayscale-100 brightness-60 opacity-80 cursor-not-allowed)",
@@ -85,10 +78,13 @@ export const PillB: FC<TPillBProps> = ({
       )}
       style={{
         ...(isFlat
-          ? { boxShadow }
+          ? {
+              boxShadow:
+                BOX_SHADOW_FLAT,
+            }
           : {}),
-          gap:s.m05,
-        height,
+        gap: s.m05,
+        height: s.m,
         borderRadius,
         ...style,
       }}
@@ -100,10 +96,12 @@ export const PillB: FC<TPillBProps> = ({
             className="absolute bg-black pointer-events-none"
             style={{
               borderRadius,
-              ...direction === 'ltr' ? {left:0} : {right:0},
-              top:0,
-              width,
-              height,
+              ...(direction === "ltr"
+                ? { left: 0 }
+                : { right: 0 }),
+              top: 0,
+              width: s.m,
+              height: s.m,
             }}
             initial={{
               scale: 1,
@@ -132,7 +130,7 @@ export const PillB: FC<TPillBProps> = ({
               : "_gradient-radial"
           )}
           style={{
-            height,
+            height: s.m,
             borderRadius,
             marginLeft: 0,
           }}

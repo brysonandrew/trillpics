@@ -7,7 +7,7 @@ import {
   DARK_LOGO,
   LIGHT_LOGO,
   TValues,
-} from "../config/constants";
+} from "../../color/config/constants";
 
 export const LINEAR_GRADIENT_SVG_ID =
   "linear-gradient-blue-pink-yellow-svg";

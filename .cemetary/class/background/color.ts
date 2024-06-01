@@ -1,5 +1,5 @@
-import { BOX } from "~/constants/box";
-import { TBackgroundColorShortcut } from "~uno/shortcuts/box/background";
+import { BOX } from "~/constants/box/border";
+import { TBackgroundColorShortcut } from "~uno/rules/box/background";
 
 export type TBoxBackgroundColorConfig =
   {

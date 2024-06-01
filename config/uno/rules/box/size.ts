@@ -40,3 +40,24 @@ export const BOX_SIZE = {
 
 export type TBoxSizesKey =
   keyof typeof BOX_SIZES;
+  export const boxSize = (
+    key?: TBoxSizesKey
+  ) => {
+    const boxSize = BOX_SIZE;
+    return {
+      ...(boxSize && (typeof key !== 'undefined')
+        ? {
+            ...boxSize,
+            size: boxSize[key],
+            sizeHalf: boxSize[key] * 0.5,
+            minWidth: boxSize[key],
+            minHeight: boxSize[key],
+            padding: BOX_SIZE.padding,
+          } as const
+        : boxSize),
+    };
+  };
+  export type TBoxSize = ReturnType<
+    typeof boxSize
+  >;
+  

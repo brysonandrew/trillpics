@@ -4,7 +4,7 @@ import {
   motion,
 } from "framer-motion";
 import { LinesVertical } from "~/components/lines/vertical";
-import { boxSize } from "~/constants/box/size";
+import { boxSize } from "~uno/rules/box/size";
 import { HideControls } from "~/pics/header/right/zen-mode";
 import { DarkMode } from "~/pics/header/right/dark-mode";
 import { THudContainer } from "~/pics/hud";

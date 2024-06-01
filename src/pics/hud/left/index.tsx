@@ -7,10 +7,10 @@ import {
   LayoutGroup,
   motion,
 } from "framer-motion";
-import { boxSize } from "~/constants/box/size";
+import { boxSize } from "~uno/rules/box/size";
 import { HudLeftVideo } from "~/pics/hud/left/video";
 import { ControlsPlayer } from "~/pics/hud/left/player";
-import { boxRadius } from "~/constants/box/radius";
+import { boxRadius } from "~uno/rules/box/radius";
 import { Lines_Line } from "~/components/lines/_line";
 import { useContextReady } from "~/shell/ready/context";
 import { LeftButtonsClear } from "~/pics/hud/left/clear";

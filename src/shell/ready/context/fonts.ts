@@ -5,7 +5,7 @@ import {
 } from "react";
 import WebFont from "webfontloader";
 import { produce } from "immer";
-import { FONT_NAMES } from "~app/base/fonts";
+import { FONT_NAMES } from "~uno/presets/fonts";
 
 export const FAMILIES = FONT_NAMES.map(
   ([name]) => name

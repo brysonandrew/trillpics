@@ -2,7 +2,7 @@ import { FC, memo } from "react";
 import {
   GRADIENT_BLUE_PINK_YELLOW_COLORS,
   GRADIENT_TEAL_YELLOW_PINK_COLORS,
-} from "~app/color/gradient";
+} from "~uno/rules/gradient/constants";
 import { useDarkMode } from "@brysonandrew/dark-mode";
 import { TitleShadow } from "~/pics/header/left/title/shadows/shadow";
 import { resolveCompositeKey } from "@brysonandrew/utils-key";

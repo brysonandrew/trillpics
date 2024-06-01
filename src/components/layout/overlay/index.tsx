@@ -10,7 +10,7 @@ import { PortalBody } from "@brysonandrew/layout-portal";
 import { TPillBHoverProps } from "~/components/buttons/pill/b/hover";
 import { LinesHorizontalShadow } from "~/components/lines/horizontal/shadow";
 import { LayoutOverlayBackdrop } from "~/components/layout/overlay/backdrop";
-import { boxSize } from "~/constants/box/size";
+import { boxSize } from "~uno/rules/box/size";
 
 type TProps = Pick<
   TPillBHoverProps,

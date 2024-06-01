@@ -1,6 +1,6 @@
 import { FC, memo } from "react";
 import { motion } from "framer-motion";
-import { APP_TITLE } from "~app/base/package";
+import { APP_TITLE } from "~app/index";
 
 export const TitleText: FC = memo(
   () => {

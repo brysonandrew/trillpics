@@ -10,7 +10,7 @@ import clsx from "clsx";
 import { TGenerateProgressData } from "~/store/state/generate/types";
 import { MonoChars } from "~/pages/video/player/_controls/playback/timer/numbers";
 import { LinesHorizontal } from "~/components/lines/horizontal";
-import { boxSize } from "~/constants/box/size";
+import { boxSize } from "~uno/rules/box/size";
 import { LinesVertical } from "~/components/lines/vertical";
 import { useContextReady } from "~/shell/ready/context";
 

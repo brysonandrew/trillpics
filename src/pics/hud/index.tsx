@@ -5,7 +5,7 @@ import { TMeasureContainerResult } from "~/shell/init/hooks/measure/container";
 import { useContextReady } from "~/shell/ready/context";
 import { PicsHudHeader } from "~/pics/hud/header";
 import { PicsHudLeft } from "~/pics/hud/left";
-import { boxSize } from "~/constants/box/size";
+import { boxSize } from "~uno/rules/box/size";
 import { withControlsCheck } from "~/store/hocs/with-controls-check";
 
 export type THudContainer = Extract<

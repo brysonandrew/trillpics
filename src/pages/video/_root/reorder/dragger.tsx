@@ -11,7 +11,7 @@ import { useContextReady } from "~/shell/ready/context";
 import { useHoverKey } from "~/hooks/use-hover-key";
 import clsx from "clsx";
 import { resolveAccessibilityTitles } from "@brysonandrew/utils-attributes";
-import { boxSize } from "~/constants/box/size";
+import { boxSize } from "~uno/rules/box/size";
 import { THudContainer } from "~/pics/hud";
 import { TDraggerMotion } from "~/shell/init/context/dragger";
 import { TButtonMotionProps } from "@brysonandrew/config-types";

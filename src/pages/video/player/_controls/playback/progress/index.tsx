@@ -1,7 +1,7 @@
 import { FC, memo } from "react";
 import { useCurrentPlayerFrame } from "~/pages/video/player/_context/ready/hooks/use-current-player-frame";
 import { TDurationInFramesProps } from "~/types/props";
-import { boxRadius } from "~/constants/box/radius";
+import { boxRadius } from "~uno/rules/box/radius";
 
 type TProps = TDurationInFramesProps;
 export const TimerCurrentProgress: FC<TProps> =

@@ -4,7 +4,7 @@ import clsx from 'clsx';
 import { TClassValueProps } from '@brysonandrew/config-types/dom/main';
 import { DURATION } from '@brysonandrew/motion-config-constants';
 import { useContextReady } from '~/shell/ready/context';
-import { boxRadius } from '~/constants/box/radius';
+import { boxRadius } from '~uno/rules/box/radius';
 
 type TProps = TClassValueProps & {
   children: ReactNode;

@@ -6,7 +6,7 @@ import { PlaybackButtonsFullscreen } from "~/pages/video/player/_controls/playba
 import { PlaybackButtonsMute } from "~/pages/video/player/_controls/playback/buttons/mute";
 import { PlaybackButtonsPlay } from "~/pages/video/player/_controls/playback/buttons/play";
 import { PlaybackTimer } from "~/pages/video/player/_controls/playback/timer";
-import { boxSize } from "~/constants/box/size";
+import { boxSize } from "~uno/rules/box/size";
 import { PlayerBackground } from "~/pages/video/player/_background";
 import { PlayerBackgroundOpaque } from "~/pages/video/player/_background/opaque";
 import { Download } from "~/pages/video/player/_controls/download";

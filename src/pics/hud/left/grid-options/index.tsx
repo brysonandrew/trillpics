@@ -1,5 +1,5 @@
 import type { FC } from "react";
-import { boxSize } from "~/constants/box/size";
+import { boxSize } from "~uno/rules/box/size";
 import { useContextReady } from "~/shell/ready/context";
 import { LinesHorizontal } from "~/components/lines/horizontal";
 import { PicsHeaderScrollTop } from "~/pics/header/scroll-top";

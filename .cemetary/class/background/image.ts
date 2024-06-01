@@ -1,5 +1,5 @@
-import { BOX } from "~/constants/box";
-import { TBackgroundImageShortcut } from "~uno/shortcuts/box/background";
+import { BOX } from "~/constants/box/border";
+import { TBackgroundImageShortcut } from "~uno/rules/box/background";
 
 export type TBoxBackgroundImageConfig =
   {

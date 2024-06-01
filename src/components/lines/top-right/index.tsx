@@ -6,8 +6,8 @@ import {
 import clsx from "clsx";
 import { TLinesOptions } from "~/components/lines/types";
 import { Lines_Line } from "~/components/lines/_line";
-import { boxRadius } from "~/constants/box/radius";
-import { boxSize } from "~/constants/box/size";
+import { boxRadius } from "~uno/rules/box/radius";
+import { boxSize } from "~uno/rules/box/size";
 import { THudContainer } from "~/pics/hud";
 
 type TProps = TDivMotionProps &

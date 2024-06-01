@@ -7,7 +7,6 @@ import {
   TSvgProps,
 } from "@brysonandrew/config-types";
 import { PortalBody } from "@brysonandrew/layout-portal";
-import { boxStyle } from "~/constants/box/style";
 
 export type TModalOverlayConfig =
   TDivProps & {
@@ -26,11 +25,6 @@ export const ModalOverlay: FC<
   classValue,
   ...props
 }) => {
-  const {padding, ...borderStyle} = boxStyle({
-    layer: "floating",
-    borderRadius: "xl",
-    size: "m",
-  });
 
   return (
     <PortalBody>
@@ -46,7 +40,6 @@ export const ModalOverlay: FC<
   
           classValue
         )}
-        style={borderStyle}
         {...props}
       >
         <div className="relative flex flex-row items-center p-4 lg:gap-4 shrink-0">

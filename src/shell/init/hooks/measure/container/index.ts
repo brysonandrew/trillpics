@@ -1,5 +1,5 @@
 import { TDimensionsReady } from "@brysonandrew/config-types";
-import { boxSize } from "~/constants/box/size";
+import { boxSize } from "~uno/rules/box/size";
 const MAX_WIDTH = 1280;
 export const measureContainer = (
   screen: Omit<

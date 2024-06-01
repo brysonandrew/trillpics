@@ -10,7 +10,7 @@ import { resolveGradient } from "@brysonandrew/color-gradient";
 import {
   GRADIENT_BLUE_PINK_YELLOW,
   GRADIENT_TEAL_YELLOW_PINK,
-} from "../../app/color/gradient";
+} from "../rules/gradient/constants";
 import { TColor } from "../index";
 
 export const SCROLLBAR_WIDTH = 10;

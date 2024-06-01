@@ -4,8 +4,8 @@ import {
   TSvgProps,
 } from "@brysonandrew/config-types";
 import clsx from "clsx";
-import { boxStyle } from "~/constants/box/style";
 import { CircleIcon } from "~/components/layout/circle/icon";
+import { boxSize } from "~uno/rules/box/size";
 
 export const PlaybackButtonsB: FC<
   TButtonProps & { Icon: FC<TSvgProps> } 
@@ -21,11 +21,7 @@ export const PlaybackButtonsB: FC<
       borderRadius: "xl",
       size: "m",
     });
-  const sm = boxStyle({
-    layer: "flat",
-    borderRadius: "xl",
-    size: "s",
-  });
+  const sm = boxSize()
   return (
     <button
       className={clsx(

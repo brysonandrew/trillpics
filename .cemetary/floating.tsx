@@ -7,7 +7,7 @@ import clsx from "clsx";
 import { FADE_PRESENCE } from "~/constants/animation";
 import { CSSProperties } from "@emotion/serialize";
 import { FULLSCREEN_Z } from "~/constants/dom";
-import { boxStyleFloating } from "~/constants/box/style/floating";
+import { boxStyleFloating } from "~uno/box/border/style/floating";
 
 type TProps = PropsWithChildren<{
   position?: CSSProperties["position"];

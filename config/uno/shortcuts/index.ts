@@ -1,6 +1,6 @@
 import type { StaticShortcutMap } from "unocss";
 import { SHORTCUTS as _SHORTCUTS } from "@brysonandrew/uno-shortcuts";
-import { SHORTCUTS_BOX } from "../shortcuts/box";
+import { SHORTCUTS_BOX } from "./box";
 import { INPUT } from "./input";
 import { POSITION } from "./position";
 import { GRID } from "./grid";

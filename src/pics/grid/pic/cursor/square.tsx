@@ -1,7 +1,7 @@
 import type { FC } from "react";
 import { motion } from "framer-motion";
 import { DELAY_TRANSITION_PROPS } from "~/constants/animation";
-import { boxRadius } from "~/constants/box/radius";
+import { boxRadius } from "~uno/rules/box/radius";
 import { CursorCorners } from "~/pics/grid/pic/cursor/corners";
 
 export const PicCursorSquare: FC =
