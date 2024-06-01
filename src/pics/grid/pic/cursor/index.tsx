@@ -12,25 +12,21 @@ import { resolvePositionFromCell } from "~/pics/grid/pic/cursor/position-from-ce
 import {
   DELAY_TRANSITION_PROPS,
   PRESENCE_OPACITY_01,
-  PRESENCE_OPACITY_04,
 } from "~/constants/animation";
 import { boxRadius } from "~uno/rules/box/radius";
-import {
-  PRESENCE_OPACITY,
-  PRESENCE_OPACITY_ANIMATE_DELAY_04,
-} from "@brysonandrew/motion-config-constants";
+import { PRESENCE_OPACITY } from "@brysonandrew/motion-config-constants";
 import {
   TUseShowCursorConfig,
   useShowCursor,
 } from "~/pics/grid/pic/cursor/use-show-cursor";
 import { PicCursorSquare } from "~/pics/grid/pic/cursor/square";
 import { resolveGradient } from "@brysonandrew/color-gradient";
-import { resolveVarCss } from "@brysonandrew/color-base";
 import {
   GRADIENT_BLUE_PINK_YELLOW_COLORS,
   GRADIENT_TEAL_YELLOW_PINK_COLORS,
 } from "~uno/rules/gradient/constants";
 import { useDarkMode } from "@brysonandrew/dark-mode";
+import { resolveSquare } from "@brysonandrew/measure";
 
 export const PicCursor: FC<
   TPropsWithChildren<TUseShowCursorConfig>
@@ -50,8 +46,76 @@ export const PicCursor: FC<
   const { isDarkMode } = useDarkMode();
 
   return (
-    <>
-      {/* <MotionConfig
+    <AnimatePresence>
+      {isShown && (
+        <motion.div
+          key={resolveCompositeKey(
+            "PicCursor-cursor"
+          )}
+          className="fill center text-2xl _outline-filter-inverted text-black-5 dark:text-gray-9 pointer-events-none"
+          style={{
+            y: scrollY,
+            borderRadius,
+            ...position,
+          }}
+          initial={{
+            scale: 0.8,
+          }}
+          animate={{
+            scale: 1,
+          }}
+          exit={{
+            scale: 0.8,
+          }}
+          {...DELAY_TRANSITION_PROPS}
+        >
+          <motion.div
+            key="PicCursor-light"
+            className="fill"
+            layoutId="PicCursor-light"
+            style={{
+              mixBlendMode:
+                "soft-light",
+              backgroundImage:
+                resolveGradient({
+                  name: "radial-gradient",
+                  parts: [
+                    "circle",
+                    ...(isDarkMode
+                      ? GRADIENT_BLUE_PINK_YELLOW_COLORS
+                      : GRADIENT_TEAL_YELLOW_PINK_COLORS),
+                  ],
+                }),
+            }}
+            {...PRESENCE_OPACITY_01}
+          />
+          <PicCursorSquare
+            key={resolveCompositeKey(
+              "inner-square",
+              "PicCursor"
+              // currKey
+            )}
+          />
+          <CursorCorners key="cursor-corners" />
+          <motion.div
+            className="fill center pointer-events-none"
+            key={resolveCompositeKey(
+              "children",
+              "PicCursor"
+              // currKey
+            )}
+            style={resolveSquare(size)}
+            {...PRESENCE_OPACITY}
+          >
+            {children}
+          </motion.div>
+        </motion.div>
+      )}
+    </AnimatePresence>
+  );
+};
+{
+  /* <MotionConfig
         transition={{
           ease: "linear",
           duration: 0.2,
@@ -84,79 +148,5 @@ export const PicCursor: FC<
             </span>
           </Box>
         </Sight>
-      </MotionConfig> */}
-      <MotionConfig
-        transition={{
-          ease: "linear",
-          duration: 0.1,
-        }}
-      >
-        <AnimatePresence>
-          {isShown && (
-            <motion.div
-              key={resolveCompositeKey(
-                "cursor"
-              )}
-              className="fill center text-2xl _outline-filter-inverted text-black-5 dark:text-gray-9 pointer-events-none"
-              style={{
-                y: scrollY,
-                borderRadius,
-                ...position,
-              }}
-              initial={{
-                scale: 0.8,
-              }}
-              animate={{
-                scale: 1,
-              }}
-              exit={{
-                scale: 0.8,
-              }}
-              {...DELAY_TRANSITION_PROPS}
-            >
-              <motion.div
-                className="fill"
-                layoutId="yoyo"
-                style={{
-                  mixBlendMode:
-                    "soft-light",
-                  backgroundImage:
-                    resolveGradient({
-                      name: "radial-gradient",
-                      parts: [
-                        "circle",
-                        ...(isDarkMode
-                          ? GRADIENT_BLUE_PINK_YELLOW_COLORS
-                          : GRADIENT_TEAL_YELLOW_PINK_COLORS),
-                      ],
-                    }),
-                }}
-                {...PRESENCE_OPACITY_01}
-              />
-              <PicCursorSquare
-                key={resolveCompositeKey(
-                  "inner-square"
-                  // currKey
-                )}
-              />
-              <CursorCorners key="cursor-corners" />
-            </motion.div>
-          )}
-          <>
-            {isShown && (
-              <motion.div
-                key={resolveCompositeKey(
-                  "children"
-                  // currKey
-                )}
-                {...PRESENCE_OPACITY}
-              >
-                {children}
-              </motion.div>
-            )}
-          </>
-        </AnimatePresence>
-      </MotionConfig>
-    </>
-  );
-};
+      </MotionConfig> */
+}

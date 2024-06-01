@@ -50,9 +50,9 @@ export const PicsHudLeft: FC<
             left: -s.m05,
             gap: s.m05,
             top:
-              foundation.height +
-              s.m,
-            height: container.height,
+              foundation.height + s.m,
+            height:
+              container.height + s.m2,
           }}
         >
           <Lines_Line
@@ -105,7 +105,7 @@ export const PicsHudLeft: FC<
                     left: 0,
                     top:
                       container.height +
-                      s.m,
+                      s.m3,
                   }}
                 >
                   <_RootReorderDragger
@@ -130,8 +130,7 @@ export const PicsHudLeft: FC<
                       container.width +
                       s.m,
                     left: 0,
-                    bottom:
-                      -s.m + s.m0125,
+                    bottom: 0,
                     y: dragger.y06,
                   }}
                 >
@@ -147,7 +146,7 @@ export const PicsHudLeft: FC<
                       container.width +
                       s.m,
                     bottom:
-                      s.m2 + s.m0125,
+                      s.m4,
                     x: dragger.x05,
                     left: 0,
                     right: 0,
@@ -191,7 +190,7 @@ export const PicsHudLeft: FC<
                     className="relative row h-0"
                     style={{
                       left: 0,
-                      top: s.m025,
+                      top: 0,
                       gap: s.m05,
                       width: s.m4,
                     }}
@@ -218,13 +217,9 @@ export const PicsHudLeft: FC<
                       }}
                     />
 
-                  <div className="absolute right-0 h-0 column-end w-0"
-                  
-                  >
-                  <ControlsPlayer
-                    
-                    />
-                  </div>
+                    <div className="absolute right-0 h-0 column-end w-0">
+                      <ControlsPlayer />
+                    </div>
                   </div>
                 </motion.div>
                 <div
@@ -238,7 +233,11 @@ export const PicsHudLeft: FC<
                   width={s.m2}
                   size={s.m}
                   left={container.width}
-                  bottom={-s.m05-s.m025 - s.m0125}
+                  bottom={
+                    -s.m05 -
+                    s.m025 -
+                    s.m0125
+                  }
                   isColumn={false}
                 />
               </>

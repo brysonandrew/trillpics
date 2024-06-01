@@ -60,7 +60,7 @@ export const HudLeftVideo: FC<
       <motion.div
         className="absolute left-0 bottom-0"
         style={{
-          bottom: s.m15 - s.m0125,
+          bottom: s.m3,
           y: main.dragger.y,
           x: main.dragger.x05,
         }}

@@ -16,7 +16,10 @@ import { THudContainer } from "~/pics/hud";
 import { TDraggerMotion } from "~/shell/init/context/dragger";
 import { TButtonMotionProps } from "@brysonandrew/config-types";
 
-type TProps = Omit<TButtonMotionProps, 'children'> & {
+type TProps = Omit<
+  TButtonMotionProps,
+  "children"
+> & {
   container: THudContainer;
   isColumn: boolean;
   left: number;
@@ -111,6 +114,7 @@ export const _RootReorderDragger: FC<
   const size = _size ?? s.m125;
   return (
     <>
+      
       {children?.(main.dragger)}
       <motion.button
         drag

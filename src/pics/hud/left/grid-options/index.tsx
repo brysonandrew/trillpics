@@ -26,7 +26,7 @@ export const GridOptions: FC =
     const isScrollTopShown = isScroll; // && isVerticalScroll;
     return (
       <div
-        className="absolute left-0 top-0 z-50 column-start shrink-0 justify-start"
+        className="absolute left-0 top-0 z-0 column-start shrink-0 justify-start"
         style={{
           left:
             screen.container.left +

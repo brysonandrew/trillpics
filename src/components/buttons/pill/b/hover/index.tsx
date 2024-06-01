@@ -66,14 +66,7 @@ export const PillBHover: FC<
   };
   return (
     <>
-      <LayoutOverlay
-        isShown={isHovering && !isMoving}
-        key={title}
-        direction={props.direction}
-        subtitle={subtitle}
-      >
-        {children}
-      </LayoutOverlay>
+     
       <PillB
         title={title}
         onClick={handleClick}
@@ -84,6 +77,14 @@ export const PillBHover: FC<
           ? title
           : null}
       </PillB>
+      <LayoutOverlay
+        isShown={isHovering && !isMoving}
+        key={title}
+        direction={props.direction}
+        subtitle={subtitle}
+      >
+        {children}
+      </LayoutOverlay>
     </>
   );
 };

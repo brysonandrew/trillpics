@@ -27,6 +27,7 @@ import { resolveCompositeKey } from "@brysonandrew/utils-key";
 import clsx from "clsx";
 import { _CommonReorderControl } from "~/pages/video/_root/reorder/controls/control";
 import { MOTION_BLUR_ADD_RANDOM_PROPS } from "~/shell/init/svg/filters/blur/constants";
+import { boxRadius } from "~uno/rules/box/radius";
 
 type TProps = TUsePicSelected;
 export const _CommonReorder: FC<
@@ -88,6 +89,7 @@ export const _CommonReorder: FC<
     left,
     top: 0,
   };
+  const borderRadius = boxRadius()
   const boxProps = {
     className: clsx(
       "absolute z-0",
@@ -129,13 +131,28 @@ export const _CommonReorder: FC<
     >
       {({ x05, y06, y075, x, y }) => {
         return (
-          <div className="relative"
-          
-          style={{
-            ...MOTION_BLUR_ADD_RANDOM_PROPS,
-
-          }}
+          <div
+            className="relative"
+            style={{
+              ...MOTION_BLUR_ADD_RANDOM_PROPS,
+            }}
           >
+            <motion.div
+              className="absolute bg-white-01 dark:bg-black-01 backdrop-blur-lg border border-teal-02 dark:border-blue-02"
+              style={{
+                x,
+                y,
+                borderRadius,
+                top:-size/2 + s.m,
+                left: left - s.m15 + s.m025,
+                width: width + s.m3 - s.m05,
+                height: size*2,
+                opacity: 0.5
+              }}
+              {...motionHandlers(
+                'dragger'
+              )}
+            />
             <>{children}</>
             <motion.div
               className="absolute z-0"
@@ -193,9 +210,7 @@ export const _CommonReorder: FC<
                         left: 0,
                         cursor: "grab",
                       }}
-                      {...motionHandlers(
-                        key
-                      )}
+                    
                     >
                       <_CommonReorderControl
                         x={x}

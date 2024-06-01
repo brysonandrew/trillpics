@@ -4,15 +4,19 @@ import { useTrillPicsStore } from "~/store/middleware";
 
 export const useClickGrid = (
   trigger: () => void,
-  isDisabled:boolean
+  isDisabled: boolean
 ) => {
   const { ref, main } =
     useContextReady();
-    const { set } = useTrillPicsStore(
-      ({ set }) => ({ set })
+  const { set, isScrolling } =
+    useTrillPicsStore(
+      ({ set, isScrolling }) => ({
+        set,
+        isScrolling,
+      })
     );
   const handleClick = () => {
-    set({hoverKeys:[]})
+    // set({hoverKeys:[]})
     if (isDisabled) return;
     main.cursor.isHoverIdle = true;
     // const isHovering =
@@ -28,5 +32,22 @@ export const useClickGrid = (
   useEventListener(
     "click",
     handleClick
+  );
+  
+  const handleTouchEnd = (
+    event: TouchEvent
+  ) => {
+    if (
+      event.touches.length === 0 ||
+      isScrolling
+    )
+      return;
+
+    trigger();
+  };
+
+  useEventListener<"touchend">(
+    "touchend",
+    handleTouchEnd
   );
 };

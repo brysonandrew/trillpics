@@ -37,7 +37,6 @@ export const ModalOverlay: FC<
           "absolute column-stretch dark:text-white-5 grow-0 shrink left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 char-gap-6 z-50",
           "py-2 px-3",
           "background",
-  
           classValue
         )}
         {...props}
