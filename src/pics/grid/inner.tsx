@@ -125,8 +125,8 @@ const Inner = forwardRef<
         onPointerOut={handleLeave}
         style={{
           cursor: "pointer",
-          ...DUO_TONE_PROPS,
-          // ...MOTION_BLUR_SHUFFLE_PROPS,
+          // ...DUO_TONE_PROPS,
+          ...MOTION_BLUR_SHUFFLE_PROPS,
           ...style,
         }}
         {...props}

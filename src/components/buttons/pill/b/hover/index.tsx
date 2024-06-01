@@ -3,7 +3,6 @@ import {
   useEffect,
   useState,
 } from "react";
-import { AnimatePresence } from "framer-motion";
 import {
   PillB,
   TPillBProps,

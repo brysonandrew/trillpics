@@ -38,7 +38,7 @@ export const LayoutOverlay: FC<
             <motion.div
               style={{ maxWidth: 1200 }}
               className={clsx(
-                "absolute flex flex-col justify-center items-end h-screen z-0 pointer-events-none",
+                "absolute top-0 flex flex-col justify-center items-end h-screen z-0 pointer-events-none",
                 direction === "ltr"
                   ? "right-0"
                   : "left-0"

@@ -2,6 +2,7 @@ import type { FC } from "react";
 import { motion } from "framer-motion";
 import { DELAY_TRANSITION_PROPS } from "~/constants/animation";
 import { boxRadius } from "~/constants/box/radius";
+import { CursorCorners } from "~/pics/grid/pic/cursor/corners";
 
 export const PicCursorSquare: FC =
   () => {
@@ -25,6 +26,7 @@ export const PicCursorSquare: FC =
           opacity: 0.4,
         }}
         {...DELAY_TRANSITION_PROPS}
-      />
+      >
+      </motion.div>
     );
   };
