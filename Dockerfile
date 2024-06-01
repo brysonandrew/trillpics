@@ -1,9 +1,8 @@
 # This is a dockerized version of a server that you can easily deploy somewhere.
 # If you don't want server rendering, you can safely delete this file.
 
-FROM node:20-bookworm
+FROM node:alpine
 
-# Installs latest Chromium (85) package.
 RUN apk add --no-cache \
   chromium \
   nss \
@@ -14,6 +13,7 @@ RUN apk add --no-cache \
   ttf-freefont \
   ffmpeg \
   font-noto-emoji
+
 
 # Tell Puppeteer to skip installing Chrome. We'll be using the installed package.
 ENV PUPPETEER_SKIP_CHROMIUM_DOWNLOAD=true \
