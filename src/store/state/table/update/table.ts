@@ -8,16 +8,28 @@ import {
 } from "~/store/types";
 import { tableUpdateSize } from "~/store/state/table/update/size";
 import { tableUpdateCount } from "~/store/state/table/update/count";
+import { shuffle } from "~/utils/array/shuffle";
 import { tableUpdateRows } from "./rows";
 import { tableUpdateVerticalScrollCheck } from "./vertical-scroll-check";
+import precacheTable from "~app/precache.json";
+const { length: cellsCount } =
+  precacheTable;
 
 export const tableUpdateState: TStateHandler<
   TTableUpdateState
 > = (set, get) => ({
   update: {
     screen: (config) => {
-      const cells = get().pics;
-      const update = get().table.update;
+      const state = get();
+      let cells = state.pics;
+      if (state.picsCount === 0) {
+        cells = [
+          ...Array(cellsCount),
+        ].map((_, i) => `${i + 1}`);
+        cells = shuffle(cells);
+        set({ pics: cells, picsCount: cells.length });
+      }
+      const update = state.table.update;
       const count = update.count({
         width: config.screen.width,
       });
