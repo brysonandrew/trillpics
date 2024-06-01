@@ -1,6 +1,8 @@
 # This is a dockerized version of a server that you can easily deploy somewhere.
 # If you don't want server rendering, you can safely delete this file.
 
+RUN docker system prune -a
+
 FROM node:14.2.0-slim
 
 # Installs latest Chromium (85) package.
