@@ -9,7 +9,7 @@ export const DuoTone: FC = () => {
   return (
     <SvgWrap>
       <filter id={DUO_TONE_ID}>
-        <feComponentTransfer color-interpolation-filters="sRGB">
+        <feComponentTransfer colorInterpolationFilters="sRGB">
           <feFuncR
             type="gamma"
             exponent="1.5"

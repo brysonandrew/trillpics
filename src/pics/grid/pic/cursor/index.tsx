@@ -11,6 +11,7 @@ import { TPropsWithChildren } from "@brysonandrew/config-types";
 import { resolvePositionFromCell } from "~/pics/grid/pic/cursor/position-from-cell";
 import {
   DELAY_TRANSITION_PROPS,
+  PRESENCE_OPACITY_01,
   PRESENCE_OPACITY_04,
 } from "~/constants/animation";
 import { boxRadius } from "~/constants/box/radius";
@@ -25,6 +26,11 @@ import {
 import { PicCursorSquare } from "~/pics/grid/pic/cursor/square";
 import { resolveGradient } from "@brysonandrew/color-gradient";
 import { resolveVarCss } from "@brysonandrew/color-base";
+import {
+  GRADIENT_BLUE_PINK_YELLOW_COLORS,
+  GRADIENT_TEAL_YELLOW_PINK_COLORS,
+} from "~app/color/gradient";
+import { useDarkMode } from "@brysonandrew/dark-mode";
 
 export const PicCursor: FC<
   TPropsWithChildren<TUseShowCursorConfig>
@@ -41,6 +47,7 @@ export const PicCursor: FC<
   const borderRadius = boxRadius();
 
   const isShown = useShowCursor(props);
+  const { isDarkMode } = useDarkMode();
 
   return (
     <>
@@ -100,7 +107,7 @@ export const PicCursor: FC<
                 scale: 0.8,
               }}
               animate={{
-                scale: [0.84, 0.9],
+                scale: 1,
               }}
               exit={{
                 scale: 0.8,
@@ -109,30 +116,30 @@ export const PicCursor: FC<
             >
               <motion.div
                 className="fill"
+                layoutId="yoyo"
                 style={{
+                  mixBlendMode:
+                    "soft-light",
                   backgroundImage:
                     resolveGradient({
                       name: "radial-gradient",
                       parts: [
                         "circle",
-                        resolveVarCss(
-                          "transparent"
-                        ),
-                        resolveVarCss(
-                          "gray"
-                        ),
+                        ...(isDarkMode
+                          ? GRADIENT_BLUE_PINK_YELLOW_COLORS
+                          : GRADIENT_TEAL_YELLOW_PINK_COLORS),
                       ],
                     }),
                 }}
-                {...PRESENCE_OPACITY_ANIMATE_DELAY_04}
+                {...PRESENCE_OPACITY_01}
               />
-              <CursorCorners key="cursor-corners" />
               <PicCursorSquare
                 key={resolveCompositeKey(
                   "inner-square"
                   // currKey
                 )}
               />
+              <CursorCorners key="cursor-corners" />
             </motion.div>
           )}
           <>
