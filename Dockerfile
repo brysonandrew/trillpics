@@ -4,15 +4,7 @@
 FROM node:14.2.0-slim
 
 # Installs latest Chromium (85) package.
-RUN apk add --no-cache \
-  chromium \
-  nss \
-  freetype \
-  freetype-dev \
-  harfbuzz \
-  ca-certificates \
-  ttf-freefont \
-  ffmpeg
+RUN apt-get install -y nodejs npm chromium
 
 # Tell Puppeteer to skip installing Chrome. We'll be using the installed package.
 ENV PUPPETEER_SKIP_CHROMIUM_DOWNLOAD=true \

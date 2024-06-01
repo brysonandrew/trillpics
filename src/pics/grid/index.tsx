@@ -14,17 +14,12 @@ import {
   Inner,
   TInnerHandle,
 } from "~/pics/grid/inner";
-import {
-  TOuterHandle,
-  Outer,
-} from "~/pics/grid/outer";
+import { Outer } from "~/pics/grid/outer";
 import {
   TGridHandle,
   TGrid,
 } from "~/shell/ready/context/types";
 import { TTableUpdateCountResult } from "~/store/state/table/update/count";
-import { useContextReady } from "~/shell/ready/context";
-import { CSSDeclarationList } from "tailwindcss/types/generated/default-theme";
 
 type TProps = TPartialFixedTableProps &
   TDimensions & {
@@ -61,7 +56,7 @@ export const Grid = forwardRef<
             // console.log(sourceRef.current)
             if (!outerHandle.current)
               return;
-         
+
             (
               outerHandle.current
                 .style as CSSStyleDeclaration

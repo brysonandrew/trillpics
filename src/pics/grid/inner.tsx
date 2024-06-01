@@ -9,6 +9,7 @@ import clsx from "clsx";
 import { useTrillPicsStore } from "~/store/middleware";
 import { useContextReady } from "~/shell/ready/context";
 import { MOTION_BLUR_SHUFFLE_PROPS } from "~/shell/init/svg/filters/blur/constants";
+import { DUO_TONE_PROPS } from "~/shell/init/svg/filters/duo-tone";
 
 export type TInnerHandle = {
   isHovering(): boolean;
@@ -124,7 +125,8 @@ const Inner = forwardRef<
         onPointerOut={handleLeave}
         style={{
           cursor: "pointer",
-          ...MOTION_BLUR_SHUFFLE_PROPS,
+          ...DUO_TONE_PROPS,
+          // ...MOTION_BLUR_SHUFFLE_PROPS,
           ...style,
         }}
         {...props}
