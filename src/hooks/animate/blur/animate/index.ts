@@ -1,24 +1,38 @@
 import { animate } from "framer-motion";
+import { TBlur } from "~/shell/init/context/blur";
 import { useContextReady } from "~/shell/ready/context";
-import { isValue } from "~/utils/validation/is/value";
+import { isNull } from "~/utils/validation/is/null";
 
-export const useBlurAnimate = (axis:'x'|'y' ='x') => {
+export const useBlurAnimate = (
+  variant: keyof TBlur["control"] = "x",
+  value = 16
+) => {
   const { main } = useContextReady();
   const handler = () => {
-    if (isValue(main.blur.control[axis])) {
-      main.blur.control[axis]?.cancel();
+    if (
+      !isNull(
+        main.blur.control[variant]
+      )
+    ) {
+      main.blur.control[
+        variant
+      ]?.cancel();
     }
     const prev =
-      main.blur.value[axis].get();
-    main.blur.control[axis] = animate(
-      main.blur.value[axis],
-      100,
-      {
-        type: "tween",
-        onComplete: () =>
-          main.blur.value[axis].set(prev),
-      }
-    );
+      main.blur.value[variant].get();
+    main.blur.control[variant] =
+      animate(
+        main.blur.value[variant],
+        value,
+        {
+          type: "tween",
+          ease: "easeOut",
+          onComplete: () =>
+            main.blur.value[
+              variant
+            ].set(prev),
+        }
+      );
   };
   return handler;
 };
