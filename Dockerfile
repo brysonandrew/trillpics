@@ -17,11 +17,11 @@ COPY package.json .
 
 COPY .npmrc .npmrc
 
+COPY . ./
+
 RUN npm install
 
 RUN rm -f .npmrc
-
-COPY . .
 
 EXPOSE 3002
 
