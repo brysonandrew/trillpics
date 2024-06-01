@@ -1,13 +1,13 @@
 import { FC } from "react";
 import { resolveUrlId } from "@brysonandrew/utils-attributes";
-import { boxSize } from "~/constants/box/size";
-import { LINEAR_GRADIENT_SVG_ID } from "~app/color/gradient";
+import { boxSize } from "~uno/rules/box/size";
+import { LINEAR_GRADIENT_SVG_ID } from "~uno/rules/gradient/constants";
 import { TPillBProps } from "~/components/buttons/pill/b";
 import {
   TDivProps,
   TSvgProps,
 } from "@brysonandrew/config-types";
-import { boxRadius } from "~/constants/box/radius";
+import { boxRadius } from "~uno/rules/box/radius";
 
 export type TButtonPillBIconProps =
   Partial<

@@ -12,7 +12,7 @@ import { resolveRules } from "./rules";
 import {
   COLOR_VARS_RECORD,
   TColorKey,
-} from "../app/color/index";
+} from "./color/index";
 
 export const screen = {
   xxxs: "280px",

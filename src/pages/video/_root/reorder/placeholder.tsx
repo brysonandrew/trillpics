@@ -2,8 +2,8 @@ import type { FC } from "react";
 import clsx from "clsx";
 import { TCommonProps } from "~/pages/video/_root/reorder/types";
 import { MAX_COUNT } from "~/pages/video/_root/reorder/constants";
-import { boxRadius } from "~/constants/box/radius";
-import { boxSize } from "~/constants/box/size";
+import { boxRadius } from "~uno/rules/box/radius";
+import { boxSize } from "~uno/rules/box/size";
 
 type TProps = TCommonProps;
 export const _CommonReorderPlaceholder: FC<

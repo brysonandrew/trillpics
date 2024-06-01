@@ -11,7 +11,7 @@ import { PicDisplay } from "~/pics/grid/pic/display";
 import { isVNumber } from "~/utils/validation/is/number";
 import { _RootReorderDragger } from "~/pages/video/_root/reorder/dragger";
 import { useTrillPicsStore } from "~/store/middleware";
-import { boxSize } from "~/constants/box/size";
+import { boxSize } from "~uno/rules/box/size";
 import { TUsePicSelected } from "~/hooks/pic/selected";
 import { _CommonReorderPlaceholder } from "~/pages/video/_root/reorder/placeholder";
 import {

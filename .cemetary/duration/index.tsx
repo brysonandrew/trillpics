@@ -1,16 +1,14 @@
 import type { FC } from "react";
 import { LinesHorizontal } from "~/components/lines/horizontal";
 import { PillBHover } from "~/components/buttons/pill/b/hover";
-import { boxSize } from "~/constants/box/size";
 import { TVideoFooterProps } from "~/pages/video/_common/footer/types";
-import { SeperatorHorizontal } from "~/components/seperator/horizontal";
 import { SecondsSlider } from "~/components/slider";
+import { boxSize } from "~uno/rules/box/size";
 
 export const _RootLeftDuration: FC<
   TVideoFooterProps
 > = ({
   Button = PillBHover,
-  Seperator = SeperatorHorizontal,
   ..._props
 }) => {
 

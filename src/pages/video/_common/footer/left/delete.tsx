@@ -1,5 +1,5 @@
 import type { FC } from "react";
-import { boxSize } from "~/constants/box/size";
+import { boxSize } from "~uno/rules/box/size";
 import { LeftButtonsClear } from "~/pics/hud/left/clear";
 import { LinesVertical } from "~/components/lines/vertical";
 import { useContextReady } from "~/shell/ready/context";

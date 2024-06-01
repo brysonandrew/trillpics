@@ -1,6 +1,6 @@
 import { presetWebFonts, type Preset } from 'unocss';
 import { withDarkModePreset } from '@brysonandrew/uno-presets';
-import { FONTS } from '../../app/base/fonts';
+import { FONTS } from './fonts';
 import { resolveFonts } from '@brysonandrew/uno-presets/resolveFonts';
 
 const fonts = (resolveFonts as any)(FONTS);

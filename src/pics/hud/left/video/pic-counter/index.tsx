@@ -5,7 +5,7 @@ import {
 } from "~/components/layout/pill";
 import clsx from "clsx";
 import { usePicVideoReadCount } from "~/hooks/pic/video/read/count/hook";
-import { boxSize } from "~/constants/box/size";
+import { boxSize } from "~uno/rules/box/size";
 
 export const VideoPicsCounter: FC<
   Partial<

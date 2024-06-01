@@ -2,7 +2,7 @@ import type {
   FC,
   PropsWithChildren,
 } from "react";
-import { boxSize } from "~/constants/box/size";
+import { boxSize } from "~uno/box/border/size";
 
 export const PicsFloating: FC<
   PropsWithChildren

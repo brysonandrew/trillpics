@@ -2,7 +2,7 @@ import { FC } from "react";
 import { motion } from "framer-motion";
 import { TClassValueProps } from "@brysonandrew/config-types";
 import clsx from "clsx";
-import { boxRadius } from "~/constants/box/radius";
+import { boxRadius } from "~uno/rules/box/radius";
 import { isNull } from "~/utils/validation/is/null";
 import { useTitleObserver } from "~/pics/header/use-title-observer";
 import { SubtitleText } from "~/pics/header/subtitle/text";

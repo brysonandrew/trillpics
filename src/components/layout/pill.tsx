@@ -4,9 +4,9 @@ import {
   motion,
 } from "framer-motion";
 import clsx, { ClassValue } from "clsx";
-import { TGradientShortcut } from "~uno/shortcuts/box/gradient";
+import { TGradientShortcut } from "~uno/shortcuts/gradient";
 import { TChildren } from "@brysonandrew/config-types";
-import { boxStyle } from "~/constants/box/style";
+import { boxRadius } from "~uno/rules/box/radius";
 
 export type TPillProps =
   HTMLMotionProps<"span"> & {
@@ -27,10 +27,7 @@ export const Pill: FC<TPillProps> = ({
   style,
   ...props
 }) => {
-  const { borderRadius } = boxStyle({
-    layer: "floating",
-    borderRadius: "xl",
-  });
+  const borderRadius = boxRadius();
   return (
     <motion.div
       className={clsx(

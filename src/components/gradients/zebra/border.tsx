@@ -1,7 +1,7 @@
 import type { FC } from "react";
 import { TDivProps } from "@brysonandrew/config-types";
 import clsx from "clsx";
-import { GRADIENT_ZEBRA } from "~app/color/gradient";
+import { GRADIENT_ZEBRA } from "~uno/rules/gradient/constants";
 
 type TProps = TDivProps;
 export const GradientsZebraBorder: FC<

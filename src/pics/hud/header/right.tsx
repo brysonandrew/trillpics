@@ -1,5 +1,5 @@
 import { FC } from "react";
-import { boxSize } from "~/constants/box/size";
+import { boxSize } from "~uno/rules/box/size";
 import { LinesHorizontal } from "~/components/lines/horizontal";
 import { LinesTopRight } from "~/components/lines/top-right";
 import { HeaderSubtitle } from "~/pics/header/subtitle";

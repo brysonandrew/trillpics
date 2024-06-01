@@ -1,5 +1,5 @@
 import { FC } from "react";
-import { boxSize } from "~/constants/box/size";
+import { boxSize } from "~uno/rules/box/size";
 import { LinesVertical } from "~/components/lines/vertical";
 import { FooterNavDelete } from "~/pages/video/_common/footer/left/delete";
 import { usePicVideoReadInputs } from "~/hooks/pic/video/read/inputs/hook";

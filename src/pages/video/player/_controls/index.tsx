@@ -1,6 +1,6 @@
 import { PlaybackProgressSeeker } from "~/pages/video/player/_controls/playback/progress/seeker";
 import { PlayerBackground } from "~/pages/video/player/_background";
-import { boxRadius } from "~/constants/box/radius";
+import { boxRadius } from "~uno/rules/box/radius";
 import { PlayerBackgroundOpaque } from "~/pages/video/player/_background/opaque";
 import { PlaybackButtons } from "~/pages/video/player/_controls/playback/buttons";
 

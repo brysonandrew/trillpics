@@ -1,5 +1,5 @@
 import type { FC } from "react";
-import { boxSize } from "~/constants/box/size";
+import { boxSize } from "~uno/rules/box/size";
 import { TLinesOptions } from "~/components/lines/types";
 import { LinesVertical } from "~/components/lines/vertical";
 

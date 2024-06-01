@@ -1,7 +1,7 @@
 import type { FC } from "react";
 
 import { SvgWrap } from "@brysonandrew/svg-dimensionless";
-import { GRADIENT_BLUE_PINK_YELLOW_COLORS, GRADIENT_TEAL_YELLOW_PINK_COLORS, LINEAR_GRADIENT_SVG_ID } from "~app/color/gradient";
+import { GRADIENT_BLUE_PINK_YELLOW_COLORS, GRADIENT_TEAL_YELLOW_PINK_COLORS, LINEAR_GRADIENT_SVG_ID } from "~uno/rules/gradient/constants";
 
 type TProps = { isDarkMode: boolean };
 

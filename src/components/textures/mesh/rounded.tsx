@@ -1,7 +1,7 @@
 import type { FC } from "react";
 import { TDivProps } from "@brysonandrew/config-types";
 import { TexturesMesh } from "~/components/textures/mesh";
-import { boxRadius } from "~/constants/box/radius";
+import { boxRadius } from "~uno/rules/box/radius";
 
 type TProps = TDivProps;
 export const TexturesMeshRounded: FC<

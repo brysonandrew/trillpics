@@ -2,9 +2,9 @@ import type { FC } from "react";
 import clsx from "clsx";
 import { IconsTrash } from "~/components/icons/video/trash";
 import { TUsePicSelected } from "~/hooks/pic/selected";
-import { boxSize } from "~/constants/box/size";
+import { boxSize } from "~uno/rules/box/size";
 import { ButtonPillBIcon, TButtonPillBIconProps } from "~/components/buttons/pill/b/icon";
-import { boxRadius } from "~/constants/box/radius";
+import { boxRadius } from "~uno/rules/box/radius";
 import { TButtonProps } from "@brysonandrew/config-types";
 
 type TProps = Pick<

@@ -14,7 +14,7 @@ import {
   PRESENCE_OPACITY_01,
   PRESENCE_OPACITY_04,
 } from "~/constants/animation";
-import { boxRadius } from "~/constants/box/radius";
+import { boxRadius } from "~uno/rules/box/radius";
 import {
   PRESENCE_OPACITY,
   PRESENCE_OPACITY_ANIMATE_DELAY_04,
@@ -29,7 +29,7 @@ import { resolveVarCss } from "@brysonandrew/color-base";
 import {
   GRADIENT_BLUE_PINK_YELLOW_COLORS,
   GRADIENT_TEAL_YELLOW_PINK_COLORS,
-} from "~app/color/gradient";
+} from "~uno/rules/gradient/constants";
 import { useDarkMode } from "@brysonandrew/dark-mode";
 
 export const PicCursor: FC<

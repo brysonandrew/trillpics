@@ -1,7 +1,6 @@
 import type { FC } from "react";
-import { TBoxSize } from "~/constants/box/size";
-import { boxStyle } from "~/constants/box/style";
 import clsx from "clsx";
+import { TBoxSize } from "~uno/rules/box/size";
 
 type TProps = {
   sizeKey: NonNullable<keyof TBoxSize>;

@@ -11,11 +11,10 @@ import { resolvePresence } from "~/utils/animation";
 import { resolveCompositeKey } from "@brysonandrew/utils-key";
 import { TGenerateInput } from "~/types/trpc/generate";
 import { useHoverKey } from "~/hooks/use-hover-key";
-import { boxStyle } from "~/constants/box/style";
 import { usePicVideoReadInputs } from "~/hooks/pic/video/read/inputs/hook";
 import { IconsDownload } from "~/components/icons/download";
 import { PillBHover } from "~/components/buttons/pill/b/hover";
-import { boxSize } from "~/constants/box/size";
+import { boxSize } from "~uno/rules/box/size";
 import { resolveSquare } from "@brysonandrew/measure";
 import {
   DEFAULT_FPS,
@@ -47,16 +46,6 @@ export const Download: FC<
   );
   const { handlers, isHover } =
     useHoverKey();
-
-  const {
-    width,
-    minWidth,
-    ...borderStyle
-  } = boxStyle({
-    layer: "flat",
-    borderRadius: "xl",
-    size: "m",
-  });
 
   const title = "Download video";
 
@@ -149,7 +138,7 @@ export const Download: FC<
     },
   });
   const handleGenerate = () => {
-    console.log(input)
+    console.log(input);
     set({ logs: [], progress: null });
     mutate(input);
   };
@@ -191,7 +180,6 @@ export const Download: FC<
                   scaleX: 1.2,
                   scaleY: 1.1,
                   x: 2,
-                  ...borderStyle,
                 }}
                 {...AURA_TRANSITION}
               />

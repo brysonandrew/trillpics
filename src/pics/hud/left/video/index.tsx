@@ -12,7 +12,7 @@ import {
   VIDEO_ROUTE,
 } from "~/constants/params";
 import { useVideoPicsCheck } from "~/hooks/pic/video/read/video-pics-check/hook";
-import { boxSize } from "~/constants/box/size";
+import { boxSize } from "~uno/rules/box/size";
 import { useContextReady } from "~/shell/ready/context";
 import { TChildren } from "@brysonandrew/config-types";
 import { IconsHome } from "~/components/icons/home";

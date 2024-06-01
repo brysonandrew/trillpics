@@ -1,5 +1,5 @@
 import { FC } from "react";
-import { COLOR_VARS_CSS } from "~app/color";
+import { COLOR_VARS_CSS } from "~uno/color";
 import {
   css,
   Global,

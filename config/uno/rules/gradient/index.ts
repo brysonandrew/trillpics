@@ -8,7 +8,7 @@ import {
   GRADIENT_MESH_DARK_CSS,
   GRADIENT_MESH_COMMON_CSS,
   GRADIENT_MESH_LIGHT_CSS,
-} from "../../app/color/gradient/mesh";
+} from "./mesh";
 import {
   GRADIENT_BLUE_PINK_YELLOW,
   GRADIENT_TEXT_COMMON,
@@ -16,8 +16,8 @@ import {
   GRADIENT_BORDER_COMMON,
   RADIAL_BLUE_PINK_YELLOW,
   RADIAL_TEAL_YELLOW_PINK,
-} from "../../app/color/gradient";
-import { OUTLINE_FILTER_SVG_PROPS,OUTLINE_FILTER_SVG_DARK_PROPS } from "./filters/outline";
+} from "./constants";
+import { OUTLINE_FILTER_SVG_PROPS,OUTLINE_FILTER_SVG_DARK_PROPS } from "../filters/outline";
 
 export const GRADIENTS: Rule[] = [
   [

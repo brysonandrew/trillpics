@@ -1,11 +1,7 @@
 import {
   TBoxBackgroundColorConfig,
   boxBackgroundColor,
-} from "~/constants/box/class/background/color";
-import {
-  TBoxBackgroundImageConfig,
-  boxBackgroundImage,
-} from "~/constants/box/class/background/image";
+} from "./background/color";
 
 type TBoxBackgroundConfig =
   TBoxBackgroundColorConfig &
@@ -19,9 +15,14 @@ export const boxBackground = (
   const backgroundImage =
     boxBackgroundImage(config);
   return {
-    backgroundColor,
-    backgroundImage,
+    ...(backgroundColor
+      ? { backgroundColor }
+      : {}),
+    ...(backgroundImage
+      ? { backgroundImage }
+      : {}),
   };
 };
-export type TBoxBackground =
-  ReturnType<typeof boxBackground>;
+export type TBoxBackground = ReturnType<
+  typeof boxBackground
+>;

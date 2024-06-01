@@ -1,9 +1,9 @@
 import { StaticShortcutMap } from "unocss";
-import { SHORTCUTS_BOX_GRADIENT } from "../../shortcuts/box/gradient";
+import { SHORTCUTS_BOX_GRADIENT } from "./gradient";
 import {
   SHORTCUTS_BOX_BACKGROUND_COLOR,
   SHORTCUTS_BOX_BACKGROUND_IMAGE,
-} from "../box/background";
+} from "./background";
 
 export const SHORTCUTS_BOX: StaticShortcutMap =
   {
