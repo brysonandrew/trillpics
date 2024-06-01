@@ -9,8 +9,6 @@ RUN apt-get install -y chromium
 ENV PUPPETEER_SKIP_CHROMIUM_DOWNLOAD=true \
   PUPPETEER_EXECUTABLE_PATH=/usr/bin/chromium-browser
 
-ENV NODE_ENV production
-
 WORKDIR /app
 
 COPY package.json .
@@ -21,7 +19,7 @@ COPY . ./
 
 RUN npm install
 
-RUN npm install -g tsx
+ENV NODE_ENV production
 
 RUN rm -f .npmrc
 
