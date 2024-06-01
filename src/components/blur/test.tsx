@@ -1,6 +1,5 @@
 import type { FC } from "react";
 import { motion } from "framer-motion";
-import { MOTION_BLUR_FILTER_Y_PROPS } from "~/shell/init/svg/filters/blur/constants";
 
 export const BlurTest: FC = () => {
   return (
@@ -11,10 +10,11 @@ export const BlurTest: FC = () => {
       />
       <motion.div
         className="fill flex flex-col text-9xl center font-black"
-        style={{
-          // ...EMBERS_FILTER_SVG_PROPS,
-          ...MOTION_BLUR_FILTER_Y_PROPS,
-        }}
+        style={
+          {
+            // ...EMBERS_FILTER_SVG_PROPS,
+          }
+        }
       >
         <span className="relative text-green">
           hello world

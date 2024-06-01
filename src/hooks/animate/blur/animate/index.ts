@@ -1,14 +1,20 @@
 import { animate } from "framer-motion";
-import { TBlur } from "~/shell/init/context/blur";
+import {
+  TBlurVariant,
+} from "~/shell/init/context/blur";
+import { TMain } from "~/shell/init/context/types";
 import { useContextReady } from "~/shell/ready/context";
 import { isNull } from "~/utils/validation/is/null";
 
 export const useBlurAnimate = (
-  variant: keyof TBlur["control"] = "x",
-  value = 16
+  variant: TBlurVariant = "x",
+  value = 16,
+  __main?: TMain
 ) => {
-  const { main } = useContextReady();
-  const handler = () => {
+  const { main: _main } =
+    useContextReady();
+  const main = __main ?? _main;
+  const handler = (v = value) => {
     if (
       !isNull(
         main.blur.control[variant]
@@ -23,7 +29,7 @@ export const useBlurAnimate = (
     main.blur.control[variant] =
       animate(
         main.blur.value[variant],
-        value,
+        v,
         {
           type: "tween",
           ease: "easeOut",

@@ -60,9 +60,10 @@ export const ReadyContextProvider: FC<
     useScrollUpdateHandler({
       scrollY,
       scrollTimeoutRef,
+      main:initContext.main
     });
 
-useMove({
+  useMove({
     main: initContext.main,
     isOnscreen,
     move,

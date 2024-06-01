@@ -5,7 +5,6 @@ import {
   SCROLL_COOLDOWN,
 } from "~/store/state/scroll";
 import { useTrillPicsStore } from "~/store/middleware";
-import { useTimeoutRef } from "@brysonandrew/hooks-window";
 import { TReadyContext } from "~/shell/ready/context/types";
 import {
   useLocation,
@@ -13,15 +12,18 @@ import {
   useSearchParams,
 } from "react-router-dom";
 import { OVER_CELL_PARAM_KEY } from "~/hooks/pic/constants";
+import { useBlurAnimate } from "~/hooks/animate/blur/animate";
 
 type TConfig = Pick<
   TReadyContext,
   | "scrollY"
   | "scrollTimeoutRef"
+  | "main"
 >;
 export const useScrollUpdateHandler = ({
   scrollY,
   scrollTimeoutRef,
+  main,
 }: TConfig) => {
   const { timeoutRef, endTimeout } =
     scrollTimeoutRef;
@@ -31,7 +33,11 @@ export const useScrollUpdateHandler = ({
   const navigate = useNavigate();
   const prevScrollOffsetRef =
     useRef<number>(0);
-
+  const handleBlur = useBlurAnimate(
+    "scrollY",
+    2,
+    main
+  );
   const { isScroll, isScrolling, set } =
     useTrillPicsStore(
       ({
@@ -44,7 +50,6 @@ export const useScrollUpdateHandler = ({
         set,
       })
     );
-
 
   const handler = (
     props: ListOnScrollProps
@@ -59,10 +64,13 @@ export const useScrollUpdateHandler = ({
       prevScrollOffsetRef.current -
         scrollOffset
     );
+
     if (
       !isScrolling &&
       scrollDelta > 0
     ) {
+      handleBlur(scrollDelta * 2);
+
       set({
         isScrolling: true,
         scrollDirection,

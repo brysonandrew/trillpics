@@ -2,11 +2,12 @@ import {
   animate,
   MotionValue,
 } from "framer-motion";
+import { TBlurVariant } from "~/shell/init/context/blur";
 import { useContextReady } from "~/shell/ready/context";
 import { useTrillPicsStore } from "~/store/middleware";
 
 export const useBlurAnimate1 = (
-  axis: "x" | "y" = "x"
+  axis: TBlurVariant = "scrollY"
 ) => {
   const { main } = useContextReady();
   const { set } = useTrillPicsStore(
@@ -18,20 +19,22 @@ export const useBlurAnimate1 = (
     adjacentMotion: MotionValue<number>
   ) => {
     if (main.blur.control[axis]) {
-      main.blur.control[axis]?.stop();
+      main.blur.control[axis]?.cancel();
     }
     set({ isScroll: false });
-    const prev = adjacentMotion.get();
+    const value = adjacentMotion.get();
     main.blur.control[axis] = animate(
       main.blur.value[axis],
-      prev * 0.008,
+      value,
       {
         type: "tween",
         restDelta: 0,
         restSpeed: 1,
-        velocity: prev * 0.02,
+        velocity:
+          adjacentMotion.getVelocity(),
         onComplete: () => {
-          adjacentMotion.set(prev);
+          // adjacentMotion.set(prev);
+          main.blur.value[axis].set(0);
         },
       }
     );

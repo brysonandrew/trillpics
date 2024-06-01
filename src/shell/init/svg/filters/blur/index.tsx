@@ -4,11 +4,10 @@ import {
   MotionValue,
 } from "framer-motion";
 import { SvgWrap } from "@brysonandrew/svg-dimensionless";
-import { MOTION_BLUR_FILTER_X_ID } from "~/shell/init/svg/filters/blur/constants";
 import { TPropsWithChildren } from "@brysonandrew/config-types";
 
 type TProps = TPropsWithChildren<{
-  id?: string;
+  id: string;
   tType?: string;
   tBase?: string;
   mScale?: number;
@@ -18,10 +17,10 @@ type TProps = TPropsWithChildren<{
   morph: number;
   displacement: number;
 }>;
-export const FiltersBlurX: FC<
+export const FiltersBlur: FC<
   TProps
 > = ({
-  id = MOTION_BLUR_FILTER_X_ID,
+  id,
   tType = "turbulence", // "fractalNoise",
   dScale = 12,
   turbulence,
@@ -34,7 +33,6 @@ export const FiltersBlurX: FC<
   if (tType === "fractalNoise") {
     o = 0;
   }
-  console.log(morph)
   return (
     <SvgWrap>
       <filter id={id}>

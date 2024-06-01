@@ -1,6 +1,5 @@
 import type { FC } from "react";
 import { BlurMotion2 } from "@brysonandrew/svg-filter";
-import { MOTION_BLUR_FILTER_Y_ID } from "~/shell/init/svg/filters/blur/constants";
 import { useInitContext } from "~/shell/init/context";
 
 export const BlurY: FC = () => {

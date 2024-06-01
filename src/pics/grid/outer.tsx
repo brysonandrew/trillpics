@@ -3,7 +3,7 @@ import {
   PropsWithChildren,
 } from "react";
 import clsx from "clsx";
-import { MOTION_BLUR_SHUFFLE_PROPS } from "~/shell/init/svg/filters/blur/constants";
+import { MOTION_BLUR_FILTER_SCROLL_Y_PROPS } from "~/shell/init/svg/filters/blur/constants";
 
 export type TOuterHandle = {
   isHovering: () => boolean;
@@ -47,9 +47,9 @@ const Outer = forwardRef<
         className={clsx(className)}
         style={{
           ...style,
-          // ...MOTION_BLUR_SHUFFLE_PROPS,
+          ...MOTION_BLUR_FILTER_SCROLL_Y_PROPS,
 
-                    // ...MOTION_BLUR_SHUFFLE_PROPS,
+          // ...MOTION_BLUR_SHUFFLE_PROPS,
 
           // ...MOTION_BLUR_FILTER_SCROLL_PROPS,
           // ...MOTION_BLUR_FILTER_X_PROPS,

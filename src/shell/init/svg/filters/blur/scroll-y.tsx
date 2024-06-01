@@ -4,35 +4,33 @@ import {
 } from "framer-motion";
 import { TPropsWithChildren } from "@brysonandrew/config-types";
 import { useInitContext } from "~/shell/init/context";
-import { MOTION_BLUR_SHUFFLE_ID } from "~/shell/init/svg/filters/blur/constants";
+import { MOTION_BLUR_FILTER_SCROLL_Y_ID, MOTION_BLUR_SHUFFLE_ID } from "~/shell/init/svg/filters/blur/constants";
 import { FiltersBlur } from "~/shell/init/svg/filters/blur";
 
 type TProps = {
   tType?: string;
   dScale?: number;
 };
-export const FiltersBlurShuffle = ({
+export const FiltersBlurScrollY = ({
   tType = "turbulence", // "fractalNoise",
-  dScale = 8,
+  dScale = 11,
 }: TPropsWithChildren<TProps>) => {
   const { main } = useInitContext();
-  const motionValue =
-    main.blur.value.shuffle;
+  const motionValue = main.blur.value.scrollY;
   const velocity = useVelocity(
     motionValue
   );
-
   const acceleration =
     useVelocity(velocity);
-  const turbulence = useMotionTemplate`${acceleration} ${velocity}`;
-  const blur = useMotionTemplate`${velocity} ${motionValue}`;
+  const turbulence = useMotionTemplate`${velocity} ${acceleration}`;
+  const blur = useMotionTemplate`${motionValue} ${velocity}`;
   let o = -(dScale / 2);
   if (tType === "fractalNoise") {
     o = 0;
   }
   return (
     <FiltersBlur
-      id={MOTION_BLUR_SHUFFLE_ID}
+      id={MOTION_BLUR_FILTER_SCROLL_Y_ID}
       turbulence={turbulence}
       blur={blur}
       morph={0.1}

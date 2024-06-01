@@ -3,14 +3,15 @@ import {
   LayoutGroup,
   motion,
 } from "framer-motion";
-import { TDimensions } from "@brysonandrew/config-types";
 import { LinesVertical } from "~/components/lines/vertical";
 import { boxSize } from "~/constants/box/size";
 import { HideControls } from "~/pics/header/right/zen-mode";
 import { DarkMode } from "~/pics/header/right/dark-mode";
+import { THudContainer } from "~/pics/hud";
+
 type TProps = {
   foundation: DOMRect;
-  container: TDimensions;
+  container: THudContainer;
 };
 export const PicsHudRight: FC<
   TProps
@@ -26,10 +27,11 @@ export const PicsHudRight: FC<
             foundation.top +
             foundation.height,
           gap: s.m025,
-          height:
-            container.height -
-            foundation.height +
-            s.m025,
+          height: container.isMobile
+            ? 0
+            : container.height -
+              foundation.height +
+              s.m025,
         }}
       >
         <div

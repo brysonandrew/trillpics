@@ -1,6 +1,5 @@
 import type { FC } from "react";
 import { BlurMotion2 } from "@brysonandrew/svg-filter";
-import { MOTION_BLUR_FILTER_SCROLL_ID } from "~/shell/init/svg/filters/blur/constants";
 import { useContextReady } from "~/shell/ready/context";
 
 export const ScrollForward: FC =

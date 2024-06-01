@@ -51,8 +51,7 @@ export const PicsHudLeft: FC<
             gap: s.m05,
             top:
               foundation.height +
-              s.m05 +
-              s.m025,
+              s.m,
             height: container.height,
           }}
         >
@@ -64,7 +63,7 @@ export const PicsHudLeft: FC<
                 rounded,
               width: s.m,
               height: container.height,
-              left: s.m05,
+              left: s.m15,
             }}
           />
 

@@ -1,4 +1,3 @@
-import { BlurXyWrap } from "~/components/blur/xy";
 import { Hud } from "~/pics/hud";
 import { Pics } from "~/pics";
 import { Outlet } from "react-router";
@@ -12,10 +11,8 @@ export const Shell = () => {
       <ShellInit>
         {(screenInit) => (
           <ShellReady {...screenInit}>
-            <BlurXyWrap>
-              <Pics />
-              <Outlet />
-            </BlurXyWrap>
+            <Pics />
+            <Outlet />
             <Hud />
           </ShellReady>
         )}

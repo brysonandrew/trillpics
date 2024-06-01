@@ -8,7 +8,7 @@ import {
   MOTION_BLUR_ADD_RANDOM_ID,
   MOTION_BLUR_SHUFFLE_ID,
 } from "~/shell/init/svg/filters/blur/constants";
-import { FiltersBlurX } from "~/shell/init/svg/filters/blur/x";
+import { FiltersBlur } from "~/shell/init/svg/filters/blur";
 
 type TProps = {
   tType?: string;
@@ -34,11 +34,11 @@ export const FiltersBlurAddRandom = ({
     o = 0;
   }
   return (
-    <FiltersBlurX
+    <FiltersBlur
       id={MOTION_BLUR_ADD_RANDOM_ID}
       turbulence={turbulence}
       blur={blur}
-      morph={1}
+      morph={0.1}
       displacement={dScale}
     />
   );
