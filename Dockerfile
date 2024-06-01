@@ -2,8 +2,18 @@
 # If you don't want server rendering, you can safely delete this file.
 
 FROM node:20-bookworm
-RUN apt-get update
-RUN apt-get install -y chromium
+
+# Installs latest Chromium (85) package.
+RUN apk add --no-cache \
+  chromium \
+  nss \
+  freetype \
+  freetype-dev \
+  harfbuzz \
+  ca-certificates \
+  ttf-freefont \
+  ffmpeg \
+  font-noto-emoji
 
 # Tell Puppeteer to skip installing Chrome. We'll be using the installed package.
 ENV PUPPETEER_SKIP_CHROMIUM_DOWNLOAD=true \
