@@ -6,59 +6,61 @@ import {
 import { SvgWrap } from "@brysonandrew/svg-dimensionless";
 import { resolveUrlId } from "@brysonandrew/utils-attributes";
 import { resolveEmbersKeys } from "~/shell/init/svg/filters/embers/keys";
+import { coloredSource } from "~/shell/init/svg/filters/embers/colored";
 
-const coloredSource = (
+const turbulenceDisplaceSource = (
   key: string,
-  color = "purple"
-) => {
-  return (
-    <>
-      <feFlood
-        in="SourceGraphic"
-        floodColor={color}
-        result="P"
-      />
-      <feComposite
-        in="P"
-        in2="SourceGraphic"
-        operator="in"
-        result={key}
-      />
-    </>
-  );
-};
-
-const morphDisplaceSource = (
-  key: string,
+  tType = "turbulence", // "fractalNoise",
+  tBase = "0.01 11.0",
   mScale = 1,
-  dScale = 2
+  dScale = 12
 ) => {
+  let o = -(dScale / 2);
+  if (tType === "fractalNoise") {
+    o = 0;
+  }
   return (
     <>
-      <feMorphology
-        in="SourceGraphic"
-        operator="erode"
-        radius={mScale}
-        result="morphDisplaceSource0"
-      />
-      <feDisplacementMap
-        in2="SourceGraphic"
-        in="morphDisplaceSource0"
-        scale={dScale}
-        xChannelSelector="B"
-        yChannelSelector="B"
-        result="morphDisplaceSource1"
+      <feTurbulence
+        // type="turbulence"
+        type={tType}
+        baseFrequency={tBase}
+        numOctaves={1}
+        result="T0"
       />
       <feOffset
-        in="morphDisplaceSource1"
-        dx={-dScale / 2}
-        dy={-dScale / 2}
+        dx={o}
+        dy={o}
+        in="SourceGraphic"
+        result="sgo"
+      />
+
+      <feMorphology
+        in="sgo"
+        operator="erode"
+        radius={mScale}
+        result="M0"
+      />
+        <feGaussianBlur
+        // in="M0"
+        in="M0"
+        stdDeviation={tBase}
+        // xChannelSelector="B"
+        // yChannelSelector="B"
+        result="B0"
+      />
+      <feDisplacementMap
+        in="B0"
+        in2="T0"
+        scale={dScale}
+        // xChannelSelector="B"
+        // yChannelSelector="B"
         result={key}
       />
+   
     </>
   );
 };
-
 export const EMBERS_FILTER_ID =
   "EMBERS_FILTER_ID";
 export const EMBERS_FILTER_SVG_PROPS = {
@@ -93,36 +95,42 @@ export const EmbersFilter: FC<
     <SvgWrap>
       <filter
         id={id}
-        x="-20%"
-        y="-20%"
-        width="140%"
-        height="140%"
+        x="-60%"
+        width="180%"
         // colorInterpolationFilters="sRGB"
       >
         {coloredSource(
           SOURCE_KEY,
-          "orange"
+          "purple"
         )}
-        {morphDisplaceSource(
-          DISPLACEMENT_KEY
+        {/* {morphDisplaceSource(
+          DISPLACEMENT_KEY,
+          1.2,
+          20
+        )} */}
+        {turbulenceDisplaceSource(
+          TURBULANCE_KEY
         )}
-           <feTurbulence
-                    baseFrequency={1}
-                    numOctaves={1}
-                    seed={1}
-                    type="fractalNoise"
-                    in="SourceGraphic"
-                    result={TURBULANCE_KEY}
-                  />
-        <feMerge>
+
+        <feBlend
+        in2={SOURCE_KEY}
+        in={TURBULANCE_KEY}
+mode="soft-light"
+        />
+
+        {/* <feComposite
+          in2={TURBULANCE_KEY}
+          in={SOURCE_KEY}
+          operator="xor"
+        /> */}
+        {/* <feMerge>
           <feMergeNode
             in={SOURCE_KEY}
           />
           <feMergeNode
-            in={DISPLACEMENT_KEY}
+            in={TURBULANCE_KEY}
           />
-          <feMergeNode in={TURBULANCE_KEY}/>
-        </feMerge>
+        </feMerge> */}
       </filter>
     </SvgWrap>
   );

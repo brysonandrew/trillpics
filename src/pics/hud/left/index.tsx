@@ -44,15 +44,14 @@ export const PicsHudLeft: FC<
         <motion.div
           key="root"
           className={clsx(
-            "absolute flex flex-col justify-start items-start w-0 shrink-0"
+            "absolute flex flex-col justify-start items-end w-0 shrink-0"
           )}
           style={{
             left: -s.m05,
             gap: s.m05,
             top:
               foundation.height +
-              s.m05 +
-              s.m025,
+              s.m,
             height: container.height,
           }}
         >
@@ -64,7 +63,7 @@ export const PicsHudLeft: FC<
                 rounded,
               width: s.m,
               height: container.height,
-              left: s.m05,
+              left: s.m15,
             }}
           />
 
@@ -202,7 +201,7 @@ export const PicsHudLeft: FC<
                       style={{
                         height: s.m05,
                         left: s.m,
-                        bottom: s.m,
+                        bottom: s.m05,
                       }}
                     >
                       <SubtitleText>
@@ -213,17 +212,19 @@ export const PicsHudLeft: FC<
                       className="absolute h-px _gradient-radial"
                       style={{
                         right: s.m05,
-                        bottom: s.m05,
+                        bottom: 0,
                         width: s.m15,
                         rotate: 35,
                       }}
                     />
 
-                    <ControlsPlayer
-                      style={{
-                        right: -s.m05,
-                      }}
+                  <div className="absolute right-0 h-0 column-end w-0"
+                  
+                  >
+                  <ControlsPlayer
+                    
                     />
+                  </div>
                   </div>
                 </motion.div>
                 <div

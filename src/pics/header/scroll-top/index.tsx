@@ -7,7 +7,6 @@ import {
   TPillBHoverProps,
 } from "~/components/buttons/pill/b/hover";
 import { resolveCompositeKey } from "@brysonandrew/utils-key";
-import { useContextReady } from "~/shell/ready/context";
 
 export const SCROLL_TOP_HOVER_KEY =
   "Go back";

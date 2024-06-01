@@ -56,7 +56,7 @@ export const VideoPlayer = () => {
       </Helmet>
       <VideoPlayer_Backdrop />
       <div
-        className="fill column-start justify-start overflow-auto"
+        className="fill column-start justify-center lg:justify-start overflow-auto"
         style={{
           paddingTop: y,
           paddingBottom: y,

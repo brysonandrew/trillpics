@@ -8,6 +8,7 @@ import {
 import clsx from "clsx";
 import { useTrillPicsStore } from "~/store/middleware";
 import { useContextReady } from "~/shell/ready/context";
+import { MOTION_BLUR_SHUFFLE_PROPS } from "~/shell/init/svg/filters/blur/constants";
 
 export type TInnerHandle = {
   isHovering(): boolean;
@@ -116,7 +117,6 @@ const Inner = forwardRef<
     return (
       <ul
         ref={ref}
-        // ref={resolveRef}
         className={clsx(className)}
         onPointerOver={handleEnter}
         onPointerEnter={handleEnter}
@@ -124,6 +124,7 @@ const Inner = forwardRef<
         onPointerOut={handleLeave}
         style={{
           cursor: "pointer",
+          ...MOTION_BLUR_SHUFFLE_PROPS,
           ...style,
         }}
         {...props}

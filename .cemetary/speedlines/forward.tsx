@@ -1,9 +1,8 @@
 import type { FC } from "react";
 import { BlurMotion2 } from "@brysonandrew/svg-filter";
-import { MOTION_BLUR_FILTER_SPEEDLINES_ID } from "~/shell/init/svg/filters/blur/constants";
 import { useContextReady } from "~/shell/ready/context";
 
-export const SpeedlinesForward: FC =
+export const ScrollForward: FC =
   () => {
     const { scrollY } =
       useContextReady();
@@ -12,7 +11,7 @@ export const SpeedlinesForward: FC =
       <BlurMotion2
         axis="y"
         id={
-          MOTION_BLUR_FILTER_SPEEDLINES_ID
+          MOTION_BLUR_FILTER_SCROLL_ID
         }
         gaussianBlurMotionProps={{}}
         morphologyProps={{}}

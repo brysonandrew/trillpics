@@ -26,6 +26,7 @@ import { HUD_LEFT_ADD_RANDOM_HOVER_KEY } from "~/pics/hud/left/add-random";
 import { resolveCompositeKey } from "@brysonandrew/utils-key";
 import clsx from "clsx";
 import { _CommonReorderControl } from "~/pages/video/_root/reorder/controls/control";
+import { MOTION_BLUR_ADD_RANDOM_PROPS } from "~/shell/init/svg/filters/blur/constants";
 
 type TProps = TUsePicSelected;
 export const _CommonReorder: FC<
@@ -128,7 +129,13 @@ export const _CommonReorder: FC<
     >
       {({ x05, y06, y075, x, y }) => {
         return (
-          <div className="relative">
+          <div className="relative"
+          
+          style={{
+            ...MOTION_BLUR_ADD_RANDOM_PROPS,
+
+          }}
+          >
             <>{children}</>
             <motion.div
               className="absolute z-0"
