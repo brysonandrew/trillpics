@@ -21,6 +21,8 @@ COPY . ./
 
 RUN npm install
 
+RUN npm install -g tsx
+
 RUN rm -f .npmrc
 
 EXPOSE 3002
