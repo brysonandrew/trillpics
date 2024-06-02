@@ -1,9 +1,9 @@
 import type { FC } from "react";
 import { boxSize } from "~uno/rules/box/size";
-import { useContextReady } from "~/shell/ready/context";
+import { useReadyContext } from "~/shell/ready/context";
 import { LinesHorizontal } from "~/components/lines/horizontal";
 import { PicsHeaderScrollTop } from "~/pics/header/scroll-top";
-import { HudLeftShuffle } from "~/pics/hud/left/shuffle";
+import { HudLeftShuffle } from "~/pics/hud/left/grid-options/shuffle";
 import { useTrillPicsStore } from "~/store/middleware";
 import { withControlsCheck } from "~/store/hocs/with-controls-check";
 import { LinesVertical } from "~/components/lines/vertical";
@@ -14,7 +14,7 @@ export const GridOptions: FC =
     const {
       foundationValue,
       screen,
-    } = useContextReady();
+    } = useReadyContext();
     const { isScroll } =
       useTrillPicsStore(
         ({ isScroll }) => ({

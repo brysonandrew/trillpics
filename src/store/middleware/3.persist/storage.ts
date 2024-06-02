@@ -35,7 +35,6 @@ export const PERSIST_STORAGE: PersistOptions<
     KEYS.reduce(
       (a, key: TPersistKey) => {
         const value = state[key];
-        console.log(value)
         return {
           ...a,
           [key]: value,

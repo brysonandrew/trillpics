@@ -2,11 +2,12 @@ import { FC } from "react";
 import { AnimatePresence } from "framer-motion";
 import clsx from "clsx";
 import { TMeasureContainerResult } from "~/shell/init/hooks/measure/container";
-import { useContextReady } from "~/shell/ready/context";
+import { useReadyContext } from "~/shell/ready/context";
 import { PicsHudHeader } from "~/pics/hud/header";
 import { PicsHudLeft } from "~/pics/hud/left";
 import { boxSize } from "~uno/rules/box/size";
 import { withControlsCheck } from "~/store/hocs/with-controls-check";
+import { PicsHudFooter } from "~/pics/hud/footer";
 
 export type THudContainer = Extract<
   TMeasureContainerResult,
@@ -15,7 +16,7 @@ export type THudContainer = Extract<
 export const Hud: FC =
   withControlsCheck(() => {
     const { foundationValue, screen } =
-      useContextReady();
+      useReadyContext();
     const s = boxSize();
     const container = screen.container;
     return (
@@ -61,6 +62,10 @@ export const Hud: FC =
                 />
               )}
             </div>
+            <PicsHudFooter
+              key="PicsHudFooter"
+              container={container}
+            />
           </AnimatePresence>
         </div>
       </div>

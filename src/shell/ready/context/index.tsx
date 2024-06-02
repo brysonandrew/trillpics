@@ -25,7 +25,7 @@ const ReadyContext = createContext(
   {} as TReadyContext
 );
 
-export const useContextReady = () =>
+export const useReadyContext = () =>
   useContext(ReadyContext);
 
 export const ReadyContextProvider: FC<

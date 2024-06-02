@@ -3,7 +3,7 @@ import {
   Link,
   useSearchParams,
 } from "react-router-dom";
-import { VIDEO_ROUTE } from "~/routes";
+import { VIDEO_ROUTE } from "~/constants/params";
 
 export const VideoPlayer_Backdrop =
   () => {

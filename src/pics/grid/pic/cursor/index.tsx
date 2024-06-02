@@ -4,7 +4,7 @@ import {
   motion,
   MotionConfig,
 } from "framer-motion";
-import { useContextReady } from "~/shell/ready/context";
+import { useReadyContext } from "~/shell/ready/context";
 import { resolveCompositeKey } from "@brysonandrew/utils-key";
 import { CursorCorners } from "~/pics/grid/pic/cursor/corners";
 import { TPropsWithChildren } from "@brysonandrew/config-types";
@@ -33,7 +33,7 @@ export const PicCursor: FC<
 > = ({ children, ...props }) => {
   const { currCell, size, currKey } =
     props;
-  const { scrollY } = useContextReady();
+  const { scrollY } = useReadyContext();
 
   const position =
     resolvePositionFromCell({

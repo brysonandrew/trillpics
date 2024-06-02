@@ -1,16 +1,16 @@
 import { RouteObject } from "react-router";
 import { Shell } from "~/shell";
-import { SHELL_ROUTES_PAGES } from "~/routes/pages";
+import { ROUTES_PATHS, SHELL_ROUTES_PAGES } from "~/routes/pages";
 import { Home } from "~/pages/home";
 import { NotFound } from "~/routes/not-found";
 
 export const ROUTES: RouteObject[] = [
   {
-    path: "/",
+    path: ROUTES_PATHS["/"],
     Component: Shell,
     children: [
       {
-        path: "/",
+        path: ROUTES_PATHS["/"],
         Component: Home,
       },
       ...SHELL_ROUTES_PAGES,
@@ -21,12 +21,3 @@ export const ROUTES: RouteObject[] = [
     ],
   },
 ];
-
-export const HOME_ROUTE = "/home";
-export const VIDEO_ROUTE = "/video";
-export const HOME_CURSOR_ROUTE =
-  "/home/cursor";
-export const VIDEO_PLAYER_ROUTE =
-  "/video/player";
-export const VIDEO_SCHEDULER_ROUTE =
-  "/video/scheduler";

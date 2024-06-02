@@ -7,10 +7,6 @@ import { isPlayerInstance } from "~/utils/validation/is/player";
 import { Player_ReadyContextProvider } from "~/pages/video/player/_context/ready";
 import { useAddRandomEffect } from "~/hooks/pic/add-random/effect";
 import { useVideoPlayerStyle } from "~/pages/video/player/style";
-// import { useLoop } from "~/hooks/sound/koolasuchas/useLoop";
-// import { IconsGroup } from "~/components/icons/group";
-// import { useSoundContext } from "~/shell/global/sound";
-// import { useRef } from "react";
 
 export const OVERFLOW_HIDDEN =
   "overflow: hidden;";
@@ -23,30 +19,7 @@ export const VideoPlayer = () => {
     gap,
   } = useVideoPlayerStyle();
   useAddRandomEffect();
-  // const { play, stop: stopLoop } =
-  //   useLoop();
-  // const { stop, start, sound,context } =
-  //   useSoundContext();
-  // const handleClick = () => {
-  //   console.log(sound.recorder.state);
-  //   if (
-  //     sound.recorder.state ===
-  //     "recording"
-  //   ) {
-  //     console.log("STOP");
-  //     stopLoop();
-  //     stop();
-  //   } else {
-  //     play();
-  //     start();
-  //   }
-  // };
-  // const mediaElement = useRef(new Audio())
-  // const streamSource  = context.createMediaStreamSource(sound.destination.stream);
-  // const srcObject = context.createMediaElementSource(mediaElement.current)
-  // const src = URL.createObjectURL(srcObject) 
-//   const recordedBlob = new Blob(sound.chunks, { type: "video/webm" });
-//  const src = URL.createObjectURL(recordedBlob);
+ 
   return (
     <>
       <Helmet>
@@ -55,6 +28,7 @@ export const VideoPlayer = () => {
         </title>
       </Helmet>
       <VideoPlayer_Backdrop />
+      
       <div
         className="fill column-start justify-center lg:justify-start overflow-auto"
         style={{
@@ -119,3 +93,26 @@ export const VideoPlayer = () => {
     </>
   );
 };
+
+
+
+// <motion.div
+// layout
+// className="absolute row-space"
+// style={{
+//   height: 0,
+//   width:
+//     container.width + s.m,
+//   bottom: s.m2 - s.m0125,
+//   x: dragger.x05,
+//   left: 0,
+//   y: dragger.y,
+// }}
+// >
+// <div
+//   style={{
+//     width: s.m,
+//   }}
+// />
+// <ControlsPlayer />
+// </motion.div>

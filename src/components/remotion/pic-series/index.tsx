@@ -14,11 +14,19 @@ import {
   Img,
   Audio,
 } from "remotion";
+import { useSoundContext } from "~/shell/global/sound";
 const INPUT_PROPS = getInputProps();
 
 export const PicSeries: FC<
   TPicSeriesProps
 > = (props) => {
+  const {
+    stop,
+    start,
+    sound,
+    context,
+    audioUrl,
+  } = useSoundContext();
   const inputProps = {
     ...props,
     ...INPUT_PROPS,
@@ -40,16 +48,18 @@ export const PicSeries: FC<
   const delta =
     height -
     inputProps.dimensions.height;
-  const audioSrcPath = resolveAudioSrc({
-    base,
-    name: "insurrection-10941",
-  });
-  const audioSrc = staticFile(
-    audioSrcPath
-  );
+  // const audioSrcPath = resolveAudioSrc({
+  //   base,
+  //   name: "insurrection-10941",
+  // });
+  // const audioSrc = staticFile(
+  //   audioSrcPath
+  // );
   return (
     <AbsoluteFill>
-      <Audio src={audioSrc} />
+      {audioUrl && (
+        <Audio src={audioUrl} />
+      )}
       <Series>
         {pics.map((pic) => {
           const srcPath = resolvePicSrc(

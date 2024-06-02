@@ -1,7 +1,7 @@
 import { FC } from "react";
 import { motion } from "framer-motion";
 import { HeaderLeft } from "~/pics/header/left";
-import { useContextReady } from "~/shell/ready/context";
+import { useReadyContext } from "~/shell/ready/context";
 import { TDimensions } from "@brysonandrew/config-types";
 import { useTimebomb } from "~/hooks/use-time-bomb";
 import { boxSize } from "~uno/rules/box/size";
@@ -16,7 +16,7 @@ export const PicsHudHeaderFoundation: FC<
     fonts,
     updateFoundation,
     foundationValue,
-  } = useContextReady();
+  } = useReadyContext();
 
   const isFontReady =
     fonts["Dragon"].active &&

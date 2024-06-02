@@ -2,11 +2,11 @@ import { FC } from "react";
 import { ScrollbarSeam } from "~/components/layout/scrollbar-seam";
 import { useTrillPicsStore } from "~/store/middleware";
 import { Grid } from "~/pics/grid";
-import { useContextReady } from "~/shell/ready/context";
+import { useReadyContext } from "~/shell/ready/context";
 
 export const Pics: FC = () => {
   const { onScroll, ref, screen } =
-    useContextReady();
+    useReadyContext();
   const { table } = useTrillPicsStore(
     ({ table }) => ({
       table,

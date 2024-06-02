@@ -1,16 +1,5 @@
-import { TSoundContext } from "~/shell/global/sound/types";
-
 export const useDownload = () => {
-  const handler = (sound: Pick<TSoundContext['sound'], "chunks">) => {
-    console.log(sound.chunks)
-    const blob = new Blob(sound.chunks, {
-      type: "audio/webm",
-    });
-    const url =
-      window?.URL?.createObjectURL?.(
-        blob
-      );
-    if (!url) return null;
+  const handler = (url: string) => {
     const a =
       document.createElement("a");
     a.style.display = "none";

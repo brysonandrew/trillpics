@@ -6,7 +6,7 @@ import { motion } from "framer-motion";
 import { TDivMotionProps } from "@brysonandrew/config-types";
 import clsx from "clsx";
 import { FULLSCREEN_Z } from "~/constants/dom";
-import { useContextReady } from "~/shell/ready/context";
+import { useReadyContext } from "~/shell/ready/context";
 
 type TProps = PropsWithChildren<
   Partial<TDivMotionProps>
@@ -19,7 +19,7 @@ export const PicBackdrop: FC<
   classValue,
   ...props
 }) => {
-  const { screen } = useContextReady();
+  const { screen } = useReadyContext();
   const screenDimensions = {
     width: screen.width,
     height: screen.height,

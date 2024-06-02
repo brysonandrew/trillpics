@@ -7,7 +7,7 @@ import {
   motion,
   useMotionValueEvent,
 } from "framer-motion";
-import { useContextReady } from "~/shell/ready/context";
+import { useReadyContext } from "~/shell/ready/context";
 import { useHoverKey } from "~/hooks/use-hover-key";
 import clsx from "clsx";
 import { resolveAccessibilityTitles } from "@brysonandrew/utils-attributes";
@@ -44,7 +44,7 @@ export const _RootReorderDragger: FC<
   ...props
 }) => {
   const { main, move } =
-    useContextReady();
+    useReadyContext();
   const { x, y } = main.dragger;
   const title =
     "Drag video pic position";

@@ -7,7 +7,7 @@ import {
 } from "react";
 import clsx from "clsx";
 import { useTrillPicsStore } from "~/store/middleware";
-import { useContextReady } from "~/shell/ready/context";
+import { useReadyContext } from "~/shell/ready/context";
 import {
   MOTION_BLUR_FILTER_SCROLL_Y_PROPS,
   MOTION_BLUR_SHUFFLE_PROPS,
@@ -32,7 +32,7 @@ const Inner = forwardRef<
     ref
   ) => {
     const { main, scrollY } =
-      useContextReady();
+      useReadyContext();
     const {
       hoverKeys,
       set,

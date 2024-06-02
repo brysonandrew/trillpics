@@ -7,6 +7,7 @@ import {
 } from "framer-motion";
 
 export type TDraggerMotion = {
+  navX: MotionValue<number>;
   x: MotionValue<number>;
   y: MotionValue<number>;
   x05: MotionValue<number>;
@@ -16,6 +17,7 @@ export type TDraggerMotion = {
   animateY: null | AnimationPlaybackControls;
 };
 export const useDragger = () => {
+  const navX = useMotionValue(0);
   const x = useMotionValue(0);
   const y = useMotionValue(0);
   const x05 = useTransform(
@@ -35,6 +37,7 @@ export const useDragger = () => {
   const dragger =
     useMemo<TDraggerMotion>(() => {
       return {
+        navX,
         x,
         y,
         x05,

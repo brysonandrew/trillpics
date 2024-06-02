@@ -1,6 +1,6 @@
 import { PRESENCE_OPACITY } from "@brysonandrew/motion-config-constants";
 import type { FC } from "react";
-import { VideoPicsCounter } from "~/pics/hud/left/video/pic-counter";
+import { VideoPicsCounter } from "~/pages/video/_root/video/pic-counter";
 
 export const VideoPicCounterFloating: FC =
   () => {

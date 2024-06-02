@@ -19,10 +19,10 @@ import {
   MAX_COUNT,
 } from "~/pages/video/_root/reorder/constants";
 import { useHoverKey } from "~/hooks/use-hover-key";
-import { LEFT_BUTTONS_CLEAR_TITLE } from "~/pics/hud/left/clear";
-import { useContextReady } from "~/shell/ready/context";
+import { LEFT_BUTTONS_CLEAR_TITLE } from "~/pages/video/_root/clear";
+import { useReadyContext } from "~/shell/ready/context";
 import { _CommonReorderControls } from "~/pages/video/_root/reorder/controls";
-import { HUD_LEFT_ADD_RANDOM_HOVER_KEY } from "~/pics/hud/left/add-random";
+import { HUD_LEFT_ADD_RANDOM_HOVER_KEY } from "~/pages/video/_root/add-random";
 import { resolveCompositeKey } from "@brysonandrew/utils-key";
 import clsx from "clsx";
 import { _CommonReorderControl } from "~/pages/video/_root/reorder/controls/control";
@@ -56,7 +56,7 @@ export const _CommonReorder: FC<
       isHover,
     })
   );
-  const { screen } = useContextReady();
+  const { screen } = useReadyContext();
 
   const isVideoPlayerButtonHover =
     hoverKeys.includes(
@@ -107,7 +107,7 @@ export const _CommonReorder: FC<
       }
     : imageDimensions;
 
-  const { main } = useContextReady();
+  const { main } = useReadyContext();
   const start = () => {
     main.cursor.isOnGrid = false;
   };

@@ -4,6 +4,7 @@ import {
   useContext,
   useEffect,
   useMemo,
+  useState,
 } from "react";
 import { useDownload } from "~/shell/global/sound/hooks/useDownload";
 import { TSoundContext } from "~/shell/global/sound/types";
@@ -21,35 +22,41 @@ type TProviderProps = {
 export const ShellSoundProvider: FC<
   TProviderProps
 > = ({ children }) => {
-  const {context,master, ...sound} = useMemo(() => {
-    const context = new AudioContext();
-    const master = context.createGain();
-    master.gain.value = 10;
-    master.connect(context.destination);
-    const destination =
-      new MediaStreamAudioDestinationNode(
-        context
+  const [audioUrl, setAudioUrl]  = useState<string|null>(null)
+  const { context, master, ...sound } =
+    useMemo(() => {
+      const context =
+        new AudioContext();
+      const master =
+        context.createGain();
+      master.gain.value = 10;
+      master.connect(
+        context.destination
       );
-    master.connect(destination);
-    const recorder = new MediaRecorder(
-      destination.stream
-    );
-    const chunks: Blob[] = [];
+      const destination =
+        new MediaStreamAudioDestinationNode(
+          context
+        );
+      master.connect(destination);
+      const recorder =
+        new MediaRecorder(
+          destination.stream
+        );
+      const chunks: Blob[] = [];
 
+      const arrayBuffer: ArrayBuffer =
+        new Float32Array();
 
-    const arrayBuffer: ArrayBuffer =
-      new Float32Array();
-
-    return {
-      isRecording:false,
-      context,
-      master,
-      destination,
-      recorder,
-      chunks,
-      arrayBuffer,
-    };
-  }, []);
+      return {
+        isRecording: false,
+        context,
+        master,
+        destination,
+        recorder,
+        chunks,
+        arrayBuffer,
+      };
+    }, []);
 
   const start = () => {
     sound.recorder.ondataavailable = (
@@ -66,7 +73,7 @@ export const ShellSoundProvider: FC<
       }
     };
     sound.recorder.start();
-    sound.isRecording  = true;
+    sound.isRecording = true;
   };
 
   const createSource = () => {
@@ -101,23 +108,44 @@ export const ShellSoundProvider: FC<
     sound.recorder.onstop = (
       event: Event
     ) => {
-      console.dir(event)
-      download(sound)
+      console.dir(event);
+      console.log(sound.chunks);
+      const blob = new Blob(
+        sound.chunks,
+        {
+          type: "audio/webm",
+        }
+      );
+      const url =
+        window?.URL?.createObjectURL?.(
+          blob
+        );
+      if (url) {
+        setAudioUrl(url)
+        download(url);
+      }
       console.log(
         `Recorder stopped: Recorded chunks: ${sound.chunks.length}`
       );
     };
-  },[])
+  }, []);
 
   const stop = () => {
     //createSource() // makes array buffer
     sound.recorder.stop();
-    sound.isRecording  = false;
+    sound.isRecording = false;
   };
 
   return (
     <Context.Provider
-      value={{ start, stop, context,master, sound }}
+      value={{
+        start,
+        stop,
+        context,
+        master,
+        sound,
+        audioUrl
+      }}
     >
       {children}
     </Context.Provider>

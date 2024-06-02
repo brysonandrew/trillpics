@@ -15,7 +15,7 @@ import { _CommonReorderControlsButton } from "~/pages/video/_root/reorder/contro
 import { IconsPlusQuestion } from "~/components/icons/plus";
 import { boxRadius } from "~uno/rules/box/radius";
 import { PRESENCE_OPACITY } from "@brysonandrew/motion-config-constants";
-import { useContextReady } from "~/shell/ready/context";
+import { useReadyContext } from "~/shell/ready/context";
 import { _CommonReorderControl } from "~/pages/video/_root/reorder/controls/control";
 
 type TProps = TMotionPoint &
@@ -43,7 +43,7 @@ export const _CommonReorderControls: FC<
 }) => {
   const s = boxSize();
   const borderRadius = boxRadius();
-  const { main } = useContextReady();
+  const { main } = useReadyContext();
   const start = () => {
     main.cursor.isOnGrid = false;
   };
