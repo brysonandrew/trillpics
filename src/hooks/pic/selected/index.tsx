@@ -158,7 +158,7 @@ export const usePicSelected = (
   const isAdded = addedCheck(currName);
 
   const toggle = () => {
-    // console.log('isAdded',isAdded,currName,cellOverDetailsResult.currName)
+    console.log('isAdded',isAdded,currName,cellOverDetailsResult.currName)
     if (isAdded) {
       deselect();
       return;

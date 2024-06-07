@@ -8,14 +8,16 @@ import {
   TSvgProps,
 } from "@brysonandrew/config-types";
 import { boxRadius } from "~uno/rules/box/radius";
+import { TPillBLayoutProps } from "~/components/buttons/pill/b/layout";
 
 export type TButtonPillBIconProps =
   Partial<
     Pick<
-      TPillBProps,
+      TPillBLayoutProps,
       | "isSelected"
       | "Icon"
       | "outerCircle"
+      | "size"
     >
   > & {
     iconProps?: TSvgProps;
@@ -28,20 +30,23 @@ export const ButtonPillBIcon: FC<
   outerCircle,
   iconProps,
   style,
+  size,
   ...props
 }) => {
   const borderRadius = boxRadius();
   const s = boxSize();
+  size = size ?? s.m;
+
   return (
     <div
       className="center relative shrink-0 border-1 border-transparent _gradient-mesh bg-gray-04 dark:bg-black-04 pointer-events-none"
       style={{
         borderRadius,
-        height: s.m,
-        width: s.m,
-        backgroundClip: isSelected
-          ? "content-box"
-          : "padding-box",
+        height: size,
+        width: size,
+        // backgroundClip: isSelected
+        //   ? "content-box"
+        //   : "padding-box",
         ...style,
       }}
       {...props}
@@ -55,13 +60,6 @@ export const ButtonPillBIcon: FC<
         <Icon
           stroke="none"
           classValue="_icon-fill"
-          // fill={
-          //   isDarkMode
-          //     ? resolveUrlId(
-          //         LINEAR_GRADIENT_SVG_ID
-          //       )
-          //     : "#ffffff"
-          // }
           {...iconProps}
         />
       )}

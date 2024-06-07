@@ -26,7 +26,6 @@ export const PicsHudRight: FC<
           top:
             foundation.top +
             foundation.height,
-          gap: s.m025,
           height: container.isMobile
             ? 0
             : container.height -
@@ -50,7 +49,7 @@ export const PicsHudRight: FC<
           <HideControls direction="rtl" />
         </div>
         <LinesVertical
-          classValue="opacity-0 md:opacity-100"
+          classValue="opacity-0 md:opacity-50"
           style={{
             left: -s.m05,
           }}

@@ -23,26 +23,23 @@ type TProps = Omit<
   container: THudContainer;
   isColumn: boolean;
   left: number;
-  width: number;
   size?: number;
   bottom?: number;
-  children?(
-    motionValuesRecord: TDraggerMotion
-  ): JSX.Element;
 };
 export const _RootReorderDragger: FC<
   TProps
 > = ({
   container,
   bottom = 0,
-  size: _size,
-  width,
-  children,
+  size,
   isColumn,
   style,
   left,
   ...props
 }) => {
+  const s = boxSize();
+  const b =
+  bottom + container.height / 2 - s.m6;
   const { main, move } =
     useReadyContext();
   const { x, y } = main.dragger;
@@ -68,24 +65,18 @@ export const _RootReorderDragger: FC<
     main.dragger.prevY =
       main.dragger.y.get();
   };
-  const s = boxSize();
-
-  const leftAdj =
-    left +
-    width / 2 -
-    (isColumn ? s.m05 : s.m);
 
   const handlePointerUp = () => {
     main.cursor.isDragging = false;
 
     const y = main.dragger.y.get();
     if (y === main.dragger.prevY) {
-      const openY =
-        -container.height / 4;
+      const openY =0;
+       // -container.height / 4;
       const currY =
         main.dragger.y.get();
       const nextY =
-        openY / 2 < currY ? openY : 0;
+        openY / 2 < currY ? openY : b;
       animate<number>(
         main.dragger.y,
         nextY,
@@ -111,54 +102,50 @@ export const _RootReorderDragger: FC<
     "animationCancel",
     handleAnimationComplete
   );
-  const size = _size ?? s.m125;
+
+  size = size ?? s.m;
   return (
-    <>
-      
-      {children?.(main.dragger)}
-      <motion.button
-        drag
-        dragConstraints={{
-          left: 0, // -container.width * 0.5,
-          bottom: bottom - s.m05,
-          right: 0, // container.width * 0.5,
-          top:
-            -container.height *
-            (isColumn ? 0.8 : 0.4),
-        }}
-        className={clsx(
-          "center absolute rounded-md _gradient-radial",
-          isHover(title)
-            ? "grayscale-100"
-            : ""
-        )}
+    <motion.button
+      drag
+      dragConstraints={{
+        left: 0, // -container.width * 0.5,
+        bottom: b,
+
+        // (isColumn ? 0.8 : 0.4),,
+        right: 0, // container.width * 0.5,
+        top: 0,
+      }}
+      className={clsx(
+        "center absolute rounded-md _gradient-radial",
+        isHover(title)
+          ? "grayscale-100"
+          : ""
+      )}
+      style={{
+        x,
+        y,
+        top: 0,
+        bottom: b,
+        left,
+        width: size,
+        height: size,
+        ...style,
+      }}
+      {...resolveAccessibilityTitles(
+        title
+      )}
+      onPointerDown={handlePointerDown}
+      onPointerUp={handlePointerUp}
+      {...motionHandlers(title)}
+      {...props}
+    >
+      <div
+        className="relative rounded-md _box-dots cursor-grab focus:cursor-grabbing"
         style={{
-          x,
-          y,
-          bottom,
-          left: leftAdj,
-          width: size,
-          height: size,
-          ...style,
+          width: size - size / 12,
+          height: size - size / 12,
         }}
-        {...resolveAccessibilityTitles(
-          title
-        )}
-        onPointerDown={
-          handlePointerDown
-        }
-        onPointerUp={handlePointerUp}
-        {...motionHandlers(title)}
-        {...props}
-      >
-        <div
-          className="relative rounded-md _box-dots cursor-grab focus:cursor-grabbing"
-          style={{
-            width: size - size / 12,
-            height: size - size / 12,
-          }}
-        />
-      </motion.button>
-    </>
+      />
+    </motion.button>
   );
 };

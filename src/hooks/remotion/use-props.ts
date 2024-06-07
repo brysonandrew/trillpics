@@ -8,10 +8,10 @@ import { DEFAULT_INPUT } from "~/pages/video/player/_controls/download";
 import { resolvePicRandoms } from "~/hooks/pic/randoms";
 import { dimensionsWithinPlayerBounds } from "~/hooks/within-player-bounds";
 import { resolveSecondsFromCount } from "~/hooks/pic/video/read/seconds/from-count";
-import { TGenerateInput } from "~/types/trpc/generate";
+import { TPicSeriesProps } from "~/components/remotion/pic-series/types";
 
 export const useRemotionProps = (
-  picVideoInputs: TGenerateInput = DEFAULT_INPUT
+  picVideoInputs: TPicSeriesProps = DEFAULT_INPUT
 ) => {
   const { pics: allPics } =
     useTrillPicsStore(({ pics }) => ({

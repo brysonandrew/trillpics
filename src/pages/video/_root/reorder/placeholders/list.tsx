@@ -6,7 +6,7 @@ import { boxRadius } from "~uno/rules/box/radius";
 import { boxSize } from "~uno/rules/box/size";
 
 type TProps = TCommonProps;
-export const _CommonReorderPlaceholder: FC<
+export const _RootReorderPlaceholdersList: FC<
   TProps
 > = ({
   itemDimensions,

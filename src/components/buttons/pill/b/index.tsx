@@ -1,8 +1,5 @@
 import { FC, ReactNode } from "react";
-import {
-  AnimatePresence,
-  motion,
-} from "framer-motion";
+import { motion } from "framer-motion";
 import clsx from "clsx";
 import {
   TButtonMotionProps,
@@ -11,14 +8,8 @@ import {
 import { TCircleProps } from "~/components/layout/circle/circle";
 import { resolveAccessibilityTitles } from "@brysonandrew/utils-attributes";
 import { TFlatProps } from "~/types/ui";
-import { FADE_PRESENCE_DELAY_02 } from "~/constants/animation";
-import {
-  boxSize,
-  TBoxSizesKey,
-} from "~uno/rules/box/size";
+import { boxSize } from "~uno/rules/box/size";
 import { resolveCompositeKey } from "@brysonandrew/utils-key";
-import { isString } from "~/utils/validation/is/string";
-import { ButtonPillBIcon } from "~/components/buttons/pill/b/icon";
 import { BOX_SHADOW_FLAT } from "~uno/rules/box";
 import { boxRadius } from "~uno/rules/box/radius";
 import { PillBLayout } from "~/components/buttons/pill/b/layout";
@@ -27,11 +18,10 @@ export type TPillBProps =
   TButtonMotionProps &
     TFlatProps & {
       Root?: FC<TButtonMotionProps>;
-      Icon: FC<TSvgProps>;
+      Icon: FC<TSvgProps>|null;
       iconProps?: TSvgProps;
       circleProps?: TCircleProps;
       outerCircle?: ReactNode;
-      size?: TBoxSizesKey;
       isSelected?: boolean;
       direction?: "ltr" | "rtl";
       positionClass?: string;

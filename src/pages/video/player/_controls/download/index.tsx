@@ -165,7 +165,7 @@ export const Download: FC<
       style={{ ...resolveSquare(s.m) }}
     >
       <>
-        <AnimatePresence>
+        {/* <AnimatePresence>
           {(isAura || isHovering) && (
             <>
               <motion.div
@@ -185,7 +185,7 @@ export const Download: FC<
               />
             </>
           )}
-        </AnimatePresence>
+        </AnimatePresence> */}
         <PillBHover
           title={title}
           isSelected={isHovering}

@@ -26,11 +26,13 @@ export const useClickGrid = (
       !main.cursor.isDragging &&
       main.cursor.isOnGrid
     ) {
+      console.log("CLICK")
+
       trigger();
     }
   };
-  useEventListener(
-    "click",
+  useEventListener<'pointerdown'>(
+    "pointerdown",
     handleClick
   );
   
@@ -42,7 +44,7 @@ export const useClickGrid = (
       isScrolling
     )
       return;
-
+console.log("TOUCH")
     trigger();
   };
 
