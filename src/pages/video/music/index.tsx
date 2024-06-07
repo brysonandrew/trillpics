@@ -6,8 +6,14 @@ import { useSoundContext } from "~/shell/global/sound";
 import { PillBHover } from "~/components/buttons/pill/b/hover";
 import { useReadyContext } from "~/shell/ready/context";
 import { boxSize } from "~uno/rules/box/size";
+import { SoundSequencer } from "~/pages/video/music/sequencer";
+import { VideoPlayer_Backdrop } from "~/pages/video/player/_backdrop";
+import { useAddRandomEffect } from "~/hooks/pic/add-random/effect";
+import { useVideoPlayerStyle } from "~/pages/video/player/style";
+import { PlayerBackground } from "~/pages/video/player/_background";
+import { PlayerBackgroundOpaque } from "~/pages/video/player/_background/opaque";
 
-export const VideoSound = () => {
+export const VideoMusic = () => {
   const { play, stop: stopLoop } =
     useLoop();
   const {
@@ -17,7 +23,13 @@ export const VideoSound = () => {
     context,
     audioUrl,
   } = useSoundContext();
-  console.log(audioUrl)
+  const {
+    playerStyle,
+    screenHeight,
+    y,
+    gap,
+  } = useVideoPlayerStyle();
+  console.log(audioUrl);
   const {
     screen: { container },
     main,
@@ -51,33 +63,46 @@ export const VideoSound = () => {
           Trill Pics | Music Sequencer
         </title>
       </Helmet>
-   
-      <footer
-        className="absolute row"
+      <VideoPlayer_Backdrop />
+      <div
+        className="fill column-start justify-center lg:justify-start overflow-auto"
         style={{
-          top: container.height - s.m2,
-          left:
-            container.width / 2 -
-            s.m05 -
-            s.m025,
-          height: s.m025 / 2,
+          paddingTop: y,
+          paddingBottom: y,
+          gap,
         }}
       >
-           {audioUrl && (
-        <audio
-          src={audioUrl}
-          controls
-        />
-      )}
-        <PillBHover
-          title={title}
-          Icon={IconsPlus}
-          onClick={handleClick}
+        <div
+          className="relative"
+          style={{
+            ...playerStyle,
+          }}
         >
-          {title}
-        </PillBHover>
-        <GridOptions />
-      </footer>
+          <PlayerBackgroundOpaque />
+          <PlayerBackground />
+          <SoundSequencer />
+        </div>
+        <footer
+          className="relative flex-col flex justify-center"
+          style={{
+            ...playerStyle,
+          }}
+        >
+          {audioUrl && (
+            <audio
+              src={audioUrl}
+              controls
+            />
+          )}
+          <PillBHover
+            title={title}
+            Icon={IconsPlus}
+            onClick={handleClick}
+          >
+            {title}
+          </PillBHover>
+        </footer>
+      </div>
     </>
   );
 };
