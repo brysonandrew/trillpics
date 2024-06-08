@@ -39,7 +39,7 @@ export const useBass = () => {
       startTime + 0.6
     );
     gain.gain.linearRampToValueAtTime(
-      0,
+      0.1,
       startTime + 0.6
     );
 

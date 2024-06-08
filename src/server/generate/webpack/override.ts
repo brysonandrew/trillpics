@@ -8,6 +8,7 @@ export const webpackOverride: WebpackOverrideFn =
       process.env.INIT_CWD ?? "";
     const record = [
       "pages",
+      "pics",
       "shell",
       "components",
       "hooks",
@@ -56,40 +57,30 @@ export const webpackOverride: WebpackOverrideFn =
       "config",
       "app"
     );
-    console.log(appEntry);
+    const unoEntry = entry(
+      "config",
+      "uno"
+    );
+    const srcEntry = entry("src");
+console.log("▁▁▁▁▂▂▂▂▃▃▃▃▄▄▄▅▅▅▅▆▆▆▆▇▇▇▇██▓▒░ 🧨 ░▒▓█▓▒░ 🧨 ░▒▓██▇▇▇▇▆▆▆▆▅▅▅▅▄▄▄▃▃▃▃▂▂▂▂▁▁▁▁");
+console.dir(srcEntry);
+console.log("██████████████▓▒░ 🧨 ░▒ line: 64, file: override.ts ▓▒░ 🧨 ░▒██████████████");
+
     return {
       ...currentConfig,
-      devtool: "source-map",
+      // devtool: "source-map",
+      // browser: {
+      //   child_process: false,
+      // },
+      externals: ["child_process"],
       resolve: {
         ...currentConfig.resolve,
         alias: {
-          "~": entry("src"),
+          "~": srcEntry,
           "~app": appEntry,
-          "~uno": entry(
-            "config",
-            "uno"
-          ),
-          //uno/rules/box/radiu
-          // "~uno/rules/box/size": entry(
-          //   "config",
-          //   "uno",
-          //   "rules",
-          //   "box",
-          //   "size"
-          // ),
-          // "~uno/shortcuts/box/background":
-          //   entry(
-          //     "config",
-          //     "uno",
-          //     "shortcuts/box/background"
-          //   ),
-          // "~uno/preflights": entry(
-          //   "config",
-          //   "uno",
-          //   "preflights"
-          // ),
+          "~uno": unoEntry,
           "~ops": entry("ops"),
-          "~root": entry("."),
+          // "~root": entry("."),
           "~root/package.json": entry(
             "package.json"
           ),
@@ -97,7 +88,7 @@ export const webpackOverride: WebpackOverrideFn =
             entry("remotion.config"),
           ...currentConfig.resolve
             ?.alias,
-          ...record,
+          // ...record,
         },
       },
     };
