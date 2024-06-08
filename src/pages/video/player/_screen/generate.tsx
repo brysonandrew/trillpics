@@ -61,6 +61,7 @@ export const VideoPlayer_ScreenGenerate: FC<
           style={{
             gap: s.m025,
             margin: s.m025,
+            padding: `0 ${s.m}px`
           }}
         >
           <h3

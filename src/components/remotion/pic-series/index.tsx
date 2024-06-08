@@ -1,9 +1,6 @@
 import { FC } from "react";
 import { TPicSeriesProps } from "~/components/remotion/pic-series/types";
-import {
-  resolveAudioSrc,
-  resolvePicSrc,
-} from "~/utils/src";
+import { resolvePicSrc } from "~/utils/src";
 import {
   getInputProps,
   useCurrentFrame,
@@ -12,33 +9,24 @@ import {
   AbsoluteFill,
   Series,
   Img,
-  Audio,
+  Audio
 } from "remotion";
-import { useSoundContext } from "~/shell/global/sound";
 const INPUT_PROPS = getInputProps();
 
 export const PicSeries: FC<
   TPicSeriesProps
 > = (props) => {
-  const {
-    stop,
-    start,
-    sound,
-    context,
-    audioUrl,
-  } = useSoundContext();
+
   const inputProps = {
     ...props,
     ...INPUT_PROPS,
   };
-  const { pics, seconds, count, base } =
+  const { pics, seconds, count, base, audioSrc } =
     inputProps;
   const frame = useCurrentFrame();
   const { fps, width, height } =
     useVideoConfig();
-  // const source = new AudioBufferSourceNode(offlineCtx, {
-  //   buffer: decodedBuffer,
-  // });
+
   const unitSeconds = seconds / count;
   const unitFrames = unitSeconds * fps;
   const frameInUnit =
@@ -48,17 +36,11 @@ export const PicSeries: FC<
   const delta =
     height -
     inputProps.dimensions.height;
-  // const audioSrcPath = resolveAudioSrc({
-  //   base,
-  //   name: "insurrection-10941",
-  // });
-  // const audioSrc = staticFile(
-  //   audioSrcPath
-  // );
+
   return (
     <AbsoluteFill>
-      {audioUrl && (
-        <Audio src={audioUrl} />
+      {audioSrc && (
+        <Audio src={audioSrc} />
       )}
       <Series>
         {pics.map((pic) => {
@@ -103,3 +85,12 @@ export const PicSeries: FC<
     </AbsoluteFill>
   );
 };
+// const audioSrcPath = resolveAudioSrc({
+//   base,
+//   name: "insurrection-10941",
+// });
+// const audioSrc = staticFile(
+//   audioSrcPath
+// const source = new AudioBufferSourceNode(offlineCtx, {
+//   buffer: decodedBuffer,
+// });

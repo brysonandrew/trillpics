@@ -13,6 +13,9 @@ import {
   TPropsWithChildren,
 } from "@brysonandrew/config-types";
 import { SubtitleText } from "~/pics/header/subtitle/text";
+import { LayoutOverlayBackdrop } from "~/components/layout/overlay/backdrop";
+import { useTrillPicsStore } from "~/store/middleware";
+import { TITLE_HOVER_KEY } from "~/pics/header/left";
 export type TPillBLayoutProps =
   TDivMotionProps &
     Partial<
@@ -25,20 +28,44 @@ export const PillBText: FC<
 > = ({ children, size, ...props }) => {
   const s = boxSize();
   size = size ?? s.m;
-  const borderRadius = boxRadius();
-
+  const { isIdle, isHover } =
+    useTrillPicsStore(
+      ({ isIdle, isHover }) => ({
+        isIdle,
+        isHover,
+      })
+    );
   return (
     <>
       {isString(children) ? (
         <motion.div
-          className="relative top-2 px-0 text-left text-sm pointer-events-none"
+          className="relative top-2 px-0 text-left text-sm pointer-events-none z-30"
           style={{
             height: s.height,
           }}
           {...props}
         >
           <SubtitleText>
-            {children}
+            {(isIdle ||
+              isHover(
+                TITLE_HOVER_KEY
+              )) && (
+              <motion.div
+                className="absolute -inset-y-2 -inset-x-1 bg-white-2 dark:bg-gray-5 rounded-lg z-0 pointer-events-none"
+                initial={{ opacity: 0 }}
+                animate={{
+                  opacity: 0.6,
+                }}
+                exit={{ opacity: 0 }}
+                style={{
+                  filter: "blur(8px)",
+                }}
+              />
+            )}
+
+            <span className="relative">
+              {children}
+            </span>
           </SubtitleText>
         </motion.div>
       ) : (

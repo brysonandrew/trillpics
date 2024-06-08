@@ -1,5 +1,13 @@
 export const useDownload = () => {
-  const handler = (url: string) => {
+  const handler = (audioBlob: Blob) => {
+    const url =
+      window?.URL?.createObjectURL?.(
+        audioBlob
+      );
+    if (!url) {
+      console.log("no url");
+      return;
+    }
     const a =
       document.createElement("a");
     a.style.display = "none";

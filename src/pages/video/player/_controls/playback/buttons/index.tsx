@@ -5,11 +5,11 @@ import { PlaybackButtonsForward } from "~/pages/video/player/_controls/playback/
 import { PlaybackButtonsFullscreen } from "~/pages/video/player/_controls/playback/buttons/fullscreen";
 import { PlaybackButtonsMute } from "~/pages/video/player/_controls/playback/buttons/mute";
 import { PlaybackButtonsPlay } from "~/pages/video/player/_controls/playback/buttons/play";
-import { PlaybackTimer } from "~/pages/video/player/_controls/playback/timer";
 import { boxSize } from "~uno/rules/box/size";
 import { PlayerBackground } from "~/pages/video/player/_background";
 import { PlayerBackgroundOpaque } from "~/pages/video/player/_background/opaque";
 import { Download } from "~/pages/video/player/_controls/download";
+import { _ControlsPlaybackTimer } from "~/pages/video/player/_controls/playback/timer";
 
 export const PlaybackButtons: FC =
   () => {
@@ -29,7 +29,7 @@ export const PlaybackButtons: FC =
           <PlaybackButtonsForward />
         </div>
         <div className="py-1 center">
-          <PlaybackTimer />
+          {/* <_ControlsPlaybackTimer /> */}
         </div>
         <div className="relative row w-full justify-end md:(justify-end w-auto self-end grow) gap-2">
           <PlaybackButtonsMute direction="rtl" />

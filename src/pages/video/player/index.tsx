@@ -67,21 +67,7 @@ export const VideoPlayer = () => {
                     >
                       <VideoPlayer_Controls />
                     </div>
-                    {/* <audio src={src} controls />
-                    <div
-                      className="relative flex-col flex justify-center"
-                      style={{
-                        ...playerStyle,
-                      }}
-                    >
-                      <button
-                        onClick={
-                          handleClick
-                        }
-                      >
-                        <IconsGroup />
-                      </button>
-                    </div> */}
+                  
                   </Player_ReadyContextProvider>
                 )}
               </>

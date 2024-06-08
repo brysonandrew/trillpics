@@ -22,7 +22,8 @@ type TProviderProps = {
 export const ShellSoundProvider: FC<
   TProviderProps
 > = ({ children }) => {
-  const [audioUrl, setAudioUrl]  = useState<string|null>(null)
+  const [audioUrl, setAudioUrl] =
+    useState<string | null>(null);
   const { context, master, ...sound } =
     useMemo(() => {
       const context =
@@ -62,10 +63,11 @@ export const ShellSoundProvider: FC<
     sound.recorder.ondataavailable = (
       event: BlobEvent
     ) => {
-      if (
-        event.data &&
-        event.data.size > 0
-      ) {
+      console.log(
+        "sound.recorder.ondataavailable "
+      );
+      console.dir(event);
+      if (event.data?.size > 0) {
         sound.chunks = [
           ...sound.chunks,
           event.data,
@@ -76,62 +78,10 @@ export const ShellSoundProvider: FC<
     sound.isRecording = true;
   };
 
-  const createSource = () => {
-    const options: BlobPropertyBag = {
-      type: "audio/ogg; codecs=opus",
-    };
-    const blob = new Blob(
-      sound.chunks,
-      options
-    );
-    const fileReader = new FileReader();
+  
 
-    fileReader.onloadend = () => {
-      const arrayBuffer =
-        fileReader.result;
-      if (
-        arrayBuffer &&
-        typeof arrayBuffer !== "string"
-      ) {
-        sound.arrayBuffer = arrayBuffer;
-      }
-    };
-
-    fileReader.readAsArrayBuffer(blob);
-
-    sound.chunks = [];
-  };
-
-  const download = useDownload();
-
-  useEffect(() => {
-    sound.recorder.onstop = (
-      event: Event
-    ) => {
-      console.dir(event);
-      console.log(sound.chunks);
-      const blob = new Blob(
-        sound.chunks,
-        {
-          type: "audio/webm",
-        }
-      );
-      const url =
-        window?.URL?.createObjectURL?.(
-          blob
-        );
-      if (url) {
-        setAudioUrl(url)
-        download(url);
-      }
-      console.log(
-        `Recorder stopped: Recorded chunks: ${sound.chunks.length}`
-      );
-    };
-  }, []);
 
   const stop = () => {
-    //createSource() // makes array buffer
     sound.recorder.stop();
     sound.isRecording = false;
   };
@@ -144,7 +94,7 @@ export const ShellSoundProvider: FC<
         context,
         master,
         sound,
-        audioUrl
+        audioUrl,
       }}
     >
       {children}

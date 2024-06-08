@@ -13,7 +13,7 @@ export const LinesHorizontal: FC<
         "w-full h-0",
         classValue
       )}
-      sizeClass="border-t"
+      sizeClass="border-t border"
       {...props}
     />
   );

@@ -27,6 +27,14 @@ export const VideoPlayer_Screen =
         isDownloadComplete,
       })
     );
+    const { set, audioBlob } =
+      useTrillPicsStore(
+        ({ set, audioBlob }) => ({
+          set,
+          audioBlob,
+        })
+      );
+      console.log(audioBlob)
     const inputProps =
       usePicVideoReadInputs();
     return (
@@ -35,6 +43,14 @@ export const VideoPlayer_Screen =
         <PlayerBackground />
         <RemotionPlayer
           {...inputProps}
+          {...(audioBlob
+            ? {
+                audioSrc:
+                  window.URL.createObjectURL(
+                    audioBlob
+                  ),
+              }
+            : {})}
           base="remotion"
         />
         <AnimatePresence mode="wait">

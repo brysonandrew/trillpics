@@ -7,14 +7,19 @@ import { resolveCompositeKey } from "@brysonandrew/utils-key";
 import { boxSize } from "~uno/rules/box/size";
 import { boxRadius } from "~uno/rules/box/radius";
 import clsx from "clsx";
+import { LinesHorizontal } from "~/components/lines/horizontal";
+import { useVideoPlayerStyle } from "~/pages/video/player/style";
 
-export const SoundSequencer: FC =
+export const SoundSequencerRow: FC =
   () => {
+    const { playerStyle } =
+      useVideoPlayerStyle();
     const s = boxSize();
+    const borderRadiusS =
+      boxRadius("s");
     const borderRadius = boxRadius("m");
     const {
       sequences,
-      set,
       checkBeat,
       checkAll,
       uncheckAll,
@@ -22,14 +27,12 @@ export const SoundSequencer: FC =
     } = useTrillPicsStore(
       ({
         sequences,
-        set,
         checkBeat,
         checkAll,
         uncheckAll,
         checkEveryNth,
       }) => ({
         sequences,
-        set,
         checkBeat,
         checkAll,
         uncheckAll,
@@ -44,47 +47,39 @@ export const SoundSequencer: FC =
             sequenceIndex
           ) => (
             <div
+              key={source}
               className={clsx(
-                "column-stretch gap-1 px-4 py-3 bg-gray-02",
+                "relative column-stretch px-2 py-2 bg-black-9 dark:bg-black-4",
                 "uppercase text-sm font-slab"
               )}
-              style={{ borderRadius }}
+              style={{
+                borderRadius,
+                gap: s.m025,
+              }}
             >
-              <div className="row-space">
-                <h4>{source}</h4>
-                <ul className="row gap-3">
-                  <li className="row gap-0.5">
-                    <motion.button
-                      title="check all"
-                      className="uppercase text-sm bg-gray px-1 leading-none pt-1"
-                      onClick={() =>
-                        checkAll(
-                          sequenceIndex
-                        )
-                      }
-                    >
-                      All
-                    </motion.button>
-                  </li>
-                  <li className="row gap-1">
-                    <motion.button
-                      className="uppercase text-sm bg-gray px-1 leading-none pt-1"
-                      title="check all"
-                      onClick={() =>
-                        uncheckAll(
-                          sequenceIndex
-                        )
-                      }
-                    >
-                      None
-                    </motion.button>
-                  </li>
+              <div className="relative row-space">
+                <div className="absolute _gradient-radial h-px w-full" />
+                
 
-                  <li className="relative row gap-1">
-                    <div className="absolute left-0 -top-1 w-full h-px bg-gray"/>
-                    <span className="absolute left-1/2 -translate-x-1/2 bottom-full text-xxs text-gray tracking-widest char-gap-10">
-                      Every
-                    </span>
+                <div className="relative row gap-4">
+                  <motion.button
+                    style={{
+                      borderRadius:
+                        borderRadiusS,
+                    }}
+                    className="uppercase text-sm dark:bg-black-2 bg-black-6 px-2 leading-none pt-2 pb-1"
+                    title="check all"
+                    onClick={() =>
+                      uncheckAll(
+                        sequenceIndex
+                      )
+                    }
+                  >
+                    None
+                  </motion.button>
+
+                  <div className="relative row gap-1">
+      
                     {[
                       2, 3, 4, 5, 6, 7,
                       8,
@@ -99,7 +94,12 @@ export const SoundSequencer: FC =
                       }`;
                       return (
                         <motion.button
-                          className="uppercase text-sm bg-gray px-1 leading-none pt-1"
+                          key={text}
+                          style={{
+                            borderRadius:
+                              borderRadiusS,
+                          }}
+                          className="uppercase text-sm dark:bg-black-2 bg-black-6 px-2 leading-none pt-2 pb-1"
                           title={`check every ${text}`}
                           onClick={() =>
                             checkEveryNth(
@@ -112,10 +112,48 @@ export const SoundSequencer: FC =
                         </motion.button>
                       );
                     })}
-                  </li>
-                </ul>
+                  </div>
+                  <motion.button
+                    title="check all"
+                    className="uppercase text-sm dark:bg-black-2 bg-black-6 px-2 leading-none pt-2 pb-1"
+                    onClick={() =>
+                      checkAll(
+                        sequenceIndex
+                      )
+                    }
+                    style={{
+                      borderRadius:
+                        borderRadiusS,
+                    }}
+                  >
+                    All
+                  </motion.button>
+                </div>
               </div>
-              <div className="row-space">
+
+              <div className="relative row-space">
+                <div
+                  className="absolute top-1/2 row-space top-0"
+                  style={{
+                    gap:
+                      playerStyle.width /
+                      36,
+                    height: 0,
+                    width: "100%",
+                  }}
+                >
+                  {[...Array(4)].map(
+                    (_, index) => (
+                      <LinesHorizontal
+                        key={`${index}`}
+                        colorClass="dark:border-black-2 border-black-6"
+                        style={{
+                          borderWidth: 16,
+                        }}
+                      />
+                    )
+                  )}
+                </div>
                 {[...Array(16)].map(
                   (_, beatIndex) => {
                     const checked =

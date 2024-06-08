@@ -69,6 +69,13 @@ export const webpackOverride: WebpackOverrideFn =
             "config",
             "uno"
           ),
+          "~uno/rules/box/size": entry(
+            "config",
+            "uno",
+            "rules",
+            "box",
+            "size"
+          ),
           "~uno/shortcuts/box/background":
             entry(
               "config",

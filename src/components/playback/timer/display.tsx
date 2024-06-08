@@ -2,13 +2,23 @@ import { FC } from "react";
 import { MonoChars } from "~/pages/video/player/_controls/playback/timer/numbers";
 import { useContextPlayer_Init } from "~/pages/video/player/_context/init";
 
-type TProps = { frame: number };
+export type TTimerDisplayProps = {
+  elapsed: number;
+  unit: "frames" | "seconds";
+};
 export const TimerDisplay: FC<
-  TProps
-> = ({ frame }) => {
+TTimerDisplayProps
+> = ({ elapsed, unit }) => {
   const { fps } =
     useContextPlayer_Init();
-  const totalSeconds = frame / fps;
+  const totalFrames =
+    unit === "frames"
+      ? elapsed
+      : elapsed * fps;
+  const totalSeconds =
+    unit === "seconds"
+      ? elapsed
+      : elapsed / fps;
   const m = String(
     Math.floor(totalSeconds / 60)
   ).padStart(2, "0");
@@ -16,7 +26,9 @@ export const TimerDisplay: FC<
     Math.floor(totalSeconds % 60)
   ).padStart(2, "0");
   const ms = String(
-    Math.ceil(frame * (60 / fps)) % 60
+    Math.ceil(
+      totalFrames * (60 / fps)
+    ) % 60
   ).padStart(2, "0");
 
   return (

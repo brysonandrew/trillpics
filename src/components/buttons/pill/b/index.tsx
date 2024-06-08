@@ -13,12 +13,13 @@ import { resolveCompositeKey } from "@brysonandrew/utils-key";
 import { BOX_SHADOW_FLAT } from "~uno/rules/box";
 import { boxRadius } from "~uno/rules/box/radius";
 import { PillBLayout } from "~/components/buttons/pill/b/layout";
+import { TIconsSvgProps } from "@brysonandrew/svg-icon";
 
 export type TPillBProps =
   TButtonMotionProps &
     TFlatProps & {
       Root?: FC<TButtonMotionProps>;
-      Icon: FC<TSvgProps>|null;
+      Icon: FC<TIconsSvgProps> | null;
       iconProps?: TSvgProps;
       circleProps?: TCircleProps;
       outerCircle?: ReactNode;

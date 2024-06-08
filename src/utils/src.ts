@@ -1,3 +1,5 @@
+import { TSequenceSourceKey } from "~/store/state/music/types";
+
 type TConfig = {
   base?: string;
   name: string | number;
@@ -30,4 +32,13 @@ export const resolveAudioSrc = ({
       name,
     },
     "mp3"
+  );
+
+export const resolveAudioSampleSrc = (
+  source: TSequenceSourceKey,
+  name: string | number
+) =>
+  resolveSrc(
+    { base: `music/${source}`, name },
+    "wav"
   );
