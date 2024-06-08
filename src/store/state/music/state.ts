@@ -23,6 +23,7 @@ export const musicState: TStateHandler<
     { source: "snare", beats: [] },
     { source: "tom", beats: [] },
     { source: "cymbal", beats: [] },
+    { source: "bass", beats: [] },
   ],
   resolveActiveButton: (
     nextBeats: TBeats
@@ -52,11 +53,9 @@ export const musicState: TStateHandler<
     const values = [
       ...possiblities.values(),
     ];
-    console.log(values);
     if (values.length > 1) return null;
     const result: TActiveButton =
       values[0] ?? null;
-    console.log(result);
     return result;
   },
   checkBeat: (
@@ -87,6 +86,20 @@ export const musicState: TStateHandler<
         sequenceIndex
       ].beats = [...Array(16)].map(
         (_) => Math.round(Math.random())
+      );
+      draft.sequences[
+        sequenceIndex
+      ].activeButton = null;
+    });
+  },
+  checkRandomNotes: (
+    sequenceIndex: number
+  ) => {
+    set((draft: TState) => {
+      draft.sequences[
+        sequenceIndex
+      ].beats = [...Array(16)].map(
+        (_) => Math.round(Math.random() * 32)
       );
       draft.sequences[
         sequenceIndex

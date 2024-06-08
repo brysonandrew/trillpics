@@ -1,3 +1,4 @@
+import { useBass } from "~/hooks/sound/bass/useBass";
 import { useCymbal } from "~/hooks/sound/percussion/useCymbal";
 import { useKick } from "~/hooks/sound/percussion/useKick";
 import { useSnare } from "~/hooks/sound/percussion/useSnare";
@@ -10,11 +11,14 @@ export const useMusicPlaybackLookup =
     const snare = useSnare();
     const kick = useKick();
     const tom = useTom();
+    const bass = useBass();
+
     const lookup = {
       cymbal,
       snare,
       kick,
       tom,
+      bass: bass.play,
     } satisfies Record<
       TSequenceSourceKey,
       (

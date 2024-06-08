@@ -16,7 +16,7 @@ export const VideoMusicPlaybackTimerCurrentRow: FC<
           <div
             key={`${index}`}
             className="text-center"
-            style={{ width: 16 }}
+            style={{ width: 14 }}
             ref={(instance) => {
               if (instance && !v) {
                 text[timerKey][index] =

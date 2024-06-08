@@ -28,7 +28,7 @@ export const usePlaySequences = () => {
             lookup[source](
               context.currentTime +
                 elapsed,
-              {}
+                beat
             );
           }
         }

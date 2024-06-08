@@ -11,12 +11,9 @@ export const useCymbal = () => {
 
   const play = async (
     startTime: number,
-    {
-      version = 2,
-      volume,
-    }: THandlerConfig & {
-      version?: 0 | 1 | 2;
-    }
+    midi: number,
+    version: 0 | 1 | 2 = 2
+    // volume,
   ) => {
     const filter = new BiquadFilterNode(
       context,
@@ -26,7 +23,7 @@ export const useCymbal = () => {
       }
     );
     const gain = new GainNode(context, {
-      gain: volume ?? 0.04,
+      gain: 0.04,
     });
 
     const sampleBuffer: AudioBuffer =

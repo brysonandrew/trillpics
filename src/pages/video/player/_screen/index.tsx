@@ -27,14 +27,13 @@ export const VideoPlayer_Screen =
         isDownloadComplete,
       })
     );
-    const { set, audioBlob } =
-      useTrillPicsStore(
-        ({ set, audioBlob }) => ({
-          set,
-          audioBlob,
-        })
-      );
-      console.log(audioBlob)
+    // const { set, audioBlob } =
+    //   useTrillPicsStore(
+    //     ({ set, audioBlob }) => ({
+    //       set,
+    //       audioBlob,
+    //     })
+    //   );
     const inputProps =
       usePicVideoReadInputs();
     return (

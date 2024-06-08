@@ -1,20 +1,20 @@
 import type { FC } from "react";
 import { useTrillPicsStore } from "~/store/middleware";
-import { boxRadius } from "~uno/rules/box/radius";
 import { SoundSequencerButton } from "~/pages/video/music/sequencer/buttons/button";
 import { GAP_FILLS } from "~/pages/video/music/sequencer/buttons/constants";
 
 type TProps = {
   sequenceIndex: number;
   activeButton: any;
+  resolveCheckRandom?: any;
 };
 export const SoundSequencerButtons: FC<
   TProps
 > = ({
   sequenceIndex,
   activeButton,
+  resolveCheckRandom,
 }) => {
-  const borderRadiusS = boxRadius("s");
   const {
     checkAll,
     uncheckAll,
@@ -34,7 +34,7 @@ export const SoundSequencerButtons: FC<
     })
   );
   return (
-    <div className="relative row gap-4">
+    <div className="relative row gap-1 lg:gap-4">
       <SoundSequencerButton
         isActive={
           activeButton === "none"
@@ -86,9 +86,15 @@ export const SoundSequencerButtons: FC<
       <SoundSequencerButton
         title="check random"
         isActive={activeButton === null}
-        onClick={() =>
-          checkRandom(sequenceIndex)
-        }
+        onClick={() => {
+          if (resolveCheckRandom) {
+            resolveCheckRandom(
+              sequenceIndex
+            );
+            return;
+          }
+          checkRandom(sequenceIndex);
+        }}
       >
         Random
       </SoundSequencerButton>

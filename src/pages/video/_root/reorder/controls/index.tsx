@@ -65,58 +65,52 @@ export const _RootReorderControls: FC<
         ...imageDimensions,
         x,
         y,
-        // ...boxProps.style,
         top: isColumn
           ? itemDimensions.height *
             index
           : -s.m15,
         zIndex: index,
-        // top: 0, // -s.m025 - s.m0125,
       }}
       {...motionHandlers(title)}
     >
-      <AnimatePresence>
-        <motion.div
-          key={`group-${index}`}
-          className="absolute w-full row-start-space border border-white-06 dark:border-black-06 bg-white-01 dark:bg-black-01 backdrop-blur-sm"
-          style={{
-            borderRadius:
-              borderRadius / 2,
-            padding: s.padding,
-            ...itemDimensions,
-          }}
-          {...PRESENCE_OPACITY}
-        >
-          <_RootReorderControlsButton
-            title="Replace with random pic"
-            onClick={() => {
-              const randomName =
-                pics[
-                  ~~(
-                    (pics.length - 1) *
-                    Math.random()
-                  )
-                ];
+      <motion.div
+        key={`group-${index}`}
+        className="absolute w-full row-start-space border border-white-06 dark:border-black-06 bg-white-01 dark:bg-black-01 backdrop-blur-sm"
+        style={{
+          borderRadius:
+            borderRadius / 2,
+          padding: s.padding,
+          ...itemDimensions,
+        }}
+        {...PRESENCE_OPACITY}
+      >
+        <_RootReorderControlsButton
+          title="Replace with random pic"
+          onClick={() => {
+            const randomName =
+              pics[
+                ~~(
+                  (pics.length - 1) *
+                  Math.random()
+                )
+              ];
 
-              add(randomName, name);
-            }}
-            iconProps={{
-              Icon: IconsPlusQuestion,
-            }}
-            currName={name}
-          />
-          <_RootReorderControlsButton
-            title={`Delete pic from video`}
-            onClick={() =>
-              deselect(name)
-            }
-            iconProps={{
-              Icon: IconsTrash,
-            }}
-            currName={name}
-          />
-        </motion.div>
-      </AnimatePresence>
+            add(randomName, name);
+          }}
+          iconProps={{
+            Icon: IconsPlusQuestion,
+          }}
+          currName={name}
+        />
+        <_RootReorderControlsButton
+          title={`Delete pic from video`}
+          onClick={() => deselect(name)}
+          iconProps={{
+            Icon: IconsTrash,
+          }}
+          currName={name}
+        />
+      </motion.div>
     </motion.div>
   );
 };

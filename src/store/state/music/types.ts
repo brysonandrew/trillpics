@@ -1,4 +1,5 @@
 import { CheckedState } from "@radix-ui/react-checkbox";
+import { SOUNDS } from "~/hooks/sound/constants";
 import { PURCUSSIONS } from "~/hooks/sound/percussion/constants";
 import {
   ALL_FILLS,
@@ -6,9 +7,10 @@ import {
 } from "~/pages/video/music/sequencer/buttons/constants";
 
 export type TSequenceSourceKey =
-  (typeof PURCUSSIONS)[number];
+  (typeof SOUNDS)[number];
 export type TActiveButton =
-  (typeof ALL_FILLS)[number]|null;
+  | (typeof ALL_FILLS)[number]
+  | null;
 // | "none"
 // | "all"
 // | TGapFill
@@ -22,7 +24,7 @@ export type TSequence = {
 export type TGapFill =
   (typeof GAP_FILLS)[number];
 export type TMusicState = {
-  audioBlob: Blob|null;
+  audioBlob: Blob | null;
   sequences: TSequence[];
   resolveActiveButton(
     nextBeats: TBeats
@@ -32,7 +34,12 @@ export type TMusicState = {
     beatIndex: number,
     checked: CheckedState
   ): void;
-  checkRandom(sequenceIndex: number): void;
+  checkRandom(
+    sequenceIndex: number
+  ): void;
+  checkRandomNotes(
+    sequenceIndex: number
+  ): void;
   checkAll(sequenceIndex: number): void;
   uncheckAll(
     sequenceIndex: number

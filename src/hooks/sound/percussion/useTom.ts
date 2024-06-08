@@ -10,7 +10,8 @@ export const useTom = () => {
     useBufferFromSrcHandler(context);
 
   const play = async (
-    startTime: number
+    startTime: number,
+    midi: number
   ) => {
     const filter = new BiquadFilterNode(
       context,

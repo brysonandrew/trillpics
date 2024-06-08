@@ -11,17 +11,27 @@ export const SoundSequencer: FC =
   () => {
     const s = boxSize();
     const borderRadius = boxRadius("m");
-    const { sequences } =
-      useTrillPicsStore(
-        ({ sequences }) => ({
-          sequences,
-        })
-      );
+    const {
+      sequences,
+      checkRandomNotes,
+    } = useTrillPicsStore(
+      ({
+        sequences,
+        checkRandomNotes,
+      }) => ({
+        sequences,
+        checkRandomNotes,
+      })
+    );
     return (
       <div className="relative column-stretch gap-2">
         {sequences.map(
           (
-            { source, beats, activeButton },
+            {
+              source,
+              beats,
+              activeButton,
+            },
             sequenceIndex
           ) => (
             <div
@@ -44,7 +54,12 @@ export const SoundSequencer: FC =
                   sequenceIndex={
                     sequenceIndex
                   }
-                  activeButton={activeButton}
+                  activeButton={
+                    activeButton
+                  }
+                  resolveCheckRandom={
+                    checkRandomNotes
+                  }
                 />
               </div>
               <SoundSequencerInputs

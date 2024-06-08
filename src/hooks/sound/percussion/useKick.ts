@@ -11,7 +11,7 @@ export const useKick = () => {
 
   const play = async (
     startTime: number,
-    { volume }: THandlerConfig
+    midi: number
   ) => {
     const filter = new BiquadFilterNode(
       context,
@@ -21,7 +21,7 @@ export const useKick = () => {
       }
     );
     const gain = new GainNode(context, {
-      gain: volume ?? 0.1,
+      gain: 0.1,
     });
 
     const sampleBuffer: AudioBuffer =

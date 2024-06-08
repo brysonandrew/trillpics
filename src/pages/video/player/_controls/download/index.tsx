@@ -41,6 +41,7 @@ export const Download: FC<
 > = ({ children, ...props }) => {
   const s = boxSize();
   const input = usePicVideoReadInputs();
+  console.log(input)
   const { set, audioBlob } =
     useTrillPicsStore(
       ({ set, audioBlob }) => ({

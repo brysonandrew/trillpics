@@ -23,7 +23,7 @@ export const SoundSequencerButton: FC<
         borderRadius,
       }}
       className={clsx(
-        "relative uppercase text-sm px-2 pt-1",
+        "relative uppercase text-xs lg:text-sm px-2 pt-1",
         classValue,
         isActive
           ? "text-current"

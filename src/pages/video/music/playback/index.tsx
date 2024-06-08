@@ -125,7 +125,6 @@ export const VideoMusicPlayback =
           />
           <PlayerBackground />
           <div className="absolute inset-0 bg-black-05 rounded-lg _gradient-mesh opacity-60" />
-          {/* <PlaybackProgressSeeker /> */}
           <button
             title={title}
             className={clsx(

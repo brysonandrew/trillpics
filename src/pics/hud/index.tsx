@@ -38,34 +38,30 @@ export const Hud: FC =
               gap: s.m05,
             }}
           >
-            <AnimatePresence>
-              <PicsHudHeader
-                key="PicsHudHeader"
-                container={container}
-              />
-              <div
-                key="left"
-                className="fixed w-0 z-0"
-                style={{
-                  left: container.left,
-                  top: container.top,
-                  height:
-                    container.height,
-                }}
-              >
-                {foundationValue && (
-                  <PicsHudLeft
-                    key="PicsHudLeft"
-                    container={
-                      container
-                    }
-                    foundation={
-                      foundationValue
-                    }
-                  />
-                )}
-              </div>
-            </AnimatePresence>
+            <PicsHudHeader
+              key="PicsHudHeader"
+              container={container}
+            />
+            <div
+              key="left"
+              className="fixed w-0 z-0"
+              style={{
+                left: container.left,
+                top: container.top,
+                height:
+                  container.height,
+              }}
+            >
+              {foundationValue && (
+                <PicsHudLeft
+                  key="PicsHudLeft"
+                  container={container}
+                  foundation={
+                    foundationValue
+                  }
+                />
+              )}
+            </div>
           </div>
         </div>
         <footer

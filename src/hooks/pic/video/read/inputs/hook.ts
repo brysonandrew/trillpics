@@ -19,6 +19,7 @@ export const usePicVideoReadInputs =
       pics,
       isPics,
       count,
+      audioSrc,
     } = picVideoReadInputs(
       searchParams,
       fps
@@ -30,14 +31,15 @@ export const usePicVideoReadInputs =
         ...PIC_DIMENSIONS,
         fillMode: "cover",
       });
-      const result  = {
-        seconds,
-        pics,
-        count,
-        isPics,
-        dimensions,
-        durationInFrames: seconds * fps,
-        fps,
-      };
-    return result
+    const result = {
+      seconds,
+      pics,
+      count,
+      isPics,
+      dimensions,
+      durationInFrames: seconds * fps,
+      audioSrc,
+      fps,
+    };
+    return result;
   };

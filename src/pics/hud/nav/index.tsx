@@ -10,15 +10,15 @@ import { NAV_ITEMS } from "~/pics/hud/nav/constants";
 import { useLocation } from "react-router-dom";
 import { useHoverKey } from "~/hooks/use-hover-key";
 import { FooterNavLink } from "~/pics/hud/nav/link";
-import { LinesHorizontal } from "~/components/lines/horizontal";
 import { PillBLayout } from "~/components/buttons/pill/b/layout";
 import clsx from "clsx";
 import { PillBText } from "~/components/buttons/pill/b/text";
 import { resolveCompositeKey } from "@brysonandrew/utils-key";
 import { useInitContext } from "~/shell/init/context";
+import { THudContainer } from "~/pics/hud";
 
 type TProps = {
-  container: TDimensions;
+  container: THudContainer;
 };
 export const PicsHudFooterNav: FC<
   TProps
@@ -60,14 +60,6 @@ export const PicsHudFooterNav: FC<
       }}
       {...handlers("nav")}
     >
-      {/* <div
-        className="absolute top-3/4 w-full h-px dark:bg-white bg-black opacity-20"
-        style={{
-          borderRadius,
-          backdropFilter: "blur(4px)",
-        }}
-      /> */}
-
       <ul className="row-space w-full">
         {NAV_ITEMS.map(
           (
@@ -91,7 +83,7 @@ export const PicsHudFooterNav: FC<
                     title
                   )}
                   className={clsx(
-                    "relative row z-10"
+                    "relative center z-10"
                   )}
                   style={{
                     width: s.m,
@@ -102,31 +94,22 @@ export const PicsHudFooterNav: FC<
                   <PillBLayout
                     Icon={Icon}
                   />
-                  <PillBText
-                    {...(true
-                      ? {
-                          layoutId:
-                            title,
-                        }
-                      : {})}
-                  >
-                    {title}
-                  </PillBText>
+                  {!container.isTablet && (
+                    <PillBText
+                      layoutId={title}
+                    >
+                      {title}
+                    </PillBText>
+                  )}
                 </li>
               );
 
-            const isPrev =
-              selectedIndex > index;
             const isNext =
               selectedIndex < index;
             return (
               <li
                 key={resolveCompositeKey(
-                  title,
-                  isPrev
-                    ? "prev"
-                    : null,
-                  isNext ? "next" : null
+                  title
                 )}
                 className={clsx(
                   "flex relative z-0",
@@ -156,12 +139,7 @@ export const PicsHudFooterNav: FC<
                     Icon={Icon}
                   />
                   <PillBText
-                    {...(true
-                      ? {
-                          layoutId:
-                            title,
-                        }
-                      : {})}
+                    layoutId={title}
                   >
                     {title}
                   </PillBText>

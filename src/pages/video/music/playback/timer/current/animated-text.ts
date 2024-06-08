@@ -38,7 +38,6 @@ export const useAnimatedText = () => {
     useContextPlayer_Init();
 
   useAnimationFrame(() => {
-    console.log(text);
     if (!text.isStarted) {
       text.isStarted = true;
       text.start = Date.now();

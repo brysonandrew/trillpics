@@ -30,7 +30,7 @@ export const ShellSoundProvider: FC<
         new AudioContext();
       const master =
         context.createGain();
-      master.gain.value = 10;
+      master.gain.value = 6;
       master.connect(
         context.destination
       );

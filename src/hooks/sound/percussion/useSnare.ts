@@ -11,12 +11,9 @@ export const useSnare = () => {
 
   const play = async (
     startTime: number,
-    {
-      volume = 0.08,
-      version = 2,
-    }: THandlerConfig & {
-      version?: 0 | 1 | 2 | 3;
-    }
+    midi: number,
+    version: 0 | 1 | 2 | 3 = 2,
+    volume = 0.08
   ) => {
     const filter = new BiquadFilterNode(
       context,

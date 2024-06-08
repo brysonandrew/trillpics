@@ -9,6 +9,7 @@ import {
 import { SubtitleText } from "~/pics/header/subtitle/text";
 import { useTrillPicsStore } from "~/store/middleware";
 import { TITLE_HOVER_KEY } from "~/pics/header/left";
+import clsx from "clsx";
 export type TPillBLayoutProps =
   TDivMotionProps &
     Partial<
@@ -22,6 +23,7 @@ export const PillBText: FC<
   children,
   size,
   style,
+  classValue,
   ...props
 }) => {
   const s = boxSize();
@@ -37,7 +39,7 @@ export const PillBText: FC<
     <>
       {isString(children) ? (
         <motion.div
-          className="relative top-2 px-0 text-left text-sm pointer-events-none z-30"
+          className={clsx("relative top-2 px-0 text-left text-sm pointer-events-none z-30",classValue)}
           style={{
             height: s.height,
             ...style,

@@ -1,8 +1,5 @@
 import { FC } from "react";
-import { resolveUrlId } from "@brysonandrew/utils-attributes";
 import { boxSize } from "~uno/rules/box/size";
-import { LINEAR_GRADIENT_SVG_ID } from "~uno/rules/gradient/constants";
-import { TPillBProps } from "~/components/buttons/pill/b";
 import {
   TDivProps,
   TSvgProps,
