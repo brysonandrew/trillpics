@@ -20,11 +20,14 @@ export const SoundSequencerTitle: FC<
       onClick={() =>
         lookup[source](
           context.currentTime,
-          {}
+          64
         )
       }
     >
-      <IconsPlay classValue='-top-0.5' size={18} />
+      <IconsPlay
+        classValue="-top-0.5"
+        size={18}
+      />
       <h4 className="text-base pr-1 uppercase">
         {source}
       </h4>

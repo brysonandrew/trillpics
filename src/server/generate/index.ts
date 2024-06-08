@@ -26,16 +26,16 @@ export const generate = async (
   // const isLocal = (
   //   import.meta.env ?? process.env
   // )._IS_LOCAL;
-  const serveUrl = await bundle({
-    publicDir: path.join(cwd, REMOTION_PUBLIC_DIR),
-    entryPoint: path.join(cwd, REMOTION_ENTRY_POINT),
-    onProgress: inputProps.onProgress ?? onProgress,
-    webpackOverride: webpackOverride,
-  });
+  // const serveUrl = await bundle({
+  //   publicDir: path.join(cwd, REMOTION_PUBLIC_DIR),
+  //   entryPoint: path.join(cwd, REMOTION_ENTRY_POINT),
+  //   onProgress: inputProps.onProgress ?? onProgress,
+  //   webpackOverride,
+  // });
 
   const compositionOptions: SelectCompositionOptions =
     {
-      serveUrl:serveUrl,// SERVE_URL,
+      serveUrl:SERVE_URL,// SERVE_URL,
       id: "pic-series",
       inputProps: {
         ...inputProps,
@@ -62,7 +62,7 @@ export const generate = async (
   const renderMediaOption: RenderMediaOptions =
     {
       composition,
-      serveUrl:serveUrl,// SERVE_URL,
+      serveUrl:SERVE_URL,// SERVE_URL,
       codec: "h264",
       onDownload:
         inputProps.onDownload ??
