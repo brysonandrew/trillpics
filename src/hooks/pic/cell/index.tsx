@@ -8,6 +8,7 @@ import {
 import { TCell } from "~/pics/grid/pic";
 import {
   OVER_CELL_PARAM_KEY,
+  QUERY_PARAM_KEYS,
   REMOVING_PARAM_KEY,
   SIZE_PARAM_KEY,
   ZOOM_PARAM_KEY,
@@ -61,7 +62,12 @@ export const usePicCell = (
     my?: number
   ) => {
     if (
-      searchParams.has(ZOOM_PARAM_KEY)||searchParams.has(REMOVING_PARAM_KEY)
+      searchParams.has(
+        QUERY_PARAM_KEYS[ZOOM_PARAM_KEY]
+      ) ||
+      searchParams.has(
+        REMOVING_PARAM_KEY
+      )
     )
       return;
     const currScrollY = scrollY.get();
@@ -160,4 +166,6 @@ export const usePicCell = (
   };
 };
 
-export type TUsePicCell = ReturnType<typeof usePicCell>
+export type TUsePicCell = ReturnType<
+  typeof usePicCell
+>;

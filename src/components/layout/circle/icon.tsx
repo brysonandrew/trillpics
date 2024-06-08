@@ -5,10 +5,13 @@ import { Circle } from "~/components/layout/circle/circle";
 type TProps = Pick<
   TPillBProps,
   "Icon"
-> & Partial<Pick<
-TPillBProps,
-"iconProps" | "circleProps"
->>;
+> &
+  Partial<
+    Pick<
+      TPillBProps,
+      "iconProps" | "circleProps"
+    >
+  >;
 export const CircleIcon: FC<TProps> = ({
   Icon,
   iconProps,
@@ -17,7 +20,11 @@ export const CircleIcon: FC<TProps> = ({
   return (
     <Circle {...circleProps} layout>
       <div className="p-1">
-        <Icon {...(iconProps ?? {})} />
+        {Icon && (
+          <Icon
+            {...(iconProps ?? {})}
+          />
+        )}
       </div>
     </Circle>
   );

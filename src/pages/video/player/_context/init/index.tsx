@@ -14,13 +14,14 @@ import {
 } from "~/pages/video/player/_context/init/types";
 import { TPlayerInstance } from "~/pages/video/player/_context/ready/types";
 
-export const INIT_VIDEO_STATE = {
-  fps: DEFAULT_FPS,
-};
+export const INIT_LOCAL_STORAGE_STATE =
+  {
+    fps: DEFAULT_FPS,
+  };
 
-const InitContext = createContext(
-  {} as TPlayerInitContext
-);
+const InitContext = createContext({
+  ...INIT_LOCAL_STORAGE_STATE,
+} as TPlayerInitContext);
 
 export const useContextPlayer_Init =
   () => useContext(InitContext);
@@ -37,7 +38,7 @@ export const Player_InitContextProvider: FC<
     setVideoState,
   ] = useLocalStorage<TInitVideoState>(
     "INIT_VIDEO_STATE",
-    INIT_VIDEO_STATE
+    INIT_LOCAL_STORAGE_STATE
   );
   const updateState = (
     partial: TPartialInitVideoState

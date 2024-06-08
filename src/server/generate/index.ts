@@ -7,7 +7,11 @@ import {
 } from "@remotion/renderer";
 import { TGenerateOutput } from "~/types/trpc/generate";
 import d from "dotenv";
-import { SERVE_URL } from "~root/remotion.config";
+import { REMOTION_ENTRY_POINT, REMOTION_PUBLIC_DIR, SERVE_URL } from "~root/remotion.config";
+import { bundle } from "@remotion/bundler";
+import path from "path";
+import { onProgress } from "~/server/generate/webpack/on-progress";
+import { webpackOverride } from "~/server/generate/webpack/override";
 
 d.config();
 
@@ -16,13 +20,22 @@ export type TGenerateProps =
 export const generate = async (
   inputProps: TGenerateProps
 ) => {
-  console.log(SERVE_URL)
+  const cwd = process.cwd();
+
+  console.log(inputProps)
   // const isLocal = (
   //   import.meta.env ?? process.env
   // )._IS_LOCAL;
+  const serveUrl = await bundle({
+    publicDir: path.join(cwd, REMOTION_PUBLIC_DIR),
+    entryPoint: path.join(cwd, REMOTION_ENTRY_POINT),
+    onProgress: inputProps.onProgress ?? onProgress,
+    webpackOverride: webpackOverride,
+  });
+
   const compositionOptions: SelectCompositionOptions =
     {
-      serveUrl: SERVE_URL,
+      serveUrl:serveUrl,// SERVE_URL,
       id: "pic-series",
       inputProps: {
         ...inputProps,
@@ -49,7 +62,7 @@ export const generate = async (
   const renderMediaOption: RenderMediaOptions =
     {
       composition,
-      serveUrl: SERVE_URL,
+      serveUrl:serveUrl,// SERVE_URL,
       codec: "h264",
       onDownload:
         inputProps.onDownload ??

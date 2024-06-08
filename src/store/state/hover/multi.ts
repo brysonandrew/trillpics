@@ -30,7 +30,7 @@ export const hoverMultiState: TStateHandler<
     const hoverKeys = isDefined(
       hoverKey
     )
-      ? [hoverKey]
+      ? [hoverKey, ...get().hoverKeys]
       : [];
 
     set({

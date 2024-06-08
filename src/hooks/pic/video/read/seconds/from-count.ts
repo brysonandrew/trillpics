@@ -1,1 +1,1 @@
-export const resolveSecondsFromCount = (count:number) => count * 2;
+export const resolveSecondsFromCount = (count:number) => count * 1.6;

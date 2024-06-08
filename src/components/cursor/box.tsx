@@ -3,7 +3,7 @@ import { ReactNode, type FC } from 'react';
 import clsx from 'clsx';
 import { TClassValueProps } from '@brysonandrew/config-types/dom/main';
 import { DURATION } from '@brysonandrew/motion-config-constants';
-import { useContextReady } from '~/shell/ready/context';
+import { useReadyContext } from '~/shell/ready/context';
 import { boxRadius } from '~uno/rules/box/radius';
 
 type TProps = TClassValueProps & {
@@ -17,7 +17,7 @@ export const Box: FC<TProps> = ({
   delay = 0.7,
   exitDelay = 0,
 }) => {
-  const { main } = useContextReady();
+  const { main } = useReadyContext();
   const initExit = {
     opacity: 0,
     transition: {

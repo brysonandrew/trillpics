@@ -15,7 +15,7 @@ type TProps = Pick<
 
 };
 
-export const _CommonReorderControlsButton: FC<
+export const _RootReorderControlsButton: FC<
   TProps
 > = ({ currName: name,classValue,  iconProps:{style:iconStyle, ...iconProps},...props }) => {
   const s = boxSize();

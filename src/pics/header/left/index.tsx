@@ -11,7 +11,7 @@ import { useScrollTopHandler } from "~/shell/ready/context/scroll/top";
 import { useTrillPicsStore } from "~/store/middleware";
 import { useHoverKey } from "~/hooks/use-hover-key";
 
-export const TITLE_HOVER_KEY = "Title";
+export const TITLE_HOVER_KEY = "Trill Pics";
 
 export const HeaderLeft: FC = memo(
   () => {
@@ -35,7 +35,7 @@ export const HeaderLeft: FC = memo(
 
     return (
       <motion.div
-        className="relative -top-1 left-2 shrink-0 grow-0"
+        className="relative -top-1 left-2 shrink-0 grow-0 cursor-help"
         {...motionHandlers(
           TITLE_HOVER_KEY
         )}

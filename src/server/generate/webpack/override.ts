@@ -65,23 +65,31 @@ export const webpackOverride: WebpackOverrideFn =
         alias: {
           "~": entry("src"),
           "~app": appEntry,
-          "~uno/": entry(
+          "~uno": entry(
             "config",
             "uno"
           ),
-          "~uno/shortcuts/box/background":
-            entry(
-              "config",
-              "uno",
-              "shortcuts/box/background"
-            ),
-          "~uno/preflights": entry(
-            "config",
-            "uno",
-            "preflights"
-          ),
-          "~ops/": entry("ops"),
-          "~root/": entry("."),
+          //uno/rules/box/radiu
+          // "~uno/rules/box/size": entry(
+          //   "config",
+          //   "uno",
+          //   "rules",
+          //   "box",
+          //   "size"
+          // ),
+          // "~uno/shortcuts/box/background":
+          //   entry(
+          //     "config",
+          //     "uno",
+          //     "shortcuts/box/background"
+          //   ),
+          // "~uno/preflights": entry(
+          //   "config",
+          //   "uno",
+          //   "preflights"
+          // ),
+          "~ops": entry("ops"),
+          "~root": entry("."),
           "~root/package.json": entry(
             "package.json"
           ),

@@ -1,6 +1,6 @@
 import { FC } from "react";
 import { PicsHudHeaderFoundation } from "~/pics/hud/header/foundation";
-import { useContextReady } from "~/shell/ready/context";
+import { useReadyContext } from "~/shell/ready/context";
 import { PicsHudHeaderRight } from "~/pics/hud/header/right";
 import { PicsHudRight } from "~/pics/hud/right";
 import { THudContainer } from "~/pics/hud";
@@ -12,7 +12,7 @@ export const PicsHudHeader: FC<
   TProps
 > = ({ container }) => {
   const { foundationValue } =
-    useContextReady();
+    useReadyContext();
   return (
     <header style={{ height: 0 }}>
       <PicsHudHeaderFoundation

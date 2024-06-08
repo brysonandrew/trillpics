@@ -3,47 +3,50 @@ import {
   AnimatePresence,
   motion,
 } from "framer-motion";
-import { TMotionPoint } from "@brysonandrew/motion-config-types";
-import clsx from "clsx";
 import { IconsTrash } from "~/components/icons/video/trash";
 import { TUsePicSelected } from "~/hooks/pic/selected";
 import { TCommonProps } from "~/pages/video/_root/reorder/types";
 import { boxSize } from "~uno/rules/box/size";
 import { useHoverKey } from "~/hooks/use-hover-key";
-import { resolveCompositeKey } from "@brysonandrew/utils-key";
-import { _CommonReorderControlsButton } from "~/pages/video/_root/reorder/controls/button";
+import { _RootReorderControlsButton } from "~/pages/video/_root/reorder/controls/button";
 import { IconsPlusQuestion } from "~/components/icons/plus";
 import { boxRadius } from "~uno/rules/box/radius";
 import { PRESENCE_OPACITY } from "@brysonandrew/motion-config-constants";
-import { useContextReady } from "~/shell/ready/context";
-import { _CommonReorderControl } from "~/pages/video/_root/reorder/controls/control";
+import { useReadyContext } from "~/shell/ready/context";
+import { TMotionPoint } from "@brysonandrew/motion-config-types";
+import { TDimensions } from "@brysonandrew/config-types";
 
 type TProps = TMotionPoint &
-  TCommonProps &
+  Pick<TCommonProps, "itemDimensions"> &
   Pick<
     TUsePicSelected,
-    | "names"
-    | "deselect"
-    | "add"
-    | "pics"
-  >;
+    "deselect" | "add" | "pics"
+  > & {
+    index: number;
+    title: string;
+    name: string;
+    imageDimensions: TDimensions;
+    isColumn: boolean;
+  };
 
-export const _CommonReorderControls: FC<
+export const _RootReorderControls: FC<
   TProps
 > = ({
-  x,
-  y,
-  names,
   itemDimensions,
-  boxProps,
+  imageDimensions,
   deselect,
   add,
   pics,
+  index,
+  title,
+  name,
+  x,
   isColumn,
+  y,
 }) => {
   const s = boxSize();
   const borderRadius = boxRadius();
-  const { main } = useContextReady();
+  const { main } = useReadyContext();
   const start = () => {
     main.cursor.isOnGrid = false;
   };
@@ -57,43 +60,56 @@ export const _CommonReorderControls: FC<
 
   return (
     <motion.div
-      className="absolute z-0"
+      className="absolute"
       style={{
+        ...imageDimensions,
         x,
         y,
-        ...boxProps.style,
-        top: s.m075,
+        top: isColumn
+          ? itemDimensions.height *
+            index
+          : -s.m15,
+        zIndex: index,
       }}
+      {...motionHandlers(title)}
     >
       <motion.div
-        className={clsx(
-          "absolute left-0 top-0 w-full",
-          isColumn ? "column" : "row"
-        )}
+        key={`group-${index}`}
+        className="absolute w-full row-start-space border border-white-06 dark:border-black-06 bg-white-01 dark:bg-black-01 backdrop-blur-sm"
         style={{
-          gap: boxProps.style?.gap,
+          borderRadius:
+            borderRadius / 2,
+          padding: s.padding,
+          ...itemDimensions,
         }}
+        {...PRESENCE_OPACITY}
       >
-        {names.map((name, index) => {
-          const key =
-            resolveCompositeKey(
-              name,
-              "delete"
-            );
-          return null;
-          // <_CommonReorderControl
-          //   key={key}
-          //   name={name}
-          //   title={key}
-          //   index={index}
-          //   itemDimensions={
-          //     itemDimensions
-          //   }
-          //   deselect={deselect}
-          //   add={add}
-          //   pics={pics}
-          // />
-        })}
+        <_RootReorderControlsButton
+          title="Replace with random pic"
+          onClick={() => {
+            const randomName =
+              pics[
+                ~~(
+                  (pics.length - 1) *
+                  Math.random()
+                )
+              ];
+
+            add(randomName, name);
+          }}
+          iconProps={{
+            Icon: IconsPlusQuestion,
+          }}
+          currName={name}
+        />
+        <_RootReorderControlsButton
+          title={`Delete pic from video`}
+          onClick={() => deselect(name)}
+          iconProps={{
+            Icon: IconsTrash,
+          }}
+          currName={name}
+        />
       </motion.div>
     </motion.div>
   );

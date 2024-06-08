@@ -1,4 +1,4 @@
-import { FC } from "react";
+import { FC, useEffect } from "react";
 import {
   AnimatePresence,
   motion,
@@ -41,14 +41,19 @@ export const Download: FC<
 > = ({ children, ...props }) => {
   const s = boxSize();
   const input = usePicVideoReadInputs();
-  const { set } = useTrillPicsStore(
-    ({ set }) => ({ set })
-  );
+  console.log(input)
+  const { set, audioBlob } =
+    useTrillPicsStore(
+      ({ set, audioBlob }) => ({
+        set,
+        audioBlob,
+      })
+    );
   const { handlers, isHover } =
     useHoverKey();
 
   const title = "Download video";
-
+  // console.log(audioBlob);
   // const dl = async (blob: Blob) => {};
 
   // const mutationFn: MutationFunction<
@@ -97,19 +102,27 @@ export const Download: FC<
         isDownloadComplete: false,
       })
     );
+  const reset = (partial = {}) =>
+    set({
+      download: null,
+      progress: null,
+      error: null,
+      logs: [],
+      ...partial,
+    });
   const { trigger } = useTimebomb(
     1400,
     () => {
-      set({
-        download: null,
-        progress: null,
-        error: null,
-        logs: [],
+      reset({
         isDownloadComplete: true,
       });
       trigger1();
     }
   );
+
+  useEffect(() => {
+    return reset;
+  }, []);
 
   const {
     isError,
@@ -138,25 +151,25 @@ export const Download: FC<
     },
   });
   const handleGenerate = () => {
-    console.log(input);
+    console.log(
+      "handleGenerate ",
+      input
+    );
+
     set({ logs: [], progress: null });
-    mutate(input);
+    mutate({
+      // ...(audioBlob && audioBlob instanceof
+      //   ? {
+      //       audioSrc:
+      //         window.URL.createObjectURL(
+      //           audioBlob
+      //         ),
+      //     }
+      //   : {}),
+      ...input,
+    });
   };
 
-  const isAura =
-    isHover(title) || isLoading;
-  const AURA_TRANSITION = {
-    transition: {
-      duration: 0.6,
-      ease: "easeInOut",
-    },
-    ...resolvePresence(
-      { opacity: 0 },
-      {
-        opacity: 0.9,
-      }
-    ),
-  };
   const isHovering = isHover(title);
 
   return (
@@ -164,58 +177,35 @@ export const Download: FC<
       className="relative flex"
       style={{ ...resolveSquare(s.m) }}
     >
-      <>
-        <AnimatePresence>
-          {(isAura || isHovering) && (
-            <>
-              <motion.div
-                key={resolveCompositeKey(
-                  isHover.toString(),
-                  isLoading.toString()
-                )}
-                className="fill _gradient-radial"
-                style={{
-                  filter:
-                    AURA.GLOBAL.value,
-                  scaleX: 1.2,
-                  scaleY: 1.1,
-                  x: 2,
-                }}
-                {...AURA_TRANSITION}
-              />
-            </>
-          )}
-        </AnimatePresence>
-        <PillBHover
-          title={title}
-          isSelected={isHovering}
-          style={{
-            ...resolveSquare(s.m),
-          }}
-          circleProps={{
-            isGlow: isSuccess,
-            ...{
-              transition: {
-                repeat: Infinity,
-                repeatDelay: 0.8,
-                duration: isHovering
-                  ? 0.8
-                  : 0,
-              },
-              ...resolvePresence(
-                { opacity: 0 },
-                { opacity: [0, 1] }
-              ),
+      <PillBHover
+        title={title}
+        isSelected={isHovering}
+        style={{
+          ...resolveSquare(s.m),
+        }}
+        circleProps={{
+          isGlow: isSuccess,
+          ...{
+            transition: {
+              repeat: Infinity,
+              repeatDelay: 0.8,
+              duration: isHovering
+                ? 0.8
+                : 0,
             },
-          }}
-          Icon={IconsDownload}
-          onClick={handleGenerate}
-          {...props}
-          {...handlers(title)}
-        >
-          {title}
-        </PillBHover>
-      </>
+            ...resolvePresence(
+              { opacity: 0 },
+              { opacity: [0, 1] }
+            ),
+          },
+        }}
+        Icon={IconsDownload}
+        onClick={handleGenerate}
+        {...props}
+        {...handlers(title)}
+      >
+        {title}
+      </PillBHover>
     </div>
   );
 };

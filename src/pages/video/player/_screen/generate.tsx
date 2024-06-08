@@ -12,7 +12,7 @@ import { MonoChars } from "~/pages/video/player/_controls/playback/timer/numbers
 import { LinesHorizontal } from "~/components/lines/horizontal";
 import { boxSize } from "~uno/rules/box/size";
 import { LinesVertical } from "~/components/lines/vertical";
-import { useContextReady } from "~/shell/ready/context";
+import { useReadyContext } from "~/shell/ready/context";
 
 export const OVERFLOW_HIDDEN =
   "overflow: hidden;";
@@ -32,7 +32,7 @@ export const VideoPlayer_ScreenGenerate: FC<
     useRef<HTMLDivElement | null>(null);
   const {
     screen: { container },
-  } = useContextReady();
+  } = useReadyContext();
 
   const { logs } = useTrillPicsStore(
     ({ logs }) => ({
@@ -61,6 +61,7 @@ export const VideoPlayer_ScreenGenerate: FC<
           style={{
             gap: s.m025,
             margin: s.m025,
+            padding: `0 ${s.m}px`
           }}
         >
           <h3

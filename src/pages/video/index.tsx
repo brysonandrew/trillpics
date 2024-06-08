@@ -1,6 +1,6 @@
-import { Video_RootCursor } from "~/pages/video/_root/cursor";
 import { Helmet } from "react-helmet-async";
 import { GridOptions } from "~/pics/hud/left/grid-options";
+import { Video_Root } from "~/pages/video/_root";
 
 export const Video = () => {
   return (
@@ -11,7 +11,7 @@ export const Video = () => {
         </title>
       </Helmet>
       <GridOptions />
-      <Video_RootCursor />
+      <Video_Root />
     </>
   );
 };

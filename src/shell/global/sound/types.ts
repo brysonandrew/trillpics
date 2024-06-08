@@ -1,4 +1,5 @@
 export type TSoundContext = {
+  audioUrl: string|null
   context: AudioContext;
   master: GainNode;
   sound: {

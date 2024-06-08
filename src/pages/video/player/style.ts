@@ -1,12 +1,12 @@
 import { useMemo } from "react";
 import { boxSize } from "~uno/rules/box/size";
-import { useContextReady } from "~/shell/ready/context";
+import { useReadyContext } from "~/shell/ready/context";
 
 export const useVideoPlayerStyle =
   () => {
     const {
       screen: { container },
-    } = useContextReady();
+    } = useReadyContext();
     const s = boxSize();
 
     const style = useMemo(() => {

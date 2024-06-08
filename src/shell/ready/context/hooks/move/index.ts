@@ -121,7 +121,7 @@ export const useMove = ({
     handleMove
   );
 
-  const handleTouchEnd = (
+  const handleTouchMove = (
     event: TouchEvent
   ) => {
     if (event.touches.length === 0)
@@ -146,8 +146,8 @@ export const useMove = ({
     }
   };
 
-  useEventListener<"touchend">(
-    "touchend",
-    handleTouchEnd
+  useEventListener<"touchmove">(
+    "touchmove",
+    handleTouchMove
   );
 };

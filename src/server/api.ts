@@ -1,3 +1,4 @@
+import * as trpcExpress from "@trpc/server/adapters/express";
 import express from "express";
 import cors from "cors";
 import {
@@ -7,7 +8,6 @@ import {
 } from "~/constants/api";
 import { applyWSSHandler } from "@trpc/server/adapters/ws";
 import { WebSocketServer } from "ws";
-import * as trpcExpress from "@trpc/server/adapters/express";
 import { router } from "./router";
 import { createContext } from "~/server/context";
 

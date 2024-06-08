@@ -1,16 +1,26 @@
-import { TSoundContext } from "~/shell/global/sound/types";
+import { AUDIO_SRC_KEY } from "~/hooks/pic/constants";
+import { useQueryParamsSet } from "~/hooks/query-params";
 
 export const useDownload = () => {
-  const handler = (sound: Pick<TSoundContext['sound'], "chunks">) => {
-    console.log(sound.chunks)
-    const blob = new Blob(sound.chunks, {
-      type: "audio/webm",
-    });
-    const url =
-      window?.URL?.createObjectURL?.(
-        blob
+  const queryParams = useQueryParamsSet(
+    AUDIO_SRC_KEY
+  );
+
+  const handler = (audioBlob: Blob) => {
+    if (queryParams.curr) {
+      window.URL.revokeObjectURL(
+        queryParams.curr
       );
-    if (!url) return null;
+    }
+    const url =
+      window.URL.createObjectURL(
+        audioBlob
+      );
+    if (!url) {
+      console.log("no url");
+      return;
+    }
+    queryParams.set(url);
     const a =
       document.createElement("a");
     a.style.display = "none";
@@ -20,9 +30,6 @@ export const useDownload = () => {
     a.click();
     setTimeout(() => {
       document.body.removeChild(a);
-      window?.URL?.revokeObjectURL?.(
-        url
-      );
     }, 100);
   };
 

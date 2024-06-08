@@ -5,7 +5,6 @@ export const VIDEO_PLAYER_ROUTE =
 export const VIDEO_SCHEDULER_ROUTE =
   "/video/scheduler";
 
-export const MODE_PARAM_KEY = "mode";
 
 export const PATH_VALUES = {
   [HOME_ROUTE]: HOME_ROUTE,

@@ -38,7 +38,7 @@ export const LayoutOverlay: FC<
             <motion.div
               style={{ maxWidth: 1200 }}
               className={clsx(
-                "absolute top-0 flex flex-col justify-center items-end h-screen z-0 pointer-events-none",
+                "absolute top-0 flex flex-col justify-center items-end h-screen z-20 pointer-events-none",
                 direction === "ltr"
                   ? "right-0"
                   : "left-0"
@@ -47,14 +47,14 @@ export const LayoutOverlay: FC<
               {isString(children) ? (
                 <div
                   className={clsx(
-                    "relative center min-w-0 w-full sm:px-4 lg:px-24 xl:px-32 xl:w-xl top-0 left-1/2 -translate-x-1/2",
+                    "relative center min-w-0 w-full sm:px-2 lg:px-12 xl:px-24 xl:w-xl top-0 left-1/2 -translate-x-1/2",
                     direction === "ltr"
                       ? "column-end text-right"
                       : "column-start text-left"
                   )}
                   style={{ gap: s.m05 }}
                 >
-                  <h3 className="px-2 text-5xl sm:text-6xl xl:text-8xl char-gap-6 text-white-8 dark:text-black-2 font-title _outline-filter">
+                  <h3 className="text-5xl sm:text-6xl xl:text-8xl char-gap-6 text-white-8 dark:text-black-2 font-title _outline-filter">
                     {children}
                   </h3>
                   {subtitle && (

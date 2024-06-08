@@ -3,11 +3,11 @@ import { boxSize } from "~uno/rules/box/size";
 import { LinesVertical } from "~/components/lines/vertical";
 import { FooterNavDelete } from "~/pages/video/_common/footer/left/delete";
 import { usePicVideoReadInputs } from "~/hooks/pic/video/read/inputs/hook";
-import { useContextReady } from "~/shell/ready/context";
+import { useReadyContext } from "~/shell/ready/context";
 
 export const _CommonFooterLeft: FC =
   () => {
-    const { screen } = useContextReady();
+    const { screen } = useReadyContext();
     const { count } =
       usePicVideoReadInputs();
     const isVideoPics = count > 0;

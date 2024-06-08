@@ -1,277 +1,42 @@
-import type {
-  FC,
-  PropsWithChildren,
-} from "react";
-import {
-  motion,
-  Reorder,
-} from "framer-motion";
-import { resolveSquare } from "@brysonandrew/measure";
-import { PicDisplay } from "~/pics/grid/pic/display";
-import { isVNumber } from "~/utils/validation/is/number";
-import { _RootReorderDragger } from "~/pages/video/_root/reorder/dragger";
-import { useTrillPicsStore } from "~/store/middleware";
+import { FC } from "react";
 import { boxSize } from "~uno/rules/box/size";
-import { TUsePicSelected } from "~/hooks/pic/selected";
-import { _CommonReorderPlaceholder } from "~/pages/video/_root/reorder/placeholder";
-import {
-  TOTAL_GAP,
-  MAX_COUNT,
-} from "~/pages/video/_root/reorder/constants";
-import { useHoverKey } from "~/hooks/use-hover-key";
-import { LEFT_BUTTONS_CLEAR_TITLE } from "~/pics/hud/left/clear";
-import { useContextReady } from "~/shell/ready/context";
-import { _CommonReorderControls } from "~/pages/video/_root/reorder/controls";
-import { HUD_LEFT_ADD_RANDOM_HOVER_KEY } from "~/pics/hud/left/add-random";
-import { resolveCompositeKey } from "@brysonandrew/utils-key";
-import clsx from "clsx";
-import { _CommonReorderControl } from "~/pages/video/_root/reorder/controls/control";
-import { MOTION_BLUR_ADD_RANDOM_PROPS } from "~/shell/init/svg/filters/blur/constants";
+import { useReadyContext } from "~/shell/ready/context";
+import { _RootReorderList } from "~/pages/video/_root/reorder/list";
+import { TUseVideoClickSelect } from "~/pages/video/_root/select";
+import { _RootReorderDraggerSides } from "~/pages/video/_root/reorder/dragger/sides";
+import { _RootReorderControlsSides } from "~/pages/video/_root/reorder/controls/sides";
+import { _RootReorderDraggerTop } from "~/pages/video/_root/reorder/dragger/top";
+import { _RootReorderPlaceholders } from "~/pages/video/_root/reorder/placeholders";
+import { _RootReorderBackground } from "~/pages/video/_root/reorder/background";
+import { useDraggerReset } from "~/pages/video/_root/reorder/use-dragger-reset";
 
-type TProps = TUsePicSelected;
-export const _CommonReorder: FC<
-  PropsWithChildren<TProps>
-> = ({
-  children,
-  size: _size,
-  names,
-  select,
-  deselect,
-  add,
-  pics,
-}) => {
+export const Video_RootReorder: FC<
+  TUseVideoClickSelect
+> = (props) => {
   const {
-    hoverKeys,
-    isControls,
-    isHover,
-  } = useTrillPicsStore(
-    ({
-      hoverKeys,
-      isControls,
-      isHover,
-    }) => ({
-      hoverKeys,
-      isControls,
-      isHover,
-    })
-  );
-  const { screen } = useContextReady();
-
-  const isVideoPlayerButtonHover =
-    hoverKeys.includes(
-      LEFT_BUTTONS_CLEAR_TITLE
-    );
-  const is5RandomPicsHover =
-    hoverKeys.includes(
-      HUD_LEFT_ADD_RANDOM_HOVER_KEY
-    );
-
+    screen: { container },
+  } = useReadyContext();
   const s = boxSize();
-  const isColumn =
-    screen.container.width < 600;
-  const width =
-    screen.container.width -
-    (isColumn ? s.m : s.m3);
-  const left =
-    screen.container.left +
-    (isColumn ? s.m05 : s.m15);
-  const gap =
-    TOTAL_GAP / (MAX_COUNT - 1);
-  const size =
-    (width - TOTAL_GAP) /
-    (isColumn ? 1 : MAX_COUNT);
-  const height = size;
-  const boxStyle = {
-    gap,
-    height,
-    width,
-    left,
-    top: 0,
-  };
-  const boxProps = {
-    className: clsx(
-      "absolute z-0",
-      isColumn ? "column" : "row"
-    ),
-    style: boxStyle,
-  } as const;
-  const imageDimensions =
-    resolveSquare(size);
-  const itemDimensions = isColumn
-    ? {
-        height:
-          size / MAX_COUNT + s.m05,
-        width: size,
-      }
-    : imageDimensions;
 
-  const { main } = useContextReady();
-  const start = () => {
-    main.cursor.isOnGrid = false;
-  };
-  const stop = () => {
-    main.cursor.isOnGrid = true;
-  };
-  const { motionHandlers } =
-    useHoverKey({
-      handlers: { start, stop },
-    });
-  if (!isControls) return null;
-
+  useDraggerReset({
+    to: 0,
+    from: s.m4,
+  });
   return (
-    <_RootReorderDragger
-      title="Drag video pics grid"
-      isColumn={isColumn}
-      width={width}
-      left={left}
-      bottom={s.m05}
-      container={screen.container}
-    >
-      {({ x05, y06, y075, x, y }) => {
-        return (
-          <div className="relative"
-          
-          style={{
-            ...MOTION_BLUR_ADD_RANDOM_PROPS,
-
-          }}
-          >
-            <>{children}</>
-            <motion.div
-              className="absolute z-0"
-              style={{
-                ...boxStyle,
-                y: y06,
-              }}
-            >
-              <_CommonReorderPlaceholder
-                boxProps={boxProps}
-                itemDimensions={
-                  itemDimensions
-                }
-                isColumn={isColumn}
-              />
-            </motion.div>
-            <Reorder.Group
-              axis={
-                isColumn ? "y" : "x"
-              }
-              values={names}
-              onReorder={select}
-              {...boxProps}
-              style={{
-                ...boxStyle,
-              }}
-            >
-              {names.map(
-                (name, index) => {
-                  isVNumber(size);
-                  const key =
-                    resolveCompositeKey(
-                      "reorder",
-                      name
-                    );
-                  const controlKey =
-                    resolveCompositeKey(
-                      name,
-                      "control"
-                    );
-                  return (
-                    <Reorder.Item
-                      key={key}
-                      value={name}
-                      whileDrag={{
-                        cursor:
-                          "grabbing",
-                      }}
-                      style={{
-                        ...itemDimensions,
-                        filter:
-                          is5RandomPicsHover
-                            ? "blur(6px)"
-                            : "",
-                        left: 0,
-                        cursor: "grab",
-                      }}
-                      {...motionHandlers(
-                        key
-                      )}
-                    >
-                      <_CommonReorderControl
-                        x={x}
-                        y={y075}
-                        key={controlKey}
-                        name={name}
-                        title={
-                          controlKey
-                        }
-                        isColumn={
-                          isColumn
-                        }
-                        index={index}
-                        itemDimensions={
-                          itemDimensions
-                        }
-                        imageDimensions={
-                          imageDimensions
-                        }
-                        deselect={
-                          deselect
-                        }
-                        add={add}
-                        pics={pics}
-                      />
-                      {!isHover(
-                        LEFT_BUTTONS_CLEAR_TITLE
-                      ) &&
-                        !isVideoPlayerButtonHover && (
-                          <PicDisplay
-                            key={resolveCompositeKey(
-                              "pic-display",
-                              name
-                            )}
-                            name={name}
-                            whileTap={{
-                              cursor:
-                                "grabbing",
-                            }}
-                            style={{
-                              left: 0,
-                              top: y06,
-                              zIndex:
-                                index +
-                                2,
-                              ...imageDimensions,
-                            }}
-                            transition={{
-                              duration: 0.6,
-                              ease: "easeIn",
-                            }}
-                          />
-                        )}
-                    </Reorder.Item>
-                  );
-                }
-              )}
-            </Reorder.Group>
-          </div>
-        );
+    <footer
+      className="relative h-0 w-full z-10"
+      style={{
+        left: container.left - s.m,
+        bottom: container.height / 2+s.m,
+        width: container.width + s.m,
       }}
-    </_RootReorderDragger>
+    >
+      <_RootReorderBackground />
+      <_RootReorderPlaceholders />
+      <_RootReorderList {...props} />
+      <_RootReorderControlsSides />
+      <_RootReorderDraggerSides />
+      <_RootReorderDraggerTop />
+    </footer>
   );
 };
-{
-  /* <_CommonReorderControls
-              add={add}
-              pics={pics}
-              names={names}
-              deselect={deselect}
-              boxProps={boxProps}
-              itemDimensions={
-                itemDimensions
-              }
-              x={x05}
-              y={y}
-              isColumn={isColumn}
-            /> */
-}

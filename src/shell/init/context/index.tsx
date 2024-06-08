@@ -4,7 +4,6 @@ import { TInitContext, TInitContextProviderProps } from "~/shell/init/context/ty
 import { useBlur } from "~/shell/init/context/blur";
 import { useCursor } from "~/shell/init/context/cursor";
 import { useDragger } from "~/shell/init/context/dragger";
-import { useOnscreen } from "~/shell/ready/context/hooks/onscreen";
 
 const InitContext = createContext(
   {} as TInitContext

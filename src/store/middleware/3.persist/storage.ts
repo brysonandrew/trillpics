@@ -18,8 +18,10 @@ const persistKey = resolveCompositeKey(
 );
 
 export const PERSIST_STATE_RECORD = {
-  fps: "fps",
+  picsCount: "picsCount",
   pics: "pics",
+  audioBlob: "audioBlob",
+  sequences: "sequences",
 } as const;
 
 const KEYS = Object.keys(
@@ -34,9 +36,10 @@ export const PERSIST_STORAGE: PersistOptions<
   partialize: (state: TState) =>
     KEYS.reduce(
       (a, key: TPersistKey) => {
+        const value = state[key];
         return {
           ...a,
-          [key]: state[key],
+          [key]: value,
         };
       },
       {} as TPersistPartializedState

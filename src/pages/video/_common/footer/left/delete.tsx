@@ -1,12 +1,12 @@
 import type { FC } from "react";
 import { boxSize } from "~uno/rules/box/size";
-import { LeftButtonsClear } from "~/pics/hud/left/clear";
+import { LeftButtonsClear } from "~/pages/video/_root/clear";
 import { LinesVertical } from "~/components/lines/vertical";
-import { useContextReady } from "~/shell/ready/context";
+import { useReadyContext } from "~/shell/ready/context";
 
 export const FooterNavDelete: FC =
   () => {
-    const { screen } = useContextReady();
+    const { screen } = useReadyContext();
 
     const container = screen.container;
     const bSize = boxSize();

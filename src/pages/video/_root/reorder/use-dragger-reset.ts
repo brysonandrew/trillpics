@@ -1,15 +1,14 @@
 import { useEffect } from "react";
 import { animate } from "framer-motion";
-import { TMain } from "~/shell/init/context/types";
+import { useInitContext } from "~/shell/init/context";
 
 type TConfig = {
-  toY: number;
-  main: TMain;
+  to: number;from:number
 };
 export const useDraggerReset = ({
-  toY,
-  main,
+  to,from
 }: TConfig) => {
+  const { main } = useInitContext();
   useEffect(() => {
     if (
       main.dragger.animateY !== null
@@ -19,13 +18,16 @@ export const useDraggerReset = ({
     main.dragger.animateY =
       animate<number>(
         main.dragger.y,
-        toY,
+        to,
         {
           ease: "easeIn",
           duration: 0.4,
         }
       );
-  }, [toY]);
+    return () => {
+      main.dragger.y.set(from);
+    };
+  }, [to,from]);
 };
 export type TUseUseDraggerResetResult =
   ReturnType<typeof useDraggerReset>;

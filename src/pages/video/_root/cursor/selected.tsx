@@ -4,7 +4,7 @@ import {
   motion,
 } from "framer-motion";
 import { IconsVideo } from "~/components/icons/video/video";
-import { useContextReady } from "~/shell/ready/context";
+import { useReadyContext } from "~/shell/ready/context";
 import { resolvePositionFromCell } from "~/pics/grid/pic/cursor/position-from-cell";
 import { PRESENCE_OPACITY } from "@brysonandrew/motion-config-constants";
 import { TUsePicSelected } from "~/hooks/pic/selected";
@@ -19,7 +19,7 @@ export const Video_RootCursorSelected: FC<
     maybeCheck,
     size,
   } = props;
-  const { scrollY } = useContextReady();
+  const { scrollY } = useReadyContext();
 
   return (
     <AnimatePresence>

@@ -1,10 +1,10 @@
-import { useContextReady } from "~/shell/ready/context";
+import { useReadyContext } from "~/shell/ready/context";
 import { useBlurAnimate } from "~/hooks/animate/blur/animate";
 
 export const useScrollTopHandler =
   () => {
     const {  ref } =
-      useContextReady();
+      useReadyContext();
     // const handleBlur = useBlurAnimate(
     //   "scrollY",
     //   20

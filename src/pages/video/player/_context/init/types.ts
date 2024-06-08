@@ -1,10 +1,6 @@
-import { PropsWithChildren } from "react";
-import {
-  TPlayerInstance,
-  TPlayerInstanceReady,
-} from "~/pages/video/player/_context/ready/types";
+import { TPlayerInstance } from "~/pages/video/player/_context/ready/types";
 
-export type TPlayerInitProps = {
+export type TPlayerInitState = {
   playerInstance: TPlayerInstance;
 };
 export type TInitVideoState = {
@@ -21,10 +17,10 @@ export type TPartialInitVideoState =
   Partial<TInitVideoState>;
 
 export type TPlayerInitContext =
-TPlayerInitProps & 
+  TPlayerInitState &
     TInitVideoState & {
       updatePlayerInstance(
-        playerInstance: TPlayerInstanceReady
+        partial: TPlayerInstance
       ): void;
       updateState(
         partial: TPartialInitVideoState

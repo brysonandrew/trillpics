@@ -4,7 +4,10 @@ import { TPic } from "~/store/state/pics/types";
 import { PicDisplayCell } from "~/pics/grid/pic/cell";
 import { FULLSCREEN_Z } from "~/constants/dom";
 import { usePicSelectedRead } from "~/hooks/pic/selected/read";
-import { ZOOM_PARAM_KEY } from "~/hooks/pic/constants";
+import {
+  QUERY_PARAM_KEYS,
+  ZOOM_PARAM_KEY,
+} from "~/hooks/pic/constants";
 
 export type TCell = {
   row: number;
@@ -24,7 +27,7 @@ export const Pic: FC<TPicProps> = ({
     isRemoving: isUnzooming,
   } = usePicSelectedRead(
     name,
-    ZOOM_PARAM_KEY
+    QUERY_PARAM_KEYS[ZOOM_PARAM_KEY]
   );
 
   return (
