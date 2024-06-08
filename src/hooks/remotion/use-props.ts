@@ -13,10 +13,13 @@ import { TPicSeriesProps } from "~/components/remotion/pic-series/types";
 export const useRemotionProps = (
   picVideoInputs: TPicSeriesProps = DEFAULT_INPUT
 ) => {
-  const { pics: allPics } =
-    useTrillPicsStore(({ pics }) => ({
-      pics,
-    }));
+  const { pics: allPics, audioBlob } =
+    useTrillPicsStore(
+      ({ pics, audioBlob }) => ({
+        pics,
+        audioBlob,
+      })
+    );
   const canvasDimensions = DIMENSIONS;
   const dimensions =
     dimensionsWithinPlayerBounds({
@@ -44,6 +47,15 @@ export const useRemotionProps = (
       seconds,
       isPics: count > 0,
       dimensions,
+      ...(audioBlob &&
+      audioBlob instanceof Blob
+        ? {
+            audioSrc:
+              window.URL.createObjectURL(
+                audioBlob
+              ),
+          }
+        : {}),
     },
     ...canvasDimensions,
   };

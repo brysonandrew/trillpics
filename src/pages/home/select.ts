@@ -1,6 +1,9 @@
 import { useReadyContext } from "~/shell/ready/context";
 import { useClickGrid } from "~/shell/ready/context/hooks/click";
-import { ZOOM_PARAM_KEY } from "~/hooks/pic/constants";
+import {
+  QUERY_PARAM_KEYS,
+  ZOOM_PARAM_KEY,
+} from "~/hooks/pic/constants";
 import { usePicSelected } from "~/hooks/pic/selected";
 import { useTrillPicsStore } from "~/store/middleware";
 
@@ -29,7 +32,7 @@ export const useHomeClickSelect =
     );
     const { ref } = useReadyContext();
     const props = usePicSelected(
-      ZOOM_PARAM_KEY
+      QUERY_PARAM_KEYS[ZOOM_PARAM_KEY]
     );
     const handleClick = () => {
       if (props.isSelectedPics) {
@@ -44,8 +47,17 @@ export const useHomeClickSelect =
       }
     };
     const isDisabled = Boolean(
-      props.isSelectedPics || props.isRemoving || hoverKeys.length>0
+      props.isSelectedPics ||
+        props.isRemoving ||
+        hoverKeys.length > 0
     );
-    useClickGrid(handleClick,isDisabled);
-    return { ...props,onClick:handleClick,isDisabled };
+    useClickGrid(
+      handleClick,
+      isDisabled
+    );
+    return {
+      ...props,
+      onClick: handleClick,
+      isDisabled,
+    };
   };

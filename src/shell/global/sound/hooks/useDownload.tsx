@@ -1,13 +1,26 @@
+import { AUDIO_SRC_KEY } from "~/hooks/pic/constants";
+import { useQueryParamsSet } from "~/hooks/query-params";
+
 export const useDownload = () => {
+  const queryParams = useQueryParamsSet(
+    AUDIO_SRC_KEY
+  );
+
   const handler = (audioBlob: Blob) => {
+    if (queryParams.curr) {
+      window.URL.revokeObjectURL(
+        queryParams.curr
+      );
+    }
     const url =
-      window?.URL?.createObjectURL?.(
+      window.URL.createObjectURL(
         audioBlob
       );
     if (!url) {
       console.log("no url");
       return;
     }
+    queryParams.set(url);
     const a =
       document.createElement("a");
     a.style.display = "none";
@@ -17,9 +30,6 @@ export const useDownload = () => {
     a.click();
     setTimeout(() => {
       document.body.removeChild(a);
-      window?.URL?.revokeObjectURL?.(
-        url
-      );
     }, 100);
   };
 

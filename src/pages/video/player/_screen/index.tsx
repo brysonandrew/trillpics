@@ -43,14 +43,6 @@ export const VideoPlayer_Screen =
         <PlayerBackground />
         <RemotionPlayer
           {...inputProps}
-          {...(audioBlob
-            ? {
-                audioSrc:
-                  window.URL.createObjectURL(
-                    audioBlob
-                  ),
-              }
-            : {})}
           base="remotion"
         />
         <AnimatePresence mode="wait">

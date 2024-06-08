@@ -27,7 +27,7 @@ export const Video_RootReorder: FC<
       className="relative h-0 w-full z-10"
       style={{
         left: container.left - s.m,
-        bottom: container.height / 2,
+        bottom: container.height / 2+s.m,
         width: container.width + s.m,
       }}
     >

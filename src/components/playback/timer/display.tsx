@@ -7,18 +7,21 @@ export type TTimerDisplayProps = {
   unit: "frames" | "seconds";
 };
 export const TimerDisplay: FC<
-TTimerDisplayProps
+  TTimerDisplayProps
 > = ({ elapsed, unit }) => {
   const { fps } =
     useContextPlayer_Init();
+
   const totalFrames =
     unit === "frames"
       ? elapsed
       : elapsed * fps;
+      
   const totalSeconds =
     unit === "seconds"
       ? elapsed
       : elapsed / fps;
+
   const m = String(
     Math.floor(totalSeconds / 60)
   ).padStart(2, "0");

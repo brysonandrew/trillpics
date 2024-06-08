@@ -13,7 +13,6 @@ import clsx from "clsx";
 import { resolveAccessibilityTitles } from "@brysonandrew/utils-attributes";
 import { boxSize } from "~uno/rules/box/size";
 import { THudContainer } from "~/pics/hud";
-import { TDraggerMotion } from "~/shell/init/context/dragger";
 import { TButtonMotionProps } from "@brysonandrew/config-types";
 
 type TProps = Omit<
@@ -39,7 +38,9 @@ export const _RootReorderDragger: FC<
 }) => {
   const s = boxSize();
   const b =
-  bottom + container.height / 2 - s.m6;
+    bottom +
+    container.height / 2 -
+    s.m6;
   const { main, move } =
     useReadyContext();
   const { x, y } = main.dragger;
@@ -71,8 +72,8 @@ export const _RootReorderDragger: FC<
 
     const y = main.dragger.y.get();
     if (y === main.dragger.prevY) {
-      const openY =0;
-       // -container.height / 4;
+      const openY = 0;
+      // -container.height / 4;
       const currY =
         main.dragger.y.get();
       const nextY =

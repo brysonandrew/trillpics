@@ -3,6 +3,7 @@ import { IconsGallery } from "~/components/icons/pic/gallery";
 import { IconsPlay } from "~/components/icons/playback/play";
 import { IconsMovie } from "~/components/icons/movie";
 import { ROUTES_PATHS } from "~/routes/pages";
+import { IconsVideo } from "~/components/icons/video/video";
 
 export const NAV_ITEMS = [
   [
@@ -21,7 +22,7 @@ export const NAV_ITEMS = [
     "Music Sequencer",
   ],
   [
-    IconsPlay,
+    IconsVideo,
     ROUTES_PATHS["/video/player"],
     "Viewing Room",
   ],

@@ -16,7 +16,6 @@ import clsx from "clsx";
 import { PillBText } from "~/components/buttons/pill/b/text";
 import { resolveCompositeKey } from "@brysonandrew/utils-key";
 import { useInitContext } from "~/shell/init/context";
-import { AURA } from "@brysonandrew/svg-filter";
 
 type TProps = {
   container: TDimensions;
@@ -24,52 +23,50 @@ type TProps = {
 export const PicsHudFooterNav: FC<
   TProps
 > = ({ container }) => {
+  const s = boxSize();
   const { pathname } = useLocation();
   const { main } = useInitContext();
-  const navItemWidth =
-    container.width / 3;
+  const navItemGap =
+    container.width / 2;
   useEffect(() => {
     const index = NAV_ITEMS.findIndex(
       ([_, path]) => path === pathname
     );
     animate(
       main.dragger.navX,
-      -(navItemWidth + s.m05 - s.m0125) * index,
+      -navItemGap * index,
       { ease: "easeOut" }
     );
   }, [pathname]);
 
-  const s = boxSize();
   const borderRadius = boxRadius();
   const { handlers } = useHoverKey();
-
+  const width =
+    (navItemGap + s.m / 3) * 3;
   return (
     <motion.nav
-      className="relative py-0 border dark:border-black-05 border-white-05"
+      className={clsx(
+        "relative py-0"
+        // "border dark:border-black-02 border-white-02"
+      )}
       style={{
         top: container.height - s.m,
         left:
-          container.width / 2 -
-          s.m05 -
-          s.m025,
-        width:
-          navItemWidth *
-          NAV_ITEMS.length,
+          container.width / 2 - s.m05,
+        width,
         borderRadius,
-        padding: s.m025,
-        // backdropFilter:
-        //   AURA.GLOBAL.value, // DUO_TONE_PROPS.filter ,// "blur(20px 0px)",
+        // padding: s.m0125,
         x: main.dragger.navX,
       }}
       {...handlers("nav")}
     >
-      <div
-        className="fill dark:bg-black bg-black opacity-10"
+      {/* <div
+        className="absolute top-3/4 w-full h-px dark:bg-white bg-black opacity-20"
         style={{
           borderRadius,
           backdropFilter: "blur(4px)",
         }}
-      />
+      /> */}
 
       <ul className="row-space w-full">
         {NAV_ITEMS.map(
@@ -93,20 +90,25 @@ export const PicsHudFooterNav: FC<
                     "selected",
                     title
                   )}
-                  className="relative flex flex-row items-center pr-4 gap-2 z-10"
+                  className={clsx(
+                    "relative row z-10"
+                  )}
+                  style={{
+                    width: s.m,
+                    height: s.m,
+                    gap: s.m025,
+                  }}
                 >
-                  <motion.div
-                    className="absolute inset-0 border bg-white-02 dark:bg-black-02 border-white-02 dark:border-black-02"
-                    layoutId="selected-border"
-                    style={{
-                      borderRadius,
-                    }}
-                  />
                   <PillBLayout
                     Icon={Icon}
                   />
                   <PillBText
-                    layoutId={title}
+                    {...(true
+                      ? {
+                          layoutId:
+                            title,
+                        }
+                      : {})}
                   >
                     {title}
                   </PillBText>
@@ -126,26 +128,35 @@ export const PicsHudFooterNav: FC<
                     : null,
                   isNext ? "next" : null
                 )}
-                className="relative grow z-0"
+                className={clsx(
+                  "flex relative z-0",
+                  isNext
+                    ? "justify-end"
+                    : "justify-start"
+                )}
                 style={{
-                  width: navItemWidth,
+                  width: s.m,
                 }}
               >
                 <FooterNavLink
                   to={to}
                   title={title}
                   classValue={clsx(
-                    "flex items-center gap-2 grow",
+                    "inline-flex items-center dark:bg-black-02 bg-white-02",
                     isNext
-                      ? "flex-row-reverse"
-                      : "flex-row"
+                      ? "flex-row-reverse pl-4"
+                      : "flex-row pr-4"
                   )}
+                  style={{
+                    borderRadius,
+                    gap: s.m025,
+                  }}
                 >
                   <PillBLayout
                     Icon={Icon}
                   />
                   <PillBText
-                    {...(isNext
+                    {...(true
                       ? {
                           layoutId:
                             title,
@@ -154,7 +165,6 @@ export const PicsHudFooterNav: FC<
                   >
                     {title}
                   </PillBText>
-                  <LinesHorizontal />
                 </FooterNavLink>
               </li>
             );

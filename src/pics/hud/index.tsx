@@ -7,7 +7,6 @@ import { PicsHudHeader } from "~/pics/hud/header";
 import { PicsHudLeft } from "~/pics/hud/left";
 import { boxSize } from "~uno/rules/box/size";
 import { withControlsCheck } from "~/store/hocs/with-controls-check";
-import { PicsHudFooter } from "~/pics/hud/footer";
 import { PicsHudFooterNav } from "~/pics/hud/nav";
 
 export type THudContainer = Extract<

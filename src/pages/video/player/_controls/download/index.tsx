@@ -52,7 +52,7 @@ export const Download: FC<
     useHoverKey();
 
   const title = "Download video";
-  console.log(audioBlob);
+  // console.log(audioBlob);
   // const dl = async (blob: Blob) => {};
 
   // const mutationFn: MutationFunction<
@@ -101,18 +101,20 @@ export const Download: FC<
         isDownloadComplete: false,
       })
     );
-  const reset = () =>
+  const reset = (partial = {}) =>
     set({
       download: null,
       progress: null,
       error: null,
       logs: [],
-      isDownloadComplete: true,
+      ...partial,
     });
   const { trigger } = useTimebomb(
     1400,
     () => {
-      reset();
+      reset({
+        isDownloadComplete: true,
+      });
       trigger1();
     }
   );
@@ -148,18 +150,21 @@ export const Download: FC<
     },
   });
   const handleGenerate = () => {
-    console.log(input);
+    console.log(
+      "handleGenerate ",
+      input
+    );
 
     set({ logs: [], progress: null });
     mutate({
-      ...(audioBlob
-        ? {
-            audioSrc:
-              window.URL.createObjectURL(
-                audioBlob
-              ),
-          }
-        : {}),
+      // ...(audioBlob && audioBlob instanceof
+      //   ? {
+      //       audioSrc:
+      //         window.URL.createObjectURL(
+      //           audioBlob
+      //         ),
+      //     }
+      //   : {}),
       ...input,
     });
   };

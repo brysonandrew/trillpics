@@ -4,7 +4,6 @@ import { HeaderLeft } from "~/pics/header/left";
 import { useReadyContext } from "~/shell/ready/context";
 import { TDimensions } from "@brysonandrew/config-types";
 import { useTimebomb } from "~/hooks/use-time-bomb";
-import { boxSize } from "~uno/rules/box/size";
 
 type TProps = {
   container: TDimensions;
