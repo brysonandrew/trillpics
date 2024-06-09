@@ -16,6 +16,7 @@ import { HUD_LEFT_ADD_RANDOM_HOVER_KEY } from "~/pages/video/_root/add-random";
 import { resolveCompositeKey } from "@brysonandrew/utils-key";
 import clsx from "clsx";
 import { _RootReorderControls } from "~/pages/video/_root/reorder/controls";
+import { useHoverKey } from "~/hooks/use-hover-key";
 
 type TProps = TUsePicSelected;
 export const _RootReorderList: FC<
@@ -93,6 +94,7 @@ export const _RootReorderList: FC<
         width: size,
       }
     : imageDimensions;
+    const {motionHandlers} =useHoverKey()
 
   return (
     <Reorder.Group
@@ -104,6 +106,7 @@ export const _RootReorderList: FC<
         ...boxStyle,
         top: s.m4,
       }}
+      {...motionHandlers('_RootReorderList')}
     >
       {names.map((name, index) => {
         isVNumber(size);
@@ -155,7 +158,7 @@ export const _RootReorderList: FC<
               !isVideoPlayerButtonHover && (
                 <PicDisplay
                   key={resolveCompositeKey(
-                    "pic-display",
+                    "reorder-list-pic-display",
                     name
                   )}
                   name={name}

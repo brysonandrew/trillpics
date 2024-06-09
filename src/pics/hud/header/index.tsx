@@ -20,6 +20,7 @@ export const PicsHudHeader: FC<
       />
       {foundationValue && (
         <>
+        
           <PicsHudHeaderRight
             key="PicsHudHeaderRight"
             foundation={foundationValue}

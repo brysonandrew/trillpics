@@ -7,9 +7,9 @@ import { useReadyContext } from "~/shell/ready/context";
 export const Pics: FC = () => {
   const { onScroll, ref, screen } =
     useReadyContext();
-  const { table } = useTrillPicsStore(
-    ({ table }) => ({
-      table,
+  const { table,hoverKeys } = useTrillPicsStore(
+    ({ table,hoverKeys }) => ({
+      table,hoverKeys
     })
   );
 
@@ -18,6 +18,7 @@ export const Pics: FC = () => {
       {table.isVerticalScroll && (
         <ScrollbarSeam />
       )}
+      <div className="fixed left-1/2 top-4">{hoverKeys}</div>
       <Grid
         rows={table.rows}
         count={table.count}

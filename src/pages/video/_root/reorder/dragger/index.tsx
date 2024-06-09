@@ -23,13 +23,11 @@ type TProps = Omit<
   isColumn: boolean;
   left: number;
   size?: number;
-  bottom?: number;
 };
 export const _RootReorderDragger: FC<
   TProps
 > = ({
   container,
-  bottom = 0,
   size,
   isColumn,
   style,
@@ -37,10 +35,8 @@ export const _RootReorderDragger: FC<
   ...props
 }) => {
   const s = boxSize();
-  const b =
-    bottom +
-    container.height / 2 -
-    s.m6;
+  const bottom =
+    container.height / 2 - s.m15;
   const { main, move } =
     useReadyContext();
   const { x, y } = main.dragger;
@@ -54,10 +50,10 @@ export const _RootReorderDragger: FC<
     main.cursor.isOnGrid = true;
   };
 
-  const { isHover, motionHandlers } =
-    useHoverKey({
-      handlers: { start, stop },
-    });
+  // const { isHover, motionHandlers } =
+  //   useHoverKey({
+  //     handlers: { start, stop },
+  //   });
 
   const handlePointerDown: PointerEventHandler<
     HTMLButtonElement
@@ -77,7 +73,7 @@ export const _RootReorderDragger: FC<
       const currY =
         main.dragger.y.get();
       const nextY =
-        openY / 2 < currY ? openY : b;
+        openY / 2 < currY ? openY : bottom;
       animate<number>(
         main.dragger.y,
         nextY,
@@ -110,7 +106,7 @@ export const _RootReorderDragger: FC<
       drag
       dragConstraints={{
         left: 0, // -container.width * 0.5,
-        bottom: b,
+        bottom,
 
         // (isColumn ? 0.8 : 0.4),,
         right: 0, // container.width * 0.5,
@@ -118,15 +114,15 @@ export const _RootReorderDragger: FC<
       }}
       className={clsx(
         "center absolute rounded-md _gradient-radial",
-        isHover(title)
-          ? "grayscale-100"
-          : ""
+        // isHover(title)
+        //   ? "grayscale-100"
+        //   : ""
       )}
       style={{
         x,
         y,
         top: 0,
-        bottom: b,
+        bottom,
         left,
         width: size,
         height: size,
@@ -137,7 +133,7 @@ export const _RootReorderDragger: FC<
       )}
       onPointerDown={handlePointerDown}
       onPointerUp={handlePointerUp}
-      {...motionHandlers(title)}
+      // {...motionHandlers(title)}
       {...props}
     >
       <div

@@ -37,7 +37,7 @@ export const usePicVideoReadInputs =
       count,
       isPics,
       dimensions,
-      durationInFrames: seconds * fps,
+      durationInFrames: Math.ceil(seconds * fps),
       audioSrc,
       fps,
     };

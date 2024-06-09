@@ -43,7 +43,7 @@ export const VITE_CONFIG: UserConfig = {
     },
   },
   plugins: [
-    // nodePolyfills({ exclude: ["fs"] }),
+    nodePolyfills({ exclude: ["fs"] }),
     unoCss({ inspector: true }),
     tsConfigPaths({
       loose: true,

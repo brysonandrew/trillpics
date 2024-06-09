@@ -6,8 +6,10 @@ import {
   useMemo,
   useState,
 } from "react";
+import { useMotionValue } from "framer-motion";
 import { useDownload } from "~/shell/global/sound/hooks/useDownload";
 import { TSoundContext } from "~/shell/global/sound/types";
+import { isString } from "~/utils/validation/is/string";
 
 const Context =
   createContext<TSoundContext>(
@@ -24,13 +26,18 @@ export const ShellSoundProvider: FC<
 > = ({ children }) => {
   const [audioUrl, setAudioUrl] =
     useState<string | null>(null);
+  const isAudioUrl = isString(audioUrl);
+
+  const saveProgress =
+    useMotionValue(0);
+
   const { context, master, ...sound } =
     useMemo(() => {
       const context =
         new AudioContext();
       const master =
         context.createGain();
-      master.gain.value = 6;
+      master.gain.value = 0.1;
       master.connect(
         context.destination
       );
@@ -56,6 +63,7 @@ export const ShellSoundProvider: FC<
         recorder,
         chunks,
         arrayBuffer,
+        saveProgress,
       };
     }, []);
 
@@ -78,14 +86,46 @@ export const ShellSoundProvider: FC<
     sound.isRecording = true;
   };
 
-  
-
-
   const stop = () => {
     sound.recorder.stop();
     sound.isRecording = false;
   };
+  useEffect(() => {
+    sound.recorder.onstop = (
+      event: Event
+    ) => {
+      console.log(
+        "sound.recorder.onstop "
+      );
+      console.dir(event);
+      console.log(sound.chunks);
+      const audioBlob = new Blob(
+        sound.chunks,
+        {
+          type: "audio/webm",
+        }
+      );
+      // set({ audioBlob });
 
+      if (isAudioUrl) {
+        window.URL.revokeObjectURL(
+          audioUrl
+        );
+      }
+      const url =
+        window.URL.createObjectURL(
+          audioBlob
+        );
+
+      setAudioUrl(url);
+
+      // download(url);
+
+      console.log(
+        `Recorder stopped: Recorded chunks: ${sound.chunks.length}`
+      );
+    };
+  }, []);
   return (
     <Context.Provider
       value={{
@@ -94,6 +134,7 @@ export const ShellSoundProvider: FC<
         context,
         master,
         sound,
+        saveProgress,
         audioUrl,
       }}
     >

@@ -4,6 +4,7 @@ import { TCommonProps } from "~/pages/video/_root/reorder/types";
 import { MAX_COUNT } from "~/pages/video/_root/reorder/constants";
 import { boxRadius } from "~uno/rules/box/radius";
 import { boxSize } from "~uno/rules/box/size";
+import { useHoverKey } from "~/hooks/use-hover-key";
 
 type TProps = TCommonProps;
 export const _RootReorderPlaceholdersList: FC<
@@ -15,6 +16,7 @@ export const _RootReorderPlaceholdersList: FC<
 }) => {
   const s = boxSize();
   const borderRadius = boxRadius();
+  const {handlers} =useHoverKey()
   return (
     <ul
       className={clsx(
@@ -26,6 +28,7 @@ export const _RootReorderPlaceholdersList: FC<
         // y,
         gap: boxProps.style?.gap,
       }}
+      {...handlers('_RootReorderPlaceholdersList')}
     >
       {[...Array(MAX_COUNT)].map(
         (_, index) => (

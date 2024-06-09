@@ -2,8 +2,8 @@ import { FC, useEffect } from "react";
 import {
   animate,
   motion,
+  MotionConfig,
 } from "framer-motion";
-import { TDimensions } from "@brysonandrew/config-types";
 import { boxSize } from "~uno/rules/box/size";
 import { boxRadius } from "~uno/rules/box/radius";
 import { NAV_ITEMS } from "~/pics/hud/nav/constants";
@@ -16,6 +16,15 @@ import { PillBText } from "~/components/buttons/pill/b/text";
 import { resolveCompositeKey } from "@brysonandrew/utils-key";
 import { useInitContext } from "~/shell/init/context";
 import { THudContainer } from "~/pics/hud";
+
+const SPRING = {
+  type: "spring",
+  stiffness: 240,
+  damping: 60,
+  bounce: 10,
+  restDelta: 0.001,
+  // duration: 2
+} as const;
 
 type TProps = {
   container: THudContainer;
@@ -32,10 +41,10 @@ export const PicsHudFooterNav: FC<
     const index = NAV_ITEMS.findIndex(
       ([_, path]) => path === pathname
     );
-    animate(
+    animate<number>(
       main.dragger.navX,
       -navItemGap * index,
-      { ease: "easeOut" }
+      SPRING
     );
   }, [pathname]);
 
@@ -44,111 +53,114 @@ export const PicsHudFooterNav: FC<
   const width =
     (navItemGap + s.m / 3) * 3;
   return (
-    <motion.nav
-      className={clsx(
-        "relative py-0"
-        // "border dark:border-black-02 border-white-02"
-      )}
-      style={{
-        top: container.height - s.m,
-        left:
-          container.width / 2 - s.m05,
-        width,
-        borderRadius,
-        // padding: s.m0125,
-        x: main.dragger.navX,
-      }}
-      {...handlers("nav")}
-    >
-      <ul className="row-space w-full">
-        {NAV_ITEMS.map(
-          (
-            [Icon, to, title],
-            index,
-            arr
-          ) => {
-            const selectedIndex =
-              arr.findIndex(
-                ([_, to]) =>
-                  to === pathname
-              );
-            const isSelected =
-              selectedIndex === index;
+    <MotionConfig transition={SPRING}>
+      <motion.nav
+        className={clsx(
+          "relative py-0 h-0"
+          // "border dark:border-black-02 border-white-02"
+        )}
+        style={{
+          top: container.height - s.m,
+          left:
+            container.width / 2 - s.m05,
+          width,
+          borderRadius,
+          // padding: s.m0125,
+          x: main.dragger.navX,
+        }}
+        {...handlers("PicsHudFooterNav")}
+      >
+        <ul className="row-space w-full h-0">
+          {NAV_ITEMS.map(
+            (
+              [Icon, to, title],
+              index,
+              arr
+            ) => {
+              const selectedIndex =
+                arr.findIndex(
+                  ([_, to]) =>
+                    to === pathname
+                );
+              const isSelected =
+                selectedIndex === index;
 
-            if (isSelected)
+              if (isSelected)
+                return (
+                  <li
+                    key={resolveCompositeKey(
+                      "selected",
+                      title
+                    )}
+                    className={clsx(
+                      "relative center z-10 pointer-events-none opacity-50"
+                    )}
+                    style={{
+                      width: s.m,
+                      height: s.m,
+                      gap: s.m025,
+                    }}
+                  >
+                    {/* <PillBLayout
+                    Icon={Icon}
+                  /> */}
+                    <Icon />
+                    {!container.isTablet && (
+                      <PillBText
+                        layoutId={title}
+                      >
+                        {title}
+                      </PillBText>
+                    )}
+                  </li>
+                );
+
+              const isNext =
+                selectedIndex < index;
               return (
                 <li
                   key={resolveCompositeKey(
-                    "selected",
                     title
                   )}
                   className={clsx(
-                    "relative center z-10"
+                    "flex relative z-0",
+                    isNext
+                      ? "justify-end"
+                      : "justify-start"
                   )}
                   style={{
                     width: s.m,
-                    height: s.m,
-                    gap: s.m025,
                   }}
                 >
-                  <PillBLayout
-                    Icon={Icon}
-                  />
-                  {!container.isTablet && (
+                  <FooterNavLink
+                    to={to}
+                    title={title}
+                    classValue={clsx(
+                      "inline-flex items-center dark:bg-black-02 bg-white-02",
+                      isNext
+                        ? "flex-row-reverse pl-4"
+                        : "flex-row pr-4"
+                    )}
+                    style={{
+                      borderRadius,
+                      gap: s.m025,
+                    }}
+                  >
+                    <PillBLayout
+                      Icon={Icon}
+                    />
                     <PillBText
                       layoutId={title}
                     >
                       {title}
                     </PillBText>
-                  )}
+                  </FooterNavLink>
                 </li>
               );
-
-            const isNext =
-              selectedIndex < index;
-            return (
-              <li
-                key={resolveCompositeKey(
-                  title
-                )}
-                className={clsx(
-                  "flex relative z-0",
-                  isNext
-                    ? "justify-end"
-                    : "justify-start"
-                )}
-                style={{
-                  width: s.m,
-                }}
-              >
-                <FooterNavLink
-                  to={to}
-                  title={title}
-                  classValue={clsx(
-                    "inline-flex items-center dark:bg-black-02 bg-white-02",
-                    isNext
-                      ? "flex-row-reverse pl-4"
-                      : "flex-row pr-4"
-                  )}
-                  style={{
-                    borderRadius,
-                    gap: s.m025,
-                  }}
-                >
-                  <PillBLayout
-                    Icon={Icon}
-                  />
-                  <PillBText
-                    layoutId={title}
-                  >
-                    {title}
-                  </PillBText>
-                </FooterNavLink>
-              </li>
-            );
-          }
-        )}
-      </ul>
-    </motion.nav>
+            }
+          )}
+        </ul>
+      </motion.nav>
+    </MotionConfig>
   );
 };

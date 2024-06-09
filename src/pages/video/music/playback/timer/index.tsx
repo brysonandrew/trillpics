@@ -12,8 +12,6 @@ export const VideoMusicPlaybackTimer: FC<
   const seconds =
     usePicVideoReadSeconds();
 
-  if (!seconds) return null;
-
   return (
     <PlaybackTimer
       key={resolveCompositeKey(

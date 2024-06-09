@@ -1,14 +1,8 @@
 import { FC, useEffect } from "react";
-import {
-  AnimatePresence,
-  motion,
-} from "framer-motion";
 import { TPillBProps } from "~/components/buttons/pill/b";
 import { trpc } from "~/utils/trpc";
 import { downloadMedia } from "~/pages/video/player/_controls/download/media";
-import { AURA } from "@brysonandrew/svg-filter";
 import { resolvePresence } from "~/utils/animation";
-import { resolveCompositeKey } from "@brysonandrew/utils-key";
 import { TGenerateInput } from "~/types/trpc/generate";
 import { useHoverKey } from "~/hooks/use-hover-key";
 import { usePicVideoReadInputs } from "~/hooks/pic/video/read/inputs/hook";
@@ -41,7 +35,6 @@ export const Download: FC<
 > = ({ children, ...props }) => {
   const s = boxSize();
   const input = usePicVideoReadInputs();
-  console.log(input)
   const { set, audioBlob } =
     useTrillPicsStore(
       ({ set, audioBlob }) => ({

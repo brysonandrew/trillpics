@@ -18,20 +18,18 @@ export const _RootReorderDraggerSides: FC =
           height: 0,
           width: container.width + s.m,
           left: s.m05,
-          bottom: -s.m4,
+          bottom: -s.m6,
         }}
       >
         <_RootReorderDragger
           title="drag controls from left"
           container={container}
-          bottom={s.m05}
           left={0}
           isColumn={false}
         />
         <_RootReorderDragger
           title="drag controls from right"
           container={container}
-          bottom={s.m05}
           left={container.width}
           isColumn={false}
         />

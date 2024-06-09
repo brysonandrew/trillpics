@@ -32,6 +32,6 @@ export const picVideoReadInputs = (
     audioSrc,
     dimensions: PIC_DIMENSIONS,
     fps,
-    durationInFrames: fps * seconds,
+    durationInFrames: Math.ceil(fps * seconds),
   };
 };

@@ -26,8 +26,8 @@ export const PicsHudHeaderRight: FC<
         gap: s.m05,
       }}
     >
-      <LinesHorizontal classValue="hidden lg:flex" sizeClass='border-t' />
-      <HeaderSubtitle classValue="hidden lg:flex" />
+      {/* <LinesHorizontal classValue="hidden lg:flex" sizeClass='border-t' />
+      <HeaderSubtitle classValue="hidden lg:flex" /> */}
       <LinesTopRight
         container={container}
       />

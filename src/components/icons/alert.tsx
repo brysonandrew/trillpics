@@ -2,13 +2,12 @@ import type { FC } from "react";
 import { TSvgProps } from "@brysonandrew/config-types";
 import { IconsSvgGradient18vb24 } from "~/components/icons/svg/gradient/16vb24";
 
-
-export const IconsArrowsLeft: FC<
+export const IconsAlert: FC<
   TSvgProps
 > = (props) => {
   return (
     <IconsSvgGradient18vb24
-      d="M20 11v2H8v2H6v-2H4v-2h2V9h2v2zM10 7H8v2h2zm0 0h2V5h-2zm0 10H8v-2h2zm0 0h2v2h-2z"
+      d="M13 1h-2v2H9v2H7v2H5v2H3v2H1v2h2v2h2v2h2v2h2v2h2v2h2v-2h2v-2h2v-2h2v-2h2v-2h2v-2h-2V9h-2V7h-2V5h-2V3h-2zm0 2v2h2v2h2v2h2v2h2v2h-2v2h-2v2h-2v2h-2v2h-2v-2H9v-2H7v-2H5v-2H3v-2h2V9h2V7h2V5h2V3zm0 4h-2v6h2zm0 8h-2v2h2z"
       {...props}
     />
   );
