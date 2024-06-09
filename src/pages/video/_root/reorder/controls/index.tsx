@@ -46,17 +46,17 @@ export const _RootReorderControls: FC<
 }) => {
   const s = boxSize();
   const borderRadius = boxRadius();
-  const { main } = useReadyContext();
-  const start = () => {
-    main.cursor.isOnGrid = false;
-  };
-  const stop = () => {
-    main.cursor.isOnGrid = true;
-  };
-  const { motionHandlers } =
-    useHoverKey({
-      handlers: { start, stop },
-    });
+  // const { main } = useReadyContext();
+  // const start = () => {
+  //   main.cursor.isOnGrid = false;
+  // };
+  // const stop = () => {
+  //   main.cursor.isOnGrid = true;
+  // };
+  // // const { motionHandlers } =
+  // //   useHoverKey({
+  // //     handlers: { start, stop },
+  // //   });
 
   return (
     <motion.div
@@ -71,7 +71,6 @@ export const _RootReorderControls: FC<
           : -s.m15,
         zIndex: index,
       }}
-      {...motionHandlers(title)}
     >
       <motion.div
         key={`group-${index}`}

@@ -4,7 +4,6 @@ import { Outlet } from "react-router";
 import { ShellReady } from "~/shell/ready";
 import { ShellGlobal } from "~/shell/global";
 import { ShellInit } from "~/shell/init";
-import { LayoutOverlayBackdrop } from "~/components/layout/overlay/backdrop";
 
 export const Shell = () => {
   return (

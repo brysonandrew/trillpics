@@ -2,25 +2,17 @@ import { AUDIO_SRC_KEY } from "~/hooks/pic/constants";
 import { useQueryParamsSet } from "~/hooks/query-params";
 
 export const useDownload = () => {
-  const queryParams = useQueryParamsSet(
-    AUDIO_SRC_KEY
-  );
+  // const queryParams = useQueryParamsSet(
+  //   AUDIO_SRC_KEY
+  // );
 
-  const handler = (audioBlob: Blob) => {
-    if (queryParams.curr) {
-      window.URL.revokeObjectURL(
-        queryParams.curr
-      );
-    }
-    const url =
-      window.URL.createObjectURL(
-        audioBlob
-      );
+  const handler = (url: string) => {
+ 
     if (!url) {
       console.log("no url");
       return;
     }
-    queryParams.set(url);
+    // queryParams.set(url);
     const a =
       document.createElement("a");
     a.style.display = "none";

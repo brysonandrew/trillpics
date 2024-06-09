@@ -26,7 +26,7 @@ export const hoverMultiState: TStateHandler<
       hoverKey
     );
   },
-  hover: (hoverKey?: THoverKey) => {
+  hover: (hoverKey: THoverKey) => {
     const hoverKeys = isDefined(
       hoverKey
     )
@@ -34,7 +34,7 @@ export const hoverMultiState: TStateHandler<
       : [];
 
     set({
-      hoverKeys,
+      hoverKeys:[hoverKey, ...get().hoverKeys],
       isActiveHover:
         get().hoverChecksActive({
           hoverKeys,

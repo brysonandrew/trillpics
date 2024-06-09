@@ -9,6 +9,7 @@ import { _RootReorderDraggerTop } from "~/pages/video/_root/reorder/dragger/top"
 import { _RootReorderPlaceholders } from "~/pages/video/_root/reorder/placeholders";
 import { _RootReorderBackground } from "~/pages/video/_root/reorder/background";
 import { useDraggerReset } from "~/pages/video/_root/reorder/use-dragger-reset";
+import { useHoverKey } from "~/hooks/use-hover-key";
 
 export const Video_RootReorder: FC<
   TUseVideoClickSelect
@@ -17,6 +18,7 @@ export const Video_RootReorder: FC<
     screen: { container },
   } = useReadyContext();
   const s = boxSize();
+  const {handlers} =useHoverKey()
 
   useDraggerReset({
     to: 0,
@@ -27,9 +29,10 @@ export const Video_RootReorder: FC<
       className="relative h-0 w-full z-10"
       style={{
         left: container.left - s.m,
-        bottom: container.height / 2+s.m,
+        bottom: container.height / 2+s.m2,
         width: container.width + s.m,
       }}
+      // {...handlers('Video_RootReorder')}
     >
       <_RootReorderBackground />
       <_RootReorderPlaceholders />

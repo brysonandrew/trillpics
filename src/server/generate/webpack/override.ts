@@ -79,7 +79,7 @@ console.log("██████████████▓▒░ 🧨 ░▒ lin
           "~": srcEntry,
           "~app": appEntry,
           "~uno": unoEntry,
-          "~ops": entry("ops"),
+          // "~ops": entry("ops"),
           // "~root": entry("."),
           "~root/package.json": entry(
             "package.json"

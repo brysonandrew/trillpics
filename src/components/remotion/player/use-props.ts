@@ -33,7 +33,7 @@ export const useRemotionPlayerProps = (
     compositionWidth,
     compositionHeight,
     fps,
-    durationInFrames: fps * inputProps.seconds,
+    durationInFrames: Math.ceil(fps * inputProps.seconds),
     style: {
       cursor: "pointer",
       width: "100%",

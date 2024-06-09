@@ -5,14 +5,11 @@ import {
   useImperativeHandle,
   useRef,
 } from "react";
+import { motion } from "framer-motion";
 import clsx from "clsx";
 import { useTrillPicsStore } from "~/store/middleware";
 import { useReadyContext } from "~/shell/ready/context";
-import {
-  MOTION_BLUR_FILTER_SCROLL_Y_PROPS,
-  MOTION_BLUR_SHUFFLE_PROPS,
-} from "~/shell/init/svg/filters/blur/constants";
-import { DUO_TONE_PROPS } from "~/shell/init/svg/filters/duo-tone";
+import { MOTION_BLUR_SHUFFLE_PROPS } from "~/shell/init/svg/filters/blur/constants";
 
 export type TInnerHandle = {
   isHovering(): boolean;
@@ -97,9 +94,9 @@ const Inner = forwardRef<
       main.cursor.y.set(e.pageY);
       main.cursor.isOnGrid = false;
 
-      // if (hoverKeys.length > 0) {
-      //   set({ hoverKeys: [] });
-      // }
+      if (hoverKeys.length > 0) {
+        set({ hoverKeys: [] });
+      }
       eventRef.current.isHovering =
         false;
     };
@@ -119,24 +116,30 @@ const Inner = forwardRef<
       // }
     };
     return (
-      <ul
+      <motion.ul
         ref={ref}
         className={clsx(className)}
         onPointerOver={handleEnter}
         onPointerEnter={handleEnter}
         onPointerLeave={handleLeave}
         onPointerOut={handleLeave}
+        // animate={{
+        //   opacity:
+        //     hoverKeys.length > 0
+        //       ? 0.1
+        //       : 1,
+        // }}
+        
         style={{
           cursor: "pointer",
           // ...DUO_TONE_PROPS,
           ...MOTION_BLUR_SHUFFLE_PROPS,
-
           ...style,
         }}
         {...props}
       >
         {children}
-      </ul>
+      </motion.ul>
     );
   }
 );

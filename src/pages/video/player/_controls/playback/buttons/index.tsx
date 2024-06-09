@@ -29,7 +29,7 @@ export const PlaybackButtons: FC =
           <PlaybackButtonsForward />
         </div>
         <div className="py-1 center">
-          {/* <_ControlsPlaybackTimer /> */}
+          <_ControlsPlaybackTimer />
         </div>
         <div className="relative row w-full justify-end md:(justify-end w-auto self-end grow) gap-2">
           <PlaybackButtonsMute direction="rtl" />

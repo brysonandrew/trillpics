@@ -23,7 +23,9 @@ type TTimerText = TValueRecord & {
   isStarted: boolean;
 };
 
-export const useAnimatedText = () => {
+export const useAnimatedText = (
+  updater: (elapsed: number) => void
+) => {
   const text =
     useMemo<TTimerText>(() => {
       return {
@@ -43,8 +45,10 @@ export const useAnimatedText = () => {
       text.start = Date.now();
       return;
     }
-    const totalSeconds =
-      (Date.now() - text.start) / 1000;
+    const delta =
+      Date.now() - text.start;
+    updater(delta);
+    const totalSeconds = delta / 1000;
     const m = String(
       Math.floor(totalSeconds / 60)
     )

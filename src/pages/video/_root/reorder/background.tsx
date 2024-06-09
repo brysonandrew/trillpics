@@ -59,7 +59,7 @@ export const _RootReorderBackground: FC =
           height: size ,
           opacity: 0.5,
         }}
-        {...motionHandlers("dragger")}
+        {...motionHandlers("_RootReorderBackground")}
       />
     );
   };

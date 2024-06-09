@@ -2,36 +2,50 @@ import {
   useEffect,
   useState,
 } from "react";
+import { progress } from "framer-motion";
 import { useSoundContext } from "~/shell/global/sound";
 import { useVideoPlayerStyle } from "~/pages/video/player/style";
 import { usePlaySequences } from "~/pages/video/music/playback/play-sequences";
 import { PlayerBackground } from "~/pages/video/player/_background";
 import { PlayerBackgroundOpaque } from "~/pages/video/player/_background/opaque";
 import { boxRadius } from "~uno/rules/box/radius";
-import { IconsPlay } from "~/components/icons/playback/play";
+import {
+  IconsPlay,
+  IconsPlay24,
+} from "~/components/icons/playback/play";
 import { VideoMusicPlaybackTimer } from "~/pages/video/music/playback/timer";
 import { PillBLayout } from "~/components/buttons/pill/b/layout";
-import { useTimeoutRef } from "@brysonandrew/hooks-window";
+import {
+  useTimebomb,
+  useTimeoutRef,
+} from "@brysonandrew/hooks-window";
 import { useTrillPicsStore } from "~/store/middleware";
 import { isDefined } from "~/utils/validation/is/defined";
 import { NOOP } from "@brysonandrew/utils-function";
 import clsx from "clsx";
 import { useDownload } from "~/shell/global/sound/hooks/useDownload";
 import { boxSize } from "~uno/rules/box/size";
+import { TimerCurrentProgress } from "~/pages/video/player/_controls/playback/progress";
+import { IconsSave } from "~/components/icons/save";
+import { SubtitleText } from "~/pics/header/subtitle/text";
+import { usePicVideoReadSeconds } from "~/hooks/pic/video/read/seconds/hook";
+import { IconsArrowsLeft } from "~/components/icons/arrows/left";
+import { IconsAlert } from "~/components/icons/alert";
+import { isString } from "~/utils/validation/is/string";
 
 export const VideoMusicPlayback =
   () => {
-    const [isPlaying, setPlaying] =
-      useState(false);
+    // const [isPlaying, setPlaying] =
+    //   useState(false);
     const s = boxSize();
-    const { timeoutRef, endTimeout } =
-      useTimeoutRef();
+
     const play = usePlaySequences();
     const {
+      audioUrl,
       stop,
       start,
       sound,
-      audioUrl,
+      saveProgress,
     } = useSoundContext();
     const { sequences, set } =
       useTrillPicsStore(
@@ -40,32 +54,25 @@ export const VideoMusicPlayback =
           set,
         })
       );
-    const download = useDownload();
 
-    useEffect(() => {
-      sound.recorder.onstop = (
-        event: Event
-      ) => {
-        console.log(
-          "sound.recorder.onstop "
-        );
-        console.dir(event);
-        console.log(sound.chunks);
-        const audioBlob = new Blob(
-          sound.chunks,
-          {
-            type: "audio/webm",
-          }
-        );
-        set({ audioBlob });
+    const seconds =
+      usePicVideoReadSeconds();
+    const {
+      trigger: trigger1,
+      isArmed: isCoolingDown,
+    } = useTimebomb(seconds * 1000);
 
-        download(audioBlob);
+    const {
+      trigger,
+      isArmed: isPlaying,
+    } = useTimebomb(
+      seconds * 1000,
+      () => {
+        trigger1();
+        stop();
+      }
+    );
 
-        console.log(
-          `Recorder stopped: Recorded chunks: ${sound.chunks.length}`
-        );
-      };
-    }, []);
     const isContent = sequences.some(
       (v) =>
         isDefined(v.activeButton) &&
@@ -75,57 +82,72 @@ export const VideoMusicPlayback =
       useVideoPlayerStyle();
 
     const handleClick = async () => {
-      endTimeout();
-      setPlaying(true);
+      trigger();
       console.log("PLAY");
-
       await play();
       start();
-
-      timeoutRef.current = setTimeout(
-        () => {
-          setPlaying(false);
-          stop();
-        },
-        8000
-      );
-      // if (
-      //   sound.recorder.state ===
-      //   "recording"
-      // ) {
-      //   console.log("STOP");
-      //   stop();
-      // } else {
-
-      // }
     };
     const borderRadius = boxRadius();
+    const borderRadiusM =
+      boxRadius("m");
 
-    const title = "Save music";
+    const title = "Play sequence";
+    // isPlaying
+    //   ? "Saving..."
+    //   : "Save music";
     return (
-      <div
+      <button
         className="relative flex-col flex justify-center"
         style={{
           ...playerStyle,
         }}
+        onClick={
+          isContent && !isPlaying ? handleClick : NOOP
+        }
       >
         <div
-          className="relative row-space w-full"
+          className="relative row-space w-full px-1.5"
           style={{
-            paddingRight: `${s.m05}px`,
+            // paddingRight: `${s.m05}px`,
             borderRadius,
           }}
         >
           <PlayerBackgroundOpaque />
+
           <div
-            className="absolute inset-0 _gradient-radial"
+            className="absolute inset-0 _gradient-radial opacity-50"
             style={{
-              borderRadius,
+              borderRadius:
+                borderRadiusM,
+            }}
+          >
+            <PlayerBackground />
+
+            <TimerCurrentProgress
+              progress={saveProgress}
+              borderRadiusSize="l"
+              classValue="inset-y-0 inset-x-0"
+            />
+          </div>
+          <div
+            className="absolute inset-0 bg-black-05 _gradient-mesh opacity-60"
+            style={{
+              borderRadius:
+                borderRadiusM,
             }}
           />
-          <PlayerBackground />
-          <div className="absolute inset-0 bg-black-05 rounded-lg _gradient-mesh opacity-60" />
-          <button
+          <div
+            className="row"
+            style={{
+              gap: s.m025,
+            }}
+          >
+            <IconsPlay24 />
+            <SubtitleText>
+              {title}
+            </SubtitleText>
+          </div>
+          {/* <button
             title={title}
             className={clsx(
               "relative row",
@@ -147,7 +169,7 @@ export const VideoMusicPlayback =
             <div className="relative uppercase pt-1 font-slab">
               {title}
             </div>
-          </button>
+          </button> */}
           {isContent ? (
             <div className="py-1 center">
               <VideoMusicPlaybackTimer
@@ -160,13 +182,43 @@ export const VideoMusicPlayback =
             </p>
           )}
         </div>
-
-        {audioUrl && (
-          <audio
-            src={audioUrl}
-            controls
-          />
-        )}
-      </div>
+        <div
+          className="row uppercase font-sans"
+          style={{
+            gap: s.m025,
+          }}
+        >
+          {isPlaying ||
+          isCoolingDown ? (
+            <>
+              <IconsSave />
+              <div className="text-xs">
+                {isPlaying
+                  ? "Saving... Please wait until the audio is done playing."
+                  : isCoolingDown
+                  ? "Saved"
+                  : null}
+              </div>
+            </>
+          ) : audioUrl === null ? (
+            <>
+              <IconsAlert />
+              <div className="text-xs">
+                To save your changes you
+                must play the audio from
+                start to finish.
+              </div>
+            </>
+          ) : null}
+        </div>
+      </button>
     );
   };
+<svg
+  xmlns="http://www.w3.org/2000/svg"
+  width="22"
+  height="22"
+  viewBox="0 0 24 24"
+>
+  <path fill="currentColor" />
+</svg>;

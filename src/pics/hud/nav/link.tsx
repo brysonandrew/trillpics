@@ -32,7 +32,7 @@ export const FooterNavLink: FC<
         classValue
       )}
       to={to}
-      {...handlers(to)}
+      {...handlers(title)}
       {...props}
     >
       {children}

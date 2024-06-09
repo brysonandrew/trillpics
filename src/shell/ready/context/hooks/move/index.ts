@@ -54,7 +54,6 @@ export const useMove = ({
       () => {
         set({
           isIdle: true,
-          hoverKeys: [],
           isScrolling: false,
         });
       },

@@ -14,14 +14,13 @@ export const _RootReorderDraggerTop: FC =
     const isColumn =
       container.width < 600;
     const left =
-      (container.width) / 2;//- size;
+      (container.width) / 2 +s.m05;//- size;
 
     return (
       <_RootReorderDragger
         title="Drag video pics grid"
         isColumn={isColumn}
         left={left}
-        bottom={s.m}
         container={container}
         style={{scale:1.28}}
       />
