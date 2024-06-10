@@ -76,13 +76,10 @@ export const webpackOverride: WebpackOverrideFn =
       // browser: {
       //   child_process: false,
       // },
-      externals: [
-        "child_process",
-        "fs",
-      ],
       resolve: {
         ...currentConfig.resolve,
         fallback: {
+          os: false,
           fs: false,
         },
         alias: {
