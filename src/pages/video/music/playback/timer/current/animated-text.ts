@@ -102,7 +102,6 @@ export const useAnimatedText = (
     //   };
     // };
   }, []);
-  console.log(text);
 
   return text;
 };

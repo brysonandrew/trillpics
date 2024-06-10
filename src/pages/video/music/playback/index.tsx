@@ -5,7 +5,7 @@ import {
 import { progress } from "framer-motion";
 import { useSoundContext } from "~/shell/global/sound";
 import { useVideoPlayerStyle } from "~/pages/video/player/style";
-import { usePlaySequences } from "~/pages/video/music/playback/play-sequences";
+import { usePlaySequences } from "~/hooks/sound/play/sequences";
 import { PlayerBackground } from "~/pages/video/player/_background";
 import { PlayerBackgroundOpaque } from "~/pages/video/player/_background/opaque";
 import { boxRadius } from "~uno/rules/box/radius";
@@ -32,6 +32,7 @@ import { usePicVideoReadSeconds } from "~/hooks/pic/video/read/seconds/hook";
 import { IconsArrowsLeft } from "~/components/icons/arrows/left";
 import { IconsAlert } from "~/components/icons/alert";
 import { isString } from "~/utils/validation/is/string";
+import { MusicRowsLayout } from "~/pages/video/music/rows/layout";
 
 export const VideoMusicPlayback =
   () => {
@@ -41,19 +42,17 @@ export const VideoMusicPlayback =
 
     const play = usePlaySequences();
     const {
-      audioUrl,
+      audioSrc,
       stop,
       start,
       sound,
       saveProgress,
     } = useSoundContext();
-    const { sequences, set } =
-      useTrillPicsStore(
-        ({ sequences, set }) => ({
-          sequences,
-          set,
-        })
-      );
+    const { set } = useTrillPicsStore(
+      ({ set }) => ({
+        set,
+      })
+    );
 
     const seconds =
       usePicVideoReadSeconds();
@@ -73,11 +72,12 @@ export const VideoMusicPlayback =
       }
     );
 
-    const isContent = sequences.some(
-      (v) =>
-        isDefined(v.activeButton) &&
-        v.activeButton !== "none"
-    );
+    const isContent = true;
+    // sequences.some(
+    //   (v) =>
+    //     isDefined(v.activeButton) &&
+    //     v.activeButton !== "none"
+    // );
     const { playerStyle } =
       useVideoPlayerStyle();
 
@@ -92,23 +92,23 @@ export const VideoMusicPlayback =
       boxRadius("m");
 
     const title = "Play sequence";
-    // isPlaying
-    //   ? "Saving..."
-    //   : "Save music";
+
     return (
       <button
+        title={title}
         className="relative flex-col flex justify-center"
         style={{
           ...playerStyle,
         }}
         onClick={
-          isContent && !isPlaying ? handleClick : NOOP
+          isContent && !isPlaying
+            ? handleClick
+            : NOOP
         }
       >
         <div
           className="relative row-space w-full px-1.5"
           style={{
-            // paddingRight: `${s.m05}px`,
             borderRadius,
           }}
         >
@@ -136,17 +136,13 @@ export const VideoMusicPlayback =
                 borderRadiusM,
             }}
           />
-          <div
-            className="row"
-            style={{
-              gap: s.m025,
-            }}
-          >
-            <IconsPlay24 />
-            <SubtitleText>
-              {title}
-            </SubtitleText>
-          </div>
+          <MusicRowsLayout>
+            <IconsPlay
+              classValue="-top-0.25 -left-0.25"
+              size={18}
+            />
+            {title}
+          </MusicRowsLayout>
           {/* <button
             title={title}
             className={clsx(
@@ -200,7 +196,7 @@ export const VideoMusicPlayback =
                   : null}
               </div>
             </>
-          ) : audioUrl === null ? (
+          ) : audioSrc === null ? (
             <>
               <IconsAlert />
               <div className="text-xs">

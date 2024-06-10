@@ -9,12 +9,14 @@ import { PlayerBackgroundOpaque } from "~/pages/video/player/_background/opaque"
 import { useTrillPicsStore } from "~/store/middleware";
 import { VideoPlayer_ScreenGenerate } from "~/pages/video/player/_screen/generate";
 import { PRESENCE_OPACITY } from "@brysonandrew/motion-config-constants";
+import { useSoundContext } from "~/shell/global/sound";
 
 export const OVERFLOW_HIDDEN =
   "overflow: hidden;";
 
 export const VideoPlayer_Screen =
   () => {
+    const {audioSrc} = useSoundContext()
     const {
       progress,
       isDownloadComplete,
@@ -27,13 +29,6 @@ export const VideoPlayer_Screen =
         isDownloadComplete,
       })
     );
-    // const { set, audioBlob } =
-    //   useTrillPicsStore(
-    //     ({ set, audioBlob }) => ({
-    //       set,
-    //       audioBlob,
-    //     })
-    //   );
     const inputProps =
       usePicVideoReadInputs();
     return (
@@ -42,6 +37,7 @@ export const VideoPlayer_Screen =
         <PlayerBackground />
         <RemotionPlayer
           {...inputProps}
+          audioSrc={audioSrc}
           base="remotion"
         />
         <AnimatePresence mode="wait">

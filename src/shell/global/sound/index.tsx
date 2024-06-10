@@ -24,9 +24,9 @@ type TProviderProps = {
 export const ShellSoundProvider: FC<
   TProviderProps
 > = ({ children }) => {
-  const [audioUrl, setAudioUrl] =
+  const [audioSrc, setAudioSrc] =
     useState<string | null>(null);
-  const isAudioUrl = isString(audioUrl);
+  const isAudioSrc = isString(audioSrc);
 
   const saveProgress =
     useMotionValue(0);
@@ -37,7 +37,7 @@ export const ShellSoundProvider: FC<
         new AudioContext();
       const master =
         context.createGain();
-      master.gain.value = 0.1;
+      master.gain.value = 4;
       master.connect(
         context.destination
       );
@@ -105,11 +105,10 @@ export const ShellSoundProvider: FC<
           type: "audio/webm",
         }
       );
-      // set({ audioBlob });
 
-      if (isAudioUrl) {
+      if (isAudioSrc) {
         window.URL.revokeObjectURL(
-          audioUrl
+          audioSrc
         );
       }
       const url =
@@ -117,9 +116,7 @@ export const ShellSoundProvider: FC<
           audioBlob
         );
 
-      setAudioUrl(url);
-
-      // download(url);
+      setAudioSrc(url);
 
       console.log(
         `Recorder stopped: Recorded chunks: ${sound.chunks.length}`
@@ -135,7 +132,7 @@ export const ShellSoundProvider: FC<
         master,
         sound,
         saveProgress,
-        audioUrl,
+        audioSrc,
       }}
     >
       {children}
