@@ -62,13 +62,6 @@ export const webpackOverride: WebpackOverrideFn =
       "uno"
     );
     const srcEntry = entry("src");
-    console.log(
-      "▁▁▁▁▂▂▂▂▃▃▃▃▄▄▄▅▅▅▅▆▆▆▆▇▇▇▇██▓▒░ 🧨 ░▒▓█▓▒░ 🧨 ░▒▓██▇▇▇▇▆▆▆▆▅▅▅▅▄▄▄▃▃▃▃▂▂▂▂▁▁▁▁"
-    );
-    console.dir(srcEntry);
-    console.log(
-      "██████████████▓▒░ 🧨 ░▒ line: 64, file: override.ts ▓▒░ 🧨 ░▒██████████████"
-    );
 
     return {
       ...currentConfig,
@@ -76,11 +69,12 @@ export const webpackOverride: WebpackOverrideFn =
       // browser: {
       //   child_process: false,
       // },
+      externals: ["child_process"],
       resolve: {
         ...currentConfig.resolve,
         fallback: {
-          os: false,
           fs: false,
+          os: false,
         },
         alias: {
           "~": srcEntry,
