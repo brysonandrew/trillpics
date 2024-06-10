@@ -55,7 +55,7 @@ export const VideoPlayer_ScreenGenerate: FC<
       <div className="fill rounded-lg _box-dots opacity-20" />
       <div className="fill rounded-lg _gradient-radial opacity-10" />
 
-      <div className="flex flex-row h-auto uppercase font-slab">
+      <div className="relative flex flex-row h-auto uppercase font-slab">
         <div
           className="hidden text-2xl sm:(flex text-2.5xl) flex-col w-2/3 grow  bg-gray-04"
           style={{
