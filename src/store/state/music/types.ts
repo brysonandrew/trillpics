@@ -1,51 +1,46 @@
-import { CheckedState } from "@radix-ui/react-checkbox";
-import { SOUNDS } from "~/hooks/sound/constants";
-import { PURCUSSIONS } from "~/hooks/sound/percussion/constants";
+import {
+  TBeats,
+  TBeatsSequenceKey,
+} from "~/hooks/sound/beats/types";
+import {
+  TMidis,
+  TMidisSequenceKey,
+} from "~/hooks/sound/midis/types";
 import {
   ALL_FILLS,
   GAP_FILLS,
-} from "~/pages/video/music/sequencer/buttons/constants";
+} from "~/pages/video/music/rows/buttons/constants";
+import { MUSIC_TYPES } from "~/store/state/music/constants";
 
-export type TSequenceSourceKey =
-  (typeof SOUNDS)[number];
+export type TMusicKey =
+  (typeof MUSIC_TYPES)[number];
+export type TSequenceKey<
+  T extends TMusicKey
+> = T extends "beat"
+  ? TBeatsSequenceKey
+  : TMidisSequenceKey;
+export type USequenceEntry =
+  | [TBeatsSequenceKey, TBeats]
+  | [TMidisSequenceKey, TMidis];
 export type TActiveButton =
   | (typeof ALL_FILLS)[number]
   | null;
-// | "none"
-// | "all"
-// | TGapFill
-// | null;
-export type TBeats = number[];
-export type TSequence = {
-  source: TSequenceSourceKey;
-  beats: TBeats;
-  activeButton?: TActiveButton;
-}; // | number;
+export type TSequenceBeatRecord =
+  Record<TBeatsSequenceKey, TBeats>;
+export type TPartialSequenceBeatRecord =
+  Partial<TSequenceBeatRecord>;
+export type TSequenceMidiRecord =
+  Record<TMidisSequenceKey, TMidis>;
+export type TPartialSequenceMidiRecord =
+  Partial<TSequenceMidiRecord>;
+
+export type USequenceKey =
+  | TBeatsSequenceKey
+  | TMidisSequenceKey;
+
 export type TGapFill =
   (typeof GAP_FILLS)[number];
 export type TMusicState = {
-  audioBlob: Blob | null;
-  sequences: TSequence[];
-  resolveActiveButton(
-    nextBeats: TBeats
-  ): TActiveButton;
-  checkBeat(
-    sequenceIndex: number,
-    beatIndex: number,
-    checked: CheckedState
-  ): void;
-  checkRandom(
-    sequenceIndex: number
-  ): void;
-  checkRandomNotes(
-    sequenceIndex: number
-  ): void;
-  checkAll(sequenceIndex: number): void;
-  uncheckAll(
-    sequenceIndex: number
-  ): void;
-  checkEveryNth(
-    sequenceIndex: number,
-    n: number
-  ): void;
+  music: TPartialSequenceBeatRecord &
+    TPartialSequenceMidiRecord;
 };

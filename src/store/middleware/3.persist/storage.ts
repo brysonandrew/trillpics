@@ -20,8 +20,7 @@ const persistKey = resolveCompositeKey(
 export const PERSIST_STATE_RECORD = {
   picsCount: "picsCount",
   pics: "pics",
-  audioBlob: "audioBlob",
-  sequences: "sequences",
+  music: "music",
 } as const;
 
 const KEYS = Object.keys(

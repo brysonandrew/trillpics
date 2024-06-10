@@ -1,13 +1,11 @@
 import { Helmet } from "react-helmet-async";
-import { SoundSequencer } from "~/pages/video/music/sequencer";
+import { MusicRows } from "~/pages/video/music/rows";
 import { VideoPlayer_Backdrop } from "~/pages/video/player/_backdrop";
 import { useVideoPlayerStyle } from "~/pages/video/player/style";
 import { PlayerBackground } from "~/pages/video/player/_background";
 import { PlayerBackgroundOpaque } from "~/pages/video/player/_background/opaque";
 import { VideoMusicPlayback } from "~/pages/video/music/playback";
-import { TimerCurrentProgress } from "~/pages/video/player/_controls/playback/progress";
 import { useSoundContext } from "~/shell/global/sound";
-import { Background } from "~/components/remotion/player/overlays/background";
 
 export const VideoMusic = () => {
   const { playerStyle, y, gap } =
@@ -38,7 +36,7 @@ export const VideoMusic = () => {
         >
           <PlayerBackgroundOpaque />
           <PlayerBackground />
-          <SoundSequencer />
+          <MusicRows />
         </div>
         <VideoMusicPlayback />
         {/* <div style={{ height: 20 }} /> */}

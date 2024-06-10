@@ -1,7 +1,7 @@
 import { MotionValue } from "framer-motion";
 
 export type TSoundContext = {
-  audioUrl: string | null;
+  audioSrc: string | null;
   context: AudioContext;
   master: GainNode;
   saveProgress: MotionValue<number>;

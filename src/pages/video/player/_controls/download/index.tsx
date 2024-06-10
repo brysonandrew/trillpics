@@ -18,6 +18,8 @@ import { useTrillPicsStore } from "~/store/middleware";
 import { useTimebomb } from "~/hooks/use-time-bomb";
 import { UGenerateSubscriptionResult } from "~/store/state/generate/types";
 import { TState } from "~/store/types";
+import { useSoundContext } from "~/shell/global/sound";
+import { TPicSeriesProps } from "~/components/remotion/pic-series/types";
 
 export const DEFAULT_INPUT: TGenerateInput =
   {
@@ -34,14 +36,13 @@ export const Download: FC<
   Partial<TPillBProps>
 > = ({ children, ...props }) => {
   const s = boxSize();
-  const input = usePicVideoReadInputs();
-  const { set, audioBlob } =
-    useTrillPicsStore(
-      ({ set, audioBlob }) => ({
-        set,
-        audioBlob,
-      })
-    );
+  const inputFromParams =
+    usePicVideoReadInputs();
+  const { set } = useTrillPicsStore(
+    ({ set }) => ({
+      set,
+    })
+  );
   const { handlers, isHover } =
     useHoverKey();
 
@@ -116,6 +117,8 @@ export const Download: FC<
   useEffect(() => {
     return reset;
   }, []);
+  const { audioSrc } =
+    useSoundContext();
 
   const {
     isError,
@@ -143,6 +146,10 @@ export const Download: FC<
       }
     },
   });
+  const input: TPicSeriesProps = {
+    ...inputFromParams,
+    audioSrc,
+  };
   const handleGenerate = () => {
     console.log(
       "handleGenerate ",

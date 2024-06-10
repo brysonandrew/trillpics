@@ -1,6 +1,11 @@
-export type THandlerConfig = {
-  pitch?: number;
-  duration?: number;
+import { TBeats } from "~/hooks/sound/beats/types";
+import { TMidis } from "~/hooks/sound/midis/types";
+
+export type TPlayOptions = {
   volume?: number;
-  type?: OscillatorType
 };
+
+export type TStepValue = (
+  | TBeats
+  | TMidis
+)[number];

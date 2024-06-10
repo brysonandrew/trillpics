@@ -1,6 +1,7 @@
 import { FC, useEffect } from "react";
 import {
   animate,
+  AnimatePresence,
   motion,
   MotionConfig,
 } from "framer-motion";
@@ -68,98 +69,113 @@ export const PicsHudFooterNav: FC<
           // padding: s.m0125,
           x: main.dragger.navX,
         }}
-        {...handlers("PicsHudFooterNav")}
+        {...handlers(
+          "PicsHudFooterNav"
+        )}
       >
-        <ul className="row-space w-full h-0">
-          {NAV_ITEMS.map(
-            (
-              [Icon, to, title],
-              index,
-              arr
-            ) => {
-              const selectedIndex =
-                arr.findIndex(
-                  ([_, to]) =>
-                    to === pathname
-                );
-              const isSelected =
-                selectedIndex === index;
+        <AnimatePresence>
+          <ul className="row-space w-full h-0">
+            {NAV_ITEMS.map(
+              (
+                [Icon, to, title],
+                index,
+                arr
+              ) => {
+                const selectedIndex =
+                  arr.findIndex(
+                    ([_, to]) =>
+                      to === pathname
+                  );
+                const isSelected =
+                  selectedIndex ===
+                  index;
 
-              if (isSelected)
+                if (isSelected)
+                  return (
+                    <motion.li
+                      key={resolveCompositeKey(
+                        "selected",
+                        title
+                      )}
+                      className={clsx(
+                        "relative center z-10 pointer-events-none opacity-50"
+                      )}
+                      style={{
+                        width: s.m,
+                        height: s.m,
+                        gap: s.m025,
+                        // originX: "50%",
+                        // originY: "50%",
+                      }}
+                      initial={{
+                        scale: 1,
+                      }}
+                      animate={{
+                        scale: 1.4,
+                      }}
+                      exit={{
+                        scale: 1,
+                      }}
+                    >
+                      <Icon />
+                      {!container.isTablet && (
+                        <PillBText
+                          layoutId={
+                            title
+                          }
+                        >
+                          {title}
+                        </PillBText>
+                      )}
+                    </motion.li>
+                  );
+
+                const isNext =
+                  selectedIndex < index;
                 return (
-                  <li
+                  <motion.li
                     key={resolveCompositeKey(
-                      "selected",
                       title
                     )}
                     className={clsx(
-                      "relative center z-10 pointer-events-none opacity-50"
+                      "flex relative z-0",
+                      isNext
+                        ? "justify-end"
+                        : "justify-start"
                     )}
                     style={{
                       width: s.m,
-                      height: s.m,
-                      gap: s.m025,
                     }}
                   >
-                    {/* <PillBLayout
-                    Icon={Icon}
-                  /> */}
-                    <Icon />
-                    {!container.isTablet && (
+                    <FooterNavLink
+                      to={to}
+                      title={title}
+                      classValue={clsx(
+                        "inline-flex items-center dark:bg-black-02 bg-white-02",
+                        isNext
+                          ? "flex-row-reverse pl-4"
+                          : "flex-row pr-4"
+                      )}
+                      style={{
+                        borderRadius,
+                        gap: s.m025,
+                      }}
+                    >
+                      <PillBLayout
+                        Icon={Icon}
+                      />
                       <PillBText
                         layoutId={title}
                       >
                         {title}
                       </PillBText>
-                    )}
-                  </li>
+                    </FooterNavLink>
+                  </motion.li>
                 );
-
-              const isNext =
-                selectedIndex < index;
-              return (
-                <li
-                  key={resolveCompositeKey(
-                    title
-                  )}
-                  className={clsx(
-                    "flex relative z-0",
-                    isNext
-                      ? "justify-end"
-                      : "justify-start"
-                  )}
-                  style={{
-                    width: s.m,
-                  }}
-                >
-                  <FooterNavLink
-                    to={to}
-                    title={title}
-                    classValue={clsx(
-                      "inline-flex items-center dark:bg-black-02 bg-white-02",
-                      isNext
-                        ? "flex-row-reverse pl-4"
-                        : "flex-row pr-4"
-                    )}
-                    style={{
-                      borderRadius,
-                      gap: s.m025,
-                    }}
-                  >
-                    <PillBLayout
-                      Icon={Icon}
-                    />
-                    <PillBText
-                      layoutId={title}
-                    >
-                      {title}
-                    </PillBText>
-                  </FooterNavLink>
-                </li>
-              );
-            }
-          )}
-        </ul>
+              }
+            )}
+          </ul>
+        </AnimatePresence>
       </motion.nav>
     </MotionConfig>
   );

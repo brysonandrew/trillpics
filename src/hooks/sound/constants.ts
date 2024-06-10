@@ -1,7 +1,8 @@
-import { BASSES } from "~/hooks/sound/bass/constants";
-import { PURCUSSIONS } from "~/hooks/sound/percussion/constants";
+import { MIDIS } from "~/hooks/sound/midis/constants";
+import { BEATS } from "~/hooks/sound/beats/constants";
+
 
 export const SOUNDS = [
-  ...BASSES,
-  ...PURCUSSIONS,
+  ...BEATS,
+  ...MIDIS,
 ] as const;

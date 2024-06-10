@@ -1,0 +1,1 @@
+export const MUSIC_TYPES = ["beat" , "midi"] as const
