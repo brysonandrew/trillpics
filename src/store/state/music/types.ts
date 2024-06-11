@@ -2,6 +2,7 @@ import {
   TBeats,
   TBeatsSequenceKey,
 } from "~/hooks/sound/beats/types";
+import { TSynth } from "~/hooks/sound/midis/synth/types";
 import {
   TMidis,
   TMidisSequenceKey,
@@ -11,6 +12,7 @@ import {
   GAP_FILLS,
 } from "~/pages/video/music/rows/buttons/constants";
 import { MUSIC_TYPES } from "~/store/state/music/constants";
+import { TMusicUpdateSynthHanlder } from "~/store/state/music/update/synth";
 
 export type TMusicKey =
   (typeof MUSIC_TYPES)[number];
@@ -41,6 +43,8 @@ export type USequenceKey =
 export type TGapFill =
   (typeof GAP_FILLS)[number];
 export type TMusicState = {
-  music: TPartialSequenceBeatRecord &
-    TPartialSequenceMidiRecord;
+  music: TPartialSequenceBeatRecord & {
+    synth: TSynth;
+  };
+  musicUpdateSynth: TMusicUpdateSynthHanlder;
 };

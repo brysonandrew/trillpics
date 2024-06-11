@@ -60,18 +60,18 @@ export default () => {
   });
 
   return (
-    <>
+    <div className="fill z-50">
       <Canvas
         ref={canvasRef}
         className="fixed inset-0 w-full h-full"
       />
-      <Root className="relative flex flex-col items-center">
+      <Root className="relative flex flex-col items-stretch px-8">
         <div className="py-6" />
         <Core className="w-core">
           <Options />
         </Core>
         <div className="py-6" />
       </Root>
-    </>
+    </div>
   );
 };

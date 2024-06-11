@@ -1,18 +1,16 @@
+import { FC } from "react";
 import {
   RadioGroupContextValue,
-  RadioGroup,
-  RadioGroupItem,
 } from "@radix-ui/react-radio-group";
-import { FC } from "react";
 import { kebabToTitle } from "~/utils/format";
+import { RadioGroup, RadioGroupItem } from "~/components/inputs/radio";
 
-type TProps = Pick<
-  RadioGroupContextValue,
-  "value" | "onValueChange"
-> & {
-  ranges: string[];
+type TProps = RadioGroupContextValue & {
+  ranges: readonly string[];
 };
-export const InputsRadio: FC<TProps> = ({
+export const InputsRadio: FC<
+  TProps
+> = ({
   value,
   onValueChange,
   ranges,
@@ -20,20 +18,19 @@ export const InputsRadio: FC<TProps> = ({
 }) => {
   return (
     <RadioGroup
-      className="py-0.25"
+      className="p-1"
       value={value}
       onValueChange={onValueChange}
+      {...props}
     >
-      {ranges.map(
-        (value) => (
-          <RadioGroupItem
-            key={value}
-            value={value}
-          >
-            {kebabToTitle(value)}
-          </RadioGroupItem>
-        )
-      )}
+      {ranges.map((value) => (
+        <RadioGroupItem
+          key={value}
+          value={value}
+        >
+          {kebabToTitle(value)}
+        </RadioGroupItem>
+      ))}
     </RadioGroup>
   );
 };

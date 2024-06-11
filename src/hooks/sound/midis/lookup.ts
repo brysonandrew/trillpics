@@ -19,9 +19,9 @@ export const useSoundMidisLookup =
       useArpeggio();
     const lookup = {
       // pitch: pitchPlay,
-      treble: dronePlay,
+      // treble: dronePlay,
       // mid: pulsePlay,
-      bass: arpeggioPlay,
+      synth: arpeggioPlay,
     } satisfies Record<
       TMidisSequenceKey,
       (

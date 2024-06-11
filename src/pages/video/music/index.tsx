@@ -52,8 +52,9 @@ export const VideoMusic = () => {
           <PlayerBackgroundOpaque />
           <PlayerBackground />
           <MusicRows />
-        </div>
         <VideoMusicPlayback />
+
+        </div>
         {/* <div style={{ height: 20 }} /> */}
         {/* <div className="relative bg-red w-full" style={{ height: 20 }} >
         <PlayerBackground />

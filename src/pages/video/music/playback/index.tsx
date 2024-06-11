@@ -33,6 +33,8 @@ import { IconsArrowsLeft } from "~/components/icons/arrows/left";
 import { IconsAlert } from "~/components/icons/alert";
 import { isString } from "~/utils/validation/is/string";
 import { MusicRowsLayout } from "~/pages/video/music/rows/layout";
+import { usePlayBeats } from "~/hooks/sound/play/beats";
+import { usePlayMidis } from "~/hooks/sound/play/midis";
 
 export const VideoMusicPlayback =
   () => {
@@ -48,6 +50,8 @@ export const VideoMusicPlayback =
       sound,
       saveProgress,
     } = useSoundContext();
+    const playBeats = usePlayBeats();
+    const playMidis = usePlayMidis();
     const { set } = useTrillPicsStore(
       ({ set }) => ({
         set,

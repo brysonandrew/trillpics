@@ -21,13 +21,15 @@ export const MusicRows: FC = () => {
     );
   const presetsValueLookup =
     usePresetsValueLookup();
+
   return (
     <div
       className="relative column-stretch lg:row-start"
-      style={{ gap: s.m05 }}
+      style={{ gap: s.m }}
     >
       <MusicRowsSynth />
       <MusicRowsDrums />
+      
     </div>
   );
 };

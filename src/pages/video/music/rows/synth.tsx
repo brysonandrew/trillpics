@@ -2,6 +2,14 @@ import type { FC } from "react";
 import { InputsRadio } from "~/components/inputs/radio/1";
 import { UiInputsSliderRow } from "~/components/slider/row";
 import { DEFAULT_MIN_MAX_100 } from "~/constants/inputs";
+import {
+  SYNTH_MOODS,
+  SYNTH_TONES,
+} from "~/hooks/sound/midis/synth/constants";
+import {
+  TSynthMood,
+  TSynthTone,
+} from "~/hooks/sound/midis/synth/types";
 import { usePlayBeats } from "~/hooks/sound/play/beats";
 import { usePlayMidis } from "~/hooks/sound/play/midis";
 import { MusicRowsHeader } from "~/pages/video/music/rows/header";
@@ -15,48 +23,72 @@ export const MusicRowsSynth: FC =
     const play = usePlayBeats();
     const playMidis = usePlayMidis();
 
-    const { music, set } =
-      useTrillPicsStore(
-        ({ music, set }) => ({
-          music,
-          set,
-        })
-      );
+    const {
+      music,
+      set,
+      musicUpdateSynth,
+    } = useTrillPicsStore(
+      ({
+        music,
+        set,
+        musicUpdateSynth,
+      }) => ({
+        music,
+        musicUpdateSynth,
+        set,
+      })
+    );
     const presetsValueLookup =
       usePresetsValueLookup();
     return (
-      <div>
-        <MusicRowsHeader play={play}>
+      <div
+        className="relative column-stretch"
+        style={{ gap: s.m }}
+      >
+        <MusicRowsHeader
+          play={playMidis}
+        >
           Synth
         </MusicRowsHeader>
         <ul
           className="column items-stretch"
-          style={{ gap: s.m05 }}
+          style={{ gap: s.m }}
         >
           <li>
             <InputsRadio
-              ranges={[
-                "excited",
-                "happy",
-                "neutral",
-                "sad",
-                "depressed",
-              ]}
-              onValueChange={
-                console.log
+              name="mood"
+              ranges={SYNTH_MOODS}
+              required
+              disabled={false}
+              value={
+                music.synth.config.mood
+              }
+              onValueChange={(
+                value: TSynthMood
+              ) =>
+                musicUpdateSynth(
+                  "mood",
+                  value
+                )
               }
             />
           </li>
           <li>
             <InputsRadio
-              ranges={[
-                "brutal",
-                "rough",
-                "soft",
-                "gentle",
-              ]}
-              onValueChange={
-                console.log
+              required
+              disabled={false}
+              name="tone"
+              value={
+                music.synth.config.tone
+              }
+              ranges={SYNTH_TONES}
+              onValueChange={(
+                value: TSynthTone
+              ) =>
+                musicUpdateSynth(
+                  "tone",
+                  value
+                )
               }
             />
           </li>

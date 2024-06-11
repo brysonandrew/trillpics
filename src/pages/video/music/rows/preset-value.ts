@@ -4,7 +4,7 @@ import { BEATS } from "~/hooks/sound/beats/constants";
 import { BEATS_PRESETS } from "~/hooks/sound/beats/presets";
 import { TBeatsPresetsKey } from "~/hooks/sound/beats/presets/types";
 import { TBeatsSequenceKey } from "~/hooks/sound/beats/types";
-import { MIDIS } from "~/hooks/sound/midis/constants";
+import { MIDIS, _MIDIS } from "~/hooks/sound/midis/constants";
 import { MIDIS_PRESETS } from "~/hooks/sound/midis/presets/_index";
 import { TMidisPresets } from "~/hooks/sound/midis/presets/_types";
 import { TMidisSequenceKey } from "~/hooks/sound/midis/types";
@@ -50,7 +50,7 @@ export const usePresetsValueLookup = (
         bass: "race",
         treble: "raptor",
       } as TUsePresetsValueLookupResult;
-      MIDIS.forEach((midisKey) => {
+      _MIDIS.forEach((midisKey) => {
         if (!MIDIS_PRESETS[midisKey])
           return;
         const value = (
@@ -70,12 +70,12 @@ export const usePresetsValueLookup = (
             curr.length === 0
           )
             return false;
-          return (
-            JSON.stringify(curr) ===
-            JSON.stringify(
-              music[midisKey]
-            )
-          );
+          // return (
+          //   JSON.stringify(curr) ===
+          //   JSON.stringify(
+          //     music[midisKey]
+          //   )
+          // );
         });
         if (!value) return;
         result[midisKey] = value;
