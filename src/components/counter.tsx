@@ -4,35 +4,38 @@ import {
   TPillProps,
 } from "~/components/layout/pill";
 import clsx from "clsx";
-import { usePicVideoReadCount } from "~/hooks/pic/video/read/count/hook";
 import { boxSize } from "~uno/rules/box/size";
 
-export const VideoPicsCounter: FC<
-  Partial<
-    Omit<TPillProps, "children"> & {
-      children?: (
-        count: number
-      ) => JSX.Element;
-    }
-  >
+export type TCounterProps = Partial<
+  Omit<TPillProps, "children"> & {
+    children?: (
+      count: number
+    ) => JSX.Element;
+  }
+> & {
+  count: number;
+};
+export const Counter: FC<
+  TCounterProps
 > = ({
+  count,
   classValue,
-  children = (count: number) =>
-    `${count}`,
   style,
   ...props
 }) => {
-  const count = usePicVideoReadCount();
+  if (count === 0) return null;
   const s = boxSize();
   return (
     <Pill
       layoutId="VideoPicsCounter"
       classValue={clsx(
-        "pointer-events-none",
         classValue ?? "relative"
       )}
       style={{
         height: s.m05,
+        ...(count < 10
+          ? { width: s.m05 }
+          : {}),
 
         ...style,
       }}
@@ -45,7 +48,7 @@ export const VideoPicsCounter: FC<
           "text-xs uppercase font-sans"
         )}
       >
-        {children(count)}
+        {count}
       </span>
     </Pill>
   );
