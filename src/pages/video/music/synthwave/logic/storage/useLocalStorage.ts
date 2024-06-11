@@ -8,7 +8,7 @@ export type TSetter<T> = React.Dispatch<
 
 type TRewindHandler = () => void;
 
-type Options<T> = Partial<{
+type SynthwaveOptions<T> = Partial<{
   serializer: Serializer<T>;
   parser: Parser<T>;
   logger: (error: any) => void;
@@ -18,12 +18,12 @@ type Options<T> = Partial<{
 export function useLocalStorage<T>(
   key: string,
   defaultValue: T,
-  options?: Options<T>
+  options?: SynthwaveOptions<T>
 ): [T, TSetter<T>, TRewindHandler];
 export function useLocalStorage<T>(
   key: string,
   defaultValue?: T,
-  options?: Options<T>
+  options?: SynthwaveOptions<T>
 ) {
   const opts = useMemo(
     () => ({

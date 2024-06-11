@@ -47,7 +47,7 @@ export const _RootReorderBackground: FC =
 
     return (
       <motion.div
-        className="absolute bg-white-01 dark:bg-black-01 backdrop-blur-lg border border-white-03 dark:border-black-03"
+        className="absolute bg-white-01 dark:bg-black-01 backdrop-blur-lg border border-white-02 dark:border-black-02"
         style={{
           ...MOTION_BLUR_ADD_RANDOM_PROPS,
           x: dragger.x,

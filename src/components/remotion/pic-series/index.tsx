@@ -3,29 +3,41 @@ import { TPicSeriesProps } from "~/components/remotion/pic-series/types";
 import { resolvePicSrc } from "~/utils/src";
 import {
   getInputProps,
-  useCurrentFrame,
   useVideoConfig,
   staticFile,
   AbsoluteFill,
   Series,
   Img,
-  Audio
+  Audio,
+  useCurrentFrame,
+  Sequence,
 } from "remotion";
 const INPUT_PROPS = getInputProps();
 
 export const PicSeries: FC<
   TPicSeriesProps
 > = (props) => {
-
   const inputProps = {
     ...props,
     ...INPUT_PROPS,
   };
-  const { pics, seconds, count, base, audioSrc } =
-    inputProps;
+  const {
+    pics,
+    seconds,
+    count,
+    base,
+    audio,
+  } = inputProps;
+
   const frame = useCurrentFrame();
-  const { fps, width, height } =
-    useVideoConfig();
+  const {
+    fps,
+    width,
+    height,
+    durationInFrames,
+  } = useVideoConfig();
+  const durationInSeconds =
+    durationInFrames / fps;
 
   const unitSeconds = seconds / count;
   const unitFrames = unitSeconds * fps;
@@ -36,11 +48,30 @@ export const PicSeries: FC<
   const delta =
     height -
     inputProps.dimensions.height;
-
+  const audioLoopDurationInSeconds =
+    audio?.seconds ?? durationInSeconds;
+  const audioLoopCount = Math.ceil(
+    durationInSeconds /
+      audioLoopDurationInSeconds
+  );
   return (
     <AbsoluteFill>
-      {audioSrc && (
-        <Audio src={audioSrc} />
+      {audio && (
+        <Series>
+          {[
+            ...Array(audioLoopCount),
+          ].map((_, index) => (
+            <Series.Sequence
+              key={`${index}`}
+              durationInFrames={
+                audioLoopDurationInSeconds *
+                fps
+              }
+            >
+              <Audio src={audio.src} />
+            </Series.Sequence>
+          ))}
+        </Series>
       )}
       <Series>
         {pics.map((pic) => {
@@ -89,7 +120,7 @@ export const PicSeries: FC<
 //   base,
 //   name: "insurrection-10941",
 // });
-// const audioSrc = staticFile(
+// const audio = staticFile(
 //   audioSrcPath
 // const source = new AudioBufferSourceNode(offlineCtx, {
 //   buffer: decodedBuffer,

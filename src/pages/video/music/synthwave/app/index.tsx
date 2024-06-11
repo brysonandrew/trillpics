@@ -1,63 +1,35 @@
-import { useCallback, useRef } from "react";
+import { useRef } from "react";
 import styled from "@emotion/styled";
-import { Options } from "./Options";
-import { TMultiOptions, useSynthMulti } from "react-synthwave";
-import { usePlayKey } from "~/pages/video/music/synthwave/logic/key/usePlayKey";
-import { useVisualize } from "~/pages/video/music/synthwave/logic/visualize/useVisualize";
-import { useContext } from "~/pages/video/music/synthwave/state/Context";
+import { TMultiOptions } from "react-synthwave";
+import { useSynthwaveContext } from "~/pages/video/music/synthwave/state/Context";
+import { useSoundContext } from "~/shell/global/sound";
+import { SynthwaveOptions } from "@app/Options";
 
 const Root = styled.div``;
 const Canvas = styled.canvas``;
 const Core = styled.div``;
 
 export default () => {
+  const { context, master } =
+    useSoundContext();
   const {
     isReady,
     isPlaying,
     options,
     multi,
-    context,
-    master,
     dispatch,
-  } = useContext();
-  const canvasRef = useRef<HTMLCanvasElement | null>(null);
-  const nextOptions = { ...multi, ...options };
-  const currentRef = useRef<TMultiOptions>(nextOptions);
+  } = useSynthwaveContext();
+  const canvasRef =
+    useRef<HTMLCanvasElement | null>(
+      null
+    );
+  const nextOptions = {
+    ...multi,
+    ...options,
+  };
+  const currentRef =
+    useRef<TMultiOptions>(nextOptions);
   currentRef.current = nextOptions;
-  useVisualize({
-    isActive: isPlaying,
-    context,
-    master,
-    ref: canvasRef,
-  });
-
-  const { play, stop } = useSynthMulti(context);
-  const handlePlay = useCallback(async () => {
-    dispatch({ type: "toggle-playing", value: true });
-    play(currentRef.current);
-  }, []);
-
-  const handleStop = useCallback(() => {
-    stop({
-      onEnded: (isDone: boolean) => {
-        if (isDone) {
-          dispatch({
-            type: "toggle-playing",
-            value: false,
-          });
-        }
-      },
-    });
-  }, []);
-
-  usePlayKey({
-    isReady,
-    play: () => handlePlay(),
-    stop: handleStop,
-    isActive: true,
-    isPlaying,
-    targetKey: "w",
-  });
 
   return (
     <div className="fill z-50">
@@ -68,7 +40,7 @@ export default () => {
       <Root className="relative flex flex-col items-stretch px-8">
         <div className="py-6" />
         <Core className="w-core">
-          <Options />
+          <SynthwaveOptions />
         </Core>
         <div className="py-6" />
       </Root>

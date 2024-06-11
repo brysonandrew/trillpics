@@ -1,7 +1,7 @@
 import { TPurcussionPresetRecord } from "~/hooks/sound/beats/types";
 
 export const BEATS = [
-  "cymbal",
+  "hihat",
   "kick",
   "snare",
   "tom",

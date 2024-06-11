@@ -28,7 +28,7 @@ export const LayoutOverlay: FC<
   isShown = true,
   backdrop = <LayoutOverlayBackdrop />,
 }) => {
-  const s  = boxSize()
+  const s = boxSize();
   return (
     <PortalBody>
       <AnimatePresence>

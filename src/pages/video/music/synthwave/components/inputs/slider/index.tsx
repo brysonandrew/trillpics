@@ -14,7 +14,7 @@ export type TSliderProps = HTMLMotionProps<"input"> & {
   resolveValueDisplay?(v: number): string;
   children?: JSX.Element | null;
 };
-export const Slider: FC<TSliderProps> = ({
+export const SynthwaveSlider: FC<TSliderProps> = ({
   name,
   title,
   value,

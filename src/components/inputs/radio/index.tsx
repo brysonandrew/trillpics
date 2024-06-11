@@ -17,7 +17,7 @@ const RadioGroup = forwardRef<
   return (
     <RadioGroupPrimitive.Root
       className={clsx(
-        "flex flex-row gap-2",
+        "flex flex-row",
         className
       )}
       {...props}
@@ -40,14 +40,14 @@ const RadioGroupItem = forwardRef<
     <RadioGroupPrimitive.Item
       ref={ref}
       className={clsx(
-        "relative border-_neutral-200 text-gray-5 rounded-md border p-2 grow shrink-0 max-w-40 min-w-12",
-        "data-[state=checked]:text-black data-[state=checked]:bg-white",
+        "relative text-gray-5 p-1 grow shrink-0",
+        "data-[state=checked]:text-main data-[state=checked]:bg-main",
         "disabled:cursor-not-allowed disabled:opacity-50",
         className
       )}
       {...props}
     >
-      <RadioGroupPrimitive.Indicator className="absolute inset-1 rounded-md bg-gray" />
+      <RadioGroupPrimitive.Indicator className="absolute inset-1 bg-gray opacity-20" />
       <span className="relative">
         {props.value}
       </span>

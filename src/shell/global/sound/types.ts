@@ -1,10 +1,16 @@
 import { MotionValue } from "framer-motion";
-
+export type TSavedAudio = {
+  src: string;
+  seconds: number;
+};
 export type TSoundContext = {
-  audioSrc: string | null;
+  bpm: number;
+  updateBpm(next: number): void;
+  audio: TSavedAudio | null;
   context: AudioContext;
   master: GainNode;
   saveProgress: MotionValue<number>;
+
   sound: {
     isRecording: boolean;
     recorder: MediaRecorder;

@@ -10,7 +10,7 @@ export const usePlaySequences = () => {
   const handler = async () => {
     await context.resume();
     playBeats();
-    playMidis();
+    playMidis.play();
   };
 
   return handler;

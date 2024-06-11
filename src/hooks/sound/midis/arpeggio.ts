@@ -18,6 +18,7 @@ export const useArpeggio = () => {
       duration,
       volume = 1,
       type = "sawtooth",
+      ...synthwaveOptions
     } = options;
     const filter = new BiquadFilterNode(
       context,
@@ -32,13 +33,13 @@ export const useArpeggio = () => {
     const multiSynthOptions: TMultiOptions =
       {
         type,
-        midi: (midi ?? 0),
+        midi: midi ?? 0,
         count: 4,
         start: startTime,
         end:
-          startTime +
-          (duration ?? 0.4),
+          startTime + (duration ?? 0.4),
         output: filter,
+        ...synthwaveOptions,
       };
 
     filter.connect(gain);
@@ -65,8 +66,12 @@ export const useArpeggio = () => {
     );
   };
 
+  const handleStop = () => {
+    stop.bind(multiSynth.stop)
+  }
+
   return {
     play: handler,
-    stop: stop.bind(multiSynth.stop),
+    stop: handleStop,
   };
 };

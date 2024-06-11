@@ -1,5 +1,5 @@
 import { FC, useState } from "react";
-import { UiInputsSliderRow } from "~/components/slider/row";
+import { UiInputsSliderRow } from "~/components/inputs/slider/row";
 import { DEFAULT_MIN_MAX_100 } from "~/constants/inputs";
 
 type TProps = {
@@ -20,16 +20,22 @@ export const InputsSliderOpacity: FC<
     useState<number>(defaultValue);
   const handleValueChange = ([
     value,
-  ]:any) => {
+  ]: any) => {
     setValue(value);
     onValueChange(value);
   };
 
   return (
     <UiInputsSliderRow
+    name={"opacity"}
+
       classValue="py-0.25"
-      value={[value]}
-      onValueChange={handleValueChange}
+      value={value}
+      onUpdate={(_, value) =>
+        handleValueChange([
+          Number(value),
+        ])
+      }
       {...DEFAULT_MIN_MAX_100}
     />
   );

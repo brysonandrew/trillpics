@@ -1,17 +1,17 @@
 import type { FC } from "react";
 import { motion } from "framer-motion";
 import { useSoundContext } from "~/shell/global/sound";
-import { IconsPlay } from "~/components/icons/playback/play";
 import { IconsMute } from "~/components/icons/playback/mute";
 import { boxSize } from "~uno/rules/box/size";
 import { boxRadius } from "~uno/rules/box/radius";
 import { useHoverKey } from "~/hooks/use-hover-key";
 import { LayoutOverlay } from "~/components/layout/overlay";
+import { IconsUnmute } from "~/components/icons/playback/unmute";
 const key = "NavCountersMusic";
 
 export const NavCountersMusic: FC =
   () => {
-    const { audioSrc } =
+    const { audio } =
       useSoundContext();
     const s = boxSize();
     const borderRadius = boxRadius();
@@ -19,17 +19,17 @@ export const NavCountersMusic: FC =
       useHoverKey();
     const isHovering = isHover(key);
 
-    if (audioSrc) {
+    if (audio) {
       return (
         <div className="absolute top-0 right-0">
-          <IconsPlay />
+          <IconsUnmute />
         </div>
       );
     }
     return (
       <>
         <motion.div
-          className="center absolute -top-3 -left-3 cursor-pointer"
+          className="center absolute -top-3 -left-3 cursor-pointer z-10"
           style={{
             width: s.m07,
             height: s.m07,

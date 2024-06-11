@@ -1,5 +1,6 @@
 import type { MutableRefObject } from "react";
 import { useCallback, useRef, useEffect } from "react";
+import { useSoundContext } from "~/shell/global/sound";
 
 type TInit = {
   bufferLength: number;
@@ -18,17 +19,14 @@ type TCurrentRef = {
 
 type TConfig = {
   isActive: boolean;
-  context: AudioContext;
-  master: GainNode;
   ref: MutableRefObject<TCanvas>;
 };
 
 export const useVisualize = ({
-  context,
   isActive,
   ref,
-  master,
 }: TConfig) => {
+  const {master,context} = useSoundContext()
   const frameRef =
     useRef<ReturnType<typeof requestAnimationFrame>>();
 

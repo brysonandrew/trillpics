@@ -13,7 +13,8 @@ export const useTom = () => {
     startTime: number,
     options: TPlayBeatsOptions = {}
   ) => {
-    const {version = 2, volume=1} = options;
+    const { version = 2, volume = 1 } =
+      options;
 
     const filter = new BiquadFilterNode(
       context,
@@ -23,7 +24,7 @@ export const useTom = () => {
       }
     );
     const gain = new GainNode(context, {
-      gain: 0.4*volume,
+      gain: 0.4 * volume,
     });
 
     const sampleBuffer: AudioBuffer =

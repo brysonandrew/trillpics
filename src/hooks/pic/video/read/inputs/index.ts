@@ -14,7 +14,7 @@ export const picVideoReadInputs = (
   const seconds = Number(
     searchParams.get(SECONDS_PARAM_KEY)
   );
-  const audioSrc = searchParams.get(
+  const audio = searchParams.get(
     AUDIO_SRC_KEY
   );
   const pics = searchParams.getAll(
@@ -29,7 +29,7 @@ export const picVideoReadInputs = (
     pics,
     count,
     isPics,
-    audioSrc,
+    audio,
     dimensions: PIC_DIMENSIONS,
     fps,
     durationInFrames: Math.ceil(fps * seconds),

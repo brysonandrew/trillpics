@@ -1,17 +1,15 @@
-import { useSoundBeatsLookup } from "~/hooks/sound/beats/lookup";
-import { useSoundMidisLookup } from "~/hooks/sound/midis/lookup";
+import { useSynthwaveContext } from "@state/Context";
+import { useSoundContext } from "~/shell/global/sound";
 
-export const useSoundLookup =
-  () => {
-    const beats = useSoundBeatsLookup();
-    const midis = useSoundMidisLookup();
-    const lookup = {
-      ...beats,
-      ...midis,
-    } as const;
-    return lookup;
-  };
+export const useSoundLookup = () => {
+  const {
+    lookup: { beats, midis },
+  } = useSynthwaveContext();
+  const lookup = {
+    ...beats,
+    ...midis,
+  } as const;
+  return lookup;
+};
 export type TUseLookupResult =
-  ReturnType<
-    typeof useSoundLookup
-  >;
+  ReturnType<typeof useSoundLookup>;

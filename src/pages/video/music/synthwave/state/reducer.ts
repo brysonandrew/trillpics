@@ -1,7 +1,7 @@
-import type { TState, TReducerAction } from "./types";
+import type { TSynthwaveState, TReducerAction } from "./types";
 
 export const reducer = (
-  state: TState,
+  state: TSynthwaveState,
   { type, value }: TReducerAction,
 ) => {
   switch (type) {

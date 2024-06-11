@@ -5,18 +5,27 @@ import {
 } from "framer-motion";
 import clsx, { ClassValue } from "clsx";
 import { TGradientShortcut } from "~uno/shortcuts/gradient";
-import { TChildren } from "@brysonandrew/config-types";
+import {
+  TChildren,
+  TDivMotionProps,
+} from "@brysonandrew/config-types";
 import { boxRadius } from "~uno/rules/box/radius";
+import { isString } from "~/utils/validation/is/string";
+import { isNumber } from "~/utils/validation/is/number";
+import { boxSize } from "~uno/rules/box/size";
 
-export type TPillProps =
-  HTMLMotionProps<"span"> & {
-    classValue?: ClassValue;
-    sizeClass?: ClassValue;
-    gradient?: TGradientShortcut;
-    isCircle?: boolean;
-    isActive?: boolean;
-    children: TChildren;
-  };
+export type TPillProps = Omit<
+  TDivMotionProps,
+  "children"
+> & {
+  classValue?: ClassValue;
+  sizeClass?: ClassValue;
+  gradient?: TGradientShortcut;
+  isCircle?: boolean;
+  isActive?: boolean;
+  background?: TChildren;
+  children: TChildren;
+};
 export const Pill: FC<TPillProps> = ({
   isCircle,
   sizeClass,
@@ -25,32 +34,38 @@ export const Pill: FC<TPillProps> = ({
   isActive,
   children,
   style,
+  background,
   ...props
 }) => {
+  const s = boxSize();
+
   const borderRadius = boxRadius();
   return (
     <motion.div
       className={clsx(
-        "center h-4 px-2 z-20",
+        "center h-4",
         sizeClass ??
           "h-4" +
             (isCircle ? " w-4" : ""),
         classValue
       )}
-      style={{ borderRadius, ...style }}
+      style={{
+        borderRadius,
+        paddingLeft: s.m0125,
+        paddingRight: s.m0125,
+        ...style,
+      }}
       {...props}
     >
-      <div
-        className="absolute -inset-0.25 dark:(bg-black bg-image-none) _gradient-radial"
-        style={{ borderRadius }}
-      />
-      <div
-        className="absolute inset-0 dark:(bg-white opacity-50 bg-image-none) _light-gradient-mesh"
-        style={{ borderRadius }}
-      />
-      <span className="relative">
-        {children}
-      </span>
+      {background}
+      {isString(children) ||
+      isNumber(children) ? (
+        <div className="relative uppercase text-xs">
+          {children}
+        </div>
+      ) : (
+        <>{children}</>
+      )}
     </motion.div>
   );
 };

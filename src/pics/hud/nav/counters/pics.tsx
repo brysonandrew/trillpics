@@ -20,7 +20,7 @@ export const NavCountersPics: FC =
       <>
         <Counter
           count={count}
-          classValue="absolute -top-2 -left-2 cursor-pointer"
+          classValue="absolute -top-2 -left-2 cursor-pointer z-10"
           {...motionHandlers(key)}
         />
         {isHovering && (

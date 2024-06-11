@@ -10,7 +10,7 @@ import {
 import {
   ALL_FILLS,
   GAP_FILLS,
-} from "~/pages/video/music/rows/buttons/constants";
+} from "~/pages/video/music/buttons/constants";
 import { MUSIC_TYPES } from "~/store/state/music/constants";
 import { TMusicUpdateSynthHanlder } from "~/store/state/music/update/synth";
 

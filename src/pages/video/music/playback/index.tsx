@@ -12,6 +12,7 @@ import { boxRadius } from "~uno/rules/box/radius";
 import {
   IconsPlay,
   IconsPlay24,
+  IconsPlayLarge,
 } from "~/components/icons/playback/play";
 import { VideoMusicPlaybackTimer } from "~/pages/video/music/playback/timer";
 import { PillBLayout } from "~/components/buttons/pill/b/layout";
@@ -32,9 +33,13 @@ import { usePicVideoReadSeconds } from "~/hooks/pic/video/read/seconds/hook";
 import { IconsArrowsLeft } from "~/components/icons/arrows/left";
 import { IconsAlert } from "~/components/icons/alert";
 import { isString } from "~/utils/validation/is/string";
-import { MusicRowsLayout } from "~/pages/video/music/rows/layout";
+import { MusicLayout } from "~/pages/video/music/layout";
 import { usePlayBeats } from "~/hooks/sound/play/beats";
 import { usePlayMidis } from "~/hooks/sound/play/midis";
+import { MusicLayoutHeader } from "~/pages/video/music/header";
+import { MusicBackground } from "~/pages/video/music/background";
+import { LinesHorizontal } from "~/components/lines/horizontal";
+import { STEPS_COUNT } from "~/constants/music/steps";
 
 export const VideoMusicPlayback =
   () => {
@@ -44,11 +49,12 @@ export const VideoMusicPlayback =
 
     const play = usePlaySequences();
     const {
-      audioSrc,
+      audio,
       stop,
       start,
       sound,
       saveProgress,
+      bpm,
     } = useSoundContext();
     const playBeats = usePlayBeats();
     const playMidis = usePlayMidis();
@@ -60,16 +66,24 @@ export const VideoMusicPlayback =
 
     const seconds =
       usePicVideoReadSeconds();
+
+    const stepDuration =
+      1 / (4 * (bpm / 60));
+
+    const audioSeconds =
+      stepDuration * STEPS_COUNT * 2;
     const {
       trigger: trigger1,
       isArmed: isCoolingDown,
-    } = useTimebomb(seconds * 1000);
+    } = useTimebomb(
+      audioSeconds * 1000
+    );
 
     const {
       trigger,
       isArmed: isPlaying,
     } = useTimebomb(
-      seconds * 1000,
+      audioSeconds * 1000,
       () => {
         trigger1();
         stop();
@@ -82,13 +96,18 @@ export const VideoMusicPlayback =
     //     isDefined(v.activeButton) &&
     //     v.activeButton !== "none"
     // );
-    const { playerStyle } =
-      useVideoPlayerStyle();
+    const {
+      sidebarWidthOffset,
+      width,
+      screenHeight,
+      sidebarWidth,
+    } = useVideoPlayerStyle();
 
     const handleClick = async () => {
       trigger();
       console.log("PLAY");
-      await play();
+      await playBeats();
+      await playMidis.play();
       start();
     };
     const borderRadius = boxRadius();
@@ -98,109 +117,60 @@ export const VideoMusicPlayback =
     const title = "Play sequence";
 
     return (
-      <button
-        title={title}
-        className="relative flex-col flex justify-center"
-        style={{
-          ...playerStyle,
-        }}
-        onClick={
-          isContent && !isPlaying
-            ? handleClick
-            : NOOP
-        }
-      >
+      <>
         <div
-          className="relative row-space w-full px-1.5"
-          style={{
-            borderRadius,
-          }}
+          className="relative row"
+          style={{ gap: s.m05 }}
         >
-          <PlayerBackgroundOpaque />
-
-          <div
-            className="absolute inset-0 _gradient-radial opacity-50"
-            style={{
-              borderRadius:
-                borderRadiusM,
-            }}
-          >
-            <PlayerBackground />
-
-            <TimerCurrentProgress
-              progress={saveProgress}
-              borderRadiusSize="l"
-              classValue="inset-y-0 inset-x-0"
-            />
-          </div>
-          <div
-            className="absolute inset-0 bg-black-05 _gradient-mesh opacity-60"
-            style={{
-              borderRadius:
-                borderRadiusM,
+          <MusicBackground
+            boxStyle={{
+              left: sidebarWidthOffset,
             }}
           />
-          <MusicRowsLayout>
-            <IconsPlay
-              classValue="-top-0.25 -left-0.25"
-              size={18}
-            />
-            {title}
-          </MusicRowsLayout>
-          {/* <button
-            title={title}
-            className={clsx(
-              "relative row",
-              isContent
-                ? "text-current"
-                : "text-gray cursor-not-allowed grayscale-100"
-            )}
-            onClick={
-              isContent
-                ? handleClick
-                : NOOP
-            }
-            disabled={!isContent}
-            style={{ gap: s.m05 }}
+          <MusicLayoutHeader
+            onClick={handleClick}
           >
-            <PillBLayout
-              Icon={IconsPlay}
-            />
-            <div className="relative uppercase pt-1 font-slab">
-              {title}
-            </div>
-          </button> */}
-          {isContent ? (
-            <div className="py-1 center">
-              <VideoMusicPlaybackTimer
-                isPlaying={isPlaying}
-              />
-            </div>
-          ) : (
-            <p className="relative font-slab px-4">
-              No audio content selected.
-            </p>
-          )}
+            Record
+          </MusicLayoutHeader>
+          {/* <LinesHorizontal/> */}
+          <VideoMusicPlaybackTimer
+            isPlaying={isPlaying}
+            seconds={audioSeconds}
+          />
+          <LinesHorizontal />
         </div>
+
         <div
-          className="row uppercase font-sans"
+          className="relative row uppercase font-sans"
           style={{
+            left:
+              sidebarWidthOffset +
+              s.m0125,
             gap: s.m025,
           }}
         >
+          <MusicBackground
+            boxStyle={{
+              left: -s.m0125,
+              width:
+                width -
+                sidebarWidth -
+                s.m0125,
+            }}
+          />
           {isPlaying ||
-          isCoolingDown ? (
+          audio !== null ? (
             <>
               <IconsSave />
               <div className="text-xs">
                 {isPlaying
                   ? "Saving... Please wait until the audio is done playing."
                   : isCoolingDown
-                  ? "Saved"
-                  : null}
+                  ? "Your audio has been added"
+                  : "Saved"}
               </div>
             </>
-          ) : audioSrc === null ? (
+          ) : (
             <>
               <IconsAlert />
               <div className="text-xs">
@@ -209,16 +179,8 @@ export const VideoMusicPlayback =
                 start to finish.
               </div>
             </>
-          ) : null}
+          )}
         </div>
-      </button>
+      </>
     );
   };
-<svg
-  xmlns="http://www.w3.org/2000/svg"
-  width="22"
-  height="22"
-  viewBox="0 0 24 24"
->
-  <path fill="currentColor" />
-</svg>;

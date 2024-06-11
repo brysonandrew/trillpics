@@ -18,7 +18,6 @@ export const InputsRadio: FC<
 }) => {
   return (
     <RadioGroup
-      className="p-1"
       value={value}
       onValueChange={onValueChange}
       {...props}

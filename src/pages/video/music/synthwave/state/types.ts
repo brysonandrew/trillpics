@@ -1,16 +1,28 @@
-import { TSynthOptions, TMultiOptions } from "react-synthwave"
 import type {
   Dispatch,
   Reducer,
   ReducerState,
   ReducerAction,
 } from "react";
+import {
+  TSynthOptions,
+  TMultiOptions,
+} from "react-synthwave";
+import { useSoundBeatsLookup } from "~/hooks/sound/beats/lookup";
+import { useSoundMidisLookup } from "~/hooks/sound/midis/lookup";
 
-export type TContext = TState & {
-  context: AudioContext;
-  master: GainNode;
-  dispatch: TDispatch;
-};
+export type TContext =
+  TSynthwaveState & {
+    dispatch: TDispatch;
+    lookup: {
+      beats: ReturnType<
+        typeof useSoundBeatsLookup
+      >;
+      midis: ReturnType<
+        typeof useSoundMidisLookup
+      >;
+    };
+  };
 
 export type TAction =
   | {
@@ -30,7 +42,7 @@ export type TAction =
       value: Partial<TMultiOptions>;
     };
 
-export type TState = {
+export type TSynthwaveState = {
   isReady: boolean;
   isPlaying: boolean;
   options: TSynthOptions;
@@ -42,10 +54,16 @@ export type TActionValue = any;
 
 export type TKeyValuePair = [
   key: TActionType,
-  value: TActionValue,
+  value: TActionValue
 ];
 
-export type TDispatch = Dispatch<TAction>;
-export type TReducer = Reducer<TState, TAction>;
-export type TReducerState = ReducerState<TReducer>;
-export type TReducerAction = ReducerAction<TReducer>;
+export type TDispatch =
+  Dispatch<TAction>;
+export type TReducer = Reducer<
+  TSynthwaveState,
+  TAction
+>;
+export type TReducerState =
+  ReducerState<TReducer>;
+export type TReducerAction =
+  ReducerAction<TReducer>;

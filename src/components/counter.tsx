@@ -5,6 +5,7 @@ import {
 } from "~/components/layout/pill";
 import clsx from "clsx";
 import { boxSize } from "~uno/rules/box/size";
+import { BackgroundMeshRadial } from "~/components/layout/background/mesh-radial";
 
 export type TCounterProps = Partial<
   Omit<TPillProps, "children"> & {
@@ -40,6 +41,7 @@ export const Counter: FC<
         ...style,
       }}
       layout
+      background={<BackgroundMeshRadial/>}
       {...props}
     >
       <span
