@@ -1,7 +1,4 @@
-import { MIDIS_PRESETS } from "~/hooks/sound/midis/presets";
+import * as s from 'react-synthwave';
 
-export type TMidisPresets =
-   typeof MIDIS_PRESETS;
 
-export type TMidisPresetsKey =
-  keyof TMidisPresets;
+type T = s.TMultiOptions

@@ -1,7 +1,7 @@
 import { type FC } from "react";
 import { TClassValueProps } from "@brysonandrew/config-types";
 import {
-  SliderInput,
+  InputsSliderInput,
   TSliderProps,
 } from "~/components/slider/input";
 
@@ -15,11 +15,7 @@ export const UiInputsSliderRow: FC<
       className="flex items-center justify-center"
       style={{ width: 400 }}
     >
-      <SliderInput {...props} />
+      <InputsSliderInput {...props} />
     </div>
   );
 };
-{
-  /* <UiInputsSliderValue>{props.value}</UiInputsSliderValue>
-    </div> */
-}

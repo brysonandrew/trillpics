@@ -6,12 +6,14 @@ import { PlayerBackground } from "~/pages/video/player/_background";
 import { PlayerBackgroundOpaque } from "~/pages/video/player/_background/opaque";
 import { VideoMusicPlayback } from "~/pages/video/music/playback";
 import { useSoundContext } from "~/shell/global/sound";
+import { boxSize } from "~uno/rules/box/size";
 
 export const VideoMusic = () => {
   const { playerStyle, y, gap } =
     useVideoPlayerStyle();
   const { saveProgress } =
     useSoundContext();
+    const s = boxSize()
   return (
     <>
       <Helmet>
@@ -21,17 +23,30 @@ export const VideoMusic = () => {
       </Helmet>
       <VideoPlayer_Backdrop />
       <div
-        className="fill column-start justify-center lg:justify-start overflow-auto"
+        className="fill row-start items-stretch justify-stretch"
         style={{
           paddingTop: y,
           paddingBottom: y,
           gap,
         }}
       >
+        <aside
+          className="relative column-start bg-red"
+          style={{
+            left:playerStyle.left,
+            width:s.m,
+            gap,
+          }}
+        >
+                 <PlayerBackgroundOpaque />
+                 <PlayerBackground />
+       <div>hi</div>
+        </aside>
         <div
-          className="relative"
+          className="relative column-start"
           style={{
             ...playerStyle,
+            gap,
           }}
         >
           <PlayerBackgroundOpaque />

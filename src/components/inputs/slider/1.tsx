@@ -9,9 +9,9 @@ const sliderStyles = cva([
   'flex items-center select-none touch-none h-[20px] relative',
 ]);
 
-export type TSliderProps = VariantProps<typeof sliderStyles> & SliderPrimitive.SliderProps
+export type TSlider1Props = VariantProps<typeof sliderStyles> & SliderPrimitive.SliderProps
 
-export const Slider2: React.FC<TSliderProps> = React.forwardRef(
+export const Slider1: React.FC<TSlider1Props> = React.forwardRef(
   ({className, ...props}, forwardedRef: React.Ref<HTMLButtonElement>) => {
     return (
       <SliderPrimitive.Root
@@ -28,4 +28,4 @@ export const Slider2: React.FC<TSliderProps> = React.forwardRef(
   }
 );
 
-Slider2.displayName = 'Slider2';
+Slider1.displayName = 'Slider1';

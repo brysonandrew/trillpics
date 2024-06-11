@@ -1,7 +1,6 @@
 import type { FC } from "react";
 import { TPropsWithChildren } from "@brysonandrew/config-types";
 import { MusicRowsTitle } from "~/pages/video/music/rows/title";
-import { usePlayBeats } from "~/hooks/sound/play/beats";
 
 type TProps = {
   play:any

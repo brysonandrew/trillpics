@@ -130,7 +130,7 @@ export const VideoPlayer_ScreenGenerate: FC<
       <LinesHorizontal classValue="hidden sm:flex" />
       <div
         ref={ref}
-        className="hidden md:flex grow h-2/3 overflow-auto bg-gray-04"
+        className="relative hidden md:flex grow h-2/3 overflow-auto bg-gray-04"
         style={{
           margin: s.m025,
           paddingLeft: s.m05,

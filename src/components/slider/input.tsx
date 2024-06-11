@@ -17,7 +17,7 @@ export type TSliderProps =
       | "w-5 h-5";
     trackSizeClass?: "h-2" | "h-[6px]";
   };
-const SliderInput = forwardRef<
+export const InputsSliderInput = forwardRef<
   ElementRef<
     typeof SliderPrimitive.Root
   >,
@@ -61,7 +61,3 @@ const SliderInput = forwardRef<
     </SliderPrimitive.Root>
   )
 );
-SliderInput.displayName =
-  SliderPrimitive.Root.displayName;
-
-export { SliderInput };
