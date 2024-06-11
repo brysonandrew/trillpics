@@ -7,8 +7,10 @@ import {
   useState,
 } from "react";
 import { useMotionValue } from "framer-motion";
-import { useDownload } from "~/shell/global/sound/hooks/useDownload";
-import { TSoundContext } from "~/shell/global/sound/types";
+import {
+  TSavedAudio,
+  TSoundContext,
+} from "~/shell/global/sound/types";
 import { isString } from "~/utils/validation/is/string";
 
 const Context =
@@ -24,9 +26,11 @@ type TProviderProps = {
 export const ShellSoundProvider: FC<
   TProviderProps
 > = ({ children }) => {
-  const [audioSrc, setAudioSrc] =
-    useState<string | null>(null);
-  const isAudioSrc = isString(audioSrc);
+  const [audio, setAudio] =
+    useState<TSavedAudio | null>(null);
+  const [bpm, setBpm] =
+    useState<number>(80);
+  const isAudio = isString(audio);
 
   const saveProgress =
     useMotionValue(0);
@@ -46,6 +50,7 @@ export const ShellSoundProvider: FC<
           context
         );
       master.connect(destination);
+
       const recorder =
         new MediaRecorder(
           destination.stream
@@ -106,9 +111,9 @@ export const ShellSoundProvider: FC<
         }
       );
 
-      if (isAudioSrc) {
+      if (isAudio) {
         window.URL.revokeObjectURL(
-          audioSrc
+          audio
         );
       }
       const url =
@@ -116,7 +121,10 @@ export const ShellSoundProvider: FC<
           audioBlob
         );
 
-      setAudioSrc(url);
+      setAudio({
+        src: url,
+        seconds: (bpm / 60) * 8,
+      });
 
       console.log(
         `Recorder stopped: Recorded chunks: ${sound.chunks.length}`
@@ -132,7 +140,9 @@ export const ShellSoundProvider: FC<
         master,
         sound,
         saveProgress,
-        audioSrc,
+        audio,
+        bpm,
+        updateBpm: setBpm,
       }}
     >
       {children}

@@ -35,7 +35,7 @@ export const PicsHudLeft: FC<
         style={{
           left: -s.m05,
           gap: s.m05,
-          top: foundation.height + s.m,
+          top: foundation.height + s.m+s.m025,
           height:
             container.height + s.m2,
         }}

@@ -1,4 +1,4 @@
-import { useCymbal } from "~/hooks/sound/beats/cymbal";
+import { useHihat } from "~/hooks/sound/beats/hihat";
 import { useKick } from "~/hooks/sound/beats/kick";
 import { useSnare } from "~/hooks/sound/beats/snare";
 import { useTom } from "~/hooks/sound/beats/tom";
@@ -9,13 +9,13 @@ import {
 
 export const useSoundBeatsLookup =
   () => {
-    const cymbal = useCymbal();
+    const hihat = useHihat();
     const snare = useSnare();
     const kick = useKick();
     const tom = useTom();
 
     const lookup = {
-      cymbal,
+      hihat,
       snare,
       kick,
       tom,

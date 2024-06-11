@@ -37,7 +37,7 @@ export const GridOptions: FC =
           top:
             foundationValue?.top +
             foundationValue?.height +
-            s.m05,
+            s.m05+s.m025,
         }}
       >
         <HudLeftShuffle

@@ -5,12 +5,10 @@ import { resolveCompositeKey } from "@brysonandrew/utils-key";
 import { TimerDisplayInit } from "~/components/playback/timer/display/init";
 import { VideoMusicPlaybackTimerCurrent } from "~/pages/video/music/playback/timer/current";
 
-type TProps = { isPlaying: boolean };
+type TProps = { isPlaying: boolean, seconds:number };
 export const VideoMusicPlaybackTimer: FC<
   TProps
-> = ({ isPlaying }) => {
-  const seconds =
-    usePicVideoReadSeconds();
+> = ({ isPlaying ,seconds}) => {
 
   return (
     <PlaybackTimer

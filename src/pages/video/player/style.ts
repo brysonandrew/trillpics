@@ -22,15 +22,21 @@ export const useVideoPlayerStyle =
           : container.isTablet
           ? s.m
           : -s.m25);
+      const gap = s.m05;
+
+      const playerStyle = {
+        left,
+        width,
+        gap,
+      };
+      const sidebarWidth = s.m15 + s.m025
       return {
-        playerStyle: {
-          left,
-          width,
-          gap: s.m05,
-        },
-        y: container.top +s.m15,
-        gap: s.m05,
+        sidebarWidth,
+        sidebarWidthOffset:sidebarWidth+ s.m025,
+        playerStyle,
+        y: container.top + s.m15,
         screenHeight: width * (9 / 16),
+        ...playerStyle,
       };
     }, [container]);
 

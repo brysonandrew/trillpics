@@ -27,6 +27,9 @@
     "noImplicitThis": false,
     "baseUrl": ".",
     "paths": {
+      "@*": [
+        "src/pages/video/music/synthwave/*"
+      ],
       "~/*": ["src/*"],
       "~app/*": ["config/app/*"],
       "~uno/*": ["config/uno/*"],
@@ -39,5 +42,6 @@
     "**/*.ts",
     "**/*.js",
     "**/*.jsx",
-    "**/*.tsx" ]
+    "**/*.tsx"
+  ]
 }

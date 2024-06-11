@@ -69,7 +69,7 @@ export const Hud: FC =
           style={{
             left: container.left,
             width: container.width,
-            top: s.m,
+            top: s.m2,
           }}
         >
           {!screen.isResizing && (

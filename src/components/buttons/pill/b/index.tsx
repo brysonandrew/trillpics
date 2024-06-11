@@ -34,7 +34,6 @@ export const PillB: FC<TPillBProps> = (
     Root = motion.button,
     title,
     classValue,
-    isFlat,
     style,
     direction = "ltr",
     disabled,
@@ -64,12 +63,6 @@ export const PillB: FC<TPillBProps> = (
           : "row-reverse"
       )}
       style={{
-        ...(isFlat
-          ? {
-              boxShadow:
-                BOX_SHADOW_FLAT,
-            }
-          : {}),
         gap: s.m05,
         height: s.m,
         borderRadius,

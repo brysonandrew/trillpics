@@ -9,7 +9,6 @@ import {
 } from "~/pages/video/_root/reorder/constants";
 import { useReadyContext } from "~/shell/ready/context";
 import clsx from "clsx";
-import { useHoverKey } from "~/hooks/use-hover-key";
 
 export const _RootReorderPlaceholders: FC =
   () => {

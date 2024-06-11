@@ -16,7 +16,7 @@ export const OVERFLOW_HIDDEN =
 
 export const VideoPlayer_Screen =
   () => {
-    const {audioSrc} = useSoundContext()
+    const {audio} = useSoundContext()
     const {
       progress,
       isDownloadComplete,
@@ -37,7 +37,7 @@ export const VideoPlayer_Screen =
         <PlayerBackground />
         <RemotionPlayer
           {...inputProps}
-          audioSrc={audioSrc}
+          audio={audio}
           base="remotion"
         />
         <AnimatePresence mode="wait">

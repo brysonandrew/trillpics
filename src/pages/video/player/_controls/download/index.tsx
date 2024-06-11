@@ -117,7 +117,7 @@ export const Download: FC<
   useEffect(() => {
     return reset;
   }, []);
-  const { audioSrc } =
+  const { audio } =
     useSoundContext();
 
   const {
@@ -148,7 +148,7 @@ export const Download: FC<
   });
   const input: TPicSeriesProps = {
     ...inputFromParams,
-    audioSrc,
+    audio,
   };
   const handleGenerate = () => {
     console.log(
@@ -160,7 +160,7 @@ export const Download: FC<
     mutate({
       // ...(audioBlob && audioBlob instanceof
       //   ? {
-      //       audioSrc:
+      //       audio:
       //         window.URL.createObjectURL(
       //           audioBlob
       //         ),

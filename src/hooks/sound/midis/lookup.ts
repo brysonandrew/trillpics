@@ -15,20 +15,23 @@ export const useSoundMidisLookup =
       useDrone();
     const { play: pulsePlay } =
       usePulse();
-    const { play: arpeggioPlay } =
+    const arpeggio =
       useArpeggio();
     const lookup = {
       // pitch: pitchPlay,
-      treble: dronePlay,
+      // treble: dronePlay,
       // mid: pulsePlay,
-      bass: arpeggioPlay,
+      synth: arpeggio,
     } satisfies Record<
       TMidisSequenceKey,
-      (
-        startTime: number,
-        midi: number,
-        options?: TPlayMidisOptions
-      ) => any
+      {
+        play:(
+          startTime: number,
+          midi: number,
+          options?: TPlayMidisOptions
+        ) => any,
+        stop:()=>void
+      }
     >;
     return lookup;
   };

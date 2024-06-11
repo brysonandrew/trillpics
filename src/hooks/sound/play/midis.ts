@@ -1,21 +1,30 @@
-import { steps } from "framer-motion";
-import { BEATS_PER_S } from "~/constants/music";
+import { useSynthwaveContext } from "@state/Context";
 import { MIDIS } from "~/hooks/sound/midis/constants";
-import { useSoundMidisLookup } from "~/hooks/sound/midis/lookup";
 import { useSoundContext } from "~/shell/global/sound";
 import { useTrillPicsStore } from "~/store/middleware";
 
 export const usePlayMidis = () => {
-  const lookup = useSoundMidisLookup();
-  const { context } = useSoundContext();
+  const {
+    options,
+    multi,
+    isPlaying,
+    lookup: { midis: lookup },
+    dispatch,
+  } = useSynthwaveContext();
+  const { context, bpm } =
+    useSoundContext();
   const { music } = useTrillPicsStore(
     ({ music }) => ({
       music,
     })
   );
-
-  const handler = async () => {
+  console.log(options, multi);
+  const play = async () => {
     await context.resume();
+    dispatch({
+      type: "toggle-playing",
+      value: true,
+    });
     console.log(music);
     MIDIS.forEach((midiKey) => {
       if (
@@ -23,25 +32,33 @@ export const usePlayMidis = () => {
         !music[midiKey]
       )
         return;
-      const steps =
-        music[midiKey] ?? [];
+
+      const synth = music[midiKey];
+      const steps = synth.steps ?? [];
+
+      // const type = SYNTH_TONE_LOOKUP[synth.config.tone];
+      // console.log(type);
       [...steps, ...steps].forEach(
         (midi, index) => {
           if (midi) {
+            const duration =
+              1 / (4 * (bpm / 60));
             const elapsed =
-              index * BEATS_PER_S;
-            lookup[midiKey](
+              index * duration;
+            lookup[midiKey].play(
               context.currentTime +
                 elapsed,
-              20 + midi,
+              midi + 60,
               {
                 volume:
                   (index % 4 === 0
                     ? 1.4
                     : index % 2 === 0
                     ? 1.2
-                    : 1) * 0.1,
-                duration: BEATS_PER_S,
+                    : 1) * 0.22,
+                duration,
+                ...options,
+                ...multi,
               }
             );
           }
@@ -50,5 +67,17 @@ export const usePlayMidis = () => {
     });
   };
 
-  return handler;
+  const handleStop = () => {
+    dispatch({
+      type: "toggle-playing",
+      value: false,
+    });
+    lookup.synth.stop();
+  };
+
+  return {
+    play,
+    stop: handleStop,
+    isPlaying,
+  };
 };

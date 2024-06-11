@@ -15,6 +15,7 @@ export type TPillBLayoutProps =
     Partial<
       TPropsWithChildren<{
         size: number;
+        textSizeClass?: string;
       }>
     >;
 export const PillBText: FC<
@@ -24,6 +25,7 @@ export const PillBText: FC<
   size,
   style,
   classValue,
+  textSizeClass,
   ...props
 }) => {
   const s = boxSize();
@@ -39,7 +41,11 @@ export const PillBText: FC<
     <>
       {isString(children) ? (
         <motion.div
-          className={clsx("relative top-2 px-0 text-left text-sm pointer-events-none z-30",classValue)}
+          className={clsx(
+            "relative top-2 px-0 text-left pointer-events-none z-30",
+            classValue,
+            textSizeClass ?? "text-sm"
+          )}
           style={{
             height: s.height,
             ...style,

@@ -17,6 +17,10 @@ import { PillBText } from "~/components/buttons/pill/b/text";
 import { resolveCompositeKey } from "@brysonandrew/utils-key";
 import { useInitContext } from "~/shell/init/context";
 import { THudContainer } from "~/pics/hud";
+import { NavCountersPics } from "~/pics/hud/nav/counters/pics";
+import { NavCountersMusic } from "~/pics/hud/nav/counters/music";
+import { NavCountersSelectedMusic } from "~/pics/hud/nav/counters/selected/music";
+import { NavCountersSelectedPics } from "~/pics/hud/nav/counters/selected/pics";
 
 const SPRING = {
   type: "spring",
@@ -98,7 +102,7 @@ export const PicsHudFooterNav: FC<
                         title
                       )}
                       className={clsx(
-                        "relative center z-10 pointer-events-none opacity-50"
+                        "row relative center z-10 pointer-events-none opacity-50"
                       )}
                       style={{
                         width: s.m,
@@ -127,6 +131,14 @@ export const PicsHudFooterNav: FC<
                           {title}
                         </PillBText>
                       )}
+                      {title ===
+                        "Music Sequencer" && (
+                        <NavCountersSelectedMusic />
+                      )}
+                      {title ===
+                        "Video Sequencer" && (
+                        <NavCountersSelectedPics />
+                      )}
                     </motion.li>
                   );
 
@@ -151,7 +163,7 @@ export const PicsHudFooterNav: FC<
                       to={to}
                       title={title}
                       classValue={clsx(
-                        "inline-flex items-center dark:bg-black-02 bg-white-02",
+                        "relative inline-flex items-center dark:bg-black-02 bg-white-02",
                         isNext
                           ? "flex-row-reverse pl-4"
                           : "flex-row pr-4"
@@ -169,6 +181,14 @@ export const PicsHudFooterNav: FC<
                       >
                         {title}
                       </PillBText>
+                      {title ===
+                        "Music Sequencer" && (
+                        <NavCountersMusic />
+                      )}
+                      {title ===
+                        "Video Sequencer" && (
+                        <NavCountersPics />
+                      )}
                     </FooterNavLink>
                   </motion.li>
                 );

@@ -1,12 +1,15 @@
+import { useSynthwaveContext } from "@state/Context";
 import { BEATS_PER_S } from "~/constants/music";
 import { BEATS } from "~/hooks/sound/beats/constants";
-import { useSoundBeatsLookup } from "~/hooks/sound/beats/lookup";
 import { useSoundContext } from "~/shell/global/sound";
 import { useTrillPicsStore } from "~/store/middleware";
 
 export const usePlayBeats = () => {
-  const lookup = useSoundBeatsLookup();
-  const { context } = useSoundContext();
+  const { context, bpm } =
+    useSoundContext();
+  const {
+    lookup: { beats: lookup },
+  } = useSynthwaveContext();
   const { music } = useTrillPicsStore(
     ({ music }) => ({
       music,
@@ -21,8 +24,10 @@ export const usePlayBeats = () => {
       [...steps, ...steps].forEach(
         (beat, beatIndex) => {
           if (beat) {
+            const duration =
+              1 / (4 * (bpm / 60));
             const elapsed =
-              beatIndex * BEATS_PER_S;
+              beatIndex * duration;
             lookup[beatKey](
               context.currentTime +
                 elapsed,

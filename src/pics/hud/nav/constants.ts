@@ -1,6 +1,5 @@
 import { IconsMusic } from "~/components/icons/music";
 import { IconsGallery } from "~/components/icons/pic/gallery";
-import { IconsPlay } from "~/components/icons/playback/play";
 import { IconsMovie } from "~/components/icons/movie";
 import { ROUTES_PATHS } from "~/routes/pages";
 import { IconsVideo } from "~/components/icons/video/video";
