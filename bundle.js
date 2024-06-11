@@ -16927,15 +16927,40 @@ const PicSeries = (props) => {
     ...props,
     ...INPUT_PROPS
   };
-  const { pics, seconds, count, base, audioSrc } = inputProps;
+  const {
+    pics,
+    seconds,
+    count,
+    base,
+    audio
+  } = inputProps;
   const frame = (0,cjs.useCurrentFrame)();
-  const { fps, width, height } = (0,cjs.useVideoConfig)();
+  const {
+    fps,
+    width,
+    height,
+    durationInFrames
+  } = (0,cjs.useVideoConfig)();
+  const durationInSeconds = durationInFrames / fps;
   const unitSeconds = seconds / count;
   const unitFrames = unitSeconds * fps;
   const frameInUnit = frame % unitFrames;
   const secondInUnit = frameInUnit / (fps * unitSeconds);
   const delta = height - inputProps.dimensions.height;
-  return /* @__PURE__ */ React.createElement(cjs.AbsoluteFill, null, audioSrc && /* @__PURE__ */ React.createElement(cjs.Audio, { src: audioSrc }), /* @__PURE__ */ React.createElement(cjs.Series, null, pics.map((pic) => {
+  const audioLoopDurationInSeconds = (audio == null ? void 0 : audio.seconds) ?? durationInSeconds;
+  const audioLoopCount = Math.ceil(
+    durationInSeconds / audioLoopDurationInSeconds
+  );
+  return /* @__PURE__ */ React.createElement(cjs.AbsoluteFill, null, audio && /* @__PURE__ */ React.createElement(cjs.Series, null, [
+    ...Array(audioLoopCount)
+  ].map((_, index) => /* @__PURE__ */ React.createElement(
+    cjs.Series.Sequence,
+    {
+      key: `${index}`,
+      durationInFrames: audioLoopDurationInSeconds * fps
+    },
+    /* @__PURE__ */ React.createElement(cjs.Audio, { src: audio.src })
+  ))), /* @__PURE__ */ React.createElement(cjs.Series, null, pics.map((pic) => {
     const srcPath = resolvePicSrc(
       { base, name: pic }
     );
@@ -16980,7 +17005,10 @@ var lib = __webpack_require__(1604);
 
 const PIC_SERIES_SCHEMA = lib.z.object({
   base: lib.z.string().optional(),
-  audioSrc: lib.z.string().optional().nullable(),
+  audio: lib.z.object({
+    src: lib.z.string(),
+    seconds: lib.z.number()
+  }).optional().nullable(),
   pics: lib.z.array(lib.z.string()),
   seconds: lib.z.number(),
   count: lib.z.number(),
@@ -17096,6 +17124,7 @@ const BOX_SIZE = {
   m0125: BOX_SIZE_M * 0.125,
   m025: BOX_SIZE_M * 0.25,
   m05: BOX_SIZE_M * 0.5,
+  m07: BOX_SIZE_M * 0.7,
   m075: BOX_SIZE_M * 0.75,
   m125: BOX_SIZE_M * 1.25,
   m15: BOX_SIZE_M * 1.5,
@@ -17397,85 +17426,97 @@ const BEATS_8_1 = resolveBeats(
 const PRESETS_DISCO = {
   kick: [...BEATS_4],
   snare: [...BEATS_4_2],
-  cymbal: [...BEATS_2]
+  hihat: [...BEATS_2]
 };
 
 ;// CONCATENATED MODULE: ./src/hooks/sound/midis/presets/index.ts
-const STEPS_XXXX = [
-  1,
-  1,
-  1,
-  1,
-  //D
-  9,
-  //A#
-  6,
-  //G
-  8,
-  //A
-  4
-  //F
+const DEFAULT_SYNTH_CONFIG = {
+  mood: "neutral",
+  tone: "rough"
+};
+
+;// CONCATENATED MODULE: ./src/constants/scales.ts
+const SCALE_RECORD = {
+  all: [...Array(12)].map((_, index) => index),
+  aeolian: [0, 2, 3, 5, 7, 8, 10],
+  //minor
+  blues: [0, 3, 5, 6, 7, 10],
+  //basic with blues note // includes d5 that ive made 6
+  chromatic: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11],
+  dorian: [0, 2, 3, 5, 7, 9, 10],
+  doubleharmonic: [0, 1, 4, 5, 7, 8, 11],
+  harmonicminor: [0, 2, 3, 5, 7, 8, 11],
+  ionian: [0, 2, 4, 5, 7, 9, 11],
+  locrian: [0, 1, 3, 5, 6, 8, 10],
+  // includes d5 that ive made 6
+  lydian: [0, 2, 4, 6, 7, 9, 11],
+  majorpentatonic: [0, 2, 4, 7, 9],
+  melodicminor: [0, 2, 3, 5, 7, 9, 11],
+  minorpentatonic: [0, 3, 5, 7, 10],
+  mixolydian: [0, 2, 4, 5, 7, 9, 10],
+  phrygian: [0, 1, 3, 5, 7, 8, 10],
+  wholetone: [0, 2, 4, 6, 8, 10]
+};
+const SCALES = [
+  ...Object.keys(SCALE_RECORD)
 ];
-const presets_STEPS = [
-  0,
-  // C#
-  0,
-  0,
-  0,
-  1,
-  //D
-  9,
-  0,
-  8
-  //E
-];
-const RAPTOR = [
-  ...STEPS_XXXX,
-  ...presets_STEPS
-];
-const WIND_RACE = [
-  9,
-  //A
-  9,
-  9,
-  9,
-  7,
-  //E
-  7,
-  4,
-  5,
-  4,
-  5,
-  4,
-  5,
-  4,
-  5,
-  4,
-  5,
-  4,
-  5
-];
-const MIDIS_PRESETS = {
-  bass: {
-    race: WIND_RACE,
-    raptor: RAPTOR
-  },
-  treble: {
-    race: WIND_RACE,
-    raptor: RAPTOR
-  }
+
+;// CONCATENATED MODULE: ./src/store/state/music/update/synth/transform.ts
+
+
+const SYNTH_MOOD_LOOKUP = {
+  depressed: "minorpentatonic",
+  sad: "melodicminor",
+  neutral: "wholetone",
+  happy: "majorpentatonic",
+  excited: "mixolydian"
+};
+const musicUpdateSynthTransform = (config) => {
+  const scaleKey = SYNTH_MOOD_LOOKUP[config.mood];
+  const scale = SCALE_RECORD[scaleKey];
+  return STEPS.map(
+    (_, index) => scale[index % 4]
+  );
+};
+
+;// CONCATENATED MODULE: ./src/store/state/music/update/synth/index.ts
+
+const musicUpdateSynth = (set, get) => (name, value) => {
+  const nextConfig = {
+    ...get().music.synth.config,
+    [name]: value
+  };
+  const nextSteps = musicUpdateSynthTransform(
+    nextConfig
+  );
+  set((draft) => {
+    draft.music.synth.config = nextConfig;
+    draft.music.synth.steps = nextSteps;
+  });
 };
 
 ;// CONCATENATED MODULE: ./src/store/state/music/state.ts
 
 
+
+
 const musicState = (set, get) => ({
   music: {
     ...PRESETS_DISCO,
-    bass: MIDIS_PRESETS.bass.raptor
+    synth: {
+      steps: musicUpdateSynthTransform(
+        DEFAULT_SYNTH_CONFIG
+      ),
+      config: DEFAULT_SYNTH_CONFIG
+    }
+    // bass:  MIDIS_PRESETS.bass.raptor
     // pulse: [...MIDIS_2_1_R],
     // arpeggio: [...MIDIS_4_4_R],
-  }
+  },
+  musicUpdateSynth: musicUpdateSynth(
+    set,
+    get
+  )
 });
 
 ;// CONCATENATED MODULE: ./src/utils/array/shuffle.ts
@@ -44690,7 +44731,7 @@ const inputs_picVideoReadInputs = (searchParams, fps) => {
   const seconds = Number(
     searchParams.get(SECONDS_PARAM_KEY)
   );
-  const audioSrc = searchParams.get(
+  const audio = searchParams.get(
     AUDIO_SRC_KEY
   );
   const pics = searchParams.getAll(
@@ -44703,7 +44744,7 @@ const inputs_picVideoReadInputs = (searchParams, fps) => {
     pics,
     count,
     isPics,
-    audioSrc,
+    audio,
     dimensions: PIC_DIMENSIONS,
     fps,
     durationInFrames: Math.ceil(fps * seconds)
@@ -44724,7 +44765,7 @@ const hook_usePicVideoReadInputs = () => {
     pics,
     isPics,
     count,
-    audioSrc
+    audio
   } = picVideoReadInputs(
     searchParams,
     fps
@@ -44742,7 +44783,7 @@ const hook_usePicVideoReadInputs = () => {
     isPics,
     dimensions,
     durationInFrames: Math.ceil(seconds * fps),
-    audioSrc,
+    audio,
     fps
   };
   return result;
@@ -44871,6 +44912,7 @@ const text_PillBText = ({
   size,
   style,
   classValue,
+  textSizeClass,
   ...props
 }) => {
   const s = boxSize();
@@ -44884,7 +44926,11 @@ const text_PillBText = ({
   return /* @__PURE__ */ React.createElement(React.Fragment, null, isString(children) ? /* @__PURE__ */ React.createElement(
     motion.div,
     {
-      className: clsx("relative top-2 px-0 text-left text-sm pointer-events-none z-30", classValue),
+      className: clsx(
+        "relative top-2 px-0 text-left pointer-events-none z-30",
+        classValue,
+        textSizeClass ?? "text-sm"
+      ),
       style: {
         height: s.height,
         ...style
@@ -44976,13 +45022,11 @@ const layout_PillBLayout = ({
 
 
 
-
 const b_PillB = (props) => {
   const {
     Root = motion.button,
     title,
     classValue,
-    isFlat,
     style,
     direction = "ltr",
     disabled,
@@ -45011,9 +45055,6 @@ const b_PillB = (props) => {
         direction === "ltr" ? "row" : "row-reverse"
       ),
       style: {
-        ...isFlat ? {
-          boxShadow: BOX_SHADOW_FLAT
-        } : {},
         gap: s.m05,
         height: s.m,
         borderRadius,
@@ -45160,8 +45201,9 @@ const Context = (0,react.createContext)(
 );
 const sound_useSoundContext = () => useContext(Context);
 const ShellSoundProvider = ({ children }) => {
-  const [audioSrc, setAudioSrc] = useState(null);
-  const isAudioSrc = isString(audioSrc);
+  const [audio, setAudio] = useState(null);
+  const [bpm, setBpm] = useState(80);
+  const isAudio = isString(audio);
   const saveProgress = useMotionValue(0);
   const { context, master, ...sound } = useMemo(() => {
     const context2 = new AudioContext();
@@ -45224,15 +45266,18 @@ const ShellSoundProvider = ({ children }) => {
           type: "audio/webm"
         }
       );
-      if (isAudioSrc) {
+      if (isAudio) {
         window.URL.revokeObjectURL(
-          audioSrc
+          audio
         );
       }
       const url = window.URL.createObjectURL(
         audioBlob
       );
-      setAudioSrc(url);
+      setAudio({
+        src: url,
+        seconds: bpm / 60 * 8
+      });
       console.log(
         `Recorder stopped: Recorded chunks: ${sound.chunks.length}`
       );
@@ -45248,7 +45293,9 @@ const ShellSoundProvider = ({ children }) => {
         master,
         sound,
         saveProgress,
-        audioSrc
+        audio,
+        bpm,
+        updateBpm: setBpm
       }
     },
     children
@@ -45348,7 +45395,7 @@ const Download = ({ children, ...props }) => {
   useEffect(() => {
     return reset;
   }, []);
-  const { audioSrc } = useSoundContext();
+  const { audio } = useSoundContext();
   const {
     isError,
     isIdle,
@@ -45374,7 +45421,7 @@ const Download = ({ children, ...props }) => {
   });
   const input = {
     ...inputFromParams,
-    audioSrc
+    audio
   };
   const handleGenerate = () => {
     console.log(
@@ -45385,7 +45432,7 @@ const Download = ({ children, ...props }) => {
     mutate({
       // ...(audioBlob && audioBlob instanceof
       //   ? {
-      //       audioSrc:
+      //       audio:
       //         window.URL.createObjectURL(
       //           audioBlob
       //         ),
