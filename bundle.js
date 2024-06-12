@@ -25689,7 +25689,7 @@ const COLUMNS_COUNT_PARAM_KEY = "cols";
 const ROWS_COUNT_PARAM_KEY = "rows";
 const constants_OVER_CELL_PARAM_KEY = "xy";
 const constants_SECONDS_PARAM_KEY = "seconds";
-const constants_AUDIO_SRC_KEY = "src";
+const AUDIO_SRC_KEY = "src";
 const constants_SELECTED_PARAM_KEY = "pic";
 const constants_REMOVING_PARAM_KEY = "removing";
 const constants_DELIMITER_CELL_KEY = "-";
@@ -25701,7 +25701,7 @@ const constants_QUERY_PARAM_KEYS = {
   [ROWS_COUNT_PARAM_KEY]: ROWS_COUNT_PARAM_KEY,
   [constants_OVER_CELL_PARAM_KEY]: constants_OVER_CELL_PARAM_KEY,
   [constants_SECONDS_PARAM_KEY]: constants_SECONDS_PARAM_KEY,
-  [constants_AUDIO_SRC_KEY]: constants_AUDIO_SRC_KEY,
+  [AUDIO_SRC_KEY]: AUDIO_SRC_KEY,
   [constants_SELECTED_PARAM_KEY]: constants_SELECTED_PARAM_KEY,
   [constants_REMOVING_PARAM_KEY]: constants_REMOVING_PARAM_KEY,
   [constants_ZOOM_PARAM_KEY]: constants_ZOOM_PARAM_KEY
@@ -25818,11 +25818,13 @@ const InitContextProvider = ({ children }) => {
   const cursor = useCursor();
   const dragger = useDragger();
   const scrollY = useMotionValue(0);
+  const timer = useMotionValue(0);
   const main = useMemo(() => {
     return {
       cursor,
       dragger,
-      blur
+      blur,
+      timer
     };
   }, []);
   return /* @__PURE__ */ React.createElement(
@@ -44731,9 +44733,6 @@ const inputs_picVideoReadInputs = (searchParams, fps) => {
   const seconds = Number(
     searchParams.get(SECONDS_PARAM_KEY)
   );
-  const audio = searchParams.get(
-    AUDIO_SRC_KEY
-  );
   const pics = searchParams.getAll(
     SELECTED_PARAM_KEY
   );
@@ -44744,10 +44743,11 @@ const inputs_picVideoReadInputs = (searchParams, fps) => {
     pics,
     count,
     isPics,
-    audio,
     dimensions: PIC_DIMENSIONS,
     fps,
-    durationInFrames: Math.ceil(fps * seconds)
+    durationInFrames: Math.ceil(
+      fps * seconds
+    )
   };
 };
 
@@ -44927,7 +44927,7 @@ const text_PillBText = ({
     motion.div,
     {
       className: clsx(
-        "relative top-2 px-0 text-left pointer-events-none z-30",
+        "relative top-2 px-0 text-left pointer-events-none z-0",
         classValue,
         textSizeClass ?? "text-sm"
       ),
@@ -44985,7 +44985,7 @@ const layout_PillBLayout = ({
     motion.div,
     {
       className: clsx(
-        "center relative bg-white dark:bg-black pointer-events-none z-10 border-2 border-transparent"
+        "center relative bg-white dark:bg-black pointer-events-none z-0 border-2 border-transparent"
       ),
       style: {
         height: size,
@@ -45205,7 +45205,7 @@ const ShellSoundProvider = ({ children }) => {
   const [bpm, setBpm] = useState(80);
   const isAudio = isString(audio);
   const saveProgress = useMotionValue(0);
-  const { context, master, ...sound } = useMemo(() => {
+  const { context, master, bufferSourceRecord, ...sound } = useMemo(() => {
     const context2 = new AudioContext();
     const master2 = context2.createGain();
     master2.gain.value = 4;
@@ -45229,7 +45229,8 @@ const ShellSoundProvider = ({ children }) => {
       recorder,
       chunks,
       arrayBuffer,
-      saveProgress
+      saveProgress,
+      bufferSourceRecord: {}
     };
   }, []);
   const start = () => {
@@ -45292,6 +45293,7 @@ const ShellSoundProvider = ({ children }) => {
         context,
         master,
         sound,
+        bufferSourceRecord,
         saveProgress,
         audio,
         bpm,
