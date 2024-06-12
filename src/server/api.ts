@@ -9,7 +9,7 @@ import {
 import { applyWSSHandler } from "@trpc/server/adapters/ws";
 import { WebSocketServer } from "ws";
 import { router } from "./router";
-import { createContext } from "~/server/context";
+import { createContext } from "./context";
 
 const api = express();
 const port = process.env.PORT || API_PORT;

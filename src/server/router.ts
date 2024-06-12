@@ -1,8 +1,8 @@
 import {
   router as _router,
   publicProcedure,
-} from "~/server/trpc";
-import { generate } from "~/server/generate";
+} from "~server/trpc";
+import { generate } from "./generate";
 import { TGenerateOutput } from "~/types/trpc/generate";
 import { PIC_SERIES_SCHEMA } from "~/components/remotion/pic-series/schema";
 import { z } from "zod";

@@ -1,5 +1,4 @@
 import type { FC } from "react";
-import { useMusicContext } from "@index";
 import { WRITABLE_OSCILLATOR_TYPES } from "react-synthwave";
 import { SelectStyled } from "~/components/inputs/select/styled";
 import { TUpdateSliderHandler } from "~/components/inputs/slider/row";
@@ -12,7 +11,7 @@ import { boxRadius } from "~uno/rules/box/radius";
 import { boxSize } from "~uno/rules/box/size";
 import { useSynthUpdate } from "~/pages/video/music/synth/update";
 import { IconsPlay } from "~/components/icons/playback/play";
-import { IconsPause } from "~/components/icons/playback/pause";
+import { useMusicContext } from "~/pages/video/music/context";
 
 export const VideoMusicSynthHeader: FC =
   () => {

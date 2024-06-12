@@ -25,15 +25,14 @@
     "noEmit": true,
     "jsx": "react-jsx",
     "noImplicitThis": false,
-    "baseUrl": ".",
+    "baseUrl": "./",
     "paths": {
-      "@*": [
-        "src/pages/video/music/context/*"
-      ],
-      "~/*": ["src/*"],
-      "~app/*": ["config/app/*"],
-      "~uno/*": ["config/uno/*"],
-      "~ops/*": ["ops/*"],
+      "~/*": ["./src/*"],
+      "~generate": ["./src/server/generate/*"],
+      "~server/*": ["./src/server/*"],
+      "~app/*": ["./config/app/*"],
+      "~uno/*": ["./config/uno/*"],
+      "~ops/*": ["./ops/*"],
       "~root/*": ["*"]
     }
   },
@@ -42,6 +41,9 @@
     "**/*.ts",
     "**/*.js",
     "**/*.jsx",
-    "**/*.tsx"
+    "**/*.tsx",
+    "**/*.ts",
+    "./src/server/*.ts",
+    "./src/server/generate/*.ts"
   ]
 }

@@ -1,9 +1,9 @@
 import type { FC } from "react";
-import { useMusicContext } from "@index";
 import {
   TUpdateSliderHandler,
   UiInputsSliderRow,
 } from "~/components/inputs/slider/row";
+import { useMusicContext } from "~/pages/video/music/context";
 import { useSynthUpdate } from "~/pages/video/music/synth/update";
 
 export const VideoMusicSynthMulti: FC =
