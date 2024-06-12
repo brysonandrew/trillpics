@@ -42,7 +42,7 @@ export const PillBLayout: FC<
     <>
       <motion.div
         className={clsx(
-          "center relative bg-white dark:bg-black pointer-events-none z-10 border-2 border-transparent"
+          "center relative bg-white dark:bg-black pointer-events-none z-0 border-2 border-transparent"
         )}
         style={{
           height: size,

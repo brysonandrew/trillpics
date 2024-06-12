@@ -102,7 +102,7 @@ export const PicsHudFooterNav: FC<
                         title
                       )}
                       className={clsx(
-                        "row relative center z-10 pointer-events-none opacity-50"
+                        "row relative center z-10 pointer-events-none"
                       )}
                       style={{
                         width: s.m,
@@ -115,7 +115,7 @@ export const PicsHudFooterNav: FC<
                         scale: 1,
                       }}
                       animate={{
-                        scale: 1.4,
+                        scale: 1.2,
                       }}
                       exit={{
                         scale: 1,

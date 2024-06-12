@@ -8,6 +8,7 @@ import { PicsHudLeft } from "~/pics/hud/left";
 import { boxSize } from "~uno/rules/box/size";
 import { withControlsCheck } from "~/store/hocs/with-controls-check";
 import { PicsHudFooterNav } from "~/pics/hud/nav";
+import { resolveGradient } from "@brysonandrew/color-gradient";
 
 export type THudContainer = Extract<
   TMeasureContainerResult,
@@ -64,6 +65,22 @@ export const Hud: FC =
             </div>
           </div>
         </div>
+        <div
+          className="absolute left-0 right-0 w-full pointer-events-none opacity-100"
+          style={{
+            height: s.m3,
+            top:
+              container.height-s.m075,
+            backgroundImage:
+              resolveGradient({
+                name: "linear-gradient",
+                parts: [
+                  "transparent",
+                  "var(--gray-5)",
+                ],
+              }),
+          }}
+        />
         <footer
           className="fixed w-full z-20 h-0"
           style={{

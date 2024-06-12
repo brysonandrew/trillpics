@@ -21,9 +21,10 @@ export const PlaybackTimer: FC<
         "relative",
         "flex shrink-0 grow-0 items-center",
         "pt-1 px-2 rounded-lg",
-        "bg-black-9 dark:bg-black",
+        "bg-gray-5 dark:bg-black-3",
         "font-slab text-left text-sm text-white dark:text-gray",
-        "_outline-filter pointer-events-none"
+        "_gradient-mesh",
+        "pointer-events-none"
       )}
     >
       <div className="invert-20">

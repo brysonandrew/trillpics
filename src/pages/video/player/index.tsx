@@ -19,7 +19,7 @@ export const VideoPlayer = () => {
     gap,
   } = useVideoPlayerStyle();
   useAddRandomEffect();
- 
+
   return (
     <>
       <Helmet>
@@ -28,7 +28,7 @@ export const VideoPlayer = () => {
         </title>
       </Helmet>
       <VideoPlayer_Backdrop />
-      
+
       <div
         className="fill column-start justify-center lg:justify-start overflow-auto"
         style={{
@@ -67,7 +67,6 @@ export const VideoPlayer = () => {
                     >
                       <VideoPlayer_Controls />
                     </div>
-                  
                   </Player_ReadyContextProvider>
                 )}
               </>
@@ -79,8 +78,6 @@ export const VideoPlayer = () => {
     </>
   );
 };
-
-
 
 // <motion.div
 // layout

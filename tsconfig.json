@@ -28,7 +28,7 @@
     "baseUrl": ".",
     "paths": {
       "@*": [
-        "src/pages/video/music/synthwave/*"
+        "src/pages/video/music/context/*"
       ],
       "~/*": ["src/*"],
       "~app/*": ["config/app/*"],

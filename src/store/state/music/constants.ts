@@ -1,6 +1,6 @@
 import { TSynthTone } from "~/hooks/sound/midis/synth/types";
 
-export const MUSIC_TYPES = ["beat" , "midi"] as const
+export const MUSIC_TYPES = ["beats" , "midis"] as const
 
 
 export const SYNTH_TONE_LOOKUP: Record<

@@ -25,7 +25,6 @@ export const MusicLayout: FC<
         paddingTop: s.m0125 / 2,
         paddingLeft: s.m025,
         paddingRight: s.m025,
-
         ...style,
       }}
       background={

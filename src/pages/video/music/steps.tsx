@@ -4,9 +4,7 @@ import { boxRadius } from "~uno/rules/box/radius";
 import clsx from "clsx";
 import { MusicLayoutTitle } from "~/pages/video/music/title";
 import { useHoverKey } from "~/hooks/use-hover-key";
-import { useSoundBeatsLookup } from "~/hooks/sound/beats/lookup";
-import { useSoundContext } from "~/shell/global/sound";
-import { useSynthwaveContext } from "@state/Context";
+import { useMusicContext } from "~/pages/video/music/context/index";
 
 type TProps = {
   name: string;
@@ -20,9 +18,8 @@ export const MusicLayoutSteps: FC<
   const borderRadius = boxRadius("m");
   const { isHover, handlers } =
     useHoverKey();
-  const {
-    lookup: { midis: lookup },
-  } = useSynthwaveContext();
+  const { midis: lookup } =
+    useMusicContext();
   return (
     <li
       className={clsx(

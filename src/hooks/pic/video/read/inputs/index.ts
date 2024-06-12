@@ -1,7 +1,6 @@
 import { TPicSeriesProps } from "~/components/remotion/pic-series/types";
 import { PIC_DIMENSIONS } from "~/constants/remotion";
 import {
-  AUDIO_SRC_KEY,
   SECONDS_PARAM_KEY,
   SELECTED_PARAM_KEY,
 } from "~/hooks/pic/constants";
@@ -14,9 +13,7 @@ export const picVideoReadInputs = (
   const seconds = Number(
     searchParams.get(SECONDS_PARAM_KEY)
   );
-  const audio = searchParams.get(
-    AUDIO_SRC_KEY
-  );
+
   const pics = searchParams.getAll(
     SELECTED_PARAM_KEY
   );
@@ -29,9 +26,10 @@ export const picVideoReadInputs = (
     pics,
     count,
     isPics,
-    audio,
     dimensions: PIC_DIMENSIONS,
     fps,
-    durationInFrames: Math.ceil(fps * seconds),
+    durationInFrames: Math.ceil(
+      fps * seconds
+    ),
   };
 };

@@ -27,7 +27,7 @@ export const PlaybackButtonsPlay: FC<
       onClick={handlePlay}
       Icon={
         isPlaying
-          ? IconsPause
+          ? IconsPlay
           : IconsPlay
       }
       {...props}

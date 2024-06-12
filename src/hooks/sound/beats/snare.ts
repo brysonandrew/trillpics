@@ -4,7 +4,7 @@ import { resolveAudioSampleSrc } from "~/utils/src";
 import { useBufferFromSrcHandler } from "../useBufferFromSrcHandler";
 
 export const useSnare = () => {
-  const { context, master } =
+  const { context, master, bufferSourceRecord } =
     useSoundContext();
   const handleSample =
     useBufferFromSrcHandler(context);
@@ -50,7 +50,16 @@ export const useSnare = () => {
     filter.connect(gain);
     gain.connect(master);
     source.start(startTime);
+
+    bufferSourceRecord.snare = source
   };
 
-  return play;
+
+  const stop = () => {
+    if (bufferSourceRecord.hihat) {
+      bufferSourceRecord.hihat.stop();
+    }
+  };
+
+  return { play, stop };
 };

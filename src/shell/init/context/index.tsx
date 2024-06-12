@@ -19,12 +19,14 @@ export const InitContextProvider: FC<
   const cursor = useCursor();
   const dragger = useDragger();
   const scrollY = useMotionValue(0);
+  const timer = useMotionValue(0);
 
   const main = useMemo(() => {
     return {
       cursor,
       dragger,
       blur,
+      timer
     };
   }, []);
 
