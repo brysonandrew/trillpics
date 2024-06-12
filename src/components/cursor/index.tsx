@@ -29,9 +29,7 @@ export const Sight: FC<TProps> = ({
   children,
   ...props
 }) => {
-  const {
-    main,
-  } = useReadyContext();
+  const { main } = useReadyContext();
   return (
     <motion.div
       style={{
@@ -41,7 +39,7 @@ export const Sight: FC<TProps> = ({
         originY: "50%",
         opacity: 1,
         scale: 1,
-        backgroundColor:'red',
+        backgroundColor: "red",
         ...resolveSize(size),
         ...main.cursor.label,
         ...style,

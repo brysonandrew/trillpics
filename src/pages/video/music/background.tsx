@@ -18,13 +18,6 @@ export const MusicBackground: FC<
   ...props
 }) => {
   const s = boxSize();
-  const {
-    playerStyle,
-    y,
-    gap,
-    left,
-    width,
-  } = useVideoPlayerStyle();
   const commonProps = {
     style: { ...style },
     ...props,
@@ -53,7 +46,7 @@ export const MusicBackground: FC<
       <div
         className={clsx(
           "fill",
-          "bg-white-1 dark:bg-black opacity-10",
+          "bg-white-1 dark:bg-gray opacity-10 dark:opacity-20",
           classValue
         )}
         {...commonProps}

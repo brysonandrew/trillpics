@@ -1,4 +1,4 @@
-import { useSynthwaveContext } from "@state/Context";
+import { useMusicContext } from "~/pages/video/music/context/index";
 import { MIDIS } from "~/hooks/sound/midis/constants";
 import { useSoundContext } from "~/shell/global/sound";
 import { useTrillPicsStore } from "~/store/middleware";
@@ -7,10 +7,10 @@ export const usePlayMidis = () => {
   const {
     options,
     multi,
-    isPlaying,
-    lookup: { midis: lookup },
+    playKey,
+    midis: lookup,
     dispatch,
-  } = useSynthwaveContext();
+  } = useMusicContext();
   const { context, bpm } =
     useSoundContext();
   const { music } = useTrillPicsStore(
@@ -22,10 +22,9 @@ export const usePlayMidis = () => {
   const play = async () => {
     await context.resume();
     dispatch({
-      type: "toggle-playing",
-      value: true,
+      type: "playing",
+      value: 'midis',
     });
-    console.log(music);
     MIDIS.forEach((midiKey) => {
       if (
         !lookup[midiKey] ||
@@ -36,8 +35,6 @@ export const usePlayMidis = () => {
       const synth = music[midiKey];
       const steps = synth.steps ?? [];
 
-      // const type = SYNTH_TONE_LOOKUP[synth.config.tone];
-      // console.log(type);
       [...steps, ...steps].forEach(
         (midi, index) => {
           if (midi) {
@@ -69,8 +66,8 @@ export const usePlayMidis = () => {
 
   const handleStop = () => {
     dispatch({
-      type: "toggle-playing",
-      value: false,
+      type: "playing",
+      value: 'midis',
     });
     lookup.synth.stop();
   };
@@ -78,6 +75,6 @@ export const usePlayMidis = () => {
   return {
     play,
     stop: handleStop,
-    isPlaying,
+    isPlaying:playKey === 'midis',
   };
 };

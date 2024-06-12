@@ -30,6 +30,7 @@ export type TMain = {
   blur: TBlur;
   cursor: TCursor;
   dragger: TDraggerMotion;
+  timer: MotionValue<number>;
 };
 export type TInitContext = {
   main: TMain;

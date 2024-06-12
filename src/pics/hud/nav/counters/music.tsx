@@ -7,12 +7,15 @@ import { boxRadius } from "~uno/rules/box/radius";
 import { useHoverKey } from "~/hooks/use-hover-key";
 import { LayoutOverlay } from "~/components/layout/overlay";
 import { IconsUnmute } from "~/components/icons/playback/unmute";
+import { IconsTick } from "~/components/icons/tick";
+import { PillBLayout } from "~/components/buttons/pill/b/layout";
+import { LayoutBox } from "~/components/layout/box";
+import { BackgroundMeshRadialFlat } from "~/components/layout/background/mesh-radial-flat";
 const key = "NavCountersMusic";
 
 export const NavCountersMusic: FC =
   () => {
-    const { audio } =
-      useSoundContext();
+    const { audio } = useSoundContext();
     const s = boxSize();
     const borderRadius = boxRadius();
     const { motionHandlers, isHover } =
@@ -21,29 +24,41 @@ export const NavCountersMusic: FC =
 
     if (audio) {
       return (
-        <div className="absolute top-0 right-0">
-          <IconsUnmute />
+        <div className="absolute -top-2 -right-2 z-10">
+          <div
+            className="relative"
+            style={{
+              width: s.m05,
+              height: s.m05,
+              borderRadius,
+            }}
+          >
+            <BackgroundMeshRadialFlat />
+            <IconsTick />
+          </div>
         </div>
       );
     }
     return (
       <>
         <motion.div
-          className="center absolute -top-3 -left-3 cursor-pointer z-10"
+          className="center absolute -top-1 -right-1 cursor-pointer z-10"
           style={{
-            width: s.m07,
-            height: s.m07,
+            width: s.m05,
+            height: s.m05,
             borderRadius,
           }}
           {...motionHandlers(key)}
         >
           <div
-            className="fill _gradient-mesh opacity-20"
+            className="fill _gradient-mesh opacity-100"
             style={{
               borderRadius,
             }}
           />
-          <IconsMute size={16} />
+          <LayoutBox>
+            <IconsMute size={16} />
+          </LayoutBox>
         </motion.div>
         {isHovering && (
           <LayoutOverlay>

@@ -18,7 +18,7 @@ export type TMusicKey =
   (typeof MUSIC_TYPES)[number];
 export type TSequenceKey<
   T extends TMusicKey
-> = T extends "beat"
+> = T extends "beats"
   ? TBeatsSequenceKey
   : TMidisSequenceKey;
 export type USequenceEntry =

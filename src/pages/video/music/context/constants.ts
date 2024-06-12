@@ -1,5 +1,5 @@
-import { WRITABLE_OSCILLATOR_TYPES } from "react-synthwave"
-import type { TSynthwaveState } from "./types";
+import { WRITABLE_OSCILLATOR_TYPES } from "react-synthwave";
+import type { TMusicState } from "./types";
 
 export const _SYNTH_WAVE_STATE_STORAGE_KEY =
   "_SYNTH_WAVE_STATE_STORAGE_KEY";
@@ -14,9 +14,8 @@ const single = {
   delay: 0,
 };
 
-export const STATE: TSynthwaveState = {
-  isReady: false,
-  isPlaying: false,
+export const STATE: TMusicState = {
+  playKey: null,
   options: single,
   multi: {
     ...single,

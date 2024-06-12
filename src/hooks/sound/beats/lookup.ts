@@ -21,10 +21,13 @@ export const useSoundBeatsLookup =
       tom,
     } satisfies Record<
       TBeatsSequenceKey,
-      (
-        startTime: number,
-        options?: TPlayBeatsOptions
-      ) => any
+      {
+        play: (
+          startTime: number,
+          options?: TPlayBeatsOptions
+        ) => void;
+        stop: () => void;
+      }
     >;
     return lookup;
   };

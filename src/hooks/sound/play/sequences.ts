@@ -7,11 +7,16 @@ export const usePlaySequences = () => {
   const playBeats = usePlayBeats();
   const playMidis = usePlayMidis();
 
-  const handler = async () => {
+  const play = async () => {
     await context.resume();
-    playBeats();
+    playBeats.play();
     playMidis.play();
   };
+  const stop = async () => {
+    await context.resume();
+    playBeats.stop();
+    playMidis.stop();
+  };
 
-  return handler;
+  return { play, stop };
 };

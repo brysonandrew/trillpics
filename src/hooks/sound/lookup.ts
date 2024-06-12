@@ -1,10 +1,8 @@
-import { useSynthwaveContext } from "@state/Context";
-import { useSoundContext } from "~/shell/global/sound";
+import { useMusicContext } from "~/pages/video/music/context/index";
 
 export const useSoundLookup = () => {
-  const {
-    lookup: { beats, midis },
-  } = useSynthwaveContext();
+  const { beats, midis } =
+    useMusicContext();
   const lookup = {
     ...beats,
     ...midis,

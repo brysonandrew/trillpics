@@ -42,7 +42,7 @@ export const PillBText: FC<
       {isString(children) ? (
         <motion.div
           className={clsx(
-            "relative top-2 px-0 text-left pointer-events-none z-30",
+            "relative top-2 px-0 text-left pointer-events-none z-0",
             classValue,
             textSizeClass ?? "text-sm"
           )}

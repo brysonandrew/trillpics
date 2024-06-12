@@ -15,7 +15,6 @@ import {
 } from "~/constants/params";
 import { usePicVideoReadCount } from "~/hooks/pic/video/read/count/hook";
 import { IconsHome } from "~/components/icons/home";
-import { useTrillPicsStore } from "~/store/middleware";
 
 export const CONTROLS_PLAYER_TITLE =
   "Viewing room";
@@ -32,12 +31,6 @@ export const ControlsPlayer: FC<
   ...props
 }) => {
   const count = usePicVideoReadCount();
-  const { isActiveHover } =
-    useTrillPicsStore(
-      ({ isActiveHover }) => ({
-        isActiveHover,
-      })
-    );
   const { togglePathValue, isActive } =
     useNavigationControls(
       VIDEO_PLAYER_ROUTE

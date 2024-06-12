@@ -21,12 +21,11 @@ export const LayoutBox: FC<
   style,
   ...props
 }) => {
-  const s = boxSize();
 
   return (
     <Pill
       classValue={clsx(
-        "relative font-slab text-main",
+        "relative font-slab dark:text-gray-7 text-white-5",
         classValue
       )}
       sizeClass="h-8"

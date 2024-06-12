@@ -46,13 +46,8 @@ export const UiInputsSliderRow: FC<
     ([value]) => {
       onUpdate(name, value);
     };
-  const {
-    sidebarWidthOffset,
-    y,
-    gap,
-    left,
-    width,
-  } = useVideoPlayerStyle();
+  const { sidebarWidthOffset, width } =
+    useVideoPlayerStyle();
   const s = boxSize();
   return (
     <div
@@ -67,13 +62,13 @@ export const UiInputsSliderRow: FC<
     >
       <MusicBackground
         boxStyle={{
-         left: sidebarWidthOffset,
+          left: sidebarWidthOffset,
         }}
       />
       <MusicLayout
-        
         style={{
-          width: sidebarWidthOffset - s.m025,
+          width:
+            sidebarWidthOffset - s.m025,
           height: s.m,
           left: 0,
         }}
@@ -85,9 +80,10 @@ export const UiInputsSliderRow: FC<
         style={{
           left: s.m025,
           width:
-            width -sidebarWidthOffset - s.m - s.m2,
-
-          // width: DEFAULT_SLIDER_WIDTH,
+            width -
+            sidebarWidthOffset -
+            s.m -
+            s.m2,
         }}
       >
         <SliderStyled

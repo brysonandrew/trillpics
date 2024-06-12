@@ -1,7 +1,6 @@
 import { TPicSeriesProps } from "~/components/remotion/pic-series/types";
 import { PIC_DIMENSIONS } from "~/constants/remotion";
 import {
-  AUDIO_SRC_KEY,
   SECONDS_PARAM_KEY,
   SELECTED_PARAM_KEY,
 } from "~/hooks/pic/constants";

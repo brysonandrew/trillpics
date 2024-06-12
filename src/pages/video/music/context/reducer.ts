@@ -1,8 +1,11 @@
-import type { TSynthwaveState, TReducerAction } from "./types";
+import type {
+  TMusicState,
+  TReducerAction,
+} from "./types";
 
 export const reducer = (
-  state: TSynthwaveState,
-  { type, value }: TReducerAction,
+  state: TMusicState,
+  { type, value }: TReducerAction
 ) => {
   switch (type) {
     case "toggle-ready": {
@@ -11,10 +14,10 @@ export const reducer = (
         isReady: value,
       };
     }
-    case "toggle-playing": {
+    case "playing": {
       return {
         ...state,
-        isPlaying: value,
+        playKey: value,
       };
     }
     case "update-options": {
@@ -37,7 +40,9 @@ export const reducer = (
     }
     default: {
       console.error(type);
-      throw new Error(`⚠ Action type invalid. ${type}`);
+      throw new Error(
+        `⚠ Action type invalid. ${type}`
+      );
     }
   }
 };

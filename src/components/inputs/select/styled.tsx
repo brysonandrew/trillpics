@@ -78,7 +78,7 @@ export const SelectStyled: FC<
             <Select.Viewport>
               <Select.Group
                 className={clsx(
-                  "relative column-stretch bg-black-02"
+                  "relative column-stretch bg-gray-02 backdrop-blur-lg"
                 )}
                 style={{
                   paddingTop: s.m0125,

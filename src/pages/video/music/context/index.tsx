@@ -1,35 +1,49 @@
-import { useReducer } from "react";
+import {
+  useReducer,
+  useContext as useReactContext,
+  createContext,
+} from "react";
 import type { FC } from "react";
-import { useLocalStorage } from "@logic/storage/useLocalStorage";
+import { useLocalStorage } from "~/hooks/logic/storage/useLocalStorage";
+import { useSoundBeatsLookup } from "~/hooks/sound/beats/lookup";
+import { useSoundMidisLookup } from "~/hooks/sound/midis/lookup";
 import type {
   TReducer,
-  TSynthwaveState,
+  TMusicState,
+  TAction,
+  TContext,
 } from "./types";
 import { reducer } from "./reducer";
-import { Context } from "./Context";
 import {
   STATE,
   _SYNTH_WAVE_STATE_STORAGE_KEY,
 } from "./constants";
-import { useSoundBeatsLookup } from "~/hooks/sound/beats/lookup";
-import { useSoundMidisLookup } from "~/hooks/sound/midis/lookup";
 
-type TSynthwaveProviderProps = {
+export const Context =
+  createContext<TContext>({
+    dispatch: (_: TAction) => null,
+  } as any);
+
+export const useMusicContext =
+  (): TContext =>
+    useReactContext<TContext>(Context);
+
+type TMusicProviderProps = {
   children: JSX.Element | JSX.Element[];
 };
-export const SynthwaveProvider: FC<
-  TSynthwaveProviderProps
+export const MusicProvider: FC<
+  TMusicProviderProps
 > = ({ children }) => {
   const [savedState, setSavedState] =
-    useLocalStorage<TSynthwaveState>(
+    useLocalStorage<TMusicState>(
       _SYNTH_WAVE_STATE_STORAGE_KEY,
       STATE
     );
-    const beats = useSoundBeatsLookup();
-    const midis = useSoundMidisLookup();
+  const beats = useSoundBeatsLookup();
+  const midis = useSoundMidisLookup();
   const [state, dispatch] = useReducer<
     TReducer,
-    TSynthwaveState
+    TMusicState
   >(
     (...args) => {
       const nextState = reducer(
@@ -39,8 +53,7 @@ export const SynthwaveProvider: FC<
       setSavedState({
         ...STATE,
         ...nextState,
-        isPlaying: false,
-        isReady: false,
+        playKey: null,
       });
 
       return nextState;
@@ -56,7 +69,7 @@ export const SynthwaveProvider: FC<
     <Context.Provider
       value={{
         dispatch,
-      lookup: { midis, beats },
+        ...{ midis, beats },
 
         ...state,
       }}

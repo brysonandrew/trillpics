@@ -23,6 +23,7 @@ export const useSoundContext =
 type TProviderProps = {
   children: JSX.Element;
 };
+
 export const ShellSoundProvider: FC<
   TProviderProps
 > = ({ children }) => {
@@ -35,7 +36,7 @@ export const ShellSoundProvider: FC<
   const saveProgress =
     useMotionValue(0);
 
-  const { context, master, ...sound } =
+  const { context, master,bufferSourceRecord, ...sound } =
     useMemo(() => {
       const context =
         new AudioContext();
@@ -69,6 +70,7 @@ export const ShellSoundProvider: FC<
         chunks,
         arrayBuffer,
         saveProgress,
+        bufferSourceRecord:{}
       };
     }, []);
 
@@ -139,6 +141,7 @@ export const ShellSoundProvider: FC<
         context,
         master,
         sound,
+        bufferSourceRecord,
         saveProgress,
         audio,
         bpm,

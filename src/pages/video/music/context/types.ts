@@ -10,18 +10,17 @@ import {
 } from "react-synthwave";
 import { useSoundBeatsLookup } from "~/hooks/sound/beats/lookup";
 import { useSoundMidisLookup } from "~/hooks/sound/midis/lookup";
+import { TMusicKey } from "~/store/state/music/types";
 
 export type TContext =
-  TSynthwaveState & {
+  TMusicState & {
     dispatch: TDispatch;
-    lookup: {
-      beats: ReturnType<
-        typeof useSoundBeatsLookup
-      >;
-      midis: ReturnType<
-        typeof useSoundMidisLookup
-      >;
-    };
+    beats: ReturnType<
+    typeof useSoundBeatsLookup
+  >;
+  midis: ReturnType<
+    typeof useSoundMidisLookup
+  >;
   };
 
 export type TAction =
@@ -30,8 +29,8 @@ export type TAction =
       value: boolean;
     }
   | {
-      type: "toggle-playing";
-      value: boolean;
+      type: "playing";
+      value: TMusicKey|null;
     }
   | {
       type: "update-options";
@@ -42,9 +41,8 @@ export type TAction =
       value: Partial<TMultiOptions>;
     };
 
-export type TSynthwaveState = {
-  isReady: boolean;
-  isPlaying: boolean;
+export type TMusicState = {
+  playKey:TMusicKey|null;
   options: TSynthOptions;
   multi: TMultiOptions;
 };
@@ -60,7 +58,7 @@ export type TKeyValuePair = [
 export type TDispatch =
   Dispatch<TAction>;
 export type TReducer = Reducer<
-  TSynthwaveState,
+  TMusicState,
   TAction
 >;
 export type TReducerState =
