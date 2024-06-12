@@ -115,7 +115,7 @@ export const PicsHudFooterNav: FC<
                         scale: 1,
                       }}
                       animate={{
-                        scale: 1.2,
+                        scale: 1.075,
                       }}
                       exit={{
                         scale: 1,

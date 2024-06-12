@@ -4,7 +4,7 @@ import {
   wsLink,
   createWSClient,
 } from "@trpc/react-query";
-import { TRouter } from "~/server/router";
+import { TRouter } from "~server/router";
 import {
   SERVER_PATH,
   API_PORT,

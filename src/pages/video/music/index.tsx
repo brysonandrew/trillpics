@@ -1,7 +1,6 @@
 import { Helmet } from "react-helmet-async";
 import { VideoPlayer_Backdrop } from "~/pages/video/player/_backdrop";
 import { useVideoPlayerStyle } from "~/pages/video/player/style";
-import { useSoundContext } from "~/shell/global/sound";
 import { boxSize } from "~uno/rules/box/size";
 import { MusicBackground } from "~/pages/video/music/background";
 import { boxRadius } from "~uno/rules/box/radius";
@@ -9,7 +8,7 @@ import { VideoMusicPlayback } from "~/pages/video/music/playback/index";
 import { VideoMusicSynth } from "~/pages/video/music/synth";
 import { Bpm } from "~/pages/video/music/bpm";
 import { VideoMusicDrums } from "~/pages/video/music/drums";
-import { MusicProvider } from "@index";
+import { MusicProvider } from "~/pages/video/music/context";
 
 export const VideoMusic = () => {
   const {

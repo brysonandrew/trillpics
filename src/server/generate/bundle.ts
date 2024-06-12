@@ -1,6 +1,6 @@
 import { bundle } from "@remotion/bundler";
 import path from "path";
-import { webpackOverride } from "~/server/generate/webpack/override";
+import { webpackOverride } from "~server/generate/webpack/override";
 import {
   REMOTION_ENTRY_POINT,
   REMOTION_PUBLIC_DIR,

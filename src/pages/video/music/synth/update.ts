@@ -1,5 +1,5 @@
-import { useMusicContext } from "@index";
 import { TUpdateSliderHandler } from "~/components/inputs/slider/row";
+import { useMusicContext } from "~/pages/video/music/context";
 
 export const useSynthUpdate = () => {
   const { dispatch } =
