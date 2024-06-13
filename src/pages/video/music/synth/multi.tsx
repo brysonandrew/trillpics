@@ -3,12 +3,16 @@ import {
   TUpdateSliderHandler,
   UiInputsSliderRow,
 } from "~/components/inputs/slider/row";
-import { useMusicContext } from "~/pages/video/music/context";
 import { useSynthUpdate } from "~/pages/video/music/synth/update";
+import { useTrillPicsStore } from "~/store/middleware";
 
 export const VideoMusicSynthMulti: FC =
   () => {
-    const { multi } = useMusicContext();
+    const {
+      multi
+    } = useTrillPicsStore(
+      ({ multi }) => ({ multi })
+    );
     const handleUpdate: TUpdateSliderHandler =
       useSynthUpdate();
 

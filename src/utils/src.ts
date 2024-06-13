@@ -31,7 +31,7 @@ export const resolveAudioSrc = ({
 }: TConfig) =>
   resolveSrc(
     {
-      base: resolveBase(base, "audio"),
+      base: resolveBase(base, "recording"),
       name,
     },
     "mp3"

@@ -18,7 +18,7 @@ import { useTrillPicsStore } from "~/store/middleware";
 import { useTimebomb } from "~/hooks/use-time-bomb";
 import { UGenerateSubscriptionResult } from "~/store/state/generate/types";
 import { TState } from "~/store/types";
-import { useSoundContext } from "~/shell/global/sound";
+import { useMusicInitContext } from "~/pages/video/music/_context/init";
 import { TPicSeriesProps } from "~/components/remotion/pic-series/types";
 
 export const DEFAULT_INPUT: TGenerateInput =
@@ -30,6 +30,7 @@ export const DEFAULT_INPUT: TGenerateInput =
     seconds: 1,
     isPics: false,
     dimensions: { ...PIC_DIMENSIONS },
+    recording: null
   };
 
 export const Download: FC<
@@ -38,14 +39,15 @@ export const Download: FC<
   const s = boxSize();
   const inputFromParams =
     usePicVideoReadInputs();
-  const { set } = useTrillPicsStore(
-    ({ set }) => ({
-      set,
-    })
-  );
+  const { set, recording } =
+    useTrillPicsStore(
+      ({ set, recording }) => ({
+        set,
+        recording,
+      })
+    );
   const { handlers, isHover } =
     useHoverKey();
-
   const title = "Download video";
   // console.log(audioBlob);
   // const dl = async (blob: Blob) => {};
@@ -117,8 +119,6 @@ export const Download: FC<
   useEffect(() => {
     return reset;
   }, []);
-  const { audio } =
-    useSoundContext();
 
   const {
     isError,
@@ -148,7 +148,7 @@ export const Download: FC<
   });
   const input: TPicSeriesProps = {
     ...inputFromParams,
-    audio,
+    recording,
   };
   const handleGenerate = () => {
     console.log(
@@ -160,7 +160,7 @@ export const Download: FC<
     mutate({
       // ...(audioBlob && audioBlob instanceof
       //   ? {
-      //       audio:
+      //       recording:
       //         window.URL.createObjectURL(
       //           audioBlob
       //         ),

@@ -1,7 +1,6 @@
 import type { FC } from "react";
 import { TPropsWithChildren } from "@brysonandrew/config-types";
 import { boxSize } from "~uno/rules/box/size";
-import { useVideoPlayerStyle } from "~/pages/video/player/style";
 import { LinesHorizontal } from "~/components/lines/horizontal";
 import {
   PillB,
@@ -28,8 +27,10 @@ export const MusicLayoutHeader: FC<
   const s = boxSize();
   return (
     <div
-      className="row relative"
+      className="row-space relative"
       style={{
+        paddingLeft: s.m025,
+        paddingRight: s.m025,
         gap: s.m0125,
       }}
     >
@@ -63,7 +64,9 @@ export const MusicLayoutHeader: FC<
           </PillBText>
         </div>
       </PillB>
+ 
       {rightContent}
+
     </div>
   );
 };

@@ -9,22 +9,23 @@ import { PlayerBackgroundOpaque } from "~/pages/video/player/_background/opaque"
 import { useTrillPicsStore } from "~/store/middleware";
 import { VideoPlayer_ScreenGenerate } from "~/pages/video/player/_screen/generate";
 import { PRESENCE_OPACITY } from "@brysonandrew/motion-config-constants";
-import { useSoundContext } from "~/shell/global/sound";
 
 export const OVERFLOW_HIDDEN =
   "overflow: hidden;";
 
 export const VideoPlayer_Screen =
   () => {
-    const {audio} = useSoundContext()
     const {
+      recording,
       progress,
       isDownloadComplete,
     } = useTrillPicsStore(
       ({
+        recording,
         progress,
         isDownloadComplete,
       }) => ({
+        recording,
         progress,
         isDownloadComplete,
       })
@@ -37,7 +38,7 @@ export const VideoPlayer_Screen =
         <PlayerBackground />
         <RemotionPlayer
           {...inputProps}
-          audio={audio}
+          recording={recording}
           base="remotion"
         />
         <AnimatePresence mode="wait">

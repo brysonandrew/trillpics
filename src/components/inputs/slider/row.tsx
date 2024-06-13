@@ -1,15 +1,12 @@
 import { type FC } from "react";
 import { cx } from "class-variance-authority";
 import { TClassValueProps } from "@brysonandrew/config-types";
-import { DEFAULT_SLIDER_WIDTH } from "~/constants/inputs";
-import { UiInputsSliderValue } from "~/components/inputs/slider/value";
 import {
   SliderStyled,
   TSliderStyledProps,
 } from "~/components/inputs/slider/styled";
 import { boxSize } from "~uno/rules/box/size";
 import { MusicLayout } from "~/pages/video/music/layout";
-import { title } from "process";
 import { MusicBackground } from "~/pages/video/music/background";
 import { useVideoPlayerStyle } from "~/pages/video/player/style";
 

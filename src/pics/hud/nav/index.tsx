@@ -108,6 +108,7 @@ export const PicsHudFooterNav: FC<
                         width: s.m,
                         height: s.m,
                         gap: s.m025,
+                        filter:"grayscale(100%)",
                         // originX: "50%",
                         // originY: "50%",
                       }}

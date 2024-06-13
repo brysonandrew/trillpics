@@ -4,27 +4,12 @@ import { useTrillPicsStore } from "~/store/middleware";
 
 export const useVideoClickSelect =
   () => {
-    const {
-      hoverKeys,
-      isHover,
-      hover,
-      unhover,
-      cooldownEnd,
-    } = useTrillPicsStore(
-      ({
-        hoverKeys,
-        isHover,
-        hover,
-        unhover,
-        cooldownEnd,
-      }) => ({
-        hoverKeys,
-        isHover,
-        hover,
-        unhover,
-        cooldownEnd,
-      })
-    );
+    const { hoverKeys } =
+      useTrillPicsStore(
+        ({ hoverKeys }) => ({
+          hoverKeys,
+        })
+      );
     const props = usePicSelected();
     const handle = () => {
       props.toggle();

@@ -1,9 +1,16 @@
 import { TUpdateSliderHandler } from "~/components/inputs/slider/row";
-import { useMusicContext } from "~/pages/video/music/context";
+import {
+  isSynthMultiOptionsType,
+  isSynthOptionsType,
+  isSynthType,
+} from "~/pages/video/music/synth/validators";
+import { useTrillPicsStore } from "~/store/middleware";
+import { TState } from "~/store/types";
 
 export const useSynthUpdate = () => {
-  const { dispatch } =
-    useMusicContext();
+  const { set } = useTrillPicsStore(
+    ({ set }) => ({ set })
+  );
   const handleUpdate: TUpdateSliderHandler =
     (name: string, value: any) => {
       const [key, key1] =
@@ -18,13 +25,18 @@ export const useSynthUpdate = () => {
           }
         }
       };
-      dispatch({
-        type: `update-${
-          key as "multi" | "options"
-        }`,
-        value: {
-          [key1]: resolveValue(),
-        },
+
+      set((draft: TState) => {
+        if (isSynthOptionsType(key1)) {
+          draft.options[key1] =
+            resolveValue();
+        }
+        if (
+          isSynthMultiOptionsType(key1)
+        ) {
+          draft.multi[key1] =
+            resolveValue();
+        }
       });
     };
 

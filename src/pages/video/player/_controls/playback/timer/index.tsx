@@ -16,7 +16,6 @@ console.log(seconds)
         }}
         TimerCurrentFc={
           () => {
-            console.log("<TimerCurrentProgressFromFrames/>")
             return <TimerCurrentProgressFromFrames/>
           }
         }

@@ -6,12 +6,14 @@ export const ScreenTooSmallOverlay: FC =
   () => {
     return (
       <>
-        <LayoutOverlay
+        <LayoutOverlay 
           backdrop={
             <>
               <div className="fill bg-main-inverted" />
-              <div className="fill _box-dots opacity-90" />
+              <div className="fill _box-dots opacity-50" />
               <div className="fill _gradient-linear opacity-40" />
+              <div className="fill _gradient-mesh opacity-60" />
+
             </>
           }
           direction="rtl"

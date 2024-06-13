@@ -1,18 +1,24 @@
 import type { FC } from "react";
-import { useSoundContext } from "~/shell/global/sound";
 import { IconsMute } from "~/components/icons/playback/mute";
 import { IconsTick } from "~/components/icons/tick";
-import { BackgroundMeshRadialFlat } from "~/components/layout/background/mesh-radial-flat";
 import { boxRadius } from "~uno/rules/box/radius";
 import { boxSize } from "~uno/rules/box/size";
 import { BackgroundMesh } from "~/components/layout/background/mesh";
+import { useTrillPicsStore } from "~/store/middleware";
+import { IconsCross } from "~/components/icons/cross";
+import { IconsCross24 } from "~/components/icons/cross/24";
 
 export const NavCountersSelectedMusic: FC =
   () => {
-    const { audio } = useSoundContext();
+    const { recording } =
+      useTrillPicsStore(
+        ({ recording }) => ({
+          recording,
+        })
+      );
     const s = boxSize();
     const borderRadius = boxRadius();
-    if (audio) {
+    if (recording) {
       return (
         <div
           className="relative center"
@@ -40,7 +46,7 @@ export const NavCountersSelectedMusic: FC =
       >
         <BackgroundMesh />
 
-        <IconsMute size={14} />
+        <IconsCross24 size={14} />
       </div>
     );
   };

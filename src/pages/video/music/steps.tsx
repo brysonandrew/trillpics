@@ -4,7 +4,7 @@ import { boxRadius } from "~uno/rules/box/radius";
 import clsx from "clsx";
 import { MusicLayoutTitle } from "~/pages/video/music/title";
 import { useHoverKey } from "~/hooks/use-hover-key";
-import { useMusicContext } from "~/pages/video/music/context/index";
+import { useMusicReadyContext } from "~/pages/video/music/_context/ready/index";
 
 type TProps = {
   name: string;
@@ -13,13 +13,13 @@ type TProps = {
 };
 export const MusicLayoutSteps: FC<
   TProps
-> = ({ name, index, rightContent }) => {
+> = ({ name, rightContent }) => {
   const s = boxSize();
   const borderRadius = boxRadius("m");
-  const { isHover, handlers } =
+  const {  handlers } =
     useHoverKey();
   const { midis: lookup } =
-    useMusicContext();
+    useMusicReadyContext();
   return (
     <li
       className={clsx(
@@ -35,7 +35,7 @@ export const MusicLayoutSteps: FC<
         <div className="absolute _gradient-radial h-px w-full" />
         <MusicLayoutTitle
           onClick={() => {
-            (lookup as any)[name](
+            lookup.synth.play(
               0,
               10
             );

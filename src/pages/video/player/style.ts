@@ -4,9 +4,9 @@ import { useReadyContext } from "~/shell/ready/context";
 
 export const useVideoPlayerStyle =
   () => {
-    const {
-      screen: { container },
-    } = useReadyContext();
+    const { screen } =
+      useReadyContext();
+    const container = screen.container;
     const s = boxSize();
 
     const style = useMemo(() => {
@@ -29,13 +29,16 @@ export const useVideoPlayerStyle =
         width,
         gap,
       };
-      const sidebarWidth = s.m15 + s.m025
+      const sidebarWidth =
+        s.m15 + s.m025;
       return {
         sidebarWidth,
-        sidebarWidthOffset:sidebarWidth+ s.m025,
+        sidebarWidthOffset:
+          sidebarWidth + s.m025,
         playerStyle,
         y: container.top + s.m15,
         screenHeight: width * (9 / 16),
+        screen,
         ...playerStyle,
       };
     }, [container]);

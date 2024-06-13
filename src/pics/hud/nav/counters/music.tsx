@@ -1,28 +1,32 @@
 import type { FC } from "react";
 import { motion } from "framer-motion";
-import { useSoundContext } from "~/shell/global/sound";
+import { useMusicInitContext } from "~/pages/video/music/_context/init";
 import { IconsMute } from "~/components/icons/playback/mute";
 import { boxSize } from "~uno/rules/box/size";
 import { boxRadius } from "~uno/rules/box/radius";
 import { useHoverKey } from "~/hooks/use-hover-key";
 import { LayoutOverlay } from "~/components/layout/overlay";
-import { IconsUnmute } from "~/components/icons/playback/unmute";
 import { IconsTick } from "~/components/icons/tick";
-import { PillBLayout } from "~/components/buttons/pill/b/layout";
 import { LayoutBox } from "~/components/layout/box";
 import { BackgroundMeshRadialFlat } from "~/components/layout/background/mesh-radial-flat";
+import { useTrillPicsStore } from "~/store/middleware";
 const key = "NavCountersMusic";
 
 export const NavCountersMusic: FC =
   () => {
-    const { audio } = useSoundContext();
+    const { recording } =
+      useTrillPicsStore(
+        ({ recording }) => ({
+          recording,
+        })
+      );
     const s = boxSize();
     const borderRadius = boxRadius();
     const { motionHandlers, isHover } =
       useHoverKey();
     const isHovering = isHover(key);
 
-    if (audio) {
+    if (recording) {
       return (
         <div className="absolute -top-2 -right-2 z-10">
           <div
@@ -62,7 +66,7 @@ export const NavCountersMusic: FC =
         </motion.div>
         {isHovering && (
           <LayoutOverlay>
-            No audio track recorded
+            No recording track recorded
           </LayoutOverlay>
         )}
       </>

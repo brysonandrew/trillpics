@@ -1,10 +1,9 @@
 const PADDING = 8;
 const BOX_SIZE_M = 40;
 
-const BOX_SIZE_S =
-  BOX_SIZE_M - PADDING;
+const BOX_SIZE_S = BOX_SIZE_M - PADDING;
 const BOX_SIZE_XS =
-  BOX_SIZE_S - PADDING/2;
+  BOX_SIZE_S - PADDING / 2;
 const DEFAULT_SIZE_BOX_SIZE =
   BOX_SIZE_M;
 
@@ -18,6 +17,8 @@ export const BOX_SIZE = {
   s05: BOX_SIZE_S * 0.5,
   s025: BOX_SIZE_S * 0.25,
 
+  m03125: BOX_SIZE_M * 0.03125,
+  m0625: BOX_SIZE_M * 0.0675,
   m0125: BOX_SIZE_M * 0.125,
   m025: BOX_SIZE_M * 0.25,
   m05: BOX_SIZE_M * 0.5,
@@ -43,24 +44,24 @@ export const BOX_SIZE = {
 
 export type TBoxSizesKey =
   keyof typeof BOX_SIZES;
-  export const boxSize = (
-    key?: TBoxSizesKey
-  ) => {
-    const boxSize = BOX_SIZE;
-    return {
-      ...(boxSize && (typeof key !== 'undefined')
-        ? {
-            ...boxSize,
-            size: boxSize[key],
-            sizeHalf: boxSize[key] * 0.5,
-            minWidth: boxSize[key],
-            minHeight: boxSize[key],
-            padding: BOX_SIZE.padding,
-          } as const
-        : boxSize),
-    };
+export const boxSize = (
+  key?: TBoxSizesKey
+) => {
+  const boxSize = BOX_SIZE;
+  return {
+    ...(boxSize &&
+    typeof key !== "undefined"
+      ? ({
+          ...boxSize,
+          size: boxSize[key],
+          sizeHalf: boxSize[key] * 0.5,
+          minWidth: boxSize[key],
+          minHeight: boxSize[key],
+          padding: BOX_SIZE.padding,
+        } as const)
+      : boxSize),
   };
-  export type TBoxSize = ReturnType<
-    typeof boxSize
-  >;
-  
+};
+export type TBoxSize = ReturnType<
+  typeof boxSize
+>;

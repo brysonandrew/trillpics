@@ -54,7 +54,7 @@ export const LayoutOverlay: FC<
                   )}
                   style={{ gap: s.m05 }}
                 >
-                  <h3 className="text-5xl sm:text-6xl xl:text-8xl char-gap-6 text-white-8 dark:text-black-2 font-title _outline-filter">
+                  <h3 className="text-5xl sm:text-6xl xl:text-8xl char-gap-6 text-white-8 dark:text-black-2 font-sans uppercase _outline-filter">
                     {children}
                   </h3>
                   {subtitle && (

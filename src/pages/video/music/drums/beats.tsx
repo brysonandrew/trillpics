@@ -1,6 +1,6 @@
 import type { FC } from "react";
-import { useMusicContext } from "~/pages/video/music/context/index";
-import { BEATS } from "~/hooks/sound/beats/constants";
+import { useMusicReadyContext } from "~/pages/video/music/_context/ready/index";
+import { BEATS_KEYS } from "~/hooks/music/beats/constants";
 import { MusicLayoutTitle } from "~/pages/video/music/title";
 import { boxSize } from "~uno/rules/box/size";
 
@@ -8,7 +8,7 @@ export const RowsBeats: FC = () => {
   const s = boxSize();
 
   const { beats: lookup } =
-    useMusicContext();
+    useMusicReadyContext();
 
   return (
     <ul
@@ -17,7 +17,7 @@ export const RowsBeats: FC = () => {
         gap: s.m0125 / 6,
       }}
     >
-      {BEATS.map((beatsKey) => {
+      {BEATS_KEYS.map((beatsKey) => {
         return (
           <MusicLayoutTitle
             key={beatsKey}

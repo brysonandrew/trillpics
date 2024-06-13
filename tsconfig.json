@@ -28,7 +28,9 @@
     "baseUrl": "./",
     "paths": {
       "~/*": ["./src/*"],
-      "~generate": ["./src/server/generate/*"],
+      "~generate": [
+        "./src/server/generate/*"
+      ],
       "~server/*": ["./src/server/*"],
       "~app/*": ["./config/app/*"],
       "~uno/*": ["./config/uno/*"],
@@ -42,8 +44,6 @@
     "**/*.js",
     "**/*.jsx",
     "**/*.tsx",
-    "**/*.ts",
-    "./src/server/*.ts",
-    "./src/server/generate/*.ts"
+    "**/*.ts"
   ]
 }

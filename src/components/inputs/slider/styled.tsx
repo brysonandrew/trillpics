@@ -7,7 +7,6 @@ import { cx } from "class-variance-authority";
 import { boxSize } from "~uno/rules/box/size";
 import * as SliderPrimitive from "@radix-ui/react-slider";
 import { resolveSquare } from "@brysonandrew/measure";
-import { Background } from "~/components/remotion/player/overlays/background";
 import { PlayerBackgroundMesh } from "~/pages/video/player/_background/mesh";
 
 export type TSliderStyledProps =

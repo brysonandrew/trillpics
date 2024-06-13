@@ -1,15 +1,30 @@
 import { FC } from "react";
+import { VideoMusicGrid } from "~/pages/video/music/grid";
 import { VideoMusicSynthHeader } from "~/pages/video/music/synth/header";
-import { VideoMusicSynthMulti } from "~/pages/video/music/synth/multi";
-import { VideoMusicSynthSingle } from "~/pages/video/music/synth/single";
+import { useTrillPicsStore } from "~/store/middleware";
+import { boxSize } from "~uno/rules/box/size";
 
 export const VideoMusicSynth: FC =
   () => {
+    const { options, synthSteps } =
+      useTrillPicsStore(
+        ({ options, synthSteps }) => ({
+          options,
+          synthSteps,
+        })
+      );
+
+    const s = boxSize();
     return (
       <>
         <VideoMusicSynthHeader />
-        <VideoMusicSynthSingle />
-        <VideoMusicSynthMulti />
+
+        <VideoMusicGrid
+          presets={{
+            synth: synthSteps,
+          }}
+        />
+
       </>
     );
   };

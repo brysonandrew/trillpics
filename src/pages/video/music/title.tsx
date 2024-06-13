@@ -4,9 +4,7 @@ import {
   TPropsWithChildren,
 } from "@brysonandrew/config-types";
 import { IconsPlay } from "~/components/icons/playback/play";
-import { MusicLayout } from "~/pages/video/music/layout";
 import { LayoutBox } from "~/components/layout/box";
-import { BackgroundMeshRadial } from "~/components/layout/background/mesh-radial";
 import { LayoutBoxPadding } from "~/components/layout/box/padding";
 import { boxSize } from "~uno/rules/box/size";
 import { BackgroundMeshRadialFlat } from "~/components/layout/background/mesh-radial-flat";

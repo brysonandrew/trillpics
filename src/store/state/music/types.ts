@@ -1,18 +1,17 @@
 import {
+  TSynthOptions,
+  TMultiOptions,
+} from "react-synthwave";
+import { TBeatsPresetsKey } from "~/hooks/music/beats/presets/types";
+import {
   TBeats,
   TBeatsSequenceKey,
-} from "~/hooks/sound/beats/types";
-import { TSynth } from "~/hooks/sound/midis/synth/types";
+} from "~/hooks/music/beats/types";
 import {
   TMidis,
   TMidisSequenceKey,
-} from "~/hooks/sound/midis/types";
-import {
-  ALL_FILLS,
-  GAP_FILLS,
-} from "~/pages/video/music/buttons/constants";
+} from "~/hooks/music/midis/types";
 import { MUSIC_TYPES } from "~/store/state/music/constants";
-import { TMusicUpdateSynthHanlder } from "~/store/state/music/update/synth";
 
 export type TMusicKey =
   (typeof MUSIC_TYPES)[number];
@@ -24,9 +23,7 @@ export type TSequenceKey<
 export type USequenceEntry =
   | [TBeatsSequenceKey, TBeats]
   | [TMidisSequenceKey, TMidis];
-export type TActiveButton =
-  | (typeof ALL_FILLS)[number]
-  | null;
+
 export type TSequenceBeatRecord =
   Record<TBeatsSequenceKey, TBeats>;
 export type TPartialSequenceBeatRecord =
@@ -40,11 +37,17 @@ export type USequenceKey =
   | TBeatsSequenceKey
   | TMidisSequenceKey;
 
-export type TGapFill =
-  (typeof GAP_FILLS)[number];
+export type TRecording = {
+  src: string;
+  seconds: number;
+};
+
 export type TMusicState = {
-  music: TPartialSequenceBeatRecord & {
-    synth: TSynth;
-  };
-  musicUpdateSynth: TMusicUpdateSynthHanlder;
+  synthSteps: TMidis
+  beatsPresetKey: TBeatsPresetsKey
+  playKey: TMusicKey | null;
+  recording: TRecording | null;
+  bpm: number;
+  options: TSynthOptions;
+  multi: TMultiOptions;
 };

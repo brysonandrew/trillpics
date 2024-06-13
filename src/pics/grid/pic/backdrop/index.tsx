@@ -27,7 +27,8 @@ export const PicBackdrop: FC<
   return (
     <motion.div
       className={clsx(
-        "fill"
+        "fill",
+        classValue
       )}
       style={{
         ...(screenDimensions ?? {}),
@@ -43,7 +44,7 @@ export const PicBackdrop: FC<
       }}
       {...props}
     >
-      <div className="fill _box-dots opacity-20"/>
+      <div className="fill _box-dots opacity-20 brightness-80"/>
     </motion.div>
   );
 };

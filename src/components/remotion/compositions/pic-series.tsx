@@ -16,8 +16,8 @@ export const CompositionsPicSeries: FC<
   Partial<TPicSeriesProps>
 > = (__inputPropsPartial) => {
   const {
-    props: inputProps,
-    ...props
+    canvasDimensions,
+    ...inputProps
   } = useRemotionProps({
     ...__inputPropsPartial,
     ...INPUT_PROPS,
@@ -35,7 +35,7 @@ export const CompositionsPicSeries: FC<
       schema={PIC_SERIES_SCHEMA}
       defaultProps={inputProps}
       {...{ fps, durationInFrames }}
-      {...props}
+      {...canvasDimensions}
     />
   );
 };

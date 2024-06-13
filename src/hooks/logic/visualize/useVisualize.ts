@@ -1,6 +1,6 @@
 import type { MutableRefObject } from "react";
 import { useCallback, useRef, useEffect } from "react";
-import { useSoundContext } from "~/shell/global/sound";
+import { useMusicInitContext } from "~/pages/video/music/_context/init";
 
 type TInit = {
   bufferLength: number;
@@ -26,7 +26,7 @@ export const useVisualize = ({
   isActive,
   ref,
 }: TConfig) => {
-  const {master,context} = useSoundContext()
+  const {master,context} = useMusicInitContext()
   const frameRef =
     useRef<ReturnType<typeof requestAnimationFrame>>();
 
@@ -57,7 +57,7 @@ export const useVisualize = ({
       const audioTracks =
         destination.stream.getAudioTracks();
       if (audioTracks.length === 0) {
-        console.log("no audio tracks");
+        console.log("no recording tracks");
         return null;
       }
       if (!ref.current) {

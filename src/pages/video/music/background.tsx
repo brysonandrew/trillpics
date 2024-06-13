@@ -29,7 +29,7 @@ export const MusicBackground: FC<
         classValue
       )}
       style={{
-        inset: -s.m0125,
+        inset:0,
         ...boxStyle,
         ...style,
       }}

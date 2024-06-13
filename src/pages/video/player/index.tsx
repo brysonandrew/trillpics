@@ -27,6 +27,7 @@ export const VideoPlayer = () => {
           Trill Pics | Viewing Room
         </title>
       </Helmet>
+      
       <VideoPlayer_Backdrop />
 
       <div

@@ -10,6 +10,8 @@ const resolveBeats = (
       : 0
   );
 
+  export const BEATS_1 = resolveBeats(1);
+
 export const BEATS_2 = resolveBeats(2);
 export const BEATS_2_1 = resolveBeats(
   2,

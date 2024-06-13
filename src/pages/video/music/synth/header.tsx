@@ -2,8 +2,7 @@ import type { FC } from "react";
 import { WRITABLE_OSCILLATOR_TYPES } from "react-synthwave";
 import { SelectStyled } from "~/components/inputs/select/styled";
 import { TUpdateSliderHandler } from "~/components/inputs/slider/row";
-import { LinesHorizontal } from "~/components/lines/horizontal";
-import { usePlayMidis } from "~/hooks/sound/play/midis";
+import { usePlayMidis } from "~/hooks/music/play/midis";
 import { MusicBackground } from "~/pages/video/music/background";
 import { MusicLayoutHeader } from "~/pages/video/music/header";
 import { useVideoPlayerStyle } from "~/pages/video/player/style";
@@ -11,12 +10,18 @@ import { boxRadius } from "~uno/rules/box/radius";
 import { boxSize } from "~uno/rules/box/size";
 import { useSynthUpdate } from "~/pages/video/music/synth/update";
 import { IconsPlay } from "~/components/icons/playback/play";
-import { useMusicContext } from "~/pages/video/music/context";
+import { useTrillPicsStore } from "~/store/middleware";
+import { VideoMusicGrid } from "~/pages/video/music/grid";
 
 export const VideoMusicSynthHeader: FC =
   () => {
-    const { options } =
-      useMusicContext();
+    const { options, synthSteps } =
+      useTrillPicsStore(
+        ({ options, synthSteps }) => ({
+          options,
+          synthSteps,
+        })
+      );
     const s = boxSize();
     const handleUpdate: TUpdateSliderHandler =
       useSynthUpdate();
@@ -28,41 +33,43 @@ export const VideoMusicSynthHeader: FC =
     } = useVideoPlayerStyle();
 
     return (
-      <div>
-        <div
-          className="relative row-space grow"
-          style={{
-            gap: s.m0125 / 4,
-            paddingRight: s.m05,
-            width,
+      <div
+        className="relative row-space grow"
+        style={{
+          // paddingLeft: s.m0125,
+          // paddingRight: s.m0125,
+          width,
+        }}
+      >
+        <MusicBackground
+          boxStyle={{
+            left: sidebarWidthOffset,
           }}
-        >
-          <MusicBackground
-            boxStyle={{
-              left: sidebarWidthOffset,
-            }}
-            style={{
-              borderTopRightRadius:
-                borderRadius,
-            }}
-          />
-          <MusicLayoutHeader
-            Icon={
-              playMidis.isPlaying
-                ? IconsPlay
-                : IconsPlay
+          style={{
+            // borderTopLeftRadius:
+            // borderRadius,
+            borderTopRightRadius:
+              borderRadius,
+          }}
+        />
+        <MusicLayoutHeader
+          Icon={
+            playMidis.isPlaying
+              ? IconsPlay
+              : IconsPlay
+          }
+          onClick={() => {
+            if (playMidis.isPlaying) {
+              playMidis.stop();
+            } else {
+              playMidis.play();
             }
-            onClick={() => {
-              if (playMidis.isPlaying) {
-                playMidis.stop();
-              } else {
-                playMidis.play();
-              }
-            }}
-          >
-            Synth
-          </MusicLayoutHeader>
-          <LinesHorizontal opacityClass="opacity-20" />
+          }}
+          rightContent={
+            <div
+          className="row relative"
+        
+        >
           <SelectStyled
             name="options.type"
             title="type"
@@ -78,6 +85,12 @@ export const VideoMusicSynthHeader: FC =
             }
           />
         </div>
+          }
+        >
+          Synth
+        </MusicLayoutHeader>
+        
+        
       </div>
     );
   };
