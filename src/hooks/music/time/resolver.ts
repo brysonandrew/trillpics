@@ -3,11 +3,7 @@ export const resolveStepsPerSecond = (
 ) => {
   const bps = bpm / 60; //beats per min
   const spb = 4; //steps per beat
-  const sps = bps / spb; // steps per second
+  const sps = 1 / (bps * spb); // steps per second
 
   return sps;
 };
-// const stepDuration =
-// 1 / (4 * (bpm / 60));
-// const seconds =
-// stepDuration * STEPS_COUNT * 2;

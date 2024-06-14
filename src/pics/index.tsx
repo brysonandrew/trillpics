@@ -18,7 +18,6 @@ export const Pics: FC = () => {
       {table.isVerticalScroll && (
         <ScrollbarSeam />
       )}
-      <div className="fixed left-1/2 top-4">{hoverKeys}</div>
       <Grid
         rows={table.rows}
         count={table.count}

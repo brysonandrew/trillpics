@@ -1,3 +1,5 @@
+import { TScaleKey } from "~/constants/scales";
+
 export const MIME_TYPES = [
   "video/mp4;codecs=h264,aac",
   "video/webm;codecs=vp9,opus",
@@ -7,3 +9,4 @@ export const MIME_TYPES = [
 ];
 
 export const useSupportedMimeTypes = () => MIME_TYPES.filter((mimeType: string) => MediaRecorder.isTypeSupported(mimeType));
+export const DEFAULT_SCALE_KEY:TScaleKey = 'all'

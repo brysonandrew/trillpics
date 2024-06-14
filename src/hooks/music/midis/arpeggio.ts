@@ -49,24 +49,6 @@ export const useArpeggio = () => {
     multiSynth.play(multiSynthOptions);
   };
 
-  const handle8ths = (
-    startTime: number,
-    midi: number,
-    options: TPlayMidisOptions = {}
-  ) => {
-    const { duration } = options;
-    const durationHalf =
-      (duration ?? -0) / 2;
-    handler(startTime, midi, {
-      duration: durationHalf,
-    });
-    handler(
-      startTime + durationHalf,
-      midi,
-      { duration: durationHalf }
-    );
-  };
-
   const handleStop = () => {
     stop.bind(multiSynth.stop)
   }

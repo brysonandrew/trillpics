@@ -1,7 +1,4 @@
-import {
-  useEffect,
-  useMemo,
-} from "react";
+import { useMemo } from "react";
 import { useAnimationFrame } from "framer-motion";
 import { useContextPlayer_Init } from "~/pages/video/player/_context/init";
 import { isNull } from "~/utils/validation/is/null";
@@ -86,28 +83,6 @@ export const useAnimatedText = (
       });
     });
   });
-  useEffect(() => {
-    // const observer = new PerformanceObserver((list) => {
-    //   console.log(list.getEntries());
-    // });
-    // observer.observe({ type: "long-animation-frame", buffered: true });
-    // value.set(target);
-    // return () => {
-    //   text = {
-    //     isStarted: false,
-    //     start: 0,
-    //     m: [null, null],
-    //     s: [null, null],
-    //     ms: [null, null],
-    //   };
-    // };
-  }, []);
 
   return text;
 };
-// ref.current?.innerText =
-//   target.toFixed(2);
-// return value.onChange((v) => {
-//   ref.current?.innerText =
-//     v.toFixed(2);
-// });

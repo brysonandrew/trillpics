@@ -11,7 +11,10 @@ export const ShellReady: FC<TProps> = ({
   ...screen
 }) => {
   if (!screen.isDimensions) return null;
-  if (!screen.isWideEnough)
+  if (
+    !screen.device.isHeightEnough ||
+    !screen.device.isWidthEnough
+  )
     return <ScreenTooSmallOverlay />;
   return (
     <ReadyContextProvider

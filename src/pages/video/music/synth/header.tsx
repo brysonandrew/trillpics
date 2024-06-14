@@ -11,15 +11,21 @@ import { boxSize } from "~uno/rules/box/size";
 import { useSynthUpdate } from "~/pages/video/music/synth/update";
 import { IconsPlay } from "~/components/icons/playback/play";
 import { useTrillPicsStore } from "~/store/middleware";
-import { VideoMusicGrid } from "~/pages/video/music/grid";
+import { SCALES } from "~/constants/scales";
+import { PillB } from "~/components/buttons/pill/b";
+import { IconsReload } from "~/components/icons/reload";
+import { SynthReload } from "~/pages/video/music/synth/reload";
+import { SynthOffsetLeft } from "~/pages/video/music/synth/offset/left";
+import { SynthOffsetRight } from "~/pages/video/music/synth/offset/right";
+import { SynthScale } from "~/pages/video/music/synth/scale";
 
 export const VideoMusicSynthHeader: FC =
   () => {
-    const { options, synthSteps } =
+    const { options, scaleKey } =
       useTrillPicsStore(
-        ({ options, synthSteps }) => ({
+        ({ options, scaleKey }) => ({
           options,
-          synthSteps,
+          scaleKey,
         })
       );
     const s = boxSize();
@@ -36,9 +42,7 @@ export const VideoMusicSynthHeader: FC =
       <div
         className="relative row-space grow"
         style={{
-          // paddingLeft: s.m0125,
-          // paddingRight: s.m0125,
-          width,
+          width: width + s.m025,
         }}
       >
         <MusicBackground
@@ -46,8 +50,6 @@ export const VideoMusicSynthHeader: FC =
             left: sidebarWidthOffset,
           }}
           style={{
-            // borderTopLeftRadius:
-            // borderRadius,
             borderTopRightRadius:
               borderRadius,
           }}
@@ -65,32 +67,48 @@ export const VideoMusicSynthHeader: FC =
               playMidis.play();
             }
           }}
+          leftContent={
+            <div
+              className="row relative"
+              style={{
+                gap: s.m025,
+              }}
+            >
+              <SelectStyled
+                name="options.type"
+                title="type"
+                value={options.type}
+                values={
+                  WRITABLE_OSCILLATOR_TYPES
+                }
+                onValueChange={(
+                  value
+                ) =>
+                  handleUpdate(
+                    "options.type",
+                    value
+                  )
+                }
+              />
+           <SynthScale/>
+            </div>
+          }
           rightContent={
             <div
-          className="row relative"
-        
-        >
-          <SelectStyled
-            name="options.type"
-            title="type"
-            value={options.type}
-            values={
-              WRITABLE_OSCILLATOR_TYPES
-            }
-            onValueChange={(value) =>
-              handleUpdate(
-                "options.type",
-                value
-              )
-            }
-          />
-        </div>
+              className="row relative"
+              style={{
+                gap: s.m025,
+              }}
+            >
+              <SynthOffsetLeft />
+              <SynthOffsetRight />
+
+              <SynthReload />
+            </div>
           }
         >
           Synth
         </MusicLayoutHeader>
-        
-        
       </div>
     );
   };

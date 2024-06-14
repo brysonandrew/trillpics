@@ -8,14 +8,14 @@ import { LinesHorizontal } from "~/components/lines/horizontal";
 import { IconsTick } from "~/components/icons/tick";
 import { IconsLoader } from "~/components/icons/loader";
 import { useMusicRecorderContext } from "~/pages/video/music/_context/recorder";
+import { NOOP } from "~/constants/functions";
 
 export const VideoMusicPlaybackHeader =
   () => {
     const s = boxSize();
 
-    const {
-      sidebarWidthOffset,
-    } = useVideoPlayerStyle();
+    const { sidebarWidthOffset } =
+      useVideoPlayerStyle();
 
     const {
       isRecording,
@@ -27,17 +27,17 @@ export const VideoMusicPlaybackHeader =
     return (
       <div
         className="relative row"
-        style={{ 
-          // paddingLeft: s.m0125,
-          // paddingRight: s.m0125,
-          gap: s.m05, height:s.m15 }}
+        style={{
+          // gap: s.m05,
+          height: s.m15,
+        }}
       >
-      
         <MusicBackground
           boxStyle={{
             left: sidebarWidthOffset,
           }}
         />
+
         <MusicLayoutHeader
           Icon={
             isRecording
@@ -46,15 +46,24 @@ export const VideoMusicPlaybackHeader =
               ? IconsTick
               : IconsSave
           }
-          onClick={handleStart}
+          onClick={isRecording ? NOOP : handleStart}
+          leftContent={
+            <div
+              className="flex flex-row w-full items-center"
+              style={{
+                gap: s.m0125,
+              }}
+            >
+              <VideoMusicPlaybackTimer
+                isPlaying={isRecording}
+                seconds={seconds}
+              />
+              <LinesHorizontal />
+            </div>
+          }
         >
           Record
         </MusicLayoutHeader>
-        <VideoMusicPlaybackTimer
-          isPlaying={isRecording}
-          seconds={seconds}
-        />
-        <LinesHorizontal />
       </div>
     );
   };

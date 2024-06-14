@@ -5,10 +5,14 @@ import { useStepsPerSecond } from "~/hooks/music/time";
 import { useTimer } from "~/hooks/use-timer";
 import { useRecorderListeners } from "~/pages/video/music/_context/hooks/recorder/listeners";
 import { useMusicInitContext } from "~/pages/video/music/_context/init";
+import { useGridCellHandler } from "~/pages/video/music/_context/init/hooks/grid-cell-color";
 
 export const useMusicRecorder = () => {
-  const { recorder } =
-    useMusicInitContext();
+  const {
+    recorder,
+    saveProgress,
+    audio,
+  } = useMusicInitContext();
   const playBeats = usePlayBeats();
   const playMidis = usePlayMidis();
 
@@ -17,29 +21,64 @@ export const useMusicRecorder = () => {
   const seconds =
     stepsPerSecond * STEPS_COUNT;
   useRecorderListeners();
+
+  const handleGridCell =
+    useGridCellHandler();
+
+  const handleDone = () => {
+    saveProgress.set(0);
+    audio.currentStep = -1;
+    handleGridCell();
+  };
+
   const [
     isRecordingCooldown,
     startCooldownTimer,
-  ] = useTimer(seconds * 1000);
+    stopCooldownTimer,
+  ] = useTimer(
+    seconds * 1000,
+    handleDone
+  );
 
   const handleStop = () => {
-    playBeats.stop();
-    playMidis.stop();
-    recorder.stop();
-    startCooldownTimer();
+    if (
+      recorder.state === "recording"
+    ) {
+      playBeats.stop();
+      playMidis.stop();
+      recorder.stop();
+      stopCooldownTimer();
+      startCooldownTimer();
+    }
   };
 
-  const [isRecording, startTimer] =
-    useTimer(
-      seconds * 1000,
-      handleStop
-    );
+  const [
+    isRecording,
+    startTimer,
+    stopTimer,
+  ] = useTimer(
+    seconds * 1000,
+    handleStop
+  );
+
+  const resetTimers = () => {
+    stopCooldownTimer();
+    stopTimer();
+  };
 
   const handleStart = async () => {
-    await playBeats.play();
-    await playMidis.play();
-    recorder.start();
-    startTimer();
+    if (
+      recorder.state === "recording"
+    ) {
+      recorder.stop();
+    } else {
+      await playBeats.play();
+      await playMidis.play();
+      recorder.start();
+
+      resetTimers();
+      startTimer();
+    }
   };
 
   return {

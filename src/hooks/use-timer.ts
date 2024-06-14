@@ -40,7 +40,6 @@ export const useTimer = <A extends []>(
     if (isReady) {
       clock.timer = window.setTimeout(
         () => {
-          console.log('end',end)
           if (end) {
             end(...args);
           }

@@ -61,33 +61,26 @@ export const SelectStyled: FC<
 
       <Select.Portal>
         <Select.Content
-          className="relative top-0 translate-y-16 w-full"
           position="popper"
-          align="end"
-          side="bottom"
+          // align="end"
+          // side="top"
           style={{ zIndex: 99 }}
         >
-          <MusicLayout
-            // classValue="text-lg font-slab"
-            // style={{
-            //   paddingLeft: 0,
-            //   paddingRight: 0,
-            // }}
-          >
             <Select.Viewport>
               <Select.Group
                 className={clsx(
                   "relative column-stretch bg-gray-02 backdrop-blur-lg",
                   "border border-white-04 dark:border-black-04",
+                  // 'translate-y-1/2'
                 )}
                 style={{
-                  paddingTop: s.m025,
-                  paddingBottom:
-                    s.m025,
-                    paddingLeft:
-                    s.m025,
-                  paddingRight:
-                    s.m025,
+                  // paddingTop: s.m025,
+                  // paddingBottom:
+                  //   s.m025,
+                  //   paddingLeft:
+                  //   s.m025,
+                  // paddingRight:
+                  //   s.m025,
                   borderRadius,
                 }}
               >
@@ -103,23 +96,22 @@ export const SelectStyled: FC<
                         "relative row-space cursor-pointer outline-none select-none",
                         "data-[highlighted]:bg-black-02"
                       )}
-                      style={{
-                        paddingTop: s.m0125,
-                        paddingBottom:
-                          s.m0125,
-                        paddingLeft:
-                          s.m025,
-                        paddingRight:
-                          s.m025,
-                        borderRadius,
-                      }}
+                      // style={{
+                      //   paddingTop: s.m0125,
+                      //   paddingBottom:
+                      //     s.m0125,
+                      //   paddingLeft:
+                      //     s.m025,
+                      //   paddingRight:
+                      //     s.m025,
+                      //   borderRadius,
+                      // }}
                     >
-                      {value}
+                      <MusicLayout>{value}</MusicLayout>
                     </Select.Item>
                   ))}
               </Select.Group>
             </Select.Viewport>
-          </MusicLayout>
         </Select.Content>
       </Select.Portal>
     </Select.Root>

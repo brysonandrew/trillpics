@@ -1,6 +1,16 @@
-import { createContext, FC, useContext, useMemo } from "react";
+import {
+  createContext,
+  FC,
+  useContext,
+  useMemo,
+} from "react";
 import { useMotionValue } from "framer-motion";
-import { TMusicInitContext } from "~/pages/video/music/_context/init/types";
+import {
+  TMusicInitContext,
+  TPartialStepsScaleRecord,
+} from "~/pages/video/music/_context/init/types";
+import { MIDIS_1_R } from "~/constants/music/midis";
+import { DEFAULT_SCALE_KEY } from "~/pages/video/music/_context/init/constants";
 
 const Context =
   createContext<TMusicInitContext>(
@@ -8,7 +18,9 @@ const Context =
   );
 export const useMusicInitContext =
   (): TMusicInitContext =>
-    useContext<TMusicInitContext>(Context);
+    useContext<TMusicInitContext>(
+      Context
+    );
 type TProviderProps = {
   children: JSX.Element;
 };
@@ -16,8 +28,7 @@ type TProviderProps = {
 export const MusicInitProvider: FC<
   TProviderProps
 > = ({ children }) => {
-
-    const saveProgress =
+  const saveProgress =
     useMotionValue(0);
 
   const {
@@ -26,6 +37,8 @@ export const MusicInitProvider: FC<
     bufferSourceRecord,
     destination,
     recorder,
+    gridCellsRecord,
+    stepsScaleRecord,
     ...audio
   } = useMemo(() => {
     const context = new AudioContext();
@@ -46,6 +59,11 @@ export const MusicInitProvider: FC<
     const arrayBuffer: ArrayBuffer =
       new Float32Array();
     const bufferSourceRecord = {};
+    const stepsScaleRecord: TPartialStepsScaleRecord =
+      {
+        [DEFAULT_SCALE_KEY]: MIDIS_1_R,
+      };
+
     return {
       isRecording: false,
       context,
@@ -56,6 +74,9 @@ export const MusicInitProvider: FC<
       arrayBuffer,
       saveProgress,
       bufferSourceRecord,
+      gridCellsRecord: {},
+      currentStep: -1,
+      stepsScaleRecord,
     };
   }, []);
 
@@ -69,6 +90,8 @@ export const MusicInitProvider: FC<
         audio,
         bufferSourceRecord,
         saveProgress,
+        gridCellsRecord,
+        stepsScaleRecord,
       }}
     >
       {children}

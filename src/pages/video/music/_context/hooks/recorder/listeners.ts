@@ -16,12 +16,22 @@ export const useRecorderListeners =
       useRecorderDataAvailableHandler();
 
     useEffect(() => {
-      recorder.onerror = console.log;
-      recorder.onstart = (event:Event) => {
-        console.log('onstart',event)
+      recorder.onerror = (
+        event: Event
+      ) => {
+        console.log(event);
       };
-      recorder.onstop = (event:Event) => {
-        handleStop(event);
+      recorder.onstart = (
+        event: Event
+      ) => {
+        console.log("onstart", event);
+      };
+      recorder.onstop = (
+        event: Event
+      ) => {
+        console.log("onstop", event);
+
+        // handleStop(event);
         handleSave(event);
       };
       recorder.ondataavailable =

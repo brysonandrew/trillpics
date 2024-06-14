@@ -43,18 +43,6 @@ export const _RootReorderDragger: FC<
   const title =
     "Drag video pic position";
 
-  const start = () => {
-    main.cursor.isOnGrid = false;
-  };
-  const stop = () => {
-    main.cursor.isOnGrid = true;
-  };
-
-  // const { isHover, motionHandlers } =
-  //   useHoverKey({
-  //     handlers: { start, stop },
-  //   });
-
   const handlePointerDown: PointerEventHandler<
     HTMLButtonElement
   > = (event) => {

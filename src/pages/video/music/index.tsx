@@ -45,14 +45,12 @@ export const VideoMusic = () => {
               "flex flex-row items-stretch justify-stretch"
             )}
           >
-             
             <div
               className="absolute column-stretch grow"
               style={{
-                left,
+                left:left-s.m0125-s.m0625,
                 gap,
-                width,
-
+                width:width+s.m025,
                 paddingTop: y,
                 paddingBottom: y * 1.5,
                 height:
@@ -62,9 +60,8 @@ export const VideoMusic = () => {
               <div
                 className="sticky column-stretch z-20 bg-black-8 dark:bg-black"
                 style={{
-                  width,
+                  width:width+s.m025,
                   top: y,
-                  gap: s.m025 * 1.5,
                   borderTopRightRadius:
                     borderRadius,
                   borderTopLeftRadius:
@@ -100,8 +97,6 @@ export const VideoMusic = () => {
                     }px)`,
                   }}
                   style={{
-                    // borderTopLeftRadius:
-                    // borderRadius,
                     borderTopRightRadius:
                       borderRadius,
                     borderBottomRightRadius:
@@ -116,7 +111,7 @@ export const VideoMusic = () => {
                   gap,
                 }}
               >
-                <div className="absolute inset-x-0 -inset-y-6 bg-gradient-to-b from-black to-black-05"/>
+                <div className="absolute inset-x-0 -inset-y-6 bg-gradient-to-b from-black to-black-05" />
                 <VideoMusicSynthSingle />
                 <VideoMusicSynthMulti />
               </div>
@@ -124,38 +119,36 @@ export const VideoMusic = () => {
               <div
                 className="sticky column-stretch z-10 bg-black-8 dark:bg-black"
                 style={{
-                  width,
+                  width:width+s.m025,
                   gap: s.m025 * 1.5,
-                  // height:
-                  //   s.m4 +
-                  //   s.m2 +
-                  //   s.m +
-                  //   s.m025,
-                  top: y + s.m4,
-                  bottom: s.m2,
-                  // borderRadius:
-                  //   borderRadius,
-                  // bottom: s.m2+s.m15,
+                  top:
+                    y +
+                    s.m3 +
+                    s.m05 +
+                    s.m0125,
+                  bottom:
+                    s.m25 + s.m025+s.m0125,
                 }}
               >
                 <VideoMusicDrums />
               </div>
 
               <div className="relative column-stretch">
-              <div className="absolute inset-x-0 -inset-y-6 bg-gradient-to-b from-black to-black-05"/>
-
+                <div className="absolute inset-x-0 -inset-y-6 bg-gradient-to-b from-black to-black-05" />
                 <Bpm />
               </div>
+
               <div
-                className="sticky bottom-0 column-stretch bg-black-8 dark:bg-black z-10"
+                className="sticky column-stretch bg-black-8 dark:bg-black z-10"
                 style={{
-                  top: y + s.m8,
-                  gap: s.m025,
-                  width,
-                  height: s.m4 + s.m,
+                  top:
+                    y +
+                    s.m8 -
+                    s.m025 -
+                    s.m0125,
+                  gap: s.m05,
+                  width:width+s.m025,
                   bottom: s.m,
-                  // borderRadius:
-                  //   borderRadius,
                   borderBottomLeftRadius:
                     borderRadius,
                   borderBottomRightRadius:
@@ -165,12 +158,6 @@ export const VideoMusic = () => {
                 <VideoMusicPlayback />
               </div>
             </div>
-
-            <div
-              style={{
-                height: s.m4 * 4,
-              }}
-            />
           </div>
         </MusicRecorderProvider>
       </MusicReadyProvider>

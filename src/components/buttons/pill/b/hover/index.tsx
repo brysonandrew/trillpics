@@ -61,7 +61,6 @@ export const PillBHover: FC<
   > = (event) => {
     if (onClick) {
       onClick(event);
-      // set({ hoverKeys: [] });
     }
   };
   return (

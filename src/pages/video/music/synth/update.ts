@@ -1,8 +1,8 @@
 import { TUpdateSliderHandler } from "~/components/inputs/slider/row";
+import { INPUT_PATH_DELIMITER } from "~/pages/video/music/synth/constants";
 import {
   isSynthMultiOptionsType,
   isSynthOptionsType,
-  isSynthType,
 } from "~/pages/video/music/synth/validators";
 import { useTrillPicsStore } from "~/store/middleware";
 import { TState } from "~/store/types";
@@ -13,8 +13,9 @@ export const useSynthUpdate = () => {
   );
   const handleUpdate: TUpdateSliderHandler =
     (name: string, value: any) => {
-      const [key, key1] =
-        name.split(".");
+      const [key, key1] = name.split(
+        INPUT_PATH_DELIMITER
+      );
       const resolveValue = () => {
         switch (key1) {
           case "type": {
@@ -27,6 +28,9 @@ export const useSynthUpdate = () => {
       };
 
       set((draft: TState) => {
+        if (key === "scaleKey") {
+          draft[key] = value;
+        }
         if (isSynthOptionsType(key1)) {
           draft.options[key1] =
             resolveValue();

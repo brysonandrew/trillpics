@@ -5,10 +5,11 @@ import {
 } from "~/constants/music/beats";
 import { TBeats } from "~/hooks/music/beats/types";
 import { TMidis } from "~/hooks/music/midis/types";
+
 export const RANDOM_MIDI_RANGE  = 12;
 const resolveRandom = () =>
-  Math.floor(Math.random() * RANDOM_MIDI_RANGE);
-const resolveRandomRange = (
+  Math.floor((Math.random() * RANDOM_MIDI_RANGE + 1));
+export const resolveRandomRange = (
   values: TBeats
 ): TMidis => {
   let n = resolveRandom();

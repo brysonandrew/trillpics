@@ -4,6 +4,8 @@ import { useMusicInitContext } from "~/pages/video/music/_context/init";
 import { useTrillPicsStore } from "~/store/middleware";
 import { resolveStepsPerSecond } from "~/hooks/music/time/resolver";
 import { MIDIS_1_R } from "~/constants/music/midis";
+import { SCALE_RECORD } from "~/constants/scales";
+import { isNumber } from "~/utils/validation/is/number";
 
 export const usePlayMidis = () => {
   const { midis: lookup } =
@@ -15,19 +17,25 @@ export const usePlayMidis = () => {
     options,
     multi,
     playKey,
+    scaleKey,
+    synthSteps,
     set,
   } = useTrillPicsStore(
     ({
       bpm,
+      scaleKey,
       options,
       multi,
       playKey,
+      synthSteps,
       set,
     }) => ({
       bpm,
+      scaleKey,
       options,
       multi,
       playKey,
+      synthSteps,
       set,
     })
   );
@@ -40,19 +48,19 @@ export const usePlayMidis = () => {
     MIDIS.forEach((midiKey) => {
       if (!lookup[midiKey]) return;
 
-      const steps = MIDIS_1_R;
-
-      [...steps].forEach(
+      [...synthSteps].forEach(
         (midi, index) => {
-          if (midi) {
+          if (isNumber(midi)) {
             const sps =
               resolveStepsPerSecond(
                 bpm
               );
             const elapsed = index * sps;
-            lookup[midiKey].play(
+            const start =
               context.currentTime +
-                elapsed,
+              elapsed;
+            lookup[midiKey].play(
+              start,
               midi,
               {
                 volume:

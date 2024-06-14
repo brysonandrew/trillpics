@@ -27,16 +27,7 @@ export const VideoMusicSynthSingle: FC =
           onUpdate={handleUpdate}
         />
 
-        <UiInputsSliderRow
-          name="options.detune"
-          title="detune"
-          value={options.detune}
-          min={-2400}
-          max={2400}
-          step={10}
-          onUpdate={handleUpdate}
-        />
-
+    
         <UiInputsSliderRow
           name="options.gain"
           title="gain"
@@ -47,7 +38,18 @@ export const VideoMusicSynthSingle: FC =
           onUpdate={handleUpdate}
         />
 
-        <UiInputsSliderRow
+<UiInputsSliderRow
+          name="options.detune"
+          title="detune"
+          value={options.detune}
+          min={-2400}
+          max={2400}
+          step={10}
+          onUpdate={handleUpdate}
+        />
+
+
+        {/* <UiInputsSliderRow
           name="options.attack"
           title="attack"
           value={options.attack}
@@ -56,7 +58,6 @@ export const VideoMusicSynthSingle: FC =
           step={0.1}
           onUpdate={handleUpdate}
         />
-
         <UiInputsSliderRow
           name="options.decay"
           title="decay"
@@ -66,7 +67,6 @@ export const VideoMusicSynthSingle: FC =
           step={0.1}
           onUpdate={handleUpdate}
         />
-
         <UiInputsSliderRow
           name="options.delay"
           title="delay"
@@ -75,7 +75,7 @@ export const VideoMusicSynthSingle: FC =
           max={6}
           step={0.1}
           onUpdate={handleUpdate}
-        />
+        /> */}
       </>
     );
   };

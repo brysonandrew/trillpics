@@ -7,7 +7,7 @@ const resolveBeats = (
   [...STEPS].map((_, index) =>
     (index + offset) % stagger === 0
       ? 1
-      : 0
+      : null
   );
 
   export const BEATS_1 = resolveBeats(1);

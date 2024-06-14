@@ -4,10 +4,12 @@ import { LinesHorizontal } from "~/components/lines/horizontal";
 import { RANDOM_MIDI_RANGE } from "~/constants/music/midis";
 import { STEPS } from "~/constants/music/steps";
 import { boxSize } from "~uno/rules/box/size";
-import { useVideoPlayerStyle } from "~/pages/video/player/style";
 import { boxRadius } from "~uno/rules/box/radius";
+import { useMusicInitContext } from "~/pages/video/music/_context/init";
+import clsx from "clsx";
 
 type TProps = {
+  // gridCells:any[][]
   presets: Record<
     string,
     readonly (number | null)[]
@@ -17,29 +19,21 @@ export const VideoMusicGrid: FC<
   TProps
 > = ({ presets }) => {
   const s = boxSize();
-  const borderRadius = boxRadius()
-  const {
-    sidebarWidthOffset,
-    width,
-    left,
-    screen,
-  } = useVideoPlayerStyle();
+  const borderRadius = boxRadius();
+  const { gridCellsRecord } =
+    useMusicInitContext();
   return (
     <div
       className="relative row-stretch"
       style={{
-        // paddingLeft: s.m05,
-        // paddingRight: s.m05,
-        // left: -left + s.m05,
         height: s.m2,
-        // width: screen.width - s.m,
       }}
     >
       <div className="fill column-space items-stretch gap-1">
         {Object.entries(presets).map(
           (
             [key, steps],
-            index,
+            rowIndex,
             { length: count }
           ) => {
             return (
@@ -47,66 +41,123 @@ export const VideoMusicGrid: FC<
                 key={key}
                 className="relative row-start-space h-full"
               >
+                {count === 1 &&
+                  [
+                    ...Array(
+                      RANDOM_MIDI_RANGE
+                    ),
+                  ].map((_, index) => (
+                    <LinesHorizontal
+                      key={`line-${index}`}
+                      style={{
+                        top: `${
+                          (index /
+                            RANDOM_MIDI_RANGE) *
+                            80 +
+                          10
+                        }%`,
+                        opacity: 0.1,
+                        width: "100%",
+                      }}
+                      positionClass="absolute"
+                      colorClass="border-white"
+                    />
+                  ))}
                 {STEPS.map(
-                  (_, index) => {
+                  (_, columnIndex) => {
                     const value =
-                      steps[index];
+                      steps[
+                        columnIndex
+                      ];
 
                     if (value === null)
-                      return <div />;
+                      return (
+                        <div
+                          key={`blank-${columnIndex}`}
+                        />
+                      );
 
                     return (
                       <div
+                        key={`${columnIndex}`}
                         className="column relative w-full"
                         style={{
                           top: `${
-                            (value *
-                              100) /
-                            RANDOM_MIDI_RANGE
+                            (value /
+                              RANDOM_MIDI_RANGE) *
+                              80 +
+                            10
                           }%`,
                         }}
                       >
-                        {count ===
-                          1 && (
-                          // <div
-                          //   key={`line-${index}`}
-                          //   className="w-full h-1 bg-white-06 dark:bg-black-05"
-                          // />
-                          <LinesHorizontal
-                            style={{
-                              top: s.m0625,
-                              opacity: 0.2,
-                            }}
-                            colorClass='bg-gray-01'
-                            key={`line-${index}`}
-                          />
-                        )}
-                        {Boolean(
-                          value
-                        ) ? (
-                          <div
-                            key={`i-${index}`}
-                            className="bg-white-06 dark:bg-white-02"
-                            style={{
-                              borderRadius,
-                              ...resolveSquare(
-                                s.m0125
-                              ),
-                            }}
-                          />
-                        ) : (
-                          <div
-                            key={`${index}`}
-                            className="bg-white-03 dark:bg-gray-02"
-                            style={{
-                              borderRadius,
-
-                              ...resolveSquare(
-                                s.m0125
-                              ),
-                            }}
-                          />
-                        )}
+                        <div
+                          key={`${columnIndex}-${value}`}
+                          ref={(
+                            instance
+                          ) => {
+                            if (
+                              !gridCellsRecord[
+                                key
+                              ]
+                            ) {
+                              gridCellsRecord[
+                                key
+                              ] = [];
+                            }
+                            if (
+                              !gridCellsRecord[
+                                key
+                              ][
+                                rowIndex
+                              ]
+                            ) {
+                              gridCellsRecord[
+                                key
+                              ][
+                                rowIndex
+                              ] = [];
+                            }
+                            const gridCell =
+                              gridCellsRecord[
+                                key
+                              ]?.[
+                                rowIndex
+                              ]?.[
+                                columnIndex
+                              ];
+                            if (
+                              instance &&
+                              !gridCell
+                            ) {
+                              gridCellsRecord[
+                                key
+                              ][
+                                rowIndex
+                              ][
+                                columnIndex
+                              ] =
+                                instance;
+                            }
+                          }}
+                          className={clsx(
+                            "bg-white"
+                          )}
+                          style={{
+                            position:
+                              "relative",
+                            top: -s.m0625,
+                            borderRadius,
+                            ...resolveSquare(
+                              s.m0125
+                            ),
+                            opacity:
+                              Boolean(
+                                value
+                              )
+                                ? 1
+                                : 0.28,
+                          }}
+                        />
                       </div>
                     );
                   }

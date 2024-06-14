@@ -14,7 +14,7 @@ export const RowsBeats: FC = () => {
     <ul
       className="relative row"
       style={{
-        gap: s.m0125 / 6,
+        gap: s.m025,
       }}
     >
       {BEATS_KEYS.map((beatsKey) => {

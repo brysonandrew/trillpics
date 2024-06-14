@@ -23,7 +23,7 @@ export const VideoMusicSynthMulti: FC =
           title="spread"
           value={multi.spread}
           min={0}
-          max={400}
+          max={200}
           step={1}
           onUpdate={handleUpdate}
         />
@@ -41,7 +41,7 @@ export const VideoMusicSynthMulti: FC =
           title="stagger"
           value={multi.stagger}
           min={0}
-          max={5}
+          max={2}
           step={0.01}
           onUpdate={handleUpdate}
         />

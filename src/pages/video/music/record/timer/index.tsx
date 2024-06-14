@@ -7,6 +7,7 @@ import { useVideoPlayerStyle } from "~/pages/video/player/style";
 import { useMusicInitContext } from "~/pages/video/music/_context/init";
 import { boxSize } from "~uno/rules/box/size";
 import { useMusicRecorderContext } from "~/pages/video/music/_context/recorder";
+import { TimerDisplay } from "~/components/playback/timer/display";
 
 type TProps = {
   isPlaying: boolean;
@@ -15,8 +16,11 @@ type TProps = {
 export const VideoMusicPlaybackTimer: FC<
   TProps
 > = ({}) => {
-  const { isRecording, seconds } =
-    useMusicRecorderContext();
+  const {
+    isRecording,
+    isRecordingCooldown,
+    seconds,
+  } = useMusicRecorderContext();
   return (
     <PlaybackTimer
       key={resolveCompositeKey(
@@ -32,6 +36,13 @@ export const VideoMusicPlaybackTimer: FC<
           ? () => (
               <VideoMusicPlaybackTimerCurrent
                 seconds={seconds}
+              />
+            )
+          : isRecordingCooldown
+          ? () => (
+              <TimerDisplay
+                elapsed={seconds}
+                unit="seconds"
               />
             )
           : TimerDisplayInit

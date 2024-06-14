@@ -27,14 +27,13 @@ export const MusicLayoutHeader: FC<
   const s = boxSize();
   return (
     <div
-      className="row-space relative"
+      className="row relative w-full"
       style={{
         paddingLeft: s.m025,
         paddingRight: s.m025,
         gap: s.m0125,
       }}
     >
-      {leftContent}
       <PillB
         Icon={Icon}
         title={`play ${children}`}
@@ -64,8 +63,13 @@ export const MusicLayoutHeader: FC<
           </PillBText>
         </div>
       </PillB>
+      <div className="row-space grow w-full">
+      {leftContent}
+
  
       {rightContent}
+      </div>
+
 
     </div>
   );

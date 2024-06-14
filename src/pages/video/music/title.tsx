@@ -20,21 +20,28 @@ export const MusicLayoutTitle: FC<
   return (
     <button
       title={`play ${children}`}
-      style={{transform:'scale(0.8)', ...style}}
+      style={{
+        transform: "scale(1)",
+        ...style,
+      }}
       {...props}
     >
       <LayoutBox
+        sizeClass="h-6"
         background={
           <BackgroundMeshRadialFlat />
         }
       >
         <LayoutBoxPadding
           style={{
-            paddingRight: s.m025 * 1.4,
+            paddingRight: s.m025,
+            gap: s.m0125,
           }}
         >
           <IconsPlay classValue="-top-0.25 -left-0.25" />
-          {children}
+          <span className="text-xxs">
+            {children}
+          </span>
         </LayoutBoxPadding>
       </LayoutBox>
     </button>
