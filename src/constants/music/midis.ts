@@ -5,12 +5,13 @@ import {
 } from "~/constants/music/beats";
 import {
   SCALE_RECORD,
+  SCALE_VALUE_COUNT,
   TScaleKey,
   TScaleRecord,
 } from "~/constants/scales";
 import {
-  TMidis,
-  TMutableMidis,
+  TMidiValue,
+  TMidiValues,
 } from "~/hooks/music/midis/types";
 import {
   TMelodyOptions,
@@ -70,8 +71,8 @@ const resolveValue = (
         : descValue * 2;
     case "valley":
       return progress > 0.5
-        ? ascValue * 2
-        : descValue * 2;
+        ? ascValue
+        : descValue;
     default:
       return resolveRandom();
   }
@@ -86,12 +87,13 @@ export const resolveSynthSteps = ({
   },
   repeat = 4,
   interval = 4,
-}: TConfig): TMidis => {
+  offset,
+}: TConfig): TMidiValues => {
   const scaleMidis =
     SCALE_RECORD[scale.key];
   return beats.reduce(
     (
-      a: TMutableMidis,
+      a: TMidiValue[],
       beat: number | null,
       index,
       { length: count }
@@ -118,23 +120,24 @@ export const resolveSynthSteps = ({
               .map(Number),
           ];
           return a;
+        } else {
+          const prev = a[index - 1];
+          a.push(prev ?? v);
+          return a;
         }
-        const prev = a[index - 1];
-        a.push(prev ?? v);
-        return a;
       }
       return a;
     },
     []
   );
 };
-export const MIDIS_1_R =
-  resolveSynthSteps({ beats: BEATS_1 });
-export const MIDIS_2_1_R =
-  resolveSynthSteps({
-    beats: BEATS_2_1,
-  });
-export const MIDIS_4_4_R =
-  resolveSynthSteps({
-    beats: BEATS_4_4,
-  });
+// export const MIDIS_1_R =
+//   resolveSynthSteps({ beats: BEATS_1 });
+// export const MIDIS_2_1_R =
+//   resolveSynthSteps({
+//     beats: BEATS_2_1,
+//   });
+// export const MIDIS_4_4_R =
+//   resolveSynthSteps({
+//     beats: BEATS_4_4,
+//   });

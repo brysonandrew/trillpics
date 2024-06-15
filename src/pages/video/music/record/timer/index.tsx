@@ -7,15 +7,15 @@ import { useMusicRecorderContext } from "~/pages/video/music/_context/recorder";
 import { TimerDisplay } from "~/components/playback/timer/display";
 
 type TProps = {
-  isPlaying: boolean;
+  stepsCount?:number
 };
 export const VideoMusicPlaybackTimer: FC<
   TProps
-> = () => {
+> = ({stepsCount}) => {
   const {
     isRecording,
     isRecordingCooldown,
-    videoSeconds
+    videoSeconds,
   } = useMusicRecorderContext();
   return (
     <PlaybackTimer
@@ -32,6 +32,7 @@ export const VideoMusicPlaybackTimer: FC<
           ? () => (
               <VideoMusicPlaybackTimerCurrent
                 seconds={videoSeconds}
+                stepsCount={stepsCount}
               />
             )
           : isRecordingCooldown

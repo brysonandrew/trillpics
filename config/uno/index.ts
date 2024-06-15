@@ -47,7 +47,8 @@ export const theme = resolveTheme({
   screen,
   fontSize: {
     ...THEME_FONT_SIZE,
-    "xxs": ["0.7rem", "0.125rem"],
+    xxxs: ["0.5rem", "0.675rem"],
+    xxs: ["0.7rem", "0.125rem"],
     "4xl": ["2.25rem", "2.5rem"],
     "4.5xl": ["2.5rem", "2.75rem"],
     "11xl": ["14rem", "17rem"],

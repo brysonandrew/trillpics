@@ -12,7 +12,7 @@ import { TIconsSvgProps } from "@brysonandrew/svg-icon";
 type TProps = Partial<TPillBProps> & {
   rightContent?: JSX.Element;
   leftContent?: JSX.Element;
-  Icon:FC<TIconsSvgProps>
+  Icon: FC<TIconsSvgProps>;
 };
 export const MusicLayoutHeader: FC<
   TPropsWithChildren<TProps>
@@ -30,7 +30,7 @@ export const MusicLayoutHeader: FC<
       className="row relative w-full"
       style={{
         paddingLeft: s.m025,
-        paddingRight: s.m025,
+        paddingRight: s.m05,
         gap: s.m0125,
       }}
     >
@@ -63,14 +63,10 @@ export const MusicLayoutHeader: FC<
           </PillBText>
         </div>
       </PillB>
-      <div className="row-space grow w-full">
-      {leftContent}
-
- 
-      {rightContent}
+      <div className="row-space grow">
+        {leftContent}
       </div>
-
-
+      {rightContent}
     </div>
   );
 };

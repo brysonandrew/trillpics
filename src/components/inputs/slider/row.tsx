@@ -6,8 +6,8 @@ import {
   TSliderStyledProps,
 } from "~/components/inputs/slider/styled";
 import { boxSize } from "~uno/rules/box/size";
-import { MusicLayout } from "~/pages/video/music/layout";
-import { MusicBackground } from "~/pages/video/music/background";
+import { MeshBackgroundText } from "~/components/layout/background/mesh/text";
+import { BackgroundGlass } from "~/components/layout/background/glass";
 import { useVideoPlayerStyle } from "~/pages/video/player/style";
 
 export type TUpdateSliderHandler = (
@@ -57,12 +57,12 @@ export const UiInputsSliderRow: FC<
         height: s.m075,
       }}
     >
-      <MusicBackground
+      <BackgroundGlass
         boxStyle={{
           left: sidebarWidthOffset,
         }}
       />
-      <MusicLayout
+      <MeshBackgroundText
         style={{
           width:
             sidebarWidthOffset - s.m025,
@@ -71,7 +71,7 @@ export const UiInputsSliderRow: FC<
         }}
       >
         {title}
-      </MusicLayout>
+      </MeshBackgroundText>
       <div
         className="relative"
         style={{
@@ -92,7 +92,7 @@ export const UiInputsSliderRow: FC<
           {...props}
         />
       </div>
-      <MusicLayout
+      <MeshBackgroundText
         classValue="relative"
         style={{
           width: s.m2,
@@ -101,7 +101,7 @@ export const UiInputsSliderRow: FC<
         }}
       >
         {value?.toString() ?? "-"}
-      </MusicLayout>
+      </MeshBackgroundText>
     </div>
   );
 };

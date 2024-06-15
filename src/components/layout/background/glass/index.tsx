@@ -5,9 +5,7 @@ import type {
 import { TDivProps } from "@brysonandrew/config-types";
 import clsx from "clsx";
 import { boxSize } from "~uno/rules/box/size";
-import { useVideoPlayerStyle } from "~/pages/video/player/style";
-
-export const MusicBackground: FC<
+export const BackgroundGlass: FC<
   TDivProps & {
     boxStyle?: CSSProperties;
   }

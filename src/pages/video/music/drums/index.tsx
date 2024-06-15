@@ -1,11 +1,12 @@
 import type { FC } from "react";
 import { BEATS_PRESETS } from "~/hooks/music/beats/presets";
-import { MusicBackground } from "~/pages/video/music/background";
+import { BackgroundGlass } from "~/components/layout/background/glass";
 import { MusicLayoutDrums } from "~/pages/video/music/drums/header";
-import { VideoMusicGrid } from "~/pages/video/music/grid";
+import { ChartsGrid } from "~/components/charts/grid";
 import { useVideoPlayerStyle } from "~/pages/video/player/style";
 import { useTrillPicsStore } from "~/store/middleware";
 import { boxSize } from "~uno/rules/box/size";
+import { BEATS_KEYS } from "~/hooks/music/beats/constants";
 
 export const VideoMusicDrums: FC =
   () => {
@@ -28,19 +29,20 @@ export const VideoMusicDrums: FC =
             width: width + s.m025,
           }}
         >
-          <MusicBackground
+          <BackgroundGlass
             boxStyle={{
               left: sidebarWidthOffset,
             }}
           />
           <MusicLayoutDrums />
         </div>
-        <VideoMusicGrid
+        <ChartsGrid
           presets={
             BEATS_PRESETS[
               beatsPresetKey
             ]
           }
+          yOrder={BEATS_KEYS}
         />
       </>
     );

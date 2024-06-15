@@ -7,7 +7,7 @@ import { boxSize } from "~uno/rules/box/size";
 
 export type TMusicLayoutProps =
   Partial<TPillProps>;
-export const MusicLayout: FC<
+export const MeshBackgroundText: FC<
   TMusicLayoutProps
 > = ({
   children,

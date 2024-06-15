@@ -151,7 +151,7 @@ export const PicsHudFooterNav: FC<
                       title
                     )}
                     className={clsx(
-                      "flex relative z-0",
+                      "flex relative",
                       isNext
                         ? "justify-end"
                         : "justify-start"
@@ -164,7 +164,7 @@ export const PicsHudFooterNav: FC<
                       to={to}
                       title={title}
                       classValue={clsx(
-                        "relative inline-flex items-center dark:bg-black-02 bg-white-02",
+                        "relative inline-flex items-center dark:bg-black-02 bg-white-02 backdrop-blur-lg",
                         isNext
                           ? "flex-row-reverse pl-4"
                           : "flex-row pr-4"

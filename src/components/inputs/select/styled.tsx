@@ -1,7 +1,7 @@
 import { FC } from "react";
 import { cx } from "class-variance-authority";
 import { IconsChevronsDown } from "~/components/icons/chevrons/down";
-import { MusicLayout } from "~/pages/video/music/layout";
+import { MeshBackgroundText } from "~/components/layout/background/mesh/text";
 import { TSelectValues } from "~/components/inputs/select/types";
 import { boxSize } from "~uno/rules/box/size";
 import { boxRadius } from "~uno/rules/box/radius";
@@ -107,7 +107,7 @@ export const SelectStyled: FC<
                       //   borderRadius,
                       // }}
                     >
-                      <MusicLayout>{value}</MusicLayout>
+                      <MeshBackgroundText>{value}</MeshBackgroundText>
                     </Select.Item>
                   ))}
               </Select.Group>

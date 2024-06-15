@@ -9,8 +9,6 @@ import {
   TMusicInitContext,
   TPartialStepsScaleRecord,
 } from "~/pages/video/music/_context/init/types";
-import { MIDIS_1_R } from "~/constants/music/midis";
-import { DEFAULT_SCALE_KEY } from "~/pages/video/music/_context/init/constants";
 
 const Context =
   createContext<TMusicInitContext>(
@@ -60,9 +58,7 @@ export const MusicInitProvider: FC<
       new Float32Array();
     const bufferSourceRecord = {};
     const stepsScaleRecord: TPartialStepsScaleRecord =
-      {
-        [DEFAULT_SCALE_KEY]: MIDIS_1_R,
-      };
+      {};
 
     return {
       isRecording: false,

@@ -5,10 +5,13 @@ export type TMutableMidis = (
   | number
   | null
 )[];
-export type TMidis = readonly (
+
+export type TMidiValue =(
   | number
   | null
-)[];
+)
+
+export type TMidiValues = readonly TMidiValue[];
 export type TPlayMidisOptions =
   TMultiOptions & {
     volume?: number;

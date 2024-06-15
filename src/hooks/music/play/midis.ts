@@ -6,37 +6,54 @@ import { resolveStepsPerSecond } from "~/hooks/music/time/resolver";
 import { isNumber } from "~/utils/validation/is/number";
 import { useTimeoutRef } from "@brysonandrew/hooks-window";
 import { useMusicRecorderContext } from "~/pages/video/music/_context/recorder";
+import { TPlayingKey } from "~/store/state/music/types";
+import { TState } from "~/store/types";
+import { lookup } from "dns";
+import { steps } from "framer-motion";
 
 export const usePlayMidis = () => {
   const { timeoutRef, endTimeout } =
     useTimeoutRef();
   const { midis: lookup } =
     useMusicReadyContext();
-  const { context, audio } =
+  const { context, audio, recorder } =
     useMusicInitContext();
-  const { bpm, synth, playKey, set } =
-    useTrillPicsStore(
-      ({
-        bpm,
-        synth,
-        playKey,
-        set,
-      }) => ({
-        bpm,
-        synth,
-        playKey,
-        set,
-      })
-    );
+  const {
+    bpm,
+    synth,
+    playingKeys,
+    set,
+  } = useTrillPicsStore(
+    ({
+      bpm,
+      synth,
+      playingKeys,
+      set,
+    }) => ({
+      bpm,
+      synth,
+      playingKeys,
+      set,
+    })
+  );
   const {
     loopCount,
     videoSeconds,
     loopsRemainder,
+    isRecording
   } = useMusicRecorderContext();
-  const isPlaying = playKey === "midis";
+
+  const isPlaying =
+    playingKeys.includes("midis");
 
   const handleStop = () => {
-    set({ playKey: null });
+    set((prev: TState) => ({
+      playingKeys:
+        prev.playingKeys.filter(
+          (v: TPlayingKey) =>
+            v !== "midis"
+        ),
+    }));
     lookup.synth.stop();
   };
 
@@ -47,11 +64,13 @@ export const usePlayMidis = () => {
       ...options
     } = synth;
     await context.resume();
-    set({
-      playKey: "midis",
-    });
+    set((prev: TState) => ({
+      playingKeys: [
+        ...prev.playingKeys,
+        "midis",
+      ],
+    }));
     let elapsed = 0;
-    // console.log(loopCount, "loopCount");
     const sps = resolveStepsPerSecond(
       bpm,
       steps.length
@@ -59,13 +78,9 @@ export const usePlayMidis = () => {
     const remainderSteps = Math.floor(
       audio.loopsRemainder / sps
     );
-    console.log(
-      remainderSteps,
-      "remainderSteps"
-    );
-
+console.log(recorder.state,isRecording);
     [
-      ...Array(audio.loopCount + 1),
+      ...Array(recorder.state === "recording" ?  audio.loopCount + 1 : 1),
     ].forEach(
       (
         _,
@@ -92,13 +107,14 @@ export const usePlayMidis = () => {
                   remainderSteps ===
                   stepIndex
                 ) {
-                  console.log('endung ', elapsed);
-                  timeoutRef.current = setTimeout(
-                    () => {
-                      handleStop();
-                    },
-                    elapsed * 1000
+                  console.log(
+                    "endung ",
+                    elapsed
                   );
+                  timeoutRef.current =
+                    setTimeout(() => {
+                      handleStop();
+                    }, elapsed * 1000);
                   return;
                 }
               }
@@ -144,7 +160,6 @@ export const usePlayMidis = () => {
             }
           );
         });
-      
       }
     );
   };

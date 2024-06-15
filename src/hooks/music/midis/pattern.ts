@@ -15,7 +15,7 @@ export const useMidisPattern = () => {
   ) => {
     set((draft: TState) => {
       const next = resolveSynthSteps({
-        beats: BEATS_1,
+        ...draft.synth.melody,
         scale: {
           ...draft.synth.melody.scale,
           pattern: value,

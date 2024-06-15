@@ -66,11 +66,11 @@ export const Hud: FC =
           </div>
         </div>
         <div
-          className="absolute left-0 right-0 w-full pointer-events-none opacity-100"
+          className="absolute left-0 right-0 w-full z-20  pointer-events-none"
           style={{
-            height: s.m3,
+            height: s.m4,
             top:
-              container.height-s.m075,
+              container.height-s.m,
             backgroundImage:
               resolveGradient({
                 name: "linear-gradient",

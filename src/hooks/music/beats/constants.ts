@@ -1,8 +1,8 @@
 export const BEATS_KEYS = [
-  "hihat",
-  "kick",
-  "snare",
   "tom",
+  "hihat",
+  "snare",
+  "kick",
 ] as const;
 
 

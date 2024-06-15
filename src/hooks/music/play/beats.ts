@@ -6,123 +6,166 @@ import { resolveStepsPerSecond } from "~/hooks/music/time/resolver";
 import { BEATS_PRESETS } from "~/hooks/music/beats/presets";
 import { useTimeoutRef } from "@brysonandrew/hooks-window";
 import { useMusicRecorderContext } from "~/pages/video/music/_context/recorder";
+import { TState } from "~/store/types";
+import { STEPS_COUNT } from "~/constants/music/steps";
 
 export const usePlayBeats = () => {
   const { timeoutRef, endTimeout } =
     useTimeoutRef();
-  const { context,audio } =
+  const { context, audio, recorder } =
     useMusicInitContext();
   const { beats: lookup } =
     useMusicReadyContext();
   const {
-    playKey,
+    playingKeys,
     bpm,
     beatsPresetKey,
     set,
   } = useTrillPicsStore(
     ({
-      playKey,
+      playingKeys,
       bpm,
       beatsPresetKey,
       set,
     }) => ({
-      playKey,
+      playingKeys,
       bpm,
       beatsPresetKey,
       set,
     })
   );
-  const {
-    loopCount,
+  const { loopCount, isRecording } =
+    useMusicRecorderContext();
 
-  } = useMusicRecorderContext();
-
-  const isPlaying = playKey === "beats";
+  const isPlaying =
+    playingKeys.includes("beats");
 
   const handleStopAll = () => {
-    console.log(loopCount,'handleStopAll');
+    console.log(
+      loopCount,
+      "handleStopAll"
+    );
 
     BEATS_KEYS.forEach((beatKey) => {
       lookup[beatKey].stop();
     });
-    set({ playKey: null });
+
+    set((prev: TState) => ({
+      playingKeys:
+        prev.playingKeys.filter(
+          (v) => v !== "beats"
+        ),
+    }));
   };
 
   const play = async () => {
     if (isPlaying) {
       handleStopAll();
     }
-    set({
-      playKey: "beats",
-    });
+    set((prev: TState) => ({
+      playingKeys: [
+        ...prev.playingKeys,
+        "beats",
+      ],
+    }));
+
     await context.resume();
     let elapsed = 0;
-    console.log(audio.loopCount,'loopCount');
+    const sps = resolveStepsPerSecond(
+      bpm,
+      STEPS_COUNT
+    );
+    const remainderSteps = Math.floor(
+      audio.loopsRemainder / sps
+    );
+    console.log(
+      remainderSteps,
+      "remainderSteps"
+    );
 
-    [...Array(audio.loopCount)].forEach(
-      (_, loopIndex) => {
-
-        BEATS_KEYS.forEach(
-          (beatKey) => {
-            const presets =
-              BEATS_PRESETS[
-                beatsPresetKey
-              ];
-            const steps =
-              presets[beatKey] ?? [];
-            console.log(steps);
-            steps.forEach(
-              (
-                step,
-                stepIndex,
-                { length: stepCount }
-              ) => {
-                if (step) {
-                  const sps =
-                    resolveStepsPerSecond(
-                      bpm,
-                      stepCount
-                    );
-                  const currElapsed =
-                    stepIndex * sps;
-
-                  const loopElapsed =
-                    loopIndex *
-                    sps *
-                    stepCount;
-                  console.log(loopElapsed,'loopElapsed')
-                  elapsed =
-                    currElapsed +
-                    loopElapsed;
-                  lookup[beatKey].play(
-                    context.currentTime +
-                      elapsed,
-                    {
-                      volume:
-                        stepIndex %
-                          4 ===
-                        0
-                          ? 1.4
-                          : stepIndex %
-                              2 ===
-                            0
-                          ? 1.2
-                          : 1,
-                    }
-                  );
-                }
+    [
+      ...Array(
+        recorder.state === "recording"
+          ? audio.loopCount + 1
+          : 1
+      ),
+    ].forEach((_, loopIndex) => {
+      BEATS_KEYS.forEach((beatKey) => {
+        const presets =
+          BEATS_PRESETS[beatsPresetKey];
+        const steps =
+          presets[beatKey] ?? [];
+        steps.forEach(
+          (
+            step,
+            stepIndex,
+            { length: stepCount }
+          ) => {
+            if (
+              loopIndex ===
+              audio.loopCount
+            ) {
+              console.log(
+                "LAST",
+                stepIndex
+              );
+              if (
+                remainderSteps ===
+                stepIndex
+              ) {
+                console.log(
+                  "endung ",
+                  elapsed
+                );
+                timeoutRef.current =
+                  setTimeout(() => {
+                    handleStopAll();
+                  }, elapsed * 1000);
+                return;
               }
-            );
+            }
+            if (step) {
+              const sps =
+                resolveStepsPerSecond(
+                  bpm,
+                  stepCount
+                );
+              const currElapsed =
+                stepIndex * sps;
+
+              const loopElapsed =
+                loopIndex *
+                sps *
+                stepCount;
+              console.log(
+                loopElapsed,
+                "loopElapsed"
+              );
+              elapsed =
+                currElapsed +
+                loopElapsed;
+              lookup[beatKey].play(
+                context.currentTime +
+                  elapsed,
+                {
+                  volume:
+                    stepIndex % 4 === 0
+                      ? 1.4
+                      : stepIndex %
+                          2 ===
+                        0
+                      ? 1.2
+                      : 1,
+                }
+              );
+            }
           }
         );
-      }
-    );
-    console.log(elapsed);
-    // endTimeout();
+      });
+    });
     timeoutRef.current = setTimeout(
       () => {
         handleStopAll();
-        // lookup[beatKey].stop();
       },
       elapsed * 1000
     );

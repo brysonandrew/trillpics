@@ -15,6 +15,7 @@ export const useMidisRandom = () => {
         pattern;
       draft.synth.steps =
         resolveSynthSteps({
+          ...draft.synth.melody,
           scale: {
             ...draft.synth.melody.scale,
             pattern,

@@ -9,7 +9,7 @@ import {
   TBeatsSequenceKey,
 } from "~/hooks/music/beats/types";
 import {
-  TMidis,
+  TMidiValues,
   TMidisSequenceKey,
 } from "~/hooks/music/midis/types";
 import { MUSIC_TYPES } from "~/store/state/music/constants";
@@ -23,7 +23,7 @@ export type TSequenceKey<
   : TMidisSequenceKey;
 export type USequenceEntry =
   | [TBeatsSequenceKey, TBeatValues]
-  | [TMidisSequenceKey, TMidis];
+  | [TMidisSequenceKey, TMidiValues];
 
 export type TSequenceBeatRecord =
   Record<
@@ -33,7 +33,10 @@ export type TSequenceBeatRecord =
 export type TPartialSequenceBeatRecord =
   Partial<TSequenceBeatRecord>;
 export type TSequenceMidiRecord =
-  Record<TMidisSequenceKey, TMidis>;
+  Record<
+    TMidisSequenceKey,
+    TMidiValues
+  >;
 export type TPartialSequenceMidiRecord =
   Partial<TSequenceMidiRecord>;
 
@@ -76,13 +79,18 @@ export type TMusicOptionsKey =
 export type TSynthConfig =
   TSynthOptions &
     TMultiOptions & {
-      steps: TMidis;
+      steps: TMidiValues;
       melody: TMelodyOptions;
     };
+
+export type TPlayingKey =
+  | TMusicKey
+  | TBeatsPresetsKey
+  | number;
 export type TMusicState =
   TMusicOptions & {
     synth: TSynthConfig;
     beatsPresetKey: TBeatsPresetsKey;
-    playKey: TMusicKey | null;
+    playingKeys: TPlayingKey[];
     recording: TRecording | null;
   };

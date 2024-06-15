@@ -28,7 +28,7 @@ export const useMusicRecorder = () => {
     videoSeconds / audioSeconds
   );
   const loopsRemainder =
-    videoSeconds % audioSeconds;
+  Math.floor(videoSeconds % audioSeconds);
 
 audio.loopCount = loopCount;
 audio.loopsRemainder = loopsRemainder;
@@ -83,10 +83,9 @@ audio.loopsRemainder = loopsRemainder;
     ) {
       recorder.stop();
     } else {
+      recorder.start();
       await playBeats.play();
       await playMidis.play();
-      recorder.start();
-
       resetTimers();
       startTimer();
     }

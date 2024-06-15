@@ -1,7 +1,7 @@
 import { MotionValue } from "framer-motion";
 import { TScaleKey } from "~/constants/scales";
 import { TBeatsSequenceKey } from "~/hooks/music/beats/types";
-import { TMidis } from "~/hooks/music/midis/types";
+import { TMidiValues } from "~/hooks/music/midis/types";
 
 export type TGridCell =
   null | HTMLDivElement;
@@ -13,7 +13,7 @@ export type TGridCellsRecord = Record<
 >;
 export type TStepsScaleRecord = Record<
   TScaleKey,
-  TMidis
+  TMidiValues
 >;
 export type TPartialStepsScaleRecord =
   Partial<TStepsScaleRecord>;

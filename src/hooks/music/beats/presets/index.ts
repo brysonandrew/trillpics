@@ -1,7 +1,16 @@
-import { BEATS_4_2, BEATS_4_4 } from "~/constants/music/beats";
+import {
+  BEATS_4_2,
+  BEATS_4_4,
+} from "~/constants/music/beats";
+import { BEATS_KEYS } from "~/hooks/music/beats/constants";
 import { PRESETS_DISCO } from "~/hooks/music/beats/presets/disco";
 import { PRESETS_TECHNO } from "~/hooks/music/beats/presets/techno";
-import { TPurcussionPresetRecord } from "~/hooks/music/beats/types";
+import { TBeatsPresetsKey } from "~/hooks/music/beats/presets/types";
+import {
+  TBeatsSequenceKey,
+  TPurcussionPresetRecord,
+  TPurcussionRecord,
+} from "~/hooks/music/beats/types";
 
 export const BEATS_PRESETS = {
   disco: PRESETS_DISCO,

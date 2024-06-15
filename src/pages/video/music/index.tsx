@@ -1,7 +1,7 @@
 import { Helmet } from "react-helmet-async";
 import { useVideoPlayerStyle } from "~/pages/video/player/style";
 import { boxSize } from "~uno/rules/box/size";
-import { MusicBackground } from "~/pages/video/music/background";
+import { BackgroundGlass } from "~/components/layout/background/glass";
 import { boxRadius } from "~uno/rules/box/radius";
 import { VideoMusicPlayback } from "~/pages/video/music/record/index";
 import { VideoMusicSynth } from "~/pages/video/music/synth";
@@ -14,6 +14,7 @@ import clsx from "clsx";
 import { PicBackdrop } from "~/pics/grid/pic/backdrop";
 import { VideoMusicSynthMulti } from "~/pages/video/music/synth/multi";
 import { VideoMusicSynthSingle } from "~/pages/video/music/synth/single";
+import { useAddRandomEffect } from "~/hooks/pic/add-random/effect";
 
 export const VideoMusic = () => {
   const {
@@ -27,7 +28,9 @@ export const VideoMusic = () => {
   } = useVideoPlayerStyle();
   const s = boxSize();
   const borderRadius = boxRadius();
-  const drumsTop = y + s.m5 + s.m05+s.m0125;
+  const drumsTop =
+    y + s.m5 + s.m05 + s.m0125;
+  useAddRandomEffect();
   return (
     <MusicInitProvider>
       <MusicReadyProvider>
@@ -55,7 +58,7 @@ export const VideoMusic = () => {
                 gap,
                 width: width + s.m025,
                 paddingTop: y,
-                paddingBottom: y * 1.5,
+                // paddingBottom: y * 1.5,
                 height:
                   screen.height * 2,
               }}
@@ -83,7 +86,7 @@ export const VideoMusic = () => {
                     }px)`,
                   }}
                 >
-                  <MusicBackground
+                  <BackgroundGlass
                     style={{
                       borderTopLeftRadius:
                         borderRadius,
@@ -92,7 +95,7 @@ export const VideoMusic = () => {
                     }}
                   />
                 </aside>
-                <MusicBackground
+                <BackgroundGlass
                   boxStyle={{
                     left: sidebarWidthOffset,
                     height: `calc(100vh - ${
@@ -112,7 +115,6 @@ export const VideoMusic = () => {
                 className="relative column-stretch"
                 style={{
                   gap,
-                  
                 }}
               >
                 <div className="absolute inset-x-0 -inset-y-6 bg-gradient-to-b from-black to-black-05" />
@@ -125,9 +127,9 @@ export const VideoMusic = () => {
                 style={{
                   width: width + s.m025,
                   gap: s.m025 * 1.5,
-                  top: drumsTop-s.m0125,
-                  bottom:
-                    s.m5-s.m05
+                  top:
+                    drumsTop + s.m025,
+                  bottom: s.m15,
                 }}
               >
                 <VideoMusicDrums />
@@ -141,10 +143,10 @@ export const VideoMusic = () => {
               <div
                 className="sticky column-stretch bg-black-8 dark:bg-black z-10"
                 style={{
-                  top: drumsTop+s.m4,
+                  top: drumsTop + s.m4+s.m025,
                   gap: s.m05,
                   width: width + s.m025,
-              
+
                   bottom: 0,
                   borderBottomLeftRadius:
                     borderRadius,

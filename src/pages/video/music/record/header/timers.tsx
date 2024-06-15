@@ -2,23 +2,42 @@ import type { FC } from "react";
 import clsx from "clsx";
 import { LinesHorizontal } from "~/components/lines/horizontal";
 import { TimerDisplay } from "~/components/playback/timer/display";
-import { VideoMusicPlaybackTimer } from "~/pages/video/music/record/timer";
 import { useMusicRecorderContext } from "~/pages/video/music/_context/recorder";
 import { boxSize } from "~uno/rules/box/size";
-import { MusicLayout } from "~/pages/video/music/layout";
+import { MeshBackgroundText } from "~/components/layout/background/mesh/text";
+import { VideoMusicHeaderTimer } from "~/pages/video/music/header/timer";
+import { useTrillPicsStore } from "~/store/middleware";
+import { Calc } from "~/pages/video/music/record/header/calc";
 
-// type TProps ={}
 export const VideoMusicPlaybackHeaderTimers: FC =
   () => {
     const s = boxSize();
-
+    const { bpm } = useTrillPicsStore(
+      ({ bpm }) => ({ bpm })
+    );
     const {
       isRecording,
+      isRecordingCooldown,
       audioSeconds,
-      handleStart,
+      videoSeconds,
       loopCount,
       loopsRemainder,
     } = useMusicRecorderContext();
+
+    // const CurrTimer = isRecording
+    //   ? () => (
+    //       <VideoMusicPlaybackTimerCurrent
+    //         seconds={videoSeconds}
+    //       />
+    //     )
+    //   : isRecordingCooldown
+    //   ? () => (
+    //       <TimerDisplay
+    //         elapsed={videoSeconds}
+    //         unit="seconds"
+    //       />
+    //     )
+    //   : TimerDisplayInit;
 
     return (
       <div
@@ -28,28 +47,41 @@ export const VideoMusicPlaybackHeaderTimers: FC =
         )}
         style={{
           gap: s.m0125,
+          paddingTop: s.m0125,
         }}
       >
-        <VideoMusicPlaybackTimer
-          isPlaying={isRecording}
+        <VideoMusicHeaderTimer
+          seconds={videoSeconds}
+          isActive={isRecording}
+          isCooldown={
+            isRecordingCooldown
+          }
         />
         <LinesHorizontal />
-        <div
-          className="row grow pt-1 px-2 rounded-lg"
-          style={{
-            gap: s.m0125,
-          }}
-        >
-          <MusicLayout classValue="row gap-2">
+        <span className="uppercase font-sans text-xxs">
+          audio
+        </span>
+        <LinesHorizontal />
+        <div className="relative">
+          <MeshBackgroundText classValue="row gap-2">
             <TimerDisplay
               elapsed={audioSeconds}
               unit="seconds"
             />
-            <LinesHorizontal />
-            {`x${loopCount}.${loopsRemainder}`}
-            <LinesHorizontal />
-          </MusicLayout>
+          </MeshBackgroundText>
+          <Calc />
         </div>
+
+        <LinesHorizontal />
+        <span className="uppercase font-sans text-xxs">
+          video
+        </span>
+
+        <LinesHorizontal />
+        <TimerDisplay
+          elapsed={videoSeconds}
+          unit="seconds"
+        />
       </div>
     );
   };

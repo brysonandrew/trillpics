@@ -22,6 +22,6 @@ export const musicState: TStateHandler<
   },
   beatsPresetKey: "disco",
   recording: null,
-  playKey: null,
+  playingKeys: [],
   bpm: 80,
 });

@@ -47,6 +47,8 @@ export const useHihat = () => {
     source.start(startTime);
 
     bufferSourceRecord.hihat = source;
+
+    
   };
 
   const stop = () => {
