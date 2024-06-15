@@ -1,12 +1,16 @@
 import { BEATS_KEYS } from "~/hooks/music/beats/constants";
 
-export type TPurcussions = typeof BEATS_KEYS;
+export type TPurcussions =
+  typeof BEATS_KEYS;
 export type TPurcussionKey =
   TPurcussions[number];
-export type TBeats = readonly (null | 1)[];
+export type TBeatValue = null | 1;
+
+export type TBeatValues =
+  readonly TBeatValue[];
 export type TPurcussionRecord = Record<
   TPurcussionKey,
-  TBeats
+  TBeatValues
 >;
 export type TPurcussionPresetRecord =
   Record<

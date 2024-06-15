@@ -3,7 +3,8 @@ import { usePlayMidis } from "~/hooks/music/play/midis";
 import { useMusicInitContext } from "~/pages/video/music/_context/init";
 
 export const usePlaySequences = () => {
-  const { context } = useMusicInitContext();
+  const { context } =
+    useMusicInitContext();
   const playBeats = usePlayBeats();
   const playMidis = usePlayMidis();
 
@@ -18,5 +19,12 @@ export const usePlaySequences = () => {
     playMidis.stop();
   };
 
-  return { play, stop };
+  return {
+    play,
+    stop,
+    isPlaying: {
+      beats: playBeats.isPlaying,
+      midis: playMidis.isPlaying,
+    },
+  };
 };

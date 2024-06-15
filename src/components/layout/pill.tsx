@@ -22,7 +22,7 @@ export type TPillProps = Omit<
   isCircle?: boolean;
   isActive?: boolean;
   background?: TChildren;
-  children: TChildren;
+  children: TChildren | number;
 };
 export const Pill: FC<TPillProps> = ({
   isCircle,

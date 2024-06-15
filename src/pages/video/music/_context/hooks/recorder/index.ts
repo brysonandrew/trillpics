@@ -2,6 +2,7 @@ import { STEPS_COUNT } from "~/constants/music/steps";
 import { usePlayBeats } from "~/hooks/music/play/beats";
 import { usePlayMidis } from "~/hooks/music/play/midis";
 import { useStepsPerSecond } from "~/hooks/music/time";
+import { usePicVideoReadSeconds } from "~/hooks/pic/video/read/seconds/hook";
 import { useTimer } from "~/hooks/use-timer";
 import { useRecorderListeners } from "~/pages/video/music/_context/hooks/recorder/listeners";
 import { useMusicInitContext } from "~/pages/video/music/_context/init";
@@ -15,12 +16,22 @@ export const useMusicRecorder = () => {
   } = useMusicInitContext();
   const playBeats = usePlayBeats();
   const playMidis = usePlayMidis();
-
+  const videoSeconds =
+    usePicVideoReadSeconds();
   const stepsPerSecond =
     useStepsPerSecond();
-  const seconds =
+  const audioSeconds =
     stepsPerSecond * STEPS_COUNT;
   useRecorderListeners();
+
+  const loopCount = Math.floor(
+    videoSeconds / audioSeconds
+  );
+  const loopsRemainder =
+    videoSeconds % audioSeconds;
+
+audio.loopCount = loopCount;
+audio.loopsRemainder = loopsRemainder;
 
   const handleGridCell =
     useGridCellHandler();
@@ -36,7 +47,7 @@ export const useMusicRecorder = () => {
     startCooldownTimer,
     stopCooldownTimer,
   ] = useTimer(
-    seconds * 1000,
+    videoSeconds * 1000,
     handleDone
   );
 
@@ -57,7 +68,7 @@ export const useMusicRecorder = () => {
     startTimer,
     stopTimer,
   ] = useTimer(
-    seconds * 1000,
+    videoSeconds * 1000,
     handleStop
   );
 
@@ -82,9 +93,16 @@ export const useMusicRecorder = () => {
   };
 
   return {
+    isPlaying: {
+      beats: playBeats.isPlaying,
+      midis: playMidis.isPlaying,
+    },
     isRecording,
     isRecordingCooldown,
-    seconds,
+    audioSeconds,
+    loopCount,
+    loopsRemainder,
+    videoSeconds,
     handleStart,
     handleStop,
   } as const;

@@ -20,8 +20,7 @@ const persistKey = resolveCompositeKey(
 export const PERSIST_STATE_RECORD = {
   picsCount: "picsCount",
   pics: "pics",
-  options: "options",
-  multi: "multi",
+  synth: "synth",
   beatsPresetKey: "beatsPresetKey",
   bpm: "bpm",
 } as const satisfies Partial<

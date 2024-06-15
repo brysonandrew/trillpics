@@ -5,17 +5,14 @@ import {
 import { TScaleKey } from "~/constants/scales";
 import { TBeatsPresetsKey } from "~/hooks/music/beats/presets/types";
 import {
-  TBeats,
+  TBeatValues,
   TBeatsSequenceKey,
 } from "~/hooks/music/beats/types";
 import {
   TMidis,
   TMidisSequenceKey,
 } from "~/hooks/music/midis/types";
-import {
-  DEFAULT_MUSIC_OPTIONS,
-  MUSIC_TYPES,
-} from "~/store/state/music/constants";
+import { MUSIC_TYPES } from "~/store/state/music/constants";
 
 export type TMusicKey =
   (typeof MUSIC_TYPES)[number];
@@ -25,11 +22,14 @@ export type TSequenceKey<
   ? TBeatsSequenceKey
   : TMidisSequenceKey;
 export type USequenceEntry =
-  | [TBeatsSequenceKey, TBeats]
+  | [TBeatsSequenceKey, TBeatValues]
   | [TMidisSequenceKey, TMidis];
 
 export type TSequenceBeatRecord =
-  Record<TBeatsSequenceKey, TBeats>;
+  Record<
+    TBeatsSequenceKey,
+    TBeatValues
+  >;
 export type TPartialSequenceBeatRecord =
   Partial<TSequenceBeatRecord>;
 export type TSequenceMidiRecord =
@@ -46,21 +46,43 @@ export type TRecording = {
   seconds: number;
 };
 
-export type TMusicOptions = {
-  bpm: number;
-  scaleKey: TScaleKey;
+export type TScalePattern =
+  | "asc"
+  | "desc"
+  | "random"
+  | "hill"
+  | "valley"
+  | "alternating";
+
+export type TScaleOptions = {
+  pattern: TScalePattern;
+  delta: number;
+  key: TScaleKey;
+};
+export type TMelodyOptions = {
+  beats: TBeatValues;
   offset: number;
   interval: number;
+  repeat: number;
+  scale: TScaleOptions;
+};
+
+export type TMusicOptions = {
+  bpm: number;
 };
 export type TMusicOptionsKey =
   keyof TMusicOptions;
 
+export type TSynthConfig =
+  TSynthOptions &
+    TMultiOptions & {
+      steps: TMidis;
+      melody: TMelodyOptions;
+    };
 export type TMusicState =
   TMusicOptions & {
-    synthSteps: TMidis;
+    synth: TSynthConfig;
     beatsPresetKey: TBeatsPresetsKey;
     playKey: TMusicKey | null;
     recording: TRecording | null;
-    options: TSynthOptions;
-    multi: TMultiOptions;
   };

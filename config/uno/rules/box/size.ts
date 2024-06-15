@@ -31,6 +31,8 @@ export const BOX_SIZE = {
 
   m3: BOX_SIZE_M * 3,
   m4: BOX_SIZE_M * 4,
+  m5: BOX_SIZE_M * 5,
+
   m6: BOX_SIZE_M * 6,
   m8: BOX_SIZE_M * 8,
 

@@ -22,8 +22,8 @@ export const usePicVideoReadSeconds =
     const count = picVideoReadCount(
       paramValues
     );
-    return (
+    const result =
       seconds ||
-      resolveSecondsFromCount(count)
-    );
+      resolveSecondsFromCount(count);
+    return result;
   };

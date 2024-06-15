@@ -11,7 +11,6 @@ import {
   useCurrentFrame,
   Audio,
 } from "remotion";
-import { isString } from "~/utils/validation/is/string";
 import { PicSeriesAudio } from "~/components/remotion/pic-series/audio";
 import { isDefined } from "~/utils/validation/is/defined";
 const INPUT_PROPS = getInputProps();
@@ -46,14 +45,10 @@ export const PicSeries: FC<
     inputProps.dimensions.height;
   return (
     <AbsoluteFill>
-      {/* {recording?.src && (
-        <Audio src={recording.src} />
-      )} */}
-      {recording !== null && isDefined(recording) && (
-        <PicSeriesAudio
-          recording={recording}
-        />
-      )}
+      {recording !== null &&
+        isDefined(recording) && (
+          <Audio src={recording.src} />
+        )}
       <Series>
         {pics.map((pic) => {
           const srcPath = resolvePicSrc(

@@ -9,9 +9,9 @@ import { useTrillPicsStore } from "~/store/middleware";
 export const VideoMusicSynthMulti: FC =
   () => {
     const {
-      multi
+      synth
     } = useTrillPicsStore(
-      ({ multi }) => ({ multi })
+      ({ synth }) => ({ synth })
     );
     const handleUpdate: TUpdateSliderHandler =
       useSynthUpdate();
@@ -19,30 +19,30 @@ export const VideoMusicSynthMulti: FC =
     return (
       <>
         <UiInputsSliderRow
-          name="multi.spread"
+          name="synth.spread"
           title="spread"
-          value={multi.spread}
+          value={synth.spread}
           min={0}
-          max={200}
+          max={99}
           step={1}
           onUpdate={handleUpdate}
         />
         <UiInputsSliderRow
-          name="multi.count"
+          name="synth.count"
           title="count"
-          value={multi.count}
+          value={synth.count}
           min={1}
-          max={280}
+          max={99}
           step={1}
           onUpdate={handleUpdate}
         />
         <UiInputsSliderRow
-          name="multi.stagger"
+          name="synth.stagger"
           title="stagger"
-          value={multi.stagger}
+          value={synth.stagger}
           min={0}
           max={2}
-          step={0.01}
+          step={0.001}
           onUpdate={handleUpdate}
         />
       </>

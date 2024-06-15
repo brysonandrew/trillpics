@@ -45,5 +45,5 @@
     "**/*.jsx",
     "**/*.tsx",
     "**/*.ts"
-  ]
+, ".cemetary/steps.tsx"  ]
 }

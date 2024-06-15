@@ -1,8 +1,8 @@
-export const boxPx = (
+export const boxPy = (
   p: number
 ) => {
   return {
-    paddingLeft: p,
-    paddingRight: p,
+    paddingTop: p,
+    paddingBottom: p,
   };
 };

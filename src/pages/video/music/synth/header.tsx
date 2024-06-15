@@ -1,6 +1,4 @@
 import type { FC } from "react";
-import { WRITABLE_OSCILLATOR_TYPES } from "react-synthwave";
-import { SelectStyled } from "~/components/inputs/select/styled";
 import { TUpdateSliderHandler } from "~/components/inputs/slider/row";
 import { usePlayMidis } from "~/hooks/music/play/midis";
 import { MusicBackground } from "~/pages/video/music/background";
@@ -11,38 +9,47 @@ import { boxSize } from "~uno/rules/box/size";
 import { useSynthUpdate } from "~/pages/video/music/synth/update";
 import { IconsPlay } from "~/components/icons/playback/play";
 import { useTrillPicsStore } from "~/store/middleware";
-import { SCALES } from "~/constants/scales";
-import { PillB } from "~/components/buttons/pill/b";
-import { IconsReload } from "~/components/icons/reload";
-import { SynthReload } from "~/pages/video/music/synth/reload";
-import { SynthOffsetLeft } from "~/pages/video/music/synth/offset/left";
-import { SynthOffsetRight } from "~/pages/video/music/synth/offset/right";
-import { SynthScale } from "~/pages/video/music/synth/scale";
+import { SynthReload } from "~/pages/video/music/synth/melody/reload";
+import { SynthOffsetLeft } from "~/pages/video/music/synth/melody/offset/left";
+import { SynthOffsetRight } from "~/pages/video/music/synth/melody/offset/right";
+import { SynthIntervalUp } from "~/pages/video/music/synth/melody/interval/up";
+import { SynthIntervalDown } from "~/pages/video/music/synth/melody/interval/down";
+import { SynthRepeatDown } from "~/pages/video/music/synth/melody/repeat/down";
+import { SynthRepeatUp } from "~/pages/video/music/synth/melody/repeat/up";
+import { SynthType } from "~/pages/video/music/synth/type";
+import { SynthScalePattern } from "~/pages/video/music/synth/scale/pattern";
+import { SynthScaleKey } from "~/pages/video/music/synth/scale/key";
+import { boxPy } from "~/utils/box/py";
+import { PillBText } from "~/components/buttons/pill/b/text";
+import { MusicLayout } from "~/pages/video/music/layout";
+import { PlayerBackgroundMesh } from "~/pages/video/player/_background/mesh";
+import { IconsStop } from "~/components/icons/playback/stop";
 
 export const VideoMusicSynthHeader: FC =
   () => {
-    const { options, scaleKey } =
-      useTrillPicsStore(
-        ({ options, scaleKey }) => ({
-          options,
-          scaleKey,
-        })
-      );
+    const { synth } = useTrillPicsStore(
+      ({ synth }) => ({
+        synth,
+      })
+    );
     const s = boxSize();
     const handleUpdate: TUpdateSliderHandler =
       useSynthUpdate();
     const borderRadius = boxRadius();
     const playMidis = usePlayMidis();
     const {
+      left,
       sidebarWidthOffset,
       width,
     } = useVideoPlayerStyle();
 
     return (
       <div
-        className="relative row-space grow"
+        className="relative column-start grow"
         style={{
           width: width + s.m025,
+          gap: s.m025,
+          paddingBottom: s.m05,
         }}
       >
         <MusicBackground
@@ -57,7 +64,7 @@ export const VideoMusicSynthHeader: FC =
         <MusicLayoutHeader
           Icon={
             playMidis.isPlaying
-              ? IconsPlay
+              ? IconsStop
               : IconsPlay
           }
           onClick={() => {
@@ -74,41 +81,112 @@ export const VideoMusicSynthHeader: FC =
                 gap: s.m025,
               }}
             >
-              <SelectStyled
-                name="options.type"
-                title="type"
-                value={options.type}
-                values={
-                  WRITABLE_OSCILLATOR_TYPES
-                }
-                onValueChange={(
-                  value
-                ) =>
-                  handleUpdate(
-                    "options.type",
-                    value
-                  )
-                }
-              />
-           <SynthScale/>
+              <SynthType />
+              <SynthScaleKey />
+              <SynthScalePattern />
             </div>
           }
-          rightContent={
-            <div
-              className="row relative"
-              style={{
-                gap: s.m025,
-              }}
-            >
-              <SynthOffsetLeft />
-              <SynthOffsetRight />
-
-              <SynthReload />
-            </div>
-          }
+          rightContent={<SynthReload />}
         >
           Synth
         </MusicLayoutHeader>
+
+        <div
+          className="row relative"
+          style={{
+            left: s.m05,
+            // sidebarWidthOffset +
+            // s.m05,
+            gap: s.m05,
+          }}
+        >
+          <div className="relative column text-xs py-2">
+            <MusicLayout>
+              <div className="text-sm">
+                {synth.steps.length}
+              </div>
+            </MusicLayout>
+
+            <div className="absolute -bottom-3.5 uppercase">
+              steps
+            </div>
+          </div>
+          <div
+            className="row relative"
+            style={{
+              left: s.m05,
+              gap: s.m025,
+              paddingLeft: s.m025,
+              paddingRight: s.m0125,
+            }}
+          >
+            <PlayerBackgroundMesh />
+            <MusicLayout>
+              interval
+            </MusicLayout>
+            <SynthIntervalDown />
+
+            <MusicLayout
+              style={{ width: s.m }}
+            >{`${
+              synth.melody.interval > 0
+                ? "+"
+                : ""
+            }${
+              synth.melody.interval
+            }`}</MusicLayout>
+            <SynthIntervalUp />
+          </div>
+          <div
+            className="row relative"
+            style={{
+              gap: s.m025,
+              paddingLeft: s.m025,
+              paddingRight: s.m0125,
+            }}
+          >
+            <PlayerBackgroundMesh />
+            <SynthRepeatDown />
+
+            <MusicLayout>
+              repeat
+            </MusicLayout>
+            <MusicLayout
+              style={{ width: s.m }}
+            >{`${
+              synth.melody.repeat > 0
+                ? "+"
+                : ""
+            }${
+              synth.melody.repeat
+            }`}</MusicLayout>
+            <SynthRepeatUp />
+          </div>
+          <div
+            className="row relative"
+            style={{
+              gap: s.m025,
+              paddingLeft: s.m025,
+              paddingRight: s.m0125,
+            }}
+          >
+            <PlayerBackgroundMesh />
+            <MusicLayout>
+              offset
+            </MusicLayout>
+            <SynthOffsetLeft />
+            <MusicLayout
+              style={{ width: s.m }}
+            >{`${
+              synth.melody.offset > 0
+                ? "+"
+                : ""
+            }${
+              synth.melody.offset
+            }`}</MusicLayout>
+            <SynthOffsetRight />
+          </div>
+        </div>
       </div>
     );
   };

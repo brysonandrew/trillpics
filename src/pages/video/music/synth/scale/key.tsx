@@ -1,17 +1,17 @@
 import type { FC } from "react";
 import { SelectStyled } from "~/components/inputs/select/styled";
 import { SCALES } from "~/constants/scales";
-import { useMusicMidisPatternsScale } from "~/hooks/music/midis/patterns/scale";
+import { useMidisScale } from "~/hooks/music/midis/scale";
 import { isScaleKey } from "~/pages/video/music/synth/validators";
 
-export const SynthScale: FC = () => {
-  const { scaleKey, update, rescale } =
-    useMusicMidisPatternsScale();
+export const SynthScaleKey: FC = () => {
+  const { key, update, rescale } =
+    useMidisScale();
   return (
     <SelectStyled
-      name="scaleKey"
-      title="scaleKey"
-      value={scaleKey}
+      name="key"
+      title="key"
+      value={key}
       values={SCALES}
       onValueChange={(value) => {
         if (isScaleKey(value)) {

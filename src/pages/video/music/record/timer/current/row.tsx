@@ -10,6 +10,7 @@ import {
 } from "~/pages/video/music/record/timer/current/animated-text";
 import { useMusicInitContext } from "~/pages/video/music/_context/init";
 import { useGridCellHandler } from "~/pages/video/music/_context/init/hooks/grid-cell-color";
+import { useMusicRecorderContext } from "~/pages/video/music/_context/recorder";
 
 type TProps = {
   timerKey: TTimerKey;
@@ -17,9 +18,12 @@ type TProps = {
 };
 export const VideoMusicPlaybackTimerCurrentRow: FC<
   TProps
-> = ({ timerKey, seconds }) => {
+> = ({ timerKey }) => {
   const { saveProgress, audio } =
     useMusicInitContext();
+    const {
+   videoSeconds
+    } = useMusicRecorderContext();
   const classes = useMemo(() => {
     return [
       "dark:bg-yellow bg-yellow1",
@@ -35,7 +39,7 @@ export const VideoMusicPlaybackTimerCurrentRow: FC<
     elapsedMs: number
   ) => {
     const progress =
-      elapsedMs / 1000 / seconds;
+      elapsedMs / 1000 / videoSeconds;
     const progressStep = Math.floor(
       progress * STEPS_COUNT
     );

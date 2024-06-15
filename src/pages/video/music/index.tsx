@@ -17,7 +17,6 @@ import { VideoMusicSynthSingle } from "~/pages/video/music/synth/single";
 
 export const VideoMusic = () => {
   const {
-    playerStyle,
     y,
     gap,
     left,
@@ -28,6 +27,7 @@ export const VideoMusic = () => {
   } = useVideoPlayerStyle();
   const s = boxSize();
   const borderRadius = boxRadius();
+  const drumsTop = y + s.m5 + s.m05+s.m0125;
   return (
     <MusicInitProvider>
       <MusicReadyProvider>
@@ -48,9 +48,12 @@ export const VideoMusic = () => {
             <div
               className="absolute column-stretch grow"
               style={{
-                left:left-s.m0125-s.m0625,
+                left:
+                  left -
+                  s.m0125 -
+                  s.m0625,
                 gap,
-                width:width+s.m025,
+                width: width + s.m025,
                 paddingTop: y,
                 paddingBottom: y * 1.5,
                 height:
@@ -60,7 +63,7 @@ export const VideoMusic = () => {
               <div
                 className="sticky column-stretch z-20 bg-black-8 dark:bg-black"
                 style={{
-                  width:width+s.m025,
+                  width: width + s.m025,
                   top: y,
                   borderTopRightRadius:
                     borderRadius,
@@ -109,6 +112,7 @@ export const VideoMusic = () => {
                 className="relative column-stretch"
                 style={{
                   gap,
+                  
                 }}
               >
                 <div className="absolute inset-x-0 -inset-y-6 bg-gradient-to-b from-black to-black-05" />
@@ -119,15 +123,11 @@ export const VideoMusic = () => {
               <div
                 className="sticky column-stretch z-10 bg-black-8 dark:bg-black"
                 style={{
-                  width:width+s.m025,
+                  width: width + s.m025,
                   gap: s.m025 * 1.5,
-                  top:
-                    y +
-                    s.m3 +
-                    s.m05 +
-                    s.m0125,
+                  top: drumsTop-s.m0125,
                   bottom:
-                    s.m25 + s.m025+s.m0125,
+                    s.m5-s.m05
                 }}
               >
                 <VideoMusicDrums />
@@ -141,14 +141,11 @@ export const VideoMusic = () => {
               <div
                 className="sticky column-stretch bg-black-8 dark:bg-black z-10"
                 style={{
-                  top:
-                    y +
-                    s.m8 -
-                    s.m025 -
-                    s.m0125,
+                  top: drumsTop+s.m4,
                   gap: s.m05,
-                  width:width+s.m025,
-                  bottom: s.m,
+                  width: width + s.m025,
+              
+                  bottom: 0,
                   borderBottomLeftRadius:
                     borderRadius,
                   borderBottomRightRadius:

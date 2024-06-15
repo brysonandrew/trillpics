@@ -28,17 +28,14 @@ export const useSynthUpdate = () => {
       };
 
       set((draft: TState) => {
-        if (key === "scaleKey") {
-          draft[key] = value;
-        }
         if (isSynthOptionsType(key1)) {
-          draft.options[key1] =
+          draft.synth[key1] =
             resolveValue();
         }
         if (
           isSynthMultiOptionsType(key1)
         ) {
-          draft.multi[key1] =
+          draft.synth[key1] =
             resolveValue();
         }
       });

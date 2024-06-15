@@ -5,19 +5,18 @@ import { useTrillPicsStore } from "~/store/middleware";
 
 export const VideoMusicSynth: FC =
   () => {
-    const { synthSteps } =
-      useTrillPicsStore(
-        ({ synthSteps }) => ({
-          synthSteps,
-        })
-      );
+    const { synth } = useTrillPicsStore(
+      ({ synth }) => ({
+        synth,
+      })
+    );
 
     return (
       <>
         <VideoMusicSynthHeader />
         <VideoMusicGrid
           presets={{
-            synth: synthSteps,
+            synth: synth.steps,
           }}
         />
       </>

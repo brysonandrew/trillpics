@@ -7,6 +7,8 @@ import { boxSize } from "~uno/rules/box/size";
 import { boxRadius } from "~uno/rules/box/radius";
 import { useMusicInitContext } from "~/pages/video/music/_context/init";
 import clsx from "clsx";
+import { isNumber } from "~/utils/validation/is/number";
+import { SCALE_VALUE_COUNT } from "~/constants/scales";
 
 type TProps = {
   // gridCells:any[][]
@@ -32,19 +34,19 @@ export const VideoMusicGrid: FC<
       <div className="fill column-space items-stretch gap-1">
         {Object.entries(presets).map(
           (
-            [key, steps],
+            [stepsKey, steps],
             rowIndex,
             { length: count }
           ) => {
             return (
               <div
-                key={key}
+                key={stepsKey}
                 className="relative row-start-space h-full"
               >
                 {count === 1 &&
                   [
                     ...Array(
-                      RANDOM_MIDI_RANGE
+                      SCALE_VALUE_COUNT
                     ),
                   ].map((_, index) => (
                     <LinesHorizontal
@@ -52,7 +54,7 @@ export const VideoMusicGrid: FC<
                       style={{
                         top: `${
                           (index /
-                            RANDOM_MIDI_RANGE) *
+                            SCALE_VALUE_COUNT) *
                             80 +
                           10
                         }%`,
@@ -63,35 +65,33 @@ export const VideoMusicGrid: FC<
                       colorClass="border-white"
                     />
                   ))}
-                {STEPS.map(
-                  (_, columnIndex) => {
-                    const value =
-                      steps[
-                        columnIndex
-                      ];
+                {steps.map(
+                  (value, columnIndex) => {
+                    // const value =
+                    //   steps[
+                    //     columnIndex
+                    //   ];
 
-                    if (value === null)
-                      return (
-                        <div
-                          key={`blank-${columnIndex}`}
-                        />
-                      );
-
+                    const isNullValue =
+                      value === null;
+                      const key = `${columnIndex}-${value}`;
                     return (
                       <div
                         key={`${columnIndex}`}
                         className="column relative w-full"
                         style={{
-                          top: `${
-                            (value /
-                              RANDOM_MIDI_RANGE) *
-                              80 +
-                            10
-                          }%`,
+                          top: isNullValue
+                            ? 0
+                            : `${
+                                (value /
+                                  RANDOM_MIDI_RANGE) *
+                                  80 +
+                                10
+                              }%`,
                         }}
                       >
                         <div
-                          key={`${columnIndex}-${value}`}
+                          key={key}
                           ref={(
                             instance
                           ) => {
@@ -151,7 +151,7 @@ export const VideoMusicGrid: FC<
                               s.m0125
                             ),
                             opacity:
-                              Boolean(
+                              isNumber(
                                 value
                               )
                                 ? 1

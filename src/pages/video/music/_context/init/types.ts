@@ -33,6 +33,8 @@ export type TMusicInitContext = {
   destination: MediaStreamAudioDestinationNode;
   recorder: MediaRecorder;
   audio: {
+    loopCount: number;
+    loopsRemainder:number
     currentStep: number;
     chunks: BlobPart[];
   };

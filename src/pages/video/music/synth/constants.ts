@@ -4,7 +4,7 @@ export const SYNTH_TYPES_RECORD = {
 } as const;
 export const MUSIC_OPTIONS_RECORD = {
   bpm: "bpm",
-  scaleKey: "scaleKey",
+  key: "key",
 } as const;
 
 export const INPUT_PATH_DELIMITER = ".";

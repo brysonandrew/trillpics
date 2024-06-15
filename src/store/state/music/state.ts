@@ -1,21 +1,27 @@
-import { MIDIS_1_R } from "~/constants/music/midis";
+import { resolveSynthSteps } from "~/constants/music/midis";
 import {
+  DEFAULT_MELODY_OPTIONS,
   DEFAULT_MULTI_SYNTH_OPTIONS,
-  DEFAULT_MUSIC_OPTIONS,
   DEFAULT_SYNTH_OPTIONS,
 } from "~/store/state/music/constants";
 import { TMusicState } from "~/store/state/music/types";
 import { TStateHandler } from "~/store/types";
 
+const steps = resolveSynthSteps(
+  DEFAULT_MELODY_OPTIONS
+);
+console.log(steps);
 export const musicState: TStateHandler<
   TMusicState
 > = () => ({
-  synthSteps: MIDIS_1_R,
-  repeats: 1,
+  synth: {
+    steps,
+    melody: DEFAULT_MELODY_OPTIONS,
+    ...DEFAULT_MULTI_SYNTH_OPTIONS,
+    ...DEFAULT_SYNTH_OPTIONS,
+  },
   beatsPresetKey: "disco",
   recording: null,
   playKey: null,
-  options: DEFAULT_SYNTH_OPTIONS,
-  multi: DEFAULT_MULTI_SYNTH_OPTIONS,
-  ...DEFAULT_MUSIC_OPTIONS,
+  bpm: 80,
 });

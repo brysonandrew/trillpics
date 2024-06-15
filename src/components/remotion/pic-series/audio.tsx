@@ -23,23 +23,44 @@ export const PicSeriesAudio: FC<
     durationInSeconds /
       audioLoopDurationInSeconds
   );
+  const remainderFrames = Math.ceil(
+    (durationInSeconds %
+      audioLoopDurationInSeconds) *
+      fps
+  );
+
   return (
     <Series>
-      {[...Array(audioLoopCount)].map(
-        (_, index) => (
+      {[
+        ...[
+          ...Array(audioLoopCount),
+        ].map((_, index) => (
           <Series.Sequence
             key={`${index}`}
+            offset={0}
             durationInFrames={
-              audioLoopDurationInSeconds *
-              fps
+              (audioLoopDurationInSeconds *
+              fps)+fps*2
             }
           >
             <Audio
+              startFrom={0}
               src={recording.src}
             />
           </Series.Sequence>
-        )
-      )}
+        )),
+        <Series.Sequence
+          key={`last`}
+          durationInFrames={
+            remainderFrames
+          }
+        >
+          <Audio
+            startFrom={0}
+            src={recording.src}
+          />
+        </Series.Sequence>,
+      ]}
     </Series>
   );
 };

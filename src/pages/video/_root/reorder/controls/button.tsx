@@ -1,23 +1,33 @@
 import type { FC } from "react";
 import clsx from "clsx";
-import { IconsTrash } from "~/components/icons/video/trash";
 import { TUsePicSelected } from "~/hooks/pic/selected";
 import { boxSize } from "~uno/rules/box/size";
-import { ButtonPillBIcon, TButtonPillBIconProps } from "~/components/buttons/pill/b/icon";
+import {
+  ButtonPillBIcon,
+  TButtonPillBIconProps,
+} from "~/components/buttons/pill/b/icon";
 import { boxRadius } from "~uno/rules/box/radius";
 import { TButtonProps } from "@brysonandrew/config-types";
 
 type TProps = Pick<
   TUsePicSelected,
-  "currName" 
-> & TButtonProps & {
-  iconProps:Partial<TButtonPillBIconProps>,
-
-};
+  "currName"
+> &
+  TButtonProps & {
+    iconProps: Partial<TButtonPillBIconProps>;
+  };
 
 export const _RootReorderControlsButton: FC<
   TProps
-> = ({ currName: name,classValue,  iconProps:{style:iconStyle, ...iconProps},...props }) => {
+> = ({
+  currName: name,
+  classValue,
+  iconProps: {
+    style: iconStyle,
+    ...iconProps
+  },
+  ...props
+}) => {
   const s = boxSize();
   const borderRadius = boxRadius();
 
@@ -45,9 +55,8 @@ export const _RootReorderControlsButton: FC<
           width: s.s,
           height: s.s,
           borderRadius,
-          ...iconStyle
+          ...iconStyle,
         }}
-
         {...iconProps}
       />
     </button>

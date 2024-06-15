@@ -71,7 +71,7 @@ export const SelectStyled: FC<
                 className={clsx(
                   "relative column-stretch bg-gray-02 backdrop-blur-lg",
                   "border border-white-04 dark:border-black-04",
-                  // 'translate-y-1/2'
+                  'translate-y-2'
                 )}
                 style={{
                   // paddingTop: s.m025,

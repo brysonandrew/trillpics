@@ -2,22 +2,27 @@ import { useMusicInitContext } from "~/pages/video/music/_context/init";
 import { supportedMimeTypes } from "~/pages/video/music/_context/hooks/recorder/supportedMimeTypes";
 import { useTrillPicsStore } from "~/store/middleware";
 import { TState } from "~/store/types";
+import { resolveStepsPerSecond } from "~/hooks/music/time/resolver";
+import { STEPS_COUNT } from "~/constants/music/steps";
+import { usePicVideoReadSeconds } from "~/hooks/pic/video/read/seconds/hook";
+import { set } from "zod";
 
 export const useRecorderSaveHandler =
   () => {
-    const { set } = useTrillPicsStore(
-      ({ set }) => ({
-        set,
-      })
-    );
+    const { set, bpm } =
+      useTrillPicsStore(
+        ({ set, bpm }) => ({
+          set,
+          bpm,
+        })
+      );
+    const seconds =
+      usePicVideoReadSeconds();
 
     const { audio } =
       useMusicInitContext();
 
     const handler = (event: Event) => {
-      console.log("recorder.onstop ");
-      console.dir(event);
-      console.log(audio.chunks);
       const audioBlob = new Blob(
         audio.chunks,
         {
@@ -38,9 +43,10 @@ export const useRecorderSaveHandler =
           window.URL.createObjectURL(
             audioBlob
           );
+
         draft.recording = {
           src: url,
-          seconds: (draft.bpm / 60) * 8,
+          seconds,
         };
       });
 

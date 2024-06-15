@@ -1,4 +1,4 @@
-import { TBeats } from "~/hooks/music/beats/types";
+import { TBeatValues } from "~/hooks/music/beats/types";
 import { TMidis } from "~/hooks/music/midis/types";
 
 export type TPlayOptions = {
@@ -6,6 +6,6 @@ export type TPlayOptions = {
 };
 
 export type TStepValue = (
-  | TBeats
+  | TBeatValues
   | TMidis
 )[number];

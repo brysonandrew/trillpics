@@ -15,6 +15,7 @@ import { PRESENCE_OPACITY } from "@brysonandrew/motion-config-constants";
 import { useReadyContext } from "~/shell/ready/context";
 import { TMotionPoint } from "@brysonandrew/motion-config-types";
 import { TDimensions } from "@brysonandrew/config-types";
+import { PillBSm } from "~/components/buttons/pill/b/sm";
 
 type TProps = TMotionPoint &
   Pick<TCommonProps, "itemDimensions"> &
@@ -72,7 +73,7 @@ export const _RootReorderControls: FC<
         }}
         {...PRESENCE_OPACITY}
       >
-        <_RootReorderControlsButton
+        <PillBSm
           title="Replace with random pic"
           onClick={() => {
             const randomName =
@@ -88,15 +89,13 @@ export const _RootReorderControls: FC<
           iconProps={{
             Icon: IconsPlusQuestion,
           }}
-          currName={name}
         />
-        <_RootReorderControlsButton
+        <PillBSm
           title={`Delete pic from video`}
           onClick={() => deselect(name)}
           iconProps={{
             Icon: IconsTrash,
           }}
-          currName={name}
         />
       </motion.div>
     </motion.div>

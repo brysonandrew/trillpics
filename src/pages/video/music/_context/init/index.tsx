@@ -66,6 +66,8 @@ export const MusicInitProvider: FC<
 
     return {
       isRecording: false,
+      loopCount: 0,
+      loopsRemainder: 0,
       context,
       master,
       destination,

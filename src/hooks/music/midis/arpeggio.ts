@@ -11,14 +11,14 @@ export const useArpeggio = () => {
 
   const handler = (
     startTime: number,
-    midi: number,
+    stepMidi: number,
     options: TPlayMidisOptions = {}
   ) => {
     const {
       duration,
       volume = 1,
       type = "sawtooth",
-      midi:baseMidi,
+      midi: baseMidi,
       ...synthwaveOptions
     } = options;
     const filter = new BiquadFilterNode(
@@ -31,10 +31,13 @@ export const useArpeggio = () => {
     const gain = new GainNode(context, {
       gain: volume * 0.1,
     });
+    const midi =
+      (baseMidi ?? 0) + stepMidi ?? 0;
+    console.log(midi);
     const multiSynthOptions: TMultiOptions =
       {
         type,
-        midi: ((baseMidi??0)+midi) ?? 0,
+        midi,
         count: 4,
         start: startTime,
         end:
@@ -50,8 +53,8 @@ export const useArpeggio = () => {
   };
 
   const handleStop = () => {
-    stop.bind(multiSynth.stop)
-  }
+    stop.bind(multiSynth.stop);
+  };
 
   return {
     play: handler,
