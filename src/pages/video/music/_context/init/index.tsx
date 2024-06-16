@@ -33,6 +33,7 @@ export const MusicInitProvider: FC<
     context,
     master,
     bufferSourceRecord,
+    bufferRecord,
     destination,
     recorder,
     gridCellsRecord,
@@ -57,6 +58,7 @@ export const MusicInitProvider: FC<
     const arrayBuffer: ArrayBuffer =
       new Float32Array();
     const bufferSourceRecord = {};
+    const bufferRecord = {};
     const stepsScaleRecord: TPartialStepsScaleRecord =
       {};
 
@@ -72,6 +74,7 @@ export const MusicInitProvider: FC<
       arrayBuffer,
       saveProgress,
       bufferSourceRecord,
+      bufferRecord,
       gridCellsRecord: {},
       currentStep: -1,
       stepsScaleRecord,
@@ -87,6 +90,7 @@ export const MusicInitProvider: FC<
         recorder,
         audio,
         bufferSourceRecord,
+        bufferRecord,
         saveProgress,
         gridCellsRecord,
         stepsScaleRecord,

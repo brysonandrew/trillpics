@@ -1,20 +1,28 @@
-import { TPlayBeatsOptions } from "~/hooks/music/beats/types";
+import {
+  TBeatsSequenceKey,
+  TPlayBeatsOptions,
+} from "~/hooks/music/beats/types";
 import { useMusicInitContext } from "~/pages/video/music/_context/init";
 import { resolveAudioSampleSrc } from "~/utils/src";
 import { useBufferFromSrcHandler } from "../useBufferFromSrcHandler";
+const key: TBeatsSequenceKey = "kick";
 
 export const useKick = () => {
-  const { context, master, bufferSourceRecord } =
-    useMusicInitContext();
+  const {
+    context,
+    master,
+    bufferSourceRecord,
+    bufferRecord
+  } = useMusicInitContext();
   const handleSample =
     useBufferFromSrcHandler(context);
 
   const play = async (
     startTime: number,
-    options:TPlayBeatsOptions = {}
-
+    options: TPlayBeatsOptions = {}
   ) => {
-    const {version = 2, volume=1} = options;
+    const { version = 0, volume = 1 } =
+      options;
 
     const filter = new BiquadFilterNode(
       context,
@@ -24,12 +32,15 @@ export const useKick = () => {
       }
     );
     const gain = new GainNode(context, {
-      gain: 0.2*volume,
+      gain: 0.2 * volume,
     });
 
     const sampleBuffer: AudioBuffer =
-      await handleSample(
-        resolveAudioSampleSrc("kick", 0)
+    bufferRecord[key] ?? await handleSample(
+        resolveAudioSampleSrc(
+          key,
+          version
+        )
       );
 
     const source =
@@ -39,13 +50,12 @@ export const useKick = () => {
     filter.connect(gain);
     gain.connect(master);
     source.start(startTime);
-    bufferSourceRecord.kick = source
+    bufferSourceRecord[key] = source;
   };
 
-
   const stop = () => {
-    if (bufferSourceRecord.hihat) {
-      bufferSourceRecord.hihat.stop();
+    if (bufferSourceRecord[key]) {
+      bufferSourceRecord[key].stop();
     }
   };
 

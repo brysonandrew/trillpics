@@ -1,10 +1,11 @@
-import { TPlayBeatsOptions } from "~/hooks/music/beats/types";
+import { TBeatsSequenceKey, TPlayBeatsOptions } from "~/hooks/music/beats/types";
 import { useMusicInitContext } from "~/pages/video/music/_context/init";
 import { resolveAudioSampleSrc } from "~/utils/src";
 import { useBufferFromSrcHandler } from "../useBufferFromSrcHandler";
+const key: TBeatsSequenceKey = "tom";
 
 export const useTom = () => {
-  const { context, master , bufferSourceRecord} =
+  const { context, master , bufferSourceRecord,bufferRecord} =
     useMusicInitContext();
   const handleSample =
     useBufferFromSrcHandler(context);
@@ -28,8 +29,8 @@ export const useTom = () => {
     });
 
     const sampleBuffer: AudioBuffer =
-      await handleSample(
-        resolveAudioSampleSrc("tom", 0)
+    bufferRecord[key] ??  await handleSample(
+        resolveAudioSampleSrc(key, 0)
       );
 
     const source =
@@ -40,13 +41,13 @@ export const useTom = () => {
     gain.connect(master);
     source.start(startTime);
 
-    bufferSourceRecord.tom = source
+    bufferSourceRecord[key] = source
   };
 
 
   const stop = () => {
-    if (bufferSourceRecord.hihat) {
-      bufferSourceRecord.hihat.stop();
+    if (bufferSourceRecord[key]) {
+      bufferSourceRecord[key].stop();
     }
   };
 

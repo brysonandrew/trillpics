@@ -1,3 +1,4 @@
+import { steps } from "framer-motion";
 import { useMusicReadyContext } from "~/pages/video/music/_context/ready/index";
 import { MIDIS } from "~/hooks/music/midis/constants";
 import { useMusicInitContext } from "~/pages/video/music/_context/init";
@@ -9,7 +10,6 @@ import { useMusicRecorderContext } from "~/pages/video/music/_context/recorder";
 import { TPlayingKey } from "~/store/state/music/types";
 import { TState } from "~/store/types";
 import { lookup } from "dns";
-import { steps } from "framer-motion";
 
 export const usePlayMidis = () => {
   const { timeoutRef, endTimeout } =
@@ -37,10 +37,7 @@ export const usePlayMidis = () => {
     })
   );
   const {
-    loopCount,
-    videoSeconds,
-    loopsRemainder,
-    isRecording
+    isRecording,
   } = useMusicRecorderContext();
 
   const isPlaying =
@@ -78,9 +75,16 @@ export const usePlayMidis = () => {
     const remainderSteps = Math.floor(
       audio.loopsRemainder / sps
     );
-console.log(recorder.state,isRecording);
+    console.log(
+      recorder.state,
+      isRecording
+    );
     [
-      ...Array(recorder.state === "recording" ?  audio.loopCount + 1 : 1),
+      ...Array(
+        recorder.state === "recording"
+          ? audio.loopCount + 1
+          : 1
+      ),
     ].forEach(
       (
         _,

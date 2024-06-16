@@ -41,11 +41,6 @@ export const usePlayBeats = () => {
     playingKeys.includes("beats");
 
   const handleStopAll = () => {
-    console.log(
-      loopCount,
-      "handleStopAll"
-    );
-
     BEATS_KEYS.forEach((beatKey) => {
       lookup[beatKey].stop();
     });
@@ -78,10 +73,6 @@ export const usePlayBeats = () => {
     const remainderSteps = Math.floor(
       audio.loopsRemainder / sps
     );
-    console.log(
-      remainderSteps,
-      "remainderSteps"
-    );
 
     [
       ...Array(
@@ -105,18 +96,10 @@ export const usePlayBeats = () => {
               loopIndex ===
               audio.loopCount
             ) {
-              console.log(
-                "LAST",
-                stepIndex
-              );
               if (
                 remainderSteps ===
                 stepIndex
               ) {
-                console.log(
-                  "endung ",
-                  elapsed
-                );
                 timeoutRef.current =
                   setTimeout(() => {
                     handleStopAll();
@@ -137,10 +120,6 @@ export const usePlayBeats = () => {
                 loopIndex *
                 sps *
                 stepCount;
-              console.log(
-                loopElapsed,
-                "loopElapsed"
-              );
               elapsed =
                 currElapsed +
                 loopElapsed;

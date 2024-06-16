@@ -1,10 +1,11 @@
-import { TPlayBeatsOptions } from "~/hooks/music/beats/types";
+import { TBeatsSequenceKey, TPlayBeatsOptions } from "~/hooks/music/beats/types";
 import { useMusicInitContext } from "~/pages/video/music/_context/init";
 import { resolveAudioSampleSrc } from "~/utils/src";
 import { useBufferFromSrcHandler } from "../useBufferFromSrcHandler";
+const key: TBeatsSequenceKey = "snare";
 
 export const useSnare = () => {
-  const { context, master, bufferSourceRecord } =
+  const { context, master,bufferRecord, bufferSourceRecord } =
     useMusicInitContext();
   const handleSample =
     useBufferFromSrcHandler(context);
@@ -12,14 +13,6 @@ export const useSnare = () => {
   const play = async (
     startTime: number,
     options: TPlayBeatsOptions = {}
-
-    // {
-    //   volume=1,
-    //   version = 2,
-    // }: {
-    //   version: 0 | 1 | 2 | 4;
-    //   volume: number;
-    // }
   ) => {
     const { version = 2, volume = 1 } =
       options;
@@ -36,9 +29,9 @@ export const useSnare = () => {
     });
 
     const sampleBuffer: AudioBuffer =
-      await handleSample(
+    bufferRecord[key] ?? await handleSample(
         resolveAudioSampleSrc(
-          "snare",
+          key,
           version
         )
       );
@@ -51,13 +44,13 @@ export const useSnare = () => {
     gain.connect(master);
     source.start(startTime);
 
-    bufferSourceRecord.snare = source
+    bufferSourceRecord[key] = source
   };
 
 
   const stop = () => {
-    if (bufferSourceRecord.hihat) {
-      bufferSourceRecord.hihat.stop();
+    if (bufferSourceRecord[key]) {
+      bufferSourceRecord[key].stop();
     }
   };
 

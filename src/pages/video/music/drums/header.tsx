@@ -20,7 +20,7 @@ export const MusicLayoutDrums: FC =
     const s = boxSize();
     const midis = usePlayMidis();
     const stop = midis.stop;
-    const { start, ...props } =
+    const { start } =
       usePlaybackSchedule({ stop });
     return (
       <MusicLayoutHeader

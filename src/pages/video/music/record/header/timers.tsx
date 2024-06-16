@@ -7,7 +7,7 @@ import { boxSize } from "~uno/rules/box/size";
 import { MeshBackgroundText } from "~/components/layout/background/mesh/text";
 import { VideoMusicHeaderTimer } from "~/pages/video/music/header/timer";
 import { useTrillPicsStore } from "~/store/middleware";
-import { Calc } from "~/pages/video/music/record/header/calc";
+import { SecondsCalculation } from "~/pages/video/music/record/header/calc";
 
 export const VideoMusicPlaybackHeaderTimers: FC =
   () => {
@@ -69,7 +69,7 @@ export const VideoMusicPlaybackHeaderTimers: FC =
               unit="seconds"
             />
           </MeshBackgroundText>
-          <Calc />
+          <SecondsCalculation />
         </div>
 
         <LinesHorizontal />

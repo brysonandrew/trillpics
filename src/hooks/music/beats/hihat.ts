@@ -1,14 +1,17 @@
-import { useRef } from "react";
-import { TPlayBeatsOptions } from "~/hooks/music/beats/types";
+import {
+  TBeatsSequenceKey,
+  TPlayBeatsOptions,
+} from "~/hooks/music/beats/types";
 import { useMusicInitContext } from "~/pages/video/music/_context/init";
 import { resolveAudioSampleSrc } from "~/utils/src";
 import { useBufferFromSrcHandler } from "../useBufferFromSrcHandler";
-
+const key: TBeatsSequenceKey = "hihat";
 export const useHihat = () => {
   const {
     context,
     master,
     bufferSourceRecord,
+    bufferRecord,
   } = useMusicInitContext();
   const handleSample =
     useBufferFromSrcHandler(context);
@@ -31,13 +34,13 @@ export const useHihat = () => {
     });
 
     const sampleBuffer: AudioBuffer =
-      await handleSample(
+      bufferRecord[key] ??
+      (await handleSample(
         resolveAudioSampleSrc(
-          "hihat",
+          key,
           version
         )
-      );
-
+      ));
     const source =
       context.createBufferSource();
     source.buffer = sampleBuffer;
@@ -46,14 +49,12 @@ export const useHihat = () => {
     gain.connect(master);
     source.start(startTime);
 
-    bufferSourceRecord.hihat = source;
-
-    
+    bufferSourceRecord[key] = source;
   };
 
   const stop = () => {
-    if (bufferSourceRecord.hihat) {
-      bufferSourceRecord.hihat.stop();
+    if (bufferSourceRecord[key]) {
+      bufferSourceRecord[key].stop();
     }
   };
 

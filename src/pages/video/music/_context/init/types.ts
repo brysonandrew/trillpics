@@ -27,6 +27,13 @@ export type TMusicInitContext = {
       null | AudioBufferSourceNode
     >
   >;
+  bufferRecord: Partial<
+  Record<
+    TBeatsSequenceKey,
+    null | AudioBuffer
+  >
+>;
+
   context: AudioContext;
   master: GainNode;
   saveProgress: MotionValue<number>;

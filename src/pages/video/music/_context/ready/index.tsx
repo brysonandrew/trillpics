@@ -6,6 +6,7 @@ import type { FC } from "react";
 import { useSoundBeatsLookup } from "~/hooks/music/beats/lookup";
 import { useSoundMidisLookup } from "~/hooks/music/midis/lookup";
 import { TChildren } from "@brysonandrew/config-types";
+import { useBeatsLoad } from "~/hooks/music/beats/load";
 
 type TContext = {
   beats: ReturnType<
@@ -32,7 +33,7 @@ export const MusicReadyProvider: FC<
 > = ({ children }) => {
   const beats = useSoundBeatsLookup();
   const midis = useSoundMidisLookup();
-
+  useBeatsLoad()
   return (
     <Context.Provider
       value={{

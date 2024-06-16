@@ -8,7 +8,7 @@ import { IconsLoader } from "~/components/icons/loader";
 import { useMusicRecorderContext } from "~/pages/video/music/_context/recorder";
 import { NOOP } from "~/constants/functions";
 import { VideoMusicPlaybackHeaderTimers } from "~/pages/video/music/record/header/timers";
-import { Calc } from "~/pages/video/music/record/header/calc";
+import { SecondsCalculation } from "~/pages/video/music/record/header/calc";
 
 export const VideoMusicPlaybackHeader =
   () => {
