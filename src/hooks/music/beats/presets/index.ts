@@ -7,9 +7,9 @@ import { PRESETS_DISCO } from "~/hooks/music/beats/presets/disco";
 import { PRESETS_TECHNO } from "~/hooks/music/beats/presets/techno";
 import { TBeatsPresetsKey } from "~/hooks/music/beats/presets/types";
 import {
-  TBeatsSequenceKey,
-  TPurcussionPresetRecord,
-  TPurcussionRecord,
+  TBeatsStepsKey,
+  TBeatsPresetRecord,
+  TBeatsRecord,
 } from "~/hooks/music/beats/types";
 
 export const BEATS_PRESETS = {
@@ -115,4 +115,4 @@ export const BEATS_PRESETS = {
     ],
     tom: [...BEATS_4_2],
   },
-} as const satisfies TPurcussionPresetRecord;
+} as const satisfies TBeatsPresetRecord;

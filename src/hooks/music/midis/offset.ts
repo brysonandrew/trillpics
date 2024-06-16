@@ -11,12 +11,12 @@ export const useMidisOffset = () => {
   const left = () => {
     set((draft: TState) => {
       const next = [
-        ...draft.synth.steps.slice(1),
-        draft.synth.steps[0],
+        ...draft.steps.slice(1),
+        draft.steps[0],
       ];
-      draft.synth.steps = next;
-      draft.synth.melody.offset =
-        (draft.synth.melody.offset -
+      draft.steps = next;
+      draft.sequence.offset =
+        (draft.sequence.offset -
           1) %
         SCALE_VALUE_COUNT;
     });
@@ -24,16 +24,16 @@ export const useMidisOffset = () => {
   const right = () => {
     set((draft: TState) => {
       const lastIndex =
-        draft.synth.steps.length - 1;
+        draft.steps.length - 1;
       const last =
-        draft.synth.steps[lastIndex];
+        draft.steps[lastIndex];
       const next = [
         last,
-        ...draft.synth.steps,
+        ...draft.steps,
       ].slice(0, lastIndex + 1);
-      draft.synth.steps = next;
-      draft.synth.melody.offset =
-        (draft.synth.melody.offset +
+      draft.steps = next;
+      draft.sequence.offset =
+        (draft.sequence.offset +
           1) %
         SCALE_VALUE_COUNT;
     });

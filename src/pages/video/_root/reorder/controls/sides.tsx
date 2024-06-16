@@ -2,8 +2,8 @@ import { FC } from "react";
 import { motion } from "framer-motion";
 import { boxSize } from "~uno/rules/box/size";
 import { useReadyContext } from "~/shell/ready/context";
-import { LeftButtonsClear } from "~/pages/video/_root/clear";
-import { HudLeftAddRandom } from "~/pages/video/_root/add-random";
+import { ControlsClear } from "~/pages/video/_root/controls/clear";
+import { HudLeftAddRandom } from "~/pages/video/_root/controls/add-random";
 
 export const _RootReorderControlsSides: FC =
   () => {
@@ -25,7 +25,7 @@ export const _RootReorderControlsSides: FC =
         }}
       >
         <HudLeftAddRandom />
-        <LeftButtonsClear />
+        <ControlsClear />
       </motion.div>
     );
   };

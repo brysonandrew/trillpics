@@ -15,15 +15,12 @@ export const useMidisPattern = () => {
   ) => {
     set((draft: TState) => {
       const next = resolveSynthSteps({
-        ...draft.synth.melody,
-        scale: {
-          ...draft.synth.melody.scale,
-          pattern: value,
-        },
+        ...draft.scale,
+        ...draft.sequence,
+        pattern: value,
       });
-      draft.synth.melody.scale.pattern =
-        value;
-      draft.synth.steps = next;
+      draft.scale.pattern = value;
+      draft.steps = next;
     });
   };
   return handler;

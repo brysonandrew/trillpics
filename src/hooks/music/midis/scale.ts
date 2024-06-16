@@ -11,11 +11,11 @@ import { TState } from "~/store/types";
 export const useMidisScale = () => {
   const { stepsScaleRecord } =
     useMusicInitContext();
-  const { set, synth } =
+  const { set, scale } =
     useTrillPicsStore(
-      ({ set, synth }) => ({
+      ({ set, scale }) => ({
         set,
-        synth,
+        scale,
       })
     );
   const rescale = () => {
@@ -25,7 +25,7 @@ export const useMidisScale = () => {
           DEFAULT_SCALE_KEY
         ] ??
         stepsScaleRecord[
-          draft.synth.melody.scale.key
+          draft.scale.key
         ] ??
         [];
       const nextSteps = scaleSteps.map(
@@ -35,8 +35,7 @@ export const useMidisScale = () => {
 
           const scaleSteps =
             SCALE_RECORD[
-              draft.synth.melody.scale
-                .key
+              draft.scale.key
             ];
 
           const resolveIndex = (
@@ -86,20 +85,19 @@ export const useMidisScale = () => {
         }
       );
       stepsScaleRecord[
-        draft.synth.melody.scale.key
+        draft.scale.key
       ] = nextSteps;
-      draft.synth.steps = nextSteps;
+      draft.steps = nextSteps;
     });
   };
   const update = (value: TScaleKey) => {
     set((draft: TState) => {
-      draft.synth.melody.scale.key =
-        value;
+      draft.scale.key = value;
     });
   };
 
   return {
-    key: synth.melody.scale.key,
+    key: scale.key,
     update,
     rescale,
   };

@@ -1,8 +1,8 @@
-import { TBeatsSequenceKey, TPlayBeatsOptions } from "~/hooks/music/beats/types";
+import { TBeatsStepsKey, TPlayBeatsOptions } from "~/hooks/music/beats/types";
 import { useMusicInitContext } from "~/pages/video/music/_context/init";
 import { resolveAudioSampleSrc } from "~/utils/src";
 import { useBufferFromSrcHandler } from "../useBufferFromSrcHandler";
-const key: TBeatsSequenceKey = "tom";
+const key: TBeatsStepsKey = "tom";
 
 export const useTom = () => {
   const { context, master , bufferSourceRecord,bufferRecord} =

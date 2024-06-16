@@ -1,11 +1,6 @@
-import {
-  BEATS_1,
-  BEATS_2_1,
-  BEATS_4_4,
-} from "~/constants/music/beats";
+import { BEATS_1 } from "~/constants/music/beats";
 import {
   SCALE_RECORD,
-  SCALE_VALUE_COUNT,
   TScaleKey,
   TScaleRecord,
 } from "~/constants/scales";
@@ -14,8 +9,8 @@ import {
   TMidiValues,
 } from "~/hooks/music/midis/types";
 import {
-  TMelodyOptions,
   TScaleOptions,
+  TSequenceOptions,
 } from "~/store/state/music/types";
 
 export const RANDOM_MIDI_RANGE = 12;
@@ -25,22 +20,22 @@ const resolveRandom = () =>
       1
   );
 
-type TResolveValueConfig = {
-  index: number;
-  count: number;
-  scaleMidis: TScaleRecord[TScaleKey];
-  scale: TScaleOptions;
-};
+type TResolveValueConfig =
+  Partial<TScaleOptions> & {
+    index: number;
+    count: number;
+    scaleMidis: TScaleRecord[TScaleKey];
+  };
 const resolveValue = (
   config: TResolveValueConfig
 ) => {
   const {
     index,
-    scale,
     count,
     scaleMidis,
+    delta = 1,
+    pattern = "asc",
   } = config;
-  const { delta, pattern } = scale;
   const progress =
     (index / count) * delta;
   const scaleMidisCount =
@@ -77,20 +72,21 @@ const resolveValue = (
       return resolveRandom();
   }
 };
-type TConfig = Partial<TMelodyOptions>;
+type TConfig = Partial<
+  TScaleOptions & TSequenceOptions
+>;
 export const resolveSynthSteps = ({
   beats = BEATS_1,
-  scale = {
-    key: "all",
-    pattern: "asc",
-    delta: 1,
-  },
   repeat = 4,
   interval = 4,
-  offset,
-}: TConfig): TMidiValues => {
-  const scaleMidis =
-    SCALE_RECORD[scale.key];
+  offset = 0,
+  delay =0,
+  key = "all",
+  ...scale
+}: TConfig) => {
+  const scaleMidis = SCALE_RECORD[key];
+  let delaying = false;
+
   return beats.reduce(
     (
       a: TMidiValue[],
@@ -102,14 +98,20 @@ export const resolveSynthSteps = ({
         index,
         count,
         scaleMidis,
-        scale,
+        ...scale,
       });
-      if (beat === null) {
+      if (beat === null || delaying) {
+        if (index%delay === 0) {
+          delaying = false;
+        }
         a.push(null);
         return a;
       }
       if (beat === 1) {
+      
         if (index % interval === 0) {
+          
+          delaying=true;
           const repeats =
             `${v}|`.repeat(repeat);
           a = [

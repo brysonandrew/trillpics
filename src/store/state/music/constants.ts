@@ -10,9 +10,8 @@ import {
   DEFAULT_SCALE_PATTERN,
 } from "~/pages/video/music/_context/init/constants";
 import {
-  TMelodyOptions,
-  TMusicOptions,
   TScaleOptions,
+  TSequenceOptions,
 } from "~/store/state/music/types";
 
 export const MUSIC_TYPES = [
@@ -27,15 +26,13 @@ export const DEFAULT_SCALE_OPTIONS: TScaleOptions =
     pattern: DEFAULT_SCALE_PATTERN,
   };
 
-export const DEFAULT_MELODY_OPTIONS: TMelodyOptions =
+export const DEFAULT_SEQUENCE_OPTIONS: TSequenceOptions =
   {
-    beats: BEATS_1,
     offset: 0,
-    interval: 4,
+    delay: 4,
     repeat: 4,
-    scale: DEFAULT_SCALE_OPTIONS,
+    interval: 0,
   } as const;
-
 
 export const DEFAULT_SYNTH_OPTIONS = {
   type: WRITABLE_OSCILLATOR_TYPES[0],

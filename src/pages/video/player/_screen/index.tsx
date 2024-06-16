@@ -9,6 +9,7 @@ import { PlayerBackgroundOpaque } from "~/pages/video/player/_background/opaque"
 import { useTrillPicsStore } from "~/store/middleware";
 import { VideoPlayer_ScreenGenerate } from "~/pages/video/player/_screen/generate";
 import { PRESENCE_OPACITY } from "@brysonandrew/motion-config-constants";
+import { OverlayCenter } from "~/components/layout/overlay/center";
 
 export const OVERFLOW_HIDDEN =
   "overflow: hidden;";
@@ -43,19 +44,11 @@ export const VideoPlayer_Screen =
         />
         <AnimatePresence mode="wait">
           {isDownloadComplete && (
-            <motion.div
-              key="isDownloadComplete"
-              className="fill center"
-              {...PRESENCE_OPACITY}
-              transition={{
-                duration: 1,
-                ease: "linear",
-              }}
-            >
+            <OverlayCenter>
               <h3 className="dark:text-black text-white uppercase font-slab tracking-wide text-2xl md:text-6xl lg:text-8xl text-center _gradient-text">
                 Download complete
               </h3>
-            </motion.div>
+            </OverlayCenter>
           )}
           {progress !== null && (
             <VideoPlayer_ScreenGenerate

@@ -3,17 +3,17 @@ import {
   createContext,
 } from "react";
 import type { FC } from "react";
-import { useSoundBeatsLookup } from "~/hooks/music/beats/lookup";
-import { useSoundMidisLookup } from "~/hooks/music/midis/lookup";
+import { useBeatsLookup } from "~/hooks/music/beats/lookup";
+import { useMidisLookup } from "~/hooks/music/midis/lookup";
 import { TChildren } from "@brysonandrew/config-types";
 import { useBeatsLoad } from "~/hooks/music/beats/load";
 
 type TContext = {
   beats: ReturnType<
-    typeof useSoundBeatsLookup
+    typeof useBeatsLookup
   >;
   midis: ReturnType<
-    typeof useSoundMidisLookup
+    typeof useMidisLookup
   >;
 };
 
@@ -31,8 +31,8 @@ type TProps = {
 export const MusicReadyProvider: FC<
   TProps
 > = ({ children }) => {
-  const beats = useSoundBeatsLookup();
-  const midis = useSoundMidisLookup();
+  const beats = useBeatsLookup();
+  const midis = useMidisLookup();
   useBeatsLoad()
   return (
     <Context.Provider

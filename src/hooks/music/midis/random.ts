@@ -1,27 +1,10 @@
-import { resolveSynthSteps } from "~/constants/music/midis";
-import { useTrillPicsStore } from "~/store/middleware";
-import { TState } from "~/store/types";
+import { useMidisPattern } from "~/hooks/music/midis/pattern";
 
 export const useMidisRandom = () => {
-  const { set } = useTrillPicsStore(
-    ({ set }) => ({
-      set,
-    })
-  );
+  const handlePattern =
+    useMidisPattern();
   const handler = () => {
-    set((draft: TState) => {
-      const pattern = "random";
-      draft.synth.melody.scale.pattern =
-        pattern;
-      draft.synth.steps =
-        resolveSynthSteps({
-          ...draft.synth.melody,
-          scale: {
-            ...draft.synth.melody.scale,
-            pattern,
-          },
-        });
-    });
+    handlePattern("random");
   };
 
   return handler;

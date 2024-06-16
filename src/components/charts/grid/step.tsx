@@ -7,7 +7,7 @@ import { useMusicInitContext } from "~/pages/video/music/_context/init";
 import { boxRadius } from "~uno/rules/box/radius";
 import { isNumber } from "~/utils/validation/is/number";
 import { boxSize } from "~uno/rules/box/size";
-import { TBeatsSequenceKey } from "~/hooks/music/beats/types";
+import { TBeatsStepsKey } from "~/hooks/music/beats/types";
 import { TMidiValue } from "~/hooks/music/midis/types";
 import { useTrillPicsStore } from "~/store/middleware";
 import { resolveToMidiHoverKey } from "~/components/charts/grid/to-midi-hover-key";
@@ -15,6 +15,7 @@ import { useHoverKey } from "~/hooks/use-hover-key";
 import { isNull } from "~/utils/validation/is/null";
 import { RANDOM_MIDI_RANGE } from "~/constants/music/midis";
 import { useSoundLookup } from "~/hooks/music/lookup";
+import { resolveTop } from "~/components/charts/grid/top";
 
 type TProps = Omit<
   TButtonMotionProps,
@@ -23,7 +24,7 @@ type TProps = Omit<
   columnIndex: number;
   rowIndex: number;
   value: TMidiValue;
-  stepsKey: TBeatsSequenceKey | "synth";
+  stepsKey: TBeatsStepsKey | "synth";
 };
 export const ChartsGridStep: FC<
   TProps
@@ -54,7 +55,7 @@ export const ChartsGridStep: FC<
     resolveToMidiHoverKey(
       midi,
       columnIndex,
-  rowIndex,
+      rowIndex
     );
   const { motionHandlers, isHover } =
     useHoverKey();
@@ -81,15 +82,18 @@ export const ChartsGridStep: FC<
           ? {
               top: isNullValue
                 ? 1
-                : `${
-                    (value /
-                      RANDOM_MIDI_RANGE) *
-                      80 +
-                    10
-                  }%`,
+                : resolveTop(value),
+              // top: isNullValue
+              //   ? 1
+              //   : `${
+              //       (value /
+              //         RANDOM_MIDI_RANGE) *
+              //         80 +
+              //       10
+              //     }%`,
             }
-          : { top: s.m0125 }),
-        marginTop: -s.m025,
+          : { top:0 }),
+        marginTop: -s.m0125,
 
         ...resolveSquare(s.m05),
       }}

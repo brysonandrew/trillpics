@@ -1,6 +1,6 @@
 import {
-  TSequenceKey,
-  USequenceKey,
+  TStepsKey,
+  UStepsKey,
 } from "~/store/state/music/types";
 
 type TConfig = {
@@ -38,7 +38,7 @@ export const resolveAudioSrc = ({
   );
 
 export const resolveAudioSampleSrc = (
-  source: USequenceKey,
+  source: UStepsKey,
   name: string | number
 ) =>
   resolveSrc(

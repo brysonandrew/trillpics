@@ -5,23 +5,22 @@ import { SCALE_VALUE_COUNT } from "~/constants/scales";
 import { ChartsGridStep } from "~/components/charts/grid/step";
 import { resolveCompositeKey } from "@brysonandrew/utils-key";
 import { useTrillPicsStore } from "~/store/middleware";
+import { TMidisRecord } from "~/hooks/music/midis/types";
 import {
-  TMidiValue,
-  TMidiValues,
-} from "~/hooks/music/midis/types";
-import {
-  TBeatValue,
-  TPurcussionKey,
-  TPurcussionRecord,
+  TBeatsKey,
+  TBeatsRecord,
 } from "~/hooks/music/beats/types";
-import clsx from "clsx";
+import { ChartsGridLabelsName } from "~/components/charts/grid/labels/name";
+import { ChartsGridLabelsSteps } from "~/components/charts/grid/labels/steps";
+import { UStepsKey } from "~/store/state/music/types";
+import { resolveTop } from "~/components/charts/grid/top";
 
 type TBeatsProps = {
-  yOrder: readonly TPurcussionKey[];
-  presets: TPurcussionRecord;
+  yOrder: readonly TBeatsKey[];
+  presets: TBeatsRecord;
 };
 type TMidisProps = {
-  presets: { synth: TMidiValues };
+  presets: TMidisRecord;
 };
 type TProps = TBeatsProps | TMidisProps;
 export const ChartsGrid: FC<TProps> = (
@@ -32,6 +31,10 @@ export const ChartsGrid: FC<TProps> = (
     ({ synth }) => ({ synth })
   );
   const presets = props.presets;
+  const keys =
+    "yOrder" in props
+      ? props.yOrder
+      : (["synth"] as const);
   return (
     <div
       className="relative row-stretch"
@@ -40,75 +43,64 @@ export const ChartsGrid: FC<TProps> = (
       }}
     >
       <div className="fill column-space items-stretch gap-1">
-        {("yOrder" in props
-          ? props.yOrder
-          : ["synth"]
-        ).map((stepsKey, rowIndex) => {
-          const steps =
-            "synth" in presets
-              ? presets.synth
-              : presets[
-                  stepsKey as TPurcussionKey
-                ];
-          return (
-            <div
-              key={stepsKey}
-              className="relative row-start-space h-full"
-            >
-              <div className="absolute right-full text-xxxs uppercase -translate-x-1">
-                <div className="row gap-1">
-                  {stepsKey ===
-                  "synth" ? (
-                    <>
-                      <div>midi</div>
-                      {`${synth.midi}`}
-                    </>
-                  ) : (
-                    stepsKey
-                  )}
-                </div>
-              </div>
-              {rowIndex === 0 && (
-                <div
-                  className={clsx(
-                    "absolute bottom-full right-0 text-xxxs uppercase -translate-x-1",
-                    stepsKey === "synth"
-                      ? "-translate-y-0.5"
-                      : "-translate-y-4"
-                  )}
-                >
-                  <div className="row gap-1">
-                    <>
-                      {stepsKey ===
-                      "synth" ? null : (
-                        <>
-                          <div>
-                            beats
-                          </div>
-                          {steps.length/4},
-                        </>
-                      )}
-                      <div>steps</div>
-                      {steps.length}
-                    </>
-                  </div>
-                </div>
-              )}
-              {stepsKey === "synth" ? (
-                [
-                  ...Array(
-                    SCALE_VALUE_COUNT
-                  ),
-                ].map((_, index) => (
+        {keys.map(
+          (
+            stepsKey: UStepsKey,
+            rowIndex
+          ) => {
+            const steps =
+              "synth" in presets
+                ? presets.synth
+                : presets[
+                    stepsKey as TBeatsKey
+                  ];
+            const isSynth =
+              stepsKey === "synth";
+
+            return (
+              <div
+                key={stepsKey}
+                className="relative row-start-space text-white text-xxxs uppercase h-full"
+              >
+                <ChartsGridLabelsName
+                  stepsCount={
+                    steps.length
+                  }
+                  stepsKey={stepsKey}
+                />
+                {rowIndex === 0 && (
+                  <ChartsGridLabelsSteps
+                    stepsCount={
+                      steps.length
+                    }
+                    stepsKey={stepsKey}
+                  />
+                )}
+                {isSynth ? (
+                  [
+                    ...Array(
+                      SCALE_VALUE_COUNT
+                    ),
+                  ].map((_, index) => (
+                    <LinesHorizontal
+                      key={`line-${index}`}
+                      style={{
+                        top: resolveTop(
+                          index
+                        ),
+                        opacity: 0.1,
+                        width: "100%",
+                      }}
+                      positionClass="absolute"
+                      colorClass="border-white"
+                      sizeClass="border-t"
+                    />
+                  ))
+                ) : (
                   <LinesHorizontal
-                    key={`line-${index}`}
+                    key={`line`}
                     style={{
-                      top: `${
-                        (index /
-                          SCALE_VALUE_COUNT) *
-                          80 +
-                        10
-                      }%`,
+                      top: 0,
                       opacity: 0.1,
                       width: "100%",
                     }}
@@ -116,51 +108,39 @@ export const ChartsGrid: FC<TProps> = (
                     colorClass="border-white"
                     sizeClass="border-t"
                   />
-                ))
-              ) : (
-                <LinesHorizontal
-                  key={`line`}
-                  style={{
-                    top: 0,
-                    opacity: 0.1,
-                    width: "100%",
-                  }}
-                  positionClass="absolute"
-                  colorClass="border-white"
-                  sizeClass="border-t"
-                />
-              )}
-              {steps.map(
-                (
-                  value,
-                  columnIndex
-                ) => {
-                  return (
-                    <ChartsGridStep
-                      key={resolveCompositeKey(
-                        columnIndex,
-                        rowIndex
-                      )}
-                      title={`Play ${stepsKey}`}
-                      stepsKey={
-                        stepsKey as
-                          | "synth"
-                          | TPurcussionKey
-                      }
-                      value={value}
-                      columnIndex={
-                        columnIndex
-                      }
-                      rowIndex={
-                        rowIndex
-                      }
-                    />
-                  );
-                }
-              )}
-            </div>
-          );
-        })}
+                )}
+                {steps.map(
+                  (
+                    value,
+                    columnIndex
+                  ) => {
+                    return (
+                      <ChartsGridStep
+                        key={resolveCompositeKey(
+                          columnIndex,
+                          rowIndex
+                        )}
+                        title={`Play ${stepsKey}`}
+                        stepsKey={
+                          stepsKey as
+                            | "synth"
+                            | TBeatsKey
+                        }
+                        value={value}
+                        columnIndex={
+                          columnIndex
+                        }
+                        rowIndex={
+                          rowIndex
+                        }
+                      />
+                    );
+                  }
+                )}
+              </div>
+            );
+          }
+        )}
       </div>
     </div>
   );

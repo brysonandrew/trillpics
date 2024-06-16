@@ -1,27 +1,39 @@
 import type { FC } from "react";
 import { isMidiHoverKey } from "~/components/charts/grid/is-midi-hover-key";
-import { MeshBackgroundText } from "~/components/layout/background/mesh/text";
 import { VideoMusicSynthHeaderNote } from "~/pages/video/music/synth/header/note";
 import { VideoMusicSynthIncrementer } from "~/pages/video/music/synth/incrementer";
-import { SynthIntervalDown } from "~/pages/video/music/synth/melody/interval/down";
-import { SynthIntervalUp } from "~/pages/video/music/synth/melody/interval/up";
-import { SynthOffsetLeft } from "~/pages/video/music/synth/melody/offset/left";
-import { SynthOffsetRight } from "~/pages/video/music/synth/melody/offset/right";
-import { SynthRepeatDown } from "~/pages/video/music/synth/melody/repeat/down";
-import { SynthRepeatUp } from "~/pages/video/music/synth/melody/repeat/up";
+import { SynthDelayDown } from "~/pages/video/music/synth/sequence/delay/down";
+import { SynthDelayUp } from "~/pages/video/music/synth/sequence/delay/up";
+import { SynthIntervalDown } from "~/pages/video/music/synth/sequence/interval/down";
+import { SynthIntervalUp } from "~/pages/video/music/synth/sequence/interval/up";
+import { SynthOffsetLeft } from "~/pages/video/music/synth/sequence/offset/left";
+import { SynthOffsetRight } from "~/pages/video/music/synth/sequence/offset/right";
+import { SynthRepeatDown } from "~/pages/video/music/synth/sequence/repeat/down";
+import { SynthRepeatUp } from "~/pages/video/music/synth/sequence/repeat/up";
 import { useVideoPlayerStyle } from "~/pages/video/player/style";
 import { useTrillPicsStore } from "~/store/middleware";
 import { boxSize } from "~uno/rules/box/size";
 
 export const VideoMusicSynthHeaderBottom: FC =
   () => {
-    const { synth, hoverKeys } =
-      useTrillPicsStore(
-        ({ synth, hoverKeys }) => ({
-          synth,
-          hoverKeys,
-        })
-      );
+    const {
+      synth,
+      sequence,
+      scale,
+      hoverKeys,
+    } = useTrillPicsStore(
+      ({
+        synth,
+        hoverKeys,
+        sequence,
+        scale,
+      }) => ({
+        synth,
+        sequence,
+        scale,
+        hoverKeys,
+      })
+    );
     const s = boxSize();
     const { width } =
       useVideoPlayerStyle();
@@ -40,45 +52,56 @@ export const VideoMusicSynthHeaderBottom: FC =
           midiHoverKey={midiHoverKey}
         />
         <div
-          className="row relative"
+          className="relative row-wrap pb-4 lg:(row pb-0)"
           style={{
-            left: s.m,
+            left: s.m075,
             width: width - s.m05,
             gap: s.m05,
           }}
         >
           <VideoMusicSynthIncrementer
-            title={"interval"}
+            title={"delay"}
             Down={SynthIntervalDown}
             Up={SynthIntervalUp}
           >{`${
-            synth.melody.interval > 0
+            sequence.delay > 0
               ? "+"
               : ""
           }${
-            synth.melody.interval
+            sequence.delay
           }`}</VideoMusicSynthIncrementer>
           <VideoMusicSynthIncrementer
             title={"repeat"}
             Down={SynthRepeatDown}
             Up={SynthRepeatUp}
           >{`${
-            synth.melody.repeat > 0
+            sequence.repeat > 0
               ? "+"
               : ""
           }${
-            synth.melody.repeat
+            sequence.repeat
+          }`}</VideoMusicSynthIncrementer>
+          <VideoMusicSynthIncrementer
+            title={"delay"}
+            Down={SynthDelayDown}
+            Up={SynthDelayUp}
+          >{`${
+            sequence.delay > 0
+              ? "+"
+              : ""
+          }${
+            sequence.delay
           }`}</VideoMusicSynthIncrementer>
           <VideoMusicSynthIncrementer
             title={"offset"}
             Down={SynthOffsetLeft}
             Up={SynthOffsetRight}
           >{`${
-            synth.melody.offset > 0
+            sequence.offset > 0
               ? "+"
               : ""
           }${
-            synth.melody.offset
+            sequence.offset
           }`}</VideoMusicSynthIncrementer>
         </div>
       </div>

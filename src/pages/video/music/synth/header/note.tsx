@@ -39,10 +39,9 @@ export const VideoMusicSynthHeaderNote: FC<
         height: s.m2,
       }}
     >
-
       <>
         {isNumber(midi) && (
-          <div className="column">
+          <div className="absolute top-1/2 left-1/2 -translate-1/2 column">
             <div className="relative text-center text-xs">
               {midi}
             </div>

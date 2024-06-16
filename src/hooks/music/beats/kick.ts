@@ -1,11 +1,11 @@
 import {
-  TBeatsSequenceKey,
+  TBeatsStepsKey,
   TPlayBeatsOptions,
 } from "~/hooks/music/beats/types";
 import { useMusicInitContext } from "~/pages/video/music/_context/init";
 import { resolveAudioSampleSrc } from "~/utils/src";
 import { useBufferFromSrcHandler } from "../useBufferFromSrcHandler";
-const key: TBeatsSequenceKey = "kick";
+const key: TBeatsStepsKey = "kick";
 
 export const useKick = () => {
   const {

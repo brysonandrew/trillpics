@@ -1,7 +1,7 @@
 import type { FC } from "react";
 import { PillB } from "~/components/buttons/pill/b";
 import { PillBHoverSm } from "~/components/buttons/pill/b/hover/sm";
-import { PillBSm } from "~/components/buttons/pill/b/sm";
+import { PillBXs } from "~/components/buttons/pill/b/xs";
 import { IconsChevronsRight } from "~/components/icons/chevrons/right";
 import { IconsLoader } from "~/components/icons/loader";
 import { useMidisOffset } from "~/hooks/music/midis/offset";
@@ -14,7 +14,7 @@ export const SynthOffsetRight: FC =
     const [isLoading, handleStart] =
       useTimer(100, handle.right);
     return (
-      <PillBSm
+      <PillBXs
         title="Offset Right"
         Icon={
           isLoading

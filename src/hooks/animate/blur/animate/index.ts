@@ -20,7 +20,6 @@ export const useBlurAnimate = (
 
     const curr =
       main.blur.value[variant].get();
-      console.log(curr)
     main.blur.control[variant] =
       animate(
         main.blur.value[variant],

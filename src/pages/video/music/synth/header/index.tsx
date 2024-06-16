@@ -20,7 +20,7 @@ export const VideoMusicSynthHeader: FC =
         className="relative column-start grow"
         style={{
           width: width + s.m025,
-          gap: s.m025,
+          // gap: s.m0125,
           // paddingBottom: s.m05,
         }}
       >

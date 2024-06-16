@@ -1,6 +1,6 @@
 import { MotionValue } from "framer-motion";
 import { TScaleKey } from "~/constants/scales";
-import { TBeatsSequenceKey } from "~/hooks/music/beats/types";
+import { TBeatsStepsKey } from "~/hooks/music/beats/types";
 import { TMidiValues } from "~/hooks/music/midis/types";
 
 export type TGridCell =
@@ -23,13 +23,13 @@ export type TMusicInitContext = {
   gridCellsRecord: TGridCellsRecord;
   bufferSourceRecord: Partial<
     Record<
-      TBeatsSequenceKey,
+      TBeatsStepsKey,
       null | AudioBufferSourceNode
     >
   >;
   bufferRecord: Partial<
   Record<
-    TBeatsSequenceKey,
+    TBeatsStepsKey,
     null | AudioBuffer
   >
 >;

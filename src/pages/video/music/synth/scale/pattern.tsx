@@ -7,10 +7,10 @@ import { TScalePattern } from "~/store/state/music/types";
 
 export const SynthScalePattern: FC =
   () => {
-    const { synth } =
+    const { scale } =
       useTrillPicsStore(
-        ({ synth }) => ({
-          synth,
+        ({ scale }) => ({
+          scale,
         })
       );
     const handleUpdate =
@@ -19,7 +19,7 @@ export const SynthScalePattern: FC =
       <SelectStyled
         name="melody.scale.pattern"
         title="pattern"
-        value={synth.melody.scale.pattern}
+        value={scale.pattern}
         values={SCALE_PATTERNS}
         onValueChange={(
           value: TScalePattern

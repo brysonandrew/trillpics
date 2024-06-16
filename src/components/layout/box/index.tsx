@@ -21,7 +21,6 @@ export const LayoutBox: FC<
   style,
   ...props
 }) => {
-
   return (
     <Pill
       classValue={clsx(

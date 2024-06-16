@@ -1,5 +1,5 @@
 import { BEATS_8 } from "~/constants/music/beats";
-import { TPurcussionRecord } from "~/hooks/music/beats/types";
+import { TBeatsRecord } from "~/hooks/music/beats/types";
 
 export const PRESETS_TECHNO = {
   kick: [
@@ -15,4 +15,4 @@ export const PRESETS_TECHNO = {
     1, null, 1, null,
   ],
   tom:[...BEATS_8],
-} as const satisfies Partial<TPurcussionRecord>;
+} as const satisfies Partial<TBeatsRecord>;

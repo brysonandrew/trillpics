@@ -3,7 +3,7 @@ import { usePlayMidis } from "~/hooks/music/play/midis";
 import { MusicLayoutHeader } from "~/pages/video/music/header";
 import { boxSize } from "~uno/rules/box/size";
 import { IconsPlay } from "~/components/icons/playback/play";
-import { SynthReload } from "~/pages/video/music/synth/melody/reload";
+import { SynthReload } from "~/pages/video/music/synth/sequence/reload";
 import { SynthType } from "~/pages/video/music/synth/type";
 import { SynthScalePattern } from "~/pages/video/music/synth/scale/pattern";
 import { SynthScaleKey } from "~/pages/video/music/synth/scale/key";
@@ -18,8 +18,8 @@ export const VideoMusicSynthHeaderTop: FC =
     const s = boxSize();
     const midis = usePlayMidis();
     const stop = midis.stop;
-    const { synth } = useTrillPicsStore(
-      ({ synth }) => ({ synth })
+    const { steps } = useTrillPicsStore(
+      ({ steps }) => ({ steps })
     );
     const { start, ...props } =
       usePlaybackSchedule({ stop });
@@ -40,9 +40,7 @@ export const VideoMusicSynthHeaderTop: FC =
         }}
         leftContent={
           <VideoMusicHeaderTimer
-            stepsCount={
-              synth.steps.length
-            }
+            stepsCount={steps.length}
             {...props}
           />
         }

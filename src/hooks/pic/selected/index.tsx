@@ -120,8 +120,6 @@ export const usePicSelected = (
     name: string,
     replace?: string
   ) => {
-  
-
     const next = isDefined(replace)
       ? paramValues.map((v) =>
           v === replace ? name : v
@@ -134,10 +132,11 @@ export const usePicSelected = (
   const deselect = (
     name = currName
   ) => {
+    const paramValues =
+      searchParams.getAll(key);
     const nextName = name ?? currName;
-
     if (
-      isSelectedPics &&
+      paramValues.length > 0 &&
       isValue(nextName)
     ) {
       searchParams.append(
@@ -158,7 +157,6 @@ export const usePicSelected = (
   const isAdded = addedCheck(currName);
 
   const toggle = () => {
-    console.log('isAdded',isAdded,currName,cellOverDetailsResult.currName)
     if (isAdded) {
       deselect();
       return;

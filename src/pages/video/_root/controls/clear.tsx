@@ -13,7 +13,7 @@ import { ShowPics } from "~/components/show-pics";
 export const LEFT_BUTTONS_CLEAR_TITLE =
   "Delete all";
 
-export const LeftButtonsClear: FC<
+export const ControlsClear: FC<
   Partial<TPillBHoverProps>
 > = ({ ...props }) => {
   const {

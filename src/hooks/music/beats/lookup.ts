@@ -3,31 +3,34 @@ import { useKick } from "~/hooks/music/beats/kick";
 import { useSnare } from "~/hooks/music/beats/snare";
 import { useTom } from "~/hooks/music/beats/tom";
 import {
-  TBeatsSequenceKey,
+  TBeatsStepsKey,
   TPlayBeatsOptions,
 } from "~/hooks/music/beats/types";
 
-export const useSoundBeatsLookup =
-  () => {
-    const hihat = useHihat();
-    const snare = useSnare();
-    const kick = useKick();
-    const tom = useTom();
+export type TUseBeatsLookupValue = {
+  play: (
+    startTime: number,
+    options?: TPlayBeatsOptions
+  ) => void;
+  stop: () => void;
+};
+type TUseBeatsBaseLookup = Record<
+  TBeatsStepsKey,
+  TUseBeatsLookupValue
+>;
+export const useBeatsLookup = () => {
+  const hihat = useHihat();
+  const snare = useSnare();
+  const kick = useKick();
+  const tom = useTom();
 
-    const lookup = {
-      hihat,
-      snare,
-      kick,
-      tom,
-    } satisfies Record<
-      TBeatsSequenceKey,
-      {
-        play: (
-          startTime: number,
-          options?: TPlayBeatsOptions
-        ) => void;
-        stop: () => void;
-      }
-    >;
-    return lookup;
-  };
+  const lookup = {
+    hihat,
+    snare,
+    kick,
+    tom,
+  } as const satisfies TUseBeatsBaseLookup;
+  return lookup;
+};
+export type TUseBeatsLookup =
+  ReturnType<typeof useBeatsLookup>;

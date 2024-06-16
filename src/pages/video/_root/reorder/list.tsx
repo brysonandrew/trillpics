@@ -10,9 +10,9 @@ import {
   TOTAL_GAP,
   MAX_COUNT,
 } from "~/pages/video/_root/reorder/constants";
-import { LEFT_BUTTONS_CLEAR_TITLE } from "~/pages/video/_root/clear";
+import { LEFT_BUTTONS_CLEAR_TITLE } from "~/pages/video/_root/controls/clear";
 import { useReadyContext } from "~/shell/ready/context";
-import { HUD_LEFT_ADD_RANDOM_HOVER_KEY } from "~/pages/video/_root/add-random";
+import { HUD_LEFT_ADD_RANDOM_HOVER_KEY } from "~/pages/video/_root/controls/add-random";
 import { resolveCompositeKey } from "@brysonandrew/utils-key";
 import clsx from "clsx";
 import { _RootReorderControls } from "~/pages/video/_root/reorder/controls";

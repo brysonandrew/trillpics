@@ -1,11 +1,7 @@
 import type { FC } from "react";
 import { TDivProps } from "@brysonandrew/config-types";
-import { TUpdateSliderHandler } from "~/components/inputs/slider/row";
 import { MeshBackgroundText } from "~/components/layout/background/mesh/text";
-import { useSynthUpdate } from "~/pages/video/music/synth/update";
-import { useVideoPlayerStyle } from "~/pages/video/player/style";
 import { PlayerBackgroundMesh } from "~/pages/video/player/_background/mesh";
-import { useTrillPicsStore } from "~/store/middleware";
 import { boxSize } from "~uno/rules/box/size";
 
 type TProps = {
@@ -29,9 +25,9 @@ export const VideoMusicSynthIncrementer: FC<
     <div
       className="row relative"
       style={{
-        gap: s.m0125,
-        paddingLeft: s.m0125,
-        paddingRight: s.m0125,
+        gap: s.m03125,
+        paddingLeft: s.m03125,
+        paddingRight: s.m03125,
         ...style,
       }}
       {...props}
@@ -44,7 +40,7 @@ export const VideoMusicSynthIncrementer: FC<
       <MeshBackgroundText
         style={{ width: s.m075 }}
       >
-        <div className="text-sm">
+        <div className="text-xs">
           {children}
         </div>
       </MeshBackgroundText>

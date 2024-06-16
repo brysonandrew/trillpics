@@ -33,7 +33,6 @@ export const useArpeggio = () => {
     });
     const midi =
       (baseMidi ?? 0) + stepMidi ?? 0;
-    console.log(midi);
     const multiSynthOptions: TMultiOptions =
       {
         type,
