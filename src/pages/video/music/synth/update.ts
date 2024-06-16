@@ -16,7 +16,7 @@ export const useSynthUpdate = () => {
       const [key, key1] = name.split(
         INPUT_PATH_DELIMITER
       );
-      const resolveValue = () => {
+      const resolveMidiValue = () => {
         switch (key1) {
           case "type": {
             return value;
@@ -30,13 +30,13 @@ export const useSynthUpdate = () => {
       set((draft: TState) => {
         if (isSynthOptionsType(key1)) {
           draft.synth[key1] =
-            resolveValue();
+            resolveMidiValue();
         }
         if (
           isSynthMultiOptionsType(key1)
         ) {
           draft.synth[key1] =
-            resolveValue();
+            resolveMidiValue();
         }
       });
     };

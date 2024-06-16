@@ -2,6 +2,7 @@ import { MotionValue } from "framer-motion";
 import { TScaleKey } from "~/constants/scales";
 import { TBeatsStepsKey } from "~/hooks/music/beats/types";
 import { TMidiValues } from "~/hooks/music/midis/types";
+import { TMusicKey } from "~/store/state/music/types";
 
 export type TGridCell =
   null | HTMLDivElement;
@@ -17,7 +18,18 @@ export type TStepsScaleRecord = Record<
 >;
 export type TPartialStepsScaleRecord =
   Partial<TStepsScaleRecord>;
+export type TProgressKey =
+  | TMusicKey
+  | "recorder";
 
+export type TProgressStepRecord =
+  Record<TProgressKey, number>;
+
+export type TProgressMotionRecord =
+  Record<
+    TProgressKey,
+    MotionValue<number>
+  >;
 export type TMusicInitContext = {
   stepsScaleRecord: TPartialStepsScaleRecord;
   gridCellsRecord: TGridCellsRecord;
@@ -28,21 +40,20 @@ export type TMusicInitContext = {
     >
   >;
   bufferRecord: Partial<
-  Record<
-    TBeatsStepsKey,
-    null | AudioBuffer
-  >
->;
-
+    Record<
+      TBeatsStepsKey,
+      null | AudioBuffer
+    >
+  >;
   context: AudioContext;
   master: GainNode;
-  saveProgress: MotionValue<number>;
+  progress: TProgressMotionRecord;
   destination: MediaStreamAudioDestinationNode;
   recorder: MediaRecorder;
   audio: {
     loopCount: number;
-    loopsRemainder:number
-    currentStep: number;
+    loopsRemainder: number;
+    progressStep: TProgressStepRecord;
     chunks: BlobPart[];
   };
 };

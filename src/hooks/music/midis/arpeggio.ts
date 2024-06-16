@@ -1,5 +1,7 @@
-import type { TMultiOptions } from "react-synthwave";
-import { useSynthMulti } from "react-synthwave";
+import {
+  TMultiOptions,
+  useSynthMulti,
+} from "react-synthwave";
 import { TPlayMidisOptions } from "~/hooks/music/midis/types";
 import { useMusicInitContext } from "~/pages/video/music/_context/init";
 
@@ -29,7 +31,7 @@ export const useArpeggio = () => {
       }
     );
     const gain = new GainNode(context, {
-      gain: volume * 0.1,
+      gain: volume * 0.004,
     });
     const midi =
       (baseMidi ?? 0) + stepMidi ?? 0;

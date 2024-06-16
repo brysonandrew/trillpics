@@ -27,7 +27,6 @@ export const useRemotionPlayerProps = (
       updatePlayerInstance(instance);
     }
   };
-
   return {
     ref: resolveRef,
     compositionWidth,

@@ -1,4 +1,4 @@
-import { useVideoPlayerStyle } from "~/pages/video/player/style";
+import { useVideoStyle } from "~/pages/video/style";
 import { boxSize } from "~uno/rules/box/size";
 import { IconsSave } from "~/components/icons/save";
 import { MusicLayoutHeader } from "~/pages/video/music/header";
@@ -8,19 +8,17 @@ import { IconsLoader } from "~/components/icons/loader";
 import { useMusicRecorderContext } from "~/pages/video/music/_context/recorder";
 import { NOOP } from "~/constants/functions";
 import { VideoMusicPlaybackHeaderTimers } from "~/pages/video/music/record/header/timers";
-import { SecondsCalculation } from "~/pages/video/music/record/header/calc";
 
 export const VideoMusicPlaybackHeader =
   () => {
     const s = boxSize();
 
     const { sidebarWidthOffset } =
-      useVideoPlayerStyle();
+      useVideoStyle();
 
     const {
       isRecording,
-      isRecordingCooldown,
-      videoSeconds,
+      isCooldown,
       handleStart,
     } = useMusicRecorderContext();
 
@@ -36,7 +34,7 @@ export const VideoMusicPlaybackHeader =
           Icon={
             isRecording
               ? IconsLoader
-              : isRecordingCooldown
+              : isCooldown
               ? IconsTick
               : IconsSave
           }

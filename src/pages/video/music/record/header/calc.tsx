@@ -1,5 +1,5 @@
 import type { FC } from "react";
-import { LinesHorizontal } from "~/components/lines/horizontal";
+import { LinesHorizontalLight } from "~/components/lines/horizontal/light";
 import { useMusicRecorderContext } from "~/pages/video/music/_context/recorder";
 import { useTrillPicsStore } from "~/store/middleware";
 
@@ -15,7 +15,7 @@ export const SecondsCalculation: FC = () => {
       <div className="whitespace-nowrap">
         {`${bpm}/60 bps, 4 beats per bar.`}
       </div>
-      <LinesHorizontal />
+      <LinesHorizontalLight />
       <div className="row">
         <div className="whitespace-nowrap">
           {`x${loopCount} loop`}

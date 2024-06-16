@@ -1,6 +1,5 @@
 import type { TMultiOptions } from "react-synthwave";
 import { useSynthMulti } from "react-synthwave";
-import { useMusicInitContext } from "~/pages/video/music/_context/init";
 
 export const usePitch = () => {
   const { context, master } =

@@ -8,7 +8,7 @@ import {
 import { boxSize } from "~uno/rules/box/size";
 import { MeshBackgroundText } from "~/components/layout/background/mesh/text";
 import { BackgroundGlass } from "~/components/layout/background/glass";
-import { useVideoPlayerStyle } from "~/pages/video/player/style";
+import { useVideoStyle } from "~/pages/video/style";
 
 export type TUpdateSliderHandler = (
   name: string,
@@ -44,7 +44,7 @@ export const UiInputsSliderRow: FC<
       onUpdate(name, value);
     };
   const { sidebarWidthOffset, width } =
-    useVideoPlayerStyle();
+    useVideoStyle();
   const s = boxSize();
   return (
     <div

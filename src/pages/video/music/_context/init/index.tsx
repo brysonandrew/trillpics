@@ -8,7 +8,9 @@ import { useMotionValue } from "framer-motion";
 import {
   TMusicInitContext,
   TPartialStepsScaleRecord,
+  TProgressStepRecord,
 } from "~/pages/video/music/_context/init/types";
+import { useMusicInitProgress } from "~/pages/video/music/_context/init/progress";
 
 const Context =
   createContext<TMusicInitContext>(
@@ -26,9 +28,8 @@ type TProviderProps = {
 export const MusicInitProvider: FC<
   TProviderProps
 > = ({ children }) => {
-  const saveProgress =
-    useMotionValue(0);
-
+  const progress =
+    useMusicInitProgress();
   const {
     context,
     master,
@@ -62,8 +63,14 @@ export const MusicInitProvider: FC<
     const stepsScaleRecord: TPartialStepsScaleRecord =
       {};
 
+    const progressStep: TProgressStepRecord =
+      {
+        recorder: -1,
+        midis: -1,
+        beats: -1,
+      };
+
     return {
-      isRecording: false,
       loopCount: 0,
       loopsRemainder: 0,
       context,
@@ -72,11 +79,11 @@ export const MusicInitProvider: FC<
       recorder,
       chunks,
       arrayBuffer,
-      saveProgress,
+      progress,
       bufferSourceRecord,
       bufferRecord,
       gridCellsRecord: {},
-      currentStep: -1,
+      progressStep,
       stepsScaleRecord,
     };
   }, []);
@@ -91,7 +98,7 @@ export const MusicInitProvider: FC<
         audio,
         bufferSourceRecord,
         bufferRecord,
-        saveProgress,
+        progress,
         gridCellsRecord,
         stepsScaleRecord,
       }}

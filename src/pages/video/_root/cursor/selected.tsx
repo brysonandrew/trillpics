@@ -19,7 +19,6 @@ export const Video_RootCursorSelected: FC<
     maybeCheck,
     size,
   } = props;
-  const { scrollY } = useReadyContext();
 
   return (
     <AnimatePresence>

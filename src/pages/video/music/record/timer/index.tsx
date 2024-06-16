@@ -5,18 +5,19 @@ import { TimerDisplayInit } from "~/components/playback/timer/display/init";
 import { VideoMusicPlaybackTimerCurrent } from "~/pages/video/music/record/timer/current";
 import { useMusicRecorderContext } from "~/pages/video/music/_context/recorder";
 import { TimerDisplay } from "~/components/playback/timer/display";
+import { useMusicPlay } from "~/hooks/music/play";
 
 type TProps = {
-  stepsCount?:number
+  stepsCount?: number;
 };
 export const VideoMusicPlaybackTimer: FC<
   TProps
-> = ({stepsCount}) => {
-  const {
-    isRecording,
-    isRecordingCooldown,
-    videoSeconds,
-  } = useMusicRecorderContext();
+> = ({ stepsCount }) => {
+  const { videoSeconds } =
+    useMusicRecorderContext();
+  const musicPlay = useMusicPlay();
+  const { isRecording, isCooldown } =
+    musicPlay;
   return (
     <PlaybackTimer
       key={resolveCompositeKey(
@@ -33,9 +34,10 @@ export const VideoMusicPlaybackTimer: FC<
               <VideoMusicPlaybackTimerCurrent
                 seconds={videoSeconds}
                 stepsCount={stepsCount}
+                progressKey="recorder"
               />
             )
-          : isRecordingCooldown
+          : isCooldown
           ? () => (
               <TimerDisplay
                 elapsed={videoSeconds}

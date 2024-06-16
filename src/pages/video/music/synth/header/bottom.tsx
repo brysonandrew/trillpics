@@ -10,7 +10,7 @@ import { SynthOffsetLeft } from "~/pages/video/music/synth/sequence/offset/left"
 import { SynthOffsetRight } from "~/pages/video/music/synth/sequence/offset/right";
 import { SynthRepeatDown } from "~/pages/video/music/synth/sequence/repeat/down";
 import { SynthRepeatUp } from "~/pages/video/music/synth/sequence/repeat/up";
-import { useVideoPlayerStyle } from "~/pages/video/player/style";
+import { useVideoStyle } from "~/pages/video/style";
 import { useTrillPicsStore } from "~/store/middleware";
 import { boxSize } from "~uno/rules/box/size";
 
@@ -35,75 +35,44 @@ export const VideoMusicSynthHeaderBottom: FC =
       })
     );
     const s = boxSize();
-    const { width } =
-      useVideoPlayerStyle();
+    const { width } = useVideoStyle();
     const midiHoverKey = hoverKeys.find(
       (v) => isMidiHoverKey(v)
     );
     return (
       <div
-        className="relative row-space"
+        className="relative row justify-stretch w-full"
         style={{
-          width: width - s.m025,
+          top: 0,
           left: 0,
+          gap: s.m05,
+          paddingRight: s.m05,
         }}
       >
         <VideoMusicSynthHeaderNote
           midiHoverKey={midiHoverKey}
         />
-        <div
-          className="relative row-wrap pb-4 lg:(row pb-0)"
-          style={{
-            left: s.m075,
-            width: width - s.m05,
-            gap: s.m05,
-          }}
-        >
-          <VideoMusicSynthIncrementer
-            title={"delay"}
-            Down={SynthIntervalDown}
-            Up={SynthIntervalUp}
-          >{`${
-            sequence.delay > 0
-              ? "+"
-              : ""
-          }${
-            sequence.delay
-          }`}</VideoMusicSynthIncrementer>
-          <VideoMusicSynthIncrementer
-            title={"repeat"}
-            Down={SynthRepeatDown}
-            Up={SynthRepeatUp}
-          >{`${
-            sequence.repeat > 0
-              ? "+"
-              : ""
-          }${
-            sequence.repeat
-          }`}</VideoMusicSynthIncrementer>
-          <VideoMusicSynthIncrementer
-            title={"delay"}
-            Down={SynthDelayDown}
-            Up={SynthDelayUp}
-          >{`${
-            sequence.delay > 0
-              ? "+"
-              : ""
-          }${
-            sequence.delay
-          }`}</VideoMusicSynthIncrementer>
-          <VideoMusicSynthIncrementer
-            title={"offset"}
-            Down={SynthOffsetLeft}
-            Up={SynthOffsetRight}
-          >{`${
-            sequence.offset > 0
-              ? "+"
-              : ""
-          }${
-            sequence.offset
-          }`}</VideoMusicSynthIncrementer>
-        </div>
+        <VideoMusicSynthIncrementer
+          name="interval"
+          Down={SynthIntervalDown}
+          Up={SynthIntervalUp}
+        />
+        <VideoMusicSynthIncrementer
+          name="delay"
+          Down={SynthDelayDown}
+          Up={SynthDelayUp}
+        />
+        <VideoMusicSynthIncrementer
+          name="repeat"
+          Down={SynthRepeatDown}
+          Up={SynthRepeatUp}
+        />
+
+        <VideoMusicSynthIncrementer
+          name="offset"
+          Down={SynthOffsetLeft}
+          Up={SynthOffsetRight}
+        />
       </div>
     );
   };

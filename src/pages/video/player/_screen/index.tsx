@@ -1,14 +1,10 @@
-import {
-  AnimatePresence,
-  motion,
-} from "framer-motion";
+import { AnimatePresence } from "framer-motion";
 import { RemotionPlayer } from "~/components/remotion/player";
 import { usePicVideoReadInputs } from "~/hooks/pic/video/read/inputs/hook";
 import { PlayerBackground } from "~/pages/video/player/_background";
 import { PlayerBackgroundOpaque } from "~/pages/video/player/_background/opaque";
 import { useTrillPicsStore } from "~/store/middleware";
 import { VideoPlayer_ScreenGenerate } from "~/pages/video/player/_screen/generate";
-import { PRESENCE_OPACITY } from "@brysonandrew/motion-config-constants";
 import { OverlayCenter } from "~/components/layout/overlay/center";
 
 export const OVERFLOW_HIDDEN =
@@ -20,19 +16,23 @@ export const VideoPlayer_Screen =
       recording,
       progress,
       isDownloadComplete,
+      bpm
     } = useTrillPicsStore(
       ({
         recording,
         progress,
         isDownloadComplete,
+        bpm
+
       }) => ({
         recording,
         progress,
         isDownloadComplete,
+        bpm
       })
     );
     const inputProps =
-      usePicVideoReadInputs();
+      usePicVideoReadInputs(bpm);
     return (
       <>
         <PlayerBackgroundOpaque />

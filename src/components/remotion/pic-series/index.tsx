@@ -31,15 +31,15 @@ export const PicSeries: FC<
   } = inputProps;
 
   const frame = useCurrentFrame();
-  const { fps, width, height } =
+  const { fps, width, height,durationInFrames } =
     useVideoConfig();
 
   const unitSeconds = seconds / count;
-  const unitFrames = unitSeconds * fps;
+  const unitFrames =durationInFrames/count;//  unitSeconds * fps;
   const frameInUnit =
     frame % unitFrames;
-  const secondInUnit =
-    frameInUnit / (fps * unitSeconds);
+  // const secondInUnit =
+  //   frameInUnit / (fps * unitSeconds);
   const delta =
     height -
     inputProps.dimensions.height;
@@ -59,7 +59,7 @@ export const PicSeries: FC<
 
           const top = `${Math.floor(
             (delta / height) *
-              secondInUnit *
+              unitSeconds *
               100
           )}%`;
           return (

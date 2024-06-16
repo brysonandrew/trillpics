@@ -26,7 +26,6 @@ export const useClickGrid = (
       !main.cursor.isDragging &&
       main.cursor.isOnGrid
     ) {
-      console.log("CLICK")
 
       trigger();
     }

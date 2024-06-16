@@ -16,6 +16,7 @@ import { MUSIC_TYPES } from "~/store/state/music/constants";
 
 export type TMusicKey =
   (typeof MUSIC_TYPES)[number];
+
 export type TStepsKey<
   T extends TMusicKey
 > = T extends "beats"
@@ -65,6 +66,10 @@ export type TSequenceOptions = {
   repeat: number;
   delay: number;
 };
+export type TSequenceOptionsKey =
+  keyof TSequenceOptions;
+export type TSequenceOptionsIncrementerKey =
+  keyof Omit<TSequenceOptions, "beats">;
 
 export type TSynthConfig =
   TSynthOptions & TMultiOptions;

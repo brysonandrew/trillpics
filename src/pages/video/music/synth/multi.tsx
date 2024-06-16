@@ -23,8 +23,8 @@ export const VideoMusicSynthMulti: FC =
           title="spread"
           value={synth.spread}
           min={0}
-          max={99}
-          step={1}
+          max={8}
+          step={0.1}
           onUpdate={handleUpdate}
         />
         <UiInputsSliderRow
@@ -36,15 +36,7 @@ export const VideoMusicSynthMulti: FC =
           step={1}
           onUpdate={handleUpdate}
         />
-        <UiInputsSliderRow
-          name="synth.stagger"
-          title="stagger"
-          value={synth.stagger}
-          min={0}
-          max={2}
-          step={0.001}
-          onUpdate={handleUpdate}
-        />
+       
       </>
     );
   };

@@ -2,10 +2,7 @@ import { useMusicInitContext } from "~/pages/video/music/_context/init";
 import { supportedMimeTypes } from "~/pages/video/music/_context/hooks/recorder/supportedMimeTypes";
 import { useTrillPicsStore } from "~/store/middleware";
 import { TState } from "~/store/types";
-import { resolveStepsPerSecond } from "~/hooks/music/time/resolver";
-import { STEPS_COUNT } from "~/constants/music/steps";
 import { usePicVideoReadSeconds } from "~/hooks/pic/video/read/seconds/hook";
-import { set } from "zod";
 
 export const useRecorderSaveHandler =
   () => {
@@ -16,7 +13,7 @@ export const useRecorderSaveHandler =
           bpm,
         })
       );
-    const seconds =
+    const videoSeconds =
       usePicVideoReadSeconds();
 
     const { audio } =
@@ -46,7 +43,7 @@ export const useRecorderSaveHandler =
 
         draft.recording = {
           src: url,
-          seconds,
+          seconds:videoSeconds,
         };
       });
 

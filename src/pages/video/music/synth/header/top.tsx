@@ -9,20 +9,19 @@ import { SynthScalePattern } from "~/pages/video/music/synth/scale/pattern";
 import { SynthScaleKey } from "~/pages/video/music/synth/scale/key";
 import { IconsStop } from "~/components/icons/playback/stop";
 import { VideoMusicHeaderTimer } from "~/pages/video/music/header/timer";
-import { usePlaybackSchedule } from "~/pages/video/music/header/playback-schedule";
 import { useTrillPicsStore } from "~/store/middleware";
-import { LinesHorizontal } from "~/components/lines/horizontal";
+import { LinesHorizontalLight } from "~/components/lines/horizontal/light";
+import { useAudioSeconds } from "~/hooks/music/time/audio-seconds";
 
 export const VideoMusicSynthHeaderTop: FC =
   () => {
     const s = boxSize();
     const midis = usePlayMidis();
-    const stop = midis.stop;
     const { steps } = useTrillPicsStore(
       ({ steps }) => ({ steps })
     );
-    const { start, ...props } =
-      usePlaybackSchedule({ stop });
+    const audioSeconds =
+      useAudioSeconds();
     return (
       <MusicLayoutHeader
         Icon={
@@ -35,18 +34,21 @@ export const VideoMusicSynthHeaderTop: FC =
             midis.stop();
           } else {
             midis.play();
-            start();
           }
         }}
         leftContent={
           <VideoMusicHeaderTimer
             stepsCount={steps.length}
-            {...props}
+            isActive={midis.isPlaying}
+            seconds={audioSeconds}
+            progressKey="midis"
+            isCooldown={midis.isCooldown}
+
           />
         }
         rightContent={
           <>
-            <LinesHorizontal />
+            <LinesHorizontalLight />
             <div
               className="row relative"
               style={{
@@ -55,8 +57,8 @@ export const VideoMusicSynthHeaderTop: FC =
             >
               <SynthType />
               <SynthScaleKey />
+              <SynthScalePattern />
             </div>
-            <SynthScalePattern />
             <SynthReload />
           </>
         }

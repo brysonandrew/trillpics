@@ -1,6 +1,6 @@
 import type { FC } from "react";
 import { BackgroundGlass } from "~/components/layout/background/glass";
-import { useVideoPlayerStyle } from "~/pages/video/player/style";
+import { useVideoStyle } from "~/pages/video/style";
 import { boxRadius } from "~uno/rules/box/radius";
 import { boxSize } from "~uno/rules/box/size";
 import { VideoMusicSynthHeaderBottom } from "~/pages/video/music/synth/header/bottom";
@@ -13,15 +13,13 @@ export const VideoMusicSynthHeader: FC =
     const {
       sidebarWidthOffset,
       width,
-    } = useVideoPlayerStyle();
+    } = useVideoStyle();
 
     return (
       <div
-        className="relative column-start grow"
+        className="relative column-start"
         style={{
           width: width + s.m025,
-          // gap: s.m0125,
-          // paddingBottom: s.m05,
         }}
       >
         <BackgroundGlass

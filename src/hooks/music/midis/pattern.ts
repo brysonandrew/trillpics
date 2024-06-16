@@ -1,5 +1,5 @@
 import { BEATS_1 } from "~/constants/music/beats";
-import { resolveSynthSteps } from "~/constants/music/midis";
+import { resolveMidiSteps } from "~/constants/music/midi/steps";
 import { useTrillPicsStore } from "~/store/middleware";
 import { TScalePattern } from "~/store/state/music/types";
 import { TState } from "~/store/types";
@@ -14,7 +14,7 @@ export const useMidisPattern = () => {
     value: TScalePattern
   ) => {
     set((draft: TState) => {
-      const next = resolveSynthSteps({
+      const next = resolveMidiSteps({
         ...draft.scale,
         ...draft.sequence,
         pattern: value,

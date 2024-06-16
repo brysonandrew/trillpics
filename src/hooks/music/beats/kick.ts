@@ -1,3 +1,5 @@
+import { useEffect } from "react";
+import { useTimeoutRef } from "@brysonandrew/hooks-window";
 import {
   TBeatsStepsKey,
   TPlayBeatsOptions,
@@ -8,15 +10,21 @@ import { useBufferFromSrcHandler } from "../useBufferFromSrcHandler";
 const key: TBeatsStepsKey = "kick";
 
 export const useKick = () => {
+  const { endTimeout, timeoutRef } =
+    useTimeoutRef();
   const {
     context,
     master,
     bufferSourceRecord,
-    bufferRecord
+    bufferRecord,
   } = useMusicInitContext();
   const handleSample =
     useBufferFromSrcHandler(context);
-
+  const stop = () => {
+    if (bufferSourceRecord[key]) {
+      bufferSourceRecord[key].stop();
+    }
+  };
   const play = async (
     startTime: number,
     options: TPlayBeatsOptions = {}
@@ -36,12 +44,13 @@ export const useKick = () => {
     });
 
     const sampleBuffer: AudioBuffer =
-    bufferRecord[key] ?? await handleSample(
+      bufferRecord[key] ??
+      (await handleSample(
         resolveAudioSampleSrc(
           key,
           version
         )
-      );
+      ));
 
     const source =
       context.createBufferSource();
@@ -51,13 +60,19 @@ export const useKick = () => {
     gain.connect(master);
     source.start(startTime);
     bufferSourceRecord[key] = source;
+    timeoutRef.current = setTimeout(
+      () => {
+        stop();
+      },
+      sampleBuffer.duration*1000
+    );
   };
 
-  const stop = () => {
-    if (bufferSourceRecord[key]) {
-      bufferSourceRecord[key].stop();
-    }
-  };
+  useEffect(() => {
+    return () => {
+      endTimeout();
+    };
+  }, []);
 
   return { play, stop };
 };

@@ -1,7 +1,7 @@
 import type { FC } from "react";
 import { TPropsWithChildren } from "@brysonandrew/config-types";
 import { boxSize } from "~uno/rules/box/size";
-import { LinesHorizontal } from "~/components/lines/horizontal";
+import { LinesHorizontalLight } from "~/components/lines/horizontal/light";
 import {
   PillB,
   TPillBProps,
@@ -50,7 +50,7 @@ export const MusicLayoutHeader: FC<
             gap: s.m0125,
           }}
         >
-          <LinesHorizontal
+          <LinesHorizontalLight
             style={{
               width: s.m075,
             }}

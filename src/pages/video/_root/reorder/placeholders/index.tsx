@@ -9,6 +9,8 @@ import {
 } from "~/pages/video/_root/reorder/constants";
 import { useReadyContext } from "~/shell/ready/context";
 import clsx from "clsx";
+import { HOVER_KEY_RootReorderList } from "~/pages/video/_root/reorder/list";
+import { useTrillPicsStore } from "~/store/middleware";
 
 export const _RootReorderPlaceholders: FC =
   () => {
@@ -17,6 +19,23 @@ export const _RootReorderPlaceholders: FC =
       screen,
       main: { dragger },
     } = useReadyContext();
+
+    const { hoverKeys, isHover } =
+      useTrillPicsStore(
+        ({
+          hoverKeys,
+          isControls,
+          isHover,
+        }) => ({
+          hoverKeys,
+          isControls,
+          isHover,
+        })
+      );
+
+    const isHovering = isHover(
+      HOVER_KEY_RootReorderList
+    );
 
     const s = boxSize();
     const isColumn =
@@ -59,12 +78,29 @@ export const _RootReorderPlaceholders: FC =
     return (
       <motion.div
         className="absolute z-0"
+        animate={{
+          opacity: isHovering
+            ? 0.8
+            : 0.5,
+        }}
         style={{
           ...boxStyle,
 
           y: dragger.y06,
         }}
       >
+        {/* {isHovering && (
+          <motion.div
+            className="fill border border-main bg-red"
+            style={{
+              filter: isHovering
+                ? "brightness(200%)"
+                : "",
+
+              pointerEvents: "none",
+            }}
+          />
+        )} */}
         <_RootReorderPlaceholdersList
           boxProps={boxProps}
           itemDimensions={

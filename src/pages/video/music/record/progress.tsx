@@ -8,7 +8,7 @@ import { useReadyContext } from "~/shell/ready/context";
 export const VideoMusicPlaybackProgress: FC =
   () => {
     const s = boxSize();
-    const { saveProgress } =
+    const { progress } =
       useMusicInitContext();
     const { screen } =
       useReadyContext();
@@ -25,7 +25,7 @@ export const VideoMusicPlaybackProgress: FC =
         }}
       >
         <TimerCurrentProgress
-          progress={saveProgress}
+          progress={progress['recorder']}
         />
         <BackgroundMesh
           style={{

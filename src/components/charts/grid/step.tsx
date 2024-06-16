@@ -13,9 +13,9 @@ import { useTrillPicsStore } from "~/store/middleware";
 import { resolveToMidiHoverKey } from "~/components/charts/grid/to-midi-hover-key";
 import { useHoverKey } from "~/hooks/use-hover-key";
 import { isNull } from "~/utils/validation/is/null";
-import { RANDOM_MIDI_RANGE } from "~/constants/music/midis";
-import { useSoundLookup } from "~/hooks/music/lookup";
 import { resolveTop } from "~/components/charts/grid/top";
+import { resolvePlayVolume } from "~/hooks/music/play/volume";
+import { TMusicKey } from "~/store/state/music/types";
 
 type TProps = Omit<
   TButtonMotionProps,
@@ -44,7 +44,11 @@ export const ChartsGridStep: FC<
   const borderRadius = boxRadius();
   const { gridCellsRecord } =
     useMusicInitContext();
-  const key = `${columnIndex}-${value}`;
+  const progressKey = (
+    isSynth ? "midis" : "beats"
+  ) as TMusicKey;
+
+  const key = `${columnIndex}-${rowIndex}-${progressKey}`;
   const s = boxSize();
   const realMidiValue =
     (synth.midi ?? 0) + (value ?? 0);
@@ -81,7 +85,7 @@ export const ChartsGridStep: FC<
         ...(isSynth
           ? {
               top: isNullValue
-                ? 1
+                ? 0
                 : resolveTop(value),
               // top: isNullValue
               //   ? 1
@@ -92,9 +96,8 @@ export const ChartsGridStep: FC<
               //       10
               //     }%`,
             }
-          : { top:0 }),
+          : { top: 0 }),
         marginTop: -s.m0125,
-
         ...resolveSquare(s.m05),
       }}
       {...props}
@@ -105,36 +108,42 @@ export const ChartsGridStep: FC<
       <motion.div
         key={key}
         ref={(instance) => {
-          if (!gridCellsRecord[key]) {
-            gridCellsRecord[key] = [];
+          if (!gridCellsRecord[progressKey]) {
+            gridCellsRecord[progressKey] = [];
           }
           if (
-            !gridCellsRecord[key][
+            !gridCellsRecord[progressKey][
               rowIndex
             ]
           ) {
-            gridCellsRecord[key][
+            gridCellsRecord[progressKey][
               rowIndex
             ] = [];
           }
           const gridCell =
-            gridCellsRecord[key]?.[
+            gridCellsRecord[progressKey]?.[
               rowIndex
             ]?.[columnIndex];
           if (instance && !gridCell) {
-            gridCellsRecord[key][
+            gridCellsRecord[progressKey][
               rowIndex
             ][columnIndex] = instance;
           }
         }}
+        data-progress={progressKey}
         className={clsx("bg-white")}
         style={{
           position: "relative",
           top: -s.m0125,
           borderRadius,
           ...resolveSquare(s.m0125),
+          scale: resolvePlayVolume(
+            columnIndex
+          ),
           opacity: isNumber(value)
             ? 1
+            : isSynth
+            ? 0
             : 0.28,
         }}
         animate={{

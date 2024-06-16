@@ -5,9 +5,13 @@ import {
 } from "~/hooks/pic/constants";
 import { picVideoReadCount } from "~/hooks/pic/video/read/count";
 import { resolveSecondsFromCount } from "~/hooks/pic/video/read/seconds/from-count";
+import { useTrillPicsStore } from "~/store/middleware";
 
 export const usePicVideoReadSeconds =
   () => {
+    const { bpm } = useTrillPicsStore(
+      ({ bpm }) => ({ bpm })
+    );
     const [searchParams] =
       useSearchParams();
     const seconds = Number(
@@ -24,6 +28,9 @@ export const usePicVideoReadSeconds =
     );
     const result =
       seconds ||
-      resolveSecondsFromCount(count);
+      resolveSecondsFromCount(
+        count,
+        bpm
+      );
     return result;
   };

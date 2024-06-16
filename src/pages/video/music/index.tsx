@@ -1,5 +1,5 @@
 import { Helmet } from "react-helmet-async";
-import { useVideoPlayerStyle } from "~/pages/video/player/style";
+import { useVideoStyle } from "~/pages/video/style";
 import { boxSize } from "~uno/rules/box/size";
 import { BackgroundGlass } from "~/components/layout/background/glass";
 import { boxRadius } from "~uno/rules/box/radius";
@@ -15,6 +15,8 @@ import { PicBackdrop } from "~/pics/grid/pic/backdrop";
 import { VideoMusicSynthMulti } from "~/pages/video/music/synth/multi";
 import { VideoMusicSynthSingle } from "~/pages/video/music/synth/single";
 import { useAddRandomEffect } from "~/hooks/pic/add-random/effect";
+import { MusicPlay } from "~/pages/video/music/play";
+import { LinesHorizontal } from "~/components/lines/horizontal";
 
 export const VideoMusic = () => {
   const {
@@ -25,11 +27,10 @@ export const VideoMusic = () => {
     sidebarWidth,
     sidebarWidthOffset,
     screen,
-  } = useVideoPlayerStyle();
+  } = useVideoStyle();
   const s = boxSize();
   const borderRadius = boxRadius();
-  const drumsTop =
-    y + s.m5 + s.m05 + s.m0125;
+  const drumsTop = y + s.m5 + s.m0125;
   useAddRandomEffect();
   return (
     <MusicInitProvider>
@@ -42,6 +43,15 @@ export const VideoMusic = () => {
             </title>
           </Helmet>
           <PicBackdrop />
+          <LinesHorizontal
+            style={{
+              position: "absolute",
+              top: drumsTop + s.m,
+              bottom: s.m15,
+              left: left - s.m15,
+              width: s.m15,
+            }}
+          />
           <div
             className={clsx(
               "fill overflow-auto h-screen w-full",
@@ -58,7 +68,6 @@ export const VideoMusic = () => {
                 gap,
                 width: width + s.m025,
                 paddingTop: y,
-                // paddingBottom: y * 1.5,
                 height:
                   screen.height * 2,
               }}
@@ -95,6 +104,7 @@ export const VideoMusic = () => {
                     }}
                   />
                 </aside>
+                <MusicPlay />
                 <BackgroundGlass
                   boxStyle={{
                     left: sidebarWidthOffset,
@@ -117,7 +127,7 @@ export const VideoMusic = () => {
                   gap,
                 }}
               >
-                <div className="absolute inset-x-0 -inset-y-6 bg-gradient-to-b from-black to-black-05" />
+                <div className="absolute inset-x-0 -inset-y-6 bg-gradient-to-l from-black to-black-05" />
                 <VideoMusicSynthSingle />
                 <VideoMusicSynthMulti />
               </div>
@@ -129,21 +139,24 @@ export const VideoMusic = () => {
                   gap: s.m025 * 1.5,
                   top:
                     drumsTop + s.m025,
-                  bottom: s.m15,
+                  // bottom: -s.m,
                 }}
               >
                 <VideoMusicDrums />
               </div>
 
               <div className="relative column-stretch">
-                <div className="absolute inset-x-0 -inset-y-6 bg-gradient-to-b from-black to-black-05" />
+                <div className="absolute inset-x-0 -inset-y-6 bg-gradient-to-l from-black to-black-05" />
                 <Bpm />
               </div>
 
               <div
                 className="sticky column-stretch bg-black-8 dark:bg-black z-10"
                 style={{
-                  top: drumsTop + s.m4+s.m025,
+                  top:
+                    drumsTop +
+                    s.m4 +
+                    s.m025,
                   gap: s.m05,
                   width: width + s.m025,
 

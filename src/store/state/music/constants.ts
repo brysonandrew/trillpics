@@ -29,9 +29,9 @@ export const DEFAULT_SCALE_OPTIONS: TScaleOptions =
 export const DEFAULT_SEQUENCE_OPTIONS: TSequenceOptions =
   {
     offset: 0,
-    delay: 4,
-    repeat: 4,
-    interval: 0,
+    delay: 0,
+    repeat: 1,
+    interval: 4,
   } as const;
 
 export const DEFAULT_SYNTH_OPTIONS = {
@@ -47,8 +47,8 @@ export const DEFAULT_SYNTH_OPTIONS = {
 export const DEFAULT_MULTI_SYNTH_OPTIONS: TMultiOptions =
   {
     count: 40,
-    spread: 4,
-    stagger: 0.01,
+    spread: 0.4,
+    stagger: 0,
   };
 
 export const SCALE_PATTERNS = [

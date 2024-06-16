@@ -1,21 +1,17 @@
-import { STEPS_COUNT } from "~/constants/music/steps";
-import { usePlayBeats } from "~/hooks/music/play/beats";
-import { usePlayMidis } from "~/hooks/music/play/midis";
+import { STEPS_COUNT } from "~/constants/music/timing";
+import { useMusicPlay } from "~/hooks/music/play";
 import { useStepsPerSecond } from "~/hooks/music/time";
 import { usePicVideoReadSeconds } from "~/hooks/pic/video/read/seconds/hook";
 import { useTimer } from "~/hooks/use-timer";
 import { useRecorderListeners } from "~/pages/video/music/_context/hooks/recorder/listeners";
 import { useMusicInitContext } from "~/pages/video/music/_context/init";
-import { useGridCellHandler } from "~/pages/video/music/_context/init/hooks/grid-cell-color";
 
 export const useMusicRecorder = () => {
   const {
     recorder,
-    saveProgress,
     audio,
   } = useMusicInitContext();
-  const playBeats = usePlayBeats();
-  const playMidis = usePlayMidis();
+  const musicPlay = useMusicPlay();
   const videoSeconds =
     usePicVideoReadSeconds();
   const stepsPerSecond =
@@ -27,82 +23,79 @@ export const useMusicRecorder = () => {
   const loopCount = Math.floor(
     videoSeconds / audioSeconds
   );
-  const loopsRemainder =
-  Math.floor(videoSeconds % audioSeconds);
-
-audio.loopCount = loopCount;
-audio.loopsRemainder = loopsRemainder;
-
-  const handleGridCell =
-    useGridCellHandler();
-
-  const handleDone = () => {
-    saveProgress.set(0);
-    audio.currentStep = -1;
-    handleGridCell();
-  };
-
-  const [
-    isRecordingCooldown,
-    startCooldownTimer,
-    stopCooldownTimer,
-  ] = useTimer(
-    videoSeconds * 1000,
-    handleDone
+  const loopsRemainder = Math.floor(
+    videoSeconds % audioSeconds
   );
 
+  audio.loopCount = loopCount;
+  audio.loopsRemainder = loopsRemainder;
+
+    // saveProgress.set(0);
+    // audio.progressStep = -1;
+    // handleGridCell();
+
+  // const [
+  //   isRecordingCooldown,
+  //   startCooldownTimer,
+  //   stopCooldownTimer,
+  // ] = useTimer(
+  //   videoSeconds * 1000,
+  //   handleDone
+  // );
+
+  // const handleStop = () => {
+  //   if (
+  //     recorder.state === "recording"
+  //   ) {
+  //     musicPlay.stop();
+  //     recorder.stop();
+  //     stopCooldownTimer();
+  //     startCooldownTimer();
+  //   }
+  // };
+
+  // const [
+  //   isRecording,
+  //   startTimer,
+  //   stopTimer,
+  // ] = useTimer(
+  //   videoSeconds * 1000,
+  //   handleStop
+  // );
+  // const resetTimers = () => {
+  //   stopCooldownTimer();
+  //   stopTimer();
+  // };
   const handleStop = () => {
-    if (
-      recorder.state === "recording"
-    ) {
-      playBeats.stop();
-      playMidis.stop();
-      recorder.stop();
-      stopCooldownTimer();
-      startCooldownTimer();
-    }
-  };
-
-  const [
-    isRecording,
-    startTimer,
-    stopTimer,
-  ] = useTimer(
-    videoSeconds * 1000,
-    handleStop
-  );
-
-  const resetTimers = () => {
-    stopCooldownTimer();
-    stopTimer();
-  };
-
+    musicPlay.stop();
+    recorder.stop();
+  }
+  // const [
+  //   isRecording,
+  //   start,
+  //   stop,
+  // ] = useTimer();
   const handleStart = async () => {
     if (
       recorder.state === "recording"
     ) {
-      recorder.stop();
+      handleStop();
     } else {
       recorder.start();
-      await playBeats.play();
-      await playMidis.play();
-      resetTimers();
-      startTimer();
+      await musicPlay.play();
+      // resetTimers();
+      //startTimer();
     }
   };
 
   return {
-    isPlaying: {
-      beats: playBeats.isPlaying,
-      midis: playMidis.isPlaying,
-    },
-    isRecording,
-    isRecordingCooldown,
+
     audioSeconds,
     loopCount,
     loopsRemainder,
     videoSeconds,
     handleStart,
-    handleStop,
+    ...musicPlay,
+
   } as const;
 };

@@ -1,21 +1,13 @@
-import { STEPS_COUNT } from "~/constants/music/steps";
+import { STEPS_COUNT } from "~/constants/music/timing";
+import { useBpm } from "~/hooks/music/bpm";
 import { resolveStepsPerSecond } from "~/hooks/music/time/resolver";
 import { usePicVideoReadSeconds } from "~/hooks/pic/video/read/seconds/hook";
 import { supportedMimeTypes } from "~/pages/video/music/_context/hooks/recorder/supportedMimeTypes";
 import { useMusicInitContext } from "~/pages/video/music/_context/init";
-import { useTrillPicsStore } from "~/store/middleware";
 
-type TConfig = any;
-export const useLoopHandler = (
-  config: TConfig
-) => {
-  const { set, bpm } =
-    useTrillPicsStore(
-      ({ set, bpm }) => ({
-        set,
-        bpm,
-      })
-    );
+export const useLoopHandler = () => {
+  const bpm = useBpm();
+
   const seconds =
     usePicVideoReadSeconds();
 
@@ -30,7 +22,7 @@ export const useLoopHandler = (
       seconds / spb
     );
     const barsRemainder = seconds % spb;
-    console.log(barsReq, barsRemainder);
+
     const fulls = [
       ...Array(barsReq),
     ].reduce(

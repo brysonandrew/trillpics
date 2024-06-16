@@ -1,4 +1,4 @@
-import { STEPS_COUNT } from "~/constants/music/steps";
+import { STEPS_COUNT } from "~/constants/music/timing";
 import { resolveStepsPerSecond } from "~/hooks/music/time/resolver";
 import { useTrillPicsStore } from "~/store/middleware";
 

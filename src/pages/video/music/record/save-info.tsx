@@ -3,11 +3,11 @@ import { IconsAlert } from "~/components/icons/alert";
 import { IconsSave } from "~/components/icons/save";
 import { IconsVideo } from "~/components/icons/video/video";
 import { boxSize } from "~uno/rules/box/size";
-import { useVideoPlayerStyle } from "~/pages/video/player/style";
+import { useVideoStyle } from "~/pages/video/style";
 import { useTrillPicsStore } from "~/store/middleware";
 import { useMusicRecorderContext } from "~/pages/video/music/_context/recorder";
 import { boxPx } from "~/utils/box/px";
-import { LinesHorizontal } from "~/components/lines/horizontal";
+import { LinesHorizontalLight } from "~/components/lines/horizontal/light";
 
 export const VideoMusicPlaybackSaveInfo: FC =
   () => {
@@ -20,13 +20,10 @@ export const VideoMusicPlaybackSaveInfo: FC =
         })
       );
 
-    const { width } =
-      useVideoPlayerStyle();
+    const { width } = useVideoStyle();
 
-    const {
-      isRecording,
-      isRecordingCooldown,
-    } = useMusicRecorderContext();
+    const { isRecording, isCooldown } =
+      useMusicRecorderContext();
     return (
       <div
         className="relative row uppercase font-sans"
@@ -48,14 +45,14 @@ export const VideoMusicPlaybackSaveInfo: FC =
         >
           {isRecording ? (
             <IconsSave />
-          ) : isRecordingCooldown ? (
+          ) : isCooldown ? (
             <IconsSave />
           ) : recording !== null ? (
             <IconsVideo />
           ) : (
             <IconsAlert />
           )}
-          <LinesHorizontal
+          <LinesHorizontalLight
             style={{ width: s.m }}
           />
           <div className="grow whitespace-nowrap text-xs _outline-filter">
@@ -65,7 +62,7 @@ export const VideoMusicPlaybackSaveInfo: FC =
                 until the recording is
                 done playing.
               </>
-            ) : isRecordingCooldown ? (
+            ) : isCooldown ? (
               <>
                 Your recording has been
                 saved

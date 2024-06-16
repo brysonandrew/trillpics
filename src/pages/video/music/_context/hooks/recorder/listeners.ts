@@ -24,14 +24,12 @@ export const useRecorderListeners =
       recorder.onstart = (
         event: Event
       ) => {
-        console.log("onstart", event);
+        // console.log("onstart", event);
       };
       recorder.onstop = (
         event: Event
       ) => {
-        console.log("onstop", event);
-
-        // handleStop(event);
+        // console.log("onstop", event);
         handleSave(event);
       };
       recorder.ondataavailable =

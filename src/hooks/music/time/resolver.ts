@@ -1,4 +1,4 @@
-import { STEPS_COUNT } from "~/constants/music/steps";
+import { STEPS_COUNT } from "~/constants/music/timing";
 
 export const resolveStepsPerSecond = (
   bpm: number,

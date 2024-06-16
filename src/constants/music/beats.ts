@@ -1,4 +1,4 @@
-import { STEPS } from "~/constants/music/steps";
+import { STEPS } from "~/constants/music/timing";
 
 const resolveBeats = (
   stagger: number,

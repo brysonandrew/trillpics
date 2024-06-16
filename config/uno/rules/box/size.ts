@@ -26,6 +26,8 @@ export const BOX_SIZE = {
   m075: BOX_SIZE_M * 0.75,
   m125: BOX_SIZE_M * 1.25,
   m15: BOX_SIZE_M * 1.5,
+  m175: BOX_SIZE_M * 1.75,
+
   m2: BOX_SIZE_M * 2,
   m25: BOX_SIZE_M * 2.5,
 

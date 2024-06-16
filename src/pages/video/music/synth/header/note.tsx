@@ -11,6 +11,7 @@ import {
 import { isNumber } from "~/utils/validation/is/number";
 import { boxSize } from "~uno/rules/box/size";
 import { PlayerBackgroundMesh } from "~/pages/video/player/_background/mesh";
+import { TypographyXs } from "~/components/layout/typography/xs";
 
 type TProps = {
   midiHoverKey?:
@@ -36,24 +37,21 @@ export const VideoMusicSynthHeaderNote: FC<
       classValue="center relative text-xs grow-0"
       style={{
         width: s.m2,
-        height: s.m2,
+        height: s.m175,
       }}
     >
       <>
         {isNumber(midi) && (
-          <div className="absolute top-1/2 left-1/2 -translate-1/2 column">
-            <div className="relative text-center text-xs">
-              {midi}
-            </div>
-            <div className="relative text-center text-xs">
+          <div className="absolute top-1/2 left-1/2 -translate-1/2 column gap-1 pt-0.5">
+            <TypographyXs>
+              {midi}, {midiToNote(midi)}
+            </TypographyXs>
+            <TypographyXs>
               {midiToHz(midi).toFixed(
                 2
               )}
               Hz
-            </div>
-            <div className="relative text-center text-xs">
-              {midiToNote(midi)}
-            </div>
+            </TypographyXs>
           </div>
         )}
       </>

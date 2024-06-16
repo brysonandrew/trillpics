@@ -18,8 +18,8 @@ import { useTrillPicsStore } from "~/store/middleware";
 import { useTimebomb } from "~/hooks/use-time-bomb";
 import { UGenerateSubscriptionResult } from "~/store/state/generate/types";
 import { TState } from "~/store/types";
-import { useMusicInitContext } from "~/pages/video/music/_context/init";
 import { TPicSeriesProps } from "~/components/remotion/pic-series/types";
+import { useBpm } from "~/hooks/music/bpm";
 
 export const DEFAULT_INPUT: TGenerateInput =
   {
@@ -37,8 +37,9 @@ export const Download: FC<
   Partial<TPillBProps>
 > = ({ children, ...props }) => {
   const s = boxSize();
+  const bpm = useBpm()
   const inputFromParams =
-    usePicVideoReadInputs();
+    usePicVideoReadInputs(bpm);
   const { set, recording } =
     useTrillPicsStore(
       ({ set, recording }) => ({

@@ -1,6 +1,6 @@
 import { useAudioSeconds } from "~/hooks/music/time/audio-seconds";
 import { useTimer } from "~/hooks/use-timer";
-import { useTrillPicsStore } from "~/store/middleware";
+import { useGridCellHandler } from "~/pages/video/music/_context/init/hooks/grid-cell-color";
 
 type THandler = () => void;
 type TConfig = {
@@ -9,11 +9,14 @@ type TConfig = {
 export const usePlaybackSchedule = (
   config: TConfig
 ) => {
+  const handleGridCell =
+    useGridCellHandler();
 
   const audioSeconds =
     useAudioSeconds();
   const handleDone = () => {
     console.log("DONE");
+    handleGridCell();
   };
   const [isCooldown, startCooldown] =
     useTimer(

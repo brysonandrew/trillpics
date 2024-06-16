@@ -5,11 +5,11 @@ import {
 } from "react";
 import { useTrillPicsStore } from "~/store/middleware";
 import { useReadyContext } from "~/shell/ready/context";
-import { TUseVideoSelect } from "~/pages/video/_root/hooks/select";
 import { MAX_COUNT } from "~/pages/video/_root/reorder/constants";
+import { TUsePicSelected } from "~/hooks/pic/selected";
 const STAGGER_MS = 400;
 export const useVideo_RootTutorial = (
-  config: TUseVideoSelect
+  config: TUsePicSelected
 ) => {
   const [isRunning, setRunning] =
     useState(false);
@@ -34,6 +34,16 @@ export const useVideo_RootTutorial = (
         pics,
       })
     );
+
+  const handleEnd = () => {
+    window.clearInterval(
+      interval.timer || 0
+    );
+    setRunning(false);
+    config.select([]);
+    return;
+  };
+
   useEffect(() => {
     if (config.count === 0) {
       setRunning(true);
@@ -56,13 +66,7 @@ export const useVideo_RootTutorial = (
       });
       const add = () => {
         if (interval.index === -1) {
-          window.clearInterval(
-            interval.timer || 0
-          );
-          setRunning(false);
-
-          // config.select([]);
-          return;
+          handleEnd();
         }
         const name =
           names[interval.index];
@@ -100,5 +104,8 @@ export const useVideo_RootTutorial = (
       );
   }, []);
 
-  return isRunning;
+  return {
+    isRunning,
+    onEnd: handleEnd,
+  };
 };

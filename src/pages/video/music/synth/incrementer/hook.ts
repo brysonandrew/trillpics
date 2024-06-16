@@ -1,4 +1,6 @@
-import { resolveSynthSteps } from "~/constants/music/midis";
+import { steps } from "framer-motion";
+import { key } from "localforage";
+import { resolveMidiSteps } from "~/constants/music/midi/steps";
 import { useTrillPicsStore } from "~/store/middleware";
 import { TSequenceOptions } from "~/store/state/music/types";
 import { TState } from "~/store/types";
@@ -8,20 +10,31 @@ export const useMidisSequenceIncrementer =
     key: keyof Omit<
       TSequenceOptions,
       "beats"
-    >
+    >,
+    min?: number,
+    max?: number
   ) => {
-    const { set } = useTrillPicsStore(
-      ({ set }) => ({
-        set,
-      })
-    );
+    const { set } =
+      useTrillPicsStore(
+        ({ set }) => ({
+          set,
+        })
+      );
     const increment = (
       value: number
     ) => {
       set((draft: TState) => {
         const nextValue =
           draft.sequence[key] + value;
-        const next = resolveSynthSteps({
+        if (
+          nextValue >
+            (max ??
+              draft.steps.length) ||
+          nextValue < (min ?? 0)
+        )
+          return;
+          
+        const next = resolveMidiSteps({
           ...draft.sequence,
           ...draft.scale,
           [key]: nextValue,

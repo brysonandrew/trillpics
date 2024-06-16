@@ -14,9 +14,9 @@ export const SynthScaleKey: FC = () => {
       value={key}
       values={SCALES}
       onValueChange={(value) => {
+        console.log(value)
         if (isScaleKey(value)) {
           update(value);
-          rescale();
         }
       }}
     />

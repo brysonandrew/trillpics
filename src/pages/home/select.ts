@@ -11,23 +11,11 @@ export const useHomeClickSelect =
   () => {
     const {
       hoverKeys,
-      isHover,
-      hover,
-      unhover,
-      cooldownEnd,
     } = useTrillPicsStore(
       ({
         hoverKeys,
-        isHover,
-        hover,
-        unhover,
-        cooldownEnd,
       }) => ({
         hoverKeys,
-        isHover,
-        hover,
-        unhover,
-        cooldownEnd,
       })
     );
     const { ref } = useReadyContext();

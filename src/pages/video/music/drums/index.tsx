@@ -3,7 +3,7 @@ import { BEATS_PRESETS } from "~/hooks/music/beats/presets";
 import { BackgroundGlass } from "~/components/layout/background/glass";
 import { MusicLayoutDrums } from "~/pages/video/music/drums/header";
 import { ChartsGrid } from "~/components/charts/grid";
-import { useVideoPlayerStyle } from "~/pages/video/player/style";
+import { useVideoStyle } from "~/pages/video/style";
 import { useTrillPicsStore } from "~/store/middleware";
 import { boxSize } from "~uno/rules/box/size";
 import { BEATS_KEYS } from "~/hooks/music/beats/constants";
@@ -13,7 +13,7 @@ export const VideoMusicDrums: FC =
     const {
       sidebarWidthOffset,
       width,
-    } = useVideoPlayerStyle();
+    } = useVideoStyle();
     const s = boxSize();
     const { beatsPresetKey } =
       useTrillPicsStore(

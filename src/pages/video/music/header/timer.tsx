@@ -4,27 +4,32 @@ import { TimerDisplay } from "~/components/playback/timer/display";
 import { TimerDisplayInit } from "~/components/playback/timer/display/init";
 import { VideoMusicPlaybackTimerCurrent } from "~/pages/video/music/record/timer/current";
 import { boxSize } from "~uno/rules/box/size";
+import { TProgressKey } from "~/pages/video/music/_context/init/types";
 
 type TProps = {
-  seconds: number;
-  stepsCount?:number
+  stepsCount?: number;
   isActive: boolean;
-  isCooldown?: boolean;
+  isCooldown: boolean;
+  seconds: number;
+  progressKey: TProgressKey;
 };
 export const VideoMusicHeaderTimer: FC<
   TProps
 > = ({
-  seconds,
   stepsCount,
   isActive,
   isCooldown,
+  seconds,
+  progressKey,
 }) => {
   const s = boxSize();
+
   const CurrTimer = isActive
     ? () => (
         <VideoMusicPlaybackTimerCurrent
           seconds={seconds}
           stepsCount={stepsCount}
+          progressKey={progressKey}
         />
       )
     : isCooldown

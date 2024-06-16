@@ -1,10 +1,14 @@
 import type { FC } from "react";
+import { motion } from "framer-motion";
 import clsx from "clsx";
 import { TCommonProps } from "~/pages/video/_root/reorder/types";
 import { MAX_COUNT } from "~/pages/video/_root/reorder/constants";
 import { boxRadius } from "~uno/rules/box/radius";
 import { boxSize } from "~uno/rules/box/size";
 import { useHoverKey } from "~/hooks/use-hover-key";
+import { HOVER_KEY_RootReorderList } from "~/pages/video/_root/reorder/list";
+import { useTrillPicsStore } from "~/store/middleware";
+import { HOVER_KEY_RootReorderBackground } from "~/pages/video/_root/reorder/background";
 
 type TProps = TCommonProps;
 export const _RootReorderPlaceholdersList: FC<
@@ -16,7 +20,27 @@ export const _RootReorderPlaceholdersList: FC<
 }) => {
   const s = boxSize();
   const borderRadius = boxRadius();
-  const {handlers} =useHoverKey()
+  const { handlers } = useHoverKey();
+  const { hoverKeys, isHover } =
+    useTrillPicsStore(
+      ({
+        hoverKeys,
+        isControls,
+        isHover,
+      }) => ({
+        hoverKeys,
+        isControls,
+        isHover,
+      })
+    );
+
+  const isHoveringBackground = isHover(
+    HOVER_KEY_RootReorderBackground
+  );
+  const isHovering =
+    isHover(
+      HOVER_KEY_RootReorderList
+    ) || isHoveringBackground;
   return (
     <ul
       className={clsx(
@@ -28,29 +52,38 @@ export const _RootReorderPlaceholdersList: FC<
         // y,
         gap: boxProps.style?.gap,
       }}
-      {...handlers('_RootReorderPlaceholdersList')}
+      {...handlers(
+        "_RootReorderPlaceholdersList"
+      )}
     >
       {[...Array(MAX_COUNT)].map(
         (_, index) => (
-          <li
+          <motion.li
             key={`${index}`}
             className={clsx(
               "relative",
-              "border border-white-02 dark:border-black-02 bg-white-01 dark:bg-black-01 backdrop-blur-sm opacity-50"
+              "border backdrop-blur-sm",
+              isHovering
+                ? "border-white-06 dark:border-black-06 bg-white-02 dark:bg-black-02"
+                : "border-white-02 dark:border-black-02 bg-white-01 dark:bg-black-01"
             )}
             style={{
               width:
                 itemDimensions.width,
               height:
                 itemDimensions.height, /// s.m+s.m025,
-
               top: 0,
               borderRadius:
                 borderRadius / 2,
               padding: s.padding,
               zIndex: index * 2 + 2,
             }}
-          ></li>
+            animate={{
+              opacity: isHovering
+                ? 0.8
+                : 0.6,
+            }}
+          ></motion.li>
         )
       )}
     </ul>

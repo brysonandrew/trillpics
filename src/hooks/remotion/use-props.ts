@@ -13,10 +13,24 @@ import { TPicSeriesProps } from "~/components/remotion/pic-series/types";
 export const useRemotionProps = (
   picVideoInputs: TPicSeriesProps = DEFAULT_INPUT
 ) => {
-  const { pics: allPics,fps,recording } =
-    useTrillPicsStore(({ pics,fps,recording }) => ({
-      pics,fps,recording
-    }));
+  const {
+    pics: allPics,
+    fps,
+    recording,
+    bpm,
+  } = useTrillPicsStore(
+    ({
+      pics,
+      fps,
+      recording,
+      bpm,
+    }) => ({
+      pics,
+      fps,
+      recording,
+      bpm,
+    })
+  );
   const canvasDimensions = DIMENSIONS;
   const dimensions =
     dimensionsWithinPlayerBounds({
@@ -34,16 +48,17 @@ export const useRemotionProps = (
   const count = pics.length;
   const seconds =
     picVideoInputs.seconds ||
-    resolveSecondsFromCount(count);
+    resolveSecondsFromCount(count, bpm);
 
   return {
     ...picVideoInputs,
-      pics,
-      count,
-      seconds,
-      isPics: count > 0,
-      dimensions,
-      fps,
-      recording,canvasDimensions,
+    pics,
+    count,
+    seconds,
+    isPics: count > 0,
+    dimensions,
+    fps,
+    recording,
+    canvasDimensions,
   };
 };

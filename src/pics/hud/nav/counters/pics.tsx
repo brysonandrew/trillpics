@@ -5,6 +5,7 @@ import { useHoverKey } from "~/hooks/use-hover-key";
 import { ShowPics } from "~/components/show-pics";
 import { usePicVideoReadInputs } from "~/hooks/pic/video/read/inputs/hook";
 import { LayoutOverlay } from "~/components/layout/overlay";
+import { useBpm } from "~/hooks/music/bpm";
 const key = "NavCountersPics";
 export const NavCountersPics: FC =
   () => {
@@ -13,8 +14,10 @@ export const NavCountersPics: FC =
     const { motionHandlers, isHover } =
       useHoverKey();
     const isHovering = isHover(key);
+    const bpm = useBpm();
+
     const { pics } =
-      usePicVideoReadInputs();
+      usePicVideoReadInputs(bpm);
 
     return (
       <>

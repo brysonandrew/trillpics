@@ -3,25 +3,31 @@ import {
   Fragment,
   useMemo,
 } from "react";
-import { STEPS_COUNT } from "~/constants/music/steps";
+import { STEPS_COUNT } from "~/constants/music/timing";
 import {
   TTimerKey,
   useAnimatedText,
 } from "~/pages/video/music/record/timer/current/animated-text";
 import { useMusicInitContext } from "~/pages/video/music/_context/init";
 import { useGridCellHandler } from "~/pages/video/music/_context/init/hooks/grid-cell-color";
+import { TProgressKey } from "~/pages/video/music/_context/init/types";
 
 type TProps = {
+  progressKey: TProgressKey;
   timerKey: TTimerKey;
   seconds: number;
-  stepsCount?:number
+  stepsCount?: number;
 };
 export const VideoMusicPlaybackTimerCurrentRow: FC<
   TProps
-> = ({ timerKey,seconds, stepsCount = STEPS_COUNT}) => {
-  const { saveProgress, audio } =
+> = ({
+  progressKey,
+  seconds,
+  stepsCount = STEPS_COUNT,
+  timerKey,
+}) => {
+  const { progress, audio } =
     useMusicInitContext();
-
   const classes = useMemo(() => {
     return [
       "dark:bg-yellow bg-yellow1",
@@ -32,27 +38,39 @@ export const VideoMusicPlaybackTimerCurrentRow: FC<
 
   const handleGridCell =
     useGridCellHandler();
-
   const handleUpdate = (
     elapsedMs: number
   ) => {
-    const progress =
+    const progressValue =
       elapsedMs / 1000 / seconds;
+    progress[progressKey].set(
+      progressValue
+    );
     const progressStep = Math.floor(
-      progress * stepsCount
+      progressValue * stepsCount
     );
     if (
-      audio.currentStep !== progressStep
+      audio.progressStep[
+        progressKey
+      ] !== progressStep
     ) {
       if (
-        audio.currentStep > progressStep
+        audio.progressStep[
+          progressKey
+        ] > progressStep
       ) {
         handleGridCell();
+        audio.progressStep[
+          progressKey
+        ] = -1;
+        return;
       }
       handleGridCell((cell, index) => {
         if (
           cell &&
-          index === progressStep
+          index === progressStep &&
+          cell.dataset.progress ===
+            progressKey
         ) {
           const color =
             classes[index % 3];
@@ -60,9 +78,11 @@ export const VideoMusicPlaybackTimerCurrentRow: FC<
         }
       });
 
-      audio.currentStep = progressStep;
+      audio.progressStep[progressKey] =
+        progressStep;
     }
-    saveProgress.set(progress);
+
+    progress[progressKey].set(0);
   };
   const text = useAnimatedText(
     handleUpdate

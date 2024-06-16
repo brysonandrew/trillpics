@@ -26,7 +26,7 @@ export const usePulse = () => {
       type: "square",
       midi: midi ?? 16,
       count: 1,
-      spread: 1,
+      spread: 0.1,
       stagger: 0,
       decay: 0,
       start: startTime,

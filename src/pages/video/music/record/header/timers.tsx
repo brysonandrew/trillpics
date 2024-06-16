@@ -1,6 +1,6 @@
 import type { FC } from "react";
 import clsx from "clsx";
-import { LinesHorizontal } from "~/components/lines/horizontal";
+import { LinesHorizontalLight } from "~/components/lines/horizontal/light";
 import { TimerDisplay } from "~/components/playback/timer/display";
 import { useMusicRecorderContext } from "~/pages/video/music/_context/recorder";
 import { boxSize } from "~uno/rules/box/size";
@@ -8,37 +8,19 @@ import { MeshBackgroundText } from "~/components/layout/background/mesh/text";
 import { VideoMusicHeaderTimer } from "~/pages/video/music/header/timer";
 import { useTrillPicsStore } from "~/store/middleware";
 import { SecondsCalculation } from "~/pages/video/music/record/header/calc";
+import { usePicVideoReadSeconds } from "~/hooks/pic/video/read/seconds/hook";
+import { STEPS_COUNT } from "~/constants/music/timing";
 
 export const VideoMusicPlaybackHeaderTimers: FC =
   () => {
     const s = boxSize();
-    const { bpm } = useTrillPicsStore(
-      ({ bpm }) => ({ bpm })
-    );
     const {
       isRecording,
-      isRecordingCooldown,
+      isCooldown,
       audioSeconds,
-      videoSeconds,
-      loopCount,
-      loopsRemainder,
     } = useMusicRecorderContext();
-
-    // const CurrTimer = isRecording
-    //   ? () => (
-    //       <VideoMusicPlaybackTimerCurrent
-    //         seconds={videoSeconds}
-    //       />
-    //     )
-    //   : isRecordingCooldown
-    //   ? () => (
-    //       <TimerDisplay
-    //         elapsed={videoSeconds}
-    //         unit="seconds"
-    //       />
-    //     )
-    //   : TimerDisplayInit;
-
+    const videoSeconds =
+      usePicVideoReadSeconds();
     return (
       <div
         className={clsx(
@@ -51,17 +33,17 @@ export const VideoMusicPlaybackHeaderTimers: FC =
         }}
       >
         <VideoMusicHeaderTimer
-          seconds={videoSeconds}
           isActive={isRecording}
-          isCooldown={
-            isRecordingCooldown
-          }
+          isCooldown={isCooldown}
+          seconds={videoSeconds}
+          stepsCount={STEPS_COUNT}
+          progressKey="recorder"
         />
-        <LinesHorizontal />
+        <LinesHorizontalLight />
         <span className="uppercase font-sans text-xxs">
           audio
         </span>
-        <LinesHorizontal />
+        <LinesHorizontalLight />
         <div className="relative">
           <MeshBackgroundText classValue="row gap-2">
             <TimerDisplay
@@ -72,12 +54,12 @@ export const VideoMusicPlaybackHeaderTimers: FC =
           <SecondsCalculation />
         </div>
 
-        <LinesHorizontal />
+        <LinesHorizontalLight />
         <span className="uppercase font-sans text-xxs">
           video
         </span>
 
-        <LinesHorizontal />
+        <LinesHorizontalLight />
         <TimerDisplay
           elapsed={videoSeconds}
           unit="seconds"

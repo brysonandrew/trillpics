@@ -1,4 +1,4 @@
-import { resolveSynthSteps } from "~/constants/music/midis";
+import { resolveMidiSteps } from "~/constants/music/midi/steps";
 import {
   DEFAULT_MULTI_SYNTH_OPTIONS,
   DEFAULT_SCALE_OPTIONS,
@@ -8,9 +8,10 @@ import {
 import { TMusicState } from "~/store/state/music/types";
 import { TStateHandler } from "~/store/types";
 
-const steps = resolveSynthSteps(
-  DEFAULT_SEQUENCE_OPTIONS
-);
+const steps = resolveMidiSteps({
+  ...DEFAULT_SEQUENCE_OPTIONS,
+  ...DEFAULT_SCALE_OPTIONS,
+});
 
 export const musicState: TStateHandler<
   TMusicState

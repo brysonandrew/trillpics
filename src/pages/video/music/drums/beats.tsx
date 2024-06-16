@@ -3,14 +3,12 @@ import { useMusicReadyContext } from "~/pages/video/music/_context/ready/index";
 import { BEATS_KEYS } from "~/hooks/music/beats/constants";
 import { MusicLayoutTitle } from "~/pages/video/music/title";
 import { boxSize } from "~uno/rules/box/size";
-import { useTrillPicsStore } from "~/store/middleware";
 
 export const RowsBeats: FC = () => {
   const s = boxSize();
 
   const { beats: lookup } =
     useMusicReadyContext();
-
 
   return (
     <ul
