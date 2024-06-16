@@ -5,5 +5,5 @@ export const resolvePlayVolume = (
     ? 1.4
     : stepIndex % 2 === 0
     ? 1.2
-    : 1;
+    : 0.8;
 };

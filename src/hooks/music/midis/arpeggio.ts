@@ -17,7 +17,7 @@ export const useArpeggio = () => {
     options: TPlayMidisOptions = {}
   ) => {
     const {
-      duration,
+      duration = 0.4,
       volume = 1,
       type = "sawtooth",
       midi: baseMidi,
@@ -35,14 +35,15 @@ export const useArpeggio = () => {
     });
     const midi =
       (baseMidi ?? 0) + stepMidi ?? 0;
+    const endTime =
+      startTime + duration;
     const multiSynthOptions: TMultiOptions =
       {
         type,
         midi,
         count: 4,
         start: startTime,
-        end:
-          startTime + (duration ?? 0.4),
+        end: endTime,
         output: filter,
         ...synthwaveOptions,
       };

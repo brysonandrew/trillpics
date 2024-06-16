@@ -16,6 +16,10 @@ import { isNull } from "~/utils/validation/is/null";
 import { resolveTop } from "~/components/charts/grid/top";
 import { resolvePlayVolume } from "~/hooks/music/play/volume";
 import { TMusicKey } from "~/store/state/music/types";
+import { useMusicLookup } from "~/hooks/music/lookup";
+import { useMusicReadyContext } from "~/pages/video/music/_context/ready";
+import { COLOR_SHADE_RECORD } from "~uno/color";
+import { resolveVarCss } from "@brysonandrew/color-base";
 
 type TProps = Omit<
   TButtonMotionProps,
@@ -37,7 +41,10 @@ export const ChartsGridStep: FC<
   ...props
 }) => {
   const isSynth = stepsKey === "synth";
-  // const lookup = useSoundLookup();
+  const { context } =
+    useMusicInitContext();
+
+  const lookup = useMusicReadyContext();
   const { synth } = useTrillPicsStore(
     ({ synth }) => ({ synth })
   );
@@ -70,14 +77,59 @@ export const ChartsGridStep: FC<
 
   return (
     <motion.button
-      // onClick={() => {
-      //   if (isNull(midi)) return;
-      //   lookup[stepsKey].play(
-      //     0,
-      //     midi,
-      //     {}
-      //   );
-      // }}
+      onClick={() => {
+        if (isNull(midi)) return;
+        const cell =
+          gridCellsRecord[progressKey][
+            rowIndex
+          ][columnIndex];
+        if (
+          gridCellsRecord !== null &&
+          cell?.style &&
+          cell !== null
+        ) {
+          (
+            gridCellsRecord[
+              progressKey
+            ][rowIndex][
+              columnIndex
+            ] as HTMLDivElement
+          ).style.backgroundColor =
+            resolveVarCss("blue");
+
+          (
+            (
+              lookup[progressKey] as any
+            )[stepsKey] as any
+          ).play(
+            context.currentTime,
+            midi,
+            {
+              ...synth,
+              duration: 1,
+              onEnded: () => {
+                (
+                  gridCellsRecord[
+                    progressKey
+                  ][rowIndex][
+                    columnIndex
+                  ] as HTMLDivElement
+                ).style.backgroundColor =
+                  "white";
+                console.log("end");
+
+                (
+                  (
+                    lookup[
+                      progressKey
+                    ] as any
+                  )[stepsKey] as any
+                ).stop();
+              },
+            }
+          );
+        }
+      }}
       key={`${columnIndex}`}
       className="center relative"
       style={{
@@ -87,14 +139,6 @@ export const ChartsGridStep: FC<
               top: isNullValue
                 ? 0
                 : resolveTop(value),
-              // top: isNullValue
-              //   ? 1
-              //   : `${
-              //       (value /
-              //         RANDOM_MIDI_RANGE) *
-              //         80 +
-              //       10
-              //     }%`,
             }
           : { top: 0 }),
         marginTop: -s.m0125,
@@ -108,26 +152,35 @@ export const ChartsGridStep: FC<
       <motion.div
         key={key}
         ref={(instance) => {
-          if (!gridCellsRecord[progressKey]) {
-            gridCellsRecord[progressKey] = [];
-          }
           if (
-            !gridCellsRecord[progressKey][
-              rowIndex
+            !gridCellsRecord[
+              progressKey
             ]
           ) {
-            gridCellsRecord[progressKey][
-              rowIndex
+            gridCellsRecord[
+              progressKey
             ] = [];
           }
+          if (
+            !gridCellsRecord[
+              progressKey
+            ][rowIndex]
+          ) {
+            gridCellsRecord[
+              progressKey
+            ][rowIndex] = [];
+          }
           const gridCell =
-            gridCellsRecord[progressKey]?.[
-              rowIndex
-            ]?.[columnIndex];
+            gridCellsRecord[
+              progressKey
+            ]?.[rowIndex]?.[
+              columnIndex
+            ];
           if (instance && !gridCell) {
-            gridCellsRecord[progressKey][
-              rowIndex
-            ][columnIndex] = instance;
+            gridCellsRecord[
+              progressKey
+            ][rowIndex][columnIndex] =
+              instance;
           }
         }}
         data-progress={progressKey}

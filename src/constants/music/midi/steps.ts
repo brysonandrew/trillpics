@@ -49,15 +49,17 @@ export const resolveMidiSteps = (
         if (index % interval === 0) {
           delayCount = delay;
 
-          const repeats =
-            `${v}|`.repeat(repeat);
-          a = [
-            ...a,
-            ...repeats
-              .split("|")
-              .filter(Boolean)
-              .map(Number),
-          ];
+          // const repeats =
+          //   `${v}|`.repeat(repeat);
+          // a = [
+          //   ...a,
+          //   ...repeats
+          //     .split("|")
+          //     .filter(Boolean)
+          //     .map(Number),
+          // ];
+          a.push(v);
+
           return a;
         } else {
           const prev = a[index - 1];
@@ -65,18 +67,9 @@ export const resolveMidiSteps = (
           return a;
         }
       }
+      a.push(null);
       return a;
     },
     []
   );
-};
-// export const MIDIS_1_R =
-//   resolveMidiSteps({ beats: BEATS_1 });
-// export const MIDIS_2_1_R =
-//   resolveMidiSteps({
-//     beats: BEATS_2_1,
-//   });
-// export const MIDIS_4_4_R =
-//   resolveMidiSteps({
-//     beats: BEATS_4_4,
-//   });
+}
