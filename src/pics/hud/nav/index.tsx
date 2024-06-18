@@ -52,6 +52,8 @@ export const PicsHudFooterNav: FC<
       SPRING
     );
   }, [pathname]);
+  // const x = useTransform(main.dragger.navX,v => Math.sin(((v%navItemGap)/navItemGap) * Math.PI/2) * navItemGap/2);
+
 
   const borderRadius = boxRadius();
   const { handlers } = useHoverKey();

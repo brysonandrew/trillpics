@@ -74,12 +74,17 @@ export type TSequenceOptionsIncrementerKey =
 export type TSynthConfig =
   TSynthOptions & TMultiOptions;
 
+export type TDrumsOptions = {
+  gain: number;
+};
+
 export type TPlayingKey =
   | TMusicKey
   | TBeatsPresetsKey
   | number;
 export type TMusicState = {
   bpm: number;
+  drums: TDrumsOptions;
   synth: TSynthConfig;
   steps: TMidiValues;
   scale: TScaleOptions;

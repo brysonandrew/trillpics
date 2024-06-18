@@ -10,7 +10,6 @@ import {
 } from "~/utils/music";
 import { isNumber } from "~/utils/validation/is/number";
 import { boxSize } from "~uno/rules/box/size";
-import { PlayerBackgroundMesh } from "~/pages/video/player/_background/mesh";
 import { TypographyXs } from "~/components/layout/typography/xs";
 
 type TProps = {
@@ -36,8 +35,9 @@ export const VideoMusicSynthHeaderNote: FC<
     <MeshBackgroundText
       classValue="center relative text-xs grow-0"
       style={{
-        width: s.m2,
+        width: s.m175,
         height: s.m175,
+        left:-s.m03125
       }}
     >
       <>

@@ -25,7 +25,7 @@ export const RowsBeats: FC = () => {
               const fn =
                 lookup[beatsKey];
               if (fn) {
-                fn.play(0);
+                fn.play(0,1);
               }
             }}
           >

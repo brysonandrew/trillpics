@@ -2,7 +2,7 @@ import {
   BEATS_KEYS,
   DEFAULT_VERSION_LOOKUP,
 } from "~/hooks/music/beats/constants";
-import { useBufferFromSrcHandler } from "~/hooks/music/useBufferFromSrcHandler";
+import { useBufferFromSrcHandler } from "~/hooks/music/beats/hooks/buffer-from-source";
 import { useMusicInitContext } from "~/pages/video/music/_context/init";
 import { resolveAudioSampleSrc } from "~/utils/src";
 

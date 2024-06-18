@@ -1,5 +1,3 @@
-import { steps } from "framer-motion";
-import { key } from "localforage";
 import { resolveMidiSteps } from "~/constants/music/midi/steps";
 import { useTrillPicsStore } from "~/store/middleware";
 import { TSequenceOptions } from "~/store/state/music/types";
@@ -14,12 +12,11 @@ export const useMidisSequenceIncrementer =
     min?: number,
     max?: number
   ) => {
-    const { set } =
-      useTrillPicsStore(
-        ({ set }) => ({
-          set,
-        })
-      );
+    const { set } = useTrillPicsStore(
+      ({ set }) => ({
+        set,
+      })
+    );
     const increment = (
       value: number
     ) => {
@@ -33,7 +30,7 @@ export const useMidisSequenceIncrementer =
           nextValue < (min ?? 0)
         )
           return;
-          
+
         const next = resolveMidiSteps({
           ...draft.sequence,
           ...draft.scale,

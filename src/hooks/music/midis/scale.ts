@@ -7,6 +7,7 @@ import { useMusicInitContext } from "~/pages/video/music/_context/init";
 import { DEFAULT_SCALE_KEY } from "~/pages/video/music/_context/init/constants";
 import { useTrillPicsStore } from "~/store/middleware";
 import { TState } from "~/store/types";
+import { midiValueToNumber } from "~/utils/music/midi";
 
 export const useMidisScale = () => {
   const { stepsScaleRecord } =
@@ -37,7 +38,10 @@ export const useMidisScale = () => {
             scaleSteps.findIndex(
               (step) =>
                 step ===
-                (value + offset) %
+                (midiValueToNumber(
+                  value
+                ) +
+                  offset) %
                   SCALE_VALUE_COUNT
             );
 

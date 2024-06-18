@@ -34,6 +34,7 @@ export const PillBXs: FC<TProps> = ({
       className={clsx(
         "relative center hover:opacity-100 opacity-90",
         "hover:grayscale-100",
+        "disabled:(grayscale-80 brightness-80 opacity-60)",
         classValue
       )}
       style={{

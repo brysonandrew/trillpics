@@ -1,36 +1,35 @@
-import { useEffect } from "react";
-import { useTimeoutRef } from "@brysonandrew/hooks-window";
 import {
   TBeatsStepsKey,
+  TBeatValue,
   TPlayBeatsOptions,
 } from "~/hooks/music/beats/types";
 import { useMusicInitContext } from "~/pages/video/music/_context/init";
-import { resolveAudioSampleSrc } from "~/utils/src";
-import { useBufferFromSrcHandler } from "../useBufferFromSrcHandler";
+import { useSourceBufferStart } from "~/hooks/music/beats/hooks/source-buffer/start";
+import { useBufferInit } from "~/hooks/music/beats/hooks/buffer/init";
+import { useSourceBufferStop } from "~/hooks/music/beats/hooks/source-buffer/stop";
 const key: TBeatsStepsKey = "kick";
 
 export const useKick = () => {
-  const { endTimeout, timeoutRef } =
-    useTimeoutRef();
   const {
     context,
     master,
-    bufferSourceRecord,
-    bufferRecord,
   } = useMusicInitContext();
-  const handleSample =
-    useBufferFromSrcHandler(context);
-  const stop = () => {
-    if (bufferSourceRecord[key]) {
-      bufferSourceRecord[key].stop();
-    }
-  };
+  const isReady = useBufferInit(key, 0);
+  const start =
+    useSourceBufferStart(key);
+  const stop = useSourceBufferStop(key);
+
   const play = async (
     startTime: number,
+    beat: TBeatValue,
     options: TPlayBeatsOptions = {}
   ) => {
-    const { version = 0, volume = 1 } =
-      options;
+
+    const {
+      version = 0,
+      volume = 1,
+      stepIndex = 0,
+    } = options;
 
     const filter = new BiquadFilterNode(
       context,
@@ -43,36 +42,14 @@ export const useKick = () => {
       gain: 0.2 * volume,
     });
 
-    const sampleBuffer: AudioBuffer =
-      bufferRecord[key] ??
-      (await handleSample(
-        resolveAudioSampleSrc(
-          key,
-          version
-        )
-      ));
-
-    const source =
-      context.createBufferSource();
-    source.buffer = sampleBuffer;
-    source.connect(filter);
+    start({
+      stepIndex,
+      startTime,
+      output: filter,
+    });
     filter.connect(gain);
     gain.connect(master);
-    source.start(startTime);
-    bufferSourceRecord[key] = source;
-    timeoutRef.current = setTimeout(
-      () => {
-        stop();
-      },
-      sampleBuffer.duration*1000
-    );
   };
 
-  useEffect(() => {
-    return () => {
-      endTimeout();
-    };
-  }, []);
-
-  return { play, stop };
+  return { play, stop,isReady };
 };

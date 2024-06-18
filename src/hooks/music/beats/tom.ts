@@ -1,21 +1,35 @@
-import { TBeatsStepsKey, TPlayBeatsOptions } from "~/hooks/music/beats/types";
+import { useBufferInit } from "~/hooks/music/beats/hooks/buffer/init";
+import { useSourceBufferStart } from "~/hooks/music/beats/hooks/source-buffer/start";
+import { useSourceBufferStop } from "~/hooks/music/beats/hooks/source-buffer/stop";
+import {
+  TBeatsStepsKey,
+  TBeatValue,
+  TPlayBeatsOptions,
+} from "~/hooks/music/beats/types";
 import { useMusicInitContext } from "~/pages/video/music/_context/init";
 import { resolveAudioSampleSrc } from "~/utils/src";
-import { useBufferFromSrcHandler } from "../useBufferFromSrcHandler";
+import { isDefined } from "~/utils/validation/is/defined";
+import { useBufferFromSrcHandler } from "./hooks/buffer-from-source";
 const key: TBeatsStepsKey = "tom";
 
 export const useTom = () => {
-  const { context, master , bufferSourceRecord,bufferRecord} =
+  const { context, master } =
     useMusicInitContext();
-  const handleSample =
-    useBufferFromSrcHandler(context);
+  const isReady = useBufferInit(key, 0);
+  const start =
+    useSourceBufferStart(key);
+  const stop = useSourceBufferStop(key);
 
   const play = async (
     startTime: number,
+    beat: TBeatValue,
     options: TPlayBeatsOptions = {}
   ) => {
-    const { version = 2, volume = 1 } =
-      options;
+    const {
+      version = 2,
+      volume = 1,
+      stepIndex = 0,
+    } = options;
 
     const filter = new BiquadFilterNode(
       context,
@@ -28,27 +42,13 @@ export const useTom = () => {
       gain: 0.4 * volume,
     });
 
-    const sampleBuffer: AudioBuffer =
-    bufferRecord[key] ??  await handleSample(
-        resolveAudioSampleSrc(key, 0)
-      );
-
-    const source =
-      context.createBufferSource();
-    source.buffer = sampleBuffer;
-    source.connect(filter);
+    start({
+      stepIndex,
+      startTime,
+      output: filter,
+    });
     filter.connect(gain);
     gain.connect(master);
-    source.start(startTime);
-
-    bufferSourceRecord[key] = source
-  };
-
-
-  const stop = () => {
-    if (bufferSourceRecord[key]) {
-      bufferSourceRecord[key].stop();
-    }
   };
 
   return { play, stop };

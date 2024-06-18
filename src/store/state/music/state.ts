@@ -16,6 +16,9 @@ const steps = resolveMidiSteps({
 export const musicState: TStateHandler<
   TMusicState
 > = () => ({
+  drums: {
+    gain: 1,
+  },
   steps,
   synth: {
     ...DEFAULT_MULTI_SYNTH_OPTIONS,

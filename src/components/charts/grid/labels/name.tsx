@@ -3,14 +3,15 @@ import { useTrillPicsStore } from "~/store/middleware";
 import clsx from "clsx";
 import { BackgroundGlass } from "~/components/layout/background/glass";
 import { UStepsKey } from "~/store/state/music/types";
+import { SCALE_VALUE_COUNT } from "~/constants/scales";
+import { LinesVertical } from "~/components/lines/vertical";
 
 type TProps = {
   stepsKey: UStepsKey;
-  stepsCount: number;
 };
 export const ChartsGridLabelsName: FC<
   TProps
-> = ({ stepsKey, stepsCount }) => {
+> = ({ stepsKey }) => {
   const isSynth = stepsKey === "synth";
   const { synth } = useTrillPicsStore(
     ({ synth }) => ({ synth })
@@ -18,8 +19,26 @@ export const ChartsGridLabelsName: FC<
   return (
     <div
       key={stepsKey}
-      className="relative row-start-space text-white text-xxxs uppercase h-full"
+      className="absolute row-start-space text-white text-xxxs uppercase h-full"
     >
+      {isSynth && (
+        <div
+          className={clsx(
+            "absolute right-full top-0 -translate-x-1 px-0.75"
+          )}
+        >
+          <BackgroundGlass />
+          {`${
+            (synth.midi ?? 0) +
+            SCALE_VALUE_COUNT -
+            1
+          }`}
+        </div>
+      )}
+      {/* <div
+      className="absolute left-0 top-0 bottom-0 bl"
+      /> */}
+      <LinesVertical />
       <div
         className={clsx(
           "absolute right-full bottom-0 -translate-x-1 px-0.75",

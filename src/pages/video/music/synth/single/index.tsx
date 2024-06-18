@@ -3,7 +3,6 @@ import {
   TUpdateSliderHandler,
   UiInputsSliderRow,
 } from "~/components/inputs/slider/row";
-import { SynthSingleStagger } from "~/pages/video/music/synth/single/stagger";
 import { useSynthUpdate } from "~/pages/video/music/synth/update";
 import { useTrillPicsStore } from "~/store/middleware";
 

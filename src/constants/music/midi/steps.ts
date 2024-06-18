@@ -16,14 +16,12 @@ export const resolveMidiSteps = (
     beats = BEATS_1,
     repeat,
     interval,
-    offset,
     delay,
     key,
-    ...scale
   } = config;
   const scaleMidis = SCALE_RECORD[key];
   let delayCount = 0;
-
+  let value:TMidiValue = null;
   return beats.reduce(
     (
       a: TMidiValue[],
@@ -31,45 +29,31 @@ export const resolveMidiSteps = (
       index,
       { length: count }
     ) => {
-      const v = resolveMidiValue({
-        index,
-        count,
-        scaleMidis,
-        ...config,
-      });
+      if (index % interval === 0) {
+        delayCount = delay;
+         const nextMidi = resolveMidiValue({
+          index,
+          count,
+          scaleMidis,
+          ...config,
+        });
+        value = [...Array(repeat)].map(
+          () => nextMidi
+        );
+        // a.push(next);
+
+        // return a;
+      }
+      console.log(delayCount)
       if (
         beat === null ||
         delayCount > 0
       ) {
         delayCount--;
-        a.push(null);
-        return a;
+        return [...a, null];
       }
-      if (beat === 1) {
-        if (index % interval === 0) {
-          delayCount = delay;
-
-          // const repeats =
-          //   `${v}|`.repeat(repeat);
-          // a = [
-          //   ...a,
-          //   ...repeats
-          //     .split("|")
-          //     .filter(Boolean)
-          //     .map(Number),
-          // ];
-          a.push(v);
-
-          return a;
-        } else {
-          const prev = a[index - 1];
-          a.push(prev ?? v);
-          return a;
-        }
-      }
-      a.push(null);
-      return a;
+      return [...a, value];
     },
     []
   );
-}
+};

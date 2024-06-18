@@ -1,118 +1,16 @@
-import {
-  BEATS_4_2,
-  BEATS_4_4,
-} from "~/constants/music/beats";
-import { BEATS_KEYS } from "~/hooks/music/beats/constants";
 import { PRESETS_DISCO } from "~/hooks/music/beats/presets/disco";
+import { PRESETS_DNB } from "~/hooks/music/beats/presets/dnb";
+import { PRESETS_RAP } from "~/hooks/music/beats/presets/rap";
+import { PRESETS_ROCK } from "~/hooks/music/beats/presets/rock";
 import { PRESETS_TECHNO } from "~/hooks/music/beats/presets/techno";
-import { TBeatsPresetsKey } from "~/hooks/music/beats/presets/types";
-import {
-  TBeatsStepsKey,
-  TBeatsPresetRecord,
-  TBeatsRecord,
-} from "~/hooks/music/beats/types";
+import { PRESETS_TRAP } from "~/hooks/music/beats/presets/trap";
+import { TBeatsPresetRecord } from "~/hooks/music/beats/types";
 
 export const BEATS_PRESETS = {
   disco: PRESETS_DISCO,
+  trap: PRESETS_TRAP,
   techno: PRESETS_TECHNO,
-  rock: {
-    kick: [
-      1,
-      null,
-      null,
-      null,
-      null,
-      null,
-      null,
-      null,
-      1,
-      null,
-      1,
-      null,
-      null,
-      null,
-      null,
-      null,
-    ],
-    snare: [
-      null,
-      null,
-      null,
-      null,
-      1,
-      null,
-      null,
-      null,
-      null,
-      null,
-      null,
-      null,
-      1,
-      null,
-      null,
-      null,
-    ],
-    hihat: [
-      1,
-      null,
-      1,
-      null,
-      1,
-      null,
-      1,
-      null,
-      1,
-      null,
-      1,
-      null,
-      1,
-      null,
-      1,
-      null,
-    ],
-    tom: [...BEATS_4_4],
-  },
-  rap: {
-    kick: [
-      1,
-      null,
-      null,
-      1,
-      null,
-      null,
-      1,
-      null,
-      null,
-      null,
-      1,
-      null,
-      null,
-      1,
-      null,
-      null,
-    ],
-    snare: [
-      null,
-      null,
-      null,
-      null,
-      1,
-      null,
-      null,
-      null,
-      null,
-      null,
-      null,
-      1,
-      null,
-      null,
-      null,
-      null,
-    ],
-    hihat: [
-      1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
-      1, 1, 1, 1, 1,
-    ],
-    tom: [...BEATS_4_2],
-  },
+  rock: PRESETS_ROCK,
+  rap: PRESETS_RAP,
+  dnb: PRESETS_DNB,
 } as const satisfies TBeatsPresetRecord;

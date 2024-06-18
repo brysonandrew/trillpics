@@ -16,35 +16,22 @@ import { boxSize } from "~uno/rules/box/size";
 
 export const VideoMusicSynthHeaderBottom: FC =
   () => {
-    const {
-      synth,
-      sequence,
-      scale,
-      hoverKeys,
-    } = useTrillPicsStore(
-      ({
-        synth,
-        hoverKeys,
-        sequence,
-        scale,
-      }) => ({
-        synth,
-        sequence,
-        scale,
-        hoverKeys,
-      })
-    );
+    const { hoverKeys } =
+      useTrillPicsStore(
+        ({ hoverKeys }) => ({
+          hoverKeys,
+        })
+      );
     const s = boxSize();
-    const { width } = useVideoStyle();
     const midiHoverKey = hoverKeys.find(
       (v) => isMidiHoverKey(v)
     );
     return (
       <div
-        className="relative row justify-stretch w-full"
+        className="relative row lg:row justify-stretch w-full"
         style={{
           top: 0,
-          left: 0,
+          left: s.m0125,
           gap: s.m05,
           paddingRight: s.m05,
         }}
@@ -54,24 +41,17 @@ export const VideoMusicSynthHeaderBottom: FC =
         />
         <VideoMusicSynthIncrementer
           name="interval"
-          Down={SynthIntervalDown}
-          Up={SynthIntervalUp}
         />
         <VideoMusicSynthIncrementer
           name="delay"
-          Down={SynthDelayDown}
-          Up={SynthDelayUp}
         />
         <VideoMusicSynthIncrementer
           name="repeat"
-          Down={SynthRepeatDown}
-          Up={SynthRepeatUp}
         />
 
         <VideoMusicSynthIncrementer
           name="offset"
-          Down={SynthOffsetLeft}
-          Up={SynthOffsetRight}
+          direction='x'
         />
       </div>
     );

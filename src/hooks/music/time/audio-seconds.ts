@@ -1,5 +1,5 @@
 import { STEPS_COUNT } from "~/constants/music/timing";
-import { resolveStepsPerSecond } from "~/hooks/music/time/resolver";
+import { resolveStepsPerSecond } from "~/hooks/music/time/steps-per-second/resolver";
 import { useTrillPicsStore } from "~/store/middleware";
 
 export const useAudioSeconds = (

@@ -4,12 +4,14 @@ import { useSnare } from "~/hooks/music/beats/snare";
 import { useTom } from "~/hooks/music/beats/tom";
 import {
   TBeatsStepsKey,
+  TBeatValue,
   TPlayBeatsOptions,
 } from "~/hooks/music/beats/types";
 
 export type TUseBeatsLookupValue = {
   play: (
     startTime: number,
+    beat: TBeatValue,
     options?: TPlayBeatsOptions
   ) => void;
   stop: () => void;

@@ -62,56 +62,62 @@ export const SelectStyled: FC<
       <Select.Portal>
         <Select.Content
           position="popper"
+          className={clsx(
+            "relative column-stretch bg-gray-02 backdrop-blur-lg",
+            "border border-white-04 dark:border-black-04",
+            "translate-y-2"
+          )}
           // align="end"
           // side="top"
-          style={{ zIndex: 99 }}
+          style={{ zIndex: 99,
+
+            borderRadius,
+           }}
         >
-            <Select.Viewport>
-              <Select.Group
-                className={clsx(
-                  "relative column-stretch bg-gray-02 backdrop-blur-lg",
-                  "border border-white-04 dark:border-black-04",
-                  'translate-y-2'
-                )}
-                style={{
-                  // paddingTop: s.m025,
-                  // paddingBottom:
-                  //   s.m025,
-                  //   paddingLeft:
-                  //   s.m025,
-                  // paddingRight:
-                  //   s.m025,
-                  borderRadius,
-                }}
-              >
-                {values
-                  .filter(
-                    (v) => v !== value
-                  )
-                  .map((value) => (
-                    <Select.Item
-                      key={value}
-                      value={value}
-                      className={cx(
-                        "relative row-space cursor-pointer outline-none select-none",
-                        "data-[highlighted]:bg-black-02"
-                      )}
-                      // style={{
-                      //   paddingTop: s.m0125,
-                      //   paddingBottom:
-                      //     s.m0125,
-                      //   paddingLeft:
-                      //     s.m025,
-                      //   paddingRight:
-                      //     s.m025,
-                      //   borderRadius,
-                      // }}
-                    >
-                      <MeshBackgroundText>{value}</MeshBackgroundText>
-                    </Select.Item>
-                  ))}
-              </Select.Group>
-            </Select.Viewport>
+          <Select.Viewport>
+            {/* <Select.Group
+              style={{
+                // paddingTop: s.m025,
+                // paddingBottom:
+                //   s.m025,
+                //   paddingLeft:
+                //   s.m025,
+                // paddingRight:
+                //   s.m025,
+     
+              }}
+            > */}
+              {values
+                .filter(
+                  (v) => v !== value
+                )
+                .map((value) => (
+                  <Select.Item
+                    key={value}
+                    value={value}
+                    className={cx(
+                      "relative row-space cursor-pointer outline-none select-none",
+                      "data-[highlighted]:bg-black-02",
+                      'overflow=hidden'
+                    )}
+                    // style={{
+                    //   paddingTop: s.m0125,
+                    //   paddingBottom:
+                    //     s.m0125,
+                    //   paddingLeft:
+                    //     s.m025,
+                    //   paddingRight:
+                    //     s.m025,
+                    //   borderRadius,
+                    // }}
+                  >
+                    <MeshBackgroundText>
+                      {value}
+                    </MeshBackgroundText>
+                  </Select.Item>
+                ))}
+            {/* </Select.Group> */}
+          </Select.Viewport>
         </Select.Content>
       </Select.Portal>
     </Select.Root>

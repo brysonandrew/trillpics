@@ -6,6 +6,7 @@ import {
 } from "react";
 import { useMotionValue } from "framer-motion";
 import {
+  TBufferSourceRecord,
   TMusicInitContext,
   TPartialStepsScaleRecord,
   TProgressStepRecord,
@@ -39,10 +40,15 @@ export const MusicInitProvider: FC<
     recorder,
     gridCellsRecord,
     stepsScaleRecord,
+    drumsMaster,
     ...audio
   } = useMemo(() => {
     const context = new AudioContext();
+
+    const drumsMaster = context.createGain();
+    drumsMaster.gain.value = 10;
     const master = context.createGain();
+    
     master.gain.value = 4;
     master.connect(context.destination);
     const destination =
@@ -58,7 +64,13 @@ export const MusicInitProvider: FC<
 
     const arrayBuffer: ArrayBuffer =
       new Float32Array();
-    const bufferSourceRecord = {};
+    const bufferSourceRecord: TBufferSourceRecord =
+      {
+        kick: [],
+        snare: [],
+        hihat: [],
+        tom: [],
+      };
     const bufferRecord = {};
     const stepsScaleRecord: TPartialStepsScaleRecord =
       {};
@@ -73,6 +85,7 @@ export const MusicInitProvider: FC<
     return {
       loopCount: 0,
       loopsRemainder: 0,
+      drumsMaster,
       context,
       master,
       destination,
@@ -101,6 +114,7 @@ export const MusicInitProvider: FC<
         progress,
         gridCellsRecord,
         stepsScaleRecord,
+        drumsMaster
       }}
     >
       {children}

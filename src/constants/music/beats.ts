@@ -10,7 +10,7 @@ const resolveBeats = (
       : null
   );
 
-  export const BEATS_1 = resolveBeats(1);
+export const BEATS_1 = resolveBeats(1);
 
 export const BEATS_2 = resolveBeats(2);
 export const BEATS_2_1 = resolveBeats(
@@ -31,3 +31,14 @@ export const BEATS_8_1 = resolveBeats(
   8,
   1
 );
+export const BEATS_8_4 = resolveBeats(
+  8,
+  4
+);
+
+export const resolveBeatsFromIndicies = (
+  indicies: number[]
+) =>
+  [...STEPS].map((_, index) =>
+    indicies.includes(index) ? 1 : null
+  );

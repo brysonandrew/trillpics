@@ -17,6 +17,7 @@ import { VideoMusicSynthSingle } from "~/pages/video/music/synth/single";
 import { useAddRandomEffect } from "~/hooks/pic/add-random/effect";
 import { MusicPlay } from "~/pages/video/music/play";
 import { LinesHorizontal } from "~/components/lines/horizontal";
+import { DrumsGain } from "~/pages/video/music/drums/gain";
 
 export const VideoMusic = () => {
   const {
@@ -136,9 +137,9 @@ export const VideoMusic = () => {
                 className="sticky column-stretch z-10 bg-black-8 dark:bg-black"
                 style={{
                   width: width + s.m025,
-                  gap: s.m025 * 1.5,
-                  top:
-                    drumsTop + s.m025,
+                  // gap: s.m025 * 1.5,
+                  // top:
+                  //   drumsTop + s.m025,
                   // bottom: -s.m,
                 }}
               >
@@ -147,6 +148,7 @@ export const VideoMusic = () => {
 
               <div className="relative column-stretch">
                 <div className="absolute inset-x-0 -inset-y-6 bg-gradient-to-l from-black to-black-05" />
+                <DrumsGain />
                 <Bpm />
               </div>
 

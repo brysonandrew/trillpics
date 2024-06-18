@@ -7,6 +7,7 @@ import { useVideoStyle } from "~/pages/video/style";
 import { useTrillPicsStore } from "~/store/middleware";
 import { boxSize } from "~uno/rules/box/size";
 import { BEATS_KEYS } from "~/hooks/music/beats/constants";
+import { ChartsGridLinesHorizontal } from "~/components/charts/grid/lines/horizontal";
 
 export const VideoMusicDrums: FC =
   () => {
@@ -37,12 +38,15 @@ export const VideoMusicDrums: FC =
           <MusicLayoutDrums />
         </div>
         <ChartsGrid
+          Background={
+            ChartsGridLinesHorizontal
+          }
           presets={
             BEATS_PRESETS[
               beatsPresetKey
             ]
           }
-          yOrder={BEATS_KEYS}
+          includes={BEATS_KEYS}
         />
       </>
     );

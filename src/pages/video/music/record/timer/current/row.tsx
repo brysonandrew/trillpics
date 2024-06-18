@@ -1,15 +1,15 @@
-import {
-  FC,
-  Fragment,
-  useMemo,
-} from "react";
+import { FC, Fragment } from "react";
+import { CHARTS_GRID_STEP_ACTIVE_STYLE } from "~/components/charts/grid/step";
 import { STEPS_COUNT } from "~/constants/music/timing";
 import {
   TTimerKey,
   useAnimatedText,
 } from "~/pages/video/music/record/timer/current/animated-text";
 import { useMusicInitContext } from "~/pages/video/music/_context/init";
-import { useGridCellHandler } from "~/pages/video/music/_context/init/hooks/grid-cell-color";
+import {
+  defaultGridCellHandler,
+  useGridCellHandler,
+} from "~/pages/video/music/_context/init/hooks/grid-cell-color";
 import { TProgressKey } from "~/pages/video/music/_context/init/types";
 
 type TProps = {
@@ -28,13 +28,6 @@ export const VideoMusicPlaybackTimerCurrentRow: FC<
 }) => {
   const { progress, audio } =
     useMusicInitContext();
-  const classes = useMemo(() => {
-    return [
-      "dark:bg-yellow bg-yellow1",
-      "dark:bg-pink bg-teal shadow",
-      "dark:bg-blue bg-pink1 shadow",
-    ];
-  }, []);
 
   const handleGridCell =
     useGridCellHandler();
@@ -65,24 +58,39 @@ export const VideoMusicPlaybackTimerCurrentRow: FC<
         ] = -1;
         return;
       }
-      handleGridCell((cell, index) => {
-        if (
-          cell &&
-          index === progressStep &&
-          cell.dataset.progress ===
-            progressKey
-        ) {
-          const color =
-            classes[index % 3];
-          cell.className = `${color} ring-white`;
+      handleGridCell(
+        (cell, index, arr) => {
+          if (
+            cell &&
+            index === progressStep &&
+            cell.dataset.progress ===
+              progressKey
+          ) {
+            const prevIndex = index - 1;
+            const prev = arr[prevIndex];
+            if (prev) {
+              defaultGridCellHandler(
+                prev,
+                prevIndex,
+                arr
+              );
+            }
+
+            cell.style.opacity =
+              CHARTS_GRID_STEP_ACTIVE_STYLE.opacity;
+            cell.style.transition =
+              CHARTS_GRID_STEP_ACTIVE_STYLE.transitionDuration;
+          }
         }
-      });
+      );
 
       audio.progressStep[progressKey] =
         progressStep;
     }
 
     progress[progressKey].set(0);
+    audio.progressStep[progressKey] =
+      -1;
   };
   const text = useAnimatedText(
     handleUpdate

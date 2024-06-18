@@ -3,9 +3,10 @@ import { TScaleKey } from "~/constants/scales";
 import { TBeatsStepsKey } from "~/hooks/music/beats/types";
 import { TMidiValues } from "~/hooks/music/midis/types";
 import { TMusicKey } from "~/store/state/music/types";
-
-export type TGridCell =
+export type TBaseGridCell =
   null | HTMLDivElement;
+export type TGridCell = TBaseGridCell;
+
 export type TGridCells = TGridCell[];
 export type TGridRows = TGridCells[];
 export type TGridCellsRecord = Record<
@@ -30,15 +31,20 @@ export type TProgressMotionRecord =
     TProgressKey,
     MotionValue<number>
   >;
+export type TBufferSourceRecord =
+  Record<
+    TBeatsStepsKey,
+    {
+      timeout: ReturnType<
+        typeof window.setTimeout
+      >;
+      source: AudioBufferSourceNode;
+    }[]
+  >;
 export type TMusicInitContext = {
   stepsScaleRecord: TPartialStepsScaleRecord;
   gridCellsRecord: TGridCellsRecord;
-  bufferSourceRecord: Partial<
-    Record<
-      TBeatsStepsKey,
-      null | AudioBufferSourceNode
-    >
-  >;
+  bufferSourceRecord: TBufferSourceRecord;
   bufferRecord: Partial<
     Record<
       TBeatsStepsKey,
@@ -47,6 +53,7 @@ export type TMusicInitContext = {
   >;
   context: AudioContext;
   master: GainNode;
+  drumsMaster:GainNode
   progress: TProgressMotionRecord;
   destination: MediaStreamAudioDestinationNode;
   recorder: MediaRecorder;

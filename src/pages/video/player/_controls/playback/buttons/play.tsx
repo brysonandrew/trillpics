@@ -1,5 +1,4 @@
 import { type FC } from "react";
-import { IconsPause } from "~/components/icons/playback/pause";
 import { IconsPlay } from "~/components/icons/playback/play";
 import { resolveAccessibilityTitles } from "@brysonandrew/utils-attributes";
 import {

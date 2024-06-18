@@ -31,7 +31,7 @@ export const MeshBackgroundText: FC<
         <BackgroundMesh
           style={{
             opacity: 0.2,
-            inset: s.m0125 / 4,
+            // inset: s.m0125 / 4,
             borderRadius,
           }}
         />

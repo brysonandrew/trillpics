@@ -1,11 +1,16 @@
 import { SCALE_VALUE_COUNT } from "~/constants/scales";
+import { TMidiValue } from "~/hooks/music/midis/types";
+import { midiValueToNumber } from "~/utils/music/midi";
 
 export const resolveTop = (
-  index: number
+  value: TMidiValue,
+  size: number
 ) => {
-  return `${
-    (1 - index / SCALE_VALUE_COUNT) *
-      80 +
-    10
-  }%`;
+  return `calc(${
+    (1 -
+      (midiValueToNumber(value) + 0.5) /
+        SCALE_VALUE_COUNT) *
+      90 +
+    5
+  }% - ${size}px)`;
 };
