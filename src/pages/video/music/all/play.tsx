@@ -27,11 +27,6 @@ export const MusicPlay: FC<
   return (
     <PillB
       title={`play ${"music"}`}
-      positionClass='absolute'
-      style={{
-        left: -s.m15-s.m025,
-        top: s.m3
-      }}
       Icon={
         musicPlay.isPlaying
           ? IconsStop

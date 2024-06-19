@@ -1,4 +1,4 @@
-import type { TOConfig } from "./types";
+import type { TOConfig } from "../types";
 
 export const createBasicO = ({
   context,

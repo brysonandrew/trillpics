@@ -39,9 +39,11 @@ export const VideoMusicPlaybackTimerCurrentRow: FC<
     progress[progressKey].set(
       progressValue
     );
-    const progressStep = Math.floor(
-      progressValue * stepsCount
-    );
+
+    const progressStep =
+      Math.floor(
+        progressValue * stepsCount
+      ) % stepsCount;
     if (
       audio.progressStep[
         progressKey
@@ -88,9 +90,9 @@ export const VideoMusicPlaybackTimerCurrentRow: FC<
         progressStep;
     }
 
-    progress[progressKey].set(0);
-    audio.progressStep[progressKey] =
-      -1;
+    // progress[progressKey].set(0);
+    // audio.progressStep[progressKey] =
+    //   -1;
   };
   const text = useAnimatedText(
     handleUpdate

@@ -6,8 +6,11 @@ export type TMutableMidis = (
   | null
 )[];
 
-export type TBaseMidiValue = number | null;
-export type TMidiSubsteps = TBaseMidiValue[];
+export type TBaseMidiValue =
+  | number
+  | null;
+export type TMidiSubsteps =
+  TBaseMidiValue[];
 
 export type TMidiValue =
   | TBaseMidiValue
@@ -21,7 +24,8 @@ export type TPlayMidisOptions =
     volume?: number;
     duration?: number;
     type?: OscillatorType;
-    stepIndex?:number
+    stepIndex?: number;
+    loopIndex?: number;
   };
 
 export type TMidisStepsKeys =

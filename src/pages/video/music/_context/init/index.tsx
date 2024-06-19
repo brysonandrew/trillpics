@@ -46,10 +46,10 @@ export const MusicInitProvider: FC<
     const context = new AudioContext();
 
     const drumsMaster = context.createGain();
-    drumsMaster.gain.value = 10;
+    drumsMaster.gain.value = 2;
     const master = context.createGain();
     
-    master.gain.value = 4;
+    master.gain.value =0.5;
     master.connect(context.destination);
     const destination =
       new MediaStreamAudioDestinationNode(

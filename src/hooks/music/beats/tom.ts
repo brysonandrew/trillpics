@@ -7,9 +7,6 @@ import {
   TPlayBeatsOptions,
 } from "~/hooks/music/beats/types";
 import { useMusicInitContext } from "~/pages/video/music/_context/init";
-import { resolveAudioSampleSrc } from "~/utils/src";
-import { isDefined } from "~/utils/validation/is/defined";
-import { useBufferFromSrcHandler } from "./hooks/buffer-from-source";
 const key: TBeatsStepsKey = "tom";
 
 export const useTom = () => {
@@ -29,6 +26,7 @@ export const useTom = () => {
       version = 2,
       volume = 1,
       stepIndex = 0,
+      rate = 1,
     } = options;
 
     const filter = new BiquadFilterNode(
@@ -45,11 +43,13 @@ export const useTom = () => {
     start({
       stepIndex,
       startTime,
+      rate,
       output: filter,
+      volume,
     });
     filter.connect(gain);
     gain.connect(master);
   };
 
-  return { play, stop };
+  return { play, stop, isReady };
 };

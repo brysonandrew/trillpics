@@ -20,7 +20,9 @@ export type TBeatsPresetRecord = Record<
 export type TPlayBeatsOptions = {
   volume?: number;
   version?: number;
-  stepIndex?: number
+  stepIndex?: number;
+  loopIndex?:number
+  rate?: number;
 };
 
 export type TBeatsStepsKeys =

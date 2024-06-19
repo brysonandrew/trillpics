@@ -35,8 +35,9 @@ export const MusicLayoutDrums: FC =
             stepsCount={STEPS_COUNT}
             seconds={audioSeconds}
             progressKey="beats"
-            isCooldown={beats.isCooldown}
-
+            isCooldown={
+              beats.isCooldown
+            }
           />
         }
         rightContent={

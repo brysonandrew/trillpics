@@ -21,6 +21,9 @@ export const PERSIST_STATE_RECORD = {
   picsCount: "picsCount",
   pics: "pics",
   synth: "synth",
+  sequence: "sequence",
+  scale: "scale",
+  isLoop: "isLoop",
   beatsPresetKey: "beatsPresetKey",
   bpm: "bpm",
 } as const satisfies Partial<

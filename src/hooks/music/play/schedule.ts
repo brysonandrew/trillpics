@@ -18,10 +18,7 @@ import { useGridCellHandler } from "~/pages/video/music/_context/init/hooks/grid
 import { useAudioSeconds } from "~/hooks/music/time/audio-seconds";
 import { resolvePlayVolume } from "~/hooks/music/play/volume";
 import { useTimer } from "~/hooks/use-timer";
-import {
-  TBaseMidiValue,
-  TMidiValue,
-} from "~/hooks/music/midis/types";
+import { TMidiValue } from "~/hooks/music/midis/types";
 import { TBeatValue } from "~/hooks/music/beats/types";
 import { isNull } from "~/utils/validation/is/null";
 
@@ -44,27 +41,38 @@ export const usePlaySchedule = <
     record,
     options,
   } = config;
-  const { timeoutRef, endTimeout } =
-    useTimeoutRef();
+  // const { timeoutRef, endTimeout } =
+  //   useTimeoutRef();
   const {
     context,
     audio,
     recorder,
     progress,
   } = useMusicInitContext();
-  const { bpm, playingKeys, set } =
-    useTrillPicsStore(
-      ({ bpm, playingKeys, set }) => ({
-        bpm,
-        playingKeys,
-        set,
-      })
-    );
+  const {
+    bpm,
+    playingKeys,
+    isLoop,
+    set,
+  } = useTrillPicsStore(
+    ({
+      bpm,
+      playingKeys,
+      isLoop,
+      set,
+    }) => ({
+      bpm,
+      playingKeys,
+      isLoop,
+      set,
+    })
+  );
 
   const handleGridCell =
     useGridCellHandler();
+
   const reset = () => {
-    endTimeout();
+    // endTimeout();
     handleGridCell();
     progress[key].set(0);
   };
@@ -77,23 +85,24 @@ export const usePlaySchedule = <
     usePicVideoReadSeconds();
   const isPlaying =
     playingKeys.includes(key);
+
   const handleStop = () => {
+    console.log("STOP");
     keys.forEach((k) => {
-      lookup[k].stop();
+      // lookup[k].stop();
     });
-    set((prev: TState) => ({
-      playingKeys:
-        prev.playingKeys.filter(
-          (v: TPlayingKey) => v !== key
-        ),
-    }));
+    // set((prev: TState) => ({
+    //   playingKeys:
+    //     prev.playingKeys.filter(
+    //       (v: TPlayingKey) => v !== key
+    //     ),
+    // }));
     if (
       recorder.state === "recording"
     ) {
       recorder.stop();
     }
-
-    startCooldown();
+    // startCooldown();
   };
 
   const playStep = (
@@ -101,22 +110,144 @@ export const usePlaySchedule = <
     stepIndex: number,
     startTime: number,
     duration: number,
-    lookupKey: T
+    lookupKey: T,
+    loopIndex = 0
   ) => {
     lookup[lookupKey].play(
-     startTime,
+      startTime,
       stepValue,
       {
         volume:
           resolvePlayVolume(stepIndex),
         duration,
-        ...options,
         stepIndex,
+        loopIndex,
+        ...options,
       }
     );
   };
 
+  const playLoop = (
+    loopIndex: number
+  ) => {
+    if (
+      isLoop &&
+      recorder.state !== "recording"
+    ) {
+      reset();
+      // timeoutRef.current =
+      setTimeout(() => {
+        const nextLoopIndex =
+          loopIndex + 1;
+
+        console.log("s", nextLoopIndex);
+        playLoop(nextLoopIndex);
+        return;
+      }, audioSeconds * 1000);
+    }
+
+    keys.forEach((sourceKey) => {
+      const steps = record[sourceKey];
+      if (!lookup[sourceKey]) return;
+
+      steps.forEach(
+        (
+          step: TMidiValue | TBeatValue,
+          stepIndex,
+          { length: stepCount }
+        ) => {
+          const sps =
+            resolveStepsPerSecond(
+              bpm,
+              stepCount
+            );
+          const currElapsed =
+            stepIndex * sps;
+
+          const loopElapsed = 0;
+          // loopIndex * sps * stepCount;
+
+          const delay = 0;
+          // sourceKey === "synth"
+          //   ? 0
+          //   : (sps * stepCount);
+          const totalElapsed =
+            loopElapsed +
+            currElapsed +
+            delay;
+
+          const startTimeBase =
+            context.currentTime +
+            totalElapsed;
+
+          if (isNumber(step)) {
+            playStep(
+              step,
+              stepIndex,
+              startTimeBase,
+              sps,
+              sourceKey,
+              loopIndex
+            );
+            return;
+          }
+
+          if (Array.isArray(step)) {
+            const subSteps = step;
+            subSteps.forEach(
+              (
+                subStep,
+                subStepIndex,
+                { length: subStepCount }
+              ) => {
+                if (isNull(subStep))
+                  return;
+                const spss =
+                  sps / subStepCount;
+                playStep(
+                  subStep,
+                  stepIndex,
+                  startTimeBase +
+                    subStepIndex * spss,
+                  spss,
+                  sourceKey,
+                  loopIndex
+                );
+              }
+            );
+            return;
+          }
+        }
+      );
+    });
+  };
+
   const play = async () => {
+    const isRecording =
+      recorder.state === "recording";
+
+    if (isRecording) {
+      // endTimeout();
+      // timeoutRef.current = setTimeout(
+      //   () => {
+      //     handleStop();
+      //   },
+      //   videoSeconds * 1000
+      // );
+      const loops = [
+        ...Array(audio.loopCount + 1),
+      ];
+      loops.forEach((_, loopIndex) => {
+        playLoop(loopIndex);
+      });
+      console.log("RECORDING LOOP");
+      return;
+    }
+
+    playLoop(0);
+  };
+
+  const handlePlay = async () => {
     if (isCooldown) {
       reset();
       return;
@@ -132,104 +263,13 @@ export const usePlaySchedule = <
         key,
       ],
     }));
-    let elapsed = 0;
-    const seconds =
-      recorder.state === "recording"
-        ? videoSeconds
-        : audioSeconds;
-
-    timeoutRef.current = setTimeout(
-      () => {
-        handleStop();
-      },
-      seconds * 1000
-    );
-
-    const loops = [
-      ...Array(
-        recorder.state === "recording"
-          ? audio.loopCount + 1
-          : 1
-      ),
-    ];
-    loops.forEach((_, loopIndex) => {
-      keys.forEach((sourceKey) => {
-        const steps = record[sourceKey];
-console.log(steps)
-        if (!lookup[sourceKey]) return;
-        steps.forEach(
-          (
-            step:
-              | TMidiValue
-              | TBeatValue,
-            stepIndex,
-            { length: stepCount }
-          ) => {
-            const sps =
-              resolveStepsPerSecond(
-                bpm,
-                stepCount
-              );
-            const currElapsed =
-              stepIndex * sps;
-
-            const loopElapsed =
-              loopIndex *
-              sps *
-              stepCount;
-
-            elapsed =
-              loopElapsed + currElapsed;
-          
-          
-
-            if (isNumber(step)) {
-              playStep(
-                step,
-                stepIndex,
-                elapsed +  context.currentTime,
-                sps,
-                sourceKey
-              );
-              return;
-            }
-
-            if (Array.isArray(step)) {
-              const subSteps = step;
-              subSteps.forEach(
-                (
-                  subStep,
-                  subStepIndex,
-                  {
-                    length:
-                      subStepCount,
-                  }
-                ) => {
-                  if (isNull(subStep))
-                    return;
-                  const spss =
-                    sps / subStepCount;
-                  playStep(
-                    subStep,
-                    stepIndex,
-                    subStepIndex * spss +  context.currentTime + currElapsed,
-                    spss,
-                    sourceKey
-                  );
-                }
-              );
-              return;
-            }
-          }
-        );
-      });
-    });
+    play();
   };
 
   return {
-    play,
+    play: handlePlay,
     stop: handleStop,
-    isPlaying: isPlaying,
+    isPlaying,
     isCooldown,
   };
 };

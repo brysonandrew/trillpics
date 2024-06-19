@@ -25,6 +25,8 @@ export const useSnare = () => {
       version = 2,
       volume = 1,
       stepIndex = 0,
+      rate = 1,
+
     } = options;
 
     const filter = new BiquadFilterNode(
@@ -40,7 +42,10 @@ export const useSnare = () => {
     start({
       stepIndex,
       startTime,
+rate,
+
       output: filter,
+volume
     });
     filter.connect(gain);
     gain.connect(master);

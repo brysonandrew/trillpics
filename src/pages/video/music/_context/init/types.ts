@@ -53,7 +53,7 @@ export type TMusicInitContext = {
   >;
   context: AudioContext;
   master: GainNode;
-  drumsMaster:GainNode
+  drumsMaster: GainNode;
   progress: TProgressMotionRecord;
   destination: MediaStreamAudioDestinationNode;
   recorder: MediaRecorder;

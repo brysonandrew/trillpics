@@ -1,6 +1,7 @@
 import type { FC } from "react";
 import {
   TButtonProps,
+  TClassValueProps,
   TPropsWithChildren,
 } from "@brysonandrew/config-types";
 import { IconsPlay } from "~/components/icons/playback/play";
@@ -10,11 +11,11 @@ import { boxSize } from "~uno/rules/box/size";
 import { BackgroundMeshRadialFlat } from "~/components/layout/background/mesh-radial-flat";
 
 type TProps = TPropsWithChildren<
-  Partial<TButtonProps>
+  Partial<TButtonProps> & {Icon:FC<TClassValueProps>}
 >;
 export const MusicLayoutTitle: FC<
   TProps
-> = ({ children, style, ...props }) => {
+> = ({ children, style,Icon, ...props }) => {
   const s = boxSize();
 
   return (
@@ -38,7 +39,7 @@ export const MusicLayoutTitle: FC<
             gap: s.m0125,
           }}
         >
-          <IconsPlay classValue="-top-0.25 -left-0.25" />
+          <Icon classValue="-top-0.25 -left-0.25" />
           <span className="text-xxs">
             {children}
           </span>

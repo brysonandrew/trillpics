@@ -56,7 +56,7 @@ export const PillB: FC<TPillBProps> = (
         "shrink-0",
         "cursor-pointer",
         "disabled:(grayscale-100 brightness-60 opacity-80 cursor-not-allowed)",
-        "hover:grayscale-100",
+        "hover:brightness-120",
         classValue,
         direction === "ltr"
           ? "row"

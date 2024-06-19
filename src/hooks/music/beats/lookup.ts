@@ -7,8 +7,9 @@ import {
   TBeatValue,
   TPlayBeatsOptions,
 } from "~/hooks/music/beats/types";
-
+import { useSecondsPerStep } from "~/hooks/music/time/seconds-per-step";
 export type TUseBeatsLookupValue = {
+  isReady: boolean;
   play: (
     startTime: number,
     beat: TBeatValue,
@@ -20,6 +21,7 @@ type TUseBeatsBaseLookup = Record<
   TBeatsStepsKey,
   TUseBeatsLookupValue
 >;
+
 export const useBeatsLookup = () => {
   const hihat = useHihat();
   const snare = useSnare();
@@ -32,6 +34,8 @@ export const useBeatsLookup = () => {
     kick,
     tom,
   } as const satisfies TUseBeatsBaseLookup;
+
+
   return lookup;
 };
 export type TUseBeatsLookup =

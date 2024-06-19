@@ -83,6 +83,7 @@ export type TPlayingKey =
   | TBeatsPresetsKey
   | number;
 export type TMusicState = {
+  isLoop: boolean;
   bpm: number;
   drums: TDrumsOptions;
   synth: TSynthConfig;

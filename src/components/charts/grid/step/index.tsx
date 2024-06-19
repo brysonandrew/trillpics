@@ -14,6 +14,7 @@ import { resolveStepRef } from "~/components/charts/grid/step/ref";
 import { ChartsGridStepDot } from "~/components/charts/grid/step/dot";
 import { useSecondsPerStep } from "~/hooks/music/time/seconds-per-step";
 import clsx from "clsx";
+import { NOOP } from "@brysonandrew/utils-function";
 export const CHARTS_GRID_STEP_EMPTY_STYLE =
   {
     transitionDuration: "1s",
@@ -39,10 +40,8 @@ export const ChartsGridStep: FC<
   TChartsGridStepProps
 > = (_props) => {
   const {
-    stepCount,
     columnIndex,
     rowIndex,
-    style,
     value,
     stepsKey,
   } = _props;
@@ -56,13 +55,15 @@ export const ChartsGridStep: FC<
   }, []);
   const colorClass =
     classes[columnIndex % 3];
-  const sps =
-    useSecondsPerStep(stepCount);
   const isSynth = stepsKey === "synth";
 
-  const { synth } = useTrillPicsStore(
-    ({ synth }) => ({ synth })
-  );
+  const { synth, playingKeys } =
+    useTrillPicsStore(
+      ({ synth, playingKeys }) => ({
+        synth,
+        playingKeys,
+      })
+    );
   const displayMidiValue =
     (synth.midi ?? 0) +
     midiValueToNumber(value);
@@ -95,11 +96,17 @@ export const ChartsGridStep: FC<
     ? false
     : isHover(hoverKey);
 
+  const isDisabled =
+    playingKeys.includes(progressKey);
+
   return (
     <div className="relative flex flex-col items-center grow">
       <button
         className="fill bg-black"
-        onClick={handlePlay}
+        onClick={
+          isDisabled ? NOOP : handlePlay
+        }
+        disabled={isDisabled}
         style={{
           opacity:
             resolvePlayVolume(
@@ -107,7 +114,7 @@ export const ChartsGridStep: FC<
             ) / 8,
         }}
         {...(isNull(hoverKey) ||
-        !isSynth
+        isDisabled
           ? {}
           : handlers(hoverKey))}
       />

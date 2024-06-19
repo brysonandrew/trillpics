@@ -44,7 +44,6 @@ export const resolveMidiSteps = (
 
         // return a;
       }
-      console.log(delayCount)
       if (
         beat === null ||
         delayCount > 0

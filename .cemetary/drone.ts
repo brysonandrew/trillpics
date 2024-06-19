@@ -1,7 +1,6 @@
+import { lookup } from "dns";
 import type { TMultiOptions } from "react-synthwave";
 import { useSynthMulti } from "react-synthwave";
-import { TPlayMidisOptions } from "~/hooks/music/midis/types";
-import { useMusicInitContext } from "~/pages/video/music/_context/init";
 
 export const useDrone = () => {
   const { context, master } = useMusicInitContext();
@@ -46,3 +45,15 @@ export const useDrone = () => {
 
   return { play: handler, stop };
 };
+
+type TEntry = [TBeatsStepsKey,TUseBeatsLookupValue]
+(Object.entries(lookup) as TEntry[]).forEach(
+  ([key, value]:TEntry,index,{length:count}) => {
+    const delay = (sps*count)/2;
+    value.
+    lookup ={
+      ...lookup,
+      [key]:value
+    }
+  }
+);

@@ -16,6 +16,7 @@ const steps = resolveMidiSteps({
 export const musicState: TStateHandler<
   TMusicState
 > = () => ({
+  isLoop:false,
   drums: {
     gain: 1,
   },

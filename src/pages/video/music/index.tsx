@@ -15,9 +15,10 @@ import { PicBackdrop } from "~/pics/grid/pic/backdrop";
 import { VideoMusicSynthMulti } from "~/pages/video/music/synth/multi";
 import { VideoMusicSynthSingle } from "~/pages/video/music/synth/single";
 import { useAddRandomEffect } from "~/hooks/pic/add-random/effect";
-import { MusicPlay } from "~/pages/video/music/play";
+import { MusicPlay } from "~/pages/video/music/all/play";
 import { LinesHorizontal } from "~/components/lines/horizontal";
 import { DrumsGain } from "~/pages/video/music/drums/gain";
+import { MusicAll } from "~/pages/video/music/all";
 
 export const VideoMusic = () => {
   const {
@@ -105,7 +106,7 @@ export const VideoMusic = () => {
                     }}
                   />
                 </aside>
-                <MusicPlay />
+                <MusicAll />
                 <BackgroundGlass
                   boxStyle={{
                     left: sidebarWidthOffset,

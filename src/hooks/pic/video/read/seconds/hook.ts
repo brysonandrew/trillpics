@@ -1,4 +1,5 @@
 import { useSearchParams } from "react-router-dom";
+import { useAudioSeconds } from "~/hooks/music/time/audio-seconds";
 import {
   SECONDS_PARAM_KEY,
   SELECTED_PARAM_KEY,
@@ -9,6 +10,8 @@ import { useTrillPicsStore } from "~/store/middleware";
 
 export const usePicVideoReadSeconds =
   () => {
+    const audioSeconds =
+      useAudioSeconds();
     const { bpm } = useTrillPicsStore(
       ({ bpm }) => ({ bpm })
     );
@@ -19,6 +22,7 @@ export const usePicVideoReadSeconds =
         SECONDS_PARAM_KEY
       )
     );
+
     const paramValues =
       searchParams.getAll(
         SELECTED_PARAM_KEY
@@ -32,5 +36,6 @@ export const usePicVideoReadSeconds =
         count,
         bpm
       );
-    return result;
+    return audioSeconds;
+    //result;
   };
