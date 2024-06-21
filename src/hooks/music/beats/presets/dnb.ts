@@ -5,7 +5,6 @@ import {
 const kick = resolveBeatsFromIndicies([
   0, 10,
 ]);
-console.log(kick);
 const snare = resolveBeatsFromIndicies([
   4, 12,
 ]);

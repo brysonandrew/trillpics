@@ -2,7 +2,7 @@ import type { FC } from "react";
 import { motion } from "framer-motion";
 import { IconsSvgGradient18vb240 } from "~/components/icons/svg/gradient/160";
 import { TIconsSvgProps } from "@brysonandrew/svg-icon";
-import { IconsSvgGradient18vb24 } from "~/components/icons/svg/gradient/16vb24";
+import { IconsSvgGradient18vb24 } from "~/components/icons/svg/gradient/18vb24";
 import { IconsSvgGradient24 } from "~/components/icons/svg/gradient/24";
 
 export const IconsLoader: FC<

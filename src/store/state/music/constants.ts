@@ -67,6 +67,9 @@ export const DEFAULT_SCALE_SLIDER_OPTIONS =
 export const DEFAULT_MIDIS_SLIDER_OPTIONS =
   {
     gain: 1,
+    frequency: 22,
+    detune: 0,
+    delayTime: 0.99
   };
 
   export const DEFAULT_BEATS_SLIDER_OPTIONS =

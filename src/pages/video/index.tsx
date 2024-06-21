@@ -9,7 +9,7 @@ export const Video = () => {
       <Helmet>
         <title>
           Trill Pics |{" "}
-          {PAGE_TITLES["Video Pics"]}
+          {PAGE_TITLES["Sequence"]}
         </title>
       </Helmet>
       <GridOptions />

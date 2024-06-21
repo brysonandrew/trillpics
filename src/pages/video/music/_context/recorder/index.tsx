@@ -5,6 +5,8 @@ import {
 import type { FC } from "react";
 import { useMusicRecorder } from "~/pages/video/music/_context/hooks/recorder";
 import { TChildren } from "@brysonandrew/config-types";
+import { TimerCurrentProgress } from "~/pages/video/player/_controls/playback/progress";
+import { useMusicInitContext } from "~/pages/video/music/_context/init";
 
 type TContext = ReturnType<
   typeof useMusicRecorder
@@ -27,10 +29,8 @@ export const MusicRecorderProvider: FC<
   const recorder = useMusicRecorder();
 
   return (
-    <Context.Provider
-      value={recorder}
-    >
-      {children}
+    <Context.Provider value={recorder}>
+      <>{children}</>
     </Context.Provider>
   );
 };

@@ -1,4 +1,4 @@
-import { createContext, FC, useContext } from "react";
+import { createContext, FC, MutableRefObject, useContext } from "react";
 import { TMusicInitContext } from "~/pages/video/music/_context/init/types";
 import { useMusicInitProviderRefs } from "~/pages/video/music/_context/init/refs";
 
@@ -12,12 +12,13 @@ export const useMusicInitContext =
       Context
     );
 type TProviderProps = {
+  scrollRef: MutableRefObject<HTMLDivElement|null>
   children: JSX.Element;
 };
 
 export const MusicInitProvider: FC<
   TProviderProps
-> = ({ children }) => {
+> = ({ children,scrollRef }) => {
   const {
     context,
     master,
@@ -30,6 +31,7 @@ export const MusicInitProvider: FC<
     gridCellsRecord,
     stepsScaleRecord,
     progress,
+    
     ...audio
   } = useMusicInitProviderRefs();
   return (
@@ -47,6 +49,7 @@ export const MusicInitProvider: FC<
         gridCellsRecord,
         stepsScaleRecord,
         beatsMaster,
+        scrollRef
       }}
     >
       {children}

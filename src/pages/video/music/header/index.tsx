@@ -15,7 +15,7 @@ type TProps = Partial<TPillBProps> & {
   Icon: FC<TIconsSvgProps>;
 };
 export const MusicLayoutHeader: FC<
-  TPropsWithChildren<TProps>
+  TProps
 > = ({
   children,
   rightContent,
@@ -40,6 +40,8 @@ export const MusicLayoutHeader: FC<
         style={{
           gap: s.m0125,
           padding: s.m025,
+          paddingRight:0,
+          width: s.m6,
           ...style,
         }}
         {...props}
@@ -62,6 +64,7 @@ export const MusicLayoutHeader: FC<
             {children}
           </PillBText>
         </div>
+        <LinesHorizontalLight/>
       </PillB>
       <div className="row-space grow">
         {leftContent}

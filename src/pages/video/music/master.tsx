@@ -20,7 +20,7 @@ export const Master: FC = () => {
       const next = Number(value);
       master.gain.value = next;
       set((draft: TState) => {
-        draft.midis.gain = next;
+        draft.master = next;
       });
     };
 

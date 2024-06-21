@@ -2,7 +2,7 @@ import { FC } from "react";
 import { PlaybackTimer } from "~/components/playback/timer";
 import { resolveCompositeKey } from "@brysonandrew/utils-key";
 import { TimerDisplayInit } from "~/components/playback/timer/display/init";
-import { VideoMusicPlaybackTimerCurrent } from "~/pages/video/music/record/timer/current";
+import { VideoMusicPlaybackTimerCurrent } from "~/pages/video/music/save/timer/current";
 import { useMusicRecorderContext } from "~/pages/video/music/_context/recorder";
 import { TimerDisplay } from "~/components/playback/timer/display";
 import { useMusicPlay } from "~/hooks/music/play";

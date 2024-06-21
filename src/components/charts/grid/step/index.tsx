@@ -193,24 +193,44 @@ export const ChartsGridStep = <
             />
 
             {isSynth && (
-              <div className="w-full bg-black-2">
-                <LinesHorizontal
-                  // positionClass="absolute"
-                  colorClass=""
-                  style={{
-                    width: `${
-                      sequence.duration *
-                      100
-                    }%`,
-                    //
-                    // s.m,
-                    opacity:
-                      value === null
-                        ? 0.25
-                        : 1,
-                    ...topStyle,
-                  }}
-                />
+              <div className="w-full bg-black-2 gap-1">
+                {[
+                  ...Array(
+                    Math.ceil(
+                      sequence.duration
+                    )
+                  ),
+                ].map(
+                  (
+                    _,
+                    index,
+                    { length: count }
+                  ) => (
+                    <LinesHorizontal
+                      key={`line-${index}`}
+                      colorClass=""
+                      style={{
+                        width: `${
+                          (index ===
+                          count - 1
+                            ? sequence.duration %
+                              1
+                            : Math.min(
+                                1,
+                                sequence.duration
+                              )) * 100
+                        }%`,
+                        //
+                        // s.m,
+                        opacity:
+                          value === null
+                            ? 0.25
+                            : 1,
+                        ...topStyle,
+                      }}
+                    />
+                  )
+                )}
               </div>
             )}
           </div>

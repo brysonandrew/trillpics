@@ -2,6 +2,8 @@ import {
   SCALE_RECORD,
   TScaleKey,
 } from "~/constants/scales";
+import { MIDI_RECORD } from "~/hooks/music/midis/constants";
+import { TMidisStepsKey } from "~/hooks/music/midis/types";
 import {
   MUSIC_OPTIONS_RECORD,
   SYNTH_TYPES_RECORD,
@@ -25,6 +27,7 @@ import {
 import {
   TBeatsOptions,
   TMidisOptions,
+  TMidisSliderOptionsKey,
   TMusicOptionsKey,
   TScaleOptions,
   TScaleSliderOptions,
@@ -33,6 +36,7 @@ import {
   TSequenceSliderOptionsKey,
   TSynthConfig,
 } from "~/store/state/music/types";
+import { isDefined } from "~/utils/validation/is/defined";
 
 export const isSynthType = (
   key: string
@@ -109,9 +113,9 @@ export const isScaleSliderConfigType = (
     return true;
   return false;
 };
-export const isMidisSliderConfigType = (
+export const  isMidisSliderConfigType = (
   key: string
-): key is keyof TMidisOptions => {
+): key is TMidisSliderOptionsKey => {
   if (
     key in DEFAULT_MIDIS_SLIDER_OPTIONS
   )
@@ -132,6 +136,16 @@ export const isMusicSliderConfigType = (
 ): key is TMusicOptionsKey => {
   if (
     key in DEFAULT_MUSIC_SLIDER_OPTIONS
+  )
+    return true;
+  return false;
+};
+export const isMidisKey = (
+  stepsKey?: string
+): stepsKey is TMidisStepsKey => {
+  if (
+    isDefined(stepsKey) &&
+    stepsKey in MIDI_RECORD
   )
     return true;
   return false;

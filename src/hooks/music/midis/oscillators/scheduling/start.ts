@@ -1,54 +1,37 @@
-import { useMemo } from "react";
 import { useTimeoutRef } from "@brysonandrew/hooks-window";
-import { key } from "localforage";
-import { TBeatsKey } from "~/hooks/music/beats/types";
 import { useMusicInitContext } from "~/pages/video/music/_context/init";
 import { useTrillPicsStore } from "~/store/middleware";
 type THandlerConfig = {
   stepIndex: number;
   startTime: number;
-  output: AudioNode;
+  // output: AudioNode;
+  // oscillator: OscillatorNode,
+  frequency: number;
+  duration: number;
 };
 export const useBasicOscillatorStart =
   () => {
-    const {timeoutRef,endTimeout} = useTimeoutRef()
-    const {
-      set,
-      bpm,
-      synth,
-      sequence,
-    } = useTrillPicsStore(
-      ({
-        set,
-        bpm,
-        synth,
-        sequence,
-      }) => ({
-        set,
-        bpm,
-        synth,
-        sequence,
-      })
+    const { audio } =
+      useMusicInitContext();
+    const { timeoutRef, endTimeout } =
+      useTimeoutRef();
+    const { sequence } =
+      useTrillPicsStore(
+        ({ sequence }) => ({
+          sequence,
+        })
+      );
 
-
-    );
- 
-    // const timeoutsRef = useMemo<{
-    //   current: ReturnType<
-    //     typeof window.setTimeout
-    //   >[];
-    // }>(() => {
-    //   return {
-    //     current: [],
-    //   };
-    // }, []);
     const handler = (
-      oscillator: OscillatorNode,
-      frequency: number,
-      stepIndex: number,
-      _startTime: number,
-      duration: number
+      config: THandlerConfig
     ) => {
+      const {
+        startTime: _startTime,
+        stepIndex,
+        duration,
+        frequency,
+      } = config;
+      console.log(config);
       if (
         stepIndex %
           sequence.interval !==
@@ -60,20 +43,22 @@ export const useBasicOscillatorStart =
 
       const startTime =
         _startTime + intervalDuration;
-        endTimeout()
-        timeoutRef.current = setTimeout(() => {
-        oscillator.frequency.linearRampToValueAtTime(
-          frequency,
-          _startTime
-        );
-        // frequency;
-      }, intervalDuration * 1000);
+      endTimeout();
+      timeoutRef.current = setTimeout(
+        () => {
+          audio.oscillator.node.frequency.linearRampToValueAtTime(
+            frequency,
+            _startTime
+          );
+          // frequency;
+        },
+        intervalDuration * 1000
+      );
       // timeoutsRef.current.push(timeout);
     };
 
     const stop = () => {
-      endTimeout()
-      
-    }
-    return {start:handler,stop};
+      endTimeout();
+    };
+    return { start: handler, stop };
   };

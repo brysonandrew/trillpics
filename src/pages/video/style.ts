@@ -21,6 +21,9 @@ export const useVideoStyle = () => {
         ? s.m
         : -s.m25);
     const gap = s.m05;
+    const y = container.top + s.m15;
+    const beatsTop =
+      y + s.m4 - s.m05 - s.m0125;
 
     const playerStyle = {
       left,
@@ -30,10 +33,11 @@ export const useVideoStyle = () => {
     const sidebarWidth = s.m15 + s.m025;
     return {
       sidebarWidth,
+      beatsTop,
       sidebarWidthOffset:
         sidebarWidth + s.m025,
       playerStyle,
-      y: container.top + s.m15,
+      y,
       screenHeight: width * (9 / 16),
       screen,
       ...playerStyle,

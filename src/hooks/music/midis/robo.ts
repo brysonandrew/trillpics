@@ -177,13 +177,12 @@ export const useArpeggio = () => {
       startTime
     );
 
-    boHandler.start(
-      o.oscillator,
-      hz,
+    boHandler.start({
+      frequency: hz,
       stepIndex,
       startTime,
-      duration
-    );
+      duration,
+    });
 
     o.oscillator.connect(filter);
     filter.connect(gainNode);

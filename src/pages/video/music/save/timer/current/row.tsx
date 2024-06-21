@@ -4,7 +4,7 @@ import { STEPS_COUNT } from "~/constants/music/timing";
 import {
   TTimerKey,
   useAnimatedText,
-} from "~/pages/video/music/record/timer/current/animated-text";
+} from "~/pages/video/music/save/timer/current/animated-text";
 import { useMusicInitContext } from "~/pages/video/music/_context/init";
 import {
   defaultGridCellHandler,

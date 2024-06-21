@@ -1,6 +1,6 @@
 import {
   BEATS_KEYS,
-  DEFAULT_VERSION_LOOKUP,
+  BEATS_VERSION_LOOKUP,
 } from "~/hooks/music/beats/constants";
 import { useBufferFromSrcHandler } from "~/hooks/music/beats/hooks/buffer-from-source";
 import { useMusicInitContext } from "~/pages/video/music/_context/init";
@@ -17,7 +17,7 @@ export const useBeatsLoadHandler = () => {
     for await (const key of BEATS_KEYS) {
       const src = resolveAudioSampleSrc(
         key,
-        DEFAULT_VERSION_LOOKUP[key]
+        BEATS_VERSION_LOOKUP[key]
       );
       const buffer =
         await handleBufferFromSrc(src);

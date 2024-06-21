@@ -1,16 +1,8 @@
 import type { FC } from "react";
-import {
-  TUpdateSliderHandler,
-  UiInputsSliderRow,
-} from "~/components/inputs/slider/row";
-import { useTrillPicsStore } from "~/store/middleware";
+import { UiInputsSliderRow } from "~/components/inputs/slider/row";
 
 export const VideoMusicSynthMulti: FC =
   () => {
-    const { synth } = useTrillPicsStore(
-      ({ synth }) => ({ synth })
-    );
-
     return (
       <>
         <UiInputsSliderRow

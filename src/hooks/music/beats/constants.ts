@@ -5,10 +5,9 @@ export const BEATS_KEYS = [
   "kick",
 ] as const;
 
-
-export const DEFAULT_VERSION_LOOKUP = {
+export const BEATS_VERSION_LOOKUP = {
   "tom":0,
   "hihat":2,
   "snare":2,
   "kick":0,
-}
+} as const

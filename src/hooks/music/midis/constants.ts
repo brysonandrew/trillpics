@@ -1,8 +1,5 @@
-export const MIDIS = [
-  //"bass",
-  // "mid",
-  //  "treble"
-  //  , "pitch",
-  "synth",
-] as const;
+export const MIDIS = ["synth"] as const;
 
+export const MIDI_RECORD = {
+  synth: "synth",
+} as const;

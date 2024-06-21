@@ -2,19 +2,19 @@ import type { FC } from "react";
 import { IconsPlay } from "~/components/icons/playback/play";
 import { IconsStop } from "~/components/icons/playback/stop";
 import { LinesHorizontalLight } from "~/components/lines/horizontal/light";
+import { TimerDisplayHeader } from "~/components/playback/timer/display/header";
 import { STEPS_COUNT } from "~/constants/music/timing";
 import { usePlayBeats } from "~/hooks/music/play/beats";
 import { useAudioSeconds } from "~/hooks/music/time/audio-seconds";
-import { BeatsList } from "~/pages/video/music/beats/list";
 import { DrumsPresets } from "~/pages/video/music/beats/presets";
 import { MusicLayoutHeader } from "~/pages/video/music/header";
-import { VideoMusicHeaderTimer } from "~/pages/video/music/header/timer";
 
 export const MusicLayoutDrums: FC =
   () => {
     const beats = usePlayBeats();
     const audioSeconds =
       useAudioSeconds();
+
     return (
       <MusicLayoutHeader
         Icon={
@@ -30,7 +30,7 @@ export const MusicLayoutDrums: FC =
           }
         }}
         leftContent={
-          <VideoMusicHeaderTimer
+          <TimerDisplayHeader
             isActive={beats.isPlaying}
             stepsCount={STEPS_COUNT}
             seconds={audioSeconds}
@@ -44,7 +44,7 @@ export const MusicLayoutDrums: FC =
           <>
             <LinesHorizontalLight />
             <DrumsPresets />
-            <BeatsList />
+        
           </>
         }
       >

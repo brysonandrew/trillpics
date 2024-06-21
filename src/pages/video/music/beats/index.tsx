@@ -6,8 +6,20 @@ import { ChartsGrid } from "~/components/charts/grid";
 import { useVideoStyle } from "~/pages/video/style";
 import { useTrillPicsStore } from "~/store/middleware";
 import { boxSize } from "~uno/rules/box/size";
-import { BEATS_KEYS } from "~/hooks/music/beats/constants";
+import {
+  BEATS_KEYS,
+  BEATS_VERSION_LOOKUP,
+} from "~/hooks/music/beats/constants";
 import { ChartsGridLinesHorizontal } from "~/components/charts/grid/lines/horizontal";
+import { TypographyXxs } from "~/components/layout/typography/xxs";
+import { useMusicReadyContext } from "~/pages/video/music/_context/ready";
+import { IconsLoader } from "~/components/icons/loader";
+import { IconsPlay } from "~/components/icons/playback/play";
+import { MusicLayoutTitle } from "~/pages/video/music/title";
+import { isBeatsKey } from "~/utils/validation/is/beats/key";
+import { BackgroundMesh } from "~/components/layout/background/mesh";
+import { box } from "~uno/rules/box";
+import { TypographyXxxs } from "~/components/layout/typography/xxxs";
 
 export const VideoMusicDrums: FC =
   () => {
@@ -15,7 +27,9 @@ export const VideoMusicDrums: FC =
       sidebarWidthOffset,
       width,
     } = useVideoStyle();
-    const s = boxSize();
+    const { beats: lookup } =
+      useMusicReadyContext();
+    const s = box;
     const { beatsPresetKey } =
       useTrillPicsStore(
         ({ beatsPresetKey }) => ({
@@ -38,7 +52,7 @@ export const VideoMusicDrums: FC =
           <MusicLayoutDrums />
         </div>
         <ChartsGrid
-        musicKey="beats"
+          musicKey="beats"
           Background={
             ChartsGridLinesHorizontal
           }
@@ -48,7 +62,57 @@ export const VideoMusicDrums: FC =
             ]
           }
           includes={BEATS_KEYS}
-        />
+          style={{
+            left: sidebarWidthOffset,
+            width:
+              width -
+              sidebarWidthOffset,
+          }}
+        >
+          {({ stepsKey }) => {
+            if (isBeatsKey(stepsKey)) {
+              return null;
+            }
+            const isReady =
+              lookup[stepsKey].isReady;
+            const Icon = isReady
+              ? IconsPlay
+              : IconsLoader;
+
+            return (
+              <button
+                key={stepsKey}
+                className="relative row-space gap-1 bg-main brightness-80 _gradient-mesh"
+                onClick={() => {
+                  const fn =
+                    lookup[stepsKey];
+                  if (fn) {
+                    fn.play(0, 1);
+                  }
+                }}
+                style={{
+                  top: s.m03125,
+                  width:
+                    s.m2 -
+                    s.m025-s.m0625,
+                    right:s.m03125,
+                  padding: s.m0625,
+                  paddingRight: s.m025,
+                  paddingLeft: s.m0125,
+                  transform: `translateX(${-s.m025}px)`,
+
+                  // borderRadius:
+                  // box.radius.xl,
+                }}
+              >
+                <Icon size={12} />
+                <TypographyXxxs>
+                  {stepsKey}
+                </TypographyXxxs>
+              </button>
+            );
+          }}
+        </ChartsGrid>
       </>
     );
   };

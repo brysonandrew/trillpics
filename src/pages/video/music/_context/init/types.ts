@@ -1,4 +1,5 @@
 import { MotionValue } from "framer-motion";
+import { MutableRefObject } from "react";
 import { TScaleKey } from "~/constants/scales";
 import { TBeatsStepsKey } from "~/hooks/music/beats/types";
 import { TMidiValues } from "~/hooks/music/midis/types";
@@ -42,6 +43,7 @@ export type TBufferSourceRecord =
     }[]
   >;
 export type TMusicInitContext = {
+  scrollRef: MutableRefObject<HTMLDivElement | null>;
   stepsScaleRecord: TPartialStepsScaleRecord;
   gridCellsRecord: TGridCellsRecord;
   bufferSourceRecord: TBufferSourceRecord;
@@ -60,6 +62,10 @@ export type TMusicInitContext = {
   destination: MediaStreamAudioDestinationNode;
   recorder: MediaRecorder;
   audio: {
+    oscillator: {
+      node: OscillatorNode;
+      isStarted: boolean;
+    };
     loopCount: number;
     loopsRemainder: number;
     progressStep: TProgressStepRecord;

@@ -3,6 +3,7 @@ import { motion } from "framer-motion";
 import clsx from "clsx";
 import {
   TButtonMotionProps,
+  TPropsWithChildren,
   TSvgProps,
 } from "@brysonandrew/config-types";
 import { TCircleProps } from "~/components/layout/circle/circle";
@@ -10,23 +11,27 @@ import { resolveAccessibilityTitles } from "@brysonandrew/utils-attributes";
 import { TFlatProps } from "~/types/ui";
 import { boxSize } from "~uno/rules/box/size";
 import { resolveCompositeKey } from "@brysonandrew/utils-key";
-import { BOX_SHADOW_FLAT } from "~uno/rules/box";
 import { boxRadius } from "~uno/rules/box/radius";
 import { PillBLayout } from "~/components/buttons/pill/b/layout";
 import { TIconsSvgProps } from "@brysonandrew/svg-icon";
 
 export type TPillBProps =
-  TButtonMotionProps &
-    TFlatProps & {
-      Root?: FC<TButtonMotionProps>;
-      Icon: FC<TIconsSvgProps> | null;
-      iconProps?: TSvgProps;
-      circleProps?: TCircleProps;
-      outerCircle?: ReactNode;
-      isSelected?: boolean;
-      direction?: "ltr" | "rtl";
-      positionClass?: string;
-    };
+  TPropsWithChildren<
+    Omit<
+      TButtonMotionProps,
+      "children"
+    > &
+      TFlatProps & {
+        Root?: FC<TButtonMotionProps>;
+        Icon: FC<TIconsSvgProps> | null;
+        iconProps?: TSvgProps;
+        circleProps?: TCircleProps;
+        outerCircle?: ReactNode;
+        isSelected?: boolean;
+        direction?: "ltr" | "rtl";
+        positionClass?: string;
+      }
+  >;
 export const PillB: FC<TPillBProps> = (
   props
 ) => {

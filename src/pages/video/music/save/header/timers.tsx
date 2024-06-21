@@ -6,8 +6,7 @@ import { useMusicRecorderContext } from "~/pages/video/music/_context/recorder";
 import { boxSize } from "~uno/rules/box/size";
 import { MeshBackgroundText } from "~/components/layout/background/mesh/text";
 import { VideoMusicHeaderTimer } from "~/pages/video/music/header/timer";
-import { useTrillPicsStore } from "~/store/middleware";
-import { SecondsCalculation } from "~/pages/video/music/record/header/calc";
+import { SecondsCalculation } from "~/pages/video/music/save/header/calc";
 import { usePicVideoReadSeconds } from "~/hooks/pic/video/read/seconds/hook";
 import { STEPS_COUNT } from "~/constants/music/timing";
 
@@ -40,26 +39,6 @@ export const VideoMusicPlaybackHeaderTimers: FC =
           progressKey="recorder"
         />
         <LinesHorizontalLight />
-        <span className="uppercase font-sans text-xxs">
-          audio
-        </span>
-        <LinesHorizontalLight />
-        <div className="relative">
-          <MeshBackgroundText classValue="row gap-2">
-            <TimerDisplay
-              elapsed={audioSeconds}
-              unit="seconds"
-            />
-          </MeshBackgroundText>
-          <SecondsCalculation />
-        </div>
-
-        <LinesHorizontalLight />
-        <span className="uppercase font-sans text-xxs">
-          video
-        </span>
-
-        <LinesHorizontalLight />
         <TimerDisplay
           elapsed={videoSeconds}
           unit="seconds"
@@ -67,3 +46,23 @@ export const VideoMusicPlaybackHeaderTimers: FC =
       </div>
     );
   };
+  // <LinesHorizontalLight />
+  // <span className="uppercase font-sans text-xxs">
+  //   audio
+  // </span>
+  // <LinesHorizontalLight />
+  // <div className="relative">
+  //   <MeshBackgroundText classValue="row gap-2">
+  //     <TimerDisplay
+  //       elapsed={audioSeconds}
+  //       unit="seconds"
+  //     />
+  //   </MeshBackgroundText>
+  //   <SecondsCalculation />
+  // </div>
+
+
+  // <LinesHorizontalLight />
+  // <span className="uppercase font-sans text-xxs">
+  //   video
+  // </span>

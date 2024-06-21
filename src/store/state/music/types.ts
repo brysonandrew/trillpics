@@ -94,8 +94,16 @@ export type TBeatsOptions = {
 export type TBeatsOptionsKey =
   keyof TBeatsOptions;
 
-export type TMidisOptions = {
-  gain: number;
+  export type TMidisSliderOptions = {
+    gain: number;
+    frequency: number
+    detune: number
+    delayTime:number
+  };
+  export type TMidisSliderOptionsKey =
+  keyof TMidisSliderOptions;
+export type TMidisOptions = TMidisSliderOptions & {
+  type:OscillatorType
 };
 export type TMidisOptionsKey =
   keyof TMidisOptions;

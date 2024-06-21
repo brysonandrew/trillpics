@@ -7,6 +7,7 @@ import { usePicVideoReadInputs } from "~/hooks/pic/video/read/inputs/hook";
 import { LayoutOverlay } from "~/components/layout/overlay";
 import { useBpm } from "~/hooks/music/bpm";
 import { LightingGlow } from "~/components/layout/lighting/glow";
+import { BackgroundMeshRadial } from "~/components/layout/background/mesh-radial";
 const key = "NavCountersPics";
 export const NavCountersPics: FC =
   () => {
@@ -25,7 +26,14 @@ export const NavCountersPics: FC =
         <Counter
           count={count}
           classValue="absolute -top-2 -left-2 cursor-pointer z-10"
-          background={isHovering ? <LightingGlow /> : null}
+          background={
+            <>
+              <BackgroundMeshRadial />
+              {isHovering ? (
+                <LightingGlow />
+              ) : null}
+            </>
+          }
           {...motionHandlers(key)}
         />
         {isHovering && (

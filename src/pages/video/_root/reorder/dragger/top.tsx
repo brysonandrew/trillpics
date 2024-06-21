@@ -18,7 +18,7 @@ export const _RootReorderDraggerTop: FC =
 
     return (
       <_RootReorderDragger
-        title="Drag video pics grid"
+        title="Drag Sequence grid"
         isColumn={isColumn}
         left={left}
         container={container}

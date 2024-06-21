@@ -8,23 +8,38 @@ import {
   TBeatsRecord,
 } from "~/hooks/music/beats/types";
 import { UStepsKey } from "~/store/state/music/types";
-import { ChartsGridLabels } from "~/components/charts/grid/labels";
+import { TDivProps } from "@brysonandrew/config-types";
 
 type TBeatsProps = {
   musicKey: "beats";
   includes: readonly TBeatsKey[];
   presets: TBeatsRecord;
-  Background: FC;
 };
 type TMidisProps = {
   musicKey: "midis";
   presets: TMidisRecord;
-  Background: FC;
 };
-type TProps = TBeatsProps | TMidisProps;
+
+type TChildrenProps = {
+  stepsKey: UStepsKey;
+  stepsCount: number;
+  rowIndex: number;
+};
+type TProps = (
+  | TBeatsProps
+  | TMidisProps
+) &
+  Omit<TDivProps, "children"> & {
+    Background: FC;
+    children(
+      props: TChildrenProps
+    ): JSX.Element | null;
+  };
 export const ChartsGrid: FC<TProps> = ({
   Background,
   musicKey,
+  style,
+  children,
   ...props
 }) => {
   const s = boxSize();
@@ -39,7 +54,9 @@ export const ChartsGrid: FC<TProps> = ({
       className="relative column-space items-stretch justify-stretch"
       style={{
         height: s.m2,
+        ...style,
       }}
+      {...props}
     >
       {keys.map(
         (
@@ -56,15 +73,17 @@ export const ChartsGrid: FC<TProps> = ({
           return (
             <div
               key={stepsKey}
-              className="relative flex flex-row grow items-between justify-stretch w-full text-white text-xxxs uppercase h-full"
+              className="relative flex flex-row grow items-between justify-stretch text-white text-xxxs uppercase h-full"
             >
-              <ChartsGridLabels
-                stepsCount={
-                  steps.length
-                }
-                stepsKey={stepsKey}
-                rowIndex={rowIndex}
-              />
+              <div className="absolute right-full">
+                {children({
+                  stepsCount:
+                    steps.length,
+                  stepsKey,
+                  rowIndex,
+                })}
+              </div>
+
               <Background />
               {steps.map(
                 (

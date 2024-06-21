@@ -2,19 +2,20 @@ import type { FC } from "react";
 import clsx from "clsx";
 import { TimerDisplay } from "~/components/playback/timer/display";
 import { TimerDisplayInit } from "~/components/playback/timer/display/init";
-import { VideoMusicPlaybackTimerCurrent } from "~/pages/video/music/record/timer/current";
+import { VideoMusicPlaybackTimerCurrent } from "~/pages/video/music/save/timer/current";
 import { boxSize } from "~uno/rules/box/size";
 import { TProgressKey } from "~/pages/video/music/_context/init/types";
 
-type TProps = {
-  stepsCount?: number;
-  isActive: boolean;
-  isCooldown: boolean;
-  seconds: number;
-  progressKey: TProgressKey;
-};
+export type TVideoMusicHeaderTimerProps =
+  {
+    stepsCount?: number;
+    isActive: boolean;
+    isCooldown: boolean;
+    seconds: number;
+    progressKey: TProgressKey;
+  };
 export const VideoMusicHeaderTimer: FC<
-  TProps
+  TVideoMusicHeaderTimerProps
 > = ({
   stepsCount,
   isActive,
@@ -48,7 +49,6 @@ export const VideoMusicHeaderTimer: FC<
       )}
       style={{
         gap: s.m0125,
-        paddingTop: s.m0125,
       }}
     >
       <CurrTimer />

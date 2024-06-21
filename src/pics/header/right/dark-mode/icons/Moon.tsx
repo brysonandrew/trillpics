@@ -4,7 +4,7 @@ import { ClassValue } from "clsx";
 import { resolveUrlId } from "@brysonandrew/utils-attributes";
 import { LINEAR_GRADIENT_SVG_ID } from "~uno/rules/gradient/constants";
 import { resolveSquare } from "@brysonandrew/measure";
-import { IconsSvgGradient18vb24 } from "~/components/icons/svg/gradient/16vb24";
+import { IconsSvgGradient18vb24 } from "~/components/icons/svg/gradient/18vb24";
 
 import { TSvgMotionProps, TSvgProps } from "@brysonandrew/config-types";
 

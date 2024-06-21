@@ -18,11 +18,11 @@ export const ChartsGridLabels: FC<
       <ChartsGridLabelsName
         stepsKey={stepsKey}
       />
-      {rowIndex === 0 && (
+      {/* {rowIndex === 0 && (
         <ChartsGridLabelsSteps
           {...props}
         />
-      )}
+      )} */}
     </>
   );
 };

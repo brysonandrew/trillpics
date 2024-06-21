@@ -50,7 +50,7 @@ export const ChartsGridStepDot = <
   return (
     <div
       className={clsx(
-        "center relative"
+        "center relative pointer-events-none" 
       )}
       style={{
         // left: `calc(50%-${s.m025}px)`,

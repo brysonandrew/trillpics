@@ -1,7 +1,6 @@
 import type { FC } from "react";
 import { isMidiHoverKey } from "~/components/charts/grid/is-midi-hover-key";
 import { VideoMusicSynthHeaderNote } from "~/pages/video/music/synth/header/note";
-import { VideoMusicSynthIncrementer } from "~/pages/video/music/synth/incrementer";
 import { useTrillPicsStore } from "~/store/middleware";
 import { boxSize } from "~uno/rules/box/size";
 
@@ -29,11 +28,6 @@ export const VideoMusicSynthHeaderBottom: FC =
       >
         <VideoMusicSynthHeaderNote
           midiHoverKey={midiHoverKey}
-        />
-        <VideoMusicSynthIncrementer name="interval" />
-        <VideoMusicSynthIncrementer
-          name="offset"
-          direction="x"
         />
       </div>
     );

@@ -1,5 +1,6 @@
 import type { FC } from "react";
 import {
+  AnimatePresence,
   HTMLMotionProps,
   motion,
 } from "framer-motion";
@@ -7,7 +8,9 @@ import { resolveCompositeKey } from "@brysonandrew/utils-key";
 import clsx from "clsx";
 import { PillBLayout } from "~/components/buttons/pill/b/layout";
 import { PillBText } from "~/components/buttons/pill/b/text";
-import { NavCountersMusic } from "~/pics/hud/nav/counters/music";
+import {
+  NavCountersMusic,
+} from "~/pics/hud/nav/counters/music";
 import { NavCountersPics } from "~/pics/hud/nav/counters/pics";
 import { FooterNavLink } from "~/pics/hud/nav/item/link";
 import { TClassValueProps } from "@brysonandrew/config-types";
@@ -37,7 +40,9 @@ export const FooterNavItem: FC<
 }) => {
   const s = boxSize();
   const borderRadius = boxRadius();
-  const { isHover } = useHoverKey();
+  const { isHover, hoverKeys } =
+    useHoverKey();
+  console.log(hoverKeys);
   const isHovering = isHover(title);
   return (
     <motion.li
@@ -55,48 +60,55 @@ export const FooterNavItem: FC<
       {...PRESENCE_OPACITY}
       {...props}
     >
-      <FooterNavLink
-        to={to}
-        title={title}
-        classValue={clsx(
-          "relative",
-          "inline-flex items-center dark:bg-black-02 bg-white-02 backdrop-blur-lg",
-          isRtl
-            ? clsx(
-                "flex-row-reverse right-0",
-                isHovering && "pl-4"
-              )
-            : clsx(
-                "flex-row left-0",
-                isHovering && "pr-4"
-              )
-        )}
-        style={{
-          borderRadius,
-          gap: s.m025,
-        }}
-      >
-        <PillBLayout Icon={Icon} />
+      <AnimatePresence>
+        <FooterNavLink
+          to={to}
+          title={title}
+          classValue={clsx(
+            "relative",
+            "inline-flex items-center dark:bg-gray-08 bg-white-02 backdrop-blur-lg",
+            isRtl
+              ? clsx(
+                  "flex-row-reverse right-0",
+                  isHovering && "pl-4"
+                )
+              : clsx(
+                  "flex-row left-0",
+                  isHovering && "pr-4"
+                )
+          )}
+          style={{
+            borderRadius,
+            gap: s.m025,
+          }}
+        >
+          <PillBLayout Icon={Icon} />
 
-        {isHovering && (
-          <>
-            <PillBText
-            // layoutId={title} {...PRESENCE_OPACITY}
+          {isHovering && (
+            <motion.div
+              key={`link-title`}
+              {...PRESENCE_OPACITY}
             >
-              {title}
-            </PillBText>
-          </>
-        )}
+              <PillBText>
+                {title}
+              </PillBText>
+            </motion.div>
+          )}
 
-        {title ===
-          PAGE_TITLES["Song Pics"] && (
-          <NavCountersMusic />
-        )}
-        {title ===
-          PAGE_TITLES["Video Pics"] && (
-          <NavCountersPics />
-        )}
-      </FooterNavLink>
+          {title ===
+            PAGE_TITLES[
+              "Music"
+            ] && (
+            <NavCountersMusic
+              isHovering={isHovering}
+            />
+          )}
+          {title ===
+            PAGE_TITLES[
+              "Sequence"
+            ] && <NavCountersPics />}
+        </FooterNavLink>
+      </AnimatePresence>
     </motion.li>
   );
 };

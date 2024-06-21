@@ -23,6 +23,8 @@ import { TState } from "~/store/types";
 import {
   TBeatsOptionsKey,
   TMidisOptionsKey,
+  TMidisSliderOptions,
+  TMidisSliderOptionsKey,
   TMusicOptionsKey,
   TScaleOptions,
   TSequenceOptionsKey,
@@ -54,7 +56,7 @@ type TProps = Omit<
   TClassValueProps & {
     name:
       | TMusicOptionsKey
-      | `midis.${TMidisOptionsKey}`
+      | `midis.${TMidisSliderOptionsKey}`
       | `beats.${TBeatsOptionsKey}`
       | `synth.${TSynthConfigKey}`
       | `sequence.${TSequenceOptionsKey}`

@@ -51,11 +51,11 @@ export const PicsHudFooterNavSelected: FC<
         </PillBText>
       )}
       {title ===
-        PAGE_TITLES["Song Pics"] && (
+        PAGE_TITLES["Music"] && (
         <NavCountersSelectedMusic />
       )}
       {title ===
-        PAGE_TITLES["Video Pics"] && (
+        PAGE_TITLES["Sequence"] && (
         <NavCountersSelectedPics />
       )}
     </motion.li>

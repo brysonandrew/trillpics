@@ -9,7 +9,7 @@ import { useMusicRecorderContext } from "~/pages/video/music/_context/recorder";
 import { boxPx } from "~/utils/box/px";
 import { LinesHorizontalLight } from "~/components/lines/horizontal/light";
 
-export const VideoMusicPlaybackSaveInfo: FC =
+export const VideoMusicPlaybackSaveLog: FC =
   () => {
     const s = boxSize();
 
@@ -31,8 +31,8 @@ export const VideoMusicPlaybackSaveInfo: FC =
           left: 0,
           gap: s.m025,
           width: width,
-          paddingTop: s.m05,
-          paddingBottom: s.m05,
+          paddingTop: s.m05-s.m0125,
+          paddingBottom: s.m05+s.m0125,
           ...boxPx(s.m05 - s.m0625),
         }}
       >
@@ -40,7 +40,7 @@ export const VideoMusicPlaybackSaveInfo: FC =
           className="row relative"
           style={{
             gap: s.m0125,
-            left: s.m05 - s.m0625,
+            left: s.m05 - s.m0125,
           }}
         >
           {isRecording ? (

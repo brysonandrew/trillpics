@@ -5,6 +5,7 @@ import { BackgroundGlass } from "~/components/layout/background/glass";
 import { UStepsKey } from "~/store/state/music/types";
 import { SCALE_VALUE_COUNT } from "~/constants/scales";
 import { LinesVertical } from "~/components/lines/vertical";
+import { box } from "~uno/rules/box";
 
 type TProps = {
   stepsKey: UStepsKey;
@@ -16,10 +17,11 @@ export const ChartsGridLabelsName: FC<
   const { synth } = useTrillPicsStore(
     ({ synth }) => ({ synth })
   );
+  const s = box;
   return (
     <div
       key={stepsKey}
-      className="absolute row-start-space text-white text-xxxs uppercase h-full"
+      className="absolute row-start-space grow text-white text-xxxs uppercase"
     >
       {isSynth && (
         <div
@@ -39,13 +41,11 @@ export const ChartsGridLabelsName: FC<
       <LinesVertical />
       <div
         className={clsx(
-          "absolute right-full bottom-0 -translate-x-1 px-0.75",
-          isSynth
-            ? "-translate-y-0.5"
-            : "-translate-y-2.5"
+          "absolute right-full top-0 px-1 grow bg-red grow",
+       
         )}
+        style={{ left: -s.m2 }}
       >
-        <BackgroundGlass />
         <div className="row gap-1">
           {isSynth ? (
             <>

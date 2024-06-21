@@ -5,8 +5,8 @@ import { ROUTES_PATHS } from "~/routes/pages";
 import { IconsVideo } from "~/components/icons/video/video";
 export const PAGE_TITLES = {
   ["AI Art Gallery"]: "AI Art Gallery",
-  ["Video Pics"]: "Video Pics",
-  ["Song Pics"]: "Song Pics",
+  ["Sequence"]: "Sequence",
+  ["Music"]: "Music",
   ["Kino"]: "Kino",
 } as const;
 
@@ -19,12 +19,12 @@ export const NAV_ITEMS = [
   [
     IconsMovie,
     ROUTES_PATHS["/video"],
-    PAGE_TITLES["Video Pics"],
+    PAGE_TITLES["Sequence"],
   ],
   [
     IconsMusic,
     ROUTES_PATHS["/video/sound"],
-    PAGE_TITLES["Song Pics"],
+    PAGE_TITLES["Music"],
   ],
   [
     IconsVideo,

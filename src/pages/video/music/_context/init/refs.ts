@@ -1,12 +1,10 @@
 import { useMemo } from "react";
-import { useDelayNode } from "~/hooks/music/midis/delay";
 import { useMusicInitProgress } from "~/pages/video/music/_context/init/progress";
 import {
   TBufferSourceRecord,
   TPartialStepsScaleRecord,
   TProgressStepRecord,
 } from "~/pages/video/music/_context/init/types";
-
 export const useMusicInitProviderRefs =
   () => {
     const progress =
@@ -15,6 +13,31 @@ export const useMusicInitProviderRefs =
     const refs = useMemo(() => {
       const context =
         new AudioContext();
+
+      // const create = (
+
+      // ) => {
+      //   return {
+      //     create,
+      //     isStarted: false,
+      //     node: new OscillatorNode(
+      //       context,
+      //       options
+      //     ),
+      //   };
+      // };\
+
+      const options = {
+        type: "sawtooth" as const,
+        frequency: 120,
+      };
+      const oscillator = {
+        isStarted: false,
+        node: new OscillatorNode(
+          context,
+          options
+        ),
+      };
 
       const delay =
         context.createDelay();
@@ -76,6 +99,7 @@ export const useMusicInitProviderRefs =
         context,
         master,
         delay,
+        oscillator,
         destination,
         recorder,
         chunks,

@@ -1,16 +1,20 @@
 import { useMemo } from "react";
 import { useSynthMulti } from "react-synthwave";
 import { useGainNode } from "~/hooks/music/midis/gains/hook";
+import { useBasicOscillatorStart } from "~/hooks/music/midis/oscillators/scheduling/start";
+import { useSourceBufferStop } from "~/hooks/music/midis/oscillators/scheduling/stop";
 import { TPlayMidisOptions } from "~/hooks/music/midis/types";
 import { useMusicInitContext } from "~/pages/video/music/_context/init";
+import { midiToHz } from "~/utils/music";
 
 export const useArpeggio = () => {
+  const { start, stop } =
+    useBasicOscillatorStart();
   const {
     context,
     midisMaster,
     audio,
   } = useMusicInitContext();
-
   const delayTime = 0.99; // 0.000001; //0.1;
   const Q = 1;
 
@@ -31,14 +35,14 @@ export const useArpeggio = () => {
     return result;
   }, []);
 
-  const sm = useSynthMulti(context, {
-    type: "sawtooth",
-    gain: 1,
-    output: audio.delay,
-  });
+  // const sm = useSynthMulti(context, {
+  //   type: "sawtooth",
+  //   gain: 1,
+  //   output: audio.delay,
+  // });
 
   const handleStop = () => {
-    sm.stop();
+    audio.oscillator.node.stop();
   };
 
   const handler = (
@@ -46,17 +50,36 @@ export const useArpeggio = () => {
     stepMidi: number,
     options: TPlayMidisOptions = {}
   ) => {
+    if (!audio.oscillator.isStarted) {
+      audio.oscillator.node.start(
+        startTime
+      );
+      console.log("START", audio);
+      audio.oscillator.isStarted = true;
+    }
     const { duration = 1 } = options;
     const baseMidi = stepMidi;
 
     const midi =
       (baseMidi ?? 0) +
-        (stepMidi ?? 0) ?? 0;
+        (stepMidi ?? 0) ??12;
 
     const endTime =
       startTime + duration * 4;
+    const hz = midiToHz(midi);
 
-    sm.play({ midi, ...options });
+    // sm.play({ midi, ...options });
+    start({
+      startTime,
+      stepIndex: options.stepIndex ?? 0,
+      duration,
+      frequency: hz,
+    });
+
+    audio.oscillator.node.connect(
+      gainNode1
+    );
+    audio.delay.connect(filter);
     gainNode1.gain.value =
       (options.volume ?? 1) * 0.001;
 
@@ -72,7 +95,6 @@ export const useArpeggio = () => {
 
       endTime
     );
-    audio.delay.connect(gainNode1);
   };
   return {
     play: handler,

@@ -3,7 +3,6 @@ import { BackgroundGlass } from "~/components/layout/background/glass";
 import { useVideoStyle } from "~/pages/video/style";
 import { boxRadius } from "~uno/rules/box/radius";
 import { boxSize } from "~uno/rules/box/size";
-import { VideoMusicSynthHeaderBottom } from "~/pages/video/music/synth/header/bottom";
 import { VideoMusicSynthHeaderTop } from "~/pages/video/music/synth/header/top";
 
 export const VideoMusicSynthHeader: FC =
@@ -33,7 +32,6 @@ export const VideoMusicSynthHeader: FC =
         />
 
         <VideoMusicSynthHeaderTop />
-        <VideoMusicSynthHeaderBottom />
       </div>
     );
   };
