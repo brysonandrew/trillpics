@@ -2,7 +2,6 @@ import { STEPS_COUNT } from "~/constants/music/timing";
 import { useMusicPlay } from "~/hooks/music/play";
 import { useStepsPerSecond } from "~/hooks/music/time/steps-per-second";
 import { usePicVideoReadSeconds } from "~/hooks/pic/video/read/seconds/hook";
-import { useTimer } from "~/hooks/use-timer";
 import { useRecorderListeners } from "~/pages/video/music/_context/hooks/recorder/listeners";
 import { useMusicInitContext } from "~/pages/video/music/_context/init";
 
@@ -67,6 +66,7 @@ export const useMusicRecorder = () => {
   //   stopTimer();
   // };
   const handleStop = () => {
+    console.log('storp')
     musicPlay.stop();
     recorder.stop();
   }
@@ -81,6 +81,8 @@ export const useMusicRecorder = () => {
     ) {
       handleStop();
     } else {
+      console.log('start')
+
       recorder.start();
       await musicPlay.play();
       // resetTimers();

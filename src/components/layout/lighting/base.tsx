@@ -7,12 +7,18 @@ import { TLightingClassValue } from "~/components/layout/lighting/types";
 
 export const LightingBase: FC<
   TDivMotionProps & {
-    lightingClassValue: TLightingClassValue;
+    lightingClass?: TLightingClassValue;
+    opacityClass?: `opacity-${number}`;
+    insetClass?: `${
+      | ""
+      | "-"}inset-${number}`;
   }
 > = ({
   classValue,
   style,
-  lightingClassValue,
+  insetClass,
+  opacityClass,
+  lightingClass,
   ...props
 }) => {
   const borderRadius = boxRadius();
@@ -20,14 +26,16 @@ export const LightingBase: FC<
     <motion.div
       className={clsx(
         "absolute",
-        classValue ??
-          "inset-1 dark:opacity-50 opacity-20",
-        lightingClassValue
+        lightingClass ?? "bg-white",
+        opacityClass ??
+          "dark:opacity-40 opacity-20",
+        insetClass ?? "-inset-1",
+        classValue
       )}
       layout
       style={{
         borderRadius,
-        filter: "blur(14px)",
+        filter: "blur(6px)",
         ...style,
       }}
       {...props}

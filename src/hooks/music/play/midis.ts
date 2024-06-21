@@ -4,21 +4,16 @@ import { usePlaySchedule } from "~/hooks/music/play/schedule";
 import { useMusicReadyContext } from "~/pages/video/music/_context/ready";
 
 export const usePlayMidis = () => {
-  const { midis: lookup, beats } =
+  const { midis: lookup } =
     useMusicReadyContext();
   const { steps, synth } =
     useTrillPicsStore(
       ({ steps, synth }) => ({
         steps,
-        synth,
+        synth
       })
     );
-  // const handleEnd = () => {
-  //   lookup.synth.stop();
-  //   BEATS_KEYS.forEach((key) => {
-  //     beats[key].stop();
-  //   });
-  // };
+
   const result = usePlaySchedule({
     key: "midis",
     keys: MIDIS,
@@ -26,7 +21,7 @@ export const usePlayMidis = () => {
     record: { synth: steps },
     options: {
       ...synth,
-      // onEnd: handleEnd,
+      
     },
   });
 

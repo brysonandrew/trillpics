@@ -1,4 +1,3 @@
-import { STEPS_COUNT } from "~/constants/music/timing";
 import { useBufferInit } from "~/hooks/music/beats/hooks/buffer/init";
 import { useSourceBufferStart } from "~/hooks/music/beats/hooks/source-buffer/start";
 import { useSourceBufferStop } from "~/hooks/music/beats/hooks/source-buffer/stop";
@@ -10,27 +9,20 @@ import {
 import { useMusicInitContext } from "~/pages/video/music/_context/init";
 const key: TBeatsStepsKey = "hihat";
 export const useHihat = () => {
-  const {
-    context,
-    master,
-    destination,
-    drumsMaster,
-  } = useMusicInitContext();
+  const { context, master,beatsMaster } =
+    useMusicInitContext();
   const isReady = useBufferInit(key, 1);
   const start =
     useSourceBufferStart(key);
-  // const stop = useSourceBufferStop(key);
+  const stop = useSourceBufferStop(key);
 
   const play = async (
     startTime: number,
-    beat: TBeatValue,
+    _: TBeatValue,
     options: TPlayBeatsOptions = {}
   ) => {
     const {
       volume = 1,
-      stepIndex = 0,
-      rate = 1,
-      loopIndex = 0,
     } = options;
     const filter = new BiquadFilterNode(
       context,
@@ -39,19 +31,18 @@ export const useHihat = () => {
         type: "highpass",
       }
     );
-    start({
-      stepIndex,
-      startTime,
-      rate,
-      output: filter,
-      volume,
+    const gain = new GainNode(context, {
+      gain: 0.4 * volume,
     });
-    // filter.connect(gain);
-    // gain.connect(master);
-    // drumsMaster.connect(
-    //   context.destination
-    // );
+
+    start({
+      startTime,
+      output: filter,
+      ...options
+    });
+    filter.connect(gain);
+    gain.connect(beatsMaster);
   };
 
-  return { play,stop, isReady };
+  return { play, stop, isReady };
 };

@@ -1,6 +1,9 @@
 import { resolveMidiSteps } from "~/constants/music/midi/steps";
 import {
+  DEFAULT_BEATS_SLIDER_OPTIONS,
+  DEFAULT_MIDIS_SLIDER_OPTIONS,
   DEFAULT_MULTI_SYNTH_OPTIONS,
+  DEFAULT_MUSIC_SLIDER_OPTIONS,
   DEFAULT_SCALE_OPTIONS,
   DEFAULT_SEQUENCE_OPTIONS,
   DEFAULT_SYNTH_OPTIONS,
@@ -16,9 +19,12 @@ const steps = resolveMidiSteps({
 export const musicState: TStateHandler<
   TMusicState
 > = () => ({
-  isLoop:false,
-  drums: {
-    gain: 1,
+  isLoop: false,
+  beats: {
+    ...DEFAULT_BEATS_SLIDER_OPTIONS,
+  },
+  midis: {
+    ...DEFAULT_MIDIS_SLIDER_OPTIONS,
   },
   steps,
   synth: {
@@ -30,5 +36,5 @@ export const musicState: TStateHandler<
   beatsPresetKey: "disco",
   recording: null,
   playingKeys: [],
-  bpm: 80,
+  ...DEFAULT_MUSIC_SLIDER_OPTIONS,
 });

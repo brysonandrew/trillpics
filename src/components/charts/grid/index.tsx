@@ -11,17 +11,20 @@ import { UStepsKey } from "~/store/state/music/types";
 import { ChartsGridLabels } from "~/components/charts/grid/labels";
 
 type TBeatsProps = {
+  musicKey: "beats";
   includes: readonly TBeatsKey[];
   presets: TBeatsRecord;
   Background: FC;
 };
 type TMidisProps = {
+  musicKey: "midis";
   presets: TMidisRecord;
   Background: FC;
 };
 type TProps = TBeatsProps | TMidisProps;
 export const ChartsGrid: FC<TProps> = ({
   Background,
+  musicKey,
   ...props
 }) => {
   const s = boxSize();
@@ -42,7 +45,7 @@ export const ChartsGrid: FC<TProps> = ({
         (
           stepsKey: UStepsKey,
           rowIndex,
-          {length:stepCount}
+          { length: stepCount }
         ) => {
           const steps =
             "synth" in presets
@@ -90,7 +93,12 @@ export const ChartsGrid: FC<TProps> = ({
                       rowIndex={
                         rowIndex
                       }
-                      stepCount={stepCount}
+                      stepCount={
+                        stepCount
+                      }
+                      musicKey={
+                        musicKey
+                      }
                     />
                   );
                 }

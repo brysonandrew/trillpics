@@ -1,33 +1,63 @@
 import type { FC } from "react";
-import { TDivProps } from "@brysonandrew/config-types";
-import { FooterNavText } from "~/pics/hud/nav/text";
+import { motion } from "framer-motion";
+import clsx from "clsx";
+import { PillBText } from "~/components/buttons/pill/b/text";
+import { NavCountersSelectedMusic } from "~/pics/hud/nav/counters/selected/music";
+import { NavCountersSelectedPics } from "~/pics/hud/nav/counters/selected/pics";
+import { THudContainer } from "~/pics/hud";
+import { boxSize } from "~uno/rules/box/size";
+import { PAGE_TITLES } from "~/pics/hud/nav/constants";
 import { TIconsSvgProps } from "@brysonandrew/svg-icon";
 
 type TProps = {
+  title: string;
   Icon: FC<TIconsSvgProps>;
-} & TDivProps;
-export const FooterNavSelected: FC<
+  container: THudContainer;
+};
+export const PicsHudFooterNavSelected: FC<
   TProps
-> = ({
-  style,
-  Icon,
-  children,
-  ...props
-}) => {
+> = ({ container, title, Icon }) => {
+  const s = boxSize();
   return (
-    <div
-      className="relative"
+    <motion.li
+      className={clsx(
+        "row relative center z-10 pointer-events-none"
+      )}
       style={{
-        ...style,
+        height: s.m,
+        gap: s.m05,
+        bottom:s.m05,
       }}
-      {...props}
+      initial={{
+        scale: 1,
+        opacity: 0,
+      }}
+      animate={{
+        scale: 1,
+        opacity: 1,
+      }}
+      exit={{
+        scale: 1,
+        opacity: 0,
+      }}
     >
-      <div className="absolute bottom-full -translate-y-1 left-1/2 -translate-x-1/2">
-        <FooterNavText>
-          {children}
-        </FooterNavText>
-      </div>
-      <Icon size={28}/>
-    </div>
+    
+
+      
+      <Icon classValue='_outline-filter'  />
+      {!container.isTablet && (
+        <PillBText layoutId={title}>
+          {title}
+        </PillBText>
+      )}
+      {title ===
+        PAGE_TITLES["Song Pics"] && (
+        <NavCountersSelectedMusic />
+      )}
+      {title ===
+        PAGE_TITLES["Video Pics"] && (
+        <NavCountersSelectedPics />
+      )}
+    </motion.li>
   );
 };

@@ -9,7 +9,7 @@ export const NavCountersSelectedPics: FC =
     return (
       <Counter
         count={count}
-        style={{scale:0.8}}
+        style={{scale:1}}
       />
     );
   };

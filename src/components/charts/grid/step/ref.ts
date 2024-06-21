@@ -1,16 +1,16 @@
 import { TChartsGridStepProps } from "~/components/charts/grid/step";
 import { useMusicInitContext } from "~/pages/video/music/_context/init";
-import { TProgressKey } from "~/pages/video/music/_context/init/types";
+import { TMusicKey } from "~/store/state/music/types";
 
-type TConfig = TChartsGridStepProps;
-export const resolveStepRef = (
-  progressKey: TProgressKey,
-  config: TConfig
+export const resolveStepRef = <
+  T extends TMusicKey
+>(
+  progressKey: T,
+  config: TChartsGridStepProps<T>
 ) => {
   const {
     rowIndex,
     columnIndex,
-    stepsKey,
   } = config;
   const { gridCellsRecord } =
     useMusicInitContext();

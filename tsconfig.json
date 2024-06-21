@@ -45,5 +45,5 @@
     "**/*.jsx",
     "**/*.tsx",
     "**/*.ts"
-, ".cemetary/playback-schedule.ts"  ]
+, ".cemetary/playback-schedule.ts", ".cemetary/selected.tsx"  ]
 }

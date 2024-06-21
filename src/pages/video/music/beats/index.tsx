@@ -1,7 +1,7 @@
 import type { FC } from "react";
 import { BEATS_PRESETS } from "~/hooks/music/beats/presets";
 import { BackgroundGlass } from "~/components/layout/background/glass";
-import { MusicLayoutDrums } from "~/pages/video/music/drums/header";
+import { MusicLayoutDrums } from "~/pages/video/music/beats/header";
 import { ChartsGrid } from "~/components/charts/grid";
 import { useVideoStyle } from "~/pages/video/style";
 import { useTrillPicsStore } from "~/store/middleware";
@@ -38,6 +38,7 @@ export const VideoMusicDrums: FC =
           <MusicLayoutDrums />
         </div>
         <ChartsGrid
+        musicKey="beats"
           Background={
             ChartsGridLinesHorizontal
           }

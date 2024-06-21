@@ -6,7 +6,7 @@ import { boxRadius } from "~uno/rules/box/radius";
 import { VideoMusicPlayback } from "~/pages/video/music/record/index";
 import { VideoMusicSynth } from "~/pages/video/music/synth";
 import { Bpm } from "~/pages/video/music/bpm";
-import { VideoMusicDrums } from "~/pages/video/music/drums";
+import { VideoMusicDrums } from "~/pages/video/music/beats";
 import { MusicInitProvider } from "~/pages/video/music/_context/init";
 import { MusicReadyProvider } from "~/pages/video/music/_context/ready";
 import { MusicRecorderProvider } from "~/pages/video/music/_context/recorder";
@@ -15,10 +15,13 @@ import { PicBackdrop } from "~/pics/grid/pic/backdrop";
 import { VideoMusicSynthMulti } from "~/pages/video/music/synth/multi";
 import { VideoMusicSynthSingle } from "~/pages/video/music/synth/single";
 import { useAddRandomEffect } from "~/hooks/pic/add-random/effect";
-import { MusicPlay } from "~/pages/video/music/all/play";
 import { LinesHorizontal } from "~/components/lines/horizontal";
-import { DrumsGain } from "~/pages/video/music/drums/gain";
+import { BeatsMaster } from "~/pages/video/music/beats/master";
 import { MusicAll } from "~/pages/video/music/all";
+import { MidisMaster } from "~/pages/video/music/synth/master";
+import { SequenceDuration } from "~/pages/video/music/synth/sequence/duration";
+import { SequenceRepeat } from "~/pages/video/music/synth/sequence/repeat";
+import { SequenceBeats } from "~/pages/video/music/synth/sequence/beats";
 
 export const VideoMusic = () => {
   const {
@@ -54,6 +57,7 @@ export const VideoMusic = () => {
               width: s.m15,
             }}
           />
+
           <div
             className={clsx(
               "fill overflow-auto h-screen w-full",
@@ -74,6 +78,18 @@ export const VideoMusic = () => {
                   screen.height * 2,
               }}
             >
+              <div
+                className="relative column-stretch"
+                style={{
+                  gap,
+                }}
+              >
+                <div className="absolute inset-x-0 -inset-y-32 bg-gradient-to-t from-black to-black-01" />
+                <SequenceBeats />
+                <SequenceDuration />
+                <SequenceRepeat />
+              </div>
+
               <div
                 className="sticky column-stretch z-20 bg-black-8 dark:bg-black"
                 style={{
@@ -107,6 +123,7 @@ export const VideoMusic = () => {
                   />
                 </aside>
                 <MusicAll />
+
                 <BackgroundGlass
                   boxStyle={{
                     left: sidebarWidthOffset,
@@ -130,6 +147,7 @@ export const VideoMusic = () => {
                 }}
               >
                 <div className="absolute inset-x-0 -inset-y-6 bg-gradient-to-l from-black to-black-05" />
+                <MidisMaster />
                 <VideoMusicSynthSingle />
                 <VideoMusicSynthMulti />
               </div>
@@ -138,18 +156,23 @@ export const VideoMusic = () => {
                 className="sticky column-stretch z-10 bg-black-8 dark:bg-black"
                 style={{
                   width: width + s.m025,
-                  // gap: s.m025 * 1.5,
-                  // top:
-                  //   drumsTop + s.m025,
-                  // bottom: -s.m,
+                  gap: s.m025 * 1.5,
+                  top:
+                    drumsTop + s.m025,
+                  bottom: -s.m,
                 }}
               >
                 <VideoMusicDrums />
               </div>
 
-              <div className="relative column-stretch">
+              <div
+                className="relative column-stretch"
+                style={{
+                  gap,
+                }}
+              >
                 <div className="absolute inset-x-0 -inset-y-6 bg-gradient-to-l from-black to-black-05" />
-                <DrumsGain />
+                <BeatsMaster />
                 <Bpm />
               </div>
 

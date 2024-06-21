@@ -53,7 +53,9 @@ export type TMusicInitContext = {
   >;
   context: AudioContext;
   master: GainNode;
-  drumsMaster: GainNode;
+  beatsMaster: GainNode;
+  midisMaster: GainNode;
+
   progress: TProgressMotionRecord;
   destination: MediaStreamAudioDestinationNode;
   recorder: MediaRecorder;
@@ -62,5 +64,6 @@ export type TMusicInitContext = {
     loopsRemainder: number;
     progressStep: TProgressStepRecord;
     chunks: BlobPart[];
+    delay: DelayNode;
   };
 };

@@ -2,9 +2,10 @@ import type { FC } from "react";
 import { SvgWrap } from "@brysonandrew/svg-dimensionless";
 import { resolveFilterAttr } from "@brysonandrew/utils-attributes";
 export const DUO_TONE_ID =
-  "DUO_TONE_ID";
-export const DUO_TONE_PROPS =
+  "DUOTONE_ID";
+export const DUOTONE_PROPS =
   resolveFilterAttr(DUO_TONE_ID);
+
 export const DuoTone: FC = () => {
   return (
     <SvgWrap>

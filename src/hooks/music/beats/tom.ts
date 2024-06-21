@@ -10,7 +10,7 @@ import { useMusicInitContext } from "~/pages/video/music/_context/init";
 const key: TBeatsStepsKey = "tom";
 
 export const useTom = () => {
-  const { context, master } =
+  const { context, beatsMaster } =
     useMusicInitContext();
   const isReady = useBufferInit(key, 0);
   const start =
@@ -48,7 +48,7 @@ export const useTom = () => {
       volume,
     });
     filter.connect(gain);
-    gain.connect(master);
+    gain.connect(beatsMaster);
   };
 
   return { play, stop, isReady };

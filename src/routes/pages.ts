@@ -28,4 +28,5 @@ export const SHELL_ROUTES_PAGES: RouteObject[] =
       ],
       Component: VideoPlayer,
     },
+    
   ];

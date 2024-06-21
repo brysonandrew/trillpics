@@ -16,6 +16,7 @@ export const VideoMusicSynth: FC =
       <>
         <VideoMusicSynthHeader />
         <ChartsGrid
+          musicKey="midis"
           Background={ChartsGridStaff}
           presets={{
             synth: steps,

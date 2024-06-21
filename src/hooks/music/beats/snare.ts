@@ -10,7 +10,7 @@ import { useMusicInitContext } from "~/pages/video/music/_context/init";
 const key: TBeatsStepsKey = "snare";
 
 export const useSnare = () => {
-  const { context, master } =
+  const { context, beatsMaster } =
     useMusicInitContext();
   const isReady = useBufferInit(key, 2);
   const start =
@@ -21,13 +21,6 @@ export const useSnare = () => {
     beat: TBeatValue,
     options: TPlayBeatsOptions = {}
   ) => {
-    const {
-      version = 2,
-      volume = 1,
-      stepIndex = 0,
-      rate = 1,
-
-    } = options;
 
     const filter = new BiquadFilterNode(
       context,
@@ -37,18 +30,15 @@ export const useSnare = () => {
       }
     );
     const gain = new GainNode(context, {
-      gain: 0.1 * volume,
+      gain: 0.065,
     });
     start({
-      stepIndex,
       startTime,
-rate,
-
-      output: filter,
-volume
+      output: gain,
+      ...options,
     });
     filter.connect(gain);
-    gain.connect(master);
+    gain.connect(beatsMaster);
   };
 
   return { play, stop, isReady };

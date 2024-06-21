@@ -52,11 +52,11 @@ export const _RootReorderBackground: FC<
   return (
     <motion.div
       className={clsx(
-        "absolute bg-white-01 dark:bg-black-01 backdrop-blur-lg",
-        "border ",
+        "absolute backdrop-blur-lg",
+        "border",
         isHovering
-          ? "border-white-06 dark:border-black-06"
-          : "border-white-02 dark:border-black-02"
+          ? "border-white-03 dark:border-black-03 bg-white-02 dark:bg-black-02"
+          : "border-white-02 dark:border-black-02 bg-white-01 dark:bg-black-01"
       )}
       style={{
         ...MOTION_BLUR_ADD_RANDOM_PROPS,

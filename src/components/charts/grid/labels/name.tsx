@@ -35,9 +35,7 @@ export const ChartsGridLabelsName: FC<
           }`}
         </div>
       )}
-      {/* <div
-      className="absolute left-0 top-0 bottom-0 bl"
-      /> */}
+
       <LinesVertical />
       <div
         className={clsx(

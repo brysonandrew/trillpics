@@ -1,6 +1,5 @@
 import { usePlayBeats } from "~/hooks/music/play/beats";
 import { usePlayMidis } from "~/hooks/music/play/midis";
-import { useTimer } from "~/hooks/use-timer";
 import { useMusicInitContext } from "~/pages/video/music/_context/init";
 
 export const useMusicPlay = () => {

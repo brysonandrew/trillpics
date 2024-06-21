@@ -11,6 +11,7 @@ type THandlerConfig = {
 };
 export const useBasicOscillatorStart =
   () => {
+    const {timeoutRef,endTimeout} = useTimeoutRef()
     const {
       set,
       bpm,
@@ -28,16 +29,19 @@ export const useBasicOscillatorStart =
         synth,
         sequence,
       })
+
+
     );
-    const timeoutsRef = useMemo<{
-      current: ReturnType<
-        typeof window.setTimeout
-      >[];
-    }>(() => {
-      return {
-        current: [],
-      };
-    }, []);
+ 
+    // const timeoutsRef = useMemo<{
+    //   current: ReturnType<
+    //     typeof window.setTimeout
+    //   >[];
+    // }>(() => {
+    //   return {
+    //     current: [],
+    //   };
+    // }, []);
     const handler = (
       oscillator: OscillatorNode,
       frequency: number,
@@ -56,14 +60,20 @@ export const useBasicOscillatorStart =
 
       const startTime =
         _startTime + intervalDuration;
-      const timeout = setTimeout(() => {
+        endTimeout()
+        timeoutRef.current = setTimeout(() => {
         oscillator.frequency.linearRampToValueAtTime(
           frequency,
           _startTime
         );
         // frequency;
       }, intervalDuration * 1000);
-      timeoutsRef.current.push(timeout);
+      // timeoutsRef.current.push(timeout);
     };
-    return handler;
+
+    const stop = () => {
+      endTimeout()
+      
+    }
+    return {start:handler,stop};
   };

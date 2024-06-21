@@ -10,8 +10,6 @@ import { useTrillPicsStore } from "~/store/middleware";
 
 export const usePicVideoReadSeconds =
   () => {
-    const audioSeconds =
-      useAudioSeconds();
     const { bpm } = useTrillPicsStore(
       ({ bpm }) => ({ bpm })
     );
@@ -36,6 +34,5 @@ export const usePicVideoReadSeconds =
         count,
         bpm
       );
-    return audioSeconds;
-    //result;
+    return result;
   };

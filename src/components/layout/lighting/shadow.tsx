@@ -7,7 +7,7 @@ export const LightingShadow: FC<
 > = ({ ...props }) => {
   return (
     <LightingBase
-      lightingClassValue="shadow"
+      lightingClass="shadow"
       {...props}
     />
   );

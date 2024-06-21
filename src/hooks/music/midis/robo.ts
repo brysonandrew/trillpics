@@ -1,4 +1,5 @@
 import { useMemo } from "react";
+import console from "console";
 import {
   TMultiOptions,
   useSynthMulti,
@@ -35,7 +36,7 @@ export const useArpeggio = () => {
     delayTime,
   });
 
-  const handleStart =
+  const boHandler =
     useBasicOscillatorStart();
 
   const gainNode = useGainNode({
@@ -77,12 +78,12 @@ export const useArpeggio = () => {
   }, []);
   const sm = useSynthMulti(context, {
     type: "sine",
-    // frequency: bpm * (1 / 240),
+    frequency: bpm * (1 / 240),
     // // 240
     // //  240
-    // gain: 500,
+    gain: 500,
     // output: filter.frequency,
-    // //o.oscillator.frequency,
+    output: o.oscillator.frequency,
   });
 
   const lfo = useSynthSingle(context, {
@@ -94,22 +95,23 @@ export const useArpeggio = () => {
     output: o.oscillator.frequency,
   });
 
-  // const lfo1 = useSynthSingle(context, {
-  //   type: "sine",
-  //   frequency:
-  //     bpm *
-  //     (1 /
-  //       // 60,
-  //       15),
-  //   // 60
-  //   //  240
-  //   gain: delayTime / 2,
-  //   output: delay.delayTime,
-  // });
+  const lfo1 = useSynthMulti(context, {
+    type: "sine",
+    frequency:
+      bpm *
+      (1 /
+        // 60,
+        15),
+    // 60
+    //  240
+    gain: delayTime / 2,
+    output: delay.delayTime,
+  });
 
   const handleStop = () => {
-    // handleStop.bind(multiSynth.stop);
-    // handleStop.bind(o.oscillator.stop);
+    handleStop.bind(lfo.stop);
+    handleStop.bind(sm.stop);
+    handleStop.bind(o.oscillator.stop);
   };
 
   const handler = (
@@ -125,49 +127,35 @@ export const useArpeggio = () => {
       stepIndex = 0,
       ...synthwaveOptions
     } = options;
+    console.log(stepIndex);
     if (
       stepIndex === 0 &&
       !o.isStarted
     ) {
-      // console.log("START");
+      console.log("START");
       o.oscillator.start(startTime);
       o.isStarted = true;
       lfo.play({
         start: startTime,
       });
-      // lfo1.play({
-      //   start: startTime,
-      //   count: 3,
-      //   spread:12,
-      //   stagger:0.01
-      // });
+      lfo1.play({
+        start: startTime,
+        count: 3,
+        spread: 12,
+        stagger: 0.01,
+      });
     }
-    const endTime =
-      startTime + duration;
 
-    gainNode.gain.linearRampToValueAtTime(
-      0.04 * volume,
-      startTime
-    );
-    gainNode1.gain.linearRampToValueAtTime(
-      0.01 * volume,
-      startTime
-    );
     const midi =
       (baseMidi ?? 0) +
         (stepMidi ?? 0) ?? 0;
 
     const hz = midiToHz(midi);
-    handleStart(
-      o.oscillator,
-      hz,
-      stepIndex,
-      startTime,
-      duration
-    );
+    const endTime =
+      startTime + duration;
+
     const opts: TMultiOptions = {
       type: "square",
-      // midi: midi + 28,
       frequency: hz * 4,
       count: 20,
       spread: 12,
@@ -177,7 +165,26 @@ export const useArpeggio = () => {
       output: delay,
       gain: 0.0001,
     };
+
     sm.play(opts);
+
+    gainNode.gain.linearRampToValueAtTime(
+      0.04 * volume,
+      startTime
+    );
+    gainNode1.gain.linearRampToValueAtTime(
+      0.01 * volume,
+      startTime
+    );
+
+    boHandler.start(
+      o.oscillator,
+      hz,
+      stepIndex,
+      startTime,
+      duration
+    );
+
     o.oscillator.connect(filter);
     filter.connect(gainNode);
     gainNode.connect(master);
@@ -186,20 +193,19 @@ export const useArpeggio = () => {
     filter1.connect(gainNode1);
     gainNode1.connect(master);
 
-    if (
-      (interval * 2) % stepIndex ===
-      0
-    ) {
-      delay.delayTime.setValueAtTime(
-        0.99,
-        startTime
-      );
-      delay.delayTime.linearRampToValueAtTime(
-        0.001,
-        startTime +
-          (duration * interval) / 2
-      );
-    }
+    // if (
+    //   (interval * 2) % stepIndex ===
+    //   0
+    // ) {
+    delay.delayTime.setValueAtTime(
+      0.99,
+      startTime
+    );
+    delay.delayTime.linearRampToValueAtTime(
+      0.001,
+      startTime + duration
+    );
+    // }
   };
   return {
     play: handler,

@@ -1,4 +1,4 @@
-import { FC } from "react";
+import { FC, Fragment } from "react";
 import { TPicSeriesProps } from "~/components/remotion/pic-series/types";
 import { resolvePicSrc } from "~/utils/src";
 import {
@@ -6,13 +6,14 @@ import {
   useVideoConfig,
   staticFile,
   AbsoluteFill,
-  Series,
   Img,
   useCurrentFrame,
-  Audio,
+  Audio
 } from "remotion";
-import { PicSeriesAudio } from "~/components/remotion/pic-series/audio";
+import { linearTiming, TransitionSeries } from "@remotion/transitions";
+import { slide } from "@remotion/transitions/slide";
 import { isDefined } from "~/utils/validation/is/defined";
+
 const INPUT_PROPS = getInputProps();
 
 export const PicSeries: FC<
@@ -31,11 +32,16 @@ export const PicSeries: FC<
   } = inputProps;
 
   const frame = useCurrentFrame();
-  const { fps, width, height,durationInFrames } =
-    useVideoConfig();
-
+  const {
+    fps,
+    width,
+    height,
+    durationInFrames,
+  } = useVideoConfig();
   const unitSeconds = seconds / count;
-  const unitFrames =durationInFrames/count;//  unitSeconds * fps;
+  const unitFrames = Math.floor(
+    durationInFrames / count
+  ); //  unitSeconds * fps;
   const frameInUnit =
     frame % unitFrames;
   // const secondInUnit =
@@ -49,8 +55,8 @@ export const PicSeries: FC<
         isDefined(recording) && (
           <Audio src={recording.src} />
         )}
-      <Series>
-        {pics.map((pic) => {
+      <TransitionSeries>
+        {pics.map((pic, index) => {
           const srcPath = resolvePicSrc(
             { base, name: pic }
           );
@@ -63,18 +69,20 @@ export const PicSeries: FC<
               100
           )}%`;
           return (
-            <Series.Sequence
-              key={`${src}`}
-              durationInFrames={
-                unitFrames
-              }
-            >
-              <div
-                style={{
-                  position: "absolute",
-                  left: 0,
-                  top,
-                }}
+            <Fragment key={`${src}`}>
+              {index !== 0 && (
+                <TransitionSeries.Transition
+                  presentation={slide()}
+                  timing={linearTiming({
+                    durationInFrames:
+                      unitFrames/2,
+                  })}
+                />
+              )}
+              <TransitionSeries.Sequence
+                durationInFrames={
+                  unitFrames * 1.5
+                }
               >
                 <Img
                   src={src}
@@ -84,11 +92,11 @@ export const PicSeries: FC<
                     height: width,
                   }}
                 />
-              </div>
-            </Series.Sequence>
+              </TransitionSeries.Sequence>
+            </Fragment>
           );
         })}
-      </Series>
+      </TransitionSeries>
     </AbsoluteFill>
   );
 };

@@ -60,6 +60,8 @@ export type TReadyContext =
   TInitContext &
     TUsePicCell &
     TScreenReadyProps & {
+      container: TScreenReady["container"];
+
       foundationValue: TFoundationValue;
       updateFoundation: Dispatch<
         SetStateAction<TFoundationValue>

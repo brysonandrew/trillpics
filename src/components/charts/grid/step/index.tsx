@@ -1,4 +1,8 @@
-import { FC, useMemo } from "react";
+import {
+  FC,
+  Fragment,
+  useMemo,
+} from "react";
 import { TDivProps } from "@brysonandrew/config-types";
 import { TBeatsStepsKey } from "~/hooks/music/beats/types";
 import { useTrillPicsStore } from "~/store/middleware";
@@ -8,13 +12,18 @@ import { isNull } from "~/utils/validation/is/null";
 import { resolvePlayVolume } from "~/hooks/music/play/volume";
 import { TMusicKey } from "~/store/state/music/types";
 import { midiValueToNumber } from "~/utils/music/midi";
-import { TMidiValue } from "~/hooks/music/midis/types";
+import {
+  TMidisStepsKey,
+  TMidiValue,
+} from "~/hooks/music/midis/types";
 import { useStepPlay } from "~/components/charts/grid/step/play";
 import { resolveStepRef } from "~/components/charts/grid/step/ref";
 import { ChartsGridStepDot } from "~/components/charts/grid/step/dot";
-import { useSecondsPerStep } from "~/hooks/music/time/seconds-per-step";
 import clsx from "clsx";
 import { NOOP } from "@brysonandrew/utils-function";
+import { LinesHorizontal } from "~/components/lines/horizontal";
+import { boxSize } from "~uno/rules/box/size";
+import { resolveTop } from "~/components/charts/grid/top";
 export const CHARTS_GRID_STEP_EMPTY_STYLE =
   {
     transitionDuration: "1s",
@@ -26,24 +35,30 @@ export const CHARTS_GRID_STEP_ACTIVE_STYLE =
     opacity: "0.4",
   } as const;
 
-export type TChartsGridStepProps = Omit<
-  TDivProps,
-  "value"
-> & {
+export type TChartsGridStepProps<
+  T extends TMusicKey
+> = Omit<TDivProps, "value"> & {
+  musicKey: T;
   stepCount: number;
   columnIndex: number;
   rowIndex: number;
   value: TMidiValue;
-  stepsKey: TBeatsStepsKey | "synth";
+  stepsKey: T extends "beats"
+    ? TBeatsStepsKey
+    : TMidisStepsKey;
 };
-export const ChartsGridStep: FC<
-  TChartsGridStepProps
-> = (_props) => {
+export const ChartsGridStep = <
+  T extends TMusicKey
+>(
+  _props: TChartsGridStepProps<T>
+) => {
   const {
     columnIndex,
     rowIndex,
     value,
     stepsKey,
+    musicKey,
+    style,
   } = _props;
 
   const classes = useMemo(() => {
@@ -56,14 +71,23 @@ export const ChartsGridStep: FC<
   const colorClass =
     classes[columnIndex % 3];
   const isSynth = stepsKey === "synth";
+  const s = boxSize();
 
-  const { synth, playingKeys } =
-    useTrillPicsStore(
-      ({ synth, playingKeys }) => ({
-        synth,
-        playingKeys,
-      })
-    );
+  const {
+    synth,
+    playingKeys,
+    sequence,
+  } = useTrillPicsStore(
+    ({
+      synth,
+      playingKeys,
+      sequence,
+    }) => ({
+      synth,
+      playingKeys,
+      sequence,
+    })
+  );
   const displayMidiValue =
     (synth.midi ?? 0) +
     midiValueToNumber(value);
@@ -72,9 +96,6 @@ export const ChartsGridStep: FC<
     ? displayMidiValue
     : value;
 
-  const progressKey = (
-    isSynth ? "midis" : "beats"
-  ) as TMusicKey;
   const hoverKey =
     resolveToMidiHoverKey(
       midi,
@@ -89,7 +110,7 @@ export const ChartsGridStep: FC<
     _props
   );
   const ref = resolveStepRef(
-    progressKey,
+    musicKey,
     _props
   );
   const isHovering = isNull(hoverKey)
@@ -97,10 +118,27 @@ export const ChartsGridStep: FC<
     : isHover(hoverKey);
 
   const isDisabled =
-    playingKeys.includes(progressKey);
+    playingKeys.includes(musicKey);
+
+  const topStyle = {
+    ...(isSynth
+      ? {
+          top:
+            value === null
+              ? 0
+              : resolveTop(
+                  value,
+                  s.m05
+                ),
+        }
+      : { top: 0 }),
+  };
 
   return (
-    <div className="relative flex flex-col items-center grow">
+    <div
+      className="relative flex flex-col items-center grow"
+      style={style}
+    >
       <button
         className="fill bg-black"
         onClick={
@@ -125,17 +163,59 @@ export const ChartsGridStep: FC<
         )}
         ref={ref}
         data-progress={
-          value ? progressKey : null
+          value ? musicKey : null
         }
         style={{
           transitionProperty: "opacity",
           ...CHARTS_GRID_STEP_EMPTY_STYLE,
         }}
       />
-      <ChartsGridStepDot
-        isHovering={isHovering}
-        {..._props}
-      />
+      <div
+        className="absolute flex flex-row justify-stretch items-center w-full"
+        style={{
+          ...topStyle,
+        }}
+      >
+        {(Array.isArray(value)
+          ? value
+          : [value]
+        ).map((value, index) => (
+          <div
+            key={`${index}`}
+            className="row w-full"
+          >
+            <ChartsGridStepDot
+              isHovering={isHovering}
+              {..._props}
+              {...synth}
+              {...sequence}
+              value={value}
+            />
+
+            {isSynth && (
+              <div className="w-full bg-black-2">
+                <LinesHorizontal
+                  // positionClass="absolute"
+                  colorClass=""
+                  style={{
+                    width: `${
+                      sequence.duration *
+                      100
+                    }%`,
+                    //
+                    // s.m,
+                    opacity:
+                      value === null
+                        ? 0.25
+                        : 1,
+                    ...topStyle,
+                  }}
+                />
+              </div>
+            )}
+          </div>
+        ))}
+      </div>
     </div>
   );
 };

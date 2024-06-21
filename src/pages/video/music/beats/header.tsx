@@ -5,8 +5,8 @@ import { LinesHorizontalLight } from "~/components/lines/horizontal/light";
 import { STEPS_COUNT } from "~/constants/music/timing";
 import { usePlayBeats } from "~/hooks/music/play/beats";
 import { useAudioSeconds } from "~/hooks/music/time/audio-seconds";
-import { RowsBeats } from "~/pages/video/music/drums/beats";
-import { DrumsPresets } from "~/pages/video/music/drums/presets";
+import { BeatsList } from "~/pages/video/music/beats/list";
+import { DrumsPresets } from "~/pages/video/music/beats/presets";
 import { MusicLayoutHeader } from "~/pages/video/music/header";
 import { VideoMusicHeaderTimer } from "~/pages/video/music/header/timer";
 
@@ -44,7 +44,7 @@ export const MusicLayoutDrums: FC =
           <>
             <LinesHorizontalLight />
             <DrumsPresets />
-            <RowsBeats />
+            <BeatsList />
           </>
         }
       >

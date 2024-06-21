@@ -1,45 +1,35 @@
-import { useSynthSingle } from "react-synthwave";
 import { useSourceBufferStop } from "~/hooks/music/beats/hooks/source-buffer/stop";
-import { TBeatsKey } from "~/hooks/music/beats/types";
+import {
+  TBeatsKey,
+  TPlayBeatsOptions,
+} from "~/hooks/music/beats/types";
 import { useMusicInitContext } from "~/pages/video/music/_context/init";
 import { useTrillPicsStore } from "~/store/middleware";
-type THandlerConfig = {
-  stepIndex: number;
-  startTime: number;
-  output: AudioNode;
-  rate: number;
-  volume: number;
-};
+import { isNumber } from "~/utils/validation/is/number";
+type THandlerConfig =
+  TPlayBeatsOptions & {
+    startTime: number;
+    output: AudioNode;
+  };
 export const useSourceBufferStart = (
   key: TBeatsKey
 ) => {
   const {
-    drumsMaster,
     master,
+    beatsMaster,
     context,
     bufferSourceRecord,
     bufferRecord,
   } = useMusicInitContext();
-  
 
-  const { set, bpm } =
+  const { bpm, beats } =
     useTrillPicsStore(
-      ({ set, bpm }) => ({
-        set,
+      ({ bpm, beats }) => ({
         bpm,
+        beats,
       })
     );
-    const lfo = useSynthSingle(
-      context,
-      {
-        type: "sine",
-        frequency: bpm * (1 / 15),
-        // 240
-        //  240
-   
-        //o.oscillator.frequency,
-      }
-    );
+
   const stop = useSourceBufferStop(key);
 
   const handler = (
@@ -47,20 +37,16 @@ export const useSourceBufferStart = (
   ) => {
     const {
       startTime,
-      stepIndex,
+      stepIndex = 0,
       output,
       rate,
-      volume,
+      volume = 1,
     } = config;
     const sampleBuffer =
       bufferRecord[key];
     if (!sampleBuffer) {
-      console.log("NO SAM");
+      console.log("NO sampleBuffer");
       return;
-    }
-    if (!bufferSourceRecord[key]) {
-      console.log("NO BUFF REC");
-      bufferSourceRecord[key] = [];
     }
 
     const stopTime =
@@ -86,24 +72,13 @@ export const useSourceBufferStart = (
     bufferSourceRecord[key][
       stepIndex
     ].source.start(startTime);
-    const gain = new GainNode(context, {
-      gain: volume * 0.1,
-    });
-    output.connect(gain);
-    gain.connect(master);
 
-    bufferSourceRecord[key][
-      stepIndex
-    ].source.playbackRate.value = rate;
- 
-    lfo.play({
-      start: startTime,
-      gain: rate *2,
-      output:
-        bufferSourceRecord[key][
-          stepIndex
-        ].source.playbackRate,
-    });
+    if (isNumber(rate)) {
+      bufferSourceRecord[key][
+        stepIndex
+      ].source.playbackRate.value =
+        rate;
+    }
   };
   return handler;
 };

@@ -21,9 +21,8 @@ export const usePlayBeats = () => {
     keys: BEATS_KEYS,
     lookup,
     record,
-options:    {rate: 0.75}
+    options: { rate: 1 },
   });
-
 
   return result;
 };

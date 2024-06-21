@@ -10,7 +10,7 @@ import { useSourceBufferStop } from "~/hooks/music/beats/hooks/source-buffer/sto
 const key: TBeatsStepsKey = "kick";
 
 export const useKick = () => {
-  const { context, master } =
+  const { context, beatsMaster } =
     useMusicInitContext();
   const isReady = useBufferInit(key, 0);
   const start =
@@ -22,14 +22,7 @@ export const useKick = () => {
     beat: TBeatValue,
     options: TPlayBeatsOptions = {}
   ) => {
-    const {
-      version = 0,
-      volume = 1,
-      stepIndex = 0,
-      loopIndex = 0,
-      rate = 1,
-    } = options;
-
+    const { volume = 1 } = options;
     const filter = new BiquadFilterNode(
       context,
       {
@@ -38,18 +31,16 @@ export const useKick = () => {
       }
     );
     const gain = new GainNode(context, {
-      gain: 0.2 * volume,
+      gain: 0.4 * volume,
     });
 
     start({
-      stepIndex,
       startTime,
-      rate,
       output: filter,
-      volume,
+      ...options,
     });
     filter.connect(gain);
-    gain.connect(master);
+    gain.connect(beatsMaster);
   };
 
   return { play, stop, isReady };

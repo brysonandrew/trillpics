@@ -10,17 +10,12 @@ import { boxRadius } from "~uno/rules/box/radius";
 import { NAV_ITEMS } from "~/pics/hud/nav/constants";
 import { useLocation } from "react-router-dom";
 import { useHoverKey } from "~/hooks/use-hover-key";
-import { FooterNavLink } from "~/pics/hud/nav/link";
-import { PillBLayout } from "~/components/buttons/pill/b/layout";
 import clsx from "clsx";
-import { PillBText } from "~/components/buttons/pill/b/text";
-import { resolveCompositeKey } from "@brysonandrew/utils-key";
 import { useInitContext } from "~/shell/init/context";
 import { THudContainer } from "~/pics/hud";
-import { NavCountersPics } from "~/pics/hud/nav/counters/pics";
-import { NavCountersMusic } from "~/pics/hud/nav/counters/music";
-import { NavCountersSelectedMusic } from "~/pics/hud/nav/counters/selected/music";
-import { NavCountersSelectedPics } from "~/pics/hud/nav/counters/selected/pics";
+import { FooterNavItem } from "~/pics/hud/nav/item";
+import { resolveCompositeKey } from "@brysonandrew/utils-key";
+import { NavItemGlow } from "~/pics/hud/nav/glow";
 
 const SPRING = {
   type: "spring",
@@ -41,7 +36,7 @@ export const PicsHudFooterNav: FC<
   const { pathname } = useLocation();
   const { main } = useInitContext();
   const navItemGap =
-    container.width / 2;
+    container.width / 2 - s.m;
   useEffect(() => {
     const index = NAV_ITEMS.findIndex(
       ([_, path]) => path === pathname
@@ -52,9 +47,6 @@ export const PicsHudFooterNav: FC<
       SPRING
     );
   }, [pathname]);
-  // const x = useTransform(main.dragger.navX,v => Math.sin(((v%navItemGap)/navItemGap) * Math.PI/2) * navItemGap/2);
-
-
   const borderRadius = boxRadius();
   const { handlers } = useHoverKey();
   const width =
@@ -64,21 +56,20 @@ export const PicsHudFooterNav: FC<
       <motion.nav
         className={clsx(
           "relative py-0 h-0"
-          // "border dark:border-black-02 border-white-02"
         )}
         style={{
           top: container.height - s.m,
           left:
-            container.width / 2 - s.m05,
-          width,
+            container.width / 2 - s.m15,
+          width: width + s.m2,
           borderRadius,
-          // padding: s.m0125,
           x: main.dragger.navX,
         }}
         {...handlers(
           "PicsHudFooterNav"
         )}
       >
+        <NavItemGlow />
         <AnimatePresence>
           <ul className="row-space w-full h-0">
             {NAV_ITEMS.map(
@@ -98,102 +89,55 @@ export const PicsHudFooterNav: FC<
 
                 if (isSelected)
                   return (
-                    <motion.li
+                    <div
                       key={resolveCompositeKey(
                         "selected",
                         title
                       )}
-                      className={clsx(
-                        "row relative center z-10 pointer-events-none"
-                      )}
                       style={{
                         width: s.m,
                         height: s.m,
-                        gap: s.m025,
-                        filter:"grayscale(100%)",
-                        // originX: "50%",
-                        // originY: "50%",
                       }}
-                      initial={{
-                        scale: 1,
-                      }}
-                      animate={{
-                        scale: 1.075,
-                      }}
-                      exit={{
-                        scale: 1,
-                      }}
-                    >
-                      <Icon />
-                      {!container.isTablet && (
-                        <PillBText
-                          layoutId={
-                            title
-                          }
-                        >
-                          {title}
-                        </PillBText>
-                      )}
-                      {title ===
-                        "Music Sequencer" && (
-                        <NavCountersSelectedMusic />
-                      )}
-                      {title ===
-                        "Video Sequencer" && (
-                        <NavCountersSelectedPics />
-                      )}
-                    </motion.li>
+                    />
+                  );
+                const deltaFromSelected =
+                  Math.abs(
+                    selectedIndex -
+                      index
                   );
 
-                const isNext =
+                const isRtl =
                   selectedIndex < index;
                 return (
-                  <motion.li
-                    key={resolveCompositeKey(
-                      title
-                    )}
-                    className={clsx(
-                      "flex relative",
-                      isNext
-                        ? "justify-end"
-                        : "justify-start"
-                    )}
-                    style={{
-                      width: s.m,
-                    }}
-                  >
-                    <FooterNavLink
-                      to={to}
-                      title={title}
-                      classValue={clsx(
-                        "relative inline-flex items-center dark:bg-black-02 bg-white-02 backdrop-blur-lg",
-                        isNext
-                          ? "flex-row-reverse pl-4"
-                          : "flex-row pr-4"
-                      )}
-                      style={{
-                        borderRadius,
-                        gap: s.m025,
-                      }}
-                    >
-                      <PillBLayout
-                        Icon={Icon}
-                      />
-                      <PillBText
-                        layoutId={title}
-                      >
-                        {title}
-                      </PillBText>
-                      {title ===
-                        "Music Sequencer" && (
-                        <NavCountersMusic />
-                      )}
-                      {title ===
-                        "Video Sequencer" && (
-                        <NavCountersPics />
-                      )}
-                    </FooterNavLink>
-                  </motion.li>
+                  <FooterNavItem
+                    key={to}
+                    to={to}
+                    Icon={Icon}
+                    isRtl={isRtl}
+                    deltaFromSelected={
+                      deltaFromSelected
+                    }
+                    style={
+                      deltaFromSelected >
+                      0
+                        ? {
+                            [isRtl
+                              ? "right"
+                              : "left"]:
+                              navItemGap *
+                                (deltaFromSelected -
+                                  1) -
+                              0 *
+                                deltaFromSelected,
+                            bottom:
+                              s.m15 *
+                              (deltaFromSelected -
+                                1),
+                          }
+                        : {}
+                    }
+                    title={title}
+                  />
                 );
               }
             )}

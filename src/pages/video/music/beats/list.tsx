@@ -6,7 +6,7 @@ import { boxSize } from "~uno/rules/box/size";
 import { IconsPlay } from "~/components/icons/playback/play";
 import { IconsLoader } from "~/components/icons/loader";
 
-export const RowsBeats: FC = () => {
+export const BeatsList: FC = () => {
   const s = boxSize();
 
   const { beats: lookup } =

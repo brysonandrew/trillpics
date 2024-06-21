@@ -9,21 +9,17 @@ import { resolveSecondsFromCount } from "~/hooks/pic/video/read/seconds/from-cou
 export const picVideoReadInputs = (
   searchParams: URLSearchParams,
   fps: number,
-  bpm:number
+  bpm: number
 ): TPicSeriesProps => {
-  const seconds = Number(
-    searchParams.get(SECONDS_PARAM_KEY)
-  );
-
   const pics = searchParams.getAll(
     SELECTED_PARAM_KEY
   );
   const count = pics.length;
   const isPics = count > 0;
+  const seconds =
+    resolveSecondsFromCount(count, bpm);
   return {
-    seconds:
-      seconds ||
-      resolveSecondsFromCount(count,bpm),
+    seconds,
     pics,
     count,
     isPics,

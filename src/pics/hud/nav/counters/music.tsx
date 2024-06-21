@@ -1,6 +1,5 @@
 import type { FC } from "react";
 import { motion } from "framer-motion";
-import { useMusicInitContext } from "~/pages/video/music/_context/init";
 import { IconsMute } from "~/components/icons/playback/mute";
 import { boxSize } from "~uno/rules/box/size";
 import { boxRadius } from "~uno/rules/box/radius";
@@ -10,6 +9,7 @@ import { IconsTick } from "~/components/icons/tick";
 import { LayoutBox } from "~/components/layout/box";
 import { BackgroundMeshRadialFlat } from "~/components/layout/background/mesh-radial-flat";
 import { useTrillPicsStore } from "~/store/middleware";
+import { LightingGlow } from "~/components/layout/lighting/glow";
 const key = "NavCountersMusic";
 
 export const NavCountersMusic: FC =
@@ -54,6 +54,10 @@ export const NavCountersMusic: FC =
           }}
           {...motionHandlers(key)}
         >
+          {isHovering ? (
+            <LightingGlow />
+          ) : null}
+
           <div
             className="fill _gradient-mesh opacity-100"
             style={{

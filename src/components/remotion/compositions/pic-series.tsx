@@ -4,12 +4,14 @@ import {
   Composition,
   getInputProps,
 } from "remotion";
+
 import { PIC_SERIES_SCHEMA } from "~/components/remotion/pic-series/schema";
 import { useRemotionProps } from "~/hooks/remotion/use-props";
 import {
   TPicSeriesProps,
   TPicSeriesSchema,
 } from "~/components/remotion/pic-series/types";
+
 const INPUT_PROPS =
   getInputProps<TPicSeriesProps>();
 export const CompositionsPicSeries: FC<

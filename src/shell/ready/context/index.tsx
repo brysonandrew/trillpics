@@ -81,6 +81,7 @@ export const ReadyContextProvider: FC<
         resetLayout,
         scrollTimeoutRef,
         screen,
+        container: screen.container,
         ...picCellResult,
         ...initContext,
       }}

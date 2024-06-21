@@ -8,6 +8,7 @@ import { boxRadius } from "~uno/rules/box/radius";
 import { boxSize } from "~uno/rules/box/size";
 import { TDivMotionProps } from "@brysonandrew/config-types";
 import { PillBText } from "~/components/buttons/pill/b/text";
+import { LightingGlow } from "~/components/layout/lighting/glow";
 export type TPillBLayoutProps = Partial<
   Pick<
     TPillBProps,
@@ -59,6 +60,7 @@ export const PillBLayout: FC<
             style={{ borderRadius }}
           />
         )}
+        <LightingGlow/>
         <ButtonPillBIcon
           isSelected={isSelected}
           Icon={Icon}

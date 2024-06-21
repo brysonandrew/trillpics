@@ -1,5 +1,12 @@
-import { TScaleRecord, TScaleKey } from "~/constants/scales";
-import { TScaleOptions, TSequenceOptions } from "~/store/state/music/types";
+import {
+  TScaleRecord,
+  TScaleKey,
+} from "~/constants/scales";
+import { TBaseMidiValue } from "~/hooks/music/midis/types";
+import {
+  TScaleOptions,
+  TSequenceOptions,
+} from "~/store/state/music/types";
 export const RANDOM_MIDI_RANGE = 12;
 
 const resolveRandom = () =>
@@ -9,14 +16,15 @@ const resolveRandom = () =>
   );
 
 type TResolveValueConfig =
-TScaleOptions & TSequenceOptions & {
-    index: number;
-    count: number;
-    scaleMidis: TScaleRecord[TScaleKey];
-  };
+  TScaleOptions &
+    TSequenceOptions & {
+      index: number;
+      count: number;
+      scaleMidis: TScaleRecord[TScaleKey];
+    };
 export const resolveMidiValue = (
   config: TResolveValueConfig
-) => {
+): TBaseMidiValue => {
   const {
     index,
     count,
@@ -46,7 +54,11 @@ export const resolveMidiValue = (
     case "random":
       return resolveRandom();
     case "alternating":
-      return Math.floor(index/interval) % 2 === 0
+      return Math.floor(
+        index / interval
+      ) %
+        2 ===
+        0
         ? ascValue
         : descValue;
     case "hill":

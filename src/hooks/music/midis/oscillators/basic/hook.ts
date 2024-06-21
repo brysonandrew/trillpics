@@ -4,25 +4,23 @@ import type { TOConfig } from "../types";
 
 export const useBasicOscillator = ({
   context,
-  type,
-  frequency,
-  detune,
+  ...options
 }: TOConfig) => {
   const result = useMemo(() => {
-    const o =
-      context.createOscillator();
-    if (type) {
-      o.type = type;
-    }
-    if (typeof frequency === "number") {
-      o.frequency.value = frequency;
-    }
-    if (typeof detune === "number") {
-      o.detune.value = detune;
-    }
+    const create = () => {
+      return {
+        create,
+        isStarted: false,
+        oscillator: new OscillatorNode(
+          context,
+          options
+        ),
+      };
+    };
+    const ref = create();
+
     return {
-      oscillator: o,
-      isStarted: false,
+      ...ref,
     };
   }, []);
 

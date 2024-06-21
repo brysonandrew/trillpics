@@ -14,11 +14,10 @@ export const Bpm: FC = () => {
     <UiInputsSliderRow
       name="bpm"
       title="bpm"
-      value={bpm}
       min={40}
       max={140}
       step={1}
-      onUpdate={(_, value) =>
+      onUpdate={( value) =>
         set({ bpm: Number(value) })
       }
     />

@@ -9,6 +9,8 @@ import { GlowFilter } from "~/shell/init/svg/filters/glow";
 import { FiltersBlurAddRandom } from "~/shell/init/svg/filters/blur/add-random";
 import { FiltersBlurScrollY } from "~/shell/init/svg/filters/blur/scroll-y";
 import { DuoTone } from "~/shell/init/svg/filters/duo-tone";
+import { Duotone2 } from "~/shell/init/svg/filters/_filters-pismo/Duotone";
+import { Filters } from "~/shell/init/svg/filters/_filters-pismo";
 
 export const SvgFilters: FC = () => {
   return (
@@ -23,6 +25,7 @@ export const SvgFilters: FC = () => {
       <OutlineDarkFilter />
       <GlowFilter />
       <DuoTone />
+      <Filters phase="open" />
     </>
   );
 };

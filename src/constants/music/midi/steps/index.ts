@@ -1,57 +1,62 @@
-import { BEATS_1 } from "~/constants/music/beats";
 import { SCALE_RECORD } from "~/constants/scales";
 import { TMidiValue } from "~/hooks/music/midis/types";
 import {
   TScaleOptions,
   TSequenceOptions,
 } from "~/store/state/music/types";
-import { resolveMidiValue } from "./value";
+import { resolveMidiValue } from "../value";
 
-type TConfig = TScaleOptions &
-  TSequenceOptions;
+export type TMidiStepsConfig =
+  TScaleOptions & TSequenceOptions;
 export const resolveMidiSteps = (
-  config: TConfig
+  config: TMidiStepsConfig
 ) => {
   const {
-    beats = BEATS_1,
+    beats,
     repeat,
     interval,
-    delay,
     key,
   } = config;
   const scaleMidis = SCALE_RECORD[key];
-  let delayCount = 0;
-  let value:TMidiValue = null;
-  return beats.reduce(
+  let repeatCount = 0;
+  let value: TMidiValue = null;
+  return [...Array(beats)].reduce(
     (
       a: TMidiValue[],
       beat: number | null,
       index,
       { length: count }
     ) => {
+      repeatCount =
+        repeatCount + repeat;
+
       if (index % interval === 0) {
-        delayCount = delay;
-         const nextMidi = resolveMidiValue({
+        value = resolveMidiValue({
           index,
           count,
           scaleMidis,
           ...config,
         });
-        value = [...Array(repeat)].map(
-          () => nextMidi
-        );
-        // a.push(next);
-
-        // return a;
       }
       if (
-        beat === null ||
-        delayCount > 0
+        repeatCount < 1 ||
+        beat === null
       ) {
-        delayCount--;
         return [...a, null];
       }
-      return [...a, value];
+
+      const nextValues = [
+        ...a,
+        [
+          ...Array(
+            Math.floor(repeatCount)
+          ),
+        ].map(() => value),
+      ];
+
+      repeatCount = 0;
+
+      return nextValues;
     },
     []
   );

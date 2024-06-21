@@ -1,36 +1,43 @@
-import type { FC } from "react";
 import { motion } from "framer-motion";
 import { resolveSquare } from "@brysonandrew/measure";
 import clsx from "clsx";
 import { TChartsGridStepProps } from "~/components/charts/grid/step";
 import { resolveTop } from "~/components/charts/grid/top";
 import { resolvePlayVolume } from "~/hooks/music/play/volume";
-import { TMusicKey } from "~/store/state/music/types";
+import {
+  TMusicKey,
+  TSequenceOptions,
+  TSynthConfig,
+} from "~/store/state/music/types";
 import { boxRadius } from "~uno/rules/box/radius";
 import { boxSize } from "~uno/rules/box/size";
 import { isNumber } from "~/utils/validation/is/number";
+import { LinesHorizontal } from "~/components/lines/horizontal";
 
-type TProps = TChartsGridStepProps & {
-  isHovering: boolean;
-};
+type TProps<T extends TMusicKey> =
+  TSynthConfig &
+    TSequenceOptions &
+    TChartsGridStepProps<T> & {
+      isHovering: boolean;
+    };
 
-export const ChartsGridStepDot: FC<
-  TProps
-> = ({ isHovering, ..._props }) => {
+export const ChartsGridStepDot = <
+  T extends TMusicKey
+>({
+  duration,
+  isHovering,
+  ..._props
+}: TProps<T>) => {
   const {
     columnIndex,
     rowIndex,
     style,
     value,
     stepsKey,
-    ...props
+    musicKey: progressKey,
   } = _props;
   const isSynth = stepsKey === "synth";
   const borderRadius = boxRadius();
-
-  const progressKey = (
-    isSynth ? "midis" : "beats"
-  ) as TMusicKey;
 
   const key = `${columnIndex}-${rowIndex}-${progressKey}`;
   const s = boxSize();
@@ -38,7 +45,7 @@ export const ChartsGridStepDot: FC<
   const idleOpacity = isNumber(value)
     ? 1
     : isSynth
-    ? 0.2
+    ? 1
     : 0.28;
   return (
     <div
@@ -46,17 +53,10 @@ export const ChartsGridStepDot: FC<
         "center relative"
       )}
       style={{
-        ...(isSynth
-          ? {
-              top:
-                value === null
-                  ? 0
-                  : resolveTop(
-                      value,
-                      s.m05
-                    ),
-            }
-          : { top: 0 }),
+        // left: `calc(50%-${s.m025}px)`,
+        opacity:
+          value === null ? 0.25 : 1,
+        ...style,
         ...resolveSquare(s.m05),
       }}
     >
@@ -67,10 +67,15 @@ export const ChartsGridStepDot: FC<
           position: "relative",
           borderRadius,
           ...resolveSquare(s.m0125),
-          scale: resolvePlayVolume(
-            columnIndex
-          ),
+
+          scale:
+            0.5 +
+            resolvePlayVolume(
+              columnIndex
+            ) /
+              2,
         }}
+        initial={false}
         animate={{
           scale: isHovering
             ? 1.4

@@ -1,6 +1,7 @@
 import { TState } from "~/store/types";
 import { PersistOptions } from "zustand/middleware";
 import { resolveCompositeKey } from "@brysonandrew/utils-key";
+import { resolveMidiSteps } from "~/constants/music/midi/steps";
 import { STORAGE_JSON } from "~/store/middleware/3.persist/json";
 import {
   TPersistKey,
@@ -19,6 +20,7 @@ const persistKey = resolveCompositeKey(
 
 export const PERSIST_STATE_RECORD = {
   picsCount: "picsCount",
+  steps: "steps",
   pics: "pics",
   synth: "synth",
   sequence: "sequence",
@@ -39,8 +41,8 @@ export const PERSIST_STORAGE: PersistOptions<
   TPersistPartializedState
 > = {
   name: persistKey,
-  partialize: (state: TState) =>
-    KEYS.reduce(
+  partialize: (state: TState) => {
+    const persisted = KEYS.reduce(
       (a, key: TPersistKey) => {
         const value = state[key];
         return {
@@ -49,6 +51,14 @@ export const PERSIST_STORAGE: PersistOptions<
         };
       },
       {} as TPersistPartializedState
-    ),
+    );
+    return {
+      ...persisted,
+      steps: resolveMidiSteps({
+        ...persisted.scale,
+        ...persisted.sequence,
+      }),
+    };
+  },
   storage: STORAGE_JSON,
 };

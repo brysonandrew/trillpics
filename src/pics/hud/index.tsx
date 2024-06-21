@@ -1,5 +1,4 @@
 import { FC } from "react";
-import { AnimatePresence } from "framer-motion";
 import clsx from "clsx";
 import { TMeasureContainerResult } from "~/shell/init/hooks/measure/container";
 import { useReadyContext } from "~/shell/ready/context";
@@ -7,8 +6,7 @@ import { PicsHudHeader } from "~/pics/hud/header";
 import { PicsHudLeft } from "~/pics/hud/left";
 import { boxSize } from "~uno/rules/box/size";
 import { withControlsCheck } from "~/store/hocs/with-controls-check";
-import { PicsHudFooterNav } from "~/pics/hud/nav";
-import { resolveGradient } from "@brysonandrew/color-gradient";
+import { HudFooter } from "~/pics/hud/footer";
 
 export type THudContainer = Extract<
   TMeasureContainerResult,
@@ -65,37 +63,8 @@ export const Hud: FC =
             </div>
           </div>
         </div>
-        <div
-          className="absolute left-0 right-0 w-full z-20  pointer-events-none"
-          style={{
-            height: s.m4,
-            top:
-              container.height-s.m,
-            backgroundImage:
-              resolveGradient({
-                name: "linear-gradient",
-                parts: [
-                  "transparent",
-                  "var(--gray-5)",
-                ],
-              }),
-          }}
-        />
-        <footer
-          className="fixed w-full z-20 h-0"
-          style={{
-            left: container.left,
-            width: container.width,
-            top: s.m2,
-          }}
-        >
-          {!screen.isResizing && (
-            <PicsHudFooterNav
-              key="PicsHudFooterNav"
-              container={container}
-            />
-          )}
-        </footer>
+        <HudFooter />
+
       </>
     );
   });

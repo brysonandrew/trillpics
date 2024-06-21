@@ -53,39 +53,63 @@ export type TScalePattern =
   | "valley"
   | "alternating";
 
-export type TScaleOptions = {
-  pattern: TScalePattern;
+export type TScaleSliderOptions = {
   delta: number;
-  key: TScaleKey;
 };
 
-export type TSequenceOptions = {
-  beats?: TBeatValues;
+export type TScaleSliderOptionsKey =
+  keyof TScaleSliderOptions;
+
+export type TScaleOptions =
+  TScaleSliderOptions & {
+    pattern: TScalePattern;
+    key: TScaleKey;
+  };
+
+export type TSequenceSliderOptions = {
   offset: number;
   interval: number;
   repeat: number;
   delay: number;
+  duration: number;
+  beats: number;
 };
+export type TSequenceSliderOptionsKey =
+  keyof TSequenceSliderOptions;
+export type TSequenceOptions =
+  TSequenceSliderOptions;
 export type TSequenceOptionsKey =
   keyof TSequenceOptions;
 export type TSequenceOptionsIncrementerKey =
   keyof Omit<TSequenceOptions, "beats">;
 
-export type TSynthConfig =
-  TSynthOptions & TMultiOptions;
+export type TSynthConfig = Omit<
+  TSynthOptions & TMultiOptions,
+  "output" | "onEnded" | "type"
+>;
 
-export type TDrumsOptions = {
+export type TBeatsOptions = {
   gain: number;
 };
+export type TBeatsOptionsKey =
+  keyof TBeatsOptions;
 
+export type TMidisOptions = {
+  gain: number;
+};
+export type TMidisOptionsKey =
+  keyof TMidisOptions;
 export type TPlayingKey =
   | TMusicKey
   | TBeatsPresetsKey
   | number;
+
 export type TMusicState = {
   isLoop: boolean;
   bpm: number;
-  drums: TDrumsOptions;
+  master: number;
+  midis: TMidisOptions;
+  beats: TBeatsOptions;
   synth: TSynthConfig;
   steps: TMidiValues;
   scale: TScaleOptions;
@@ -96,7 +120,7 @@ export type TMusicState = {
 };
 export type TMusicOptions = Pick<
   TMusicState,
-  "bpm"
+  "bpm" | "master"
 >;
 export type TMusicOptionsKey =
   keyof TMusicOptions;
