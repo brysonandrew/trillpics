@@ -10,6 +10,7 @@ import { SubtitleText } from "~/pics/header/subtitle/text";
 import { useTrillPicsStore } from "~/store/middleware";
 import { TITLE_HOVER_KEY } from "~/pics/header/left";
 import clsx from "clsx";
+import { box } from "~uno/rules/box";
 export type TPillBLayoutProps = Omit<
   TDivMotionProps,
   "children"
@@ -28,7 +29,7 @@ export const PillBText: FC<
   textSizeClass,
   ...props
 }) => {
-  const s = boxSize();
+  const s = box;
   size = size ?? s.m;
   const { isIdle, isHover } =
     useTrillPicsStore(
@@ -54,14 +55,17 @@ export const PillBText: FC<
         {(isIdle ||
           isHover(TITLE_HOVER_KEY)) && (
           <motion.div
-            className="absolute -inset-y-2 -inset-x-1 bg-white-2 dark:bg-gray-5 rounded-lg z-0 pointer-events-none"
+            className="absolute -inset-y-2 -inset-x-4 bg-white-2 _gradient-radial z-0 pointer-events-none"
             initial={{ opacity: 0 }}
             animate={{
-              opacity: 0.2,
+              opacity: 0.4,
             }}
             exit={{ opacity: 0 }}
             style={{
-              filter: "blur(8px)",
+              filter: "blur(12px)",
+              borderRadius: s.radius.xl,
+              mixBlendMode:'soft-light'
+
             }}
           />
         )}

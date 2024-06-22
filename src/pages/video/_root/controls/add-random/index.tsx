@@ -10,7 +10,7 @@ import { ShowPics } from "~/components/show-pics";
 import { useReadyContext } from "~/shell/ready/context";
 
 export const ADD_RANDOM_HOVER_KEY =
-  "ADD_RANDOM_HOVER_KEY"; //
+  "Randomize"; //
 
 export const HudLeftAddRandom: FC<
   Partial<TPillBHoverProps>

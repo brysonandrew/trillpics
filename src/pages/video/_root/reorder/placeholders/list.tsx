@@ -12,6 +12,7 @@ import { TRootReorderPlaceholdersProps } from "~/pages/video/_root/reorder/place
 import { TCommonProps } from "~/pages/video/_root/reorder/types";
 import { isDefined } from "~/utils/validation/is/defined";
 import { DELAY_06_TRANSITION_PROPS } from "~/constants/animation";
+import { VideoRootReorderBox } from "~/pages/video/_root/reorder/box";
 
 export const resolveLayoutId = (
   index: number
@@ -46,9 +47,8 @@ export const _RootReorderPlaceholdersList: FC<
     ) || isHoveringBackground;
   const listNames = [
     ...Array(MAX_COUNT),
-  ].map(
-    (_, index) => names[index] 
-  );
+  ].map((_, index) => names[index]);
+
   return (
     <ul
       className={clsx(
@@ -63,53 +63,36 @@ export const _RootReorderPlaceholdersList: FC<
       )}
     >
       {listNames.map((name, index) => {
+        const boxStyle = {
+          width: itemDimensions.width,
+          height: itemDimensions.height, /// s.m+s.m025,
+          top: 0,
+          borderRadius:
+            borderRadius / 2,
+          padding: s.padding,
+          zIndex: index * 2 + 2,
+        };
         if (isDefined(name))
           return (
             <li
               key={`${index}-idle`}
-              style={{
-                width:
-                  itemDimensions.width,
-                height:
-                  itemDimensions.height, /// s.m+s.m025,
-                top: 0,
-                borderRadius:
-                  borderRadius / 2,
-                padding: s.padding,
-                zIndex: index * 2 + 2,
-              }}
+              className='relative'
+              style={boxStyle}
             />
           );
         return (
           <motion.li
             key={`${index}-active`}
             className={clsx("relative")}
-            style={{
-              width:
-                itemDimensions.width,
-              height:
-                itemDimensions.height, /// s.m+s.m025,
-              top: 0,
-              padding: s.padding,
-              zIndex: index * 2 + 2,
-            }}
+            style={boxStyle}
             animate={{
               opacity: isHovering
                 ? 0.8
                 : 0.6,
             }}
           >
-            <motion.div
-              className={clsx(
-                "fill",
-                "border backdrop-blur-sm",
-                isHovering
-                  ? "border-white-06 dark:border-black-06 bg-white-02 dark:bg-black-02"
-                  : "border-white-02 dark:border-black-02 bg-white-01 dark:bg-black-01"
-              )}
-              layoutId={resolveLayoutId(
-                index
-              )}
+            <VideoRootReorderBox
+              index={index}
               style={{
                 borderRadius:
                   borderRadius / 2,

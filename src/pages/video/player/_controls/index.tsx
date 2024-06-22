@@ -3,6 +3,7 @@ import { PlayerBackground } from "~/pages/video/player/_background";
 import { boxRadius } from "~uno/rules/box/radius";
 import { PlayerBackgroundOpaque } from "~/pages/video/player/_background/opaque";
 import { PlaybackButtons } from "~/pages/video/player/_controls/playback/buttons";
+import { box } from "~uno/rules/box";
 
 export const OVERFLOW_HIDDEN =
   "overflow: hidden;";
@@ -18,17 +19,18 @@ export const VideoPlayer_Controls =
           className="relative w-full"
           style={{
             borderRadius,
+            height: box.m025,
           }}
         >
           <PlayerBackgroundOpaque />
           <div
-            className="absolute inset-0 _gradient-radial"
+            className="absolute inset-0 _gradient-radial opacity-70"
             style={{
               borderRadius,
             }}
           />
           <PlayerBackground />
-          <div className="absolute inset-0 bg-black-05 rounded-lg _gradient-mesh opacity-60" />
+          <div className="fill bg-black-05 _gradient-mesh opacity-20" />
           <PlaybackProgressSeeker />
         </div>
       </>

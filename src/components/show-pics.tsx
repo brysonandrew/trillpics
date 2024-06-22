@@ -1,17 +1,16 @@
 import type { FC } from "react";
-import { motion } from "framer-motion";
-import { TUlProps } from "@brysonandrew/config-types";
+import { TDivProps } from "@brysonandrew/config-types";
 import { TUsePicSelected } from "~/hooks/pic/selected";
-import { resolvePicSrc } from "~/utils/src";
 import { MAX_COUNT } from "~/pages/video/_root/reorder/constants";
 import { useReadyContext } from "~/shell/ready/context";
 import { boxSize } from "~uno/rules/box/size";
+import { PicDisplay } from "~/pics/grid/pic/display";
 
 type TProps = Pick<
   TUsePicSelected,
   "names"
 > &
-  TUlProps & { title?: string };
+  TDivProps & { title?: string };
 export const ShowPics: FC<TProps> = ({
   title,
   names,
@@ -33,7 +32,7 @@ export const ShowPics: FC<TProps> = ({
           <div className="h-6" />
         </>
       )}
-      <ul
+      <div
         className="relative grid gap-2 pointer-events-none"
         style={{
           display: "grid",
@@ -46,20 +45,14 @@ export const ShowPics: FC<TProps> = ({
         {...props}
       >
         {names.map((name) => (
-          <li key={`shown-pic-${name}`}>
-            <motion.img
-              layoutId={name}
-              alt={name}
-              src={resolvePicSrc({
-                base: "remotion",
-                name,
-              })}
-              width={unitSize}
-              height={unitSize}
-            />
-          </li>
+          <PicDisplay
+            key={`shown-pic-${name}`}
+            name={name}
+            width={unitSize}
+            height={unitSize}
+          />
         ))}
-      </ul>
+      </div>
     </>
   );
 };

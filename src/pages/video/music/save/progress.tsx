@@ -42,7 +42,6 @@ export const VideoMusicPlaybackProgress: FC =
           className="fill _gradient-mesh bg-black-05"
           style={{
             borderRadius: s.radius.xl,
-            right:-s.m0125,
           }}
         />
       </div>

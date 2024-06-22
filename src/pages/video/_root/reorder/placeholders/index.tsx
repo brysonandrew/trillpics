@@ -89,18 +89,7 @@ export const _RootReorderPlaceholders: FC<
         y: dragger.y06,
       }}
     >
-      {/* {isHovering && (
-          <motion.div
-            className="fill border border-main bg-red"
-            style={{
-              filter: isHovering
-                ? "brightness(200%)"
-                : "",
 
-              pointerEvents: "none",
-            }}
-          />
-        )} */}
       <_RootReorderPlaceholdersList
         names={names}
         boxProps={boxProps}

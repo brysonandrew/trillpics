@@ -15,8 +15,8 @@ export const useAddRandomHandler =
     const selectRandoms = () => {
       handleBlur(10);
 
-      select(randoms);
       randomize();
+      select(randoms);
     };
 
     return [

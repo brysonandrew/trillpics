@@ -10,8 +10,7 @@ import { PRESENCE_OPACITY } from "@brysonandrew/motion-config-constants";
 import { TMotionPoint } from "@brysonandrew/motion-config-types";
 import { TDimensions } from "@brysonandrew/config-types";
 import { PillBSm } from "~/components/buttons/pill/b/sm";
-import { resolveLayoutId } from "~/pages/video/_root/reorder/placeholders/list";
-import { DELAY_06_TRANSITION_PROPS } from "~/constants/animation";
+import { VideoRootReorderBox } from "~/pages/video/_root/reorder/box";
 
 type TProps = TMotionPoint &
   Pick<TCommonProps, "itemDimensions"> &
@@ -42,7 +41,6 @@ export const _RootReorderControls: FC<
   y,
 }) => {
   const s = boxSize();
-  const borderRadius = boxRadius();
 
   return (
     <motion.div
@@ -58,17 +56,10 @@ export const _RootReorderControls: FC<
         zIndex: index,
       }}
     >
-      <motion.div
+      <VideoRootReorderBox
         key={`group-${index}`}
-        className="absolute w-full row-start-space border border-white-06 dark:border-black-06 bg-white-01 dark:bg-black-01 backdrop-blur-sm"
-        style={{
-          borderRadius:
-            borderRadius / 2,
-          padding: s.padding,
-          ...itemDimensions,
-        }}
-        layoutId={resolveLayoutId(index)}
-        {...PRESENCE_OPACITY}
+        index={index}
+        style={itemDimensions}
       >
         <PillBSm
           title="Replace with random pic"
@@ -94,7 +85,7 @@ export const _RootReorderControls: FC<
             Icon: IconsTrash,
           }}
         />
-      </motion.div>
+      </VideoRootReorderBox>
     </motion.div>
   );
 };

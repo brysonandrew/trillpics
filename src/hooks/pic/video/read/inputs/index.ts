@@ -5,6 +5,7 @@ import {
   SELECTED_PARAM_KEY,
 } from "~/hooks/pic/constants";
 import { resolveSecondsFromCount } from "~/hooks/pic/video/read/seconds/from-count";
+import { isNonameInverted } from "~/utils/validation/is/noname";
 
 export const picVideoReadInputs = (
   searchParams: URLSearchParams,
@@ -13,6 +14,8 @@ export const picVideoReadInputs = (
 ): TPicSeriesProps => {
   const pics = searchParams.getAll(
     SELECTED_PARAM_KEY
+  ).filter(
+    isNonameInverted
   );
   const count = pics.length;
   const isPics = count > 0;

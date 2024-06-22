@@ -18,6 +18,8 @@ import clsx from "clsx";
 import { _RootReorderControls } from "~/pages/video/_root/reorder/controls";
 import { useHoverKey } from "~/hooks/use-hover-key";
 import { isDefined } from "~/utils/validation/is/defined";
+import { NONAME_PREFIX } from "~/constants/keys";
+import { isNoname } from "~/utils/validation/is/noname";
 export const HOVER_KEY_RootReorderList =
   "_RootReorderList";
 type TProps = TUsePicSelected;
@@ -96,14 +98,12 @@ export const _RootReorderList: FC<
   const { motionHandlers } =
     useHoverKey();
 
-  const nonamePrefix =
-    "noname-" as const;
   const listNames = [
     ...Array(MAX_COUNT),
   ].map(
     (_, index) =>
       names[index] ??
-      (`${nonamePrefix}${index}` as const)
+      (`${NONAME_PREFIX}${index}` as const)
   );
   return (
     <Reorder.Group
@@ -120,12 +120,10 @@ export const _RootReorderList: FC<
       )}
     >
       {listNames.map((name, index) => {
-        const isNoName =
-          name.startsWith(nonamePrefix);
-  
+        const isName = !isNoname(name);
 
         isVNumber(size);
-       
+
         const controlKey =
           resolveCompositeKey(
             name,
@@ -151,48 +149,52 @@ export const _RootReorderList: FC<
               cursor: "grab",
             }}
           >
-            {!isNoName && <_RootReorderControls
-              x={dragger.x}
-              y={dragger.y075}
-              key={controlKey}
-              name={name}
-              title={controlKey}
-              isColumn={isColumn}
-              index={index}
-              itemDimensions={
-                itemDimensions
-              }
-              imageDimensions={
-                imageDimensions
-              }
-              deselect={deselect}
-              add={add}
-              pics={pics}
-            />}
-            {!isNoName && !isHover(
-              LEFT_BUTTONS_CLEAR_TITLE
-            ) &&
+            {isName &&
+              !isHover(
+                LEFT_BUTTONS_CLEAR_TITLE
+              ) &&
               !isVideoPlayerButtonHover && (
-                <PicDisplay
-                  key={resolveCompositeKey(
-                    "reorder-list-pic-display",
-                    name
-                  )}
-                  name={name}
-                  whileTap={{
-                    cursor: "grabbing",
-                  }}
-                  style={{
-                    left: 0,
-                    top: dragger.y06,
-                    zIndex: index + 2,
-                    ...imageDimensions,
-                  }}
-                  transition={{
-                    duration: 0.6,
-                    ease: "easeIn",
-                  }}
-                />
+                <>
+                  <_RootReorderControls
+                    x={dragger.x}
+                    y={dragger.y075}
+                    key={controlKey}
+                    name={name}
+                    title={controlKey}
+                    isColumn={isColumn}
+                    index={index}
+                    itemDimensions={
+                      itemDimensions
+                    }
+                    imageDimensions={
+                      imageDimensions
+                    }
+                    deselect={deselect}
+                    add={add}
+                    pics={pics}
+                  />
+                  <PicDisplay
+                    key={resolveCompositeKey(
+                      "reorder-list-pic-display",
+                      name
+                    )}
+                    name={name}
+                    whileTap={{
+                      cursor:
+                        "grabbing",
+                    }}
+                    style={{
+                      left: 0,
+                      top: dragger.y06,
+                      zIndex: index + 2,
+                      ...imageDimensions,
+                    }}
+                    transition={{
+                      duration: 0.6,
+                      ease: "easeIn",
+                    }}
+                  />
+                </>
               )}
           </Reorder.Item>
         );

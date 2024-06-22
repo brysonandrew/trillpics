@@ -21,28 +21,29 @@ export const TimerCurrentProgress: FC<TProps> =
     }) => {
       const opacity = useTransform(
         progress,
-        (v) => (1 - v) / 12 + 0.2
+        (v) => (1 - v) * 0.4 + 0.6
       );
 
       return (
         <motion.div
           style={{
+            scaleX: progress,
+
             borderRadius,
+            originX: 0,
+            originY: "50%",
+            opacity,
           }}
           className={clsx(
-            "absolute w-full _gradient-radial pointer-events-none",
-            classValue ?? "inset-1"
+            "fill _gradient-radial pointer-events-none"
+            // classValue ?? "inset-1"
           )}
         >
           <motion.div
             style={{
-              scaleX: progress,
-              originX: 0,
-              originY: "50%",
               borderRadius,
-              opacity,
             }}
-            className="absolute -inset-4 _gradient-radial-inverted blur-lg"
+            className="absolute -inset-1 _gradient-radial-inverted blur-lg"
           />
         </motion.div>
       );

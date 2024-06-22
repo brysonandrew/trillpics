@@ -23,18 +23,6 @@ TUsePicSelected
     to: 0,
     from: s.m4,
   });
-  const { hoverKeys, isHover } =
-    useTrillPicsStore(
-      ({
-        hoverKeys,
-        isControls,
-        isHover,
-      }) => ({
-        hoverKeys,
-        isControls,
-        isHover,
-      })
-    );
 
 
   return (
