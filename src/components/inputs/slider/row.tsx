@@ -33,6 +33,8 @@ import { useTrillPicsStore } from "~/store/middleware";
 import { cx } from "class-variance-authority";
 import { TSynthConfigKey } from "~/store/state/music/constants";
 import { isDefined } from "~/utils/validation/is/defined";
+import { TypographyXxxs } from "~/components/layout/typography/xxxs";
+import { TypographyXxs } from "~/components/layout/typography/xxs";
 
 type TKeys =
   | readonly ["synth", TSynthConfigKey]
@@ -160,9 +162,10 @@ export const UiInputsSliderRow: FC<
       const nextValue =
         resolveMidiValue(value);
       set((draft: TState) => {
-        if (isMusicSliderConfigType(key)) {
+        if (
+          isMusicSliderConfigType(key)
+        ) {
           draft[key] = nextValue;
-
         }
         if (
           key === "synth" &&
@@ -216,6 +219,7 @@ export const UiInputsSliderRow: FC<
         classValue
       )}
       style={{
+        left: s.m0625,
         gap: s.m025,
         height: s.m075,
       }}
@@ -223,17 +227,22 @@ export const UiInputsSliderRow: FC<
       <BackgroundGlass
         boxStyle={{
           left: sidebarWidthOffset,
+          right: s.m0125,
+
         }}
       />
       <MeshBackgroundText
         style={{
-          width:
-            sidebarWidthOffset - s.m025,
+          width: 0,
+          left: s.m0125,
           height: s.m,
-          left: 0,
         }}
       >
-        {title}
+        <TypographyXxxs
+          style={{ textAlign: "left", width:0 }}
+        >
+          {title}
+        </TypographyXxxs>
       </MeshBackgroundText>
       <div
         className="relative"
@@ -243,7 +252,7 @@ export const UiInputsSliderRow: FC<
             width -
             sidebarWidthOffset -
             s.m -
-            s.m2,
+            s.m2 -s.m0125,
         }}
       >
         <SliderStyled
@@ -257,12 +266,17 @@ export const UiInputsSliderRow: FC<
       <MeshBackgroundText
         classValue="relative"
         style={{
-          width: s.m2,
+          width: 0,
           height: s.m,
-          right: 0,
+          right: s.m,
         }}
       >
-        {value?.toString() ?? "-"}
+        <TypographyXxs
+                  style={{ textAlign: "right", width:0 }}
+
+        >
+          {value?.toString() ?? "-"}
+        </TypographyXxs>
       </MeshBackgroundText>
     </div>
   );

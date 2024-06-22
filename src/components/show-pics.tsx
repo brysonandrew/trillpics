@@ -1,7 +1,6 @@
 import type { FC } from "react";
 import { motion } from "framer-motion";
 import { TUlProps } from "@brysonandrew/config-types";
-import { container } from "tailwindcss/defaultTheme";
 import { TUsePicSelected } from "~/hooks/pic/selected";
 import { resolvePicSrc } from "~/utils/src";
 import { MAX_COUNT } from "~/pages/video/_root/reorder/constants";
@@ -35,7 +34,7 @@ export const ShowPics: FC<TProps> = ({
         </>
       )}
       <ul
-        className="relative grid gap-2"
+        className="relative grid gap-2 pointer-events-none"
         style={{
           display: "grid",
           left: 0,
@@ -47,7 +46,7 @@ export const ShowPics: FC<TProps> = ({
         {...props}
       >
         {names.map((name) => (
-          <li key={name}>
+          <li key={`shown-pic-${name}`}>
             <motion.img
               layoutId={name}
               alt={name}

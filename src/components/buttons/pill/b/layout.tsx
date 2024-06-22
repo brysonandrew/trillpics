@@ -40,7 +40,7 @@ export const PillBLayout: FC<
   const borderRadius = boxRadius();
 
   return (
-    <>
+
       <motion.div
         className={clsx(
           "center relative bg-white dark:bg-black pointer-events-none z-0 border-2 border-transparent"
@@ -67,17 +67,7 @@ export const PillBLayout: FC<
           outerCircle={outerCircle}
         />
       </motion.div>
-      {children && (
-        <>
-          {isString(children) ? (
-            <PillBText>
-              {children}
-            </PillBText>
-          ) : (
-            <>{children}</>
-          )}
-        </>
-      )}
-    </>
+
+
   );
 };

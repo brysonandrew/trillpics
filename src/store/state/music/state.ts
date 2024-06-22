@@ -1,6 +1,7 @@
 import { resolveMidiSteps } from "~/constants/music/midi/steps";
 import {
   DEFAULT_BEATS_SLIDER_OPTIONS,
+  DEFAULT_MIDIS_OPTIONS,
   DEFAULT_MIDIS_SLIDER_OPTIONS,
   DEFAULT_MULTI_SYNTH_OPTIONS,
   DEFAULT_MUSIC_SLIDER_OPTIONS,
@@ -24,7 +25,7 @@ export const musicState: TStateHandler<
     ...DEFAULT_BEATS_SLIDER_OPTIONS,
   },
   midis: {
-    ...DEFAULT_MIDIS_SLIDER_OPTIONS,
+    ...DEFAULT_MIDIS_OPTIONS,
   },
   steps,
   synth: {

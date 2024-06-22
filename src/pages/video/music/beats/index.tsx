@@ -5,19 +5,12 @@ import { MusicLayoutDrums } from "~/pages/video/music/beats/header";
 import { ChartsGrid } from "~/components/charts/grid";
 import { useVideoStyle } from "~/pages/video/style";
 import { useTrillPicsStore } from "~/store/middleware";
-import { boxSize } from "~uno/rules/box/size";
-import {
-  BEATS_KEYS,
-  BEATS_VERSION_LOOKUP,
-} from "~/hooks/music/beats/constants";
+import { BEATS_KEYS } from "~/hooks/music/beats/constants";
 import { ChartsGridLinesHorizontal } from "~/components/charts/grid/lines/horizontal";
-import { TypographyXxs } from "~/components/layout/typography/xxs";
 import { useMusicReadyContext } from "~/pages/video/music/_context/ready";
 import { IconsLoader } from "~/components/icons/loader";
 import { IconsPlay } from "~/components/icons/playback/play";
-import { MusicLayoutTitle } from "~/pages/video/music/title";
 import { isBeatsKey } from "~/utils/validation/is/beats/key";
-import { BackgroundMesh } from "~/components/layout/background/mesh";
 import { box } from "~uno/rules/box";
 import { TypographyXxxs } from "~/components/layout/typography/xxxs";
 
@@ -100,9 +93,6 @@ export const VideoMusicDrums: FC =
                   paddingRight: s.m025,
                   paddingLeft: s.m0125,
                   transform: `translateX(${-s.m025}px)`,
-
-                  // borderRadius:
-                  // box.radius.xl,
                 }}
               >
                 <Icon size={12} />

@@ -31,24 +31,24 @@ export const VideoMusicSynth: FC =
             synth: steps,
           }}
           style={{
-            left: sidebarWidthOffset,
+            left: sidebarWidthOffset+s.m03125,
             width:
               width -
-              sidebarWidthOffset,
+              sidebarWidthOffset+s.m025-s.m0625,
           }}
         >
           {(props) => (
             <div
               className="absolute fill"
               style={{
-                left: -sidebarWidthOffset/3,
+                left: -sidebarWidthOffset/2,
                 height: s.m2,
                 width: s.m05,
               }}
             >
-              <ChartsGridStaff >
+              <ChartsGridStaff style={{opacity: 0.4}} >
                 {(index) => (
-                  <div className={clsx("absolute row right-full top-1/2 text-xxxs -translate-y-1/2",index%2===0 ? '-translate-x-4' : '-translate-x-1')}>{(synth.midi??0) + index}</div>
+                  <div className={clsx("absolute row right-full top-1/2 text-xxxs text-white -translate-y-1/2",index%2===0 ? '-translate-x-4' : '-translate-x-1')}>{(synth.midi??0) + index}</div>
                 )}
               </ChartsGridStaff>
             </div>

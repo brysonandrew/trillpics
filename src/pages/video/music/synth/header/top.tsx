@@ -33,14 +33,21 @@ export const VideoMusicSynthHeaderTop: FC =
       if (!scrollRef.current) return;
       const scrollTopOptions = [
         0,
-        beatsTop,
+        beatsTop-s.m05,
         scrollRef.current.scrollHeight,
       ];
-      const nextScrollTop =
+      let nextScrollTop =
         scrollTopOptions[
           indexRef.current %
             scrollTopOptions.length
         ];
+        if (nextScrollTop === scrollRef.current.scrollTop) {
+          indexRef.current++;
+          nextScrollTop =  scrollTopOptions[
+            indexRef.current %
+              scrollTopOptions.length
+          ];
+        }
       scrollRef.current.scrollTop =
         nextScrollTop;
       indexRef.current++;

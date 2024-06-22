@@ -1,5 +1,12 @@
-import { FC, ReactNode } from "react";
-import { motion } from "framer-motion";
+import {
+  FC,
+  Fragment,
+  ReactNode,
+} from "react";
+import {
+  AnimatePresence,
+  motion,
+} from "framer-motion";
 import clsx from "clsx";
 import {
   TButtonMotionProps,
@@ -14,7 +21,11 @@ import { resolveCompositeKey } from "@brysonandrew/utils-key";
 import { boxRadius } from "~uno/rules/box/radius";
 import { PillBLayout } from "~/components/buttons/pill/b/layout";
 import { TIconsSvgProps } from "@brysonandrew/svg-icon";
+import { PillBText } from "~/components/buttons/pill/b/text";
+import { isString } from "~/utils/validation/is/string";
+import { PRESENCE_OPACITY } from "@brysonandrew/motion-config-constants";
 
+type TXDirection = "ltr" | "rtl";
 export type TPillBProps =
   TPropsWithChildren<
     Omit<
@@ -28,7 +39,7 @@ export type TPillBProps =
         circleProps?: TCircleProps;
         outerCircle?: ReactNode;
         isSelected?: boolean;
-        direction?: "ltr" | "rtl";
+        direction?: TXDirection;
         positionClass?: string;
       }
   >;
@@ -43,6 +54,7 @@ export const PillB: FC<TPillBProps> = (
     direction = "ltr",
     disabled,
     positionClass,
+    children,
   } = props;
   const s = boxSize();
   const borderRadius = boxRadius();
@@ -68,7 +80,7 @@ export const PillB: FC<TPillBProps> = (
           : "row-reverse"
       )}
       style={{
-        gap: s.m05,
+        gap: s.m,
         height: s.m,
         borderRadius,
         ...style,
@@ -76,6 +88,31 @@ export const PillB: FC<TPillBProps> = (
       {...props}
     >
       <PillBLayout {...props} />
+      <AnimatePresence>
+        {children && (
+          <Fragment
+            key={resolveCompositeKey(
+              "pill-b-children",
+              title
+            )}
+          >
+            <div
+              style={{
+                padding: s.m0125,
+              }}
+            />
+            {isString(children) ? (
+              <PillBText
+                {...PRESENCE_OPACITY}
+              >
+                {children}
+              </PillBText>
+            ) : (
+              <>{children}</>
+            )}
+          </Fragment>
+        )}
+      </AnimatePresence>
     </Root>
   );
 };

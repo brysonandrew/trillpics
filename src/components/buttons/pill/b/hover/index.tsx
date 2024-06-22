@@ -7,7 +7,7 @@ import {
   PillB,
   TPillBProps,
 } from "~/components/buttons/pill/b";
-import { useHoverKey } from "~/hooks/use-hover-key";
+import { THoverKeyConfig, useHoverKey } from "~/hooks/use-hover-key";
 import { isDefined } from "~/utils/validation/is/defined";
 import { useTrillPicsStore } from "~/store/middleware";
 import { LayoutOverlay } from "~/components/layout/overlay";
@@ -18,6 +18,7 @@ import { TITLE_HOVER_KEY } from "~/pics/header/left";
 export type TPillBHoverProps =
   TPillBProps & {
     subtitle?: string | JSX.Element;
+    hoverKeyConfig?:THoverKeyConfig
   };
 export const PillBHover: FC<
   TPillBHoverProps
@@ -26,6 +27,8 @@ export const PillBHover: FC<
   subtitle,
   children = title,
   onClick,
+  style,
+  hoverKeyConfig,
   ...props
 }) => {
   const { endTimeout, timeoutRef } =
@@ -33,11 +36,14 @@ export const PillBHover: FC<
   const { pathname } = useLocation();
   const [isMoving, setMoving] =
     useState(false);
-  const { set, isIdle } = useTrillPicsStore(
-    ({ set,isIdle }) => ({ set,isIdle })
-  );
+  const { isIdle } =
+    useTrillPicsStore(
+      ({  isIdle }) => ({
+        isIdle,
+      })
+    );
   const { motionHandlers, isHover } =
-  useHoverKey();
+    useHoverKey(hoverKeyConfig);
 
   useEffect(() => {
     endTimeout();
@@ -65,19 +71,27 @@ export const PillBHover: FC<
   };
   return (
     <>
-     
       <PillB
         title={title}
         onClick={handleClick}
+        style={{
+          ...(isHovering
+            ? { zIndex: 99 }
+            : {}),
+          ...style,
+        }}
         {...motionHandlers(title)}
         {...props}
       >
-        {(!isHovering && isIdle) || isHover(TITLE_HOVER_KEY)
+        {(!isHovering && isIdle) ||
+        isHover(TITLE_HOVER_KEY)
           ? title
           : null}
       </PillB>
       <LayoutOverlay
-        isShown={isHovering && !isMoving}
+        isShown={
+          isHovering && !isMoving
+        }
         key={title}
         direction={props.direction}
         subtitle={subtitle}

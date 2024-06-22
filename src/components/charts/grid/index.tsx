@@ -40,10 +40,10 @@ export const ChartsGrid: FC<TProps> = ({
   musicKey,
   style,
   children,
+  presets,
   ...props
 }) => {
   const s = boxSize();
-  const presets = props.presets;
   const keys =
     "includes" in props
       ? props.includes

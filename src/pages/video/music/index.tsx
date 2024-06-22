@@ -11,10 +11,7 @@ import { VideoMusicPlayback } from "~/pages/video/music/save/index";
 import { VideoMusicSynth } from "~/pages/video/music/synth";
 import { Bpm } from "~/pages/video/music/bpm";
 import { VideoMusicDrums } from "~/pages/video/music/beats";
-import {
-  MusicInitProvider,
-  useMusicInitContext,
-} from "~/pages/video/music/_context/init";
+import { MusicInitProvider } from "~/pages/video/music/_context/init";
 import { MusicReadyProvider } from "~/pages/video/music/_context/ready";
 import { MusicRecorderProvider } from "~/pages/video/music/_context/recorder";
 import clsx from "clsx";
@@ -27,9 +24,8 @@ import { MidisOscillator } from "~/pages/video/music/synth/oscillator";
 import { Master } from "~/pages/video/music/master";
 import { SequenceSlider } from "~/pages/video/music/synth/sequence/slider";
 import { SynthDropdowns } from "~/pages/video/music/synth/dropdowns";
-import { BeatsList } from "~/pages/video/music/beats/list";
-import { TimerCurrentProgress } from "~/pages/video/player/_controls/playback/progress";
 import { VideoMusicPlaybackProgress } from "~/pages/video/music/save/progress";
+import { LinesHorizontalLight } from "~/components/lines/horizontal/light";
 
 export const VideoMusic = () => {
   const {
@@ -52,11 +48,14 @@ export const VideoMusic = () => {
   useEffect(() => {
     if (scrollRef.current) {
       scrollRef.current.scrollTop =
-        scrollRef.current.scrollHeight;
+        beatsTop - s.m05;
+      //scrollRef.current.scrollHeight;
     }
   }, []);
   return (
-    <MusicInitProvider scrollRef={scrollRef}>
+    <MusicInitProvider
+      scrollRef={scrollRef}
+    >
       <MusicReadyProvider>
         <MusicRecorderProvider>
           <Helmet>
@@ -72,7 +71,7 @@ export const VideoMusic = () => {
               top: beatsTop + s.m,
               bottom: s.m15,
               left: left - s.m15,
-              width: s.m15,
+              width: s.m,
             }}
           />
           <MusicAll />
@@ -92,7 +91,7 @@ export const VideoMusic = () => {
                   left -
                   s.m0125 -
                   s.m0625,
-                gap,
+                gap: s.m0125,
                 width: width + s.m025,
                 paddingTop: y,
                 height:
@@ -102,13 +101,22 @@ export const VideoMusic = () => {
               <div
                 className="relative column-stretch"
                 style={{
-                  gap,
+                  gap: s.m0125,
                   paddingTop:
-                    s.m05 + s.m0125,
-                  paddingBottom: s.m05,
+                    s.m05 + s.m025,
+                  paddingBottom:
+                    s.m0125,
                 }}
               >
                 <div className="absolute inset-x-0 -inset-y-32 bg-gradient-to-t from-black to-black-01" />
+                <LinesHorizontalLight
+                  style={{
+                    left:
+                      s.m025 + s.m0125,
+                    top: 0,
+                    width: width - s.m2,
+                  }}
+                />
                 <SequenceSlider optionsKey="beats" />
                 <SequenceSlider optionsKey="interval" />
                 <SequenceSlider optionsKey="duration" />
@@ -174,9 +182,12 @@ export const VideoMusic = () => {
               </div>
 
               <div
-                className="relative column-stretch"
+                className="relative column-stretch overflow-hidden"
                 style={{
                   gap,
+                  width: width + s.m025,
+                  paddingTop: s.m05,
+                  paddingBottom: s.m05,
                 }}
               >
                 <div className="absolute inset-x-0 -inset-y-6 bg-gradient-to-l from-black to-black-05" />
@@ -191,6 +202,8 @@ export const VideoMusic = () => {
                   top:
                     beatsTop + s.m025,
                   bottom: -s.m,
+                  // paddingTop:s.m05,
+                  // paddingBottom:s.m05
                 }}
               >
                 <VideoMusicDrums />
@@ -200,10 +213,11 @@ export const VideoMusic = () => {
                 className="relative column-stretch"
                 style={{
                   gap,
+                  paddingTop: s.m05,
+                  paddingBottom: s.m05,
                 }}
               >
                 <div className="absolute inset-x-0 -inset-y-6 bg-gradient-to-l from-black to-black-05" />
-                <BeatsList />
                 <BeatsMaster />
               </div>
 
@@ -216,7 +230,8 @@ export const VideoMusic = () => {
                     s.m0125,
                   gap: s.m0125,
                   width: width + s.m025,
-
+                  // paddingTop:s.m05,
+                  // paddingBottom:s.m05,
                   bottom: 0,
                   borderBottomLeftRadius:
                     borderRadius,

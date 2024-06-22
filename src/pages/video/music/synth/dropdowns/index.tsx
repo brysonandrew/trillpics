@@ -8,7 +8,6 @@ import { boxSize } from "~uno/rules/box/size";
 export const SynthDropdowns: FC = () => {
   const s = boxSize();
   const {
-    sidebarWidthOffset,
     left,
   } = useVideoStyle();
   return (

@@ -29,8 +29,8 @@ export const MusicLayoutHeader: FC<
     <div
       className="row relative w-full"
       style={{
-        paddingLeft: s.m025,
-        paddingRight: s.m05,
+        paddingLeft: s.m0125,
+        paddingRight: s.m025,
         gap: s.m0125,
       }}
     >

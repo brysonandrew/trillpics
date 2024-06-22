@@ -8,6 +8,7 @@ import { LayoutOverlay } from "~/components/layout/overlay";
 import { useBpm } from "~/hooks/music/bpm";
 import { LightingGlow } from "~/components/layout/lighting/glow";
 import { BackgroundMeshRadial } from "~/components/layout/background/mesh-radial";
+
 const key = "NavCountersPics";
 export const NavCountersPics: FC =
   () => {
@@ -17,7 +18,6 @@ export const NavCountersPics: FC =
       useHoverKey();
     const isHovering = isHover(key);
     const bpm = useBpm();
-
     const { pics } =
       usePicVideoReadInputs(bpm);
 

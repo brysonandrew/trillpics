@@ -42,7 +42,6 @@ export const FooterNavItem: FC<
   const borderRadius = boxRadius();
   const { isHover, hoverKeys } =
     useHoverKey();
-  console.log(hoverKeys);
   const isHovering = isHover(title);
   return (
     <motion.li

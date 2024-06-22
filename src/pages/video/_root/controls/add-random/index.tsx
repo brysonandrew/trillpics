@@ -6,25 +6,32 @@ import {
 } from "~/components/buttons/pill/b/hover";
 import { PRESENCE_OPACITY } from "@brysonandrew/motion-config-constants";
 import { MAX_COUNT } from "~/pages/video/_root/reorder/constants";
-import { useAddRandomHandler } from "~/hooks/pic/add-random/handler";
+import { ShowPics } from "~/components/show-pics";
+import { useReadyContext } from "~/shell/ready/context";
 
-export const HUD_LEFT_ADD_RANDOM_HOVER_KEY =
-  "Randomize"; //
+export const ADD_RANDOM_HOVER_KEY =
+  "ADD_RANDOM_HOVER_KEY"; //
 
 export const HudLeftAddRandom: FC<
   Partial<TPillBHoverProps>
 > = (props) => {
-  const handleClick =
-    useAddRandomHandler();
-
+const {random:[randoms, handleClick, randomize] } = useReadyContext()
   return (
     <PillBHover
+      hoverKeyConfig={{
+        handlers: { stop: randomize },
+      }}
       onClick={handleClick}
       direction="ltr"
       title={
-        HUD_LEFT_ADD_RANDOM_HOVER_KEY
+        ADD_RANDOM_HOVER_KEY
       }
-      subtitle={`Add ${MAX_COUNT} pics at random from the gallery.`}
+      subtitle={
+        <ShowPics
+          title={`Add ${MAX_COUNT} pics at random from the gallery.`}
+          names={randoms}
+        />
+      }
       layout={false}
       Icon={IconsPlusQuestion}
       {...PRESENCE_OPACITY}

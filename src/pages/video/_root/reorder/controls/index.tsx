@@ -1,21 +1,17 @@
 import type { FC } from "react";
-import {
-  AnimatePresence,
-  motion,
-} from "framer-motion";
+import { motion } from "framer-motion";
 import { IconsTrash } from "~/components/icons/video/trash";
 import { TUsePicSelected } from "~/hooks/pic/selected";
 import { TCommonProps } from "~/pages/video/_root/reorder/types";
 import { boxSize } from "~uno/rules/box/size";
-import { useHoverKey } from "~/hooks/use-hover-key";
-import { _RootReorderControlsButton } from "~/pages/video/_root/reorder/controls/button";
 import { IconsPlusQuestion } from "~/components/icons/plus";
 import { boxRadius } from "~uno/rules/box/radius";
 import { PRESENCE_OPACITY } from "@brysonandrew/motion-config-constants";
-import { useReadyContext } from "~/shell/ready/context";
 import { TMotionPoint } from "@brysonandrew/motion-config-types";
 import { TDimensions } from "@brysonandrew/config-types";
 import { PillBSm } from "~/components/buttons/pill/b/sm";
+import { resolveLayoutId } from "~/pages/video/_root/reorder/placeholders/list";
+import { DELAY_06_TRANSITION_PROPS } from "~/constants/animation";
 
 type TProps = TMotionPoint &
   Pick<TCommonProps, "itemDimensions"> &
@@ -71,6 +67,7 @@ export const _RootReorderControls: FC<
           padding: s.padding,
           ...itemDimensions,
         }}
+        layoutId={resolveLayoutId(index)}
         {...PRESENCE_OPACITY}
       >
         <PillBSm

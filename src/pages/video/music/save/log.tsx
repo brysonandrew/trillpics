@@ -40,7 +40,7 @@ export const VideoMusicPlaybackSaveLog: FC =
           className="row relative"
           style={{
             gap: s.m0125,
-            left: s.m05 - s.m0125,
+            left: s.m05 - s.m025,
           }}
         >
           {isRecording ? (

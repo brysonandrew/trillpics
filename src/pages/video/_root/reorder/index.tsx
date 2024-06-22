@@ -1,8 +1,7 @@
 import { FC } from "react";
-import { motion } from "framer-motion";
 import { boxSize } from "~uno/rules/box/size";
 import { useReadyContext } from "~/shell/ready/context";
-import { HOVER_KEY_RootReorderList, _RootReorderList } from "~/pages/video/_root/reorder/list";
+import { _RootReorderList } from "~/pages/video/_root/reorder/list";
 import { _RootReorderDraggerSides } from "~/pages/video/_root/reorder/dragger/sides";
 import { _RootReorderControlsSides } from "~/pages/video/_root/reorder/controls/sides";
 import { _RootReorderDraggerTop } from "~/pages/video/_root/reorder/dragger/top";
@@ -50,7 +49,7 @@ TUsePicSelected
     >
   
       <_RootReorderBackground />
-      <_RootReorderPlaceholders />
+      <_RootReorderPlaceholders names={props.names} />
       <_RootReorderList {...props} />
       <_RootReorderControlsSides />
       <_RootReorderDraggerSides />

@@ -8,6 +8,9 @@ import {
   QUERY_PARAM_KEYS,
   ZOOM_PARAM_KEY,
 } from "~/hooks/pic/constants";
+import { useTrillPicsStore } from "~/store/middleware";
+import { ADD_RANDOM_HOVER_KEY } from "~/pages/video/_root/controls/add-random";
+import { useReadyContext } from "~/shell/ready/context";
 
 export type TCell = {
   row: number;
@@ -29,11 +32,27 @@ export const Pic: FC<TPicProps> = ({
     name,
     QUERY_PARAM_KEYS[ZOOM_PARAM_KEY]
   );
+  const {
+    random: [randoms],
+  } = useReadyContext();
+  const { isHover } = useTrillPicsStore(
+    ({ isHover }) => ({ isHover })
+  );
+  const isAddRandomHover = isHover(
+    ADD_RANDOM_HOVER_KEY
+  );
+  const isRandom =
+    randoms.includes(name) &&
+    isAddRandomHover;
 
   return (
     <Box name={name} {...cell}>
       {({ ...boxChildProps }) => {
-        if (isSelected || isZoomed)
+        if (
+          isSelected ||
+          isZoomed ||
+          isRandom
+        )
           return null;
 
         return (

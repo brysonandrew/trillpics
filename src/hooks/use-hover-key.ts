@@ -14,7 +14,7 @@ type THandler = (
   key: THoverKey
 ) => void;
 
-type TConfig = {
+export type THoverKeyConfig = {
   handlers?: {
     start?: THandler;
     stop?: THandler;
@@ -22,7 +22,7 @@ type TConfig = {
   isDisabled?: boolean;
 };
 export const useHoverKey = (
-  config?: TConfig
+  config?: THoverKeyConfig
 ) => {
   const isDisabled = config?.isDisabled;
   const { main } = useReadyContext();
@@ -108,7 +108,7 @@ export const useHoverKey = (
     isCooldown: isArmed,
   };
 };
-export type THoverKeyConfig =
+export type TUseHoverKeyConfig =
   ReturnType<typeof useHoverKey>;
 export type THoverKeyHandlers =
   THoverKeyConfig["handlers"];

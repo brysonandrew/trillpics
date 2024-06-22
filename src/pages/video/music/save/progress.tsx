@@ -1,11 +1,8 @@
 import type { FC } from "react";
-import { boxSize } from "~uno/rules/box/size";
 import { useMusicInitContext } from "~/pages/video/music/_context/init";
-import { BackgroundMesh } from "~/components/layout/background/mesh";
 import { TimerCurrentProgress } from "~/pages/video/player/_controls/playback/progress";
 import { useReadyContext } from "~/shell/ready/context";
 import { useVideoStyle } from "~/pages/video/style";
-import { BackgroundMeshRadial } from "~/components/layout/background/mesh-radial";
 import { box } from "~uno/rules/box";
 
 export const VideoMusicPlaybackProgress: FC =
@@ -17,7 +14,6 @@ export const VideoMusicPlaybackProgress: FC =
       useReadyContext();
     const {
       sidebarWidthOffset,
-      width,
       y,
       screenHeight,
     } = useVideoStyle();

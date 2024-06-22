@@ -1,4 +1,7 @@
-import { TSynthOptions, WRITABLE_OSCILLATOR_TYPES } from "react-synthwave";
+import {
+  TSynthOptions,
+  WRITABLE_OSCILLATOR_TYPES,
+} from "react-synthwave";
 import { STEPS_COUNT } from "~/constants/music/timing";
 import {
   DEFAULT_SCALE_DELTA,
@@ -29,7 +32,7 @@ export const DEFAULT_SEQUENCE_OPTIONS: TSequenceOptions =
     repeat: 1,
     interval: 4,
     duration: 1,
-    beats: STEPS_COUNT
+    beats: STEPS_COUNT,
   } as const;
 
 export const DEFAULT_SYNTH_SLIDER_OPTIONS =
@@ -59,28 +62,33 @@ export type TSynthConfigKey =
   | keyof typeof DEFAULT_SYNTH_SLIDER_OPTIONS;
 
 export const DEFAULT_SCALE_SLIDER_OPTIONS =
-{
-  delta: 1,
-};
-
+  {
+    delta: 1,
+  };
 
 export const DEFAULT_MIDIS_SLIDER_OPTIONS =
   {
     gain: 1,
     frequency: 22,
     detune: 0,
-    delayTime: 0.99
+    delayTime: 0.99,
   };
 
-  export const DEFAULT_BEATS_SLIDER_OPTIONS =
+export const DEFAULT_MIDIS_OPTIONS = {
+  type: "sawtooth" as const,
+  ...DEFAULT_MIDIS_SLIDER_OPTIONS,
+} as const;
+
+export const DEFAULT_BEATS_SLIDER_OPTIONS =
   {
     gain: 1,
   };
 
-  export const DEFAULT_MUSIC_SLIDER_OPTIONS = {
+export const DEFAULT_MUSIC_SLIDER_OPTIONS =
+  {
     bpm: 80,
-    master:1
-  } as const
+    master: 1,
+  } as const;
 
 export const SCALE_PATTERNS = [
   "asc",

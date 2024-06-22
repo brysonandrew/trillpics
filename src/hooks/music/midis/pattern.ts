@@ -1,4 +1,3 @@
-import { BEATS_1 } from "~/constants/music/beats";
 import { resolveMidiSteps } from "~/constants/music/midi/steps";
 import { useTrillPicsStore } from "~/store/middleware";
 import { TScalePattern } from "~/store/state/music/types";

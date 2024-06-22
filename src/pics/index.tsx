@@ -7,9 +7,9 @@ import { useReadyContext } from "~/shell/ready/context";
 export const Pics: FC = () => {
   const { onScroll, ref, screen } =
     useReadyContext();
-  const { table,hoverKeys } = useTrillPicsStore(
-    ({ table,hoverKeys }) => ({
-      table,hoverKeys
+  const { table } = useTrillPicsStore(
+    ({ table }) => ({
+      table,
     })
   );
 

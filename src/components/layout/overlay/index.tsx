@@ -26,7 +26,7 @@ export const LayoutOverlay: FC<
   subtitle,
   direction = "ltr",
   isShown = true,
-  backdrop = <LayoutOverlayBackdrop />,
+  backdrop = <LayoutOverlayBackdrop direction={direction} />,
 }) => {
   const s = boxSize();
   return (
