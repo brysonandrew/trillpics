@@ -1,5 +1,8 @@
 import { useContextMusicInit } from "~/pages/video/music/_context/init";
-import { TGridCellsBaseConfig, TGridCellsStepStyle } from "~/pages/video/music/_context/init/grid-cell/types";
+import {
+  TGridCellsBaseConfig,
+  TGridCellsStepStyle,
+} from "~/pages/video/music/_context/init/grid-cell/types";
 import { TMusicKey } from "~/store/state/music/types";
 
 export const useGridCellsUpdateStyle = <
@@ -17,6 +20,13 @@ export const useGridCellsUpdateStyle = <
   const handler = (
     next: TGridCellsStepStyle
   ) => {
+    if (
+      !gridCellsRecord?.[musicKey][
+        rowIndex
+      ]
+    )
+      return;
+
     (
       gridCellsRecord[musicKey][
         rowIndex

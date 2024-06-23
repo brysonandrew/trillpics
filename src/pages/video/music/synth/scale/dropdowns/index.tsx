@@ -7,20 +7,18 @@ import { box } from "~uno/rules/box";
 export const MusicScaleDropdowns: FC = () => {
   
   const {
-    left,
+    sidebarWidthOffset,
     width,
   } = useVideoStyle();
   return (
     <div
       className="row relative"
       style={{
-        left,
-        width:width-left,
+        left:sidebarWidthOffset,
         gap: box.m025,
       }}
     >
-      <MusicScaleKey />
-      <MusicScalePattern />
+     
     </div>
   );
 };

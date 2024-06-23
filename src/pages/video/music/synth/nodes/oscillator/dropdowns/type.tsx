@@ -20,7 +20,7 @@ export const NodesOscillatorDropdownsType: FC =
       <SelectStyled
         name="midis.type"
         title="type"
-        placeholder="oscillator types"
+        placeholder="oscillator type"
         defaultValue={
           oscillator.node.type
         }

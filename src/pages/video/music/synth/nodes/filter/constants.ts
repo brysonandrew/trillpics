@@ -9,10 +9,13 @@ export const BIQUAD_FILTER_TYPES: readonly BiquadFilterType[] =
     "notch",
     "peaking",
   ] as const;
-
-  export const BIQUAD_FILTER_PARAMS  = {
+export const BIQUAD_FILTER_SILDER_PARAMS =
+  {
     frequency: "frequency",
-    Q:"Q",
-    type: "type",
-    detune: "detune"
-  } as const
+    Q: "Q",
+    detune: "detune",
+  } as const;
+export const BIQUAD_FILTER_PARAMS = {
+  type: "type",
+  ...BIQUAD_FILTER_SILDER_PARAMS,
+} as const;

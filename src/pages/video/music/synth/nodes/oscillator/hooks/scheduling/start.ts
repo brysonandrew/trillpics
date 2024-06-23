@@ -1,50 +1,22 @@
 import {
   TMidiValue,
-  TPlayNodesOptions,
+  TPlayMidisOptions,
 } from "~/hooks/music/midis/types";
-import { TStepValues } from "~/hooks/music/types";
 import { useTimeouts } from "~/hooks/timeout-refs";
 import { useContextMusicInit } from "~/pages/video/music/_context/init";
 import { useTrillPicsStore } from "~/store/middleware";
+import {
+  resolveMidiNumber,
+  resolveMidiNormalDelta,
+} from "~/utils/midi";
 import {
   hzToMidi,
   midiToHz,
 } from "~/utils/music";
 
-const resolveNumber = (
-  midiValue: TMidiValue
-): number => {
-  if (midiValue === null) return 0;
-  if (Array.isArray(midiValue))
-    return midiValue.reduce(
-      (a: number, c) =>
-        a + (c === null ? 0 : c),
-      0
-    );
-  return midiValue;
-};
-const resolveNormalDelta = (
-  steps: TStepValues,
-  stepIndex: number
-) => {
-  const prevIndex =
-    stepIndex === 0
-      ? steps.length - 1
-      : stepIndex - 1;
-  const prev = resolveNumber(
-    steps[prevIndex]
-  );
-  const curr = resolveNumber(
-    steps[stepIndex]
-  );
-
-  const deltaMidi = curr - prev;
-
-  return deltaMidi;
-};
 export const useBasicOscillatorStart =
   () => {
-    const { audio, oscillator } =
+    const { oscillator } =
       useContextMusicInit();
     const { timeouts, end, endOne } =
       useTimeouts();
@@ -55,25 +27,35 @@ export const useBasicOscillatorStart =
         })
       );
     const start = (
-      config: TPlayNodesOptions
+      _startTime: number,
+      stepMidi: TMidiValue,
+      config: TPlayMidisOptions
     ) => {
-      const {
-        steps,
-        startTime: _startTime,
-        stepIndex,
-        duration,
-      } = config;
-
-      const intervalDuration =
-        duration * stepIndex;
-      const startTime =
-        _startTime + intervalDuration;
       if (!oscillator.isStarted) {
         oscillator.isStarted = true;
         oscillator.node.start(
           _startTime
         );
       }
+
+      if (!config.schedule) {
+        const nextMidi =
+          resolveMidiNumber(stepMidi);
+        const nextHz =
+          midiToHz(nextMidi);
+        oscillator.node.frequency.value =
+          nextHz;
+        return;
+      }
+      const {
+        steps,
+        stepIndex,
+        duration,
+      } = config.schedule;
+
+      const intervalDuration =
+        duration * stepIndex;
+
       if (
         stepIndex %
           sequence.interval !==
@@ -91,7 +73,7 @@ export const useBasicOscillatorStart =
             hzToMidi(currHz);
 
           const deltaMidi =
-            resolveNormalDelta(
+            resolveMidiNormalDelta(
               steps,
               stepIndex
             );

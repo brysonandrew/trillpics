@@ -8,6 +8,7 @@ import {
 import { TypographyXxs } from "~/components/layout/typography/xxs";
 import { box } from "~uno/rules/box";
 import * as Select from "@radix-ui/react-select";
+import { TypographyXxxs } from "~/components/layout/typography/xxxs";
 
 export const SelectItem = forwardRef<
   HTMLDivElement,
@@ -38,11 +39,11 @@ export const SelectItem = forwardRef<
         {...props}
         ref={forwardedRef}
       >
-        <TypographyXxs>
+        <TypographyXxxs>
           <Select.ItemText>
             {children}
           </Select.ItemText>
-        </TypographyXxs>
+        </TypographyXxxs>
         <Select.ItemIndicator>
           <IconsCheckboxChecked />
         </Select.ItemIndicator>

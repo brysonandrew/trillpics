@@ -36,13 +36,12 @@ export const MusicReadyProvider: FC<
   const beats = useBeatsLookup();
   const midis = useNodesLookup();
   useBeatsLoad();
+  const value = {
+    midis,
+    beats,
+  } as const;
   return (
-    <Context.Provider
-      value={{
-        midis,
-        beats,
-      }}
-    >
+    <Context.Provider value={value}>
       {children}
     </Context.Provider>
   );

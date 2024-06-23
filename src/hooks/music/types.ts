@@ -1,7 +1,7 @@
 import { TUseBeatsLookup } from "~/hooks/music/beats/lookup";
 import { TBeatsStepsKey, TBeatValue } from "~/hooks/music/beats/types";
 import { TUseNodesLookup } from "~/hooks/music/midis/lookup";
-import { TNodesStepsKey, TMidiValue } from "~/hooks/music/midis/types";
+import { TMidisStepsKey, TMidiValue } from "~/hooks/music/midis/types";
 import { TMusicKey } from "~/store/state/music/types";
 
 export type TPlayOptions = {

@@ -7,7 +7,6 @@ import {
   TBeatValue,
   TPlayBeatsOptions,
 } from "~/hooks/music/beats/types";
-import { useSecondsPerStep } from "~/hooks/music/time/seconds-per-step";
 export type TUseBeatsLookupValue = {
   isReady: boolean;
   play: (

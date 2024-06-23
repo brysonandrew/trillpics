@@ -9,6 +9,7 @@ import { box } from "~uno/rules/box";
 import { isNumber } from "~/utils/validation/is/number";
 import { TSequenceOptions } from "~/pages/video/music/synth/sequence/types";
 import { TSynthConfig } from "~/pages/video/music/synth/types";
+import { ChartsGridStepDotShape } from "~/components/charts/grid/step/dot/shape";
 
 type TProps<T extends TMusicKey> =
   TSynthConfig &
@@ -36,13 +37,12 @@ export const ChartsGridStepDot = <
   const borderRadius = boxRadius();
 
   const key = `${columnIndex}-${rowIndex}-${progressKey}`;
-  
 
-  const idleOpacity = isNumber(value)
-    ? 1
-    : isSynth
-    ? 1
-    : 0.28;
+  // const idleOpacity = isNumber(value)
+  //   ? 1
+  //   : isSynth
+  //   ? 1
+  //   : 0.28;
   return (
     <div
       className={clsx(
@@ -56,11 +56,9 @@ export const ChartsGridStepDot = <
         ...resolveSquare(box.m05),
       }}
     >
-      <motion.div
-        key={key}
-        className={clsx("bg-white")}
+      <ChartsGridStepDotShape
+        isHovering={isHovering}
         style={{
-          position: "relative",
           borderRadius,
           ...resolveSquare(box.m0125),
 
@@ -70,12 +68,6 @@ export const ChartsGridStepDot = <
               columnIndex
             ) /
               2,
-        }}
-        initial={false}
-        animate={{
-          scale: isHovering
-            ? 1.4
-            : idleOpacity,
         }}
       />
     </div>

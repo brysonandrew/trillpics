@@ -9,10 +9,12 @@ import { BackgroundGlass } from "~/components/layout/background/glass";
 import { VideoMusicSynthHeader } from "~/pages/video/music/synth/header";
 import { TypographyXxxs } from "~/components/layout/typography/xxxs";
 import { ChartsGridPlayButton } from "~/components/charts/grid/step/play/button";
+import { encryptMidiHoverKey } from "~/components/charts/grid/to-midi-hover-key";
+import { midiValueToNumber } from "~/utils/music/midi";
+import { MusicScaleDropdowns } from "~/pages/video/music/synth/scale/dropdowns";
 
 export const VideoMusicSynth: FC =
   () => {
-    const s = box;
     const {
       sidebarWidthOffset,
       width,
@@ -61,7 +63,7 @@ export const VideoMusicSynth: FC =
               box.m00625,
           }}
         >
-          {(props) => (
+          {({ rowIndex }) => (
             <div
               className="absolute fill"
               style={{
@@ -75,29 +77,61 @@ export const VideoMusicSynth: FC =
               <ChartsGridStaff
                 style={{ opacity: 0.2 }}
               >
-                {(index) => (
-                  <div
-                    className={clsx(
-                      "absolute row right-full top-1/2 text-xxxs text-white -translate-y-1/2",
-                      index % 2 === 0
-                        ? "-translate-x-5"
-                        : "-translate-x-0.5"
-                    )}
-                  >
-                    <ChartsGridPlayButton
-                    
+                {(index) => {
+                  const midi =
+                    (synth.midi ?? 0) +
+                    index;
+                  const n =
+                    midiValueToNumber(
+                      midi
+                    );
+                  const hoverKey =
+                    encryptMidiHoverKey(
+                      n,
+                      -1,
+                      index
+                    );
+
+                  return (
+                    <div
+                      className={clsx(
+                        "absolute row right-full top-1/2 text-xxxs text-white -translate-y-1/2",
+                        index % 2 === 0
+                          ? "-translate-x-5"
+                          : "-translate-x-0.5"
+                      )}
                     >
                       <TypographyXxxs>
-                        {(synth.midi ??
-                          0) + index}
+                        {midi}
                       </TypographyXxxs>
-                    </ChartsGridPlayButton>
-                  </div>
-                )}
+                      {hoverKey !==
+                        null && (
+                        <ChartsGridPlayButton
+                          title={`play ${midi}`}
+                          midi={midi}
+                          musicKey="midis"
+                          stepsKey="synth"
+                          hoverKey={
+                            hoverKey
+                          }
+                          rowIndex={
+                            rowIndex
+                          }
+                          columnIndex={
+                            -1
+                          }
+                        />
+                      )}
+                    </div>
+                  );
+                }}
               </ChartsGridStaff>
+
             </div>
           )}
+
         </ChartsGrid>
+
       </>
     );
   };

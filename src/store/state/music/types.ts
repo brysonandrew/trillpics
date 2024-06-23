@@ -5,7 +5,7 @@ import {
 } from "~/hooks/music/beats/types";
 import {
   TMidiValues,
-  TNodesStepsKey,
+  TMidisStepsKey,
 } from "~/hooks/music/midis/types";
 import { TScaleOptions } from "~/pages/video/music/synth/scale/types";
 import { TSequenceOptions } from "~/pages/video/music/synth/sequence/types";
@@ -19,22 +19,22 @@ export type TStepsKey<
   T extends TMusicKey
 > = T extends "beats"
   ? TBeatsStepsKey
-  : TNodesStepsKey;
+  : TMidisStepsKey;
 
 export type UStepsKey =
   | TBeatsStepsKey
-  | TNodesStepsKey;
+  | TMidisStepsKey;
 
 export type USequenceEntry =
   | [TBeatsStepsKey, TBeatValues]
-  | [TNodesStepsKey, TMidiValues];
+  | [TMidisStepsKey, TMidiValues];
 
 export type TSequenceBeatRecord =
   Record<TBeatsStepsKey, TBeatValues>;
 export type TPartialSequenceBeatRecord =
   Partial<TSequenceBeatRecord>;
 export type TSequenceMidiRecord =
-  Record<TNodesStepsKey, TMidiValues>;
+  Record<TMidisStepsKey, TMidiValues>;
 export type TPartialSequenceMidiRecord =
   Partial<TSequenceMidiRecord>;
 

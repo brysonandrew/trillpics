@@ -15,7 +15,7 @@ type TBeatsProps = {
   includes: readonly TBeatsKey[];
   presets: TBeatsRecord;
 };
-type TNodesProps = {
+type TMidisProps = {
   musicKey: "midis";
   presets: TNodesRecord;
 };
@@ -27,7 +27,7 @@ type TChildrenProps = {
 };
 type TProps = (
   | TBeatsProps
-  | TNodesProps
+  | TMidisProps
 ) &
   Omit<TDivProps, "children"> & {
     Background: FC;

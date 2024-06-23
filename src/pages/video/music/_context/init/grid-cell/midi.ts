@@ -21,8 +21,6 @@ export const useGridCellMidi = () => {
           const prevValue =
             arr[stepIndex];
 
-            console.log(prevValue,cell.dataset)
-
           cell.dataset.midi = `${nextValue}`;
         }
       };

@@ -19,6 +19,7 @@ export const ChartsGridStaff: FC<
         ...Array(SCALE_VALUE_COUNT),
       ].map((_, index) => (
         <div
+        key={`row-${index}`}
           className="absolute left-0 right-0"
           style={{
             top: resolveTop(

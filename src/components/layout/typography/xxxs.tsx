@@ -13,8 +13,8 @@ export const TypographyXxxs: FC<
   return (
     <div
       className={clsx(
-        "relative text-center leading-none text-xxxs uppercase font-sans",
-        classValue
+        "relative leading-none text-xxxs uppercase font-sans",
+        classValue ?? 'text-center'
       )}
       style={style}
       {...props}

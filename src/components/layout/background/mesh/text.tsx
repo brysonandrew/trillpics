@@ -19,7 +19,7 @@ export const MeshBackgroundText: FC<
 
   return (
     <LayoutBox
-    classValue='text-xs'
+      classValue="text-xs"
       style={{
         paddingTop: box.m0125 / 2,
         paddingLeft: box.m025,
@@ -30,7 +30,7 @@ export const MeshBackgroundText: FC<
         <BackgroundMesh
           style={{
             opacity: 0.2,
-            borderRadius:box.radius.m,
+            borderRadius: box.radius.m,
           }}
         />
       }

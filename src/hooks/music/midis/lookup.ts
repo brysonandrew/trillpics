@@ -1,7 +1,7 @@
 import { useArpeggio } from "~/hooks/music/midis/arpeggio";
 import {
-  TNodesStepsKey,
-  TPlayNodesOptions,
+  TMidisStepsKey,
+  TPlayMidisOptions,
 } from "~/hooks/music/midis/types";
 
 export const useNodesLookup = () => {
@@ -9,12 +9,12 @@ export const useNodesLookup = () => {
   const lookup = {
     synth: arpeggio,
   } satisfies Record<
-    TNodesStepsKey,
+    TMidisStepsKey,
     {
       play: (
         startTime: number,
         midi: number,
-        options: TPlayNodesOptions
+        options: TPlayMidisOptions
       ) => void;
       stop: () => void;
     }

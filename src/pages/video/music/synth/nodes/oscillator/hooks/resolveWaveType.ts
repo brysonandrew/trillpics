@@ -1,4 +1,4 @@
-import { ECustomWave } from "~/pages/video/music/synth/nodes/oscillator/hooks/constants";
+import { ECustomWave } from "~/pages/video/music/synth/nodes/oscillator/hooks/custom-waves";
 import {
   generateWave,
   blackmanWave,

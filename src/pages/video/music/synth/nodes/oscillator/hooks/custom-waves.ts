@@ -1,15 +1,3 @@
-import { resolveObjectKeys } from "~/utils/object";
-
-export const OSCILLATOR_OPTIONS_LOOKUP =
-  {
-    frequency: "frequency",
-    detune: "detune",
-  } as const;
-
-export const OSCILLATOR_OPTIONS =
-  resolveObjectKeys(
-    OSCILLATOR_OPTIONS_LOOKUP
-  );
 
 export enum ECustomWave {
   ExponentialReverseSawtooth = "ExponentialReverseSawtooth",

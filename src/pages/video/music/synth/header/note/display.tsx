@@ -9,19 +9,17 @@ import {
   midiToNote,
 } from "~/utils/music";
 import { isNumber } from "~/utils/validation/is/number";
-import { box } from "~uno/rules/box";
 import { TypographyXs } from "~/components/layout/typography/xs";
+import { box } from "~uno/rules/box";
 
 type TProps = {
   midiHoverKey?:
     | TMidiHoverKey
     | THoverKey;
 };
-export const VideoMusicSynthHeaderNote: FC<
+export const VideoMusicSynthHeaderNoteDisplay: FC<
   TProps
 > = ({ midiHoverKey }) => {
-  
-
   const midi = isMidiHoverKey(
     midiHoverKey
   )
@@ -32,29 +30,24 @@ export const VideoMusicSynthHeaderNote: FC<
       )
     : null;
   return (
-    <MeshBackgroundText
-      classValue="center relative text-xs grow-0"
-      style={{
-        width: box.m175,
-        height: box.m175,
-        left:-box.m003125
-      }}
-    >
-      <>
-        {isNumber(midi) && (
-          <div className="absolute top-1/2 left-1/2 -translate-1/2 column gap-1 pt-0.5">
-            <TypographyXs>
-              {midi}, {midiToNote(midi)}
-            </TypographyXs>
-            <TypographyXs>
-              {midiToHz(midi).toFixed(
-                2
-              )}
-              Hz
-            </TypographyXs>
-          </div>
-        )}
-      </>
-    </MeshBackgroundText>
+    <>
+      {isNumber(midi) && (
+        <MeshBackgroundText
+          classValue="column center relative text-xxs grow"
+          style={{
+            gap: box.m0125,
+            ...box.px(box.m0125),
+          }}
+        >
+          <TypographyXs>
+            {midi}, {midiToNote(midi)}
+          </TypographyXs>
+          <TypographyXs>
+            {midiToHz(midi).toFixed(2)}
+            Hz
+          </TypographyXs>
+        </MeshBackgroundText>
+      )}
+    </>
   );
 };

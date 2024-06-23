@@ -10,7 +10,7 @@ export const MusicScaleKey: FC = () => {
   return (
     <SelectStyled
       name="key"
-      title="key"
+      title="scale"
       value={key}
       values={SCALES}
       placeholder="scale"

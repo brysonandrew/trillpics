@@ -1,41 +1,27 @@
-import {
-  useEffect,
-  useRef,
-} from "react";
 import { Helmet } from "react-helmet-async";
-import { useVideoStyle } from "~/pages/video/style";
-import { box } from "~uno/rules/box";
-import { BackgroundGlass } from "~/components/layout/background/glass";
-import { boxRadius } from "~uno/rules/box/radius";
 import { VideoMusicSave } from "~/pages/video/music/save/index";
 import { VideoMusicSynth } from "~/pages/video/music/synth";
 import { VideoMusicDrums } from "~/pages/video/music/drums";
 import { MusicInitProvider } from "~/pages/video/music/_context/init";
 import { MusicReadyProvider } from "~/pages/video/music/_context/ready";
 import { MusicRecorderProvider } from "~/pages/video/music/_context/recorder";
-import clsx from "clsx";
 import { PicBackdrop } from "~/pics/grid/pic/backdrop";
-import { useAddRandomEffect } from "~/hooks/pic/add-random/effect";
-import { LinesHorizontal } from "~/components/lines/horizontal";
 import { BeatsMaster } from "~/pages/video/music/drums/master";
-import { NodesOscillator } from "~/pages/video/music/synth/nodes/oscillator/sliders";
-import { VideoMusicSaveProgress } from "~/pages/video/music/save/progress";
-import { LinesHorizontalLight } from "~/components/lines/horizontal/light";
-import { MusicSequenceSliders } from "~/pages/video/music/synth/sequence/sliders";
-import { MusicScale } from "~/pages/video/music/synth/scale";
 import { MusicControlsButtons } from "~/pages/video/music/controls/buttons";
-import { MusicControlsSliders } from "~/pages/video/music/controls/sliders";
 import { GlassSidebar } from "~/pages/video/music/layout/glass/sidebar";
 import { GlassMain } from "~/pages/video/music/layout/glass/main";
 import { LayoutScroll } from "~/pages/video/music/layout/scroll";
 import { LayoutBorderTop } from "~/pages/video/music/layout/border-top";
 import { LayoutView } from "~/pages/video/music/layout/view";
-import { LayoutRowSliders } from "~/pages/video/music/layout/row/sliders";
-import { LayoutViewBackground } from "~/pages/video/music/layout/view/background";
+import { MusicLayoutRow } from "~/pages/video/music/layout/row/sliders";
 import { LayoutStickyTop } from "~/pages/video/music/layout/sticky/top";
 import { LayoutStickyMid } from "~/pages/video/music/layout/sticky/mid";
 import { LayoutStickyBottom } from "~/pages/video/music/layout/sticky/bottom";
 import { MusicControlsButtonsMenu } from "~/pages/video/music/controls/buttons/menu";
+import { MusicSynthNodes } from "~/pages/video/music/synth/nodes";
+import { MusicSequence } from "~/pages/video/music/synth/sequence";
+import { MusicScale } from "~/pages/video/music/synth/scale";
+import { MusicSequenceNumbers } from "~/pages/video/music/synth/sequence/numbers";
 
 export const VideoMusic = () => {
   return (
@@ -51,41 +37,27 @@ export const VideoMusic = () => {
           <PicBackdrop />
           <LayoutBorderTop />
           <MusicControlsButtons />
-          {/* <LayoutViewBackground /> */}
+
           <LayoutScroll>
             <LayoutView>
-              {/* <div
-                className="relative column-stretch"
-                style={{
-
-                  gap: box.m0125,
-                  paddingTop: box.m15,
-                  paddingBottom:
-                    box.m0125,
-                }}
-              >
-                <div className="absolute inset-x-0 -inset-y-32 bg-gradient-to-t from-black to-black-01" />
-
-                <MusicControlsSliders />
-                <MusicSequenceSliders />
-                <MusicScale />
-              </div> */}
               <LayoutStickyTop>
                 <GlassSidebar />
                 <GlassMain />
                 <VideoMusicSynth />
+                <MusicScale />
               </LayoutStickyTop>
 
-              <LayoutRowSliders>
-                <NodesOscillator />
-              </LayoutRowSliders>
+              <MusicLayoutRow>
+                <MusicSynthNodes />
+              </MusicLayoutRow>
 
               <LayoutStickyMid>
                 <VideoMusicDrums />
               </LayoutStickyMid>
-              <LayoutRowSliders>
+
+              <MusicLayoutRow>
                 <BeatsMaster />
-              </LayoutRowSliders>
+              </MusicLayoutRow>
 
               <LayoutStickyBottom>
                 <VideoMusicSave />
@@ -93,7 +65,6 @@ export const VideoMusic = () => {
             </LayoutView>
           </LayoutScroll>
           <MusicControlsButtonsMenu />
-
         </MusicRecorderProvider>
       </MusicReadyProvider>
     </MusicInitProvider>

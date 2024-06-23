@@ -8,13 +8,14 @@ import { TButtonMotionProps } from "@brysonandrew/config-types";
 import { TMidiValue } from "~/hooks/music/midis/types";
 import clsx from "clsx";
 import { TGridCellsBaseConfig } from "~/pages/video/music/_context/init/grid-cell/types";
+import { useHoverKey } from "~/hooks/use-hover-key";
 
 type TProps<T extends TMusicKey> =
   TGridCellsBaseConfig<T> &
     TButtonMotionProps & {
       midi: TMidiValue;
-      isHovering: boolean;
-      isDisabled: boolean;
+      hoverKey: string;
+      isDisabled?: boolean;
     };
 export const ChartsGridPlayButton = <
   T extends TMusicKey
@@ -24,18 +25,21 @@ export const ChartsGridPlayButton = <
   const {
     midi,
     classValue,
-    isHovering,
+    hoverKey,
     isDisabled,
     columnIndex,
     style,
-    ...buttonProps
   } = props;
-
+  const { handlers, isHover } =
+    useHoverKey();
+  const isHovering = isHover(hoverKey);
   const handleStepPlayback =
     useStepPlay(midi, props);
 
-  const handlePlay = () =>
+  const handlePlay = () => {
+    console.log("PLAY");
     handleStepPlayback.play();
+  };
   const handleStop = () =>
     handleStepPlayback.stop();
 
@@ -53,10 +57,14 @@ export const ChartsGridPlayButton = <
       onPointerDown={
         isDisabled ? NOOP : handlePlay
       }
-      onPointerLeave={handleStop}
-      onPointerOut={handleStop}
+      {...(false
+        ? {
+            onPointerMove: handleStop,
+            onPointerLeave: handleStop,
+            onPointerOut: handleStop,
+          }
+        : {})}
       onPointerUp={handleStop}
-      onPointerMove={handleStop}
       disabled={isDisabled}
       style={{
         opacity:
@@ -69,7 +77,7 @@ export const ChartsGridPlayButton = <
       }}
       {...(isNull(midi) || isDisabled
         ? {}
-        : buttonProps)}
+        : handlers(hoverKey))}
     />
   );
 };

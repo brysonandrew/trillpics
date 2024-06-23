@@ -1,7 +1,7 @@
+import { OSCILLATOR_OPTIONS } from "~/pages/video/music/synth/nodes/oscillator/constants";
 import {
   CUSTOM_WAVES,
-  OSCILLATOR_OPTIONS,
-} from "~/pages/video/music/synth/nodes/oscillator/hooks/constants";
+} from "~/pages/video/music/synth/nodes/oscillator/hooks/custom-waves";
 
 export type TOscillatorOptions =
   typeof OSCILLATOR_OPTIONS;

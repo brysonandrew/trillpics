@@ -1,7 +1,7 @@
 import { useMemo } from "react";
 import { useGainNode } from "~/hooks/music/midis/gains/hook";
 import { useBasicOscillatorStart } from "~/pages/video/music/synth/nodes/oscillator/hooks/scheduling/start";
-import { TPlayNodesOptions } from "~/hooks/music/midis/types";
+import { TMidiValue, TPlayMidisOptions } from "~/hooks/music/midis/types";
 import { useContextMusicInit } from "~/pages/video/music/_context/init";
 
 export const useArpeggio = () => {
@@ -13,7 +13,7 @@ export const useArpeggio = () => {
     delay,
     oscillator,
   } = useContextMusicInit();
-  const delayTime = 0.99; // 0.000001; //0.1;
+  // const delayTime = 0.99; // 0.000001; //0.1;
   const Q = 1;
 
   const gainNode1 = useGainNode({
@@ -45,8 +45,8 @@ export const useArpeggio = () => {
 
   const handler = (
     startTime: number,
-    stepMidi: number,
-    options: TPlayNodesOptions
+    stepMidi: TMidiValue,
+    options: TPlayMidisOptions
   ) => {
     const {
       duration = 1,
@@ -55,7 +55,8 @@ export const useArpeggio = () => {
 
     const endTime =
       startTime + duration * 4;
-    start(options);
+      console.log(options)
+    start(startTime,stepMidi,options);
 
     oscillator.node.connect(gainNode1);
     // delay.connect(filter);

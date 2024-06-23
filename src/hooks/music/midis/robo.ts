@@ -8,7 +8,7 @@ import {
 import { useDelayNode } from "~/hooks/music/midis/delay";
 import { useGainNode } from "~/hooks/music/midis/gains/hook";
 import { useBasicOscillatorStart } from "~/pages/video/music/synth/nodes/oscillator/hooks/scheduling/start";
-import { TPlayNodesOptions } from "~/hooks/music/midis/types";
+import { TPlayMidisOptions } from "~/hooks/music/midis/types";
 import { useContextMusicInit } from "~/pages/video/music/_context/init";
 import { useTrillPicsStore } from "~/store/middleware";
 import { midiToHz } from "~/utils/music";
@@ -37,7 +37,6 @@ export const useArpeggio = () => {
     context,
     delayTime,
   });
-  console.log(oscillator);
   const boHandler =
     useBasicOscillatorStart();
 
@@ -47,12 +46,6 @@ export const useArpeggio = () => {
   const gainNode1 = useGainNode({
     context,
   });
-  // const o = useBasicOscillator({
-  //   context,
-  //   frequency,
-  //   detune,
-  //   type: "sawtooth",
-  // });
 
   const filter = useMemo(() => {
     const result = new BiquadFilterNode(
@@ -121,7 +114,7 @@ export const useArpeggio = () => {
   const handler = (
     startTime: number,
     stepMidi: number,
-    options: TPlayNodesOptions
+    options: TPlayMidisOptions
   ) => {
     const {
       duration = 0.4,
@@ -181,7 +174,10 @@ export const useArpeggio = () => {
       startTime
     );
 
-    boHandler.start({
+    boHandler.start(
+      startTime,
+      stepMidi,
+      {
       ...options,
     });
 

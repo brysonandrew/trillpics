@@ -11,6 +11,7 @@ import { TypographyXxs } from "~/components/layout/typography/xxs";
 import { useVideoStyle } from "~/pages/video/style";
 import { box } from "~uno/rules/box";
 import { TSliderStyledProps } from "~/components/inputs/slider/types";
+import { SliderSm } from "~/components/inputs/slider/sm";
 
 export type TSliderRowProps =
   TClassValueProps &
@@ -18,15 +19,14 @@ export type TSliderRowProps =
     TTitleProps;
 export const SliderRow: FC<
   TSliderRowProps
-> = ({
-  children,
-  title,
-  classValue,
-  ...sliderProps
-}) => {
-  const { sidebarWidthOffset, width } =
-    useVideoStyle();
-
+> = (props) => {
+  const {
+    children,
+    title,
+    classValue,
+    ...sliderProps
+  } = props;
+  // return <SliderSm {...props} />;
   return (
     <div
       className={cx(
@@ -39,21 +39,16 @@ export const SliderRow: FC<
         height: box.m075,
       }}
     >
-      <MeshBackgroundText
+      <TypographyXxxs
         style={{
           left: box.m0125,
           width:
             box.m15 - box.m0125 / 2,
+          textAlign: "left",
         }}
       >
-        <TypographyXxxs
-          style={{
-            textAlign: "left",
-          }}
-        >
-          {title}
-        </TypographyXxxs>
-      </MeshBackgroundText>
+        {title}
+      </TypographyXxxs>
       <div
         className="row grow"
         style={{

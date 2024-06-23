@@ -1,6 +1,7 @@
 import {
   FC,
   PropsWithChildren,
+  useEffect,
   useRef,
 } from "react";
 import { useEventListener } from "@brysonandrew/hooks-events";
@@ -25,29 +26,35 @@ export const LayoutViewBackground: FC<
     containerHeight,
   } = useVideoStyle();
   const height = screenHeight - y / 2;
-  console.log(screenHeight)
+
+  const handleScroll = () => {
+    if (
+      ref.current === null ||
+      scroll.current === null
+    )
+      return;
+    const diffY =
+      containerHeight - y - height;
+    const scrollTop =
+      scroll.current.scrollTop;
+    const isStartScrollY =
+      scrollTop < diffY;
+    if (!isStartScrollY) return;
+    const nextHeight =
+      height + (diffY - scrollTop);
+    ref.current.style.height = `${nextHeight}px`;
+  };
+
+  useEffect(() => {
+    handleScroll();
+  }, []);
+
   useEventListener(
     "scroll",
-    (e) => {
-      if (
-        ref.current === null ||
-        scroll.current === null
-      )
-        return;
-      const diffY = (containerHeight-y) - (height);
-      const scrollTop =
-        scroll.current.scrollTop;
-      const isStartScrollY =
-        scrollTop < diffY;
-      if (!isStartScrollY) return;
-      const nextHeight =
-        height +
-        (diffY-scrollTop)
-console.log(nextHeight)
-      ref.current.style.height = `${nextHeight}px`;
-    },
+    handleScroll,
     scroll
   );
+
   return (
     <div
       ref={ref}

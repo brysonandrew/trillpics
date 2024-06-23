@@ -3,6 +3,7 @@ import { BIQUAD_FILTER_PARAMS, BIQUAD_FILTER_TYPES } from "~/pages/video/music/s
 export type TBiquadFilterKey =
   (typeof BIQUAD_FILTER_TYPES)[number];
 export type TBiquadFilterOptionsKey = keyof typeof BIQUAD_FILTER_PARAMS
+export type TBiquadFilterSliderOptionsKey = Exclude<TBiquadFilterOptionsKey, 'type'>
 
 export type TBiquadFilterOptions = Pick<
   BiquadFilterOptions,

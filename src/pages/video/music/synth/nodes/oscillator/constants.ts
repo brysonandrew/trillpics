@@ -1,12 +1,11 @@
-export const DEFAULT_MIDIS_SLIDER_OPTIONS =
+export const OSCILLATOR_SLIDER_OPTIONS =
   {
-    gain: 1,
-    frequency: 22,
-    detune: 0,
-    delayTime: 0.99,
+    frequency: "frequency",
+    detune: "detune",
   };
 
-export const DEFAULT_MIDIS_OPTIONS = {
-  type: "sawtooth" as const,
-  ...DEFAULT_MIDIS_SLIDER_OPTIONS,
-} as const;
+export const OSCILLATOR_OPTIONS =
+  {
+    type: "type" as const,
+    ...OSCILLATOR_SLIDER_OPTIONS,
+  } as const;

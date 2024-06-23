@@ -6,6 +6,9 @@ import { useAudioSeconds } from "~/hooks/music/time/audio-seconds";
 import { TimerDisplayHeader } from "~/components/playback/timer/display/header";
 import { useHeaderPlay } from "~/pages/video/music/layout/header/play";
 import { usePlayMidis } from "~/hooks/music/play/midis";
+import { VideoMusicSynthHeaderNote } from "~/pages/video/music/synth/header/note";
+import { MusicScaleDropdowns } from "~/pages/video/music/synth/scale/dropdowns";
+import { box } from "~uno/rules/box";
 
 export const VideoMusicSynthHeader: FC =
   () => {
@@ -22,18 +25,24 @@ export const VideoMusicSynthHeader: FC =
       <MusicLayoutHeader
         {...play}
         leftContent={
-          <TimerDisplayHeader
-            stepsCount={steps.length}
-            isActive={midis.isPlaying}
-            seconds={audioSeconds}
-            progressKey="midis"
-            isCooldown={
-              midis.isCooldown
-            }
-          />
+          <>
+            <TimerDisplayHeader
+              stepsCount={steps.length}
+              isActive={midis.isPlaying}
+              seconds={audioSeconds}
+              progressKey="midis"
+              isCooldown={
+                midis.isCooldown
+              }
+            />
+          </>
         }
         rightContent={
-          <LinesHorizontalLight />
+          <div className="row grow w-full">
+            <LinesHorizontalLight />
+            <VideoMusicSynthHeaderNote />
+            <LinesHorizontalLight />
+          </div>
         }
       >
         Synth

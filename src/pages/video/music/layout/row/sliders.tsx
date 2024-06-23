@@ -4,7 +4,7 @@ import type {
 } from "react";
 import { box } from "~uno/rules/box";
 
-export const LayoutRowSliders: FC<
+export const MusicLayoutRow: FC<
   PropsWithChildren
 > = ({ children }) => {
   return (
