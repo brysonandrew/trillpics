@@ -1,5 +1,5 @@
 import { FC } from "react";
-import { boxSize } from "~uno/rules/box/size";
+import { box } from "~uno/rules/box";
 import { LinesHorizontal } from "~/components/lines/horizontal";
 import { LinesTopRight } from "~/components/lines/top-right";
 import { THudContainer } from "~/pics/hud";
@@ -15,19 +15,19 @@ type TProps = {
 export const PicsHudHeaderRight: FC<
   TProps
 > = ({ foundation, container }) => {
-  const s = boxSize();
+  
   const { pathname } = useLocation();
   return (
     <div
       key="header-right"
       className="absolute row-start h-0"
       style={{
-        left: foundation.width + s.m05,
+        left: foundation.width + box.m05,
         width:
           container.width -
           foundation.width,
-        top: s.m05,
-        gap: s.m05,
+        top: box.m05,
+        gap: box.m05,
       }}
     >
       <LinesHorizontal

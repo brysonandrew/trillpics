@@ -1,6 +1,6 @@
 import type { FC } from "react";
 import clsx from "clsx";
-import { boxSize } from "~uno/rules/box/size";
+import { box } from "~uno/rules/box";
 import {
   ButtonPillBIcon,
   TButtonPillBIconProps,
@@ -26,7 +26,7 @@ export const PillBXs: FC<TProps> = ({
     style: iconStyle,
     ..._iconProps
   } = iconProps;
-  const s = boxSize();
+  
   const borderRadius = boxRadius();
 
   return (
@@ -39,7 +39,7 @@ export const PillBXs: FC<TProps> = ({
       )}
       style={{
         borderRadius,
-        ...resolveSquare(s.xs),
+        ...resolveSquare(box.xs),
         ...style,
       }}
       {...props}
@@ -53,7 +53,7 @@ export const PillBXs: FC<TProps> = ({
         Icon={Icon}
         style={{
           borderRadius,
-          ...resolveSquare(s.xs),
+          ...resolveSquare(box.xs),
 
           ...iconStyle,
         }}

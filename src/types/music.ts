@@ -16,14 +16,14 @@ export type TIntervalRecord = {
   e: TEnd;
 };
 export type TMidi = number | null;
-export type TMidis = TMidi[];
+export type TNodes = TMidi[];
 
 export type TNextMidi =
   | number
   | (number | null)[]
   | null;
 
-export type TFrequencies = TMidis;
+export type TFrequencies = TNodes;
 
 export type TInitConfig = {
   context: AudioContext;
@@ -40,7 +40,7 @@ export type TInitPlayConfig =
 
 export type TRunPlayConfig<T> = {
   ref: T;
-  ms: TMidis;
+  ms: TNodes;
   intervalRecord: TIntervalRecord;
   gain: number;
 };
@@ -54,8 +54,8 @@ export type TBaseScheduleConfig = {
 export type TScheduleConfig =
   TBaseScheduleConfig;
 
-export type TMidisConfig = {
-  midis: TMidis;
+export type TNodesConfig = {
+  midis: TNodes;
 };
 
 export type TTracksHandlerConfig =

@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { useMusicInitContext } from "~/pages/video/music/_context/init";
+import { useContextMusicInit } from "~/pages/video/music/_context/init";
 import { useRecorderDataAvailableHandler } from "~/pages/video/music/_context/hooks/recorder/data-available";
 import { useRecorderSaveHandler } from "~/pages/video/music/_context/hooks/recorder/save";
 import { useRecorderStopHandler } from "~/pages/video/music/_context/hooks/recorder/stop";
@@ -7,7 +7,7 @@ import { useRecorderStopHandler } from "~/pages/video/music/_context/hooks/recor
 export const useRecorderListeners =
   () => {
     const { recorder } =
-      useMusicInitContext();
+      useContextMusicInit();
     const handleSave =
       useRecorderSaveHandler();
     const handleStop =

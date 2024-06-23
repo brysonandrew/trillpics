@@ -1,9 +1,7 @@
 import { SCALE_RECORD } from "~/constants/scales";
 import { TMidiValue } from "~/hooks/music/midis/types";
-import {
-  TScaleOptions,
-  TSequenceOptions,
-} from "~/store/state/music/types";
+import { TScaleOptions } from "~/pages/video/music/synth/scale/types";
+import { TSequenceOptions } from "~/pages/video/music/synth/sequence/types";
 import { resolveMidiValue } from "../value";
 
 export type TMidiStepsConfig =
@@ -17,7 +15,7 @@ export const resolveMidiSteps = (
     interval,
     key,
   } = config;
-  const scaleMidis = SCALE_RECORD[key];
+  const scaleNodes = SCALE_RECORD[key];
   let repeatCount = 0;
   let value: TMidiValue = null;
   return [...Array(beats)].reduce(
@@ -34,7 +32,7 @@ export const resolveMidiSteps = (
         value = resolveMidiValue({
           index,
           count,
-          scaleMidis,
+          scaleNodes,
           ...config,
         });
       }

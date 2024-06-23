@@ -26,7 +26,7 @@ export const PERSIST_STATE_RECORD = {
   sequence: "sequence",
   scale: "scale",
   isLoop: "isLoop",
-  beatsPresetKey: "beatsPresetKey",
+  beats: "beats",
   bpm: "bpm",
 } as const satisfies Partial<
   Record<keyof TState, keyof TState>

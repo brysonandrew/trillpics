@@ -1,10 +1,10 @@
 import { FC } from "react";
 import clsx from "clsx";
 import { TMeasureContainerResult } from "~/shell/init/hooks/measure/container";
-import { useReadyContext } from "~/shell/ready/context";
+import { useContextReady } from "~/shell/ready/context";
 import { PicsHudHeader } from "~/pics/hud/header";
 import { PicsHudLeft } from "~/pics/hud/left";
-import { boxSize } from "~uno/rules/box/size";
+import { box } from "~uno/rules/box";
 import { withControlsCheck } from "~/store/hocs/with-controls-check";
 import { HudFooter } from "~/pics/hud/footer";
 
@@ -15,13 +15,13 @@ export type THudContainer = Extract<
 export const Hud: FC =
   withControlsCheck(() => {
     const { foundationValue, screen } =
-      useReadyContext();
-    const s = boxSize();
+      useContextReady();
+    
     const container = screen.container;
     return (
       <>
         <div
-          className="fixed w-0 z-0"
+          className="fixed w-0 z-10"
           style={{
             left: container.left,
             top: container.top,
@@ -34,7 +34,7 @@ export const Hud: FC =
             )}
             style={{
               width: container.width,
-              gap: s.m05,
+              gap: box.m05,
             }}
           >
             <PicsHudHeader

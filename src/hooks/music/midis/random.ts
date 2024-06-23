@@ -1,10 +1,10 @@
-import { useMidisPattern } from "~/hooks/music/midis/pattern";
+import { useNodesPattern } from "~/hooks/music/midis/scale/pattern";
 
-export const useMidisRandom = () => {
+export const useNodesRandom = () => {
   const handlePattern =
-    useMidisPattern();
+    useNodesPattern();
   const handler = () => {
-    handlePattern("random");
+    handlePattern.update("random");
   };
 
   return handler;

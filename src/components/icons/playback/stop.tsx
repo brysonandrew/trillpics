@@ -1,12 +1,12 @@
 import type { FC } from "react";
-import { TSvgProps } from "@brysonandrew/config-types/dom";
 import { resolveSquare } from "@brysonandrew/measure";
 import { resolveUrlId } from "@brysonandrew/utils-attributes";
 import { LINEAR_GRADIENT_SVG_ID } from "~uno/rules/gradient/constants";
 import clsx from "clsx";
+import { TIconsSvgProps } from "~/components/icons/svg";
 
 export const IconsStop: FC<
-  TSvgProps
+  TIconsSvgProps
 > = ({ classValue, ...props }) => {
   return (
     <svg

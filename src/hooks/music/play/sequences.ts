@@ -1,22 +1,22 @@
 import { usePlayBeats } from "~/hooks/music/play/beats";
 import { usePlayMidis } from "~/hooks/music/play/midis";
-import { useMusicInitContext } from "~/pages/video/music/_context/init";
+import { useContextMusicInit } from "~/pages/video/music/_context/init";
 
 export const usePlaySequences = () => {
   const { context } =
-    useMusicInitContext();
+    useContextMusicInit();
   const playBeats = usePlayBeats();
-  const playMidis = usePlayMidis();
+  const playNodes = usePlayMidis();
 
   const play = async () => {
     await context.resume();
     playBeats.play();
-    playMidis.play();
+    playNodes.play();
   };
   const stop = async () => {
     await context.resume();
     playBeats.stop();
-    playMidis.stop();
+    playNodes.stop();
   };
 
   return {
@@ -24,7 +24,7 @@ export const usePlaySequences = () => {
     stop,
     isPlaying: {
       beats: playBeats.isPlaying,
-      midis: playMidis.isPlaying,
+      midis: playNodes.isPlaying,
     },
   };
 };

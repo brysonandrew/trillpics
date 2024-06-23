@@ -15,3 +15,6 @@ export type TPartialAtLeastOne<
   T,
   U = TSingleRecordEntry<T>
 > = Partial<T> & U[keyof U];
+
+export type TResolveObjectKeys = <T>(obj: T) =>
+  (keyof T extends infer U ? U extends string ? U : U extends number ? `${U}` : never : never)[]

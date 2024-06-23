@@ -1,25 +1,25 @@
 import { useArpeggio } from "~/hooks/music/midis/arpeggio";
 import {
-  TMidisStepsKey,
-  TPlayMidisOptions,
+  TNodesStepsKey,
+  TPlayNodesOptions,
 } from "~/hooks/music/midis/types";
 
-export const useMidisLookup = () => {
+export const useNodesLookup = () => {
   const arpeggio = useArpeggio();
   const lookup = {
     synth: arpeggio,
   } satisfies Record<
-    TMidisStepsKey,
+    TNodesStepsKey,
     {
       play: (
         startTime: number,
         midi: number,
-        options?: TPlayMidisOptions
+        options: TPlayNodesOptions
       ) => void;
       stop: () => void;
     }
   >;
   return lookup;
 };
-export type TUseMidisLookup =
-  ReturnType<typeof useMidisLookup>;
+export type TUseNodesLookup =
+  ReturnType<typeof useNodesLookup>;

@@ -4,13 +4,12 @@ import {
 } from "react";
 import { Helmet } from "react-helmet-async";
 import { useVideoStyle } from "~/pages/video/style";
-import { boxSize } from "~uno/rules/box/size";
+import { box } from "~uno/rules/box";
 import { BackgroundGlass } from "~/components/layout/background/glass";
 import { boxRadius } from "~uno/rules/box/radius";
-import { VideoMusicPlayback } from "~/pages/video/music/save/index";
+import { VideoMusicSave } from "~/pages/video/music/save/index";
 import { VideoMusicSynth } from "~/pages/video/music/synth";
-import { Bpm } from "~/pages/video/music/bpm";
-import { VideoMusicDrums } from "~/pages/video/music/beats";
+import { VideoMusicDrums } from "~/pages/video/music/drums";
 import { MusicInitProvider } from "~/pages/video/music/_context/init";
 import { MusicReadyProvider } from "~/pages/video/music/_context/ready";
 import { MusicRecorderProvider } from "~/pages/video/music/_context/recorder";
@@ -18,44 +17,29 @@ import clsx from "clsx";
 import { PicBackdrop } from "~/pics/grid/pic/backdrop";
 import { useAddRandomEffect } from "~/hooks/pic/add-random/effect";
 import { LinesHorizontal } from "~/components/lines/horizontal";
-import { BeatsMaster } from "~/pages/video/music/beats/master";
-import { MusicAll } from "~/pages/video/music/all";
-import { MidisOscillator } from "~/pages/video/music/synth/oscillator";
-import { Master } from "~/pages/video/music/master";
-import { SequenceSlider } from "~/pages/video/music/synth/sequence/slider";
-import { SynthDropdowns } from "~/pages/video/music/synth/dropdowns";
-import { VideoMusicPlaybackProgress } from "~/pages/video/music/save/progress";
+import { BeatsMaster } from "~/pages/video/music/drums/master";
+import { NodesOscillator } from "~/pages/video/music/synth/nodes/oscillator/sliders";
+import { VideoMusicSaveProgress } from "~/pages/video/music/save/progress";
 import { LinesHorizontalLight } from "~/components/lines/horizontal/light";
+import { MusicSequenceSliders } from "~/pages/video/music/synth/sequence/sliders";
+import { MusicScale } from "~/pages/video/music/synth/scale";
+import { MusicControlsButtons } from "~/pages/video/music/controls/buttons";
+import { MusicControlsSliders } from "~/pages/video/music/controls/sliders";
+import { GlassSidebar } from "~/pages/video/music/layout/glass/sidebar";
+import { GlassMain } from "~/pages/video/music/layout/glass/main";
+import { LayoutScroll } from "~/pages/video/music/layout/scroll";
+import { LayoutBorderTop } from "~/pages/video/music/layout/border-top";
+import { LayoutView } from "~/pages/video/music/layout/view";
+import { LayoutRowSliders } from "~/pages/video/music/layout/row/sliders";
+import { LayoutViewBackground } from "~/pages/video/music/layout/view/background";
+import { LayoutStickyTop } from "~/pages/video/music/layout/sticky/top";
+import { LayoutStickyMid } from "~/pages/video/music/layout/sticky/mid";
+import { LayoutStickyBottom } from "~/pages/video/music/layout/sticky/bottom";
+import { MusicControlsButtonsMenu } from "~/pages/video/music/controls/buttons/menu";
 
 export const VideoMusic = () => {
-  const {
-    y,
-    gap,
-    left,
-    width,
-    sidebarWidth,
-    screenHeight,
-    sidebarWidthOffset,
-    screen,
-    beatsTop,
-  } = useVideoStyle();
-  const scrollRef =
-    useRef<HTMLDivElement | null>(null);
-  const s = boxSize();
-  const borderRadius = boxRadius();
-
-  useAddRandomEffect();
-  useEffect(() => {
-    if (scrollRef.current) {
-      scrollRef.current.scrollTop =
-        beatsTop - s.m05;
-      //scrollRef.current.scrollHeight;
-    }
-  }, []);
   return (
-    <MusicInitProvider
-      scrollRef={scrollRef}
-    >
+    <MusicInitProvider>
       <MusicReadyProvider>
         <MusicRecorderProvider>
           <Helmet>
@@ -65,184 +49,51 @@ export const VideoMusic = () => {
             </title>
           </Helmet>
           <PicBackdrop />
-          <LinesHorizontal
-            style={{
-              position: "absolute",
-              top: beatsTop + s.m,
-              bottom: s.m15,
-              left: left - s.m15,
-              width: s.m,
-            }}
-          />
-          <MusicAll />
-          <VideoMusicPlaybackProgress />
-
-          <div
-            className={clsx(
-              "fill overflow-auto h-screen w-full",
-              "flex flex-row items-stretch justify-stretch"
-            )}
-            ref={scrollRef}
-          >
-            <div
-              className="absolute column-stretch grow"
-              style={{
-                left:
-                  left -
-                  s.m0125 -
-                  s.m0625,
-                gap: s.m0125,
-                width: width + s.m025,
-                paddingTop: y,
-                height:
-                  screen.height * 2.4,
-              }}
-            >
-              <div
+          <LayoutBorderTop />
+          <MusicControlsButtons />
+          {/* <LayoutViewBackground /> */}
+          <LayoutScroll>
+            <LayoutView>
+              {/* <div
                 className="relative column-stretch"
                 style={{
-                  gap: s.m0125,
-                  paddingTop:
-                    s.m05 + s.m025,
+
+                  gap: box.m0125,
+                  paddingTop: box.m15,
                   paddingBottom:
-                    s.m0125,
+                    box.m0125,
                 }}
               >
                 <div className="absolute inset-x-0 -inset-y-32 bg-gradient-to-t from-black to-black-01" />
-                <LinesHorizontalLight
-                  style={{
-                    left:
-                      s.m025 + s.m0125,
-                    top: 0,
-                    width: width - s.m2,
-                  }}
-                />
-                <SequenceSlider optionsKey="beats" />
-                <SequenceSlider optionsKey="interval" />
-                <SequenceSlider optionsKey="duration" />
-                <SequenceSlider optionsKey="repeat" />
-                <Bpm />
-                <Master />
-              </div>
 
-              <div
-                className="sticky column-stretch z-20 bg-black-8 dark:bg-black"
-                style={{
-                  width: width + s.m025,
-                  top: y,
-                  borderTopRightRadius:
-                    borderRadius,
-                  borderTopLeftRadius:
-                    borderRadius,
-                }}
-              >
-                <aside
-                  className="flex absolute grow h-full pointer-events-none"
-                  style={{
-                    left: 0,
-                    width: sidebarWidth,
-                    gap,
-                    top: 0,
-                    // height: `calc(100vh - ${
-                    //   y * 1.5
-                    // }px)`,
-                    height:
-                      screenHeight,
-                  }}
-                >
-                  <BackgroundGlass
-                    style={{
-                      borderTopLeftRadius:
-                        borderRadius,
-                      borderBottomLeftRadius:
-                        borderRadius,
-                    }}
-                  />
-                </aside>
-
-                <BackgroundGlass
-                  boxStyle={{
-                    left: sidebarWidthOffset,
-                    // height: `calc(100vh - ${
-                    //   y * 1.5
-                    // }px)`,
-                    // right: s.m0125,
-                    height:
-                      screenHeight,
-                  }}
-                  style={{
-                    borderTopRightRadius:
-                      borderRadius,
-                    borderBottomRightRadius:
-                      borderRadius,
-                  }}
-                />
-
+                <MusicControlsSliders />
+                <MusicSequenceSliders />
+                <MusicScale />
+              </div> */}
+              <LayoutStickyTop>
+                <GlassSidebar />
+                <GlassMain />
                 <VideoMusicSynth />
-              </div>
+              </LayoutStickyTop>
 
-              <div
-                className="relative column-stretch overflow-hidden"
-                style={{
-                  gap,
-                  width: width + s.m025,
-                  paddingTop: s.m05,
-                  paddingBottom: s.m05,
-                }}
-              >
-                <div className="absolute inset-x-0 -inset-y-6 bg-gradient-to-l from-black to-black-05" />
-                <SynthDropdowns />
-                <MidisOscillator />
-              </div>
+              <LayoutRowSliders>
+                <NodesOscillator />
+              </LayoutRowSliders>
 
-              <div
-                className="sticky column-stretch z-10 bg-black-8 dark:bg-black"
-                style={{
-                  width: width + s.m025,
-                  top:
-                    beatsTop + s.m025,
-                  bottom: -s.m,
-                  // paddingTop:s.m05,
-                  // paddingBottom:s.m05
-                }}
-              >
+              <LayoutStickyMid>
                 <VideoMusicDrums />
-              </div>
-
-              <div
-                className="relative column-stretch"
-                style={{
-                  gap,
-                  paddingTop: s.m05,
-                  paddingBottom: s.m05,
-                }}
-              >
-                <div className="absolute inset-x-0 -inset-y-6 bg-gradient-to-l from-black to-black-05" />
+              </LayoutStickyMid>
+              <LayoutRowSliders>
                 <BeatsMaster />
-              </div>
+              </LayoutRowSliders>
 
-              <div
-                className="sticky column-stretch bg-black-8 dark:bg-black z-10"
-                style={{
-                  top:
-                    beatsTop +
-                    s.m4 -
-                    s.m0125,
-                  gap: s.m0125,
-                  width: width + s.m025,
-                  // paddingTop:s.m05,
-                  // paddingBottom:s.m05,
-                  bottom: 0,
-                  borderBottomLeftRadius:
-                    borderRadius,
-                  borderBottomRightRadius:
-                    borderRadius,
-                }}
-              >
-                <VideoMusicPlayback />
-              </div>
-            </div>
-          </div>
+              <LayoutStickyBottom>
+                <VideoMusicSave />
+              </LayoutStickyBottom>
+            </LayoutView>
+          </LayoutScroll>
+          <MusicControlsButtonsMenu />
+
         </MusicRecorderProvider>
       </MusicReadyProvider>
     </MusicInitProvider>
@@ -253,15 +104,15 @@ export const VideoMusic = () => {
 className="relative column-stretch bg-black-8 dark:bg-black-02"
 style={{
   width: width ,
-  paddingTop: s.m025,
+  paddingTop: box.m025,
   top: 0,
-  left: -s.m0125,
+  left: -box.m0125,
 
-  // paddingLeft: s.m0125,
-  // paddingRight: s.m0125,
+  // paddingLeft: box.m0125,
+  // paddingRight: box.m0125,
 
   borderRadius,
-  // gap: s.m025 * 1.5,
+  // gap: box.m025 * 1.5,
 }}
 > */
 {

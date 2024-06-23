@@ -4,6 +4,7 @@ import { resolveLayoutId } from "~/pages/video/_root/reorder/placeholders/list";
 import { box } from "~uno/rules/box";
 import { TDivMotionProps } from "@brysonandrew/config-types";
 import { PRESENCE_OPACITY } from "@brysonandrew/motion-config-constants";
+import clsx from "clsx";
 
 type TProps = TDivMotionProps & {
   index: number;
@@ -19,10 +20,13 @@ export const VideoRootReorderBox: FC<
   const s = box;
   return (
     <motion.div
-      className="fill row-start-space border border-white-06 dark:border-black-06 bg-white-01 dark:bg-black-01 backdrop-blur-sm"
+      className={clsx(
+        "fill row-start-space backdrop-blur-sm",
+        "border border-white-06 dark:border-black-07 bg-white-01 dark:bg-black-02"
+      )}
       style={{
-        borderRadius: s.radius.xl / 2,
-        padding: s.padding,
+        borderRadius: box.radius.xl / 2,
+        padding: box.padding,
         ...style,
       }}
       layoutId={resolveLayoutId(index)}

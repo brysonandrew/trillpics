@@ -1,15 +1,13 @@
 import { FC, Fragment } from "react";
-import { CHARTS_GRID_STEP_ACTIVE_STYLE } from "~/components/charts/grid/step";
 import { STEPS_COUNT } from "~/constants/music/timing";
 import {
   TTimerKey,
   useAnimatedText,
 } from "~/pages/video/music/save/timer/current/animated-text";
-import { useMusicInitContext } from "~/pages/video/music/_context/init";
-import {
-  defaultGridCellHandler,
-  useGridCellHandler,
-} from "~/pages/video/music/_context/init/hooks/grid-cell-color";
+import { useContextMusicInit } from "~/pages/video/music/_context/init";
+import { useGridCellDrill } from "~/pages/video/music/_context/init/grid-cell/drill";
+import { gridCellStyleActiveHandler } from "~/pages/video/music/_context/init/grid-cell/style/active";
+import { gridCellStyleEmptyHandler } from "~/pages/video/music/_context/init/grid-cell/style/empty";
 import { TProgressKey } from "~/pages/video/music/_context/init/types";
 
 type TProps = {
@@ -18,7 +16,7 @@ type TProps = {
   seconds: number;
   stepsCount?: number;
 };
-export const VideoMusicPlaybackTimerCurrentRow: FC<
+export const VideoMusicSaveTimerCurrentRow: FC<
   TProps
 > = ({
   progressKey,
@@ -27,10 +25,10 @@ export const VideoMusicPlaybackTimerCurrentRow: FC<
   timerKey,
 }) => {
   const { progress, audio } =
-    useMusicInitContext();
+    useContextMusicInit();
 
   const handleGridCell =
-    useGridCellHandler();
+    useGridCellDrill();
   const handleUpdate = (
     elapsedMs: number
   ) => {
@@ -71,17 +69,17 @@ export const VideoMusicPlaybackTimerCurrentRow: FC<
             const prevIndex = index - 1;
             const prev = arr[prevIndex];
             if (prev) {
-              defaultGridCellHandler(
+              gridCellStyleEmptyHandler(
                 prev,
                 prevIndex,
                 arr
               );
             }
-
-            cell.style.opacity =
-              CHARTS_GRID_STEP_ACTIVE_STYLE.opacity;
-            cell.style.transition =
-              CHARTS_GRID_STEP_ACTIVE_STYLE.transitionDuration;
+            gridCellStyleActiveHandler(
+              cell,
+              index,
+              arr
+            );
           }
         }
       );

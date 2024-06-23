@@ -3,7 +3,7 @@ import { resolveTop } from "~/components/charts/grid/top";
 import { LinesHorizontal } from "~/components/lines/horizontal";
 import { TLinesOptions } from "~/components/lines/types";
 import { SCALE_VALUE_COUNT } from "~/constants/scales";
-import { boxSize } from "~uno/rules/box/size";
+import { box } from "~uno/rules/box";
 
 type TProps = Partial<
   Omit<TLinesOptions, "children">
@@ -13,31 +13,32 @@ type TProps = Partial<
 export const ChartsGridStaff: FC<
   TProps
 > = ({ children, style, ...props }) => {
-  const s = boxSize();
   return (
     <>
       {[
         ...Array(SCALE_VALUE_COUNT),
       ].map((_, index) => (
-        <LinesHorizontal
-          key={`line-${index}`}
+        <div
+          className="absolute left-0 right-0"
           style={{
             top: resolveTop(
               index,
-              s.m0125
+              box.m0125
             ),
-            opacity: 0.1,
-            // width: "100%",
-            
-            ...style
           }}
-          positionClass="absolute left-0 right-0"
-          colorClass="border-white"
-          sizeClass="border-t"
-          {...props}
         >
+          <LinesHorizontal
+            key={`line-${index}`}
+            style={{
+              opacity: 0.1,
+              ...style,
+            }}
+            colorClass="border-white"
+            sizeClass="border-t"
+            {...props}
+          />
           {children?.(index)}
-        </LinesHorizontal>
+        </div>
       ))}
     </>
   );

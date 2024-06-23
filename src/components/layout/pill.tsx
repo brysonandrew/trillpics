@@ -9,7 +9,7 @@ import {
 import { boxRadius } from "~uno/rules/box/radius";
 import { isString } from "~/utils/validation/is/string";
 import { isNumber } from "~/utils/validation/is/number";
-import { boxSize } from "~uno/rules/box/size";
+import { box } from "~uno/rules/box";
 import { boxPx } from "~/utils/box/px";
 
 export type TPillProps = Omit<
@@ -35,7 +35,7 @@ export const Pill: FC<TPillProps> = ({
   background,
   ...props
 }) => {
-  const s = boxSize();
+  
 
   const borderRadius = boxRadius();
   return (
@@ -49,7 +49,7 @@ export const Pill: FC<TPillProps> = ({
       )}
       style={{
         borderRadius,
-        ...boxPx(s.m0125),
+        ...boxPx(box.m0125),
         ...style,
       }}
       {...props}

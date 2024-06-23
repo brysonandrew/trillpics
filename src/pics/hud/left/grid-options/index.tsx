@@ -1,6 +1,6 @@
 import type { FC } from "react";
-import { boxSize } from "~uno/rules/box/size";
-import { useReadyContext } from "~/shell/ready/context";
+import { box } from "~uno/rules/box";
+import { useContextReady } from "~/shell/ready/context";
 import { LinesHorizontal } from "~/components/lines/horizontal";
 import { PicsHeaderScrollTop } from "~/pics/header/scroll-top";
 import { HudLeftShuffle } from "~/pics/hud/left/grid-options/shuffle";
@@ -14,7 +14,7 @@ export const GridOptions: FC =
     const {
       foundationValue,
       screen,
-    } = useReadyContext();
+    } = useContextReady();
     const { isScroll } =
       useTrillPicsStore(
         ({ isScroll }) => ({
@@ -22,7 +22,7 @@ export const GridOptions: FC =
         })
       );
     if (!foundationValue) return null;
-    const s = boxSize();
+    
     const isScrollTopShown = isScroll; // && isVerticalScroll;
     return (
       <div
@@ -30,14 +30,14 @@ export const GridOptions: FC =
         style={{
           left:
             screen.container.left +
-            s.m + s.m025,
-          gap: s.m025,
-          height: s.m3,
+            box.m + box.m025,
+          gap: box.m025,
+          height: box.m3,
           width: 0,
           top:
             foundationValue?.top +
             foundationValue?.height +
-            s.m05+s.m025,
+            box.m05+box.m025,
         }}
       >
         <HudLeftShuffle

@@ -15,8 +15,7 @@ import {
 } from "@brysonandrew/config-types";
 import { TCircleProps } from "~/components/layout/circle/circle";
 import { resolveAccessibilityTitles } from "@brysonandrew/utils-attributes";
-import { TFlatProps } from "~/types/ui";
-import { boxSize } from "~uno/rules/box/size";
+import { box } from "~uno/rules/box";
 import { resolveCompositeKey } from "@brysonandrew/utils-key";
 import { boxRadius } from "~uno/rules/box/radius";
 import { PillBLayout } from "~/components/buttons/pill/b/layout";
@@ -31,17 +30,16 @@ export type TPillBProps =
     Omit<
       TButtonMotionProps,
       "children"
-    > &
-      TFlatProps & {
-        Root?: FC<TButtonMotionProps>;
-        Icon: FC<TIconsSvgProps> | null;
-        iconProps?: TSvgProps;
-        circleProps?: TCircleProps;
-        outerCircle?: ReactNode;
-        isSelected?: boolean;
-        direction?: TXDirection;
-        positionClass?: string;
-      }
+    > & {
+      Root?: FC<TButtonMotionProps>;
+      Icon: FC<TIconsSvgProps> | null;
+      iconProps?: TSvgProps;
+      circleProps?: TCircleProps;
+      outerCircle?: ReactNode;
+      isSelected?: boolean;
+      direction?: TXDirection;
+      positionClass?: string;
+    }
   >;
 export const PillB: FC<TPillBProps> = (
   props
@@ -56,7 +54,7 @@ export const PillB: FC<TPillBProps> = (
     positionClass,
     children,
   } = props;
-  const s = boxSize();
+
   const borderRadius = boxRadius();
   return (
     <Root
@@ -80,8 +78,8 @@ export const PillB: FC<TPillBProps> = (
           : "row-reverse"
       )}
       style={{
-        gap: s.m,
-        height: s.m,
+        gap: box.m,
+        height: box.m,
         borderRadius,
         ...style,
       }}
@@ -98,7 +96,7 @@ export const PillB: FC<TPillBProps> = (
           >
             <div
               style={{
-                padding: s.m0125,
+                padding: box.m0125,
               }}
             />
             {isString(children) ? (

@@ -1,12 +1,18 @@
 import { useMemo } from "react";
+import { useMotionValue } from "framer-motion";
+import { SCALE_RECORD } from "~/constants/scales";
+import { DEFAULT_SEQUENCE_OPTIONS } from "~/pages/video/music/synth/sequence/constants";
 import { useMusicInitProgress } from "~/pages/video/music/_context/init/progress";
 import {
   TBufferSourceRecord,
-  TPartialStepsScaleRecord,
   TProgressStepRecord,
+  TStepsRecord,
 } from "~/pages/video/music/_context/init/types";
+import { PAGE_SCROLL_MODES } from "~/pages/video/music/_context/init/constants";
+
 export const useMusicInitProviderRefs =
   () => {
+    const scrollY = useMotionValue(0);
     const progress =
       useMusicInitProgress();
 
@@ -14,34 +20,16 @@ export const useMusicInitProviderRefs =
       const context =
         new AudioContext();
 
-      // const create = (
+      const delay = new DelayNode(
+        context,
+        { delayTime: 0.01 }
+      );
 
-      // ) => {
-      //   return {
-      //     create,
-      //     isStarted: false,
-      //     node: new OscillatorNode(
-      //       context,
-      //       options
-      //     ),
-      //   };
-      // };\
-
-      const options = {
-        type: "sawtooth" as const,
-        frequency: 120,
-      };
-      const oscillator = {
-        isStarted: false,
-        node: new OscillatorNode(
-          context,
-          options
-        ),
-      };
-
-      const delay =
-        context.createDelay();
-      delay.delayTime.value = 0.01;
+      const filter =
+        new BiquadFilterNode(context, {
+          type: "lowpass",
+          frequency: 500,
+        });
 
       const destination =
         new MediaStreamAudioDestinationNode(
@@ -82,16 +70,36 @@ export const useMusicInitProviderRefs =
           tom: [],
         };
       const bufferRecord = {};
-      const stepsScaleRecord: TPartialStepsScaleRecord =
-        {};
+      const DEFAULT_SCALE_KEY =
+        "aeolian";
+      const stepsRecord: TStepsRecord =
+        {
+          scale: {
+            lookup: {
+              [DEFAULT_SCALE_KEY]:
+                SCALE_RECORD[
+                  DEFAULT_SCALE_KEY
+                ],
+            },
+            curr: DEFAULT_SCALE_KEY,
+          },
+          sequence: {
+            ...DEFAULT_SEQUENCE_OPTIONS,
+          },
+        };
 
       const progressStep: TProgressStepRecord =
         {
-          recorder: -1,
+          track: -1,
           midis: -1,
           beats: -1,
         };
-
+      const scroll = {
+        current: null,
+        y: scrollY,
+        modes:PAGE_SCROLL_MODES,
+        modeIndex:0
+      };
       return {
         loopCount: 0,
         loopsRemainder: 0,
@@ -99,7 +107,7 @@ export const useMusicInitProviderRefs =
         context,
         master,
         delay,
-        oscillator,
+        filter,
         destination,
         recorder,
         chunks,
@@ -110,7 +118,8 @@ export const useMusicInitProviderRefs =
         bufferRecord,
         gridCellsRecord: {},
         progressStep,
-        stepsScaleRecord,
+        stepsRecord,
+        scroll,
       };
     }, []);
 

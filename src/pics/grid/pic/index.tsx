@@ -10,7 +10,7 @@ import {
 } from "~/hooks/pic/constants";
 import { useTrillPicsStore } from "~/store/middleware";
 import { ADD_RANDOM_HOVER_KEY } from "~/pages/video/_root/controls/add-random";
-import { useReadyContext } from "~/shell/ready/context";
+import { useContextReady } from "~/shell/ready/context";
 
 export type TCell = {
   row: number;
@@ -34,7 +34,7 @@ export const Pic: FC<TPicProps> = ({
   );
   const {
     random: [randoms],
-  } = useReadyContext();
+  } = useContextReady();
   const { isHover } = useTrillPicsStore(
     ({ isHover }) => ({ isHover })
   );

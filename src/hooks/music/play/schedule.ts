@@ -1,4 +1,4 @@
-import { useMusicInitContext } from "~/pages/video/music/_context/init";
+import { useContextMusicInit } from "~/pages/video/music/_context/init";
 import { useTrillPicsStore } from "~/store/middleware";
 import { resolveStepsPerSecond } from "~/hooks/music/time/steps-per-second/resolver";
 import { isNumber } from "~/utils/validation/is/number";
@@ -14,19 +14,24 @@ import {
   TStepValues,
 } from "~/hooks/music/types";
 import { usePicVideoReadSeconds } from "~/hooks/pic/video/read/seconds/hook";
-import { useGridCellHandler } from "~/pages/video/music/_context/init/hooks/grid-cell-color";
+import { useGridCellDrill } from "~/pages/video/music/_context/init/grid-cell/drill";
 import { useAudioSeconds } from "~/hooks/music/time/audio-seconds";
 import { resolvePlayVolume } from "~/hooks/music/play/volume";
 import { useTimer } from "~/hooks/use-timer";
-import { TMidiValue } from "~/hooks/music/midis/types";
+import {
+  TMidiValue,
+  TMidiValues,
+} from "~/hooks/music/midis/types";
 import { TBeatValue } from "~/hooks/music/beats/types";
 import { isNull } from "~/utils/validation/is/null";
 
-type TPlayStepConfig<
+export type TPlayStepConfig<
   T extends UStepsKey
 > = {
+  steps: TMidiValues;
   stepValue: number;
   stepIndex: number;
+  stepsCount: number;
   startTime: number;
   duration: number;
   lookupKey: T;
@@ -59,7 +64,7 @@ export const usePlaySchedule = <
     audio,
     recorder,
     progress,
-  } = useMusicInitContext();
+  } = useContextMusicInit();
   const {
     bpm,
     playingKeys,
@@ -83,11 +88,12 @@ export const usePlaySchedule = <
   );
 
   const handleGridCell =
-    useGridCellHandler();
+    useGridCellDrill();
 
   const reset = () => {
     endTimeout();
     handleGridCell();
+    console.log(key);
     progress[key].set(0);
   };
   const [isCooldown, startCooldown] =
@@ -101,7 +107,6 @@ export const usePlaySchedule = <
     playingKeys.includes(key);
 
   const handleStop = () => {
-    console.log("STOP");
     keys.forEach((k) => {
       lookup[k].stop();
     });
@@ -116,6 +121,7 @@ export const usePlaySchedule = <
     ) {
       recorder.stop();
     }
+    reset();
     startCooldown();
   };
 
@@ -123,12 +129,11 @@ export const usePlaySchedule = <
     config: TPlayStepConfig<T>
   ) => {
     const {
-      lookupKey,
-      loopIndex,
       startTime,
-      stepIndex,
       stepValue,
-      duration,
+      lookupKey,
+      stepIndex,
+      ...rest
     } = config;
     lookup[lookupKey].play(
       startTime,
@@ -136,10 +141,8 @@ export const usePlaySchedule = <
       {
         volume:
           resolvePlayVolume(stepIndex),
-        duration,
-        stepIndex,
-        loopIndex,
         ...options,
+        ...config,
       }
     );
   };
@@ -173,7 +176,6 @@ export const usePlaySchedule = <
           stepIndex,
           { length: stepsCount }
         ) => {
-
           const sps =
             resolveStepsPerSecond(
               bpm,
@@ -183,7 +185,9 @@ export const usePlaySchedule = <
             stepIndex * sps;
 
           const loopElapsed =
-            loopIndex * sps * stepsCount;
+            loopIndex *
+            sps *
+            stepsCount;
 
           const totalElapsed =
             loopElapsed + currElapsed;
@@ -191,16 +195,22 @@ export const usePlaySchedule = <
           const startTimeBase =
             context.currentTime +
             totalElapsed;
-
+          const sharedConfig = {
+            lookupKey: sourceKey,
+            stepsCount,
+            loopIndex,
+            stepIndex,
+            steps,
+          } as const;
           if (isNumber(step)) {
             playStep({
-              lookupKey: sourceKey,
-              loopIndex,
               startTime: startTimeBase,
-              stepIndex,
               stepValue: step,
-              duration:     (audioSeconds / stepsCount) *
-              sequence.duration
+              duration:
+                (audioSeconds /
+                  stepsCount) *
+                sequence.duration,
+              ...sharedConfig,
             });
             return;
           }
@@ -211,21 +221,21 @@ export const usePlaySchedule = <
               (
                 subStep,
                 subStepIndex,
-                { length: subStepsCount }
+                {
+                  length: subStepsCount,
+                }
               ) => {
                 if (isNull(subStep))
                   return;
                 const spss =
                   sps / subStepsCount;
                 playStep({
-                  lookupKey: sourceKey,
-                  loopIndex,
                   startTime:
                     startTimeBase +
                     subStepIndex * spss,
-                  stepIndex,
                   stepValue: subStep,
                   duration: sps,
+                  ...sharedConfig,
                 });
               }
             );

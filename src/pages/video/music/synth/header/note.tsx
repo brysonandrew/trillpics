@@ -9,7 +9,7 @@ import {
   midiToNote,
 } from "~/utils/music";
 import { isNumber } from "~/utils/validation/is/number";
-import { boxSize } from "~uno/rules/box/size";
+import { box } from "~uno/rules/box";
 import { TypographyXs } from "~/components/layout/typography/xs";
 
 type TProps = {
@@ -20,7 +20,7 @@ type TProps = {
 export const VideoMusicSynthHeaderNote: FC<
   TProps
 > = ({ midiHoverKey }) => {
-  const s = boxSize();
+  
 
   const midi = isMidiHoverKey(
     midiHoverKey
@@ -35,9 +35,9 @@ export const VideoMusicSynthHeaderNote: FC<
     <MeshBackgroundText
       classValue="center relative text-xs grow-0"
       style={{
-        width: s.m175,
-        height: s.m175,
-        left:-s.m03125
+        width: box.m175,
+        height: box.m175,
+        left:-box.m003125
       }}
     >
       <>

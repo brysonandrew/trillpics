@@ -6,11 +6,11 @@ import {
   TBeatValue,
   TPlayBeatsOptions,
 } from "~/hooks/music/beats/types";
-import { useMusicInitContext } from "~/pages/video/music/_context/init";
+import { useContextMusicInit } from "~/pages/video/music/_context/init";
 const key: TBeatsStepsKey = "hihat";
 export const useHihat = () => {
   const { context, master,beatsMaster } =
-    useMusicInitContext();
+    useContextMusicInit();
   const isReady = useBufferInit(key, 1);
   const start =
     useSourceBufferStart(key);

@@ -7,22 +7,15 @@ import { UStepsKey } from "~/store/state/music/types";
 type TProps = {
   stepsKey: UStepsKey;
   stepsCount: number;
-  rowIndex:number
+  rowIndex: number;
 };
 export const ChartsGridLabels: FC<
   TProps
 > = (props) => {
-  const {rowIndex,stepsKey} = props
+  const { stepsKey } = props;
   return (
-    <>
-      <ChartsGridLabelsName
-        stepsKey={stepsKey}
-      />
-      {/* {rowIndex === 0 && (
-        <ChartsGridLabelsSteps
-          {...props}
-        />
-      )} */}
-    </>
+    <ChartsGridLabelsName
+      stepsKey={stepsKey}
+    />
   );
 };

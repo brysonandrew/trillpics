@@ -5,7 +5,7 @@ import { PillBText } from "~/components/buttons/pill/b/text";
 import { NavCountersSelectedMusic } from "~/pics/hud/nav/counters/selected/music";
 import { NavCountersSelectedPics } from "~/pics/hud/nav/counters/selected/pics";
 import { THudContainer } from "~/pics/hud";
-import { boxSize } from "~uno/rules/box/size";
+import { box } from "~uno/rules/box";
 import { PAGE_TITLES } from "~/pics/hud/nav/constants";
 import { TIconsSvgProps } from "@brysonandrew/svg-icon";
 
@@ -17,16 +17,16 @@ type TProps = {
 export const PicsHudFooterNavSelected: FC<
   TProps
 > = ({ container, title, Icon }) => {
-  const s = boxSize();
+  
   return (
     <motion.li
       className={clsx(
         "row relative center z-10 pointer-events-none"
       )}
       style={{
-        height: s.m,
-        gap: s.m05,
-        bottom:s.m05,
+        height: box.m,
+        gap: box.m05,
+        bottom:box.m05,
       }}
       initial={{
         scale: 1,

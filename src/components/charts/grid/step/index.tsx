@@ -1,8 +1,5 @@
-import {
-  FC,
-  Fragment,
-  useMemo,
-} from "react";
+import { useMemo } from "react";
+import { motion } from "framer-motion";
 import { TDivProps } from "@brysonandrew/config-types";
 import { TBeatsStepsKey } from "~/hooks/music/beats/types";
 import { useTrillPicsStore } from "~/store/middleware";
@@ -13,27 +10,22 @@ import { resolvePlayVolume } from "~/hooks/music/play/volume";
 import { TMusicKey } from "~/store/state/music/types";
 import { midiValueToNumber } from "~/utils/music/midi";
 import {
-  TMidisStepsKey,
+  TNodesStepsKey,
   TMidiValue,
 } from "~/hooks/music/midis/types";
 import { useStepPlay } from "~/components/charts/grid/step/play";
-import { resolveStepRef } from "~/components/charts/grid/step/ref";
+import { resolveStepRef } from "~/pages/video/music/_context/init/grid-cell/ref";
 import { ChartsGridStepDot } from "~/components/charts/grid/step/dot";
 import clsx from "clsx";
 import { NOOP } from "@brysonandrew/utils-function";
 import { LinesHorizontal } from "~/components/lines/horizontal";
-import { boxSize } from "~uno/rules/box/size";
+import { box } from "~uno/rules/box";
 import { resolveTop } from "~/components/charts/grid/top";
-export const CHARTS_GRID_STEP_EMPTY_STYLE =
-  {
-    transitionDuration: "1s",
-    opacity: "0",
-  } as const;
-export const CHARTS_GRID_STEP_ACTIVE_STYLE =
-  {
-    transitionDuration: "0s",
-    opacity: "0.4",
-  } as const;
+import { useContextMusicInit } from "~/pages/video/music/_context/init";
+import { isString } from "~/utils/validation/is/string";
+import { CHARTS_GRID_STEP_EMPTY_STYLE } from "~/pages/video/music/_context/init/grid-cell/constants";
+import { useGridCellsStepRef } from "~/pages/video/music/_context/init/grid-cell/ref/hook";
+import { ChartsGridPlayButton } from "~/components/charts/grid/step/play/button";
 
 export type TChartsGridStepProps<
   T extends TMusicKey
@@ -45,12 +37,12 @@ export type TChartsGridStepProps<
   value: TMidiValue;
   stepsKey: T extends "beats"
     ? TBeatsStepsKey
-    : TMidisStepsKey;
+    : TNodesStepsKey;
 };
 export const ChartsGridStep = <
   T extends TMusicKey
 >(
-  _props: TChartsGridStepProps<T>
+  props: TChartsGridStepProps<T>
 ) => {
   const {
     columnIndex,
@@ -59,8 +51,7 @@ export const ChartsGridStep = <
     stepsKey,
     musicKey,
     style,
-  } = _props;
-
+  } = props;
   const classes = useMemo(() => {
     return [
       "dark:bg-yellow bg-yellow1",
@@ -71,11 +62,10 @@ export const ChartsGridStep = <
   const colorClass =
     classes[columnIndex % 3];
   const isSynth = stepsKey === "synth";
-  const s = boxSize();
 
   const {
-    synth,
     playingKeys,
+    synth,
     sequence,
   } = useTrillPicsStore(
     ({
@@ -88,6 +78,9 @@ export const ChartsGridStep = <
       sequence,
     })
   );
+
+  const isDisabled =
+    playingKeys.includes(musicKey);
   const displayMidiValue =
     (synth.midi ?? 0) +
     midiValueToNumber(value);
@@ -105,20 +98,15 @@ export const ChartsGridStep = <
 
   const { handlers, isHover } =
     useHoverKey();
-  const handlePlay = useStepPlay(
-    midi,
-    _props
-  );
-  const ref = resolveStepRef(
-    musicKey,
-    _props
-  );
+  const stepRef =
+    useGridCellsStepRef<T>({
+      columnIndex,
+      rowIndex,
+      progressKey: musicKey,
+    });
   const isHovering = isNull(hoverKey)
     ? false
     : isHover(hoverKey);
-
-  const isDisabled =
-    playingKeys.includes(musicKey);
 
   const topStyle = {
     ...(isSynth
@@ -128,40 +116,57 @@ export const ChartsGridStep = <
               ? 0
               : resolveTop(
                   value,
-                  s.m05
+                  box.m05
                 ),
         }
       : { top: 0 }),
   };
+
+  const datasetValue =
+    stepRef.gridCell?.dataset.midi;
+  const nextValue =
+    stepRef.isAlreadyDefined &&
+    isString(datasetValue)
+      ? datasetValue
+          .split(",")
+          .map((v) =>
+            v === "null"
+              ? null
+              : Number(value)
+          )
+      : value;
 
   return (
     <div
       className="relative flex flex-col items-center grow"
       style={style}
     >
-      <button
-        className="fill bg-black"
-        onClick={
-          isDisabled ? NOOP : handlePlay
-        }
-        disabled={isDisabled}
-        style={{
-          opacity:
-            resolvePlayVolume(
-              columnIndex
-            ) / 8,
-        }}
-        {...(isNull(hoverKey) ||
-        isDisabled
-          ? {}
-          : handlers(hoverKey))}
-      />
+      {!isNull(hoverKey) && (
+        <ChartsGridPlayButton
+          classValue={colorClass}
+          musicKey={musicKey}
+          midi={midi}
+          isHovering={isHovering}
+          isDisabled={isDisabled}
+          stepsKey={stepsKey}
+          rowIndex={rowIndex}
+          columnIndex={columnIndex}
+          {...{
+            ...(isNull(hoverKey)
+              ? {}
+              : handlers(hoverKey)),
+            title: `play ${midi}`,
+          }}
+        />
+      )}
       <div
         className={clsx(
           "fill pointer-events-none",
           colorClass
         )}
-        ref={ref}
+        {...(stepRef.isAlreadyDefined
+          ? {}
+          : { ref: stepRef.handler })}
         data-progress={
           value ? musicKey : null
         }
@@ -186,10 +191,10 @@ export const ChartsGridStep = <
           >
             <ChartsGridStepDot
               isHovering={isHovering}
-              {..._props}
+              {...props}
               {...synth}
               {...sequence}
-              value={value}
+              value={nextValue}
             />
 
             {isSynth && (
@@ -221,7 +226,7 @@ export const ChartsGridStep = <
                               )) * 100
                         }%`,
                         //
-                        // s.m,
+                        // box.m,
                         opacity:
                           value === null
                             ? 0.25

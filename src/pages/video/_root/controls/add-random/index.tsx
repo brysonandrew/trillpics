@@ -7,7 +7,7 @@ import {
 import { PRESENCE_OPACITY } from "@brysonandrew/motion-config-constants";
 import { MAX_COUNT } from "~/pages/video/_root/reorder/constants";
 import { ShowPics } from "~/components/show-pics";
-import { useReadyContext } from "~/shell/ready/context";
+import { useContextReady } from "~/shell/ready/context";
 
 export const ADD_RANDOM_HOVER_KEY =
   "Randomize"; //
@@ -15,7 +15,7 @@ export const ADD_RANDOM_HOVER_KEY =
 export const HudLeftAddRandom: FC<
   Partial<TPillBHoverProps>
 > = (props) => {
-const {random:[randoms, handleClick, randomize] } = useReadyContext()
+const {random:[randoms, handleClick, randomize] } = useContextReady()
   return (
     <PillBHover
       hoverKeyConfig={{

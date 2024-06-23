@@ -1,12 +1,12 @@
 import type { FC } from "react";
 import { motion } from "framer-motion";
-import { boxSize } from "~uno/rules/box/size";
+import { box } from "~uno/rules/box";
 import {
   TOTAL_GAP,
   MAX_COUNT,
 } from "~/pages/video/_root/reorder/constants";
 import { useHoverKey } from "~/hooks/use-hover-key";
-import { useReadyContext } from "~/shell/ready/context";
+import { useContextReady } from "~/shell/ready/context";
 import { MOTION_BLUR_ADD_RANDOM_PROPS } from "~/shell/init/svg/filters/blur/constants";
 import { boxRadius } from "~uno/rules/box/radius";
 import { TDivMotionProps } from "@brysonandrew/config-types";
@@ -20,21 +20,21 @@ export const _RootReorderBackground: FC<
   const {
     screen,
     main: { dragger },
-  } = useReadyContext();
-  const s = boxSize();
+  } = useContextReady();
+  
 
   const isColumn =
     screen.container.width < 600;
   const width =
     screen.container.width -
-    (isColumn ? s.m : s.m3);
-  const left = isColumn ? s.m05 : s.m25;
+    (isColumn ? box.m : box.m3);
+  const left = isColumn ? box.m05 : box.m25;
   const size =
     (width - TOTAL_GAP) /
     (isColumn ? 1 : MAX_COUNT);
   const borderRadius = boxRadius();
 
-  const { main } = useReadyContext();
+  const { main } = useContextReady();
   const start = () => {
     main.cursor.isOnGrid = false;
   };
@@ -63,9 +63,9 @@ export const _RootReorderBackground: FC<
         x: dragger.x,
         y: dragger.y,
         borderRadius,
-        top: s.m3,
-        left: left - s.m15 + s.m025,
-        width: width + s.m3 - s.m05,
+        top: box.m3,
+        left: left - box.m15 + box.m025,
+        width: width + box.m3 - box.m05,
         height: size,
         ...style,
       }}

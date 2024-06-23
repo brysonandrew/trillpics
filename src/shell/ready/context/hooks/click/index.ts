@@ -1,5 +1,5 @@
 import { useEventListener } from "@brysonandrew/hooks-events";
-import { useReadyContext } from "~/shell/ready/context";
+import { useContextReady } from "~/shell/ready/context";
 import { useTrillPicsStore } from "~/store/middleware";
 
 export const useClickGrid = (
@@ -7,7 +7,7 @@ export const useClickGrid = (
   isDisabled: boolean
 ) => {
   const { ref, main } =
-    useReadyContext();
+    useContextReady();
   const { set, isScrolling } =
     useTrillPicsStore(
       ({ set, isScrolling }) => ({

@@ -1,41 +1,29 @@
-import {
-  SCALE_RECORD,
-  TScaleKey,
-} from "~/constants/scales";
 import { MIDI_RECORD } from "~/hooks/music/midis/constants";
-import { TMidisStepsKey } from "~/hooks/music/midis/types";
+import { TNodesStepsKey } from "~/hooks/music/midis/types";
 import {
+  DEFAULT_MULTI_SYNTH_OPTIONS,
+  DEFAULT_SYNTH_OPTIONS,
+  DEFAULT_SYNTH_SLIDER_OPTIONS,
   MUSIC_OPTIONS_RECORD,
   SYNTH_TYPES_RECORD,
+  TSynthConfigKey,
 } from "~/pages/video/music/synth/constants";
+import { DEFAULT_MIDIS_SLIDER_OPTIONS } from "~/pages/video/music/synth/nodes/oscillator/constants";
+import { TScaleSliderOptionsKey } from "~/pages/video/music/synth/scale/types";
+import { DEFAULT_SEQUENCE_OPTIONS } from "~/pages/video/music/synth/sequence/constants";
+import { TSequenceSliderOptionsKey } from "~/pages/video/music/synth/sequence/types";
 import {
+  TSynthConfig,
   TSynthMultiOptionType,
   TSynthOptionType,
   TSynthType,
 } from "~/pages/video/music/synth/types";
 import {
   DEFAULT_BEATS_SLIDER_OPTIONS,
-  DEFAULT_MIDIS_SLIDER_OPTIONS,
-  DEFAULT_MULTI_SYNTH_OPTIONS,
   DEFAULT_MUSIC_SLIDER_OPTIONS,
   DEFAULT_SCALE_SLIDER_OPTIONS,
-  DEFAULT_SEQUENCE_OPTIONS,
-  DEFAULT_SYNTH_OPTIONS,
-  DEFAULT_SYNTH_SLIDER_OPTIONS,
-  TSynthConfigKey,
 } from "~/store/state/music/constants";
-import {
-  TBeatsOptions,
-  TMidisOptions,
-  TMidisSliderOptionsKey,
-  TMusicOptionsKey,
-  TScaleOptions,
-  TScaleSliderOptions,
-  TScaleSliderOptionsKey,
-  TSequenceOptionsKey,
-  TSequenceSliderOptionsKey,
-  TSynthConfig,
-} from "~/store/state/music/types";
+import { TBeatsOptions } from "~/store/state/music/types";
 import { isDefined } from "~/utils/validation/is/defined";
 
 export const isSynthType = (
@@ -45,13 +33,7 @@ export const isSynthType = (
     return true;
   return false;
 };
-export const isMusicOptionType = (
-  key: string
-): key is TMusicOptionsKey => {
-  if (key in MUSIC_OPTIONS_RECORD)
-    return true;
-  return false;
-};
+
 export const isSynthOptionsType = (
   key: string
 ): key is TSynthOptionType => {
@@ -68,12 +50,7 @@ export const isSynthMultiOptionsType = (
     return true;
   return false;
 };
-export const isScaleKey = (
-  key: string
-): key is TScaleKey => {
-  if (key in SCALE_RECORD) return true;
-  return false;
-};
+
 export const isSynthConfigType = (
   key: string
 ): key is keyof TSynthConfig => {
@@ -113,15 +90,6 @@ export const isScaleSliderConfigType = (
     return true;
   return false;
 };
-export const  isMidisSliderConfigType = (
-  key: string
-): key is TMidisSliderOptionsKey => {
-  if (
-    key in DEFAULT_MIDIS_SLIDER_OPTIONS
-  )
-    return true;
-  return false;
-};
 export const isBeatsSliderConfigType = (
   key: string
 ): key is keyof TBeatsOptions => {
@@ -131,18 +99,9 @@ export const isBeatsSliderConfigType = (
     return true;
   return false;
 };
-export const isMusicSliderConfigType = (
-  key: string
-): key is TMusicOptionsKey => {
-  if (
-    key in DEFAULT_MUSIC_SLIDER_OPTIONS
-  )
-    return true;
-  return false;
-};
-export const isMidisKey = (
+export const isNodesKey = (
   stepsKey?: string
-): stepsKey is TMidisStepsKey => {
+): stepsKey is TNodesStepsKey => {
   if (
     isDefined(stepsKey) &&
     stepsKey in MIDI_RECORD

@@ -2,11 +2,11 @@ import type { FC } from "react";
 import { resolveTop } from "~/components/charts/grid/top";
 import { LinesHorizontal } from "~/components/lines/horizontal";
 import { SCALE_VALUE_COUNT } from "~/constants/scales";
-import { boxSize } from "~uno/rules/box/size";
+import { box } from "~uno/rules/box";
 
 export const ChartsGridStaff: FC =
   () => {
-    const s = boxSize();
+    
     return (
       <>
         {[
@@ -17,7 +17,7 @@ export const ChartsGridStaff: FC =
             style={{
               top: resolveTop(
                 index,
-                s.m0125
+                box.m0125
               ),
               opacity: 0.1,
               width: "100%",

@@ -1,26 +1,19 @@
 import { useVideoStyle } from "~/pages/video/style";
-import { boxSize } from "~uno/rules/box/size";
-import { MusicLayoutHeader } from "~/pages/video/music/header";
+import { MusicLayoutHeader } from "~/pages/video/music/layout/header";
 import { BackgroundGlass } from "~/components/layout/background/glass";
 import { LinesHorizontalLight } from "~/components/lines/horizontal/light";
 import { TimerDisplayHeader } from "~/components/playback/timer/display/header";
 import { usePicVideoReadSeconds } from "~/hooks/pic/video/read/seconds/hook";
 import { useMusicPlay } from "~/hooks/music/play";
-import { useMusicRecorderContext } from "~/pages/video/music/_context/recorder";
-import { IconsLoader } from "~/components/icons/loader";
-import { IconsSave } from "~/components/icons/save";
-import { IconsTick } from "~/components/icons/tick";
+import { IconsPlay } from "~/components/icons/playback/play";
+import { IconsStop } from "~/components/icons/playback/stop";
+import { MusicControlsButtonsRecord } from "~/pages/video/music/controls/buttons/record";
+import { MusicLayoutHeaderTitle } from "~/pages/video/music/layout/header/title";
+import { MusicLayoutHeaderTitleText } from "~/pages/video/music/layout/header/title/text";
 
-export const VideoMusicPlaybackHeader =
+export const VideoMusicSaveHeader =
   () => {
-    const s = boxSize();
     const musicPlay = useMusicPlay();
-    const {
-      isRecording,
-      isCooldown,
-      audioSeconds,
-      handleStart,
-    } = useMusicRecorderContext();
     const videoSeconds =
       usePicVideoReadSeconds();
     const { sidebarWidthOffset } =
@@ -33,21 +26,20 @@ export const VideoMusicPlaybackHeader =
           }}
         />
         <MusicLayoutHeader
+          title={`play ${"music"}`}
           Icon={
-            isRecording
-              ? IconsLoader
-              : isCooldown
-              ? IconsTick
-              : IconsSave
+            musicPlay.isPlaying
+              ? IconsStop
+              : IconsPlay
           }
-          onClick={handleStart}
+          onClick={musicPlay.play}
           leftContent={
             <TimerDisplayHeader
               isActive={
                 musicPlay.isPlaying
               }
               seconds={videoSeconds}
-              progressKey="recorder"
+              progressKey="track"
               isCooldown={
                 musicPlay.isCooldown
               }
@@ -56,10 +48,16 @@ export const VideoMusicPlaybackHeader =
           rightContent={
             <>
               <LinesHorizontalLight />
+              <MusicLayoutHeaderTitleText>
+                Save
+              </MusicLayoutHeaderTitleText>
+              <MusicLayoutHeaderTitle>
+                <MusicControlsButtonsRecord />
+              </MusicLayoutHeaderTitle>
             </>
           }
         >
-          Save
+          Track
         </MusicLayoutHeader>
       </div>
     );

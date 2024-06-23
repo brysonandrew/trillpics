@@ -1,9 +1,9 @@
-import { useMusicInitContext } from "~/pages/video/music/_context/init";
+import { useContextMusicInit } from "~/pages/video/music/_context/init";
 
 export const useRecorderDataAvailableHandler =
   () => {
     const { audio } =
-      useMusicInitContext();
+      useContextMusicInit();
     const handler = (
       event: BlobEvent
     ) => {

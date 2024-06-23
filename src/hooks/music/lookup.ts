@@ -1,8 +1,8 @@
-import { useMusicReadyContext } from "~/pages/video/music/_context/ready/index";
+import { useContextMusicReady } from "~/pages/video/music/_context/ready/index";
 
 export const useMusicLookup = () => {
   const { beats, midis } =
-    useMusicReadyContext();
+    useContextMusicReady();
   const lookup = {
     ...beats,
     ...midis,

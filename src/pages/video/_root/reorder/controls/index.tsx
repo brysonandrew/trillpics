@@ -3,10 +3,8 @@ import { motion } from "framer-motion";
 import { IconsTrash } from "~/components/icons/video/trash";
 import { TUsePicSelected } from "~/hooks/pic/selected";
 import { TCommonProps } from "~/pages/video/_root/reorder/types";
-import { boxSize } from "~uno/rules/box/size";
+import { box } from "~uno/rules/box";
 import { IconsPlusQuestion } from "~/components/icons/plus";
-import { boxRadius } from "~uno/rules/box/radius";
-import { PRESENCE_OPACITY } from "@brysonandrew/motion-config-constants";
 import { TMotionPoint } from "@brysonandrew/motion-config-types";
 import { TDimensions } from "@brysonandrew/config-types";
 import { PillBSm } from "~/components/buttons/pill/b/sm";
@@ -40,7 +38,7 @@ export const _RootReorderControls: FC<
   isColumn,
   y,
 }) => {
-  const s = boxSize();
+  
 
   return (
     <motion.div
@@ -52,7 +50,7 @@ export const _RootReorderControls: FC<
         top: isColumn
           ? itemDimensions.height *
             index
-          : -s.m15,
+          : -box.m15,
         zIndex: index,
       }}
     >

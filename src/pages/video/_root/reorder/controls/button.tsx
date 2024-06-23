@@ -1,7 +1,7 @@
 import type { FC } from "react";
 import clsx from "clsx";
 import { TUsePicSelected } from "~/hooks/pic/selected";
-import { boxSize } from "~uno/rules/box/size";
+import { box } from "~uno/rules/box";
 import {
   ButtonPillBIcon,
   TButtonPillBIconProps,
@@ -28,7 +28,7 @@ export const _RootReorderControlsButton: FC<
   },
   ...props
 }) => {
-  const s = boxSize();
+  
   const borderRadius = boxRadius();
 
   return (
@@ -39,8 +39,8 @@ export const _RootReorderControlsButton: FC<
         classValue
       )}
       style={{
-        width: s.s,
-        height: s.s,
+        width: box.s,
+        height: box.s,
         borderRadius,
       }}
       {...props}
@@ -52,8 +52,8 @@ export const _RootReorderControlsButton: FC<
       <ButtonPillBIcon
         isSelected={true}
         style={{
-          width: s.s,
-          height: s.s,
+          width: box.s,
+          height: box.s,
           borderRadius,
           ...iconStyle,
         }}

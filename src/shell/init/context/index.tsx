@@ -9,7 +9,7 @@ const InitContext = createContext(
   {} as TInitContext
 );
 
-export const useInitContext = () =>
+export const useContextInit = () =>
   useContext(InitContext);
 
 export const InitContextProvider: FC<

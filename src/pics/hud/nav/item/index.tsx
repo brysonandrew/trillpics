@@ -15,7 +15,7 @@ import { NavCountersPics } from "~/pics/hud/nav/counters/pics";
 import { FooterNavLink } from "~/pics/hud/nav/item/link";
 import { TClassValueProps } from "@brysonandrew/config-types";
 import { boxRadius } from "~uno/rules/box/radius";
-import { boxSize } from "~uno/rules/box/size";
+import { box } from "~uno/rules/box";
 import { PRESENCE_OPACITY } from "@brysonandrew/motion-config-constants";
 import { PAGE_TITLES } from "~/pics/hud/nav/constants";
 import { useHoverKey } from "~/hooks/use-hover-key";
@@ -38,7 +38,7 @@ export const FooterNavItem: FC<
   style,
   ...props
 }) => {
-  const s = boxSize();
+  
   const borderRadius = boxRadius();
   const { isHover, hoverKeys } =
     useHoverKey();
@@ -53,7 +53,7 @@ export const FooterNavItem: FC<
           : "justify-start"
       )}
       style={{
-        width: s.m,
+        width: box.m,
         ...style,
       }}
       {...PRESENCE_OPACITY}
@@ -78,7 +78,7 @@ export const FooterNavItem: FC<
           )}
           style={{
             borderRadius,
-            gap: s.m025,
+            gap: box.m025,
           }}
         >
           <PillBLayout Icon={Icon} />

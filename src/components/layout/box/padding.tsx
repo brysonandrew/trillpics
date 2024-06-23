@@ -1,6 +1,6 @@
 import type { FC } from "react";
 import { boxRadius } from "~uno/rules/box/radius";
-import { boxSize } from "~uno/rules/box/size";
+import { box } from "~uno/rules/box";
 import { TDivProps } from "@brysonandrew/config-types";
 
 export type TLayoutBoxPaddingProps =
@@ -17,18 +17,18 @@ export const LayoutBoxPadding: FC<
   style,
   ...props
 }) => {
-  const s = boxSize();
+  
   const borderRadius = boxRadius("l");
 
   return (
     <div
       className="row relative uppercase text-sm"
       style={{
-        paddingTop: s.m025*1.25,
-        paddingBottom: s.m025,
-        paddingLeft: s.m0125,
-        paddingRight: s.m0125,
-        gap: s.m025,
+        paddingTop: box.m025*1.25,
+        paddingBottom: box.m025,
+        paddingLeft: box.m0125,
+        paddingRight: box.m0125,
+        gap: box.m025,
         borderRadius,
         ...style,
       }}

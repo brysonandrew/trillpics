@@ -16,7 +16,10 @@ import {
   RADIAL_BLUE_PINK_YELLOW,
   RADIAL_TEAL_YELLOW_PINK,
 } from "./constants";
-import { OUTLINE_FILTER_SVG_PROPS,OUTLINE_FILTER_SVG_DARK_PROPS } from "../filters/outline";
+import {
+  OUTLINE_FILTER_SVG_PROPS,
+  OUTLINE_FILTER_SVG_DARK_PROPS,
+} from "../filters/outline";
 
 export const GRADIENTS: Rule[] = [
   [
@@ -67,7 +70,8 @@ export const GRADIENTS: Rule[] = [
     "_dark-gradient-border",
     {
       ...boxBorderCss({
-        image: `${GRADIENT_BLUE_PINK_YELLOW} 20`,
+        imageSource: `${GRADIENT_BLUE_PINK_YELLOW}`,
+        imageSlice: 1,
       }),
       ...GRADIENT_BORDER_COMMON,
     },
@@ -76,7 +80,8 @@ export const GRADIENTS: Rule[] = [
     "_light-gradient-border",
     {
       ...boxBorderCss({
-        image: `${GRADIENT_TEAL_YELLOW_PINK} 20`,
+        imageSource: `${GRADIENT_TEAL_YELLOW_PINK}`,
+        imageSlice: 1,
       }),
       ...GRADIENT_BORDER_COMMON,
     },

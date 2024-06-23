@@ -3,7 +3,7 @@ import {
   useVelocity,
 } from "framer-motion";
 import { TPropsWithChildren } from "@brysonandrew/config-types";
-import { useInitContext } from "~/shell/init/context";
+import { useContextInit } from "~/shell/init/context";
 import {
   MOTION_BLUR_ADD_RANDOM_ID,
   MOTION_BLUR_SHUFFLE_ID,
@@ -18,7 +18,7 @@ export const FiltersBlurAddRandom = ({
   tType = "turbulence", // "fractalNoise",
   dScale = 12,
 }: TPropsWithChildren<TProps>) => {
-  const { main } = useInitContext();
+  const { main } = useContextInit();
   const motionValue =
     main.blur.value.addRandom;
   const velocity = useVelocity(

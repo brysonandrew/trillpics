@@ -5,7 +5,7 @@ import { isString } from "unocss";
 import { TPillBProps } from "~/components/buttons/pill/b";
 import { ButtonPillBIcon } from "~/components/buttons/pill/b/icon";
 import { boxRadius } from "~uno/rules/box/radius";
-import { boxSize } from "~uno/rules/box/size";
+import { box } from "~uno/rules/box";
 import { TDivMotionProps } from "@brysonandrew/config-types";
 import { PillBText } from "~/components/buttons/pill/b/text";
 import { LightingGlow } from "~/components/layout/lighting/glow";
@@ -35,8 +35,8 @@ export const PillBLayout: FC<
     style: mainStyle,
     ...mainRest
   } = mainProps;
-  const s = boxSize();
-  size = size ?? s.m;
+  
+  size = size ?? box.m;
   const borderRadius = boxRadius();
 
   return (

@@ -3,7 +3,7 @@ import { useBpm } from "~/hooks/music/bpm";
 import { resolveStepsPerSecond } from "~/hooks/music/time/steps-per-second/resolver";
 import { usePicVideoReadSeconds } from "~/hooks/pic/video/read/seconds/hook";
 import { supportedMimeTypes } from "~/pages/video/music/_context/hooks/recorder/supportedMimeTypes";
-import { useMusicInitContext } from "~/pages/video/music/_context/init";
+import { useContextMusicInit } from "~/pages/video/music/_context/init";
 
 export const useLoopHandler = () => {
   const bpm = useBpm();
@@ -12,7 +12,7 @@ export const useLoopHandler = () => {
     usePicVideoReadSeconds();
 
   const { audio } =
-    useMusicInitContext();
+    useContextMusicInit();
 
   const handler = () => {
     const sps =

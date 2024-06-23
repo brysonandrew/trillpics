@@ -3,12 +3,12 @@ import { useSeek } from "~/pages/video/player/_controls/playback/progress/use-se
 import clsx from "clsx";
 import {} from "~/hoc/ref/with-player-instance-check";
 import { TimerCurrentProgress } from "~/pages/video/player/_controls/playback/progress";
-import { useInitContext } from "~/shell/init/context";
+import { useContextInit } from "~/shell/init/context";
 import { box } from "~uno/rules/box";
 
 export const PlaybackProgressSeeker: FC =
   memo(() => {
-    const { main } = useInitContext();
+    const { main } = useContextInit();
     const { handler } = useSeek();
     const s = box;
     return (

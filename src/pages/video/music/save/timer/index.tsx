@@ -2,19 +2,19 @@ import { FC } from "react";
 import { PlaybackTimer } from "~/components/playback/timer";
 import { resolveCompositeKey } from "@brysonandrew/utils-key";
 import { TimerDisplayInit } from "~/components/playback/timer/display/init";
-import { VideoMusicPlaybackTimerCurrent } from "~/pages/video/music/save/timer/current";
-import { useMusicRecorderContext } from "~/pages/video/music/_context/recorder";
+import { VideoMusicSaveTimerCurrent } from "~/pages/video/music/save/timer/current";
+import { useContextMusicRecorder } from "~/pages/video/music/_context/recorder";
 import { TimerDisplay } from "~/components/playback/timer/display";
 import { useMusicPlay } from "~/hooks/music/play";
 
 type TProps = {
   stepsCount?: number;
 };
-export const VideoMusicPlaybackTimer: FC<
+export const VideoMusicSaveTimer: FC<
   TProps
 > = ({ stepsCount }) => {
   const { videoSeconds } =
-    useMusicRecorderContext();
+    useContextMusicRecorder();
   const musicPlay = useMusicPlay();
   const { isRecording, isCooldown } =
     musicPlay;
@@ -31,10 +31,10 @@ export const VideoMusicPlaybackTimer: FC<
       TimerCurrentFc={
         isRecording
           ? () => (
-              <VideoMusicPlaybackTimerCurrent
+              <VideoMusicSaveTimerCurrent
                 seconds={videoSeconds}
                 stepsCount={stepsCount}
-                progressKey="recorder"
+                progressKey="track"
               />
             )
           : isCooldown

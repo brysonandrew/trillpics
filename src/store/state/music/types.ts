@@ -1,8 +1,3 @@
-import {
-  TSynthOptions,
-  TMultiOptions,
-} from "react-synthwave";
-import { TScaleKey } from "~/constants/scales";
 import { TBeatsPresetsKey } from "~/hooks/music/beats/presets/types";
 import {
   TBeatValues,
@@ -10,8 +5,11 @@ import {
 } from "~/hooks/music/beats/types";
 import {
   TMidiValues,
-  TMidisStepsKey,
+  TNodesStepsKey,
 } from "~/hooks/music/midis/types";
+import { TScaleOptions } from "~/pages/video/music/synth/scale/types";
+import { TSequenceOptions } from "~/pages/video/music/synth/sequence/types";
+import { TSynthConfig } from "~/pages/video/music/synth/types";
 import { MUSIC_TYPES } from "~/store/state/music/constants";
 
 export type TMusicKey =
@@ -21,22 +19,22 @@ export type TStepsKey<
   T extends TMusicKey
 > = T extends "beats"
   ? TBeatsStepsKey
-  : TMidisStepsKey;
+  : TNodesStepsKey;
 
 export type UStepsKey =
   | TBeatsStepsKey
-  | TMidisStepsKey;
+  | TNodesStepsKey;
 
 export type USequenceEntry =
   | [TBeatsStepsKey, TBeatValues]
-  | [TMidisStepsKey, TMidiValues];
+  | [TNodesStepsKey, TMidiValues];
 
 export type TSequenceBeatRecord =
   Record<TBeatsStepsKey, TBeatValues>;
 export type TPartialSequenceBeatRecord =
   Partial<TSequenceBeatRecord>;
 export type TSequenceMidiRecord =
-  Record<TMidisStepsKey, TMidiValues>;
+  Record<TNodesStepsKey, TMidiValues>;
 export type TPartialSequenceMidiRecord =
   Partial<TSequenceMidiRecord>;
 
@@ -45,68 +43,13 @@ export type TRecording = {
   seconds: number;
 };
 
-export type TScalePattern =
-  | "asc"
-  | "desc"
-  | "random"
-  | "hill"
-  | "valley"
-  | "alternating";
-
-export type TScaleSliderOptions = {
-  delta: number;
-};
-
-export type TScaleSliderOptionsKey =
-  keyof TScaleSliderOptions;
-
-export type TScaleOptions =
-  TScaleSliderOptions & {
-    pattern: TScalePattern;
-    key: TScaleKey;
-  };
-
-export type TSequenceSliderOptions = {
-  offset: number;
-  interval: number;
-  repeat: number;
-  delay: number;
-  duration: number;
-  beats: number;
-};
-export type TSequenceSliderOptionsKey =
-  keyof TSequenceSliderOptions;
-export type TSequenceOptions =
-  TSequenceSliderOptions;
-export type TSequenceOptionsKey =
-  keyof TSequenceOptions;
-export type TSequenceOptionsIncrementerKey =
-  keyof Omit<TSequenceOptions, "beats">;
-
-export type TSynthConfig = Omit<
-  TSynthOptions & TMultiOptions,
-  "output" | "onEnded" | "type"
->;
-
 export type TBeatsOptions = {
   gain: number;
+  presetKey: TBeatsPresetsKey;
 };
 export type TBeatsOptionsKey =
   keyof TBeatsOptions;
 
-  export type TMidisSliderOptions = {
-    gain: number;
-    frequency: number
-    detune: number
-    delayTime:number
-  };
-  export type TMidisSliderOptionsKey =
-  keyof TMidisSliderOptions;
-export type TMidisOptions = TMidisSliderOptions & {
-  type:OscillatorType
-};
-export type TMidisOptionsKey =
-  keyof TMidisOptions;
 export type TPlayingKey =
   | TMusicKey
   | TBeatsPresetsKey
@@ -115,20 +58,11 @@ export type TPlayingKey =
 export type TMusicState = {
   isLoop: boolean;
   bpm: number;
-  master: number;
-  midis: TMidisOptions;
   beats: TBeatsOptions;
   synth: TSynthConfig;
+  playingKeys: TPlayingKey[];
   steps: TMidiValues;
   scale: TScaleOptions;
   sequence: TSequenceOptions;
-  beatsPresetKey: TBeatsPresetsKey;
-  playingKeys: TPlayingKey[];
   recording: TRecording | null;
 };
-export type TMusicOptions = Pick<
-  TMusicState,
-  "bpm" | "master"
->;
-export type TMusicOptionsKey =
-  keyof TMusicOptions;

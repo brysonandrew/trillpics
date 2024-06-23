@@ -2,7 +2,7 @@ import { SCALE_VALUE_COUNT } from "~/constants/scales";
 import { useTrillPicsStore } from "~/store/middleware";
 import { TState } from "~/store/types";
 
-export const useMidisOffset = () => {
+export const useNodesOffset = () => {
   const { set } = useTrillPicsStore(
     ({ set }) => ({
       set,

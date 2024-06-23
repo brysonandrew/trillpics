@@ -1,12 +1,12 @@
 import { animate } from "framer-motion";
-import { useInitContext } from "~/shell/init/context";
+import { useContextInit } from "~/shell/init/context";
 import { TBlurVariant } from "~/shell/init/context/blur";
 import { isNull } from "~/utils/validation/is/null";
 
 export const useBlurAnimate = (
   variant: TBlurVariant = "x"
 ) => {
-  const { main } = useInitContext();
+  const { main } = useContextInit();
   const handler = (peak = 10) => {
     if (
       !isNull(

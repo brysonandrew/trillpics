@@ -2,16 +2,16 @@ import type { FC } from "react";
 import { IconsAlert } from "~/components/icons/alert";
 import { IconsSave } from "~/components/icons/save";
 import { IconsVideo } from "~/components/icons/video/video";
-import { boxSize } from "~uno/rules/box/size";
+import { box } from "~uno/rules/box";
 import { useVideoStyle } from "~/pages/video/style";
 import { useTrillPicsStore } from "~/store/middleware";
-import { useMusicRecorderContext } from "~/pages/video/music/_context/recorder";
+import { useContextMusicRecorder } from "~/pages/video/music/_context/recorder";
 import { boxPx } from "~/utils/box/px";
 import { LinesHorizontalLight } from "~/components/lines/horizontal/light";
 
-export const VideoMusicPlaybackSaveLog: FC =
+export const VideoMusicSaveSaveLog: FC =
   () => {
-    const s = boxSize();
+    
 
     const { recording } =
       useTrillPicsStore(
@@ -23,24 +23,24 @@ export const VideoMusicPlaybackSaveLog: FC =
     const { width } = useVideoStyle();
 
     const { isRecording, isCooldown } =
-      useMusicRecorderContext();
+      useContextMusicRecorder();
     return (
       <div
         className="relative row uppercase font-sans"
         style={{
           left: 0,
-          gap: s.m025,
+          gap: box.m025,
           width: width,
-          paddingTop: s.m05-s.m0125,
-          paddingBottom: s.m05+s.m0125,
-          ...boxPx(s.m05 - s.m0625),
+          paddingTop: box.m05-box.m0125,
+          paddingBottom: box.m05+box.m0125,
+          ...boxPx(box.m05 - box.m00625),
         }}
       >
         <div
           className="row relative"
           style={{
-            gap: s.m0125,
-            left: s.m05 - s.m025,
+            gap: box.m0125,
+            left: box.m05 - box.m025,
           }}
         >
           {isRecording ? (
@@ -53,7 +53,7 @@ export const VideoMusicPlaybackSaveLog: FC =
             <IconsAlert />
           )}
           <LinesHorizontalLight
-            style={{ width: s.m }}
+            style={{ width: box.m }}
           />
           <div className="grow whitespace-nowrap text-xs _outline-filter">
             {isRecording ? (

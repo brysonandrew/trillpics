@@ -1,27 +1,31 @@
 import { usePlayBeats } from "~/hooks/music/play/beats";
 import { usePlayMidis } from "~/hooks/music/play/midis";
-import { useMusicInitContext } from "~/pages/video/music/_context/init";
+import { useContextMusicInit } from "~/pages/video/music/_context/init";
 
 export const useMusicPlay = () => {
   const { recorder } =
-    useMusicInitContext();
+    useContextMusicInit();
   const playBeats = usePlayBeats();
-  const playMidis = usePlayMidis();
-  const play = async () => {
-    await playMidis.play();
-    await playBeats.play();
-  };
+  const playNodes = usePlayMidis();
+  const isPlaying =
+    playNodes.isPlaying &&
+    playBeats.isPlaying;
+  const isCooldown =
+    playNodes.isCooldown &&
+    playBeats.isCooldown;
   const stop = () => {
-    playMidis.stop();
+    playNodes.stop();
     playBeats.stop();
     recorder.stop();
   };
-  const isPlaying =
-    playMidis.isPlaying &&
-    playBeats.isPlaying;
-  const isCooldown =
-    playMidis.isCooldown &&
-    playBeats.isCooldown;
+  const play = async () => {
+    if (isPlaying) {
+      stop();
+    }
+    await playNodes.play();
+    await playBeats.play();
+  };
+
   return {
     play,
     stop,

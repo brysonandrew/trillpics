@@ -8,7 +8,7 @@ import { useHoverKey } from "~/hooks/use-hover-key";
 import { usePicVideoReadInputs } from "~/hooks/pic/video/read/inputs/hook";
 import { IconsDownload } from "~/components/icons/download";
 import { PillBHover } from "~/components/buttons/pill/b/hover";
-import { boxSize } from "~uno/rules/box/size";
+import { box } from "~uno/rules/box";
 import { resolveSquare } from "@brysonandrew/measure";
 import {
   DEFAULT_FPS,
@@ -36,7 +36,7 @@ export const DEFAULT_INPUT: TGenerateInput =
 export const Download: FC<
   Partial<TPillBProps>
 > = ({ children, ...props }) => {
-  const s = boxSize();
+  
   const bpm = useBpm()
   const inputFromParams =
     usePicVideoReadInputs(bpm);
@@ -176,13 +176,13 @@ export const Download: FC<
   return (
     <div
       className="relative flex"
-      style={{ ...resolveSquare(s.m) }}
+      style={{ ...resolveSquare(box.m) }}
     >
       <PillBHover
         title={title}
         isSelected={isHovering}
         style={{
-          ...resolveSquare(s.m),
+          ...resolveSquare(box.m),
         }}
         circleProps={{
           isGlow: isSuccess,

@@ -1,217 +1,32 @@
 import { type FC } from "react";
-import { TClassValueProps } from "@brysonandrew/config-types";
 import {
-  SliderStyled,
-  TSliderStyledProps,
-} from "~/components/inputs/slider/styled";
-import { boxSize } from "~uno/rules/box/size";
+  TClassValueProps,
+  TTitleProps,
+} from "@brysonandrew/config-types";
 import { MeshBackgroundText } from "~/components/layout/background/mesh/text";
 import { BackgroundGlass } from "~/components/layout/background/glass";
-import { useVideoStyle } from "~/pages/video/style";
-import { useUpdateStateHandler } from "~/store/hooks/use-update-state-handler";
-import { INPUT_PATH_DELIMITER } from "~/pages/video/music/synth/constants";
-import {
-  isBeatsSliderConfigType,
-  isMidisSliderConfigType,
-  isMusicSliderConfigType,
-  isScaleSliderConfigType,
-  isSequenceSliderConfigType,
-  isSynthConfigType,
-  isSynthSliderConfigType,
-} from "~/pages/video/music/synth/validators";
-import { TState } from "~/store/types";
-import {
-  TBeatsOptionsKey,
-  TMidisOptionsKey,
-  TMidisSliderOptions,
-  TMidisSliderOptionsKey,
-  TMusicOptionsKey,
-  TScaleOptions,
-  TSequenceOptionsKey,
-} from "~/store/state/music/types";
-import { useTrillPicsStore } from "~/store/middleware";
 import { cx } from "class-variance-authority";
-import { TSynthConfigKey } from "~/store/state/music/constants";
-import { isDefined } from "~/utils/validation/is/defined";
 import { TypographyXxxs } from "~/components/layout/typography/xxxs";
 import { TypographyXxs } from "~/components/layout/typography/xxs";
+import { useVideoStyle } from "~/pages/video/style";
+import { box } from "~uno/rules/box";
+import { TSliderStyledProps } from "~/components/inputs/slider/types";
 
-type TKeys =
-  | readonly ["synth", TSynthConfigKey]
-  | readonly [
-      "sequence",
-      TSequenceOptionsKey
-    ]
-  | readonly [
-      "scale",
-      keyof TScaleOptions
-    ];
-export type TUpdateSliderHandler = (
-  value: number
-) => void;
-type TValueChangeHandler =
-  TSliderStyledProps["onValueChange"];
-type TProps = Omit<
-  TSliderStyledProps,
-  "value" | "name"
-> &
-  TClassValueProps & {
-    name:
-      | TMusicOptionsKey
-      | `midis.${TMidisSliderOptionsKey}`
-      | `beats.${TBeatsOptionsKey}`
-      | `synth.${TSynthConfigKey}`
-      | `sequence.${TSequenceOptionsKey}`
-      | `scale.${keyof TScaleOptions}`;
-    keys?: TKeys;
-    onUpdate?: TUpdateSliderHandler;
-    reviver?: (n: any) => number;
-    replacer?: (n: number) => any;
-  };
-export const UiInputsSliderRow: FC<
-  TProps
+export type TSliderRowProps =
+  TClassValueProps &
+    TSliderStyledProps &
+    TTitleProps;
+export const SliderRow: FC<
+  TSliderRowProps
 > = ({
-  name,
+  children,
   title,
   classValue,
-  onUpdate,
-  reviver,
-  replacer,
-  keys = name.split(
-    INPUT_PATH_DELIMITER
-  ),
-  ...props
+  ...sliderProps
 }) => {
-  const state = useTrillPicsStore(
-    ({
-      bpm,
-      master,
-      synth,
-      scale,
-      sequence,
-      midis,
-      beats,
-    }) => ({
-      master,
-      bpm,
-      synth,
-      scale,
-      sequence,
-      midis,
-      beats,
-    })
-  );
-  const [key, key1] = keys;
-  const k = keys[0];
-
-  const resolveMidiValue = (
-    value: number
-  ) => {
-    switch (key1) {
-      case "type": {
-        return value;
-      }
-      default: {
-        return +value;
-      }
-    }
-  };
-  const resolveValue = (
-    draft: typeof state
-  ) => {
-    if (isMusicSliderConfigType(key)) {
-      return draft[key];
-    }
-    if (
-      key === "synth" &&
-      isSynthSliderConfigType(key1)
-    ) {
-      return draft.synth[key1];
-    }
-    if (
-      key === "sequence" &&
-      isSequenceSliderConfigType(key1)
-    ) {
-      return draft.sequence[key1];
-    }
-    if (
-      key === "scale" &&
-      isScaleSliderConfigType(key1)
-    ) {
-      return draft.scale[key1];
-    }
-    if (
-      key === "midis" &&
-      isMidisSliderConfigType(key1)
-    ) {
-      return draft.midis[key1];
-    }
-    if (
-      key === "beats" &&
-      isBeatsSliderConfigType(key1)
-    ) {
-      return draft.beats[key1];
-    }
-  };
-  const value = resolveValue(state);
-
-  const set = useUpdateStateHandler();
-
-  const handleUpdate: TUpdateSliderHandler =
-    (value) => {
-      const nextValue =
-        resolveMidiValue(value);
-      set((draft: TState) => {
-        if (
-          isMusicSliderConfigType(key)
-        ) {
-          draft[key] = nextValue;
-        }
-        if (
-          key === "synth" &&
-          isSynthSliderConfigType(key1)
-        ) {
-          draft.synth[key1] = nextValue;
-        }
-        if (
-          key === "sequence" &&
-          isSequenceSliderConfigType(
-            key1
-          )
-        ) {
-          return draft.sequence[key1];
-        }
-        if (
-          key === "scale" &&
-          isScaleSliderConfigType(key1)
-        ) {
-          return draft.scale[key1];
-        }
-        if (
-          key === "midis" &&
-          isMidisSliderConfigType(key1)
-        ) {
-          return draft.midis[key1];
-        }
-        if (
-          key === "beats" &&
-          isBeatsSliderConfigType(key1)
-        ) {
-          return draft.beats[key1];
-        }
-      });
-    };
-  const inputValue = value
-    ? [reviver ? reviver(value) : value]
-    : undefined;
-
-  const handleValueChange: TValueChangeHandler =
-    ([value]) => {
-      (onUpdate ?? handleUpdate)(value);
-    };
   const { sidebarWidthOffset, width } =
     useVideoStyle();
-  const s = boxSize();
+
   return (
     <div
       className={cx(
@@ -219,65 +34,65 @@ export const UiInputsSliderRow: FC<
         classValue
       )}
       style={{
-        left: s.m0625,
-        gap: s.m025,
-        height: s.m075,
+        left: box.m00625,
+        gap: box.m075,
+        height: box.m075,
       }}
     >
-      <BackgroundGlass
-        boxStyle={{
-          left: sidebarWidthOffset,
-          right: s.m0125,
-
-        }}
-      />
       <MeshBackgroundText
         style={{
-          width: 0,
-          left: s.m0125,
-          height: s.m,
+          left: box.m0125,
+          width:
+            box.m15 - box.m0125 / 2,
         }}
       >
         <TypographyXxxs
-          style={{ textAlign: "left", width:0 }}
+          style={{
+            textAlign: "left",
+          }}
         >
           {title}
         </TypographyXxxs>
       </MeshBackgroundText>
       <div
-        className="relative"
+        className="row grow"
         style={{
-          left: s.m025,
-          width:
-            width -
-            sidebarWidthOffset -
-            s.m -
-            s.m2 -s.m0125,
+          gap: box.m05,
         }}
       >
-        <SliderStyled
-          value={inputValue}
-          onValueChange={
-            handleValueChange
+        <div
+          className="relative grow"
+          style={
+            {
+              // ...box.p(box.m0125),
+            }
           }
-          {...props}
-        />
-      </div>
-      <MeshBackgroundText
-        classValue="relative"
-        style={{
-          width: 0,
-          height: s.m,
-          right: s.m,
-        }}
-      >
-        <TypographyXxs
-                  style={{ textAlign: "right", width:0 }}
-
         >
-          {value?.toString() ?? "-"}
-        </TypographyXxs>
-      </MeshBackgroundText>
+          <BackgroundGlass
+            boxStyle={{
+              ...box.i(-box.m0125),
+            }}
+          />
+          {children}
+        </div>
+        <MeshBackgroundText
+          classValue="relative"
+          style={{
+            right: box.m0125,
+            width:
+              box.m15 - box.m0125 / 2,
+          }}
+        >
+          <TypographyXxs
+            style={{
+              textAlign: "right",
+            }}
+          >
+            {sliderProps.value?.toString() ??
+              "-"}
+          </TypographyXxs>
+        </MeshBackgroundText>
+      </div>
     </div>
   );
 };

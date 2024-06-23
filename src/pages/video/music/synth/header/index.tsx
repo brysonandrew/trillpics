@@ -1,37 +1,42 @@
-import type { FC } from "react";
-import { BackgroundGlass } from "~/components/layout/background/glass";
-import { useVideoStyle } from "~/pages/video/style";
-import { boxRadius } from "~uno/rules/box/radius";
-import { boxSize } from "~uno/rules/box/size";
-import { VideoMusicSynthHeaderTop } from "~/pages/video/music/synth/header/top";
+import { FC } from "react";
+import { MusicLayoutHeader } from "~/pages/video/music/layout/header";
+import { useTrillPicsStore } from "~/store/middleware";
+import { LinesHorizontalLight } from "~/components/lines/horizontal/light";
+import { useAudioSeconds } from "~/hooks/music/time/audio-seconds";
+import { TimerDisplayHeader } from "~/components/playback/timer/display/header";
+import { useHeaderPlay } from "~/pages/video/music/layout/header/play";
+import { usePlayMidis } from "~/hooks/music/play/midis";
 
 export const VideoMusicSynthHeader: FC =
   () => {
-    const s = boxSize();
-    const borderRadius = boxRadius();
-    const {
-      sidebarWidthOffset,
-      width,
-    } = useVideoStyle();
+    const midis = usePlayMidis();
+    const play = useHeaderPlay(midis);
 
+    const { steps } = useTrillPicsStore(
+      ({ steps }) => ({ steps })
+    );
+
+    const audioSeconds =
+      useAudioSeconds();
     return (
-      <div
-        className="relative column-start"
-        style={{
-          width: width + s.m025,
-        }}
+      <MusicLayoutHeader
+        {...play}
+        leftContent={
+          <TimerDisplayHeader
+            stepsCount={steps.length}
+            isActive={midis.isPlaying}
+            seconds={audioSeconds}
+            progressKey="midis"
+            isCooldown={
+              midis.isCooldown
+            }
+          />
+        }
+        rightContent={
+          <LinesHorizontalLight />
+        }
       >
-        <BackgroundGlass
-          boxStyle={{
-            left: sidebarWidthOffset,
-          }}
-          style={{
-            borderTopRightRadius:
-              borderRadius,
-          }}
-        />
-
-        <VideoMusicSynthHeaderTop />
-      </div>
+        Synth
+      </MusicLayoutHeader>
     );
   };

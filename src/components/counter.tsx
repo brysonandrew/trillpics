@@ -4,7 +4,7 @@ import {
   TPillProps,
 } from "~/components/layout/pill";
 import clsx from "clsx";
-import { boxSize } from "~uno/rules/box/size";
+import { box } from "~uno/rules/box";
 import { BackgroundMeshRadial } from "~/components/layout/background/mesh-radial";
 
 export type TCounterProps = Partial<
@@ -25,7 +25,7 @@ export const Counter: FC<
   ...props
 }) => {
   if (count === 0) return null;
-  const s = boxSize();
+  
   return (
     <Pill
       layoutId="VideoPicsCounter"
@@ -33,9 +33,9 @@ export const Counter: FC<
         classValue ?? "relative"
       )}
       style={{
-        height: s.m05,
+        height: box.m05,
         ...(count < 10
-          ? { width: s.m05 }
+          ? { width: box.m05 }
           : {}),
 
         ...style,

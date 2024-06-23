@@ -1,13 +1,13 @@
 import type { FC } from "react";
 import { motion } from "framer-motion";
 import { resolveSquare } from "@brysonandrew/measure";
-import { boxSize } from "~uno/rules/box/size";
+import { box } from "~uno/rules/box";
 import { _RootReorderPlaceholdersList } from "~/pages/video/_root/reorder/placeholders/list";
 import {
   TOTAL_GAP,
   MAX_COUNT,
 } from "~/pages/video/_root/reorder/constants";
-import { useReadyContext } from "~/shell/ready/context";
+import { useContextReady } from "~/shell/ready/context";
 import clsx from "clsx";
 import { HOVER_KEY_RootReorderList } from "~/pages/video/_root/reorder/list";
 import { useTrillPicsStore } from "~/store/middleware";
@@ -22,7 +22,7 @@ export const _RootReorderPlaceholders: FC<
   const {
     screen,
     main: { dragger },
-  } = useReadyContext();
+  } = useContextReady();
 
   const { hoverKeys, isHover } =
     useTrillPicsStore(
@@ -41,13 +41,13 @@ export const _RootReorderPlaceholders: FC<
     HOVER_KEY_RootReorderList
   );
 
-  const s = boxSize();
+  
   const isColumn =
     screen.container.width < 600;
   const width =
     screen.container.width -
-    (isColumn ? s.m : s.m3);
-  const left = isColumn ? s.m05 : s.m25;
+    (isColumn ? box.m : box.m3);
+  const left = isColumn ? box.m05 : box.m25;
   const gap =
     TOTAL_GAP / (MAX_COUNT - 1);
   const size =
@@ -59,7 +59,7 @@ export const _RootReorderPlaceholders: FC<
     height,
     width,
     left,
-    top: s.m4,
+    top: box.m4,
   };
   const boxProps = {
     className: clsx(
@@ -73,7 +73,7 @@ export const _RootReorderPlaceholders: FC<
   const itemDimensions = isColumn
     ? {
         height:
-          size / MAX_COUNT + s.m05,
+          size / MAX_COUNT + box.m05,
         width: size,
       }
     : imageDimensions;

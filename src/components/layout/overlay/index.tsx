@@ -10,7 +10,7 @@ import { PortalBody } from "@brysonandrew/layout-portal";
 import { TPillBHoverProps } from "~/components/buttons/pill/b/hover";
 import { LinesHorizontalShadow } from "~/components/lines/horizontal/shadow";
 import { LayoutOverlayBackdrop } from "~/components/layout/overlay/backdrop";
-import { boxSize } from "~uno/rules/box/size";
+import { box } from "~uno/rules/box";
 
 type TProps = Pick<
   TPillBHoverProps,
@@ -28,7 +28,7 @@ export const LayoutOverlay: FC<
   isShown = true,
   backdrop = <LayoutOverlayBackdrop direction={direction} />,
 }) => {
-  const s = boxSize();
+  
   return (
     <PortalBody>
       <AnimatePresence>
@@ -52,16 +52,14 @@ export const LayoutOverlay: FC<
                       ? "column-end text-right"
                       : "column-start text-left"
                   )}
-                  style={{ gap: s.m05 }}
+                  style={{ gap: box.m05 }}
                 >
                   <h3 className="text-5xl sm:text-6xl xl:text-8xl char-gap-6 text-white-8 dark:text-black-2 font-sans uppercase _outline-filter">
                     {children}
                   </h3>
-                  {subtitle && (
-                    <>
-                      <div className="relative w-full">
+                  <div className="relative w-full">
                         <LinesHorizontal
-                          colorClass="text-teal dark:text-blue border-t-current _gradient-border"
+                          colorClass="_gradient-border"
                           opacityClass="opacity-100"
                           sizeClass="border-t-4"
                         />
@@ -71,6 +69,9 @@ export const LayoutOverlay: FC<
                           sizeClass="border-t-4"
                         />
                       </div>
+                  {subtitle && (
+                    <>
+                  
                       <div className="px-2 relative text-3.5xl md:text-4xl xl:text-5xl font-sans mix-blend-soft-light">
                         <LinesHorizontalShadow />
                         <div

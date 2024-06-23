@@ -1,5 +1,7 @@
 import { useMemo } from "react";
 
+export const DELAY_PARAMS = ['delayTime'] as const;
+
 type TDelayNodeKey = keyof Pick<
   DelayNode,
   "delayTime"

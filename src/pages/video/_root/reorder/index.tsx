@@ -1,6 +1,6 @@
 import { FC } from "react";
-import { boxSize } from "~uno/rules/box/size";
-import { useReadyContext } from "~/shell/ready/context";
+import { box } from "~uno/rules/box";
+import { useContextReady } from "~/shell/ready/context";
 import { _RootReorderList } from "~/pages/video/_root/reorder/list";
 import { _RootReorderDraggerSides } from "~/pages/video/_root/reorder/dragger/sides";
 import { _RootReorderControlsSides } from "~/pages/video/_root/reorder/controls/sides";
@@ -16,12 +16,12 @@ TUsePicSelected
 > = (props) => {
   const {
     screen: { container },
-  } = useReadyContext();
-  const s = boxSize();
+  } = useContextReady();
+  
 
   useDraggerReset({
     to: 0,
-    from: s.m4,
+    from: box.m4,
   });
 
 
@@ -29,10 +29,10 @@ TUsePicSelected
     <footer
       className="relative h-0 w-full z-10"
       style={{
-        left: container.left - s.m,
+        left: container.left - box.m,
         bottom:
-          container.height / 2 + s.m2,
-        width: container.width + s.m,
+          container.height / 2 + box.m2,
+        width: container.width + box.m,
       }}
     >
   

@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 import clsx from "clsx";
 import { MAX_COUNT } from "~/pages/video/_root/reorder/constants";
 import { boxRadius } from "~uno/rules/box/radius";
-import { boxSize } from "~uno/rules/box/size";
+import { box } from "~uno/rules/box";
 import { useHoverKey } from "~/hooks/use-hover-key";
 import { HOVER_KEY_RootReorderList } from "~/pages/video/_root/reorder/list";
 import { useTrillPicsStore } from "~/store/middleware";
@@ -29,7 +29,7 @@ export const _RootReorderPlaceholdersList: FC<
   boxProps,
   isColumn,
 }) => {
-  const s = boxSize();
+  
   const borderRadius = boxRadius();
   const { handlers } = useHoverKey();
   const { isHover } = useTrillPicsStore(
@@ -65,11 +65,11 @@ export const _RootReorderPlaceholdersList: FC<
       {listNames.map((name, index) => {
         const boxStyle = {
           width: itemDimensions.width,
-          height: itemDimensions.height, /// s.m+s.m025,
+          height: itemDimensions.height, /// box.m+box.m025,
           top: 0,
           borderRadius:
             borderRadius / 2,
-          padding: s.padding,
+          padding: box.padding,
           zIndex: index * 2 + 2,
         };
         if (isDefined(name))

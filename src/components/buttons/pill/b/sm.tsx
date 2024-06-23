@@ -1,6 +1,6 @@
 import type { FC } from "react";
 import clsx from "clsx";
-import { boxSize } from "~uno/rules/box/size";
+import { box } from "~uno/rules/box";
 import {
   ButtonPillBIcon,
   TButtonPillBIconProps,
@@ -25,7 +25,7 @@ export const PillBSm: FC<TProps> = ({
     style: iconStyle,
     ..._iconProps
   } = iconProps;
-  const s = boxSize();
+  
   const borderRadius = boxRadius();
 
   return (
@@ -36,8 +36,8 @@ export const PillBSm: FC<TProps> = ({
         classValue
       )}
       style={{
-        width: s.s,
-        height: s.s,
+        width: box.s,
+        height: box.s,
         borderRadius,
         ...style,
       }}
@@ -51,8 +51,8 @@ export const PillBSm: FC<TProps> = ({
         isSelected={true}
         Icon={Icon}
         style={{
-          width: s.s,
-          height: s.s,
+          width: box.s,
+          height: box.s,
           borderRadius,
           ...iconStyle,
         }}

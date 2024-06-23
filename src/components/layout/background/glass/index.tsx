@@ -4,7 +4,7 @@ import type {
 } from "react";
 import { TDivProps } from "@brysonandrew/config-types";
 import clsx from "clsx";
-import { boxSize } from "~uno/rules/box/size";
+import { box } from "~uno/rules/box";
 export const BackgroundGlass: FC<
   TDivProps & {
     boxStyle?: CSSProperties;
@@ -15,7 +15,7 @@ export const BackgroundGlass: FC<
   boxStyle,
   ...props
 }) => {
-  const s = boxSize();
+  
   const commonProps = {
     style: { ...style },
     ...props,

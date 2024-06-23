@@ -1,7 +1,6 @@
 import type { FC } from "react";
 import { motion } from "framer-motion";
-import { isString } from "unocss";
-import { boxSize } from "~uno/rules/box/size";
+import { box } from "~uno/rules/box";
 import {
   TDivMotionProps,
   TPropsWithChildren,
@@ -10,7 +9,7 @@ import { SubtitleText } from "~/pics/header/subtitle/text";
 import { useTrillPicsStore } from "~/store/middleware";
 import { TITLE_HOVER_KEY } from "~/pics/header/left";
 import clsx from "clsx";
-import { box } from "~uno/rules/box";
+
 export type TPillBLayoutProps = Omit<
   TDivMotionProps,
   "children"
@@ -30,7 +29,7 @@ export const PillBText: FC<
   ...props
 }) => {
   const s = box;
-  size = size ?? s.m;
+  size = size ?? box.m;
   const { isIdle, isHover } =
     useTrillPicsStore(
       ({ isIdle, isHover }) => ({
@@ -46,7 +45,7 @@ export const PillBText: FC<
         textSizeClass ?? "text-sm"
       )}
       style={{
-        height: s.height,
+        height: box.height,
         ...style,
       }}
       {...props}
@@ -55,17 +54,20 @@ export const PillBText: FC<
         {(isIdle ||
           isHover(TITLE_HOVER_KEY)) && (
           <motion.div
-            className="absolute -inset-y-2 -inset-x-4 bg-white-2 _gradient-radial z-0 pointer-events-none"
+            className="fill bg-white-2 dark:bg-white _gradient-radial z-0 pointer-events-none"
             initial={{ opacity: 0 }}
             animate={{
-              opacity: 0.4,
+              opacity: 0.6,
             }}
             exit={{ opacity: 0 }}
             style={{
-              filter: "blur(12px)",
-              borderRadius: s.radius.xl,
-              mixBlendMode:'soft-light'
-
+              filter: "blur(14px)",
+              borderRadius:
+                box.radius.xl,
+              mixBlendMode:
+                "soft-light",
+              ...box.ix(-box.m025),
+              ...box.iy(box.m003125),
             }}
           />
         )}

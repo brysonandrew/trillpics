@@ -1,9 +1,7 @@
 import type { FC } from "react";
 import clsx from "clsx";
 import { UStepsKey } from "~/store/state/music/types";
-import { useStepsPerSecond } from "~/hooks/music/time/steps-per-second";
 import { useTrillPicsStore } from "~/store/middleware";
-import { usePicVideoReadSeconds } from "~/hooks/pic/video/read/seconds/hook";
 import { useAudioSeconds } from "~/hooks/music/time/audio-seconds";
 
 type TProps = {

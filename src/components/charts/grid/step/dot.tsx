@@ -2,17 +2,13 @@ import { motion } from "framer-motion";
 import { resolveSquare } from "@brysonandrew/measure";
 import clsx from "clsx";
 import { TChartsGridStepProps } from "~/components/charts/grid/step";
-import { resolveTop } from "~/components/charts/grid/top";
 import { resolvePlayVolume } from "~/hooks/music/play/volume";
-import {
-  TMusicKey,
-  TSequenceOptions,
-  TSynthConfig,
-} from "~/store/state/music/types";
+import { TMusicKey } from "~/store/state/music/types";
 import { boxRadius } from "~uno/rules/box/radius";
-import { boxSize } from "~uno/rules/box/size";
+import { box } from "~uno/rules/box";
 import { isNumber } from "~/utils/validation/is/number";
-import { LinesHorizontal } from "~/components/lines/horizontal";
+import { TSequenceOptions } from "~/pages/video/music/synth/sequence/types";
+import { TSynthConfig } from "~/pages/video/music/synth/types";
 
 type TProps<T extends TMusicKey> =
   TSynthConfig &
@@ -40,7 +36,7 @@ export const ChartsGridStepDot = <
   const borderRadius = boxRadius();
 
   const key = `${columnIndex}-${rowIndex}-${progressKey}`;
-  const s = boxSize();
+  
 
   const idleOpacity = isNumber(value)
     ? 1
@@ -50,14 +46,14 @@ export const ChartsGridStepDot = <
   return (
     <div
       className={clsx(
-        "center relative pointer-events-none" 
+        "center relative pointer-events-none"
       )}
       style={{
-        // left: `calc(50%-${s.m025}px)`,
+        // left: `calc(50%-${box.m025}px)`,
         opacity:
           value === null ? 0.25 : 1,
         ...style,
-        ...resolveSquare(s.m05),
+        ...resolveSquare(box.m05),
       }}
     >
       <motion.div
@@ -66,7 +62,7 @@ export const ChartsGridStepDot = <
         style={{
           position: "relative",
           borderRadius,
-          ...resolveSquare(s.m0125),
+          ...resolveSquare(box.m0125),
 
           scale:
             0.5 +

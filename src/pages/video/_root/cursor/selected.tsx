@@ -4,7 +4,7 @@ import {
   motion,
 } from "framer-motion";
 import { IconsVideo } from "~/components/icons/video/video";
-import { useReadyContext } from "~/shell/ready/context";
+import { useContextReady } from "~/shell/ready/context";
 import { resolvePositionFromCell } from "~/pics/grid/pic/cursor/position-from-cell";
 import { PRESENCE_OPACITY } from "@brysonandrew/motion-config-constants";
 import { TUsePicSelected } from "~/hooks/pic/selected";

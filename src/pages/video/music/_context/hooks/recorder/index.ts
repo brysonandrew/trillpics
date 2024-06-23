@@ -3,13 +3,13 @@ import { useMusicPlay } from "~/hooks/music/play";
 import { useStepsPerSecond } from "~/hooks/music/time/steps-per-second";
 import { usePicVideoReadSeconds } from "~/hooks/pic/video/read/seconds/hook";
 import { useRecorderListeners } from "~/pages/video/music/_context/hooks/recorder/listeners";
-import { useMusicInitContext } from "~/pages/video/music/_context/init";
+import { useContextMusicInit } from "~/pages/video/music/_context/init";
 
 export const useMusicRecorder = () => {
   const {
     recorder,
     audio,
-  } = useMusicInitContext();
+  } = useContextMusicInit();
   const musicPlay = useMusicPlay();
   const videoSeconds =
     usePicVideoReadSeconds();
@@ -29,64 +29,19 @@ export const useMusicRecorder = () => {
   audio.loopCount = loopCount;
   audio.loopsRemainder = loopsRemainder;
 
-    // saveProgress.set(0);
-    // audio.progressStep = -1;
-    // handleGridCell();
-
-  // const [
-  //   isRecordingCooldown,
-  //   startCooldownTimer,
-  //   stopCooldownTimer,
-  // ] = useTimer(
-  //   videoSeconds * 1000,
-  //   handleDone
-  // );
-
-  // const handleStop = () => {
-  //   if (
-  //     recorder.state === "recording"
-  //   ) {
-  //     musicPlay.stop();
-  //     recorder.stop();
-  //     stopCooldownTimer();
-  //     startCooldownTimer();
-  //   }
-  // };
-
-  // const [
-  //   isRecording,
-  //   startTimer,
-  //   stopTimer,
-  // ] = useTimer(
-  //   videoSeconds * 1000,
-  //   handleStop
-  // );
-  // const resetTimers = () => {
-  //   stopCooldownTimer();
-  //   stopTimer();
-  // };
   const handleStop = () => {
-    console.log('storp')
     musicPlay.stop();
     recorder.stop();
   }
-  // const [
-  //   isRecording,
-  //   start,
-  //   stop,
-  // ] = useTimer();
+  
   const handleStart = async () => {
     if (
       recorder.state === "recording"
     ) {
       handleStop();
     } else {
-      console.log('start')
-
       recorder.start();
       await musicPlay.play();
-      // resetTimers();
-      //startTimer();
     }
   };
 

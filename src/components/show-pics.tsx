@@ -2,8 +2,8 @@ import type { FC } from "react";
 import { TDivProps } from "@brysonandrew/config-types";
 import { TUsePicSelected } from "~/hooks/pic/selected";
 import { MAX_COUNT } from "~/pages/video/_root/reorder/constants";
-import { useReadyContext } from "~/shell/ready/context";
-import { boxSize } from "~uno/rules/box/size";
+import { useContextReady } from "~/shell/ready/context";
+import { box } from "~uno/rules/box";
 import { PicDisplay } from "~/pics/grid/pic/display";
 
 type TProps = Pick<
@@ -17,12 +17,12 @@ export const ShowPics: FC<TProps> = ({
   style,
   ...props
 }) => {
-  const { screen } = useReadyContext();
+  const { screen } = useContextReady();
 
   const container = screen.container;
   const unitSize =
     container.width / MAX_COUNT;
-  const s = boxSize();
+  
 
   return (
     <>
@@ -38,7 +38,7 @@ export const ShowPics: FC<TProps> = ({
           display: "grid",
           left: 0,
           width: container.width,
-          gap: s.m,
+          gap: box.m,
           gridTemplateColumns: `repeat(auto-fill, minmax(${unitSize}px, 1fr))`,
           ...style,
         }}

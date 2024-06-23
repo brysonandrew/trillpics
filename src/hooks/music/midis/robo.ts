@@ -7,16 +7,18 @@ import {
 } from "react-synthwave";
 import { useDelayNode } from "~/hooks/music/midis/delay";
 import { useGainNode } from "~/hooks/music/midis/gains/hook";
-import { useBasicOscillator } from "~/hooks/music/midis/oscillators/basic/hook";
-import { useBasicOscillatorStart } from "~/hooks/music/midis/oscillators/scheduling/start";
-import { TPlayMidisOptions } from "~/hooks/music/midis/types";
-import { useMusicInitContext } from "~/pages/video/music/_context/init";
+import { useBasicOscillatorStart } from "~/pages/video/music/synth/nodes/oscillator/hooks/scheduling/start";
+import { TPlayNodesOptions } from "~/hooks/music/midis/types";
+import { useContextMusicInit } from "~/pages/video/music/_context/init";
 import { useTrillPicsStore } from "~/store/middleware";
 import { midiToHz } from "~/utils/music";
 
 export const useArpeggio = () => {
-  const { context, master } =
-    useMusicInitContext();
+  const {
+    context,
+    master,
+    oscillator,
+  } = useContextMusicInit();
   const { set, bpm, sequence } =
     useTrillPicsStore(
       ({ set, bpm, sequence }) => ({
@@ -35,7 +37,7 @@ export const useArpeggio = () => {
     context,
     delayTime,
   });
-
+  console.log(oscillator);
   const boHandler =
     useBasicOscillatorStart();
 
@@ -45,12 +47,12 @@ export const useArpeggio = () => {
   const gainNode1 = useGainNode({
     context,
   });
-  const o = useBasicOscillator({
-    context,
-    frequency,
-    detune,
-    type: "sawtooth",
-  });
+  // const o = useBasicOscillator({
+  //   context,
+  //   frequency,
+  //   detune,
+  //   type: "sawtooth",
+  // });
 
   const filter = useMemo(() => {
     const result = new BiquadFilterNode(
@@ -83,7 +85,7 @@ export const useArpeggio = () => {
     // //  240
     gain: 500,
     // output: filter.frequency,
-    output: o.oscillator.frequency,
+    output: oscillator.node.frequency,
   });
 
   const lfo = useSynthSingle(context, {
@@ -92,7 +94,7 @@ export const useArpeggio = () => {
     // 240
     //  240
     gain: 500,
-    output: o.oscillator.frequency,
+    output: oscillator.node.frequency,
   });
 
   const lfo1 = useSynthMulti(context, {
@@ -111,13 +113,15 @@ export const useArpeggio = () => {
   const handleStop = () => {
     handleStop.bind(lfo.stop);
     handleStop.bind(sm.stop);
-    handleStop.bind(o.oscillator.stop);
+    handleStop.bind(
+      oscillator.node.stop
+    );
   };
 
   const handler = (
     startTime: number,
     stepMidi: number,
-    options: TPlayMidisOptions = {}
+    options: TPlayNodesOptions
   ) => {
     const {
       duration = 0.4,
@@ -130,11 +134,11 @@ export const useArpeggio = () => {
     console.log(stepIndex);
     if (
       stepIndex === 0 &&
-      !o.isStarted
+      !oscillator.isStarted
     ) {
       console.log("START");
-      o.oscillator.start(startTime);
-      o.isStarted = true;
+      oscillator.node.start(startTime);
+      oscillator.isStarted = true;
       lfo.play({
         start: startTime,
       });
@@ -178,13 +182,10 @@ export const useArpeggio = () => {
     );
 
     boHandler.start({
-      frequency: hz,
-      stepIndex,
-      startTime,
-      duration,
+      ...options,
     });
 
-    o.oscillator.connect(filter);
+    oscillator.node.connect(filter);
     filter.connect(gainNode);
     gainNode.connect(master);
 

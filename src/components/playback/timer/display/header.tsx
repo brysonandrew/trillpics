@@ -4,7 +4,7 @@ import { TimerDisplay } from "~/components/playback/timer/display";
 import {
   TVideoMusicHeaderTimerProps,
   VideoMusicHeaderTimer,
-} from "~/pages/video/music/header/timer";
+} from "~/pages/video/music/layout/header/timer";
 import { box } from "~uno/rules/box";
 
 type TProps =
@@ -17,8 +17,8 @@ export const TimerDisplayHeader: FC<
     <div
       className="relative row-start"
       style={{
-        gap: s.m0125,
-        height: s.m05 ,
+        gap: box.m0125,
+        height: box.m05 ,
       }}
     >
       <VideoMusicHeaderTimer
@@ -26,7 +26,7 @@ export const TimerDisplayHeader: FC<
       />
       <IconsSlash
         style={{
-          top: s.m0625
+          top: box.m00625
         }}
       />
       <TimerDisplay

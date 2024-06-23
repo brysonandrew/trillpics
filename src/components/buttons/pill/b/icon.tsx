@@ -1,5 +1,5 @@
 import { FC } from "react";
-import { boxSize } from "~uno/rules/box/size";
+import { box } from "~uno/rules/box";
 import {
   TDivProps,
   TSvgProps,
@@ -31,8 +31,8 @@ export const ButtonPillBIcon: FC<
   ...props
 }) => {
   const borderRadius = boxRadius();
-  const s = boxSize();
-  size = size ?? s.m;
+  
+  size = size ?? box.m;
 
   return (
     <div

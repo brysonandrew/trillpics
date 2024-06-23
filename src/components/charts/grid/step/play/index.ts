@@ -1,20 +1,28 @@
+import { TMidiValue } from "~/hooks/music/midis/types";
+import { useContextMusicInit } from "~/pages/video/music/_context/init";
 import {
   CHARTS_GRID_STEP_ACTIVE_STYLE,
   CHARTS_GRID_STEP_EMPTY_STYLE,
-  TChartsGridStepProps,
-} from "~/components/charts/grid/step";
-import { TMidiValue } from "~/hooks/music/midis/types";
-import { useMusicInitContext } from "~/pages/video/music/_context/init";
-import { useMusicReadyContext } from "~/pages/video/music/_context/ready";
+} from "~/pages/video/music/_context/init/grid-cell/constants";
+import { gridCellStyleEmptyHandler } from "~/pages/video/music/_context/init/grid-cell/style/empty";
+import { useGridCellsUpdateStyle } from "~/pages/video/music/_context/init/grid-cell/style/update/hook";
+import { TGridCellsBaseConfig } from "~/pages/video/music/_context/init/grid-cell/types";
+import { useContextMusicReady } from "~/pages/video/music/_context/ready";
 import { useTrillPicsStore } from "~/store/middleware";
 import { TMusicKey } from "~/store/state/music/types";
 import { isNull } from "~/utils/validation/is/null";
+type TStepStyle =
+  | typeof CHARTS_GRID_STEP_ACTIVE_STYLE
+  | typeof CHARTS_GRID_STEP_EMPTY_STYLE;
 
+type TPlaybackHandler = (
+  next?: TStepStyle
+) => void;
 export const useStepPlay = <
   T extends TMusicKey
 >(
   midi: TMidiValue,
-  config: TChartsGridStepProps<T>
+  config: TGridCellsBaseConfig<T>
 ) => {
   const {
     stepsKey,
@@ -23,45 +31,53 @@ export const useStepPlay = <
     musicKey,
   } = config;
   const { context } =
-    useMusicInitContext();
+    useContextMusicInit();
 
-  const lookup = useMusicReadyContext();
+  const updateStyle =
+    useGridCellsUpdateStyle<T>({
+      ...config,
+      musicKey,
+    });
+
+  const lookup = useContextMusicReady();
   const { synth } = useTrillPicsStore(
     ({ synth }) => ({ synth })
   );
   const { gridCellsRecord } =
-    useMusicInitContext();
+    useContextMusicInit();
 
-  const handler = () => {
+  const stop: TPlaybackHandler = (
+    next = CHARTS_GRID_STEP_EMPTY_STYLE
+  ) => {
+    updateStyle(next);
+
+    (
+      (lookup[musicKey] as any)[
+        stepsKey
+      ] as any
+    ).stop();
+  };
+
+  const play = (
+    next = CHARTS_GRID_STEP_ACTIVE_STYLE
+  ) => {
     if (isNull(midi)) return;
-    const updateStyle = (
-      next:
-        | typeof CHARTS_GRID_STEP_ACTIVE_STYLE
-        | typeof CHARTS_GRID_STEP_EMPTY_STYLE
-    ) => {
-      (
-        gridCellsRecord[musicKey][
-          rowIndex
-        ][columnIndex] as HTMLDivElement
-      ).style.opacity = next.opacity;
 
-      (
-        gridCellsRecord[musicKey][
-          rowIndex
-        ][columnIndex] as HTMLDivElement
-      ).style.transitionDuration =
-        next.transitionDuration;
-    };
-    const cell =
+    updateStyle(next);
+
+    const cells =
       gridCellsRecord[musicKey][
         rowIndex
-      ][columnIndex];
+      ];
+    const cell = cells[columnIndex];
     if (
       gridCellsRecord !== null &&
       cell !== null
     ) {
-      updateStyle(
-        CHARTS_GRID_STEP_EMPTY_STYLE
+      gridCellStyleEmptyHandler(
+        cell,
+        columnIndex,
+        cells
       );
 
       (lookup[musicKey] as any)[
@@ -72,20 +88,10 @@ export const useStepPlay = <
         {
           ...synth,
           duration: 1,
-          onEnded: () => {
-            updateStyle(
-              CHARTS_GRID_STEP_EMPTY_STYLE
-            );
-
-            (
-              (lookup[musicKey] as any)[
-                stepsKey
-              ] as any
-            ).stop();
-          },
+          onEnded: stop,
         }
       );
     }
   };
-  return handler;
+  return { play, stop };
 };

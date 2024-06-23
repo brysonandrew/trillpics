@@ -1,4 +1,4 @@
-import { useReadyContext } from "~/shell/ready/context";
+import { useContextReady } from "~/shell/ready/context";
 import { useClickGrid } from "~/shell/ready/context/hooks/click";
 import {
   QUERY_PARAM_KEYS,
@@ -18,7 +18,7 @@ export const useHomeClickSelect =
         hoverKeys,
       })
     );
-    const { ref } = useReadyContext();
+    const { ref } = useContextReady();
     const props = usePicSelected(
       QUERY_PARAM_KEYS[ZOOM_PARAM_KEY]
     );

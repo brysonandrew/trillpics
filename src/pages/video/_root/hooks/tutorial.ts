@@ -4,7 +4,7 @@ import {
   useState,
 } from "react";
 import { useTrillPicsStore } from "~/store/middleware";
-import { useReadyContext } from "~/shell/ready/context";
+import { useContextReady } from "~/shell/ready/context";
 import { MAX_COUNT } from "~/pages/video/_root/reorder/constants";
 import { TUsePicSelected } from "~/hooks/pic/selected";
 const STAGGER_MS = 400;
@@ -26,7 +26,7 @@ export const useVideo_RootTutorial = (
     []
   );
 
-  const { scrollY } = useReadyContext();
+  const { scrollY } = useContextReady();
   const { pics, table } =
     useTrillPicsStore(
       ({ pics, table }) => ({

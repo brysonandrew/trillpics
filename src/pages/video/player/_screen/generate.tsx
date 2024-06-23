@@ -10,9 +10,9 @@ import clsx from "clsx";
 import { TGenerateProgressData } from "~/store/state/generate/types";
 import { MonoChars } from "~/pages/video/player/_controls/playback/timer/numbers";
 import { LinesHorizontal } from "~/components/lines/horizontal";
-import { boxSize } from "~uno/rules/box/size";
+import { box } from "~uno/rules/box";
 import { LinesVertical } from "~/components/lines/vertical";
-import { useReadyContext } from "~/shell/ready/context";
+import { useContextReady } from "~/shell/ready/context";
 
 export const OVERFLOW_HIDDEN =
   "overflow: hidden;";
@@ -32,7 +32,7 @@ export const VideoPlayer_ScreenGenerate: FC<
     useRef<HTMLDivElement | null>(null);
   const {
     screen: { container },
-  } = useReadyContext();
+  } = useContextReady();
 
   const { logs } = useTrillPicsStore(
     ({ logs }) => ({
@@ -46,7 +46,7 @@ export const VideoPlayer_ScreenGenerate: FC<
         ref.current.scrollHeight;
     }
   }, [logs.length]);
-  const s = boxSize();
+  
   return (
     <motion.div
       className="fill flex flex-col items-stretch inset-2 -outline-filter text-white dark:text-black"
@@ -59,14 +59,14 @@ export const VideoPlayer_ScreenGenerate: FC<
         <div
           className="hidden text-2xl sm:(flex text-2.5xl) flex-col w-2/3 grow  bg-gray-04"
           style={{
-            gap: s.m025,
-            margin: s.m025,
-            padding: `0 ${s.m}px`
+            gap: box.m025,
+            margin: box.m025,
+            padding: `0 ${box.m}px`
           }}
         >
           <h3
             className="row-space"
-            style={{ gap: s.m025 }}
+            style={{ gap: box.m025 }}
           >
             <div>current process</div>
             <b>{stitchStage}</b>
@@ -75,7 +75,7 @@ export const VideoPlayer_ScreenGenerate: FC<
             className={clsx(
               "row-space"
             )}
-            style={{ gap: s.m025 }}
+            style={{ gap: box.m025 }}
           >
             <div>frames encoded</div>
             <div className="inline-flex flex-row items-center">
@@ -88,7 +88,7 @@ export const VideoPlayer_ScreenGenerate: FC<
             className={clsx(
               "row-space"
             )}
-            style={{ gap: s.m025 }}
+            style={{ gap: box.m025 }}
           >
             <div>frames rendered</div>
             <div className="inline-flex flex-row items-center">
@@ -102,8 +102,8 @@ export const VideoPlayer_ScreenGenerate: FC<
         <h3
           className="flex flex-col w-full h-full text-left items-start justify-center bg-gray-04 text-2xl sm:(text-2.5xl h-auto w-1/3 items-center justify-center)"
           style={{
-            gap: s.m025,
-            margin: s.m025,
+            gap: box.m025,
+            margin: box.m025,
           }}
         >
           <div className="whitespace-nowrap">
@@ -132,9 +132,9 @@ export const VideoPlayer_ScreenGenerate: FC<
         ref={ref}
         className="relative hidden md:flex grow h-2/3 overflow-auto bg-gray-04"
         style={{
-          margin: s.m025,
-          paddingLeft: s.m05,
-          paddingRight: s.m05,
+          margin: box.m025,
+          paddingLeft: box.m05,
+          paddingRight: box.m05,
         }}
       >
         <ul>

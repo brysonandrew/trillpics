@@ -69,6 +69,7 @@ export const PillBHover: FC<
       onClick(event);
     }
   };
+  
   return (
     <>
       <PillB

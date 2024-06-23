@@ -3,10 +3,9 @@ import {
   TScaleKey,
 } from "~/constants/scales";
 import { TBaseMidiValue } from "~/hooks/music/midis/types";
-import {
-  TScaleOptions,
-  TSequenceOptions,
-} from "~/store/state/music/types";
+import { TScaleOptions } from "~/pages/video/music/synth/scale/types";
+import { TSequenceOptions } from "~/pages/video/music/synth/sequence/types";
+
 export const RANDOM_MIDI_RANGE = 12;
 
 const resolveRandom = () =>
@@ -20,7 +19,7 @@ type TResolveValueConfig =
     TSequenceOptions & {
       index: number;
       count: number;
-      scaleMidis: TScaleRecord[TScaleKey];
+      scaleNodes: TScaleRecord[TScaleKey];
     };
 export const resolveMidiValue = (
   config: TResolveValueConfig
@@ -28,23 +27,23 @@ export const resolveMidiValue = (
   const {
     index,
     count,
-    scaleMidis,
+    scaleNodes,
     delta = 1,
     pattern = "asc",
     interval,
   } = config;
   const progress =
     (index / count) * delta;
-  const scaleMidisCount =
-    scaleMidis.length;
+  const scaleNodesCount =
+    scaleNodes.length;
   const scaleIndex = Math.floor(
-    scaleMidisCount * progress
+    scaleNodesCount * progress
   );
   const ascValue =
-    scaleMidis[scaleIndex];
+    scaleNodes[scaleIndex];
   const descValue =
-    scaleMidis[
-      scaleMidisCount - scaleIndex - 1
+    scaleNodes[
+      scaleNodesCount - scaleIndex - 1
     ];
   switch (pattern) {
     case "asc":

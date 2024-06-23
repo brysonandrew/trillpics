@@ -1,12 +1,12 @@
 import type { FC } from "react";
 import { resolveGradient } from "@brysonandrew/color-gradient";
 import { PicsHudFooterNav } from "~/pics/hud/nav";
-import { boxSize } from "~uno/rules/box/size";
-import { useReadyContext } from "~/shell/ready/context";
+import { box } from "~uno/rules/box";
+import { useContextReady } from "~/shell/ready/context";
 
 export const HudFooter: FC = () => {
-  const { screen } = useReadyContext();
-  const s = boxSize();
+  const { screen } = useContextReady();
+  
   return (
     <>
       <footer
@@ -14,7 +14,7 @@ export const HudFooter: FC = () => {
         style={{
           left: screen.container.left,
           width: screen.container.width,
-          top: s.m2,
+          top: box.m2,
         }}
       >
         {!screen.isResizing && (
@@ -22,10 +22,10 @@ export const HudFooter: FC = () => {
             <div
               className="absolute left-0 right-0 w-full z-20  pointer-events-none"
               style={{
-                height: s.m4,
+                height: box.m4,
                 top:
                   screen.container
-                    .height - s.m,
+                    .height - box.m,
                 backgroundImage:
                   resolveGradient({
                     name: "linear-gradient",

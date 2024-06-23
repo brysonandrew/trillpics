@@ -5,13 +5,13 @@ import {
   motion,
   MotionConfig,
 } from "framer-motion";
-import { boxSize } from "~uno/rules/box/size";
+import { box } from "~uno/rules/box";
 import { boxRadius } from "~uno/rules/box/radius";
 import { NAV_ITEMS } from "~/pics/hud/nav/constants";
 import { useLocation } from "react-router-dom";
 import { useHoverKey } from "~/hooks/use-hover-key";
 import clsx from "clsx";
-import { useInitContext } from "~/shell/init/context";
+import { useContextInit } from "~/shell/init/context";
 import { THudContainer } from "~/pics/hud";
 import { FooterNavItem } from "~/pics/hud/nav/item";
 import { resolveCompositeKey } from "@brysonandrew/utils-key";
@@ -32,11 +32,11 @@ type TProps = {
 export const PicsHudFooterNav: FC<
   TProps
 > = ({ container }) => {
-  const s = boxSize();
+  
   const { pathname } = useLocation();
-  const { main } = useInitContext();
+  const { main } = useContextInit();
   const navItemGap =
-    container.width / 2 - s.m;
+    container.width / 2 - box.m;
   useEffect(() => {
     const index = NAV_ITEMS.findIndex(
       ([_, path]) => path === pathname
@@ -50,7 +50,7 @@ export const PicsHudFooterNav: FC<
   const borderRadius = boxRadius();
   const { handlers } = useHoverKey();
   const width =
-    (navItemGap + s.m / 3) * 3;
+    (navItemGap + box.m / 3) * 3;
   return (
     <MotionConfig transition={SPRING}>
       <motion.nav
@@ -58,10 +58,10 @@ export const PicsHudFooterNav: FC<
           "relative py-0 h-0"
         )}
         style={{
-          top: container.height - s.m,
+          top: container.height - box.m,
           left:
-            container.width / 2 - s.m15,
-          width: width + s.m2,
+            container.width / 2 - box.m15,
+          width: width + box.m2,
           borderRadius,
           x: main.dragger.navX,
         }}
@@ -95,8 +95,8 @@ export const PicsHudFooterNav: FC<
                         title
                       )}
                       style={{
-                        width: s.m,
-                        height: s.m,
+                        width: box.m,
+                        height: box.m,
                       }}
                     />
                   );
@@ -130,7 +130,7 @@ export const PicsHudFooterNav: FC<
                               0 *
                                 deltaFromSelected,
                             bottom:
-                              s.m15 *
+                              box.m15 *
                               (deltaFromSelected -
                                 1),
                           }

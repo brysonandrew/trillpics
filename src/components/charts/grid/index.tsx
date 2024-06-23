@@ -1,8 +1,8 @@
 import type { FC } from "react";
-import { boxSize } from "~uno/rules/box/size";
+import { box } from "~uno/rules/box";
 import { ChartsGridStep } from "~/components/charts/grid/step";
 import { resolveCompositeKey } from "@brysonandrew/utils-key";
-import { TMidisRecord } from "~/hooks/music/midis/types";
+import { TNodesRecord } from "~/hooks/music/midis/types";
 import {
   TBeatsKey,
   TBeatsRecord,
@@ -15,9 +15,9 @@ type TBeatsProps = {
   includes: readonly TBeatsKey[];
   presets: TBeatsRecord;
 };
-type TMidisProps = {
+type TNodesProps = {
   musicKey: "midis";
-  presets: TMidisRecord;
+  presets: TNodesRecord;
 };
 
 type TChildrenProps = {
@@ -27,7 +27,7 @@ type TChildrenProps = {
 };
 type TProps = (
   | TBeatsProps
-  | TMidisProps
+  | TNodesProps
 ) &
   Omit<TDivProps, "children"> & {
     Background: FC;
@@ -43,7 +43,7 @@ export const ChartsGrid: FC<TProps> = ({
   presets,
   ...props
 }) => {
-  const s = boxSize();
+  
   const keys =
     "includes" in props
       ? props.includes
@@ -53,7 +53,7 @@ export const ChartsGrid: FC<TProps> = ({
     <div
       className="relative column-space items-stretch justify-stretch"
       style={{
-        height: s.m2,
+        height: box.m2,
         ...style,
       }}
       {...props}

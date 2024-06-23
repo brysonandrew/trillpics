@@ -1,6 +1,6 @@
 import type { FC } from "react";
 import { LinesHorizontalLight } from "~/components/lines/horizontal/light";
-import { useMusicRecorderContext } from "~/pages/video/music/_context/recorder";
+import { useContextMusicRecorder } from "~/pages/video/music/_context/recorder";
 import { useTrillPicsStore } from "~/store/middleware";
 
 export const SecondsCalculation: FC =
@@ -11,7 +11,7 @@ export const SecondsCalculation: FC =
     const {
       loopCount,
       loopsRemainder,
-    } = useMusicRecorderContext();
+    } = useContextMusicRecorder();
 
     return (
       <div className="absolute top-full row-space w-full grow mt-3.75 column-start gap-0.5 text-xxs">

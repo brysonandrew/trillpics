@@ -2,22 +2,22 @@ import type { FC } from "react";
 import clsx from "clsx";
 import { LinesHorizontalLight } from "~/components/lines/horizontal/light";
 import { TimerDisplay } from "~/components/playback/timer/display";
-import { useMusicRecorderContext } from "~/pages/video/music/_context/recorder";
-import { boxSize } from "~uno/rules/box/size";
+import { useContextMusicRecorder } from "~/pages/video/music/_context/recorder";
+import { box } from "~uno/rules/box";
 import { MeshBackgroundText } from "~/components/layout/background/mesh/text";
-import { VideoMusicHeaderTimer } from "~/pages/video/music/header/timer";
+import { VideoMusicHeaderTimer } from "~/pages/video/music/layout/header/timer";
 import { SecondsCalculation } from "~/pages/video/music/save/header/calc";
 import { usePicVideoReadSeconds } from "~/hooks/pic/video/read/seconds/hook";
 import { STEPS_COUNT } from "~/constants/music/timing";
 
-export const VideoMusicPlaybackHeaderTimers: FC =
+export const VideoMusicSaveHeaderTimers: FC =
   () => {
-    const s = boxSize();
+    
     const {
       isRecording,
       isCooldown,
       audioSeconds,
-    } = useMusicRecorderContext();
+    } = useContextMusicRecorder();
     const videoSeconds =
       usePicVideoReadSeconds();
     return (
@@ -27,8 +27,8 @@ export const VideoMusicPlaybackHeaderTimers: FC =
           "font-slab text-left text-sm text-white dark:text-gray"
         )}
         style={{
-          gap: s.m0125,
-          paddingTop: s.m0125,
+          gap: box.m0125,
+          paddingTop: box.m0125,
         }}
       >
         <VideoMusicHeaderTimer
@@ -36,7 +36,7 @@ export const VideoMusicPlaybackHeaderTimers: FC =
           isCooldown={isCooldown}
           seconds={videoSeconds}
           stepsCount={STEPS_COUNT}
-          progressKey="recorder"
+          progressKey="track"
         />
         <LinesHorizontalLight />
         <TimerDisplay

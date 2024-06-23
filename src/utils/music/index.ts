@@ -3,7 +3,12 @@ export const midiToHz = (midi: number) =>
   Math.pow(2, (midi - 69) / 12) * HZ;
 
 
+// function noteToFreq(note) {
+//   let a = 440; //frequency of A (coomon value is 440Hz)
+//   return (a / 32) * (2 ** ((note - 9) / 12));
+// }
 
+export const hzToMidi = (hz:number) => Math.log(hz/HZ)/Math.log(2) * 12 + 69;
 export const NOTES = [
   "C",
   "C#",

@@ -1,17 +1,16 @@
 import type { FC } from "react";
-import { useMusicInitContext } from "~/pages/video/music/_context/init";
+import { useContextMusicInit } from "~/pages/video/music/_context/init";
 import { TimerCurrentProgress } from "~/pages/video/player/_controls/playback/progress";
-import { useReadyContext } from "~/shell/ready/context";
+import { useContextReady } from "~/shell/ready/context";
 import { useVideoStyle } from "~/pages/video/style";
 import { box } from "~uno/rules/box";
 
-export const VideoMusicPlaybackProgress: FC =
+export const VideoMusicSaveProgress: FC =
   () => {
-    const s = box;
     const { progress } =
-      useMusicInitContext();
+      useContextMusicInit();
     const { screen } =
-      useReadyContext();
+      useContextReady();
     const {
       sidebarWidthOffset,
       y,
@@ -23,25 +22,25 @@ export const VideoMusicPlaybackProgress: FC =
         style={{
           top: y,
           left:
-            sidebarWidthOffset + s.m025,
-          borderRadius: s.radius.xl,
+            sidebarWidthOffset + box.m025,
+          borderRadius: box.radius.xl,
           width:
             screen.container.width -
-            s.m2 -
-            s.m05,
+            box.m2 -
+            box.m05,
           height: screenHeight,
         }}
       >
         <TimerCurrentProgress
           progress={
-            progress["recorder"]
+            progress["track"]
           }
-          borderRadius={s.radius.xl}
+          borderRadius={box.radius.xl}
         />
         <div
           className="fill _gradient-mesh bg-black-05"
           style={{
-            borderRadius: s.radius.xl,
+            borderRadius: box.radius.xl,
           }}
         />
       </div>

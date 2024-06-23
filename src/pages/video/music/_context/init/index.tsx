@@ -1,24 +1,34 @@
-import { createContext, FC, MutableRefObject, useContext } from "react";
-import { TMusicInitContext } from "~/pages/video/music/_context/init/types";
+import {
+  createContext,
+  FC,
+  MutableRefObject,
+  useContext,
+} from "react";
+import {
+  TMusicInitContext,
+  TUpdateStepsRecord,
+} from "~/pages/video/music/_context/init/types";
 import { useMusicInitProviderRefs } from "~/pages/video/music/_context/init/refs";
+import { useOscillator } from "~/pages/video/music/_context/init/oscillator";
+import { TMidiValues } from "~/hooks/music/midis/types";
+import { TScaleKey } from "~/constants/scales";
 
 const Context =
   createContext<TMusicInitContext>(
     {} as TMusicInitContext
   );
-export const useMusicInitContext =
+export const useContextMusicInit =
   (): TMusicInitContext =>
     useContext<TMusicInitContext>(
       Context
     );
 type TProviderProps = {
-  scrollRef: MutableRefObject<HTMLDivElement|null>
   children: JSX.Element;
 };
 
 export const MusicInitProvider: FC<
   TProviderProps
-> = ({ children,scrollRef }) => {
+> = ({ children }) => {
   const {
     context,
     master,
@@ -29,11 +39,26 @@ export const MusicInitProvider: FC<
     destination,
     recorder,
     gridCellsRecord,
-    stepsScaleRecord,
+    stepsRecord,
     progress,
-    
+    filter,
+    delay,
+    scroll,
     ...audio
   } = useMusicInitProviderRefs();
+  const oscillator =
+    useOscillator(context);
+  const updateStepRecord: TUpdateStepsRecord =
+    (
+      nextSteps: TMidiValues,
+      nextScaleKey: TScaleKey
+    ) => {
+      stepsRecord.scale.lookup[
+        nextScaleKey
+      ] = nextSteps;
+      stepsRecord.scale.curr =
+        nextScaleKey;
+    };
   return (
     <Context.Provider
       value={{
@@ -42,14 +67,18 @@ export const MusicInitProvider: FC<
         midisMaster,
         destination,
         recorder,
+        filter,
+        delay,
         audio,
+        oscillator,
         progress,
         bufferSourceRecord,
         bufferRecord,
         gridCellsRecord,
-        stepsScaleRecord,
+        stepsRecord,
+        updateStepRecord,
         beatsMaster,
-        scrollRef
+        scroll,
       }}
     >
       {children}

@@ -1,4 +1,4 @@
-import { useMusicInitContext } from "~/pages/video/music/_context/init";
+import { useContextMusicInit } from "~/pages/video/music/_context/init";
 import { supportedMimeTypes } from "~/pages/video/music/_context/hooks/recorder/supportedMimeTypes";
 import { useTrillPicsStore } from "~/store/middleware";
 import { TState } from "~/store/types";
@@ -17,7 +17,7 @@ export const useRecorderSaveHandler =
       usePicVideoReadSeconds();
 
     const { audio } =
-      useMusicInitContext();
+      useContextMusicInit();
 
     const handler = (event: Event) => {
       const audioBlob = new Blob(

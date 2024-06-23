@@ -2,7 +2,7 @@ import type { FC } from "react";
 import { isMidiHoverKey } from "~/components/charts/grid/is-midi-hover-key";
 import { VideoMusicSynthHeaderNote } from "~/pages/video/music/synth/header/note";
 import { useTrillPicsStore } from "~/store/middleware";
-import { boxSize } from "~uno/rules/box/size";
+import { box } from "~uno/rules/box";
 
 export const VideoMusicSynthHeaderBottom: FC =
   () => {
@@ -12,7 +12,7 @@ export const VideoMusicSynthHeaderBottom: FC =
           hoverKeys,
         })
       );
-    const s = boxSize();
+    
     const midiHoverKey = hoverKeys.find(
       (v) => isMidiHoverKey(v)
     );
@@ -21,9 +21,9 @@ export const VideoMusicSynthHeaderBottom: FC =
         className="relative row lg:row"
         style={{
           top: 0,
-          left: s.m0125,
-          gap: s.m05,
-          paddingRight: s.m05,
+          left: box.m0125,
+          gap: box.m05,
+          paddingRight: box.m05,
         }}
       >
         <VideoMusicSynthHeaderNote

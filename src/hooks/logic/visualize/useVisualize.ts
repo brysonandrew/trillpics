@@ -1,6 +1,6 @@
 import type { MutableRefObject } from "react";
 import { useCallback, useRef, useEffect } from "react";
-import { useMusicInitContext } from "~/pages/video/music/_context/init";
+import { useContextMusicInit } from "~/pages/video/music/_context/init";
 
 type TInit = {
   bufferLength: number;
@@ -26,7 +26,7 @@ export const useVisualize = ({
   isActive,
   ref,
 }: TConfig) => {
-  const {master,context} = useMusicInitContext()
+  const {master,context} = useContextMusicInit()
   const frameRef =
     useRef<ReturnType<typeof requestAnimationFrame>>();
 

@@ -44,7 +44,7 @@ export const ChartsGridLabelsName: FC<
           "absolute right-full top-0 px-1 grow bg-red grow",
        
         )}
-        style={{ left: -s.m2 }}
+        style={{ left: -box.m2 }}
       >
         <div className="row gap-1">
           {isSynth ? (

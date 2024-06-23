@@ -1,12 +1,11 @@
-import { VideoMusicPlaybackSaveLog } from "~/pages/video/music/save/log";
-import { VideoMusicPlaybackHeader } from "~/pages/video/music/save/header";
+import { VideoMusicSaveSaveLog } from "~/pages/video/music/save/log";
+import { VideoMusicSaveHeader } from "~/pages/video/music/save/header";
 
-export const VideoMusicPlayback =
-  () => {
-    return (
-      <>
-        <VideoMusicPlaybackHeader />
-        <VideoMusicPlaybackSaveLog />
-      </>
-    );
-  };
+export const VideoMusicSave = () => {
+  return (
+    <>
+      <VideoMusicSaveHeader />
+      <VideoMusicSaveSaveLog />
+    </>
+  );
+};
