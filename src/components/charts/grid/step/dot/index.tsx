@@ -1,4 +1,3 @@
-import { motion } from "framer-motion";
 import { resolveSquare } from "@brysonandrew/measure";
 import clsx from "clsx";
 import { TChartsGridStepProps } from "~/components/charts/grid/step";
@@ -6,13 +5,11 @@ import { resolvePlayVolume } from "~/hooks/music/play/volume";
 import { TMusicKey } from "~/store/state/music/types";
 import { boxRadius } from "~uno/rules/box/radius";
 import { box } from "~uno/rules/box";
-import { isNumber } from "~/utils/validation/is/number";
 import { TSequenceOptions } from "~/pages/video/music/synth/sequence/types";
-import { TSynthConfig } from "~/pages/video/music/synth/types";
 import { ChartsGridStepDotShape } from "~/components/charts/grid/step/dot/shape";
+import { TSynthOptions } from "react-synthwave";
 
 type TProps<T extends TMusicKey> =
-  TSynthConfig &
     TSequenceOptions &
     TChartsGridStepProps<T> & {
       isHovering: boolean;

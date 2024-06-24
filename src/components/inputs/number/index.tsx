@@ -114,6 +114,7 @@ export const InputsNumber: FC<
     ) {
       return null;
     }
+
     inputs.number.current.value =
       nextValue;
 
@@ -123,10 +124,10 @@ export const InputsNumber: FC<
   const handleUpdate: TUpdateNumberHandler =
     (value: number) => {
       let nextValue = value;
-      if (value > min) {
+      if (value < min) {
         nextValue = min;
       }
-      if (value < max) {
+      if (value > max) {
         nextValue = max;
       }
       const strValue =
@@ -153,12 +154,11 @@ export const InputsNumber: FC<
     currentTarget: { name, value },
   }) => {
     const next = Number(value);
-    console.log(value, name);
     handleUpdate(next);
   };
 
   return (
-    <div style={{ gap: box.m025 }}>
+    <div style={{ gap: box.m0125 }}>
       <InputsBox title={title}>
         <input
           ref={inputs.number}

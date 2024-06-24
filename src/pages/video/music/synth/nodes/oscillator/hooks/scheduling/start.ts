@@ -4,7 +4,6 @@ import {
 } from "~/hooks/music/midis/types";
 import { useTimeouts } from "~/hooks/timeout-refs";
 import { useContextMusicInit } from "~/pages/video/music/_context/init";
-import { useTrillPicsStore } from "~/store/middleware";
 import {
   resolveMidiNumber,
   resolveMidiNormalDelta,
@@ -16,21 +15,23 @@ import {
 
 export const useBasicOscillatorStart =
   () => {
-    const { oscillator } =
+    const { oscillator, stepsRecord } =
       useContextMusicInit();
     const { timeouts, end, endOne } =
       useTimeouts();
-    const { sequence } =
-      useTrillPicsStore(
-        ({ sequence }) => ({
-          sequence,
-        })
-      );
+    // const { sequence } =
+    //   useTrillPicsStore(
+    //     ({ sequence }) => ({
+    //       sequence,
+    //     })
+    //   );
     const start = (
       _startTime: number,
       stepMidi: TMidiValue,
       config: TPlayMidisOptions
     ) => {
+      console.log(config)
+
       if (!oscillator.isStarted) {
         oscillator.isStarted = true;
         oscillator.node.start(
@@ -55,10 +56,9 @@ export const useBasicOscillatorStart =
 
       const intervalDuration =
         duration * stepIndex;
-
       if (
         stepIndex %
-          sequence.interval !==
+        stepsRecord.sequence.interval !==
         0
       )
         return;

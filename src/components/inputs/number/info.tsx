@@ -15,7 +15,7 @@ export const InputsNumberInfo: FC<
   TInputRangeProps
 > = (props) => {
   return (
-    <ul className="row-space" style={{...box.p(box.m025)}}>
+    <ul className="row-space text-gray-5" style={{...box.px(box.m025), paddingTop: box.m0125}}>
       {KEYS.map((key) => {
         if (key === "+" || key === "-")
           return (

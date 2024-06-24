@@ -39,7 +39,7 @@ export const useStepPlay = <
     columnIndex,
     musicKey,
   } = config;
-  const { context } =
+  const { context, stepsRecord:{} } =
     useContextMusicInit();
 
   const updateStyle =
@@ -60,9 +60,9 @@ export const useStepPlay = <
   const { beats, midis } =
     useContextMusicReady();
 
-  const { synth } = useTrillPicsStore(
-    ({ synth }) => ({ synth })
-  );
+  // const {  } = useTrillPicsStore(
+  //   ({  }) => ({ synth })
+  // );
   const { gridCellsRecord } =
     useContextMusicInit();
 

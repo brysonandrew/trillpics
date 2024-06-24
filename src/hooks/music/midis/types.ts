@@ -1,7 +1,7 @@
 import { TMultiOptions } from "react-synthwave";
 import { MIDIS } from "~/hooks/music/midis/constants";
 import { TOscillatorOptionsKey } from "~/pages/video/music/synth/nodes/oscillator/hooks/types";
-import { TPlayStepConfig } from "~/hooks/music/play/schedule";
+import { TPlayStepSchedule } from "~/hooks/music/play/schedule";
 
 export type TMutableNodes = (
   | number
@@ -23,7 +23,7 @@ export type TMidiValues =
 
 export type TPlayMidisOptions = Partial<
   TMultiOptions & {
-    schedule?: TPlayStepConfig<"synth">;
+    schedule?: TPlayStepSchedule<"synth">;
     volume?: number;
     duration?: number;
     type?: OscillatorType;

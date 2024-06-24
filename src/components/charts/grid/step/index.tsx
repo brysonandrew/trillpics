@@ -15,11 +15,10 @@ import clsx from "clsx";
 import { LinesHorizontal } from "~/components/lines/horizontal";
 import { box } from "~uno/rules/box";
 import { resolveTop } from "~/components/charts/grid/top";
-import { isString } from "~/utils/validation/is/string";
 import { CHARTS_GRID_STEP_EMPTY_STYLE } from "~/pages/video/music/_context/init/grid-cell/constants";
 import { useGridCellsStepRef } from "~/pages/video/music/_context/init/grid-cell/ref/hook";
 import { ChartsGridPlayButton } from "~/components/charts/grid/step/play/button";
-import { resolveGridCellMidi } from "~/components/charts/grid/step/grid-cell-midi";
+import { useContextMusicInit } from "~/pages/video/music/_context/init";
 
 export type CStepsKey<
   T extends TMusicKey
@@ -61,11 +60,12 @@ export const ChartsGridStep = <
   const colorClass =
     classes[columnIndex % 3];
   const isSynth = stepsKey === "synth";
-
+  const { stepsRecord } =
+    useContextMusicInit();
   const {
     playingKeys,
-    synth,
-    sequence,
+    // synth,
+    // sequence,
     isHover,
   } = useTrillPicsStore(
     ({
@@ -91,7 +91,7 @@ export const ChartsGridStep = <
   const isDisabled =
     playingKeys.includes(musicKey);
   const displayMidiValue =
-    (synth.midi ?? 0) +
+    (stepsRecord.synth.midi ?? 0) +
     midiValueToNumber(value);
 
   const midi = isSynth
@@ -176,8 +176,7 @@ export const ChartsGridStep = <
               <ChartsGridStepDot
                 isHovering={isHovering}
                 {...props}
-                {...synth}
-                {...sequence}
+                {...stepsRecord.sequence}
                 value={value}
               />
 
@@ -186,7 +185,7 @@ export const ChartsGridStep = <
                   {[
                     ...Array(
                       Math.ceil(
-                        sequence.duration
+                        stepsRecord.sequence.duration
                       )
                     ),
                   ].map(
@@ -202,11 +201,11 @@ export const ChartsGridStep = <
                           width: `${
                             (index ===
                             count - 1
-                              ? sequence.duration %
+                              ? stepsRecord.sequence.duration %
                                 1
                               : Math.min(
                                   1,
-                                  sequence.duration
+                                  stepsRecord.sequence.duration
                                 )) * 100
                           }%`,
                           opacity:

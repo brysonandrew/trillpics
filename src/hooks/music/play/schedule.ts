@@ -22,10 +22,17 @@ import {
   TMidiValue,
   TMidiValues,
 } from "~/hooks/music/midis/types";
-import { TBeatValue } from "~/hooks/music/beats/types";
+import {
+  TBeatValue,
+  TBeatValues,
+} from "~/hooks/music/beats/types";
 import { isNull } from "~/utils/validation/is/null";
+import {
+  isBeatsKey,
+  isMidisKey,
+} from "~/hooks/music/play/validators";
 
-export type TPlayStepConfig<
+export type TPlayStepSchedule<
   T extends UStepsKey
 > = {
   steps: TMidiValues;
@@ -42,7 +49,7 @@ type TConfig<T extends UStepsKey> = {
   key: TMusicKey;
   keys: readonly T[];
   lookup: Record<T, IUseMusicLookup[T]>;
-  record: Record<T, TStepValues>;
+  // record: Record<T, TStepValues>;
   options?: any;
 };
 export const usePlaySchedule = <
@@ -54,7 +61,7 @@ export const usePlaySchedule = <
     key,
     keys,
     lookup,
-    record,
+    // record,
     options,
   } = config;
   const { timeoutRef, endTimeout } =
@@ -64,12 +71,13 @@ export const usePlaySchedule = <
     audio,
     recorder,
     progress,
+    stepsRecord,
   } = useContextMusicInit();
   const {
     bpm,
     playingKeys,
     isLoop,
-    sequence,
+    // sequence,
     set,
   } = useTrillPicsStore(
     ({
@@ -77,12 +85,12 @@ export const usePlaySchedule = <
       playingKeys,
       isLoop,
       set,
-      sequence,
+      // sequence,
     }) => ({
       bpm,
       playingKeys,
       isLoop,
-      sequence,
+      // sequence,
       set,
     })
   );
@@ -126,7 +134,7 @@ export const usePlaySchedule = <
   };
 
   const playStep = (
-    config: TPlayStepConfig<T>
+    schedule: TPlayStepSchedule<T>
   ) => {
     const {
       startTime,
@@ -134,7 +142,7 @@ export const usePlaySchedule = <
       lookupKey,
       stepIndex,
       ...rest
-    } = config;
+    } = schedule;
     lookup[lookupKey].play(
       startTime,
       stepValue,
@@ -142,7 +150,7 @@ export const usePlaySchedule = <
         volume:
           resolvePlayVolume(stepIndex),
         ...options,
-        ...config,
+        schedule,
       }
     );
   };
@@ -167,7 +175,24 @@ export const usePlaySchedule = <
     }
 
     keys.forEach((sourceKey) => {
-      const steps = record[sourceKey];
+      let steps:
+        | TMidiValues
+        | TBeatValues = [];
+      if (isMidisKey(sourceKey)) {
+        steps = [...stepsRecord.steps];
+      }
+      if (isBeatsKey(sourceKey)) {
+        const preset =
+          stepsRecord.presets[
+            stepsRecord.presetKey
+          ];
+        console.log(
+          preset,
+          stepsRecord
+        );
+        steps = preset[sourceKey];
+      }
+
       if (!lookup[sourceKey]) return;
 
       steps.forEach(
@@ -209,7 +234,8 @@ export const usePlaySchedule = <
               duration:
                 (audioSeconds /
                   stepsCount) *
-                sequence.duration,
+                stepsRecord.sequence
+                  .duration,
               ...sharedConfig,
             });
             return;

@@ -6,33 +6,31 @@ import { useContextMusicInit } from "~/pages/video/music/_context/init";
 import { useTrillPicsStore } from "~/store/middleware";
 
 export const useNodesScale = () => {
-  const playinKeysRef =
-    useTransientPlayingKeys();
-  useContextMusicInit();
-  const { scale } = useTrillPicsStore(
-    ({ scale }) => ({
-      scale,
-    })
-  );
+  const {stepsRecord} = useContextMusicInit()
+  // const playinKeysRef =
+  //   useTransientPlayingKeys();
+  // const { scale } = useTrillPicsStore(
+  //   ({ scale }) => ({
+  //     scale,
+  //   })
+  // );
 
-  const rescaleStateful =
-    useRescaleStatefulHandler();
+  // const rescaleStateful =
+  //   useRescaleStatefulHandler();
   const rescaleStateless =
     useRescaleStatelessHandler();
-  const update = (
-    value: TScaleKey
-  ) => {
-    if (
-      !playinKeysRef.current.includes(
-        "midis"
-      )
-    ) {
-      rescaleStateful(value);
-    }
+  const update = (value: TScaleKey) => {
+    // if (
+    //   !playinKeysRef.current.includes(
+    //     "midis"
+    //   )
+    // ) {
+    //   rescaleStateful(value);
+    // }
     rescaleStateless(value);
   };
   return {
-    key: scale.key,
+    key: stepsRecord.scale.key,
     update,
   };
 };

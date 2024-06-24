@@ -1,3 +1,4 @@
+import { BEATS_RECORD } from "~/hooks/music/beats/constants";
 import { TBeatsStepsKey } from "~/hooks/music/beats/types";
 import { MIDI_RECORD } from "~/hooks/music/midis/constants";
 import { TMidisStepsKey } from "~/hooks/music/midis/types";
@@ -19,7 +20,7 @@ export const isBeatsKey = (
 ): stepsKey is TBeatsStepsKey => {
   if (
     isDefined(stepsKey) &&
-    stepsKey in MIDI_RECORD
+    stepsKey in BEATS_RECORD
   )
     return true;
   return false;

@@ -12,7 +12,7 @@ export const MusicSynthNodes: FC =
           className="relative grid gap-2"
           style={{
             display: "grid",
-            gap: box.m025,
+            gap: box.m0125,
             gridTemplateColumns: `repeat(auto-fill, minmax(${box.m6}px, 1fr))`,
             ...box.p(box.m025)
           }}

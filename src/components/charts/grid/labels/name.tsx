@@ -6,6 +6,7 @@ import { UStepsKey } from "~/store/state/music/types";
 import { SCALE_VALUE_COUNT } from "~/constants/scales";
 import { LinesVertical } from "~/components/lines/vertical";
 import { box } from "~uno/rules/box";
+import { useContextMusicInit } from "~/pages/video/music/_context/init";
 
 type TProps = {
   stepsKey: UStepsKey;
@@ -14,10 +15,7 @@ export const ChartsGridLabelsName: FC<
   TProps
 > = ({ stepsKey }) => {
   const isSynth = stepsKey === "synth";
-  const { synth } = useTrillPicsStore(
-    ({ synth }) => ({ synth })
-  );
-  const s = box;
+  const {stepsRecord} = useContextMusicInit()
   return (
     <div
       key={stepsKey}
@@ -31,7 +29,7 @@ export const ChartsGridLabelsName: FC<
         >
           <BackgroundGlass />
           {`${
-            (synth.midi ?? 0) +
+            (stepsRecord.synth.midi ?? 0) +
             SCALE_VALUE_COUNT -
             1
           }`}
@@ -50,7 +48,7 @@ export const ChartsGridLabelsName: FC<
           {isSynth ? (
             <>
               <div>midi</div>
-              {`${synth.midi}`}
+              {`${stepsRecord.synth.midi}`}
             </>
           ) : (
             stepsKey

@@ -1,7 +1,7 @@
 import { BEATS_KEYS } from "~/hooks/music/beats/constants";
 
-export type TBeatss = typeof BEATS_KEYS;
-export type TBeatsKey = TBeatss[number];
+export type TBeatsKeys = typeof BEATS_KEYS;
+export type TBeatsKey = TBeatsKeys[number];
 export type TBeatValue =
   | null
   | 1

@@ -2,7 +2,6 @@ import { FC } from "react";
 import { ChartsGrid } from "~/components/charts/grid";
 import { ChartsGridStaff } from "~/components/charts/grid/staff";
 import { useVideoStyle } from "~/pages/video/style";
-import { useTrillPicsStore } from "~/store/middleware";
 import { box } from "~uno/rules/box";
 import clsx from "clsx";
 import { BackgroundGlass } from "~/components/layout/background/glass";
@@ -11,7 +10,6 @@ import { TypographyXxxs } from "~/components/layout/typography/xxxs";
 import { ChartsGridPlayButton } from "~/components/charts/grid/step/play/button";
 import { encryptMidiHoverKey } from "~/components/charts/grid/to-midi-hover-key";
 import { midiValueToNumber } from "~/utils/music/midi";
-import { MusicScaleDropdowns } from "~/pages/video/music/synth/scale/dropdowns";
 import { useContextMusicInit } from "~/pages/video/music/_context/init";
 
 export const VideoMusicSynth: FC =

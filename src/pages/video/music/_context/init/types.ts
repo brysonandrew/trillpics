@@ -1,6 +1,6 @@
 import { MotionValue } from "framer-motion";
 import { TScaleKey } from "~/constants/scales";
-import { TBeatsStepsKey } from "~/hooks/music/beats/types";
+import { TBeatsPresetRecord, TBeatsStepsKey } from "~/hooks/music/beats/types";
 import { TMidiValues } from "~/hooks/music/midis/types";
 import { TMusicKey } from "~/store/state/music/types";
 import { TOscillator } from "~/pages/video/music/_context/init/oscillator/types";
@@ -8,6 +8,8 @@ import { TSequenceOptions } from "~/pages/video/music/synth/sequence/types";
 import { PAGE_SCROLL_MODES } from "~/pages/video/music/_context/init/constants";
 import { TScaleOptions, TScalePattern } from "~/pages/video/music/synth/scale/types";
 import { TSynthOptions } from "react-synthwave";
+import { TBeatsPresetsKey } from "~/hooks/music/beats/presets/types";
+import { BEATS_PRESETS } from "~/hooks/music/beats/presets";
 
 export type TBaseGridCell =
   null | HTMLDivElement;
@@ -31,6 +33,8 @@ export type TStepsRecord = {
   scale: TScaleOptions
   sequence: TSequenceOptions;
   synth: TSynthOptions
+  presets:typeof BEATS_PRESETS
+  presetKey: TBeatsPresetsKey
 };
 
 export type TProgressKey =

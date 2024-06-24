@@ -8,12 +8,8 @@ import {
 } from "~/pages/video/music/synth/validators";
 import { TState } from "~/store/types";
 import { useTrillPicsStore } from "~/store/middleware";
-import {
-  TSliderStyledProps,
-  TUpdateNumberHandler,
-  TUpdateNumberHandlerProps,
-  TSliderValueChangeHandler,
-} from "~/components/inputs/slider/types";
+import { TSliderStyledProps, TUpdateNumberHandler, TUpdateNumberHandlerProps } from "~/components/inputs/slider/types";
+import { useContextMusicInit } from "~/pages/video/music/_context/init";
 
 export type TSliderControllerProps =
   Omit<
@@ -21,7 +17,7 @@ export type TSliderControllerProps =
     "value" | "name"
   > & {
     name: string;
-    keys?:string[]
+    keys?: string[];
   } & TUpdateNumberHandlerProps;
 export const useSliderController = ({
   name,
@@ -31,20 +27,14 @@ export const useSliderController = ({
   ),
 }: TSliderControllerProps) => {
   const state = useTrillPicsStore(
-    ({
+    ({ bpm, beats }) => ({
       bpm,
-      synth,
-      scale,
-      sequence,
-      beats,
-    }) => ({
-      bpm,
-      synth,
-      scale,
-      sequence,
       beats,
     })
   );
+  const { stepsRecord } =
+    useContextMusicInit();
+
   const [key, key1] = keys;
   const k = keys[0];
 
@@ -63,24 +53,24 @@ export const useSliderController = ({
   const resolveValue = (
     draft: typeof state
   ) => {
-    if (
-      key === "synth" &&
-      isSynthSliderConfigType(key1)
-    ) {
-      return draft.synth[key1];
-    }
-    if (
-      key === "sequence" &&
-      isSequenceSliderConfigType(key1)
-    ) {
-      return draft.sequence[key1];
-    }
-    if (
-      key === "scale" &&
-      isScaleSliderConfigType(key1)
-    ) {
-      return draft.scale[key1];
-    }
+    // if (
+    //   key === "synth" &&
+    //   isSynthSliderConfigType(key1)
+    // ) {
+    //   return draft.synth[key1];
+    // }
+    // if (
+    //   key === "sequence" &&
+    //   isSequenceSliderConfigType(key1)
+    // ) {
+    //   return draft.sequence[key1];
+    // }
+    // if (
+    //   key === "scale" &&
+    //   isScaleSliderConfigType(key1)
+    // ) {
+    //   return draft.scale[key1];
+    // }
     // if (
     //   key === "midis" &&
     //   isNodesSliderConfigType(key1)
@@ -130,17 +120,17 @@ export const useSliderController = ({
         }
       });
     };
-  const inputValue = value
-    ? [value]
-    : undefined;
+  // const inputValue = value
+  //   ? [value]
+  //   : undefined;
 
-  const handleValueChange: TSliderValueChangeHandler =
-    ([value]) => {
-      (onUpdate ?? handleUpdate)(value);
-    };
+  // const handleValueChange: TSliderValueChangeHandler =
+  //   ([value]) => {
+  //     (onUpdate ?? handleUpdate)(value);
+  //   };
 
-  return {
-    value:inputValue,
-    onValueChange: handleValueChange,
-  };
+  // return {
+  //   value:inputValue,
+  //   onValueChange: handleValueChange,
+  // };
 };

@@ -1,6 +1,5 @@
 import { useMemo } from "react";
 import { useMotionValue } from "framer-motion";
-import { SCALE_RECORD } from "~/constants/scales";
 import { useMusicInitProgress } from "~/pages/video/music/_context/init/progress";
 import {
   TBufferSourceRecord,
@@ -9,13 +8,10 @@ import {
 } from "~/pages/video/music/_context/init/types";
 import { PAGE_SCROLL_MODES } from "~/pages/video/music/_context/init/constants";
 import { resolveMidiSteps } from "~/constants/music/midi/steps";
-import {
-  DEFAULT_MULTI_SYNTH_OPTIONS,
-  DEFAULT_SYNTH_OPTIONS,
-} from "~/pages/video/music/synth/constants";
+import { DEFAULT_SYNTH_OPTIONS } from "~/pages/video/music/synth/constants";
 import { DEFAULT_SCALE_OPTIONS } from "~/pages/video/music/synth/scale/constants";
 import { DEFAULT_SEQUENCE_OPTIONS } from "~/pages/video/music/synth/sequence/constants";
-import { DEFAULT_BEATS_SLIDER_OPTIONS } from "~/store/state/music/constants";
+import { BEATS_PRESETS } from "~/hooks/music/beats/presets";
 export const useMusicInitProviderRefs =
   () => {
     const scrollY = useMotionValue(0);
@@ -94,6 +90,8 @@ export const useMusicInitProviderRefs =
           synth: {
             ...DEFAULT_SYNTH_OPTIONS,
           },
+          presets: BEATS_PRESETS,
+          presetKey:'disco'
         };
 
       const progressStep: TProgressStepRecord =

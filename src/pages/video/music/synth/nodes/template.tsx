@@ -2,10 +2,7 @@ import type {
   FC,
   PropsWithChildren,
 } from "react";
-import { BackgroundGlass } from "~/components/layout/background/glass";
-import { BackgroundMeshFlat } from "~/components/layout/background/mesh/flat";
 import { TypographySm } from "~/components/layout/typography/sm";
-import { PlayerBackgroundOpaque } from "~/pages/video/player/_background/opaque";
 import { box } from "~uno/rules/box";
 
 type TProps = {
@@ -22,20 +19,15 @@ export const NodesTemplate: FC<
         ...box.p(box.m025),
       }}
     >
-    
-        <div
-      className="fill bg-black pointer-events-none"
-      />
-        <div
-      className="fill _box-dots opacity-20 pointer-events-none"
-      />
+      <div className="fill bg-black pointer-events-none" />
+      <div className="fill _box-dots opacity-20 pointer-events-none" />
       {/* <BackgroundMeshFlat
         style={{ ...box.r.l }}
       /> */}
       <TypographySm>
         {title}
       </TypographySm>
-        {children}
+      {children}
     </div>
   );
 };
