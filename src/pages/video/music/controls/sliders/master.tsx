@@ -1,5 +1,5 @@
 import type { FC } from "react";
-import { TUpdateSliderHandler } from "~/components/inputs/slider/types";
+import { TUpdateNumberHandler } from "~/components/inputs/slider/types";
 import { SliderUncontrolled } from "~/components/inputs/slider/uncontrolled";
 import { useContextMusicInit } from "~/pages/video/music/_context/init";
 import { useTrillPicsStore } from "~/store/middleware";
@@ -13,7 +13,7 @@ export const MusicControlsSlidersMaster: FC =
         set,
       })
     );
-    const handleUpdate: TUpdateSliderHandler =
+    const handleUpdate: TUpdateNumberHandler =
       (value) => {
         const next = Number(value);
         master.gain.value = next;

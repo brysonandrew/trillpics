@@ -5,12 +5,14 @@ import {
 import { handleRescale } from "~/hooks/music/midis/scale/rescale";
 import { useContextMusicInit } from "~/pages/video/music/_context/init";
 import { useGridCellDrill } from "~/pages/video/music/_context/init/grid-cell/drill";
+import { useGridCellMidi } from "~/pages/video/music/_context/init/grid-cell/midi";
 
 export const useRescaleStatelessHandler =
   () => {
     const { stepsRecord } =
       useContextMusicInit();
-
+    const handleNextSteps =
+      useGridCellMidi();
     const handleGridCell =
       useGridCellDrill();
 
@@ -18,14 +20,10 @@ export const useRescaleStatelessHandler =
       nextScaleKey: TScaleKey
     ) => {
       const scaleSteps =
-        stepsRecord.scale.lookup[
-          nextScaleKey
-        ] ?? SCALE_RECORD[nextScaleKey];
+       SCALE_RECORD[nextScaleKey];
 
       const currSteps =
-        stepsRecord.scale.lookup[
-          stepsRecord.scale.curr
-        ];
+        stepsRecord.steps
 
       if (!currSteps) {
         console.log(
@@ -38,8 +36,8 @@ export const useRescaleStatelessHandler =
         currSteps,
         scaleSteps
       );
-      handleGridCell()
-
+      handleNextSteps(nextSteps);
+      handleGridCell();
     };
     return handler;
   };

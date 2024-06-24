@@ -10,7 +10,7 @@ export const resolveMidiSteps = (
   config: TMidiStepsConfig
 ) => {
   const {
-    beats,
+    beats = 16,
     repeat,
     interval,
     key,
@@ -18,7 +18,7 @@ export const resolveMidiSteps = (
   const scaleNodes = SCALE_RECORD[key];
   let repeatCount = 0;
   let value: TMidiValue = null;
-  return [...Array(beats)].reduce(
+  return [...Array(Math.round(beats))].reduce(
     (
       a: TMidiValue[],
       beat: number | null,

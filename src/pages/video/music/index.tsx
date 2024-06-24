@@ -44,12 +44,10 @@ export const VideoMusic = () => {
                 <GlassSidebar />
                 <GlassMain />
                 <VideoMusicSynth />
-                <MusicScale />
+                <MusicSynthNodes />
               </LayoutStickyTop>
 
-              <MusicLayoutRow>
-                <MusicSynthNodes />
-              </MusicLayoutRow>
+                <MusicScale />
 
               <LayoutStickyMid>
                 <VideoMusicDrums />

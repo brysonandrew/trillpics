@@ -6,6 +6,8 @@ import { TMusicKey } from "~/store/state/music/types";
 import { TOscillator } from "~/pages/video/music/_context/init/oscillator/types";
 import { TSequenceOptions } from "~/pages/video/music/synth/sequence/types";
 import { PAGE_SCROLL_MODES } from "~/pages/video/music/_context/init/constants";
+import { TScaleOptions, TScalePattern } from "~/pages/video/music/synth/scale/types";
+import { TSynthOptions } from "react-synthwave";
 
 export type TBaseGridCell =
   null | HTMLDivElement;
@@ -23,12 +25,12 @@ type TScaleLookup = Record<
 >;
 export type TPartialScaleLookup =
   Partial<TScaleLookup>;
+
 export type TStepsRecord = {
-  scale: {
-    lookup: TPartialScaleLookup;
-    curr: TScaleKey;
-  };
+  steps: TMidiValues
+  scale: TScaleOptions
   sequence: TSequenceOptions;
+  synth: TSynthOptions
 };
 
 export type TProgressKey =

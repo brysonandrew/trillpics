@@ -2,7 +2,7 @@ import type { FC } from "react";
 import {
   SliderControlled,
 } from "~/components/inputs/slider/controlled";
-import { TUpdateSliderHandler } from "~/components/inputs/slider/types";
+import { TUpdateNumberHandler } from "~/components/inputs/slider/types";
 import { SliderUncontrolled } from "~/components/inputs/slider/uncontrolled";
 import { useContextMusicInit } from "~/pages/video/music/_context/init";
 import { useTrillPicsStore } from "~/store/middleware";
@@ -17,7 +17,7 @@ export const BeatsMaster: FC = () => {
     })
   );
 
-  const handleUpdate: TUpdateSliderHandler =
+  const handleUpdate: TUpdateNumberHandler =
     (value) => {
       const next = Number(value);
       beatsMaster.gain.value = next;

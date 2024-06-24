@@ -6,11 +6,12 @@ export const resolveTop = (
   value: TMidiValue,
   size: number
 ) => {
+  if (value === null) return "0px"
   return `calc(${
     (1 -
       (midiValueToNumber(value) + 0.5) /
         SCALE_VALUE_COUNT) *
       90 +
     5
-  }% - ${size}px)`;
+  }% - ${size}px)` as const;
 };

@@ -53,12 +53,11 @@ export const MusicInitProvider: FC<
       nextSteps: TMidiValues,
       nextScaleKey: TScaleKey
     ) => {
-      stepsRecord.scale.lookup[
-        nextScaleKey
-      ] = nextSteps;
-      stepsRecord.scale.curr =
+      stepsRecord.steps = nextSteps;
+      stepsRecord.scale.key =
         nextScaleKey;
     };
+
   return (
     <Context.Provider
       value={{

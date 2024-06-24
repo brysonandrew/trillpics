@@ -2,7 +2,7 @@ import type { FC } from "react";
 import {
   SliderControlled,
 } from "~/components/inputs/slider/controlled";
-import { TUpdateSliderHandler } from "~/components/inputs/slider/types";
+import { TUpdateNumberHandler } from "~/components/inputs/slider/types";
 import { SliderUncontrolled } from "~/components/inputs/slider/uncontrolled";
 import { resolveMidiSteps } from "~/constants/music/midi/steps";
 import { TSequenceSliderOptionsKey } from "~/pages/video/music/synth/sequence/types";
@@ -35,7 +35,7 @@ export const SequenceSlider: FC<
         scale,
       })
     );
-  const handleUpdate: TUpdateSliderHandler =
+  const handleUpdate: TUpdateNumberHandler =
     (value:number) => {
       if (isNumber(value)) {
         const nextValue = value;

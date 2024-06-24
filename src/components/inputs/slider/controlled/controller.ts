@@ -10,9 +10,9 @@ import { TState } from "~/store/types";
 import { useTrillPicsStore } from "~/store/middleware";
 import {
   TSliderStyledProps,
-  TUpdateSliderHandler,
-  TUpdateSliderHandlerProps,
-  TValueChangeHandler,
+  TUpdateNumberHandler,
+  TUpdateNumberHandlerProps,
+  TSliderValueChangeHandler,
 } from "~/components/inputs/slider/types";
 
 export type TSliderControllerProps =
@@ -22,7 +22,7 @@ export type TSliderControllerProps =
   > & {
     name: string;
     keys?:string[]
-  } & TUpdateSliderHandlerProps;
+  } & TUpdateNumberHandlerProps;
 export const useSliderController = ({
   name,
   onUpdate,
@@ -98,7 +98,7 @@ export const useSliderController = ({
 
   const set = useUpdateStateHandler();
 
-  const handleUpdate: TUpdateSliderHandler =
+  const handleUpdate: TUpdateNumberHandler =
     (value) => {
       const nextValue = Number(value);
       set((draft: TState) => {
@@ -134,7 +134,7 @@ export const useSliderController = ({
     ? [value]
     : undefined;
 
-  const handleValueChange: TValueChangeHandler =
+  const handleValueChange: TSliderValueChangeHandler =
     ([value]) => {
       (onUpdate ?? handleUpdate)(value);
     };

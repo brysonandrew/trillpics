@@ -1,24 +1,16 @@
+import { FC } from "react";
 import {
-  ChangeEventHandler,
-  FC,
-  useRef,
-} from "react";
-import clsx from "clsx";
-import { InputsBox } from "~/components/inputs/box";
-import {
-  TSliderStyledProps,
-  TUpdateSliderHandler,
-} from "~/components/inputs/slider/types";
-import { resolveMidiSteps } from "~/constants/music/midi/steps";
-import { TSequenceSliderOptionsKey } from "~/pages/video/music/synth/sequence/types";
-import { useUpdateStateHandler } from "~/store/hooks/use-update-state-handler";
-import { useTrillPicsStore } from "~/store/middleware";
-import { TState } from "~/store/types";
+  TSequenceOptions,
+  TSequenceSliderOptionsKey,
+} from "~/pages/video/music/synth/sequence/types";
 import { TInputProps } from "~/types/inputs";
-import { isNumber } from "~/utils/validation/is/number";
-import { box } from "~uno/rules/box";
-import { SliderSm } from "~/components/inputs/slider/sm";
-import { SliderStyled } from "~/components/inputs/slider/styled";
+import { InputsNumber } from "~/components/inputs/number";
+import { resolveMidiSteps } from "~/constants/music/midi/steps";
+import { TUpdateNumberHandler } from "~/components/inputs/slider/types";
+import { useContextMusicInit } from "~/pages/video/music/_context/init";
+import { useGridCellMidi } from "~/pages/video/music/_context/init/grid-cell/midi";
+import { useGridCellDrill } from "~/pages/video/music/_context/init/grid-cell/drill";
+import { resolveMidiNumber } from "~/utils/midi";
 const MIN = 0;
 const MAX = 8;
 const STEP = 0.1;
@@ -36,95 +28,51 @@ export const SequenceNumber: FC<
   max = MAX,
   step = STEP,
   title,
+  defaultValue,
   ...props
 }) => {
-  const ref = useRef<HTMLInputElement|null>(null);
-  const set = useUpdateStateHandler();
-  const { sequence, scale } =
-    useTrillPicsStore(
-      ({ sequence, scale }) => ({
-        sequence,
-        scale,
-      })
-    );
-  const handleUpdate: TUpdateSliderHandler =
-    (value: number) => {
-      if (
-        ref.current &&
-        isNumber(value) &&
-        value < max &&
-        value > min
-      ) {
-        const nextValue = value;
-        ref.current.value = `${nextValue}`;
-        set((draft: TState) => {
-          draft.sequence[optionsKey] =
-            nextValue;
-          draft.steps =
-            resolveMidiSteps({
-              ...sequence,
-              ...scale,
-              [optionsKey]: nextValue,
-            });
-        });
-      }
-    };
+  const { stepsRecord } =
+    useContextMusicInit();
+  const handleNextSteps =
+    useGridCellMidi();
+  const handleGridCell =
+    useGridCellDrill();
+  const handleUpdate: TUpdateNumberHandler =
+    (value) => {
+      const partial: Partial<TSequenceOptions> =
+        { [optionsKey]: value };
+      stepsRecord.sequence = {
+        ...stepsRecord.sequence,
+        ...partial,
+      };
+      const config = {
+        ...stepsRecord.scale,
+        ...stepsRecord.sequence,
+      };
+      const nextSteps =
+        resolveMidiSteps(config);
+      console.log(stepsRecord.steps);
+      handleNextSteps(nextSteps);
+      stepsRecord.steps = nextSteps;
 
-  const handleValueChange: TSliderStyledProps["onValueChange"] =
-    ([value]) => {
-      console.log(value);
-      handleUpdate(value);
+      // handleGridCell();
     };
-
-  const handleChange: ChangeEventHandler<
-    HTMLInputElement
-  > = ({
-    currentTarget: { name, value },
-  }) => {
-    const next = Number(value);
-    handleUpdate(next);
-  };
   const name =
     `sequence.${optionsKey}` as const;
   return (
-    <InputsBox title={title ?? name}>
-      <div className="grow">
-        <SliderStyled
-          title={title ?? ""}
-          min={min}
-          max={max}
-          step={step}
-          defaultValue={[
-            Number(props.defaultValue),
-          ]}
-          onValueChange={
-            handleValueChange
-          }
-        />
-      </div>
-
-      <input
-        ref={ref}
-        type="number"
-        className={clsx(
-          "center text-center bg-black-02 backdrop-blur-lg z-20 text-xs font-slab",
-          "border border-white-02"
-        )}
-        style={{
-          borderRadius: box.radius.m,
-          // ...box.py(box.m025),
-          height: box.m0625,
-          lineHeight: box.m0625,
-          ...box.px(box.m0125),
-        }}
-        name={name}
-        title={optionsKey}
-        min={min}
-        max={max}
-        step={step}
-        onChange={handleChange}
-        {...props}
-      />
-    </InputsBox>
+    <InputsNumber
+      name={name}
+      title={title ?? name}
+      defaultValue={
+        Array.isArray(defaultValue)
+          ? defaultValue[0]
+          : defaultValue
+      }
+      min={min}
+      max={max}
+      step={step}
+      onUpdate={handleUpdate}
+      {...props}
+    />
   );
 };

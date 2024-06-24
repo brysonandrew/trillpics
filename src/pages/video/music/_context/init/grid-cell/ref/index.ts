@@ -1,6 +1,5 @@
 import { TGridCellsStepRefConfig } from "~/pages/video/music/_context/init/grid-cell/ref/types";
 import { TGridCellsRecordProps } from "~/pages/video/music/_context/init/grid-cell/types";
-import { TGridCellsRecord } from "~/pages/video/music/_context/init/types";
 import { TMusicKey } from "~/store/state/music/types";
 
 export const resolveStepRef = <

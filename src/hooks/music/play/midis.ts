@@ -23,9 +23,7 @@ export const usePlayMidis = () => {
     lookup,
     record: {
       synth:
-        stepsRecord.scale.lookup[
-          stepsRecord.scale.curr
-        ] ?? steps,
+        stepsRecord.steps ?? steps,
     },
     options: {
       ...synth,

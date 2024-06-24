@@ -1,11 +1,14 @@
 import type { FC } from "react";
-import { NodesOscillatorSliders } from "~/pages/video/music/synth/nodes/oscillator/sliders";
+import { NodesOscillatorDropdowns } from "~/pages/video/music/synth/nodes/oscillator/dropdowns";
+import { NodesOscillatorNumbers } from "~/pages/video/music/synth/nodes/oscillator/numbers";
+import { NodesTemplate } from "~/pages/video/music/synth/nodes/template";
 
 export const NodesOscillator: FC =
   () => {
     return (
-      <div>
-        <NodesOscillatorSliders />
-      </div>
+      <NodesTemplate title="Oscillator">
+        <NodesOscillatorDropdowns />
+        <NodesOscillatorNumbers />
+      </NodesTemplate>
     );
   };

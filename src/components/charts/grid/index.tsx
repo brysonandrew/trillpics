@@ -48,7 +48,6 @@ export const ChartsGrid: FC<TProps> = ({
     "includes" in props
       ? props.includes
       : (["synth"] as const);
-
   return (
     <div
       className="relative column-space items-stretch justify-stretch"

@@ -12,6 +12,7 @@ import { ChartsGridPlayButton } from "~/components/charts/grid/step/play/button"
 import { encryptMidiHoverKey } from "~/components/charts/grid/to-midi-hover-key";
 import { midiValueToNumber } from "~/utils/music/midi";
 import { MusicScaleDropdowns } from "~/pages/video/music/synth/scale/dropdowns";
+import { useContextMusicInit } from "~/pages/video/music/_context/init";
 
 export const VideoMusicSynth: FC =
   () => {
@@ -19,13 +20,15 @@ export const VideoMusicSynth: FC =
       sidebarWidthOffset,
       width,
     } = useVideoStyle();
-    const { steps, synth } =
-      useTrillPicsStore(
-        ({ steps, synth }) => ({
-          steps,
-          synth,
-        })
-      );
+    const { stepsRecord } =
+      useContextMusicInit();
+    // const { steps, synth } =
+    //   useTrillPicsStore(
+    //     ({ steps, synth }) => ({
+    //       steps,
+    //       synth,
+    //     })
+    //   );
     return (
       <>
         <div
@@ -50,7 +53,7 @@ export const VideoMusicSynth: FC =
           musicKey="midis"
           Background={ChartsGridStaff}
           presets={{
-            synth: steps,
+            synth: stepsRecord.steps,
           }}
           style={{
             left:
@@ -79,7 +82,7 @@ export const VideoMusicSynth: FC =
               >
                 {(index) => {
                   const midi =
-                    (synth.midi ?? 0) +
+                    (stepsRecord.synth.midi ?? 0) +
                     index;
                   const n =
                     midiValueToNumber(
@@ -126,12 +129,9 @@ export const VideoMusicSynth: FC =
                   );
                 }}
               </ChartsGridStaff>
-
             </div>
           )}
-
         </ChartsGrid>
-
       </>
     );
   };

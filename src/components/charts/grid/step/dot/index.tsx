@@ -52,8 +52,8 @@ export const ChartsGridStepDot = <
         // left: `calc(50%-${box.m025}px)`,
         opacity:
           value === null ? 0.25 : 1,
-        ...style,
-        ...resolveSquare(box.m05),
+          ...style,
+          ...resolveSquare(box.m05),
       }}
     >
       <ChartsGridStepDotShape
@@ -61,7 +61,6 @@ export const ChartsGridStepDot = <
         style={{
           borderRadius,
           ...resolveSquare(box.m0125),
-
           scale:
             0.5 +
             resolvePlayVolume(

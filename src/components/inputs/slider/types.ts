@@ -9,12 +9,12 @@ export type TSliderRef =
   ElementRef<TSlider>;
 export type TSliderStyledProps =
   ComponentPropsWithoutRef<TSlider>;
-export type TUpdateSliderHandler = (
+export type TUpdateNumberHandler = (
   value: number
 ) => void;
-export type TUpdateSliderHandlerProps =
+export type TUpdateNumberHandlerProps =
   {
-    onUpdate?: TUpdateSliderHandler;
+    onUpdate?: TUpdateNumberHandler;
   };
-  export type TValueChangeHandler =
+  export type TSliderValueChangeHandler =
   TSliderStyledProps["onValueChange"];

@@ -8,24 +8,24 @@ import { SliderRow } from "~/components/inputs/slider/row";
 import {
   TSliderRef,
   TSliderStyledProps,
-  TUpdateSliderHandlerProps,
-  TValueChangeHandler,
+  TUpdateNumberHandlerProps,
+  TSliderValueChangeHandler,
 } from "~/components/inputs/slider/types";
 
-export type TUpdateSliderHandler = (
+export type TUpdateNumberHandler = (
   value: number
 ) => void;
 export type TSliderUncontrolledProps =
   TSliderStyledProps &
     TClassValueProps &
     TTitleProps &
-    TUpdateSliderHandlerProps;
+    TUpdateNumberHandlerProps;
 export const SliderUncontrolled: FC<
   TSliderUncontrolledProps
 > = ({ onUpdate, ...props }) => {
   const ref = useRef<TSliderRef>(null);
 
-  const onValueChange: TValueChangeHandler =
+  const onValueChange: TSliderValueChangeHandler =
     ([value]) => {
       if (onUpdate) {
         onUpdate(value);

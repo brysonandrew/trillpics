@@ -11,7 +11,7 @@ import { SliderRow } from "~/components/inputs/slider/row";
 import { SliderStyled } from "~/components/inputs/slider/styled";
 import {
   TSliderStyledProps,
-  TUpdateSliderHandlerProps,
+  TUpdateNumberHandlerProps,
 } from "~/components/inputs/slider/types";
 
 export type TSliderControlledProps =

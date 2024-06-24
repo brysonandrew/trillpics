@@ -1,6 +1,8 @@
+import { resolveTop } from "~/components/charts/grid/top";
 import { TMidiValues } from "~/hooks/music/midis/types";
 import { useGridCellDrill } from "~/pages/video/music/_context/init/grid-cell/drill";
 import { TGridCellsHandler } from "~/pages/video/music/_context/init/grid-cell/types";
+import { box } from "~uno/rules/box";
 
 export const useGridCellMidi = () => {
   const handleDrill =
@@ -18,10 +20,11 @@ export const useGridCellMidi = () => {
         ) {
           const nextValue =
             nextSteps[stepIndex];
-          const prevValue =
-            arr[stepIndex];
 
-          cell.dataset.midi = `${nextValue}`;
+          cell.style.top = `${resolveTop(
+            nextValue,
+            box.m05
+          )}`;
         }
       };
     return handleDrill(handleGridCell);

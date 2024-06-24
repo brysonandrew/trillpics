@@ -5,7 +5,6 @@ import { TSelectValues } from "~/components/inputs/select/types";
 import clsx from "clsx";
 import { SelectItem } from "~/components/inputs/select/item";
 import { box } from "~uno/rules/box";
-import { TypographyXxs } from "~/components/layout/typography/xxs";
 import { LinesHorizontalLight } from "~/components/lines/horizontal/light";
 import { InputsBox } from "~/components/inputs/box";
 import * as Select from "@radix-ui/react-select";

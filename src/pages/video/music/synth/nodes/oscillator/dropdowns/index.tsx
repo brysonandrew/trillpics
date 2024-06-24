@@ -3,7 +3,7 @@ import { WRITABLE_OSCILLATOR_TYPES } from "react-synthwave";
 import { SelectStyled } from "~/components/inputs/select/styled";
 import { useContextMusicInit } from "~/pages/video/music/_context/init";
 
-export const NodesOscillatorDropdownsType: FC =
+export const NodesOscillatorDropdowns: FC =
   () => {
     const { oscillator } =
       useContextMusicInit();
@@ -12,9 +12,6 @@ export const NodesOscillatorDropdownsType: FC =
       value: OscillatorType
     ) => {
       oscillator.node.type = value;
-      // set((draft: TState) => {
-      //   draft.midis.type = value;
-      // });
     };
     return (
       <SelectStyled

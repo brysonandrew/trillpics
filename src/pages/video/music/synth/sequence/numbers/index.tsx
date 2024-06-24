@@ -25,7 +25,7 @@ export const MusicSequenceNumbers: FC =
           optionsKey="interval"
           title="Interval"
           step={1}
-          max={32}
+          max={8}
           defaultValue={
             sequence.interval
           }

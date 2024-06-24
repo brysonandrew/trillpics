@@ -1,3 +1,5 @@
+import { FREQUENCY_TITLE } from "~/pages/video/music/synth/nodes/constants";
+
 export const BIQUAD_FILTER_TYPES: readonly BiquadFilterType[] =
   [
     "allpass",
@@ -15,6 +17,14 @@ export const BIQUAD_FILTER_SILDER_PARAMS =
     Q: "Q",
     detune: "detune",
   } as const;
+
+  export const BIQUAD_FILTER_SILDER_TITLES =
+  {
+...FREQUENCY_TITLE,
+    Q: "Q",
+    detune: "detune",
+  } as const;
+
 export const BIQUAD_FILTER_PARAMS = {
   type: "type",
   ...BIQUAD_FILTER_SILDER_PARAMS,

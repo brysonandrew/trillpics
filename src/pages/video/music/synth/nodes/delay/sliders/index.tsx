@@ -1,6 +1,7 @@
 import type { FC } from "react";
-import { SliderUncontrolled } from "~/components/inputs/slider/uncontrolled";
+import { InputsNumber } from "~/components/inputs/number";
 import { TDelayNodeKey } from "~/pages/video/music/synth/nodes/delay/types";
+import { propsFromAudioparams } from "~/pages/video/music/synth/nodes/props-from-audioparams";
 import { useContextMusicInit } from "~/pages/video/music/_context/init";
 
 export const NodesDelaySliders: FC =
@@ -14,20 +15,19 @@ export const NodesDelaySliders: FC =
       delay[name].value = value;
     };
     return (
-      <div>
-        <SliderUncontrolled
-          // name="midis.delayTime"
-          title="delay time"
-          min={0}
-          max={1}
-          step={0.0001}
-          onUpdate={(value) =>
-            handleUpdate(
-              "delayTime",
-              value
-            )
-          }
-        />
-      </div>
+      <InputsNumber
+        name="delayTime"
+        title="delay time"
+        onUpdate={(value) =>
+          handleUpdate(
+            "delayTime",
+            value
+          )
+        }
+        {...propsFromAudioparams(
+          "delayTime",
+          delay.delayTime
+        )}
+      />
     );
   };

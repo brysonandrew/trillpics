@@ -19,7 +19,7 @@ export const DrumsPresets: FC = () => {
   return (
     <SelectStyled
       values={values}
-      title="None"
+      title="preset"
       name="drums"
       placeholder="presets"
       value={beats.presetKey}

@@ -1,7 +1,6 @@
 import { useMemo } from "react";
 import { useMotionValue } from "framer-motion";
 import { SCALE_RECORD } from "~/constants/scales";
-import { DEFAULT_SEQUENCE_OPTIONS } from "~/pages/video/music/synth/sequence/constants";
 import { useMusicInitProgress } from "~/pages/video/music/_context/init/progress";
 import {
   TBufferSourceRecord,
@@ -9,7 +8,14 @@ import {
   TStepsRecord,
 } from "~/pages/video/music/_context/init/types";
 import { PAGE_SCROLL_MODES } from "~/pages/video/music/_context/init/constants";
-
+import { resolveMidiSteps } from "~/constants/music/midi/steps";
+import {
+  DEFAULT_MULTI_SYNTH_OPTIONS,
+  DEFAULT_SYNTH_OPTIONS,
+} from "~/pages/video/music/synth/constants";
+import { DEFAULT_SCALE_OPTIONS } from "~/pages/video/music/synth/scale/constants";
+import { DEFAULT_SEQUENCE_OPTIONS } from "~/pages/video/music/synth/sequence/constants";
+import { DEFAULT_BEATS_SLIDER_OPTIONS } from "~/store/state/music/constants";
 export const useMusicInitProviderRefs =
   () => {
     const scrollY = useMotionValue(0);
@@ -70,21 +76,23 @@ export const useMusicInitProviderRefs =
           tom: [],
         };
       const bufferRecord = {};
-      const DEFAULT_SCALE_KEY =
-        "aeolian";
+
+      const steps = resolveMidiSteps({
+        ...DEFAULT_SEQUENCE_OPTIONS,
+        ...DEFAULT_SCALE_OPTIONS,
+      });
+
       const stepsRecord: TStepsRecord =
         {
-          scale: {
-            lookup: {
-              [DEFAULT_SCALE_KEY]:
-                SCALE_RECORD[
-                  DEFAULT_SCALE_KEY
-                ],
-            },
-            curr: DEFAULT_SCALE_KEY,
-          },
+          steps,
           sequence: {
             ...DEFAULT_SEQUENCE_OPTIONS,
+          },
+          scale: {
+            ...DEFAULT_SCALE_OPTIONS,
+          },
+          synth: {
+            ...DEFAULT_SYNTH_OPTIONS,
           },
         };
 
@@ -97,8 +105,8 @@ export const useMusicInitProviderRefs =
       const scroll = {
         current: null,
         y: scrollY,
-        modes:PAGE_SCROLL_MODES,
-        modeIndex:0
+        modes: PAGE_SCROLL_MODES,
+        modeIndex: 0,
       };
       return {
         loopCount: 0,
