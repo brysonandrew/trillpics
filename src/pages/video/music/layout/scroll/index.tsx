@@ -3,13 +3,13 @@ import type {
   PropsWithChildren,
 } from "react";
 import clsx from "clsx";
-import { useContextMusicInit } from "~/pages/video/music/_context/init";
+import { useMusicRefs } from "~/pages/video/music/_context/init";
 
 export const LayoutScroll: FC<
   PropsWithChildren
 > = ({ children }) => {
-  const { scroll } =
-    useContextMusicInit();
+  const { layout:{ scroll } } =
+    useMusicRefs();
 
   return (
     <div

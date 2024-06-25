@@ -6,7 +6,6 @@ import { MusicInitProvider } from "~/pages/video/music/_context/init";
 import { MusicReadyProvider } from "~/pages/video/music/_context/ready";
 import { MusicRecorderProvider } from "~/pages/video/music/_context/recorder";
 import { PicBackdrop } from "~/pics/grid/pic/backdrop";
-import { BeatsMaster } from "~/pages/video/music/drums/master";
 import { MusicControlsButtons } from "~/pages/video/music/controls/buttons";
 import { GlassSidebar } from "~/pages/video/music/layout/glass/sidebar";
 import { GlassMain } from "~/pages/video/music/layout/glass/main";
@@ -19,9 +18,8 @@ import { LayoutStickyMid } from "~/pages/video/music/layout/sticky/mid";
 import { LayoutStickyBottom } from "~/pages/video/music/layout/sticky/bottom";
 import { MusicControlsButtonsMenu } from "~/pages/video/music/controls/buttons/menu";
 import { MusicSynthNodes } from "~/pages/video/music/synth/nodes";
-import { MusicSequence } from "~/pages/video/music/synth/sequence";
 import { MusicScale } from "~/pages/video/music/synth/scale";
-import { MusicSequenceNumbers } from "~/pages/video/music/synth/sequence/numbers";
+import { BeatsMaster } from "~/pages/video/music/drums/master";
 
 export const VideoMusic = () => {
   return (
@@ -47,7 +45,7 @@ export const VideoMusic = () => {
                 <MusicSynthNodes />
               </LayoutStickyTop>
 
-                <MusicScale />
+              <MusicScale />
 
               <LayoutStickyMid>
                 <VideoMusicDrums />

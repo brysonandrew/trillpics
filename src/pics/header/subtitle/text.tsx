@@ -12,7 +12,7 @@ export const SubtitleText: FC<
   return (
     <div
       className={clsx(
-        "relative text-white dark:text-black _outline-filter font-sans uppercase whitespace-nowrap",
+        "relative text-white dark:text-black _sf-outline font-sans uppercase whitespace-nowrap",
         classValue
       )}
     >

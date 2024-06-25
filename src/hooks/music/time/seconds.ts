@@ -1,10 +1,11 @@
 import { useAudioSeconds } from "~/hooks/music/time/audio-seconds";
 import { usePicVideoReadSeconds } from "~/hooks/pic/video/read/seconds/hook";
-import { useContextMusicInit } from "~/pages/video/music/_context/init";
+import { useMusicRefs } from "~/pages/video/music/_context/init";
 
 export const useSeconds = () => {
-  const { recorder } =
-    useContextMusicInit();
+  const {
+    audio: { save:{recorder} },
+  } = useMusicRefs();
   const audioSeconds =
     useAudioSeconds();
   const videoSeconds =

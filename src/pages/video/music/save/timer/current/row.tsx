@@ -4,11 +4,11 @@ import {
   TTimerKey,
   useAnimatedText,
 } from "~/pages/video/music/save/timer/current/animated-text";
-import { useContextMusicInit } from "~/pages/video/music/_context/init";
-import { useGridCellDrill } from "~/pages/video/music/_context/init/grid-cell/drill";
-import { gridCellStyleActiveHandler } from "~/pages/video/music/_context/init/grid-cell/style/active";
-import { gridCellStyleEmptyHandler } from "~/pages/video/music/_context/init/grid-cell/style/empty";
-import { TProgressKey } from "~/pages/video/music/_context/init/types";
+import { useMusicRefs } from "~/pages/video/music/_context/init";
+import { useGridDrill } from "~/hooks/grid/drill";
+import { gridStyleEmptyHandler } from "~/hooks/grid/style/empty";
+import { TProgressKey } from "~/pages/video/music/_context/init/refs/progress/types";
+import { gridStyleActiveHandler } from "~/hooks/grid/style/active";
 
 type TProps = {
   progressKey: TProgressKey;
@@ -24,11 +24,10 @@ export const VideoMusicSaveTimerCurrentRow: FC<
   stepsCount = STEPS_COUNT,
   timerKey,
 }) => {
-  const { progress, audio } =
-    useContextMusicInit();
+  const { progress, audio, schedule } =
+    useMusicRefs();
 
-  const handleGridCell =
-    useGridCellDrill();
+  const handleGridCell = useGridDrill();
   const handleUpdate = (
     elapsedMs: number
   ) => {
@@ -43,17 +42,17 @@ export const VideoMusicSaveTimerCurrentRow: FC<
         progressValue * stepsCount
       ) % stepsCount;
     if (
-      audio.progressStep[
+      schedule.progressStep[
         progressKey
       ] !== progressStep
     ) {
       if (
-        audio.progressStep[
+        schedule.progressStep[
           progressKey
         ] > progressStep
       ) {
         handleGridCell();
-        audio.progressStep[
+        schedule.progressStep[
           progressKey
         ] = -1;
         return;
@@ -69,13 +68,13 @@ export const VideoMusicSaveTimerCurrentRow: FC<
             const prevIndex = index - 1;
             const prev = arr[prevIndex];
             if (prev) {
-              gridCellStyleEmptyHandler(
+              gridStyleEmptyHandler(
                 prev,
                 prevIndex,
                 arr
               );
             }
-            gridCellStyleActiveHandler(
+            gridStyleActiveHandler(
               cell,
               index,
               arr
@@ -84,8 +83,9 @@ export const VideoMusicSaveTimerCurrentRow: FC<
         }
       );
 
-      audio.progressStep[progressKey] =
-        progressStep;
+      schedule.progressStep[
+        progressKey
+      ] = progressStep;
     }
 
     // progress[progressKey].set(0);

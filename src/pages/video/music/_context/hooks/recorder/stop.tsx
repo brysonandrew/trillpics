@@ -1,4 +1,4 @@
-import { useContextMusicInit } from "~/pages/video/music/_context/init";
+import { useMusicRefs } from "~/pages/video/music/_context/init";
 
 interface ICustomWindow extends Window {
   stream?: MediaStream;
@@ -12,7 +12,7 @@ declare const window: ICustomWindow;
 
 export const useRecorderStopHandler
  = () => {
-  const { destination } = useContextMusicInit();
+  const { audio:{destination} } = useMusicRefs();
 
   return async (event:Event) => {
     try {

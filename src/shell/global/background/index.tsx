@@ -11,10 +11,10 @@ export const ShellGlobalBackground: FC =
       >
         {/* <div
           style={{ opacity: 0.4 }}
-          className="fill _gradient-mesh"
+          className="fill _bi-mesh"
         /> */}
 
-        {/* <div style={{opacity: 0.05}} className="fill inset-0 _gradient-radial-inverted dark:opacity-20" /> */}
+        {/* <div style={{opacity: 0.05}} className="fill inset-0 _bi-radial-inverted dark:opacity-20" /> */}
       </div>
     );
   };

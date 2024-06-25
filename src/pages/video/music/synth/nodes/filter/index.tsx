@@ -4,8 +4,7 @@ import { NodesTemplate } from "~/pages/video/music/synth/nodes/template";
 
 export const NodesFilter = () => {
   return (
-    <NodesTemplate title="Filter">
-      <NodesFilterDropdowns/>
+    <NodesTemplate title="Filter" Input={NodesFilterDropdowns}>
       <NodesFilterSliders />
     </NodesTemplate>
   );

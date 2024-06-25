@@ -1,7 +1,5 @@
 import type { FC } from "react";
-import { steps } from "framer-motion";
 import { ChartsGridLabelsName } from "~/components/charts/grid/labels/name";
-import { ChartsGridLabelsSteps } from "~/components/charts/grid/labels/steps";
 import { UStepsKey } from "~/store/state/music/types";
 
 type TProps = {

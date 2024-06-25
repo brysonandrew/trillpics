@@ -7,10 +7,11 @@ import { box } from "~uno/rules/box";
 
 type TProps = {
   title: string;
+  Input: FC;
 };
 export const NodesTemplate: FC<
   PropsWithChildren<TProps>
-> = ({ children, title }) => {
+> = ({ children, title, Input }) => {
   return (
     <div
       className="relative column-stretch"
@@ -21,12 +22,12 @@ export const NodesTemplate: FC<
     >
       <div className="fill bg-black pointer-events-none" />
       <div className="fill _box-dots opacity-20 pointer-events-none" />
-      {/* <BackgroundMeshFlat
-        style={{ ...box.r.l }}
-      /> */}
-      <TypographySm>
-        {title}
-      </TypographySm>
+      <div className="row-space">
+        <TypographySm>
+          {title}
+        </TypographySm>
+        <Input />
+      </div>
       {children}
     </div>
   );

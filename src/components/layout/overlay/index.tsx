@@ -54,12 +54,12 @@ export const LayoutOverlay: FC<
                   )}
                   style={{ gap: box.m05 }}
                 >
-                  <h3 className="text-5xl sm:text-6xl xl:text-8xl char-gap-6 text-white-8 dark:text-black-2 font-sans uppercase _outline-filter">
+                  <h3 className="text-5xl sm:text-6xl xl:text-8xl char-gap-6 text-white-8 dark:text-black-2 font-sans uppercase _sf-outline">
                     {children}
                   </h3>
                   <div className="relative w-full">
                         <LinesHorizontal
-                          colorClass="_gradient-border"
+                          colorClass="_bi-border"
                           opacityClass="opacity-100"
                           sizeClass="border-t-4"
                         />

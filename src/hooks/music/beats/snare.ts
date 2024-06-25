@@ -6,12 +6,12 @@ import {
   TBeatValue,
   TPlayBeatsOptions,
 } from "~/hooks/music/beats/types";
-import { useContextMusicInit } from "~/pages/video/music/_context/init";
+import { useMusicRefs } from "~/pages/video/music/_context/init";
 const key: TBeatsStepsKey = "snare";
 
 export const useSnare = () => {
-  const { context, beatsMaster } =
-    useContextMusicInit();
+  const { audio:{context, gains:{beatsMaster}} } =
+    useMusicRefs();
   const isReady = useBufferInit(key, 2);
   const start =
     useSourceBufferStart(key);

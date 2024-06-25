@@ -13,6 +13,7 @@ import { IconsPlay } from "~/components/icons/playback/play";
 import { isBeatsKey } from "~/utils/validation/is/beats/key";
 import { box } from "~uno/rules/box";
 import { TypographyXxxs } from "~/components/layout/typography/xxxs";
+import { useMusicRefs } from "~/pages/video/music/_context/init";
 
 export const VideoMusicDrums: FC =
   () => {
@@ -20,14 +21,16 @@ export const VideoMusicDrums: FC =
       sidebarWidthOffset,
       width,
     } = useVideoStyle();
+    const { schedule } = useMusicRefs();
     const { beats: lookup } =
       useContextMusicReady();
     const s = box;
-    const { beats } = useTrillPicsStore(
-      ({ beats }) => ({
-        beats,
-      })
-    );
+    // const { beats } = useTrillPicsStore(
+    //   ({ beats }) => ({
+    //     beats,
+    //   })
+    // );
+    console.log(schedule.record.preset);
     return (
       <>
         <div
@@ -49,8 +52,8 @@ export const VideoMusicDrums: FC =
             ChartsGridLinesHorizontal
           }
           presets={
-            BEATS_PRESETS[
-              beats.presetKey
+            schedule.record.presets[
+              schedule.record.presetKey
             ]
           }
           includes={BEATS_KEYS}
@@ -74,7 +77,7 @@ export const VideoMusicDrums: FC =
             return (
               <button
                 key={stepsKey}
-                className="relative row-space gap-1 bg-main brightness-80 _gradient-mesh"
+                className="relative row-space gap-1 bg-main brightness-80 _bi-mesh"
                 onClick={() => {
                   const fn =
                     lookup[stepsKey];
@@ -90,8 +93,10 @@ export const VideoMusicDrums: FC =
                     box.m00625,
                   right: box.m003125,
                   padding: box.m00625,
-                  paddingRight: box.m025,
-                  paddingLeft: box.m0125,
+                  paddingRight:
+                    box.m025,
+                  paddingLeft:
+                    box.m0125,
                   transform: `translateX(${-box.m025}px)`,
                 }}
               >

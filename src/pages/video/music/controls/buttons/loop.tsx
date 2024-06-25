@@ -17,35 +17,35 @@ export const MusicControlsButtonsLoop: FC<
 > = () => {
   const { isRecording } =
     useContextMusicRecorder();
-  const { set, bpm, isLoop, sequence } =
-    useTrillPicsStore(
-      ({
-        set,
-        bpm,
-        isLoop,
-        sequence,
-      }) => ({
-        set,
-        bpm,
-        isLoop,
-        sequence,
-      })
-    );
+  // const { set, bpm, isLoop, sequence } =
+  //   useTrillPicsStore(
+  //     ({
+  //       set,
+  //       bpm,
+  //       isLoop,
+  //       sequence,
+  //     }) => ({
+  //       set,
+  //       bpm,
+  //       isLoop,
+  //       sequence,
+  //     })
+  //   );
   
   const handleClick = () => {
-    set((draft: TState) => {
-      draft.isLoop = !draft.isLoop;
-    });
+    // set((draft: TState) => {
+    //   draft.isLoop = !draft.isLoop;
+    // });
   };
   return (
     <PillB
       title={`loop ${"music"}`}
       disabled={isRecording}
-      classValue={
-        isLoop
-          ? "brightness-120"
-          : "brightness-70 grayscale-40"
-      }
+      // classValue={
+      //   isLoop
+      //     ? "brightness-120"
+      //     : "brightness-70 grayscale-40"
+      // }
       Icon={IconsLoop}
       onClick={handleClick}
     />

@@ -46,7 +46,7 @@ export const Counter: FC<
     >
       <span
         className={clsx(
-          "flex flex-row whitespace-nowrap text-white dark:text-black _outline-filter",
+          "flex flex-row whitespace-nowrap text-white dark:text-black _sf-outline",
           "text-xs uppercase font-sans"
         )}
       >

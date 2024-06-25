@@ -1,4 +1,10 @@
+import { formatRgbValue } from "@brysonandrew/color-base";
 import { resolveGradient } from "@brysonandrew/color-gradient";
+import {
+  BLACK_RGBS,
+  GRAY_RGBS,
+  WHITE_RGBS,
+} from "@brysonandrew/color-grayscale";
 import {
   boxBorderCss,
   resolveBoxBackground,
@@ -11,7 +17,7 @@ import {
 
 export const LINEAR_GRADIENT_SVG_ID =
   "linear-gradient-blue-pink-yellow-svg";
-  
+
 export const GRADIENT_BLUE_PINK_YELLOW_COLORS =
   [
     ...(Object.values(
@@ -25,6 +31,32 @@ export const GRADIENT_TEAL_YELLOW_PINK_COLORS =
       LIGHT_LOGO
     ) as TValues<typeof LIGHT_LOGO>),
   ] as const;
+
+const resolveMirror = (half: any[]) =>
+  [
+    ...half.slice(1),
+    ...half.reverse().slice(1),
+  ] as const;
+
+export const DARK_METAL_COLORS =
+  resolveMirror(
+    GRAY_RGBS.map(formatRgbValue)
+  );
+
+export const LIGHT_METAL_COLORS =
+  resolveMirror(
+    WHITE_RGBS.map(formatRgbValue)
+  );
+
+export const DARK_COLORS =
+  resolveMirror([
+    ...GRADIENT_BLUE_PINK_YELLOW_COLORS,
+  ]);
+
+export const LIGHT_COLORS =
+  resolveMirror([
+    ...GRADIENT_TEAL_YELLOW_PINK_COLORS,
+  ]);
 
 export const GRADIENT_BLUE_PINK_YELLOW =
   resolveGradient({
@@ -42,6 +74,34 @@ export const GRADIENT_TEAL_YELLOW_PINK =
       "to left top",
       ...GRADIENT_TEAL_YELLOW_PINK_COLORS,
     ],
+  });
+
+export const DARK_CONIC =
+  resolveGradient({
+    name: "conic-gradient",
+    parts: [
+      ...GRADIENT_BLUE_PINK_YELLOW_COLORS,
+    ],
+  });
+
+export const LIGHT_CONIC =
+  resolveGradient({
+    name: "conic-gradient",
+    parts: [
+      ...GRADIENT_BLUE_PINK_YELLOW_COLORS,
+    ],
+  });
+
+export const DARK_METAL_CONIC =
+  resolveGradient({
+    name: "conic-gradient",
+    parts: [...DARK_METAL_COLORS],
+  });
+
+export const LIGHT_METAL_CONIC =
+  resolveGradient({
+    name: "conic-gradient",
+    parts: [...LIGHT_METAL_COLORS],
   });
 
 export const RADIAL_BLUE_PINK_YELLOW =

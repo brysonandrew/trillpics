@@ -1,17 +1,17 @@
 import { key } from "localforage";
 import { useSynthSingle } from "react-synthwave";
-import { useContextMusicInit } from "~/pages/video/music/_context/init";
+import { useMusicRefs } from "~/pages/video/music/_context/init";
 
 type TConfig = any;
 export const useSourceBufferLfo = (
   config: TConfig
 ) => {
-  const {
-    master,
-    context,
-    bufferSourceRecord,
-    bufferRecord,
-  } = useContextMusicInit();
+  // const {
+  //   master,
+  //   context,
+  //   bufferSourceRecord,
+  //   bufferRecord,
+  // } = useMusicRefs();
   // const lfo = useSynthSingle(context, {
   //   type: "sine",
   //   frequency: bpm * (1 / 15),

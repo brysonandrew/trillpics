@@ -7,7 +7,7 @@ export const LightingGlow: FC<
 > = ({ ...props }) => {
   return (
     <LightingBase
-      lightingClass="_gradient-radial"
+      lightingClass="_bi-radial"
       {...props}
     />
   );

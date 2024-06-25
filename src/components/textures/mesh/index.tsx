@@ -18,7 +18,7 @@ export const TexturesMesh: FC<
   return (
     <div
       className={clsx(
-        "fill _gradient-mesh pointer-events-none",
+        "fill _bi-mesh pointer-events-none",
         opacityClassValue,
         classValue
       )}

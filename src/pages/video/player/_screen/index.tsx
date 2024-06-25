@@ -45,7 +45,7 @@ export const VideoPlayer_Screen =
         <AnimatePresence mode="wait">
           {isDownloadComplete && (
             <OverlayCenter>
-              <h3 className="dark:text-black text-white uppercase font-slab tracking-wide text-2xl md:text-6xl lg:text-8xl text-center _gradient-text">
+              <h3 className="dark:text-black text-white uppercase font-slab tracking-wide text-2xl md:text-6xl lg:text-8xl text-center _bi-text">
                 Download complete
               </h3>
             </OverlayCenter>

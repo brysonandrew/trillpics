@@ -1,9 +1,9 @@
 import {
   ChangeEventHandler,
   FC,
-  MutableRefObject,
+  memo,
+  PropsWithChildren,
   useEffect,
-  useMemo,
 } from "react";
 import clsx from "clsx";
 import { InputsBox } from "~/components/inputs/box";
@@ -17,7 +17,10 @@ import {
 } from "~/hooks/body-style/measure-text";
 import { isNull } from "~/utils/validation/is/null";
 import { InputsNumberInfo } from "~/components/inputs/number/info";
-import "./number.css";
+import { InputsNumberBox } from "~/components/inputs/number/box";
+import { InputsNumberBackground } from "~/components/inputs/number/background";
+import { useMusicRefs } from "~/pages/video/music/_context/init";
+import { InputsBoxTitle } from "~/components/inputs/box/title";
 
 const minWidth = 40;
 const maxWidth = 80;
@@ -28,22 +31,38 @@ export type TInputRangeProps = Record<
   "min" | "max" | "step",
   number
 >;
+export type TInputsNumberChildrenProps =
+  {
+    Box: FC<PropsWithChildren>;
+    Background: FC;
+    Info: FC;
+    Header: typeof InputsBox;
+    Title: typeof InputsBoxTitle;
+    number: JSX.Element;
+    slider: JSX.Element;
+  };
 export type TInputsNumberBaseProps =
   TInputRangeProps &
     TTitleProps & {
       defaultValue?: number | string;
     };
-type TProps = TInputProps &
+type TProps = Omit<
+  TInputProps,
+  "children"
+> &
   TInputsNumberBaseProps & {
     name: string;
     replacer?: (
       value: number
     ) => string;
     onUpdate: TUpdateNumberHandler;
+    children?(
+      props: TInputsNumberChildrenProps
+    ): JSX.Element;
   };
 export const InputsNumber: FC<
   TProps
-> = (props) => {
+> = ({ children, ...props }) => {
   const {
     min = MIN,
     max = MAX,
@@ -53,33 +72,27 @@ export const InputsNumber: FC<
     onUpdate,
     ...rest
   } = props;
-  const inputs = useMemo<{
-    slider: MutableRefObject<HTMLInputElement | null>;
-    number: MutableRefObject<HTMLInputElement | null>;
-  }>(() => {
-    return {
-      slider: { current: null },
-      number: { current: null },
-    };
-  }, []);
+
+  const { layout } = useMusicRefs();
+
   const handleMeasure =
     useMeasureTextWidth();
   const measureText = (
-    content = inputs.number.current
+    content = layout.number.current
       ?.value
   ) => {
     if (
-      !inputs.number.current ||
+      !layout.number.current ||
       !content
     )
       return;
-    const weight = inputs.number.current
+    const weight = layout.number.current
       .style.fontWeight as TFontWeight;
     const size =
-      inputs.number.current.style
+      layout.number.current.style
         .fontSize;
     const family =
-      inputs.number.current.style
+      layout.number.current.style
         .fontFamily;
 
     const width = handleMeasure({
@@ -98,7 +111,7 @@ export const InputsNumber: FC<
     if (width > maxWidth) {
       nextValue = maxWidth;
     }
-    inputs.number.current.style.width = `${nextValue}px`;
+    layout.number.current.style.width = `${nextValue}px`;
   };
 
   useEffect(() => {
@@ -109,16 +122,16 @@ export const InputsNumber: FC<
     nextValue: string
   ) => {
     if (
-      !inputs.number.current ||
-      !inputs.slider.current
+      !layout.number.current ||
+      !layout.slider.current
     ) {
       return null;
     }
 
-    inputs.number.current.value =
+    layout.number.current.value =
       nextValue;
 
-    inputs.slider.current.value =
+    layout.slider.current.value =
       nextValue;
   };
   const handleUpdate: TUpdateNumberHandler =
@@ -156,64 +169,92 @@ export const InputsNumber: FC<
     const next = Number(value);
     handleUpdate(next);
   };
+  const rangeProps = {
+    min,
+    max,
+    step,
+  } as const;
+
+  const Title = memo(() => (
+    <InputsBoxTitle>
+      {title}
+    </InputsBoxTitle>
+  ));
+
+  const Info = memo(() => (
+    <InputsNumberInfo {...rangeProps} />
+  ));
+
+  const number = (
+    <input
+      ref={layout.number}
+      type="number"
+      className={clsx(
+        "text-center text-xs font-slab",
+        "bg-black-02 backdrop-blur-lg",
+        "row border border-white-02 bg-black-02",
+        "border border-white-02 _bi-mesh"
+      )}
+      style={{
+        borderRadius: box.radius.m,
+        height: box.m0625,
+        lineHeight: box.m0625,
+        minWidth,
+        maxWidth,
+        ...box.py(box.m00625),
+        ...box.px(box.m0125),
+        paddingLeft: box.m025,
+      }}
+      title={title}
+      onChange={handleInputChange}
+      {...rangeProps}
+      {...rest}
+    />
+  );
+
+  const slider = (
+    <div className="relative h-5 grow opacity">
+      <input
+        type="range"
+        className={clsx(
+          "fill",
+          "appearance-none bg-transparent [&::-webkit-slider-runnable-track]:rounded-[8px] [&::-webkit-slider-runnable-track]:_bi-radial [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:(w-4 h-4) [&::-webkit-slider-thumb]:rounded-full [&::-webkit-slider-thumb]:(relative _bi-conic-metal pointer-cursor z-10)"
+        )}
+        ref={layout.slider}
+        title={title ?? ""}
+        // style={{ ...box.r.l }}
+        onChange={handleSliderChange}
+        defaultValue={Number(
+          props.defaultValue
+        )}
+        {...rangeProps}
+      />
+      <InputsNumberBackground/>
+    </div>
+  );
+
+  const _ = {
+    Box: InputsNumberBox,
+    Header: InputsBox,
+    Title,
+    number,
+    Background: InputsNumberBackground,
+    slider,
+    Info,
+  } as const;
+
+  if (children)
+    return <>{children(_)}</>;
 
   return (
-    <div style={{ gap: box.m0125 }}>
-      <InputsBox title={title}>
-        <input
-          ref={inputs.number}
-          type="number"
-          className={clsx(
-            "text-center bg-black-02 backdrop-blur-lg text-xs font-slab",
-            "border border-white-02 _gradient-mesh"
-          )}
-          style={{
-            borderRadius: box.radius.m,
-            height: box.m0625,
-            lineHeight: box.m0625,
-            minWidth,
-            maxWidth,
-            ...box.px(box.m0125),
-          }}
-          title={title}
-          min={min}
-          max={max}
-          step={step}
-          onChange={handleInputChange}
-          {...rest}
-        />
-      </InputsBox>
-      <div className="relative h-5 grow opacity">
-        <input
-          type="range"
-          className={clsx(
-            "fill",
-            "appearance-none bg-transparent [&::-webkit-slider-runnable-track]:rounded-full [&::-webkit-slider-runnable-track]:_gradient-radial [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:(w-4 h-4) [&::-webkit-slider-thumb]:rounded-full [&::-webkit-slider-thumb]:bg-gray"
-          )}
-          ref={inputs.slider}
-          title={title ?? ""}
-          style={{ ...box.r.xl }}
-          min={min}
-          max={max}
-          step={step}
-          defaultValue={Number(
-            props.defaultValue
-          )}
-          onChange={handleSliderChange}
-        />
-        <div
-          className="fill _gradient-mesh pointer-events-none opacity-90"
-          style={{
-            ...box.r.xl,
-            ...box.ix(-box.m00625),
-          }}
-        />
-      </div>
-      <InputsNumberInfo
-        min={min}
-        max={max}
-        step={step}
-      />
-    </div>
+    <_.Box>
+      <_.Header>
+        <_.Title />
+        {_.number}
+      </_.Header>
+      {_.slider}
+      {/* <_.Background /> */}
+      <_.Info />
+    </_.Box>
   );
 };

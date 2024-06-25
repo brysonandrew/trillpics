@@ -1,4 +1,4 @@
-import { useNodesPattern } from "~/hooks/music/midis/scale/pattern";
+import { useNodesPattern } from "~/hooks/scale/pattern";
 
 export const useNodesRandom = () => {
   const handlePattern =

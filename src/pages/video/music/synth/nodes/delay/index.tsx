@@ -1,4 +1,4 @@
-import { NodesDelaySliders } from "~/pages/video/music/synth/nodes/delay/sliders";
+import { NodesDelayNumbers } from "~/pages/video/music/synth/nodes/delay/numbers";
 import { NodesTemplate } from "~/pages/video/music/synth/nodes/template";
 
 export type TDelayNodeKey = keyof Pick<
@@ -7,8 +7,15 @@ export type TDelayNodeKey = keyof Pick<
 >;
 export const NodesDelay = () => {
   return (
-    <NodesTemplate title="delay line">
-      <NodesDelaySliders />
-    </NodesTemplate>
+    <NodesDelayNumbers>
+      {(Input, children) => (
+        <NodesTemplate
+          title="delay line"
+          Input={Input}
+        >
+          {children}
+        </NodesTemplate>
+      )}
+    </NodesDelayNumbers>
   );
 };

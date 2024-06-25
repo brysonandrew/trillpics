@@ -13,7 +13,7 @@ export const BackgroundRadial: FC<
   };
   return (
     <div
-      className={clsx("absolute -inset-0.0675 dark:(bg-black bg-image-none) _gradient-radial",classValue)}
+      className={clsx("absolute -inset-0.0675 dark:(bg-black bg-image-none) _bi-radial",classValue)}
       {...commonProps}
     />
   );

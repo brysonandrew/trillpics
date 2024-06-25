@@ -55,7 +55,7 @@ export const VideoMusicSaveSaveLog: FC =
           <LinesHorizontalLight
             style={{ width: box.m }}
           />
-          <div className="grow whitespace-nowrap text-xs _outline-filter">
+          <div className="grow whitespace-nowrap text-xs _sf-outline">
             {isRecording ? (
               <>
                 Saving... Please wait

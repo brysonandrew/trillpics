@@ -1,13 +1,16 @@
 import { useEffect } from "react";
-import { useContextMusicInit } from "~/pages/video/music/_context/init";
+import { useMusicRefs } from "~/pages/video/music/_context/init";
 import { useRecorderDataAvailableHandler } from "~/pages/video/music/_context/hooks/recorder/data-available";
 import { useRecorderSaveHandler } from "~/pages/video/music/_context/hooks/recorder/save";
 import { useRecorderStopHandler } from "~/pages/video/music/_context/hooks/recorder/stop";
 
 export const useRecorderListeners =
   () => {
-    const { recorder } =
-      useContextMusicInit();
+    const {
+      audio: {
+        save: { recorder },
+      },
+    } = useMusicRefs();
     const handleSave =
       useRecorderSaveHandler();
     const handleStop =

@@ -35,7 +35,7 @@ export const TimerCurrentProgress: FC<TProps> =
             opacity,
           }}
           className={clsx(
-            "fill _gradient-radial pointer-events-none"
+            "fill _bi-radial pointer-events-none"
             // classValue ?? "inset-1"
           )}
         >
@@ -43,7 +43,7 @@ export const TimerCurrentProgress: FC<TProps> =
             style={{
               borderRadius,
             }}
-            className="absolute -inset-1 _gradient-radial-inverted blur-lg"
+            className="absolute -inset-1 _bi-radial-inverted blur-lg"
           />
         </motion.div>
       );

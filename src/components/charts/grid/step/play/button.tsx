@@ -7,11 +7,11 @@ import { NOOP } from "@brysonandrew/utils-function";
 import { TButtonMotionProps } from "@brysonandrew/config-types";
 import { TMidiValue } from "~/hooks/music/midis/types";
 import clsx from "clsx";
-import { TGridCellsBaseConfig } from "~/pages/video/music/_context/init/grid-cell/types";
 import { useHoverKey } from "~/hooks/use-hover-key";
+import { TGridsBaseConfig } from "~/pages/video/music/_context/init/refs/grid/types";
 
 type TProps<T extends TMusicKey> =
-  TGridCellsBaseConfig<T> &
+  TGridsBaseConfig<T> &
     TButtonMotionProps & {
       midi: TMidiValue;
       hoverKey: string;

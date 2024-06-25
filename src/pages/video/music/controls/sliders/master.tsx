@@ -1,13 +1,13 @@
 import type { FC } from "react";
 import { TUpdateNumberHandler } from "~/components/inputs/slider/types";
 import { SliderUncontrolled } from "~/components/inputs/slider/uncontrolled";
-import { useContextMusicInit } from "~/pages/video/music/_context/init";
+import { useMusicRefs } from "~/pages/video/music/_context/init";
 import { useTrillPicsStore } from "~/store/middleware";
 
 export const MusicControlsSlidersMaster: FC =
   () => {
-    const { master } =
-      useContextMusicInit();
+    const { audio:{ gains:{ master } } } =
+      useMusicRefs();
     const { set } = useTrillPicsStore(
       ({ set }) => ({
         set,

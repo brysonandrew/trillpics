@@ -3,6 +3,7 @@ import {
   boxBackgroundCss,
   boxBorderCss,
 } from "@brysonandrew/utils-box";
+import { GRADIENT_CONIC_RULES } from "./conic";
 import {
   GRADIENT_MESH_DARK_CSS,
   GRADIENT_MESH_COMMON_CSS,
@@ -22,6 +23,7 @@ import {
 } from "../filters/outline";
 
 export const GRADIENTS: Rule[] = [
+  ...GRADIENT_CONIC_RULES,
   [
     "_dark-outline-filter",
     {

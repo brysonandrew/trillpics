@@ -54,7 +54,7 @@ export const PillBText: FC<
         {(isIdle ||
           isHover(TITLE_HOVER_KEY)) && (
           <motion.div
-            className="fill bg-white-2 dark:bg-white _gradient-radial z-0 pointer-events-none"
+            className="fill bg-white-2 dark:bg-white _bi-radial z-0 pointer-events-none"
             initial={{ opacity: 0 }}
             animate={{
               opacity: 0.6,
@@ -80,14 +80,14 @@ export const PillBText: FC<
   );
 };
 {
-  /* <div className="uppercase font-sans _outline-filter lg:(text-sm whitespace-nowrap) pointer-events-none">
+  /* <div className="uppercase font-sans _sf-outline lg:(text-sm whitespace-nowrap) pointer-events-none">
 <div
-  className="absolute -inset-y-4 -inset-x-1 _gradient-radial opacity-10 filter-blur-md pointer-events-none"
+  className="absolute -inset-y-4 -inset-x-1 _bi-radial opacity-10 filter-blur-md pointer-events-none"
   style={{
     borderRadius,
   }}
 />
-<span className="relative dark:text-black text-white-8 _outline-filter whitespace-nowrap pointer-events-none">
+<span className="relative dark:text-black text-white-8 _sf-outline whitespace-nowrap pointer-events-none">
   {children}
 </span>
 </div> */

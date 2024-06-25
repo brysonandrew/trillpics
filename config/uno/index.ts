@@ -37,6 +37,16 @@ const width = {
   xxxxl: "2200px",
 } as const;
 
+export const FONT_SIZES = {
+  ...THEME_FONT_SIZE,
+  xxxxs: ["0.4rem", "0.625rem"],
+  xxxs: ["0.65rem", "0.75rem"],
+  xxs: ["0.7rem", "1.25rem"],
+  "4xl": ["2.25rem", "2.5rem"],
+  "4.5xl": ["2.5rem", "2.75rem"],
+  "11xl": ["14rem", "17rem"],
+} as const;
+
 export const theme = resolveTheme({
   colors: COLOR_VARS_RECORD,
   spacing: SPACING,
@@ -45,14 +55,7 @@ export const theme = resolveTheme({
   },
   width,
   screen,
-  fontSize: {
-    ...THEME_FONT_SIZE,
-    xxxs: ["0.6rem", "0.75rem"],
-    xxs: ["0.7rem", "0.125rem"],
-    "4xl": ["2.25rem", "2.5rem"],
-    "4.5xl": ["2.5rem", "2.75rem"],
-    "11xl": ["14rem", "17rem"],
-  },
+  fontSize: FONT_SIZES,
   extend: {
     keyframes: {
       "ant-walk": {

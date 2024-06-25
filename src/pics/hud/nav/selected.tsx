@@ -44,7 +44,7 @@ export const PicsHudFooterNavSelected: FC<
     
 
       
-      <Icon classValue='_outline-filter'  />
+      <Icon classValue='_sf-outline'  />
       {!container.isTablet && (
         <PillBText layoutId={title}>
           {title}

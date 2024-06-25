@@ -1,5 +1,5 @@
 import type { FC } from "react";
-import { useContextMusicInit } from "~/pages/video/music/_context/init";
+import { useMusicRefs } from "~/pages/video/music/_context/init";
 import { TimerCurrentProgress } from "~/pages/video/player/_controls/playback/progress";
 import { useContextReady } from "~/shell/ready/context";
 import { useVideoStyle } from "~/pages/video/style";
@@ -8,7 +8,7 @@ import { box } from "~uno/rules/box";
 export const VideoMusicSaveProgress: FC =
   () => {
     const { progress } =
-      useContextMusicInit();
+      useMusicRefs();
     const { screen } =
       useContextReady();
     const {
@@ -38,7 +38,7 @@ export const VideoMusicSaveProgress: FC =
           borderRadius={box.radius.xl}
         />
         <div
-          className="fill _gradient-mesh bg-black-05"
+          className="fill _bi-mesh bg-black-05"
           style={{
             borderRadius: box.radius.xl,
           }}

@@ -1,21 +1,21 @@
 import { MIDIS } from "~/hooks/music/midis/constants";
 import { usePlaySchedule } from "~/hooks/music/play/schedule";
 import { useContextMusicReady } from "~/pages/video/music/_context/ready";
-import { useContextMusicInit } from "~/pages/video/music/_context/init";
+import { useMusicRefs } from "~/pages/video/music/_context/init";
 
 export const usePlayMidis = () => {
   
   const { midis: lookup } =
     useContextMusicReady();
-  // const { steps, synth } =
+  // const { schedule, synth } =
   //   useTrillPicsStore(
-  //     ({ steps, synth }) => ({
+  //     ({ schedule, synth }) => ({
   //       steps,
   //       synth,
   //     })
   //   );
-  const { stepsRecord } =
-    useContextMusicInit();
+  const { schedule } =
+    useMusicRefs();
 
   const result = usePlaySchedule({
     key: "midis",
@@ -23,10 +23,10 @@ export const usePlayMidis = () => {
     lookup,
     // record: {
     //   synth:
-    //     stepsRecord.steps,
+    //     schedule.record.steps,
     // },
     options: {
-      ...stepsRecord.synth,
+      ...schedule.record.synth,
     },
   });
 

@@ -37,11 +37,11 @@ export const SliderStyled = forwardRef<
         >
           <SliderPrimitive.Track
             className={cx(
-              "relative _gradient-mesh bg-white-4 dark:bg-black w-full grow overflow-hidden rounded-full"
+              "relative _bi-mesh bg-white-4 dark:bg-black w-full grow overflow-hidden rounded-full"
             )}
             style={{ height: box.m05 }}
           >
-            <SliderPrimitive.Range className="absolute h-full _gradient-radial opacity-50" />
+            <SliderPrimitive.Range className="absolute h-full _bi-radial opacity-50" />
             <PlayerBackgroundMesh />
           </SliderPrimitive.Track>
           {value.map((_, i) => (

@@ -10,7 +10,7 @@ import { TypographyXxxs } from "~/components/layout/typography/xxxs";
 import { ChartsGridPlayButton } from "~/components/charts/grid/step/play/button";
 import { encryptMidiHoverKey } from "~/components/charts/grid/to-midi-hover-key";
 import { midiValueToNumber } from "~/utils/music/midi";
-import { useContextMusicInit } from "~/pages/video/music/_context/init";
+import { useMusicRefs } from "~/pages/video/music/_context/init";
 
 export const VideoMusicSynth: FC =
   () => {
@@ -18,11 +18,11 @@ export const VideoMusicSynth: FC =
       sidebarWidthOffset,
       width,
     } = useVideoStyle();
-    const { stepsRecord } =
-      useContextMusicInit();
-    // const { steps, synth } =
+    const { schedule } =
+      useMusicRefs();
+    // const { schedule, synth } =
     //   useTrillPicsStore(
-    //     ({ steps, synth }) => ({
+    //     ({ schedule, synth }) => ({
     //       steps,
     //       synth,
     //     })
@@ -51,7 +51,7 @@ export const VideoMusicSynth: FC =
           musicKey="midis"
           Background={ChartsGridStaff}
           presets={{
-            synth: stepsRecord.steps,
+            synth: schedule.record.steps,
           }}
           style={{
             left:
@@ -80,7 +80,8 @@ export const VideoMusicSynth: FC =
               >
                 {(index) => {
                   const midi =
-                    (stepsRecord.synth.midi ?? 0) +
+                    (schedule.record.synth
+                      .midi ?? 0) +
                     index;
                   const n =
                     midiValueToNumber(

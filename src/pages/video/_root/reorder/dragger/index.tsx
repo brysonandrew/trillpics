@@ -101,7 +101,7 @@ export const _RootReorderDragger: FC<
         top: 0,
       }}
       className={clsx(
-        "center absolute rounded-md _gradient-radial",
+        "center absolute rounded-md _bi-radial",
         // isHover(title)
         //   ? "grayscale-100"
         //   : ""

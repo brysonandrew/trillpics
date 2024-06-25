@@ -14,8 +14,8 @@ export const ScreenTooSmallOverlay: FC =
             <>
               <div className="fill bg-main-inverted" />
               <div className="fill _box-dots opacity-50" />
-              <div className="fill _gradient-linear opacity-40" />
-              <div className="fill _gradient-mesh opacity-60" />
+              <div className="fill _bi-linear opacity-40" />
+              <div className="fill _bi-mesh opacity-60" />
             </>
           }
           direction="rtl"

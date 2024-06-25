@@ -6,8 +6,10 @@ import { NodesTemplate } from "~/pages/video/music/synth/nodes/template";
 export const NodesOscillator: FC =
   () => {
     return (
-      <NodesTemplate title="Oscillator">
-        <NodesOscillatorDropdowns />
+      <NodesTemplate
+        title="Oscillator"
+        Input={NodesOscillatorDropdowns}
+      >
         <NodesOscillatorNumbers />
       </NodesTemplate>
     );

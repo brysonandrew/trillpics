@@ -1,10 +1,13 @@
 import { usePlayBeats } from "~/hooks/music/play/beats";
 import { usePlayMidis } from "~/hooks/music/play/midis";
-import { useContextMusicInit } from "~/pages/video/music/_context/init";
+import { useMusicRefs } from "~/pages/video/music/_context/init";
 
 export const useMusicPlay = () => {
-  const { recorder } =
-    useContextMusicInit();
+  const {
+    audio: {
+      save: { recorder },
+    },
+  } = useMusicRefs();
   const playBeats = usePlayBeats();
   const playNodes = usePlayMidis();
   const isPlaying =

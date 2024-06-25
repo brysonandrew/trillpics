@@ -1,16 +1,26 @@
 import type { FC } from "react";
-import { TDivProps } from "@brysonandrew/config-types";
 import clsx from "clsx";
+import {
+  TTypographyProps,
+  Typography,
+} from "~/components/layout/typography";
 
 export const TypographyXxs: FC<
-  TDivProps
-> = ({ classValue, children, ...props }) => {
+  TTypographyProps
+> = ({
+  classValue,
+  children,
+  ...props
+}) => {
   return (
-    <div
-      className={clsx("relative text-center leading-none text-xxs uppercase font-sans",classValue)}
+    <Typography
+    classValue={clsx(
+        "relative leading-none text-xxxs uppercase font-sans",
+        classValue ?? "text-center"
+      )}
       {...props}
     >
       {children}
-    </div>
+    </Typography>
   );
 };

@@ -1,17 +1,22 @@
 import type { FC } from "react";
 import { SequenceNumber } from "~/pages/video/music/synth/sequence/numbers/number";
-import { useTrillPicsStore } from "~/store/middleware";
+import { useMusicRefs } from "~/pages/video/music/_context/init";
 export const MusicSequenceNumbers: FC =
   () => {
     const {
-      sequence,
-    } = useTrillPicsStore(
-      ({
-        sequence,
-      }) => ({
-        sequence,
-      })
-    );
+      schedule: {
+        record: { sequence },
+      },
+    } = useMusicRefs();
+    // const {
+    //   sequence,
+    // } = useTrillPicsStore(
+    //   ({
+    //     sequence,
+    //   }) => ({
+    //     sequence,
+    //   })
+    // );
     return (
       <>
         <SequenceNumber

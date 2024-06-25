@@ -1,9 +1,9 @@
-import { useContextMusicInit } from "~/pages/video/music/_context/init";
+import { useMusicRefs } from "~/pages/video/music/_context/init";
 
 export const useRecorderDataAvailableHandler =
   () => {
-    const { audio } =
-      useContextMusicInit();
+    const { audio:{save} } =
+      useMusicRefs();
     const handler = (
       event: BlobEvent
     ) => {
@@ -12,8 +12,8 @@ export const useRecorderDataAvailableHandler =
       );
       console.dir(event);
       if (event.data?.size > 0) {
-        audio.chunks = [
-          ...audio.chunks,
+        save.chunks = [
+          ...save.chunks,
           event.data,
         ];
       }

@@ -9,28 +9,23 @@ import { DEFAULT_BEATS_SLIDER_OPTIONS } from "~/store/state/music/constants";
 import { TMusicState } from "~/store/state/music/types";
 import { TStateHandler } from "~/store/types";
 
-const steps = resolveMidiSteps({
-  ...DEFAULT_SEQUENCE_OPTIONS,
-  ...DEFAULT_SCALE_OPTIONS,
-});
 
 export const musicState: TStateHandler<
   TMusicState
 > = () => ({
   bpm: 80,
   isLoop: false,
-  steps,
-  sequence: DEFAULT_SEQUENCE_OPTIONS,
-  scale: DEFAULT_SCALE_OPTIONS,
-  synth: {
-    ...DEFAULT_MULTI_SYNTH_OPTIONS,
-    ...DEFAULT_SYNTH_OPTIONS,
-  },
-  beats: {
-    presetKey: "disco",
-    ...DEFAULT_BEATS_SLIDER_OPTIONS,
-  },
-
+  // steps,
+  // sequence: DEFAULT_SEQUENCE_OPTIONS,
+  // scale: DEFAULT_SCALE_OPTIONS,
+  // synth: {
+  //   ...DEFAULT_MULTI_SYNTH_OPTIONS,
+  //   ...DEFAULT_SYNTH_OPTIONS,
+  // },
+  // beats: {
+  //   presetKey: "disco",
+  //   ...DEFAULT_BEATS_SLIDER_OPTIONS,
+  // },
   recording: null,
   playingKeys: [],
 });

@@ -65,7 +65,7 @@ export const NavCountersMusic: FC<
         )}
       </>
       <div
-        className="fill _gradient-mesh opacity-100"
+        className="fill _bi-mesh opacity-100"
         style={{
           borderRadius,
         }}

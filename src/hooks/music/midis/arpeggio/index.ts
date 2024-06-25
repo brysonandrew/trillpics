@@ -1,22 +1,23 @@
-import { useMemo } from "react";
 import { useGainNode } from "~/hooks/music/midis/gains/hook";
-import { useBasicOscillatorStart } from "~/pages/video/music/synth/nodes/oscillator/hooks/scheduling/start";
 import {
   TMidiValue,
   TPlayMidisOptions,
 } from "~/hooks/music/midis/types";
-import { useContextMusicInit } from "~/pages/video/music/_context/init";
+import { useBasicOscillatorStart } from "~/pages/video/music/synth/nodes/oscillator/hooks/scheduling/start";
+import { useMusicRefs } from "~/pages/video/music/_context/init";
 
 export const useArpeggio = () => {
   const { start, stop } =
     useBasicOscillatorStart();
   const {
-    context,
-    midisMaster,
-    delay,
-    filter,
-    oscillator,
-  } = useContextMusicInit();
+    audio: {
+      context,
+      gains: { midisMaster },
+      delays: { delay },
+      filters: { filter },
+      oscillator,
+    },
+  } = useMusicRefs();
   // const delayTime = 0.99; // 0.000001; //0.1;
   // const Q = 1;
 
@@ -60,10 +61,10 @@ export const useArpeggio = () => {
     gainNode1.gain.value =
       (options.volume ?? 1) * 0.1;
 
-      gainNode1.connect(filter);
-      filter.connect(delay);
+    gainNode1.connect(filter);
+    filter.connect(delay);
 
-      delay.connect(midisMaster)
+    delay.connect(midisMaster);
 
     // delay.delayTime.setValueAtTime(
     //   0.001,
@@ -79,3 +80,4 @@ export const useArpeggio = () => {
     stop: handleStop,
   };
 };
+

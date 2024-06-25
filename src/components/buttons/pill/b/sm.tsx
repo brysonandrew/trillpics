@@ -44,7 +44,7 @@ export const PillBSm: FC<TProps> = ({
       {...props}
     >
       <div
-        className="absolute -inset-0.125 _gradient-radial"
+        className="absolute -inset-0.125 _bi-radial"
         style={{ borderRadius }}
       />
       <ButtonPillBIcon

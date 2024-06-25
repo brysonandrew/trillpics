@@ -1,23 +1,20 @@
 import {
   createContext,
   FC,
-  MutableRefObject,
   useContext,
 } from "react";
-import {
-  TMusicInitContext,
-  TUpdateStepsRecord,
-} from "~/pages/video/music/_context/init/types";
-import { useMusicInitProviderRefs } from "~/pages/video/music/_context/init/refs";
-import { useOscillator } from "~/pages/video/music/_context/init/oscillator";
-import { TMidiValues } from "~/hooks/music/midis/types";
-import { TScaleKey } from "~/constants/scales";
+import { TMusicInitContext } from "~/pages/video/music/_context/init/types";
+import { useRefsProgress } from "~/pages/video/music/_context/init/refs/progress";
+import { useRefsAudio } from "~/pages/video/music/_context/init/refs/audio";
+import { useRefsLayout } from "~/pages/video/music/_context/init/refs/layout";
+import { useRefsSchedule } from "~/pages/video/music/_context/init/refs/schedule";
+import { useRefsGrid } from "~/pages/video/music/_context/init/refs/grid";
 
 const Context =
   createContext<TMusicInitContext>(
     {} as TMusicInitContext
   );
-export const useContextMusicInit =
+export const useMusicRefs =
   (): TMusicInitContext =>
     useContext<TMusicInitContext>(
       Context
@@ -29,55 +26,55 @@ type TProviderProps = {
 export const MusicInitProvider: FC<
   TProviderProps
 > = ({ children }) => {
-  const {
-    context,
-    master,
-    beatsMaster,
-    midisMaster,
-    bufferSourceRecord,
-    bufferRecord,
-    destination,
-    recorder,
-    gridCellsRecord,
-    stepsRecord,
-    progress,
-    filter,
-    delay,
-    scroll,
-    ...audio
-  } = useMusicInitProviderRefs();
-  const oscillator =
-    useOscillator(context);
-  const updateStepRecord: TUpdateStepsRecord =
-    (
-      nextSteps: TMidiValues,
-      nextScaleKey: TScaleKey
-    ) => {
-      stepsRecord.steps = nextSteps;
-      stepsRecord.scale.key =
-        nextScaleKey;
-    };
+  const audio = useRefsAudio();
+  const grid = useRefsGrid();
+  const layout = useRefsLayout();
+  const progress = useRefsProgress();
+  const schedule = useRefsSchedule();
+
+  // const {
+  //   context,
+  //   master,
+  //   beatsMaster,
+  //   midisMaster,
+  //   bufferSourceRecord,
+  //   bufferRecord,
+  //   destination,
+  //   recorder,
+  //   grid,
+  //   schedule.record,
+  //   progress,
+  //   filter,
+  //   delay,
+  //   scroll,
+  //   ...audio
+  // } = useMusicInitProviderRefs();
 
   return (
     <Context.Provider
       value={{
-        context,
-        master,
-        midisMaster,
-        destination,
-        recorder,
-        filter,
-        delay,
         audio,
-        oscillator,
+        grid,
+        layout,
         progress,
-        bufferSourceRecord,
-        bufferRecord,
-        gridCellsRecord,
-        stepsRecord,
-        updateStepRecord,
-        beatsMaster,
-        scroll,
+        schedule,
+        // context,
+        // master,
+        // midisMaster,
+        // destination,
+        // recorder,
+        // filter,
+        // delay,
+        // audio,
+        // oscillator,
+        // progress,
+        // bufferSourceRecord,
+        // bufferRecord,
+        // grid,
+        // schedule.record,
+        // updateStepRecord,
+        // beatsMaster,
+        // scroll,
       }}
     >
       {children}

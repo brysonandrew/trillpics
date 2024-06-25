@@ -1,6 +1,6 @@
 import type { FC } from "react";
-import { SelectStyled } from "~/components/inputs/select/styled";
-import { useNodesPattern } from "~/hooks/music/midis/scale/pattern";
+import { InputsSelect } from "~/components/inputs/select";
+import { useNodesPattern } from "~/hooks/scale/pattern";
 import { SCALE_PATTERNS } from "~/pages/video/music/synth/scale/constants";
 
 export const MusicScalePattern: FC =
@@ -9,7 +9,7 @@ export const MusicScalePattern: FC =
       useNodesPattern();
     return (
     
-      <SelectStyled
+      <InputsSelect
         name="melody.scale.pattern"
         title="pattern"
         placeholder="melody patterns"

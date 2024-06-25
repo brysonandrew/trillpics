@@ -7,10 +7,9 @@ import { TInputProps } from "~/types/inputs";
 import { InputsNumber } from "~/components/inputs/number";
 import { resolveMidiSteps } from "~/constants/music/midi/steps";
 import { TUpdateNumberHandler } from "~/components/inputs/slider/types";
-import { useContextMusicInit } from "~/pages/video/music/_context/init";
-import { useGridCellMidi } from "~/pages/video/music/_context/init/grid-cell/midi";
-import { useGridCellDrill } from "~/pages/video/music/_context/init/grid-cell/drill";
-import { resolveMidiNumber } from "~/utils/midi";
+import { useMusicRefs } from "~/pages/video/music/_context/init";
+import { useGridMidi } from "~/hooks/grid/midi";
+import { useGridDrill } from "~/hooks/grid/drill";
 const MIN = 0;
 const MAX = 8;
 const STEP = 0.1;
@@ -31,29 +30,29 @@ export const SequenceNumber: FC<
   defaultValue,
   ...props
 }) => {
-  const { stepsRecord } =
-    useContextMusicInit();
+  const { schedule } =
+    useMusicRefs();
   const handleNextSteps =
-    useGridCellMidi();
+    useGridMidi();
   const handleGridCell =
-    useGridCellDrill();
+    useGridDrill();
   const handleUpdate: TUpdateNumberHandler =
     (value) => {
       const partial: Partial<TSequenceOptions> =
         { [optionsKey]: value };
-      stepsRecord.sequence = {
-        ...stepsRecord.sequence,
+      schedule.record.sequence = {
+        ...schedule.record.sequence,
         ...partial,
       };
       const config = {
-        ...stepsRecord.scale,
-        ...stepsRecord.sequence,
+        ...schedule.record.scale,
+        ...schedule.record.sequence,
       };
       const nextSteps =
         resolveMidiSteps(config);
-      console.log(stepsRecord.steps);
+      console.log(schedule.record.steps);
       handleNextSteps(nextSteps);
-      stepsRecord.steps = nextSteps;
+      schedule.record.steps = nextSteps;
 
       // handleGridCell();
     };

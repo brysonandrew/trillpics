@@ -2,7 +2,6 @@ import type { FC } from "react";
 import { NodesDelay } from "~/pages/video/music/synth/nodes/delay";
 import { NodesFilter } from "~/pages/video/music/synth/nodes/filter";
 import { NodesOscillator } from "~/pages/video/music/synth/nodes/oscillator";
-import { useVideoStyle } from "~/pages/video/style";
 import { box } from "~uno/rules/box";
 
 export const MusicSynthNodes: FC =

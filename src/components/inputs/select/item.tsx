@@ -5,10 +5,9 @@ import {
   TClassValueProps,
   TPropsWithChildren,
 } from "@brysonandrew/config-types";
-import { TypographyXxs } from "~/components/layout/typography/xxs";
 import { box } from "~uno/rules/box";
-import * as Select from "@radix-ui/react-select";
 import { TypographyXxxs } from "~/components/layout/typography/xxxs";
+import * as Select from "@radix-ui/react-select";
 
 export const SelectItem = forwardRef<
   HTMLDivElement,

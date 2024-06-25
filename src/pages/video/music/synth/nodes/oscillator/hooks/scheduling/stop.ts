@@ -1,12 +1,15 @@
 import { TBeatsKey } from "~/hooks/music/beats/types";
-import { useContextMusicInit } from "~/pages/video/music/_context/init";
+import { useMusicRefs } from "~/pages/video/music/_context/init";
 import { isDefined } from "~/utils/validation/is/defined";
 
 export const useSourceBufferStop = (
   key: TBeatsKey
 ) => {
-  const { bufferSourceRecord } =
-    useContextMusicInit();
+  const {
+    audio: {
+      drums: { bufferSourceRecord },
+    },
+  } = useMusicRefs();
   const handler = (
     stepIndex?: number
   ) => {

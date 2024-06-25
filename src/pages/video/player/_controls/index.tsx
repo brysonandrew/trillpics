@@ -24,13 +24,13 @@ export const VideoPlayer_Controls =
         >
           <PlayerBackgroundOpaque />
           <div
-            className="absolute inset-0 _gradient-radial opacity-70"
+            className="absolute inset-0 _bi-radial opacity-70"
             style={{
               borderRadius,
             }}
           />
           <PlayerBackground />
-          <div className="fill bg-black-05 _gradient-mesh opacity-20" />
+          <div className="fill bg-black-05 _bi-mesh opacity-20" />
           <PlaybackProgressSeeker />
         </div>
       </>

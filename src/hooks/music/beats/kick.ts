@@ -3,15 +3,15 @@ import {
   TBeatValue,
   TPlayBeatsOptions,
 } from "~/hooks/music/beats/types";
-import { useContextMusicInit } from "~/pages/video/music/_context/init";
+import { useMusicRefs } from "~/pages/video/music/_context/init";
 import { useSourceBufferStart } from "~/hooks/music/beats/hooks/source-buffer/start";
 import { useBufferInit } from "~/hooks/music/beats/hooks/buffer/init";
 import { useSourceBufferStop } from "~/hooks/music/beats/hooks/source-buffer/stop";
 const key: TBeatsStepsKey = "kick";
 
 export const useKick = () => {
-  const { context, beatsMaster } =
-    useContextMusicInit();
+  const { audio:{context,gains:{beatsMaster}},  } =
+    useMusicRefs();
   const isReady = useBufferInit(key, 0);
   const start =
     useSourceBufferStart(key);

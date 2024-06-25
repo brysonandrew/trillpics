@@ -1,15 +1,15 @@
 import type { StaticShortcutMap } from "unocss";
 import { SHORTCUTS as _SHORTCUTS } from "@brysonandrew/uno-shortcuts";
+import { SHORTCUTS_LAYOUT } from "./layout";
+import { SHORTCUTS_POSITION } from "./position";
 import { SHORTCUTS_BOX } from "./box";
-import { INPUT } from "./input";
-import { POSITION } from "./position";
-import { GRID } from "./grid";
-import { LAYOUT } from "./layout";
+import { SHORTCUTS_GRID } from "./grid";
 
 export const SHORTCUTS: StaticShortcutMap =
   {
     ..._SHORTCUTS,
-    "_icon-fill": "dark:_dark-fill _light-fill",
+    "_icon-fill":
+      "dark:_dark-fill _light-fill",
     "border-main":
       "border-gray-8 dark:border-gray-2",
     "border-main-inverted":
@@ -29,9 +29,8 @@ export const SHORTCUTS: StaticShortcutMap =
       "animate-[spin_0.75s_linear_infinite]",
     spin1:
       "animate-[spin_1s_linear_infinite]",
-    ...GRID,
-    ...INPUT,
-    ...POSITION,
-    ...LAYOUT,
+    ...SHORTCUTS_GRID,
+    ...SHORTCUTS_POSITION,
+    ...SHORTCUTS_LAYOUT,
     ...SHORTCUTS_BOX,
   } as const;

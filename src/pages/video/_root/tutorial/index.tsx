@@ -21,7 +21,7 @@ export const Video_RootTutorial: FC<
           transform:
             "translateY(-16vh)",
         }}
-        className="relative dark:text-black text-white uppercase font-slab tracking-wide text-2xl md:text-4xl lg:text-6xl text-center _gradient-text"
+        className="relative dark:text-black text-white uppercase font-slab tracking-wide text-2xl md:text-4xl lg:text-6xl text-center _bi-text"
       >
         Click on the pics to add them to
         your video

@@ -59,7 +59,7 @@ export const Video_RootCursorSelected: FC<
               <IconsVideo size={28} />
               <div className="w-2" />
 
-              <div className="whitespace-nowrap font-sans _outline-filter">
+              <div className="whitespace-nowrap font-sans _sf-outline">
                 {isMaybe
                   ? ""
                   : `#${index + 1}`}

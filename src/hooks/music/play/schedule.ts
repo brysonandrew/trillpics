@@ -1,4 +1,4 @@
-import { useContextMusicInit } from "~/pages/video/music/_context/init";
+import { useMusicRefs } from "~/pages/video/music/_context/init";
 import { useTrillPicsStore } from "~/store/middleware";
 import { resolveStepsPerSecond } from "~/hooks/music/time/steps-per-second/resolver";
 import { isNumber } from "~/utils/validation/is/number";
@@ -9,12 +9,8 @@ import {
   UStepsKey,
 } from "~/store/state/music/types";
 import { TState } from "~/store/types";
-import {
-  IUseMusicLookup,
-  TStepValues,
-} from "~/hooks/music/types";
+import { IUseMusicLookup } from "~/hooks/music/types";
 import { usePicVideoReadSeconds } from "~/hooks/pic/video/read/seconds/hook";
-import { useGridCellDrill } from "~/pages/video/music/_context/init/grid-cell/drill";
 import { useAudioSeconds } from "~/hooks/music/time/audio-seconds";
 import { resolvePlayVolume } from "~/hooks/music/play/volume";
 import { useTimer } from "~/hooks/use-timer";
@@ -31,6 +27,7 @@ import {
   isBeatsKey,
   isMidisKey,
 } from "~/hooks/music/play/validators";
+import { useGridDrill } from "~/hooks/grid/drill";
 
 export type TPlayStepSchedule<
   T extends UStepsKey
@@ -49,7 +46,6 @@ type TConfig<T extends UStepsKey> = {
   key: TMusicKey;
   keys: readonly T[];
   lookup: Record<T, IUseMusicLookup[T]>;
-  // record: Record<T, TStepValues>;
   options?: any;
 };
 export const usePlaySchedule = <
@@ -67,27 +63,28 @@ export const usePlaySchedule = <
   const { timeoutRef, endTimeout } =
     useTimeoutRef();
   const {
-    context,
-    audio,
-    recorder,
+    audio: {
+      context,
+      save: { recorder },
+    },
     progress,
-    stepsRecord,
-  } = useContextMusicInit();
+    schedule,
+  } = useMusicRefs();
   const {
-    bpm,
+    // bpm,
     playingKeys,
     isLoop,
     // sequence,
     set,
   } = useTrillPicsStore(
     ({
-      bpm,
+      // bpm,
       playingKeys,
       isLoop,
       set,
       // sequence,
     }) => ({
-      bpm,
+      // bpm,
       playingKeys,
       isLoop,
       // sequence,
@@ -95,8 +92,7 @@ export const usePlaySchedule = <
     })
   );
 
-  const handleGridCell =
-    useGridCellDrill();
+  const handleGridCell = useGridDrill();
 
   const reset = () => {
     endTimeout();
@@ -179,16 +175,18 @@ export const usePlaySchedule = <
         | TMidiValues
         | TBeatValues = [];
       if (isMidisKey(sourceKey)) {
-        steps = [...stepsRecord.steps];
+        steps = [
+          ...schedule.record.steps,
+        ];
       }
       if (isBeatsKey(sourceKey)) {
         const preset =
-          stepsRecord.presets[
-            stepsRecord.presetKey
+          schedule.record.presets[
+            schedule.record.presetKey
           ];
         console.log(
           preset,
-          stepsRecord
+          schedule.record
         );
         steps = preset[sourceKey];
       }
@@ -203,7 +201,7 @@ export const usePlaySchedule = <
         ) => {
           const sps =
             resolveStepsPerSecond(
-              bpm,
+             schedule.record.bpm,
               stepsCount
             );
           const currElapsed =
@@ -234,7 +232,7 @@ export const usePlaySchedule = <
               duration:
                 (audioSeconds /
                   stepsCount) *
-                stepsRecord.sequence
+                schedule.record.sequence
                   .duration,
               ...sharedConfig,
             });
@@ -285,7 +283,9 @@ export const usePlaySchedule = <
         videoSeconds * 1000
       );
       const loops = [
-        ...Array(audio.loopCount + 1),
+        ...Array(
+          schedule.loopCount + 1
+        ),
       ];
       loops.forEach((_, loopIndex) => {
         playLoop(loopIndex);

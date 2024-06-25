@@ -9,10 +9,6 @@ import {
 } from "~/components/inputs/slider/controlled/controller";
 import { SliderRow } from "~/components/inputs/slider/row";
 import { SliderStyled } from "~/components/inputs/slider/styled";
-import {
-  TSliderStyledProps,
-  TUpdateNumberHandlerProps,
-} from "~/components/inputs/slider/types";
 
 export type TSliderControlledProps =
   TClassValueProps &
@@ -35,7 +31,7 @@ export const SliderControlled: FC<
     <SliderRow
       title={title}
       classValue={classValue}
-      {...controller}
+      // {...controller}
     >
       <SliderStyled {...props} />
     </SliderRow>

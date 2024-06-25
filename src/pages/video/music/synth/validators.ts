@@ -1,5 +1,3 @@
-import { MIDI_RECORD } from "~/hooks/music/midis/constants";
-import { TMidisStepsKey } from "~/hooks/music/midis/types";
 import {
   DEFAULT_MULTI_SYNTH_OPTIONS,
   DEFAULT_SYNTH_OPTIONS,
@@ -11,14 +9,15 @@ import { TScaleSliderOptionsKey } from "~/pages/video/music/synth/scale/types";
 import { DEFAULT_SEQUENCE_OPTIONS } from "~/pages/video/music/synth/sequence/constants";
 import { TSequenceSliderOptionsKey } from "~/pages/video/music/synth/sequence/types";
 import {
-  TSynthConfig,
-  TSynthMultiOptionType,
-  TSynthOptionType,
   TSynthType,
-} from "~/pages/video/music/synth/types";
-import { DEFAULT_BEATS_SLIDER_OPTIONS, DEFAULT_SCALE_SLIDER_OPTIONS } from "~/store/state/music/constants";
+  TSynthOptionType,
+  TSynthMultiOptionType,
+} from "~/pages/video/music/_context/init/refs/schedule/types";
+import {
+  DEFAULT_BEATS_SLIDER_OPTIONS,
+  DEFAULT_SCALE_SLIDER_OPTIONS,
+} from "~/store/state/music/constants";
 import { TBeatsOptions } from "~/store/state/music/types";
-import { isDefined } from "~/utils/validation/is/defined";
 
 export const isSynthType = (
   key: string
@@ -45,17 +44,17 @@ export const isSynthMultiOptionsType = (
   return false;
 };
 
-export const isSynthConfigType = (
-  key: string
-): key is keyof TSynthConfig => {
-  if (
-    key in
-      DEFAULT_SYNTH_SLIDER_OPTIONS ||
-    key in DEFAULT_MULTI_SYNTH_OPTIONS
-  )
-    return true;
-  return false;
-};
+// export const isSynthConfigType = (
+//   key: string
+// ): key is keyof TSynthConfig => {
+//   if (
+//     key in
+//       DEFAULT_SYNTH_SLIDER_OPTIONS ||
+//     key in DEFAULT_MULTI_SYNTH_OPTIONS
+//   )
+//     return true;
+//   return false;
+// };
 export const isSynthSliderConfigType = (
   key: string
 ): key is TSynthConfigKey => {
@@ -93,4 +92,3 @@ export const isBeatsSliderConfigType = (
     return true;
   return false;
 };
-

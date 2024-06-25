@@ -6,7 +6,7 @@ import { UStepsKey } from "~/store/state/music/types";
 import { SCALE_VALUE_COUNT } from "~/constants/scales";
 import { LinesVertical } from "~/components/lines/vertical";
 import { box } from "~uno/rules/box";
-import { useContextMusicInit } from "~/pages/video/music/_context/init";
+import { useMusicRefs } from "~/pages/video/music/_context/init";
 
 type TProps = {
   stepsKey: UStepsKey;
@@ -15,7 +15,8 @@ export const ChartsGridLabelsName: FC<
   TProps
 > = ({ stepsKey }) => {
   const isSynth = stepsKey === "synth";
-  const {stepsRecord} = useContextMusicInit()
+  const { schedule } =
+    useMusicRefs();
   return (
     <div
       key={stepsKey}
@@ -29,7 +30,8 @@ export const ChartsGridLabelsName: FC<
         >
           <BackgroundGlass />
           {`${
-            (stepsRecord.synth.midi ?? 0) +
+            (schedule.record.synth.midi ??
+              0) +
             SCALE_VALUE_COUNT -
             1
           }`}
@@ -39,8 +41,7 @@ export const ChartsGridLabelsName: FC<
       <LinesVertical />
       <div
         className={clsx(
-          "absolute right-full top-0 px-1 grow bg-red grow",
-       
+          "absolute right-full top-0 px-1 grow bg-red grow"
         )}
         style={{ left: -box.m2 }}
       >
@@ -48,7 +49,7 @@ export const ChartsGridLabelsName: FC<
           {isSynth ? (
             <>
               <div>midi</div>
-              {`${stepsRecord.synth.midi}`}
+              {`${schedule.record.synth.midi}`}
             </>
           ) : (
             stepsKey

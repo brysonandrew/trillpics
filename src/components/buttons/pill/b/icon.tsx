@@ -36,7 +36,7 @@ export const ButtonPillBIcon: FC<
 
   return (
     <div
-      className="center relative shrink-0 border-1 border-transparent _gradient-mesh bg-gray-04 dark:bg-black-04 pointer-events-none"
+      className="center relative shrink-0 border-1 border-transparent _bi-mesh bg-gray-04 dark:bg-black-04 pointer-events-none"
       style={{
         borderRadius,
         height: size,

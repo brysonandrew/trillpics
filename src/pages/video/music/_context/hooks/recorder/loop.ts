@@ -3,7 +3,7 @@ import { useBpm } from "~/hooks/music/bpm";
 import { resolveStepsPerSecond } from "~/hooks/music/time/steps-per-second/resolver";
 import { usePicVideoReadSeconds } from "~/hooks/pic/video/read/seconds/hook";
 import { supportedMimeTypes } from "~/pages/video/music/_context/hooks/recorder/supportedMimeTypes";
-import { useContextMusicInit } from "~/pages/video/music/_context/init";
+import { useMusicRefs } from "~/pages/video/music/_context/init";
 
 export const useLoopHandler = () => {
   const bpm = useBpm();
@@ -11,8 +11,8 @@ export const useLoopHandler = () => {
   const seconds =
     usePicVideoReadSeconds();
 
-  const { audio } =
-    useContextMusicInit();
+  const { audio:{save} } =
+    useMusicRefs();
 
   const handler = () => {
     const sps =
@@ -26,15 +26,15 @@ export const useLoopHandler = () => {
     const fulls = [
       ...Array(barsReq),
     ].reduce(
-      (a) => [...a, ...audio.chunks],
+      (a) => [...a, ...save.chunks],
       []
     );
 
-    const size = audio.chunks.length;
+    const size = save.chunks.length;
     const partial = Math.ceil(
       (barsRemainder / spb) * size
     );
-    const r = audio.chunks.slice(
+    const r = save.chunks.slice(
       0,
       partial
     );

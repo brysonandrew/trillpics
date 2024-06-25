@@ -7,9 +7,6 @@ import {
   TMidiValues,
   TMidisStepsKey,
 } from "~/hooks/music/midis/types";
-import { TScaleOptions } from "~/pages/video/music/synth/scale/types";
-import { TSequenceOptions } from "~/pages/video/music/synth/sequence/types";
-import { TSynthConfig } from "~/pages/video/music/synth/types";
 import { MUSIC_TYPES } from "~/store/state/music/constants";
 
 export type TMusicKey =
@@ -58,11 +55,11 @@ export type TPlayingKey =
 export type TMusicState = {
   isLoop: boolean;
   bpm: number;
-  beats: TBeatsOptions;
-  synth: TSynthConfig;
+  // beats: TBeatsOptions;
+  // synth: TSynthConfig;
   playingKeys: TPlayingKey[];
-  steps: TMidiValues;
-  scale: TScaleOptions;
-  sequence: TSequenceOptions;
+  // steps: TMidiValues;
+  // scale: TScaleOptions;
+  // sequence: TSequenceOptions;
   recording: TRecording | null;
 };

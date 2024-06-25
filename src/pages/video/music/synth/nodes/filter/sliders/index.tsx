@@ -2,19 +2,21 @@ import type { FC } from "react";
 import { InputsNumber } from "~/components/inputs/number";
 import { BIQUAD_FILTER_SILDER_PARAMS } from "~/pages/video/music/synth/nodes/filter/constants";
 import { TBiquadFilterSliderOptionsKey } from "~/pages/video/music/synth/nodes/filter/types";
-import { useContextMusicInit } from "~/pages/video/music/_context/init";
+import { useMusicRefs } from "~/pages/video/music/_context/init";
 import { resolveObjectKeys } from "~/utils/object";
 import { propsFromAudioparams } from "~/pages/video/music/synth/nodes/props-from-audioparams";
 
 export const NodesFilterSliders: FC =
   () => {
-    const { filter } =
-      useContextMusicInit();
+    const {
+      audio: { filters },
+    } = useMusicRefs();
     const handleUpdate = (
       name: TBiquadFilterSliderOptionsKey,
       value: number
     ) => {
-      filter[name].value = value;
+      filters.filter[name].value =
+        value;
     };
     return (
       <>
@@ -30,7 +32,7 @@ export const NodesFilterSliders: FC =
             }
             {...propsFromAudioparams(
               key,
-              filter[key]
+              filters.filter[key]
             )}
           />
         ))}

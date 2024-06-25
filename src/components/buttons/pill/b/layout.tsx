@@ -56,7 +56,7 @@ export const PillBLayout: FC<
       >
         {!children && (
           <div
-            className="absolute -inset-0.675 _gradient-radial"
+            className="absolute -inset-0.675 _bi-radial"
             style={{ borderRadius }}
           />
         )}

@@ -15,10 +15,10 @@ import clsx from "clsx";
 import { LinesHorizontal } from "~/components/lines/horizontal";
 import { box } from "~uno/rules/box";
 import { resolveTop } from "~/components/charts/grid/top";
-import { CHARTS_GRID_STEP_EMPTY_STYLE } from "~/pages/video/music/_context/init/grid-cell/constants";
-import { useGridCellsStepRef } from "~/pages/video/music/_context/init/grid-cell/ref/hook";
+import { CHARTS_GRID_STEP_EMPTY_STYLE } from "~/pages/video/music/_context/init/refs/grid/constants";
+import { useGridsStepRef } from "~/hooks/grid/hook";
 import { ChartsGridPlayButton } from "~/components/charts/grid/step/play/button";
-import { useContextMusicInit } from "~/pages/video/music/_context/init";
+import { useMusicRefs } from "~/pages/video/music/_context/init";
 
 export type CStepsKey<
   T extends TMusicKey
@@ -60,8 +60,8 @@ export const ChartsGridStep = <
   const colorClass =
     classes[columnIndex % 3];
   const isSynth = stepsKey === "synth";
-  const { stepsRecord } =
-    useContextMusicInit();
+  const { schedule} =
+    useMusicRefs();
   const {
     playingKeys,
     // synth,
@@ -69,20 +69,20 @@ export const ChartsGridStep = <
     isHover,
   } = useTrillPicsStore(
     ({
-      synth,
+      // synth,
       playingKeys,
-      sequence,
+      // sequence,
       isHover,
     }) => ({
-      synth,
+      // synth,
       playingKeys,
-      sequence,
+      // sequence,
       isHover,
     })
   );
 
   const stepRef =
-    useGridCellsStepRef<T>({
+    useGridsStepRef<T>({
       columnIndex,
       rowIndex,
       progressKey: musicKey,
@@ -91,7 +91,7 @@ export const ChartsGridStep = <
   const isDisabled =
     playingKeys.includes(musicKey);
   const displayMidiValue =
-    (stepsRecord.synth.midi ?? 0) +
+    (schedule.record.synth.midi ?? 0) +
     midiValueToNumber(value);
 
   const midi = isSynth
@@ -176,7 +176,7 @@ export const ChartsGridStep = <
               <ChartsGridStepDot
                 isHovering={isHovering}
                 {...props}
-                {...stepsRecord.sequence}
+                {...schedule.record.sequence}
                 value={value}
               />
 
@@ -185,7 +185,7 @@ export const ChartsGridStep = <
                   {[
                     ...Array(
                       Math.ceil(
-                        stepsRecord.sequence.duration
+                        schedule.record.sequence.duration
                       )
                     ),
                   ].map(
@@ -201,11 +201,11 @@ export const ChartsGridStep = <
                           width: `${
                             (index ===
                             count - 1
-                              ? stepsRecord.sequence.duration %
+                              ? schedule.record.sequence.duration %
                                 1
                               : Math.min(
                                   1,
-                                  stepsRecord.sequence.duration
+                                  schedule.record.sequence.duration
                                 )) * 100
                           }%`,
                           opacity:

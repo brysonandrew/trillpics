@@ -6,11 +6,15 @@ import {
   TBeatValue,
   TPlayBeatsOptions,
 } from "~/hooks/music/beats/types";
-import { useContextMusicInit } from "~/pages/video/music/_context/init";
+import { useMusicRefs } from "~/pages/video/music/_context/init";
 const key: TBeatsStepsKey = "hihat";
 export const useHihat = () => {
-  const { context, master,beatsMaster } =
-    useContextMusicInit();
+  const {
+    audio: {
+      context,
+      gains: { master, beatsMaster },
+    },
+  } = useMusicRefs();
   const isReady = useBufferInit(key, 1);
   const start =
     useSourceBufferStart(key);
@@ -21,9 +25,7 @@ export const useHihat = () => {
     _: TBeatValue,
     options: TPlayBeatsOptions = {}
   ) => {
-    const {
-      volume = 1,
-    } = options;
+    const { volume = 1 } = options;
     const filter = new BiquadFilterNode(
       context,
       {
@@ -38,7 +40,7 @@ export const useHihat = () => {
     start({
       startTime,
       output: filter,
-      ...options
+      ...options,
     });
     filter.connect(gain);
     gain.connect(beatsMaster);

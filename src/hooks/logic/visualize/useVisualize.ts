@@ -1,6 +1,10 @@
+import {
+  useCallback,
+  useRef,
+  useEffect,
+} from "react";
 import type { MutableRefObject } from "react";
-import { useCallback, useRef, useEffect } from "react";
-import { useContextMusicInit } from "~/pages/video/music/_context/init";
+import { useMusicRefs } from "~/pages/video/music/_context/init";
 
 type TInit = {
   bufferLength: number;
@@ -26,19 +30,29 @@ export const useVisualize = ({
   isActive,
   ref,
 }: TConfig) => {
-  const {master,context} = useContextMusicInit()
+  const {
+    audio: {
+      context,
+      gains: { master },
+    },
+  } = useMusicRefs();
   const frameRef =
-    useRef<ReturnType<typeof requestAnimationFrame>>();
+    useRef<
+      ReturnType<
+        typeof requestAnimationFrame
+      >
+    >();
 
   const current = {
     backgroundColor: "#000",
     strokeColor: "#FFF",
     canvas: ref.current,
   };
-  const currentRef = useRef<TCurrentRef>({
-    init: null,
-    ...current,
-  });
+  const currentRef =
+    useRef<TCurrentRef>({
+      init: null,
+      ...current,
+    });
   currentRef.current = {
     ...currentRef.current,
     ...current,
@@ -46,32 +60,43 @@ export const useVisualize = ({
 
   const init = async () => {
     await context.resume();
-    const analyser = context.createAnalyser();
+    const analyser =
+      context.createAnalyser();
     analyser.fftSize = 2048;
-    if (currentRef.current.init === null) {
+    if (
+      currentRef.current.init === null
+    ) {
       const destination =
         context.createMediaStreamDestination();
-      master.connect(context.destination);
+      master.connect(
+        context.destination
+      );
       master.connect(destination);
 
       const audioTracks =
         destination.stream.getAudioTracks();
       if (audioTracks.length === 0) {
-        console.log("no recording tracks");
+        console.log(
+          "no recording tracks"
+        );
         return null;
       }
       if (!ref.current) {
         console.log("no canvas");
         return null;
       }
-      const source = context.createMediaStreamSource(
-        destination.stream,
-      );
+      const source =
+        context.createMediaStreamSource(
+          destination.stream
+        );
       source.connect(analyser);
-      const bufferLength = analyser.frequencyBinCount;
+      const bufferLength =
+        analyser.frequencyBinCount;
       currentRef.current.init = {
         bufferLength,
-        dataArray: new Uint8Array(bufferLength),
+        dataArray: new Uint8Array(
+          bufferLength
+        ),
         analyser,
       };
     }
@@ -79,44 +104,72 @@ export const useVisualize = ({
 
   const endFrameRequest = () => {
     if (frameRef.current) {
-      cancelAnimationFrame(frameRef.current);
+      cancelAnimationFrame(
+        frameRef.current
+      );
     }
   };
 
   const draw = useCallback(() => {
     const { current } = currentRef;
-    if (current.canvas === null || current.init === null)
+    if (
+      current.canvas === null ||
+      current.init === null
+    )
       return;
-    const { analyser, dataArray, bufferLength } =
-      current.init;
-    const { canvas, backgroundColor, strokeColor } =
-      current;
+    const {
+      analyser,
+      dataArray,
+      bufferLength,
+    } = current.init;
+    const {
+      canvas,
+      backgroundColor,
+      strokeColor,
+    } = current;
 
-    const canvasCtx = current.canvas.getContext("2d");
+    const canvasCtx =
+      current.canvas.getContext("2d");
 
     if (!canvasCtx) {
-      throw new Error("no canvas context");
+      throw new Error(
+        "no canvas context"
+      );
     }
 
     const width = canvas.width;
     const height = canvas.height;
 
-    frameRef.current = requestAnimationFrame(draw);
+    frameRef.current =
+      requestAnimationFrame(draw);
 
-    analyser.getByteTimeDomainData(dataArray);
+    analyser.getByteTimeDomainData(
+      dataArray
+    );
 
-    canvasCtx.fillStyle = backgroundColor;
-    canvasCtx.fillRect(0, 0, width, height);
+    canvasCtx.fillStyle =
+      backgroundColor;
+    canvasCtx.fillRect(
+      0,
+      0,
+      width,
+      height
+    );
 
     canvasCtx.lineWidth = 2;
     canvasCtx.strokeStyle = strokeColor;
 
     canvasCtx.beginPath();
 
-    const sliceWidth = (width * 1.0) / bufferLength;
+    const sliceWidth =
+      (width * 1.0) / bufferLength;
     let x = 0;
 
-    for (let i = 0; i < bufferLength; i++) {
+    for (
+      let i = 0;
+      i < bufferLength;
+      i++
+    ) {
       const v = dataArray[i] / 128.0;
       const y = (v * height) / 2;
 

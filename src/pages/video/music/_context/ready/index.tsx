@@ -7,8 +7,6 @@ import { useBeatsLookup } from "~/hooks/music/beats/lookup";
 import { useNodesLookup } from "~/hooks/music/midis/lookup";
 import { TChildren } from "@brysonandrew/config-types";
 import { useBeatsLoad } from "~/hooks/music/beats/load";
-import { useOscillator } from "~/pages/video/music/_context/init/oscillator";
-import { TOscillator } from "~/pages/video/music/_context/init/oscillator/types";
 
 type TContext = {
   beats: ReturnType<

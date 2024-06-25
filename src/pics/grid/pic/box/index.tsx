@@ -33,7 +33,7 @@ export const Box: FC<TProps> = ({
   return (
     <>
       {/* <div
-        className="_gradient-mesh"
+        className="_bi-mesh"
         style={{
           position: "absolute",
           left,

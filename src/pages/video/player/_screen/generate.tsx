@@ -53,7 +53,7 @@ export const VideoPlayer_ScreenGenerate: FC<
       {...PRESENCE_OPACITY}
     >
       <div className="fill rounded-lg _box-dots opacity-20" />
-      <div className="fill rounded-lg _gradient-radial opacity-10" />
+      <div className="fill rounded-lg _bi-radial opacity-10" />
 
       <div className="relative flex flex-row h-auto uppercase font-slab">
         <div

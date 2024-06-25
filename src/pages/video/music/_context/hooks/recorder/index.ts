@@ -3,13 +3,14 @@ import { useMusicPlay } from "~/hooks/music/play";
 import { useStepsPerSecond } from "~/hooks/music/time/steps-per-second";
 import { usePicVideoReadSeconds } from "~/hooks/pic/video/read/seconds/hook";
 import { useRecorderListeners } from "~/pages/video/music/_context/hooks/recorder/listeners";
-import { useContextMusicInit } from "~/pages/video/music/_context/init";
+import { useMusicRefs } from "~/pages/video/music/_context/init";
 
 export const useMusicRecorder = () => {
+  const { schedule, audio } =
+    useMusicRefs();
   const {
-    recorder,
-    audio,
-  } = useContextMusicInit();
+    record: { steps },
+  } = schedule;
   const musicPlay = useMusicPlay();
   const videoSeconds =
     usePicVideoReadSeconds();
@@ -26,33 +27,33 @@ export const useMusicRecorder = () => {
     videoSeconds % audioSeconds
   );
 
-  audio.loopCount = loopCount;
-  audio.loopsRemainder = loopsRemainder;
+  schedule.loopCount = loopCount;
+  schedule.loopsRemainder =
+    loopsRemainder;
 
   const handleStop = () => {
     musicPlay.stop();
-    recorder.stop();
-  }
-  
+    audio.save.recorder.stop();
+  };
+
   const handleStart = async () => {
     if (
-      recorder.state === "recording"
+      audio.save.recorder.state ===
+      "recording"
     ) {
       handleStop();
     } else {
-      recorder.start();
+      audio.save.recorder.start();
       await musicPlay.play();
     }
   };
 
   return {
-
     audioSeconds,
     loopCount,
     loopsRemainder,
     videoSeconds,
     handleStart,
     ...musicPlay,
-
   } as const;
 };

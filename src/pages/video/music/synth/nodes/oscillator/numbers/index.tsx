@@ -3,13 +3,14 @@ import { InputsNumber } from "~/components/inputs/number";
 import { OSCILLATOR_SLIDER_OPTIONS } from "~/pages/video/music/synth/nodes/oscillator/constants";
 import { TOscillatorSliderOptionsKey } from "~/pages/video/music/synth/nodes/oscillator/types";
 import { propsFromAudioparams } from "~/pages/video/music/synth/nodes/props-from-audioparams";
-import { useContextMusicInit } from "~/pages/video/music/_context/init";
+import { useMusicRefs } from "~/pages/video/music/_context/init";
 import { resolveObjectKeys } from "~/utils/object";
 
 export const NodesOscillatorNumbers: FC =
   () => {
-    const { oscillator } =
-      useContextMusicInit();
+    const {
+      audio: { oscillator },
+    } = useMusicRefs();
     const handleUpdate = (
       name: TOscillatorSliderOptionsKey,
       value: number

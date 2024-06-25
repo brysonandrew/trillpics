@@ -2,16 +2,21 @@ import {
   resolveMidiSteps,
   TMidiStepsConfig,
 } from "~/constants/music/midi/steps";
-import { useTrillPicsStore } from "~/store/middleware";
+import { useMusicRefs } from "~/pages/video/music/_context/init";
 
 export const useMidiSteps = () => {
-  const { sequence, scale } =
-    useTrillPicsStore(
-      ({ sequence, scale }) => ({
-        sequence,
-        scale,
-      })
-    );
+  // const { sequence, scale } =
+  //   useTrillPicsStore(
+  //     ({ sequence, scale }) => ({
+  //       sequence,
+  //       scale,
+  //     })
+  //   );
+  const {
+    schedule: {
+      record: { scale, sequence },
+    },
+  } = useMusicRefs();
   const handler = (
     partial: Partial<TMidiStepsConfig>
   ) =>

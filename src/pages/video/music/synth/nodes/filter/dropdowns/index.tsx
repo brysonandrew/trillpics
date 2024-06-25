@@ -1,12 +1,12 @@
 import { FC } from "react";
-import { SelectStyled } from "~/components/inputs/select/styled";
+import { InputsSelect } from "~/components/inputs/select";
 import { BIQUAD_FILTER_TYPES } from "~/pages/video/music/synth/nodes/filter/constants";
-import { useContextMusicInit } from "~/pages/video/music/_context/init";
+import { useMusicRefs } from "~/pages/video/music/_context/init";
 
 export const NodesFilterDropdowns: FC =
   () => {
-    const { filter } =
-      useContextMusicInit();
+    const { audio: { filters: {filter }} } =
+      useMusicRefs();
 
     const handleValueChange = (
       value: BiquadFilterType
@@ -14,7 +14,7 @@ export const NodesFilterDropdowns: FC =
       filter.type = value;
     };
     return (
-      <SelectStyled
+      <InputsSelect
         name="type"
         title="type"
         placeholder="filter type"

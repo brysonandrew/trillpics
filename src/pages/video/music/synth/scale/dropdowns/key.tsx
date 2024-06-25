@@ -1,14 +1,14 @@
 import type { FC } from "react";
-import { SelectStyled } from "~/components/inputs/select/styled";
+import { InputsSelect } from "~/components/inputs/select";
 import { SCALES } from "~/constants/scales";
-import { useNodesScale } from "~/hooks/music/midis/scale";
+import { useNodesScale } from "~/hooks/scale";
 import { isScaleKey } from "~/pages/video/music/synth/scale/validators";
 
 export const MusicScaleKey: FC = () => {
   const { key, update } =
     useNodesScale();
   return (
-    <SelectStyled
+    <InputsSelect
       name="key"
       title="scale"
       value={key}

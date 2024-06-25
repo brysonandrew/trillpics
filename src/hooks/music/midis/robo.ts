@@ -7,27 +7,30 @@ import {
 } from "react-synthwave";
 import { useDelayNode } from "~/hooks/music/midis/delay";
 import { useGainNode } from "~/hooks/music/midis/gains/hook";
-import { useBasicOscillatorStart } from "~/pages/video/music/synth/nodes/oscillator/hooks/scheduling/start";
 import { TPlayMidisOptions } from "~/hooks/music/midis/types";
-import { useContextMusicInit } from "~/pages/video/music/_context/init";
-import { useTrillPicsStore } from "~/store/middleware";
+import { useMusicRefs } from "~/pages/video/music/_context/init";
 import { midiToHz } from "~/utils/music";
 
 export const useArpeggio = () => {
   const {
-    context,
-    master,
-    oscillator,
-  } = useContextMusicInit();
-  const { set, bpm, sequence } =
-    useTrillPicsStore(
-      ({ set, bpm, sequence }) => ({
-        set,
-        bpm,
-        sequence,
-      })
-    );
-  const interval = sequence.interval;
+    schedule: {
+      record: { bpm },
+    },
+    audio: {
+      gains: { master },
+      context,
+      oscillator,
+    },
+  } = useMusicRefs();
+  // const { set, bpm, sequence } =
+  //   useTrillPicsStore(
+  //     ({ set, bpm, sequence }) => ({
+  //       set,
+  //       bpm,
+  //       sequence,
+  //     })
+  //   );
+  // const interval = sequence.interval;
   const delayTime = 0.99; // 0.000001; //0.1;
   const Q = 1;
   const detune = 1200;
@@ -37,8 +40,8 @@ export const useArpeggio = () => {
     context,
     delayTime,
   });
-  const boHandler =
-    useBasicOscillatorStart();
+  // const boHandler =
+  //   useBasicOscillatorStart();
 
   const gainNode = useGainNode({
     context,
@@ -174,12 +177,13 @@ export const useArpeggio = () => {
       startTime
     );
 
-    boHandler.start(
-      startTime,
-      stepMidi,
-      {
-      ...options,
-    });
+    // boHandler.start(
+    //   startTime,
+    //   stepMidi,
+    //   {
+    //     ...options,
+    //   }
+    // );
 
     oscillator.node.connect(filter);
     filter.connect(gainNode);

@@ -1,12 +1,12 @@
 import { useEffect } from "react";
-import { useContextMusicInit } from "~/pages/video/music/_context/init";
+import { useMusicRefs } from "~/pages/video/music/_context/init";
 import { useVideoStyle } from "~/pages/video/style";
 import { box } from "~uno/rules/box";
 
 export const useLayoutScrollInit =
   () => {
-    const { scroll } =
-      useContextMusicInit();
+    const { layout:{ scroll } } =
+      useMusicRefs();
     const { beatsTop } =
       useVideoStyle();
     useEffect(() => {

@@ -1,4 +1,3 @@
-import { lookup } from "dns";
 import {
   TMidiValue,
   TPlayMidisOptions,
@@ -7,31 +6,30 @@ import {
   isBeatsKey,
   isMidisKey,
 } from "~/hooks/music/play/validators";
-import { useContextMusicInit } from "~/pages/video/music/_context/init";
-import {
-  CHARTS_GRID_STEP_ACTIVE_STYLE,
-  CHARTS_GRID_STEP_EMPTY_STYLE,
-} from "~/pages/video/music/_context/init/grid-cell/constants";
-import { gridCellStyleEmptyHandler } from "~/pages/video/music/_context/init/grid-cell/style/empty";
-import { useGridCellsUpdateStyle } from "~/pages/video/music/_context/init/grid-cell/style/update/hook";
-import {
-  TGridCellsBaseConfig,
-  TGridCellsStepStyle,
-} from "~/pages/video/music/_context/init/grid-cell/types";
+import { useMusicRefs } from "~/pages/video/music/_context/init";
 import { useContextMusicReady } from "~/pages/video/music/_context/ready";
-import { useTrillPicsStore } from "~/store/middleware";
 import { TMusicKey } from "~/store/state/music/types";
 import { resolveMidiNumber } from "~/utils/midi";
 import { isNull } from "~/utils/validation/is/null";
+import { useGridsUpdateStyle } from "~/hooks/grid/style/update/hook";
+import {
+  CHARTS_GRID_STEP_EMPTY_STYLE,
+  CHARTS_GRID_STEP_ACTIVE_STYLE,
+} from "~/pages/video/music/_context/init/refs/grid/constants";
+import { gridStyleEmptyHandler } from "~/hooks/grid/style/empty";
+import {
+  TGridsBaseConfig,
+  TGridsStepStyle,
+} from "~/pages/video/music/_context/init/refs/grid/types";
 
 type TPlaybackHandler = (
-  next?: TGridCellsStepStyle
+  next?: TGridsStepStyle
 ) => void;
 export const useStepPlay = <
   T extends TMusicKey
 >(
   midi: TMidiValue,
-  config: TGridCellsBaseConfig<T>
+  config: TGridsBaseConfig<T>
 ) => {
   const {
     stepsKey,
@@ -39,11 +37,13 @@ export const useStepPlay = <
     columnIndex,
     musicKey,
   } = config;
-  const { context, stepsRecord:{} } =
-    useContextMusicInit();
+  const {
+    audio: { context },
+    schedule: { record },
+  } = useMusicRefs();
 
   const updateStyle =
-    useGridCellsUpdateStyle<T>({
+    useGridsUpdateStyle<T>({
       ...config,
       musicKey,
     });
@@ -59,12 +59,7 @@ export const useStepPlay = <
 
   const { beats, midis } =
     useContextMusicReady();
-
-  // const {  } = useTrillPicsStore(
-  //   ({  }) => ({ synth })
-  // );
-  const { gridCellsRecord } =
-    useContextMusicInit();
+  const { grid } = useMusicRefs();
 
   const stop: TPlaybackHandler = (
     next = CHARTS_GRID_STEP_EMPTY_STYLE
@@ -87,7 +82,7 @@ export const useStepPlay = <
     if (!player) return;
     const playOptions: TPlayMidisOptions =
       {
-        ...synth,
+        // ...synth,
         duration: 1,
         onEnded: handleEnd,
       };
@@ -100,16 +95,14 @@ export const useStepPlay = <
     updateStyle(next);
 
     const cells =
-      gridCellsRecord[musicKey][
-        rowIndex
-      ];
+      grid.record[musicKey][rowIndex];
     if (!cells) return;
     const cell = cells[columnIndex];
     if (
-      gridCellsRecord !== null &&
+      grid.record !== null &&
       cell !== null
     ) {
-      gridCellStyleEmptyHandler(
+      gridStyleEmptyHandler(
         cell,
         columnIndex,
         cells

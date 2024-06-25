@@ -3,8 +3,7 @@ import {
   TBeatsKey,
   TPlayBeatsOptions,
 } from "~/hooks/music/beats/types";
-import { useContextMusicInit } from "~/pages/video/music/_context/init";
-import { useTrillPicsStore } from "~/store/middleware";
+import { useMusicRefs } from "~/pages/video/music/_context/init";
 import { isNumber } from "~/utils/validation/is/number";
 type THandlerConfig =
   TPlayBeatsOptions & {
@@ -15,20 +14,22 @@ export const useSourceBufferStart = (
   key: TBeatsKey
 ) => {
   const {
-    master,
-    beatsMaster,
-    context,
-    bufferSourceRecord,
-    bufferRecord,
-  } = useContextMusicInit();
+    audio: {
+      context,
+      drums: {
+        bufferSourceRecord,
+        bufferRecord,
+      },
+    },
+  } = useMusicRefs();
 
-  const { bpm, beats } =
-    useTrillPicsStore(
-      ({ bpm, beats }) => ({
-        bpm,
-        beats,
-      })
-    );
+  // const { bpm, beats } =
+  //   useTrillPicsStore(
+  //     ({ bpm, beats }) => ({
+  //       bpm,
+  //       beats,
+  //     })
+  //   );
 
   const stop = useSourceBufferStop(key);
 

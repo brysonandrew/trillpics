@@ -4,7 +4,7 @@ import { TimerDisplay } from "~/components/playback/timer/display";
 import { TimerDisplayInit } from "~/components/playback/timer/display/init";
 import { VideoMusicSaveTimerCurrent } from "~/pages/video/music/save/timer/current";
 import { box } from "~uno/rules/box";
-import { TProgressKey } from "~/pages/video/music/_context/init/types";
+import { TProgressKey } from "~/pages/video/music/_context/init/refs/progress/types";
 
 export type TVideoMusicHeaderTimerProps =
   {

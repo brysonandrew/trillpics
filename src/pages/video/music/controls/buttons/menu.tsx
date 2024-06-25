@@ -1,14 +1,14 @@
 import { FC, useRef } from "react";
 import { PillB } from "~/components/buttons/pill/b";
 import { IconsMenu } from "~/components/icons/menu";
-import { useContextMusicInit } from "~/pages/video/music/_context/init";
+import { useMusicRefs } from "~/pages/video/music/_context/init";
 import { useVideoStyle } from "~/pages/video/style";
 import { box } from "~uno/rules/box";
 
 export const MusicControlsButtonsMenu: FC =
   () => {
-    const { scroll } =
-      useContextMusicInit();
+    const { layout:{ scroll } } =
+      useMusicRefs();
     const indexRef = useRef(0);
     const { beatsTop, y, left } =
       useVideoStyle();

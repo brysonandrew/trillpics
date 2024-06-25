@@ -28,27 +28,27 @@ export const SequenceSlider: FC<
   step = STEP,
 }) => {
   const set = useUpdateStateHandler();
-  const { sequence, scale } =
-    useTrillPicsStore(
-      ({ sequence, scale }) => ({
-        sequence,
-        scale,
-      })
-    );
+  // const { sequence, scale } =
+  //   useTrillPicsStore(
+  //     ({ sequence, scale }) => ({
+  //       sequence,
+  //       scale,
+  //     })
+  //   );
   const handleUpdate: TUpdateNumberHandler =
     (value:number) => {
       if (isNumber(value)) {
         const nextValue = value;
-        set((draft: TState) => {
-          draft.sequence[optionsKey] =
-            nextValue;
-          draft.steps =
-            resolveMidiSteps({
-              ...sequence,
-              ...scale,
-              [optionsKey]: nextValue,
-            });
-        });
+        // set((draft: TState) => {
+        //   draft.sequence[optionsKey] =
+        //     nextValue;
+        //   draft.steps =
+        //     resolveMidiSteps({
+        //       ...sequence,
+        //       ...scale,
+        //       [optionsKey]: nextValue,
+        //     });
+        // });
       }
     };
   const name =
