@@ -3,8 +3,8 @@ import {
   TScaleKey,
 } from "~/constants/scales";
 import { TBaseMidiValue } from "~/hooks/music/midis/types";
-import { TScaleOptions } from "~/pages/video/music/synth/scale/types";
-import { TSequenceOptions } from "~/pages/video/music/synth/sequence/types";
+import { TScaleOptions } from "~/pages/video/music/synth/composition/scale/types";
+import { TSequenceOptions } from "~/pages/video/music/synth/composition/sequence/types";
 
 export const RANDOM_MIDI_RANGE = 12;
 

@@ -1,5 +1,5 @@
 import type { FC } from "react";
-import { SequenceSlider } from "~/pages/video/music/synth/sequence/sliders/slider";
+import { SequenceSlider } from "~/pages/video/music/synth/composition/sequence/sliders/slider";
 export const MusicSequenceSliders: FC =
   () => {
     return (

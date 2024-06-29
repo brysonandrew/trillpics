@@ -5,9 +5,9 @@ import {
   SYNTH_TYPES_RECORD,
   TSynthConfigKey,
 } from "~/pages/video/music/synth/constants";
-import { TScaleSliderOptionsKey } from "~/pages/video/music/synth/scale/types";
-import { DEFAULT_SEQUENCE_OPTIONS } from "~/pages/video/music/synth/sequence/constants";
-import { TSequenceSliderOptionsKey } from "~/pages/video/music/synth/sequence/types";
+import { TScaleSliderOptionsKey } from "~/pages/video/music/synth/composition/scale/types";
+import { DEFAULT_SEQUENCE_OPTIONS } from "~/pages/video/music/synth/composition/sequence/constants";
+import { TSequenceSliderOptionsKey } from "~/pages/video/music/synth/composition/sequence/types";
 import {
   TSynthType,
   TSynthOptionType,

@@ -2,7 +2,7 @@ import { FC } from "react";
 import {
   TSequenceOptions,
   TSequenceSliderOptionsKey,
-} from "~/pages/video/music/synth/sequence/types";
+} from "~/pages/video/music/synth/composition/sequence/types";
 import { TInputProps } from "~/types/inputs";
 import { InputsNumber } from "~/components/inputs/number";
 import { resolveMidiSteps } from "~/constants/music/midi/steps";
@@ -54,7 +54,7 @@ export const SequenceNumber: FC<
       handleNextSteps(nextSteps);
       schedule.record.steps = nextSteps;
 
-      // handleGridCell();
+      handleGridCell();
     };
   const name =
     `sequence.${optionsKey}` as const;

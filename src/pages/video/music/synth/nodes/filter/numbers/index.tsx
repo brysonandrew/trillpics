@@ -8,8 +8,11 @@ import { resolveObjectKeys } from "~/utils/object";
 
 export const NodesFilterSliders: FC =
   () => {
-    const { audio: { filters: {filter }} } =
-      useMusicRefs();
+    const {
+      audio: {
+        filters: { filter },
+      },
+    } = useMusicRefs();
     const handleUpdate = (
       name: TBiquadFilterSliderOptionsKey,
       value: number
@@ -23,7 +26,7 @@ export const NodesFilterSliders: FC =
         ).map((key) => (
           <InputsNumber
             key={key}
-            name={key}
+            name={`filter.${key}`}
             title={key}
             onUpdate={(value) =>
               handleUpdate(key, value)

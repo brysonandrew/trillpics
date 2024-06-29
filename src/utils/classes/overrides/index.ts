@@ -24,9 +24,8 @@ export const overrideClasses = (
   } = overrides;
   let names = className.split(/\s/g);
 
-  console.log(`i: ${className}`);
-
-  console.log(overrides)
+  // console.log(`i: ${className}`);
+  // console.log(overrides)
 
   if (isDefined(positionClass)) {
     names = names.filter(

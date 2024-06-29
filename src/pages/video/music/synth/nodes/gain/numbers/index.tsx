@@ -5,6 +5,7 @@ import { TGainNodeKey } from "~/pages/video/music/synth/nodes/gain/types";
 import { propsFromAudioparams } from "~/pages/video/music/synth/nodes/props-from-audioparams";
 import { useMusicRefs } from "~/pages/video/music/_context/init";
 
+const KEY = "gain";
 type TProps = {
   children: (
     Input: FC,
@@ -23,19 +24,25 @@ export const NodesGainNumbers: FC<
     name: TGainNodeKey,
     value: number
   ) => {
+    console.log(midis);
     midis[name].value = value;
   };
+  const defaultProps =
+    propsFromAudioparams(
+      KEY,
+      midis[KEY]
+    );
   return (
     <InputsNumber
-      name="gain"
+      name={KEY}
       title="gain"
       onUpdate={(value) =>
-        handleUpdate("gain", value)
+        handleUpdate(KEY, value)
       }
-      {...propsFromAudioparams(
-        "gain",
-        midis.gain
-      )}
+      {...defaultProps}
+      min={0}
+      max={1}
+      step={0.005}
     >
       {({
         number,
@@ -44,7 +51,6 @@ export const NodesGainNumbers: FC<
         Title,
         Box,
         Info,
-        Background,
       }) => {
         const Input = () => (
           <Box>
@@ -60,7 +66,6 @@ export const NodesGainNumbers: FC<
               Input,
               <div className="relative">
                 {slider}
-                {/* <Background /> */}
                 <Info />
               </div>
             )}

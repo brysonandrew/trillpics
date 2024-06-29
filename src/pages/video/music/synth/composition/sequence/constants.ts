@@ -1,5 +1,5 @@
 import { STEPS_COUNT } from "~/constants/music/timing";
-import { TSequenceOptions } from "~/pages/video/music/synth/sequence/types";
+import { TSequenceOptions } from "~/pages/video/music/synth/composition/sequence/types";
 
 export const DEFAULT_SEQUENCE_OPTIONS: TSequenceOptions =
   {

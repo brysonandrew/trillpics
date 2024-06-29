@@ -8,9 +8,9 @@ import { BEATS_PRESETS } from "~/hooks/music/beats/presets";
 import { TMidiValues } from "~/hooks/music/midis/types";
 import { handleRescale } from "~/hooks/scale/rescale";
 import { DEFAULT_SYNTH_OPTIONS } from "~/pages/video/music/synth/constants";
-import { DEFAULT_SCALE_OPTIONS } from "~/pages/video/music/synth/scale/constants";
-import { TScalePattern } from "~/pages/video/music/synth/scale/types";
-import { DEFAULT_SEQUENCE_OPTIONS } from "~/pages/video/music/synth/sequence/constants";
+import { DEFAULT_SCALE_OPTIONS } from "~/pages/video/music/synth/composition/scale/constants";
+import { TScalePattern } from "~/pages/video/music/synth/composition/scale/types";
+import { DEFAULT_SEQUENCE_OPTIONS } from "~/pages/video/music/synth/composition/sequence/constants";
 import { TProgressStepRecord } from "~/pages/video/music/_context/init/refs/progress/types";
 import {
   TScheduleOptions,

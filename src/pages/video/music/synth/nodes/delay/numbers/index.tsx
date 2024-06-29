@@ -4,7 +4,6 @@ import { InputsNumber } from "~/components/inputs/number";
 import { TDelayNodeKey } from "~/pages/video/music/synth/nodes/delay/types";
 import { propsFromAudioparams } from "~/pages/video/music/synth/nodes/props-from-audioparams";
 import { useMusicRefs } from "~/pages/video/music/_context/init";
-
 type TProps = {
   children: (
     Input: FC,
@@ -25,6 +24,12 @@ export const NodesDelayNumbers: FC<
   ) => {
     delay[name].value = value;
   };
+  const defaultProps =
+    propsFromAudioparams(
+      "delayTime",
+      delay.delayTime
+    );
+  // console.log(defaultProps);
   return (
     <InputsNumber
       name="delayTime"
@@ -32,10 +37,10 @@ export const NodesDelayNumbers: FC<
       onUpdate={(value) =>
         handleUpdate("delayTime", value)
       }
-      {...propsFromAudioparams(
-        "delayTime",
-        delay.delayTime
-      )}
+      {...defaultProps}
+      min={0}
+      step={0.000001}
+      max={1}
     >
       {({
         number,

@@ -7,7 +7,9 @@ import { useRefsProgress } from "~/pages/video/music/_context/init/refs/progress
 import { useRefsSchedule } from "~/pages/video/music/_context/init/refs/schedule";
 import { useRefsLayout } from "~/pages/video/music/_context/init/refs/layout";
 import { useRefsGrid } from "~/pages/video/music/_context/init/refs/grid";
+import { MutableRefObject } from "react";
 
+export type TRefRecord<T extends HTMLElement> = Record<string,MutableRefObject<T>>
 
 export type TUpdateStepsRecord = (
   nextSteps: TMidiValues,
@@ -17,7 +19,7 @@ export type TUpdateStepsRecord = (
 type TPageMode =
   (typeof PAGE_SCROLL_MODES)[number];
 export type TScroll = {
-  current: HTMLDivElement | null;
+  current?: HTMLDivElement;
   y: MotionValue<number>;
   modes: readonly TPageMode[];
   modeIndex: number;

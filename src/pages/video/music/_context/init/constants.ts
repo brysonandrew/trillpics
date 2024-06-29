@@ -1,5 +1,5 @@
 import { TScaleKey } from "~/constants/scales";
-import { TScalePattern } from "~/pages/video/music/synth/scale/types";
+import { TScalePattern } from "~/pages/video/music/synth/composition/scale/types";
 
 export const MIME_TYPES = [
   "video/mp4;codecs=h264,aac",

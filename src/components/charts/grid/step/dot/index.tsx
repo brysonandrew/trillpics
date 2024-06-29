@@ -5,7 +5,7 @@ import { resolvePlayVolume } from "~/hooks/music/play/volume";
 import { TMusicKey } from "~/store/state/music/types";
 import { boxRadius } from "~uno/rules/box/radius";
 import { box } from "~uno/rules/box";
-import { TSequenceOptions } from "~/pages/video/music/synth/sequence/types";
+import { TSequenceOptions } from "~/pages/video/music/synth/composition/sequence/types";
 import { ChartsGridStepDotShape } from "~/components/charts/grid/step/dot/shape";
 import { TSynthOptions } from "react-synthwave";
 

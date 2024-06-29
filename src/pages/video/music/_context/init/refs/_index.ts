@@ -4,8 +4,8 @@ import { useRefsProgress } from "~/pages/video/music/_context/init/refs/progress
 import { PAGE_SCROLL_MODES } from "~/pages/video/music/_context/init/constants";
 import { resolveMidiSteps } from "~/constants/music/midi/steps";
 import { DEFAULT_SYNTH_OPTIONS } from "~/pages/video/music/synth/constants";
-import { DEFAULT_SCALE_OPTIONS } from "~/pages/video/music/synth/scale/constants";
-import { DEFAULT_SEQUENCE_OPTIONS } from "~/pages/video/music/synth/sequence/constants";
+import { DEFAULT_SCALE_OPTIONS } from "~/pages/video/music/synth/composition/scale/constants";
+import { DEFAULT_SEQUENCE_OPTIONS } from "~/pages/video/music/synth/composition/sequence/constants";
 import { BEATS_PRESETS } from "~/hooks/music/beats/presets";
 
 // export const useMusicInitRefs = () => {

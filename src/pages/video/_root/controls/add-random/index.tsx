@@ -1,5 +1,5 @@
 import type { FC } from "react";
-import { IconsPlusQuestion } from "~/components/icons/plus";
+import { IconsPlusQuestion } from "~/components/icons/plus/question";
 import {
   PillBHover,
   TPillBHoverProps,

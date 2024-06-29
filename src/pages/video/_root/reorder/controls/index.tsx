@@ -4,7 +4,7 @@ import { IconsTrash } from "~/components/icons/video/trash";
 import { TUsePicSelected } from "~/hooks/pic/selected";
 import { TCommonProps } from "~/pages/video/_root/reorder/types";
 import { box } from "~uno/rules/box";
-import { IconsPlusQuestion } from "~/components/icons/plus";
+import { IconsPlusQuestion } from "~/components/icons/plus/question";
 import { TMotionPoint } from "@brysonandrew/motion-config-types";
 import { TDimensions } from "@brysonandrew/config-types";
 import { PillBSm } from "~/components/buttons/pill/b/sm";

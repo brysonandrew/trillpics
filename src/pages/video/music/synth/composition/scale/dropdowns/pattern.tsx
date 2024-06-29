@@ -1,7 +1,7 @@
 import type { FC } from "react";
 import { InputsSelect } from "~/components/inputs/select";
 import { useNodesPattern } from "~/hooks/scale/pattern";
-import { SCALE_PATTERNS } from "~/pages/video/music/synth/scale/constants";
+import { SCALE_PATTERNS } from "~/pages/video/music/synth/composition/scale/constants";
 
 export const MusicScalePattern: FC =
   () => {
@@ -13,7 +13,7 @@ export const MusicScalePattern: FC =
         name="melody.scale.pattern"
         title="pattern"
         placeholder="melody patterns"
-        value={value}
+        defaultValue={value}
         values={SCALE_PATTERNS}
         onValueChange={update}
       />

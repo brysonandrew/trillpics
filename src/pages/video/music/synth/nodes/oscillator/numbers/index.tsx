@@ -25,18 +25,20 @@ export const NodesOscillatorNumbers: FC =
         {resolveObjectKeys(
           OSCILLATOR_SLIDER_OPTIONS
         ).map((key) => {
+          const defaultProps =
+            propsFromAudioparams(
+              key,
+              oscillator.node[key]
+            );
           return (
             <InputsNumber
               key={key}
-              name={key}
+              name={`oscillator.${key}`}
               title={key}
               onUpdate={(value) =>
                 handleUpdate(key, value)
               }
-              {...propsFromAudioparams(
-                key,
-                oscillator.node[key]
-              )}
+              {...defaultProps}
             />
           );
         })}

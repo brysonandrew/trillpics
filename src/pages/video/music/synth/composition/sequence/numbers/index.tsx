@@ -1,5 +1,5 @@
 import type { FC } from "react";
-import { SequenceNumber } from "~/pages/video/music/synth/sequence/numbers/number";
+import { SequenceNumber } from "~/pages/video/music/synth/composition/sequence/numbers/number";
 import { useMusicRefs } from "~/pages/video/music/_context/init";
 export const MusicSequenceNumbers: FC =
   () => {

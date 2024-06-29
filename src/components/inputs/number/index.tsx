@@ -22,10 +22,7 @@ import { InputsNumberBox } from "~/components/inputs/number/box";
 import { InputsNumberBackground } from "~/components/inputs/number/background";
 import { useMusicRefs } from "~/pages/video/music/_context/init";
 import { InputsBoxTitle } from "~/components/inputs/box/title";
-import { IconsDownload } from "~/components/icons/download";
-import { IconsPlus } from "~/components/icons/plus";
-import { IconsPlus18 } from "~/components/icons/plus/18";
-import { IconsPlus14 } from "~/components/icons/plus/14";
+import { isDefined } from "~/utils/validation/is/defined";
 
 const minWidth = 40;
 const maxWidth = 80;
@@ -77,27 +74,31 @@ export const InputsNumber: FC<
     onUpdate,
     ...rest
   } = props;
-
+  const { name } = props;
   const { layout } = useMusicRefs();
 
   const handleMeasure =
     useMeasureTextWidth();
   const measureText = (
-    content = layout.number.current
-      ?.value
+    content = ""
   ) => {
     if (
-      !layout.number.current ||
+      !isDefined(layout.number[name]) ||
+      isNull(
+        layout.number[name].current
+      ) ||
+      !layout.number[name].current ||
       !content
     )
       return;
-    const weight = layout.number.current
-      .style.fontWeight as TFontWeight;
+    const weight = layout.number[name]
+      .current.style
+      .fontWeight as TFontWeight;
     const size =
-      layout.number.current.style
+      layout.number[name].current.style
         .fontSize;
     const family =
-      layout.number.current.style
+      layout.number[name].current.style
         .fontFamily;
 
     const width = handleMeasure({
@@ -116,7 +117,9 @@ export const InputsNumber: FC<
     if (width > maxWidth) {
       nextValue = maxWidth;
     }
-    layout.number.current.style.width = `${nextValue}px`;
+    layout.number[
+      name
+    ].current.style.width = `${nextValue}px`;
   };
 
   useEffect(() => {
@@ -127,17 +130,29 @@ export const InputsNumber: FC<
     nextValue: string
   ) => {
     if (
-      !layout.number.current ||
-      !layout.slider.current
+      !layout.number[name].current ||
+      !layout.number[name].current
     ) {
       return null;
     }
-
-    layout.number.current.value =
-      nextValue;
-
-    layout.slider.current.value =
-      nextValue;
+    if (
+      layout.number[name]
+        .current instanceof
+      HTMLInputElement
+    ) {
+      layout.number[
+        name
+      ].current.value = nextValue;
+    }
+    if (
+      layout.slider[name]
+        .current instanceof
+      HTMLInputElement
+    ) {
+      layout.slider[
+        name
+      ].current.value = nextValue;
+    }
   };
   const handleUpdate: TUpdateNumberHandler =
     (value: number) => {
@@ -152,7 +167,6 @@ export const InputsNumber: FC<
         replacer(nextValue);
       updateValues(strValue);
       measureText(strValue);
-      console.log(strValue, nextValue);
       if (onUpdate) {
         onUpdate(nextValue);
       }
@@ -186,14 +200,22 @@ export const InputsNumber: FC<
 
   const Title = memo(() => (
     <InputsBoxTitle>
-      {/* <Info/> */}
       {title}
     </InputsBoxTitle>
   ));
-
   const number = (
     <input
-      ref={layout.number}
+      ref={(instance) => {
+        if (isNull(instance)) return;
+        layout.update(
+          "number",
+          props.name,
+          instance
+        );
+        // layout
+        //   .number(props.name)
+        //   ?.current(current);
+      }}
       type="number"
       className={clsx(
         "text-center text-xxs font-slab",
@@ -235,14 +257,22 @@ export const InputsNumber: FC<
           "[&::-webkit-slider-thumb]:(relative w-4 h-4 rounded-full z-0)",
           "[&::-webkit-slider-thumb]:(_bi-conic-metal appearance-none pointer-cursor)"
         )}
-        ref={layout.slider}
+        ref={(instance) => {
+          if (isNull(instance)) return;
+
+          layout.update(
+            "slider",
+            props.name,
+            instance
+          );
+        }}
         title={title ?? ""}
-        // style={{ ...box.r.l }}
         onChange={handleSliderChange}
         defaultValue={Number(
           props.defaultValue
         )}
         {...rangeProps}
+        {...rest}
       />
     </div>
   );

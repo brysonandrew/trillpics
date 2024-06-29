@@ -10,8 +10,8 @@ import {
 import { BEATS_PRESETS } from "~/hooks/music/beats/presets";
 import { TBeatsPresetsKey } from "~/hooks/music/beats/presets/types";
 import { TMidiValues } from "~/hooks/music/midis/types";
-import { TScaleOptions } from "~/pages/video/music/synth/scale/types";
-import { TSequenceOptions } from "~/pages/video/music/synth/sequence/types";
+import { TScaleOptions } from "~/pages/video/music/synth/composition/scale/types";
+import { TSequenceOptions } from "~/pages/video/music/synth/composition/sequence/types";
 import { TBeatsRecord } from "~/hooks/music/beats/types";
 
 export type TSynthType =

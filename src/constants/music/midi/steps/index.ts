@@ -1,7 +1,7 @@
 import { SCALE_RECORD } from "~/constants/scales";
 import { TMidiValue } from "~/hooks/music/midis/types";
-import { TScaleOptions } from "~/pages/video/music/synth/scale/types";
-import { TSequenceOptions } from "~/pages/video/music/synth/sequence/types";
+import { TScaleOptions } from "~/pages/video/music/synth/composition/scale/types";
+import { TSequenceOptions } from "~/pages/video/music/synth/composition/sequence/types";
 import { resolveMidiValue } from "../value";
 
 export type TMidiStepsConfig =

@@ -1,5 +1,5 @@
 import { resolveMidiSteps } from "~/constants/music/midi/steps";
-import { TScalePattern } from "~/pages/video/music/synth/scale/types";
+import { TScalePattern } from "~/pages/video/music/synth/composition/scale/types";
 import { useMusicRefs } from "~/pages/video/music/_context/init";
 import { useGridMidi } from "~/hooks/grid/midi";
 

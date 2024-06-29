@@ -30,7 +30,7 @@ export const VideoMusicDrums: FC =
     //     beats,
     //   })
     // );
-    console.log(schedule.record.preset);
+    // console.log(schedule.record.preset);
     return (
       <>
         <div

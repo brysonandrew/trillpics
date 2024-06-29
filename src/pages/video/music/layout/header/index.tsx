@@ -5,7 +5,6 @@ import {
   PillB,
   TPillBProps,
 } from "~/components/buttons/pill/b";
-import { TIconsSvgProps } from "@brysonandrew/svg-icon";
 import { useTrillPicsStore } from "~/store/middleware";
 import { IconsLoop } from "~/components/icons/loop";
 import { Pill } from "~/components/layout/pill";

@@ -18,7 +18,7 @@ export const InputsBoxTitle: FC<
     <TypographyXxxxs
       style={{
         left: box.m00625,
-        bottom: box.m00625,
+        top: box.m003125,
         ...style,
       }}
       overrides={{
@@ -26,7 +26,7 @@ export const InputsBoxTitle: FC<
         ...overrides,
       }}
       classValue={clsx(
-        "top-0 translate-x-1.5 -translate-y-1.5",
+        "translate-x-1.5 -translate-y-1 pointer-event-none",
         classValue
       )}
       {...props}

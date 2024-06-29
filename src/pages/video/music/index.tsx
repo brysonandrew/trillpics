@@ -18,8 +18,9 @@ import { LayoutStickyMid } from "~/pages/video/music/layout/sticky/mid";
 import { LayoutStickyBottom } from "~/pages/video/music/layout/sticky/bottom";
 import { MusicControlsButtonsMenu } from "~/pages/video/music/controls/buttons/menu";
 import { MusicSynthNodes } from "~/pages/video/music/synth/nodes";
-import { MusicScale } from "~/pages/video/music/synth/scale";
+import { MusicScale } from "~/pages/video/music/synth/composition/scale";
 import { Beats } from "~/pages/video/music/drums/master";
+import { MusicSynthComposition } from "~/pages/video/music/synth/composition";
 
 export const VideoMusic = () => {
   return (
@@ -45,7 +46,7 @@ export const VideoMusic = () => {
                 <MusicSynthNodes />
               </LayoutStickyTop>
 
-              <MusicScale />
+              <MusicSynthComposition />
 
               <LayoutStickyMid>
                 <VideoMusicDrums />

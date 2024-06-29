@@ -7,8 +7,9 @@ import { resolveObjectKeys } from "~/utils/object";
 
 export const NodesOscillatorSliders: FC =
   () => {
-    const { audio:{oscillator} } =
-      useMusicRefs();
+    const {
+      audio: { oscillator },
+    } = useMusicRefs();
     const handleUpdate = (
       name: TOscillatorSliderOptionsKey,
       value: number
@@ -26,6 +27,7 @@ export const NodesOscillatorSliders: FC =
           return (
             <SliderUncontrolled
               key={key}
+              name={`oscilallator.${key}`}
               title={key}
               min={0}
               max={8}

@@ -1,4 +1,4 @@
-import { TScaleOptions } from "~/pages/video/music/synth/scale/types";
+import { TScaleOptions } from "~/pages/video/music/synth/composition/scale/types";
 import { DEFAULT_SCALE_KEY, DEFAULT_SCALE_DELTA, DEFAULT_SCALE_PATTERN } from "~/pages/video/music/_context/init/constants";
 
 export const DEFAULT_SCALE_OPTIONS: TScaleOptions =
