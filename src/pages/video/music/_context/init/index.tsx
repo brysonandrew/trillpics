@@ -26,11 +26,11 @@ type TProviderProps = {
 export const MusicInitProvider: FC<
   TProviderProps
 > = ({ children }) => {
-  const audio = useRefsAudio();
+  const schedule = useRefsSchedule();
+  const audio = useRefsAudio(schedule.record);
   const grid = useRefsGrid();
   const layout = useRefsLayout();
   const progress = useRefsProgress();
-  const schedule = useRefsSchedule();
 
   // const {
   //   context,

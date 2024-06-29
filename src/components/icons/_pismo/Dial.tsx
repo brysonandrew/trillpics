@@ -1,5 +1,4 @@
 import styled from "@emotion/styled";
-import { useContext } from "@state/app/Context";
 import { motion } from "framer-motion";
 
 const Root = styled(motion.svg)``;

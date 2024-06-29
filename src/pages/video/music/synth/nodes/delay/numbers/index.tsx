@@ -4,6 +4,9 @@ import { InputsNumber } from "~/components/inputs/number";
 import { TDelayNodeKey } from "~/pages/video/music/synth/nodes/delay/types";
 import { propsFromAudioparams } from "~/pages/video/music/synth/nodes/props-from-audioparams";
 import { useMusicRefs } from "~/pages/video/music/_context/init";
+import { IconsPlus14 } from "~/components/icons/plus/14";
+import { box } from "~uno/rules/box";
+import { ModulatorsAdd } from "~/pages/video/music/synth/nodes/modulators/add";
 type TProps = {
   children: (
     Input: FC,
@@ -29,7 +32,6 @@ export const NodesDelayNumbers: FC<
       "delayTime",
       delay.delayTime
     );
-  // console.log(defaultProps);
   return (
     <InputsNumber
       name="delayTime"
@@ -53,6 +55,7 @@ export const NodesDelayNumbers: FC<
       }) => {
         const Input = () => (
           <Box>
+            
             <Header>
               <Title />
               {number}
@@ -61,6 +64,8 @@ export const NodesDelayNumbers: FC<
         );
         return (
           <>
+         <ModulatorsAdd audioParam={delay.delayTime}/>
+
             {children(
               Input,
               <div className="relative">

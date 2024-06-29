@@ -1,3 +1,4 @@
+import { MutableRefObject } from "react";
 import { MotionValue } from "framer-motion";
 import { TScaleKey } from "~/constants/scales";
 import { TMidiValues } from "~/hooks/music/midis/types";
@@ -7,9 +8,10 @@ import { useRefsProgress } from "~/pages/video/music/_context/init/refs/progress
 import { useRefsSchedule } from "~/pages/video/music/_context/init/refs/schedule";
 import { useRefsLayout } from "~/pages/video/music/_context/init/refs/layout";
 import { useRefsGrid } from "~/pages/video/music/_context/init/refs/grid";
-import { MutableRefObject } from "react";
 
-export type TRefRecord<T extends HTMLElement> = Record<string,MutableRefObject<T>>
+export type TRefRecord<
+  T extends HTMLElement
+> = Record<string, MutableRefObject<T>>;
 
 export type TUpdateStepsRecord = (
   nextSteps: TMidiValues,
@@ -18,12 +20,12 @@ export type TUpdateStepsRecord = (
 
 type TPageMode =
   (typeof PAGE_SCROLL_MODES)[number];
-export type TScroll = {
-  current?: HTMLDivElement;
-  y: MotionValue<number>;
-  modes: readonly TPageMode[];
-  modeIndex: number;
-};
+export type TScroll =
+  MutableRefObject<HTMLDivElement | null> & {
+    y: MotionValue<number>;
+    modes: readonly TPageMode[];
+    modeIndex: number;
+  };
 export type TMusicInitContext = {
   audio: ReturnType<
     typeof useRefsAudio

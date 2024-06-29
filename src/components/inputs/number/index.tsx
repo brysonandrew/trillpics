@@ -22,9 +22,18 @@ import { InputsNumberBox } from "~/components/inputs/number/box";
 import { InputsNumberBackground } from "~/components/inputs/number/background";
 import { useMusicRefs } from "~/pages/video/music/_context/init";
 import { InputsBoxTitle } from "~/components/inputs/box/title";
-import { isDefined } from "~/utils/validation/is/defined";
-
-const minWidth = 40;
+import { THEME_FONT_SIZES_LOOKUP } from "~uno/index";
+import { ARMSTRONG3_FULL_FONT_FAMILY } from "~uno/presets/fonts";
+const NUMBER_FONT_SIZE =
+  "xxxs" as const;
+const [fontSize, lineHeight] =
+  THEME_FONT_SIZES_LOOKUP[
+    NUMBER_FONT_SIZE
+  ];
+const paddingLeft = 10;
+const paddingRight = 5;
+const minWidth =
+  40 + paddingLeft + paddingRight;
 const maxWidth = 80;
 const MIN = 0;
 const MAX = 8;
@@ -72,6 +81,7 @@ export const InputsNumber: FC<
     replacer = String,
     title,
     onUpdate,
+    style,
     ...rest
   } = props;
   const { name } = props;
@@ -80,34 +90,30 @@ export const InputsNumber: FC<
   const handleMeasure =
     useMeasureTextWidth();
   const measureText = (
-    content = ""
+    content = layout.number[name]
+      ?.current.value ?? ""
   ) => {
-    if (
-      !isDefined(layout.number[name]) ||
-      isNull(
-        layout.number[name].current
-      ) ||
-      !layout.number[name].current ||
-      !content
-    )
-      return;
+    if (!content) return;
     const weight = layout.number[name]
       .current.style
       .fontWeight as TFontWeight;
     const size =
       layout.number[name].current.style
-        .fontSize;
+        .fontSize || fontSize;
     const family =
       layout.number[name].current.style
-        .fontFamily;
+        .fontFamily ||
+      ARMSTRONG3_FULL_FONT_FAMILY;
+
+    const weightSizeFamily = {
+      weight,
+      size,
+      family,
+    };
 
     const width = handleMeasure({
       content,
-      weightSizeFamily: {
-        weight,
-        size,
-        family,
-      },
+      weightSizeFamily,
     });
     if (isNull(width)) return;
     let nextValue = width;
@@ -131,28 +137,14 @@ export const InputsNumber: FC<
   ) => {
     if (
       !layout.number[name].current ||
-      !layout.number[name].current
+      !layout.slider[name].current
     ) {
       return null;
     }
-    if (
-      layout.number[name]
-        .current instanceof
-      HTMLInputElement
-    ) {
-      layout.number[
-        name
-      ].current.value = nextValue;
-    }
-    if (
-      layout.slider[name]
-        .current instanceof
-      HTMLInputElement
-    ) {
-      layout.slider[
-        name
-      ].current.value = nextValue;
-    }
+    layout.number[name].current.value =
+      nextValue;
+    layout.slider[name].current.value =
+      nextValue;
   };
   const handleUpdate: TUpdateNumberHandler =
     (value: number) => {
@@ -212,26 +204,24 @@ export const InputsNumber: FC<
           props.name,
           instance
         );
-        // layout
-        //   .number(props.name)
-        //   ?.current(current);
       }}
       type="number"
       className={clsx(
-        "text-center text-xxs font-slab",
+        "text-center font-slab",
         "bg-black-02 backdrop-blur-lg",
         "row border border-white-02 bg-black-02",
         "border border-white-02 _bi-mesh"
       )}
       style={{
+        fontSize,
+        lineHeight: box.m0625,
         borderRadius: box.radius.m,
         height: box.m05,
-        lineHeight: box.m0625,
         minWidth,
         maxWidth,
-        // ...box.py(box.m00625),
         ...box.px(box.m0125),
         paddingLeft: box.m025,
+        ...style,
       }}
       title={title}
       onChange={handleInputChange}
@@ -265,6 +255,9 @@ export const InputsNumber: FC<
             props.name,
             instance
           );
+        }}
+        style={{
+          ...style,
         }}
         title={title ?? ""}
         onChange={handleSliderChange}

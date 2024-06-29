@@ -37,8 +37,7 @@ const width = {
   xxxxl: "2200px",
 } as const;
 
-export const FONT_SIZES = {
-  ...THEME_FONT_SIZE,
+export const THEME_FONT_SIZES_LOOKUP = {
   xxxxs: ["0.4rem", "0.625rem"],
   xxxs: ["0.65rem", "0.75rem"],
   xxs: ["0.7rem", "1.25rem"],
@@ -55,7 +54,10 @@ export const theme = resolveTheme({
   },
   width,
   screen,
-  fontSize: FONT_SIZES,
+  fontSize: {
+    ...THEME_FONT_SIZE,
+    ...THEME_FONT_SIZES_LOOKUP,
+  },
   extend: {
     keyframes: {
       "ant-walk": {

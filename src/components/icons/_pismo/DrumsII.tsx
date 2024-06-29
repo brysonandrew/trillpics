@@ -1,7 +1,7 @@
 import type { FC } from "react";
 import type { ClassValue } from "clsx";
 import clsx from "clsx";
-import { Drums } from "@templates/icons/Drums";
+import { Drums } from "~/components/icons/_pismo/Drums";
 
 type TProps = {
   isHover: boolean;

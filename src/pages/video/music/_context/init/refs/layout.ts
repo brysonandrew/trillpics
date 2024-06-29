@@ -27,27 +27,14 @@ export const useRefsLayout = () => {
 
   const layout =
     useMemo<TRefsInputs>(() => {
-      const scroll = {
+      const scroll: TScroll = {
+        current: null,
         y: scrollY,
         modes: PAGE_SCROLL_MODES,
         modeIndex: 0,
       };
       const inputRefsCreator = {
-        number: {
-          // update: function (
-          //   name: string,
-          //   instance: HTMLInputElement | null
-          // ): TRefInstanceHandler {
-          //   if (!this[name]) {
-          //     this[name] = {
-          //       current: null,
-          //     };
-          //   }
-          //   this[name].current =
-          //     instance;
-          //   return this;
-          // },
-        },
+        number: {},
         slider: {},
         update: function (
           key: keyof TInputRefs,

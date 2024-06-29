@@ -24,25 +24,28 @@ export const NodesGainNumbers: FC<
     name: TGainNodeKey,
     value: number
   ) => {
-    console.log(midis);
+    console.log(name, value, midis);
     midis[name].value = value;
   };
-  const defaultProps =
-    propsFromAudioparams(
-      KEY,
-      midis[KEY]
-    );
+
   return (
     <InputsNumber
-      name={KEY}
+      name={`midis.${KEY}`}
       title="gain"
       onUpdate={(value) =>
         handleUpdate(KEY, value)
       }
-      {...defaultProps}
+      replacer={(v) => {
+        const next = Number(
+          v.toFixed(3)
+        ).toString();
+
+        return next;
+      }}
+      defaultValue={midis.gain.value}
       min={0}
       max={1}
-      step={0.005}
+      step={0.001}
     >
       {({
         number,

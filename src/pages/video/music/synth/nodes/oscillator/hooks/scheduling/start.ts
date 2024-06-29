@@ -31,7 +31,7 @@ export const useBasicOscillatorStart = () => {
     stepMidi: TMidiValue,
     config: TPlayMidisOptions
   ) => {
-    console.log(config);
+    // console.log(config);
 
     if (!oscillator.isStarted) {
       oscillator.isStarted = true;
