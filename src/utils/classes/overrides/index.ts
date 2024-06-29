@@ -54,7 +54,6 @@ export const overrideClasses = (
   }
 
   className = names.join(" ");
-  console.log(`o: ${className}`);
 
   return className;
 };

@@ -10,7 +10,7 @@ import { useSourceBufferStop } from "~/hooks/music/beats/hooks/source-buffer/sto
 const key: TBeatsStepsKey = "kick";
 
 export const useKick = () => {
-  const { audio:{context,gains:{beatsMaster}},  } =
+  const { audio:{context,gains:{beats}},  } =
     useMusicRefs();
   const isReady = useBufferInit(key, 0);
   const start =
@@ -40,7 +40,7 @@ export const useKick = () => {
       ...options,
     });
     filter.connect(gain);
-    gain.connect(beatsMaster);
+    gain.connect(beats);
   };
 
   return { play, stop, isReady };

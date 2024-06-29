@@ -73,25 +73,25 @@ export const usePlaySchedule = <
   const {
     // bpm,
     playingKeys,
-    isLoop,
+    // isLoop,
     // sequence,
     set,
   } = useTrillPicsStore(
     ({
       // bpm,
       playingKeys,
-      isLoop,
+      // isLoop,
       set,
       // sequence,
     }) => ({
       // bpm,
       playingKeys,
-      isLoop,
+      // isLoop,
       // sequence,
       set,
     })
   );
-
+  const isLoop = true;
   const handleGridCell = useGridDrill();
 
   const reset = () => {
@@ -201,7 +201,7 @@ export const usePlaySchedule = <
         ) => {
           const sps =
             resolveStepsPerSecond(
-             schedule.record.bpm,
+              schedule.record.bpm,
               stepsCount
             );
           const currElapsed =

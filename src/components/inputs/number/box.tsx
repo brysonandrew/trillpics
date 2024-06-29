@@ -8,7 +8,7 @@ export const InputsNumberBox: FC<
   PropsWithChildren
 > = ({ children }) => {
   return (
-    <div className="relative" style={{ gap: box.m0125 }}>
+    <div className="relative row" style={{ gap: box.m0125 }}>
       {children}
     </div>
   );

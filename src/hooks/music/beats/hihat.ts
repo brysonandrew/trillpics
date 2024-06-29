@@ -12,7 +12,7 @@ export const useHihat = () => {
   const {
     audio: {
       context,
-      gains: { master, beatsMaster },
+      gains: { master, beats },
     },
   } = useMusicRefs();
   const isReady = useBufferInit(key, 1);
@@ -43,7 +43,7 @@ export const useHihat = () => {
       ...options,
     });
     filter.connect(gain);
-    gain.connect(beatsMaster);
+    gain.connect(beats);
   };
 
   return { play, stop, isReady };

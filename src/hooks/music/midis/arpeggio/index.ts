@@ -12,7 +12,7 @@ export const useArpeggio = () => {
   const {
     audio: {
       context,
-      gains: { midisMaster },
+      gains: { midis },
       delays: { delay },
       filters: { filter },
       oscillator,
@@ -64,7 +64,7 @@ export const useArpeggio = () => {
     gainNode1.connect(filter);
     filter.connect(delay);
 
-    delay.connect(midisMaster);
+    delay.connect(midis);
 
     // delay.delayTime.setValueAtTime(
     //   0.001,

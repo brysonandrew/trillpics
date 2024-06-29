@@ -28,14 +28,12 @@ export const SequenceNumber: FC<
   step = STEP,
   title,
   defaultValue,
+  children,
   ...props
 }) => {
-  const { schedule } =
-    useMusicRefs();
-  const handleNextSteps =
-    useGridMidi();
-  const handleGridCell =
-    useGridDrill();
+  const { schedule } = useMusicRefs();
+  const handleNextSteps = useGridMidi();
+  const handleGridCell = useGridDrill();
   const handleUpdate: TUpdateNumberHandler =
     (value) => {
       const partial: Partial<TSequenceOptions> =
@@ -50,7 +48,9 @@ export const SequenceNumber: FC<
       };
       const nextSteps =
         resolveMidiSteps(config);
-      console.log(schedule.record.steps);
+      console.log(
+        schedule.record.steps
+      );
       handleNextSteps(nextSteps);
       schedule.record.steps = nextSteps;
 
@@ -59,19 +59,22 @@ export const SequenceNumber: FC<
   const name =
     `sequence.${optionsKey}` as const;
   return (
-    <InputsNumber
-      name={name}
-      title={title ?? name}
-      defaultValue={
-        Array.isArray(defaultValue)
-          ? defaultValue[0]
-          : defaultValue
-      }
-      min={min}
-      max={max}
-      step={step}
-      onUpdate={handleUpdate}
-      {...props}
-    />
+    <>
+      <InputsNumber
+        name={name}
+        title={title ?? name}
+        defaultValue={
+          Array.isArray(defaultValue)
+            ? defaultValue[0]
+            : defaultValue
+        }
+        min={min}
+        max={max}
+        step={step}
+        onUpdate={handleUpdate}
+        {...props}
+      />
+      {children}
+    </>
   );
 };

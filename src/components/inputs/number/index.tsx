@@ -1,6 +1,7 @@
 import {
   ChangeEventHandler,
   FC,
+  Fragment,
   memo,
   PropsWithChildren,
   useEffect,
@@ -21,6 +22,10 @@ import { InputsNumberBox } from "~/components/inputs/number/box";
 import { InputsNumberBackground } from "~/components/inputs/number/background";
 import { useMusicRefs } from "~/pages/video/music/_context/init";
 import { InputsBoxTitle } from "~/components/inputs/box/title";
+import { IconsDownload } from "~/components/icons/download";
+import { IconsPlus } from "~/components/icons/plus";
+import { IconsPlus18 } from "~/components/icons/plus/18";
+import { IconsPlus14 } from "~/components/icons/plus/14";
 
 const minWidth = 40;
 const maxWidth = 80;
@@ -175,14 +180,15 @@ export const InputsNumber: FC<
     step,
   } as const;
 
-  const Title = memo(() => (
-    <InputsBoxTitle>
-      {title}
-    </InputsBoxTitle>
-  ));
-
   const Info = memo(() => (
     <InputsNumberInfo {...rangeProps} />
+  ));
+
+  const Title = memo(() => (
+    <InputsBoxTitle>
+      {/* <Info/> */}
+      {title}
+    </InputsBoxTitle>
   ));
 
   const number = (
@@ -190,18 +196,18 @@ export const InputsNumber: FC<
       ref={layout.number}
       type="number"
       className={clsx(
-        "text-center text-xs font-slab",
+        "text-center text-xxs font-slab",
         "bg-black-02 backdrop-blur-lg",
         "row border border-white-02 bg-black-02",
         "border border-white-02 _bi-mesh"
       )}
       style={{
         borderRadius: box.radius.m,
-        height: box.m0625,
+        height: box.m05,
         lineHeight: box.m0625,
         minWidth,
         maxWidth,
-        ...box.py(box.m00625),
+        // ...box.py(box.m00625),
         ...box.px(box.m0125),
         paddingLeft: box.m025,
       }}
@@ -213,12 +219,21 @@ export const InputsNumber: FC<
   );
 
   const slider = (
-    <div className="relative h-5 grow opacity">
+    <div
+      className="relative h-5 grow _bi-radial opacity"
+      style={{
+        borderRadius: box.radius.m,
+      }}
+    >
+      <InputsNumberBackground />
       <input
         type="range"
         className={clsx(
           "fill",
-          "appearance-none bg-transparent [&::-webkit-slider-runnable-track]:rounded-[8px] [&::-webkit-slider-runnable-track]:_bi-radial [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:(w-4 h-4) [&::-webkit-slider-thumb]:rounded-full [&::-webkit-slider-thumb]:(relative _bi-conic-metal pointer-cursor z-10)"
+          "appearance-none bg-transparent",
+          "[&::-webkit-slider-runnable-track]:bg-transparent",
+          "[&::-webkit-slider-thumb]:(relative w-4 h-4 rounded-full z-0)",
+          "[&::-webkit-slider-thumb]:(_bi-conic-metal appearance-none pointer-cursor)"
         )}
         ref={layout.slider}
         title={title ?? ""}
@@ -229,7 +244,6 @@ export const InputsNumber: FC<
         )}
         {...rangeProps}
       />
-      <InputsNumberBackground/>
     </div>
   );
 
@@ -240,7 +254,7 @@ export const InputsNumber: FC<
     number,
     Background: InputsNumberBackground,
     slider,
-    Info,
+    Info: Fragment,
   } as const;
 
   if (children)
@@ -254,7 +268,7 @@ export const InputsNumber: FC<
       </_.Header>
       {_.slider}
       {/* <_.Background /> */}
-      <_.Info />
+      {/* <_.Info /> */}
     </_.Box>
   );
 };

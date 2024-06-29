@@ -43,8 +43,8 @@ export type TMusicInitContext = {
   // bufferRecord:
   // context: AudioContext;
   // master: GainNode;
-  // beatsMaster: GainNode;
-  // midisMaster: GainNode;
+  // beats: GainNode;
+  // midis: GainNode;
   // oscillator: TOscillator;
   // delay: DelayNode;
   // filter: BiquadFilterNode;

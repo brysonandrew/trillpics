@@ -19,18 +19,19 @@ export const MusicScale: FC = () => {
       >
         <BackgroundGlass
           boxStyle={{
-            left: sidebarWidthOffset,
+            left: 0,
           }}
         />
         <div
           className="relative grid flex-row flex-wrap items-stretch justify-stretch"
           style={{
-            left: sidebarWidthOffset,
+            left: 0,
             gap: box.m0125,
             width:
               width +
-              box.m025 -
-              sidebarWidthOffset,
+              box.m025,
+              //  -
+              // sidebarWidthOffset,
             ...box.p(box.m0125),
             gridTemplateColumns: `repeat(auto-fill, minmax(${box.m5}px, 1fr))`,
 

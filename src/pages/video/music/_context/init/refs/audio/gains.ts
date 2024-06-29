@@ -10,17 +10,17 @@ export const useMusicInitRefsGains =
           context.createGain();
         master.gain.value = 0.5;
 
-        const midisMaster =
+        const midis =
           context.createGain();
-        midisMaster.gain.value = 0.5;
+        midis.gain.value = 0.5;
 
-        const beatsMaster =
+        const beats =
           context.createGain();
-        beatsMaster.gain.value = 0.5;
+        beats.gain.value = 0.5;
         return {
-          beatsMaster,
+          beats,
           master,
-          midisMaster,
+          midis,
         };
       };
 

@@ -28,10 +28,10 @@ export const useRefsAudio = () => {
           context
         );
 
-      gains.midisMaster.connect(
+      gains.midis.connect(
         gains.master
       );
-      gains.beatsMaster.connect(
+      gains.beats.connect(
         gains.master
       );
       gains.master.connect(destination);

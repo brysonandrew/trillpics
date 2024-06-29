@@ -8,8 +8,8 @@ import { useMusicRefs } from "~/pages/video/music/_context/init";
 import { useTrillPicsStore } from "~/store/middleware";
 import { TState } from "~/store/types";
 
-export const BeatsMaster: FC = () => {
-  const { audio:{ gains:{ beatsMaster } }  } =
+export const Beats: FC = () => {
+  const { audio:{ gains:{ beats } }  } =
     useMusicRefs();
   // const { set } = useTrillPicsStore(
   //   ({ set }) => ({
@@ -20,7 +20,7 @@ export const BeatsMaster: FC = () => {
   // const handleUpdate: TUpdateNumberHandler =
   //   (value) => {
   //     const next = Number(value);
-  //     beatsMaster.gain.value = next;
+  //     beats.gain.value = next;
   //     set((draft: TState) => {
   //       draft.beats.gain = next;
   //     });

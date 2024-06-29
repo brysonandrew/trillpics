@@ -10,7 +10,7 @@ import { useMusicRefs } from "~/pages/video/music/_context/init";
 const key: TBeatsStepsKey = "snare";
 
 export const useSnare = () => {
-  const { audio:{context, gains:{beatsMaster}} } =
+  const { audio:{context, gains:{beats}} } =
     useMusicRefs();
   const isReady = useBufferInit(key, 2);
   const start =
@@ -38,7 +38,7 @@ export const useSnare = () => {
       ...options,
     });
     filter.connect(gain);
-    gain.connect(beatsMaster);
+    gain.connect(beats);
   };
 
   return { play, stop, isReady };

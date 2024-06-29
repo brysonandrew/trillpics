@@ -35,8 +35,8 @@ export const MusicInitProvider: FC<
   // const {
   //   context,
   //   master,
-  //   beatsMaster,
-  //   midisMaster,
+  //   beats,
+  //   midis,
   //   bufferSourceRecord,
   //   bufferRecord,
   //   destination,
@@ -60,7 +60,7 @@ export const MusicInitProvider: FC<
         schedule,
         // context,
         // master,
-        // midisMaster,
+        // midis,
         // destination,
         // recorder,
         // filter,
@@ -73,7 +73,7 @@ export const MusicInitProvider: FC<
         // grid,
         // schedule.record,
         // updateStepRecord,
-        // beatsMaster,
+        // beats,
         // scroll,
       }}
     >

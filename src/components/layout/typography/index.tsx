@@ -15,7 +15,6 @@ export const Typography: FC<TTypographyProps> =
       children,
       ...props
     }) => {
-      console.log(children)
       const c = overrideClasses(
         clsx(
           "relative text-left leading-none uppercase font-slab",

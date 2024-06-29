@@ -13,7 +13,7 @@ export const useTom = () => {
   const {
     audio: {
       context,
-      gains: { beatsMaster },
+      gains: { beats },
     },
   } = useMusicRefs();
   const isReady = useBufferInit(key, 0);
@@ -52,7 +52,7 @@ export const useTom = () => {
       volume,
     });
     filter.connect(gain);
-    gain.connect(beatsMaster);
+    gain.connect(beats);
   };
 
   return { play, stop, isReady };

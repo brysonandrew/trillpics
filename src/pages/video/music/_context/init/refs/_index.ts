@@ -34,16 +34,16 @@ import { BEATS_PRESETS } from "~/hooks/music/beats/presets";
 //     const master = context.createGain();
 //     master.gain.value = 0.5;
 
-//     const midisMaster =
+//     const midis =
 //       context.createGain();
-//     midisMaster.gain.value = 0.5;
+//     midis.gain.value = 0.5;
 
-//     const beatsMaster =
+//     const beats =
 //       context.createGain();
-//     beatsMaster.gain.value = 0.5;
+//     beats.gain.value = 0.5;
 
-//     midisMaster.connect(master);
-//     beatsMaster.connect(master);
+//     midis.connect(master);
+//     beats.connect(master);
 //     master.connect(destination);
 //     master.connect(context.destination);
 
@@ -98,7 +98,7 @@ import { BEATS_PRESETS } from "~/hooks/music/beats/presets";
 //     return {
 //       loopCount: 0,
 //       loopsRemainder: 0,
-//       beatsMaster,
+//       beats,
 //       context,
 //       master,
 //       delay,
@@ -109,7 +109,7 @@ import { BEATS_PRESETS } from "~/hooks/music/beats/presets";
 //       arrayBuffer,
 //       progress,
 //       bufferSourceRecord,
-//       midisMaster,
+//       midis,
 //       bufferRecord,
 //       grid.record: {},
 //       progressStep,
@@ -117,8 +117,8 @@ import { BEATS_PRESETS } from "~/hooks/music/beats/presets";
 //       scroll,
 //     };
 //   }, []);
-//   // midisMaster.connect(master);
-//   // beatsMaster.connect(master);
+//   // midis.connect(master);
+//   // beats.connect(master);
 //   // master.connect(destination);
 //   // master.connect(context.destination);
 //   return { ...refs };
