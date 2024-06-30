@@ -1,11 +1,14 @@
 import { NodesFilterDropdowns } from "~/pages/video/music/synth/nodes/filter/dropdowns";
-import { NodesFilterSliders } from "~/pages/video/music/synth/nodes/filter/sliders";
+import { NodesFilterNumbers } from "~/pages/video/music/synth/nodes/filter/numbers";
 import { NodesTemplate } from "~/pages/video/music/synth/nodes/template";
 
 export const NodesFilter = () => {
   return (
-    <NodesTemplate title="Filter" Input={NodesFilterDropdowns}>
-      <NodesFilterSliders />
+    <NodesTemplate
+      title="Filter"
+      Input={NodesFilterDropdowns}
+    >
+      <NodesFilterNumbers />
     </NodesTemplate>
   );
 };

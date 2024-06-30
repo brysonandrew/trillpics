@@ -5,15 +5,16 @@ import { useMusicRefs } from "~/pages/video/music/_context/init";
 import { box } from "~uno/rules/box";
 import { OffSwitch } from "~/components/icons/_pismo/OffSwitch";
 import { Ordered } from "~/components/icons/_pismo/Ordered";
-const id = Math.random()
-  .toString()
-  .replace(".", "");
+// const id = Math.random()
+//   .toString()
+//   .replace(".", "");
 type TProps = {
+  id: string;
   audioParam: AudioParam;
 };
 export const ModulatorsAdd: FC<
   TProps
-> = ({ audioParam }) => {
+> = ({ id, audioParam }) => {
   const {
     audio: { modulator },
   } = useMusicRefs();
@@ -39,42 +40,51 @@ export const ModulatorsAdd: FC<
   console.log(modulator);
   return (
     <div
-      className="column-space absolute right-full top-1/2 bg-red"
+      className="column-space absolute right-full bottom-1/2"
       style={{
         width: box.m05,
-        height: box.m2,
+        transform: `translateX(${box.m0125}px)`,
       }}
     >
       <button
-        className="center _bi-conic-metal"
+        className="relative center bg-black"
         title="connect"
         onClick={handleConnect}
         style={{
-          ...resolveSquare(box.m05),
+          ...resolveSquare(box.m025),
+          ...box.r.xl,
         }}
       >
+        <div
+          className="fill _bi-conic-metal opacity-50"
+          style={{
+            ...resolveSquare(box.m025),
+            ...box.r.xl,
+          }}
+        />
         <IconsPlus14 />
       </button>
-      <button
-        className="center _bi-conic"
-        title="reconnect"
-        onClick={handleReconnect}
+      {/* <button
+        className="center _bi-conic brightness-40"
+     
+              title="disconnect"
+        onClick={handleDisconnect}
         style={{
-          ...resolveSquare(box.m05),
+          ...resolveSquare(box.m07),
         }}
       >
         <OffSwitch />
-      </button>
-      <button
-        className="center _bi-conic"
-        title="disconnect"
-        onClick={handleDisconnect}
+      </button> */}
+      {/* <button
+        className="center _bi-conic brightness-40"
+     title="reconnect"
+        onClick={handleReconnect}
         style={{
-          ...resolveSquare(box.m05),
+          ...resolveSquare(box.m07),
         }}
       >
         <Ordered />
-      </button>
+      </button> */}
     </div>
   );
 };

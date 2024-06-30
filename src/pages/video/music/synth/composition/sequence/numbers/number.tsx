@@ -1,7 +1,7 @@
 import { FC } from "react";
 import {
   TSequenceOptions,
-  TSequenceSliderOptionsKey,
+  TSequenceNumberOptionsKey,
 } from "~/pages/video/music/synth/composition/sequence/types";
 import { TInputProps } from "~/types/inputs";
 import { InputsNumber } from "~/components/inputs/number";
@@ -14,7 +14,7 @@ const MIN = 0;
 const MAX = 8;
 const STEP = 0.1;
 type TProps = TInputProps & {
-  optionsKey: TSequenceSliderOptionsKey;
+  optionsKey: TSequenceNumberOptionsKey;
   min?: number;
   max?: number;
   step?: number;

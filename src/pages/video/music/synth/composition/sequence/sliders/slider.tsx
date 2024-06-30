@@ -5,7 +5,7 @@ import {
 import { TUpdateNumberHandler } from "~/components/inputs/slider/types";
 import { SliderUncontrolled } from "~/components/inputs/slider/uncontrolled";
 import { resolveMidiSteps } from "~/constants/music/midi/steps";
-import { TSequenceSliderOptionsKey } from "~/pages/video/music/synth/composition/sequence/types";
+import { TSequenceNumberOptionsKey } from "~/pages/video/music/synth/composition/sequence/types";
 import { useUpdateStateHandler } from "~/store/hooks/use-update-state-handler";
 import { useTrillPicsStore } from "~/store/middleware";
 import { TState } from "~/store/types";
@@ -14,7 +14,7 @@ const MIN = 0;
 const MAX = 8;
 const STEP = 0.1;
 type TProps = {
-  optionsKey: TSequenceSliderOptionsKey;
+  optionsKey: TSequenceNumberOptionsKey;
   min?: number;
   max?: number;
   step?: number;

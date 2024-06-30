@@ -1,4 +1,5 @@
 import { TInitConfig } from "~/types/music";
+export const GAIN_PARAMS = ['gain'] as const;
 
 type TGainNodeKey = keyof Pick<GainNode, "gain">;
 type TGainNodeConfig = TInitConfig &

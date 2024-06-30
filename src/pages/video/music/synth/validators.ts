@@ -5,9 +5,9 @@ import {
   SYNTH_TYPES_RECORD,
   TSynthConfigKey,
 } from "~/pages/video/music/synth/constants";
-import { TScaleSliderOptionsKey } from "~/pages/video/music/synth/composition/scale/types";
+import { TScaleNumberOptionsKey } from "~/pages/video/music/synth/composition/scale/types";
 import { DEFAULT_SEQUENCE_OPTIONS } from "~/pages/video/music/synth/composition/sequence/constants";
-import { TSequenceSliderOptionsKey } from "~/pages/video/music/synth/composition/sequence/types";
+import { TSequenceNumberOptionsKey } from "~/pages/video/music/synth/composition/sequence/types";
 import {
   TSynthType,
   TSynthOptionType,
@@ -69,14 +69,14 @@ export const isSynthSliderConfigType = (
 export const isSequenceSliderConfigType =
   (
     key: string
-  ): key is TSequenceSliderOptionsKey => {
+  ): key is TSequenceNumberOptionsKey => {
     if (key in DEFAULT_SEQUENCE_OPTIONS)
       return true;
     return false;
   };
 export const isScaleSliderConfigType = (
   key: string
-): key is TScaleSliderOptionsKey => {
+): key is TScaleNumberOptionsKey => {
   if (
     key in DEFAULT_SCALE_SLIDER_OPTIONS
   )

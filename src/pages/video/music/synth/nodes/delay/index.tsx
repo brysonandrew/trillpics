@@ -1,7 +1,4 @@
-import { resolveSquare } from "@brysonandrew/measure";
-import { IconsPlus14 } from "~/components/icons/plus/14";
 import { NodesDelayNumbers } from "~/pages/video/music/synth/nodes/delay/numbers";
-import { ModulatorsAdd } from "~/pages/video/music/synth/nodes/modulators/add";
 import { NodesTemplate } from "~/pages/video/music/synth/nodes/template";
 import { box } from "~uno/rules/box";
 
@@ -10,7 +7,6 @@ export type TDelayNodeKey = keyof Pick<
   "delayTime"
 >;
 export const NodesDelay = () => {
-
   return (
     <NodesDelayNumbers>
       {(Input, children) => (
@@ -20,7 +16,6 @@ export const NodesDelay = () => {
           style={{ gap: box.m003125 }}
         >
           {children}
-
         </NodesTemplate>
       )}
     </NodesDelayNumbers>

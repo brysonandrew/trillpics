@@ -1,42 +1,74 @@
-import type { FC } from "react";
-import { InputsNumber } from "~/components/inputs/number";
-import { BIQUAD_FILTER_SILDER_PARAMS } from "~/pages/video/music/synth/nodes/filter/constants";
-import { TBiquadFilterSliderOptionsKey } from "~/pages/video/music/synth/nodes/filter/types";
-import { propsFromAudioparams } from "~/pages/video/music/synth/nodes/props-from-audioparams";
+import { FC } from "react";
+import { TUpdateNumberHandler } from "~/components/inputs/slider/types";
+import { BIQUAD_FILTER_NUMBER_OPTIONS } from "~/pages/video/music/synth/nodes/filter/constants";
+import { TBiquadFilterNumberOptionsKey } from "~/pages/video/music/synth/nodes/filter/types";
+import {
+  ModulatorsParams,
+  TBiquadFilterParams,
+} from "~/pages/video/music/synth/nodes/modulators/params";
 import { useMusicRefs } from "~/pages/video/music/_context/init";
 import { resolveObjectKeys } from "~/utils/object";
 
-export const NodesFilterSliders: FC =
+export const NodesFilterNumbers: FC =
   () => {
     const {
       audio: {
         filters: { filter },
       },
     } = useMusicRefs();
-    const handleUpdate = (
-      name: TBiquadFilterSliderOptionsKey,
-      value: number
-    ) => {
-      filter[name].value = value;
-    };
+    const handleUpdate =
+      (
+        name: TBiquadFilterNumberOptionsKey
+      ) =>
+      (value: number) => {
+        filter[name].value = value;
+      };
+
+    const keys = resolveObjectKeys(
+      BIQUAD_FILTER_NUMBER_OPTIONS
+    );
+    const params = keys.map((key) => {
+      const handler: TUpdateNumberHandler =
+        handleUpdate(key);
+      const param: AudioParam =
+        filter[key];
+      return [key, param, handler];
+    });
     return (
-      <div className="column">
-        {resolveObjectKeys(
-          BIQUAD_FILTER_SILDER_PARAMS
-        ).map((key) => (
-          <InputsNumber
-            key={key}
-            name={`filter.${key}`}
-            title={key}
-            onUpdate={(value) =>
-              handleUpdate(key, value)
-            }
-            {...propsFromAudioparams(
-              key,
-              filter[key]
-            )}
-          />
-        ))}
-      </div>
+      <ModulatorsParams
+        type="filter"
+        params={
+          params as TBiquadFilterParams
+        }
+      />
+      //   {keys.map((key) => {
+      //     const name = ;
+      //     return (
+      //       <li
+      //         key={key}
+      //         className="relative"
+      //       >
+      //         <ModulatorsAdd
+      //           id={name}
+      //           audioParam={filter[key]}
+      //         />
+      //         <InputsNumber
+      //           name={name}
+      //           title={key}
+      //           onUpdate={(value) =>
+      //             handleUpdate(
+      //               key,
+      //               value
+      //             )
+      //           }
+      //           {...propsFromAudioparams(
+      //             key,
+      //             filter[key]
+      //           )}
+      //         />
+      //       </li>
+      //     );
+      //   })}
+      // </ul>
     );
   };

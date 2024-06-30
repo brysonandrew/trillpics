@@ -1,4 +1,4 @@
-export type TSequenceSliderOptions = {
+export type TSequenceNumberOptions = {
   offset: number;
   interval: number;
   repeat: number;
@@ -6,10 +6,10 @@ export type TSequenceSliderOptions = {
   duration: number;
   beats: number;
 };
-export type TSequenceSliderOptionsKey =
-  keyof TSequenceSliderOptions;
+export type TSequenceNumberOptionsKey =
+  keyof TSequenceNumberOptions;
 export type TSequenceOptions =
-  TSequenceSliderOptions;
+  TSequenceNumberOptions;
 export type TSequenceOptionsKey =
   keyof TSequenceOptions;
 export type TSequenceOptionsIncrementerKey =

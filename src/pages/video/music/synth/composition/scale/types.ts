@@ -9,15 +9,15 @@ export type TScalePattern =
   | "valley"
   | "alternating";
 
-export type TScaleSliderOptions = {
+export type TScaleNumberOptions = {
   delta: number;
 };
 
-export type TScaleSliderOptionsKey =
-  keyof TScaleSliderOptions;
+export type TScaleNumberOptionsKey =
+  keyof TScaleNumberOptions;
 
 export type TScaleOptions =
-  TScaleSliderOptions & {
+  TScaleNumberOptions & {
     pattern: TScalePattern;
     key: TScaleKey;
   };

@@ -55,8 +55,13 @@ export const NodesDelayNumbers: FC<
       }) => {
         const Input = () => (
           <Box>
-            
             <Header>
+            <ModulatorsAdd
+                  id="delay.delayTime"
+                  audioParam={
+                    delay.delayTime
+                  }
+                />
               <Title />
               {number}
             </Header>
@@ -64,14 +69,13 @@ export const NodesDelayNumbers: FC<
         );
         return (
           <>
-         <ModulatorsAdd audioParam={delay.delayTime}/>
-
             {children(
               Input,
               <div className="relative">
                 {slider}
                 {/* <Background /> */}
                 <Info />
+              
               </div>
             )}
           </>
