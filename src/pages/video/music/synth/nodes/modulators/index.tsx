@@ -13,16 +13,16 @@ import { ModulatorsNumbers } from "~/pages/video/music/synth/nodes/modulators/nu
 import { IconsPlus14 } from "~/components/icons/plus/14";
 import { resolveCompositeKey } from "@brysonandrew/utils-key";
 import {
-  imperativeBiConic,
+  imperativeBiZebra,
   imperativeBiNone,
   imperativeHide,
   imperativeShow,
-} from "~/pages/video/music/synth/nodes/modulators/imperative";
+} from "~/utils/imperative";
 import { LinesVertical } from "~/components/lines/vertical";
 
 type TProps = PropsWithChildren<{
   id: string;
-  audioParam: AudioParam;
+  audioParam: AudioParam|null;
 }>;
 export const Modulators: FC<TProps> = ({
   children,
@@ -35,7 +35,6 @@ export const Modulators: FC<TProps> = ({
   const {
     audio: { modulator, context },
   } = useMusicRefs();
-
   const IDS = useMemo(() => {
     return {
       root: resolveCompositeKey(
@@ -80,7 +79,7 @@ export const Modulators: FC<TProps> = ({
     );
     modulator.refs[id].isStarted = true;
 
-    imperativeBiConic(IDS.root);
+    imperativeBiZebra(IDS.root);
     imperativeShow(IDS.started.icon);
     imperativeShow(IDS.started.inputs);
 
@@ -89,7 +88,7 @@ export const Modulators: FC<TProps> = ({
     );
   };
   const handleStop = () => {
-    if (modulator.refs[id]) {
+    if (modulator.refs[id] && audioParam) {
       modulator.refs[id] = {
         ...modulator.refs[id],
         ...modulator.refs[id].reconnect(
@@ -120,13 +119,15 @@ export const Modulators: FC<TProps> = ({
     }
   };
 
+  const isAudioParamNull  = audioParam === null
+
   useEffect(() => {
-    if (!modulator.refs[id]) {
+    if (!modulator.refs[id] && audioParam) {
       modulator.refs[id] =
         modulator.connect(audioParam,id);
       setConnected(true);
     }
-  }, []);
+  }, [isAudioParamNull]);
 
   return (
     <div

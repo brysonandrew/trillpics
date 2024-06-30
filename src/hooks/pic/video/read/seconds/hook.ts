@@ -1,18 +1,19 @@
 import { useSearchParams } from "react-router-dom";
-import { useAudioSeconds } from "~/hooks/music/time/audio-seconds";
 import {
   SECONDS_PARAM_KEY,
   SELECTED_PARAM_KEY,
 } from "~/hooks/pic/constants";
 import { picVideoReadCount } from "~/hooks/pic/video/read/count";
 import { resolveSecondsFromCount } from "~/hooks/pic/video/read/seconds/from-count";
-import { useTrillPicsStore } from "~/store/middleware";
+import { useMusicRefs } from "~/pages/video/music/_context/init";
 
 export const usePicVideoReadSeconds =
   () => {
-    const { bpm } = useTrillPicsStore(
-      ({ bpm }) => ({ bpm })
-    );
+    const {
+      schedule: {
+        record: { bpm },
+      },
+    } = useMusicRefs();
     const [searchParams] =
       useSearchParams();
     const seconds = Number(

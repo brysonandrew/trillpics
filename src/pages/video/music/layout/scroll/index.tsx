@@ -8,8 +8,7 @@ import { useMusicRefs } from "~/pages/video/music/_context/init";
 export const LayoutScroll: FC<
   PropsWithChildren
 > = ({ children }) => {
-  const { layout:{ scroll } } =
-    useMusicRefs();
+  const { layout } = useMusicRefs();
 
   return (
     <div
@@ -17,7 +16,7 @@ export const LayoutScroll: FC<
         "fill overflow-auto h-screen w-full",
         "flex flex-row items-stretch justify-stretch"
       )}
-      ref={scroll}
+      ref={layout.scroll}
     >
       {children}
     </div>

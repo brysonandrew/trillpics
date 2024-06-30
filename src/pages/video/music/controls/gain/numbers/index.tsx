@@ -9,6 +9,7 @@ import { TMusicKey } from "~/store/state/music/types";
 const KEY = "gain";
 type TProps = {
   musicKey: TMusicKey;
+  ampKey?: "master" | "preamp";
   children: (
     Input: FC,
     children: TChildren
@@ -16,7 +17,11 @@ type TProps = {
 };
 export const NodesGainNumbers: FC<
   TProps
-> = ({ musicKey, children }) => {
+> = ({
+  musicKey,
+  ampKey = "master",
+  children,
+}) => {
   const {
     audio: { gains },
   } = useMusicRefs();
@@ -24,17 +29,14 @@ export const NodesGainNumbers: FC<
     name: TGainNodeKey,
     value: number
   ) => {
-    console.log(
-      name,
-      value,
-      gains[musicKey]
-    );
-    gains[musicKey][name].value = value;
+    gains[musicKey][ampKey][
+      name
+    ].value = value;
   };
 
   return (
     <InputsNumber
-      name={`${musicKey}.${KEY}`}
+      name={`${musicKey}.${ampKey}.${KEY}`}
       title="gain"
       onUpdate={(value) =>
         handleUpdate(KEY, value)
@@ -47,11 +49,19 @@ export const NodesGainNumbers: FC<
         return next;
       }}
       defaultValue={
-        gains[musicKey].gain.value
+        gains[musicKey][ampKey].gain
+          .value
       }
-      min={0}
-      max={1}
-      step={0.001}
+      {...ampKey === 'master' ? {
+        min: 0,
+        max: 1,
+        step: 0.0001,
+      } : {
+        min: 0,
+        max: 100,
+        step: 0.1,
+      }}
+
     >
       {({
         number,
@@ -59,7 +69,6 @@ export const NodesGainNumbers: FC<
         Header,
         Title,
         Box,
-        Info,
       }) => {
         const Input = () => (
           <>
@@ -77,9 +86,11 @@ export const NodesGainNumbers: FC<
               Input,
 
               <Modulators
-                id={`${musicKey}.gain`}
+                id={`${musicKey}.${ampKey}.gain`}
                 audioParam={
-                  gains[musicKey].gain
+                  gains[musicKey][
+                    ampKey
+                  ].gain
                 }
               >
                 <div className="relative pl-2">

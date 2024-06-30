@@ -30,7 +30,6 @@ export const useTom = () => {
       version = 2,
       volume = 1,
       stepIndex = 0,
-      rate = 1,
     } = options;
 
     const filter = new BiquadFilterNode(
@@ -40,19 +39,16 @@ export const useTom = () => {
         type: "lowpass",
       }
     );
-    const gain = new GainNode(context, {
-      gain: 0.4 * volume,
-    });
 
     start({
       stepIndex,
       startTime,
-      rate,
       output: filter,
       volume,
+      ...options
     });
-    filter.connect(gain);
-    gain.connect(beats);
+    filter.connect(beats.preamp);
+    beats.preamp.connect(beats.master);
   };
 
   return { play, stop, isReady };

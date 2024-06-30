@@ -16,7 +16,7 @@ export const VideoMusicSaveTimer: FC<
   const { videoSeconds } =
     useContextMusicRecorder();
   const musicPlay = useMusicPlay();
-  const { isRecording, isCooldown } =
+  const { isRecording } =
     musicPlay;
   return (
     <PlaybackTimer
@@ -37,7 +37,7 @@ export const VideoMusicSaveTimer: FC<
                 progressKey="track"
               />
             )
-          : isCooldown
+          : false
           ? () => (
               <TimerDisplay
                 elapsed={videoSeconds}

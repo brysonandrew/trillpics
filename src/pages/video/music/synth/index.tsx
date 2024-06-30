@@ -11,6 +11,7 @@ import { ChartsGridPlayButton } from "~/components/charts/grid/step/play/button"
 import { encryptMidiHoverKey } from "~/components/charts/grid/to-midi-hover-key";
 import { midiValueToNumber } from "~/utils/music/midi";
 import { useMusicRefs } from "~/pages/video/music/_context/init";
+import { DarkGlass } from "~/pages/video/music/layout/glass/dark";
 
 export const VideoMusicSynth: FC =
   () => {
@@ -20,13 +21,7 @@ export const VideoMusicSynth: FC =
     } = useVideoStyle();
     const { schedule } =
       useMusicRefs();
-    // const { schedule, synth } =
-    //   useTrillPicsStore(
-    //     ({ schedule, synth }) => ({
-    //       steps,
-    //       synth,
-    //     })
-    //   );
+ 
     return (
       <>
         <div
@@ -35,15 +30,7 @@ export const VideoMusicSynth: FC =
             width: width + box.m025,
           }}
         >
-          <BackgroundGlass
-            boxStyle={{
-              left: sidebarWidthOffset,
-            }}
-            style={{
-              borderTopRightRadius:
-                box.radius.xl,
-            }}
-          />
+          {/* <DarkGlass /> */}
 
           <VideoMusicSynthHeader />
         </div>

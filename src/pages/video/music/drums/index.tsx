@@ -21,16 +21,11 @@ export const VideoMusicDrums: FC =
       sidebarWidthOffset,
       width,
     } = useVideoStyle();
-    const { schedule } = useMusicRefs();
+    const { schedule, audio } =
+      useMusicRefs();
     const { beats: lookup } =
       useContextMusicReady();
-    const s = box;
-    // const { beats } = useTrillPicsStore(
-    //   ({ beats }) => ({
-    //     beats,
-    //   })
-    // );
-    // console.log(schedule.record.preset);
+
     return (
       <>
         <div

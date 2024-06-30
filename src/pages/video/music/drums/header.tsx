@@ -24,7 +24,7 @@ export const MusicLayoutDrums: FC =
             seconds={audioSeconds}
             progressKey="beats"
             isCooldown={
-              beats.isCooldown
+            false
             }
           />
         }

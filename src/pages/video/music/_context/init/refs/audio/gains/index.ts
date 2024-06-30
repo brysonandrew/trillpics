@@ -31,13 +31,24 @@ export const useMusicInitRefsGains =
           gain: 0.5,
         });
 
-        const midis = create({
-          gain: 0.4,
-        });
+        const midis = {
+          preamp:create({
+            gain: 0.4,
+          }),
+          master:create({
+            gain: 0.4,
+          })
+        }
 
-        const beats = create({
-          gain: 0.12,
-        });
+        const beats = {
+          preamp:create({
+            gain: 0.4,
+          }),
+          master:create({
+            gain: 0.12,
+          })
+        }
+
 
         return {
           create,

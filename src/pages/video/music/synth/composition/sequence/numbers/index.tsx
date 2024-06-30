@@ -1,5 +1,4 @@
 import type { FC } from "react";
-import { InputsNumber } from "~/components/inputs/number";
 import { SequenceNumber } from "~/pages/video/music/synth/composition/sequence/numbers/number";
 import { useMusicRefs } from "~/pages/video/music/_context/init";
 export const MusicSequenceNumbers: FC =
@@ -7,15 +6,6 @@ export const MusicSequenceNumbers: FC =
     const { schedule } = useMusicRefs();
     const { sequence, bpm } =
       schedule.record;
-    // const {
-    //   sequence,
-    // } = useTrillPicsStore(
-    //   ({
-    //     sequence,
-    //   }) => ({
-    //     sequence,
-    //   })
-    // );
     return (
       <>
         <SequenceNumber
@@ -48,17 +38,6 @@ export const MusicSequenceNumbers: FC =
           title="Repeat"
           step={0.2}
           defaultValue={sequence.repeat}
-        />
-        <InputsNumber
-          name="schedule.record.bpm"
-          onUpdate={(value: number) => {
-            schedule.record.bpm = value;
-          }}
-          title="BPM"
-          step={1}
-          min={40}
-          max={180}
-          defaultValue={bpm}
         />
       </>
     );

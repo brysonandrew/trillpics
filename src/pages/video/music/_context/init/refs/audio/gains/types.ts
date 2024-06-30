@@ -5,10 +5,14 @@ export type TGainRecycle = (
   gain: GainNode
 ) => GainOptions;
 
-export type TGains = {
-  beats: GainNode;
+type TDualAmp = {
+  preamp: GainNode;
   master: GainNode;
-  midis: GainNode;
+};
+export type TGains = {
+  beats: TDualAmp;
+  master: GainNode;
+  midis: TDualAmp;
   recycle: TGainRecycle;
   create: TGainCreate;
 };

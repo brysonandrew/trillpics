@@ -1,14 +1,8 @@
 import { resolveObjectKeys } from "~/utils/object";
-import {
-  DARK_CONIC,
-  DARK_METAL_CONIC,
-  GRADIENT_DIAMOND_METAL_RADIAL,
-  GRADIENT_ZEBRA,
-} from "~uno/rules/gradient/constants";
+import { GRADIENT_ZEBRA } from "~uno/rules/gradient/constants";
 
 const element = (id: string) => {
   const e = document.getElementById(id);
-  console.log(id, e);
   return e;
 };
 export const imperativeHide = (
@@ -36,7 +30,7 @@ export const imperativeBiNone = (
     e.style.backgroundImage = "none";
   }
 };
-export const imperativeBiConic = (
+export const imperativeBiZebra = (
   id: string
 ) => {
   const e = element(id);

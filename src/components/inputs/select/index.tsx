@@ -8,6 +8,7 @@ import { box } from "~uno/rules/box";
 import { LinesHorizontalLight } from "~/components/lines/horizontal/light";
 import { InputsBox } from "~/components/inputs/box";
 import { TypographyXxxs } from "~/components/layout/typography/xxxs";
+import { InputsBoxTitle } from "~/components/inputs/box/title";
 import * as Select from "@radix-ui/react-select";
 
 type TProps = Select.SelectProps & {
@@ -24,7 +25,10 @@ export const InputsSelect: FC<
   ...props
 }) => {
   return (
-    <InputsBox title={title}>
+    <InputsBox>
+      <InputsBoxTitle>
+        {title}
+      </InputsBoxTitle>
       <Select.Root {...props}>
         <Select.Trigger
           className={clsx(

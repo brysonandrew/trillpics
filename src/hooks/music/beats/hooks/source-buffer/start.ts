@@ -4,7 +4,6 @@ import {
   TPlayBeatsOptions,
 } from "~/hooks/music/beats/types";
 import { useMusicRefs } from "~/pages/video/music/_context/init";
-import { isNumber } from "~/utils/validation/is/number";
 type THandlerConfig =
   TPlayBeatsOptions & {
     startTime: number;
@@ -14,22 +13,8 @@ export const useSourceBufferStart = (
   key: TBeatsKey
 ) => {
   const {
-    audio: {
-      context,
-      drums: {
-        bufferSourceRecord,
-        bufferRecord,
-      },
-    },
+    audio: { context, drums },
   } = useMusicRefs();
-
-  // const { bpm, beats } =
-  //   useTrillPicsStore(
-  //     ({ bpm, beats }) => ({
-  //       bpm,
-  //       beats,
-  //     })
-  //   );
 
   const stop = useSourceBufferStop(key);
 
@@ -40,11 +25,9 @@ export const useSourceBufferStart = (
       startTime,
       stepIndex = 0,
       output,
-      rate,
-      volume = 1,
     } = config;
     const sampleBuffer =
-      bufferRecord[key];
+      drums.bufferRecord[key];
     if (!sampleBuffer) {
       console.log("NO sampleBuffer");
       return;
@@ -55,31 +38,30 @@ export const useSourceBufferStart = (
         startTime) *
       1000;
 
-    bufferSourceRecord[key][stepIndex] =
-      {
-        source:
-          context.createBufferSource(),
-        timeout: setTimeout(() => {
-          stop(stepIndex);
-        }, stopTime),
-      };
+    drums.bufferSourceRecord[key][
+      stepIndex
+    ] = {
+      source:
+        context.createBufferSource(),
+      timeout: setTimeout(() => {
+        stop(stepIndex);
+      }, stopTime),
+    };
 
-    bufferSourceRecord[key][
+    drums.bufferSourceRecord[key][
       stepIndex
     ].source.buffer = sampleBuffer;
-    bufferSourceRecord[key][
+    drums.bufferSourceRecord[key][
       stepIndex
     ].source.connect(output);
-    bufferSourceRecord[key][
+    drums.bufferSourceRecord[key][
       stepIndex
     ].source.start(startTime);
 
-    if (isNumber(rate)) {
-      bufferSourceRecord[key][
-        stepIndex
-      ].source.playbackRate.value =
-        rate;
-    }
+    drums.bufferSourceRecord[key][
+      stepIndex
+    ].source.playbackRate.value =
+      drums.options.playbackRate ?? 1;
   };
   return handler;
 };

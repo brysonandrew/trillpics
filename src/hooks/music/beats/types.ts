@@ -22,7 +22,7 @@ export type TPlayBeatsOptions = {
   version?: number;
   stepIndex?: number;
   loopIndex?:number
-  rate?: number;
+  playbackRate?: number;
 };
 
 export type TBeatsStepsKeys =

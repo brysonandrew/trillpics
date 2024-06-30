@@ -13,9 +13,9 @@ export const useMusicPlay = () => {
   const isPlaying =
     playNodes.isPlaying &&
     playBeats.isPlaying;
-  const isCooldown =
-    playNodes.isCooldown &&
-    playBeats.isCooldown;
+  // const isCooldown =
+  //   playNodes.isCooldown &&
+  //   playBeats.isCooldown;
   const stop = () => {
     playNodes.stop();
     playBeats.stop();
@@ -33,7 +33,7 @@ export const useMusicPlay = () => {
     play,
     stop,
     isPlaying,
-    isCooldown,
+    isCooldown:false,
     isRecording:
       isPlaying &&
       recorder.state === "recording",

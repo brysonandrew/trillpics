@@ -5,7 +5,6 @@ import {
 } from "@brysonandrew/config-types";
 import { box } from "~uno/rules/box";
 import { useVideoStyle } from "~/pages/video/style";
-import { MusicControlsSlidersBpm } from "~/pages/video/music/controls/sliders/bpm";
 import { MusicControlsSlidersMaster } from "~/pages/video/music/controls/sliders/master";
 
 type TProps =

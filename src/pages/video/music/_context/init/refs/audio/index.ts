@@ -1,4 +1,5 @@
 import { useMemo } from "react";
+import { WORKLETS } from "~/constants/music/worklets";
 import { useMusicInitRefsDelays } from "~/pages/video/music/_context/init/refs/audio/delays";
 import { useMusicInitRefsDrums } from "~/pages/video/music/_context/init/refs/audio/drums";
 import { useMusicInitRefsFilters } from "~/pages/video/music/_context/init/refs/audio/filters";
@@ -7,6 +8,7 @@ import { useSynthModulators } from "~/pages/video/music/_context/init/refs/audio
 import { useSynthOscillators } from "~/pages/video/music/_context/init/refs/audio/oscillators";
 import { useMusicInitRefsSave } from "~/pages/video/music/_context/init/refs/audio/save";
 import { TScheduleOptions } from "~/pages/video/music/_context/init/refs/schedule/types";
+import { TWorkletKey } from "~/types/worklets";
 
 export const useRefsAudio = (options:TScheduleOptions) => {
   const oscillators =
@@ -34,8 +36,8 @@ export const useRefsAudio = (options:TScheduleOptions) => {
           context
         );
 
-      gains.midis.connect(gains.master);
-      gains.beats.connect(gains.master);
+      gains.midis.master.connect(gains.master);
+      gains.beats.master.connect(gains.master);
       gains.master.connect(destination);
       gains.master.connect(
         context.destination
@@ -48,9 +50,15 @@ export const useRefsAudio = (options:TScheduleOptions) => {
         gains.recycle
       );
 
+      const worklets = WORKLETS.reduce((a,key:TWorkletKey) => ({
+        [key]:null,
+        ...a,
+      }), {} as Record<TWorkletKey,AudioWorkletNode|null>)
+
       return {
         oscillator,
         modulator,
+        worklets,
         drums: drums(),
         save: save(
           context,

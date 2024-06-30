@@ -1,31 +1,16 @@
 import type { FC } from "react";
 import { InputsNumber } from "~/components/inputs/number";
-import { TUpdateNumberHandler } from "~/components/inputs/slider/types";
+import { TBiquadFilterConfig } from "~/pages/video/music/synth/nodes/filter/types";
 import { Modulators } from "~/pages/video/music/synth/nodes/modulators";
-import { TOscillatorNumberOptionsKey } from "~/pages/video/music/synth/nodes/oscillator/types";
+import { TOscillatorConfig } from "~/pages/video/music/synth/nodes/oscillator/types";
 import { propsFromAudioparams } from "~/pages/video/music/synth/nodes/props-from-audioparams";
+import { TBitcrusherModulatorParamsConfig } from "~/pages/video/music/synth/nodes/worklets/bitcrusher/types";
+import { TKarplusStrongModulatorParamsConfig } from "~/pages/video/music/synth/nodes/worklets/karplus-strong/types";
 import { box } from "~uno/rules/box";
-export type TOscillatorParams = [
-  TOscillatorNumberOptionsKey,
-  AudioParam,
-  TUpdateNumberHandler
-][];
 
-export type TOscillatorConfig = {
-  type: "oscillator";
-  params: TOscillatorParams;
-};
-
-export type TBiquadFilterParams = [
-  TOscillatorNumberOptionsKey,
-  AudioParam,
-  TUpdateNumberHandler
-][];
-export type TBiquadFilterConfig = {
-  type: "filter";
-  params: TBiquadFilterParams;
-};
 type TProps =
+  | TBitcrusherModulatorParamsConfig
+  | TKarplusStrongModulatorParamsConfig
   | TBiquadFilterConfig
   | TOscillatorConfig;
 export const ModulatorsParams: FC<
@@ -46,7 +31,7 @@ export const ModulatorsParams: FC<
             key={key}
             className="relative"
           >
-            <Modulators
+           <Modulators
               id={name}
               audioParam={param}
             >
@@ -56,7 +41,8 @@ export const ModulatorsParams: FC<
                 onUpdate={onUpdate}
                 {...propsFromAudioparams(
                   param,
-                  key
+                  key,
+                  type
                 )}
               />
             </Modulators>

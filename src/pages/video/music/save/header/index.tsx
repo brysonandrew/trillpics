@@ -40,8 +40,8 @@ export const VideoMusicSaveHeader =
               }
               seconds={videoSeconds}
               progressKey="track"
-              isCooldown={
-                musicPlay.isCooldown
+              isCooldown={false
+                // musicPlay.isCooldown
               }
             />
           }

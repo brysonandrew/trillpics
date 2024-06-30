@@ -23,37 +23,37 @@ export const LayoutViewBackground: FC<
     y,
     left,
     screenHeight,
-    containerHeight,
+    // containerHeight,
   } = useVideoStyle();
   const height = screenHeight - y / 2;
 
-  const handleScroll = () => {
-    if (
-      ref.current === null ||
-      scroll.current === null
-    )
-      return;
-    const diffY =
-      containerHeight - y - height;
-    const scrollTop =
-      scroll.current.scrollTop;
-    const isStartScrollY =
-      scrollTop < diffY;
-    if (!isStartScrollY) return;
-    const nextHeight =
-      height + (diffY - scrollTop);
-    ref.current.style.height = `${nextHeight}px`;
-  };
+  // const handleScroll = () => {
+  //   if (
+  //     ref.current === null ||
+  //     scroll.current === null
+  //   )
+  //     return;
+  //   const diffY =
+  //     containerHeight - y - height;
+  //   const scrollTop =
+  //     scroll.current.scrollTop;
+  //   const isStartScrollY =
+  //     scrollTop < diffY;
+  //   if (!isStartScrollY) return;
+  //   const nextHeight =
+  //     height + (diffY - scrollTop);
+  //   ref.current.style.height = `${nextHeight}px`;
+  // };
 
-  useEffect(() => {
-    handleScroll();
-  }, []);
+  // useEffect(() => {
+  //   handleScroll();
+  // }, []);
 
-  useEventListener(
-    "scroll",
-    handleScroll,
-    scroll
-  );
+  // useEventListener(
+  //   "scroll",
+  //   handleScroll,
+  //   scroll,{passive:true}
+  // );
 
   return (
     <div

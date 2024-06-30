@@ -12,8 +12,7 @@ export const useBufferInit = (
   version: number
 ) => {
   const {
-    audio: { context,drums:{bufferRecord} },
-    
+    audio: { context, drums },
   } = useMusicRefs();
   const [isReady, setReady] =
     useState(false);
@@ -27,7 +26,8 @@ export const useBufferInit = (
           version
         )
       );
-    bufferRecord[key] = sampleBuffer;
+    drums.bufferRecord[key] =
+      sampleBuffer;
     setReady(true);
   };
   useEffect(() => {

@@ -13,7 +13,7 @@ export const Beats: FC = () => {
   const handleUpdate: TUpdateNumberHandler =
     (value) => {
       const next = value;
-      beats.gain.value = next;
+      beats.master.gain.value = next;
     };
 
   return (
@@ -23,7 +23,7 @@ export const Beats: FC = () => {
       min={0}
       max={1}
       step={0.001}
-      defaultValue={beats.gain.value}
+      defaultValue={beats.master.gain.value}
       onUpdate={handleUpdate}
     />
   );

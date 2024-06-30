@@ -6,20 +6,21 @@ import {
   TScroll,
 } from "~/pages/video/music/_context/init/types";
 
-type TRefUpdateRecord =
-  TRefRecord<HTMLInputElement>;
+type TRefUpdateRecord<T extends HTMLElement = HTMLInputElement> =
+  TRefRecord<T>;
 
 type TInputRefs = {
   number: TRefUpdateRecord;
   slider: TRefUpdateRecord;
+  inputs: TRefUpdateRecord<HTMLDivElement>
 };
 
 type TRefsInputs = TInputRefs & {
   scroll: TScroll;
-  update(
+  update<T extends HTMLElement = HTMLInputElement>(
     key: keyof TInputRefs,
     name: string,
-    instance: HTMLInputElement
+    instance: T
   ): TRefsInputs;
 };
 export const useRefsLayout = () => {
@@ -36,10 +37,11 @@ export const useRefsLayout = () => {
       const inputRefsCreator = {
         number: {},
         slider: {},
-        update: function (
+        inputs:{},
+        update: function <T extends HTMLElement>(
           key: keyof TInputRefs,
           name: string,
-          instance: HTMLInputElement | null
+          instance: T | null
         ) {
           if (!this[key][name]) {
             this[key][name] = {

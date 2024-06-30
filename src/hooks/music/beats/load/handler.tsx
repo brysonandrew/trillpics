@@ -15,7 +15,7 @@ export const useBeatsLoadHandler =
     const handleBufferFromSrc =
       useBufferFromSrcHandler(context);
 
-    const hendler = async () => {
+    const handler = async () => {
       for await (const key of BEATS_KEYS) {
         const src =
           resolveAudioSampleSrc(
@@ -31,5 +31,5 @@ export const useBeatsLoadHandler =
       }
     };
 
-    return hendler;
+    return handler;
   };

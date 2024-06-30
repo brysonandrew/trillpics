@@ -52,6 +52,7 @@ export const useMusicRecorder = () => {
     audioSeconds,
     loopCount,
     loopsRemainder,
+    
     videoSeconds,
     handleStart,
     ...musicPlay,

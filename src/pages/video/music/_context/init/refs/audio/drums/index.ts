@@ -1,4 +1,5 @@
 import { useMemo } from "react";
+import { TPlayBeatsOptions } from "~/hooks/music/beats/types";
 import {
   TAudioBufferRecord,
   TBufferSourceRecord,
@@ -18,9 +19,13 @@ export const useMusicInitRefsDrums =
         const bufferRecord: TAudioBufferRecord =
           {};
 
+          const options: TPlayBeatsOptions =
+          {playbackRate:1};
+
         return {
           bufferSourceRecord,
           bufferRecord,
+          options
         };
       };
       return init;

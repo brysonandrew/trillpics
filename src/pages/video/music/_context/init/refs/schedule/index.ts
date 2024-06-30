@@ -28,6 +28,7 @@ export const useRefsSchedule = () => {
       midi: 44,
       bpm: 80,
       steps,
+      playingKeys: [],
       sequence: {
         ...DEFAULT_SEQUENCE_OPTIONS,
       },
@@ -35,6 +36,9 @@ export const useRefsSchedule = () => {
         ...DEFAULT_SCALE_OPTIONS,
       },
       synth: {
+        mode:"continuous",//"isolated", //
+        source: "strings",// "oscillator",
+        bitcrusher: {frequency:440,bits:64},
         ...DEFAULT_SYNTH_OPTIONS,
       },
       presets: BEATS_PRESETS,

@@ -1,13 +1,10 @@
 import type { FC } from "react";
-import { InputsNumber } from "~/components/inputs/number";
 import { TUpdateNumberHandler } from "~/components/inputs/slider/types";
 import {
   ModulatorsParams,
-  TOscillatorParams,
 } from "~/pages/video/music/synth/nodes/modulators/params";
 import { OSCILLATOR_NUMBER_OPTIONS } from "~/pages/video/music/synth/nodes/oscillator/constants";
-import { TOscillatorNumberOptionsKey } from "~/pages/video/music/synth/nodes/oscillator/types";
-import { propsFromAudioparams } from "~/pages/video/music/synth/nodes/props-from-audioparams";
+import { TOscillatorNumberOptionsKey, TOscillatorParams } from "~/pages/video/music/synth/nodes/oscillator/types";
 import { useMusicRefs } from "~/pages/video/music/_context/init";
 import { resolveObjectKeys } from "~/utils/object";
 

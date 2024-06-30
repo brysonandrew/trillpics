@@ -29,16 +29,16 @@ export const useSnare = () => {
         type: "highpass",
       }
     );
-    const gain = new GainNode(context, {
-      gain: 0.065,
-    });
+    // const gain = new GainNode(context, {
+    //   gain: 0.065,
+    // });
     start({
       startTime,
-      output: gain,
+      output: filter,
       ...options,
     });
-    filter.connect(gain);
-    gain.connect(beats);
+    filter.connect(beats.preamp);
+    beats.preamp.connect(beats.master);
   };
 
   return { play, stop, isReady };

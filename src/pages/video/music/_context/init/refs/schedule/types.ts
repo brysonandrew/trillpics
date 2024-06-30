@@ -13,6 +13,9 @@ import { TMidiValues } from "~/hooks/music/midis/types";
 import { TScaleOptions } from "~/pages/video/music/synth/composition/scale/types";
 import { TSequenceOptions } from "~/pages/video/music/synth/composition/sequence/types";
 import { TBeatsRecord } from "~/hooks/music/beats/types";
+import { TSynthSourceKey } from "~/pages/video/music/synth/source/constants";
+import { TSynthModeKey } from "~/pages/video/music/synth/mode/constants";
+import { TBitcrusherConfig } from "~/pages/video/music/synth/nodes/worklets/bitcrusher/init";
 
 export type TSynthType =
   keyof typeof SYNTH_TYPES_RECORD;
@@ -31,12 +34,17 @@ export type TSynthConfig = Omit<
 export type TBeatsPresets =
   typeof BEATS_PRESETS;
 export type TScheduleOptions = {
+  playingKeys: string[];
   midi: number;
   bpm: number;
   steps: TMidiValues;
   scale: TScaleOptions;
   sequence: TSequenceOptions;
-  synth: TSynthOptions;
+  synth: TSynthOptions & {
+    bitcrusher?:TBitcrusherConfig
+    source: TSynthSourceKey;
+    mode: TSynthModeKey;
+  };
   presets: TBeatsPresets;
   presetKey: TBeatsPresetsKey;
   preset(): TBeatsRecord; //TBeatsPresets[TBeatsPresetsKey];

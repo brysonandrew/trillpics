@@ -59,7 +59,8 @@ export const useStepPlay = <
 
   const { beats, midis } =
     useContextMusicReady();
-  const { grid } = useMusicRefs();
+  const { grid, schedule } =
+    useMusicRefs();
 
   const stop: TPlaybackHandler = (
     next = CHARTS_GRID_STEP_EMPTY_STYLE
@@ -77,6 +78,11 @@ export const useStepPlay = <
   const play = (
     next = CHARTS_GRID_STEP_ACTIVE_STYLE
   ) => {
+    if (
+      schedule.record.playingKeys
+        .length > 0
+    )
+      return;
     if (isNull(midi)) return;
     const player = resolvePlayer();
     if (!player) return;

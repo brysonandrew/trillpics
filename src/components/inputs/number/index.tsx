@@ -1,29 +1,18 @@
 import {
-  ChangeEventHandler,
   FC,
-  Fragment,
   memo,
   PropsWithChildren,
-  useEffect,
 } from "react";
-import clsx from "clsx";
 import { InputsBox } from "~/components/inputs/box";
 import { TUpdateNumberHandler } from "~/components/inputs/slider/types";
 import { TInputProps } from "~/types/inputs";
 import { box } from "~uno/rules/box";
 import { TTitleProps } from "@brysonandrew/config-types";
-import {
-  TFontWeight,
-  useMeasureTextWidth,
-} from "~/hooks/body-style/measure-text";
-import { isNull } from "~/utils/validation/is/null";
 import { InputsNumberInfo } from "~/components/inputs/number/info";
 import { InputsNumberBox } from "~/components/inputs/number/box";
 import { InputsNumberBackground } from "~/components/inputs/number/background";
 import { useMusicRefs } from "~/pages/video/music/_context/init";
 import { InputsBoxTitle } from "~/components/inputs/box/title";
-import { THEME_FONT_SIZES_LOOKUP } from "~uno/index";
-import { ARMSTRONG3_FULL_FONT_FAMILY } from "~uno/presets/fonts";
 import { NumberInput } from "~/components/inputs/number/input";
 import { InputsNumberSlider } from "~/components/inputs/number/slider";
 
@@ -82,16 +71,18 @@ export const InputsNumber: FC<
   const updateValues = (
     nextValue: string
   ) => {
-    if (
-      !layout.number[name].current ||
-      !layout.slider[name].current
-    ) {
-      return null;
+    console.log(name)
+    if (layout.number[name]?.current) {
+      layout.number[
+        name
+      ].current.value = nextValue;
     }
-    layout.number[name].current.value =
-      nextValue;
-    layout.slider[name].current.value =
-      nextValue;
+
+    if (layout.slider[name]?.current) {
+      layout.slider[
+        name
+      ].current.value = nextValue;
+    }
   };
   const handleUpdate = (
     value: number
@@ -131,7 +122,6 @@ export const InputsNumber: FC<
         lineHeight: box.m0625,
         borderRadius: box.radius.m,
         height: box.m05,
-
         ...box.px(box.m0125),
         paddingLeft: box.m025,
         ...style,

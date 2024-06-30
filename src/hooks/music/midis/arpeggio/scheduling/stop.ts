@@ -6,46 +6,44 @@ export const useSourceBufferStop = (
   key: TBeatsKey
 ) => {
   const {
-    audio: {
-      drums: { bufferSourceRecord },
-    },
+    audio: { drums },
   } = useMusicRefs();
   const handler = (
     stepIndex?: number
   ) => {
     if (isDefined(stepIndex)) {
       if (
-        bufferSourceRecord[key][
+        drums.bufferSourceRecord[key][
           stepIndex
         ]
       ) {
         if (
-          bufferSourceRecord[key][
+          drums.bufferSourceRecord[key][
             stepIndex
           ].source
         ) {
-          bufferSourceRecord[key][
+          drums.bufferSourceRecord[key][
             stepIndex
           ].source.stop();
         }
         if (
-          bufferSourceRecord[key][
+          drums.bufferSourceRecord[key][
             stepIndex
           ].timeout
         ) {
           clearTimeout(
-            bufferSourceRecord[key][
-              stepIndex
-            ].timeout
+            drums.bufferSourceRecord[
+              key
+            ][stepIndex].timeout
           );
         }
       }
     } else {
-      bufferSourceRecord[key].forEach(
-        (_, index) => {
-          handler(index);
-        }
-      );
+      drums.bufferSourceRecord[
+        key
+      ].forEach((_, index) => {
+        handler(index);
+      });
     }
   };
   return handler;

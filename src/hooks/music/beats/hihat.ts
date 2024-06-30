@@ -12,7 +12,7 @@ export const useHihat = () => {
   const {
     audio: {
       context,
-      gains: { master, beats },
+      gains: { beats },
     },
   } = useMusicRefs();
   const isReady = useBufferInit(key, 1);
@@ -33,17 +33,14 @@ export const useHihat = () => {
         type: "highpass",
       }
     );
-    const gain = new GainNode(context, {
-      gain: 0.4 * volume,
-    });
 
     start({
       startTime,
       output: filter,
       ...options,
     });
-    filter.connect(gain);
-    gain.connect(beats);
+    filter.connect(beats.preamp);
+    beats.preamp.connect(beats.master);
   };
 
   return { play, stop, isReady };

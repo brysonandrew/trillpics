@@ -30,17 +30,14 @@ export const useKick = () => {
         type: "lowpass",
       }
     );
-    const gain = new GainNode(context, {
-      gain: 0.4 * volume,
-    });
 
     start({
       startTime,
       output: filter,
       ...options,
     });
-    filter.connect(gain);
-    gain.connect(beats);
+    filter.connect(beats.preamp);
+    beats.preamp.connect(beats.master);
   };
 
   return { play, stop, isReady };

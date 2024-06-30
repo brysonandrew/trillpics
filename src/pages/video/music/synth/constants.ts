@@ -1,4 +1,7 @@
-import { TSynthOptions, WRITABLE_OSCILLATOR_TYPES } from "react-synthwave";
+import {
+  TSynthOptions,
+  WRITABLE_OSCILLATOR_TYPES,
+} from "react-synthwave";
 
 export const SYNTH_TYPES_RECORD = {
   options: "options",

@@ -4,7 +4,7 @@ import {
   TPlayMidisOptions,
 } from "~/hooks/music/midis/types";
 
-export const useNodesLookup = () => {
+export const useMidisLookup = () => {
   const arpeggio = useArpeggio();
   const lookup = {
     synth: arpeggio,
@@ -21,5 +21,5 @@ export const useNodesLookup = () => {
   >;
   return lookup;
 };
-export type TUseNodesLookup =
-  ReturnType<typeof useNodesLookup>;
+export type TuseMidisLookup =
+  ReturnType<typeof useMidisLookup>;

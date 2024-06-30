@@ -12,7 +12,6 @@ type TProps =
 export const TimerDisplayHeader: FC<
   TProps
 > = (props) => {
-  const s = box;
   return (
     <div
       className="relative row-start"

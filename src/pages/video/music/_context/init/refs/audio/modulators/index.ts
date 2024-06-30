@@ -1,5 +1,4 @@
 import { useMemo } from "react";
-import { key } from "localforage";
 import {
   TGainCreate,
   TGainRecycle,
@@ -8,7 +7,6 @@ import {
   TModulator,
   TModulatorConnect,
   TModulatorCreate,
-  TModulatorCreateParameters,
   TModulatorOptions,
   TModulatorRecycle,
   TModulatorRef,
@@ -28,7 +26,9 @@ const resolveMultipliers = (
 ) => {
   const defaultRange =
     propsFromAudioparams(param);
-  const [_, paramKey] = id.split(".");
+  const idParts = id.split(".");
+  const paramKey =
+    idParts[idParts.length - 1];
   const key = paramKey as TAllParamsKey;
   let gain = defaultRange.step;
   if (key === "delayTime") {

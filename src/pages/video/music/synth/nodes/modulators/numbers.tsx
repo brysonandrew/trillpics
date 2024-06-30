@@ -17,7 +17,6 @@ import {
   ModulatorsDropdownsMultiplier,
   TMultiplierValue,
 } from "~/pages/video/music/synth/nodes/modulators/dropdowns/multiplier";
-import { isNumber } from "~/utils/validation/is/number";
 const INPUTS = [
   "slider",
   "number",
@@ -25,7 +24,7 @@ const INPUTS = [
 
 type TProps = {
   id: string;
-  audioParam: AudioParam;
+  audioParam: AudioParam | null;
 };
 export const ModulatorsNumbers: FC<
   TProps
@@ -141,6 +140,7 @@ export const ModulatorsNumbers: FC<
     ): TUpdateNumberHandler =>
     (value) => {
       const param = resolveParam(key);
+      console.log(param);
       param.value = value;
 
       // const multiplier =

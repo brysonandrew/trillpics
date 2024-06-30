@@ -18,10 +18,8 @@ import { LayoutStickyMid } from "~/pages/video/music/layout/sticky/mid";
 import { LayoutStickyBottom } from "~/pages/video/music/layout/sticky/bottom";
 import { MusicControlsButtonsMenu } from "~/pages/video/music/controls/buttons/menu";
 import { MusicSynthNodes } from "~/pages/video/music/synth/nodes";
-import { MusicScale } from "~/pages/video/music/synth/composition/scale";
-import { Beats } from "~/pages/video/music/drums/master";
 import { MusicSynthComposition } from "~/pages/video/music/synth/composition";
-import { DrumsGain } from "~/pages/video/music/drums/gain";
+import { DrumsSettings } from "~/pages/video/music/drums/settings";
 
 export const VideoMusic = () => {
   return (
@@ -54,7 +52,7 @@ export const VideoMusic = () => {
               </LayoutStickyMid>
 
               <MusicLayoutRow>
-                <DrumsGain />
+               <DrumsSettings/>
               </MusicLayoutRow>
 
               <LayoutStickyBottom>
@@ -68,32 +66,3 @@ export const VideoMusic = () => {
     </MusicInitProvider>
   );
 };
-
-/* <div
-className="relative column-stretch bg-black-8 dark:bg-black-02"
-style={{
-  width: width ,
-  paddingTop: box.m025,
-  top: 0,
-  left: -box.m0125,
-
-  // paddingLeft: box.m0125,
-  // paddingRight: box.m0125,
-
-  borderRadius,
-  // gap: box.m025 * 1.5,
-}}
-> */
-{
-  /* <div
-                  className={clsx(
-                    "absolute inset-0 bg-black-8 dark:bg-black-7 rounded-lg"
-                  )}
-                  style={{
-                    borderBottomRightRadius:
-                      borderRadius,
-                    borderBottomLeftRadius:
-                      borderRadius,
-                  }}
-                /> */
-}

@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { useMusicRefs } from "~/pages/video/music/_context/init";
 import { useTrillPicsStore } from "~/store/middleware";
 import { resolveStepsPerSecond } from "~/hooks/music/time/steps-per-second/resolver";
@@ -28,6 +29,7 @@ import {
   isMidisKey,
 } from "~/hooks/music/play/validators";
 import { useGridDrill } from "~/hooks/grid/drill";
+import { set } from "zod";
 
 export type TPlayStepSchedule<
   T extends UStepsKey
@@ -53,13 +55,11 @@ export const usePlaySchedule = <
 >(
   config: TConfig<T>
 ) => {
-  const {
-    key,
-    keys,
-    lookup,
-    // record,
-    options,
-  } = config;
+  const { key, keys, lookup, options } =
+    config;
+
+  const [playingKeys, setPlayingKeys] =
+    useState<string[]>([]);
   const { timeoutRef, endTimeout } =
     useTimeoutRef();
   const {
@@ -70,63 +70,40 @@ export const usePlaySchedule = <
     progress,
     schedule,
   } = useMusicRefs();
-  const {
-    // bpm,
-    playingKeys,
-    // isLoop,
-    // sequence,
-    set,
-  } = useTrillPicsStore(
-    ({
-      // bpm,
-      playingKeys,
-      // isLoop,
-      set,
-      // sequence,
-    }) => ({
-      // bpm,
-      playingKeys,
-      // isLoop,
-      // sequence,
-      set,
-    })
-  );
+
   const isLoop = true;
   const handleGridCell = useGridDrill();
 
   const reset = () => {
     endTimeout();
     handleGridCell();
-    console.log(key);
     progress[key].set(0);
   };
-  const [isCooldown, startCooldown] =
-    useTimer(1000, reset);
-
-  // const audioSeconds =
-  //   useAudioSeconds();
   const videoSeconds =
     usePicVideoReadSeconds();
   const isPlaying =
     playingKeys.includes(key);
+  // schedule.record.playingKeys.includes(
+  //   key
+  // );
 
   const handleStop = () => {
     keys.forEach((k) => {
       lookup[k].stop();
     });
-    set((prev: TState) => ({
-      playingKeys:
-        prev.playingKeys.filter(
-          (v: TPlayingKey) => v !== key
-        ),
-    }));
+    schedule.record.playingKeys =
+      schedule.record.playingKeys.filter(
+        (v) => v !== key
+      );
+    setPlayingKeys(
+      schedule.record.playingKeys
+    );
     if (
       recorder.state === "recording"
     ) {
       recorder.stop();
     }
     reset();
-    startCooldown();
   };
 
   const playStep = (
@@ -168,10 +145,6 @@ export const usePlaySchedule = <
           schedule.record.presets[
             schedule.record.presetKey
           ];
-        console.log(
-          preset,
-          schedule.record
-        );
         steps = preset[sourceKey];
       }
 
@@ -297,7 +270,6 @@ export const usePlaySchedule = <
       loops.forEach((_, loopIndex) => {
         playLoop(loopIndex);
       });
-      console.log("RECORDING LOOP");
       return;
     }
 
@@ -305,21 +277,20 @@ export const usePlaySchedule = <
   };
 
   const handlePlay = async () => {
-    if (isCooldown) {
-      reset();
-      return;
-    }
     if (isPlaying) {
       handleStop();
       return;
     }
     await context.resume();
-    set((prev: TState) => ({
-      playingKeys: [
-        ...prev.playingKeys,
-        key,
-      ],
-    }));
+
+    schedule.record.playingKeys = [
+      ...schedule.record.playingKeys,
+      key,
+    ];
+    setPlayingKeys(
+      schedule.record.playingKeys
+    );
+
     play();
   };
 
@@ -327,6 +298,5 @@ export const usePlaySchedule = <
     play: handlePlay,
     stop: handleStop,
     isPlaying,
-    isCooldown,
   };
 };

@@ -41,7 +41,7 @@ export const useArpeggio = () => {
     delayTime,
   });
   // const boHandler =
-  //   useBasicOscillatorStart();
+  //   useSchedulingStart();
 
   const gainNode = useGainNode({
     context,
@@ -177,13 +177,6 @@ export const useArpeggio = () => {
       startTime
     );
 
-    // boHandler.start(
-    //   startTime,
-    //   stepMidi,
-    //   {
-    //     ...options,
-    //   }
-    // );
 
     oscillator.node.connect(filter);
     filter.connect(gainNode);
@@ -193,18 +186,14 @@ export const useArpeggio = () => {
     filter1.connect(gainNode1);
     gainNode1.connect(master);
 
-    // if (
-    //   (interval * 2) % stepIndex ===
-    //   0
-    // ) {
-    delay.delayTime.setValueAtTime(
-      0.99,
-      startTime
-    );
-    delay.delayTime.linearRampToValueAtTime(
-      0.001,
-      startTime + duration
-    );
+    // delay.delayTime.setValueAtTime(
+    //   0.99,
+    //   startTime
+    // );
+    // delay.delayTime.linearRampToValueAtTime(
+    //   0.001,
+    //   startTime + duration
+    // );
     // }
   };
   return {
