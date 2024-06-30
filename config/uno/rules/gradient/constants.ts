@@ -146,9 +146,9 @@ export const GRADIENT_ZEBRA = {
       parts: [
         "to top left",
         "black",
-        "black 40px",
-        "white 40px",
-        "white 80px",
+        "black 10px",
+        "var(--black-5) 10px",
+        "var(--black-5) 20px",
       ],
     }),
   }),

@@ -5,7 +5,7 @@ export const OSCILLATOR_NUMBER_OPTIONS =
   {
     frequency: "frequency",
     detune: "detune",
-  };
+  } as const;
 export const OSCILLATOR_NUMBER_TITLES =
   {
     ...FREQUENCY_TITLE,

@@ -4,6 +4,7 @@ import { InputsNumber } from "~/components/inputs/number";
 import { TGainNodeKey } from "~/pages/video/music/synth/nodes/gain/types";
 import { propsFromAudioparams } from "~/pages/video/music/synth/nodes/props-from-audioparams";
 import { useMusicRefs } from "~/pages/video/music/_context/init";
+import { Modulators } from "~/pages/video/music/synth/nodes/modulators";
 
 const KEY = "gain";
 type TProps = {
@@ -56,21 +57,30 @@ export const NodesGainNumbers: FC<
         Info,
       }) => {
         const Input = () => (
-          <Box>
-            <Header>
-              <Title />
-              {number}
-            </Header>
-          </Box>
+          <>
+            <Box>
+              <Header>
+                <Title />
+                {number}
+              </Header>
+            </Box>
+          </>
         );
         return (
           <>
             {children(
               Input,
-              <div className="relative">
-                {slider}
-                <Info />
-              </div>
+                
+                <Modulators
+                  id="midis.gain"
+                  audioParam={
+                    midis.gain
+                  }
+                >
+                  <div className="relative pl-2">
+                  {slider}
+                </div>
+                </Modulators>
             )}
           </>
         );

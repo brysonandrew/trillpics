@@ -1,39 +1,30 @@
 import type { FC } from "react";
-import {
-  SliderControlled,
-} from "~/components/inputs/slider/controlled";
+import { InputsNumber } from "~/components/inputs/number";
 import { TUpdateNumberHandler } from "~/components/inputs/slider/types";
-import { SliderUncontrolled } from "~/components/inputs/slider/uncontrolled";
 import { useMusicRefs } from "~/pages/video/music/_context/init";
-import { useTrillPicsStore } from "~/store/middleware";
-import { TState } from "~/store/types";
 
 export const Beats: FC = () => {
-  const { audio:{ gains:{ beats } }  } =
-    useMusicRefs();
-  // const { set } = useTrillPicsStore(
-  //   ({ set }) => ({
-  //     set,
-  //   })
-  // );
+  const {
+    audio: {
+      gains: { beats },
+    },
+  } = useMusicRefs();
 
-  // const handleUpdate: TUpdateNumberHandler =
-  //   (value) => {
-  //     const next = Number(value);
-  //     beats.gain.value = next;
-  //     set((draft: TState) => {
-  //       draft.beats.gain = next;
-  //     });
-  //   };
+  const handleUpdate: TUpdateNumberHandler =
+    (value) => {
+      const next = value;
+      beats.gain.value = next;
+    };
 
   return (
-    <SliderUncontrolled
-      // name="beats.gain"
+    <InputsNumber
+      name="beats.gain"
       title="gain"
       min={0}
-      max={2}
-      step={0.01}
-      // onUpdate={handleUpdate}
+      max={1}
+      step={0.001}
+      defaultValue={beats.gain.value}
+      onUpdate={handleUpdate}
     />
   );
 };

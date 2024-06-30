@@ -1,9 +1,5 @@
 import type { FC } from "react";
-import { SliderUncontrolled } from "~/components/inputs/slider/uncontrolled";
-import { OSCILLATOR_NUMBER_OPTIONS } from "~/pages/video/music/synth/nodes/oscillator/constants";
-import { TOscillatorNumberOptionsKey } from "~/pages/video/music/synth/nodes/oscillator/types";
-import { useMusicRefs } from "~/pages/video/music/_context/init";
-import { resolveObjectKeys } from "~/utils/object";
+import React from "react";
 
 export const NodesOscillatorSliders: FC =
   () => {

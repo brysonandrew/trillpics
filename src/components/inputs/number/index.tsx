@@ -24,17 +24,9 @@ import { useMusicRefs } from "~/pages/video/music/_context/init";
 import { InputsBoxTitle } from "~/components/inputs/box/title";
 import { THEME_FONT_SIZES_LOOKUP } from "~uno/index";
 import { ARMSTRONG3_FULL_FONT_FAMILY } from "~uno/presets/fonts";
-const NUMBER_FONT_SIZE =
-  "xxxs" as const;
-const [fontSize, lineHeight] =
-  THEME_FONT_SIZES_LOOKUP[
-    NUMBER_FONT_SIZE
-  ];
-const paddingLeft = 10;
-const paddingRight = 5;
-const minWidth =
-  40 + paddingLeft + paddingRight;
-const maxWidth = 80;
+import { NumberInput } from "~/components/inputs/number/input";
+import { InputsNumberSlider } from "~/components/inputs/number/slider";
+
 const MIN = 0;
 const MAX = 8;
 const STEP = 0.1;
@@ -87,51 +79,6 @@ export const InputsNumber: FC<
   const { name } = props;
   const { layout } = useMusicRefs();
 
-  const handleMeasure =
-    useMeasureTextWidth();
-  const measureText = (
-    content = layout.number[name]
-      ?.current.value ?? ""
-  ) => {
-    if (!content) return;
-    const weight = layout.number[name]
-      .current.style
-      .fontWeight as TFontWeight;
-    const size =
-      layout.number[name].current.style
-        .fontSize || fontSize;
-    const family =
-      layout.number[name].current.style
-        .fontFamily ||
-      ARMSTRONG3_FULL_FONT_FAMILY;
-
-    const weightSizeFamily = {
-      weight,
-      size,
-      family,
-    };
-
-    const width = handleMeasure({
-      content,
-      weightSizeFamily,
-    });
-    if (isNull(width)) return;
-    let nextValue = width;
-    if (width < minWidth) {
-      nextValue = minWidth;
-    }
-    if (width > maxWidth) {
-      nextValue = maxWidth;
-    }
-    layout.number[
-      name
-    ].current.style.width = `${nextValue}px`;
-  };
-
-  useEffect(() => {
-    measureText();
-  }, []);
-
   const updateValues = (
     nextValue: string
   ) => {
@@ -146,130 +93,71 @@ export const InputsNumber: FC<
     layout.slider[name].current.value =
       nextValue;
   };
-  const handleUpdate: TUpdateNumberHandler =
-    (value: number) => {
-      let nextValue = value;
-      if (value < min) {
-        nextValue = min;
-      }
-      if (value > max) {
-        nextValue = max;
-      }
-      const strValue =
-        replacer(nextValue);
-      updateValues(strValue);
-      measureText(strValue);
-      if (onUpdate) {
-        onUpdate(nextValue);
-      }
-    };
-
-  const handleSliderChange: ChangeEventHandler<
-    HTMLInputElement
-  > = ({
-    currentTarget: { name, value },
-  }) => {
-    handleUpdate(Number(value));
+  const handleUpdate = (
+    value: number
+  ) => {
+    let nextValue = value;
+    if (value < min) {
+      nextValue = min;
+    }
+    if (value > max) {
+      nextValue = max;
+    }
+    const strValue =
+      replacer(nextValue);
+    updateValues(strValue);
+    if (onUpdate) {
+      onUpdate(nextValue);
+    }
+    return strValue;
   };
 
-  const handleInputChange: ChangeEventHandler<
-    HTMLInputElement
-  > = ({
-    currentTarget: { name, value },
-  }) => {
-    const next = Number(value);
-    handleUpdate(next);
-  };
   const rangeProps = {
     min,
     max,
     step,
   } as const;
 
-  const Info = memo(() => (
-    <InputsNumberInfo {...rangeProps} />
-  ));
-
   const Title = memo(() => (
     <InputsBoxTitle>
       {title}
     </InputsBoxTitle>
   ));
+
   const number = (
-    <input
-      ref={(instance) => {
-        if (isNull(instance)) return;
-        layout.update(
-          "number",
-          props.name,
-          instance
-        );
-      }}
-      type="number"
-      className={clsx(
-        "text-center font-slab",
-        "bg-black-02 backdrop-blur-lg",
-        "row border border-white-02 bg-black-02",
-        "border border-white-02 _bi-mesh"
-      )}
+    <NumberInput
+      onUpdate={handleUpdate}
       style={{
-        fontSize,
         lineHeight: box.m0625,
         borderRadius: box.radius.m,
         height: box.m05,
-        minWidth,
-        maxWidth,
+
         ...box.px(box.m0125),
         paddingLeft: box.m025,
         ...style,
       }}
-      title={title}
-      onChange={handleInputChange}
       {...rangeProps}
       {...rest}
     />
   );
 
   const slider = (
-    <div
-      className="relative h-5 grow _bi-radial opacity"
+    <InputsNumberSlider
       style={{
-        borderRadius: box.radius.m,
+        ...style,
       }}
-    >
-      <InputsNumberBackground />
-      <input
-        type="range"
-        className={clsx(
-          "fill",
-          "appearance-none bg-transparent",
-          "[&::-webkit-slider-runnable-track]:bg-transparent",
-          "[&::-webkit-slider-thumb]:(relative w-4 h-4 rounded-full z-0)",
-          "[&::-webkit-slider-thumb]:(_bi-conic-metal appearance-none pointer-cursor)"
-        )}
-        ref={(instance) => {
-          if (isNull(instance)) return;
-
-          layout.update(
-            "slider",
-            props.name,
-            instance
-          );
-        }}
-        style={{
-          ...style,
-        }}
-        title={title ?? ""}
-        onChange={handleSliderChange}
-        defaultValue={Number(
-          props.defaultValue
-        )}
-        {...rangeProps}
-        {...rest}
-      />
-    </div>
+      title={title ?? ""}
+      onUpdate={handleUpdate}
+      defaultValue={Number(
+        props.defaultValue
+      )}
+      {...rangeProps}
+      {...rest}
+    />
   );
-
+  const Info = memo(() => (
+    <InputsNumberInfo {...rangeProps} />
+  ));
   const _ = {
     Box: InputsNumberBox,
     Header: InputsBox,
@@ -277,7 +165,7 @@ export const InputsNumber: FC<
     number,
     Background: InputsNumberBackground,
     slider,
-    Info: Fragment,
+    Info,
   } as const;
 
   if (children)
@@ -290,8 +178,6 @@ export const InputsNumber: FC<
         {_.number}
       </_.Header>
       {_.slider}
-      {/* <_.Background /> */}
-      {/* <_.Info /> */}
     </_.Box>
   );
 };

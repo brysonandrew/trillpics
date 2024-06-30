@@ -19,7 +19,7 @@ export const MusicSynthNodes: FC =
         style={{
           display: "grid",
           gap: box.m0125,
-          gridTemplateColumns: `repeat(2, 1fr) 0.6fr`,
+          gridTemplateColumns: `repeat(3, 1fr)`,
           ...box.p(box.m025),
         }}
       >

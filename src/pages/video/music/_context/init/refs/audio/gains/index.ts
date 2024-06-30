@@ -32,11 +32,11 @@ export const useMusicInitRefsGains =
         });
 
         const midis = create({
-          gain: 0.5,
+          gain: 0.4,
         });
 
         const beats = create({
-          gain: 0.5,
+          gain: 0.18,
         });
 
         return {

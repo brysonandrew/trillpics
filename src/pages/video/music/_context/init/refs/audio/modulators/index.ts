@@ -11,6 +11,7 @@ import {
   TModulatorCreateParameters,
   TModulatorOptions,
   TModulatorRecycle,
+  TModulatorRef,
   TModulatorRefs,
 } from "~/pages/video/music/_context/init/refs/audio/modulators/types";
 import {
@@ -33,10 +34,11 @@ export const useSynthModulators = (
         ({
           gain,
           ...options
-        }: TModulatorOptions) => [
-          oscillatorCreate(options),
-          gainCreate({ gain }),
-        ];
+        }: TModulatorOptions) => ({
+          oscillator:
+            oscillatorCreate(options),
+          gain: gainCreate({ gain }),
+        });
       const recycle: TModulatorRecycle =
         (
           node: OscillatorNode,
@@ -64,20 +66,19 @@ export const useSynthModulators = (
             param = _param,
             options = _options
           ) => {
-            const [oscillator, gain] =
-              create(_options);
+            const { oscillator, gain } =
+              create(options);
             oscillator.connect(gain);
             gain.connect(param);
-            oscillator.start(0);
-            return [
+            return {
               oscillator,
               gain,
-            ] as const;
+            } as const;
           };
-          let m = start();
+          let m = start(_param,_options);
 
           const disconnect = () => {
-            const [oscillator, gain] =
+            const { oscillator, gain } =
               m;
             oscillator.disconnect(gain);
             gain.disconnect(_param);
@@ -91,16 +92,22 @@ export const useSynthModulators = (
             _param = param;
             m = start(
               param,
-              recycle(...m)
+              recycle(
+                m.oscillator,
+                m.gain
+              )
             );
             return m;
           };
 
-          return {
+          const ref: TModulatorRef = {
             reconnect,
             disconnect,
+            multiplier:{gain:10,frequency:0.1},
             ...m,
           };
+
+          return ref;
         };
       const modulator: TModulator = {
         connect,

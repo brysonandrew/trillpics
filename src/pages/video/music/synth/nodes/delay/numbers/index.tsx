@@ -4,9 +4,8 @@ import { InputsNumber } from "~/components/inputs/number";
 import { TDelayNodeKey } from "~/pages/video/music/synth/nodes/delay/types";
 import { propsFromAudioparams } from "~/pages/video/music/synth/nodes/props-from-audioparams";
 import { useMusicRefs } from "~/pages/video/music/_context/init";
-import { IconsPlus14 } from "~/components/icons/plus/14";
-import { box } from "~uno/rules/box";
-import { ModulatorsAdd } from "~/pages/video/music/synth/nodes/modulators/add";
+import { Modulators } from "~/pages/video/music/synth/nodes/modulators";
+
 type TProps = {
   children: (
     Input: FC,
@@ -54,29 +53,31 @@ export const NodesDelayNumbers: FC<
         Background,
       }) => {
         const Input = () => (
-          <Box>
-            <Header>
-            <ModulatorsAdd
-                  id="delay.delayTime"
-                  audioParam={
-                    delay.delayTime
-                  }
-                />
-              <Title />
-              {number}
-            </Header>
-          </Box>
+          <>
+            <Box>
+              <Header>
+                <Title />
+                {number}
+              </Header>
+            </Box>
+          </>
         );
         return (
           <>
             {children(
               Input,
-              <div className="relative">
-                {slider}
-                {/* <Background /> */}
-                <Info />
-              
-              </div>
+              <>
+                <Modulators
+                  id="delay.delayTime"
+                  audioParam={
+                    delay.delayTime
+                  }
+                >
+                  <div className="relative pl-2">
+                    {slider}
+                  </div>
+                </Modulators>
+              </>
             )}
           </>
         );

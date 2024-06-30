@@ -1,7 +1,7 @@
-export type TModulatorNodes = readonly [
-  OscillatorNode,
-  GainNode
-];
+export type TModulatorNodes = {
+  oscillator: OscillatorNode;
+  gain: GainNode;
+};
 
 export type TModulatorOptions =
   OscillatorOptions & GainOptions;
@@ -16,26 +16,30 @@ export type TModulatorRecycle = (
 
 export type TModulatorCreateParameters =
   Parameters<TModulatorCreate>;
-type TModulatorRef = {
-  reconnect(
-    param?: AudioParam
-  ): TModulatorNodes;
-  disconnect(): void;
-};
+export type TModulatorRef =
+  TModulatorNodes & {
+    reconnect(
+      param?: AudioParam
+    ): TModulatorNodes;
+    disconnect(): void;
+    isStarted?: boolean;
+    multiplier: {
+      gain: number;
+      frequency: number;
+    };
+  };
 export type TModulatorConnect = (
   param: AudioParam,
-  options: TModulatorOptions
+  options?: TModulatorOptions
 ) => TModulatorRef & TModulatorNodes;
 
 export type TModulatorRefs = Record<
   string,
   TModulatorRef
 >;
+
 export type TModulator = {
   connect: TModulatorConnect;
-  // isStarted: boolean;
-  // prevHz: number;
   recycle: TModulatorRecycle;
-  // create: TModulatorCreate;
   refs: TModulatorRefs;
 };

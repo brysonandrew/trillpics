@@ -1,10 +1,10 @@
 import type { FC } from "react";
 import { InputsNumber } from "~/components/inputs/number";
 import { TUpdateNumberHandler } from "~/components/inputs/slider/types";
-import { TBiquadFilterNumberOptionsKey } from "~/pages/video/music/synth/nodes/filter/types";
-import { ModulatorsAdd } from "~/pages/video/music/synth/nodes/modulators/add";
+import { Modulators } from "~/pages/video/music/synth/nodes/modulators";
 import { TOscillatorNumberOptionsKey } from "~/pages/video/music/synth/nodes/oscillator/types";
 import { propsFromAudioparams } from "~/pages/video/music/synth/nodes/props-from-audioparams";
+import { box } from "~uno/rules/box";
 export type TOscillatorParams = [
   TOscillatorNumberOptionsKey,
   AudioParam,
@@ -32,7 +32,9 @@ export const ModulatorsParams: FC<
   TProps
 > = ({ type, params }) => {
   return (
-    <ul className="relative column-stretch">
+    <ul className="relative column-stretch"
+    style={{gap:box.m0125}}
+>
       {params.map((p) => {
         const [key, param, onUpdate] =
           p;
@@ -43,19 +45,20 @@ export const ModulatorsParams: FC<
             key={key}
             className="relative"
           >
-            <ModulatorsAdd
+            <Modulators
               id={name}
               audioParam={param}
-            />
-            <InputsNumber
-              name={name}
-              title={key}
-              onUpdate={onUpdate}
-              {...propsFromAudioparams(
-                key,
-                param
-              )}
-            />
+            >
+              <InputsNumber
+                name={name}
+                title={key}
+                onUpdate={onUpdate}
+                {...propsFromAudioparams(
+                  key,
+                  param
+                )}
+              />
+            </Modulators>
           </li>
         );
       })}

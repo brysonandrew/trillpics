@@ -42,6 +42,7 @@ export const MusicSynthComposition: FC =
           >
             <MusicScale />
             <MusicSequence />
+            
           </div>
         </div>
       </>

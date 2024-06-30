@@ -48,9 +48,6 @@ export const SequenceNumber: FC<
       };
       const nextSteps =
         resolveMidiSteps(config);
-      console.log(
-        schedule.record.steps
-      );
       handleNextSteps(nextSteps);
       schedule.record.steps = nextSteps;
 

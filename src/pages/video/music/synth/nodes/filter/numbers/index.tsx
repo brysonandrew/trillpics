@@ -48,7 +48,7 @@ export const NodesFilterNumbers: FC =
       //         key={key}
       //         className="relative"
       //       >
-      //         <ModulatorsAdd
+      //         <Modulators
       //           id={name}
       //           audioParam={filter[key]}
       //         />

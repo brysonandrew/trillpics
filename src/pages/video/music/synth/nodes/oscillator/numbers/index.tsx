@@ -42,27 +42,5 @@ export const NodesOscillatorNumbers: FC =
           params as TOscillatorParams
         }
       />
-      // <>
-      //   {resolveObjectKeys(
-
-      //   ).map((key) => {
-      //     const defaultProps =
-      //       propsFromAudioparams(
-      //         key,
-      //         oscillator.node[key]
-      //       );
-      //     return (
-      //       <InputsNumber
-      //         key={key}
-      //         name={`oscillator.${key}`}
-      //         title={key}
-      //         onUpdate={(value) =>
-      //           handleUpdate(key, value)
-      //         }
-      //         {...defaultProps}
-      //       />
-      //     );
-      //   })}
-      // </>
     );
   };

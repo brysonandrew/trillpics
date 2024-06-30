@@ -103,8 +103,8 @@ export const usePlaySchedule = <
   const [isCooldown, startCooldown] =
     useTimer(1000, reset);
 
-  const audioSeconds =
-    useAudioSeconds();
+  // const audioSeconds =
+  //   useAudioSeconds();
   const videoSeconds =
     usePicVideoReadSeconds();
   const isPlaying =
@@ -154,22 +154,6 @@ export const usePlaySchedule = <
   const playLoop = (
     loopIndex: number
   ) => {
-    if (
-      recorder.state !== "recording"
-    ) {
-      reset();
-      timeoutRef.current = setTimeout(
-        () => {
-          if (isLoop) {
-            playLoop(0);
-          } else {
-            handleStop();
-          }
-        },
-        audioSeconds * 1000
-      );
-    }
-
     keys.forEach((sourceKey) => {
       let steps:
         | TMidiValues
@@ -189,6 +173,26 @@ export const usePlaySchedule = <
           schedule.record
         );
         steps = preset[sourceKey];
+      }
+
+      if (
+        recorder.state !== "recording"
+      ) {
+        reset();
+        timeoutRef.current = setTimeout(
+          () => {
+            if (isLoop) {
+              playLoop(0);
+            } else {
+              handleStop();
+            }
+          },
+          resolveStepsPerSecond(
+            schedule.record.bpm
+          ) *
+            steps.length *
+            1000
+        );
       }
 
       if (!lookup[sourceKey]) return;
@@ -230,7 +234,10 @@ export const usePlaySchedule = <
               startTime: startTimeBase,
               stepValue: step,
               duration:
-                (audioSeconds /
+                ((resolveStepsPerSecond(
+                  schedule.record.bpm
+                ) *
+                  stepsCount) /
                   stepsCount) *
                 schedule.record.sequence
                   .duration,
