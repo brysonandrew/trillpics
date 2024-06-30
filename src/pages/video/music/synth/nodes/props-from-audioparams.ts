@@ -1,8 +1,8 @@
 import { INPUTS_NUMBER_OVERRIDES } from "~/pages/video/music/synth/nodes/constants";
 
 export const propsFromAudioparams = (
-  key: string,
-  audioParam: AudioParam
+  audioParam: AudioParam,
+  key?: string,
 ) => {
   const overrides = INPUTS_NUMBER_OVERRIDES;
   const { maxValue, minValue, value } =
@@ -15,6 +15,6 @@ export const propsFromAudioparams = (
     min: minValue,
     max: maxValue,
     step,
-    ...overrides[key],
+    ...key ? overrides[key] : {},
   } as const;
 };

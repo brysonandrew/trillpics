@@ -123,7 +123,7 @@ export const Modulators: FC<TProps> = ({
   useEffect(() => {
     if (!modulator.refs[id]) {
       modulator.refs[id] =
-        modulator.connect(audioParam);
+        modulator.connect(audioParam,id);
       setConnected(true);
     }
   }, []);

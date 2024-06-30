@@ -2,34 +2,33 @@ import type { FC } from "react";
 import { InputsSelect } from "~/components/inputs/select";
 import { BEATS_PRESETS } from "~/hooks/music/beats/presets";
 import { TBeatsPresetsKey } from "~/hooks/music/beats/presets/types";
-import { useTrillPicsStore } from "~/store/middleware";
-import { TState } from "~/store/types";
+import { useMusicRefs } from "~/pages/video/music/_context/init";
 
 export const DrumsPresets: FC = () => {
-  // const { set, beats } =
-  //   useTrillPicsStore(
-  //     ({ set, beats }) => ({
-  //       set,
-  //       beats,
-  //     })
-  //   );
+  const { schedule } = useMusicRefs();
+  const {
+    record: {
+      preset,
+      presetKey,
+      presets,
+    },
+  } = schedule;
   const values = Object.keys(
     BEATS_PRESETS
   );
+  const handleValueChange = (
+    key: TBeatsPresetsKey
+  ) => {
+    schedule.record.presetKey = key;
+  };
   return (
     <InputsSelect
       values={values}
       title="preset"
       name="drums"
       placeholder="presets"
-      // value={beats.presetKey}
-      onValueChange={(
-        key: TBeatsPresetsKey
-      ) => {
-        // set((draft: TState) => {
-        //   draft.beats.presetKey = key;
-        // });
-      }}
+      defaultValue={presetKey}
+      onValueChange={handleValueChange}
     />
   );
 };

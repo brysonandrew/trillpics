@@ -19,6 +19,43 @@ import {
   TOscillatorRecycle,
 } from "~/pages/video/music/_context/init/refs/audio/oscillators/types";
 import { TScheduleOptions } from "~/pages/video/music/_context/init/refs/schedule/types";
+import { propsFromAudioparams } from "~/pages/video/music/synth/nodes/props-from-audioparams";
+import { TAllParamsKey } from "~/pages/video/music/synth/nodes/modulators/types";
+
+const resolveMultipliers = (
+  id: string,
+  param: AudioParam
+) => {
+  const defaultRange =
+    propsFromAudioparams(param);
+  const [_, paramKey] = id.split(".");
+  const key = paramKey as TAllParamsKey;
+  let gain = defaultRange.step;
+  if (key === "delayTime") {
+    gain = 0.000001;
+  }
+  if (key === "frequency") {
+    gain =
+      Number(
+        defaultRange.defaultValue ??
+          param.value ??
+          1
+      ) / 2;
+  }
+  if (key === "detune") {
+    gain = 1000;
+  }
+  if (key === "Q") {
+    gain = 0.1;
+  }
+  if (key === "gain") {
+    gain = 0.2;
+  }
+  return {
+    gain,
+    frequency: 1,
+  };
+};
 
 export const useSynthModulators = (
   schedule: TScheduleOptions
@@ -55,6 +92,7 @@ export const useSynthModulators = (
       const connect: TModulatorConnect =
         (
           _param: AudioParam,
+          id,
           _options = {
             frequency:
               schedule.bpm / 60,
@@ -75,7 +113,10 @@ export const useSynthModulators = (
               gain,
             } as const;
           };
-          let m = start(_param,_options);
+          let m = start(
+            _param,
+            _options
+          );
 
           const disconnect = () => {
             const { oscillator, gain } =
@@ -103,7 +144,11 @@ export const useSynthModulators = (
           const ref: TModulatorRef = {
             reconnect,
             disconnect,
-            multiplier:{gain:10,frequency:0.1},
+            multiplier:
+              resolveMultipliers(
+                id,
+                _param
+              ),
             ...m,
           };
 

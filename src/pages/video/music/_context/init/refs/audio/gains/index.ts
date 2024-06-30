@@ -36,7 +36,7 @@ export const useMusicInitRefsGains =
         });
 
         const beats = create({
-          gain: 0.18,
+          gain: 0.12,
         });
 
         return {

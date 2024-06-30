@@ -8,10 +8,8 @@ export const useAudioSeconds = (
 ) => {
   const {
     audio: {
-      context,
       save: { recorder },
     },
-    progress,
     schedule,
   } = useMusicRefs();
   return (

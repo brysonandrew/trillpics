@@ -1,7 +1,7 @@
 import { ControlsGain } from "~/pages/video/music/controls/gain";
 
-export const NodesGain = () => {
+export const DrumsGain = () => {
   return (
-    <ControlsGain musicKey="midis" />
+    <ControlsGain musicKey='beats' />
   );
 };

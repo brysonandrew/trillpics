@@ -32,9 +32,10 @@ export const ModulatorsParams: FC<
   TProps
 > = ({ type, params }) => {
   return (
-    <ul className="relative column-stretch"
-    style={{gap:box.m0125}}
->
+    <ul
+      className="relative column-stretch"
+      style={{ gap: box.m0125 }}
+    >
       {params.map((p) => {
         const [key, param, onUpdate] =
           p;
@@ -54,8 +55,8 @@ export const ModulatorsParams: FC<
                 title={key}
                 onUpdate={onUpdate}
                 {...propsFromAudioparams(
-                  key,
-                  param
+                  param,
+                  key
                 )}
               />
             </Modulators>

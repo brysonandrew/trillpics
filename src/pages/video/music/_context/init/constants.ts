@@ -10,7 +10,7 @@ export const MIME_TYPES = [
 ];
 
 export const useSupportedMimeTypes = () => MIME_TYPES.filter((mimeType: string) => MediaRecorder.isTypeSupported(mimeType));
-export const DEFAULT_SCALE_KEY:TScaleKey = 'ionian'
+export const DEFAULT_SCALE_KEY:TScaleKey = 'blues'
 export const DEFAULT_SCALE_DELTA = 1
 export const DEFAULT_SCALE_PATTERN:TScalePattern = 'alternating'
 

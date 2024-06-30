@@ -1,3 +1,9 @@
+import {
+  TAllParams,
+  TAllParamsKey,
+  TModulatorParamKey,
+} from "~/pages/video/music/synth/nodes/modulators/types";
+
 export type TModulatorNodes = {
   oscillator: OscillatorNode;
   gain: GainNode;
@@ -28,8 +34,12 @@ export type TModulatorRef =
       frequency: number;
     };
   };
+
+export type TModulatorId =
+  `${string}.${TAllParamsKey}`;
 export type TModulatorConnect = (
   param: AudioParam,
+  id: string|TModulatorId,
   options?: TModulatorOptions
 ) => TModulatorRef & TModulatorNodes;
 

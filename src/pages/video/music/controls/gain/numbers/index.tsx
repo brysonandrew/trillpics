@@ -2,12 +2,13 @@ import type { FC } from "react";
 import { TChildren } from "@brysonandrew/config-types";
 import { InputsNumber } from "~/components/inputs/number";
 import { TGainNodeKey } from "~/pages/video/music/synth/nodes/gain/types";
-import { propsFromAudioparams } from "~/pages/video/music/synth/nodes/props-from-audioparams";
 import { useMusicRefs } from "~/pages/video/music/_context/init";
 import { Modulators } from "~/pages/video/music/synth/nodes/modulators";
+import { TMusicKey } from "~/store/state/music/types";
 
 const KEY = "gain";
 type TProps = {
+  musicKey: TMusicKey;
   children: (
     Input: FC,
     children: TChildren
@@ -15,23 +16,25 @@ type TProps = {
 };
 export const NodesGainNumbers: FC<
   TProps
-> = ({ children }) => {
+> = ({ musicKey, children }) => {
   const {
-    audio: {
-      gains: { midis },
-    },
+    audio: { gains },
   } = useMusicRefs();
   const handleUpdate = (
     name: TGainNodeKey,
     value: number
   ) => {
-    console.log(name, value, midis);
-    midis[name].value = value;
+    console.log(
+      name,
+      value,
+      gains[musicKey]
+    );
+    gains[musicKey][name].value = value;
   };
 
   return (
     <InputsNumber
-      name={`midis.${KEY}`}
+      name={`${musicKey}.${KEY}`}
       title="gain"
       onUpdate={(value) =>
         handleUpdate(KEY, value)
@@ -43,7 +46,9 @@ export const NodesGainNumbers: FC<
 
         return next;
       }}
-      defaultValue={midis.gain.value}
+      defaultValue={
+        gains[musicKey].gain.value
+      }
       min={0}
       max={1}
       step={0.001}
@@ -70,17 +75,17 @@ export const NodesGainNumbers: FC<
           <>
             {children(
               Input,
-                
-                <Modulators
-                  id="midis.gain"
-                  audioParam={
-                    midis.gain
-                  }
-                >
-                  <div className="relative pl-2">
+
+              <Modulators
+                id={`${musicKey}.gain`}
+                audioParam={
+                  gains[musicKey].gain
+                }
+              >
+                <div className="relative pl-2">
                   {slider}
                 </div>
-                </Modulators>
+              </Modulators>
             )}
           </>
         );

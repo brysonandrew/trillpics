@@ -11,7 +11,7 @@ export const MusicSynthNodes: FC =
     return (
       <div
         className={cx(
-          "relative",
+          "relative"
           // "items-stretch",
           // "justify-stretch"
           // "xxxs:grid-cols-1 xs:grid-cols-2 sm:grid-cols-2 sm:grid-cols-4 xxl:grid-cols-5 xxxl:grid-cols-6"
@@ -25,9 +25,7 @@ export const MusicSynthNodes: FC =
       >
         <NodesOscillator />
         <NodesFilter />
-        <div style={{ 
-          // width: box.m4 
-          }}>
+        <div className="relative column-stretch">
           <NodesDelay />
           <NodesGain />
         </div>

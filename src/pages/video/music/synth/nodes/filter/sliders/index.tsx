@@ -31,8 +31,8 @@ export const NodesFilterSliders: FC =
               handleUpdate(key, value)
             }
             {...propsFromAudioparams(
+              filters.filter[key],
               key,
-              filters.filter[key]
             )}
           />
         ))}

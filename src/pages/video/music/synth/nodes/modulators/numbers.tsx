@@ -1,10 +1,7 @@
 import { FC } from "react";
 import { InputsNumber } from "~/components/inputs/number";
 import { propsFromAudioparams } from "~/pages/video/music/synth/nodes/props-from-audioparams";
-import {
-  TSliderValueChangeHandler,
-  TUpdateNumberHandler,
-} from "~/components/inputs/slider/types";
+import { TUpdateNumberHandler } from "~/components/inputs/slider/types";
 import {
   TModulatorNumberParams,
   TModulatorParamKey,
@@ -12,9 +9,6 @@ import {
 import { useMusicRefs } from "~/pages/video/music/_context/init";
 import { MODULATOR_PARAMS } from "~/pages/video/music/synth/nodes/modulators/constants";
 import { resolveCompositeKey } from "@brysonandrew/utils-key";
-import { InputsBoxTitle } from "~/components/inputs/box/title";
-import { NumberInput } from "~/components/inputs/number/input";
-import { NodesFilterDropdowns } from "~/pages/video/music/synth/nodes/filter/dropdowns";
 import {
   ModulatorsDropdownsSync,
   TSyncValue,
@@ -24,6 +18,10 @@ import {
   TMultiplierValue,
 } from "~/pages/video/music/synth/nodes/modulators/dropdowns/multiplier";
 import { isNumber } from "~/utils/validation/is/number";
+const INPUTS = [
+  "slider",
+  "number",
+] as const;
 
 type TProps = {
   id: string;
@@ -35,39 +33,94 @@ export const ModulatorsNumbers: FC<
   const { id } = props;
 
   const {
+    layout,
     audio: { modulator },
-    schedule: { record },
+    schedule,
   } = useMusicRefs();
+  const resolveRange = (
+    multiplier = modulator.refs[id]
+      .multiplier.gain ?? 1
+  ) => {
+    const min = 1 * multiplier;
+    const max = 100 * multiplier;
+    const range = max - min;
+    return {
+      min,
+      max,
+      step: range / 100,
+    } as const;
+  };
+  const updateInputMultiplier = (
+    name: string,
+    value: number
+  ) => {
+    INPUTS.forEach((key) => {
+      if (layout[key][name]?.current) {
+        const nextValue =
+          Number(
+            layout[key][name]?.current
+              .value
+          ) * value;
+        if (!isNaN(nextValue)) {
+          layout[key][
+            name
+          ].current.value = `${nextValue}`;
+        }
+        const { max, min, step } =
+          resolveRange(value);
 
+        layout[key][
+          name
+        ].current.max = `${max}`;
+        layout[key][
+          name
+        ].current.min = `${min}`;
+        layout[key][
+          name
+        ].current.step = `${step}`;
+      }
+    });
+  };
   const handleMultiplierUpdate = (
-    key: TModulatorParamKey,
+    name: string,
     value: TMultiplierValue
   ) => {
     const m = Number(value);
-    modulator.refs[id].multiplier[key] =
+    modulator.refs[id].multiplier.gain =
       m;
-    if (key === "gain") {
-      modulator.refs[id][
-        key
-      ].gain.value =
-        modulator.refs[id][key].gain
-          .value * m;
-    }
-  };
+    modulator.refs[id].gain.gain.value =
+      modulator.refs[id].gain.gain
+        .value * m;
 
+    updateInputMultiplier(name, m);
+  };
+  const updateInputSync = (
+    name: string,
+    value: number
+  ) => {
+    INPUTS.forEach((key) => {
+      if (layout[key][name]?.current) {
+        layout[key][
+          name
+        ].current.value = `${value}`;
+      }
+    });
+  };
   const handleSyncUpdate = (
+    name: string,
     value: TSyncValue
   ) => {
     const [n, d] = value
       .split("/")
       .map(Number);
+    const next =
+      (schedule.record.bpm / 60) *
+      (n / d);
     modulator.refs[
       id
-    ].oscillator.frequency.value =
-      (record.bpm / 60) *
-      (n / d) *
-      modulator.refs[id].multiplier
-        .frequency;
+    ].oscillator.frequency.value = next;
+
+    updateInputSync(name, next);
   };
   const resolveParam = (
     key: TModulatorParamKey
@@ -81,33 +134,21 @@ export const ModulatorsNumbers: FC<
       return oscillator[key];
     }
   };
-  const resolveRange = (
-    key: TModulatorParamKey
-  ) => {
-    const multiplier =
-      modulator.refs[id].multiplier[
-        key
-      ] ?? 1;
-    return {
-      min: 1 * multiplier,
-      max: 100 * multiplier,
-      step: 1 * multiplier,
-    } as const;
-  };
+
   const handleUpdate =
     (
       key: TModulatorParamKey
     ): TUpdateNumberHandler =>
     (value) => {
       const param = resolveParam(key);
-      const multiplier =
-        modulator.refs[id].multiplier[
-          key
-        ];
-      if (isNumber(multiplier)) {
-        param.value =
-          value * multiplier;
-      }
+      param.value = value;
+
+      // const multiplier =
+      //   modulator.refs[id].multiplier[
+      //     key
+      //   ];
+      // if (isNumber(multiplier)) {
+      // }
     };
 
   const params = MODULATOR_PARAMS.map(
@@ -120,6 +161,10 @@ export const ModulatorsNumbers: FC<
   ).filter(
     Boolean
   ) as TModulatorNumberParams;
+  const defaultMultiplierValue =
+    modulator.refs[
+      id
+    ].multiplier.gain.toString();
   return (
     <>
       {params.map(
@@ -136,10 +181,10 @@ export const ModulatorsNumbers: FC<
               title={key}
               onUpdate={handler}
               {...propsFromAudioparams(
-                key,
-                param
+                param,
+                key
               )}
-              {...resolveRange(key)}
+              {...resolveRange()}
             >
               {(_) => (
                 <_.Box>
@@ -151,36 +196,40 @@ export const ModulatorsNumbers: FC<
                   <_.Header>
                     <div className="row-end">
                       {key ===
-                        "frequency" && (
+                      "frequency" ? (
                         <ModulatorsDropdownsSync
                           name={resolveCompositeKey(
                             name,
                             "sync"
                           )}
-                          onValueChange={
-                            handleSyncUpdate
+                          onValueChange={(
+                            value: TSyncValue
+                          ) =>
+                            handleSyncUpdate(
+                              name,
+                              value
+                            )
+                          }
+                        />
+                      ) : (
+                        <ModulatorsDropdownsMultiplier
+                          name={resolveCompositeKey(
+                            name,
+                            "multiplier"
+                          )}
+                          defaultValue={
+                            defaultMultiplierValue
+                          }
+                          onValueChange={(
+                            v: TMultiplierValue
+                          ) =>
+                            handleMultiplierUpdate(
+                              name,
+                              v
+                            )
                           }
                         />
                       )}
-                      <ModulatorsDropdownsMultiplier
-                        name={resolveCompositeKey(
-                          name,
-                          "multiplier"
-                        )}
-                        onValueChange={(
-                          v: TMultiplierValue
-                        ) =>
-                          handleMultiplierUpdate(
-                            key,
-                            v
-                          )
-                        }
-                        defaultValue={modulator.refs[
-                          id
-                        ].multiplier[
-                          key
-                        ].toString()}
-                      />
                     </div>
                   </_.Header>
                 </_.Box>

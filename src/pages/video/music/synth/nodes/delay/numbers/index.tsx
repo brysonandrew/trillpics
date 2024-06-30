@@ -28,8 +28,8 @@ export const NodesDelayNumbers: FC<
   };
   const defaultProps =
     propsFromAudioparams(
+      delay.delayTime,
       "delayTime",
-      delay.delayTime
     );
   return (
     <InputsNumber
@@ -49,35 +49,29 @@ export const NodesDelayNumbers: FC<
         Header,
         Title,
         Box,
-        Info,
-        Background,
       }) => {
         const Input = () => (
-          <>
-            <Box>
-              <Header>
-                <Title />
-                {number}
-              </Header>
-            </Box>
-          </>
+          <Box>
+            <Header>
+              <Title />
+              {number}
+            </Header>
+          </Box>
         );
         return (
           <>
             {children(
               Input,
-              <>
-                <Modulators
-                  id="delay.delayTime"
-                  audioParam={
-                    delay.delayTime
-                  }
-                >
-                  <div className="relative pl-2">
-                    {slider}
-                  </div>
-                </Modulators>
-              </>
+              <Modulators
+                id="delay.delayTime"
+                audioParam={
+                  delay.delayTime
+                }
+              >
+                <div className="relative pl-2">
+                  {slider}
+                </div>
+              </Modulators>
             )}
           </>
         );

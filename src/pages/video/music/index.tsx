@@ -21,6 +21,7 @@ import { MusicSynthNodes } from "~/pages/video/music/synth/nodes";
 import { MusicScale } from "~/pages/video/music/synth/composition/scale";
 import { Beats } from "~/pages/video/music/drums/master";
 import { MusicSynthComposition } from "~/pages/video/music/synth/composition";
+import { DrumsGain } from "~/pages/video/music/drums/gain";
 
 export const VideoMusic = () => {
   return (
@@ -53,7 +54,7 @@ export const VideoMusic = () => {
               </LayoutStickyMid>
 
               <MusicLayoutRow>
-                <Beats />
+                <DrumsGain />
               </MusicLayoutRow>
 
               <LayoutStickyBottom>
