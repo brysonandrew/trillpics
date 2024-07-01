@@ -1,12 +1,12 @@
 import { useMemo } from "react";
-import { resolveMidiSteps } from "~/constants/music/midi/steps";
+import { resolveMidiSteps } from "~/hooks/music/midis/steps";
 import {
   SCALE_RECORD,
   TScaleKey,
 } from "~/constants/scales";
 import { BEATS_PRESETS } from "~/hooks/music/beats/presets";
 import { TMidiValues } from "~/hooks/music/midis/types";
-import { handleRescale } from "~/hooks/scale/rescale";
+import { handleRescale } from "~/hooks/music/midis/scale/rescale";
 import { DEFAULT_SYNTH_OPTIONS } from "~/pages/video/music/synth/constants";
 import { DEFAULT_SCALE_OPTIONS } from "~/pages/video/music/synth/composition/scale/constants";
 import { TScalePattern } from "~/pages/video/music/synth/composition/scale/types";

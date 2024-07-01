@@ -13,5 +13,3 @@ export const useSupportedMimeTypes = () => MIME_TYPES.filter((mimeType: string) 
 export const DEFAULT_SCALE_KEY:TScaleKey = 'blues'
 export const DEFAULT_SCALE_DELTA = 1
 export const DEFAULT_SCALE_PATTERN:TScalePattern = 'desc'
-
-export const PAGE_SCROLL_MODES = ['compact','synth','drums'] as const

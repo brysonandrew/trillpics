@@ -3,7 +3,6 @@ import {
   useEffect,
 } from "react";
 import { useTrillPicsStoreBase } from "~/store/middleware";
-type TConfig = any;
 
 export const useTransientPlayingKeys =
   () => {

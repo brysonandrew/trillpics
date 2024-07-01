@@ -34,6 +34,7 @@ export const VideoMusicSynth: FC =
 
           <VideoMusicSynthHeader />
         </div>
+        
         <ChartsGrid
           musicKey="midis"
           Background={ChartsGridStaff}

@@ -4,8 +4,6 @@ import { useMusicRefs } from "~/pages/video/music/_context/init";
 export const MusicSequenceNumbers: FC =
   () => {
     const { schedule } = useMusicRefs();
-    const { sequence, bpm } =
-      schedule.record;
     return (
       <>
         <SequenceNumber
@@ -13,7 +11,7 @@ export const MusicSequenceNumbers: FC =
           title="Beats"
           step={1}
           max={32}
-          defaultValue={sequence.beats}
+          defaultValue={schedule.record.sequence.beats}
         />
         <SequenceNumber
           optionsKey="interval"
@@ -21,7 +19,7 @@ export const MusicSequenceNumbers: FC =
           step={1}
           max={8}
           defaultValue={
-            sequence.interval
+            schedule.record.sequence.interval
           }
         />
         <SequenceNumber
@@ -30,14 +28,14 @@ export const MusicSequenceNumbers: FC =
           step={0.1}
           max={1}
           defaultValue={
-            sequence.duration
+            schedule.record.sequence.duration
           }
         />
         <SequenceNumber
           optionsKey="repeat"
           title="Repeat"
           step={0.2}
-          defaultValue={sequence.repeat}
+          defaultValue={schedule.record.sequence.repeat}
         />
       </>
     );

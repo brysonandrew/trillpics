@@ -1,7 +1,7 @@
 import type { FC } from "react";
 import { IconsInfo } from "~/components/icons/info";
 import clsx from "clsx";
-import { TexturesMesh } from "~/components/textures/mesh";
+import { TexturesMesh } from "~/components/layout/modal/textures/mesh";
 import {
   TDivProps,
   TSvgProps,

@@ -1,8 +1,8 @@
-import { MIDIS } from "~/hooks/music/midis/constants";
+import { MIDIS_KEYS } from "~/hooks/music/midis/constants";
 import { BEATS_KEYS } from "~/hooks/music/beats/constants";
 
 
 export const SOUNDS = [
   ...BEATS_KEYS,
-  ...MIDIS,
+  ...MIDIS_KEYS,
 ] as const;

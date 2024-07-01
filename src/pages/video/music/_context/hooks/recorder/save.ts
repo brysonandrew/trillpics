@@ -1,23 +1,11 @@
 import { useMusicRefs } from "~/pages/video/music/_context/init";
-import { supportedMimeTypes } from "~/pages/video/music/_context/hooks/recorder/supportedMimeTypes";
-import { useTrillPicsStore } from "~/store/middleware";
-import { TState } from "~/store/types";
-import { usePicVideoReadSeconds } from "~/hooks/pic/video/read/seconds/hook";
+import { supportedMimeTypes } from "~/pages/video/music/_context/hooks/recorder/mime-types";
 
 export const useRecorderSaveHandler =
   () => {
-    // const { set, bpm } =
-    //   useTrillPicsStore(
-    //     ({ set, bpm }) => ({
-    //       set,
-    //       bpm,
-    //     })
-    //   );
-    const videoSeconds =
-      usePicVideoReadSeconds();
-
-    const { audio:{save} } =
-      useMusicRefs();
+    const {
+      audio: { save },
+    } = useMusicRefs();
 
     const handler = (event: Event) => {
       const audioBlob = new Blob(

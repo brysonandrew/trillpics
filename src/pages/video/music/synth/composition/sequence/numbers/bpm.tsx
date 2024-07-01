@@ -6,8 +6,7 @@ import { box } from "~uno/rules/box";
 export const SequenceNumbersBpm: FC =
   () => {
     const { schedule } = useMusicRefs();
-    const { sequence, bpm } =
-      schedule.record;
+
     return (
       <InputsNumber
         name="schedule.record.bpm"
@@ -18,14 +17,14 @@ export const SequenceNumbersBpm: FC =
         step={1}
         min={40}
         max={180}
-        defaultValue={bpm}
+        defaultValue={
+          schedule.record.bpm
+        }
         style={{ width: box.m }}
       >
         {(_) => {
           return (
-            <_.Header
-        
-            >
+            <_.Header>
               <_.Title />
               {_.number}
             </_.Header>

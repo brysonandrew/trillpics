@@ -1,7 +1,7 @@
 import { TState } from "~/store/types";
 import { PersistOptions } from "zustand/middleware";
 import { resolveCompositeKey } from "@brysonandrew/utils-key";
-import { resolveMidiSteps } from "~/constants/music/midi/steps";
+import { resolveMidiSteps } from "~/hooks/music/midis/steps";
 import { STORAGE_JSON } from "~/store/middleware/3.persist/json";
 import {
   TPersistKey,

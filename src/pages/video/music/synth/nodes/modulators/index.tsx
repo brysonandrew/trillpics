@@ -2,27 +2,17 @@ import {
   FC,
   PropsWithChildren,
   useEffect,
-  useMemo,
   useState,
 } from "react";
-import { resolveSquare } from "@brysonandrew/measure";
 import { useMusicRefs } from "~/pages/video/music/_context/init";
 import { box } from "~uno/rules/box";
-import { OffSwitch } from "~/components/icons/_pismo/OffSwitch";
-import { ModulatorsNumbers } from "~/pages/video/music/synth/nodes/modulators/numbers";
-import { IconsPlus14 } from "~/components/icons/plus/14";
-import { resolveCompositeKey } from "@brysonandrew/utils-key";
-import {
-  imperativeBiZebra,
-  imperativeBiNone,
-  imperativeHide,
-  imperativeShow,
-} from "~/utils/imperative";
-import { LinesVertical } from "~/components/lines/vertical";
+import { ModulatorsButton } from "~/pages/video/music/synth/nodes/modulators/button";
+import { useIds } from "~/pages/video/music/synth/nodes/modulators/ids";
+import { ModulatorsInputs } from "~/pages/video/music/synth/nodes/modulators/inputs";
 
 type TProps = PropsWithChildren<{
   id: string;
-  audioParam: AudioParam|null;
+  audioParam: AudioParam | null;
 }>;
 export const Modulators: FC<TProps> = ({
   children,
@@ -31,100 +21,28 @@ export const Modulators: FC<TProps> = ({
   const [isConnected, setConnected] =
     useState(false);
   const { id, audioParam } = props;
-
+  const IDS = useIds(id);
   const {
-    audio: { modulator, context },
+    audio: { modulator },
   } = useMusicRefs();
-  const IDS = useMemo(() => {
-    return {
-      root: resolveCompositeKey(
-        "root",
-        id
-      ),
-      button: resolveCompositeKey(
-        "button",
-        id
-      ),
-      started: {
-        icon: resolveCompositeKey(
-          "started",
-          "icon",
-          id
-        ),
-        inputs: resolveCompositeKey(
-          "started",
-          "inputs",
-          id
-        ),
-      },
-      disconnected: {
-        icon: resolveCompositeKey(
-          "disconnected",
-          "icon",
-          id
-        ),
-      },
-    } as const;
-  }, [id]);
 
   const curr =
     modulator.refs[id]?.isStarted;
   const isStarted = Boolean(curr);
 
-  const handleStart = () => {
-    const modulatorRef =
-      modulator.refs[id];
-    modulatorRef.oscillator.start(
-      context.currentTime
-    );
-    modulator.refs[id].isStarted = true;
-
-    imperativeBiZebra(IDS.root);
-    imperativeShow(IDS.started.icon);
-    imperativeShow(IDS.started.inputs);
-
-    imperativeHide(
-      IDS.disconnected.icon
-    );
-  };
-  const handleStop = () => {
-    if (modulator.refs[id] && audioParam) {
-      modulator.refs[id] = {
-        ...modulator.refs[id],
-        ...modulator.refs[id].reconnect(
-          audioParam
-        ),
-      };
-      modulator.refs[id].isStarted =
-        false;
-    }
-
-    imperativeBiNone(IDS.root);
-
-    imperativeShow(
-      IDS.disconnected.icon
-    );
-
-    imperativeHide(IDS.started.icon);
-    imperativeHide(IDS.started.inputs);
-  };
-
-  const handleClick = () => {
-    const isStarted =
-      modulator.refs[id].isStarted;
-    if (isStarted) {
-      handleStop();
-    } else {
-      handleStart();
-    }
-  };
-
-  const isAudioParamNull  = audioParam === null
+  const isAudioParamNull =
+    audioParam === null;
 
   useEffect(() => {
-    if (!modulator.refs[id] && audioParam) {
+    if (
+      !modulator.refs[id] &&
+      audioParam
+    ) {
       modulator.refs[id] =
-        modulator.connect(audioParam,id);
+        modulator.connect(
+          audioParam,
+          id
+        );
       setConnected(true);
     }
   }, [isAudioParamNull]);
@@ -134,12 +52,7 @@ export const Modulators: FC<TProps> = ({
       id={IDS.root}
       className="relative"
       style={{
-        // ...box.p(box.m0125),
         paddingRight: box.m0125,
-        // gap: box.m0125,
-        // display: isStarted
-        //   ? "flex"
-        //   : "none",
       }}
     >
       <div
@@ -150,75 +63,24 @@ export const Modulators: FC<TProps> = ({
           top: box.m0125,
         }}
       >
-        <button
-          id={IDS.button}
-          className="relative center bg-black"
-          title="connect"
-          style={{
-            ...resolveSquare(box.m025),
-            ...box.r.xl,
-          }}
-          onClick={handleClick}
-        >
-          <div
-            className="fill _bi-conic-metal opacity-50"
-            style={{
-              ...resolveSquare(
-                box.m025
-              ),
-              ...box.r.xl,
-            }}
-          />
-          <OffSwitch
-            id={IDS.started.icon}
-            style={{
-              display: isStarted
-                ? "flex"
-                : "none",
-            }}
-          />
-          <IconsPlus14
-            id={IDS.disconnected.icon}
-            style={{
-              display: isStarted
-                ? "none"
-                : "flex",
-            }}
-          />
-        </button>
-      </div>
-      {children}
-      <div
-        id={IDS.started.inputs}
-        className="relative w-full column-stretch"
-        style={{
-          // ...box.p(box.m0125),
-          // marginBottom: box.m0125,
-          // paddingBottom: box.m025,
-
-          gap: box.m0125,
-          display: isStarted
-            ? "flex"
-            : "none",
-        }}
-      >
-        {isConnected && (
-          <ModulatorsNumbers
-            {...props}
-          />
-        )}
-        <LinesVertical
-          positionClass="absolute"
-          colorClass="border-white _bi-border"
-          onClick={handleClick}
-          style={{
-            top: -box.m01875,
-            left: -box.m01875,
-            pointerEvents: "auto",
-            cursor: "pointer",
-          }}
+        <ModulatorsButton
+          ids={IDS}
+          {...props}
         />
       </div>
+      {children}
+
+      {isConnected && (
+        <ModulatorsInputs
+          ids={IDS}
+          style={{
+            display: isStarted
+              ? "flex"
+              : "none",
+          }}
+          {...props}
+        />
+      )}
     </div>
   );
 };

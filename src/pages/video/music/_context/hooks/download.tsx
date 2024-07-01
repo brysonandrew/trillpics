@@ -1,6 +1,3 @@
-import { AUDIO_SRC_KEY } from "~/hooks/pic/constants";
-import { useQueryParamsSet } from "~/hooks/query-params";
-
 export const useDownload = () => {
   // const queryParams = useQueryParamsSet(
   //   AUDIO_SRC_KEY

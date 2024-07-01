@@ -1,6 +1,6 @@
 import type { FC } from "react";
 import { InputsSelect } from "~/components/inputs/select";
-import { useNodesPattern } from "~/hooks/scale/pattern";
+import { useNodesPattern } from "~/hooks/music/midis/scale/pattern";
 import { SCALE_PATTERNS } from "~/pages/video/music/synth/composition/scale/constants";
 
 export const MusicScalePattern: FC =

@@ -1,3 +1,4 @@
+import { TSyncValue } from "~/pages/video/music/synth/nodes/modulators/dropdowns/sync";
 import {
   TAllParams,
   TAllParamsKey,
@@ -29,10 +30,8 @@ export type TModulatorRef =
     ): TModulatorNodes;
     disconnect(): void;
     isStarted?: boolean;
-    multiplier: {
-      gain: number;
-      frequency: number;
-    };
+    multiplier: number;
+    sync:TSyncValue;
   };
 
 export type TModulatorId =

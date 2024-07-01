@@ -1,18 +1,19 @@
 import { STEPS_COUNT } from "~/constants/music/timing";
-import { useBpm } from "~/hooks/music/bpm";
 import { resolveStepsPerSecond } from "~/hooks/music/time/steps-per-second/resolver";
 import { usePicVideoReadSeconds } from "~/hooks/pic/video/read/seconds/hook";
-import { supportedMimeTypes } from "~/pages/video/music/_context/hooks/recorder/supportedMimeTypes";
+import { supportedMimeTypes } from "~/pages/video/music/_context/hooks/recorder/mime-types";
 import { useMusicRefs } from "~/pages/video/music/_context/init";
 
 export const useLoopHandler = () => {
-  const bpm = useBpm();
-
   const seconds =
     usePicVideoReadSeconds();
 
-  const { audio:{save} } =
-    useMusicRefs();
+  const {
+    audio: { save },
+    schedule: {
+      record: { bpm },
+    },
+  } = useMusicRefs();
 
   const handler = () => {
     const sps =

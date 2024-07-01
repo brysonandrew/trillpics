@@ -4,7 +4,7 @@ import {
 } from "~/components/inputs/slider/controlled";
 import { TUpdateNumberHandler } from "~/components/inputs/slider/types";
 import { SliderUncontrolled } from "~/components/inputs/slider/uncontrolled";
-import { resolveMidiSteps } from "~/constants/music/midi/steps";
+import { resolveMidiSteps } from "~/hooks/music/midis/steps";
 import { TSequenceNumberOptionsKey } from "~/pages/video/music/synth/composition/sequence/types";
 import { useUpdateStateHandler } from "~/store/hooks/use-update-state-handler";
 import { useTrillPicsStore } from "~/store/middleware";

@@ -5,7 +5,7 @@ import {
 } from "~/pages/video/music/synth/composition/sequence/types";
 import { TInputProps } from "~/types/inputs";
 import { InputsNumber } from "~/components/inputs/number";
-import { resolveMidiSteps } from "~/constants/music/midi/steps";
+import { resolveMidiSteps } from "~/hooks/music/midis/steps";
 import { TUpdateNumberHandler } from "~/components/inputs/slider/types";
 import { useMusicRefs } from "~/pages/video/music/_context/init";
 import { useGridMidi } from "~/hooks/grid/midi";

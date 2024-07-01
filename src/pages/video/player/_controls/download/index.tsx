@@ -19,7 +19,7 @@ import { useTimebomb } from "~/hooks/use-time-bomb";
 import { UGenerateSubscriptionResult } from "~/store/state/generate/types";
 import { TState } from "~/store/types";
 import { TPicSeriesProps } from "~/components/remotion/pic-series/types";
-import { useBpm } from "~/hooks/music/bpm";
+import { useMusicRefs } from "~/pages/video/music/_context/init";
 
 export const DEFAULT_INPUT: TGenerateInput =
   {
@@ -30,14 +30,17 @@ export const DEFAULT_INPUT: TGenerateInput =
     seconds: 1,
     isPics: false,
     dimensions: { ...PIC_DIMENSIONS },
-    recording: null
+    recording: null,
   };
 
 export const Download: FC<
   Partial<TPillBProps>
 > = ({ children, ...props }) => {
-  
-  const bpm = useBpm()
+  const {
+    schedule: {
+      record: { bpm },
+    },
+  } = useMusicRefs();
   const inputFromParams =
     usePicVideoReadInputs(bpm);
   const { set, recording } =
@@ -176,7 +179,9 @@ export const Download: FC<
   return (
     <div
       className="relative flex"
-      style={{ ...resolveSquare(box.m) }}
+      style={{
+        ...resolveSquare(box.m),
+      }}
     >
       <PillBHover
         title={title}

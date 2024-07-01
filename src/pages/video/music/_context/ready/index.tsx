@@ -6,7 +6,6 @@ import type { FC } from "react";
 import { useBeatsLookup } from "~/hooks/music/beats/lookup";
 import { useMidisLookup } from "~/hooks/music/midis/lookup";
 import { TChildren } from "@brysonandrew/config-types";
-import { useBeatsLoad } from "~/hooks/music/beats/load";
 import { useWorkletsLoad } from "~/pages/video/music/worklets/load";
 
 type TContext = {
@@ -34,7 +33,6 @@ export const MusicReadyProvider: FC<
 > = ({ children }) => {
   const beats = useBeatsLookup();
   const midis = useMidisLookup();
-  useBeatsLoad();
   useWorkletsLoad();
   
   const value = {

@@ -1,4 +1,4 @@
-import { resolveMidiSteps } from "~/constants/music/midi/steps";
+import { resolveMidiSteps } from "~/hooks/music/midis/steps";
 import {
   DEFAULT_MULTI_SYNTH_OPTIONS,
   DEFAULT_SYNTH_OPTIONS,

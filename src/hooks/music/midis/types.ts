@@ -1,6 +1,7 @@
 import { TMultiOptions } from "react-synthwave";
-import { MIDIS } from "~/hooks/music/midis/constants";
-import { TOscillatorOptionsKey } from "~/pages/video/music/synth/nodes/oscillator/hooks/types";
+import {
+  MIDIS_KEYS,
+} from "~/hooks/music/midis/constants";
 import { TPlayStepSchedule } from "~/hooks/music/play/schedule";
 
 export type TMutableNodes = (
@@ -33,9 +34,19 @@ export type TPlayMidisOptions = Partial<
 >;
 
 export type TMidisStepsKeys =
-  typeof MIDIS;
+  typeof MIDIS_KEYS;
 export type TMidisStepsKey =
   TMidisStepsKeys[number];
 export type TNodesRecord = {
   synth: TMidiValues;
 };
+
+
+export type TMidisRecord = Record<
+TMidisStepsKey,
+  TMidiValues
+>;
+export type TMidisPresetRecord = Record<
+  string,
+  Partial<TMidisRecord>
+>;
