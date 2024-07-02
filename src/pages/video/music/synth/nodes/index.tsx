@@ -1,42 +1,35 @@
 import type { FC } from "react";
-import { cx } from "class-variance-authority";
 import { NodesDelay } from "~/pages/video/music/synth/nodes/delay";
 import { NodesFilter } from "~/pages/video/music/synth/nodes/filter";
 import { NodesGainMaster } from "~/pages/video/music/synth/nodes/gain/master";
-import { NodesOscillator } from "~/pages/video/music/synth/nodes/oscillator";
 import { box } from "~uno/rules/box";
 import { NodesGainPreamp } from "~/pages/video/music/synth/nodes/gain/preamp";
-import { SynthSource } from "~/pages/video/music/synth/source";
-import { NodesKarplusStrong } from "~/pages/video/music/synth/nodes/worklets/karplus-strong";
 import { NodesSource } from "~/pages/video/music/synth/nodes/source";
+import { useVideoStyle } from "~/pages/video/style";
+import { NodesBitcrusher } from "~/pages/video/music/synth/nodes/worklets/bitcrusher";
 
 export const MusicSynthNodes: FC =
   () => {
+    const {
+      width,
+      sidebarWidthOffset,
+    } = useVideoStyle();
     return (
       <div
-        className={cx(
-          "relative"
-          // "items-stretch",
-          // "justify-stretch"
-          // "xxxs:grid-cols-1 xs:grid-cols-2 sm:grid-cols-2 sm:grid-cols-4 xxl:grid-cols-5 xxxl:grid-cols-6"
-        )}
+        className="relative column-stretch w-full"
         style={{
-          display: "grid",
-          gap: box.m0125,
-          gridTemplateColumns: `repeat(3, 1fr)`,
-          ...box.p(box.m025),
+          left: sidebarWidthOffset,
+          width:
+            width - sidebarWidthOffset,
+          ...box.p(box.m0125),
         }}
       >
-        <NodesSource/>
-        <div className="relative column-stretch">
-          <NodesFilter />
-          <NodesDelay />
-          {/* <NodesBitcrusher /> */}
-        </div>
-        <div className="relative column-stretch">
-          <NodesGainPreamp />
-          <NodesGainMaster />
-        </div>
+        <NodesSource />
+        <NodesFilter />
+        <NodesDelay />
+        <NodesBitcrusher />
+        <NodesGainPreamp />
+        <NodesGainMaster />
       </div>
     );
   };

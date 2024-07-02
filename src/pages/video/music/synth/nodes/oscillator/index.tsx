@@ -8,8 +8,8 @@ export const NodesOscillator: FC<{title:JSX.Element}> =
     return (
       <NodesTemplate
         title={title}
-        Input={NodesOscillatorDropdowns}
       >
+        <NodesOscillatorDropdowns/>
         <NodesOscillatorNumbers />
       </NodesTemplate>
     );

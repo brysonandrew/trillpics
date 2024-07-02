@@ -48,8 +48,8 @@ export const DrumsPlaybackRateNumbers: FC<
       step={0.01}
     >
       {({
-        number,
-        slider,
+        Number,
+        Slider,
         Header,
         Title,
         Box,
@@ -59,7 +59,7 @@ export const DrumsPlaybackRateNumbers: FC<
             <Box>
               <Header>
                 <Title />
-                {number}
+                <Number />
               </Header>
             </Box>
           </>
@@ -76,7 +76,7 @@ export const DrumsPlaybackRateNumbers: FC<
               //   }
               // >
               <div className="relative pl-2">
-                {slider}
+                <Slider />
               </div>
               // </Modulators>
             )}

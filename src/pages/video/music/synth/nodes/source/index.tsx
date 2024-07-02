@@ -50,7 +50,7 @@ export const NodesSource: FC = () => {
     <>
       <div
         ref={stringRef}
-        className="relative column-stretch"
+        className="relative row"
         style={{
           display:
             source === "oscillator"
@@ -70,7 +70,7 @@ export const NodesSource: FC = () => {
       </div>
       <div
         ref={oscillatorRef}
-        className="relative column-stretch"
+        className="relative row"
         style={{
           display:
             source === "oscillator"

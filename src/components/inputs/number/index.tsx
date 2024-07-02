@@ -13,8 +13,15 @@ import { InputsNumberBox } from "~/components/inputs/number/box";
 import { InputsNumberBackground } from "~/components/inputs/number/background";
 import { useMusicRefs } from "~/pages/video/music/_context/init";
 import { InputsBoxTitle } from "~/components/inputs/box/title";
-import { NumberInput } from "~/components/inputs/number/input";
-import { InputsNumberSlider } from "~/components/inputs/number/slider";
+import {
+  NumberInput,
+  TNumberInputProps,
+} from "~/components/inputs/number/input";
+import {
+  InputsNumberSlider,
+  TInputsNumberSliderProps,
+} from "~/components/inputs/number/slider";
+import { Vertical } from "~/pages/video/music/controls/inputs/vertical";
 
 const MIN = 0;
 const MAX = 8;
@@ -23,6 +30,12 @@ export type TInputRangeProps = Record<
   "min" | "max" | "step",
   number
 >;
+export type TSliderFc = FC<
+  Partial<TInputsNumberSliderProps>
+>;
+export type TNumberInputFc = FC<
+  Partial<TNumberInputProps>
+>;
 export type TInputsNumberChildrenProps =
   {
     Box: FC<PropsWithChildren>;
@@ -30,8 +43,8 @@ export type TInputsNumberChildrenProps =
     Info: FC;
     Header: typeof InputsBox;
     Title: typeof InputsBoxTitle;
-    number: JSX.Element;
-    slider: JSX.Element;
+    Number: TNumberInputFc;
+    Slider: TSliderFc;
   };
 export type TInputsNumberBaseProps =
   TInputRangeProps &
@@ -63,6 +76,7 @@ export const InputsNumber: FC<
     title,
     onUpdate,
     style,
+    classValue,
     ...rest
   } = props;
   const { name } = props;
@@ -71,7 +85,6 @@ export const InputsNumber: FC<
   const updateValues = (
     nextValue: string
   ) => {
-    console.log(name)
     if (layout.number[name]?.current) {
       layout.number[
         name
@@ -115,34 +128,31 @@ export const InputsNumber: FC<
     </InputsBoxTitle>
   ));
 
-  const number = (
+  const Number: TNumberInputFc = (
+    numberSlider
+  ) => (
     <NumberInput
       onUpdate={handleUpdate}
       style={{
-        lineHeight: box.m0625,
-        borderRadius: box.radius.m,
-        height: box.m05,
-        ...box.px(box.m0125),
-        paddingLeft: box.m025,
         ...style,
       }}
       {...rangeProps}
       {...rest}
+      {...numberSlider}
     />
   );
 
-  const slider = (
+  const Slider: TSliderFc = ({
+    defaultValue,
+    ...sliderProps
+  }) => (
     <InputsNumberSlider
-      style={{
-        ...style,
-      }}
       title={title ?? ""}
       onUpdate={handleUpdate}
-      defaultValue={Number(
-        props.defaultValue
-      )}
+      defaultValue={props.defaultValue}
       {...rangeProps}
       {...rest}
+      {...sliderProps}
     />
   );
   const Info = memo(() => (
@@ -152,9 +162,9 @@ export const InputsNumber: FC<
     Box: InputsNumberBox,
     Header: InputsBox,
     Title,
-    number,
+    Number,
     Background: InputsNumberBackground,
-    slider,
+    Slider,
     Info,
   } as const;
 
@@ -162,12 +172,13 @@ export const InputsNumber: FC<
     return <>{children(_)}</>;
 
   return (
-    <_.Box>
-      <_.Header>
-        <_.Title />
-        {_.number}
-      </_.Header>
-      {_.slider}
-    </_.Box>
+    <Vertical {..._} />
+    // <_.Box>
+    //   <_.Header>
+    //     <_.Title />
+    //     <_.Number />
+    //   </_.Header>
+    //   <_.Slider />
+    // </_.Box>
   );
 };

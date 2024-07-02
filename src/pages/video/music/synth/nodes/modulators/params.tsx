@@ -18,7 +18,7 @@ export const ModulatorsParams: FC<
 > = ({ type, params }) => {
   return (
     <ul
-      className="relative column-stretch"
+      className="relative row"
       style={{ gap: box.m0125 }}
     >
       {params.map((p) => {

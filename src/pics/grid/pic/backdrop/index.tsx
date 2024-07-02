@@ -44,7 +44,7 @@ export const PicBackdrop: FC<
       }}
       {...props}
     >
-      <div className="fill _box-dots opacity-20 brightness-80"/>
+      <div className="fill _bi-dots opacity-20 brightness-80"/>
     </motion.div>
   );
 };

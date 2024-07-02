@@ -9,10 +9,15 @@ import { LinesHorizontalLight } from "~/components/lines/horizontal/light";
 import { InputsBox } from "~/components/inputs/box";
 import { TypographyXxxs } from "~/components/layout/typography/xxxs";
 import { InputsBoxTitle } from "~/components/inputs/box/title";
+import { resolveSquare } from "@brysonandrew/measure";
+import {
+  INPUTS_NUMBER_DROPDOWN_STYLE,
+  INPUTS_NUMBER_DROPDOWN_TITLE_STYLE,
+} from "~/components/inputs/constants";
 import * as Select from "@radix-ui/react-select";
 
 type TProps = Select.SelectProps & {
-  title: string;
+  title?: string;
   placeholder: string;
   values: TSelectValues;
 };
@@ -26,32 +31,48 @@ export const InputsSelect: FC<
 }) => {
   return (
     <InputsBox>
-      <InputsBoxTitle>
-        {title}
-      </InputsBoxTitle>
+      {title && (
+        <InputsBoxTitle
+          classValue={cx(
+            "row",
+            "bg-black-2",
+            "border border-white-02"
+          )}
+          style={
+            INPUTS_NUMBER_DROPDOWN_TITLE_STYLE
+          }
+        >
+          {title}
+        </InputsBoxTitle>
+      )}
       <Select.Root {...props}>
         <Select.Trigger
           className={clsx(
-            "row border border-white-02 bg-black-02",
-            "text-center text-xs font-slab",
-            "bg-black-02 backdrop-blur-lg"
+            "column-start justify-start bg-black-2",
+            "text-left text-xs font-slab",
+            "truncate",
+            "ring-0 border-0 outline-0"
           )}
           aria-label={placeholder}
           style={{
-            gap: box.m025,
-            borderRadius: box.radius.m,
-            ...box.py(box.m00625),
-            ...box.px(box.m0125),
-            paddingLeft: box.m025,
+            ...INPUTS_NUMBER_DROPDOWN_STYLE,
           }}
         >
-          <TypographyXxxs>
+          <TypographyXxxs
+            classValue="truncate w-full"
+            style={{ height: box.m05 }}
+          >
             <Select.Value
               placeholder={placeholder}
             />
           </TypographyXxxs>
 
-          <Select.Icon className="SelectIcon">
+          <Select.Icon
+            className="center"
+            style={{
+              ...resolveSquare(box.m05),
+            }}
+          >
             <IconsChevronsDown />
           </Select.Icon>
         </Select.Trigger>

@@ -2,6 +2,7 @@ import type { FC } from "react";
 import { TDivProps } from "@brysonandrew/config-types";
 import { box } from "~uno/rules/box";
 import clsx from "clsx";
+import { INPUTS_NUMBER_BOX_STYLE } from "~/components/inputs/constants";
 
 type TProps = TDivProps;
 export const InputsBox: FC<TProps> = ({
@@ -12,13 +13,10 @@ export const InputsBox: FC<TProps> = ({
   return (
     <div
       className={clsx(
-        "relative column-start"
-        // "border border-white-02"
+        "relative column-stretch"
       )}
       style={{
-        borderRadius: box.radius.m,
-        ...box.py(box.m00625),
-        ...box.px(box.m0125),
+        ...INPUTS_NUMBER_BOX_STYLE,
         ...style,
       }}
       {...props}

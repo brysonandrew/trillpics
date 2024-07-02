@@ -8,7 +8,6 @@ export const MusicScalePattern: FC =
     const { value, update } =
       useNodesPattern();
     return (
-    
       <InputsSelect
         name="melody.scale.pattern"
         title="pattern"

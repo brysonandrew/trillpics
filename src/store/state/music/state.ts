@@ -1,11 +1,3 @@
-import { resolveMidiSteps } from "~/hooks/music/midis/steps";
-import {
-  DEFAULT_MULTI_SYNTH_OPTIONS,
-  DEFAULT_SYNTH_OPTIONS,
-} from "~/pages/video/music/synth/constants";
-import { DEFAULT_SCALE_OPTIONS } from "~/pages/video/music/synth/composition/scale/constants";
-import { DEFAULT_SEQUENCE_OPTIONS } from "~/pages/video/music/synth/composition/sequence/constants";
-import { DEFAULT_BEATS_SLIDER_OPTIONS } from "~/store/state/music/constants";
 import { TMusicState } from "~/store/state/music/types";
 import { TStateHandler } from "~/store/types";
 

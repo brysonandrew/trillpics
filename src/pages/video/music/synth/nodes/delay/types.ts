@@ -1,1 +1,5 @@
-export type TDelayNodeKey = keyof Pick<DelayNode, "delayTime">;
+
+export type TDelayNodeKey = keyof Pick<
+  DelayNode,
+  "delayTime"
+>;

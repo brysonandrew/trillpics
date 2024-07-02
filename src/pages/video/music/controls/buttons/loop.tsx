@@ -5,8 +5,6 @@ import {
 } from "@brysonandrew/config-types";
 import { PillB } from "~/components/buttons/pill/b";
 import { IconsLoop } from "~/components/icons/loop";
-import { useTrillPicsStore } from "~/store/middleware";
-import { TState } from "~/store/types";
 import { useContextMusicRecorder } from "~/pages/video/music/_context/recorder";
 
 type TProps = TPropsWithChildren<
@@ -17,35 +15,20 @@ export const MusicControlsButtonsLoop: FC<
 > = () => {
   const { isRecording } =
     useContextMusicRecorder();
-  // const { set, bpm, isLoop, sequence } =
-  //   useTrillPicsStore(
-  //     ({
-  //       set,
-  //       bpm,
-  //       isLoop,
-  //       sequence,
-  //     }) => ({
-  //       set,
-  //       bpm,
-  //       isLoop,
-  //       sequence,
-  //     })
-  //   );
-  
+
+  const isLoop = true
   const handleClick = () => {
-    // set((draft: TState) => {
-    //   draft.isLoop = !draft.isLoop;
-    // });
+console.log("LOOP")
   };
   return (
     <PillB
       title={`loop ${"music"}`}
       disabled={isRecording}
-      // classValue={
-      //   isLoop
-      //     ? "brightness-120"
-      //     : "brightness-70 grayscale-40"
-      // }
+      classValue={
+        isLoop
+          ? "brightness-120"
+          : "brightness-70 grayscale-40"
+      }
       Icon={IconsLoop}
       onClick={handleClick}
     />

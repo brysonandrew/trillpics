@@ -10,6 +10,9 @@ import { TUpdateNumberHandler } from "~/components/inputs/slider/types";
 import { useMusicRefs } from "~/pages/video/music/_context/init";
 import { useGridMidi } from "~/hooks/grid/midi";
 import { useGridDrill } from "~/hooks/grid/drill";
+import { TypographyXxs } from "~/components/layout/typography/xxs";
+import { Vertical } from "~/pages/video/music/controls/inputs/vertical";
+
 const MIN = 0;
 const MAX = 8;
 const STEP = 0.1;
@@ -56,22 +59,25 @@ export const SequenceNumber: FC<
   const name =
     `sequence.${optionsKey}` as const;
   return (
-    <>
-      <InputsNumber
-        name={name}
-        title={title ?? name}
-        defaultValue={
-          Array.isArray(defaultValue)
-            ? defaultValue[0]
-            : defaultValue
-        }
-        min={min}
-        max={max}
-        step={step}
-        onUpdate={handleUpdate}
-        {...props}
-      />
-      {children}
-    </>
+    <InputsNumber
+      name={name}
+      title={title ?? name}
+      defaultValue={
+        Array.isArray(defaultValue)
+          ? defaultValue[0]
+          : defaultValue
+      }
+      min={min}
+      max={max}
+      step={step}
+      onUpdate={handleUpdate}
+      {...props}
+    >
+      {(_) => {
+        return (
+          <Vertical {..._}/>
+        )
+      }}
+    </InputsNumber>
   );
 };

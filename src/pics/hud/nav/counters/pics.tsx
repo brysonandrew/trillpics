@@ -23,7 +23,10 @@ export const NavCountersPics: FC =
       },
     } = useMusicRefs();
     const { pics } =
-      usePicVideoReadInputs(bpm);
+      usePicVideoReadInputs(
+        // bpm
+        80
+      );
 
     return (
       <>

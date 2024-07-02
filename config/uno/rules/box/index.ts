@@ -4,7 +4,7 @@ import { boxIy } from "~/utils/box/iy";
 import { boxP } from "~/utils/box/p";
 import { boxPx } from "~/utils/box/px";
 import { boxPy } from "~/utils/box/py";
-import { BORDER_RADIUS, RADIUS_LOOKUP } from "~uno/rules/box/radius";
+import { BORDER_RADIUS, RADIUS_BOTTOM_LOOKUP, RADIUS_LOOKUP, RADIUS_TOP_LOOKUP } from "~uno/rules/box/radius";
 import { boxSize } from "~uno/rules/box/size";
 
 export const BOX_SHADOW_FLAT =
@@ -16,6 +16,8 @@ export const BOX_SHADOW_FLOATING =
 export const box = {
   radius: BORDER_RADIUS,
   r: RADIUS_LOOKUP,
+  rt: RADIUS_TOP_LOOKUP,
+  rb: RADIUS_BOTTOM_LOOKUP,
   px: boxPx,
   py: boxPy,
   p: boxP,

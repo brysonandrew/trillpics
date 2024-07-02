@@ -2,11 +2,9 @@ import { Helmet } from "react-helmet-async";
 import { VideoMusicSave } from "~/pages/video/music/save/index";
 import { VideoMusicSynth } from "~/pages/video/music/synth";
 import { VideoMusicDrums } from "~/pages/video/music/drums";
-import { MusicInitProvider } from "~/pages/video/music/_context/init";
-import { MusicReadyProvider } from "~/pages/video/music/_context/ready";
 import { MusicRecorderProvider } from "~/pages/video/music/_context/recorder";
 import { PicBackdrop } from "~/pics/grid/pic/backdrop";
-import { MusicControlsButtons } from "~/pages/video/music/controls/buttons";
+import { MusicControls } from "~/pages/video/music/controls";
 import { GlassSidebar } from "~/pages/video/music/layout/glass/sidebar";
 import { GlassMain } from "~/pages/video/music/layout/glass/main";
 import { LayoutScroll } from "~/pages/video/music/layout/scroll";
@@ -23,46 +21,44 @@ import { DrumsSettings } from "~/pages/video/music/drums/settings";
 
 export const VideoMusic = () => {
   return (
-    <MusicInitProvider>
-      <MusicReadyProvider>
-        <MusicRecorderProvider>
-          <Helmet>
-            <title>
-              Trill Pics | Music
-              Sequencer
-            </title>
-          </Helmet>
-          <PicBackdrop />
-          <LayoutBorderTop />
-          <MusicControlsButtons />
+    // <MusicInitProvider>
+    //   <MusicReadyProvider>
+    <MusicRecorderProvider>
+      <Helmet>
+        <title>
+          Trill Pics | Music Sequencer
+        </title>
+      </Helmet>
+      <PicBackdrop />
+      <LayoutBorderTop />
+      {/* <MusicControls /> */}
 
-          <LayoutScroll>
-            <LayoutView>
-              <LayoutStickyTop>
-                <GlassSidebar />
-                <GlassMain />
-                <VideoMusicSynth />
-                <MusicSynthNodes />
-              </LayoutStickyTop>
+      <LayoutScroll>
+        <LayoutView>
+          <LayoutStickyTop>
+            <GlassSidebar />
+            <GlassMain />
+            <VideoMusicSynth />
+          </LayoutStickyTop>
+          <MusicSynthComposition />
+          <MusicSynthNodes />
 
-              <MusicSynthComposition />
+          <LayoutStickyMid>
+            <VideoMusicDrums />
+          </LayoutStickyMid>
 
-              <LayoutStickyMid>
-                <VideoMusicDrums />
-              </LayoutStickyMid>
+          <MusicLayoutRow>
+            <DrumsSettings />
+          </MusicLayoutRow>
 
-              <MusicLayoutRow>
-               <DrumsSettings/>
-              </MusicLayoutRow>
-
-              <LayoutStickyBottom>
-                <VideoMusicSave />
-              </LayoutStickyBottom>
-            </LayoutView>
-          </LayoutScroll>
-          <MusicControlsButtonsMenu />
-        </MusicRecorderProvider>
-      </MusicReadyProvider>
-    </MusicInitProvider>
+          <LayoutStickyBottom>
+            <VideoMusicSave />
+          </LayoutStickyBottom>
+        </LayoutView>
+      </LayoutScroll>
+      <MusicControlsButtonsMenu />
+    </MusicRecorderProvider>
+    //   </MusicReadyProvider>
+    // </MusicInitProvider>
   );
 };

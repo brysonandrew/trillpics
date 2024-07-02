@@ -2,7 +2,7 @@ import { Rule } from "unocss";
 
 export const DOTS: Rule[] = [
   [
-    "_box-dots",
+    "_bi-dots",
     {
       "background-attachment":
         "scroll, scroll, scroll",

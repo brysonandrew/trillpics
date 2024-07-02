@@ -1,4 +1,4 @@
-import { DELAY_PARAMS } from "~/pages/video/music/synth/nodes/delay";
+import { DELAY_PARAMS } from "~/pages/video/music/synth/nodes/delay/constants";
 import { BIQUAD_FILTER_PARAMS } from "~/pages/video/music/synth/nodes/filter/constants";
 import { GAIN_PARAMS } from "~/pages/video/music/synth/nodes/gain/constants";
 import { OSCILLATOR_PARAMS } from "~/pages/video/music/synth/nodes/oscillator/constants";

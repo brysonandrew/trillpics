@@ -125,7 +125,7 @@ export const _RootReorderDragger: FC<
       {...props}
     >
       <div
-        className="relative rounded-md _box-dots cursor-grab focus:cursor-grabbing"
+        className="relative rounded-md _bi-dots cursor-grab focus:cursor-grabbing"
         style={{
           width: size - size / 12,
           height: size - size / 12,

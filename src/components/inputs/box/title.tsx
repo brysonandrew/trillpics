@@ -1,8 +1,8 @@
 import type { FC } from "react";
 import { box } from "~uno/rules/box";
-import { TypographyXxxxs } from "~/components/layout/typography/xxxxs";
 import { TTypographyProps } from "~/components/layout/typography";
 import clsx from "clsx";
+import { TypographyXxxs } from "~/components/layout/typography/xxxs";
 
 type TProps = Partial<TTypographyProps>;
 export const InputsBoxTitle: FC<
@@ -15,23 +15,24 @@ export const InputsBoxTitle: FC<
   ...props
 }) => {
   return (
-    <TypographyXxxxs
+    <TypographyXxxs
       style={{
         left: box.m00625,
-        top: box.m003125,
+        top: box.m0125,
+        height:0,
+
         ...style,
       }}
       overrides={{
-        positionClass: "absolute",
         ...overrides,
       }}
       classValue={clsx(
-        "translate-x-1.5 -translate-y-1 pointer-event-none",
+        "pointer-event-none text-white-9",
         classValue
       )}
       {...props}
     >
       {children}
-    </TypographyXxxxs>
+    </TypographyXxxs>
   );
 };

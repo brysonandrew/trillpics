@@ -8,19 +8,29 @@ import { InputsNumberBackground } from "~/components/inputs/number/background";
 import { useMusicRefs } from "~/pages/video/music/_context/init";
 import { isNull } from "~/utils/validation/is/null";
 import { box } from "~uno/rules/box";
-
-type TProps = TInputProps & {
-  name: string;
-  onUpdate(value: number): void;
-};
+import { cx } from "class-variance-authority";
+import {
+  INPUTS_NUMBER_INPUT_STYLE,
+  INPUTS_NUMBER_SLIDER_STYLE,
+} from "~/components/inputs/constants";
+//
+export type TInputsNumberSliderProps =
+  TInputProps & {
+    name: string;
+    onUpdate(value: number): void;
+    orient?: "vertical";
+  };
 export const InputsNumberSlider: FC<
-  TProps
+  TInputsNumberSliderProps
 > = ({
   name,
   style,
   onUpdate,
+  orient,
   ...props
 }) => {
+  const isVertical =
+    orient === "vertical";
   const { layout } = useMusicRefs();
 
   const handleSliderChange: ChangeEventHandler<
@@ -33,20 +43,26 @@ export const InputsNumberSlider: FC<
 
   return (
     <div
-      className="relative h-5 grow _bi-radial opacity"
+      className={cx(
+        "relative grow border-white-02 bg-black-2",
+      )}
       style={{
-        borderRadius: box.radius.m,
+        ...INPUTS_NUMBER_SLIDER_STYLE,
+    height: box.m05,
+
       }}
     >
-      <InputsNumberBackground />
       <input
         type="range"
         className={clsx(
           "fill",
           "appearance-none bg-transparent",
-          "[&::-webkit-slider-runnable-track]:bg-transparent",
-          "[&::-webkit-slider-thumb]:(relative w-4 h-4 rounded-full z-0)",
-          "[&::-webkit-slider-thumb]:(_bi-conic-metal appearance-none pointer-cursor)"
+          "truncate",
+          "[&::-webkit-slider-runnable-track]:_bi-radial",
+          isVertical
+            ? "[&::-webkit-slider-thumb]:(w-2.8 h-1.6)"
+            : "[&::-webkit-slider-thumb]:(w-1.6 h-2.8)",
+          "[&::-webkit-slider-thumb]:(relative _bi-conic-metal appearance-none pointer-cursor z-0)"
         )}
         ref={(instance) => {
           if (isNull(instance)) return;
@@ -57,7 +73,10 @@ export const InputsNumberSlider: FC<
             instance
           );
         }}
-        style={style}
+        style={{
+          ...style,
+          ...INPUTS_NUMBER_SLIDER_STYLE,
+        }}
         onChange={handleSliderChange}
         {...props}
       />

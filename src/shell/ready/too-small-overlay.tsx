@@ -13,7 +13,7 @@ export const ScreenTooSmallOverlay: FC =
           backdrop={
             <>
               <div className="fill bg-main-inverted" />
-              <div className="fill _box-dots opacity-50" />
+              <div className="fill _bi-dots opacity-50" />
               <div className="fill _bi-linear opacity-40" />
               <div className="fill _bi-mesh opacity-60" />
             </>

@@ -1,9 +1,10 @@
 import type { FC } from "react";
 import { InputsNumber } from "~/components/inputs/number";
+import { Vertical } from "~/pages/video/music/controls/inputs/vertical";
 import { useMusicRefs } from "~/pages/video/music/_context/init";
 import { box } from "~uno/rules/box";
 
-export const SequenceNumbersBpm: FC =
+export const MusicControlsInputsBpm: FC =
   () => {
     const { schedule } = useMusicRefs();
 
@@ -22,14 +23,9 @@ export const SequenceNumbersBpm: FC =
         }
         style={{ width: box.m }}
       >
-        {(_) => {
-          return (
-            <_.Header>
-              <_.Title />
-              {_.number}
-            </_.Header>
-          );
-        }}
+        {(props) => (
+          <Vertical {...props} />
+        )}
       </InputsNumber>
     );
   };

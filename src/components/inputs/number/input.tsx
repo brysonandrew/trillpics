@@ -11,25 +11,19 @@ import {
   useMeasureTextWidth,
   TFontWeight,
 } from "~/hooks/body-style/measure-text";
-import { THEME_FONT_SIZES_LOOKUP } from "~uno/index";
 import { ARMSTRONG3_FULL_FONT_FAMILY } from "~uno/presets/fonts";
-const NUMBER_FONT_SIZE =
-  "xxxs" as const;
-const [fontSize, lineHeight] =
-  THEME_FONT_SIZES_LOOKUP[
-    NUMBER_FONT_SIZE
-  ];
-const paddingLeft = 10;
-const paddingRight = 5;
-const minWidth =
-  40 + paddingLeft + paddingRight;
-const maxWidth = 80;
-type TProps = TInputProps & {
-  name: string;
-  onUpdate(value: number): string;
-};
+import {
+  INPUTS_NUMBER_INPUT_STYLE,
+  INPUTS_NUMBER_SLIDER_STYLE,
+} from "~/components/inputs/constants";
+
+export type TNumberInputProps =
+  TInputProps & {
+    name: string;
+    onUpdate(value: number): string;
+  };
 export const NumberInput: FC<
-  TProps
+  TNumberInputProps
 > = ({
   name,
   onUpdate,
@@ -50,7 +44,8 @@ export const NumberInput: FC<
       .fontWeight as TFontWeight;
     const size =
       layout.number[name].current.style
-        .fontSize || fontSize;
+        .fontSize ||
+      INPUTS_NUMBER_INPUT_STYLE.fontSize;
     const family =
       layout.number[name].current.style
         .fontFamily ||
@@ -68,12 +63,20 @@ export const NumberInput: FC<
     });
     if (isNull(width)) return;
     let nextValue = width;
-    if (width < minWidth) {
-      nextValue = minWidth;
+    if (
+      width <
+      INPUTS_NUMBER_INPUT_STYLE.minWidth
+    ) {
+      nextValue =
+        INPUTS_NUMBER_INPUT_STYLE.minWidth;
     }
-    if (width > maxWidth) {
-      nextValue = maxWidth;
-    }
+    // if (
+    //   width >
+    //   INPUTS_NUMBER_INPUT_STYLE.maxWidth
+    // ) {
+    //   nextValue =
+    //     INPUTS_NUMBER_INPUT_STYLE.maxWidth;
+    // }
     layout.number[
       name
     ].current.style.width = `${nextValue}px`;
@@ -104,15 +107,15 @@ export const NumberInput: FC<
       }}
       type="number"
       className={clsx(
-        "text-center font-slab",
-        "bg-black-02 backdrop-blur-lg",
-        "row border border-white-02 bg-black-02",
-        "border border-white-02 _bi-mesh"
+        "inline",
+        "appearance-none",
+        "box-border",
+        "text-left font-slab",
+        "bg-black-2",
+        "border border-white-02"
       )}
       style={{
-        fontSize,
-        minWidth,
-        maxWidth,
+        ...INPUTS_NUMBER_INPUT_STYLE,
         ...style,
       }}
       onChange={handleInputChange}

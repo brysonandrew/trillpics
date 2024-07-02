@@ -1,39 +1,45 @@
 import type { FC } from "react";
 import { useVideoStyle } from "~/pages/video/style";
 import { box } from "~uno/rules/box";
-import { MusicScale } from "~/pages/video/music/synth/composition/scale";
-import { MusicSequence } from "~/pages/video/music/synth/composition/sequence";
 import { DarkGlass } from "~/pages/video/music/layout/glass/dark";
-import { SequenceButtonsOffset } from "~/pages/video/music/synth/composition/sequence/buttons/offset";
+import { MusicSequenceNumbers } from "~/pages/video/music/synth/composition/sequence/numbers";
+import { MusicScale } from "~/pages/video/music/synth/composition/scale";
+import { NodesTemplate } from "~/pages/video/music/synth/nodes/template";
+import { MusicScaleDropdowns } from "~/pages/video/music/synth/composition/scale/dropdowns";
+import { MusicControlsInputsBpm } from "~/pages/video/music/controls/inputs/bpm";
+import { MusicControlsInputsMaster } from "~/pages/video/music/controls/inputs/master";
+import { SynthMode } from "~/pages/video/music/synth/mode";
 
 export const MusicSynthComposition: FC =
   () => {
-    const { width } = useVideoStyle();
+    const {
+      width,
+      sidebarWidthOffset,
+    } = useVideoStyle();
+    const Input = () => (
+      <>
+        <MusicControlsInputsBpm />
+        <MusicControlsInputsMaster />
+        <MusicScaleDropdowns />
+        <MusicSequenceNumbers />
+        <SynthMode />
+
+      </>
+    );
     return (
       <>
         <div
-          className="relative column-start"
+          className="relative column-stretch w-full"
           style={{
-            width: width + box.m025,
+            left: sidebarWidthOffset,
+            width:
+              width -
+              sidebarWidthOffset,
           }}
         >
-          <DarkGlass />
-          <MusicScale />
-
-          <div
-            className="relative flex flex-row flex-wrap items-stretch justify-stretch"
-            style={{
-              left: 0,
-              gap: box.m0125,
-              width: width + box.m025,
-              ...box.p(box.m0125),
-              // gridTemplateColumns: `repeat(auto-fill, minmax(${box.m5}px, 1fr))`,
-            }}
-          >
-            <MusicSequence />
-            <SequenceButtonsOffset />
-
-          </div>
+          <NodesTemplate
+            Input={Input}
+          />
         </div>
       </>
     );

@@ -17,10 +17,15 @@ type TProps = {
 } & Partial<TNodesTemplateProps>;
 export const ControlsGain: FC<
   TProps
-> = ({ musicKey, ampKey, style, ...props }) => {
+> = ({
+  musicKey,
+  ampKey,
+  style,
+  ...props
+}) => {
   return (
     <NodesGainNumbers
-    ampKey={ampKey}
+      ampKey={ampKey}
       musicKey={musicKey}
     >
       {(Input, children) => (
@@ -31,7 +36,6 @@ export const ControlsGain: FC<
             gap: box.m003125,
             ...style,
           }}
-
           {...props}
         >
           {children}

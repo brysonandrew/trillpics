@@ -4,14 +4,12 @@ import { ChartsGridStaff } from "~/components/charts/grid/staff";
 import { useVideoStyle } from "~/pages/video/style";
 import { box } from "~uno/rules/box";
 import clsx from "clsx";
-import { BackgroundGlass } from "~/components/layout/background/glass";
 import { VideoMusicSynthHeader } from "~/pages/video/music/synth/header";
 import { TypographyXxxs } from "~/components/layout/typography/xxxs";
 import { ChartsGridPlayButton } from "~/components/charts/grid/step/play/button";
 import { encryptMidiHoverKey } from "~/components/charts/grid/to-midi-hover-key";
 import { midiValueToNumber } from "~/utils/music/midi";
 import { useMusicRefs } from "~/pages/video/music/_context/init";
-import { DarkGlass } from "~/pages/video/music/layout/glass/dark";
 
 export const VideoMusicSynth: FC =
   () => {
@@ -30,7 +28,6 @@ export const VideoMusicSynth: FC =
             width: width + box.m025,
           }}
         >
-          {/* <DarkGlass /> */}
 
           <VideoMusicSynthHeader />
         </div>

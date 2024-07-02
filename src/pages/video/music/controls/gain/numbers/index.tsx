@@ -52,20 +52,21 @@ export const NodesGainNumbers: FC<
         gains[musicKey][ampKey].gain
           .value
       }
-      {...ampKey === 'master' ? {
-        min: 0,
-        max: 1,
-        step: 0.0001,
-      } : {
-        min: 0,
-        max: 100,
-        step: 0.1,
-      }}
-
+      {...(ampKey === "master"
+        ? {
+            min: 0,
+            max: 1,
+            step: 0.0001,
+          }
+        : {
+            min: 0,
+            max: 100,
+            step: 0.1,
+          })}
     >
       {({
-        number,
-        slider,
+        Number,
+        Slider,
         Header,
         Title,
         Box,
@@ -75,7 +76,7 @@ export const NodesGainNumbers: FC<
             <Box>
               <Header>
                 <Title />
-                {number}
+                <Number />
               </Header>
             </Box>
           </>
@@ -94,7 +95,7 @@ export const NodesGainNumbers: FC<
                 }
               >
                 <div className="relative pl-2">
-                  {slider}
+                  <Slider />
                 </div>
               </Modulators>
             )}
