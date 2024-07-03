@@ -1,12 +1,5 @@
-import {
-  FC,
-  useEffect,
-  useRef,
-} from "react";
-import { NodesOscillator } from "~/pages/video/music/synth/nodes/oscillator";
-import { NodesKarplusStrong } from "~/pages/video/music/synth/nodes/worklets/karplus-strong";
-import { SynthSource } from "~/pages/video/music/synth/source";
-import { TSynthSourceKey } from "~/pages/video/music/synth/source/constants";
+import React from "react";
+import { FC, useRef } from "react";
 import { useMusicRefs } from "~/pages/video/music/_context/init";
 
 export const NodesSource: FC = () => {
@@ -21,14 +14,9 @@ export const NodesSource: FC = () => {
   const oscillatorRef =
     useRef<HTMLDivElement | null>(null);
 
-
-
   const handleValueChange = (
     key: TSynthSourceKey
   ) => {
-
-
-
     schedule.record.synth.source = key;
     if (
       !stringRef.current ||
@@ -59,9 +47,7 @@ export const NodesSource: FC = () => {
               ? "none"
               : "flex",
         }}
-      >
-        
-      </div>
+      ></div>
       <div
         ref={oscillatorRef}
         className="relative row"
@@ -72,8 +58,11 @@ export const NodesSource: FC = () => {
               : "none",
         }}
       >
-        {/* <NodesOscillator
-        /> */}
+        {/* <NodesOscillator numbers={{
+          defaultValue: undefined,
+          resolveParam: undefined,
+          onUpdate: undefined
+        }} dropdowns={SYNTH_SOURCES} /> */}
       </div>
     </>
   );

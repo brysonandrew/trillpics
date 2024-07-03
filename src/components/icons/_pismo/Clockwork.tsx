@@ -5,7 +5,7 @@ const Root = styled.svg`
   display: block;
 `;
 
-export const Clockwork = () => (
+export const IconsClockwork = () => (
   <Root
     viewBox="0 0 512 512"
     height="26px"

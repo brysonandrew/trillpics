@@ -10,7 +10,7 @@ type TProps = {
   classValue?: ClassValue;
   isHover?: boolean;
 };
-export const Adsr: FC<TProps> = ({
+export const IconsAdsr: FC<TProps> = ({
   classValue,
   isHover,
 }) => (

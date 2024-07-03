@@ -1,3 +1,5 @@
+import { TOscillator } from "~/pages/video/music/_context/init/refs/audio/oscillators/types";
+import { isNull } from "~/utils/validation/is/null";
 
 export const NOTES = [
   "C",
@@ -14,13 +16,19 @@ export const NOTES = [
   "B",
 ];
 
-export const noteFromPitch = (frequency: number) => {
+export const noteFromPitch = (
+  frequency: number
+) => {
   const noteNum =
-    12 * (Math.log(frequency / 440) / Math.log(2));
+    12 *
+    (Math.log(frequency / 440) /
+      Math.log(2));
   return Math.round(noteNum) + 69;
 };
 
-export const frequencyFromNoteNumber = (note: number) =>
+export const frequencyFromNoteNumber = (
+  note: number
+) =>
   440 * Math.pow(2, (note - 69) / 12);
 
 export const centsOffFromPitch = (
@@ -29,33 +37,60 @@ export const centsOffFromPitch = (
 ) =>
   Math.floor(
     (1200 *
-      Math.log(frequency / frequencyFromNoteNumber(note))) /
+      Math.log(
+        frequency /
+          frequencyFromNoteNumber(note)
+      )) /
       Math.log(2)
   );
 
 const HZ = 440;
-export const noteToFrequency = (note: number) =>
-  Math.pow(2, (note - 69) / 12) * HZ;
-  export const midiToHz = (note: number) =>
-  Math.pow(2, (note - 69) / 12) * HZ;
-export const decebelsToAmps = (db: number) =>
-  Math.pow(10, db / 20);
-export const centsToHz = (cents: number) =>
-  Math.pow(2, cents / 1200);
+export const noteToFrequency = (
+  note: number
+) => Math.pow(2, (note - 69) / 12) * HZ;
+export const midiToHz = (
+  note: number
+) => Math.pow(2, (note - 69) / 12) * HZ;
+export const decebelsToAmps = (
+  db: number
+) => Math.pow(10, db / 20);
+export const centsToHz = (
+  cents: number
+) => Math.pow(2, cents / 1200);
 
 export const isOscillator = (
-  target: AudioNode
+  target: any
+): target is TOscillator => {
+  if (
+    !isNull(target) &&
+    "node" in target &&
+    target.node instanceof
+      OscillatorNode
+  ) {
+    return true;
+  }
+  return false;
+};
+
+export const isOscillatorNode = (
+  target: AudioNode | null | any
 ): target is OscillatorNode => {
-  if (target instanceof OscillatorNode) {
+  if (
+    !isNull(target) &&
+    target instanceof OscillatorNode
+  ) {
     return true;
   }
   return false;
 };
 
 export const isBiquadFilterNode = (
-  target: AudioNode
+  target: AudioNode | null
 ): target is BiquadFilterNode => {
-  if (target instanceof BiquadFilterNode) {
+  if (
+    !isNull(target) &&
+    target instanceof BiquadFilterNode
+  ) {
     return true;
   }
   return false;
@@ -80,34 +115,43 @@ export const isAudioNode = (
 };
 
 export const isGainNode = (
-  target: AudioNode
+  target: AudioNode | null
 ): target is GainNode => {
-  if (target instanceof GainNode) {
+  if (
+    !isNull(target) &&
+    target instanceof GainNode
+  ) {
     return true;
   }
   return false;
 };
 
 export const isDelayNode = (
-  target: AudioNode
+  target: AudioNode | null
 ): target is DelayNode => {
-  if (target instanceof DelayNode) {
+  if (
+    !isNull(target) &&
+    target instanceof DelayNode
+  ) {
     return true;
   }
   return false;
 };
 
 export const isAudioWorklet = (
-  target: any
+  target: AudioNode | null
 ): target is AudioWorkletNode => {
-  if (target instanceof AudioWorkletNode) {
+  if (
+    !isNull(target) &&
+    target instanceof AudioWorkletNode
+  ) {
     return true;
   }
   return false;
 };
 
 export const isAudioParam = (
-  target: any
+  target: null | any
 ): target is AudioParam => {
   if (target instanceof AudioParam) {
     return true;
@@ -148,8 +192,12 @@ export const noteToName = (
   }
   const pitch = noteNum % 12;
   const octave =
-    Math.floor(noteNum / 12) - (5 - omc) + octaveAdjust;
-  const noteName = NOTE_NAMES[pitch] + octave.toString();
+    Math.floor(noteNum / 12) -
+    (5 - omc) +
+    octaveAdjust;
+  const noteName =
+    NOTE_NAMES[pitch] +
+    octave.toString();
   return noteName;
 };
 
@@ -162,14 +210,19 @@ export const NODES = [
   "workleTNodeItem",
 ] as const;
 
-export type TAudioNodeKey = typeof NODES[number];
+export type TAudioNodeKey =
+  (typeof NODES)[number];
 
-export type TAudioNodesKey = `${TAudioNodeKey}s`;
+export type TAudioNodesKey =
+  `${TAudioNodeKey}s`;
 
 export type TEntry<T> = [string, T];
 
 export type TParamKeyRecord = {
-  oscillator: keyof Omit<OscillatorNode, "wave">;
+  oscillator: keyof Omit<
+    OscillatorNode,
+    "wave"
+  >;
   delayNode: keyof DelayNode;
   iirFilter: keyof IIRFilterNode;
   biQuadFilter: keyof BiquadFilterNode;
@@ -190,5 +243,5 @@ export type TParamStateRecord = Partial<
   Record<TAudioNodeKey, number>
 >;
 
-export type TParamKey = TParamKeyRecord[TAudioNodeKey];
-
+export type TParamKey =
+  TParamKeyRecord[TAudioNodeKey];

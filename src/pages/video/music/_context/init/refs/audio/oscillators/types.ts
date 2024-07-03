@@ -4,6 +4,9 @@ export type TOscillatorCreate = (
 export type TOscillatorRecycle = (
   oscillator: OscillatorNode
 ) => OscillatorOptions;
+export type TOscillatorStart = (
+  endTime?: number
+) => void;
 export type TOscillatorEnd = (
   endTime?: number
 ) => void;
@@ -11,6 +14,7 @@ export type TOscillator = {
   node: OscillatorNode;
   isStarted: boolean;
   end: TOscillatorEnd;
+  start:TOscillatorStart
   output: AudioNode;
 };
 export type TOscillatorRefs = Record<

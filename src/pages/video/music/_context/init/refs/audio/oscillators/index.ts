@@ -4,7 +4,7 @@ import {
   TOscillatorRefs,
 } from "~/pages/video/music/_context/init/refs/audio/oscillators/types";
 
-const key = 'oscillator'
+const key = "oscillator";
 export const useSynthOscillators =
   () => {
     const ref = useMemo(() => {
@@ -31,37 +31,39 @@ export const useSynthOscillators =
         const refs: TOscillatorRefs =
           {};
 
-        const options = {
-          type: "sawtooth" as const,
-          frequency: 120,
-        };
-
         const connect = (
-          output: AudioNode
+          output: AudioNode,
+          options: OscillatorOptions = {
+            type: "sawtooth" as const,
+            frequency: 120,
+          }
         ) => {
           const oscillator: TOscillator =
             {
               isStarted: false,
               node: create(options),
               output,
+              start:function (
+                startTime?: number
+              ) {
+                this.node.start(startTime);
+                this.isStarted = true;
+                return this;
+              },
               end: function (
                 endTime?: number
               ) {
-                this.node.stop(
-                  endTime
-                );
+                this.node.stop(endTime);
                 const prevNode =
                   this.node;
                 const nextOptions: OscillatorOptions =
-                  this.recycle(
+                  recycle(
                     prevNode
                   );
-                this.node =
-                  this.create(
-                    nextOptions
-                  );
-                this.isStarted =
-                  false;
+                this.node = create(
+                  nextOptions
+                );
+                this.isStarted = false;
                 return this;
               },
             };

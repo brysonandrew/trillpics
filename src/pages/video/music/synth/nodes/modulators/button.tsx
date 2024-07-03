@@ -22,7 +22,7 @@ type TProps = PropsWithChildren<{
   id: string;
   ids: TUseIdsResult;
 
-  audioParam: AudioParam | null;
+  audioParam?: AudioParam ;
 }>;
 export const ModulatorsButton: FC<
   TProps

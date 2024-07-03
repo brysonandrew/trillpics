@@ -37,8 +37,11 @@ export const VideoMusic = () => {
             <GlassMain />
             <VideoMusicSynth />
           </LayoutStickyTop>
-          <MusicSynthComposition />
-          <MusicSynthNodes />
+          {/* <MusicSynthComposition /> */}
+
+          <MusicLayoutRow>
+            <MusicSynthNodes />
+          </MusicLayoutRow>
 
           <LayoutStickyMid>
             <VideoMusicDrums />

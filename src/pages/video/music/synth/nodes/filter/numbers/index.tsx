@@ -7,7 +7,6 @@ import {
 } from "~/pages/video/music/synth/nodes/filter/types";
 import { ModulatorsParams } from "~/pages/video/music/synth/nodes/modulators/params";
 import { useMusicRefs } from "~/pages/video/music/_context/init";
-import { useIdContext } from "~/pages/video/music/_context/init/refs/audio/id";
 import { resolveObjectKeys } from "~/utils/object";
 
 export const NodesFilterNumbers: FC<
@@ -16,7 +15,6 @@ export const NodesFilterNumbers: FC<
   const {
     audio: { filters },
   } = useMusicRefs();
-  const id = useIdContext();
 
   // const handleUpdate =
   //   (

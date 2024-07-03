@@ -1,4 +1,4 @@
-export const Audio = () => (
+export const IconsTape = () => (
   <svg
     width="28px"
     height="28px"

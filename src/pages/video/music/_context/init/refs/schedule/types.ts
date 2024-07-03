@@ -13,7 +13,7 @@ import { TMidiValues } from "~/hooks/music/midis/types";
 import { TScaleOptions } from "~/pages/video/music/synth/composition/scale/types";
 import { TSequenceOptions } from "~/pages/video/music/synth/composition/sequence/types";
 import { TBeatsRecord } from "~/hooks/music/beats/types";
-import { TSynthSourceKey } from "~/pages/video/music/synth/source/constants";
+import { TSynthSourceKey } from "~/pages/video/music/synth/nodes/sources/constants";
 import { TSynthModeKey } from "~/pages/video/music/synth/mode/constants";
 import { TBitcrusherConfig } from "~/pages/video/music/synth/nodes/worklets/bitcrusher/init";
 

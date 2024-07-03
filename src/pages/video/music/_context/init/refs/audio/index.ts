@@ -7,6 +7,7 @@ import { useMusicInitRefsGains } from "~/pages/video/music/_context/init/refs/au
 import { AUDIO_GRAPH } from "~/pages/video/music/_context/init/refs/audio/graph/constants";
 import { useSynthKarpluses } from "~/pages/video/music/_context/init/refs/audio/karpluses";
 import { useSynthModulators } from "~/pages/video/music/_context/init/refs/audio/modulators";
+import { useSynthNoises } from "~/pages/video/music/_context/init/refs/audio/noises";
 import { useSynthOscillators } from "~/pages/video/music/_context/init/refs/audio/oscillators";
 import { useMusicInitRefsSave } from "~/pages/video/music/_context/init/refs/audio/save";
 import { TScheduleOptions } from "~/pages/video/music/_context/init/refs/schedule/types";
@@ -17,6 +18,7 @@ export const useRefsAudio = (
 ) => {
   const _oscillators =
     useSynthOscillators();
+  const _noises = useSynthNoises();
   const _karpluses =
     useSynthKarpluses();
   const drums = useMusicInitRefsDrums();
@@ -50,9 +52,9 @@ export const useRefsAudio = (
       gains.master.connect(
         context.destination
       );
-
+      const noises = _noises(context);
       const karpluses =
-        _karpluses(context);
+        _karpluses(context,noises);
       const oscillators =
         _oscillators(context);
 
@@ -79,6 +81,7 @@ export const useRefsAudio = (
 
       return {
         oscillators,
+        noises,
         karpluses,
         modulator,
         worklets,

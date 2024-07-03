@@ -4,7 +4,7 @@ import { InputsSelect } from "~/components/inputs/select";
 import * as Select from "@radix-ui/react-select";
 
 export const NodesOscillatorDropdowns: FC<
-  Pick<Select.SelectProps, 'onValueChange'>
+  Partial<Pick<Select.SelectProps, 'onValueChange'>>
 > = (props) => {
 
   return (

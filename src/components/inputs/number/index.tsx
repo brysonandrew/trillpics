@@ -14,6 +14,7 @@ import { useMusicRefs } from "~/pages/video/music/_context/init";
 import { InputsBoxTitle } from "~/components/inputs/box/title";
 import {
   NumberInput,
+  TInputSizeProps,
   TNumberInputProps,
 } from "~/components/inputs/number/input";
 import {
@@ -50,7 +51,7 @@ export type TInputsNumberBaseProps =
     TTitleProps & {
       defaultValue?: number | string;
     };
-type TProps = Omit<
+type TProps = TInputSizeProps & Omit<
   TInputProps,
   "children"
 > &
@@ -66,7 +67,7 @@ type TProps = Omit<
   };
 export const InputsNumber: FC<
   TProps
-> = ({ children, ...props }) => {
+> = ({ children,  ...props }) => {
   const {
     min = MIN,
     max = MAX,

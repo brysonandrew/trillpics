@@ -19,7 +19,7 @@ export const ModulatorsParams: FC<
   return (
     <ul
       className="relative row"
-      style={{ gap: box.m0125 }}
+      style={{ gap: box.m025 }}
     >
       {params.map((p) => {
         const [key, param, onUpdate] =
@@ -36,6 +36,7 @@ export const ModulatorsParams: FC<
               audioParam={param}
             >
               <InputsNumber
+              s="sm"
                 name={name}
                 title={key}
                 onUpdate={onUpdate}

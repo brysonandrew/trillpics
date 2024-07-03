@@ -10,6 +10,8 @@ import {
 } from "~/pages/video/music/synth/nodes/worklets/karplus-strong/types";
 export const KARPLUS_STRONG_KEY =
   "karplus-strong" as const;
+export const OSCILLATOR_KEY =
+  "oscillator" as const;
 
 export const NodesKarplusStrongNumbers: FC<
   TUpdateNodeHandlerProps<TKarplusStrongOptionsKey>

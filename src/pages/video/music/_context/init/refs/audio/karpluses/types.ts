@@ -1,4 +1,5 @@
 import { TKarplusStrongOptions } from "~/pages/video/music/synth/nodes/worklets/karplus-strong/types";
+import { TNoise } from "~/pages/video/music/_context/init/refs/audio/noises/types";
 
 export type TKarplusCreate = (
   options: TKarplusStrongOptions
@@ -6,13 +7,18 @@ export type TKarplusCreate = (
 export type TKarplusRecycle = (
   node: AudioWorkletNode
 ) => TKarplusStrongOptions;
+export type TKarplusStart = (
+  startTime?: number
+) => void;
 export type TKarplusEnd = (
-  endTime: number
+  endTime?: number
 ) => void;
 export type TKarplus = {
   node: AudioWorkletNode;
-  end: TKarplusEnd;
+  input: TNoise;
   output: AudioNode;
+  start: TKarplusStart;
+  end: TKarplusEnd;
 };
 export type TKarplusRefs = Record<
   string,

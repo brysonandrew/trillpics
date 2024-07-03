@@ -16,6 +16,7 @@ import {
   TScheduleOptions,
   TStepsLoookup,
 } from "~/pages/video/music/_context/init/refs/schedule/types";
+import { KARPLUS_STRONG_KEY } from "~/pages/video/music/synth/nodes/worklets/karplus-strong/numbers";
 
 export const useRefsSchedule = () => {
   const nodes = useMemo(() => {
@@ -37,7 +38,7 @@ export const useRefsSchedule = () => {
       },
       synth: {
         mode:"continuous",//"isolated", //
-        source: "strings",// "oscillator",
+        source: KARPLUS_STRONG_KEY,// "oscillator",
         bitcrusher: {frequency:440,bits:64},
         ...DEFAULT_SYNTH_OPTIONS,
       },

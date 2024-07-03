@@ -12,6 +12,7 @@ import { isBeatsKey } from "~/utils/validation/is/beats/key";
 import { box } from "~uno/rules/box";
 import { TypographyXxxs } from "~/components/layout/typography/xxxs";
 import { useMusicRefs } from "~/pages/video/music/_context/init";
+import { DarkGlass } from "~/pages/video/music/layout/glass/dark";
 
 export const VideoMusicDrums: FC =
   () => {

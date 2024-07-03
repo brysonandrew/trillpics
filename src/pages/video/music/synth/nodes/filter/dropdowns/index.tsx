@@ -1,23 +1,13 @@
-import { title } from "process";
 import { FC } from "react";
 import { InputsSelect } from "~/components/inputs/select";
 import { TUpdateNodeHandlerProps } from "~/components/inputs/slider/types";
 import { BIQUAD_FILTER_TYPES } from "~/pages/video/music/synth/nodes/filter/constants";
-import {
-  TBiquadFilterNumberOptionsKey,
-  TBiquadFilterOptionsKey,
-} from "~/pages/video/music/synth/nodes/filter/types";
 import { useMusicRefs } from "~/pages/video/music/_context/init";
-import { useIdContext } from "~/pages/video/music/_context/init/refs/audio/id";
 
 export const NodesFilterDropdowns: FC<
   TUpdateNodeHandlerProps<'type', BiquadFilterType>
 > = (props) => {
-  const {
-    audio: { filters },
-  } = useMusicRefs();
-  const id = useIdContext();
-
+console.log(props)
   const handleValueChange = (
     value: BiquadFilterType
   ) => {

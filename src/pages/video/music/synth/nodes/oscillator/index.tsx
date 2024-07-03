@@ -6,13 +6,13 @@ import { TOscillatorNumberOptionsKey } from "~/pages/video/music/synth/nodes/osc
 import { NodesTemplate } from "~/pages/video/music/synth/nodes/template";
 import * as Select from "@radix-ui/react-select";
 
-type TProps = {
+type TProps = Partial<{
   numbers: TUpdateNodeHandlerProps<TOscillatorNumberOptionsKey>;
   dropdowns: Pick<
     Select.SelectProps,
     "onValueChange"
   >;
-};
+}>;
 export const NodesOscillator: FC<
   TProps
 > = ({
@@ -20,7 +20,7 @@ export const NodesOscillator: FC<
   dropdowns,
 }) => {
   return (
-    <NodesTemplate title={"oscillator"}>
+    <NodesTemplate title="oscillator">
       <NodesOscillatorDropdowns
         {...dropdowns}
       />

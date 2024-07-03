@@ -1,6 +1,6 @@
 import {  FC,  MutableRefObject,} from "react";
 import { TKarplusStrongOptions } from "~/pages/video/music/synth/nodes/worklets/karplus-strong/types";
-import { TSynthSourceKey } from "~/pages/video/music/synth/source/constants";
+import { TSynthSourceKey } from "~/pages/video/music/synth/nodes/sources/constants";
 import { TDelays } from "~/pages/video/music/_context/init/refs/audio/delays/types";
 import { TFilters } from "~/pages/video/music/_context/init/refs/audio/filters/types";
 import { TKarplus } from "~/pages/video/music/_context/init/refs/audio/karpluses/types";

@@ -13,7 +13,7 @@ import { LinesVertical } from "~/components/lines/vertical";
 
 type TProps = PropsWithChildren<{
   id: string;
-  audioParam: AudioParam | null;
+  audioParam?: AudioParam;
 }>;
 export const Modulators: FC<TProps> = ({
   children,
@@ -54,14 +54,12 @@ export const Modulators: FC<TProps> = ({
       className="relative row-start"
       style={{
         gap: box.m00625,
-
         padding: box.m00625,
       }}
     >
       <div
         className="column-space absolute right-full"
         style={{
-          // width: box.m05,
           transform: `translateX(${-box.m003125}px)`,
           top: box.m0125,
         }}
@@ -73,10 +71,9 @@ export const Modulators: FC<TProps> = ({
         <LinesVertical
           positionClass="absolute"
           colorClass="_bi-border"
-          // onClick={handleClick}
           style={{
             top: box.m0375,
-            left: box.m00625,
+            left: 2,
             height: box.m,
             borderWidth: 1,
             pointerEvents: "auto",
@@ -85,7 +82,6 @@ export const Modulators: FC<TProps> = ({
         />
       </div>
       {children}
-
       {isConnected && (
         <ModulatorsInputs
           ids={IDS}

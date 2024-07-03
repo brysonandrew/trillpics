@@ -1,7 +1,6 @@
 import type { FC } from "react";
 import clsx from "clsx";
 import { UStepsKey } from "~/store/state/music/types";
-import { useTrillPicsStore } from "~/store/middleware";
 import { useAudioSeconds } from "~/hooks/music/time/audio-seconds";
 import { useMusicRefs } from "~/pages/video/music/_context/init";
 
