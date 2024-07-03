@@ -1,6 +1,6 @@
 import type { FC } from "react";
 import { InputsNumber } from "~/components/inputs/number";
-import { Vertical } from "~/pages/video/music/controls/inputs/vertical";
+import { InputsNumberDefault } from "~/components/inputs/number/default";
 import { useMusicRefs } from "~/pages/video/music/_context/init";
 import { box } from "~uno/rules/box";
 
@@ -22,9 +22,12 @@ export const MusicControlsInputsMaster: FC =
         defaultValue={
           audio.gains.master.gain.value
         }
-        style={{ width: box.m }}
       >
-        {(props) => <Vertical {...props}/>}
+        {(props) => (
+          <InputsNumberDefault
+            {...props}
+          />
+        )}
       </InputsNumber>
     );
   };

@@ -27,6 +27,8 @@ export const NodesSource: FC = () => {
     key: TSynthSourceKey
   ) => {
 
+
+
     schedule.record.synth.source = key;
     if (
       !stringRef.current ||
@@ -58,15 +60,7 @@ export const NodesSource: FC = () => {
               : "flex",
         }}
       >
-        <NodesKarplusStrong
-          title={
-            <SynthSource
-              onUpdate={
-                handleValueChange
-              }
-            />
-          }
-        />
+        
       </div>
       <div
         ref={oscillatorRef}
@@ -78,15 +72,8 @@ export const NodesSource: FC = () => {
               : "none",
         }}
       >
-        <NodesOscillator
-          title={
-            <SynthSource
-              onUpdate={
-                handleValueChange
-              }
-            />
-          }
-        />
+        {/* <NodesOscillator
+        /> */}
       </div>
     </>
   );

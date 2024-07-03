@@ -5,6 +5,7 @@ import { TGainNodeKey } from "~/pages/video/music/synth/nodes/gain/types";
 import { useMusicRefs } from "~/pages/video/music/_context/init";
 import { Modulators } from "~/pages/video/music/synth/nodes/modulators";
 import { TMusicKey } from "~/store/state/music/types";
+import { InputsNumberDefault } from "~/components/inputs/number/default";
 
 const KEY = "gain";
 type TProps = {
@@ -20,7 +21,6 @@ export const NodesGainNumbers: FC<
 > = ({
   musicKey,
   ampKey = "master",
-  children,
 }) => {
   const {
     audio: { gains },
@@ -64,42 +64,19 @@ export const NodesGainNumbers: FC<
             step: 0.1,
           })}
     >
-      {({
-        Number,
-        Slider,
-        Header,
-        Title,
-        Box,
-      }) => {
-        const Input = () => (
-          <>
-            <Box>
-              <Header>
-                <Title />
-                <Number />
-              </Header>
-            </Box>
-          </>
-        );
+      {(_) => {
         return (
-          <>
-            {children(
-              Input,
-
-              <Modulators
-                id={`${musicKey}.${ampKey}.gain`}
-                audioParam={
-                  gains[musicKey][
-                    ampKey
-                  ].gain
-                }
-              >
-                <div className="relative pl-2">
-                  <Slider />
-                </div>
-              </Modulators>
-            )}
-          </>
+          <Modulators
+            id={`${musicKey}.${ampKey}.gain`}
+            audioParam={
+              gains[musicKey][ampKey]
+                .gain
+            }
+          >
+            <InputsNumberDefault
+              {..._}
+            />
+          </Modulators>
         );
       }}
     </InputsNumber>

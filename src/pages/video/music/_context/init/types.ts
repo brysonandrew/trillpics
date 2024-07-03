@@ -7,6 +7,8 @@ import { useRefsSchedule } from "~/pages/video/music/_context/init/refs/schedule
 import { useRefsLayout } from "~/pages/video/music/_context/init/refs/layout";
 import { useRefsGrid } from "~/pages/video/music/_context/init/refs/grid";
 
+export type TAudioNodeId = string;
+
 export type TRefRecord<
   T extends HTMLElement
 > = Record<string, MutableRefObject<T>>;
@@ -15,7 +17,6 @@ export type TUpdateStepsRecord = (
   nextSteps: TMidiValues,
   nextScaleKey: TScaleKey
 ) => void;
-
 
 export type TMusicInitContext = {
   audio: ReturnType<
@@ -31,26 +32,4 @@ export type TMusicInitContext = {
   schedule: ReturnType<
     typeof useRefsSchedule
   >;
-  // updateStepRecord: TUpdateStepsRecord;
-  // schedule.record: TStepsRecord;
-  // grid.record: TGridCellsRecord;
-  // bufferSourceRecord: TBufferSourceRecord;
-  // bufferRecord:
-  // context: AudioContext;
-  // master: GainNode;
-  // beats: GainNode;
-  // midis: GainNode;
-  // oscillator: TOscillator;
-  // delay: DelayNode;
-  // filter: BiquadFilterNode;
-  // progress: TProgressMotionRecord;
-  // destination: MediaStreamAudioDestinationNode;
-  // recorder: MediaRecorder;
-  // scroll: TScroll;
-  // audio: {
-  //   loopCount: number;
-  //   loopsRemainder: number;
-  //   progressStep: TProgressStepRecord;
-  //   chunks: BlobPart[];
-  // };
 };

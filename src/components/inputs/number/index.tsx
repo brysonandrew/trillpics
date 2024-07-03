@@ -6,7 +6,6 @@ import {
 import { InputsBox } from "~/components/inputs/box";
 import { TUpdateNumberHandler } from "~/components/inputs/slider/types";
 import { TInputProps } from "~/types/inputs";
-import { box } from "~uno/rules/box";
 import { TTitleProps } from "@brysonandrew/config-types";
 import { InputsNumberInfo } from "~/components/inputs/number/info";
 import { InputsNumberBox } from "~/components/inputs/number/box";
@@ -21,7 +20,7 @@ import {
   InputsNumberSlider,
   TInputsNumberSliderProps,
 } from "~/components/inputs/number/slider";
-import { Vertical } from "~/pages/video/music/controls/inputs/vertical";
+import { InputsNumberDefault } from "~/components/inputs/number/default";
 
 const MIN = 0;
 const MAX = 8;
@@ -150,6 +149,7 @@ export const InputsNumber: FC<
       title={title ?? ""}
       onUpdate={handleUpdate}
       defaultValue={props.defaultValue}
+      
       {...rangeProps}
       {...rest}
       {...sliderProps}
@@ -172,13 +172,6 @@ export const InputsNumber: FC<
     return <>{children(_)}</>;
 
   return (
-    <Vertical {..._} />
-    // <_.Box>
-    //   <_.Header>
-    //     <_.Title />
-    //     <_.Number />
-    //   </_.Header>
-    //   <_.Slider />
-    // </_.Box>
+    <InputsNumberDefault {..._} />
   );
 };

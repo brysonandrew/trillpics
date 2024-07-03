@@ -13,11 +13,12 @@ export const InputsBox: FC<TProps> = ({
   return (
     <div
       className={clsx(
-        "relative column-stretch"
+        "relative column-stretch justify-stretch"
       )}
       style={{
         ...INPUTS_NUMBER_BOX_STYLE,
         ...style,
+        gap: box.m00625
       }}
       {...props}
     >

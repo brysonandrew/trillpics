@@ -32,8 +32,9 @@ export const ModulatorsDropdownsSync: FC<
 > = (props) => {
   return (
     <InputsSelect
-      title="sync"
+      title="speed ϟ"
       placeholder="sync"
+      s="sm"
       defaultValue={
         VALUES[VALUES.length - 1]
       }

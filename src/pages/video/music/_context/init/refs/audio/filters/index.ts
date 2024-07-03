@@ -1,4 +1,5 @@
 import { useMemo } from "react";
+import { TFilterRefs } from "~/pages/video/music/_context/init/refs/audio/filters/types";
 
 export const useMusicInitRefsFilters =
   () => {
@@ -25,14 +26,25 @@ export const useMusicInitRefsFilters =
             type: node.type,
           };
         };
-        const filter = create({
-          type: "lowpass",
-          frequency: 500,
-        });
+        const refs: TFilterRefs = {};
+        const connect = (
+          output: AudioNode,
+          options: BiquadFilterOptions = {
+            type: "lowpass",
+            frequency: 500,
+          }
+        ) => {
+          const filter =
+            create(options);
+          filter.connect(output);
+          return filter;
+        };
         return {
+          key: "filter",
           create,
-          filter,
           recycle,
+          connect,
+          refs,
         };
       };
       return init;

@@ -9,7 +9,16 @@ export const MIME_TYPES = [
   "video/mp4;codecs=h264,aac",
 ];
 
-export const useSupportedMimeTypes = () => MIME_TYPES.filter((mimeType: string) => MediaRecorder.isTypeSupported(mimeType));
-export const DEFAULT_SCALE_KEY:TScaleKey = 'blues'
-export const DEFAULT_SCALE_DELTA = 1
-export const DEFAULT_SCALE_PATTERN:TScalePattern = 'desc'
+export const useSupportedMimeTypes =
+  () =>
+    MIME_TYPES.filter(
+      (mimeType: string) =>
+        MediaRecorder.isTypeSupported(
+          mimeType
+        )
+    );
+export const DEFAULT_SCALE_KEY: TScaleKey =
+  "blues";
+export const DEFAULT_SCALE_DELTA = 1;
+export const DEFAULT_SCALE_PATTERN: TScalePattern =
+  "desc";

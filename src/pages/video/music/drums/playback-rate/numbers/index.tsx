@@ -3,6 +3,8 @@ import { TChildren } from "@brysonandrew/config-types";
 import { InputsNumber } from "~/components/inputs/number";
 import { useMusicRefs } from "~/pages/video/music/_context/init";
 import { TMusicKey } from "~/store/state/music/types";
+import { InputsNumberDefault } from "~/components/inputs/number/default";
+import { Modulators } from "~/pages/video/music/synth/nodes/modulators";
 
 const KEY = "playbackRate";
 type TProps = {
@@ -47,41 +49,50 @@ export const DrumsPlaybackRateNumbers: FC<
       max={2}
       step={0.01}
     >
-      {({
-        Number,
-        Slider,
-        Header,
-        Title,
-        Box,
-      }) => {
-        const Input = () => (
-          <>
-            <Box>
-              <Header>
-                <Title />
-                <Number />
-              </Header>
-            </Box>
-          </>
-        );
+      {(_) => {
         return (
-          <>
-            {children(
-              Input,
-
-              // <Modulators
-              //   id={`${musicKey}.${KEY}`}
-              //   audioParam={
-              //     gains[musicKey].master.gain
-              //   }
-              // >
-              <div className="relative pl-2">
-                <Slider />
-              </div>
-              // </Modulators>
-            )}
-          </>
+          <Modulators
+            id={`${musicKey}.${KEY}`}
+            audioParam={
+              gains[musicKey].master
+                .gain
+            }
+          >
+            <InputsNumberDefault
+              {..._}
+            />
+          </Modulators>
         );
+        // const Input = () => (
+        //   <>
+        //     <Box>
+        //       <Header>
+        //         <Title />
+        //         <Number />
+        //       </Header>
+        //     </Box>
+        //   </>
+        // );
+        //   {
+        //   Number,
+        //   Slider,
+        //   Header,
+        //   Title,
+        //   Box,
+        // }
+        //   return (
+        //     <>
+        //       {children(
+        //         Input,
+
+        //
+        //         <div className="relative pl-2">
+        //           <Slider />
+        //         </div>
+        //         //
+        //       )}
+        //     </>
+        //   );
       }}
     </InputsNumber>
   );

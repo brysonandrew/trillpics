@@ -14,11 +14,17 @@ import {
 import { ARMSTRONG3_FULL_FONT_FAMILY } from "~uno/presets/fonts";
 import {
   INPUTS_NUMBER_INPUT_STYLE,
-  INPUTS_NUMBER_SLIDER_STYLE,
+  INPUTS_NUMBER_INPUT_STYLE_SM,
 } from "~/components/inputs/constants";
 
-export type TNumberInputProps =
-  TInputProps & {
+export type TInputSizeProps = {
+  s?: "sm" | "md";
+};
+export type TNumberInputProps = Omit<
+  TInputProps,
+  "size"
+> &
+  TInputSizeProps & {
     name: string;
     onUpdate(value: number): string;
   };
@@ -28,6 +34,7 @@ export const NumberInput: FC<
   name,
   onUpdate,
   style,
+  s = "md",
   ...props
 }) => {
   const { layout } = useMusicRefs();
@@ -107,7 +114,9 @@ export const NumberInput: FC<
       }}
       type="number"
       className={clsx(
-        "inline",
+        s === "md"
+          ? "column-start"
+          : "row-start gap-1",
         "appearance-none",
         "box-border",
         "text-left font-slab",
@@ -115,7 +124,9 @@ export const NumberInput: FC<
         "border border-white-02"
       )}
       style={{
-        ...INPUTS_NUMBER_INPUT_STYLE,
+        ...(s === "md"
+          ? INPUTS_NUMBER_INPUT_STYLE
+          : INPUTS_NUMBER_INPUT_STYLE_SM),
         ...style,
       }}
       onChange={handleInputChange}

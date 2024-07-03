@@ -10,8 +10,7 @@ import { TUpdateNumberHandler } from "~/components/inputs/slider/types";
 import { useMusicRefs } from "~/pages/video/music/_context/init";
 import { useGridMidi } from "~/hooks/grid/midi";
 import { useGridDrill } from "~/hooks/grid/drill";
-import { TypographyXxs } from "~/components/layout/typography/xxs";
-import { Vertical } from "~/pages/video/music/controls/inputs/vertical";
+import { InputsNumberDefault } from "~/components/inputs/number/default";
 
 const MIN = 0;
 const MAX = 8;
@@ -75,8 +74,8 @@ export const SequenceNumber: FC<
     >
       {(_) => {
         return (
-          <Vertical {..._}/>
-        )
+          <InputsNumberDefault {..._} />
+        );
       }}
     </InputsNumber>
   );

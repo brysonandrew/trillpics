@@ -1,9 +1,5 @@
 import { TSyncValue } from "~/pages/video/music/synth/nodes/modulators/dropdowns/sync";
-import {
-  TAllParams,
-  TAllParamsKey,
-  TModulatorParamKey,
-} from "~/pages/video/music/synth/nodes/modulators/types";
+import { TAllParamsKey } from "~/pages/video/music/synth/nodes/modulators/types";
 
 export type TModulatorNodes = {
   oscillator: OscillatorNode;
@@ -43,11 +39,13 @@ export type TModulatorConnect = (
 ) => TModulatorRef & TModulatorNodes;
 
 export type TModulatorRefs = Record<
-  string,
+  string|TModulatorId,
   TModulatorRef
 >;
 
 export type TModulator = {
+  speed(value:number):number
+  depth(value:number):number;
   connect: TModulatorConnect;
   recycle: TModulatorRecycle;
   refs: TModulatorRefs;

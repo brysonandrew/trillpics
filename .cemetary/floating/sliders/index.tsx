@@ -5,6 +5,7 @@ import { TBiquadFilterNumberOptionsKey } from "~/pages/video/music/synth/nodes/f
 import { useMusicRefs } from "~/pages/video/music/_context/init";
 import { resolveObjectKeys } from "~/utils/object";
 import { propsFromAudioparams } from "~/pages/video/music/synth/nodes/props-from-audioparams";
+import { useIdContext } from "~/pages/video/music/_context/init/refs/audio/id";
 
 export const NodesFilterSliders: FC =
   () => {
@@ -15,7 +16,7 @@ export const NodesFilterSliders: FC =
       name: TBiquadFilterNumberOptionsKey,
       value: number
     ) => {
-      filters.filter[name].value =
+      filters.refs[id][name].value =
         value;
     };
     return (
@@ -31,7 +32,7 @@ export const NodesFilterSliders: FC =
               handleUpdate(key, value)
             }
             {...propsFromAudioparams(
-              filters.filter[key],
+              filters.refs[id][key],
               key,
             )}
           />

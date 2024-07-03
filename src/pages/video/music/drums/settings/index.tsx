@@ -11,29 +11,25 @@ export const DrumsSettings: FC = () => {
   return (
     <div
       className={cx(
-        "relative"
-        // "items-stretch",
-        // "justify-stretch"
-        // "xxxs:grid-cols-1 xs:grid-cols-2 sm:grid-cols-2 sm:grid-cols-4 xxl:grid-cols-5 xxxl:grid-cols-6"
+        "relative row-start"
       )}
       style={{
-        display: "grid",
-        gap: box.m0125,
-        gridTemplateColumns: `repeat(3, 1fr)`,
-        ...box.p(box.m025),
+        gap: box.m025,
+        ...box.px(box.m05),
+        ...box.py(box.m025),
       }}
     >
       <BackgroundGlass
-            boxStyle={{
-              left: 0,
-              backdropFilter:'blur(4px)',
+        boxStyle={{
+          left: 0,
+          backdropFilter: "blur(4px)",
 
-              backgroundColor:
-                COLOR_SHADE_RECORD[
-                  "dark-08"
-                ],
-            }}
-          />
+          backgroundColor:
+            COLOR_SHADE_RECORD[
+              "dark-08"
+            ],
+        }}
+      />
       <DrumsPreampGain />
       <DrumsMasterGain />
       <DrumsPlaybackRate />

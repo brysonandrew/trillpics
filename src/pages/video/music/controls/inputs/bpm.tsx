@@ -1,6 +1,6 @@
 import type { FC } from "react";
 import { InputsNumber } from "~/components/inputs/number";
-import { Vertical } from "~/pages/video/music/controls/inputs/vertical";
+import { InputsNumberDefault } from "~/components/inputs/number/default";
 import { useMusicRefs } from "~/pages/video/music/_context/init";
 import { box } from "~uno/rules/box";
 
@@ -24,7 +24,9 @@ export const MusicControlsInputsBpm: FC =
         style={{ width: box.m }}
       >
         {(props) => (
-          <Vertical {...props} />
+          <InputsNumberDefault
+            {...props}
+          />
         )}
       </InputsNumber>
     );

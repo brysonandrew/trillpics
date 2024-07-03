@@ -1,13 +1,13 @@
-import { useArpeggio } from "~/hooks/music/midis/arpeggio";
+import { useMidisSynth } from "~/hooks/music/midis/synth";
 import {
   TMidisStepsKey,
   TPlayMidisOptions,
 } from "~/hooks/music/midis/types";
 
 export const useMidisLookup = () => {
-  const arpeggio = useArpeggio();
+  const synth = useMidisSynth();
   const lookup = {
-    synth: arpeggio,
+    synth,
   } satisfies Record<
     TMidisStepsKey,
     {

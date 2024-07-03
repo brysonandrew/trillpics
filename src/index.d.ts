@@ -5,9 +5,6 @@ type MemoryInfo = {
 };
 
 declare global {
-  interface InputHTMLAttributes<T> {
-    orient?: string;
-  }
   interface Window {
     stream: MediaStream;
     performance: {
@@ -15,19 +12,14 @@ declare global {
     };
   }
   interface HTMLCanvasElement {
-    captureStream(
-      frameRate?: number
-    ): MediaStream;
+    captureStream(frameRate?: number): MediaStream;
   }
   interface HTMLAudioElement {
-    captureStream(
-      frameRate?: number
-    ): MediaStream;
+    captureStream(frameRate?: number): MediaStream;
   }
 }
 
-window.performance.memory =
-  window.performance.memory || {};
+window.performance.memory = window.performance.memory || {};
 window.stream = window.stream || {};
 
 interface ICustomWindow extends Window {
@@ -38,8 +30,7 @@ interface ICustomWindow extends Window {
   };
 }
 
-declare const window: ICustomWindow &
-  any;
+declare const window: ICustomWindow & any;
 
 declare module "*.mid" {
   const content: any;
@@ -125,10 +116,7 @@ interface AudioWorkletProcessor {
   process(
     inputs: Float32Array[][],
     outputs: Float32Array[][],
-    parameters: Record<
-      string,
-      Float32Array
-    >
+    parameters: Record<string, Float32Array>
   ): boolean;
 }
 

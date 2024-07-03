@@ -29,9 +29,15 @@ export const ModulatorsDropdownsMultiplier: FC<
 > = (props) => {
   return (
     <InputsSelect
-      title="multiplier"
+      title={
+        <span className="flex gap-1">
+          depth
+          <span>𓆟</span>
+        </span>
+      }
       placeholder="multiplier"
       values={VALUES}
+      s="sm"
       {...props}
     />
   );

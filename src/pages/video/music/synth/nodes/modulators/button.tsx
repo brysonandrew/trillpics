@@ -13,12 +13,14 @@ import {
   imperativeHide,
   imperativeShow,
 } from "~/utils/imperative";
-import { LinesVertical } from "~/components/lines/vertical";
-import { TUseIdsResult, useIds } from "~/pages/video/music/synth/nodes/modulators/ids";
+import {
+  TUseIdsResult,
+  useIds,
+} from "~/pages/video/music/synth/nodes/modulators/ids";
 
 type TProps = PropsWithChildren<{
   id: string;
-  ids:TUseIdsResult
+  ids: TUseIdsResult;
 
   audioParam: AudioParam | null;
 }>;
@@ -115,17 +117,6 @@ export const ModulatorsButton: FC<
           display: isStarted
             ? "none"
             : "flex",
-        }}
-      />
-      <LinesVertical
-        positionClass="absolute"
-        colorClass="border-white _bi-border"
-        onClick={handleClick}
-        style={{
-          top: -box.m01875,
-          left: -box.m01875,
-          pointerEvents: "auto",
-          cursor: "pointer",
         }}
       />
     </button>

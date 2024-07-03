@@ -1,12 +1,14 @@
 import type { FC } from "react";
 import { TChildren } from "@brysonandrew/config-types";
 import { InputsNumber } from "~/components/inputs/number";
-import { TDelayNodeKey } from "~/pages/video/music/synth/nodes/delay/types";
 import { propsFromAudioparams } from "~/pages/video/music/synth/nodes/props-from-audioparams";
 import { useMusicRefs } from "~/pages/video/music/_context/init";
 import { Modulators } from "~/pages/video/music/synth/nodes/modulators";
+import { useIdContext } from "~/pages/video/music/_context/init/refs/audio/id";
+import { TUpdateNodeHandlerProps, TUpdateNumberHandlerProps } from "~/components/inputs/slider/types";
+import { TDelayNodeKey } from "~/pages/video/music/synth/nodes/delay/types";
 
-type TProps = {
+type TProps = TUpdateNodeHandlerProps<TDelayNodeKey> & {
   children: (
     Input: FC,
     children: TChildren
@@ -14,29 +16,23 @@ type TProps = {
 };
 export const NodesDelayNumbers: FC<
   TProps
-> = ({ children }) => {
+> = ({ onUpdate, children }) => {
   const {
-    audio: {
-      delays: { delay },
-    },
+    audio: { delays },
   } = useMusicRefs();
-  const handleUpdate = (
-    name: TDelayNodeKey,
-    value: number
-  ) => {
-    delay[name].value = value;
-  };
+  const id = useIdContext();
+ 
   const defaultProps =
     propsFromAudioparams(
-      delay.delayTime,
-      "delayTime",
+      delays.refs[id].delayTime,
+      "delayTime"
     );
   return (
     <InputsNumber
       name="delayTime"
       title="delay time"
       onUpdate={(value) =>
-        handleUpdate("delayTime", value)
+        onUpdate?.("delayTime", value)
       }
       {...defaultProps}
       min={0}
@@ -44,8 +40,8 @@ export const NodesDelayNumbers: FC<
       max={1}
     >
       {({
-        number,
-        slider,
+        Number,
+        Slider,
         Header,
         Title,
         Box,
@@ -54,7 +50,7 @@ export const NodesDelayNumbers: FC<
           <Box>
             <Header>
               <Title />
-              {number}
+              <Number />
             </Header>
           </Box>
         );
@@ -65,11 +61,12 @@ export const NodesDelayNumbers: FC<
               <Modulators
                 id="delay.delayTime"
                 audioParam={
-                  delay.delayTime
+                  delays.refs[id]
+                    .delayTime
                 }
               >
                 <div className="relative pl-2">
-                  {slider}
+                  <Slider />
                 </div>
               </Modulators>
             )}

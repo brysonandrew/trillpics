@@ -19,8 +19,7 @@ export const InputsBoxTitle: FC<
       style={{
         left: box.m00625,
         top: box.m0125,
-        height:0,
-
+        height: 0,
         ...style,
       }}
       overrides={{
@@ -32,7 +31,12 @@ export const InputsBoxTitle: FC<
       )}
       {...props}
     >
-      {children}
+      <div
+        className="truncate bg-gradient-to-r from-black-05 to-transparent pointer-events-none"
+        style={{ width: box.m2 }}
+      >
+        {children}
+      </div>
     </TypographyXxxs>
   );
 };

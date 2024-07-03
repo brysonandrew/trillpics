@@ -12,12 +12,14 @@ import { InputsBoxTitle } from "~/components/inputs/box/title";
 import { resolveSquare } from "@brysonandrew/measure";
 import {
   INPUTS_NUMBER_DROPDOWN_STYLE,
+  INPUTS_NUMBER_DROPDOWN_STYLE_SM,
   INPUTS_NUMBER_DROPDOWN_TITLE_STYLE,
 } from "~/components/inputs/constants";
 import * as Select from "@radix-ui/react-select";
+import { TInputSizeProps } from "~/components/inputs/number/input";
 
-type TProps = Select.SelectProps & {
-  title?: string;
+type TProps = Select.SelectProps & TInputSizeProps & {
+  title?: string|JSX.Element;
   placeholder: string;
   values: TSelectValues;
 };
@@ -26,6 +28,7 @@ export const InputsSelect: FC<
 > = ({
   values,
   title,
+  s = "md",
   placeholder,
   ...props
 }) => {
@@ -48,19 +51,32 @@ export const InputsSelect: FC<
       <Select.Root {...props}>
         <Select.Trigger
           className={clsx(
-            "column-start justify-start bg-black-2",
+            s === "md"
+              ? "column-start justify-start bg-black-2"
+              : "row",
             "text-left text-xs font-slab",
             "truncate",
-            "ring-0 border-0 outline-0"
+            "ring-0 outline-0",
+            "bg-black-2",
+            "border border-white-01"
           )}
           aria-label={placeholder}
           style={{
-            ...INPUTS_NUMBER_DROPDOWN_STYLE,
+            ...(s === "md"
+              ? INPUTS_NUMBER_DROPDOWN_STYLE
+              : INPUTS_NUMBER_DROPDOWN_STYLE_SM),
           }}
         >
           <TypographyXxxs
             classValue="truncate w-full"
-            style={{ height: box.m05 }}
+            style={{
+              height: box.m05,
+              lineHeight: `${
+                s === "md"
+                  ? box.m05
+                  : box.m05
+              }px`,
+            }}
           >
             <Select.Value
               placeholder={placeholder}
@@ -70,7 +86,7 @@ export const InputsSelect: FC<
           <Select.Icon
             className="center"
             style={{
-              ...resolveSquare(box.m05),
+              ...resolveSquare(s === 'md' ?  box.m05 : box.m0375),
             }}
           >
             <IconsChevronsDown />

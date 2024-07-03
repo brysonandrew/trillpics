@@ -2,9 +2,12 @@ import { useMemo } from "react";
 import {
   TGainCreate,
   TGainRecycle,
+  TGainRef,
+  TGainRefs,
   TGains,
 } from "~/pages/video/music/_context/init/refs/audio/gains/types";
 
+const key = 'gain'
 export const useMusicInitRefsGains =
   () => {
     const gains = useMemo(() => {
@@ -12,7 +15,7 @@ export const useMusicInitRefsGains =
         context: AudioContext
       ): TGains => {
         const create: TGainCreate = (
-          options
+          options?: GainOptions
         ) =>
           new GainNode(
             context,
@@ -32,29 +35,42 @@ export const useMusicInitRefsGains =
         });
 
         const midis = {
-          preamp:create({
+          preamp: create({
             gain: 0.4,
           }),
-          master:create({
+          master: create({
             gain: 0.4,
-          })
-        }
+          }),
+        };
 
         const beats = {
-          preamp:create({
+          preamp: create({
             gain: 0.4,
           }),
-          master:create({
+          master: create({
             gain: 0.12,
-          })
-        }
+          }),
+        };
+        const refs: TGainRefs = {};
+        const connect = (
+          output: AudioNode
+        ) => {
+          const gain: TGainRef = {
+            node: create(),
+            output,
+          };
 
+          return gain;
+        };
 
         return {
+          key,
           create,
+          connect,
           beats,
           master,
           midis,
+          refs,
           recycle,
         };
       };

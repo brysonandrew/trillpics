@@ -13,10 +13,6 @@ import {
   TSynthOptionType,
   TSynthMultiOptionType,
 } from "~/pages/video/music/_context/init/refs/schedule/types";
-import {
-  DEFAULT_BEATS_SLIDER_OPTIONS,
-  DEFAULT_SCALE_SLIDER_OPTIONS,
-} from "~/store/state/music/constants";
 import { TBeatsOptions } from "~/store/state/music/types";
 
 export const isSynthType = (
@@ -74,21 +70,3 @@ export const isSequenceSliderConfigType =
       return true;
     return false;
   };
-export const isScaleSliderConfigType = (
-  key: string
-): key is TScaleNumberOptionsKey => {
-  if (
-    key in DEFAULT_SCALE_SLIDER_OPTIONS
-  )
-    return true;
-  return false;
-};
-export const isBeatsSliderConfigType = (
-  key: string
-): key is keyof TBeatsOptions => {
-  if (
-    key in DEFAULT_BEATS_SLIDER_OPTIONS
-  )
-    return true;
-  return false;
-};

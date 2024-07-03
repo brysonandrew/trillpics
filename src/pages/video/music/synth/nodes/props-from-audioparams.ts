@@ -1,9 +1,10 @@
 import { INPUTS_NUMBER_OVERRIDES } from "~/pages/video/music/synth/nodes/constants";
+import { KARPLUS_STRONG_KEY } from "~/pages/video/music/synth/nodes/worklets/karplus-strong/numbers";
 const resolveRange = (
   type?: string,
   key?: string
 ) => {
-  if (type === "karplus-strong") {
+  if (type === KARPLUS_STRONG_KEY) {
     if (key === "delayTime")
       return {
         max: 1000,

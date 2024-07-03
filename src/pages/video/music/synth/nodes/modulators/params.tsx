@@ -31,7 +31,7 @@ export const ModulatorsParams: FC<
             key={key}
             className="relative"
           >
-           <Modulators
+            <Modulators
               id={name}
               audioParam={param}
             >

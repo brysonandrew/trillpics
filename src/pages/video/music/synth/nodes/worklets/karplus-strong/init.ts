@@ -1,3 +1,5 @@
+import { KARPLUS_STRONG_KEY } from "~/pages/video/music/synth/nodes/worklets/karplus-strong/numbers";
+
 type TConfig = {
   gain?: number;
   delayTime?: number;
@@ -11,7 +13,7 @@ export const karplusStrong = (
     config;
   const ks = new AudioWorkletNode(
     context,
-    "karplus-strong"
+    KARPLUS_STRONG_KEY
   );
   if (gain) {
     ks.parameters.get("gain").value =

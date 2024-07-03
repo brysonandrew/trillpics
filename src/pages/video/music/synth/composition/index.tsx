@@ -23,18 +23,19 @@ export const MusicSynthComposition: FC =
         <MusicScaleDropdowns />
         <MusicSequenceNumbers />
         <SynthMode />
-
       </>
     );
     return (
       <>
         <div
-          className="relative column-stretch w-full"
+          className="relative column-stretch w-full overflow-x-auto"
           style={{
             left: sidebarWidthOffset,
             width:
               width -
               sidebarWidthOffset,
+            scrollbarWidth: "thin",
+            // scrollBehavior:'smooth'
           }}
         >
           <NodesTemplate

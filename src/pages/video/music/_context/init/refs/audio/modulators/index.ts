@@ -52,15 +52,24 @@ export const useSynthModulators = (
 
       const refs: TModulatorRefs = {};
 
+      const speed = (value = 1) =>
+        value *
+        ((schedule.bpm *
+          (schedule.sequence.beats /
+            schedule.sequence
+              .interval)) /
+          60);
+
+        const depth = (value = 1) => value
+
       const connect: TModulatorConnect =
         (
           _param: AudioParam,
           id,
           _options = {
-            frequency:
-              schedule.bpm / 60,
+            frequency: speed(),
             detune: 0,
-            gain: 1,
+            gain: depth(),
           }
         ) => {
           const start = (
@@ -120,6 +129,8 @@ export const useSynthModulators = (
         };
       const modulator: TModulator = {
         connect,
+        speed,
+        depth,
         recycle,
         refs,
       };

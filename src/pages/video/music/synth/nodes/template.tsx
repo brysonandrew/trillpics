@@ -23,7 +23,7 @@ export const NodesTemplate: FC<
 }) => {
   return (
     <div
-      className="relative row"
+      className="relative row-start"
       style={{
         gap: box.m0125,
         ...box.p(box.m0125),

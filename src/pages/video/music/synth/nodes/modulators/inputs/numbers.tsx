@@ -17,6 +17,9 @@ import {
   ModulatorsDropdownsMultiplier,
   TMultiplierValue,
 } from "~/pages/video/music/synth/nodes/modulators/dropdowns/multiplier";
+import { InputsNumberDefault } from "~/components/inputs/number/default";
+import { InputsNumberSm } from "~/components/inputs/number/sm";
+import { box } from "~uno/rules/box";
 const INPUTS = [
   "slider",
   "number",
@@ -182,55 +185,58 @@ export const ModulatorsNumbers: FC<
                 param,
                 key
               )}
+           
               {...resolveRange()}
             >
               {(_) => (
-                <_.Box>
-                  <_.Header>
-                    <_.Title />
-                    {_.number}
-                  </_.Header>
-                  {_.slider}
-                  <_.Header>
-                    <div className="row-end">
-                      {key ===
-                      "frequency" ? (
-                        <ModulatorsDropdownsSync
-                          name={resolveCompositeKey(
+                <>
+                  <div
+                  className="column-start"
+                  style={{
+                    gap: box.m00625,
+    
+                  }}
+                  >
+                    {key ===
+                    "frequency" ? (
+                      <ModulatorsDropdownsSync
+                        name={resolveCompositeKey(
+                          name,
+                          "sync"
+                        )}
+                        onValueChange={(
+                          value: TSyncValue
+                        ) =>
+                          handleSyncUpdate(
                             name,
-                            "sync"
-                          )}
-                          onValueChange={(
-                            value: TSyncValue
-                          ) =>
-                            handleSyncUpdate(
-                              name,
-                              value
-                            )
-                          }
-                        />
-                      ) : (
-                        <ModulatorsDropdownsMultiplier
-                          name={resolveCompositeKey(
+                            value
+                          )
+                        }
+                      />
+                    ) : (
+                      <ModulatorsDropdownsMultiplier
+                        name={resolveCompositeKey(
+                          name,
+                          "multiplier"
+                        )}
+                        defaultValue={
+                          defaultMultiplierValue
+                        }
+                        onValueChange={(
+                          v: TMultiplierValue
+                        ) =>
+                          handleMultiplierUpdate(
                             name,
-                            "multiplier"
-                          )}
-                          defaultValue={
-                            defaultMultiplierValue
-                          }
-                          onValueChange={(
-                            v: TMultiplierValue
-                          ) =>
-                            handleMultiplierUpdate(
-                              name,
-                              v
-                            )
-                          }
-                        />
-                      )}
-                    </div>
-                  </_.Header>
-                </_.Box>
+                            v
+                          )
+                        }
+                      />
+                    )}
+                    <InputsNumberSm
+                      {..._}
+                    />
+                  </div>
+                </>
               )}
             </InputsNumber>
           );

@@ -9,6 +9,7 @@ import { box } from "~uno/rules/box";
 import { ModulatorsButton } from "~/pages/video/music/synth/nodes/modulators/button";
 import { useIds } from "~/pages/video/music/synth/nodes/modulators/ids";
 import { ModulatorsInputs } from "~/pages/video/music/synth/nodes/modulators/inputs";
+import { LinesVertical } from "~/components/lines/vertical";
 
 type TProps = PropsWithChildren<{
   id: string;
@@ -50,22 +51,37 @@ export const Modulators: FC<TProps> = ({
   return (
     <div
       id={IDS.root}
-      className="relative"
+      className="relative row-start"
       style={{
-        paddingRight: box.m0125,
+        gap: box.m00625,
+
+        padding: box.m00625,
       }}
     >
       <div
         className="column-space absolute right-full"
         style={{
-          width: box.m05,
-          transform: `translateX(${box.m0125}px)`,
+          // width: box.m05,
+          transform: `translateX(${-box.m003125}px)`,
           top: box.m0125,
         }}
       >
         <ModulatorsButton
           ids={IDS}
           {...props}
+        />
+        <LinesVertical
+          positionClass="absolute"
+          colorClass="_bi-border"
+          // onClick={handleClick}
+          style={{
+            top: box.m0375,
+            left: box.m00625,
+            height: box.m,
+            borderWidth: 1,
+            pointerEvents: "auto",
+            cursor: "pointer",
+          }}
         />
       </div>
       {children}

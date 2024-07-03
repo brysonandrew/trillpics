@@ -1,13 +1,16 @@
 import { useMemo } from "react";
+import { TDelayRefs } from "~/pages/video/music/_context/init/refs/audio/delays/types";
 
 export const useMusicInitRefsDelays =
-  () => {
+  (
+
+  ) => {
     const handler = useMemo(() => {
       const init = (
         context: AudioContext
       ) => {
         const create = (
-          options: DelayOptions
+          options?: DelayOptions
         ) =>
           new DelayNode(
             context,
@@ -23,15 +26,23 @@ export const useMusicInitRefsDelays =
               node.delayTime.value,
           };
         };
-        const delay = create({
-          delayTime: 0.1,
-        });
+        const refs: TDelayRefs = {};
+        const connect = (node:AudioNode, options?:DelayOptions) => {
+          const delay = create(
+            options
+          );
+          delay.connect(node);
+          return delay
+        };
         return {
+          key:'delay',
           create,
-          delay,
           recycle,
+          connect,
+          refs,
         };
       };
+
       return init;
     }, []);
 

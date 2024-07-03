@@ -21,8 +21,6 @@ import { DrumsSettings } from "~/pages/video/music/drums/settings";
 
 export const VideoMusic = () => {
   return (
-    // <MusicInitProvider>
-    //   <MusicReadyProvider>
     <MusicRecorderProvider>
       <Helmet>
         <title>
@@ -31,7 +29,6 @@ export const VideoMusic = () => {
       </Helmet>
       <PicBackdrop />
       <LayoutBorderTop />
-      {/* <MusicControls /> */}
 
       <LayoutScroll>
         <LayoutView>
@@ -58,7 +55,5 @@ export const VideoMusic = () => {
       </LayoutScroll>
       <MusicControlsButtonsMenu />
     </MusicRecorderProvider>
-    //   </MusicReadyProvider>
-    // </MusicInitProvider>
   );
 };
