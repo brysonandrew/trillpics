@@ -1,5 +1,5 @@
 import { TBeatsKey } from "~/hooks/music/beats/types";
-import { useMusicRefs } from "~/pages/video/music/_context/init";
+import { useMusicRefs } from "~/pages/video/music/_context/refs";
 import { isDefined } from "~/utils/validation/is/defined";
 
 export const useSourceBufferStop = (

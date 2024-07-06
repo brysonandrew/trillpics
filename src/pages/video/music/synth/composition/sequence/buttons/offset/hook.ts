@@ -1,5 +1,5 @@
 import { SCALE_VALUE_COUNT } from "~/constants/scales";
-import { useMusicRefs } from "~/pages/video/music/_context/init";
+import { useMusicRefs } from "~/pages/video/music/_context/refs";
 
 export const useSequenceButtonsOffset = () => {
   const { schedule } = useMusicRefs();

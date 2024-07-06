@@ -1,5 +1,5 @@
 import type { FC } from "react";
-import { useContextMusicReady } from "~/pages/video/music/_context/ready/index";
+import { useMusicPlay } from "~/pages/video/music/_context/ready/index";
 import { BEATS_KEYS } from "~/hooks/music/beats/constants";
 import { MusicLayoutTitle } from "~/pages/video/music/layout/title";
 import { box } from "~uno/rules/box";
@@ -10,7 +10,7 @@ export const BeatsList: FC = () => {
   
 
   const { beats: lookup } =
-    useContextMusicReady();
+    useMusicPlay();
 
   return (
     <ul

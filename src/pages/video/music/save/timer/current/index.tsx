@@ -1,7 +1,7 @@
 import { FC, Fragment } from "react";
 import clsx from "clsx";
 import { VideoMusicSaveTimerCurrentRow } from "~/pages/video/music/save/timer/current/row";
-import { TProgressKey } from "~/pages/video/music/_context/init/refs/progress/types";
+import { TProgressKey } from "~/pages/video/music/_context/refs/progress/types";
 const UNITS = ["m", "s", "ms"] as const;
 export const VideoMusicSaveTimerCurrent: FC<{
   seconds: number;

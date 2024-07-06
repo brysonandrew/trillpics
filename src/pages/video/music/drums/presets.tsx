@@ -2,7 +2,7 @@ import type { FC } from "react";
 import { InputsSelect } from "~/components/inputs/select";
 import { BEATS_PRESETS } from "~/hooks/music/beats/presets";
 import { TBeatsPresetsKey } from "~/hooks/music/beats/presets/types";
-import { useMusicRefs } from "~/pages/video/music/_context/init";
+import { useMusicRefs } from "~/pages/video/music/_context/refs";
 
 export const DrumsPresets: FC = () => {
   const { schedule } = useMusicRefs();
@@ -28,6 +28,7 @@ export const DrumsPresets: FC = () => {
       name="drums"
       placeholder="presets"
       defaultValue={presetKey}
+      s='sm'
       onValueChange={handleValueChange}
     />
   );

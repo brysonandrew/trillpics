@@ -1,8 +1,8 @@
-import { useMusicRefs } from "~/pages/video/music/_context/init";
+import { useMusicRefs } from "~/pages/video/music/_context/refs";
 import {
   TGridsBaseConfig,
   TGridsStepStyle,
-} from "~/pages/video/music/_context/init/refs/grid/types";
+} from "~/pages/video/music/_context/refs/grid/types";
 import { TMusicKey } from "~/store/state/music/types";
 
 export const useGridsUpdateStyle = <

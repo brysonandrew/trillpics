@@ -1,6 +1,6 @@
 import type { FC } from "react";
 import { SequenceNumber } from "~/pages/video/music/synth/composition/sequence/numbers/number";
-import { useMusicRefs } from "~/pages/video/music/_context/init";
+import { useMusicRefs } from "~/pages/video/music/_context/refs";
 const LIST_ID = "sequence-number-beats";
 export const SequenceNumberBeats: FC =
   () => {

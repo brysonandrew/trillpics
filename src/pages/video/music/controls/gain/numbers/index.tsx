@@ -2,8 +2,8 @@ import type { FC } from "react";
 import { TChildren } from "@brysonandrew/config-types";
 import { InputsNumber } from "~/components/inputs/number";
 import { TGainNodeKey } from "~/pages/video/music/synth/nodes/gain/types";
-import { useMusicRefs } from "~/pages/video/music/_context/init";
-import { Modulators } from "~/pages/video/music/synth/nodes/modulators";
+import { useMusicRefs } from "~/pages/video/music/_context/refs";
+import { Modulators } from "~/pages/video/music/modulators";
 import { TMusicKey } from "~/store/state/music/types";
 import { InputsNumberDefault } from "~/components/inputs/number/default";
 

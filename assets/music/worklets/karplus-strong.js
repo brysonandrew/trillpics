@@ -1,5 +1,6 @@
 
 class KarplusStrong extends AudioWorkletProcessor {
+
   static get parameterDescriptors() {
     return [
       { name: "gain", defaultValue: 0.9, minValue: -1, maxValue: 1 },
@@ -14,7 +15,10 @@ class KarplusStrong extends AudioWorkletProcessor {
   }
 
   constructor() {
-    super();
+    super()
+    this.port.onmessage = (event) =>
+      (this.startTime = event.data);
+    this.startTime = Number.POSITIVE_INFINITY;
     this.Buffer = new Array(48000).fill(0);
     this.ReadPtr = 0;
     this.WritePtr = 0;
@@ -23,6 +27,9 @@ class KarplusStrong extends AudioWorkletProcessor {
   }
 
   process(inputs, outputs, parameters) {
+    if (currentTime < this.startTime) { 
+      return true;
+    }
     this.delayTime = parameters["delayTime"][0];
     this.gain = parameters["gain"][0];
 

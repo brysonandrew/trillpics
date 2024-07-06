@@ -3,7 +3,7 @@ import type {
   PropsWithChildren,
 } from "react";
 import clsx from "clsx";
-import { useMusicRefs } from "~/pages/video/music/_context/init";
+import { useMusicRefs } from "~/pages/video/music/_context/refs";
 
 export const LayoutScroll: FC<
   PropsWithChildren

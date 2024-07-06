@@ -3,7 +3,7 @@ import {
   TScaleKey,
 } from "~/constants/scales";
 import { handleRescale } from "~/hooks/music/midis/scale/rescale";
-import { useMusicRefs } from "~/pages/video/music/_context/init";
+import { useMusicRefs } from "~/pages/video/music/_context/refs";
 import { useGridDrill } from "~/hooks/grid/drill";
 import { useGridMidi } from "~/hooks/grid/midi";
 

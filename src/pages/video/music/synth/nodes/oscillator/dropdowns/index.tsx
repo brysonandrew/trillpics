@@ -12,12 +12,7 @@ export const NodesOscillatorDropdowns: FC<
       name="type"
       title="type"
       placeholder="oscillator type"
-      // defaultValue={
-      //   (audio.graph.refs[id] as any)
-      //     .node.type
-      // }
       values={WRITABLE_OSCILLATOR_TYPES}
-      // onValueChange={handleValueChange}
       {...props}
     />
   );

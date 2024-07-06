@@ -3,7 +3,7 @@ import { useMusicPlay } from "~/hooks/music/play";
 import { useStepsPerSecond } from "~/hooks/music/time/steps-per-second";
 import { usePicVideoReadSeconds } from "~/hooks/pic/video/read/seconds/hook";
 import { useRecorderListeners } from "~/pages/video/music/_context/hooks/recorder/listeners";
-import { useMusicRefs } from "~/pages/video/music/_context/init";
+import { useMusicRefs } from "~/pages/video/music/_context/refs";
 
 export const useMusicRecorder = () => {
   const { schedule, audio } =

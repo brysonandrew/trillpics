@@ -1,5 +1,5 @@
-import { CHARTS_GRID_STEP_EMPTY_STYLE } from "~/pages/video/music/_context/init/refs/grid/constants";
-import { TGridsHandler } from "~/pages/video/music/_context/init/refs/grid/types";
+import { CHARTS_GRID_STEP_EMPTY_STYLE } from "~/pages/video/music/_context/refs/grid/constants";
+import { TGridsHandler } from "~/pages/video/music/_context/refs/grid/types";
 
 export const gridStyleEmptyHandler: TGridsHandler =
   (cell) => {

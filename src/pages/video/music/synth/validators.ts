@@ -4,7 +4,7 @@ import {
   DEFAULT_SYNTH_SLIDER_OPTIONS,
   SYNTH_TYPES_RECORD,
   TSynthConfigKey,
-} from "~/pages/video/music/synth/constants";
+} from "~/pages/video/music/_context/refs/audio/constants";
 import { TScaleNumberOptionsKey } from "~/pages/video/music/synth/composition/scale/types";
 import { DEFAULT_SEQUENCE_OPTIONS } from "~/pages/video/music/synth/composition/sequence/constants";
 import { TSequenceNumberOptionsKey } from "~/pages/video/music/synth/composition/sequence/types";
@@ -12,7 +12,7 @@ import {
   TSynthType,
   TSynthOptionType,
   TSynthMultiOptionType,
-} from "~/pages/video/music/_context/init/refs/schedule/types";
+} from "~/pages/video/music/_context/refs/schedule/types";
 import { TBeatsOptions } from "~/store/state/music/types";
 
 export const isSynthType = (

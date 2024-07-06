@@ -6,8 +6,8 @@ import {
   isBeatsKey,
   isMidisKey,
 } from "~/hooks/music/play/validators";
-import { useMusicRefs } from "~/pages/video/music/_context/init";
-import { useContextMusicReady } from "~/pages/video/music/_context/ready";
+import { useMusicRefs } from "~/pages/video/music/_context/refs";
+import { useMusicPlay } from "~/pages/video/music/_context/ready";
 import { TMusicKey } from "~/store/state/music/types";
 import { resolveMidiNumber } from "~/utils/midi";
 import { isNull } from "~/utils/validation/is/null";
@@ -15,12 +15,12 @@ import { useGridsUpdateStyle } from "~/hooks/grid/style/update/hook";
 import {
   CHARTS_GRID_STEP_EMPTY_STYLE,
   CHARTS_GRID_STEP_ACTIVE_STYLE,
-} from "~/pages/video/music/_context/init/refs/grid/constants";
+} from "~/pages/video/music/_context/refs/grid/constants";
 import { gridStyleEmptyHandler } from "~/hooks/grid/style/empty";
 import {
   TGridsBaseConfig,
   TGridsStepStyle,
-} from "~/pages/video/music/_context/init/refs/grid/types";
+} from "~/pages/video/music/_context/refs/grid/types";
 
 type TPlaybackHandler = (
   next?: TGridsStepStyle
@@ -58,7 +58,7 @@ export const useStepPlay = <
   };
 
   const { beats, midis } =
-    useContextMusicReady();
+    useMusicPlay();
   const { grid, schedule } =
     useMusicRefs();
 

@@ -12,9 +12,7 @@ import {
   TSliderValueChangeHandler,
 } from "~/components/inputs/slider/types";
 
-export type TUpdateNumberHandler = (
-  value: number
-) => void;
+
 export type TSliderUncontrolledProps =
   TSliderStyledProps &
     TClassValueProps &

@@ -1,6 +1,8 @@
-import { FREQUENCY_TITLE } from "~/pages/video/music/synth/nodes/constants";
+import { FREQUENCY_TITLE } from "~/pages/video/music/_context/refs/audio/constants";
 import { resolveObjectKeys } from "~/utils/object";
 
+export const OSCILLATOR_KEY =
+  "oscillator" as const;
 export const OSCILLATOR_NUMBER_OPTIONS =
   {
     frequency: "frequency",

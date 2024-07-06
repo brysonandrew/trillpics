@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useMusicRefs } from "~/pages/video/music/_context/init";
+import { useMusicRefs } from "~/pages/video/music/_context/refs";
 import { useTrillPicsStore } from "~/store/middleware";
 import { resolveStepsPerSecond } from "~/hooks/music/time/steps-per-second/resolver";
 import { isNumber } from "~/utils/validation/is/number";

@@ -18,6 +18,7 @@ import { MusicControlsButtonsMenu } from "~/pages/video/music/controls/buttons/m
 import { MusicSynthNodes } from "~/pages/video/music/synth/nodes";
 import { MusicSynthComposition } from "~/pages/video/music/synth/composition";
 import { DrumsSettings } from "~/pages/video/music/drums/settings";
+import { MusicLoadProvider } from "~/pages/video/music/_context/load";
 
 export const VideoMusic = () => {
   return (

@@ -49,7 +49,7 @@ type TProps = {
   classValue?: ClassValue;
 };
 export const Playing: FC<TProps> = ({ classValue }) => (
-  <Root
+  <svg
     data-name="Layer 1"
     xmlns="http://www.w3.org/2000/svg"
     viewBox="0 0 50 38.05"
@@ -102,5 +102,5 @@ export const Playing: FC<TProps> = ({ classValue }) => (
       data-name="Line 9"
       d="M48.91,15l-0.12,0A1,1,0,0,0,48,16v6a1,1,0,1,0,2,0s0,0,0,0V16a1,1,0,0,0-1-1H48.91Z"
     />
-  </Root>
+  </svg>
 );

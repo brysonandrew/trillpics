@@ -1,7 +1,7 @@
 import { FC, useRef } from "react";
 import { PillB } from "~/components/buttons/pill/b";
 import { IconsMenu } from "~/components/icons/menu";
-import { useMusicRefs } from "~/pages/video/music/_context/init";
+import { useMusicRefs } from "~/pages/video/music/_context/refs";
 import { useVideoStyle } from "~/pages/video/style";
 import { box } from "~uno/rules/box";
 

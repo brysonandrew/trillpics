@@ -1,4 +1,5 @@
-import { TOscillator } from "~/pages/video/music/_context/init/refs/audio/oscillators/types";
+import { TBitcrusher } from "~/pages/video/music/_context/refs/audio/bitcrusher/types";
+import { TOscillator } from "~/pages/video/music/_context/refs/audio/oscillators/types";
 import { isNull } from "~/utils/validation/is/null";
 
 export const NOTES = [
@@ -84,6 +85,18 @@ export const isOscillatorNode = (
   return false;
 };
 
+
+export const isBitcrusher = (
+  target: any,
+): target is TBitcrusher => {
+  if (
+    !isNull(target) &&
+    target.node instanceof AudioWorkletNode
+  ) {
+    return true;
+  }
+  return false;
+};
 export const isBiquadFilterNode = (
   target: AudioNode | null
 ): target is BiquadFilterNode => {

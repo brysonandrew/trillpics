@@ -15,10 +15,10 @@ import clsx from "clsx";
 import { LinesHorizontal } from "~/components/lines/horizontal";
 import { box } from "~uno/rules/box";
 import { resolveTop } from "~/components/charts/grid/top";
-import { CHARTS_GRID_STEP_EMPTY_STYLE } from "~/pages/video/music/_context/init/refs/grid/constants";
+import { CHARTS_GRID_STEP_EMPTY_STYLE } from "~/pages/video/music/_context/refs/grid/constants";
 import { useGridsStepRef } from "~/hooks/grid/hook";
 import { ChartsGridPlayButton } from "~/components/charts/grid/step/play/button";
-import { useMusicRefs } from "~/pages/video/music/_context/init";
+import { useMusicRefs } from "~/pages/video/music/_context/refs";
 
 export type CStepsKey<
   T extends TMusicKey

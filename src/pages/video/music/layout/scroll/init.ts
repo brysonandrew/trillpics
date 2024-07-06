@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { useMusicRefs } from "~/pages/video/music/_context/init";
+import { useMusicRefs } from "~/pages/video/music/_context/refs";
 import { useVideoStyle } from "~/pages/video/style";
 import { box } from "~uno/rules/box";
 

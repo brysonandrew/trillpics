@@ -4,13 +4,13 @@ import clsx from "clsx";
 import { motion } from "framer-motion";
 import type { FC } from "react";
 
-const Root = styled(motion.svg)``;
+
 
 type TProps = {
   classValue?: ClassValue;
 };
 export const Minus: FC<TProps> = ({ classValue }) => (
-    <Root
+    <svg
       className={clsx(classValue)}
       viewBox="0 0 24 24" 
       width="24"
@@ -18,5 +18,5 @@ export const Minus: FC<TProps> = ({ classValue }) => (
       fill="currentColor"
     >
       <path d="M19,13H5V11H19V13Z" />{" "}
-    </Root>
+    </svg>
   );

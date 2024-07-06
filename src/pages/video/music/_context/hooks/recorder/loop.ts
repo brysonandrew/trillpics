@@ -2,7 +2,7 @@ import { STEPS_COUNT } from "~/constants/music/timing";
 import { resolveStepsPerSecond } from "~/hooks/music/time/steps-per-second/resolver";
 import { usePicVideoReadSeconds } from "~/hooks/pic/video/read/seconds/hook";
 import { supportedMimeTypes } from "~/pages/video/music/_context/hooks/recorder/mime-types";
-import { useMusicRefs } from "~/pages/video/music/_context/init";
+import { useMusicRefs } from "~/pages/video/music/_context/refs";
 
 export const useLoopHandler = () => {
   const seconds =

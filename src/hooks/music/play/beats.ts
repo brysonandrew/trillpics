@@ -1,10 +1,10 @@
-import { useContextMusicReady } from "~/pages/video/music/_context/ready/index";
+import { useMusicPlay } from "~/pages/video/music/_context/ready/index";
 import { BEATS_KEYS } from "~/hooks/music/beats/constants";
 import { usePlaySchedule } from "~/hooks/music/play/schedule";
 
 export const usePlayBeats = () => {
   const { beats: lookup } =
-    useContextMusicReady();
+    useMusicPlay();
 
 
   const result = usePlaySchedule({

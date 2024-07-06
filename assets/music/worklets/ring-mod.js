@@ -1,3 +1,4 @@
+
 const atan = (t) => Math.atan(t);
 
 const acosh = (t) => Math.acosh(t);
@@ -16,6 +17,13 @@ const square = (t) => {
 const triangle = (t) => Math.asin(Math.cos(t)) / 1.57079633;
 
 class Processor extends AudioWorkletProcessor {
+  constructor() {
+    super();
+
+    this.port.onmessage = (event) =>
+      (this.startTime = event.data);
+    this.startTime = Number.POSITIVE_INFINITY;
+}
   static get parameterDescriptors() {
     return [
       {
@@ -46,6 +54,9 @@ class Processor extends AudioWorkletProcessor {
   }
 
   process(inputs, outputs, parameters) {
+    if (currentTime < this.startTime) { 
+      return true;
+    }
     let t = 0;
 
     let input = inputs[0];

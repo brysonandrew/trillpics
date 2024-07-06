@@ -1,31 +1,36 @@
 import { FC } from "react";
-import { box } from "~uno/rules/box";
 import { useVideoStyle } from "~/pages/video/style";
-import { useMusicRefs } from "~/pages/video/music/_context/init";
-import { MusicSynthNodesSources } from "~/pages/video/music/synth/nodes/sources";
-import { resolveSquare } from "@brysonandrew/measure";
+import { useMusicRefs } from "~/pages/video/music/_context/refs";
+import { TGraphSource } from "~/pages/video/music/_context/refs/audio/graph/types";
+import { MusicSynthNodesSource } from "~/pages/video/music/synth/nodes/source";
 
 export const MusicSynthNodes: FC =
   () => {
-    const {
-      width,
-      sidebarWidthOffset,
-    } = useVideoStyle();
+    const { width } = useVideoStyle();
     const { audio } = useMusicRefs();
     return (
       <div
         className="relative w-full"
         style={{
-          ...box.p(box.m0125),
-          // paddingLeft:
-          //   sidebarWidthOffset,
           width,
         }}
         ref={audio.graph.ref}
       >
-      
-          <MusicSynthNodesSources />
-     
+        <>
+          {audio.graph.sources.map(
+            (
+              source: TGraphSource,
+              row: number
+            ) => {
+              return (
+                <MusicSynthNodesSource
+                  key={`${source.key}-${row}`}
+                  source={source}
+                />
+              );
+            }
+          )}
+        </>
       </div>
     );
   };

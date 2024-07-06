@@ -6,7 +6,7 @@ import { UStepsKey } from "~/store/state/music/types";
 import { SCALE_VALUE_COUNT } from "~/constants/scales";
 import { LinesVertical } from "~/components/lines/vertical";
 import { box } from "~uno/rules/box";
-import { useMusicRefs } from "~/pages/video/music/_context/init";
+import { useMusicRefs } from "~/pages/video/music/_context/refs";
 
 type TProps = {
   stepsKey: UStepsKey;

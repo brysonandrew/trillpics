@@ -1,6 +1,6 @@
 import { resolveMidiSteps } from "~/hooks/music/midis/steps";
 import { TScalePattern } from "~/pages/video/music/synth/composition/scale/types";
-import { useMusicRefs } from "~/pages/video/music/_context/init";
+import { useMusicRefs } from "~/pages/video/music/_context/refs";
 import { useGridMidi } from "~/hooks/grid/midi";
 
 export const useNodesPattern = () => {

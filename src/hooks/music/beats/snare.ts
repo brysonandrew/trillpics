@@ -6,7 +6,7 @@ import {
   TBeatValue,
   TPlayBeatsOptions,
 } from "~/hooks/music/beats/types";
-import { useMusicRefs } from "~/pages/video/music/_context/init";
+import { useMusicRefs } from "~/pages/video/music/_context/refs";
 const key: TBeatsStepsKey = "snare";
 
 export const useSnare = () => {

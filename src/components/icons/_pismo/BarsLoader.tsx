@@ -4,13 +4,13 @@ import styled from "@emotion/styled";
 import type { ClassValue } from "clsx";
 import { clsx } from "clsx";
 
-const Root = styled(motion.svg)``;
+
  
 type TProps = {
   classValue?: ClassValue;
 };
 export const BarsLoader: FC<TProps> = ({ classValue }) => (
-  <Root
+  <svg
     className={clsx(classValue)}
     width="135"
     height="60"
@@ -107,5 +107,5 @@ export const BarsLoader: FC<TProps> = ({ classValue }) => (
         repeatCount="indefinite"
       />
     </rect>
-  </Root>
+  </svg>
 );

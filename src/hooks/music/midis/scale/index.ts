@@ -1,6 +1,6 @@
 import { TScaleKey } from "~/constants/scales";
 import { useRescaleStatelessHandler } from "~/hooks/music/midis/scale/rescale/stateless";
-import { useMusicRefs } from "~/pages/video/music/_context/init";
+import { useMusicRefs } from "~/pages/video/music/_context/refs";
 
 export const useSequenceScale = () => {
   const { schedule } = useMusicRefs();

@@ -7,7 +7,7 @@ import { usePicVideoReadInputs } from "~/hooks/pic/video/read/inputs/hook";
 import { LayoutOverlay } from "~/components/layout/overlay";
 import { LightingGlow } from "~/components/layout/lighting/glow";
 import { BackgroundMeshRadial } from "~/components/layout/background/mesh-radial";
-import { useMusicRefs } from "~/pages/video/music/_context/init";
+import { useMusicRefs } from "~/pages/video/music/_context/refs";
 
 const key = "NavCountersPics";
 export const NavCountersPics: FC =

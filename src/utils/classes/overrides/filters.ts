@@ -3,25 +3,25 @@ import {
   POSITION_LOOKUP,
 } from "~/utils/classes/constants";
 
-type TFilter = Array<string>["filter"];
-type TFilterHandler =
-  Parameters<TFilter>[0];
+type TBiquad = Array<string>["filter"];
+type TBiquadHandler =
+  Parameters<TBiquad>[0];
 
-export const positionFilter: TFilterHandler =
+export const positionFilter: TBiquadHandler =
   (v) => !(v in POSITION_LOOKUP);
 
-export const opacityFilter: TFilterHandler =
+export const opacityFilter: TBiquadHandler =
   (v) => !/opacity-\d{1,2}0/.test(v);
 
-export const sizeFilter: TFilterHandler =
+export const sizeFilter: TBiquadHandler =
   (v) => !/h-\d{1,3}|w-\d{1,3}/.test(v);
 
 
-  export const fontSizeFilter: TFilterHandler =
+  export const fontSizeFilter: TBiquadHandler =
   (v) => !/h-\d{1,3}|w-\d{1,3}/.test(v);
 
 
-export const colorFilter: TFilterHandler =
+export const colorFilter: TBiquadHandler =
   (v) => {
     const [key, value] = v.split("-");
     return (

@@ -5,7 +5,7 @@ import {
 } from "~/hooks/pic/constants";
 import { picVideoReadCount } from "~/hooks/pic/video/read/count";
 import { resolveSecondsFromCount } from "~/hooks/pic/video/read/seconds/from-count";
-import { useMusicRefs } from "~/pages/video/music/_context/init";
+import { useMusicRefs } from "~/pages/video/music/_context/refs";
 
 export const usePicVideoReadSeconds =
   () => {

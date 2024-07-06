@@ -1,11 +1,11 @@
 import { usePlaySchedule } from "~/hooks/music/play/schedule";
-import { useContextMusicReady } from "~/pages/video/music/_context/ready";
-import { useMusicRefs } from "~/pages/video/music/_context/init";
+import { useMusicPlay } from "~/pages/video/music/_context/ready";
+import { useMusicRefs } from "~/pages/video/music/_context/refs";
 import { MIDIS_KEYS } from "~/hooks/music/midis/constants";
 
 export const usePlayMidis = () => {
   const { midis: lookup } =
-    useContextMusicReady();
+    useMusicPlay();
   const { schedule } = useMusicRefs();
 
   const result = usePlaySchedule({

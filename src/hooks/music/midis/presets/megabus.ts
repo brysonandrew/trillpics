@@ -6,7 +6,7 @@ import {
   useSynthSingle,
 } from "react-synthwave";
 import { TPlayMidisOptions } from "~/hooks/music/midis/types";
-import { useMusicRefs } from "~/pages/video/music/_context/init";
+import { useMusicRefs } from "~/pages/video/music/_context/refs";
 import { midiToHz } from "~/utils/music";
 
 export const useMegabus = () => {
@@ -19,7 +19,6 @@ export const useMegabus = () => {
   const {
     gains,
     delays,
-    filters,
     context,
     oscillators,
   } = audio;

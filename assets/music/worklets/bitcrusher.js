@@ -1,4 +1,10 @@
 export class BitcrusherProcessor extends AudioWorkletProcessor {
+  constructor() {
+    super()
+    this.port.onmessage = (event) =>
+      (this.startTime = event.data);
+    this.startTime = Number.POSITIVE_INFINITY;
+  }
   static get parameterDescriptors() {
     return [
       {
@@ -17,6 +23,9 @@ export class BitcrusherProcessor extends AudioWorkletProcessor {
   }
 
   process(inputs, outputs, parameters) {
+    if (currentTime < this.startTime) { 
+      return true;
+    }
     const bitsArr = parameters["bits"];
     const frequencys = parameters["frequency"];
     let phaser = 0;

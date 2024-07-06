@@ -1,4 +1,4 @@
-import { useMusicRefs } from "~/pages/video/music/_context/init";
+import { useMusicRefs } from "~/pages/video/music/_context/refs";
 import { supportedMimeTypes } from "~/pages/video/music/_context/hooks/recorder/mime-types";
 
 export const useRecorderSaveHandler =

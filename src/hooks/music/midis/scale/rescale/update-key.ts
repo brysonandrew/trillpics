@@ -1,5 +1,5 @@
 import { TScaleKey } from "~/constants/scales";
-import { useMusicRefs } from "~/pages/video/music/_context/init";
+import { useMusicRefs } from "~/pages/video/music/_context/refs";
 
 export const useRescaleUpdateKeyHandler =
   () => {

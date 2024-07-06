@@ -5,14 +5,13 @@ import { ChartsGrid } from "~/components/charts/grid";
 import { useVideoStyle } from "~/pages/video/style";
 import { BEATS_KEYS } from "~/hooks/music/beats/constants";
 import { ChartsGridLinesHorizontal } from "~/components/charts/grid/lines/horizontal";
-import { useContextMusicReady } from "~/pages/video/music/_context/ready";
+import { useMusicPlay } from "~/pages/video/music/_context/ready";
 import { IconsLoader } from "~/components/icons/loader";
 import { IconsPlay } from "~/components/icons/playback/play";
 import { isBeatsKey } from "~/utils/validation/is/beats/key";
 import { box } from "~uno/rules/box";
 import { TypographyXxxs } from "~/components/layout/typography/xxxs";
-import { useMusicRefs } from "~/pages/video/music/_context/init";
-import { DarkGlass } from "~/pages/video/music/layout/glass/dark";
+import { useMusicRefs } from "~/pages/video/music/_context/refs";
 
 export const VideoMusicDrums: FC =
   () => {
@@ -23,7 +22,7 @@ export const VideoMusicDrums: FC =
     const { schedule, audio } =
       useMusicRefs();
     const { beats: lookup } =
-      useContextMusicReady();
+      useMusicPlay();
 
     return (
       <>

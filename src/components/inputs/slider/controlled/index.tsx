@@ -3,10 +3,7 @@ import {
   TClassValueProps,
   TTitleProps,
 } from "@brysonandrew/config-types";
-import {
-  TSliderControllerProps,
-  useSliderController,
-} from "~/components/inputs/slider/controlled/controller";
+import { TSliderControllerProps } from "~/components/inputs/slider/controlled/controller";
 import { SliderRow } from "~/components/inputs/slider/row";
 import { SliderStyled } from "~/components/inputs/slider/styled";
 
@@ -22,11 +19,6 @@ export const SliderControlled: FC<
   onUpdate,
   ...props
 }) => {
-  const controller =
-    useSliderController({
-      ...props,
-    });
-
   return (
     <SliderRow
       title={title}

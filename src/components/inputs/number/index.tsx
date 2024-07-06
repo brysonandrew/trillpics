@@ -10,7 +10,7 @@ import { TTitleProps } from "@brysonandrew/config-types";
 import { InputsNumberInfo } from "~/components/inputs/number/info";
 import { InputsNumberBox } from "~/components/inputs/number/box";
 import { InputsNumberBackground } from "~/components/inputs/number/background";
-import { useMusicRefs } from "~/pages/video/music/_context/init";
+import { useMusicRefs } from "~/pages/video/music/_context/refs";
 import { InputsBoxTitle } from "~/components/inputs/box/title";
 import {
   NumberInput,

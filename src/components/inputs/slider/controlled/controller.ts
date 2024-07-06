@@ -1,11 +1,11 @@
 import { useUpdateStateHandler } from "~/store/hooks/use-update-state-handler";
-import { INPUT_PATH_DELIMITER } from "~/pages/video/music/synth/constants";
+import { INPUT_PATH_DELIMITER } from "~/pages/video/music/_context/refs/audio/constants";
 import {
   TSliderStyledProps,
   TUpdateNumberHandler,
   TUpdateNumberHandlerProps,
 } from "~/components/inputs/slider/types";
-import { useMusicRefs } from "~/pages/video/music/_context/init";
+import { useMusicRefs } from "~/pages/video/music/_context/refs";
 
 export type TSliderControllerProps =
   Omit<

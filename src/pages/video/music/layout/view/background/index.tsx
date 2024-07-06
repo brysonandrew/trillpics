@@ -6,7 +6,7 @@ import {
 } from "react";
 import { useEventListener } from "@brysonandrew/hooks-events";
 import { LayoutViewBackgroundProgress } from "~/pages/video/music/layout/view/background/progress";
-import { useMusicRefs } from "~/pages/video/music/_context/init";
+import { useMusicRefs } from "~/pages/video/music/_context/refs";
 import { useVideoStyle } from "~/pages/video/style";
 import { useContextReady } from "~/shell/ready/context";
 import { box } from "~uno/rules/box";

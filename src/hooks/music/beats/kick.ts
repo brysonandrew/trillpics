@@ -3,7 +3,7 @@ import {
   TBeatValue,
   TPlayBeatsOptions,
 } from "~/hooks/music/beats/types";
-import { useMusicRefs } from "~/pages/video/music/_context/init";
+import { useMusicRefs } from "~/pages/video/music/_context/refs";
 import { useSourceBufferStart } from "~/hooks/music/beats/hooks/source-buffer/start";
 import { useBufferInit } from "~/hooks/music/beats/hooks/buffer/init";
 import { useSourceBufferStop } from "~/hooks/music/beats/hooks/source-buffer/stop";

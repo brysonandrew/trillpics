@@ -1,7 +1,7 @@
 import {  TMidiValue,  TPlayMidisOptions,} from "~/hooks/music/midis/types";
 import { useSchedulingStart } from "~/hooks/music/midis/scheduling/start";
-import { bitcrusher } from "~/pages/video/music/synth/nodes/worklets/bitcrusher/init";
-import { useMusicRefs } from "~/pages/video/music/_context/init";
+import { bitcrusher } from "~/pages/video/music/synth/nodes/bitcrusher/init";
+import { useMusicRefs } from "~/pages/video/music/_context/refs";
 import {  hzToMidi,  midiToHz,} from "~/utils/music";
 
 export const useArpeggio = () => {
@@ -12,7 +12,6 @@ export const useArpeggio = () => {
   const {
     gains,
     delays,
-    filters,
     oscillators,
     context,
   } = audio;
@@ -91,11 +90,11 @@ export const useArpeggio = () => {
 //           );
 //           if (
 //             audio.worklets[
-//               "noise-white"
+//               "white-noise"
 //             ]
 //           ) {
 //             audio.worklets[
-//               "noise-white"
+//               "white-noise"
 //             ].disconnect(
 //               audio.worklets[
 //                 "karplus-strong"
@@ -112,13 +111,13 @@ export const useArpeggio = () => {
 //         intervalDuration: number = stepDuration
 //       ) => {
 //         if (
-//           !audio.worklets["noise-white"]
+//           !audio.worklets["white-noise"]
 //         ) {
 //           audio.worklets[
-//             "noise-white"
+//             "white-noise"
 //           ] = new AudioWorkletNode(
 //             context,
-//             "noise-white"
+//             "white-noise"
 //           );
 //         }
 
@@ -135,12 +134,12 @@ export const useArpeggio = () => {
 //           );
 //         }
 //         audio.worklets[
-//           "noise-white"
+//           "white-noise"
 //         ].parameters.get(
 //           "gain"
 //         ).value = 0.99;
 //         audio.worklets[
-//           "noise-white"
+//           "white-noise"
 //         ].port.postMessage(
 //           startTime
 //         );
@@ -159,7 +158,7 @@ export const useArpeggio = () => {
 //         }
 
 //         audio.worklets[
-//           "noise-white"
+//           "white-noise"
 //         ].connect(
 //           audio.worklets[
 //             "karplus-strong"

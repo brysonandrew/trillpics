@@ -22,16 +22,16 @@ export type TUpdateNumberHandler = (
 
 export type TUpdateNumberHandlerProps =
   {
-    onUpdate?: TUpdateNumberHandler;
+    onUpdate: TUpdateNumberHandler;
   };
 
 export type TUpdateNodeHandlerProps<
   K extends string,
   V extends number | string = number
 > = {
-  defaultValue?(key: K): V;
-  resolveParam?(key: K): AudioParam;
-  onUpdate?: TUpdateNodeHandler<K, V>;
+  defaultValue(key: K): V | undefined;
+  resolveParam(key: K): AudioParam | undefined;
+  onUpdate: TUpdateNodeHandler<K, V>;
 };
 
 export type TSliderValueChangeHandler =

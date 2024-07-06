@@ -4,7 +4,7 @@ import {
   useEffect,
 } from "react";
 import type { MutableRefObject } from "react";
-import { useMusicRefs } from "~/pages/video/music/_context/init";
+import { useMusicRefs } from "~/pages/video/music/_context/refs";
 
 type TInit = {
   bufferLength: number;

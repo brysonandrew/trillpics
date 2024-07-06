@@ -1,4 +1,4 @@
-import { useMusicRefs } from "~/pages/video/music/_context/init";
+import { useMusicRefs } from "~/pages/video/music/_context/refs";
 
 interface ICustomWindow extends Window {
   stream?: MediaStream;

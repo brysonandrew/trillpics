@@ -5,7 +5,7 @@ import {
 } from "react-router-dom";
 import { SELECTED_PARAM_KEY } from "~/hooks/pic/constants";
 import { picVideoReadInputs } from "~/hooks/pic/video/read/inputs";
-import { useMusicRefs } from "~/pages/video/music/_context/init";
+import { useMusicRefs } from "~/pages/video/music/_context/refs";
 import { useContextPlayer_Init } from "~/pages/video/player/_context/init";
 
 export const usePicVideoWriteInputs =

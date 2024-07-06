@@ -3,7 +3,7 @@ import {
   TPlayMidisOptions,
 } from "~/hooks/music/midis/types";
 import { useTimeouts } from "~/hooks/timeout-refs";
-import { useMusicRefs } from "~/pages/video/music/_context/init";
+import { useMusicRefs } from "~/pages/video/music/_context/refs";
 import {
   resolveMidiNormalDelta,
   resolveMidiNumber,

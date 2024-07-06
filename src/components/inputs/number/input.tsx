@@ -4,7 +4,7 @@ import {
   useEffect,
 } from "react";
 import clsx from "clsx";
-import { useMusicRefs } from "~/pages/video/music/_context/init";
+import { useMusicRefs } from "~/pages/video/music/_context/refs";
 import { TInputProps } from "~/types/inputs";
 import { isNull } from "~/utils/validation/is/null";
 import {

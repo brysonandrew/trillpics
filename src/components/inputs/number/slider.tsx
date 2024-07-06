@@ -4,7 +4,7 @@ import type {
 } from "react";
 import { TInputProps } from "@brysonandrew/config-types";
 import clsx from "clsx";
-import { useMusicRefs } from "~/pages/video/music/_context/init";
+import { useMusicRefs } from "~/pages/video/music/_context/refs";
 import { isNull } from "~/utils/validation/is/null";
 import { box } from "~uno/rules/box";
 import { cx } from "class-variance-authority";

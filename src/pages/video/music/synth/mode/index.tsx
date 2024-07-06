@@ -4,7 +4,7 @@ import {
   TSynthModeKey,
   SYNTH_MODES,
 } from "~/pages/video/music/synth/mode/constants";
-import { useMusicRefs } from "~/pages/video/music/_context/init";
+import { useMusicRefs } from "~/pages/video/music/_context/refs";
 
 export const SynthMode: FC = () => {
   const { schedule } = useMusicRefs();

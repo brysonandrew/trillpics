@@ -19,7 +19,7 @@ import { useTimebomb } from "~/hooks/use-time-bomb";
 import { UGenerateSubscriptionResult } from "~/store/state/generate/types";
 import { TState } from "~/store/types";
 import { TPicSeriesProps } from "~/components/remotion/pic-series/types";
-import { useMusicRefs } from "~/pages/video/music/_context/init";
+import { useMusicRefs } from "~/pages/video/music/_context/refs";
 
 export const DEFAULT_INPUT: TGenerateInput =
   {

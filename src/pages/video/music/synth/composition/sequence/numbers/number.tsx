@@ -7,7 +7,7 @@ import { TInputProps } from "~/types/inputs";
 import { InputsNumber } from "~/components/inputs/number";
 import { resolveMidiSteps } from "~/hooks/music/midis/steps";
 import { TUpdateNumberHandler } from "~/components/inputs/slider/types";
-import { useMusicRefs } from "~/pages/video/music/_context/init";
+import { useMusicRefs } from "~/pages/video/music/_context/refs";
 import { useGridMidi } from "~/hooks/grid/midi";
 import { useGridDrill } from "~/hooks/grid/drill";
 import { InputsNumberDefault } from "~/components/inputs/number/default";

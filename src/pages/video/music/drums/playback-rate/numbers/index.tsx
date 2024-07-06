@@ -1,10 +1,10 @@
 import type { FC } from "react";
 import { TChildren } from "@brysonandrew/config-types";
 import { InputsNumber } from "~/components/inputs/number";
-import { useMusicRefs } from "~/pages/video/music/_context/init";
+import { useMusicRefs } from "~/pages/video/music/_context/refs";
 import { TMusicKey } from "~/store/state/music/types";
 import { InputsNumberDefault } from "~/components/inputs/number/default";
-import { Modulators } from "~/pages/video/music/synth/nodes/modulators";
+import { Modulators } from "~/pages/video/music/modulators";
 
 const KEY = "playbackRate";
 type TProps = {

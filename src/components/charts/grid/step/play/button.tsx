@@ -8,7 +8,7 @@ import { TButtonMotionProps } from "@brysonandrew/config-types";
 import { TMidiValue } from "~/hooks/music/midis/types";
 import clsx from "clsx";
 import { useHoverKey } from "~/hooks/use-hover-key";
-import { TGridsBaseConfig } from "~/pages/video/music/_context/init/refs/grid/types";
+import { TGridsBaseConfig } from "~/pages/video/music/_context/refs/grid/types";
 
 type TProps<T extends TMusicKey> =
   TGridsBaseConfig<T> &

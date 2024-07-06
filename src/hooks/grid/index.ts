@@ -1,7 +1,7 @@
 import {
   TGridsRecordProps,
   TGridsStepRefConfig,
-} from "~/pages/video/music/_context/init/refs/grid/types";
+} from "~/pages/video/music/_context/refs/grid/types";
 import { TMusicKey } from "~/store/state/music/types";
 
 export const resolveStepRef = <

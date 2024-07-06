@@ -1,10 +1,10 @@
-import { useMusicRefs } from "~/pages/video/music/_context/init";
+import { useMusicRefs } from "~/pages/video/music/_context/refs";
 import { gridStyleEmptyHandler } from "~/hooks/grid/style/empty";
 import {
   TGridCells,
   TGridRows,
   TGridsHandler,
-} from "~/pages/video/music/_context/init/refs/grid/types";
+} from "~/pages/video/music/_context/refs/grid/types";
 
 export const useGridDrill = () => {
   const { grid } = useMusicRefs();

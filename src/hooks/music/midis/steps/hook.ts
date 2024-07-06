@@ -2,7 +2,7 @@ import {
   resolveMidiSteps,
   TMidiStepsConfig,
 } from "~/hooks/music/midis/steps";
-import { useMusicRefs } from "~/pages/video/music/_context/init";
+import { useMusicRefs } from "~/pages/video/music/_context/refs";
 
 export const useMidiSteps = () => {
   // const { sequence, scale } =

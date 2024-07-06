@@ -4,7 +4,7 @@ import {
 } from "react";
 import { resolveAudioSampleSrc } from "~/utils/src";
 import { useBufferFromSrcHandler } from "~/hooks/music/beats/hooks/buffer-from-source";
-import { useMusicRefs } from "~/pages/video/music/_context/init";
+import { useMusicRefs } from "~/pages/video/music/_context/refs";
 import { TBeatsKey } from "~/hooks/music/beats/types";
 
 export const useBufferInit = (

@@ -1,6 +1,6 @@
 import { usePlayBeats } from "~/hooks/music/play/beats";
 import { usePlayMidis } from "~/hooks/music/play/midis";
-import { useMusicRefs } from "~/pages/video/music/_context/init";
+import { useMusicRefs } from "~/pages/video/music/_context/refs";
 
 export const usePlaySequences = () => {
   const {

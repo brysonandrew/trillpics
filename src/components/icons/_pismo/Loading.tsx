@@ -40,7 +40,7 @@ export const Loading: FC<TProps> = ({
   classValueCircle,
   ...props
 }) => (
-  <Root
+  <svg
     className={clsx("w-4 h-4", classValue)}
     width="24"
     height="24"
@@ -57,5 +57,5 @@ export const Loading: FC<TProps> = ({
       r="46"
       strokeWidth="8"
     />
-  </Root>
+  </svg>
 );

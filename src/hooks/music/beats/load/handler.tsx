@@ -3,7 +3,7 @@ import {
   BEATS_VERSION_LOOKUP,
 } from "~/hooks/music/beats/constants";
 import { useBufferFromSrcHandler } from "~/hooks/music/beats/hooks/buffer-from-source";
-import { useMusicRefs } from "~/pages/video/music/_context/init";
+import { useMusicRefs } from "~/pages/video/music/_context/refs";
 import { resolveAudioSampleSrc } from "~/utils/src";
 
 export const useBeatsLoadHandler =

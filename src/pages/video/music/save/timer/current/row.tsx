@@ -4,10 +4,10 @@ import {
   TTimerKey,
   useAnimatedText,
 } from "~/pages/video/music/save/timer/current/animated-text";
-import { useMusicRefs } from "~/pages/video/music/_context/init";
+import { useMusicRefs } from "~/pages/video/music/_context/refs";
 import { useGridDrill } from "~/hooks/grid/drill";
 import { gridStyleEmptyHandler } from "~/hooks/grid/style/empty";
-import { TProgressKey } from "~/pages/video/music/_context/init/refs/progress/types";
+import { TProgressKey } from "~/pages/video/music/_context/refs/progress/types";
 import { gridStyleActiveHandler } from "~/hooks/grid/style/active";
 
 type TProps = {

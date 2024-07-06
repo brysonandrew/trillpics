@@ -3,7 +3,7 @@ import {
   TBeatsKey,
   TPlayBeatsOptions,
 } from "~/hooks/music/beats/types";
-import { useMusicRefs } from "~/pages/video/music/_context/init";
+import { useMusicRefs } from "~/pages/video/music/_context/refs";
 type THandlerConfig =
   TPlayBeatsOptions & {
     startTime: number;

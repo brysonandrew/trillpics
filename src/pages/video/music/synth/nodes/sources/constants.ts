@@ -1,11 +1,13 @@
-import {
-  KARPLUS_STRONG_KEY,
-  OSCILLATOR_KEY,
-} from "~/pages/video/music/synth/nodes/worklets/karplus-strong/numbers";
+
+import { KARPLUS_KEY } from "~/pages/video/music/synth/nodes/karplus/constants";
+import { OSCILLATOR_KEY } from "~/pages/video/music/synth/nodes/oscillator/constants";
+import { NOISE_PINK_KEY, WHITE_NOISE } from "~/pages/video/music/_context/refs/audio/noises";
 
 export const SYNTH_SOURCES = [
   OSCILLATOR_KEY,
-  KARPLUS_STRONG_KEY,
+  KARPLUS_KEY,
+  NOISE_PINK_KEY,
+  WHITE_NOISE
 ] as const;
 
 export type TSynthSourceKey =

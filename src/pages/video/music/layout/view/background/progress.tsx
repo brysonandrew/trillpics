@@ -1,5 +1,5 @@
 import type { FC } from "react";
-import { useMusicRefs } from "~/pages/video/music/_context/init";
+import { useMusicRefs } from "~/pages/video/music/_context/refs";
 import { TimerCurrentProgress } from "~/pages/video/player/_controls/playback/progress";
 import { box } from "~uno/rules/box";
 
