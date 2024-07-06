@@ -1,6 +1,4 @@
 import { useMemo } from "react";
-import { key } from "localforage";
-import { create } from "zustand";
 import {
   TNoiseRefs,
   TNoise,
@@ -10,13 +8,13 @@ import {
   TNoiseConnect,
 } from "~/pages/video/music/_context/refs/audio/noises/types";
 
-export const WHITE_NOISE =
+export const WHITE_NOISE_KEY =
   "white-noise" as const;
 export const NOISE_PINK_KEY =
   "pink-noise" as const;
 
 export const NOISE_KEYS = [
-  WHITE_NOISE,
+  WHITE_NOISE_KEY,
   NOISE_PINK_KEY,
 ] as const;
 
@@ -26,7 +24,7 @@ export const useSynthNoises = () => {
       context: AudioContext
     ) => {
       const create = (
-        key:TNoiseKey = WHITE_NOISE,
+        key: TNoiseKey = WHITE_NOISE_KEY,
         options?: TNoiseOptions
       ) => {
         return new AudioWorkletNode(
@@ -48,16 +46,16 @@ export const useSynthNoises = () => {
       const refs: TNoiseRefs = {};
       const connect: TNoiseConnect = (
         key: TNoiseKey,
-        output: AudioNode
+        output: AudioNode,
+        options?: TNoiseOptions
       ) => {
-        const node: TNoise = {
+        const noise: TNoise = {
           isStarted: false,
-          node: create(key),
+          node: create(key, options),
           output,
           start: function (
             startTime?: number
           ) {
-            console.log(startTime);
             this.node.port.postMessage(
               startTime
             );
@@ -72,7 +70,7 @@ export const useSynthNoises = () => {
             const nextOptions: TNoiseOptions =
               recycle(prevNode);
             this.node = create(
-              WHITE_NOISE,
+              WHITE_NOISE_KEY,
               nextOptions
             );
             this.isStarted = false;
@@ -80,7 +78,7 @@ export const useSynthNoises = () => {
           },
         };
 
-        return node;
+        return noise;
       };
 
       return {

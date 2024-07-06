@@ -3,6 +3,7 @@ import { WORKLETS } from "~/constants/music/worklets";
 import { TWorkletKey } from "~/types/worklets";
 import { TLoadWorklets } from "~/pages/video/music/_context/load/worklets/types";
 import { useMusicRefs } from "~/pages/video/music/_context/refs";
+import { useLoadEffect } from "~/pages/video/music/_context/load/worklets/effect";
 
 export const loadWorklet = async (
   context: AudioContext,
@@ -14,6 +15,7 @@ export const loadWorklet = async (
 
 export const useLoadWorklets = () => {
   const { audio } = useMusicRefs();
+  const handleLoad = useLoadEffect();
   const init =
     async (): Promise<TLoadWorklets> => {
       const asyncIterable = {
@@ -31,6 +33,7 @@ export const useLoadWorklets = () => {
                   audio.context,
                   name
                 );
+                handleLoad(name);
 
                 audio.worklets[name] =
                   true;

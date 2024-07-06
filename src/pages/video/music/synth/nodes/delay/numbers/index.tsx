@@ -21,18 +21,6 @@ export const NodesDelayNumbers: FC<
     onUpdate,
     children,
   } = props;
-  const {
-    audio: { delays },
-  } = useMusicRefs();
-  console.log(delays);
-  //  console.log(id)
-  // const defaultProps =defaultValue()
-  //   defaultsFromAudioparams(
-  //     delays.refs[id].delayTime,
-  //     "delayTime"
-  //   );
-  const audioParam =
-    props.resolveParam?.("delayTime");
   return (
     <InputsNumber
       name="delayTime"

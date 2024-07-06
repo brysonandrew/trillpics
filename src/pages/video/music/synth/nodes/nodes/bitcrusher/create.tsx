@@ -1,8 +1,6 @@
 import { useMemo } from "react";
 import { useMusicRefs } from "~/pages/video/music/_context/refs";
-import { TGraphNode } from "~/pages/video/music/_context/refs/audio/graph/types";
 import { TUpdateNodeHandlerProps } from "~/components/inputs/slider/types";
-import { isBitcrusher } from "~/utils/music/validation";
 import { NodesBitcrusher } from "~/pages/video/music/synth/nodes/bitcrusher";
 import {
   TBitcrusher,
@@ -17,14 +15,11 @@ export const useNodesSourcesBitcrusherCreate =
     const handleAmp =
       useAmpConnect<TBitcrusher>({
         ...config,
-        connect: (gain) =>
-          audio.bitcrushers.connect(
-            gain
-          ),
+        connect:
+          audio.bitcrushers.connect,
       });
     const result = useMemo(() => {
       const apm = handleAmp();
-
       const resolveAudioParam = (
         key: TBitcrusherOptionsKey
       ) => {
@@ -35,22 +30,13 @@ export const useNodesSourcesBitcrusherCreate =
 
       const props = {
         defaultValue: (key) => {
-          if (!isBitcrusher(apm))
-            return;
-
           return resolveAudioParam(key)
             .value;
         },
         resolveParam: (key) => {
-          if (!isBitcrusher(apm))
-            return;
-
           return resolveAudioParam(key);
         },
         onUpdate: (key, value) => {
-          if (!isBitcrusher(apm))
-            return;
-
           resolveAudioParam(key).value =
             value;
         },

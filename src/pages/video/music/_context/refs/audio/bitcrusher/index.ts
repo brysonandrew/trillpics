@@ -1,6 +1,5 @@
 import { useMemo } from "react";
 import {
-  TBitcrusherKey,
   TBitcrusherOptions,
   TBitcrusherOptionsKey,
   TBitcrusherRefs,
@@ -43,10 +42,8 @@ export const useSynthBitcrushers =
         const refs: TBitcrusherRefs =
           {};
         const connect: TBitcrusherConnect =
-          (
-            output: AudioNode
-          ) => {
-            const node: TBitcrusher = {
+          (output: AudioNode) => {
+            const result: TBitcrusher = {
               isStarted: false,
               node: create(),
               output,
@@ -67,9 +64,7 @@ export const useSynthBitcrushers =
                 const prevNode =
                   this.node;
                 const nextOptions: TBitcrusherOptions =
-                  recycle(
-                    prevNode
-                  );
+                  recycle(prevNode);
                 this.node = create(
                   nextOptions
                 );
@@ -78,7 +73,7 @@ export const useSynthBitcrushers =
               },
             };
 
-            return node;
+            return result;
           };
 
         return {

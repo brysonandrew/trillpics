@@ -1,16 +1,19 @@
 import type { FC } from "react";
 import { LayoutSwitch } from "~/components/layout/switch";
-import { TGraphNodeType, TGraphSource } from "~/pages/video/music/_context/refs/audio/graph/types";
+import {
+  TGraphNodeType,
+  TGraphNodeWithId,
+  TGraphSource,
+} from "~/pages/video/music/_context/refs/audio/graph/types";
 import { NodesSourceBiquad } from "~/pages/video/music/synth/nodes/nodes/biquad";
 import { NodesSourceBitcrusher } from "~/pages/video/music/synth/nodes/nodes/bitcrusher";
 import { NodesSourceDelay } from "~/pages/video/music/synth/nodes/nodes/delay";
-import { TDivMutableRef } from "~/types/elements";
+import { MusicSynthNodesLoaded } from "~/pages/video/music/synth/nodes/source/loaded";
 
 type TProps = {
-  node: TGraphNodeType;
-  index:number;
-  source:TGraphSource
-  containerRef: TDivMutableRef;
+  node: TGraphNodeWithId
+  index: number;
+  source: TGraphSource;
 };
 export const MusicSynthNodesSourceNode: FC<
   TProps
@@ -30,9 +33,13 @@ export const MusicSynthNodesSourceNode: FC<
           }
           case "bitcrusher": {
             return (
-              <NodesSourceBitcrusher
-                {...props}
-              />
+              <MusicSynthNodesLoaded
+                node={props.node}
+              >
+                <NodesSourceBitcrusher
+                  {...props}
+                />
+              </MusicSynthNodesLoaded>
             );
           }
           case "delay": {

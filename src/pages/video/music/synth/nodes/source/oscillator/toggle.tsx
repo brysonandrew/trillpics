@@ -15,7 +15,7 @@ export const useNodesSourceOscillatorToggle =
     ) => {
       if (!result) return;
       if (result.apm.isStarted) {
-        result.apm.end();
+        result.apm.end(audio.context.currentTime);
         console.log("END");
 
         return;
@@ -24,7 +24,7 @@ export const useNodesSourceOscillatorToggle =
         audio.gains.midis.preamp
       );
 
-      result.apm.start();
+      result.apm.start(audio.context.currentTime);
 
       const last =
         source.nodes[

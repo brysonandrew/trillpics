@@ -13,7 +13,7 @@ export const NodesSourceBiquad: FC<
   return (
     <>
       {renderUi(
-        props,
+        'nodes',
         IconsBiquad,
         result.ui
       )}

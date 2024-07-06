@@ -8,7 +8,7 @@ import {
   TKarplusConnect,
   TKarplusRefs,
 } from "~/pages/video/music/_context/refs/audio/karpluses/types";
-import { WHITE_NOISE } from "~/pages/video/music/_context/refs/audio/noises";
+import { WHITE_NOISE_KEY } from "~/pages/video/music/_context/refs/audio/noises";
 import {
   TNoise,
   TNoiseKey,
@@ -51,7 +51,7 @@ export const useSynthKarpluses = () => {
       const refs: TKarplusRefs = {};
       const connect: TKarplusConnect = (
         output: AudioNode,
-        noiseKey: TNoiseKey = WHITE_NOISE
+        noiseKey: TNoiseKey = WHITE_NOISE_KEY
       ) => {
         const node = create();
 

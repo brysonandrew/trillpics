@@ -12,7 +12,7 @@ import { useMusicInitRefsSave } from "~/pages/video/music/_context/refs/audio/sa
 import { TScheduleOptions } from "~/pages/video/music/_context/refs/schedule/types";
 import { TLoadWorklets } from "~/pages/video/music/_context/load/worklets/types";
 import { useSynthBitcrushers } from "~/pages/video/music/_context/refs/audio/bitcrusher";
-import { LOAD_WORKLETS } from "~/pages/video/music/_context/load/worklets/constants";
+import { LOAD_WORKLETS } from "~/pages/video/music/_context/load/worklets/worklets";
 
 export const useRefsAudio = (
   options: TScheduleOptions

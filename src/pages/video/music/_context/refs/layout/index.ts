@@ -5,14 +5,19 @@ import { PAGE_SCROLL_MODES } from "~/pages/video/music/_context/refs/layout/cons
 import { TScroll } from "~/pages/video/music/_context/refs/layout/types";
 
 type TRefUpdateRecord<
-  T extends HTMLElement = HTMLInputElement
-> = TRefRecord<T>;
-
+  T extends HTMLElement = HTMLInputElement,
+  K extends string = string
+> = TRefRecord<T, K>;
+type TGraph = TRefUpdateRecord<
+  HTMLDivElement,
+  "sources" | "nodes" | string
+>;
 type TInputRefs = {
   button: TRefUpdateRecord<HTMLButtonElement>;
   number: TRefUpdateRecord;
   slider: TRefUpdateRecord;
   inputs: TRefUpdateRecord<HTMLDivElement>;
+  graph: TGraph;
 };
 
 type TRefsInputs = TInputRefs & {
@@ -30,6 +35,7 @@ export const useRefsLayout = () => {
 
   const layout =
     useMemo<TRefsInputs>(() => {
+      const graph: TGraph = {};
       const scroll: TScroll = {
         current: null,
         y: scrollY,
@@ -37,10 +43,11 @@ export const useRefsLayout = () => {
         modeIndex: 0,
       };
       const inputRefsCreator = {
-        button:{},
+        button: {},
         number: {},
         slider: {},
         inputs: {},
+        graph,
         update: function <
           T extends HTMLElement
         >(

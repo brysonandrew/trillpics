@@ -9,19 +9,16 @@ type TProps = TSourceProps;
 export const NodesSourceKarplus: FC<
   TProps
 > = (props) => {
-  const { source, containerRef } =
-    props;
+  const { source } = props;
   const result =
-    useNodesSourceKarplusCreate(source);
-  source.refs["karplus-strong"] =
-    result;
+    useNodesSourceKarplusCreate();
   const handleClick =
     useNodesSourceKarplusToggle();
-
   return (
     <>
       {renderUi(
-        props,
+        'sources',
+
         () => (
           <button
             onClick={() =>

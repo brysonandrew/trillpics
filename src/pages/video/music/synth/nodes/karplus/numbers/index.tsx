@@ -1,8 +1,6 @@
 import type { FC } from "react";
 import { TUpdateNodeHandlerProps } from "~/components/inputs/slider/types";
 import { ModulatorsParams } from "~/pages/video/music/modulators/params";
-import { useMusicRefs } from "~/pages/video/music/_context/refs";
-import { isNull } from "~/utils/validation/is/null";
 import {
   KARPLUS_KEY,
   KARPLUS_STRONG_PARAMS,
@@ -25,7 +23,6 @@ export const NodesKarplusStrongNumbers: FC<
         props.resolveParam(key);
       return [key, param, handler];
     });
-    console.log(params)
   return (
     <ModulatorsParams
       type={KARPLUS_KEY}

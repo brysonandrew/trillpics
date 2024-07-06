@@ -1,18 +1,23 @@
-import { FC, useRef } from "react";
+import { FC } from "react";
 import { resolveSquare } from "@brysonandrew/measure";
 import { MusicSynthNodesSourceNodes } from "~/pages/video/music/synth/nodes/nodes";
-import { MusicSynthNodesSourceType } from "~/pages/video/music/synth/types";
-import { TGraphSource } from "~/pages/video/music/_context/refs/audio/graph/types";
+import { MusicSynthNodesSourceStart } from "~/pages/video/music/synth/nodes/source/start";
+import { TGraphSourceWithId } from "~/pages/video/music/_context/refs/audio/graph/types";
 import { useVideoStyle } from "~/pages/video/style";
 import { box } from "~uno/rules/box";
+import { useMusicRefs } from "~/pages/video/music/_context/refs";
+import { GRAPH_LAYOUT_KEYS } from "~/pages/video/music/synth/nodes/constants";
+import { key } from "localforage";
 
-type TProps = { source: TGraphSource };
+type TProps = {
+  source: TGraphSourceWithId;
+  sourceIndex: number;
+};
 
 export const MusicSynthNodesSource: FC<
   TProps
-> = ({ source }) => {
-  const ref =
-    useRef<null | HTMLDivElement>(null);
+> = ({ source, sourceIndex }) => {
+  const { layout } = useMusicRefs();
   const { width, sidebarWidthOffset } =
     useVideoStyle();
   return (
@@ -27,17 +32,15 @@ export const MusicSynthNodesSource: FC<
             paddingRight: box.m025,
           }}
         >
-          <MusicSynthNodesSourceType
+          <MusicSynthNodesSourceStart
             source={source}
-            containerRef={ref}
+            sourceIndex={sourceIndex}
           />
           <MusicSynthNodesSourceNodes
-            containerRef={ref}
             source={source}
           />
         </div>
         <div
-          ref={ref}
           className="relative column-stretch"
           style={{
             width:
@@ -45,7 +48,24 @@ export const MusicSynthNodesSource: FC<
               sidebarWidthOffset +
               box.m0125,
           }}
-        ></div>
+        >
+          {GRAPH_LAYOUT_KEYS.map(
+            (key) => (
+              <div
+                key={key}
+                ref={(instance) => {
+                  if (!instance) return;
+                  layout.update(
+                    "graph",
+                    key,
+                    instance
+                  );
+                }}
+                className="relative column-stretch"
+              ></div>
+            )
+          )}
+        </div>
       </div>
     </div>
   );

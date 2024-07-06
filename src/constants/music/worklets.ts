@@ -1,7 +1,7 @@
 export const WORKLETS = [
   "bitcrusher",
-  "karplus-strong",
   "pink-noise",
   "white-noise",
+  "karplus-strong",
   "ring-mod",
 ] as const;

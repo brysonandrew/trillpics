@@ -1,7 +1,7 @@
 import { FC } from "react";
 import { useVideoStyle } from "~/pages/video/style";
 import { useMusicRefs } from "~/pages/video/music/_context/refs";
-import { TGraphSource } from "~/pages/video/music/_context/refs/audio/graph/types";
+import { TGraphSourceWithId } from "~/pages/video/music/_context/refs/audio/graph/types";
 import { MusicSynthNodesSource } from "~/pages/video/music/synth/nodes/source";
 
 export const MusicSynthNodes: FC =
@@ -14,18 +14,20 @@ export const MusicSynthNodes: FC =
         style={{
           width,
         }}
-        ref={audio.graph.ref}
       >
         <>
           {audio.graph.sources.map(
             (
-              source: TGraphSource,
-              row: number
+              source: TGraphSourceWithId,
+              sourceIndex: number
             ) => {
               return (
                 <MusicSynthNodesSource
-                  key={`${source.key}-${row}`}
+                  key={`${source.key}-${sourceIndex}`}
                   source={source}
+                  sourceIndex={
+                    sourceIndex
+                  }
                 />
               );
             }

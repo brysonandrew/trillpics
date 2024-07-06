@@ -7,7 +7,7 @@ export type TNoiseOptionsKey =
   keyof TNoiseOptions;
 export type TNoiseCreate = (
   key: TNoiseKey,
-  options: TNoiseOptions
+  options?: TNoiseOptions
 ) => AudioWorkletNode;
 export type TNoiseRecycle = (
   node: AudioWorkletNode

@@ -1,18 +1,19 @@
 import type { FC } from "react";
 import { motion } from "framer-motion";
 import { createPortal } from "react-dom";
-import { TSourceProps } from "~/pages/video/music/synth/nodes/types";
+import { TGraphLayoutKey } from "~/pages/video/music/synth/nodes/types";
 import { box } from "~uno/rules/box";
+import { useMusicRefs } from "~/pages/video/music/_context/refs";
 
 export const renderUi = (
-  config: TSourceProps,
+  key: TGraphLayoutKey,
   Icon: FC,
-  ui?: JSX.Element,
-
+  ui?: JSX.Element
 ) => {
+  const { layout } = useMusicRefs();
   return (
     <>
-      {config.containerRef.current &&
+      {layout.graph[key]?.current &&
         createPortal(
           <motion.div
             className="relative"
@@ -29,7 +30,7 @@ export const renderUi = (
             </motion.div>
             {ui}
           </motion.div>,
-          config.containerRef.current
+          layout.graph[key].current
         )}
     </>
   );

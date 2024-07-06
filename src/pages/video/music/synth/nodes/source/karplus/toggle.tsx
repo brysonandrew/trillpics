@@ -16,16 +16,16 @@ export const useNodesSourceKarplusToggle =
     ) => {
       if (!result) return;
       if (result.apm.isStarted) {
-        result.apm.end();
-        console.log("END");
-
+        result.apm.end(audio.context.currentTime);
         return;
       }
 
       result.apm.output.connect(
         audio.gains.midis.preamp
       );
-      result.apm.start();
+      result.apm.start(
+        audio.context.currentTime
+      );
 
       const last =
         source.nodes[

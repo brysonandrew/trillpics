@@ -1,24 +1,17 @@
 import { useMusicRefs } from "~/pages/video/music/_context/refs";
 import { NodesKarplusStrong } from "~/pages/video/music/synth/nodes/karplus";
 import { TKarplusStrongOptionsKey } from "~/pages/video/music/synth/nodes/karplus/types";
-import {
-  NOISE_PINK_KEY,
-  WHITE_NOISE,
-} from "~/pages/video/music/_context/refs/audio/noises";
+import { WHITE_NOISE_KEY } from "~/pages/video/music/_context/refs/audio/noises";
 import { KARPLUS_KEY } from "~/pages/video/music/synth/nodes/karplus/constants";
 import { useMemo } from "react";
-import { TGraphSource } from "~/pages/video/music/_context/refs/audio/graph/types";
 
 export const useNodesSourceKarplusCreate =
-  (source:TGraphSource) => {
+  () => {
     const { audio } = useMusicRefs();
 
     const result = useMemo(() => {
       if (
-        !audio.worklets[
-          NOISE_PINK_KEY
-        ] ||
-        !audio.worklets[WHITE_NOISE] ||
+        !audio.worklets[WHITE_NOISE_KEY] ||
         !audio.worklets[KARPLUS_KEY]
       ) {
         console.log(
@@ -50,6 +43,7 @@ export const useNodesSourceKarplusCreate =
       };
       const ui = (
         <NodesKarplusStrong
+
           onUpdate={handleUpdate}
           defaultValue={(name) =>
             resolveParam(name).value

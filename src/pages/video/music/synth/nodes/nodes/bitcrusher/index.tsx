@@ -16,10 +16,9 @@ export const NodesSourceBitcrusher: FC<
   return (
     <>
       {renderUi(
-props,
+        "nodes",
         IconsBitcrusher,
-        result.ui,
-
+        result.ui
       )}
     </>
   );

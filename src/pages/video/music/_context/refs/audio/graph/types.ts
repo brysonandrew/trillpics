@@ -1,4 +1,3 @@
-import { MutableRefObject } from "react";
 import { TKarplusStrongOptions } from "~/pages/video/music/synth/nodes/karplus/types";
 import { TSynthSourceKey } from "~/pages/video/music/synth/nodes/sources/constants";
 import { TDelays } from "~/pages/video/music/_context/refs/audio/delays/types";
@@ -7,7 +6,7 @@ import { TKarplus } from "~/pages/video/music/_context/refs/audio/karpluses/type
 import { TOscillator } from "~/pages/video/music/_context/refs/audio/oscillators/types";
 import {
   NOISE_PINK_KEY,
-  WHITE_NOISE,
+  WHITE_NOISE_KEY,
 } from "~/pages/video/music/_context/refs/audio/noises";
 import {
   TNoise,
@@ -45,7 +44,8 @@ export type TGraphNode =
   TGraphNodeType & {
     amp?: GainNode;
   };
-// ref: MutableRefObject<null | HTMLDivElement>;
+export type TGraphNodeWithId =
+  TGraphNode & { id: string };
 
 export type TGraphNodeAudioKey =
   | TSynthSourceKey
@@ -72,7 +72,7 @@ export type TGraphRef<
 export type TGraphRefs = {
   [OSCILLATOR_KEY]: TGraphRef<TOscillator>;
   [NOISE_PINK_KEY]: TGraphRef<TNoise>;
-  [WHITE_NOISE]: TGraphRef<TNoise>;
+  [WHITE_NOISE_KEY]: TGraphRef<TNoise>;
   [KARPLUS_KEY]: TGraphRef<TKarplus>;
   [BITCRUSHER_KEY]: TGraphRef<TBitcrusher>;
   [BIQUAD_KEY]: TGraphRef<BiquadFilterNode>;
@@ -86,10 +86,14 @@ export type TGraphSource = {
     | TNoiseOptions;
   nodes: readonly TGraphNode[];
   refs: Partial<TGraphRefs>;
-  // amps: GainNode[];
-  // ref?: MutableRefObject<null | HTMLDivElement>;
+};
+export type TGraphSourceWithId = Omit<
+  TGraphSource,
+  "nodes"
+> & {
+  id: string;
+  nodes: TGraphNodeWithId[];
 };
 export type TAudioGraph = {
-  sources: readonly TGraphSource[];
-  ref: MutableRefObject<null | HTMLDivElement>;
+  sources: readonly TGraphSourceWithId[];
 };

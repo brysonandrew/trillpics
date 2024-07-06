@@ -21,7 +21,8 @@ export const NodesSourceOscillator: FC<
   return (
     <>
       {renderUi(
-        props,
+        'sources',
+
         () => (
           <button
             onClick={() =>

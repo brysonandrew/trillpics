@@ -13,7 +13,8 @@ export const NodesSourceDelay: FC<
   return (
     <>
       {renderUi(
-        props,
+        'nodes',
+
         IconsTimer,
         result.ui
       )}

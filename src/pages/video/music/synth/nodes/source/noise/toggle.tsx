@@ -1,40 +1,36 @@
+import { useNodesSourceNoiseCreate } from "~/pages/video/music/synth/nodes/source/noise/create";
+import { useMusicRefs } from "~/pages/video/music/_context/refs";
 import { TGraphSource } from "~/pages/video/music/_context/refs/audio/graph/types";
 import { isDefined } from "~/utils/validation/is/defined";
 
 export const useNodesSourceNoiseToggle =
   () => {
+    const { audio } = useMusicRefs();
     const handler = (
-      source: TGraphSource
+      source: TGraphSource,
+      result: ReturnType<
+        typeof useNodesSourceNoiseCreate
+      >
     ) => {
-      if (!source.refs["white-noise"])
-        return;
+      if (result.apm.isStarted) {
+        result.apm.end(
+          audio.context.currentTime
+        );
 
-      if (
-        source.refs["white-noise"]?.apm
-          .isStarted
-      ) {
-        source.refs[
-          "white-noise"
-        ].apm.end();
-        console.log("END");
+        const last =
+          source.nodes[
+            source.nodes.length - 1
+          ].amp;
+        if (isDefined(last)) {
+          last.connect(
+            audio.gains.midis.master
+          );
+        }
       } else {
-        source.refs[
-          "white-noise"
-        ].apm.start();
+        result.apm.start(
+          audio.context.currentTime
+        );
       }
-
-      // source.refs[
-      //   key
-      // ].apm.output.connect(
-      //   audio.gains.midis.master
-      // );
-      // audio.gains.midis.master.gain.value = 0.05;
-      // audio.gains.midis.master.connect(
-      //   audio.gains.master
-      // );
-      // audio.gains.master.connect(
-      //   audio.context.destination
-      // );
     };
 
     return handler;
