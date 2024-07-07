@@ -1,5 +1,6 @@
 import { useMemo } from "react";
 import { OSCILLATOR_KEY } from "~/pages/video/music/synth/nodes/oscillator/constants";
+import { TOscillatorParamKey } from "~/pages/video/music/synth/nodes/oscillator/types";
 import {
   TOscillator,
   TOscillatorRefs,
@@ -18,6 +19,7 @@ export const useSynthOscillators =
             context,
             options
           );
+
         const recycle = (
           node: OscillatorNode
         ): OscillatorOptions => {

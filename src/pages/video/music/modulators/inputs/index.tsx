@@ -21,8 +21,8 @@ import { InputsNumberSm } from "~/components/inputs/number/sm";
 import { box } from "~uno/rules/box";
 import { defaultsFromAudioparams } from "~/pages/video/music/synth/nodes/defaults";
 import { TDivProps } from "@brysonandrew/config-types";
-import { key } from "localforage";
 import { TUseIdsResult } from "~/pages/video/music/modulators/ids";
+
 const INPUTS = [
   "slider",
   "number",
@@ -145,7 +145,8 @@ export const ModulatorsInputs: FC<
       key: TModulatorParamKey
     ): TUpdateNumberHandler =>
     (value) => {
-      const param = resolveAudioParam(key);
+      const param =
+        resolveAudioParam(key);
       param.value = value;
     };
 
@@ -153,7 +154,8 @@ export const ModulatorsInputs: FC<
     (key: TModulatorParamKey) => {
       const handler: TUpdateNumberHandler =
         handleUpdate(key);
-      const param = resolveAudioParam(key);
+      const param =
+        resolveAudioParam(key);
       return [key, param, handler];
     }
   ).filter(
@@ -192,7 +194,7 @@ export const ModulatorsInputs: FC<
               {...defaultsFromAudioparams(
                 param,
                 {
-                  graphKey:id,
+                  graphKey: id,
                   paramKey,
                 }
               )}

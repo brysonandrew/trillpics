@@ -15,7 +15,7 @@ export const BIQUAD_FILTER_TYPES: readonly BiquadFilterType[] =
     "notch",
     "peaking",
   ] as const;
-export const BIQUAD_FILTER_NUMBER_OPTIONS =
+export const BIQUAD_FILTER_PARAM_KEYS =
   {
     frequency: "frequency",
     Q: "Q",
@@ -31,10 +31,10 @@ export const BIQUAD_FILTER_NUMBER_TITLES =
 
 export const BIQUAD_FILTER_OPTIONS = {
   type: "type",
-  ...BIQUAD_FILTER_NUMBER_OPTIONS,
+  ...BIQUAD_FILTER_PARAM_KEYS,
 } as const;
 
 export const BIQUAD_FILTER_PARAMS =
   resolveObjectKeys(
-    BIQUAD_FILTER_NUMBER_OPTIONS
+    BIQUAD_FILTER_PARAM_KEYS
   );

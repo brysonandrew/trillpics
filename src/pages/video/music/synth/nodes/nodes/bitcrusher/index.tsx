@@ -1,25 +1,22 @@
 import { FC } from "react";
-import { IconsBitcrusher } from "~/components/icons/bitcrusher";
-import { useNodesSourcesBitcrusherCreate } from "~/pages/video/music/synth/nodes/nodes/bitcrusher/create";
-import { renderUi } from "~/pages/video/music/synth/nodes/render/ui";
+import { useNodesSourcesBitcrusher } from "~/pages/video/music/synth/nodes/nodes/bitcrusher/hook";
+import { SynthNode } from "~/pages/video/music/synth/nodes/node";
 import { TSourceNodesProps } from "~/pages/video/music/synth/nodes/types";
+import { NodesBitcrusher } from "~/pages/video/music/synth/nodes/bitcrusher";
 
 type TProps = TSourceNodesProps;
 export const NodesSourceBitcrusher: FC<
   TProps
 > = (props) => {
-  const result =
-    useNodesSourcesBitcrusherCreate(
-      props
-    );
+  const processor =
+    useNodesSourcesBitcrusher(props);
   return (
-    <>
-      {renderUi(
-        "nodes",
-        'bitcrusher',
-        IconsBitcrusher,
-        result.ui
-      )}
-    </>
+    <SynthNode node={props.node}>
+      <NodesBitcrusher
+        resolveAudioParam={
+          (key) => processor.node.parameters.get(key)
+        }
+      />
+    </SynthNode>
   );
 };

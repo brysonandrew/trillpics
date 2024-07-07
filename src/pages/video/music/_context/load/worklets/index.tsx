@@ -1,4 +1,3 @@
-import { log } from "console";
 import { WORKLETS } from "~/constants/music/worklets";
 import { TWorkletKey } from "~/types/worklets";
 import { TLoadWorklets } from "~/pages/video/music/_context/load/worklets/types";
@@ -29,14 +28,18 @@ export const useLoadWorklets = () => {
                   WORKLETS.length - 1;
                 const name: TWorkletKey =
                   WORKLETS[i];
-                await loadWorklet(
-                  audio.context,
-                  name
-                );
-                handleLoad(name);
+                if (
+                  !audio.worklets[name]
+                ) {
+                  await loadWorklet(
+                    audio.context,
+                    name
+                  );
+                  handleLoad(name);
 
-                audio.worklets[name] =
-                  true;
+                  audio.worklets[name] =
+                    true;
+                }
 
                 const value = done
                   ? null
@@ -47,7 +50,7 @@ export const useLoadWorklets = () => {
                   done,
                 });
               } catch (error) {
-                log(
+                console.log(
                   "Error loading worklet"
                 );
               }

@@ -8,11 +8,10 @@ export type TSourceProps = {
   source: TGraphSourceWithId;
 };
 
-export type TSourceNodesProps =
-  TSourceProps & {
-    node: TGraphNodeWithId;
-    index: number;
-  };
+export type TSourceNodesProps = TSourceProps & {
+  node: TGraphNodeWithId;
+  index: number;
+};
 
 export type TNodesOptions<
   T extends string

@@ -1,7 +1,8 @@
 import type { FC } from "react";
-import { IconsGuitar } from "~/components/icons/guitar";
-import { renderUi } from "~/pages/video/music/synth/nodes/render/ui";
-import { useNodesSourceKarplusCreate } from "~/pages/video/music/synth/nodes/source/karplus/create";
+import { NodesKarplus } from "~/pages/video/music/synth/nodes/karplus";
+import { SynthNode } from "~/pages/video/music/synth/nodes/node";
+import { SynthNodeTitleButton } from "~/pages/video/music/synth/nodes/node/title/button";
+import { useNodesSourceKarplus } from "~/pages/video/music/synth/nodes/source/karplus/hook";
 import { useNodesSourceKarplusToggle } from "~/pages/video/music/synth/nodes/source/karplus/toggle";
 import { TSourceProps } from "~/pages/video/music/synth/nodes/types";
 
@@ -10,29 +11,30 @@ export const NodesSourceKarplus: FC<
   TProps
 > = (props) => {
   const { source } = props;
-  const result =
-    useNodesSourceKarplusCreate();
+  const processor =
+    useNodesSourceKarplus();
   const handleClick =
     useNodesSourceKarplusToggle();
   return (
-    <>
-      {renderUi(
-        "sources",
-        "strings",
-        () => (
-          <button
-            onClick={() =>
-              handleClick(
-                source,
-                result
-              )
-            }
-          >
-            <IconsGuitar />
-          </button>
-        ),
-        result.ui
+    <SynthNode
+      node={source}
+      SynthNodeTitleFc={() => (
+        <SynthNodeTitleButton
+          onClick={() =>
+            handleClick(
+              props.source,
+              processor
+            )
+          }
+          node={props.source}
+        />
       )}
-    </>
+    >
+      <NodesKarplus
+        resolveAudioParam={
+          (key) => processor.node.parameters.get(key)
+        }
+      />
+    </SynthNode>
   );
 };

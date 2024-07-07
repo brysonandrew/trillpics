@@ -1,4 +1,7 @@
-import { TOscillatorKey } from "~/pages/video/music/synth/nodes/oscillator/types";
+import {
+  TOscillatorKey,
+  TOscillatorParamKey,
+} from "~/pages/video/music/synth/nodes/oscillator/types";
 
 export type TOscillatorCreate = (
   OscillatorOptions: OscillatorOptions

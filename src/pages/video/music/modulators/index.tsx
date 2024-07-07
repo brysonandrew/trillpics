@@ -77,7 +77,6 @@ export const Modulators: FC<TProps> = ({
 
       {modulators.refs[id] && (
         <ModulatorsInputs
-        
           ids={IDS}
           style={{
             display: isStarted

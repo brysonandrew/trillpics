@@ -7,10 +7,10 @@ import { TResolveAudioParamProps } from "~/pages/video/music/types";
 
 type TProps = {
   dropdowns: Pick<
-  TInputsSelectProps,
+    TInputsSelectProps,
     "onValueChange"
   >;
-  numbers: TResolveAudioParamProps<TOscillatorParamKey>; // TResolveAudioParamProps
+  numbers: TResolveAudioParamProps<TOscillatorParamKey>;
 };
 export const NodesOscillator: FC<
   TProps

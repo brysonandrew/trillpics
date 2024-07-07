@@ -1,5 +1,5 @@
 import { ampLast } from "~/pages/video/music/synth/nodes/nodes/amp/last";
-import { TSourceNodesProps } from "~/pages/video/music/synth/nodes/types";
+import { TSourceProps } from "~/pages/video/music/synth/nodes/types";
 import { useMusicRefs } from "~/pages/video/music/_context/refs";
 import {
   TGraphAudioNode,
@@ -7,7 +7,8 @@ import {
 } from "~/pages/video/music/_context/refs/audio/graph/types";
 
 type TConfig<T extends TGraphAudioRef> =
-  TSourceNodesProps & {
+  TSourceProps & {
+    index: number;
     connect(gain: GainNode): T;
   };
 export const useAmpConnect = <
@@ -22,9 +23,6 @@ export const useAmpConnect = <
   const handler = () => {
     const amp: GainNode =
       audio.gains.create();
-
-    console.log(source, source.nodes[index])
-
     const lastAmp = ampLast(
       source.nodes,
       index
@@ -40,7 +38,7 @@ export const useAmpConnect = <
       "node" in processor
         ? processor.node
         : processor;
-    
+
     preamp.connect(node);
     node.connect(amp);
     source.nodes[index].amp = amp;

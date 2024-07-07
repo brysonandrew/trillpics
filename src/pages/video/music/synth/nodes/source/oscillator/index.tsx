@@ -1,41 +1,65 @@
 import type { FC } from "react";
 import { IconsOscillator } from "~/components/icons/oscillator";
 import { TSourceProps } from "~/pages/video/music/synth/nodes/types";
-import { renderUi } from "~/pages/video/music/synth/nodes/render/ui";
-import { useNodesSourceOscillatorCreate } from "~/pages/video/music/synth/nodes/source/oscillator/create";
+import { SynthNode } from "~/pages/video/music/synth/nodes/node";
+import { useNodesSourceOscillator } from "~/pages/video/music/synth/nodes/source/oscillator/create";
 import { useNodesSourceOscillatorToggle } from "~/pages/video/music/synth/nodes/source/oscillator/toggle";
+import { NodesOscillator } from "~/pages/video/music/synth/nodes/oscillator";
+import { SynthNodeTitle } from "~/pages/video/music/synth/nodes/node/title";
+import { SynthNodeTitleButton } from "~/pages/video/music/synth/nodes/node/title/button";
 
 type TProps = TSourceProps;
 export const NodesSourceOscillator: FC<
   TProps
 > = (props) => {
-  props.source.refs.oscillator =
-    useNodesSourceOscillatorCreate(
+  const processor =
+    useNodesSourceOscillator(
       props.source
     );
-  const result =
-    props.source.refs.oscillator;
   const handleClick =
     useNodesSourceOscillatorToggle();
   return (
-    <>
-      {renderUi(
-        "sources",
-        'oscillator',
-        () => (
-          <button
-            onClick={() =>
-              handleClick(
-                props.source,
-                result
-              )
-            }
-          >
-            <IconsOscillator />
-          </button>
-        ),
-        result.ui
+    <SynthNode
+      node={props.source}
+      SynthNodeTitleFc={() => (
+        <SynthNodeTitleButton
+          onClick={() =>
+            handleClick(
+              props.source,
+              processor
+            )
+          }
+          node={props.source}
+        />
       )}
-    </>
+      // SynthNodeTitleFc={() => (
+      //   <button
+      //     onClick={() =>
+      //       handleClick(
+      //         props.source,
+      //         processor
+      //       )
+      //     }
+      //   >
+      //     <SynthNodeTitle
+      //       node={props.source}
+      //     />
+      //   </button>
+      // )}
+    >
+      <NodesOscillator
+        numbers={{
+          resolveAudioParam:
+          (key) => processor.node[key]
+        }}
+        dropdowns={{
+          onValueChange: (
+            value: OscillatorType
+          ) => {
+            processor.node.type = value;
+          },
+        }}
+      />
+    </SynthNode>
   );
 };

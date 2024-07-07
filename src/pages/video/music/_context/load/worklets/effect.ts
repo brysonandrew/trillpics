@@ -1,34 +1,45 @@
 import { KARPLUS_KEY } from "~/pages/video/music/synth/nodes/karplus/constants";
 import { useMusicRefs } from "~/pages/video/music/_context/refs";
+import { TGraphNodeWithId, TGraphSourceWithId } from "~/pages/video/music/_context/refs/audio/graph/types";
 import { WHITE_NOISE_KEY } from "~/pages/video/music/_context/refs/audio/noises";
-import { TDivMutableRef } from "~/types/elements";
+import { TInputRefsGraph } from "~/pages/video/music/_context/refs/layout/types";
 import { TWorkletKey } from "~/types/worklets";
 
 const handleAddWhenLoaded = (
-  key: string,
-  id: string,
-  container: TDivMutableRef
+  node:
+    | TGraphSourceWithId
+    | TGraphNodeWithId,
+  graph: TInputRefsGraph
 ) => {
-  switch (key) {
+  switch (node.key) {
     case KARPLUS_KEY:
     case WHITE_NOISE_KEY:
       const element =
-        document.getElementById(id);
+      graph[node.id];
+    
       if (element) {
-        if (
-          container &&
-          container.current !== null
-        ) {
-          element.style.opacity = "1";
-          container.current.appendChild(
-            element
-          );
-        } else {
-          element.style.opacity = "0";
-          document.body.appendChild(
-            element
-          );
-        }
+        element.current.style.opacity = "1";
+
+        // if (
+        //   container &&
+        //   container.current !== null
+        // ) {
+        //   console.log(key, "ADDED ");
+        //   container.current.appendChild(
+        //     element
+        //   );
+        // } else {
+        //   console.log(
+        //     key,
+        //     "ADDED no el ",
+        //     element
+        //   );
+
+          // element.style.opacity = "0";
+          // document.body.appendChild(
+          //   element
+          // );
+        // }
       }
     default:
       return null;
@@ -46,18 +57,27 @@ export const useLoadEffect = () => {
   ) => {
     graph.sources.forEach((source) => {
       if (source.key === name) {
-        handleAddWhenLoaded(
+        console.log(
+          "useLoadEffect",
+          "ADDED no el"
+        );
+        console.log(
           source.key,
-          source.id,
-          layout.graph.sources
+          name,
+          source,
+          layout
+        );
+
+        handleAddWhenLoaded(
+          source,
+          layout.graph
         );
       }
       source.nodes.forEach((node) => {
         if (node.key === name) {
           handleAddWhenLoaded(
-            node.key,
-            node.id,
-            layout.graph.nodes
+            node,
+            layout.graph
           );
         }
       });

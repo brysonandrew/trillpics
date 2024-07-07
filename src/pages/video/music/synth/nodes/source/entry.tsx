@@ -10,13 +10,10 @@ import { useMusicRefs } from "~/pages/video/music/_context/refs";
 import { MusicSynthNodesLoaded } from "~/pages/video/music/synth/nodes/source/loaded";
 import { WHITE_NOISE_KEY } from "~/pages/video/music/_context/refs/audio/noises";
 import { OSCILLATOR_KEY } from "~/pages/video/music/synth/nodes/oscillator/constants";
+import { TSourceEntryProps } from "~/pages/video/music/synth/nodes/source/types";
 
-type TProps = {
-  source: TGraphSourceWithId;
-  sourceIndex: number;
-};
 export const MusicSynthNodesSourceEntry: FC<
-  TProps
+  TSourceEntryProps
 > = (props) => {
   const { layout } = useMusicRefs();
 

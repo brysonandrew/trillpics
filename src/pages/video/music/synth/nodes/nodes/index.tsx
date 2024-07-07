@@ -1,16 +1,10 @@
-import { FC, Fragment } from "react";
-import { TypographyXxxxs } from "~/components/layout/typography/xxxxs";
+import { FC } from "react";
 import { MusicSynthNodesSourceNode } from "~/pages/video/music/synth/nodes/nodes/node";
-import {
-  TGraphNodeWithId,
-  TGraphSourceWithId,
-} from "~/pages/video/music/_context/refs/audio/graph/types";
+import { TSourceEntryProps } from "~/pages/video/music/synth/nodes/source/types";
+import { TGraphNodeWithId } from "~/pages/video/music/_context/refs/audio/graph/types";
 
-type TProps = {
-  source: TGraphSourceWithId;
-};
 export const MusicSynthNodesSourceNodes: FC<
-  TProps
+  TSourceEntryProps
 > = ({ source }) => {
   return (
     <div className="relative">

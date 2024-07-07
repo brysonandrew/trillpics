@@ -9,11 +9,6 @@ import { useRefsGrid } from "~/pages/video/music/_context/refs/grid";
 
 export type TAudioNodeId = string;
 
-export type TRefRecord<
-  T extends HTMLElement,
-  K extends string = string
-> = Record<K, MutableRefObject<T>>;
-
 export type TUpdateStepsRecord = (
   nextSteps: TMidiValues,
   nextScaleKey: TScaleKey

@@ -1,7 +1,7 @@
 import { useAmpLastToMaster } from "~/pages/video/music/synth/nodes/nodes/amp/last/to-master";
-import { useNodesSourceNoiseCreate } from "~/pages/video/music/synth/nodes/source/noise/create";
 import { useMusicRefs } from "~/pages/video/music/_context/refs";
 import { TGraphSourceWithId } from "~/pages/video/music/_context/refs/audio/graph/types";
+import { TNoise } from "~/pages/video/music/_context/refs/audio/noises/types";
 
 export const useNodesSourceNoiseToggle =
   () => {
@@ -10,18 +10,16 @@ export const useNodesSourceNoiseToggle =
       useAmpLastToMaster();
     const handler = (
       source: TGraphSourceWithId,
-      result: ReturnType<
-        typeof useNodesSourceNoiseCreate
-      >
+      processor: TNoise
     ) => {
-      if (result.processor.isStarted) {
-        result.processor.end(
+      if (processor.isStarted) {
+        processor.end(
           audio.context.currentTime
         );
 
         handleAmpToMaster(source);
       } else {
-        result.processor.start(
+        processor.start(
           audio.context.currentTime
         );
       }

@@ -40,16 +40,6 @@ export type TSynthConfigKey =
   | keyof typeof DEFAULT_MULTI_SYNTH_OPTIONS
   | keyof typeof DEFAULT_SYNTH_SLIDER_OPTIONS;
 
-  export const FREQUENCY_TITLE = {
-    frequency: "Hz",
-  } as const;
-
-  // export const INPUTS_NUMBER_OVERRIDES: Record<
-  //   string,
-  //   Partial<TInputsNumberBaseProps>
-  // > = {
-  //   // frequency: FREQUENCY_OVERRIDES,
-  //   delayTime: DELAY_TIME_OVERRIDES,
-  //   Q: Q_OVERRIDES,
-  // };
-  
+export const FREQUENCY_TITLE = {
+  frequency: "Hz",
+} as const;

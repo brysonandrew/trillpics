@@ -1,3 +1,4 @@
+import { FC } from "react";
 import {
   TKarplusKey,
   TKarplusOptions,
@@ -35,6 +36,12 @@ import {
   TRingMods,
 } from "~/pages/video/music/_context/refs/audio/ring-mod/types";
 import { RING_MOD_KEY } from "~/pages/video/music/_context/refs/audio/ring-mod";
+import { TIconsSvgProps } from "~/components/icons/svg";
+
+type TTitleProps = {
+  title: string;
+  Icon: FC<TIconsSvgProps>;
+};
 
 export type TGraphNodeType =
   | {
@@ -66,9 +73,10 @@ export type TGraphNodeType =
       options: BiquadFilterOptions;
     };
 export type TGraphNode =
-  TGraphNodeType & {
-    amp?: GainNode;
-  };
+  TGraphNodeType &
+    TTitleProps & {
+      amp?: GainNode;
+    };
 export type TGraphNodeWithId =
   TGraphNode & { id: string };
 
@@ -129,10 +137,11 @@ export type TGraphSource = (
       key: TNoiseKey;
       options?: TNoiseOptions;
     }
-) & {
-  nodes: TGraphNode[];
-  refs: Partial<TGraphRefs>;
-};
+) &
+  TTitleProps & {
+    nodes: TGraphNode[];
+    refs: Partial<TGraphRefs>;
+  };
 export type TGraphSourceWithId = Omit<
   TGraphSource,
   "nodes"
@@ -143,3 +152,7 @@ export type TGraphSourceWithId = Omit<
 export type TAudioGraph = {
   sources: readonly TGraphSourceWithId[];
 };
+
+export type UGraphNodeWithId =
+  | TGraphSourceWithId
+  | TGraphNodeWithId;

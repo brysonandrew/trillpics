@@ -1,7 +1,7 @@
 import { useMusicRefs } from "~/pages/video/music/_context/refs";
 import { TGraphSourceWithId } from "~/pages/video/music/_context/refs/audio/graph/types";
-import { useNodesSourceOscillatorCreate } from "~/pages/video/music/synth/nodes/source/oscillator/create";
 import { useAmpLastToMaster } from "~/pages/video/music/synth/nodes/nodes/amp/last/to-master";
+import { TOscillator } from "~/pages/video/music/_context/refs/audio/oscillators/types";
 
 export const useNodesSourceOscillatorToggle =
   () => {
@@ -10,12 +10,10 @@ export const useNodesSourceOscillatorToggle =
       useAmpLastToMaster();
     const handleClick = (
       source: TGraphSourceWithId,
-      result: ReturnType<
-        typeof useNodesSourceOscillatorCreate
-      >
+      processor: TOscillator
     ) => {
-      if (result.processor.isStarted) {
-        result.processor.end(
+      if (processor.isStarted) {
+        processor.end(
           audio.context.currentTime
         );
         console.log("END");
@@ -23,7 +21,7 @@ export const useNodesSourceOscillatorToggle =
         return;
       }
 
-      result.processor.start(
+      processor.start(
         audio.context.currentTime
       );
 

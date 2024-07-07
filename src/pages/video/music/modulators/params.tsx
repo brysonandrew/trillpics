@@ -35,6 +35,7 @@ export const ModulatorsParams = <
   resolveAudioParam,
   ...props
 }: TProps<K>) => {
+  console.log(graphKey,keys)
   return (
     <>
       {keys.map((paramKey) => {

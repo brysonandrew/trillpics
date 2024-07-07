@@ -2,6 +2,6 @@ export const WORKLETS = [
   "pink-noise",
   "white-noise",
   "karplus-strong",
-  "ring-mod",
   "bitcrusher",
+  "ring-mod",
 ] as const;
