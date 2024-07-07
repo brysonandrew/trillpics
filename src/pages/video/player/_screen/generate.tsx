@@ -59,14 +59,14 @@ export const VideoPlayer_ScreenGenerate: FC<
         <div
           className="hidden text-2xl sm:(flex text-2.5xl) flex-col w-2/3 grow  bg-gray-04"
           style={{
-            gap: box.m025,
-            margin: box.m025,
-            padding: `0 ${box.m}px`
+            gap: box._025,
+            margin: box._025,
+            padding: `0 ${box._}px`
           }}
         >
           <h3
             className="row-space"
-            style={{ gap: box.m025 }}
+            style={{ gap: box._025 }}
           >
             <div>current process</div>
             <b>{stitchStage}</b>
@@ -75,7 +75,7 @@ export const VideoPlayer_ScreenGenerate: FC<
             className={clsx(
               "row-space"
             )}
-            style={{ gap: box.m025 }}
+            style={{ gap: box._025 }}
           >
             <div>frames encoded</div>
             <div className="inline-flex flex-row items-center">
@@ -88,7 +88,7 @@ export const VideoPlayer_ScreenGenerate: FC<
             className={clsx(
               "row-space"
             )}
-            style={{ gap: box.m025 }}
+            style={{ gap: box._025 }}
           >
             <div>frames rendered</div>
             <div className="inline-flex flex-row items-center">
@@ -102,8 +102,8 @@ export const VideoPlayer_ScreenGenerate: FC<
         <h3
           className="flex flex-col w-full h-full text-left items-start justify-center bg-gray-04 text-2xl sm:(text-2.5xl h-auto w-1/3 items-center justify-center)"
           style={{
-            gap: box.m025,
-            margin: box.m025,
+            gap: box._025,
+            margin: box._025,
           }}
         >
           <div className="whitespace-nowrap">
@@ -132,9 +132,9 @@ export const VideoPlayer_ScreenGenerate: FC<
         ref={ref}
         className="relative hidden md:flex grow h-2/3 overflow-auto bg-gray-04"
         style={{
-          margin: box.m025,
-          paddingLeft: box.m05,
-          paddingRight: box.m05,
+          margin: box._025,
+          paddingLeft: box._05,
+          paddingRight: box._05,
         }}
       >
         <ul>

@@ -34,19 +34,19 @@ export const MusicLayoutHeader: FC<
     <div
       className="row relative w-full"
       style={{
-        paddingLeft: box.m0125,
-        paddingRight: box.m025,
-        gap: box.m0125,
+        paddingLeft: box._0125,
+        paddingRight: box._025,
+        gap: box._0125,
       }}
     >
       <PillB
         Icon={Icon}
         title={`play ${children}`}
         style={{
-          gap: box.m0125,
-          padding: box.m025,
+          gap: box._0125,
+          padding: box._025,
           paddingRight: 0,
-          width: box.m6,
+          width: box._6,
           ...style,
         }}
         {...props}

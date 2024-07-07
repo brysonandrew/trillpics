@@ -36,7 +36,7 @@ export const PicsHudFooterNav: FC<
   const { pathname } = useLocation();
   const { main } = useContextInit();
   const navItemGap =
-    container.width / 2 - box.m;
+    container.width / 2 - box._;
   useEffect(() => {
     const index = NAV_ITEMS.findIndex(
       ([_, path]) => path === pathname
@@ -50,7 +50,7 @@ export const PicsHudFooterNav: FC<
   const borderRadius = boxRadius();
   const { handlers } = useHoverKey();
   const width =
-    (navItemGap + box.m / 3) * 3;
+    (navItemGap + box._ / 3) * 3;
   return (
     <MotionConfig transition={SPRING}>
       <motion.nav
@@ -58,10 +58,10 @@ export const PicsHudFooterNav: FC<
           "relative py-0 h-0"
         )}
         style={{
-          top: container.height - box.m,
+          top: container.height - box._,
           left:
-            container.width / 2 - box.m15,
-          width: width + box.m2,
+            container.width / 2 - box._15,
+          width: width + box._2,
           borderRadius,
           x: main.dragger.navX,
         }}
@@ -95,8 +95,8 @@ export const PicsHudFooterNav: FC<
                         title
                       )}
                       style={{
-                        width: box.m,
-                        height: box.m,
+                        width: box._,
+                        height: box._,
                       }}
                     />
                   );
@@ -130,7 +130,7 @@ export const PicsHudFooterNav: FC<
                               0 *
                                 deltaFromSelected,
                             bottom:
-                              box.m15 *
+                              box._15 *
                               (deltaFromSelected -
                                 1),
                           }

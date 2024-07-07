@@ -14,7 +14,7 @@ export const NodesSourceDelay: FC<
     <>
       {renderUi(
         'nodes',
-
+        'delay',
         IconsTimer,
         result.ui
       )}

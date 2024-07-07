@@ -8,7 +8,7 @@ export const KARPLUS_STRONG_NUMBER_OPTIONS =
     delayTime: "delayTime",
   };
 
-export const KARPLUS_STRONG_PARAMS =
+export const KARPLUS_PARAMS =
   resolveObjectKeys(
     KARPLUS_STRONG_NUMBER_OPTIONS
   );

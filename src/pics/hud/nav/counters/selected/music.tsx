@@ -21,8 +21,8 @@ export const NavCountersSelectedMusic: FC =
         <div
           className="relative center"
           style={{
-            width: box.m05,
-            height: box.m05,
+            width: box._05,
+            height: box._05,
             borderRadius,
           }}
         >
@@ -35,9 +35,9 @@ export const NavCountersSelectedMusic: FC =
       <div
         className="relative center z-10"
         style={{
-          width: box.m05,
-          height: box.m05,
-          padding: box.m025,
+          width: box._05,
+          height: box._05,
+          padding: box._025,
           borderRadius,
         }}
       >

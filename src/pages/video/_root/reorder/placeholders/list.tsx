@@ -65,7 +65,7 @@ export const _RootReorderPlaceholdersList: FC<
       {listNames.map((name, index) => {
         const boxStyle = {
           width: itemDimensions.width,
-          height: itemDimensions.height, /// box.m+box.m025,
+          height: itemDimensions.height, /// box._+box._025,
           top: 0,
           borderRadius:
             borderRadius / 2,

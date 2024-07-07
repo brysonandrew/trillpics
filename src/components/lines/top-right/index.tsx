@@ -31,8 +31,8 @@ export const LinesTopRight: FC<
       style={{
         borderTopRightRadius: rounded,
         top: 0,
-        height: box.m,
-        marginRight: box.m05,
+        height: box._,
+        marginRight: box._05,
         ...style,
       }}
       {...props}

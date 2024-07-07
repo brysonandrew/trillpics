@@ -1,10 +1,10 @@
 import { useMemo } from "react";
+import { OSCILLATOR_KEY } from "~/pages/video/music/synth/nodes/oscillator/constants";
 import {
   TOscillator,
   TOscillatorRefs,
 } from "~/pages/video/music/_context/refs/audio/oscillators/types";
 
-const key = "oscillator";
 export const useSynthOscillators =
   () => {
     const ref = useMemo(() => {
@@ -39,16 +39,18 @@ export const useSynthOscillators =
           }
         ) => {
           const node = create(options);
-          node.connect(output)
+          node.connect(output);
           const oscillator: TOscillator =
             {
               isStarted: false,
               node,
               output,
-              start:function (
+              start: function (
                 startTime?: number
               ) {
-                this.node.start(startTime);
+                this.node.start(
+                  startTime
+                );
                 this.isStarted = true;
                 return this;
               },
@@ -59,13 +61,13 @@ export const useSynthOscillators =
                 const prevNode =
                   this.node;
                 const nextOptions: OscillatorOptions =
-                  recycle(
-                    prevNode
-                  );
+                  recycle(prevNode);
                 this.node = create(
                   nextOptions
                 );
-                this.node.connect(output)
+                this.node.connect(
+                  output
+                );
                 this.isStarted = false;
                 return this;
               },
@@ -75,7 +77,7 @@ export const useSynthOscillators =
         };
 
         return {
-          key,
+          key: OSCILLATOR_KEY,
           create,
           connect,
           recycle,

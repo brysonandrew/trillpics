@@ -17,7 +17,7 @@ export const MusicControlsButtonsMenu: FC =
       if (!scroll.current) return;
       const scrollTopOptions = [
         0,
-        beatsTop - box.m05,
+        beatsTop - box._05,
         scroll.current.scrollHeight,
       ];
       let nextScrollTop =
@@ -45,7 +45,7 @@ export const MusicControlsButtonsMenu: FC =
         classValue="z-0"
         style={{
           position: "fixed",
-          top: y + box.m025,
+          top: y + box._025,
           right: left,
         }}
         title="open menu"

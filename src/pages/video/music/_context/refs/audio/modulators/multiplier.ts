@@ -1,12 +1,12 @@
-import { TAllParamsKey } from "~/pages/video/music/modulators/types";
-import { defaultsFromAudioparams } from "~/pages/video/music/synth/nodes/defaults/from-audioparams";
+import { defaultsFromAudioParam } from "~/pages/video/music/synth/nodes/defaults/from-audio-param";
+import { TAllParamsKey } from "~/pages/video/music/types";
 
 export const resolveMultiplier = (
   id: string,
   param: AudioParam
 ) => {
   const defaultRange =
-    defaultsFromAudioparams(param);
+    defaultsFromAudioParam(param);
   const idParts = id.split(".");
   const paramKey =
     idParts[idParts.length - 1];

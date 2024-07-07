@@ -18,9 +18,9 @@ export const _RootReorderControlsSides: FC =
         style={{
           x: 0,
           height: 0,
-          width: container.width+box.m,
-          left: box.m05,
-          bottom:-box.m3,// box.m2, // -box.m05,
+          width: container.width+box._,
+          left: box._05,
+          bottom:-box._3,// box._2, // -box._05,
           y: dragger.y075,
         }}
       >

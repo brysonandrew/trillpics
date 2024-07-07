@@ -180,14 +180,14 @@ export const Download: FC<
     <div
       className="relative flex"
       style={{
-        ...resolveSquare(box.m),
+        ...resolveSquare(box._),
       }}
     >
       <PillBHover
         title={title}
         isSelected={isHovering}
         style={{
-          ...resolveSquare(box.m),
+          ...resolveSquare(box._),
         }}
         circleProps={{
           isGlow: isSuccess,

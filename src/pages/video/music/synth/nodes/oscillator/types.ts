@@ -5,7 +5,7 @@ export type TOscillatorNumberOptions =
   typeof OSCILLATOR_NUMBER_OPTIONS;
 export type TOscillatorKey =
   typeof OSCILLATOR_KEY;
-export type TOscillatorNumberOptionsKey =
+export type TOscillatorParamKey =
   keyof TOscillatorNumberOptions;
 
 export type TOscillatorOptions =
@@ -13,7 +13,7 @@ export type TOscillatorOptions =
     type: OscillatorType;
   };
 export type TOscillatorParams = [
-  TOscillatorNumberOptionsKey,
+  TOscillatorParamKey,
   AudioParam,
   TUpdateNumberHandler
 ][];

@@ -16,7 +16,7 @@ export const BeatsList: FC = () => {
     <ul
       className="relative row"
       style={{
-        gap: box.m025,
+        gap: box._025,
       }}
     >
       {BEATS_KEYS.map((beatsKey) => {

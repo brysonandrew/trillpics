@@ -50,7 +50,7 @@ export const _RootReorderControls: FC<
         top: isColumn
           ? itemDimensions.height *
             index
-          : -box.m15,
+          : -box._15,
         zIndex: index,
       }}
     >

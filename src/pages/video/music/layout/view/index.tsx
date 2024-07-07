@@ -20,10 +20,10 @@ export const LayoutView: FC<
         style={{
           left:
             left -
-            box.m0125 -
-            box.m00625,
-          gap: box.m0125,
-          width: width + box.m025,
+            box._0125 -
+            box._00625,
+          gap: box._0125,
+          width: width + box._025,
           paddingTop: y,
           height: screen.height * 2,
         }}

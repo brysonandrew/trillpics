@@ -17,8 +17,8 @@ export const NodesSourceKarplus: FC<
   return (
     <>
       {renderUi(
-        'sources',
-
+        "sources",
+        "strings",
         () => (
           <button
             onClick={() =>
@@ -31,7 +31,7 @@ export const NodesSourceKarplus: FC<
             <IconsGuitar />
           </button>
         ),
-        result?.ui
+        result.ui
       )}
     </>
   );

@@ -3,14 +3,15 @@ import { TNodesOptions } from "~/pages/video/music/synth/nodes/types";
 import { NOISE_PARAMS } from "~/pages/video/music/synth/nodes/noise/constants";
 import { TNoiseKey } from "~/pages/video/music/_context/refs/audio/noises/types";
 
-export type TNoiseNumberOptionsKey =
+export type TNoiseParamKey =
   (typeof NOISE_PARAMS)[number];
 
 export type TNoiseNumberOptions =
-  TNodesOptions<TNoiseNumberOptionsKey>;
+  TNodesOptions<TNoiseParamKey>;
 
 export type TNoiseParam = [
-  TNoiseNumberOptionsKey,
+  TNoiseParamKey,
+  
   AudioParam,
   TUpdateNumberHandler
 ];

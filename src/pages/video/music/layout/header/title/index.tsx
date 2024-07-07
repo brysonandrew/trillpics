@@ -14,12 +14,12 @@ export const MusicLayoutHeaderTitle: FC<
     <div
       className="row shrink-0"
       style={{
-        gap: box.m0125,
+        gap: box._0125,
       }}
     >
       <LinesHorizontalLight
         style={{
-          width: box.m075,
+          width: box._075,
         }}
       />
       <MusicLayoutHeaderTitleText>

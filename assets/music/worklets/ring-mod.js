@@ -19,10 +19,9 @@ const triangle = (t) => Math.asin(Math.cos(t)) / 1.57079633;
 class Processor extends AudioWorkletProcessor {
   constructor() {
     super();
-
-    this.port.onmessage = (event) =>
-      (this.startTime = event.data);
-    this.startTime = Number.POSITIVE_INFINITY;
+    // this.port.onmessage = (event) =>
+    //   (this.startTime = event.data);
+    // this.startTime = Number.POSITIVE_INFINITY;
 }
   static get parameterDescriptors() {
     return [
@@ -45,7 +44,7 @@ class Processor extends AudioWorkletProcessor {
         maxValue: 1000,
       },
       {
-        name: "modulator",
+        name: "waveform",
         defaultValue: 0,
         minValue: 0,
         maxValue: 10,
@@ -54,9 +53,9 @@ class Processor extends AudioWorkletProcessor {
   }
 
   process(inputs, outputs, parameters) {
-    if (currentTime < this.startTime) { 
-      return true;
-    }
+    // if (currentTime < this.startTime) { 
+    //   return true;
+    // }
     let t = 0;
 
     let input = inputs[0];
@@ -65,7 +64,7 @@ class Processor extends AudioWorkletProcessor {
     const gain = parameters.gain[0];
     const rate = parameters.rate[0];
     const blend = parameters.blend[0];
-    const modulator = ~~parameters.modulator[0];
+    const waveform = ~~parameters.waveform[0];
     let factor = 0;
 
     for (let i = 0; i < output.length; i++) {
@@ -76,7 +75,7 @@ class Processor extends AudioWorkletProcessor {
         )
           continue jloop;
 
-        switch (modulator) {
+        switch (waveform) {
           case 0: {
             factor = Math.sin(t);
             break;

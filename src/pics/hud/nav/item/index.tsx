@@ -53,7 +53,7 @@ export const FooterNavItem: FC<
           : "justify-start"
       )}
       style={{
-        width: box.m,
+        width: box._,
         ...style,
       }}
       {...PRESENCE_OPACITY}
@@ -78,7 +78,7 @@ export const FooterNavItem: FC<
           )}
           style={{
             borderRadius,
-            gap: box.m025,
+            gap: box._025,
           }}
         >
           <PillBLayout Icon={Icon} />

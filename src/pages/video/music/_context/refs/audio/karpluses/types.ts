@@ -1,12 +1,15 @@
-import { TKarplusStrongOptions } from "~/pages/video/music/synth/nodes/karplus/types";
-import { TNoise } from "~/pages/video/music/_context/refs/audio/noises/types";
+import { TKarplusOptions } from "~/pages/video/music/synth/nodes/karplus/types";
+import {
+  TNoise,
+  TNoiseKey,
+} from "~/pages/video/music/_context/refs/audio/noises/types";
 
 export type TKarplusCreate = (
-  options: TKarplusStrongOptions
+  options: TKarplusOptions
 ) => AudioWorkletNode;
 export type TKarplusRecycle = (
   node: AudioWorkletNode
-) => TKarplusStrongOptions;
+) => TKarplusOptions;
 export type TKarplusStart = (
   startTime?: number
 ) => void;
@@ -17,7 +20,7 @@ export type TKarplus = {
   node: AudioWorkletNode;
   input: TNoise;
   output: AudioNode;
-  isStarted: boolean
+  isStarted: boolean;
   start: TKarplusStart;
   end: TKarplusEnd;
 };
@@ -26,7 +29,9 @@ export type TKarplusRefs = Record<
   TKarplus
 >;
 export type TKarplusConnect = (
-  node: AudioNode
+  node: AudioNode,
+  noiseKey: TNoiseKey,
+  options?: TKarplusOptions
 ) => TKarplus;
 export type TKarpluses = {
   key: "karplus";

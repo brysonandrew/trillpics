@@ -15,10 +15,10 @@ useAddRandomEffect();
     className="sticky column-stretch z-10 bg-black-8 dark:bg-black"
     style={{
       width:
-        width + box.m025,
+        width + box._025,
       top:
-        beatsTop + box.m025,
-      bottom: -box.m,
+        beatsTop + box._025,
+      bottom: -box._,
     }}
   >
       {children}

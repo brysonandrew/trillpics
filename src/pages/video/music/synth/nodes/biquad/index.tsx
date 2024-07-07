@@ -1,27 +1,27 @@
 import { FC } from "react";
-import { TUpdateNodeHandlerProps } from "~/components/inputs/slider/types";
+import { TInputsSelectProps } from "~/components/inputs/select";
 import { NodesBiquadDropdowns } from "~/pages/video/music/synth/nodes/biquad/dropdowns";
 import { NodesBiquadNumbers } from "~/pages/video/music/synth/nodes/biquad/numbers";
-import { TBiquadFilterNumberOptionsKey } from "~/pages/video/music/synth/nodes/biquad/types";
-import { NodesTemplate } from "~/pages/video/music/synth/nodes/template";
-import * as Select from "@radix-ui/react-select";
+import { TBiquadFilterParamKey } from "~/pages/video/music/synth/nodes/biquad/types";
+import { TResolveAudioParamProps } from "~/pages/video/music/types";
+
 export const NodesBiquad: FC<{
-  numbers: TUpdateNodeHandlerProps<TBiquadFilterNumberOptionsKey>;
+  numbers: TResolveAudioParamProps<TBiquadFilterParamKey>;
   dropdowns: Partial<
     Pick<
-      Select.SelectProps,
-      "onValueChange"|'defaultValue'
+      TInputsSelectProps,
+      "onValueChange" | "defaultValue"
     >
   >;
-}> = ({ ...props }) => {
+}> = (props) => {
   return (
-    <NodesTemplate title="Filter">
+    <>
       <NodesBiquadDropdowns
         {...props.dropdowns}
       />
       <NodesBiquadNumbers
         {...props.numbers}
       />
-    </NodesTemplate>
+    </>
   );
 };

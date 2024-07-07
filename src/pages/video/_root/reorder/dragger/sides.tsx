@@ -16,9 +16,9 @@ export const _RootReorderDraggerSides: FC =
         style={{
           x: 0,
           height: 0,
-          width: container.width + box.m,
-          left: box.m05,
-          bottom: -box.m6,
+          width: container.width + box._,
+          left: box._05,
+          bottom: -box._6,
         }}
       >
         <_RootReorderDragger

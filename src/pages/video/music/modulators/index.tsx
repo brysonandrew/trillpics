@@ -1,15 +1,14 @@
 import {
   FC,
   PropsWithChildren,
-  useEffect,
-  useState,
+  useMemo,
 } from "react";
 import { useMusicRefs } from "~/pages/video/music/_context/refs";
 import { box } from "~uno/rules/box";
 import { ModulatorsButton } from "~/pages/video/music/modulators/button";
 import { useIds } from "~/pages/video/music/modulators/ids";
 import { ModulatorsInputs } from "~/pages/video/music/modulators/inputs";
-import { LinesVertical } from "~/components/lines/vertical";
+import { TypographyXxxxs } from "~/components/layout/typography/xxxxs";
 
 type TProps = PropsWithChildren<{
   id: string;
@@ -19,71 +18,66 @@ export const Modulators: FC<TProps> = ({
   children,
   ...props
 }) => {
-  const [isConnected, setConnected] =
-    useState(false);
   const { id, audioParam } = props;
   const IDS = useIds(id);
-  const context = useMusicRefs();
-  //  useEffect(() => {
-  // if (
-  //   !modulators.refs[id] &&
-  //   audioParam
-  // ) {
-  //   modulators.refs[id] =
-  //     modulators.connect(
-  //       audioParam,
-  //       id
-  //     );
-  //     setConnected(true);
-  //   }
-  // }, []);
   const {
     audio: { modulators },
-  } = context;
+  } = useMusicRefs();
 
-  const curr =
-    modulators.refs[id]?.isStarted;
+  const modulatorRef = useMemo(() => {
+    if (
+      !modulators.refs[id] &&
+      audioParam
+    ) {
+      modulators.refs[id] =
+        modulators.connect(
+          audioParam,
+          id
+        );
+      return modulators.refs[id];
+    }
+  }, [audioParam]);
+
+  const curr = modulatorRef?.isStarted;
   const isStarted = Boolean(curr);
-
-  const isAudioParamNull =
-    audioParam === null;
 
   return (
     <div
       id={IDS.root}
-      className="relative row-start"
+      className="relative column-stretch"
       style={{
-        gap: box.m00625,
-        padding: box.m00625,
+        gap: box._00625,
+        padding: box._00625,
+        borderRadius:
+          box.radius.m + box._00625,
       }}
     >
-      <div
-        className="column-space absolute right-full"
+      {/* <LinesVertical
+        positionClass="absolute bottom-0"
+        colorClass="_bi-border"
         style={{
-          transform: `translateX(${-box.m003125}px)`,
-          top: box.m0125,
+          top: 0, // box._0375,
+          left: -box._01875,
+          bottom: box._2,
+          borderWidth: 1,
+          pointerEvents: "auto",
+          cursor: "pointer",
         }}
-      >
-        <ModulatorsButton
-          ids={IDS}
-          {...props}
-        />
-        <LinesVertical
-          positionClass="absolute"
-          colorClass="_bi-border"
-          style={{
-            top: box.m0375,
-            left: 2,
-            height: box.m,
-            borderWidth: 1,
-            pointerEvents: "auto",
-            cursor: "pointer",
-          }}
-        />
-      </div>
+      /> */}
+
       {children}
-      {isConnected && (
+      <ModulatorsButton
+        ids={IDS}
+        {...props}
+      >
+        <TypographyXxxxs>
+          modulator
+        </TypographyXxxxs>
+      </ModulatorsButton>
+
+      {modulators.refs[id] && (
         <ModulatorsInputs
+        
           ids={IDS}
           style={{
             display: isStarted

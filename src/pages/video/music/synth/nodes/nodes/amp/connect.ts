@@ -1,15 +1,17 @@
+import { ampLast } from "~/pages/video/music/synth/nodes/nodes/amp/last";
 import { TSourceNodesProps } from "~/pages/video/music/synth/nodes/types";
 import { useMusicRefs } from "~/pages/video/music/_context/refs";
-import { TGraphAudioNode } from "~/pages/video/music/_context/refs/audio/graph/types";
-import { isDefined } from "~/utils/validation/is/defined";
+import {
+  TGraphAudioNode,
+  TGraphAudioRef,
+} from "~/pages/video/music/_context/refs/audio/graph/types";
 
-type TConfig<
-  T extends TGraphAudioNode
-> = TSourceNodesProps & {
-  connect(gain: GainNode): T;
-};
+type TConfig<T extends TGraphAudioRef> =
+  TSourceNodesProps & {
+    connect(gain: GainNode): T;
+  };
 export const useAmpConnect = <
-  T extends TGraphAudioNode
+  T extends TGraphAudioRef
 >({
   index,
   source,
@@ -18,26 +20,49 @@ export const useAmpConnect = <
   const { audio } = useMusicRefs();
 
   const handler = () => {
-    const amp = audio.gains.create();
-    const preamp =
-      index === 0
-        ? audio.gains.midis.preamp
-        : source.nodes[index - 1].amp;
-    const apm = connect(amp);
-    const node:
-      | AudioWorkletNode
-      | BiquadFilterNode
-      | DelayNode =
-      "node" in apm ? apm.node : apm;
+    const amp: GainNode =
+      audio.gains.create();
 
-    if (isDefined(preamp)) {
-      preamp.connect(node);
-    }
+    console.log(source, source.nodes[index])
+
+    const lastAmp = ampLast(
+      source.nodes,
+      index
+    );
+
+    const preamp =
+      lastAmp ??
+      audio.gains.midis.preamp;
+
+    const processor = connect(amp);
+
+    const node: TGraphAudioNode =
+      "node" in processor
+        ? processor.node
+        : processor;
+    
+    preamp.connect(node);
     node.connect(amp);
     source.nodes[index].amp = amp;
 
-    return apm;
+    return processor;
   };
 
   return handler;
 };
+// let prevIndex = index;
+// let preamp: GainNode =
+//   audio.gains.midis.preamp;
+// while (prevIndex > 0) {
+//   prevIndex--;
+//   const prev =
+//     source.nodes[prevIndex];
+//   if (
+//     isDefined(prev) &&
+//     "amp" in prev &&
+//     isGainNode(prev.amp)
+//   ) {
+//     preamp = prev.amp;
+//     // console.log('found amp, ',prevIndex, source.nodes[index])
+//     break;
+//   }

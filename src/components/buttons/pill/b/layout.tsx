@@ -36,7 +36,7 @@ export const PillBLayout: FC<
     ...mainRest
   } = mainProps;
   
-  size = size ?? box.m;
+  size = size ?? box._;
   const borderRadius = boxRadius();
 
   return (

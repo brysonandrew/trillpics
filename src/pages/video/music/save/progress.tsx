@@ -22,12 +22,12 @@ export const VideoMusicSaveProgress: FC =
         style={{
           top: y,
           left:
-            sidebarWidthOffset + box.m025,
+            sidebarWidthOffset + box._025,
           borderRadius: box.radius.xl,
           width:
             screen.container.width -
-            box.m2 -
-            box.m05,
+            box._2 -
+            box._05,
           height: screenHeight,
         }}
       >

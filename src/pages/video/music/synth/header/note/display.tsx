@@ -35,8 +35,8 @@ export const VideoMusicSynthHeaderNoteDisplay: FC<
         <MeshBackgroundText
           classValue="column center relative text-xxs grow"
           style={{
-            gap: box.m0125,
-            ...box.px(box.m0125),
+            gap: box._0125,
+            ...box.px(box._0125),
           }}
         >
           <TypographyXs>

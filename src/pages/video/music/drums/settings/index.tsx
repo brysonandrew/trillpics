@@ -14,9 +14,9 @@ export const DrumsSettings: FC = () => {
         "relative row-start"
       )}
       style={{
-        gap: box.m025,
-        ...box.px(box.m05),
-        ...box.py(box.m025),
+        gap: box._025,
+        ...box.px(box._05),
+        ...box.py(box._025),
       }}
     >
       <BackgroundGlass

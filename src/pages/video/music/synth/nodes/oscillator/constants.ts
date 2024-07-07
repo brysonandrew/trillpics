@@ -3,6 +3,8 @@ import { resolveObjectKeys } from "~/utils/object";
 
 export const OSCILLATOR_KEY =
   "oscillator" as const;
+
+  
 export const OSCILLATOR_NUMBER_OPTIONS =
   {
     frequency: "frequency",

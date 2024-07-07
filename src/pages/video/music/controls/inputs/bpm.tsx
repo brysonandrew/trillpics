@@ -21,7 +21,7 @@ export const MusicControlsInputsBpm: FC =
         defaultValue={
           schedule.record.bpm
         }
-        style={{ width: box.m }}
+        style={{ width: box._ }}
       >
         {(props) => (
           <InputsNumberDefault

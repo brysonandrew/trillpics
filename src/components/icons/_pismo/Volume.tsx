@@ -1,7 +1,5 @@
-import styled from "@emotion/styled";
 import type { ClassValue } from "clsx";
 import clsx from "clsx";
-import { motion } from "framer-motion";
 import type { FC, SVGAttributes } from "react";
 
 

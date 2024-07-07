@@ -30,8 +30,8 @@ export const NavCountersMusic: FC<
         <div
           className="relative"
           style={{
-            width: box.m05,
-            height: box.m05,
+            width: box._05,
+            height: box._05,
             borderRadius,
           }}
         >
@@ -52,8 +52,8 @@ export const NavCountersMusic: FC<
     <motion.div
       className="center absolute -top-2 -left-2 cursor-pointer z-10 pointer-events-none"
       style={{
-        width: box.m05,
-        height: box.m05,
+        width: box._05,
+        height: box._05,
         borderRadius,
       }}
     >

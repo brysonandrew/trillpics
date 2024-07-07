@@ -1,7 +1,7 @@
 import { useMemo } from "react";
 import { TDelayRefs } from "~/pages/video/music/_context/refs/audio/delays/types";
 
-export const useMusicInitRefsDelays =
+export const useMusicRefsDelays =
   (
 
   ) => {

@@ -60,14 +60,14 @@ export const LayoutViewBackground: FC<
       ref={ref}
       className="fixed"
       style={{
-        ...box.ix(left - box.m0125),
+        ...box.ix(left - box._0125),
         top: y,
         borderRadius: box.radius.xl,
         width:
           screen.container.width -
-          box.m2 -
-          box.m025 -
-          box.m0125,
+          box._2 -
+          box._025 -
+          box._0125,
         height,
       }}
     >

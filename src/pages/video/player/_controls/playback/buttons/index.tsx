@@ -18,7 +18,7 @@ export const PlaybackButtons: FC =
     return (
       <div
         className="relative flex flex-col md:(flex-row justify-start) lg:(flex-row justify-between)"
-        style={{ gap: box.m025 }}
+        style={{ gap: box._025 }}
       >
         <PlayerBackgroundOpaque />
         <PlayerBackground />

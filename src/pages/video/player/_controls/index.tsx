@@ -19,7 +19,7 @@ export const VideoPlayer_Controls =
           className="relative w-full"
           style={{
             borderRadius,
-            height: box.m025,
+            height: box._025,
           }}
         >
           <PlayerBackgroundOpaque />

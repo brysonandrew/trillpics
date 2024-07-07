@@ -1,10 +1,18 @@
 import { boxI } from "~/utils/box/i";
 import { boxIx } from "~/utils/box/ix";
 import { boxIy } from "~/utils/box/iy";
+import { boxM } from "~/utils/box/m";
+import { boxMx } from "~/utils/box/mx";
+import { boxMy } from "~/utils/box/my";
 import { boxP } from "~/utils/box/p";
 import { boxPx } from "~/utils/box/px";
 import { boxPy } from "~/utils/box/py";
-import { BORDER_RADIUS, RADIUS_BOTTOM_LOOKUP, RADIUS_LOOKUP, RADIUS_TOP_LOOKUP } from "~uno/rules/box/radius";
+import {
+  BORDER_RADIUS,
+  RADIUS_BOTTOM_LOOKUP,
+  RADIUS_LOOKUP,
+  RADIUS_TOP_LOOKUP,
+} from "~uno/rules/box/radius";
 import { boxSize } from "~uno/rules/box/size";
 
 export const BOX_SHADOW_FLAT =
@@ -21,6 +29,9 @@ export const box = {
   px: boxPx,
   py: boxPy,
   p: boxP,
+  mx: boxMx,
+  my: boxMy,
+  m: boxM,
   i: boxI,
   ix: boxIx,
   iy: boxIy,

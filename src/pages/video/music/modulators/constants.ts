@@ -2,6 +2,9 @@ import { DELAY_PARAMS } from "~/pages/video/music/synth/nodes/delay/constants";
 import { BIQUAD_FILTER_PARAMS } from "~/pages/video/music/synth/nodes/biquad/constants";
 import { GAIN_PARAMS } from "~/pages/video/music/synth/nodes/gain/constants";
 import { OSCILLATOR_PARAMS } from "~/pages/video/music/synth/nodes/oscillator/constants";
+import { BITCRUSHER_PARAMS } from "~/pages/video/music/synth/nodes/bitcrusher/constants";
+import { RING_MOD_PARAMS } from "~/pages/video/music/synth/nodes/ring-mod/constants";
+import { KARPLUS_PARAMS } from "~/pages/video/music/synth/nodes/karplus/constants";
 
 export const PATHS = {
   CONNECT: {
@@ -24,4 +27,7 @@ export const ALL_PARAMS = [
   ...BIQUAD_FILTER_PARAMS,
   ...DELAY_PARAMS,
   ...GAIN_PARAMS,
+  ...BITCRUSHER_PARAMS,
+  ...RING_MOD_PARAMS,
+  ...KARPLUS_PARAMS
 ] as const;

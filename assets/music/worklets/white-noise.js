@@ -2,9 +2,9 @@ export class WhiteNoise extends AudioWorkletProcessor {
   constructor() {
     super();
 
-    this.port.onmessage = (event) =>
-      (this.startTime = event.data);
-    this.startTime = Number.POSITIVE_INFINITY;
+    // this.port.onmessage = (event) =>
+    //   (this.startTime = event.data);
+    // this.startTime = Number.POSITIVE_INFINITY;
     //scheduledAudioNode.port.postMessage(15); to start at 15secs
 
   }
@@ -14,16 +14,16 @@ export class WhiteNoise extends AudioWorkletProcessor {
       {
         name: "gain",
         defaultValue: 0.5,
-        minValue: -100,
-        maxValue: 100,
+        minValue: -2,
+        maxValue: 2,
       },
     ];
   }
 
   process(_, outputs, parameters) {
-    if (currentTime < this.startTime) { 
-      return true;
-    }
+    // if (currentTime < this.startTime) { 
+    //   return true;
+    // }
 
     const gains = parameters["gain"];
     const output = outputs[0];

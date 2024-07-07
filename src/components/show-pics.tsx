@@ -38,7 +38,7 @@ export const ShowPics: FC<TProps> = ({
           display: "grid",
           left: 0,
           width: container.width,
-          gap: box.m,
+          gap: box._,
           gridTemplateColumns: `repeat(auto-fill, minmax(${unitSize}px, 1fr))`,
           ...style,
         }}

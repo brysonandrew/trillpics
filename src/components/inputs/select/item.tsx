@@ -3,18 +3,21 @@ import clsx from "clsx";
 import { IconsCheckboxChecked } from "~/components/icons/inputs/checkbox/checked";
 import {
   TClassValueProps,
+  TDivProps,
   TPropsWithChildren,
 } from "@brysonandrew/config-types";
 import { box } from "~uno/rules/box";
 import { TypographyXxxs } from "~/components/layout/typography/xxxs";
 import * as Select from "@radix-ui/react-select";
 
+type TProps = TPropsWithChildren<
+  TClassValueProps &
+    Select.SelectItemProps &
+    TDivProps
+>;
 export const SelectItem = forwardRef<
   HTMLDivElement,
-  TPropsWithChildren<
-    TClassValueProps &
-      Select.SelectItemProps
-  >
+  TProps
 >(
   (
     {
@@ -32,7 +35,7 @@ export const SelectItem = forwardRef<
           classValue
         )}
         style={{
-          gap: box.m025,
+          gap: box._025,
           ...style,
         }}
         {...props}

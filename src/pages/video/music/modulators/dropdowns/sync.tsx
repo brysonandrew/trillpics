@@ -1,6 +1,5 @@
 import { FC } from "react";
-import { InputsSelect } from "~/components/inputs/select";
-import * as Select from "@radix-ui/react-select";
+import { InputsSelect, TInputsSelectProps } from "~/components/inputs/select";
 
 const VALUES = [
   "1/128",
@@ -26,7 +25,7 @@ const VALUES = [
 export type TSyncValue =
   (typeof VALUES)[number];
 
-type TProps = Select.SelectProps;
+type TProps = TInputsSelectProps;
 export const ModulatorsDropdownsSync: FC<
   TProps
 > = (props) => {

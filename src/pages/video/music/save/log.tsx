@@ -29,18 +29,18 @@ export const VideoMusicSaveSaveLog: FC =
         className="relative row uppercase font-sans"
         style={{
           left: 0,
-          gap: box.m025,
+          gap: box._025,
           width: width,
-          paddingTop: box.m05-box.m0125,
-          paddingBottom: box.m05+box.m0125,
-          ...boxPx(box.m05 - box.m00625),
+          paddingTop: box._05-box._0125,
+          paddingBottom: box._05+box._0125,
+          ...boxPx(box._05 - box._00625),
         }}
       >
         <div
           className="row relative"
           style={{
-            gap: box.m0125,
-            left: box.m05 - box.m025,
+            gap: box._0125,
+            left: box._05 - box._025,
           }}
         >
           {isRecording ? (
@@ -53,7 +53,7 @@ export const VideoMusicSaveSaveLog: FC =
             <IconsAlert />
           )}
           <LinesHorizontalLight
-            style={{ width: box.m }}
+            style={{ width: box._ }}
           />
           <div className="grow whitespace-nowrap text-xs _sf-outline">
             {isRecording ? (

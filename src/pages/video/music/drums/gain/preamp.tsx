@@ -8,8 +8,8 @@ export const DrumsPreampGain = () => {
       title="drums preamp"
       ampKey="preamp"
       style={{
-        paddingTop:box.m025,
-        paddingBottom:box.m05
+        paddingTop:box._025,
+        paddingBottom:box._05
       }}
     />
   );

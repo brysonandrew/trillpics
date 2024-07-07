@@ -20,9 +20,9 @@ export const MusicControls: FC<
       className="fixed column z-20"
       style={{
         left:
-          left - box.m25 + box.m01875,
-        top: y + box.m2 - box.m025,
-        gap: box.m0125,
+          left - box._25 + box._01875,
+        top: y + box._2 - box._025,
+        gap: box._0125,
         ...style,
       }}
       {...props}

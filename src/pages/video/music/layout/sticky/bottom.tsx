@@ -20,9 +20,9 @@ export const LayoutStickyBottom: FC<
       className="sticky column-stretch bg-black-8 dark:bg-black z-10"
       style={{
         top:
-          beatsTop + box.m4 - box.m0125,
-        gap: box.m0125,
-        width: width + box.m025,
+          beatsTop + box._4 - box._0125,
+        gap: box._0125,
+        width: width + box._025,
         bottom: 0,
         borderBottomLeftRadius:
           borderRadius,

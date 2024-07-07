@@ -33,11 +33,11 @@ export const PicsHudLeft: FC<
           "absolute flex flex-col justify-start items-end w-0 shrink-0"
         )}
         style={{
-          left: -box.m05,
-          gap: box.m05,
-          top: foundation.height + box.m+box.m025,
+          left: -box._05,
+          gap: box._05,
+          top: foundation.height + box._+box._025,
           height:
-            container.height + box.m2,
+            container.height + box._2,
         }}
       >
         <Lines_Line
@@ -46,9 +46,9 @@ export const PicsHudLeft: FC<
           style={{
             borderTopLeftRadius:
               rounded,
-            width: box.m,
+            width: box._,
             height: container.height,
-            left: box.m15,
+            left: box._15,
           }}
         />
       </motion.div>
@@ -61,12 +61,12 @@ export const PicsHudLeft: FC<
 // className="absolute  w-0 h-0 column-end"
 // style={{
 //   height: 0,
-//   right: box.m2,
+//   right: box._2,
 //   bottom:
-//     box.m2 + box.m0125,
+//     box._2 + box._0125,
 //   x:
 //     container.width +
-//     box.m,
+//     box._,
 //   y: dragger.y,
 // }}
 // >
@@ -79,10 +79,10 @@ export const PicsHudLeft: FC<
 //   y: dragger.y,
 //   x:
 //     container.width +
-//     box.m,
+//     box._,
 //   right: 0,
 //   bottom:
-//     box.m3 - box.m05,
+//     box._3 - box._05,
 // }}
 // >
 // </motion.div>
@@ -93,12 +93,12 @@ style={{
   y: dragger.y06,
   x:
     container.width -
-    box.m05,
-  left: box.m15,
+    box._05,
+  left: box._15,
   top:
     container.height -
     size / 2 -
-    box.m0125,
+    box._0125,
 }}
 >
 

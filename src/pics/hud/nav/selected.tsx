@@ -24,9 +24,9 @@ export const PicsHudFooterNavSelected: FC<
         "row relative center z-10 pointer-events-none"
       )}
       style={{
-        height: box.m,
-        gap: box.m05,
-        bottom:box.m05,
+        height: box._,
+        gap: box._05,
+        bottom:box._05,
       }}
       initial={{
         scale: 1,

@@ -126,7 +126,7 @@ export const ChartsGridStep = <
       ? {
           top: resolveTop(
             value,
-            box.m05
+            box._05
           ),
         }
       : { top: 0 }),

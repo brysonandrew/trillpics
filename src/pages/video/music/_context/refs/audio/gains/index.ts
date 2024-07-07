@@ -7,8 +7,8 @@ import {
   TGains,
 } from "~/pages/video/music/_context/refs/audio/gains/types";
 
-const key = 'gain'
-export const useMusicInitRefsGains =
+export const GAIN_KEY = 'gain'
+export const useMusicRefsGains =
   () => {
     const gains = useMemo(() => {
       const init = (
@@ -51,6 +51,7 @@ export const useMusicInitRefsGains =
             gain: 0.12,
           }),
         };
+        
         const refs: TGainRefs = {};
         const connect = (
           output: AudioNode
@@ -64,7 +65,7 @@ export const useMusicInitRefsGains =
         };
 
         return {
-          key,
+          key:GAIN_KEY,
           create,
           connect,
           beats,

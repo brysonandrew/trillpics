@@ -1,24 +1,18 @@
-import { FC } from "react";
-import { TUpdateNodeHandlerProps } from "~/components/inputs/slider/types";
-import { NodesDelayNumbers } from "~/pages/video/music/synth/nodes/delay/numbers";
+import type { FC } from "react";
+import { TResolveAudioParamProps } from "~/pages/video/music/types";
+import { ModulatorsParams } from "~/pages/video/music/modulators/params";
+import { DELAY_PARAMS } from "~/pages/video/music/synth/nodes/delay/constants";
 import { TDelayNodeKey } from "~/pages/video/music/synth/nodes/delay/types";
-import { NodesTemplate } from "~/pages/video/music/synth/nodes/template";
-import { box } from "~uno/rules/box";
 
-export const NodesDelay: FC<
-  TUpdateNodeHandlerProps<TDelayNodeKey>
-> = (props) => {
+type TProps = TResolveAudioParamProps<TDelayNodeKey>;
+export const NodesDelay: FC<TProps> = (
+  props
+) => {
   return (
-    <NodesDelayNumbers {...props}>
-      {(Input, children) => (
-        <NodesTemplate
-          title="delay line"
-          Input={Input}
-          style={{ gap: box.m003125 }}
-        >
-          {children}
-        </NodesTemplate>
-      )}
-    </NodesDelayNumbers>
+    <ModulatorsParams
+      graphKey="delay"
+      keys={DELAY_PARAMS}
+      {...props}
+    />
   );
 };

@@ -78,8 +78,8 @@ export const PillB: FC<TPillBProps> = (
           : "row-reverse"
       )}
       style={{
-        gap: box.m,
-        height: box.m,
+        gap: box._,
+        height: box._,
         borderRadius,
         ...style,
       }}
@@ -96,7 +96,7 @@ export const PillB: FC<TPillBProps> = (
           >
             <div
               style={{
-                padding: box.m0125,
+                padding: box._0125,
               }}
             />
             {isString(children) ? (

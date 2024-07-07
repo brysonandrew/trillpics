@@ -1,40 +1,41 @@
 import { useMemo } from "react";
-import { useMusicInitRefsDelays } from "~/pages/video/music/_context/refs/audio/delays";
-import { useMusicInitRefsDrums } from "~/pages/video/music/_context/refs/audio/drums";
-import { useMusicInitRefsBiquads } from "~/pages/video/music/_context/refs/audio/biquads";
-import { useMusicInitRefsGains } from "~/pages/video/music/_context/refs/audio/gains";
+import { useMusicRefsDelays } from "~/pages/video/music/_context/refs/audio/delays";
+import { useMusicRefsDrums } from "~/pages/video/music/_context/refs/audio/drums";
+import { useMusicRefsBiquads } from "~/pages/video/music/_context/refs/audio/biquads";
+import { useMusicRefsGains } from "~/pages/video/music/_context/refs/audio/gains";
 import { AUDIO_GRAPH } from "~/pages/video/music/_context/refs/audio/graph/constants";
 import { useSynthKarpluses } from "~/pages/video/music/_context/refs/audio/karpluses";
 import { useSynthModulators } from "~/pages/video/music/_context/refs/audio/modulators";
 import { useSynthNoises } from "~/pages/video/music/_context/refs/audio/noises";
 import { useSynthOscillators } from "~/pages/video/music/_context/refs/audio/oscillators";
-import { useMusicInitRefsSave } from "~/pages/video/music/_context/refs/audio/save";
+import { useMusicRefsSave } from "~/pages/video/music/_context/refs/audio/save";
 import { TScheduleOptions } from "~/pages/video/music/_context/refs/schedule/types";
 import { TLoadWorklets } from "~/pages/video/music/_context/load/worklets/types";
 import { useSynthBitcrushers } from "~/pages/video/music/_context/refs/audio/bitcrusher";
 import { LOAD_WORKLETS } from "~/pages/video/music/_context/load/worklets/worklets";
+import { useSynthRingMods } from "~/pages/video/music/_context/refs/audio/ring-mod";
 
 export const useRefsAudio = (
   options: TScheduleOptions
 ) => {
   const _oscillators =
     useSynthOscillators();
+  const _ringMods = useSynthRingMods();
   const _noises = useSynthNoises();
   const _karpluses =
     useSynthKarpluses();
-  const drums = useMusicInitRefsDrums();
-  const save = useMusicInitRefsSave();
+  const drums = useMusicRefsDrums();
+  const save = useMusicRefsSave();
   const _gains =
-    useMusicInitRefsGains();
+    useMusicRefsGains();
   const _modulators =
     useSynthModulators(options);
   const _biquads =
-    useMusicInitRefsBiquads();
+    useMusicRefsBiquads();
   const _delays =
-    useMusicInitRefsDelays();
+    useMusicRefsDelays();
   const _bitcrushers =
     useSynthBitcrushers();
-  // const worklets =await _worklets(context);
 
   const audio = useMemo(() => {
     const init = (
@@ -64,6 +65,8 @@ export const useRefsAudio = (
       const oscillators =
         _oscillators(context);
 
+      const ringMods = _ringMods(context)
+
       const modulators = _modulators(
         oscillators.create,
         oscillators.recycle,
@@ -82,6 +85,7 @@ export const useRefsAudio = (
 
       return {
         oscillators,
+        ringMods,
         noises,
         worklets,
         karpluses,

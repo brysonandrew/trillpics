@@ -1,7 +1,8 @@
 import { useMemo } from "react";
+import { BIQUAD_KEY } from "~/pages/video/music/synth/nodes/biquad/constants";
 import { TBiquadRefs } from "~/pages/video/music/_context/refs/audio/biquads/types";
 
-export const useMusicInitRefsBiquads =
+export const useMusicRefsBiquads =
   () => {
     const handler = useMemo(() => {
       const init = (
@@ -40,7 +41,7 @@ export const useMusicInitRefsBiquads =
           return filter;
         };
         return {
-          key: "filter",
+          key: BIQUAD_KEY,
           create,
           recycle,
           connect,

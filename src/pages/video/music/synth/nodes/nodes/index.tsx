@@ -1,4 +1,5 @@
-import type { FC } from "react";
+import { FC, Fragment } from "react";
+import { TypographyXxxxs } from "~/components/layout/typography/xxxxs";
 import { MusicSynthNodesSourceNode } from "~/pages/video/music/synth/nodes/nodes/node";
 import {
   TGraphNodeWithId,
@@ -12,20 +13,20 @@ export const MusicSynthNodesSourceNodes: FC<
   TProps
 > = ({ source }) => {
   return (
-    <>
+    <div className="relative">
       {source.nodes.map(
         (
           node: TGraphNodeWithId,
           index
         ) => (
           <MusicSynthNodesSourceNode
-            key={node.key}
+            key={node.id}
             node={node}
             index={index}
             source={source}
           />
         )
       )}
-    </>
+    </div>
   );
 };

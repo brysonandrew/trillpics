@@ -9,7 +9,7 @@ export const InputsNumberBackground: FC =
         style={{
           ...box.r.l,
           ...box.iy(0),
-          ...box.ix(-box.m00625),
+          ...box.ix(-box._00625),
         }}
       />
     );

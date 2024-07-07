@@ -29,7 +29,7 @@ export const PillBText: FC<
   ...props
 }) => {
   const s = box;
-  size = size ?? box.m;
+  size = size ?? box._;
   const { isIdle, isHover } =
     useTrillPicsStore(
       ({ isIdle, isHover }) => ({
@@ -66,8 +66,8 @@ export const PillBText: FC<
                 box.radius.xl,
               mixBlendMode:
                 "soft-light",
-              ...box.ix(-box.m025),
-              ...box.iy(box.m003125),
+              ...box.ix(-box._025),
+              ...box.iy(box._003125),
             }}
           />
         )}

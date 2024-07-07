@@ -1,5 +1,5 @@
 import { TSyncValue } from "~/pages/video/music/modulators/dropdowns/sync";
-import { TAllParamsKey } from "~/pages/video/music/modulators/types";
+import { TAllParamsKey } from "~/pages/video/music/types";
 
 export const resolveSync = (
   id: string,

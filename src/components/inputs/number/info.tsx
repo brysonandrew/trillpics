@@ -1,6 +1,6 @@
 import type { FC } from "react";
-import { TInputRangeProps } from "~/components/inputs/number";
 import { inputsNumberFormat } from "~/components/inputs/number/format";
+import { TInputRangeProps } from "~/components/inputs/number/types";
 import { TypographyXxxs } from "~/components/layout/typography/xxxs";
 import { isDefined } from "~/utils/validation/is/defined";
 import { box } from "~uno/rules/box";
@@ -15,7 +15,13 @@ export const InputsNumberInfo: FC<
   TInputRangeProps
 > = (props) => {
   return (
-    <ul className="row-space text-gray-5" style={{...box.px(box.m025), paddingTop: box.m0125}}>
+    <ul
+      className="row-space text-gray-5"
+      style={{
+        ...box.px(box._025),
+        paddingTop: box._0125,
+      }}
+    >
       {KEYS.map((key) => {
         if (key === "+" || key === "-")
           return (

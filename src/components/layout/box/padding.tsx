@@ -24,11 +24,11 @@ export const LayoutBoxPadding: FC<
     <div
       className="row relative uppercase text-sm"
       style={{
-        paddingTop: box.m025*1.25,
-        paddingBottom: box.m025,
-        paddingLeft: box.m0125,
-        paddingRight: box.m0125,
-        gap: box.m025,
+        paddingTop: box._025*1.25,
+        paddingBottom: box._025,
+        paddingLeft: box._0125,
+        paddingRight: box._0125,
+        gap: box._025,
         borderRadius,
         ...style,
       }}

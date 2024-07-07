@@ -14,6 +14,7 @@ export const NodesSourceBiquad: FC<
     <>
       {renderUi(
         'nodes',
+        'biquad',
         IconsBiquad,
         result.ui
       )}

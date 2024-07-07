@@ -1,5 +1,6 @@
 import { TBitcrusher } from "~/pages/video/music/_context/refs/audio/bitcrusher/types";
 import { TOscillator } from "~/pages/video/music/_context/refs/audio/oscillators/types";
+import { isDefined } from "~/utils/validation/is/defined";
 import { isNull } from "~/utils/validation/is/null";
 
 export const NOTES = [
@@ -85,13 +86,13 @@ export const isOscillatorNode = (
   return false;
 };
 
-
 export const isBitcrusher = (
-  target: any,
+  target: any
 ): target is TBitcrusher => {
   if (
     !isNull(target) &&
-    target.node instanceof AudioWorkletNode
+    target.node instanceof
+      AudioWorkletNode
   ) {
     return true;
   }
@@ -128,9 +129,10 @@ export const isAudioNode = (
 };
 
 export const isGainNode = (
-  target: AudioNode | null
+  target?: AudioNode | null
 ): target is GainNode => {
   if (
+    isDefined(target) &&
     !isNull(target) &&
     target instanceof GainNode
   ) {

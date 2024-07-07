@@ -5,7 +5,7 @@ import {
   TBufferSourceRecord,
 } from "~/pages/video/music/_context/refs/audio/drums/types";
 
-export const useMusicInitRefsDrums =
+export const useMusicRefsDrums =
   () => {
     const handler = useMemo(() => {
       const init = () => {

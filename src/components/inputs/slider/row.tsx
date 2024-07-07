@@ -8,10 +8,8 @@ import { BackgroundGlass } from "~/components/layout/background/glass";
 import { cx } from "class-variance-authority";
 import { TypographyXxxs } from "~/components/layout/typography/xxxs";
 import { TypographyXxs } from "~/components/layout/typography/xxs";
-import { useVideoStyle } from "~/pages/video/style";
 import { box } from "~uno/rules/box";
 import { TSliderStyledProps } from "~/components/inputs/slider/types";
-import { SliderSm } from "~/components/inputs/slider/sm";
 
 export type TSliderRowProps =
   TClassValueProps &
@@ -26,7 +24,6 @@ export const SliderRow: FC<
     classValue,
     ...sliderProps
   } = props;
-  // return <SliderSm {...props} />;
   return (
     <div
       className={cx(
@@ -34,16 +31,16 @@ export const SliderRow: FC<
         classValue
       )}
       style={{
-        left: box.m00625,
-        gap: box.m075,
-        height: box.m075,
+        left: box._00625,
+        gap: box._075,
+        height: box._075,
       }}
     >
       <TypographyXxxs
         style={{
-          left: box.m0125,
+          left: box._0125,
           width:
-            box.m15 - box.m0125 / 2,
+            box._15 - box._0125 / 2,
           textAlign: "left",
         }}
       >
@@ -52,20 +49,20 @@ export const SliderRow: FC<
       <div
         className="row grow"
         style={{
-          gap: box.m05,
+          gap: box._05,
         }}
       >
         <div
           className="relative grow"
           style={
             {
-              // ...box.p(box.m0125),
+              ...box.p(box._0125)
             }
           }
         >
           <BackgroundGlass
             boxStyle={{
-              ...box.i(-box.m0125),
+              ...box.i(-box._0125),
             }}
           />
           {children}
@@ -73,9 +70,9 @@ export const SliderRow: FC<
         <MeshBackgroundText
           classValue="relative"
           style={{
-            right: box.m0125,
+            right: box._0125,
             width:
-              box.m15 - box.m0125 / 2,
+              box._15 - box._0125 / 2,
           }}
         >
           <TypographyXxs

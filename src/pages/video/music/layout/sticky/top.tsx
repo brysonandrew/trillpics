@@ -18,7 +18,7 @@ export const LayoutStickyTop: FC<
     <div
       className="sticky column-stretch z-10 bg-black-8 dark:bg-black"
       style={{
-        width: width + box.m025,
+        width: width + box._025,
         top: y,
         borderTopRightRadius:
           borderRadius,

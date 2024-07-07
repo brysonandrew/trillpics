@@ -5,7 +5,6 @@ import {
   SYNTH_TYPES_RECORD,
   TSynthConfigKey,
 } from "~/pages/video/music/_context/refs/audio/constants";
-import { TScaleNumberOptionsKey } from "~/pages/video/music/synth/composition/scale/types";
 import { DEFAULT_SEQUENCE_OPTIONS } from "~/pages/video/music/synth/composition/sequence/constants";
 import { TSequenceNumberOptionsKey } from "~/pages/video/music/synth/composition/sequence/types";
 import {
@@ -13,7 +12,6 @@ import {
   TSynthOptionType,
   TSynthMultiOptionType,
 } from "~/pages/video/music/_context/refs/schedule/types";
-import { TBeatsOptions } from "~/store/state/music/types";
 
 export const isSynthType = (
   key: string

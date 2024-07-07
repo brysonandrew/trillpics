@@ -39,7 +39,7 @@ export const SliderStyled = forwardRef<
             className={cx(
               "relative _bi-mesh bg-white-4 dark:bg-black w-full grow overflow-hidden rounded-full"
             )}
-            style={{ height: box.m05 }}
+            style={{ height: box._05 }}
           >
             <SliderPrimitive.Range className="absolute h-full _bi-radial opacity-50" />
             <PlayerBackgroundMesh />
@@ -51,9 +51,10 @@ export const SliderStyled = forwardRef<
           ))}
           <SliderPrimitive.Thumb
             className={cx(
-              "ring-offset-background focus-visible:ring-ring block rounded-full border border-black bg-white transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2"
+              'border border-black',
+              "focus-visible:ring-ring block rounded-full bg-white transition-colors focus-visible:outline-none"
             )}
-            style={resolveSquare(box.m05)}
+            style={resolveSquare(box._05)}
           />
         </SliderPrimitive.Root>
       </SliderPrimitive.Slider>

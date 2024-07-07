@@ -49,7 +49,7 @@ export const Pill: FC<TPillProps> = ({
       )}
       style={{
         borderRadius,
-        ...boxPx(box.m0125),
+        ...boxPx(box._0125),
         ...style,
       }}
       {...props}

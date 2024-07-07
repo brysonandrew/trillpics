@@ -1,40 +1,33 @@
 import { useMusicRefs } from "~/pages/video/music/_context/refs";
-import { TGraphSource } from "~/pages/video/music/_context/refs/audio/graph/types";
+import { TGraphSourceWithId } from "~/pages/video/music/_context/refs/audio/graph/types";
 import { useNodesSourceOscillatorCreate } from "~/pages/video/music/synth/nodes/source/oscillator/create";
-import { isDefined } from "~/utils/validation/is/defined";
+import { useAmpLastToMaster } from "~/pages/video/music/synth/nodes/nodes/amp/last/to-master";
 
 export const useNodesSourceOscillatorToggle =
   () => {
     const { audio } = useMusicRefs();
-
+    const handleAmpToMaster =
+      useAmpLastToMaster();
     const handleClick = (
-      source: TGraphSource,
+      source: TGraphSourceWithId,
       result: ReturnType<
         typeof useNodesSourceOscillatorCreate
       >
     ) => {
-      if (!result) return;
-      if (result.apm.isStarted) {
-        result.apm.end(audio.context.currentTime);
+      if (result.processor.isStarted) {
+        result.processor.end(
+          audio.context.currentTime
+        );
         console.log("END");
 
         return;
       }
-      result.apm.output.connect(
-        audio.gains.midis.preamp
+
+      result.processor.start(
+        audio.context.currentTime
       );
 
-      result.apm.start(audio.context.currentTime);
-
-      const last =
-        source.nodes[
-          source.nodes.length - 1
-        ].amp;
-      if (isDefined(last)) {
-        last.connect(
-          audio.gains.midis.master
-        );
-      }
+      handleAmpToMaster(source);
     };
 
     return handleClick;

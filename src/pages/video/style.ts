@@ -8,21 +8,21 @@ export const useVideoStyle = () => {
 
   const style = useMemo(() => {
     const left = container.isMobile
-      ? box.m05
+      ? box._05
       : container.isTablet
-      ? box.m05
-      : box.m15 + container.left;
+      ? box._05
+      : box._15 + container.left;
     const width =
       container.width +
       (container.isMobile
-        ? box.m
+        ? box._
         : container.isTablet
-        ? box.m
-        : -box.m25);
-    const gap = box.m05;
-    const y = container.top + box.m15;
+        ? box._
+        : -box._25);
+    const gap = box._05;
+    const y = container.top + box._15;
     const beatsTop =
-      y + box.m4 - box.m05 - box.m0125;
+      y + box._4 - box._05 - box._0125;
     const screenHeight =
       width * (9 / 16);
     const playerStyle = {
@@ -31,18 +31,18 @@ export const useVideoStyle = () => {
       gap,
     };
     const sidebarWidth =
-      box.m15 + box.m025;
+      box._15 + box._025;
     return {
       sidebarWidth,
       beatsTop,
       sidebarWidthOffset:
-        sidebarWidth + box.m025,
+        sidebarWidth + box._025,
       playerStyle,
       y,
       screenHeight,
       containerHeight: container.height,
       viewHeight:
-        screenHeight - box.m15,
+        screenHeight,
       screen,
       ...playerStyle,
     };

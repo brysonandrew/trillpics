@@ -14,7 +14,7 @@ export const HudFooter: FC = () => {
         style={{
           left: screen.container.left,
           width: screen.container.width,
-          top: box.m2,
+          top: box._2,
         }}
       >
         {!screen.isResizing && (
@@ -22,10 +22,10 @@ export const HudFooter: FC = () => {
             <div
               className="absolute left-0 right-0 w-full z-20  pointer-events-none"
               style={{
-                height: box.m4,
+                height: box._4,
                 top:
                   screen.container
-                    .height - box.m,
+                    .height - box._,
                 backgroundImage:
                   resolveGradient({
                     name: "linear-gradient",

@@ -1,41 +1,31 @@
 import { useMusicRefs } from "~/pages/video/music/_context/refs";
-import { TGraphSource } from "~/pages/video/music/_context/refs/audio/graph/types";
-import { KARPLUS_KEY } from "~/pages/video/music/synth/nodes/karplus/constants";
-import { isDefined } from "~/utils/validation/is/defined";
+import { TGraphSourceWithId } from "~/pages/video/music/_context/refs/audio/graph/types";
 import { useNodesSourceKarplusCreate } from "~/pages/video/music/synth/nodes/source/karplus/create";
+import { useAmpLastToMaster } from "~/pages/video/music/synth/nodes/nodes/amp/last/to-master";
 
 export const useNodesSourceKarplusToggle =
   () => {
     const { audio } = useMusicRefs();
-
+    const handleAmpToMaster =
+      useAmpLastToMaster();
     const handleClick = (
-      source: TGraphSource,
+      source: TGraphSourceWithId,
       result: ReturnType<
         typeof useNodesSourceKarplusCreate
       >
     ) => {
-      if (!result) return;
-      if (result.apm.isStarted) {
-        result.apm.end(audio.context.currentTime);
+      if (result.processor.isStarted) {
+        result.processor.end(
+          audio.context.currentTime
+        );
         return;
       }
 
-      result.apm.output.connect(
-        audio.gains.midis.preamp
-      );
-      result.apm.start(
+      result.processor.start(
         audio.context.currentTime
       );
 
-      const last =
-        source.nodes[
-          source.nodes.length - 1
-        ].amp;
-      if (isDefined(last)) {
-        last.connect(
-          audio.gains.midis.master
-        );
-      }
+      handleAmpToMaster(source);
     };
 
     return handleClick;

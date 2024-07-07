@@ -21,7 +21,7 @@ TUsePicSelected
 
   useDraggerReset({
     to: 0,
-    from: box.m4,
+    from: box._4,
   });
 
 
@@ -29,10 +29,10 @@ TUsePicSelected
     <footer
       className="relative h-0 w-full z-10"
       style={{
-        left: container.left - box.m,
+        left: container.left - box._,
         bottom:
-          container.height / 2 + box.m2,
-        width: container.width + box.m,
+          container.height / 2 + box._2,
+        width: container.width + box._,
       }}
     >
   

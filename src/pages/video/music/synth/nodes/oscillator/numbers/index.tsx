@@ -1,38 +1,34 @@
 import type { FC } from "react";
-import {
-  TUpdateNodeHandlerProps,
-  TUpdateNumberHandler,
-} from "~/components/inputs/slider/types";
 import { ModulatorsParams } from "~/pages/video/music/modulators/params";
 import { OSCILLATOR_NUMBER_OPTIONS } from "~/pages/video/music/synth/nodes/oscillator/constants";
-import {
-  TOscillatorNumberOptionsKey,
-  TOscillatorParams,
-} from "~/pages/video/music/synth/nodes/oscillator/types";
+import { TOscillatorParamKey } from "~/pages/video/music/synth/nodes/oscillator/types";
+import { TResolveAudioParamProps } from "~/pages/video/music/types";
 import { resolveObjectKeys } from "~/utils/object";
 
 export const NodesOscillatorNumbers: FC<
-  TUpdateNodeHandlerProps<TOscillatorNumberOptionsKey>
+  TResolveAudioParamProps<TOscillatorParamKey>
 > = (props) => {
   const keys = resolveObjectKeys(
     OSCILLATOR_NUMBER_OPTIONS
   );
-  const params = keys.map((key) => {
-    const param =
-      props.resolveParam(key);
 
-    const handleUpdate: TUpdateNumberHandler =
-      (value) => {
-        props.onUpdate(key, value);
-      };
-    return [key, param, handleUpdate];
-  });
   return (
     <ModulatorsParams
-      type="oscillator"
-      params={
-        params as TOscillatorParams
-      }
+      graphKey="oscillator"
+      keys={keys}
+      {...props}
     />
   );
 };
+
+// const params = keys.map((key) => {
+// const param =
+//   props.resolveAudioParam(key);
+
+// const handleUpdate: TUpdateNumberHandler =
+//   (value) => {
+//     props.resolveAudioParam(key).value =
+//       value;
+//   };
+//   return [key, resolveAudioParam];
+// });

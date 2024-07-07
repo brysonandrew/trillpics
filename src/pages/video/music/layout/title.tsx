@@ -39,8 +39,8 @@ export const MusicLayoutTitle: FC<
       >
         <LayoutBoxPadding
           style={{
-            paddingRight: box.m025,
-            gap: box.m0125,
+            paddingRight: box._025,
+            gap: box._0125,
           }}
         >
           <Icon classValue="-top-0.25 -left-0.25" />

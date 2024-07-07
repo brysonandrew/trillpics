@@ -17,8 +17,8 @@ export const InputsBoxTitle: FC<
   return (
     <TypographyXxxs
       style={{
-        left: box.m00625,
-        top: box.m0125,
+        left: box._00625,
+        top: box._0125,
         height: 0,
         ...style,
       }}
@@ -26,14 +26,15 @@ export const InputsBoxTitle: FC<
         ...overrides,
       }}
       classValue={clsx(
-        "pointer-event-none text-white-9",
+        "pointer-event-none",
+        "text-white-9",
         classValue
       )}
       {...props}
     >
       <div
-        className="truncate bg-gradient-to-r from-black-05 to-transparent pointer-events-none"
-        style={{ width: box.m2 }}
+        className="truncate bg-gradient-to-r from-black-05 to-transparent"
+        style={{ width: box._2 }}
       >
         {children}
       </div>

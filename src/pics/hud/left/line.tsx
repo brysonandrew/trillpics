@@ -11,7 +11,7 @@ export const PicsHudLeftLine: FC<
   return (
     <LinesVertical
       layout
-      style={{ left: box.m05 }}
+      style={{ left: box._05 }}
       {...props}
     />
   );

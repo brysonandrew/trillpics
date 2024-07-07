@@ -5,6 +5,7 @@ import { useMusicRefs } from "~/pages/video/music/_context/refs";
 import { TMusicKey } from "~/store/state/music/types";
 import { InputsNumberDefault } from "~/components/inputs/number/default";
 import { Modulators } from "~/pages/video/music/modulators";
+import { resolveObjectKeys } from "~/utils/object";
 
 const KEY = "playbackRate";
 type TProps = {
@@ -16,7 +17,7 @@ type TProps = {
 };
 export const DrumsPlaybackRateNumbers: FC<
   TProps
-> = ({ musicKey, children }) => {
+> = ({ musicKey }) => {
   const {
     audio: { gains, drums },
   } = useMusicRefs();
@@ -24,7 +25,23 @@ export const DrumsPlaybackRateNumbers: FC<
     name: typeof KEY,
     value: number
   ) => {
-    drums.options.playbackRate = value;
+    if (name === "playbackRate") {
+      resolveObjectKeys(
+        drums.bufferSourceRecord
+      ).forEach((drumType) => {
+        drums.bufferSourceRecord[
+          drumType
+        ].forEach((beat) => {
+          if ("source" in beat) {
+            const audioParam =
+              beat.source.playbackRate;
+            audioParam.value = value;
+          }
+        });
+      });
+      drums.options.playbackRate =
+        value;
+    }
   };
 
   return (
@@ -43,7 +60,6 @@ export const DrumsPlaybackRateNumbers: FC<
       }}
       defaultValue={
         drums.options.playbackRate
-        // gains[musicKey].master.gain.value
       }
       min={0.01}
       max={2}
@@ -63,36 +79,6 @@ export const DrumsPlaybackRateNumbers: FC<
             />
           </Modulators>
         );
-        // const Input = () => (
-        //   <>
-        //     <Box>
-        //       <Header>
-        //         <Title />
-        //         <Number />
-        //       </Header>
-        //     </Box>
-        //   </>
-        // );
-        //   {
-        //   Number,
-        //   Slider,
-        //   Header,
-        //   Title,
-        //   Box,
-        // }
-        //   return (
-        //     <>
-        //       {children(
-        //         Input,
-
-        //
-        //         <div className="relative pl-2">
-        //           <Slider />
-        //         </div>
-        //         //
-        //       )}
-        //     </>
-        //   );
       }}
     </InputsNumber>
   );

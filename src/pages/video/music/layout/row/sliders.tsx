@@ -12,9 +12,9 @@ export const MusicLayoutRow: FC<
     <div
       className="relative column-stretch bg-black-8 dark:bg-black"
       style={{
-        gap: box.m0375,
-        ...box.py(box.m00625),
-        paddingRight: box.m0125,
+        gap: box._0375,
+        ...box.py(box._00625),
+        paddingRight: box._0125,
         ...box.r.xl,
       }}
     >

@@ -20,7 +20,7 @@ export const VideoMusicSynth: FC =
         <div
           className="relative column-start"
           style={{
-            width: width + box.m025,
+            width: width + box._025,
           }}
         >
           <VideoMusicSynthHeader />
@@ -36,12 +36,12 @@ export const VideoMusicSynth: FC =
           style={{
             left:
               sidebarWidthOffset +
-              box.m003125,
+              box._003125,
             width:
               width -
               sidebarWidthOffset +
-              box.m025 -
-              box.m00625,
+              box._025 -
+              box._00625,
           }}
         >
           {({ rowIndex }) => (
@@ -51,8 +51,8 @@ export const VideoMusicSynth: FC =
                 left:
                   -sidebarWidthOffset /
                   2,
-                height: box.m2,
-                width: box.m05,
+                height: box._2,
+                width: box._05,
               }}
             >
               <SynthRange

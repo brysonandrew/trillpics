@@ -34,7 +34,7 @@ export const Hud: FC =
             )}
             style={{
               width: container.width,
-              gap: box.m05,
+              gap: box._05,
             }}
           >
             <PicsHudHeader

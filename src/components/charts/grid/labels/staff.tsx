@@ -17,7 +17,7 @@ export const ChartsGridStaff: FC =
             style={{
               top: resolveTop(
                 index,
-                box.m0125
+                box._0125
               ),
               opacity: 0.1,
               width: "100%",

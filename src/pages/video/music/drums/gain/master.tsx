@@ -8,8 +8,8 @@ export const DrumsMasterGain = () => {
       title="drums master"
       ampKey="master"
       style={{
-        paddingTop:box.m025,
-        paddingBottom:box.m05
+        paddingTop:box._025,
+        paddingBottom:box._05
       }}
     />
   );

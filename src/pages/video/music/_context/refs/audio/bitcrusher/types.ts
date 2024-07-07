@@ -1,16 +1,16 @@
 import {
-  TBitcrusherNumberOptions,
-  TBitcrusherNumberOptionsKey,
+  TBitcrusherParams,
+  TBitcrusherParamsKey,
 } from "~/pages/video/music/synth/nodes/bitcrusher/types";
 import { BITCRUSHER_KEY } from "~/pages/video/music/_context/refs/audio/bitcrusher";
 
 export type TBitcrusherOptions =
-  TBitcrusherNumberOptions;
+  TBitcrusherParams;
 export type TBitcrusherOptionsKey =
-  TBitcrusherNumberOptionsKey;
+  TBitcrusherParamsKey;
 
 export type TBitcrusherCreate = (
-  options: TBitcrusherNumberOptions
+  options: TBitcrusherParams
 ) => AudioWorkletNode;
 export type TBitcrusherRecycle = (
   node: AudioWorkletNode

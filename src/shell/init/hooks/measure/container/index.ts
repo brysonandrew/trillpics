@@ -11,7 +11,7 @@ export const measureContainer = (
   const isMobile = screen.width < 450;
   const isTablet = screen.width < 769;
 
-  const padding = box.m2;
+  const padding = box._2;
   const width =
     Math.min(screen.width, MAX_WIDTH) -
     padding;
@@ -33,8 +33,8 @@ export const measureContainer = (
     width,
     playerHeight,
     height,
-    left: pX05 - box.m0125,
-    right: pX05 + box.m0125,
+    left: pX05 - box._0125,
+    right: pX05 + box._0125,
     top: pY05,
     bottom: pY05,
     isMobile,

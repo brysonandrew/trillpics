@@ -1,58 +1,68 @@
-import type { FC } from "react";
 import { InputsNumber } from "~/components/inputs/number";
 import { TBiquadFilterConfig } from "~/pages/video/music/synth/nodes/biquad/types";
 import { Modulators } from "~/pages/video/music/modulators";
 import { TOscillatorConfig } from "~/pages/video/music/synth/nodes/oscillator/types";
-import { defaultsFromAudioparams } from "~/pages/video/music/synth/nodes/defaults/from-audioparams";
 import { TBitcrusherModulatorParamsConfig } from "~/pages/video/music/synth/nodes/bitcrusher/types";
 import { TKarplusStrongModulatorParamsConfig } from "~/pages/video/music/synth/nodes/karplus/types";
-import { box } from "~uno/rules/box";
 import { TNoiseModulatorParamsConfig } from "~/pages/video/music/synth/nodes/noise/types";
+import { TRingModModulatorParamsConfig } from "~/pages/video/music/synth/nodes/ring-mod/types";
+import { defaultsFromAudioparams } from "~/pages/video/music/synth/nodes/defaults";
+import { TInputsNumberProps } from "~/components/inputs/number/types";
+import {
+  TAllParamsKey,
+  TResolveAudioParamProps,
+} from "~/pages/video/music/types";
 
-type TProps =
+type TConfig =
   | TBitcrusherModulatorParamsConfig
   | TKarplusStrongModulatorParamsConfig
   | TBiquadFilterConfig
   | TOscillatorConfig
-  | TNoiseModulatorParamsConfig;
+  | TNoiseModulatorParamsConfig
+  | TRingModModulatorParamsConfig;
 
-export const ModulatorsParams: FC<
-  TProps
-> = ({ type, params }) => {
+type TProps<K extends TAllParamsKey> =
+  Partial<TInputsNumberProps> &
+    TResolveAudioParamProps<K> & {
+      graphKey: string;
+      keys: readonly K[] | K[];
+    };
+export const ModulatorsParams = <
+  K extends TAllParamsKey
+>({
+  graphKey,
+  keys,
+  resolveAudioParam,
+  ...props
+}: TProps<K>) => {
   return (
-    <ul
-      className="relative row"
-      style={{ gap: box.m025 }}
-    >
-      {params.map((p) => {
-        const [key, param, onUpdate] =
-          p;
-
-        const name = `${type}.${key}`;
+    <>
+      {keys.map((paramKey) => {
+        const param =
+          resolveAudioParam(paramKey);
+        const name = `${graphKey}.${paramKey}`;
         return (
-          <li
-            key={key}
-            className="relative"
+          <Modulators
+            key={paramKey}
+            id={name}
+            audioParam={param}
           >
-            {/* <Modulators
-              id={name}
-              audioParam={param}
-            > */}
-              <InputsNumber
-                // s="sm"
-                name={name}
-                title={key}
-                onUpdate={onUpdate}
-                {...defaultsFromAudioparams(
-                  param,
-                  key,
-                  type
-                )}
-              />
-            {/* </Modulators> */}
-          </li>
+            <InputsNumber
+              name={name}
+              title={paramKey}
+              {...defaultsFromAudioparams(
+                param,
+                { paramKey, graphKey }
+              )}
+              onUpdate={(value) => {
+                param.value = value;
+              }}
+              defaultValue={param.value}
+              {...props}
+            />
+          </Modulators>
         );
       })}
-    </ul>
+    </>
   );
 };

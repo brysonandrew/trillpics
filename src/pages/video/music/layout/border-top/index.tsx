@@ -11,9 +11,9 @@ export const LayoutBorderTop: FC = () => {
   return (
     <LinesHorizontalLight
       style={{
-        left: box.m025 + box.m0125,
-        top: -box.m075,
-        width: width - box.m2,
+        left: box._025 + box._0125,
+        top: -box._075,
+        width: width - box._2,
       }}
     />
   );

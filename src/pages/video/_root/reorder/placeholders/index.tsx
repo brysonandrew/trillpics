@@ -46,8 +46,8 @@ export const _RootReorderPlaceholders: FC<
     screen.container.width < 600;
   const width =
     screen.container.width -
-    (isColumn ? box.m : box.m3);
-  const left = isColumn ? box.m05 : box.m25;
+    (isColumn ? box._ : box._3);
+  const left = isColumn ? box._05 : box._25;
   const gap =
     TOTAL_GAP / (MAX_COUNT - 1);
   const size =
@@ -59,7 +59,7 @@ export const _RootReorderPlaceholders: FC<
     height,
     width,
     left,
-    top: box.m4,
+    top: box._4,
   };
   const boxProps = {
     className: clsx(
@@ -73,7 +73,7 @@ export const _RootReorderPlaceholders: FC<
   const itemDimensions = isColumn
     ? {
         height:
-          size / MAX_COUNT + box.m05,
+          size / MAX_COUNT + box._05,
         width: size,
       }
     : imageDimensions;

@@ -1,31 +1,31 @@
 export class BitcrusherProcessor extends AudioWorkletProcessor {
   constructor() {
     super()
-    this.port.onmessage = (event) =>
-      (this.startTime = event.data);
-    this.startTime = Number.POSITIVE_INFINITY;
+    // this.port.onmessage = (event) =>
+    //   (this.startTime = event.data);
+    // this.startTime = Number.POSITIVE_INFINITY;
   }
   static get parameterDescriptors() {
     return [
       {
         name: "bits",
         defaultValue: 8,
-        minValue: -10000,
-        maxValue: 100000,
+        minValue: -512,
+        maxValue: 512,
       },
       {
         name: "frequency",
         defaultValue: 0.4,
-        minValue: -10000,
-        maxValue: 100000,
+        minValue: -0.99,
+        maxValue: 0.99,
       },
     ];
   }
 
   process(inputs, outputs, parameters) {
-    if (currentTime < this.startTime) { 
-      return true;
-    }
+    // if (currentTime < this.startTime) { 
+    //   return true;
+    // }
     const bitsArr = parameters["bits"];
     const frequencys = parameters["frequency"];
     let phaser = 0;

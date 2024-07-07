@@ -86,8 +86,8 @@ export const VideoPlayer = () => {
 // style={{
 //   height: 0,
 //   width:
-//     container.width + box.m,
-//   bottom: box.m2 - box.m0125,
+//     container.width + box._,
+//   bottom: box._2 - box._0125,
 //   x: dragger.x05,
 //   left: 0,
 //   y: dragger.y,
@@ -95,7 +95,7 @@ export const VideoPlayer = () => {
 // >
 // <div
 //   style={{
-//     width: box.m,
+//     width: box._,
 //   }}
 // />
 // <ControlsPlayer />

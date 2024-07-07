@@ -32,7 +32,7 @@ export const ButtonPillBIcon: FC<
 }) => {
   const borderRadius = boxRadius();
   
-  size = size ?? box.m;
+  size = size ?? box._;
 
   return (
     <div

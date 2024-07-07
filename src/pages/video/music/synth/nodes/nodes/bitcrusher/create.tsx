@@ -1,6 +1,5 @@
 import { useMemo } from "react";
 import { useMusicRefs } from "~/pages/video/music/_context/refs";
-import { TUpdateNodeHandlerProps } from "~/components/inputs/slider/types";
 import { NodesBitcrusher } from "~/pages/video/music/synth/nodes/bitcrusher";
 import {
   TBitcrusher,
@@ -18,34 +17,27 @@ export const useNodesSourcesBitcrusherCreate =
         connect:
           audio.bitcrushers.connect,
       });
+    audio.bitcrushers.connect(
+      audio.gains.master
+    );
     const result = useMemo(() => {
-      const apm = handleAmp();
+      const processor = handleAmp();
       const resolveAudioParam = (
         key: TBitcrusherOptionsKey
       ) => {
-        return apm.node.parameters.get(
+        return processor.node.parameters.get(
           key
         );
       };
 
-      const props = {
-        defaultValue: (key) => {
-          return resolveAudioParam(key)
-            .value;
-        },
-        resolveParam: (key) => {
-          return resolveAudioParam(key);
-        },
-        onUpdate: (key, value) => {
-          resolveAudioParam(key).value =
-            value;
-        },
-      } as TUpdateNodeHandlerProps<TBitcrusherOptionsKey>;
-
       const ui = (
-        <NodesBitcrusher {...props} />
+        <NodesBitcrusher
+          resolveAudioParam={
+            resolveAudioParam
+          }
+        />
       );
-      return { ui, apm };
+      return { ui, processor };
     }, []);
     return result;
   };

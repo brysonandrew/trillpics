@@ -1,58 +1,44 @@
-import { useMusicRefs } from "~/pages/video/music/_context/refs";
-import { NodesKarplusStrong } from "~/pages/video/music/synth/nodes/karplus";
-import { TKarplusStrongOptionsKey } from "~/pages/video/music/synth/nodes/karplus/types";
-import { WHITE_NOISE_KEY } from "~/pages/video/music/_context/refs/audio/noises";
-import { KARPLUS_KEY } from "~/pages/video/music/synth/nodes/karplus/constants";
 import { useMemo } from "react";
+import { useMusicRefs } from "~/pages/video/music/_context/refs";
+import { TKarplusParamsKey } from "~/pages/video/music/synth/nodes/karplus/types";
+import { WHITE_NOISE_KEY } from "~/pages/video/music/_context/refs/audio/noises";
+import { NodesKarplus } from "~/pages/video/music/synth/nodes/karplus";
 
 export const useNodesSourceKarplusCreate =
   () => {
     const { audio } = useMusicRefs();
 
     const result = useMemo(() => {
-      if (
-        !audio.worklets[WHITE_NOISE_KEY] ||
-        !audio.worklets[KARPLUS_KEY]
-      ) {
-        console.log(
-          "karplus delayed ",
-          audio.worklets
-        );
-        return;
-      }
-
-      const apm =
+      const processor =
         audio.karpluses.connect(
           audio.gains.midis.preamp,
+          WHITE_NOISE_KEY
         );
       const handleUpdate = (
-        name: TKarplusStrongOptionsKey,
+        name: TKarplusParamsKey,
         value: number
       ) => {
         const next = Number(value);
-        apm.node.parameters.get(
+        processor.node.parameters.get(
           name
         ).value = next;
       };
-      const resolveParam = (
-        key: TKarplusStrongOptionsKey
+      const resolveAudioParam = (
+        key: TKarplusParamsKey
       ) => {
-        return apm.node.parameters.get(
+        return processor.node.parameters.get(
           key
         );
       };
       const ui = (
-        <NodesKarplusStrong
-
-          onUpdate={handleUpdate}
-          defaultValue={(name) =>
-            resolveParam(name).value
+        <NodesKarplus
+          resolveAudioParam={
+            resolveAudioParam
           }
-          resolveParam={resolveParam}
         />
       );
 
-      return { apm, ui } as const;
+      return { processor, ui } as const;
     }, []);
     return result;
   };

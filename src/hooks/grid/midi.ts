@@ -23,7 +23,7 @@ export const useGridMidi = () => {
 
           cell.style.top = `${resolveTop(
             nextValue,
-            box.m05
+            box._05
           )}`;
         }
       };

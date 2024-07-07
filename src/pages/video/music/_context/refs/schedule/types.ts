@@ -15,7 +15,10 @@ import { TSequenceOptions } from "~/pages/video/music/synth/composition/sequence
 import { TBeatsRecord } from "~/hooks/music/beats/types";
 import { TSynthSourceKey } from "~/pages/video/music/synth/nodes/sources/constants";
 import { TSynthModeKey } from "~/pages/video/music/synth/mode/constants";
-import { TBitcrusherConfig } from "~/pages/video/music/synth/nodes/bitcrusher/init";
+import {
+  TBitcrusher,
+  TBitcrusherOptions,
+} from "~/pages/video/music/_context/refs/audio/bitcrusher/types";
 
 export type TSynthType =
   keyof typeof SYNTH_TYPES_RECORD;
@@ -41,7 +44,7 @@ export type TScheduleOptions = {
   scale: TScaleOptions;
   sequence: TSequenceOptions;
   synth: TSynthOptions & {
-    bitcrusher?:TBitcrusherConfig
+    bitcrusher?: TBitcrusherOptions;
     source: TSynthSourceKey;
     mode: TSynthModeKey;
   };

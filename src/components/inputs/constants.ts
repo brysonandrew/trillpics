@@ -7,11 +7,11 @@ const [fontSize, lineHeight] =
   THEME_FONT_SIZES_LOOKUP[
     NUMBER_FONT_SIZE
   ];
-const PADDING_LEFT = box.m003125;
-const PADDING_RIGHT = box.m0125;
+const PADDING_LEFT = box._003125;
+const PADDING_RIGHT = box._0125;
 const MIN_WIDTH =
-  box.m2 + PADDING_LEFT + PADDING_RIGHT;
-const MAX_WIDTH = box.m2;
+  box._2 + PADDING_LEFT + PADDING_RIGHT;
+const MAX_WIDTH = box._2;
 
 const SHARED = {
   minWidth: MIN_WIDTH,
@@ -21,21 +21,21 @@ const SHARED = {
 export const INPUTS_NUMBER_SLIDER_STYLE =
   {
     paddingRight: PADDING_RIGHT,
-    height: box.m05,
+    height: box._05,
     ...box.rb.m,
     ...SHARED,
   };
 export const INPUTS_NUMBER_SLIDER_STYLE_SM =
   {
     ...INPUTS_NUMBER_SLIDER_STYLE,
-    height: box.m025,
+    height: box._025,
   };
 
 export const INPUTS_NUMBER_INPUT_STYLE =
   {
     fontSize,
-    height: box.m,
-    paddingTop: box.m05,
+    height: box._,
+    paddingTop: box._05,
     paddingLeft: PADDING_LEFT,
     ...box.rt.m,
     ...SHARED,
@@ -44,7 +44,7 @@ export const INPUTS_NUMBER_INPUT_STYLE =
 export const INPUTS_NUMBER_INPUT_STYLE_SM =
   {
     ...INPUTS_NUMBER_INPUT_STYLE,
-    height: box.m05,
+    height: box._05,
     paddingTop: 0,
     paddingLeft: "50%",
     textAlign: "right",
@@ -54,32 +54,33 @@ export const INPUTS_NUMBER_DROPDOWN_TITLE_STYLE =
     top: 0,
     left: 0,
     fontSize,
-    height: box.m05,
-
-    paddingTop: 0, // box.m0125,
-    paddingLeft: box.m00625,
+    height: box._05,
+    paddingTop: 0, // box._0125,
+    paddingLeft: box._00625,
     ...box.rt.m,
     ...SHARED,
   };
 export const INPUTS_NUMBER_DROPDOWN_STYLE =
   {
     fontSize,
-    lineHeight: box.m0625,
-    height: box.m,
-    paddingTop: box.m0125,
-    paddingRight: PADDING_RIGHT,
-    paddingLeft: PADDING_LEFT,
+    lineHeight: box._0625,
+    height: box._15,
+    // paddingTop: box._0125,
+    // paddingRight: PADDING_RIGHT,
+    // paddingLeft: PADDING_LEFT,
+    ...box.rt.m,
     ...box.rb.m,
+
     ...SHARED,
   };
 export const INPUTS_NUMBER_DROPDOWN_STYLE_SM =
   {
     ...INPUTS_NUMBER_DROPDOWN_STYLE,
     paddingTop: 0,
-    height: box.m0375,
+    height: box._,
   };
 export const INPUTS_NUMBER_BOX_STYLE = {
-  lineHeight: box.m0625,
+  // lineHeight: box._0625,
   ...box.r.m,
   ...SHARED,
 };

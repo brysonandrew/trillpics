@@ -1,17 +1,14 @@
 import type { FC } from "react";
-import { NodesTemplate } from "~/pages/video/music/synth/nodes/template";
 import { NodesBitcrusherNumbers } from "~/pages/video/music/synth/nodes/bitcrusher/numbers";
-import { TUpdateNodeHandlerProps } from "~/components/inputs/slider/types";
-import { TBitcrusherNumberOptionsKey } from "~/pages/video/music/synth/nodes/bitcrusher/types";
+import { TBitcrusherParamsKey } from "~/pages/video/music/synth/nodes/bitcrusher/types";
+import { TResolveAudioParamProps } from "~/pages/video/music/types";
 
 export const NodesBitcrusher: FC<
-  TUpdateNodeHandlerProps<TBitcrusherNumberOptionsKey>
+  TResolveAudioParamProps<TBitcrusherParamsKey>
 > = (props) => {
   return (
-    <NodesTemplate title="bitcrusher">
-      <NodesBitcrusherNumbers
-        {...props}
-      />
-    </NodesTemplate>
+    <NodesBitcrusherNumbers
+      {...props}
+    />
   );
 };

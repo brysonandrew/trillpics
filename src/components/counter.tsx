@@ -33,9 +33,9 @@ export const Counter: FC<
         classValue ?? "relative"
       )}
       style={{
-        height: box.m05,
+        height: box._05,
         ...(count < 10
-          ? { width: box.m05 }
+          ? { width: box._05 }
           : {}),
 
         ...style,

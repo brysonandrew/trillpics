@@ -29,7 +29,7 @@ export const VideoMusicDrums: FC =
         <div
           className="relative row-space"
           style={{
-            width: width + box.m025,
+            width: width + box._025,
           }}
         >
           <BackgroundGlass
@@ -79,18 +79,18 @@ export const VideoMusicDrums: FC =
                   }
                 }}
                 style={{
-                  top: box.m003125,
+                  top: box._003125,
                   width:
-                    box.m2 -
-                    box.m025 -
-                    box.m00625,
-                  right: box.m003125,
-                  padding: box.m00625,
+                    box._2 -
+                    box._025 -
+                    box._00625,
+                  right: box._003125,
+                  padding: box._00625,
                   paddingRight:
-                    box.m025,
+                    box._025,
                   paddingLeft:
-                    box.m0125,
-                  transform: `translateX(${-box.m025}px)`,
+                    box._0125,
+                  transform: `translateX(${-box._025}px)`,
                 }}
               >
                 <Icon size={12} />

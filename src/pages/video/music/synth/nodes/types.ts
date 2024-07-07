@@ -1,16 +1,16 @@
 import { GRAPH_LAYOUT_KEYS } from "~/pages/video/music/synth/nodes/constants";
 import {
-  TGraphNode,
-  TGraphSource,
+  TGraphNodeWithId,
+  TGraphSourceWithId,
 } from "~/pages/video/music/_context/refs/audio/graph/types";
 
 export type TSourceProps = {
-  source: TGraphSource;
+  source: TGraphSourceWithId;
 };
 
 export type TSourceNodesProps =
   TSourceProps & {
-    node: TGraphNode;
+    node: TGraphNodeWithId;
     index: number;
   };
 

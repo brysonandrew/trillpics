@@ -22,7 +22,7 @@ export const PicsHudRight: FC<
       <motion.div
         className="absolute flex flex-col items-end justify-evenly shrink-0 w-0"
         style={{
-          right: -box.m05,
+          right: -box._05,
           top:
             foundation.top +
             foundation.height,
@@ -30,28 +30,28 @@ export const PicsHudRight: FC<
             ? 0
             : container.height -
               foundation.height +
-              box.m025,
+              box._025,
         }}
       >
         <div
           className="relative flex flex-col items-end justify-evenly shrink-0 w-0"
           style={{
-            top: -box.m025,
-            gap: box.m025,
-            height: box.m3,
+            top: -box._025,
+            gap: box._025,
+            height: box._3,
           }}
         >
           <DarkMode />
           <LinesVertical
             classValue="hidden md:flex"
-            style={{ left: -box.m05 }}
+            style={{ left: -box._05 }}
           />
           <HideControls direction="rtl" />
         </div>
         <LinesVertical
           classValue="opacity-0 md:opacity-50"
           style={{
-            left: -box.m05,
+            left: -box._05,
           }}
         />
       </motion.div>

@@ -16,8 +16,8 @@ export const TimerDisplayHeader: FC<
     <div
       className="relative row-start"
       style={{
-        gap: box.m0125,
-        height: box.m05 ,
+        gap: box._0125,
+        height: box._05 ,
       }}
     >
       <VideoMusicHeaderTimer
@@ -25,7 +25,7 @@ export const TimerDisplayHeader: FC<
       />
       <IconsSlash
         style={{
-          top: box.m00625
+          top: box._00625
         }}
       />
       <TimerDisplay

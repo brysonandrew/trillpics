@@ -2,19 +2,19 @@ import { TUpdateNumberHandler } from "~/components/inputs/slider/types";
 import { TNodesOptions } from "~/pages/video/music/synth/nodes/types";
 import {
   KARPLUS_KEY,
-  KARPLUS_STRONG_PARAMS,
+  KARPLUS_PARAMS,
 } from "~/pages/video/music/synth/nodes/karplus/constants";
 
 export type TKarplusKey =
   typeof KARPLUS_KEY;
-export type TKarplusStrongOptionsKey =
-  (typeof KARPLUS_STRONG_PARAMS)[number];
+export type TKarplusParamsKey =
+  (typeof KARPLUS_PARAMS)[number];
 
-export type TKarplusStrongOptions =
-  TNodesOptions<TKarplusStrongOptionsKey>;
+export type TKarplusOptions =
+  TNodesOptions<TKarplusParamsKey>;
 
-export type TKarplusStrongParams = [
-  TKarplusStrongOptionsKey,
+export type TKarplusParams = [
+  TKarplusParamsKey,
   AudioParam,
   TUpdateNumberHandler
 ][];
@@ -22,5 +22,5 @@ export type TKarplusStrongParams = [
 export type TKarplusStrongModulatorParamsConfig =
   {
     type: typeof KARPLUS_KEY;
-    params: TKarplusStrongParams;
+    params: TKarplusParams;
   };

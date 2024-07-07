@@ -56,9 +56,9 @@ export const useSynthNoises = () => {
           start: function (
             startTime?: number
           ) {
-            this.node.port.postMessage(
-              startTime
-            );
+            // this.node.port.postMessage(
+            //   startTime
+            // );
             this.isStarted = true;
             return this;
           },

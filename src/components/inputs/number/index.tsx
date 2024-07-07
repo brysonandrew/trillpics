@@ -1,73 +1,26 @@
-import {
-  FC,
-  memo,
-  PropsWithChildren,
-} from "react";
+import { FC, memo } from "react";
 import { InputsBox } from "~/components/inputs/box";
-import { TUpdateNumberHandler } from "~/components/inputs/slider/types";
-import { TInputProps } from "~/types/inputs";
-import { TTitleProps } from "@brysonandrew/config-types";
 import { InputsNumberInfo } from "~/components/inputs/number/info";
 import { InputsNumberBox } from "~/components/inputs/number/box";
 import { InputsNumberBackground } from "~/components/inputs/number/background";
 import { useMusicRefs } from "~/pages/video/music/_context/refs";
 import { InputsBoxTitle } from "~/components/inputs/box/title";
-import {
-  NumberInput,
-  TInputSizeProps,
-  TNumberInputProps,
-} from "~/components/inputs/number/input";
-import {
-  InputsNumberSlider,
-  TInputsNumberSliderProps,
-} from "~/components/inputs/number/slider";
+import { NumberInput } from "~/components/inputs/number/input";
+import { InputsNumberSlider } from "~/components/inputs/number/slider";
 import { InputsNumberDefault } from "~/components/inputs/number/default";
+import {
+  TInputsNumberProps,
+  TNumberInputFc,
+  TSliderFc,
+} from "~/components/inputs/number/types";
 
 const MIN = 0;
 const MAX = 8;
 const STEP = 0.1;
-export type TInputRangeProps = Record<
-  "min" | "max" | "step",
-  number
->;
-export type TSliderFc = FC<
-  Partial<TInputsNumberSliderProps>
->;
-export type TNumberInputFc = FC<
-  Partial<TNumberInputProps>
->;
-export type TInputsNumberChildrenProps =
-  {
-    Box: FC<PropsWithChildren>;
-    Background: FC;
-    Info: FC;
-    Header: typeof InputsBox;
-    Title: typeof InputsBoxTitle;
-    Number: TNumberInputFc;
-    Slider: TSliderFc;
-  };
-export type TInputsNumberBaseProps =
-  TInputRangeProps &
-    TTitleProps & {
-      defaultValue?: number | string;
-    };
-type TProps = TInputSizeProps & Omit<
-  TInputProps,
-  "children"
-> &
-  TInputsNumberBaseProps & {
-    name: string;
-    replacer?: (
-      value: number
-    ) => string;
-    onUpdate: TUpdateNumberHandler;
-    children?(
-      props: TInputsNumberChildrenProps
-    ): JSX.Element;
-  };
+
 export const InputsNumber: FC<
-  TProps
-> = ({ children,  ...props }) => {
+  TInputsNumberProps
+> = ({ children, ...props }) => {
   const {
     min = MIN,
     max = MAX,
@@ -150,7 +103,6 @@ export const InputsNumber: FC<
       title={title ?? ""}
       onUpdate={handleUpdate}
       defaultValue={props.defaultValue}
-      
       {...rangeProps}
       {...rest}
       {...sliderProps}
@@ -172,7 +124,5 @@ export const InputsNumber: FC<
   if (children)
     return <>{children(_)}</>;
 
-  return (
-    <InputsNumberDefault {..._} />
-  );
+  return <InputsNumberDefault {..._} />;
 };

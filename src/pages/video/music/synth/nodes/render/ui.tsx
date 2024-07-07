@@ -4,11 +4,16 @@ import { createPortal } from "react-dom";
 import { TGraphLayoutKey } from "~/pages/video/music/synth/nodes/types";
 import { box } from "~uno/rules/box";
 import { useMusicRefs } from "~/pages/video/music/_context/refs";
+import { TypographyXxxs } from "~/components/layout/typography/xxxs";
+import { resolveSquare } from "@brysonandrew/measure";
+import { TIconsSvgProps } from "~/components/icons/svg";
+import { LinesHorizontalLight } from "~/components/lines/horizontal/light";
 
 export const renderUi = (
   key: TGraphLayoutKey,
-  Icon: FC,
-  ui?: JSX.Element
+  title: string,
+  Icon: FC<TIconsSvgProps>,
+  ui: JSX.Element
 ) => {
   const { layout } = useMusicRefs();
   return (
@@ -20,15 +25,40 @@ export const renderUi = (
             layout
           >
             <motion.div
-              className="absolute center right-full"
+              className="absolute column-end right-full h-full"
               style={{
-                width: box.m2,
-                top: box.m0125,
+                width:
+                  box._2 + box._025,
+                top:
+                  box._0125 +
+                  box._00625,
+                marginRight: box._05,
+                bottom: box._0125,
+                gap: box._0125,
               }}
             >
-              <Icon />
+              <TypographyXxxs>
+                {title}
+              </TypographyXxxs>
+              <Icon
+                {...resolveSquare(
+                  box._05
+                )}
+              />
             </motion.div>
-            {ui}
+            <LinesHorizontalLight
+              positionClass="absolute"
+              style={{ top: box._025, left: -box._0375 }}
+            />
+            <motion.div
+              className="relative row-wrap items-start"
+              layout
+              style={{
+                gap: box._0125,
+              }}
+            >
+              {ui}
+            </motion.div>
           </motion.div>,
           layout.graph[key].current
         )}

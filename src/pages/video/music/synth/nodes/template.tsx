@@ -25,8 +25,8 @@ export const NodesTemplate: FC<
     <div
       className="relative row"
       style={{
-        gap: box.m0125,
-        ...box.p(box.m0125),
+        gap: box._0125,
+        ...box.p(box._0125),
         ...style,
       }}
       {...props}

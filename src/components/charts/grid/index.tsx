@@ -52,7 +52,7 @@ export const ChartsGrid: FC<TProps> = ({
     <div
       className="relative column-space items-stretch justify-stretch"
       style={{
-        height: box.m2,
+        height: box._2,
         ...style,
       }}
       {...props}

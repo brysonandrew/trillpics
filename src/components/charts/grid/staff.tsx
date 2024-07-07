@@ -24,7 +24,7 @@ export const ChartsGridStaff: FC<
           style={{
             top: resolveTop(
               index,
-              box.m0125
+              box._0125
             ),
           }}
         >

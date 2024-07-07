@@ -1,6 +1,7 @@
 import { useMemo } from "react";
+import { TResolveAudioParam } from "~/pages/video/music/types";
 import { NodesBiquad } from "~/pages/video/music/synth/nodes/biquad";
-import { TBiquadFilterNumberOptionsKey } from "~/pages/video/music/synth/nodes/biquad/types";
+import { TBiquadFilterParamKey } from "~/pages/video/music/synth/nodes/biquad/types";
 import { useAmpConnect } from "~/pages/video/music/synth/nodes/nodes/amp/connect";
 import { TSourceNodesProps } from "~/pages/video/music/synth/nodes/types";
 import { useMusicRefs } from "~/pages/video/music/_context/refs";
@@ -14,38 +15,29 @@ export const useNodesSourceBiquadCreate =
         connect: audio.biquads.connect,
       });
     const result = useMemo(() => {
-      const apm = handleAmp();
-      const resolveAudioParam = (
-        key: TBiquadFilterNumberOptionsKey
+      const processor = handleAmp();
+      const resolveAudioParam: TResolveAudioParam<
+        TBiquadFilterParamKey
+      > = (
+        key: TBiquadFilterParamKey
       ): AudioParam => {
-        return apm[key];
+        return processor[key];
       };
       const ui = (
         <NodesBiquad
           numbers={{
-            onUpdate: (key, value) => {
-              resolveAudioParam(
-                key
-              ).value = value;
-            },
-            defaultValue: (key) => {
-              return resolveAudioParam(
-                key
-              ).value;
-            },
-            resolveParam:
-              resolveAudioParam,
+            resolveAudioParam,
           }}
           dropdowns={{
             onValueChange: (
               value: BiquadFilterType
             ) => {
-              apm.type = value;
+              processor.type = value;
             },
           }}
         />
       );
-      return { apm, ui } as const;
+      return { processor, ui } as const;
     }, []);
 
     return result;

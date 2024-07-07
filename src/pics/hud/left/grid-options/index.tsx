@@ -30,14 +30,14 @@ export const GridOptions: FC =
         style={{
           left:
             screen.container.left +
-            box.m + box.m025,
-          gap: box.m025,
-          height: box.m3,
+            box._ + box._025,
+          gap: box._025,
+          height: box._3,
           width: 0,
           top:
             foundationValue?.top +
             foundationValue?.height +
-            box.m05+box.m025,
+            box._05+box._025,
         }}
       >
         <HudLeftShuffle

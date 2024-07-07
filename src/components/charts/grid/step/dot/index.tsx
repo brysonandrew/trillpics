@@ -46,18 +46,18 @@ export const ChartsGridStepDot = <
         "center relative pointer-events-none"
       )}
       style={{
-        // left: `calc(50%-${box.m025}px)`,
+        // left: `calc(50%-${box._025}px)`,
         opacity:
           value === null ? 0.25 : 1,
           ...style,
-          ...resolveSquare(box.m05),
+          ...resolveSquare(box._05),
       }}
     >
       <ChartsGridStepDotShape
         isHovering={isHovering}
         style={{
           borderRadius,
-          ...resolveSquare(box.m0125),
+          ...resolveSquare(box._0125),
           scale:
             0.5 +
             resolvePlayVolume(

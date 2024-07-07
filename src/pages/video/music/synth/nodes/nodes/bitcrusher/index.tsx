@@ -1,5 +1,4 @@
 import { FC } from "react";
-import { IconsBiquad } from "~/components/icons/biquad";
 import { IconsBitcrusher } from "~/components/icons/bitcrusher";
 import { useNodesSourcesBitcrusherCreate } from "~/pages/video/music/synth/nodes/nodes/bitcrusher/create";
 import { renderUi } from "~/pages/video/music/synth/nodes/render/ui";
@@ -17,6 +16,7 @@ export const NodesSourceBitcrusher: FC<
     <>
       {renderUi(
         "nodes",
+        'bitcrusher',
         IconsBitcrusher,
         result.ui
       )}

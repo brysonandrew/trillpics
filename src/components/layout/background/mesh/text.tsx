@@ -21,9 +21,9 @@ export const MeshBackgroundText: FC<
     <LayoutBox
       classValue="text-xs"
       style={{
-        paddingTop: box.m0125 / 2,
-        paddingLeft: box.m025,
-        paddingRight: box.m025,
+        paddingTop: box._0125 / 2,
+        paddingLeft: box._025,
+        paddingRight: box._025,
         ...style,
       }}
       background={

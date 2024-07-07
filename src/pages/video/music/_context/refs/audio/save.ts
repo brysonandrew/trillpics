@@ -1,6 +1,6 @@
 import { useMemo } from "react";
 
-export const useMusicInitRefsSave =
+export const useMusicRefsSave =
   () => {
     const nodes = useMemo(() => {
       const init = (

@@ -2,6 +2,7 @@ import {
   ElementRef,
   ComponentPropsWithoutRef,
 } from "react";
+import { TAllParamsKey } from "~/pages/video/music/types";
 
 import * as SliderPrimitive from "@radix-ui/react-slider";
 
@@ -25,14 +26,7 @@ export type TUpdateNumberHandlerProps =
     onUpdate: TUpdateNumberHandler;
   };
 
-export type TUpdateNodeHandlerProps<
-  K extends string,
-  V extends number | string = number
-> = {
-  defaultValue(key: K): V | undefined;
-  resolveParam(key: K): AudioParam | undefined;
-  onUpdate: TUpdateNodeHandler<K, V>;
-};
+
 
 export type TSliderValueChangeHandler =
   TSliderStyledProps["onValueChange"];

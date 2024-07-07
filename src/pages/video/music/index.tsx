@@ -34,8 +34,8 @@ export const VideoMusic = () => {
       <LayoutScroll>
         <LayoutView>
           <LayoutStickyTop>
-            <GlassSidebar />
-            <GlassMain />
+            {/* <GlassSidebar /> */}
+            {/* <GlassMain /> */}
             <VideoMusicSynth />
           </LayoutStickyTop>
           {/* <MusicSynthComposition /> */}

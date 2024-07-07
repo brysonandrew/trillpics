@@ -1,5 +1,5 @@
 import type { FC } from "react";
-import { TInputsNumberChildrenProps } from "~/components/inputs/number";
+import { TInputsNumberChildrenProps } from "~/components/inputs/number/types";
 
 export const InputsNumberDefault: FC<
   TInputsNumberChildrenProps

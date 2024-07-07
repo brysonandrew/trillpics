@@ -3,24 +3,26 @@ import { LayoutSwitch } from "~/components/layout/switch";
 import { KARPLUS_KEY } from "~/pages/video/music/synth/nodes/karplus/constants";
 import { TSynthSourceKey } from "~/pages/video/music/synth/nodes/sources/constants";
 import { NodesSourceKarplus } from "~/pages/video/music/synth/nodes/source/karplus";
-import { NodesSourceNoiseTrigger } from "~/pages/video/music/synth/nodes/source/noise";
+import { NodesSourceNoise } from "~/pages/video/music/synth/nodes/source/noise";
 import { NodesSourceOscillator } from "~/pages/video/music/synth/nodes/source/oscillator";
 import { TGraphSourceWithId } from "~/pages/video/music/_context/refs/audio/graph/types";
 import { useMusicRefs } from "~/pages/video/music/_context/refs";
 import { MusicSynthNodesLoaded } from "~/pages/video/music/synth/nodes/source/loaded";
 import { WHITE_NOISE_KEY } from "~/pages/video/music/_context/refs/audio/noises";
+import { OSCILLATOR_KEY } from "~/pages/video/music/synth/nodes/oscillator/constants";
 
 type TProps = {
   source: TGraphSourceWithId;
   sourceIndex: number;
 };
-export const MusicSynthNodesSourceStart: FC<
+export const MusicSynthNodesSourceEntry: FC<
   TProps
 > = (props) => {
   const { layout } = useMusicRefs();
 
   return (
     <div
+      className="relative"
       ref={(instance) => {
         if (!instance) return;
         layout.update(
@@ -35,7 +37,7 @@ export const MusicSynthNodesSourceStart: FC<
       >
         {(key: TSynthSourceKey) => {
           switch (key) {
-            case "oscillator": {
+            case OSCILLATOR_KEY: {
               return (
                 <NodesSourceOscillator
                   {...props}
@@ -58,13 +60,12 @@ export const MusicSynthNodesSourceStart: FC<
                 <MusicSynthNodesLoaded
                   node={props.source}
                 >
-                  <NodesSourceNoiseTrigger
+                  <NodesSourceNoise
                     {...props}
                   />
                 </MusicSynthNodesLoaded>
               );
             }
-
             default:
               return null;
           }

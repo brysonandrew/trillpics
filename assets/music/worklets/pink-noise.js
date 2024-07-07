@@ -1,9 +1,9 @@
 export class PinkNoise extends AudioWorkletProcessor {
   constructor() {
     super()
-    this.port.onmessage = (event) =>
-      (this.startTime = event.data);
-    this.startTime = Number.POSITIVE_INFINITY;
+    // this.port.onmessage = (event) =>
+    //   (this.startTime = event.data);
+    // this.startTime = Number.POSITIVE_INFINITY;
   }
   static get parameterDescriptors() {
     return [
@@ -17,9 +17,9 @@ export class PinkNoise extends AudioWorkletProcessor {
   }
 
   process(inputs, outputs, parameters) {
-    if (currentTime < this.startTime) { 
-      return true;
-    }
+    // if (currentTime < this.startTime) { 
+    //   return true;
+    // }
     const gains = parameters["gain"];
 
     let b0, b1, b2, b3, b4, b5, b6;

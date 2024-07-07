@@ -48,7 +48,7 @@ export const VideoMusicHeaderTimer: FC<
         "font-slab text-left text-sm text-white dark:text-gray"
       )}
       style={{
-        gap: box.m0125,
+        gap: box._0125,
       }}
     >
       <CurrTimer />

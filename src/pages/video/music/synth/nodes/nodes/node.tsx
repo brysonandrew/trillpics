@@ -3,38 +3,82 @@ import { LayoutSwitch } from "~/components/layout/switch";
 import {
   TGraphNodeType,
   TGraphNodeWithId,
-  TGraphSource,
+  TGraphSourceWithId,
 } from "~/pages/video/music/_context/refs/audio/graph/types";
 import { NodesSourceBiquad } from "~/pages/video/music/synth/nodes/nodes/biquad";
 import { NodesSourceBitcrusher } from "~/pages/video/music/synth/nodes/nodes/bitcrusher";
 import { NodesSourceDelay } from "~/pages/video/music/synth/nodes/nodes/delay";
 import { MusicSynthNodesLoaded } from "~/pages/video/music/synth/nodes/source/loaded";
+import { BITCRUSHER_KEY } from "~/pages/video/music/_context/refs/audio/bitcrusher";
+import { resolveCompositeKey } from "@brysonandrew/utils-key";
+import { NodesSourceRingMod } from "~/pages/video/music/synth/nodes/nodes/ring-mod";
+import { RING_MOD_KEY } from "~/pages/video/music/_context/refs/audio/ring-mod";
+import { NodesSourceGainsMidisPreamp } from "~/pages/video/music/synth/nodes/nodes/gains/midis/preamp";
+import { NodesSourceGainsMidisMaster } from "~/pages/video/music/synth/nodes/nodes/gains/midis/master";
+import { BIQUAD_KEY } from "~/pages/video/music/synth/nodes/biquad/constants";
+import { DELAY_KEY } from "~/pages/video/music/synth/nodes/delay/constants";
 
 type TProps = {
-  node: TGraphNodeWithId
+  node: TGraphNodeWithId;
   index: number;
-  source: TGraphSource;
+  source: TGraphSourceWithId;
 };
 export const MusicSynthNodesSourceNode: FC<
   TProps
 > = (props) => {
+  const { node, index } = props;
   return (
-    <LayoutSwitch
-      expression={props.node.key}
-    >
+    <LayoutSwitch expression={node.key}>
       {(key: TGraphNodeType["key"]) => {
         switch (key) {
-          case "biquad": {
+          case "gains.midis.preamp": {
+            return (
+              <NodesSourceGainsMidisPreamp
+                {...props}
+              />
+            );
+          }
+          case "gains.midis.master": {
+            return (
+              <NodesSourceGainsMidisMaster
+                {...props}
+              />
+            );
+          }
+          case RING_MOD_KEY: {
+            return (
+              <MusicSynthNodesLoaded
+                node={{
+                  key: RING_MOD_KEY,
+                  id: resolveCompositeKey(
+                    RING_MOD_KEY,
+                    index
+                  ),
+                }}
+              >
+                <NodesSourceRingMod
+                  {...props}
+                />
+              </MusicSynthNodesLoaded>
+            );
+          }
+          case BIQUAD_KEY: {
             return (
               <NodesSourceBiquad
                 {...props}
               />
             );
           }
-          case "bitcrusher": {
+          case BITCRUSHER_KEY: {
             return (
               <MusicSynthNodesLoaded
-                node={props.node}
+                node={{
+                  key: BITCRUSHER_KEY,
+                  id: resolveCompositeKey(
+                    BITCRUSHER_KEY,
+                    index
+                  ),
+                }}
               >
                 <NodesSourceBitcrusher
                   {...props}
@@ -42,7 +86,7 @@ export const MusicSynthNodesSourceNode: FC<
               </MusicSynthNodesLoaded>
             );
           }
-          case "delay": {
+          case DELAY_KEY: {
             return (
               <NodesSourceDelay
                 {...props}

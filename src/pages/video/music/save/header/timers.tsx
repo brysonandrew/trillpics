@@ -24,8 +24,8 @@ export const VideoMusicSaveHeaderTimers: FC =
           "font-slab text-left text-sm text-white dark:text-gray"
         )}
         style={{
-          gap: box.m0125,
-          paddingTop: box.m0125,
+          gap: box._0125,
+          paddingTop: box._0125,
         }}
       >
         <VideoMusicHeaderTimer

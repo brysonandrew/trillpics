@@ -1,46 +1,53 @@
 import { useMemo } from "react";
 import { useMusicRefs } from "~/pages/video/music/_context/refs";
-import { TGraphSource } from "~/pages/video/music/_context/refs/audio/graph/types";
+import {
+  TGraphSource,
+  TGraphSourceWithId,
+} from "~/pages/video/music/_context/refs/audio/graph/types";
 import { NodesOscillator } from "~/pages/video/music/synth/nodes/oscillator";
+import { TResolveAudioParam } from "~/pages/video/music/types";
+import { TOscillatorParamKey } from "~/pages/video/music/synth/nodes/oscillator/types";
 
 export const useNodesSourceOscillatorCreate =
-  (source: TGraphSource) => {
+  (source: TGraphSourceWithId) => {
     const { audio } = useMusicRefs();
 
     const result = useMemo(() => {
-      const apm =
+      const processor =
         audio.oscillators.connect(
           audio.gains.midis.preamp,
-          source.options as any
+          source.options as OscillatorOptions
         );
-
-   
+      const resolveAudioParam: TResolveAudioParam<
+        TOscillatorParamKey
+      > = (key) => {
+        return processor.node[key];
+      };
       const ui = (
         <NodesOscillator
-          numbers={{
-            onUpdate: (key, value) => {
-              apm.node[key].value =
-                value;
-            },
-            defaultValue: (key) => {
-              return apm.node[key]
-                .value;
-            },
-            resolveParam: (key) => {
-              return apm.node[key];
-            },
+          numbers={{resolveAudioParam:resolveAudioParam
+            // onUpdate: (key, value) => {
+            //   resolveAudioParam(key).value =
+            //     value;
+            // },
+            // defaultValue: (key) => {
+            //   return resolveAudioParam(key)
+            //     .value;
+            // },
+            ,
           }}
           dropdowns={{
             onValueChange: (
               value: OscillatorType
             ) => {
-              apm.node.type = value;
+              processor.node.type =
+                value;
             },
           }}
         />
       );
 
-      return { apm, ui } as const;
+      return { processor, ui } as const;
     }, []);
 
     return result;

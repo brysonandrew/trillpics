@@ -1,4 +1,3 @@
-import { TUpdateNumberHandler } from "~/components/inputs/slider/types";
 import {
   BIQUAD_FILTER_OPTIONS,
   BIQUAD_FILTER_TYPES,
@@ -7,9 +6,10 @@ import {
 
 export type TBiquadFilterKey =
   (typeof BIQUAD_FILTER_TYPES)[number];
+
 export type TBiquadFilterOptionsKey =
   keyof typeof BIQUAD_FILTER_OPTIONS;
-export type TBiquadFilterNumberOptionsKey =
+export type TBiquadFilterParamKey =
   Exclude<
     TBiquadFilterOptionsKey,
     "type"
@@ -20,15 +20,7 @@ export type TBiquadFilterOptions = Pick<
   TBiquadFilterOptionsKey
 >;
 
-export type TBiquadFilterParam =
-  readonly [
-    TBiquadFilterNumberOptionsKey,
-    AudioParam,
-    TUpdateNumberHandler
-  ];
-export type TBiquadFilterParams =
-  readonly TBiquadFilterParam[];
 export type TBiquadFilterConfig = {
   type: typeof BIQUAD_KEY;
-  params: TBiquadFilterParams;
+  keys: TBiquadFilterParamKey[];
 };

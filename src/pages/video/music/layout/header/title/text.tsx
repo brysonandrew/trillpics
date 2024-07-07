@@ -11,7 +11,7 @@ export const MusicLayoutHeaderTitleText: FC<
   return (
     <PillBText
     textSizeClass="text-xl"
-    style={{ top: box.m0125 / 2 }}
+    style={{ top: box._0125 / 2 }}
   >
     {children}
   </PillBText>

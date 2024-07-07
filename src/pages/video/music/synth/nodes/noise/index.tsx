@@ -1,15 +1,12 @@
 import type { FC } from "react";
-import { NodesTemplate } from "~/pages/video/music/synth/nodes/template";
 import { NodesNoiseNumbers } from "~/pages/video/music/synth/nodes/noise/numbers";
-import { TUpdateNodeHandlerProps } from "~/components/inputs/slider/types";
-import { TNoiseNumberOptionsKey } from "~/pages/video/music/synth/nodes/noise/types";
+import { TNoiseParamKey } from "~/pages/video/music/synth/nodes/noise/types";
+import { TResolveAudioParamProps } from "~/pages/video/music/types";
 
 export const NodesNoise: FC<
-  TUpdateNodeHandlerProps<TNoiseNumberOptionsKey>
+  TResolveAudioParamProps<TNoiseParamKey>
 > = (props) => {
   return (
-    <NodesTemplate title="noise">
-      <NodesNoiseNumbers {...props} />
-    </NodesTemplate>
+    <NodesNoiseNumbers {...props} />
   );
 };

@@ -22,12 +22,12 @@ export const PicsHudHeaderRight: FC<
       key="header-right"
       className="absolute row-start h-0"
       style={{
-        left: foundation.width + box.m05,
+        left: foundation.width + box._05,
         width:
           container.width -
           foundation.width,
-        top: box.m05,
-        gap: box.m05,
+        top: box._05,
+        gap: box._05,
       }}
     >
       <LinesHorizontal

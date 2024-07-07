@@ -1,16 +1,20 @@
-import { TUpdateNodeHandlerProps } from "~/components/inputs/slider/types";
-import { NodesTemplate } from "~/pages/video/music/synth/nodes/template";
-import { NodesKarplusStrongNumbers } from "~/pages/video/music/synth/nodes/karplus/numbers";
-import { TKarplusStrongOptionsKey } from "~/pages/video/music/synth/nodes/karplus/types";
+import type { FC } from "react";
+import { ModulatorsParams } from "~/pages/video/music/modulators/params";
+import {
+  KARPLUS_KEY,
+  KARPLUS_PARAMS,
+} from "~/pages/video/music/synth/nodes/karplus/constants";
+import { TKarplusParamsKey } from "~/pages/video/music/synth/nodes/karplus/types";
+import { TResolveAudioParamProps } from "~/pages/video/music/types";
 
-export const NodesKarplusStrong = (
-  props: TUpdateNodeHandlerProps<TKarplusStrongOptionsKey>
-) => {
+export const NodesKarplus: FC<
+  TResolveAudioParamProps<TKarplusParamsKey>
+> = (props) => {
   return (
-      <NodesTemplate  title="string">
-        <NodesKarplusStrongNumbers
-          {...props}
-        />
-      </NodesTemplate>
+    <ModulatorsParams
+      graphKey={KARPLUS_KEY}
+      keys={KARPLUS_PARAMS}
+      {...props}
+    />
   );
 };

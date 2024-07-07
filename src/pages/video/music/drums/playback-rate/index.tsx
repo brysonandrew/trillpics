@@ -9,7 +9,7 @@ export const DrumsPlaybackRate = () => {
         <NodesTemplate
           title="playback rate"
           Input={Input}
-          style={{ gap: box.m003125 }}
+          style={{ gap: box._003125 }}
         >
           {children}
         </NodesTemplate>

@@ -36,7 +36,7 @@ export const _RootReorderDragger: FC<
 }) => {
   
   const bottom =
-    container.height / 2 - box.m15;
+    container.height / 2 - box._15;
   const { main, move } =
     useContextReady();
   const { x, y } = main.dragger;
@@ -88,7 +88,7 @@ export const _RootReorderDragger: FC<
     handleAnimationComplete
   );
 
-  size = size ?? box.m;
+  size = size ?? box._;
   return (
     <motion.button
       drag

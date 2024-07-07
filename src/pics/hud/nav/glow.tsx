@@ -15,11 +15,11 @@ export const NavItemGlow: FC = () => {
         "absolute -inset-x-2 inset-y-2 w-full"
       )}
       style={{
-        height: box.m025,
+        height: box._025,
         width: container.width / 2,
         left:
-          -container.width / 4 + box.m,
-        top: box.m05,
+          -container.width / 4 + box._,
+        top: box._05,
         // filter: "blur(4px)",
         backgroundImage: `${resolveGradient(
           {

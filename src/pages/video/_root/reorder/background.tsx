@@ -27,8 +27,8 @@ export const _RootReorderBackground: FC<
     screen.container.width < 600;
   const width =
     screen.container.width -
-    (isColumn ? box.m : box.m3);
-  const left = isColumn ? box.m05 : box.m25;
+    (isColumn ? box._ : box._3);
+  const left = isColumn ? box._05 : box._25;
   const size =
     (width - TOTAL_GAP) /
     (isColumn ? 1 : MAX_COUNT);
@@ -63,9 +63,9 @@ export const _RootReorderBackground: FC<
         x: dragger.x,
         y: dragger.y,
         borderRadius,
-        top: box.m3,
-        left: left - box.m15 + box.m025,
-        width: width + box.m3 - box.m05,
+        top: box._3,
+        left: left - box._15 + box._025,
+        width: width + box._3 - box._05,
         height: size,
         ...style,
       }}

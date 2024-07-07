@@ -13,14 +13,12 @@ import {
   imperativeHide,
   imperativeShow,
 } from "~/utils/imperative";
-import {
-  TUseIdsResult,
-} from "~/pages/video/music/modulators/ids";
+import { TUseIdsResult } from "~/pages/video/music/modulators/ids";
 
 type TProps = PropsWithChildren<{
   id: string;
   ids: TUseIdsResult;
-  audioParam?: AudioParam ;
+  audioParam?: AudioParam;
 }>;
 export const ModulatorsButton: FC<
   TProps
@@ -32,7 +30,7 @@ export const ModulatorsButton: FC<
   } = useMusicRefs();
 
   const curr =
-  modulators.refs[id]?.isStarted;
+    modulators.refs[id]?.isStarted;
   const isStarted = Boolean(curr);
 
   const handleStart = () => {
@@ -41,7 +39,8 @@ export const ModulatorsButton: FC<
     modulatorRef.oscillator.start(
       context.currentTime
     );
-    modulators.refs[id].isStarted = true;
+    modulators.refs[id].isStarted =
+      true;
 
     imperativeBiZebra(ids.root);
     imperativeShow(ids.started.icon);
@@ -58,9 +57,9 @@ export const ModulatorsButton: FC<
     ) {
       modulators.refs[id] = {
         ...modulators.refs[id],
-        ...modulators.refs[id].reconnect(
-          audioParam
-        ),
+        ...modulators.refs[
+          id
+        ].reconnect(audioParam),
       };
       modulators.refs[id].isStarted =
         false;
@@ -74,6 +73,7 @@ export const ModulatorsButton: FC<
   };
 
   const handleClick = () => {
+    console.log(id);
     const isStarted =
       modulators.refs[id].isStarted;
     if (isStarted) {
@@ -86,18 +86,20 @@ export const ModulatorsButton: FC<
   return (
     <button
       id={ids.button}
-      className="relative center bg-black"
+      className="relative row-space bg-black-2"
       title="connect"
       style={{
-        ...resolveSquare(box.m025),
+        height: box._025,
+        width: box._2+ box._0125,
+        paddingRight: box._025,
         ...box.r.xl,
       }}
       onClick={() => handleClick()}
     >
       <div
-        className="fill _bi-conic-metal opacity-50"
+        className="absolute left-0 top-0 _bi-conic-metal opacity-50"
         style={{
-          ...resolveSquare(box.m025),
+          ...resolveSquare(box._025),
           ...box.r.xl,
         }}
       />
@@ -110,6 +112,7 @@ export const ModulatorsButton: FC<
         }}
       />
       <IconsPlus14
+        classValue="-ml-0.5"
         id={ids.disconnected.icon}
         style={{
           display: isStarted
@@ -117,6 +120,7 @@ export const ModulatorsButton: FC<
             : "flex",
         }}
       />
+      {children}
     </button>
   );
 };
