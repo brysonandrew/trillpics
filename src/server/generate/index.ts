@@ -8,7 +8,6 @@ import {
 import { TGenerateOutput } from "~/types/trpc/generate";
 import d from "dotenv";
 import { SERVE_URL } from "~root/remotion.config";
-import { webpackOverride } from "~server/generate/webpack/override";
 
 d.config();
 

@@ -1,7 +1,6 @@
 import { TState } from "~/store/types";
 import { PersistOptions } from "zustand/middleware";
 import { resolveCompositeKey } from "@brysonandrew/utils-key";
-import { resolveMidiSteps } from "~/hooks/music/midis/steps";
 import { STORAGE_JSON } from "~/store/middleware/3.persist/json";
 import {
   TPersistKey,
@@ -25,9 +24,7 @@ export const PERSIST_STATE_RECORD = {
   // synth: "synth",
   // sequence: "sequence",
   // scale: "scale",
-  isLoop: "isLoop",
   // beats: "beats",
-  bpm: "bpm",
 } as const satisfies Partial<
   Record<keyof TState, keyof TState>
 >;

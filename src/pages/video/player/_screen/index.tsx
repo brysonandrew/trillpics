@@ -13,33 +13,25 @@ export const OVERFLOW_HIDDEN =
 export const VideoPlayer_Screen =
   () => {
     const {
-      recording,
       progress,
       isDownloadComplete,
-      bpm
     } = useTrillPicsStore(
       ({
-        recording,
         progress,
         isDownloadComplete,
-        bpm
-
       }) => ({
-        recording,
         progress,
         isDownloadComplete,
-        bpm
       })
     );
     const inputProps =
-      usePicVideoReadInputs(bpm);
+      usePicVideoReadInputs();
     return (
       <>
         <PlayerBackgroundOpaque />
         <PlayerBackground />
         <RemotionPlayer
           {...inputProps}
-          recording={recording}
           base="remotion"
         />
         <AnimatePresence mode="wait">

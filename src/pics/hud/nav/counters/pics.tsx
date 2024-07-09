@@ -7,7 +7,6 @@ import { usePicVideoReadInputs } from "~/hooks/pic/video/read/inputs/hook";
 import { LayoutOverlay } from "~/components/layout/overlay";
 import { LightingGlow } from "~/components/layout/lighting/glow";
 import { BackgroundMeshRadial } from "~/components/layout/background/mesh-radial";
-import { useMusicRefs } from "~/pages/video/music/_context/refs";
 
 const key = "NavCountersPics";
 export const NavCountersPics: FC =
@@ -17,16 +16,9 @@ export const NavCountersPics: FC =
     const { motionHandlers, isHover } =
       useHoverKey();
     const isHovering = isHover(key);
-    const {
-      schedule: {
-        record: { bpm },
-      },
-    } = useMusicRefs();
+
     const { pics } =
-      usePicVideoReadInputs(
-        // bpm
-        80
-      );
+      usePicVideoReadInputs();
 
     return (
       <>

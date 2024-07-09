@@ -15,7 +15,6 @@ import {
   INPUTS_NUMBER_DROPDOWN_STYLE_SM,
   INPUTS_NUMBER_DROPDOWN_TITLE_STYLE,
 } from "~/components/inputs/constants";
-import { TInputSizeProps } from "~/components/inputs/number/input";
 import * as Select from "@radix-ui/react-select";
 
 export type TInputsSelectProps =
@@ -25,8 +24,7 @@ export type TBaseInputsSelectProps =
     TInputsSelectProps,
     "onValueChange" | "defaultValue"
   >;
-type TProps = TInputsSelectProps &
-  TInputSizeProps & {
+type TProps = TInputsSelectProps &{
     title?: string | JSX.Element;
     placeholder: string;
     values: TSelectValues;
@@ -36,7 +34,6 @@ export const InputsSelect: FC<
 > = ({
   values,
   title,
-  s = "md",
   placeholder,
   ...props
 }) => {
@@ -53,11 +50,6 @@ export const InputsSelect: FC<
             // "border border-white-01"
           )}
           aria-label={placeholder}
-          style={{
-            ...(s === "md"
-              ? INPUTS_NUMBER_DROPDOWN_STYLE
-              : INPUTS_NUMBER_DROPDOWN_STYLE_SM),
-          }}
         >
           {title && (
             <InputsBoxTitle
@@ -76,9 +68,6 @@ export const InputsSelect: FC<
           <div
             className={cx(
               "w-full",
-              s === "md"
-                ? "column-start"
-                : "row-space"
             )}
             style={{
               ...box.px(box._0125),
@@ -88,11 +77,6 @@ export const InputsSelect: FC<
               classValue="truncate w-full"
               style={{
                 height: box._05,
-                lineHeight: `${
-                  s === "md"
-                    ? box._05
-                    : box._05
-                }px`,
               }}
             >
               <Select.Value
@@ -105,11 +89,6 @@ export const InputsSelect: FC<
             <Select.Icon
               className="center"
               style={{
-                ...resolveSquare(
-                  s === "md"
-                    ? box._05
-                    : box._0375
-                ),
               }}
             >
               <IconsChevronsDown />

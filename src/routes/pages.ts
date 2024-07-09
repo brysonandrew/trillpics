@@ -6,7 +6,7 @@ import { VideoMusic } from "~/pages/video/music";
 export const ROUTES_PATHS = {
   "/": "/",
   ["/video"]: "/video",
-  ["/video/sound"]: "/video/sound",
+  ["/video/music"]: "/video/music",
   ["/video/player"]: "/video/player",
 };
 
@@ -18,7 +18,7 @@ export const SHELL_ROUTES_PAGES: RouteObject[] =
     },
     {
       path: ROUTES_PATHS[
-        "/video/sound"
+        "/video/music"
       ],
       Component: VideoMusic,
     },

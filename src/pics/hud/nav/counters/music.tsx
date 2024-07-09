@@ -10,21 +10,22 @@ import { LightingGlow } from "~/components/layout/lighting/glow";
 import { box } from "~uno/rules/box";
 import { LayoutOverlay } from "~/components/layout/overlay";
 import { IconsCheckboxEmpty } from "~/components/icons/inputs/checkbox/empty";
+import { useSearchParams } from "react-router-dom";
+import { QUERY_PARAM_KEYS } from "~/hooks/pic/constants";
 
 type TProps = { isHovering: boolean };
 export const NavCountersMusic: FC<
   TProps
 > = ({ isHovering }) => {
-  const { recording } =
-    useTrillPicsStore(
-      ({ recording }) => ({
-        recording,
-      })
-    );
+  const [searchParams] =
+    useSearchParams();
+  const audio = searchParams.get(
+    QUERY_PARAM_KEYS["audio-src"]
+  );
   const s = box;
   const borderRadius = boxRadius();
 
-  if (recording) {
+  if (audio) {
     return (
       <div className="absolute -top-2 -right-2 z-10 pointer-events-none">
         <div

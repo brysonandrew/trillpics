@@ -3,20 +3,20 @@ import { IconsTick } from "~/components/icons/tick";
 import { boxRadius } from "~uno/rules/box/radius";
 import { box } from "~uno/rules/box";
 import { BackgroundMesh } from "~/components/layout/background/mesh";
-import { useTrillPicsStore } from "~/store/middleware";
 import { IconsCross24 } from "~/components/icons/cross/24";
+import { QUERY_PARAM_KEYS } from "~/hooks/pic/constants";
+import { useSearchParams } from "react-router-dom";
 
 export const NavCountersSelectedMusic: FC =
   () => {
-    const { recording } =
-      useTrillPicsStore(
-        ({ recording }) => ({
-          recording,
-        })
-      );
-    
+    const [searchParams] =
+      useSearchParams();
+    const audio = searchParams.get(
+      QUERY_PARAM_KEYS["audio-src"]
+    );
+
     const borderRadius = boxRadius();
-    if (recording) {
+    if (audio) {
       return (
         <div
           className="relative center"

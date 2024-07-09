@@ -1,58 +1,57 @@
 import { Helmet } from "react-helmet-async";
-import { VideoMusicSave } from "~/pages/video/music/save/index";
-import { VideoMusicSynth } from "~/pages/video/music/synth";
-import { VideoMusicDrums } from "~/pages/video/music/drums";
-import { MusicRecorderProvider } from "~/pages/video/music/_context/recorder";
-import { PicBackdrop } from "~/pics/grid/pic/backdrop";
-import { LayoutScroll } from "~/pages/video/music/layout/scroll";
-import { LayoutBorderTop } from "~/pages/video/music/layout/border-top";
-import { LayoutView } from "~/pages/video/music/layout/view";
-import { MusicLayoutRow } from "~/pages/video/music/layout/row/sliders";
-import { LayoutStickyTop } from "~/pages/video/music/layout/sticky/top";
-import { LayoutStickyMid } from "~/pages/video/music/layout/sticky/mid";
-import { LayoutStickyBottom } from "~/pages/video/music/layout/sticky/bottom";
-import { MusicControlsButtonsMenu } from "~/pages/video/music/controls/buttons/menu";
-import { MusicSynthNodes } from "~/pages/video/music/synth/nodes";
-import { DrumsSettings } from "~/pages/video/music/drums/settings";
+import { VideoPlayer_Backdrop } from "~/pages/video/player/_backdrop";
+import { useAddRandomEffect } from "~/hooks/pic/add-random/effect";
+import { useVideoStyle } from "~/pages/video/style";
+import { TRACKS } from "~/pages/video/music/constants";
+import { AudioUploadedItem } from "~/pages/video/music/audio/uploaded/item";
+import { box } from "~uno/rules/box";
+import { BackgroundGlass } from "~/components/layout/background/glass";
+import { LightingShadow } from "~/components/layout/lighting/shadow";
+import { PlayerBackgroundOpaque } from "~/pages/video/player/_background/opaque";
+import { IconsCheckboxEmpty } from "~/components/icons/inputs/checkbox/empty";
+import { AudioPlaylist } from "~/pages/video/music/audio/uploaded/item/playlist";
+
+export const OVERFLOW_HIDDEN =
+  "overflow: hidden;";
 
 export const VideoMusic = () => {
+  const {
+    playerStyle,
+    screenHeight,
+    y,
+    gap,
+  } = useVideoStyle();
+  useAddRandomEffect();
+
   return (
-    <MusicRecorderProvider>
+    <>
       <Helmet>
         <title>
-          Trill Pics | Music Sequencer
+          Trill Pics | Music
         </title>
       </Helmet>
-      <PicBackdrop />
-      <LayoutBorderTop />
 
-      <LayoutScroll>
-        <LayoutView>
-          <LayoutStickyTop>
-            {/* <GlassSidebar /> */}
-            {/* <GlassMain /> */}
-            <VideoMusicSynth />
-          </LayoutStickyTop>
-          {/* <MusicSynthComposition /> */}
+      <VideoPlayer_Backdrop />
+      <div
+        className="fill column-start justify-center lg:justify-start overflow-auto"
+        style={{
+          paddingTop: y,
+          paddingBottom: y,
+          gap,
+        }}
+      >
+        <div
+          className="relative"
+          style={{
+            ...playerStyle,
+            height: screenHeight,
+          }}
+        >
+          <AudioPlaylist />
+        </div>
+      </div>
 
-          <MusicLayoutRow>
-            <MusicSynthNodes />
-          </MusicLayoutRow>
-
-          <LayoutStickyMid>
-            <VideoMusicDrums />
-          </LayoutStickyMid>
-
-          <MusicLayoutRow>
-            <DrumsSettings />
-          </MusicLayoutRow>
-
-          <LayoutStickyBottom>
-            <VideoMusicSave />
-          </LayoutStickyBottom>
-        </LayoutView>
-      </LayoutScroll>
-      <MusicControlsButtonsMenu />
-    </MusicRecorderProvider>
+      <div style={{ height: y }} />
+    </>
   );
 };

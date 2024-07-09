@@ -9,7 +9,6 @@ import { TTableState } from "~/store/state/table/types";
 import { TScrollState } from "~/store/state/scroll/types";
 import { TStateWithMiddleware } from "~/store/middleware";
 import { TGenerateState } from "~/store/state/generate/types";
-import { TMusicState } from "~/store/state/music/types";
 
 export type TState = TCoreState &
   TScrollState &
@@ -17,8 +16,7 @@ export type TState = TCoreState &
   TTableState &
   TPicsState &
   THoverState &
-  TSetState &
-  TMusicState;
+  TSetState;
 
 export type TStateKey = keyof TState;
 

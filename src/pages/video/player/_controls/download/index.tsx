@@ -19,7 +19,6 @@ import { useTimebomb } from "~/hooks/use-time-bomb";
 import { UGenerateSubscriptionResult } from "~/store/state/generate/types";
 import { TState } from "~/store/types";
 import { TPicSeriesProps } from "~/components/remotion/pic-series/types";
-import { useMusicRefs } from "~/pages/video/music/_context/refs";
 
 export const DEFAULT_INPUT: TGenerateInput =
   {
@@ -31,25 +30,19 @@ export const DEFAULT_INPUT: TGenerateInput =
     isPics: false,
     dimensions: { ...PIC_DIMENSIONS },
     recording: null,
+    audio: null,
   };
 
 export const Download: FC<
   Partial<TPillBProps>
 > = ({ children, ...props }) => {
-  const {
-    schedule: {
-      record: { bpm },
-    },
-  } = useMusicRefs();
   const inputFromParams =
-    usePicVideoReadInputs(bpm);
-  const { set, recording } =
-    useTrillPicsStore(
-      ({ set, recording }) => ({
-        set,
-        recording,
-      })
-    );
+    usePicVideoReadInputs();
+  const { set } = useTrillPicsStore(
+    ({ set }) => ({
+      set,
+    })
+  );
   const { handlers, isHover } =
     useHoverKey();
   const title = "Download video";
@@ -152,7 +145,6 @@ export const Download: FC<
   });
   const input: TPicSeriesProps = {
     ...inputFromParams,
-    recording,
   };
   const handleGenerate = () => {
     console.log(

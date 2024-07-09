@@ -1,7 +1,4 @@
-import {
-  TStepsKey,
-  UStepsKey,
-} from "~/store/state/music/types";
+
 
 type TConfig = {
   base?: string;
@@ -38,7 +35,7 @@ export const resolveAudioSrc = ({
   );
 
 export const resolveAudioSampleSrc = (
-  source: UStepsKey,
+  source: string,
   name: string | number
 ) =>
   resolveSrc(

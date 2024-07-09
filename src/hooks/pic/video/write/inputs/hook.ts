@@ -5,7 +5,6 @@ import {
 } from "react-router-dom";
 import { SELECTED_PARAM_KEY } from "~/hooks/pic/constants";
 import { picVideoReadInputs } from "~/hooks/pic/video/read/inputs";
-import { useMusicRefs } from "~/pages/video/music/_context/refs";
 import { useContextPlayer_Init } from "~/pages/video/player/_context/init";
 
 export const usePicVideoWriteInputs =
@@ -15,11 +14,7 @@ export const usePicVideoWriteInputs =
     const navigate = useNavigate();
     const [searchParams] =
       useSearchParams();
-      const {
-        schedule: {
-          record: { bpm },
-        },
-      } = useMusicRefs();
+  
     const {
       seconds,
       pics,
@@ -27,7 +22,7 @@ export const usePicVideoWriteInputs =
       count,
     } = picVideoReadInputs(
       searchParams,
-      fps,bpm
+      fps
     );
 
     const clear = () => {

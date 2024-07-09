@@ -1,14 +1,10 @@
 import type { FC } from "react";
 import { IconsSlash } from "~/components/icons/slash";
 import { TimerDisplay } from "~/components/playback/timer/display";
-import {
-  TVideoMusicHeaderTimerProps,
-  VideoMusicHeaderTimer,
-} from "~/pages/video/music/layout/header/timer";
 import { box } from "~uno/rules/box";
 
 type TProps =
-  TVideoMusicHeaderTimerProps;
+  any;
 export const TimerDisplayHeader: FC<
   TProps
 > = (props) => {
@@ -20,9 +16,9 @@ export const TimerDisplayHeader: FC<
         height: box._05 ,
       }}
     >
-      <VideoMusicHeaderTimer
+      {/* <VideoMusicHeaderTimer
         {...props}
-      />
+      /> */}
       <IconsSlash
         style={{
           top: box._00625

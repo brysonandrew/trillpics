@@ -48,7 +48,7 @@ export const hoverMultiState: TStateHandler<
       return;
     const hoverKeys =
       prevHoverKeys.filter(
-        (v) => v !== hoverKey
+        (v:THoverKey|null) => v !== hoverKey
       );
     const hoverCooldownKeys =
       prevHoverKeys;

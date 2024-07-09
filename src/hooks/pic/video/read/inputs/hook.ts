@@ -9,7 +9,6 @@ import { dimensionsWithinPlayerBounds } from "~/hooks/within-player-bounds";
 import { useContextPlayer_Init } from "~/pages/video/player/_context/init";
 
 export const usePicVideoReadInputs = (
-  bpm: number
 ): TPicSeriesProps => {
   const [searchParams] =
     useSearchParams();
@@ -20,11 +19,10 @@ export const usePicVideoReadInputs = (
     pics,
     isPics,
     count,
-    recording,
+    audio,
   } = picVideoReadInputs(
     searchParams,
     fps,
-    bpm
   );
   const canvasDimensions = DIMENSIONS;
   const dimensions =
@@ -42,7 +40,7 @@ export const usePicVideoReadInputs = (
     durationInFrames: Math.ceil(
       seconds * fps
     ),
-    recording,
+    audio,
     fps,
   };
   return result;

@@ -23,4 +23,5 @@ export const PIC_SERIES_SCHEMA =
     onProgress: z.function().optional(),
     onLog: z.function().optional(),
     onDownload: z.function().optional(),
+    audio: z.object({src:z.string(),start:z.number()}).nullable()
   });

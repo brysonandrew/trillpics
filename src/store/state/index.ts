@@ -1,7 +1,6 @@
 import { coreState } from "~/store/state/core/state";
 import { generateState } from "~/store/state/generate";
 import { hoverState } from "~/store/state/hover/state";
-import { musicState } from "~/store/state/music/state";
 import { picsState } from "~/store/state/pics/state";
 import { scrollState } from "~/store/state/scroll";
 import { setState } from "~/store/state/set/state";
@@ -19,7 +18,6 @@ export const initState = (
     ...scrollState(...a),
     ...tableState(...a),
     ...picsState(...a),
-    ...musicState(...a),
     ...hoverState(...a),
     ...generateState(...a),
     ...setState(a[0]),

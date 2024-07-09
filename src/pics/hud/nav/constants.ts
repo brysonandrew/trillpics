@@ -23,7 +23,7 @@ export const NAV_ITEMS = [
   ],
   [
     IconsMusic,
-    ROUTES_PATHS["/video/sound"],
+    ROUTES_PATHS["/video/music"],
     PAGE_TITLES["Music"],
   ],
   [

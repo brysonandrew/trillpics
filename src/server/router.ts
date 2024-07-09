@@ -2,7 +2,6 @@ import {
   router as _router,
   publicProcedure,
 } from "~server/trpc";
-import { generate } from "./generate";
 import { TGenerateOutput } from "~/types/trpc/generate";
 import { PIC_SERIES_SCHEMA } from "~/components/remotion/pic-series/schema";
 import { z } from "zod";
@@ -12,6 +11,8 @@ import type {
   RenderMediaOnProgress,
   RenderMediaOnDownload,
 } from "@remotion/renderer";
+import { songs } from "~/server/ncs";
+import { generate } from "./generate";
 
 export const SCHEMA_INPUT =
   PIC_SERIES_SCHEMA;
@@ -86,6 +87,13 @@ export const router = _router({
         await generate(input);
       return result;
     }),
+  // songs: publicProcedure
+  //   .input({})
+  //   .query(async (i) => {
+  //     console.log(i);
+        
+  //     return result;
+  //   }),
 });
 
 export type TRouter = typeof router;

@@ -2,7 +2,6 @@ import {
   ElementRef,
   ComponentPropsWithoutRef,
 } from "react";
-import { TAllParamsKey } from "~/pages/video/music/types";
 
 import * as SliderPrimitive from "@radix-ui/react-slider";
 

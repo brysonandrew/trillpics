@@ -1,12 +1,10 @@
-import { MIDI_HOVER_KEY_DELIMITER } from "~/components/charts/grid/to-midi-hover-key";
 import { TCellKey } from "~/hooks/pic/types";
 import {
   THoverChecksHandler,
   THoverChecksKeyHandler,
 } from "~/store/state/hover/checks/active/types";
 import { THoverCooldownEndHandler } from "~/store/state/hover/cooldown/types";
-type TD =
-  typeof MIDI_HOVER_KEY_DELIMITER;
+type TD =  '-';
 export type TMidiHoverKey =
   `midi${TD}${number}${TD}${TCellKey}`;
 

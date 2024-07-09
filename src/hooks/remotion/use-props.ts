@@ -20,19 +20,16 @@ export const useRemotionProps = (
   const {
     pics: allPics,
     fps,
-    recording,
-    bpm,
+    // bpm,
   } = useTrillPicsStore(
     ({
       pics,
       fps,
-      recording,
-      bpm,
+      // bpm,
     }) => ({
       pics,
       fps,
-      recording,
-      bpm,
+      // bpm,
     })
   );
   const canvasDimensions = DIMENSIONS;
@@ -56,7 +53,7 @@ export const useRemotionProps = (
   const count = pics.length;
   const seconds =
     picVideoInputs.seconds ||
-    resolveSecondsFromCount(count, bpm);
+    resolveSecondsFromCount(count, 60);
 
   return {
     ...picVideoInputs,
@@ -66,7 +63,6 @@ export const useRemotionProps = (
     isPics: count > 0,
     dimensions,
     fps,
-    recording,
     canvasDimensions,
   };
 };

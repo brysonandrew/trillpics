@@ -5,15 +5,10 @@ import {
 } from "~/hooks/pic/constants";
 import { picVideoReadCount } from "~/hooks/pic/video/read/count";
 import { resolveSecondsFromCount } from "~/hooks/pic/video/read/seconds/from-count";
-import { useMusicRefs } from "~/pages/video/music/_context/refs";
 
 export const usePicVideoReadSeconds =
   () => {
-    const {
-      schedule: {
-        record: { bpm },
-      },
-    } = useMusicRefs();
+
     const [searchParams] =
       useSearchParams();
     const seconds = Number(
@@ -33,7 +28,7 @@ export const usePicVideoReadSeconds =
       seconds ||
       resolveSecondsFromCount(
         count,
-        bpm
+        60
       );
     return result;
   };
