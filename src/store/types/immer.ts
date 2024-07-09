@@ -1,5 +1,4 @@
 import { Draft } from "immer";
-import { Config } from "tailwindcss/types/config";
 type SkipTwo<T> = T extends {
   length: 0;
 }
@@ -60,13 +59,7 @@ type WithImmer<S> = Write<
   S,
   TStoreImmer<S>
 >;
-export interface DevtoolsOptions
-  extends Config {
-  name?: string;
-  enabled?: boolean;
-  anonymousActionType?: string;
-  store?: string;
-}
+
 // type WithDevtools<S> = Write<S, StoreDevtools<S>>;
 // type StoreDevtools<S> = S extends {
 //     setState: (...a: infer Sa) => infer Sr;

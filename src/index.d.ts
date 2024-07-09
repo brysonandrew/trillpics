@@ -158,7 +158,6 @@ declare module "dsp.js";
 declare module "charset-encoder-js";
 declare module "biquad-filter-kernel";
 declare module "midi-parser-js";
-declare module "tailwind.config";
 // declare type SpeechRecognition  = any
 
 declare module "nocopyrightsounds-api";
