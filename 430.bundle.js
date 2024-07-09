@@ -670,6 +670,10 @@ const fn = (src) => {
                 reject(new Error(`Unable to determine video metadata for ${src}`));
                 return;
             }
+            if (!Number.isFinite(video.duration)) {
+                reject(new Error(`Unable to determine video duration for ${src} - got Infinity. Re-encoding this video may fix this issue.`));
+                return;
+            }
             const metadata = {
                 durationInSeconds: video.duration,
                 width: video.videoWidth,
@@ -864,7 +868,7 @@ const checkFor404OrSkip = async ({ suspecting404, sameOrigin, src, }) => {
     }
 };
 const onMediaError = ({ error, src, reject, cleanup, api, }) => {
-    const suspecting404 = (error === null || error === void 0 ? void 0 : error.MEDIA_ERR_SRC_NOT_SUPPORTED) === (error === null || error === void 0 ? void 0 : error.code);
+    const suspecting404 = error.MEDIA_ERR_SRC_NOT_SUPPORTED === error.code;
     const isSrcSameOriginAsCurrent = new URL(src, window.location.origin)
         .toString()
         .startsWith(window.location.origin);
@@ -882,15 +886,17 @@ const onMediaError = ({ error, src, reject, cleanup, api, }) => {
             : new Error([
                 `Failed to execute ${api}, Received a MediaError loading "${src}".`,
                 status === null
-                    ? `Browser error message: ${error === null || error === void 0 ? void 0 : error.message}`
+                    ? null
                     : `HTTP Status code of the file: ${status}.`,
+                error.message
+                    ? `Browser error message: ${error.message}`
+                    : null,
                 'Check the path of the file and if it is a valid video.',
             ]
                 .filter(Boolean)
                 .join(' '));
         reject(err);
         cleanup();
-        console.log('404', status);
     })
         .catch((e) => {
         reject(e);
@@ -9260,14 +9266,15 @@ var calculateCanvasTransformation = ({
 var calculateOuterStyle = ({
   config,
   style,
-  canvasSize
+  canvasSize,
+  overflowVisible
 }) => {
   if (!config) {
     return {};
   }
   return {
     position: "relative",
-    overflow: "hidden",
+    overflow: overflowVisible ? "visible" : "hidden",
     ...calculatePlayerSize({
       compositionHeight: config.height,
       compositionWidth: config.width,
@@ -9282,7 +9289,8 @@ var calculateContainerStyle = ({
   config,
   canvasSize,
   layout,
-  scale
+  scale,
+  overflowVisible
 }) => {
   if (!config || !canvasSize || !layout) {
     return {};
@@ -9295,13 +9303,14 @@ var calculateContainerStyle = ({
     transform: `scale(${scale})`,
     marginLeft: layout.xCorrection,
     marginTop: layout.yCorrection,
-    overflow: "hidden"
+    overflow: overflowVisible ? "visible" : "hidden"
   };
 };
 var calculateOuter = ({
   layout,
   scale,
-  config
+  config,
+  overflowVisible
 }) => {
   if (!layout || !config) {
     return {};
@@ -9315,7 +9324,7 @@ var calculateOuter = ({
     position: "absolute",
     left: centerX,
     top: centerY,
-    overflow: "hidden"
+    overflow: overflowVisible ? "visible" : "hidden"
   };
 };
 
@@ -9971,8 +9980,8 @@ var useElementSize = (ref, options) => {
       return;
     }
     const { current } = ref;
-    if (ref.current) {
-      observer.observe(ref.current);
+    if (current) {
+      observer.observe(current);
     }
     return () => {
       if (current) {
@@ -10425,6 +10434,7 @@ var KNOB_SIZE2 = 12;
 var VERTICAL_PADDING = 4;
 var containerStyle = {
   userSelect: "none",
+  WebkitUserSelect: "none",
   paddingTop: VERTICAL_PADDING,
   paddingBottom: VERTICAL_PADDING,
   boxSizing: "border-box",
@@ -10658,12 +10668,14 @@ var controlsRow = {
   width: "100%",
   alignItems: "center",
   justifyContent: "center",
-  userSelect: "none"
+  userSelect: "none",
+  WebkitUserSelect: "none"
 };
 var leftPartStyle = {
   display: "flex",
   flexDirection: "row",
   userSelect: "none",
+  WebkitUserSelect: "none",
   alignItems: "center"
 };
 var xSpacer = {
@@ -10699,7 +10711,7 @@ var Controls = ({
   containerRef,
   buffering,
   hideControlsWhenPointerDoesntMove,
-  onPointerUp,
+  onPointerDown,
   onDoubleClick
 }) => {
   const playButtonRef = (0,react.useRef)(null);
@@ -10789,11 +10801,11 @@ var Controls = ({
   }, [showPlaybackRateControl]);
   const ref = (0,react.useRef)(null);
   const flexRef = (0,react.useRef)(null);
-  const onPointerUpIfContainer = (0,react.useCallback)((e) => {
+  const onPointerDownIfContainer = (0,react.useCallback)((e) => {
     if (e.target === ref.current || e.target === flexRef.current) {
-      onPointerUp?.(e);
+      onPointerDown?.(e);
     }
-  }, [onPointerUp]);
+  }, [onPointerDown]);
   const onDoubleClickIfContainer = (0,react.useCallback)((e) => {
     if (e.target === ref.current || e.target === flexRef.current) {
       onDoubleClick?.(e);
@@ -10802,7 +10814,7 @@ var Controls = ({
   return (0,jsx_runtime.jsxs)("div", {
     ref,
     style: containerCss,
-    onPointerUp: onPointerUpIfContainer,
+    onPointerDown: onPointerDownIfContainer,
     onDoubleClick: onDoubleClickIfContainer,
     children: [
       (0,jsx_runtime.jsxs)("div", {
@@ -10908,9 +10920,6 @@ var errorStyle = {
 };
 
 class ErrorBoundary extends react.Component {
-  constructor() {
-    super(...arguments);
-  }
   state = { hasError: null };
   static getDerivedStateFromError(error) {
     return { hasError: error };
@@ -10988,7 +10997,7 @@ var useCancellablePromises = () => {
 var useClickPreventionOnDoubleClick = (onClick, onDoubleClick, doubleClickToFullscreen) => {
   const api = useCancellablePromises();
   const handleClick = (0,react.useCallback)(async (e) => {
-    if (e.nativeEvent.pointerType === "touch") {
+    if (e instanceof PointerEvent ? e.pointerType === "touch" : e.nativeEvent.pointerType === "touch") {
       onClick(e);
       return;
     }
@@ -11007,18 +11016,25 @@ var useClickPreventionOnDoubleClick = (onClick, onDoubleClick, doubleClickToFull
       }
     }
   }, [api, onClick]);
+  const handlePointerDown = (0,react.useCallback)(() => {
+    document.addEventListener("pointerup", (newEvt) => {
+      handleClick(newEvt);
+    }, {
+      once: true
+    });
+  }, [handleClick]);
   const handleDoubleClick = (0,react.useCallback)(() => {
     api.clearPendingPromises();
     onDoubleClick();
   }, [api, onDoubleClick]);
   const returnValue = (0,react.useMemo)(() => {
     if (!doubleClickToFullscreen) {
-      return [onClick, () => {
+      return { handlePointerDown: onClick, handleDoubleClick: () => {
         return;
-      }];
+      } };
     }
-    return [handleClick, handleDoubleClick];
-  }, [doubleClickToFullscreen, handleClick, handleDoubleClick, onClick]);
+    return { handlePointerDown, handleDoubleClick };
+  }, [doubleClickToFullscreen, handleDoubleClick, handlePointerDown, onClick]);
   return returnValue;
 };
 
@@ -11059,7 +11075,8 @@ var PlayerUI = ({
   showPlaybackRateControl,
   posterFillMode,
   bufferStateDelayInMilliseconds,
-  hideControlsWhenPointerDoesntMove
+  hideControlsWhenPointerDoesntMove,
+  overflowVisible
 }, ref) => {
   const config = cjs.Internals.useUnsafeVideoConfig();
   const video = cjs.Internals.useVideo();
@@ -11308,14 +11325,20 @@ var PlayerUI = ({
   ]);
   const VideoComponent = video ? video.component : null;
   const outerStyle = (0,react.useMemo)(() => {
-    return calculateOuterStyle({ canvasSize, config, style });
-  }, [canvasSize, config, style]);
+    return calculateOuterStyle({ canvasSize, config, style, overflowVisible });
+  }, [canvasSize, config, overflowVisible, style]);
   const outer = (0,react.useMemo)(() => {
-    return calculateOuter({ config, layout, scale });
-  }, [config, layout, scale]);
+    return calculateOuter({ config, layout, scale, overflowVisible });
+  }, [config, layout, overflowVisible, scale]);
   const containerStyle3 = (0,react.useMemo)(() => {
-    return calculateContainerStyle({ canvasSize, config, layout, scale });
-  }, [canvasSize, config, layout, scale]);
+    return calculateContainerStyle({
+      canvasSize,
+      config,
+      layout,
+      scale,
+      overflowVisible
+    });
+  }, [canvasSize, config, layout, overflowVisible, scale]);
   const onError = (0,react.useCallback)((error) => {
     player.pause();
     player.emitter.dispatchError(error);
@@ -11344,7 +11367,7 @@ var PlayerUI = ({
       requestFullscreen();
     }
   }, [exitFullscreen, isFullscreen, requestFullscreen]);
-  const [handleClick, handleDoubleClick] = useClickPreventionOnDoubleClick(onSingleClick, onDoubleClick, doubleClickToFullscreen && allowFullscreen && supportsFullScreen);
+  const { handlePointerDown, handleDoubleClick } = useClickPreventionOnDoubleClick(onSingleClick, onDoubleClick, doubleClickToFullscreen && allowFullscreen && supportsFullScreen);
   (0,react.useEffect)(() => {
     if (shouldAutoplay) {
       player.play();
@@ -11386,7 +11409,7 @@ var PlayerUI = ({
     children: [
       (0,jsx_runtime.jsx)("div", {
         style: outer,
-        onPointerUp: clickToPlay ? handleClick : undefined,
+        onPointerDown: clickToPlay ? handlePointerDown : undefined,
         onDoubleClick: doubleClickToFullscreen ? handleDoubleClick : undefined,
         children: (0,jsx_runtime.jsxs)("div", {
           style: containerStyle3,
@@ -11411,7 +11434,7 @@ var PlayerUI = ({
                 width: config.width,
                 height: config.height
               },
-              onPointerUp: clickToPlay ? handleClick : undefined,
+              onPointerDown: clickToPlay ? handlePointerDown : undefined,
               onDoubleClick: doubleClickToFullscreen ? handleDoubleClick : undefined,
               children: poster
             }) : null
@@ -11420,7 +11443,7 @@ var PlayerUI = ({
       }),
       shouldShowPoster && posterFillMode === "player-size" ? (0,jsx_runtime.jsx)("div", {
         style: outer,
-        onPointerUp: clickToPlay ? handleClick : undefined,
+        onPointerDown: clickToPlay ? handlePointerDown : undefined,
         onDoubleClick: doubleClickToFullscreen ? handleDoubleClick : undefined,
         children: poster
       }) : null,
@@ -11448,7 +11471,7 @@ var PlayerUI = ({
         buffering: showBufferIndicator,
         hideControlsWhenPointerDoesntMove,
         onDoubleClick: doubleClickToFullscreen ? handleDoubleClick : undefined,
-        onPointerUp: clickToPlay ? handleClick : undefined
+        onPointerDown: clickToPlay ? handlePointerDown : undefined
       }) : null
     ]
   });
@@ -11750,6 +11773,7 @@ var PlayerFn = ({
   posterFillMode = "player-size",
   bufferStateDelayInMilliseconds,
   hideControlsWhenPointerDoesntMove = true,
+  overflowVisible = false,
   ...componentProps
 }, ref) => {
   if (typeof window !== "undefined") {
@@ -11899,7 +11923,8 @@ var PlayerFn = ({
             alwaysShowControls,
             showPlaybackRateControl,
             bufferStateDelayInMilliseconds: bufferStateDelayInMilliseconds ?? 300,
-            hideControlsWhenPointerDoesntMove
+            hideControlsWhenPointerDoesntMove,
+            overflowVisible
           })
         })
       })
@@ -11939,7 +11964,7 @@ if (reactVersion2 === "0") {
   throw new Error(`Version ${reactVersion2} of "react" is not supported by Remotion`);
 }
 var doesReactVersionSupportSuspense2 = parseInt(reactVersion2, 10) >= 18;
-var ThumbnailUI = ({ style, inputProps, errorFallback, renderLoading, className: className2 }, ref) => {
+var ThumbnailUI = ({ style, inputProps, errorFallback, renderLoading, className: className2, overflowVisible }, ref) => {
   const config = cjs.Internals.useUnsafeVideoConfig();
   const video = cjs.Internals.useVideo();
   const container = (0,react.useRef)(null);
@@ -11970,19 +11995,20 @@ var ThumbnailUI = ({ style, inputProps, errorFallback, renderLoading, className:
   }, [scale, thumbnail.emitter]);
   const VideoComponent = video ? video.component : null;
   const outerStyle = (0,react.useMemo)(() => {
-    return calculateOuterStyle({ config, style, canvasSize });
-  }, [canvasSize, config, style]);
+    return calculateOuterStyle({ config, style, canvasSize, overflowVisible });
+  }, [canvasSize, config, overflowVisible, style]);
   const outer = (0,react.useMemo)(() => {
-    return calculateOuter({ config, layout, scale });
-  }, [config, layout, scale]);
+    return calculateOuter({ config, layout, scale, overflowVisible });
+  }, [config, layout, overflowVisible, scale]);
   const containerStyle3 = (0,react.useMemo)(() => {
     return calculateContainerStyle({
       canvasSize,
       config,
       layout,
-      scale
+      scale,
+      overflowVisible
     });
-  }, [canvasSize, config, layout, scale]);
+  }, [canvasSize, config, layout, overflowVisible, scale]);
   const onError = (0,react.useCallback)((error) => {
     thumbnail.emitter.dispatchError(error);
   }, [thumbnail.emitter]);
@@ -12053,6 +12079,7 @@ var ThumbnailFn = ({
   className: className2,
   errorFallback = () => "\u26A0\uFE0F",
   renderLoading,
+  overflowVisible = false,
   ...componentProps
 }, ref) => {
   if (typeof window !== "undefined") {
@@ -12104,7 +12131,8 @@ var ThumbnailFn = ({
           errorFallback,
           inputProps: passedInputProps,
           renderLoading,
-          style
+          style,
+          overflowVisible
         })
       })
     })
@@ -13724,7 +13752,8 @@ var menuContainer = {
   backgroundColor: BACKGROUND,
   position: "fixed",
   color: "white",
-  userSelect: "none"
+  userSelect: "none",
+  WebkitUserSelect: "none"
 };
 var SHADOW_TOWARDS_BOTTOM = "0 2px 8px rgba(0, 0, 0, 0.5)";
 var SHADOW_TOWARDS_TOP = "0 -2px 8px rgba(0, 0, 0, 0.5)";
@@ -15555,7 +15584,8 @@ var itemStyle2 = {
   textAlign: "left",
   backgroundColor: BACKGROUND,
   height: ASSET_ITEM_HEIGHT,
-  userSelect: "none"
+  userSelect: "none",
+  WebkitUserSelect: "none"
 };
 var labelStyle3 = {
   textAlign: "left",
@@ -16404,6 +16434,7 @@ var Combobox = ({ values, selectedId, style: customStyle, title: title2 }) => {
       ...container10,
       ...customStyle ?? {},
       userSelect: "none",
+      WebkitUserSelect: "none",
       color: "white",
       display: "inline-flex",
       flexDirection: "row",
@@ -17336,6 +17367,7 @@ var InputDraggerForwardRefFn = ({
     color: BLUE,
     cursor: "ew-resize",
     userSelect: "none",
+    WebkitUserSelect: "none",
     fontSize: 13,
     fontVariantNumeric: "tabular-nums"
   }), []);
@@ -17463,7 +17495,8 @@ var internals_text = {
   fontVariantNumeric: "tabular-nums",
   lineHeight: 1,
   width: "100%",
-  userSelect: "none"
+  userSelect: "none",
+  WebkitUserSelect: "none"
 };
 var time = {
   display: "inline-block",
@@ -17736,7 +17769,7 @@ var TimelineInOutPointToggle = () => {
     }
     setInAndOutFrames((prev) => {
       const prevInFrame = prev[videoConfig.id]?.inFrame;
-      const smallestPossible = prevInFrame === null || prevInFrame === undefined ? (-Infinity) : prevInFrame + 1;
+      const smallestPossible = prevInFrame === null || prevInFrame === undefined ? -Infinity : prevInFrame + 1;
       const selected = Math.max(timelinePosition, smallestPossible);
       if (selected === videoConfig.durationInFrames - 1) {
         return {
@@ -18878,6 +18911,7 @@ var container13 = {
   paddingTop: 8,
   paddingBottom: 8,
   userSelect: "none",
+  WebkitUserSelect: "none",
   border: "none"
 };
 var MenuItem = ({
@@ -21751,6 +21785,7 @@ var loaderContainer = {
 var ErrorLoading = ({ error }) => {
   return (0,jsx_runtime.jsx)("div", {
     style: loaderContainer,
+    className: VERTICAL_SCROLLBAR_CLASSNAME,
     children: (0,jsx_runtime.jsx)(ErrorLoader, {
       canHaveDismissButton: false,
       keyboardShortcuts: false,
@@ -22190,9 +22225,11 @@ var container22 = {
   flexDirection: "row"
 };
 var GlobalPropsEditorUpdateButton = ({ compositionId, currentDefaultProps }) => {
+  const { fastRefreshes } = (0,react.useContext)(cjs.Internals.NonceContext);
   const [disabled, setDisabled] = react.useState(false);
   const onClicked = (0,react.useCallback)(() => {
     setDisabled(true);
+    window.remotion_ignoreFastRefreshUpdate = fastRefreshes + 1;
     saveDefaultProps({
       compositionId,
       defaultProps: () => currentDefaultProps
@@ -22201,7 +22238,7 @@ var GlobalPropsEditorUpdateButton = ({ compositionId, currentDefaultProps }) => 
     }).finally(() => {
       setDisabled(true);
     });
-  }, [compositionId, currentDefaultProps]);
+  }, [compositionId, currentDefaultProps, fastRefreshes]);
   const onReset = (0,react.useCallback)(() => {
     window.remotion_ignoreFastRefreshUpdate = null;
     window.dispatchEvent(new CustomEvent(cjs.Internals.PROPS_UPDATED_EXTERNALLY));
@@ -23675,6 +23712,7 @@ var InfoBubble = ({ title: title3, children }) => {
     return {
       ...container25,
       userSelect: "none",
+      WebkitUserSelect: "none",
       color: "white",
       display: "inline-flex",
       flexDirection: "row",
@@ -24917,13 +24955,13 @@ var fullWidth6 = {
 var getMinValue = (schema) => {
   const minCheck = schema._def.checks.find((c) => c.kind === "min");
   if (!minCheck) {
-    return (-Infinity);
+    return -Infinity;
   }
   if (minCheck.kind !== "min") {
     throw new Error("Expected min check");
   }
   if (!minCheck.inclusive) {
-    return (-Infinity);
+    return -Infinity;
   }
   return minCheck.value;
 };
@@ -26992,7 +27030,8 @@ var RenderQueueItem = ({ job, selected }) => {
         hovered: isHoverable && hovered,
         selected
       }),
-      userSelect: "none"
+      userSelect: "none",
+      WebkitUserSelect: "none"
     };
   }, [hovered, isHoverable, selected]);
   const scrollCurrentIntoView = (0,react.useCallback)(() => {
@@ -29575,6 +29614,7 @@ var inner = {
 };
 var container34 = {
   userSelect: "none",
+  WebkitUserSelect: "none",
   position: "absolute",
   height: "100%",
   top: 0
@@ -29662,7 +29702,7 @@ var Inner2 = () => {
       setInOutDragging({
         dragging: "in",
         initialOffset: getClientXWithScroll(e.clientX),
-        boundaries: [(-Infinity), outMarker - inMarker]
+        boundaries: [-Infinity, outMarker - inMarker]
       });
       return;
     }
@@ -29671,7 +29711,7 @@ var Inner2 = () => {
         throw new Error("expected outframe");
       }
       const outMarker = get(outFrame);
-      const inMarker = inFrame === null ? (-Infinity) : get(inFrame + 1);
+      const inMarker = inFrame === null ? -Infinity : get(inFrame + 1);
       setInOutDragging({
         dragging: "out",
         initialOffset: getClientXWithScroll(e.clientX),
@@ -29882,7 +29922,7 @@ var Inner2 = () => {
           }
         }));
       }
-      const minFrame = inFrame === null ? (-Infinity) : inFrame + 1;
+      const minFrame = inFrame === null ? -Infinity : inFrame + 1;
       setInAndOutFrames((prev) => ({
         ...prev,
         [videoConfig.id]: {
@@ -30303,6 +30343,7 @@ var TimelineStack = ({ isCompact, sequence }) => {
       lineHeight: 1,
       color: opening && isCompact ? VERY_LIGHT_TEXT : LIGHT_COLOR,
       userSelect: "none",
+      WebkitUserSelect: "none",
       borderBottom: hoverEffect ? "1px solid #fff" : "none",
       cursor: hoverEffect ? "pointer" : undefined
     };
@@ -31322,13 +31363,7 @@ var container41 = {
   flex: 1,
   height: 0
 };
-var EditorContent = ({
-  readOnlyStudio,
-  onMounted,
-  size: size4,
-  drawRef: drawRef2,
-  bufferStateDelayInMilliseconds
-}) => {
+var EditorContent = ({ readOnlyStudio, children }) => {
   const isStill = useIsStill();
   const { canvasContent } = (0,react.useContext)(cjs.Internals.CompositionManager);
   const onlyTopPanel = canvasContent === null || isStill || canvasContent.type !== "composition";
@@ -31339,16 +31374,7 @@ var EditorContent = ({
       (0,jsx_runtime.jsx)(MenuToolbar, {
         readOnlyStudio
       }),
-      onlyTopPanel ? (0,jsx_runtime.jsx)("div", {
-        style: containerColumn,
-        children: (0,jsx_runtime.jsx)(TopPanel, {
-          size: size4,
-          drawRef: drawRef2,
-          bufferStateDelayInMilliseconds,
-          onMounted,
-          readOnlyStudio
-        })
-      }) : (0,jsx_runtime.jsxs)(SplitterContainer, {
+      (0,jsx_runtime.jsxs)(SplitterContainer, {
         orientation: "horizontal",
         id: "top-to-bottom",
         maxFlex: 0.9,
@@ -31358,22 +31384,20 @@ var EditorContent = ({
           (0,jsx_runtime.jsx)(SplitterElement, {
             sticky: null,
             type: "flexer",
-            children: (0,jsx_runtime.jsx)(TopPanel, {
-              size: size4,
-              drawRef: drawRef2,
-              bufferStateDelayInMilliseconds,
-              onMounted,
-              readOnlyStudio
-            })
+            children
           }),
-          (0,jsx_runtime.jsx)(SplitterHandle, {
-            allowToCollapse: "none",
-            onCollapse: noop8
-          }),
-          (0,jsx_runtime.jsx)(SplitterElement, {
-            sticky: null,
-            type: "anti-flexer",
-            children: (0,jsx_runtime.jsx)(Timeline, {})
+          onlyTopPanel ? null : (0,jsx_runtime.jsxs)(jsx_runtime.Fragment, {
+            children: [
+              (0,jsx_runtime.jsx)(SplitterHandle, {
+                allowToCollapse: "none",
+                onCollapse: noop8
+              }),
+              (0,jsx_runtime.jsx)(SplitterElement, {
+                sticky: null,
+                type: "anti-flexer",
+                children: (0,jsx_runtime.jsx)(Timeline, {})
+              })
+            ]
           })
         ]
       })
@@ -38215,11 +38239,14 @@ var Editor = ({ Root, readOnlyStudio }) => {
               (0,jsx_runtime.jsxs)(cjs.Internals.CanUseRemotionHooksProvider, {
                 children: [
                   (0,jsx_runtime.jsx)(EditorContent, {
-                    drawRef,
-                    size: size4,
-                    onMounted,
                     readOnlyStudio,
-                    bufferStateDelayInMilliseconds: BUFFER_STATE_DELAY_IN_MILLISECONDS
+                    children: (0,jsx_runtime.jsx)(TopPanel, {
+                      size: size4,
+                      drawRef,
+                      bufferStateDelayInMilliseconds: BUFFER_STATE_DELAY_IN_MILLISECONDS,
+                      onMounted,
+                      readOnlyStudio
+                    })
                   }),
                   (0,jsx_runtime.jsx)(GlobalKeybindings, {})
                 ]

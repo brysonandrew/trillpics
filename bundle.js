@@ -3319,6 +3319,67 @@ exports.AbsoluteFill = (0, react_1.forwardRef)(AbsoluteFillRefForwarding);
 
 /***/ }),
 
+/***/ 7462:
+/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+exports.Artifact = void 0;
+const react_1 = __webpack_require__(7294);
+const RenderAssetManager_1 = __webpack_require__(6770);
+const get_remotion_environment_1 = __webpack_require__(8288);
+const use_current_frame_1 = __webpack_require__(9727);
+const Artifact = ({ filename, content }) => {
+    const { registerRenderAsset, unregisterRenderAsset } = (0, react_1.useContext)(RenderAssetManager_1.RenderAssetManager);
+    const [env] = (0, react_1.useState)(() => (0, get_remotion_environment_1.getRemotionEnvironment)());
+    const frame = (0, use_current_frame_1.useCurrentFrame)();
+    const [id] = (0, react_1.useState)(() => {
+        return String(Math.random());
+    });
+    (0, react_1.useEffect)(() => {
+        if (!env.isRendering) {
+            return;
+        }
+        if (content instanceof Uint8Array) {
+            registerRenderAsset({
+                type: 'artifact',
+                id,
+                content: btoa(new TextDecoder('utf8').decode(content)),
+                filename,
+                frame,
+                binary: true,
+            });
+        }
+        else {
+            registerRenderAsset({
+                type: 'artifact',
+                id,
+                content,
+                filename,
+                frame,
+                binary: false,
+            });
+        }
+        return () => {
+            return unregisterRenderAsset(id);
+        };
+    }, [
+        content,
+        env.isRendering,
+        filename,
+        frame,
+        id,
+        registerRenderAsset,
+        unregisterRenderAsset,
+    ]);
+    return null;
+};
+exports.Artifact = Artifact;
+
+
+/***/ }),
+
 /***/ 4144:
 /***/ ((__unused_webpack_module, exports, __webpack_require__) => {
 
@@ -3387,6 +3448,7 @@ const NativeLayers_js_1 = __webpack_require__(2425);
 const ResolveCompositionConfig_js_1 = __webpack_require__(5014);
 const delay_render_js_1 = __webpack_require__(2663);
 const get_remotion_environment_js_1 = __webpack_require__(8288);
+const input_props_serialization_js_1 = __webpack_require__(9203);
 const is_player_js_1 = __webpack_require__(606);
 const loading_indicator_js_1 = __webpack_require__(5490);
 const nonce_js_1 = __webpack_require__(8054);
@@ -3453,7 +3515,7 @@ const Composition = ({ width, height, fps, durationInFrames, id, defaultProps, s
             id,
             folderName,
             component: lazy,
-            defaultProps: defaultProps,
+            defaultProps: (0, input_props_serialization_js_1.serializeThenDeserializeInStudio)((defaultProps !== null && defaultProps !== void 0 ? defaultProps : {})),
             nonce,
             parentFolderName: parentName,
             schema: schema !== null && schema !== void 0 ? schema : null,
@@ -4138,6 +4200,7 @@ Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.RenderAssetManagerProvider = exports.RenderAssetManager = void 0;
 const jsx_runtime_1 = __webpack_require__(5893);
 const react_1 = __webpack_require__(7294);
+const validate_artifact_js_1 = __webpack_require__(9564);
 exports.RenderAssetManager = (0, react_1.createContext)({
     // Must be undefined, otherwise error in Player
     registerRenderAsset: () => undefined,
@@ -4147,6 +4210,7 @@ exports.RenderAssetManager = (0, react_1.createContext)({
 const RenderAssetManagerProvider = ({ children }) => {
     const [renderAssets, setRenderAssets] = (0, react_1.useState)([]);
     const registerRenderAsset = (0, react_1.useCallback)((renderAsset) => {
+        (0, validate_artifact_js_1.validateRenderAsset)(renderAsset);
         setRenderAssets((assets) => {
             return [...assets, renderAsset];
         });
@@ -4240,7 +4304,7 @@ const ResolveCompositionConfig = ({ children }) => {
             return controller;
         }
         const { signal } = controller;
-        const promOrNot = (0, resolve_video_config_js_1.resolveVideoConfig)({
+        const result = (0, resolve_video_config_js_1.resolveVideoConfigOrCatch)({
             compositionId,
             calculateMetadata,
             originalProps: combinedProps,
@@ -4251,6 +4315,17 @@ const ResolveCompositionConfig = ({ children }) => {
             compositionHeight,
             compositionWidth,
         });
+        if (result.type === 'error') {
+            setResolvedConfigs((r) => ({
+                ...r,
+                [compositionId]: {
+                    type: 'error',
+                    error: result.error,
+                },
+            }));
+            return controller;
+        }
+        const promOrNot = result.result;
         if (typeof promOrNot === 'object' && 'then' in promOrNot) {
             setResolvedConfigs((r) => {
                 const prev = r[compositionId];
@@ -4329,6 +4404,7 @@ const ResolveCompositionConfig = ({ children }) => {
                     ...(editorProps !== null && editorProps !== void 0 ? editorProps : {}),
                 };
                 const props = {
+                    ...defaultProps,
                     ...(inputProps !== null && inputProps !== void 0 ? inputProps : {}),
                 };
                 doResolution({
@@ -4895,7 +4971,7 @@ const shared_audio_tags_js_1 = __webpack_require__(3161);
 const AudioRefForwardingFunction = (props, ref) => {
     var _a, _b, _c;
     const audioContext = (0, react_1.useContext)(shared_audio_tags_js_1.SharedAudioContext);
-    const { startFrom, endAt, name, stack, pauseWhenBuffering, showInTimeline, ...otherProps } = props;
+    const { startFrom, endAt, name, stack, pauseWhenBuffering, showInTimeline, _remotionDebugSeeking, ...otherProps } = props;
     const { loop, ...propsOtherThanLoop } = props;
     const { fps } = (0, use_video_config_js_1.useVideoConfig)();
     const environment = (0, get_remotion_environment_js_1.getRemotionEnvironment)();
@@ -4941,7 +5017,7 @@ const AudioRefForwardingFunction = (props, ref) => {
     if (environment.isRendering) {
         return ((0, jsx_runtime_1.jsx)(AudioForRendering_js_1.AudioForRendering, { onDuration: onDuration, ...props, ref: ref, onError: onError, _remotionInternalNeedsDurationCalculation: Boolean(loop) }));
     }
-    return ((0, jsx_runtime_1.jsx)(AudioForPreview_js_1.AudioForPreview, { _remotionInternalNativeLoopPassed: (_c = props._remotionInternalNativeLoopPassed) !== null && _c !== void 0 ? _c : false, _remotionInternalStack: stack !== null && stack !== void 0 ? stack : null, shouldPreMountAudioTags: audioContext !== null && audioContext.numberOfAudioTags > 0, ...props, ref: ref, onError: onError, onDuration: onDuration, 
+    return ((0, jsx_runtime_1.jsx)(AudioForPreview_js_1.AudioForPreview, { _remotionInternalNativeLoopPassed: (_c = props._remotionInternalNativeLoopPassed) !== null && _c !== void 0 ? _c : false, _remotionDebugSeeking: _remotionDebugSeeking !== null && _remotionDebugSeeking !== void 0 ? _remotionDebugSeeking : false, _remotionInternalStack: stack !== null && stack !== void 0 ? stack : null, shouldPreMountAudioTags: audioContext !== null && audioContext.numberOfAudioTags > 0, ...props, ref: ref, onError: onError, onDuration: onDuration, 
         // Proposal: Make this default to true in v5
         pauseWhenBuffering: pauseWhenBuffering !== null && pauseWhenBuffering !== void 0 ? pauseWhenBuffering : false, _remotionInternalNeedsDurationCalculation: Boolean(loop), showInTimeline: showInTimeline !== null && showInTimeline !== void 0 ? showInTimeline : true }));
 };
@@ -4968,7 +5044,6 @@ const SequenceContext_js_1 = __webpack_require__(3759);
 const SequenceManager_js_1 = __webpack_require__(829);
 const prefetch_js_1 = __webpack_require__(2595);
 const random_js_1 = __webpack_require__(4264);
-const use_media_buffering_js_1 = __webpack_require__(6801);
 const use_media_in_timeline_js_1 = __webpack_require__(7476);
 const use_media_playback_js_1 = __webpack_require__(5069);
 const use_media_tag_volume_js_1 = __webpack_require__(7126);
@@ -4983,7 +5058,7 @@ const AudioForDevelopmentForwardRefFunction = (props, ref) => {
     if (props.shouldPreMountAudioTags !== initialShouldPreMountAudioElements) {
         throw new Error('Cannot change the behavior for pre-mounting audio tags dynamically.');
     }
-    const { volume, muted, playbackRate, shouldPreMountAudioTags, src, onDuration, acceptableTimeShiftInSeconds, _remotionInternalNeedsDurationCalculation, _remotionInternalNativeLoopPassed, _remotionInternalStack, allowAmplificationDuringRender, name, pauseWhenBuffering, showInTimeline, loopVolumeCurveBehavior, stack, ...nativeProps } = props;
+    const { volume, muted, playbackRate, shouldPreMountAudioTags, src, onDuration, acceptableTimeShiftInSeconds, _remotionInternalNeedsDurationCalculation, _remotionInternalNativeLoopPassed, _remotionInternalStack, _remotionDebugSeeking, allowAmplificationDuringRender, name, pauseWhenBuffering, showInTimeline, loopVolumeCurveBehavior, stack, ...nativeProps } = props;
     const [mediaVolume] = (0, volume_position_state_js_1.useMediaVolumeState)();
     const [mediaMuted] = (0, volume_position_state_js_1.useMediaMutedState)();
     const volumePropFrame = (0, use_audio_frame_js_1.useFrameForVolumeProp)(loopVolumeCurveBehavior !== null && loopVolumeCurveBehavior !== void 0 ? loopVolumeCurveBehavior : 'repeat');
@@ -5056,11 +5131,9 @@ const AudioForDevelopmentForwardRefFunction = (props, ref) => {
         playbackRate: playbackRate !== null && playbackRate !== void 0 ? playbackRate : 1,
         onlyWarnForMediaSeekingError: false,
         acceptableTimeshift: acceptableTimeShiftInSeconds !== null && acceptableTimeShiftInSeconds !== void 0 ? acceptableTimeShiftInSeconds : use_media_playback_js_1.DEFAULT_ACCEPTABLE_TIMESHIFT,
-    });
-    (0, use_media_buffering_js_1.useMediaBuffering)({
-        element: audioRef,
-        shouldBuffer: pauseWhenBuffering,
         isPremounting: Boolean(sequenceContext === null || sequenceContext === void 0 ? void 0 : sequenceContext.premounting),
+        pauseWhenBuffering,
+        debugSeeking: _remotionDebugSeeking,
     });
     (0, react_1.useImperativeHandle)(ref, () => {
         return audioRef.current;
@@ -5681,6 +5754,72 @@ function bezier(mX1, mY1, mX2, mY2) {
     };
 }
 exports.bezier = bezier;
+
+
+/***/ }),
+
+/***/ 1001:
+/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+exports.useBufferUntilFirstFrame = void 0;
+const react_1 = __webpack_require__(7294);
+const use_buffer_state_1 = __webpack_require__(9075);
+const useBufferUntilFirstFrame = ({ mediaRef, mediaType, onVariableFpsVideoDetected, }) => {
+    const bufferingRef = (0, react_1.useRef)(false);
+    const { delayPlayback } = (0, use_buffer_state_1.useBufferState)();
+    const bufferUntilFirstFrame = (0, react_1.useCallback)((requestedTime) => {
+        if (mediaType !== 'video') {
+            return;
+        }
+        const current = mediaRef.current;
+        if (!current) {
+            return;
+        }
+        if (!current.requestVideoFrameCallback) {
+            return;
+        }
+        bufferingRef.current = true;
+        const playback = delayPlayback();
+        const unblock = () => {
+            playback.unblock();
+            current.removeEventListener('ended', unblock, {
+                // @ts-expect-error
+                once: true,
+            });
+            current.removeEventListener('pause', unblock, {
+                // @ts-expect-error
+                once: true,
+            });
+            bufferingRef.current = false;
+        };
+        const onEndedOrPause = () => {
+            unblock();
+        };
+        current.requestVideoFrameCallback((_, info) => {
+            const differenceFromRequested = Math.abs(info.mediaTime - requestedTime);
+            if (differenceFromRequested > 0.5) {
+                onVariableFpsVideoDetected();
+            }
+            // Safari often seeks and then stalls.
+            // This makes sure that the video actually starts playing.
+            current.requestVideoFrameCallback(() => {
+                unblock();
+            });
+        });
+        current.addEventListener('ended', onEndedOrPause, { once: true });
+        current.addEventListener('pause', onEndedOrPause, { once: true });
+    }, [delayPlayback, mediaRef, mediaType, onVariableFpsVideoDetected]);
+    return (0, react_1.useMemo)(() => {
+        return {
+            isBuffering: () => bufferingRef.current,
+            bufferUntilFirstFrame,
+        };
+    }, [bufferUntilFirstFrame]);
+};
+exports.useBufferUntilFirstFrame = useBufferUntilFirstFrame;
 
 
 /***/ }),
@@ -6433,7 +6572,7 @@ var __exportStar = (this && this.__exportStar) || function(m, exports) {
     for (var p in m) if (p !== "default" && !Object.prototype.hasOwnProperty.call(exports, p)) __createBinding(exports, m, p);
 };
 Object.defineProperty(exports, "__esModule", ({ value: true }));
-exports.Config = exports.Experimental = exports.watchStaticFile = exports.useCurrentScale = exports.useCurrentFrame = exports.useBufferState = exports.staticFile = exports.Series = exports.Sequence = exports.registerRoot = exports.prefetch = exports.random = exports.interpolate = exports.Loop = exports.interpolateColors = exports.Img = exports.getStaticFiles = exports.getRemotionEnvironment = exports.delayRender = exports.continueRender = exports.getInputProps = exports.Composition = exports.cancelRender = void 0;
+exports.Config = exports.Experimental = exports.watchStaticFile = exports.useCurrentScale = exports.useCurrentFrame = exports.useBufferState = exports.staticFile = exports.Series = exports.Sequence = exports.registerRoot = exports.prefetch = exports.random = exports.interpolate = exports.Loop = exports.interpolateColors = exports.Img = exports.getStaticFiles = exports.getRemotionEnvironment = exports.delayRender = exports.continueRender = exports.getInputProps = exports.Composition = exports.cancelRender = exports.Artifact = void 0;
 __webpack_require__(5449);
 const Clipper_js_1 = __webpack_require__(2434);
 const enable_sequence_stack_traces_js_1 = __webpack_require__(2196);
@@ -6443,6 +6582,8 @@ const Null_js_1 = __webpack_require__(4675);
 const Sequence_js_1 = __webpack_require__(7080);
 (0, multiple_versions_warning_js_1.checkMultipleRemotionVersions)();
 __exportStar(__webpack_require__(2640), exports);
+var Artifact_js_1 = __webpack_require__(7462);
+Object.defineProperty(exports, "Artifact", ({ enumerable: true, get: function () { return Artifact_js_1.Artifact; } }));
 __exportStar(__webpack_require__(4533), exports);
 var cancel_render_js_1 = __webpack_require__(8113);
 Object.defineProperty(exports, "cancelRender", ({ enumerable: true, get: function () { return cancel_render_js_1.cancelRender; } }));
@@ -6546,7 +6687,8 @@ exports.Config = new Proxy(proxyObj, {
 
 // Must keep this file in sync with the one in packages/lambda/src/shared/serialize-props.ts!
 Object.defineProperty(exports, "__esModule", ({ value: true }));
-exports.deserializeJSONWithCustomFields = exports.serializeJSONWithDate = exports.FILE_TOKEN = exports.DATE_TOKEN = void 0;
+exports.serializeThenDeserializeInStudio = exports.deserializeJSONWithCustomFields = exports.serializeJSONWithDate = exports.FILE_TOKEN = exports.DATE_TOKEN = void 0;
+const get_remotion_environment_js_1 = __webpack_require__(8288);
 const static_file_js_1 = __webpack_require__(6840);
 exports.DATE_TOKEN = 'remotion-date:';
 exports.FILE_TOKEN = 'remotion-file:';
@@ -6555,29 +6697,35 @@ const serializeJSONWithDate = ({ data, indent, staticBase, }) => {
     let customFileUsed = false;
     let mapUsed = false;
     let setUsed = false;
-    const serializedString = JSON.stringify(data, function (key, value) {
-        const item = this[key];
-        if (item instanceof Date) {
-            customDateUsed = true;
-            return `${exports.DATE_TOKEN}${item.toISOString()}`;
-        }
-        if (item instanceof Map) {
-            mapUsed = true;
+    try {
+        const serializedString = JSON.stringify(data, function (key, value) {
+            const item = this[key];
+            if (item instanceof Date) {
+                customDateUsed = true;
+                return `${exports.DATE_TOKEN}${item.toISOString()}`;
+            }
+            if (item instanceof Map) {
+                mapUsed = true;
+                return value;
+            }
+            if (item instanceof Set) {
+                setUsed = true;
+                return value;
+            }
+            if (typeof item === 'string' &&
+                staticBase !== null &&
+                item.startsWith(staticBase)) {
+                customFileUsed = true;
+                return `${exports.FILE_TOKEN}${item.replace(staticBase + '/', '')}`;
+            }
             return value;
-        }
-        if (item instanceof Set) {
-            setUsed = true;
-            return value;
-        }
-        if (typeof item === 'string' &&
-            staticBase !== null &&
-            item.startsWith(staticBase)) {
-            customFileUsed = true;
-            return `${exports.FILE_TOKEN}${item.replace(staticBase + '/', '')}`;
-        }
-        return value;
-    }, indent);
-    return { serializedString, customDateUsed, customFileUsed, mapUsed, setUsed };
+        }, indent);
+        return { serializedString, customDateUsed, customFileUsed, mapUsed, setUsed };
+    }
+    catch (err) {
+        throw new Error('Could not serialize the passed input props to JSON: ' +
+            err.message);
+    }
 };
 exports.serializeJSONWithDate = serializeJSONWithDate;
 const deserializeJSONWithCustomFields = (data) => {
@@ -6592,6 +6740,19 @@ const deserializeJSONWithCustomFields = (data) => {
     });
 };
 exports.deserializeJSONWithCustomFields = deserializeJSONWithCustomFields;
+const serializeThenDeserializeInStudio = (props) => {
+    // Serializing once in the Studio, to catch potential serialization errors before
+    // you only get them during rendering
+    if ((0, get_remotion_environment_js_1.getRemotionEnvironment)().isStudio) {
+        return (0, exports.deserializeJSONWithCustomFields)((0, exports.serializeJSONWithDate)({
+            data: props,
+            indent: 2,
+            staticBase: window.remotion_staticBase,
+        }).serializedString);
+    }
+    return props;
+};
+exports.serializeThenDeserializeInStudio = serializeThenDeserializeInStudio;
 
 
 /***/ }),
@@ -6659,6 +6820,7 @@ const use_current_scale_js_1 = __webpack_require__(9267);
 const use_lazy_component_js_1 = __webpack_require__(4858);
 const use_unsafe_video_config_js_1 = __webpack_require__(3095);
 const use_video_js_1 = __webpack_require__(3141);
+const validate_artifact_js_1 = __webpack_require__(9564);
 const validate_composition_id_js_1 = __webpack_require__(6303);
 const duration_state_js_1 = __webpack_require__(9099);
 const video_fragment_js_1 = __webpack_require__(1527);
@@ -6728,6 +6890,7 @@ exports.Internals = {
     calculateScale: use_current_scale_js_1.calculateScale,
     editorPropsProviderRef: EditorProps_js_1.editorPropsProviderRef,
     PROPS_UPDATED_EXTERNALLY: ResolveCompositionConfig_js_1.PROPS_UPDATED_EXTERNALLY,
+    validateRenderAsset: validate_artifact_js_1.validateRenderAsset,
 };
 
 
@@ -7613,7 +7776,7 @@ const playAndHandleNotAllowedError = (mediaRef, mediaType) => {
             console.log(`Could not play ${mediaType} due to following error: `, err);
             if (!current.muted) {
                 // eslint-disable-next-line no-console
-                console.log(`The video will be muted and we'll retry playing it.`, err);
+                console.log(`The video will be muted and we'll retry playing it.`);
                 current.muted = true;
                 current.play();
             }
@@ -7966,7 +8129,8 @@ exports.waitForRoot = waitForRoot;
 "use strict";
 
 Object.defineProperty(exports, "__esModule", ({ value: true }));
-exports.resolveVideoConfig = void 0;
+exports.resolveVideoConfigOrCatch = exports.resolveVideoConfig = void 0;
+const input_props_serialization_js_1 = __webpack_require__(9203);
 const validate_default_codec_js_1 = __webpack_require__(4985);
 const validate_dimensions_js_1 = __webpack_require__(1162);
 const validate_duration_in_frames_js_1 = __webpack_require__(2363);
@@ -8019,8 +8183,8 @@ const resolveVideoConfig = ({ calculateMetadata, signal, defaultProps, originalP
                 fps,
                 durationInFrames,
                 id: compositionId,
-                defaultProps,
-                props: (_a = c.props) !== null && _a !== void 0 ? _a : originalProps,
+                defaultProps: (0, input_props_serialization_js_1.serializeThenDeserializeInStudio)(defaultProps),
+                props: (0, input_props_serialization_js_1.serializeThenDeserializeInStudio)((_a = c.props) !== null && _a !== void 0 ? _a : originalProps),
                 defaultCodec: defaultCodec !== null && defaultCodec !== void 0 ? defaultCodec : null,
             };
         });
@@ -8037,20 +8201,36 @@ const resolveVideoConfig = ({ calculateMetadata, signal, defaultProps, originalP
         return {
             ...data,
             id: compositionId,
-            defaultProps: defaultProps !== null && defaultProps !== void 0 ? defaultProps : {},
-            props: originalProps,
+            defaultProps: (0, input_props_serialization_js_1.serializeThenDeserializeInStudio)(defaultProps !== null && defaultProps !== void 0 ? defaultProps : {}),
+            props: (0, input_props_serialization_js_1.serializeThenDeserializeInStudio)(originalProps),
             defaultCodec: null,
         };
     }
     return {
         ...data,
         id: compositionId,
-        defaultProps: defaultProps !== null && defaultProps !== void 0 ? defaultProps : {},
-        props: (_a = calculatedProm.props) !== null && _a !== void 0 ? _a : originalProps,
+        defaultProps: (0, input_props_serialization_js_1.serializeThenDeserializeInStudio)(defaultProps !== null && defaultProps !== void 0 ? defaultProps : {}),
+        props: (0, input_props_serialization_js_1.serializeThenDeserializeInStudio)((_a = calculatedProm.props) !== null && _a !== void 0 ? _a : originalProps),
         defaultCodec: (_b = calculatedProm.defaultCodec) !== null && _b !== void 0 ? _b : null,
     };
 };
 exports.resolveVideoConfig = resolveVideoConfig;
+const resolveVideoConfigOrCatch = (params) => {
+    try {
+        const promiseOrReturnValue = (0, exports.resolveVideoConfig)(params);
+        return {
+            type: 'success',
+            result: promiseOrReturnValue,
+        };
+    }
+    catch (err) {
+        return {
+            type: 'error',
+            error: err,
+        };
+    }
+};
+exports.resolveVideoConfigOrCatch = resolveVideoConfigOrCatch;
 
 
 /***/ }),
@@ -8769,17 +8949,20 @@ const react_1 = __webpack_require__(7294);
 const buffering_1 = __webpack_require__(5775);
 const useBufferState = () => {
     const buffer = (0, react_1.useContext)(buffering_1.BufferingContextReact);
+    // Allows <Img> tag to be rendered without a context
+    // https://github.com/remotion-dev/remotion/issues/4007
+    const addBlock = buffer ? buffer.addBlock : null;
     return (0, react_1.useMemo)(() => ({
         delayPlayback: () => {
-            if (!buffer) {
+            if (!addBlock) {
                 throw new Error('Tried to enable the buffering state, but a Remotion context was not found. This API can only be called in a component that was passed to the Remotion Player or a <Composition>. Or you might have experienced a version mismatch - run `npx remotion versions` and ensure all packages have the same version. This error is thrown by the buffer state https://remotion.dev/docs/player/buffer-state');
             }
-            const { unblock } = buffer.addBlock({
+            const { unblock } = addBlock({
                 id: String(Math.random()),
             });
             return { unblock };
         },
-    }), [buffer]);
+    }), [addBlock]);
 };
 exports.useBufferState = useBufferState;
 
@@ -8938,7 +9121,8 @@ const react_1 = __importStar(__webpack_require__(7294));
 // Expected, it can be any component props
 const useLazyComponent = (compProps) => {
     const lazy = (0, react_1.useMemo)(() => {
-        if ('lazyComponent' in compProps) {
+        if ('lazyComponent' in compProps &&
+            typeof compProps.lazyComponent !== 'undefined') {
             return react_1.default.lazy(compProps.lazyComponent);
         }
         if ('component' in compProps) {
@@ -8972,6 +9156,8 @@ const react_1 = __webpack_require__(7294);
 const use_buffer_state_1 = __webpack_require__(9075);
 const useMediaBuffering = ({ element, shouldBuffer, isPremounting, }) => {
     const buffer = (0, use_buffer_state_1.useBufferState)();
+    const [isBuffering, setIsBuffering] = (0, react_1.useState)(false);
+    // Buffer state based on `waiting` and `canplay`
     (0, react_1.useEffect)(() => {
         let cleanupFns = [];
         const { current } = element;
@@ -8987,8 +9173,10 @@ const useMediaBuffering = ({ element, shouldBuffer, isPremounting, }) => {
         const cleanup = () => {
             cleanupFns.forEach((fn) => fn());
             cleanupFns = [];
+            setIsBuffering(false);
         };
         const onWaiting = () => {
+            setIsBuffering(true);
             const { unblock } = buffer.delayPlayback();
             const onCanPlay = () => {
                 cleanup();
@@ -9042,6 +9230,7 @@ const useMediaBuffering = ({ element, shouldBuffer, isPremounting, }) => {
             cleanup();
         };
     }, [buffer, element, isPremounting, shouldBuffer]);
+    return isBuffering;
 };
 exports.useMediaBuffering = useMediaBuffering;
 
@@ -9202,10 +9391,13 @@ Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.useMediaPlayback = exports.DEFAULT_ACCEPTABLE_TIMESHIFT = void 0;
 const react_1 = __webpack_require__(7294);
 const use_audio_frame_js_1 = __webpack_require__(6873);
+const buffer_until_first_frame_js_1 = __webpack_require__(1001);
 const buffering_js_1 = __webpack_require__(5775);
 const play_and_handle_not_allowed_error_js_1 = __webpack_require__(5091);
 const timeline_position_state_js_1 = __webpack_require__(7083);
 const use_current_frame_js_1 = __webpack_require__(9727);
+const use_media_buffering_js_1 = __webpack_require__(6801);
+const use_request_video_callback_time_js_1 = __webpack_require__(120);
 const use_video_config_js_1 = __webpack_require__(3347);
 const get_current_time_js_1 = __webpack_require__(4956);
 const video_fragment_js_1 = __webpack_require__(1527);
@@ -9216,13 +9408,10 @@ const seek = (mediaRef, time) => {
         return;
     }
     // iOS seeking does not support multiple decimals
-    if ((0, video_fragment_js_1.isIosSafari)()) {
-        mediaRef.current.currentTime = Number(time.toFixed(1));
-        return;
-    }
-    mediaRef.current.currentTime = time;
+    const timeToSet = (0, video_fragment_js_1.isIosSafari)() ? Number(time.toFixed(1)) : time;
+    mediaRef.current.currentTime = timeToSet;
 };
-const useMediaPlayback = ({ mediaRef, src, mediaType, playbackRate: localPlaybackRate, onlyWarnForMediaSeekingError, acceptableTimeshift, }) => {
+const useMediaPlayback = ({ mediaRef, src, mediaType, playbackRate: localPlaybackRate, onlyWarnForMediaSeekingError, acceptableTimeshift, pauseWhenBuffering, isPremounting, debugSeeking, }) => {
     const { playbackRate: globalPlaybackRate } = (0, react_1.useContext)(timeline_position_state_js_1.TimelineContext);
     const frame = (0, use_current_frame_js_1.useCurrentFrame)();
     const absoluteFrame = (0, timeline_position_state_js_1.useTimelinePosition)();
@@ -9230,6 +9419,38 @@ const useMediaPlayback = ({ mediaRef, src, mediaType, playbackRate: localPlaybac
     const buffering = (0, react_1.useContext)(buffering_js_1.BufferingContextReact);
     const { fps } = (0, use_video_config_js_1.useVideoConfig)();
     const mediaStartsAt = (0, use_audio_frame_js_1.useMediaStartsAt)();
+    const lastSeekDueToShift = (0, react_1.useRef)(null);
+    if (!buffering) {
+        throw new Error('useMediaPlayback must be used inside a <BufferingContext>');
+    }
+    const currentTime = (0, use_request_video_callback_time_js_1.useRequestVideoCallbackTime)(mediaRef, mediaType);
+    const desiredUnclampedTime = (0, get_current_time_js_1.getMediaTime)({
+        frame,
+        playbackRate: localPlaybackRate,
+        startFrom: -mediaStartsAt,
+        fps,
+    });
+    const isMediaTagBuffering = (0, use_media_buffering_js_1.useMediaBuffering)({
+        element: mediaRef,
+        shouldBuffer: pauseWhenBuffering,
+        isPremounting,
+    });
+    const isVariableFpsVideoMap = (0, react_1.useRef)({});
+    const onVariableFpsVideoDetected = (0, react_1.useCallback)(() => {
+        if (!src) {
+            return;
+        }
+        if (debugSeeking) {
+            // eslint-disable-next-line no-console
+            console.log(`Detected ${src} as a variable FPS video. Disabling buffering while seeking.`);
+        }
+        isVariableFpsVideoMap.current[src] = true;
+    }, [debugSeeking, src]);
+    const { bufferUntilFirstFrame, isBuffering } = (0, buffer_until_first_frame_js_1.useBufferUntilFirstFrame)({
+        mediaRef,
+        mediaType,
+        onVariableFpsVideoDetected,
+    });
     const playbackRate = localPlaybackRate * globalPlaybackRate;
     // For short audio, a lower acceptable time shift is used
     const acceptableTimeShiftButLessThanDuration = (() => {
@@ -9239,14 +9460,26 @@ const useMediaPlayback = ({ mediaRef, src, mediaType, playbackRate: localPlaybac
         }
         return acceptableTimeshift;
     })();
-    const pausedOrBuffering = !playing || (buffering && buffering.buffering.current);
+    (0, react_1.useEffect)(() => {
+        var _a, _b;
+        if (!playing) {
+            (_a = mediaRef.current) === null || _a === void 0 ? void 0 : _a.pause();
+            return;
+        }
+        const isPlayerBuffering = buffering.buffering.current;
+        const isMediaTagBufferingOrStalled = isMediaTagBuffering || isBuffering();
+        if (isPlayerBuffering && !isMediaTagBufferingOrStalled) {
+            (_b = mediaRef.current) === null || _b === void 0 ? void 0 : _b.pause();
+        }
+    }, [
+        buffering.buffering,
+        isBuffering,
+        isMediaTagBuffering,
+        mediaRef,
+        playing,
+    ]);
     (0, react_1.useEffect)(() => {
         var _a;
-        if (pausedOrBuffering) {
-            (_a = mediaRef.current) === null || _a === void 0 ? void 0 : _a.pause();
-        }
-    }, [mediaRef, mediaType, pausedOrBuffering]);
-    (0, react_1.useEffect)(() => {
         const tagName = mediaType === 'audio' ? '<Audio>' : '<Video>';
         if (!mediaRef.current) {
             throw new Error(`No ${mediaType} ref found`);
@@ -9258,60 +9491,97 @@ const useMediaPlayback = ({ mediaRef, src, mediaType, playbackRate: localPlaybac
         if (mediaRef.current.playbackRate !== playbackRateToSet) {
             mediaRef.current.playbackRate = playbackRateToSet;
         }
-        const desiredUnclampedTime = (0, get_current_time_js_1.getMediaTime)({
-            frame,
-            playbackRate: localPlaybackRate,
-            startFrom: -mediaStartsAt,
-            fps,
-        });
         const { duration } = mediaRef.current;
         const shouldBeTime = !Number.isNaN(duration) && Number.isFinite(duration)
             ? Math.min(duration, desiredUnclampedTime)
             : desiredUnclampedTime;
-        const isTime = mediaRef.current.currentTime;
-        const timeShift = Math.abs(shouldBeTime - isTime);
-        if (timeShift > acceptableTimeShiftButLessThanDuration) {
+        const mediaTagTime = mediaRef.current.currentTime;
+        const rvcTime = (_a = currentTime.current) !== null && _a !== void 0 ? _a : null;
+        const isVariableFpsVideo = isVariableFpsVideoMap.current[src];
+        const timeShiftMediaTag = Math.abs(shouldBeTime - mediaTagTime);
+        const timeShiftRvcTag = rvcTime ? Math.abs(shouldBeTime - rvcTime) : null;
+        const timeShift = timeShiftRvcTag && !isVariableFpsVideo
+            ? timeShiftRvcTag
+            : timeShiftMediaTag;
+        if (debugSeeking) {
+            // eslint-disable-next-line no-console
+            console.log({
+                mediaTagTime,
+                rvcTime,
+                shouldBeTime,
+                state: mediaRef.current.readyState,
+                playing: !mediaRef.current.paused,
+                isVariableFpsVideo,
+            });
+        }
+        if (timeShift > acceptableTimeShiftButLessThanDuration &&
+            lastSeekDueToShift.current !== shouldBeTime) {
             // If scrubbing around, adjust timing
             // or if time shift is bigger than 0.45sec
+            if (debugSeeking) {
+                // eslint-disable-next-line no-console
+                console.log('Seeking', {
+                    shouldBeTime,
+                    isTime: mediaTagTime,
+                    rvcTime,
+                    timeShift,
+                });
+            }
             seek(mediaRef, shouldBeTime);
+            lastSeekDueToShift.current = shouldBeTime;
+            if (playing && !isVariableFpsVideo) {
+                bufferUntilFirstFrame(shouldBeTime);
+                if (mediaRef.current.paused) {
+                    (0, play_and_handle_not_allowed_error_js_1.playAndHandleNotAllowedError)(mediaRef, mediaType);
+                }
+            }
             if (!onlyWarnForMediaSeekingError) {
                 (0, warn_about_non_seekable_media_js_1.warnAboutNonSeekableMedia)(mediaRef.current, onlyWarnForMediaSeekingError ? 'console-warning' : 'console-error');
             }
             return;
         }
+        const seekThreshold = playing ? 0.15 : 0.00001;
         // Only perform a seek if the time is not already the same.
         // Chrome rounds to 6 digits, so 0.033333333 -> 0.033333,
         // therefore a threshold is allowed.
         // Refer to the https://github.com/remotion-dev/video-buffering-example
         // which is fixed by only seeking conditionally.
-        const makesSenseToSeek = Math.abs(mediaRef.current.currentTime - shouldBeTime) > 0.00001;
-        if (pausedOrBuffering || absoluteFrame === 0) {
+        const makesSenseToSeek = Math.abs(mediaRef.current.currentTime - shouldBeTime) > seekThreshold;
+        const isMediaTagBufferingOrStalled = isMediaTagBuffering || isBuffering();
+        const isSomethingElseBuffering = buffering.buffering.current && !isMediaTagBufferingOrStalled;
+        if (!playing || isSomethingElseBuffering) {
             if (makesSenseToSeek) {
                 seek(mediaRef, shouldBeTime);
             }
+            return;
         }
-        if (mediaRef.current.paused &&
-            !mediaRef.current.ended &&
-            !pausedOrBuffering) {
+        // We assured we are in playing state
+        if ((mediaRef.current.paused && !mediaRef.current.ended) ||
+            absoluteFrame === 0) {
             if (makesSenseToSeek) {
                 seek(mediaRef, shouldBeTime);
             }
             (0, play_and_handle_not_allowed_error_js_1.playAndHandleNotAllowedError)(mediaRef, mediaType);
+            if (!isVariableFpsVideo) {
+                bufferUntilFirstFrame(shouldBeTime);
+            }
         }
     }, [
         absoluteFrame,
-        fps,
-        playbackRate,
-        frame,
+        acceptableTimeShiftButLessThanDuration,
+        bufferUntilFirstFrame,
+        buffering.buffering,
+        currentTime,
+        debugSeeking,
+        desiredUnclampedTime,
+        isBuffering,
+        isMediaTagBuffering,
         mediaRef,
         mediaType,
-        src,
-        mediaStartsAt,
-        localPlaybackRate,
         onlyWarnForMediaSeekingError,
-        acceptableTimeshift,
-        acceptableTimeShiftButLessThanDuration,
-        pausedOrBuffering,
+        playbackRate,
+        playing,
+        src,
     ]);
 };
 exports.useMediaPlayback = useMediaPlayback;
@@ -9354,6 +9624,59 @@ const useMediaTagVolume = (mediaRef) => {
     return actualVolume;
 };
 exports.useMediaTagVolume = useMediaTagVolume;
+
+
+/***/ }),
+
+/***/ 120:
+/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+exports.useRequestVideoCallbackTime = void 0;
+const react_1 = __webpack_require__(7294);
+const useRequestVideoCallbackTime = (mediaRef, mediaType) => {
+    const currentTime = (0, react_1.useRef)(null);
+    (0, react_1.useEffect)(() => {
+        const { current } = mediaRef;
+        if (current) {
+            currentTime.current = current.currentTime;
+        }
+        else {
+            currentTime.current = null;
+            return;
+        }
+        if (mediaType !== 'video') {
+            currentTime.current = null;
+            return;
+        }
+        const videoTag = current;
+        if (!videoTag.requestVideoFrameCallback) {
+            return;
+        }
+        let cancel = () => undefined;
+        const request = () => {
+            if (!videoTag) {
+                return;
+            }
+            const cb = videoTag.requestVideoFrameCallback((_, info) => {
+                currentTime.current = info.mediaTime;
+                request();
+            });
+            cancel = () => {
+                videoTag.cancelVideoFrameCallback(cb);
+                cancel = () => undefined;
+            };
+        };
+        request();
+        return () => {
+            cancel();
+        };
+    }, [mediaRef, mediaType]);
+    return currentTime;
+};
+exports.useRequestVideoCallbackTime = useRequestVideoCallbackTime;
 
 
 /***/ }),
@@ -9630,6 +9953,46 @@ exports.validateStartFromProps = validateStartFromProps;
 
 /***/ }),
 
+/***/ 9564:
+/***/ ((__unused_webpack_module, exports) => {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+exports.validateRenderAsset = exports.validateArtifactFilename = void 0;
+const validateArtifactFilename = (filename) => {
+    if (typeof filename !== 'string') {
+        throw new TypeError(`The "filename" must be a string, but you passed a value of type ${typeof filename}`);
+    }
+    if (filename.trim() === '') {
+        throw new Error('The `filename` must not be empty');
+    }
+    if (!filename.match(/^([0-9a-zA-Z-!_.*'()/:&$@=;+,?]+)/g)) {
+        throw new Error('The `filename` must match "/^([0-9a-zA-Z-!_.*\'()/:&$@=;+,?]+)/g". Use forward slashes only, even on Windows.');
+    }
+};
+exports.validateArtifactFilename = validateArtifactFilename;
+const validateContent = (content) => {
+    if (typeof content !== 'string' && !(content instanceof Uint8Array)) {
+        throw new TypeError(`The "content" must be a string or Uint8Array, but you passed a value of type ${typeof content}`);
+    }
+    if (typeof content === 'string' && content.trim() === '') {
+        throw new Error('The `content` must not be empty');
+    }
+};
+const validateRenderAsset = (artifact) => {
+    // We don't have validation for it yet
+    if (artifact.type !== 'artifact') {
+        return;
+    }
+    (0, exports.validateArtifactFilename)(artifact.filename);
+    validateContent(artifact.content);
+};
+exports.validateRenderAsset = validateRenderAsset;
+
+
+/***/ }),
+
 /***/ 6303:
 /***/ ((__unused_webpack_module, exports) => {
 
@@ -9855,7 +10218,7 @@ exports.VERSION = void 0;
  * @see [Documentation](https://remotion.dev/docs/version)
  * @returns {string} The current version of the remotion package
  */
-exports.VERSION = '4.0.167';
+exports.VERSION = '4.0.179';
 
 
 /***/ }),
@@ -9911,8 +10274,8 @@ const OffthreadVideo = (props) => {
     if (environment.isRendering) {
         return (0, jsx_runtime_1.jsx)(OffthreadVideoForRendering_js_1.OffthreadVideoForRendering, { ...otherProps });
     }
-    const { transparent, toneMapped, ...withoutTransparent } = otherProps;
-    return ((0, jsx_runtime_1.jsx)(VideoForPreview_js_1.VideoForPreview, { _remotionInternalStack: stack !== null && stack !== void 0 ? stack : null, _remotionInternalNativeLoopPassed: false, onDuration: onDuration, onlyWarnForMediaSeekingError: true, pauseWhenBuffering: pauseWhenBuffering !== null && pauseWhenBuffering !== void 0 ? pauseWhenBuffering : false, showInTimeline: showInTimeline !== null && showInTimeline !== void 0 ? showInTimeline : true, ...withoutTransparent }));
+    const { transparent, toneMapped, _remotionDebugSeeking, ...withoutTransparent } = otherProps;
+    return ((0, jsx_runtime_1.jsx)(VideoForPreview_js_1.VideoForPreview, { _remotionInternalStack: stack !== null && stack !== void 0 ? stack : null, _remotionInternalNativeLoopPassed: false, _remotionDebugSeeking: _remotionDebugSeeking !== null && _remotionDebugSeeking !== void 0 ? _remotionDebugSeeking : false, onDuration: onDuration, onlyWarnForMediaSeekingError: true, pauseWhenBuffering: pauseWhenBuffering !== null && pauseWhenBuffering !== void 0 ? pauseWhenBuffering : false, showInTimeline: showInTimeline !== null && showInTimeline !== void 0 ? showInTimeline : true, ...withoutTransparent }));
 };
 exports.OffthreadVideo = OffthreadVideo;
 
@@ -10027,9 +10390,9 @@ const OffthreadVideoForRendering = ({ onError, volume: volumeProp, playbackRate,
             toneMapped,
         });
     }, [toneMapped, currentTime, src, transparent]);
-    const onErr = (0, react_1.useCallback)((e) => {
+    const onErr = (0, react_1.useCallback)(() => {
         if (onError) {
-            onError === null || onError === void 0 ? void 0 : onError(e);
+            onError === null || onError === void 0 ? void 0 : onError(new Error('Failed to load image with src ' + actualSrc));
         }
         else {
             (0, cancel_render_js_1.cancelRender)('Failed to load image with src ' + actualSrc);
@@ -10073,7 +10436,7 @@ const duration_state_js_1 = __webpack_require__(9099);
 const VideoForwardingFunction = (props, ref) => {
     var _a, _b;
     const { startFrom, endAt, name, pauseWhenBuffering, stack, _remotionInternalNativeLoopPassed, showInTimeline, ...otherProps } = props;
-    const { loop, ...propsOtherThanLoop } = props;
+    const { loop, _remotionDebugSeeking, ...propsOtherThanLoop } = props;
     const { fps } = (0, use_video_config_js_1.useVideoConfig)();
     const environment = (0, get_remotion_environment_js_1.getRemotionEnvironment)();
     const { durations, setDurations } = (0, react_1.useContext)(duration_state_js_1.DurationsContext);
@@ -10109,7 +10472,7 @@ const VideoForwardingFunction = (props, ref) => {
     }
     return ((0, jsx_runtime_1.jsx)(VideoForPreview_js_1.VideoForPreview, { onlyWarnForMediaSeekingError: false, ...otherProps, ref: ref, 
         // Proposal: Make this default to true in v5
-        pauseWhenBuffering: pauseWhenBuffering !== null && pauseWhenBuffering !== void 0 ? pauseWhenBuffering : false, onDuration: onDuration, _remotionInternalStack: stack !== null && stack !== void 0 ? stack : null, _remotionInternalNativeLoopPassed: _remotionInternalNativeLoopPassed !== null && _remotionInternalNativeLoopPassed !== void 0 ? _remotionInternalNativeLoopPassed : false, showInTimeline: showInTimeline !== null && showInTimeline !== void 0 ? showInTimeline : true }));
+        pauseWhenBuffering: pauseWhenBuffering !== null && pauseWhenBuffering !== void 0 ? pauseWhenBuffering : false, onDuration: onDuration, _remotionInternalStack: stack !== null && stack !== void 0 ? stack : null, _remotionInternalNativeLoopPassed: _remotionInternalNativeLoopPassed !== null && _remotionInternalNativeLoopPassed !== void 0 ? _remotionInternalNativeLoopPassed : false, _remotionDebugSeeking: _remotionDebugSeeking !== null && _remotionDebugSeeking !== void 0 ? _remotionDebugSeeking : false, showInTimeline: showInTimeline !== null && showInTimeline !== void 0 ? showInTimeline : true }));
 };
 /**
  * @description allows you to include a video file in your Remotion project. It wraps the native HTMLVideoElement.
@@ -10134,7 +10497,6 @@ const SequenceContext_js_1 = __webpack_require__(3759);
 const SequenceManager_js_1 = __webpack_require__(829);
 const use_audio_frame_js_1 = __webpack_require__(6873);
 const prefetch_js_1 = __webpack_require__(2595);
-const use_media_buffering_js_1 = __webpack_require__(6801);
 const use_media_in_timeline_js_1 = __webpack_require__(7476);
 const use_media_playback_js_1 = __webpack_require__(5069);
 const use_media_tag_volume_js_1 = __webpack_require__(7126);
@@ -10147,7 +10509,7 @@ const VideoForDevelopmentRefForwardingFunction = (props, ref) => {
     const videoRef = (0, react_1.useRef)(null);
     const { volume, muted, playbackRate, onlyWarnForMediaSeekingError, src, onDuration, 
     // @ts-expect-error
-    acceptableTimeShift, acceptableTimeShiftInSeconds, toneFrequency, name, _remotionInternalNativeLoopPassed, _remotionInternalStack, style, pauseWhenBuffering, showInTimeline, loopVolumeCurveBehavior, ...nativeProps } = props;
+    acceptableTimeShift, acceptableTimeShiftInSeconds, toneFrequency, name, _remotionInternalNativeLoopPassed, _remotionInternalStack, _remotionDebugSeeking, style, pauseWhenBuffering, showInTimeline, loopVolumeCurveBehavior, onError, ...nativeProps } = props;
     const volumePropFrame = (0, use_audio_frame_js_1.useFrameForVolumeProp)(loopVolumeCurveBehavior !== null && loopVolumeCurveBehavior !== void 0 ? loopVolumeCurveBehavior : 'repeat');
     const { fps, durationInFrames } = (0, use_video_config_js_1.useVideoConfig)();
     const parentSequence = (0, react_1.useContext)(SequenceContext_js_1.SequenceContext);
@@ -10187,11 +10549,9 @@ const VideoForDevelopmentRefForwardingFunction = (props, ref) => {
         playbackRate: (_c = props.playbackRate) !== null && _c !== void 0 ? _c : 1,
         onlyWarnForMediaSeekingError,
         acceptableTimeshift: acceptableTimeShiftInSeconds !== null && acceptableTimeShiftInSeconds !== void 0 ? acceptableTimeShiftInSeconds : use_media_playback_js_1.DEFAULT_ACCEPTABLE_TIMESHIFT,
-    });
-    (0, use_media_buffering_js_1.useMediaBuffering)({
-        element: videoRef,
-        shouldBuffer: pauseWhenBuffering,
         isPremounting: Boolean(parentSequence === null || parentSequence === void 0 ? void 0 : parentSequence.premounting),
+        pauseWhenBuffering,
+        debugSeeking: _remotionDebugSeeking,
     });
     const actualFrom = parentSequence ? parentSequence.relativeFrom : 0;
     const duration = parentSequence
@@ -10213,24 +10573,32 @@ const VideoForDevelopmentRefForwardingFunction = (props, ref) => {
         }
         const errorHandler = () => {
             var _a;
-            if (current === null || current === void 0 ? void 0 : current.error) {
+            if (current.error) {
                 // eslint-disable-next-line no-console
                 console.error('Error occurred in video', current === null || current === void 0 ? void 0 : current.error);
                 // If user is handling the error, we don't cause an unhandled exception
-                if (props.onError) {
+                if (onError) {
+                    const err = new Error(`Code ${current.error.code}: ${current.error.message}`);
+                    onError(err);
                     return;
                 }
                 throw new Error(`The browser threw an error while playing the video ${src}: Code ${current.error.code} - ${(_a = current === null || current === void 0 ? void 0 : current.error) === null || _a === void 0 ? void 0 : _a.message}. See https://remotion.dev/docs/media-playback-error for help. Pass an onError() prop to handle the error.`);
             }
             else {
-                throw new Error('The browser threw an error');
+                // If user is handling the error, we don't cause an unhandled exception
+                if (onError) {
+                    const err = new Error(`The browser threw an error while playing the video ${src}`);
+                    onError(err);
+                    return;
+                }
+                throw new Error('The browser threw an error while playing the video');
             }
         };
         current.addEventListener('error', errorHandler, { once: true });
         return () => {
             current.removeEventListener('error', errorHandler);
         };
-    }, [props.onError, src]);
+    }, [onError, src]);
     const currentOnDurationCallback = (0, react_1.useRef)();
     currentOnDurationCallback.current = onDuration;
     (0, react_1.useEffect)(() => {
@@ -10492,7 +10860,7 @@ const VideoForRenderingForwardFunction = ({ onError, volume: volumeProp, allowAm
             };
         }, [src, onDuration, delayRenderRetries, delayRenderTimeoutInMilliseconds]);
     }
-    return (0, jsx_runtime_1.jsx)("video", { ref: videoRef, ...props, onError: onError });
+    return (0, jsx_runtime_1.jsx)("video", { ref: videoRef, ...props });
 };
 exports.VideoForRendering = (0, react_1.forwardRef)(VideoForRenderingForwardFunction);
 
@@ -10511,11 +10879,16 @@ const react_1 = __webpack_require__(7294);
 const absolute_src_js_1 = __webpack_require__(4710);
 const durationReducer = (state, action) => {
     switch (action.type) {
-        case 'got-duration':
+        case 'got-duration': {
+            const absoluteSrc = (0, absolute_src_js_1.getAbsoluteSrc)(action.src);
+            if (state[absoluteSrc] === action.durationInSeconds) {
+                return state;
+            }
             return {
                 ...state,
-                [(0, absolute_src_js_1.getAbsoluteSrc)(action.src)]: action.durationInSeconds,
+                [absoluteSrc]: action.durationInSeconds,
             };
+        }
         default:
             return state;
     }
@@ -10740,7 +11113,7 @@ const appendVideoFragment = ({ actualSrc, actualFrom, duration, fps, }) => {
     if (!Number.isFinite(actualFrom)) {
         return actualSrc;
     }
-    actualSrc += `#t=${toSeconds(-actualFrom, fps)}`;
+    actualSrc += `#t=${toSeconds(Math.max(0, -actualFrom), fps)}`;
     if (!Number.isFinite(duration)) {
         return actualSrc;
     }
@@ -16893,6 +17266,9 @@ remotion_1.Internals.CSSUtils.injectCSS(`
 
 // EXTERNAL MODULE: ./node_modules/remotion/dist/cjs/index.js
 var cjs = __webpack_require__(7982);
+// EXTERNAL MODULE: ./node_modules/react/index.js
+var react = __webpack_require__(7294);
+var react_namespaceObject = /*#__PURE__*/__webpack_require__.t(react, 2);
 ;// CONCATENATED MODULE: ./src/utils/src.ts
 const resolveSrc = ({ base, name }, ext = "avif") => `${base}/${name}.${ext}`;
 const resolveBase = (base, tail) => `${base ? `${base}/` : ""}${tail}`;
@@ -16908,7 +17284,7 @@ const resolveAudioSrc = ({
   name
 }) => resolveSrc(
   {
-    base: resolveBase(base, "audio"),
+    base: resolveBase(base, "recording"),
     name
   },
   "mp3"
@@ -16918,7 +17294,497 @@ const resolveAudioSampleSrc = (source, name) => resolveSrc(
   "wav"
 );
 
+// EXTERNAL MODULE: ./node_modules/react/jsx-runtime.js
+var jsx_runtime = __webpack_require__(5893);
+// EXTERNAL MODULE: ./node_modules/remotion/dist/cjs/no-react.js
+var no_react = __webpack_require__(808);
+;// CONCATENATED MODULE: ./node_modules/@remotion/transitions/dist/esm/index.mjs
+// src/presentations/slide.tsx
+
+
+
+var epsilon = 0.01;
+var SlidePresentation = ({
+  children,
+  presentationProgress,
+  presentationDirection,
+  passedProps: { direction = "from-left", enterStyle, exitStyle }
+}) => {
+  const directionStyle = (0,react.useMemo)(() => {
+    const presentationProgressWithEpsilonCorrection = presentationProgress === 1 ? presentationProgress * 100 : presentationProgress * 100 - epsilon;
+    if (presentationDirection === "exiting") {
+      switch (direction) {
+        case "from-left":
+          return {
+            transform: `translateX(${presentationProgressWithEpsilonCorrection}%)`
+          };
+        case "from-right":
+          return {
+            transform: `translateX(${-presentationProgress * 100}%)`
+          };
+        case "from-top":
+          return {
+            transform: `translateY(${presentationProgressWithEpsilonCorrection}%)`
+          };
+        case "from-bottom":
+          return {
+            transform: `translateY(${-presentationProgress * 100}%)`
+          };
+        default:
+          throw new Error(`Invalid direction: ${direction}`);
+      }
+    }
+    switch (direction) {
+      case "from-left":
+        return {
+          transform: `translateX(${-100 + presentationProgress * 100}%)`
+        };
+      case "from-right":
+        return {
+          transform: `translateX(${100 - presentationProgressWithEpsilonCorrection}%)`
+        };
+      case "from-top":
+        return {
+          transform: `translateY(${-100 + presentationProgress * 100}%)`
+        };
+      case "from-bottom":
+        return {
+          transform: `translateY(${100 - presentationProgressWithEpsilonCorrection}%)`
+        };
+      default:
+        throw new Error(`Invalid direction: ${direction}`);
+    }
+  }, [presentationDirection, presentationProgress, direction]);
+  const style = (0,react.useMemo)(() => {
+    return {
+      width: "100%",
+      height: "100%",
+      justifyContent: "center",
+      alignItems: "center",
+      ...directionStyle,
+      ...presentationDirection === "entering" ? enterStyle : exitStyle
+    };
+  }, [directionStyle, enterStyle, exitStyle, presentationDirection]);
+  return (0,jsx_runtime.jsx)(cjs.AbsoluteFill, {
+    style,
+    children
+  });
+};
+var slide = (props) => {
+  return {
+    component: SlidePresentation,
+    props: props ?? {}
+  };
+};
+
+// src/timings/linear-timing.ts
+
+var linearTiming = (options) => {
+  return {
+    getDurationInFrames: () => {
+      return options.durationInFrames;
+    },
+    getProgress: ({ frame }) => {
+      return (0,cjs.interpolate)(frame, [0, options.durationInFrames], [0, 1], {
+        easing: options.easing,
+        extrapolateLeft: "clamp",
+        extrapolateRight: "clamp"
+      });
+    }
+  };
+};
+
+// src/timings/spring-timing.ts
+
+var springTiming = (options = {}) => {
+  return {
+    getDurationInFrames: ({ fps }) => {
+      if (options.durationInFrames) {
+        return options.durationInFrames;
+      }
+      return measureSpring({
+        config: options.config,
+        threshold: options.durationRestThreshold,
+        fps
+      });
+    },
+    getProgress: ({ fps, frame }) => {
+      const to = options.reverse ? 0 : 1;
+      const from = options.reverse ? 1 : 0;
+      return spring({
+        fps,
+        frame,
+        to,
+        from,
+        config: options.config,
+        durationInFrames: options.durationInFrames,
+        durationRestThreshold: options.durationRestThreshold,
+        reverse: options.reverse
+      });
+    }
+  };
+};
+
+// src/TransitionSeries.tsx
+
+
+
+
+// src/context.tsx
+
+
+var EnteringContext = react.createContext(null);
+var ExitingContext = react.createContext(null);
+var WrapInEnteringProgressContext = ({ presentationProgress, children }) => {
+  const value = (0,react.useMemo)(() => {
+    return {
+      enteringProgress: presentationProgress
+    };
+  }, [presentationProgress]);
+  return (0,jsx_runtime.jsx)(EnteringContext.Provider, {
+    value,
+    children
+  });
+};
+var WrapInExitingProgressContext = ({ presentationProgress, children }) => {
+  const value = (0,react.useMemo)(() => {
+    return {
+      exitingProgress: presentationProgress
+    };
+  }, [presentationProgress]);
+  return (0,jsx_runtime.jsx)(ExitingContext.Provider, {
+    value,
+    children
+  });
+};
+
+// src/flatten-children.ts
+
+var flattenChildren = (children) => {
+  const childrenArray = react.Children.toArray(children);
+  return childrenArray.reduce((flatChildren, child) => {
+    if (child.type === react.Fragment) {
+      return flatChildren.concat(flattenChildren(child.props.children));
+    }
+    flatChildren.push(child);
+    return flatChildren;
+  }, []);
+};
+
+// src/validate.ts
+
+var validateDurationInFrames = no_react.NoReactInternals.validateDurationInFrames;
+
+// src/TransitionSeries.tsx
+
+var TransitionSeriesTransition = function(_props) {
+  return null;
+};
+var SeriesSequence = ({ children }) => {
+  return (0,jsx_runtime.jsx)(jsx_runtime.Fragment, {
+    children
+  });
+};
+var TransitionSeriesChildren = ({
+  children
+}) => {
+  const { fps } = (0,cjs.useVideoConfig)();
+  const frame = (0,cjs.useCurrentFrame)();
+  const childrenValue = (0,react.useMemo)(() => {
+    let transitionOffsets = 0;
+    let startFrame = 0;
+    const flattedChildren = flattenChildren(children);
+    return react.Children.map(flattedChildren, (child, i) => {
+      const current = child;
+      if (typeof current === "string") {
+        if (current.trim() === "") {
+          return null;
+        }
+        throw new TypeError(`The <TransitionSeries /> component only accepts a list of <TransitionSeries.Sequence /> components as its children, but you passed a string "${current}"`);
+      }
+      const hasPrev = flattedChildren[i - 1];
+      const nextPrev = flattedChildren[i + 1];
+      const prev = typeof hasPrev === "string" || typeof hasPrev === "undefined" ? null : hasPrev.type === TransitionSeriesTransition ? hasPrev : null;
+      const next = typeof nextPrev === "string" || typeof nextPrev === "undefined" ? null : nextPrev.type === TransitionSeriesTransition ? nextPrev : null;
+      const prevIsTransition = typeof hasPrev === "string" || typeof hasPrev === "undefined" ? false : hasPrev.type === TransitionSeriesTransition;
+      if (current.type === TransitionSeriesTransition) {
+        if (prevIsTransition) {
+          throw new TypeError(`A <TransitionSeries.Transition /> component must not be followed by another <TransitionSeries.Transition /> component (nth children = ${i - 1} and ${i})`);
+        }
+        return null;
+      }
+      if (current.type !== SeriesSequence) {
+        throw new TypeError(`The <TransitionSeries /> component only accepts a list of <TransitionSeries.Sequence /> and <TransitionSeries.Transition /> components as its children, but got ${current} instead`);
+      }
+      const castedChildAgain = current;
+      const debugInfo = `index = ${i}, duration = ${castedChildAgain.props.durationInFrames}`;
+      if (!castedChildAgain?.props.children) {
+        throw new TypeError(`A <TransitionSeries.Sequence /> component (${debugInfo}) was detected to not have any children. Delete it to fix this error.`);
+      }
+      const durationInFramesProp = castedChildAgain.props.durationInFrames;
+      const {
+        durationInFrames,
+        children: _children,
+        ...passedProps
+      } = castedChildAgain.props;
+      validateDurationInFrames(durationInFramesProp, {
+        component: `of a <TransitionSeries.Sequence /> component`,
+        allowFloats: true
+      });
+      const offset = castedChildAgain.props.offset ?? 0;
+      if (Number.isNaN(offset)) {
+        throw new TypeError(`The "offset" property of a <TransitionSeries.Sequence /> must not be NaN, but got NaN (${debugInfo}).`);
+      }
+      if (!Number.isFinite(offset)) {
+        throw new TypeError(`The "offset" property of a <TransitionSeries.Sequence /> must be finite, but got ${offset} (${debugInfo}).`);
+      }
+      if (offset % 1 !== 0) {
+        throw new TypeError(`The "offset" property of a <TransitionSeries.Sequence /> must be finite, but got ${offset} (${debugInfo}).`);
+      }
+      const currentStartFrame = startFrame + offset;
+      let duration = 0;
+      if (prev) {
+        duration = prev.props.timing.getDurationInFrames({
+          fps
+        });
+        transitionOffsets -= duration;
+      }
+      let actualStartFrame = currentStartFrame + transitionOffsets;
+      startFrame += durationInFramesProp + offset;
+      if (actualStartFrame < 0) {
+        startFrame -= actualStartFrame;
+        actualStartFrame = 0;
+      }
+      const nextProgress = next ? next.props.timing.getProgress({
+        frame: frame - actualStartFrame - durationInFrames + next.props.timing.getDurationInFrames({ fps }),
+        fps
+      }) : null;
+      const prevProgress = prev ? prev.props.timing.getProgress({
+        frame: frame - actualStartFrame,
+        fps
+      }) : null;
+      if (next && durationInFramesProp < next.props.timing.getDurationInFrames({ fps })) {
+        throw new Error(`The duration of a <TransitionSeries.Sequence /> must not be shorter than the duration of the next <TransitionSeries.Transition />. The transition is ${next.props.timing.getDurationInFrames({ fps })} frames long, but the sequence is only ${durationInFramesProp} frames long (${debugInfo})`);
+      }
+      if (prev && durationInFramesProp < prev.props.timing.getDurationInFrames({ fps })) {
+        throw new Error(`The duration of a <TransitionSeries.Sequence /> must not be shorter than the duration of the previous <TransitionSeries.Transition />. The transition is ${prev.props.timing.getDurationInFrames({ fps })} frames long, but the sequence is only ${durationInFramesProp} frames long (${debugInfo})`);
+      }
+      if (next && prev && nextProgress !== null && prevProgress !== null) {
+        const nextPresentation = next.props.presentation ?? slide();
+        const prevPresentation = prev.props.presentation ?? slide();
+        const UppercaseNextPresentation = nextPresentation.component;
+        const UppercasePrevPresentation = prevPresentation.component;
+        return (0,jsx_runtime.jsx)(cjs.Sequence, {
+          from: Math.floor(actualStartFrame),
+          durationInFrames: durationInFramesProp,
+          ...passedProps,
+          name: passedProps.name || "<TS.Sequence>",
+          children: (0,jsx_runtime.jsx)(UppercaseNextPresentation, {
+            passedProps: nextPresentation.props ?? {},
+            presentationDirection: "exiting",
+            presentationProgress: nextProgress,
+            presentationDurationInFrames: next.props.timing.getDurationInFrames({ fps }),
+            children: (0,jsx_runtime.jsx)(WrapInExitingProgressContext, {
+              presentationProgress: nextProgress,
+              children: (0,jsx_runtime.jsx)(UppercasePrevPresentation, {
+                passedProps: prevPresentation.props ?? {},
+                presentationDirection: "entering",
+                presentationProgress: prevProgress,
+                presentationDurationInFrames: prev.props.timing.getDurationInFrames({ fps }),
+                children: (0,jsx_runtime.jsx)(WrapInEnteringProgressContext, {
+                  presentationProgress: prevProgress,
+                  children: child
+                })
+              })
+            })
+          })
+        }, i);
+      }
+      if (prevProgress !== null && prev) {
+        const prevPresentation = prev.props.presentation ?? slide();
+        const UppercasePrevPresentation = prevPresentation.component;
+        return (0,jsx_runtime.jsx)(cjs.Sequence, {
+          from: Math.floor(actualStartFrame),
+          durationInFrames: durationInFramesProp,
+          ...passedProps,
+          name: passedProps.name || "<TS.Sequence>",
+          children: (0,jsx_runtime.jsx)(UppercasePrevPresentation, {
+            passedProps: prevPresentation.props ?? {},
+            presentationDirection: "entering",
+            presentationProgress: prevProgress,
+            presentationDurationInFrames: prev.props.timing.getDurationInFrames({ fps }),
+            children: (0,jsx_runtime.jsx)(WrapInEnteringProgressContext, {
+              presentationProgress: prevProgress,
+              children: child
+            })
+          })
+        }, i);
+      }
+      if (nextProgress !== null && next) {
+        const nextPresentation = next.props.presentation ?? slide();
+        const UppercaseNextPresentation = nextPresentation.component;
+        return (0,jsx_runtime.jsx)(cjs.Sequence, {
+          from: Math.floor(actualStartFrame),
+          durationInFrames: durationInFramesProp,
+          ...passedProps,
+          name: passedProps.name || "<TS.Sequence>",
+          children: (0,jsx_runtime.jsx)(UppercaseNextPresentation, {
+            passedProps: nextPresentation.props ?? {},
+            presentationDirection: "exiting",
+            presentationProgress: nextProgress,
+            presentationDurationInFrames: next.props.timing.getDurationInFrames({ fps }),
+            children: (0,jsx_runtime.jsx)(WrapInExitingProgressContext, {
+              presentationProgress: nextProgress,
+              children: child
+            })
+          })
+        }, i);
+      }
+      return (0,jsx_runtime.jsx)(cjs.Sequence, {
+        from: Math.floor(actualStartFrame),
+        durationInFrames: durationInFramesProp,
+        ...passedProps,
+        name: passedProps.name || "<TS.Sequence>",
+        children: child
+      }, i);
+    });
+  }, [children, fps, frame]);
+  return (0,jsx_runtime.jsx)(jsx_runtime.Fragment, {
+    children: childrenValue
+  });
+};
+var TransitionSeries = ({ children, name, layout: passedLayout, ...otherProps }) => {
+  const displayName = name ?? "<TransitionSeries>";
+  const layout = passedLayout ?? "absolute-fill";
+  if (no_react.NoReactInternals.ENABLE_V5_BREAKING_CHANGES && layout !== "absolute-fill") {
+    throw new TypeError(`The "layout" prop of <TransitionSeries /> is not supported anymore in v5. TransitionSeries' must be absolutely positioned.`);
+  }
+  return (0,jsx_runtime.jsx)(cjs.Sequence, {
+    name: displayName,
+    layout,
+    ...otherProps,
+    children: (0,jsx_runtime.jsx)(TransitionSeriesChildren, {
+      children
+    })
+  });
+};
+TransitionSeries.Sequence = SeriesSequence;
+TransitionSeries.Transition = TransitionSeriesTransition;
+cjs.Internals.addSequenceStackTraces(TransitionSeries);
+cjs.Internals.addSequenceStackTraces(SeriesSequence);
+
+// src/use-transition-progress.ts
+
+var useTransitionProgress = () => {
+  const entering = React4.useContext(EnteringContext);
+  const exiting = React4.useContext(ExitingContext);
+  if (!entering && !exiting) {
+    return {
+      isInTransitionSeries: false,
+      entering: 1,
+      exiting: 0
+    };
+  }
+  return {
+    isInTransitionSeries: true,
+    entering: entering?.enteringProgress ?? 1,
+    exiting: exiting?.exitingProgress ?? 0
+  };
+};
+
+
+;// CONCATENATED MODULE: ./node_modules/@remotion/transitions/dist/esm/slide.mjs
+// src/presentations/slide.tsx
+
+
+
+var slide_epsilon = 0.01;
+var slide_SlidePresentation = ({
+  children,
+  presentationProgress,
+  presentationDirection,
+  passedProps: { direction = "from-left", enterStyle, exitStyle }
+}) => {
+  const directionStyle = (0,react.useMemo)(() => {
+    const presentationProgressWithEpsilonCorrection = presentationProgress === 1 ? presentationProgress * 100 : presentationProgress * 100 - slide_epsilon;
+    if (presentationDirection === "exiting") {
+      switch (direction) {
+        case "from-left":
+          return {
+            transform: `translateX(${presentationProgressWithEpsilonCorrection}%)`
+          };
+        case "from-right":
+          return {
+            transform: `translateX(${-presentationProgress * 100}%)`
+          };
+        case "from-top":
+          return {
+            transform: `translateY(${presentationProgressWithEpsilonCorrection}%)`
+          };
+        case "from-bottom":
+          return {
+            transform: `translateY(${-presentationProgress * 100}%)`
+          };
+        default:
+          throw new Error(`Invalid direction: ${direction}`);
+      }
+    }
+    switch (direction) {
+      case "from-left":
+        return {
+          transform: `translateX(${-100 + presentationProgress * 100}%)`
+        };
+      case "from-right":
+        return {
+          transform: `translateX(${100 - presentationProgressWithEpsilonCorrection}%)`
+        };
+      case "from-top":
+        return {
+          transform: `translateY(${-100 + presentationProgress * 100}%)`
+        };
+      case "from-bottom":
+        return {
+          transform: `translateY(${100 - presentationProgressWithEpsilonCorrection}%)`
+        };
+      default:
+        throw new Error(`Invalid direction: ${direction}`);
+    }
+  }, [presentationDirection, presentationProgress, direction]);
+  const style = (0,react.useMemo)(() => {
+    return {
+      width: "100%",
+      height: "100%",
+      justifyContent: "center",
+      alignItems: "center",
+      ...directionStyle,
+      ...presentationDirection === "entering" ? enterStyle : exitStyle
+    };
+  }, [directionStyle, enterStyle, exitStyle, presentationDirection]);
+  return (0,jsx_runtime.jsx)(cjs.AbsoluteFill, {
+    style,
+    children
+  });
+};
+var slide_slide = (props) => {
+  return {
+    component: slide_SlidePresentation,
+    props: props ?? {}
+  };
+};
+
+
+;// CONCATENATED MODULE: ./src/utils/validation/is/defined.ts
+const defined_isDefined = (value) => {
+  if (typeof value !== "undefined")
+    return true;
+  return false;
+};
+
 ;// CONCATENATED MODULE: ./src/components/remotion/pic-series/index.tsx
+
+
+
+
 
 
 const INPUT_PROPS = (0,cjs.getInputProps)();
@@ -16934,53 +17800,52 @@ const PicSeries = (props) => {
     base,
     audio
   } = inputProps;
-  const frame = (0,cjs.useCurrentFrame)();
   const {
-    fps,
     width,
     height,
-    durationInFrames
+    durationInFrames,
+    fps
   } = (0,cjs.useVideoConfig)();
-  const durationInSeconds = durationInFrames / fps;
   const unitSeconds = seconds / count;
-  const unitFrames = unitSeconds * fps;
-  const frameInUnit = frame % unitFrames;
-  const secondInUnit = frameInUnit / (fps * unitSeconds);
-  const delta = height - inputProps.dimensions.height;
-  const audioLoopDurationInSeconds = (audio == null ? void 0 : audio.seconds) ?? durationInSeconds;
-  const audioLoopCount = Math.ceil(
-    durationInSeconds / audioLoopDurationInSeconds
+  const unitFrames = Math.floor(
+    durationInFrames / count
   );
-  return /* @__PURE__ */ React.createElement(cjs.AbsoluteFill, null, audio && /* @__PURE__ */ React.createElement(cjs.Series, null, [
-    ...Array(audioLoopCount)
-  ].map((_, index) => /* @__PURE__ */ React.createElement(
-    cjs.Series.Sequence,
+  const delta = height - inputProps.dimensions.height;
+  return /* @__PURE__ */ React.createElement(cjs.AbsoluteFill, null, audio !== null && defined_isDefined(audio) && /* @__PURE__ */ React.createElement(
+    cjs.Audio,
     {
-      key: `${index}`,
-      durationInFrames: audioLoopDurationInSeconds * fps
-    },
-    /* @__PURE__ */ React.createElement(cjs.Audio, { src: audio.src })
-  ))), /* @__PURE__ */ React.createElement(cjs.Series, null, pics.map((pic) => {
+      src: (0,cjs.staticFile)(audio.src),
+      startFrom: audio.start * fps
+    }
+  ), /* @__PURE__ */ React.createElement(TransitionSeries, null, pics.map((pic, index) => {
     const srcPath = resolvePicSrc(
       { base, name: pic }
     );
     const src = (0,cjs.staticFile)(srcPath);
     const top = `${Math.floor(
-      delta / height * secondInUnit * 100
+      delta / height * unitSeconds * 100
     )}%`;
-    return /* @__PURE__ */ React.createElement(
-      cjs.Series.Sequence,
+    return /* @__PURE__ */ React.createElement(react.Fragment, { key: `${src}` }, index !== 0 && /* @__PURE__ */ React.createElement(
+      TransitionSeries.Transition,
       {
-        key: `${src}`,
-        durationInFrames: unitFrames
+        presentation: slide_slide({
+          direction: "from-bottom"
+        }),
+        timing: linearTiming({
+          durationInFrames: unitFrames / 2
+        })
+      }
+    ), /* @__PURE__ */ React.createElement(
+      TransitionSeries.Sequence,
+      {
+        durationInFrames: unitFrames * 1.5
       },
       /* @__PURE__ */ React.createElement(
-        "div",
+        cjs.AbsoluteFill,
         {
           style: {
-            position: "absolute",
-            left: 0,
-            top
+            top: 0,
+            left: 0
           }
         },
         /* @__PURE__ */ React.createElement(
@@ -16995,7 +17860,7 @@ const PicSeries = (props) => {
           }
         )
       )
-    );
+    ));
   })));
 };
 
@@ -17005,7 +17870,7 @@ var lib = __webpack_require__(1604);
 
 const PIC_SERIES_SCHEMA = lib.z.object({
   base: lib.z.string().optional(),
-  audio: lib.z.object({
+  recording: lib.z.object({
     src: lib.z.string(),
     seconds: lib.z.number()
   }).optional().nullable(),
@@ -17021,12 +17886,10 @@ const PIC_SERIES_SCHEMA = lib.z.object({
   }),
   onProgress: lib.z["function"]().optional(),
   onLog: lib.z["function"]().optional(),
-  onDownload: lib.z["function"]().optional()
+  onDownload: lib.z["function"]().optional(),
+  audio: lib.z.object({ src: lib.z.string(), start: lib.z.number() }).nullable()
 });
 
-// EXTERNAL MODULE: ./node_modules/react/index.js
-var react = __webpack_require__(7294);
-var react_namespaceObject = /*#__PURE__*/__webpack_require__.t(react, 2);
 ;// CONCATENATED MODULE: ./src/constants/remotion.ts
 const DEFAULT_FPS = 24;
 const PIC_COUNT = 1;
@@ -17106,6 +17969,145 @@ const coreControlsState = (set) => ({
   }
 });
 
+;// CONCATENATED MODULE: ./src/utils/box/ix.ts
+const boxIx = (p) => {
+  return {
+    left: p,
+    right: p
+  };
+};
+
+;// CONCATENATED MODULE: ./src/utils/box/iy.ts
+const boxIy = (p) => {
+  return {
+    top: p,
+    bottom: p
+  };
+};
+
+;// CONCATENATED MODULE: ./src/utils/box/i.ts
+
+
+const boxI = (p) => {
+  return {
+    ...boxIx(p),
+    ...boxIy(p)
+  };
+};
+
+;// CONCATENATED MODULE: ./src/utils/box/mx.ts
+const boxMx = (m) => {
+  return {
+    marginLeft: m,
+    marginRight: m
+  };
+};
+
+;// CONCATENATED MODULE: ./src/utils/box/my.ts
+const boxMy = (m) => {
+  return {
+    marginTop: m,
+    marginBottom: m
+  };
+};
+
+;// CONCATENATED MODULE: ./src/utils/box/m.ts
+
+
+const boxM = (m) => {
+  return {
+    ...boxMx(m),
+    ...boxMy(m)
+  };
+};
+
+;// CONCATENATED MODULE: ./src/utils/box/px.ts
+const boxPx = (p) => {
+  return {
+    paddingLeft: p,
+    paddingRight: p
+  };
+};
+
+;// CONCATENATED MODULE: ./src/utils/box/py.ts
+const boxPy = (p) => {
+  return {
+    paddingTop: p,
+    paddingBottom: p
+  };
+};
+
+;// CONCATENATED MODULE: ./src/utils/box/p.ts
+
+
+const boxP = (p) => {
+  return {
+    ...boxPx(p),
+    ...boxPy(p)
+  };
+};
+
+;// CONCATENATED MODULE: ./src/utils/box/r.ts
+const boxR = (value) => {
+  return {
+    borderRadius: value
+  };
+};
+const boxRT = (value) => ({
+  borderTopLeftRadius: value,
+  borderTopRightRadius: value
+});
+const boxRB = (value) => ({
+  borderBottomLeftRadius: value,
+  borderBottomRightRadius: value
+});
+
+;// CONCATENATED MODULE: ./src/utils/object.ts
+const resolveObjectKeys = Object.keys;
+
+;// CONCATENATED MODULE: ./config/uno/rules/box/radius.ts
+
+
+const BORDER_RADIUS = {
+  s: 2,
+  m: 4,
+  l: 8,
+  xl: 40
+};
+const RADIUS_LOOKUP = resolveObjectKeys(
+  BORDER_RADIUS
+).reduce((a, c) => {
+  a[c] = boxR(BORDER_RADIUS[c]);
+  return a;
+}, {});
+const RADIUS_TOP_LOOKUP = resolveObjectKeys(
+  BORDER_RADIUS
+).reduce((a, c) => {
+  a[c] = boxRT(BORDER_RADIUS[c]);
+  return a;
+}, {});
+const RADIUS_BOTTOM_LOOKUP = resolveObjectKeys(
+  BORDER_RADIUS
+).reduce((a, c) => {
+  a[c] = boxRB(BORDER_RADIUS[c]);
+  return a;
+}, {});
+const radius_boxRadius = (key = "xl") => {
+  return BORDER_RADIUS[key];
+};
+
+const boxBorder = ({
+  borderRadius
+}) => {
+  return {
+    ...borderRadius ? {
+      borderRadius: radius_boxRadius(
+        borderRadius
+      )
+    } : {}
+  };
+};
+
 ;// CONCATENATED MODULE: ./config/uno/rules/box/size.ts
 const PADDING = 8;
 const BOX_SIZE_M = 40;
@@ -17114,26 +18116,34 @@ const BOX_SIZE_XS = BOX_SIZE_S - PADDING / 2;
 const DEFAULT_SIZE_BOX_SIZE = BOX_SIZE_M;
 const BOX_SIZES = {
   s: BOX_SIZE_S,
-  m: BOX_SIZE_M,
+  _: BOX_SIZE_M,
   xs: BOX_SIZE_XS
 };
 const BOX_SIZE = {
   ...BOX_SIZES,
   s05: BOX_SIZE_S * 0.5,
   s025: BOX_SIZE_S * 0.25,
-  m0125: BOX_SIZE_M * 0.125,
-  m025: BOX_SIZE_M * 0.25,
-  m05: BOX_SIZE_M * 0.5,
-  m07: BOX_SIZE_M * 0.7,
-  m075: BOX_SIZE_M * 0.75,
-  m125: BOX_SIZE_M * 1.25,
-  m15: BOX_SIZE_M * 1.5,
-  m2: BOX_SIZE_M * 2,
-  m25: BOX_SIZE_M * 2.5,
-  m3: BOX_SIZE_M * 3,
-  m4: BOX_SIZE_M * 4,
-  m6: BOX_SIZE_M * 6,
-  m8: BOX_SIZE_M * 8,
+  _003125: BOX_SIZE_M * 0.03125,
+  _00625: BOX_SIZE_M * 0.0625,
+  _0125: BOX_SIZE_M * 0.125,
+  _01875: BOX_SIZE_M * 0.1875,
+  _025: BOX_SIZE_M * 0.25,
+  _0375: BOX_SIZE_M * 0.375,
+  _05: BOX_SIZE_M * 0.5,
+  _0625: BOX_SIZE_M * 0.625,
+  _07: BOX_SIZE_M * 0.7,
+  _075: BOX_SIZE_M * 0.75,
+  _125: BOX_SIZE_M * 1.25,
+  _15: BOX_SIZE_M * 1.5,
+  _175: BOX_SIZE_M * 1.75,
+  _2: BOX_SIZE_M * 2,
+  _25: BOX_SIZE_M * 2.5,
+  _3: BOX_SIZE_M * 3,
+  _35: BOX_SIZE_M * 3.5,
+  _4: BOX_SIZE_M * 4,
+  _5: BOX_SIZE_M * 5,
+  _6: BOX_SIZE_M * 6,
+  _8: BOX_SIZE_M * 8,
   size: DEFAULT_SIZE_BOX_SIZE,
   minWidth: DEFAULT_SIZE_BOX_SIZE,
   minHeight: DEFAULT_SIZE_BOX_SIZE,
@@ -17141,7 +18151,7 @@ const BOX_SIZE = {
   height: DEFAULT_SIZE_BOX_SIZE,
   padding: PADDING
 };
-const size_boxSize = (key) => {
+const boxSize = (key) => {
   const boxSize2 = BOX_SIZE;
   return {
     ...boxSize2 && typeof key !== "undefined" ? {
@@ -17155,14 +18165,45 @@ const size_boxSize = (key) => {
   };
 };
 
+;// CONCATENATED MODULE: ./config/uno/rules/box/index.ts
+
+
+
+
+
+
+
+
+
+
+
+const BOX_SHADOW_FLAT = (/* unused pure expression or super */ null && (`inset -4px 4px 7px rgba(22,22,22,0.5),
+inset 4px -4px 7px rgba(59,59,59,0.5)`));
+const BOX_SHADOW_FLOATING = "0 0 1px 1px rgba(255,255,255,0.4)";
+const box_box = {
+  radius: BORDER_RADIUS,
+  r: RADIUS_LOOKUP,
+  rt: RADIUS_TOP_LOOKUP,
+  rb: RADIUS_BOTTOM_LOOKUP,
+  px: boxPx,
+  py: boxPy,
+  p: boxP,
+  mx: boxMx,
+  my: boxMy,
+  m: boxM,
+  i: boxI,
+  ix: boxIx,
+  iy: boxIy,
+  ...boxSize()
+};
+
 ;// CONCATENATED MODULE: ./src/shell/init/hooks/measure/container/index.ts
 
 const MAX_WIDTH = 1020;
 const container_measureContainer = (screen) => {
-  const s = boxSize();
   const isMobile = screen.width < 450;
   const isTablet = screen.width < 769;
-  const padding = s.m2;
+  const padding = box._2;
   const width = Math.min(screen.width, MAX_WIDTH) - padding;
   const playerHeight = width * 9 / 16;
   const height = screen.height - padding;
@@ -17181,8 +18222,8 @@ const container_measureContainer = (screen) => {
     width,
     playerHeight,
     height,
-    left: pX05 - s.m0125,
-    right: pX05 + s.m0125,
+    left: pX05 - box._0125,
+    right: pX05 + box._0125,
     top: pY05,
     bottom: pY05,
     isMobile,
@@ -17198,6 +18239,7 @@ const container_measureContainer = (screen) => {
 
 const RESIZE_COOLDOWN = 400;
 const MIN_DEVICE_WIDTH = 800;
+const MIN_DEVICE_HEIGHT = 700;
 const INIT_SCREEN = {
   isResizing: false,
   isDimensions: false
@@ -17231,7 +18273,10 @@ const useScreenMeasure = (config = {}) => {
         isVertical: width < height && width < 700,
         isDimensions,
         isResizing,
-        isWideEnough: width > MIN_DEVICE_WIDTH
+        device: {
+          isHeightEnough: height > MIN_DEVICE_HEIGHT,
+          isWidthEnough: width > MIN_DEVICE_WIDTH
+        }
       };
       if (config.onReady) {
         config.onReady(ready);
@@ -17263,13 +18308,6 @@ const useScreenMeasure = (config = {}) => {
     []
   );
   return screen;
-};
-
-;// CONCATENATED MODULE: ./src/utils/validation/is/defined.ts
-const defined_isDefined = (value) => {
-  if (typeof value !== "undefined")
-    return true;
-  return false;
 };
 
 ;// CONCATENATED MODULE: ./src/store/state/core/screen/index.ts
@@ -17392,133 +18430,6 @@ const hoverState = (...args) => ({
   ...hoverMultiState(...args)
 });
 
-;// CONCATENATED MODULE: ./src/constants/music/steps.ts
-const STEPS_COUNT = 16;
-const STEPS = [...Array(STEPS_COUNT)];
-
-;// CONCATENATED MODULE: ./src/constants/music/beats.ts
-
-const resolveBeats = (stagger, offset = 0) => [...STEPS].map(
-  (_, index) => (index + offset) % stagger === 0 ? 1 : 0
-);
-const BEATS_2 = resolveBeats(2);
-const BEATS_2_1 = resolveBeats(
-  2,
-  1
-);
-const BEATS_4 = resolveBeats(4);
-const BEATS_4_2 = resolveBeats(
-  4,
-  2
-);
-const BEATS_4_4 = resolveBeats(
-  4,
-  4
-);
-const BEATS_8 = resolveBeats(8);
-const BEATS_8_1 = resolveBeats(
-  8,
-  1
-);
-
-;// CONCATENATED MODULE: ./src/hooks/sound/beats/presets/disco.ts
-
-const PRESETS_DISCO = {
-  kick: [...BEATS_4],
-  snare: [...BEATS_4_2],
-  hihat: [...BEATS_2]
-};
-
-;// CONCATENATED MODULE: ./src/hooks/sound/midis/presets/index.ts
-const DEFAULT_SYNTH_CONFIG = {
-  mood: "neutral",
-  tone: "rough"
-};
-
-;// CONCATENATED MODULE: ./src/constants/scales.ts
-const SCALE_RECORD = {
-  all: [...Array(12)].map((_, index) => index),
-  aeolian: [0, 2, 3, 5, 7, 8, 10],
-  //minor
-  blues: [0, 3, 5, 6, 7, 10],
-  //basic with blues note // includes d5 that ive made 6
-  chromatic: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11],
-  dorian: [0, 2, 3, 5, 7, 9, 10],
-  doubleharmonic: [0, 1, 4, 5, 7, 8, 11],
-  harmonicminor: [0, 2, 3, 5, 7, 8, 11],
-  ionian: [0, 2, 4, 5, 7, 9, 11],
-  locrian: [0, 1, 3, 5, 6, 8, 10],
-  // includes d5 that ive made 6
-  lydian: [0, 2, 4, 6, 7, 9, 11],
-  majorpentatonic: [0, 2, 4, 7, 9],
-  melodicminor: [0, 2, 3, 5, 7, 9, 11],
-  minorpentatonic: [0, 3, 5, 7, 10],
-  mixolydian: [0, 2, 4, 5, 7, 9, 10],
-  phrygian: [0, 1, 3, 5, 7, 8, 10],
-  wholetone: [0, 2, 4, 6, 8, 10]
-};
-const SCALES = [
-  ...Object.keys(SCALE_RECORD)
-];
-
-;// CONCATENATED MODULE: ./src/store/state/music/update/synth/transform.ts
-
-
-const SYNTH_MOOD_LOOKUP = {
-  depressed: "minorpentatonic",
-  sad: "melodicminor",
-  neutral: "wholetone",
-  happy: "majorpentatonic",
-  excited: "mixolydian"
-};
-const musicUpdateSynthTransform = (config) => {
-  const scaleKey = SYNTH_MOOD_LOOKUP[config.mood];
-  const scale = SCALE_RECORD[scaleKey];
-  return STEPS.map(
-    (_, index) => scale[index % 4]
-  );
-};
-
-;// CONCATENATED MODULE: ./src/store/state/music/update/synth/index.ts
-
-const musicUpdateSynth = (set, get) => (name, value) => {
-  const nextConfig = {
-    ...get().music.synth.config,
-    [name]: value
-  };
-  const nextSteps = musicUpdateSynthTransform(
-    nextConfig
-  );
-  set((draft) => {
-    draft.music.synth.config = nextConfig;
-    draft.music.synth.steps = nextSteps;
-  });
-};
-
-;// CONCATENATED MODULE: ./src/store/state/music/state.ts
-
-
-
-
-const musicState = (set, get) => ({
-  music: {
-    ...PRESETS_DISCO,
-    synth: {
-      steps: musicUpdateSynthTransform(
-        DEFAULT_SYNTH_CONFIG
-      ),
-      config: DEFAULT_SYNTH_CONFIG
-    }
-    // bass:  MIDIS_PRESETS.bass.raptor
-    // pulse: [...MIDIS_2_1_R],
-    // arpeggio: [...MIDIS_4_4_R],
-  },
-  musicUpdateSynth: musicUpdateSynth(
-    set,
-    get
-  )
-});
-
 ;// CONCATENATED MODULE: ./src/utils/array/shuffle.ts
 const shuffle = (array) => {
   let currentIndex = array.length, randomIndex;
@@ -17575,6 +18486,9 @@ const setState = (set) => {
   };
 };
 
+;// CONCATENATED MODULE: ./node_modules/@brysonandrew/color-base/formatRgb.ts
+const formatRgbValue = (rgb) => `rgb(${rgb})`;
+
 ;// CONCATENATED MODULE: ./node_modules/@brysonandrew/color-gradient/resolveGradient.ts
 const resolveGradient_resolveGradient = ({
   name,
@@ -17586,6 +18500,110 @@ const resolveGradient_resolveGradient = ({
   const syntax = flatParts.join(", ");
   const value = `${name}(${syntax})`;
   return value;
+};
+
+;// CONCATENATED MODULE: ./node_modules/@brysonandrew/color-base/formatRgba.ts
+const formatRgba = (rgb, opacity) => `${rgb}${", "}0.${opacity}`;
+
+;// CONCATENATED MODULE: ./node_modules/@brysonandrew/color-base/formatRgbaValue.ts
+const formatRgbaValue = (rgba) => `rgba(${rgba})`;
+
+;// CONCATENATED MODULE: ./node_modules/@brysonandrew/color-base/resolveRgbaValue.ts
+
+
+
+const resolveRgbaValue = (rgb, opacityIndex) => {
+  if (typeof opacityIndex === "undefined") {
+    return formatRgbValue(rgb);
+  }
+  const rgba = formatRgba(rgb, opacityIndex);
+  const rgbaValue = formatRgbaValue(rgba);
+  return rgbaValue;
+};
+
+;// CONCATENATED MODULE: ./node_modules/@brysonandrew/color-base/resolveRgbaOpacityRange.ts
+
+const resolveRgbaOpacityRange = (key, value) => {
+  const result = [...Array(10)].reduce(
+    (a, _, index) => {
+      if (index === 0) {
+        return {
+          ...a,
+          [key]: resolveRgbaValue(value)
+        };
+      }
+      const next = resolveRgbaValue(value, index);
+      return {
+        ...a,
+        [`${key}-0${index}`]: next
+      };
+    },
+    {}
+  );
+  return result;
+};
+
+;// CONCATENATED MODULE: ./node_modules/@brysonandrew/color-base/resolveRgbValueSeriesRecord.ts
+
+const resolveRgbValueSeriesRecord = (key, series) => {
+  return series.reduce(
+    (a, v, index) => v === null ? a : {
+      ...a,
+      [index === 0 ? key : `${key}-${index}`]: formatRgbValue(v)
+    },
+    {}
+  );
+};
+
+;// CONCATENATED MODULE: ./node_modules/@brysonandrew/color-grayscale/resolveGrayscaleRgb.ts
+const resolveGrayscaleRgb = (n) => [n, n, n].join(
+  ", "
+);
+
+;// CONCATENATED MODULE: ./node_modules/@brysonandrew/color-grayscale/resolveGrayscaleRange.ts
+
+const COUNT = 9;
+const resolveGrayscaleRange = (min, max, range = max - min, segment = range / COUNT) => [
+  resolveGrayscaleRgb(min),
+  ...[...Array(COUNT)].map(
+    (_, index, { length: count }) => {
+      const n = ~~(min + segment * (index + 1 - 1 / count * index));
+      return resolveGrayscaleRgb(n);
+    }
+  )
+];
+
+;// CONCATENATED MODULE: ./node_modules/@brysonandrew/color-grayscale/gray.ts
+
+
+
+
+const MIN_GRAY = 85;
+const MAX_GRAY = 170;
+const MID_GRAY = MAX_GRAY - MIN_GRAY;
+const GRAY_RGBS = resolveGrayscaleRange(85, 170);
+const MID_GRAY_RGB = resolveGrayscaleRgb(MID_GRAY);
+const GRAY_DEFAULT_RGB = MID_GRAY_RGB;
+const GRAY = {
+  ...resolveRgbaOpacityRange("gray", GRAY_DEFAULT_RGB),
+  ...resolveRgbValueSeriesRecord("gray", GRAY_RGBS)
+};
+
+;// CONCATENATED MODULE: ./node_modules/@brysonandrew/color-grayscale/white.ts
+
+
+
+
+const WHITEST = 255;
+const WHITE_RGBS = resolveGrayscaleRange(
+  170,
+  WHITEST
+);
+const WHITEST_RGB = resolveGrayscaleRgb(WHITEST);
+const WHITE_DEFAULT_RGB = WHITEST_RGB;
+const WHITE = {
+  ...resolveRgbValueSeriesRecord("white", WHITE_RGBS),
+  ...resolveRgbaOpacityRange("white", WHITE_DEFAULT_RGB)
 };
 
 ;// CONCATENATED MODULE: ./node_modules/@brysonandrew/utils-format/index.ts
@@ -17750,6 +18768,8 @@ const VARIABLES_RECORD = {
 
 
 
+
+
 const constants_LINEAR_GRADIENT_SVG_ID = "linear-gradient-blue-pink-yellow-svg";
 const GRADIENT_BLUE_PINK_YELLOW_COLORS = [
   ...Object.values(
@@ -17761,6 +18781,22 @@ const GRADIENT_TEAL_YELLOW_PINK_COLORS = [
     LIGHT_LOGO
   )
 ];
+const resolveMirror = (half) => [
+  ...half.slice(1),
+  ...half.reverse().slice(1)
+];
+const DARK_METAL_COLORS = resolveMirror(
+  GRAY_RGBS.map(formatRgbValue)
+);
+const LIGHT_METAL_COLORS = resolveMirror(
+  WHITE_RGBS.map(formatRgbValue)
+);
+const DARK_COLORS = resolveMirror([
+  ...GRADIENT_BLUE_PINK_YELLOW_COLORS
+]);
+const LIGHT_COLORS = resolveMirror([
+  ...GRADIENT_TEAL_YELLOW_PINK_COLORS
+]);
 const constants_GRADIENT_BLUE_PINK_YELLOW = resolveGradient_resolveGradient({
   name: "linear-gradient",
   parts: [
@@ -17774,6 +18810,26 @@ const constants_GRADIENT_TEAL_YELLOW_PINK = resolveGradient_resolveGradient({
     "to left top",
     ...GRADIENT_TEAL_YELLOW_PINK_COLORS
   ]
+});
+const DARK_CONIC = resolveGradient_resolveGradient({
+  name: "conic-gradient",
+  parts: [
+    ...GRADIENT_BLUE_PINK_YELLOW_COLORS
+  ]
+});
+const LIGHT_CONIC = resolveGradient_resolveGradient({
+  name: "conic-gradient",
+  parts: [
+    ...GRADIENT_BLUE_PINK_YELLOW_COLORS
+  ]
+});
+const DARK_METAL_CONIC = resolveGradient_resolveGradient({
+  name: "conic-gradient",
+  parts: [...DARK_METAL_COLORS]
+});
+const LIGHT_METAL_CONIC = resolveGradient_resolveGradient({
+  name: "conic-gradient",
+  parts: [...LIGHT_METAL_COLORS]
 });
 const RADIAL_BLUE_PINK_YELLOW = resolveGradient_resolveGradient({
   name: "radial-gradient",
@@ -17810,9 +18866,9 @@ const GRADIENT_ZEBRA = {
       parts: [
         "to top left",
         "black",
-        "black 40px",
-        "white 40px",
-        "white 80px"
+        "black 10px",
+        "var(--black-5) 10px",
+        "var(--black-5) 20px"
       ]
     })
   })
@@ -18146,14 +19202,12 @@ const tableState = (...args) => {
 
 
 
-
 const initState = (...a) => {
   return {
     ...coreState(...a),
     ...scrollState(...a),
     ...tableState(...a),
     ...picsState(...a),
-    ...musicState(...a),
     ...hoverState(...a),
     ...generateState(...a),
     ...setState(a[0])
@@ -18265,8 +19319,7 @@ function shallow(objA, objB) {
     return false;
   }
   if (objA instanceof Map && objB instanceof Map) {
-    if (objA.size !== objB.size)
-      return false;
+    if (objA.size !== objB.size) return false;
     for (const [key, value] of objA) {
       if (!Object.is(value, objB.get(key))) {
         return false;
@@ -18275,8 +19328,7 @@ function shallow(objA, objB) {
     return true;
   }
   if (objA instanceof Set && objB instanceof Set) {
-    if (objA.size !== objB.size)
-      return false;
+    if (objA.size !== objB.size) return false;
     for (const value of objA) {
       if (!objB.has(value)) {
         return false;
@@ -19508,8 +20560,7 @@ const redux = (/* unused pure expression or super */ null && (reduxImpl));
 const trackedConnections = /* @__PURE__ */ new Map();
 const getTrackedConnectionState = (name) => {
   const api = trackedConnections.get(name);
-  if (!api)
-    return {};
+  if (!api) return {};
   return Object.fromEntries(
     Object.entries(api.stores).map(([key, api2]) => [key, api2.getState()])
   );
@@ -19551,8 +20602,7 @@ const devtoolsImpl = (fn, devtoolsOptions = {}) => (set, get, api) => {
   let isRecording = true;
   api.setState = (state, replace, nameOrAction) => {
     const r = set(state, replace);
-    if (!isRecording)
-      return r;
+    if (!isRecording) return r;
     const action = nameOrAction === void 0 ? { type: anonymousActionType || "anonymous" } : typeof nameOrAction === "string" ? { type: nameOrAction } : nameOrAction;
     if (store === void 0) {
       connection == null ? void 0 : connection.send(action, get());
@@ -19639,10 +20689,8 @@ const devtoolsImpl = (fn, devtoolsOptions = {}) => (set, get, api) => {
               }
               return;
             }
-            if (!api.dispatchFromDevtools)
-              return;
-            if (typeof api.dispatch !== "function")
-              return;
+            if (!api.dispatchFromDevtools) return;
+            if (typeof api.dispatch !== "function") return;
             api.dispatch(action);
           }
         );
@@ -19684,8 +20732,7 @@ const devtoolsImpl = (fn, devtoolsOptions = {}) => (set, get, api) => {
           case "IMPORT_STATE": {
             const { nextLiftedState } = message.payload;
             const lastComputedState = (_a = nextLiftedState.computedStates.slice(-1)[0]) == null ? void 0 : _a.state;
-            if (!lastComputedState)
-              return;
+            if (!lastComputedState) return;
             if (store === void 0) {
               setStateFromDevtools(lastComputedState);
             } else {
@@ -19717,8 +20764,7 @@ const parseJsonThen = (stringified, f) => {
       e
     );
   }
-  if (parsed !== void 0)
-    f(parsed);
+  if (parsed !== void 0) f(parsed);
 };
 
 const subscribeWithSelectorImpl = (fn) => (set, get, api) => {
@@ -19866,8 +20912,7 @@ const oldImpl = (config, baseOptions) => (set, get, api) => {
   let stateFromStorage;
   const hydrate = () => {
     var _a;
-    if (!storage)
-      return;
+    if (!storage) return;
     hasHydrated = false;
     hydrationListeners.forEach((cb) => cb(get()));
     const postRehydrationCallback = ((_a = options.onRehydrateStorage) == null ? void 0 : _a.call(options, get())) || void 0;
@@ -19990,8 +21035,7 @@ const newImpl = (config, baseOptions) => (set, get, api) => {
   let stateFromStorage;
   const hydrate = () => {
     var _a, _b;
-    if (!storage)
-      return;
+    if (!storage) return;
     hasHydrated = false;
     hydrationListeners.forEach((cb) => {
       var _a2;
@@ -20233,24 +21277,37 @@ const persistKey = resolve_composite_key_resolveCompositeKey(
 );
 const PERSIST_STATE_RECORD = {
   picsCount: "picsCount",
-  pics: "pics",
-  music: "music"
+  // steps: "steps",
+  pics: "pics"
+  // synth: "synth",
+  // sequence: "sequence",
+  // scale: "scale",
+  // beats: "beats",
 };
 const KEYS = Object.keys(
   PERSIST_STATE_RECORD
 );
 const PERSIST_STORAGE = {
   name: persistKey,
-  partialize: (state) => KEYS.reduce(
-    (a, key) => {
-      const value = state[key];
-      return {
-        ...a,
-        [key]: value
-      };
-    },
-    {}
-  ),
+  partialize: (state) => {
+    const persisted = KEYS.reduce(
+      (a, key) => {
+        const value = state[key];
+        return {
+          ...a,
+          [key]: value
+        };
+      },
+      {}
+    );
+    return {
+      ...persisted
+      // steps: resolveMidiSteps({
+      //   ...persisted.scale,
+      //   ...persisted.sequence,
+      // }),
+    };
+  },
   storage: STORAGE_JSON
 };
 
@@ -25685,11 +26742,13 @@ const onscreen_useOnscreen = () => {
 
 ;// CONCATENATED MODULE: ./src/hooks/pic/constants.ts
 const constants_SIZE_PARAM_KEY = "size";
+const AUDIO_SRC_PARAM_KEY = "audio-src";
+const constants_AUDIO_START_PARAM_KEY = "audio-start";
 const COLUMNS_COUNT_PARAM_KEY = "cols";
 const ROWS_COUNT_PARAM_KEY = "rows";
 const constants_OVER_CELL_PARAM_KEY = "xy";
-const constants_SECONDS_PARAM_KEY = "seconds";
-const AUDIO_SRC_KEY = "src";
+const SECONDS_PARAM_KEY = "seconds";
+const constants_AUDIO_SRC_KEY = "src";
 const constants_SELECTED_PARAM_KEY = "pic";
 const constants_REMOVING_PARAM_KEY = "removing";
 const constants_DELIMITER_CELL_KEY = "-";
@@ -25697,11 +26756,13 @@ const DELIMITER_VIDEO_PICS = ",";
 const constants_ZOOM_PARAM_KEY = "z";
 const constants_QUERY_PARAM_KEYS = {
   [constants_SIZE_PARAM_KEY]: constants_SIZE_PARAM_KEY,
+  [AUDIO_SRC_PARAM_KEY]: AUDIO_SRC_PARAM_KEY,
+  [constants_AUDIO_START_PARAM_KEY]: constants_AUDIO_START_PARAM_KEY,
   [COLUMNS_COUNT_PARAM_KEY]: COLUMNS_COUNT_PARAM_KEY,
   [ROWS_COUNT_PARAM_KEY]: ROWS_COUNT_PARAM_KEY,
   [constants_OVER_CELL_PARAM_KEY]: constants_OVER_CELL_PARAM_KEY,
-  [constants_SECONDS_PARAM_KEY]: constants_SECONDS_PARAM_KEY,
-  [AUDIO_SRC_KEY]: AUDIO_SRC_KEY,
+  [SECONDS_PARAM_KEY]: SECONDS_PARAM_KEY,
+  [constants_AUDIO_SRC_KEY]: constants_AUDIO_SRC_KEY,
   [constants_SELECTED_PARAM_KEY]: constants_SELECTED_PARAM_KEY,
   [constants_REMOVING_PARAM_KEY]: constants_REMOVING_PARAM_KEY,
   [constants_ZOOM_PARAM_KEY]: constants_ZOOM_PARAM_KEY
@@ -25812,7 +26873,7 @@ const dragger_useDragger = () => {
 const context_InitContext = (0,react.createContext)(
   {}
 );
-const context_useInitContext = () => useContext(context_InitContext);
+const context_useContextInit = () => useContext(context_InitContext);
 const InitContextProvider = ({ children }) => {
   const blur = useBlur();
   const cursor = useCursor();
@@ -25844,7 +26905,7 @@ const InitContextProvider = ({ children }) => {
 
 
 const animate_useBlurAnimate = (variant = "x") => {
-  const { main } = useInitContext();
+  const { main } = useContextInit();
   const handler = (peak = 10) => {
     var _a;
     if (!isNull(
@@ -25853,7 +26914,6 @@ const animate_useBlurAnimate = (variant = "x") => {
       (_a = main.blur.control[variant]) == null ? void 0 : _a.stop();
     }
     const curr = main.blur.value[variant].get();
-    console.log(curr);
     main.blur.control[variant] = animate(
       main.blur.value[variant],
       [curr, peak, 0],
@@ -25954,15 +27014,19 @@ var defaultTheme = __webpack_require__(5874);
 var defaultTheme_default = /*#__PURE__*/__webpack_require__.n(defaultTheme);
 ;// CONCATENATED MODULE: ./config/uno/presets/fonts.ts
 
+const ARMSTRONG3_FONT_NAME = "Armstrong3";
 const FONT_NAMES = [
   ["Dragon", "title"],
-  ["Armstrong3", "slab"],
+  [ARMSTRONG3_FONT_NAME, "slab"],
   ["Toxigenesis", "sans"]
 ];
 const withDefault = (value, key = "sans") => [
   `"${value}"`,
   ...(defaultTheme_default()).fontFamily[key]
 ];
+const ARMSTRONG3_FULL_FONT_FAMILY = withDefault(
+  ARMSTRONG3_FONT_NAME
+).join(" ");
 const FONTS = FONT_NAMES.map(([name, key]) => ({
   key,
   name: withDefault(name),
@@ -26023,8 +27087,6 @@ const fonts_useFonts = () => {
   return record;
 };
 
-// EXTERNAL MODULE: ./node_modules/react/jsx-runtime.js
-var jsx_runtime = __webpack_require__(5893);
 ;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/context/MotionConfigContext.mjs
 
 
@@ -26280,6 +27342,25 @@ const { schedule: microtask, cancel: cancelMicrotask } = createRenderBatcher(que
 
 
 
+;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/utils/is-ref-object.mjs
+function isRefObject(ref) {
+    return (ref &&
+        typeof ref === "object" &&
+        Object.prototype.hasOwnProperty.call(ref, "current"));
+}
+
+
+
+;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/context/SwitchLayoutGroupContext.mjs
+
+
+/**
+ * Internal, exported only for usage in Framer
+ */
+const SwitchLayoutGroupContext = (0,react.createContext)({});
+
+
+
 ;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/motion/utils/use-visual-element.mjs
 
 
@@ -26290,7 +27371,10 @@ const { schedule: microtask, cancel: cancelMicrotask } = createRenderBatcher(que
 
 
 
-function useVisualElement(Component, visualState, props, createVisualElement) {
+
+
+let scheduleHandoffComplete = false;
+function useVisualElement(Component, visualState, props, createVisualElement, ProjectionNodeConstructor) {
     const { visualElement: parent } = (0,react.useContext)(MotionContext);
     const lazyContext = (0,react.useContext)(LazyContext);
     const presenceContext = (0,react.useContext)(PresenceContext_PresenceContext);
@@ -26313,6 +27397,17 @@ function useVisualElement(Component, visualState, props, createVisualElement) {
         });
     }
     const visualElement = visualElementRef.current;
+    /**
+     * Load Motion gesture and animation features. These are rendered as renderless
+     * components so each feature can optionally make use of React lifecycle methods.
+     */
+    const initialLayoutGroupConfig = (0,react.useContext)(SwitchLayoutGroupContext);
+    if (visualElement &&
+        !visualElement.projection &&
+        ProjectionNodeConstructor &&
+        (visualElement.type === "html" || visualElement.type === "svg")) {
+        createProjectionNode(visualElementRef.current, props, ProjectionNodeConstructor, initialLayoutGroupConfig);
+    }
     (0,react.useInsertionEffect)(() => {
         visualElement && visualElement.update(props, presenceContext);
     });
@@ -26325,6 +27420,7 @@ function useVisualElement(Component, visualState, props, createVisualElement) {
     use_isomorphic_effect_useIsomorphicLayoutEffect(() => {
         if (!visualElement)
             return;
+        visualElement.updateFeatures();
         microtask.render(visualElement.render);
         /**
          * Ideally this function would always run in a useEffect.
@@ -26343,26 +27439,53 @@ function useVisualElement(Component, visualState, props, createVisualElement) {
     (0,react.useEffect)(() => {
         if (!visualElement)
             return;
-        visualElement.updateFeatures();
         if (!wantsHandoff.current && visualElement.animationState) {
             visualElement.animationState.animateChanges();
         }
         if (wantsHandoff.current) {
             wantsHandoff.current = false;
             // This ensures all future calls to animateChanges() will run in useEffect
-            window.HandoffComplete = true;
+            if (!scheduleHandoffComplete) {
+                scheduleHandoffComplete = true;
+                queueMicrotask(completeHandoff);
+            }
         }
     });
     return visualElement;
 }
-
-
-
-;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/utils/is-ref-object.mjs
-function isRefObject(ref) {
-    return (ref &&
-        typeof ref === "object" &&
-        Object.prototype.hasOwnProperty.call(ref, "current"));
+function completeHandoff() {
+    window.HandoffComplete = true;
+}
+function createProjectionNode(visualElement, props, ProjectionNodeConstructor, initialPromotionConfig) {
+    const { layoutId, layout, drag, dragConstraints, layoutScroll, layoutRoot, } = props;
+    visualElement.projection = new ProjectionNodeConstructor(visualElement.latestValues, props["data-framer-portal-id"]
+        ? undefined
+        : getClosestProjectingNode(visualElement.parent));
+    visualElement.projection.setOptions({
+        layoutId,
+        layout,
+        alwaysMeasureLayout: Boolean(drag) || (dragConstraints && isRefObject(dragConstraints)),
+        visualElement,
+        scheduleRender: () => visualElement.scheduleRender(),
+        /**
+         * TODO: Update options in an effect. This could be tricky as it'll be too late
+         * to update by the time layout animations run.
+         * We also need to fix this safeToRemove by linking it up to the one returned by usePresence,
+         * ensuring it gets called if there's no potential layout animations.
+         *
+         */
+        animationType: typeof layout === "string" ? layout : "both",
+        initialPromotionConfig,
+        layoutScroll,
+        layoutRoot,
+    });
+}
+function getClosestProjectingNode(visualElement) {
+    if (!visualElement)
+        return undefined;
+    return visualElement.options.allowProjection !== false
+        ? visualElement.projection
+        : getClosestProjectingNode(visualElement.parent);
 }
 
 
@@ -26379,9 +27502,12 @@ function useMotionRef(visualState, visualElement, externalRef) {
     return (0,react.useCallback)((instance) => {
         instance && visualState.mount && visualState.mount(instance);
         if (visualElement) {
-            instance
-                ? visualElement.mount(instance)
-                : visualElement.unmount();
+            if (instance) {
+                visualElement.mount(instance);
+            }
+            else {
+                visualElement.unmount();
+            }
         }
         if (externalRef) {
             if (typeof externalRef === "function") {
@@ -26535,22 +27661,13 @@ const LayoutGroupContext = (0,react.createContext)({});
 
 
 
-;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/context/SwitchLayoutGroupContext.mjs
-
-
-/**
- * Internal, exported only for usage in Framer
- */
-const SwitchLayoutGroupContext = (0,react.createContext)({});
-
-
-
 ;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/motion/utils/symbol.mjs
 const motionComponentSymbol = Symbol.for("motionComponentSymbol");
 
 
 
 ;// CONCATENATED MODULE: ./node_modules/framer-motion/dist/es/motion/index.mjs
+
 
 
 
@@ -26591,24 +27708,16 @@ function motion_createMotionComponent({ preloadedFeatures, createVisualElement, 
         const context = useCreateMotionContext(props);
         const visualState = useVisualState(props, isStatic);
         if (!isStatic && isBrowser) {
+            useStrictMode(configAndProps, preloadedFeatures);
+            const layoutProjection = getProjectionFunctionality(configAndProps);
+            MeasureLayout = layoutProjection.MeasureLayout;
             /**
              * Create a VisualElement for this component. A VisualElement provides a common
              * interface to renderer-specific APIs (ie DOM/Three.js etc) as well as
              * providing a way of rendering to these APIs outside of the React render loop
              * for more performant animations and interactions
              */
-            context.visualElement = useVisualElement(Component, visualState, configAndProps, createVisualElement);
-            /**
-             * Load Motion gesture and animation features. These are rendered as renderless
-             * components so each feature can optionally make use of React lifecycle methods.
-             */
-            const initialLayoutGroupConfig = (0,react.useContext)(SwitchLayoutGroupContext);
-            const isStrict = (0,react.useContext)(LazyContext).strict;
-            if (context.visualElement) {
-                MeasureLayout = context.visualElement.loadFeatures(
-                // Note: Pass the full new combined props to correctly re-render dynamic feature components.
-                configAndProps, isStrict, preloadedFeatures, initialLayoutGroupConfig);
-            }
+            context.visualElement = useVisualElement(Component, visualState, configAndProps, createVisualElement, layoutProjection.ProjectionNode);
         }
         /**
          * The mount order and hierarchy is specific to ensure our element ref
@@ -26625,6 +27734,26 @@ function useLayoutId({ layoutId }) {
     return layoutGroupId && layoutId !== undefined
         ? layoutGroupId + "-" + layoutId
         : layoutId;
+}
+function useStrictMode(configAndProps, preloadedFeatures) {
+    const isStrict = (0,react.useContext)(LazyContext).strict;
+    /**
+     * If we're in development mode, check to make sure we're not rendering a motion component
+     * as a child of LazyMotion, as this will break the file-size benefits of using it.
+     */
+    if (false) {}
+}
+function getProjectionFunctionality(props) {
+    const { drag, layout } = featureDefinitions;
+    if (!drag && !layout)
+        return {};
+    const combined = { ...drag, ...layout };
+    return {
+        MeasureLayout: (drag === null || drag === void 0 ? void 0 : drag.isEnabled(props)) || (layout === null || layout === void 0 ? void 0 : layout.isEnabled(props))
+            ? combined.MeasureLayout
+            : undefined,
+        ProjectionNode: combined.ProjectionNode,
+    };
 }
 
 
@@ -26918,6 +28047,9 @@ const colorRegex = /(?:#[\da-f]{3,8}|(?:rgb|hsl)a?\((?:-?[\d.]+%?[,\s]+){2}-?[\d
 const singleColorRegex = /^(?:#[\da-f]{3,8}|(?:rgb|hsl)a?\((?:-?[\d.]+%?[,\s]+){2}-?[\d.]+%?\s*(?:[,/]\s*)?(?:\b\d+(?:\.\d+)?|\.\d+)?%?\))$/iu;
 function utils_isString(v) {
     return typeof v === "string";
+}
+function isNullish(v) {
+    return v == null;
 }
 
 
@@ -28876,7 +30008,9 @@ class KeyframeResolver {
  */
 const isColorString = (type, testProp) => (v) => {
     return Boolean((utils_isString(v) && singleColorRegex.test(v) && v.startsWith(type)) ||
-        (testProp && Object.prototype.hasOwnProperty.call(v, testProp)));
+        (testProp &&
+            !isNullish(v) &&
+            Object.prototype.hasOwnProperty.call(v, testProp)));
 };
 const splitColor = (aName, bName, cName) => (v) => {
     if (!utils_isString(v))
@@ -29671,7 +30805,7 @@ function getSpringOptions(options) {
     }
     return springOptions;
 }
-function spring({ keyframes, restDelta, restSpeed, ...options }) {
+function spring_spring({ keyframes, restDelta, restSpeed, ...options }) {
     const origin = keyframes[0];
     const target = keyframes[keyframes.length - 1];
     /**
@@ -29819,7 +30953,7 @@ function inertia({ keyframes, velocity = 0.0, power = 0.8, timeConstant = 325, b
         if (!isOutOfBounds(state.value))
             return;
         timeReachedBoundary = t;
-        spring$1 = spring({
+        spring$1 = spring_spring({
             keyframes: [state.value, nearestBoundary(state.value)],
             velocity: calcGeneratorVelocity(calcLatest, t, state.value), // TODO: This should be passing * 1000
             damping: bounceDamping,
@@ -30509,7 +31643,7 @@ const generators = {
     inertia: inertia,
     tween: keyframes,
     keyframes: keyframes,
-    spring: spring,
+    spring: spring_spring,
 };
 const percentToProgress = (percent) => percent / 100;
 /**
@@ -31574,7 +32708,7 @@ class MotionValue {
          * This will be replaced by the build step with the latest version number.
          * When MotionValues are provided to motion components, warn if versions are mixed.
          */
-        this.version = "11.2.10";
+        this.version = "11.2.13";
         /**
          * Tracks whether this value can output a velocity. Currently this is only true
          * if the value is numerical, but we might be able to widen the scope here and support
@@ -32091,7 +33225,7 @@ function animateList(visualElement) {
 }
 function createAnimationState(visualElement) {
     let animate = animateList(visualElement);
-    const state = createState();
+    let state = createState();
     let isInitialRender = true;
     /**
      * This function will be used to reduce the animation definitions for
@@ -32368,6 +33502,10 @@ function createAnimationState(visualElement) {
         setActive,
         setAnimateFunction,
         getState: () => state,
+        reset: () => {
+            state = createState();
+            isInitialRender = true;
+        },
     };
 }
 function checkVariantsDidChange(prev, next) {
@@ -32418,9 +33556,8 @@ class AnimationFeature extends Feature {
     }
     updateAnimationControlsSubscription() {
         const { animate } = this.node.getProps();
-        this.unmount();
         if (isAnimationControls(animate)) {
-            this.unmount = animate.subscribe(this.node);
+            this.unmountControls = animate.subscribe(this.node);
         }
     }
     /**
@@ -32436,7 +33573,11 @@ class AnimationFeature extends Feature {
             this.updateAnimationControlsSubscription();
         }
     }
-    unmount() { }
+    unmount() {
+        var _a;
+        this.node.animationState.reset();
+        (_a = this.unmountControls) === null || _a === void 0 ? void 0 : _a.call(this);
+    }
 }
 
 
@@ -33481,7 +34622,7 @@ class VisualElementDragControls {
         });
         const measureDragConstraints = () => {
             const { dragConstraints } = this.getProps();
-            if (isRefObject(dragConstraints)) {
+            if (isRefObject(dragConstraints) && dragConstraints.current) {
                 this.constraints = this.resolveRefConstraints();
             }
         };
@@ -33491,7 +34632,7 @@ class VisualElementDragControls {
             projection.root && projection.root.updateScroll();
             projection.updateLayout();
         }
-        measureDragConstraints();
+        frame_frame.read(measureDragConstraints);
         /**
          * Attach a window resize listener to scale the draggable target within its defined
          * constraints as the window resizes.
@@ -34468,7 +35609,7 @@ function isOptimisedAppearTree(projectionNode) {
         return false;
     }
 }
-function createProjectionNode({ attachResizeListener, defaultParent, measureScroll, checkIsScrollRoot, resetTransform, }) {
+function create_projection_node_createProjectionNode({ attachResizeListener, defaultParent, measureScroll, checkIsScrollRoot, resetTransform, }) {
     return class ProjectionNode {
         constructor(latestValues = {}, parent = defaultParent === null || defaultParent === void 0 ? void 0 : defaultParent()) {
             /**
@@ -34566,6 +35707,7 @@ function createProjectionNode({ attachResizeListener, defaultParent, measureScro
             this.hasTreeAnimated = false;
             // Note: Currently only running on root node
             this.updateScheduled = false;
+            this.scheduleUpdate = () => this.update();
             this.projectionUpdateScheduled = false;
             this.checkUpdateFailed = () => {
                 if (this.isUpdating) {
@@ -34854,7 +35996,7 @@ function createProjectionNode({ attachResizeListener, defaultParent, measureScro
         didUpdate() {
             if (!this.updateScheduled) {
                 this.updateScheduled = true;
-                microtask.read(() => this.update());
+                microtask.read(this.scheduleUpdate);
             }
         }
         clearAllSnapshots() {
@@ -34941,7 +36083,9 @@ function createProjectionNode({ attachResizeListener, defaultParent, measureScro
         resetTransform() {
             if (!resetTransform)
                 return;
-            const isResetRequested = this.isLayoutDirty || this.shouldResetTransform;
+            const isResetRequested = this.isLayoutDirty ||
+                this.shouldResetTransform ||
+                this.options.alwaysMeasureLayout;
             const hasProjection = this.projectionDelta && !isDeltaZero(this.projectionDelta);
             const transformTemplate = this.getTransformTemplate();
             const transformTemplateValue = transformTemplate
@@ -35955,7 +37099,7 @@ function shouldAnimatePositionOnly(animationType, snapshot, layout) {
 
 
 
-const DocumentProjectionNode = createProjectionNode({
+const DocumentProjectionNode = create_projection_node_createProjectionNode({
     attachResizeListener: (ref, notify) => addDomEvent(ref, "resize", notify),
     measureScroll: () => ({
         x: document.documentElement.scrollLeft || document.body.scrollLeft,
@@ -35973,7 +37117,7 @@ const DocumentProjectionNode = createProjectionNode({
 const rootProjectionNode = {
     current: undefined,
 };
-const HTMLProjectionNode = createProjectionNode({
+const HTMLProjectionNode = create_projection_node_createProjectionNode({
     measureScroll: (instance) => ({
         x: instance.scrollLeft,
         y: instance.scrollTop,
@@ -36156,10 +37300,6 @@ const findValueType = (v) => valueTypes.find(testValueType(v));
 
 
 
-
-
-const featureNames = Object.keys(featureDefinitions);
-const numFeatures = featureNames.length;
 const propEventHandlers = [
     "AnimationStart",
     "AnimationComplete",
@@ -36170,13 +37310,6 @@ const propEventHandlers = [
     "LayoutAnimationComplete",
 ];
 const numVariantProps = variantProps.length;
-function getClosestProjectingNode(visualElement) {
-    if (!visualElement)
-        return undefined;
-    return visualElement.options.allowProjection !== false
-        ? visualElement.projection
-        : getClosestProjectingNode(visualElement.parent);
-}
 /**
  * A VisualElement is an imperative abstraction around UI elements such as
  * HTMLElement, SVGElement, Three.Object3D etc.
@@ -36326,7 +37459,6 @@ class VisualElement {
         this.update(this.props, this.presenceContext);
     }
     unmount() {
-        var _a;
         visualElementStore["delete"](this.current);
         this.projection && this.projection.unmount();
         cancelFrame(this.notifyUpdate);
@@ -36338,7 +37470,11 @@ class VisualElement {
             this.events[key].clear();
         }
         for (const key in this.features) {
-            (_a = this.features[key]) === null || _a === void 0 ? void 0 : _a.unmount();
+            const feature = this.features[key];
+            if (feature) {
+                feature.unmount();
+                feature.isMounted = false;
+            }
         }
         this.current = null;
     }
@@ -36370,66 +37506,33 @@ class VisualElement {
         }
         return this.sortInstanceNodePosition(this.current, other.current);
     }
-    loadFeatures({ children, ...renderedProps }, isStrict, preloadedFeatures, initialLayoutGroupConfig) {
-        let ProjectionNodeConstructor;
-        let MeasureLayout;
-        /**
-         * If we're in development mode, check to make sure we're not rendering a motion component
-         * as a child of LazyMotion, as this will break the file-size benefits of using it.
-         */
-        if (false) {}
-        for (let i = 0; i < numFeatures; i++) {
-            const name = featureNames[i];
-            const { isEnabled, Feature: FeatureConstructor, ProjectionNode, MeasureLayout: MeasureLayoutComponent, } = featureDefinitions[name];
-            if (ProjectionNode)
-                ProjectionNodeConstructor = ProjectionNode;
-            if (isEnabled(renderedProps)) {
-                if (!this.features[name] && FeatureConstructor) {
-                    this.features[name] = new FeatureConstructor(this);
-                }
-                if (MeasureLayoutComponent) {
-                    MeasureLayout = MeasureLayoutComponent;
-                }
-            }
-        }
-        if ((this.type === "html" || this.type === "svg") &&
-            !this.projection &&
-            ProjectionNodeConstructor) {
-            const { layoutId, layout, drag, dragConstraints, layoutScroll, layoutRoot, } = renderedProps;
-            this.projection = new ProjectionNodeConstructor(this.latestValues, renderedProps["data-framer-portal-id"]
-                ? undefined
-                : getClosestProjectingNode(this.parent));
-            this.projection.setOptions({
-                layoutId,
-                layout,
-                alwaysMeasureLayout: Boolean(drag) ||
-                    (dragConstraints && isRefObject(dragConstraints)),
-                visualElement: this,
-                scheduleRender: () => this.scheduleRender(),
-                /**
-                 * TODO: Update options in an effect. This could be tricky as it'll be too late
-                 * to update by the time layout animations run.
-                 * We also need to fix this safeToRemove by linking it up to the one returned by usePresence,
-                 * ensuring it gets called if there's no potential layout animations.
-                 *
-                 */
-                animationType: typeof layout === "string" ? layout : "both",
-                initialPromotionConfig: initialLayoutGroupConfig,
-                layoutScroll,
-                layoutRoot,
-            });
-        }
-        return MeasureLayout;
-    }
     updateFeatures() {
-        for (const key in this.features) {
-            const feature = this.features[key];
-            if (feature.isMounted) {
-                feature.update();
+        let key = "animation";
+        for (key in featureDefinitions) {
+            const featureDefinition = featureDefinitions[key];
+            if (!featureDefinition)
+                continue;
+            const { isEnabled, Feature: FeatureConstructor } = featureDefinition;
+            /**
+             * If this feature is enabled but not active, make a new instance.
+             */
+            if (!this.features[key] &&
+                FeatureConstructor &&
+                isEnabled(this.props)) {
+                this.features[key] = new FeatureConstructor(this);
             }
-            else {
-                feature.mount();
-                feature.isMounted = true;
+            /**
+             * If we have a feature, mount or update it.
+             */
+            if (this.features[key]) {
+                const feature = this.features[key];
+                if (feature.isMounted) {
+                    feature.update();
+                }
+                else {
+                    feature.mount();
+                    feature.isMounted = true;
+                }
             }
         }
     }
@@ -36887,7 +37990,7 @@ var react_dom = __webpack_require__(3935);
 var react_dom_namespaceObject = /*#__PURE__*/__webpack_require__.t(react_dom, 2);
 ;// CONCATENATED MODULE: ./node_modules/@remix-run/router/dist/router.js
 /**
- * @remix-run/router v1.16.1
+ * @remix-run/router v1.17.1
  *
  * Copyright (c) Remix Software Inc.
  *
@@ -37374,7 +38477,7 @@ function convertRoutesToDataRoutes(routes, mapRouteProperties, parentPath, manif
     manifest = {};
   }
   return routes.map((route, index) => {
-    let treePath = [...parentPath, index];
+    let treePath = [...parentPath, String(index)];
     let id = typeof route.id === "string" ? route.id : treePath.join("-");
     router_invariant(route.index !== true || !route.children, "Cannot specify children on an index route");
     router_invariant(!manifest[id], "Found a route id collision on id \"" + id + "\".  Route " + "id's must be globally unique within Data Router usages");
@@ -37406,6 +38509,9 @@ function router_matchRoutes(routes, locationArg, basename) {
   if (basename === void 0) {
     basename = "/";
   }
+  return matchRoutesImpl(routes, locationArg, basename, false);
+}
+function matchRoutesImpl(routes, locationArg, basename, allowPartial) {
   let location = typeof locationArg === "string" ? router_parsePath(locationArg) : locationArg;
   let pathname = router_stripBasename(location.pathname || "/", basename);
   if (pathname == null) {
@@ -37422,7 +38528,7 @@ function router_matchRoutes(routes, locationArg, basename) {
     // should be a safe operation.  This avoids needing matchRoutes to be
     // history-aware.
     let decoded = decodePath(pathname);
-    matches = matchRouteBranch(branches[i], decoded);
+    matches = matchRouteBranch(branches[i], decoded, allowPartial);
   }
   return matches;
 }
@@ -37575,7 +38681,10 @@ function compareIndexes(a, b) {
   // so they sort equally.
   0;
 }
-function matchRouteBranch(branch, pathname) {
+function matchRouteBranch(branch, pathname, allowPartial) {
+  if (allowPartial === void 0) {
+    allowPartial = false;
+  }
   let {
     routesMeta
   } = branch;
@@ -37591,9 +38700,18 @@ function matchRouteBranch(branch, pathname) {
       caseSensitive: meta.caseSensitive,
       end
     }, remainingPathname);
-    if (!match) return null;
-    Object.assign(matchedParams, match.params);
     let route = meta.route;
+    if (!match && end && allowPartial && !routesMeta[routesMeta.length - 1].route.index) {
+      match = router_matchPath({
+        path: meta.relativePath,
+        caseSensitive: meta.caseSensitive,
+        end: false
+      }, remainingPathname);
+    }
+    if (!match) {
+      return null;
+    }
+    Object.assign(matchedParams, match.params);
     matches.push({
       // TODO: Can this as be avoided?
       params: matchedParams,
@@ -37830,7 +38948,7 @@ function getResolveToMatches(matches, v7_relativeSplatPath) {
   // match so we include splat values for "." links.  See:
   // https://github.com/remix-run/react-router/issues/11052#issuecomment-1836589329
   if (v7_relativeSplatPath) {
-    return pathMatches.map((match, idx) => idx === matches.length - 1 ? match.pathname : match.pathnameBase);
+    return pathMatches.map((match, idx) => idx === pathMatches.length - 1 ? match.pathname : match.pathnameBase);
   }
   return pathMatches.map(match => match.pathnameBase);
 }
@@ -38209,6 +39327,7 @@ function router_createRouter(init) {
   let inFlightDataRoutes;
   let basename = init.basename || "/";
   let dataStrategyImpl = init.unstable_dataStrategy || defaultDataStrategy;
+  let patchRoutesOnMissImpl = init.unstable_patchRoutesOnMiss;
   // Config driven behavior flags
   let future = _extends({
     v7_fetcherPersist: false,
@@ -38237,7 +39356,7 @@ function router_createRouter(init) {
   let initialScrollRestored = init.hydrationData != null;
   let initialMatches = router_matchRoutes(dataRoutes, init.history.location, basename);
   let initialErrors = null;
-  if (initialMatches == null) {
+  if (initialMatches == null && !patchRoutesOnMissImpl) {
     // If we do not match a user-provided-route, fall back to the root
     // to allow the error boundary to take over
     let error = getInternalRouterError(404, {
@@ -38252,14 +39371,25 @@ function router_createRouter(init) {
       [route.id]: error
     };
   }
+  // If the user provided a patchRoutesOnMiss implementation and our initial
+  // match is a splat route, clear them out so we run through lazy discovery
+  // on hydration in case there's a more accurate lazy route match
+  if (initialMatches && patchRoutesOnMissImpl) {
+    let fogOfWar = checkFogOfWar(initialMatches, dataRoutes, init.history.location.pathname);
+    if (fogOfWar.active) {
+      initialMatches = null;
+    }
+  }
   let initialized;
-  let hasLazyRoutes = initialMatches.some(m => m.route.lazy);
-  let hasLoaders = initialMatches.some(m => m.route.loader);
-  if (hasLazyRoutes) {
+  if (!initialMatches) {
+    // We need to run patchRoutesOnMiss in initialize()
+    initialized = false;
+    initialMatches = [];
+  } else if (initialMatches.some(m => m.route.lazy)) {
     // All initialMatches need to be loaded before we're ready.  If we have lazy
     // functions around still then we'll need to run them in initialize()
     initialized = false;
-  } else if (!hasLoaders) {
+  } else if (!initialMatches.some(m => m.route.loader)) {
     // If we've got no loaders to run, then we're good to go
     initialized = true;
   } else if (future.v7_partialHydration) {
@@ -38364,6 +39494,9 @@ function router_createRouter(init) {
   // Store blocker functions in a separate Map outside of router state since
   // we don't need to update UI state if they change
   let blockerFunctions = new Map();
+  // Map of pending patchRoutesOnMiss() promises (keyed by path/matches) so
+  // that we only kick them off once for a given combo
+  let pendingPatchRoutes = new Map();
   // Flag to ignore the next history update, so we can revert the URL change on
   // a POP navigation that was blocked by the user without touching router state
   let ignoreNextHistoryUpdate = false;
@@ -38540,6 +39673,7 @@ function router_createRouter(init) {
     // Always respect the user flag.  Otherwise don't reset on mutation
     // submission navigations unless they redirect
     let preventScrollReset = pendingPreventScrollReset === true || state.navigation.formMethod != null && isMutationMethod(state.navigation.formMethod) && ((_location$state2 = location.state) == null ? void 0 : _location$state2._isRedirect) !== true;
+    // Commit any in-flight routes at the end of the HMR revalidation "navigation"
     if (inFlightDataRoutes) {
       dataRoutes = inFlightDataRoutes;
       inFlightDataRoutes = undefined;
@@ -38729,17 +39863,17 @@ function router_createRouter(init) {
     let loadingNavigation = opts && opts.overrideNavigation;
     let matches = router_matchRoutes(routesToUse, location, basename);
     let flushSync = (opts && opts.flushSync) === true;
+    let fogOfWar = checkFogOfWar(matches, routesToUse, location.pathname);
+    if (fogOfWar.active && fogOfWar.matches) {
+      matches = fogOfWar.matches;
+    }
     // Short circuit with a 404 on the root error boundary if we match nothing
     if (!matches) {
-      let error = getInternalRouterError(404, {
-        pathname: location.pathname
-      });
       let {
-        matches: notFoundMatches,
+        error,
+        notFoundMatches,
         route
-      } = getShortCircuitMatches(routesToUse);
-      // Cancel all pending deferred on 404s since we don't keep any routes
-      cancelActiveDeferreds();
+      } = handleNavigational404(location.pathname);
       completeNavigation(location, {
         matches: notFoundMatches,
         loaderData: {},
@@ -38780,25 +39914,45 @@ function router_createRouter(init) {
       }];
     } else if (opts && opts.submission && isMutationMethod(opts.submission.formMethod)) {
       // Call action if we received an action submission
-      let actionResult = await handleAction(request, location, opts.submission, matches, {
+      let actionResult = await handleAction(request, location, opts.submission, matches, fogOfWar.active, {
         replace: opts.replace,
         flushSync
       });
       if (actionResult.shortCircuited) {
         return;
       }
+      // If we received a 404 from handleAction, it's because we couldn't lazily
+      // discover the destination route so we don't want to call loaders
+      if (actionResult.pendingActionResult) {
+        let [routeId, result] = actionResult.pendingActionResult;
+        if (isErrorResult(result) && router_isRouteErrorResponse(result.error) && result.error.status === 404) {
+          pendingNavigationController = null;
+          completeNavigation(location, {
+            matches: actionResult.matches,
+            loaderData: {},
+            errors: {
+              [routeId]: result.error
+            }
+          });
+          return;
+        }
+      }
+      matches = actionResult.matches || matches;
       pendingActionResult = actionResult.pendingActionResult;
       loadingNavigation = getLoadingNavigation(location, opts.submission);
       flushSync = false;
+      // No need to do fog of war matching again on loader execution
+      fogOfWar.active = false;
       // Create a GET request for the loaders
       request = createClientSideRequest(init.history, request.url, request.signal);
     }
     // Call loaders
     let {
       shortCircuited,
+      matches: updatedMatches,
       loaderData,
       errors
-    } = await handleLoaders(request, location, matches, loadingNavigation, opts && opts.submission, opts && opts.fetcherSubmission, opts && opts.replace, opts && opts.initialHydration === true, flushSync, pendingActionResult);
+    } = await handleLoaders(request, location, matches, fogOfWar.active, loadingNavigation, opts && opts.submission, opts && opts.fetcherSubmission, opts && opts.replace, opts && opts.initialHydration === true, flushSync, pendingActionResult);
     if (shortCircuited) {
       return;
     }
@@ -38807,7 +39961,7 @@ function router_createRouter(init) {
     // been assigned to a new controller for the next navigation
     pendingNavigationController = null;
     completeNavigation(location, _extends({
-      matches
+      matches: updatedMatches || matches
     }, getActionDataForCommit(pendingActionResult), {
       loaderData,
       errors
@@ -38815,7 +39969,7 @@ function router_createRouter(init) {
   }
   // Call the action matched by the leaf route for this navigation and handle
   // redirects/errors
-  async function handleAction(request, location, submission, matches, opts) {
+  async function handleAction(request, location, submission, matches, isFogOfWar, opts) {
     if (opts === void 0) {
       opts = {};
     }
@@ -38827,6 +39981,42 @@ function router_createRouter(init) {
     }, {
       flushSync: opts.flushSync === true
     });
+    if (isFogOfWar) {
+      let discoverResult = await discoverRoutes(matches, location.pathname, request.signal);
+      if (discoverResult.type === "aborted") {
+        return {
+          shortCircuited: true
+        };
+      } else if (discoverResult.type === "error") {
+        let {
+          error,
+          notFoundMatches,
+          route
+        } = handleDiscoverRouteError(location.pathname, discoverResult);
+        return {
+          matches: notFoundMatches,
+          pendingActionResult: [route.id, {
+            type: ResultType.error,
+            error
+          }]
+        };
+      } else if (!discoverResult.matches) {
+        let {
+          notFoundMatches,
+          error,
+          route
+        } = handleNavigational404(location.pathname);
+        return {
+          matches: notFoundMatches,
+          pendingActionResult: [route.id, {
+            type: ResultType.error,
+            error
+          }]
+        };
+      } else {
+        matches = discoverResult.matches;
+      }
+    }
     // Call our action and get the result
     let result;
     let actionMatch = getTargetMatch(matches, location);
@@ -38876,29 +40066,90 @@ function router_createRouter(init) {
       // Store off the pending error - we use it to determine which loaders
       // to call and will commit it when we complete the navigation
       let boundaryMatch = findNearestBoundary(matches, actionMatch.route.id);
-      // By default, all submissions are REPLACE navigations, but if the
-      // action threw an error that'll be rendered in an errorElement, we fall
-      // back to PUSH so that the user can use the back button to get back to
-      // the pre-submission form location to try again
+      // By default, all submissions to the current location are REPLACE
+      // navigations, but if the action threw an error that'll be rendered in
+      // an errorElement, we fall back to PUSH so that the user can use the
+      // back button to get back to the pre-submission form location to try
+      // again
       if ((opts && opts.replace) !== true) {
         pendingAction = router_Action.Push;
       }
       return {
+        matches,
         pendingActionResult: [boundaryMatch.route.id, result]
       };
     }
     return {
+      matches,
       pendingActionResult: [actionMatch.route.id, result]
     };
   }
   // Call all applicable loaders for the given matches, handling redirects,
   // errors, etc.
-  async function handleLoaders(request, location, matches, overrideNavigation, submission, fetcherSubmission, replace, initialHydration, flushSync, pendingActionResult) {
+  async function handleLoaders(request, location, matches, isFogOfWar, overrideNavigation, submission, fetcherSubmission, replace, initialHydration, flushSync, pendingActionResult) {
     // Figure out the right navigation we want to use for data loading
     let loadingNavigation = overrideNavigation || getLoadingNavigation(location, submission);
     // If this was a redirect from an action we don't have a "submission" but
     // we have it on the loading navigation so use that if available
     let activeSubmission = submission || fetcherSubmission || getSubmissionFromNavigation(loadingNavigation);
+    // If this is an uninterrupted revalidation, we remain in our current idle
+    // state.  If not, we need to switch to our loading state and load data,
+    // preserving any new action data or existing action data (in the case of
+    // a revalidation interrupting an actionReload)
+    // If we have partialHydration enabled, then don't update the state for the
+    // initial data load since it's not a "navigation"
+    let shouldUpdateNavigationState = !isUninterruptedRevalidation && (!future.v7_partialHydration || !initialHydration);
+    // When fog of war is enabled, we enter our `loading` state earlier so we
+    // can discover new routes during the `loading` state.  We skip this if
+    // we've already run actions since we would have done our matching already.
+    // If the children() function threw then, we want to proceed with the
+    // partial matches it discovered.
+    if (isFogOfWar) {
+      if (shouldUpdateNavigationState) {
+        let actionData = getUpdatedActionData(pendingActionResult);
+        updateState(_extends({
+          navigation: loadingNavigation
+        }, actionData !== undefined ? {
+          actionData
+        } : {}), {
+          flushSync
+        });
+      }
+      let discoverResult = await discoverRoutes(matches, location.pathname, request.signal);
+      if (discoverResult.type === "aborted") {
+        return {
+          shortCircuited: true
+        };
+      } else if (discoverResult.type === "error") {
+        let {
+          error,
+          notFoundMatches,
+          route
+        } = handleDiscoverRouteError(location.pathname, discoverResult);
+        return {
+          matches: notFoundMatches,
+          loaderData: {},
+          errors: {
+            [route.id]: error
+          }
+        };
+      } else if (!discoverResult.matches) {
+        let {
+          error,
+          notFoundMatches,
+          route
+        } = handleNavigational404(location.pathname);
+        return {
+          matches: notFoundMatches,
+          loaderData: {},
+          errors: {
+            [route.id]: error
+          }
+        };
+      } else {
+        matches = discoverResult.matches;
+      }
+    }
     let routesToUse = inFlightDataRoutes || dataRoutes;
     let [matchesToLoad, revalidatingFetchers] = getMatchesToLoad(init.history, state, matches, activeSubmission, location, future.v7_partialHydration && initialHydration === true, future.unstable_skipActionErrorRevalidation, isRevalidationRequired, cancelledDeferredRoutes, cancelledFetcherLoads, deletedFetchers, fetchLoadMatches, fetchRedirectIds, routesToUse, basename, pendingActionResult);
     // Cancel pending deferreds for no-longer-matched routes or routes we're
@@ -38925,40 +40176,20 @@ function router_createRouter(init) {
         shortCircuited: true
       };
     }
-    // If this is an uninterrupted revalidation, we remain in our current idle
-    // state.  If not, we need to switch to our loading state and load data,
-    // preserving any new action data or existing action data (in the case of
-    // a revalidation interrupting an actionReload)
-    // If we have partialHydration enabled, then don't update the state for the
-    // initial data load since it's not a "navigation"
-    if (!isUninterruptedRevalidation && (!future.v7_partialHydration || !initialHydration)) {
-      revalidatingFetchers.forEach(rf => {
-        let fetcher = state.fetchers.get(rf.key);
-        let revalidatingFetcher = getLoadingFetcher(undefined, fetcher ? fetcher.data : undefined);
-        state.fetchers.set(rf.key, revalidatingFetcher);
-      });
-      let actionData;
-      if (pendingActionResult && !isErrorResult(pendingActionResult[1])) {
-        // This is cast to `any` currently because `RouteData`uses any and it
-        // would be a breaking change to use any.
-        // TODO: v7 - change `RouteData` to use `unknown` instead of `any`
-        actionData = {
-          [pendingActionResult[0]]: pendingActionResult[1].data
-        };
-      } else if (state.actionData) {
-        if (Object.keys(state.actionData).length === 0) {
-          actionData = null;
-        } else {
-          actionData = state.actionData;
+    if (shouldUpdateNavigationState) {
+      let updates = {};
+      if (!isFogOfWar) {
+        // Only update navigation/actionNData if we didn't already do it above
+        updates.navigation = loadingNavigation;
+        let actionData = getUpdatedActionData(pendingActionResult);
+        if (actionData !== undefined) {
+          updates.actionData = actionData;
         }
       }
-      updateState(_extends({
-        navigation: loadingNavigation
-      }, actionData !== undefined ? {
-        actionData
-      } : {}, revalidatingFetchers.length > 0 ? {
-        fetchers: new Map(state.fetchers)
-      } : {}), {
+      if (revalidatingFetchers.length > 0) {
+        updates.fetchers = getUpdatedRevalidatingFetchers(revalidatingFetchers);
+      }
+      updateState(updates, {
         flushSync
       });
     }
@@ -39043,11 +40274,36 @@ function router_createRouter(init) {
     let didAbortFetchLoads = abortStaleFetchLoads(pendingNavigationLoadId);
     let shouldUpdateFetchers = updatedFetchers || didAbortFetchLoads || revalidatingFetchers.length > 0;
     return _extends({
+      matches,
       loaderData,
       errors
     }, shouldUpdateFetchers ? {
       fetchers: new Map(state.fetchers)
     } : {});
+  }
+  function getUpdatedActionData(pendingActionResult) {
+    if (pendingActionResult && !isErrorResult(pendingActionResult[1])) {
+      // This is cast to `any` currently because `RouteData`uses any and it
+      // would be a breaking change to use any.
+      // TODO: v7 - change `RouteData` to use `unknown` instead of `any`
+      return {
+        [pendingActionResult[0]]: pendingActionResult[1].data
+      };
+    } else if (state.actionData) {
+      if (Object.keys(state.actionData).length === 0) {
+        return null;
+      } else {
+        return state.actionData;
+      }
+    }
+  }
+  function getUpdatedRevalidatingFetchers(revalidatingFetchers) {
+    revalidatingFetchers.forEach(rf => {
+      let fetcher = state.fetchers.get(rf.key);
+      let revalidatingFetcher = getLoadingFetcher(undefined, fetcher ? fetcher.data : undefined);
+      state.fetchers.set(rf.key, revalidatingFetcher);
+    });
+    return new Map(state.fetchers);
   }
   // Trigger a fetcher load/submit for the given fetcher key
   function fetch(key, routeId, href, opts) {
@@ -39059,6 +40315,10 @@ function router_createRouter(init) {
     let routesToUse = inFlightDataRoutes || dataRoutes;
     let normalizedPath = normalizeTo(state.location, state.matches, basename, future.v7_prependBasename, href, future.v7_relativeSplatPath, routeId, opts == null ? void 0 : opts.relative);
     let matches = router_matchRoutes(routesToUse, normalizedPath, basename);
+    let fogOfWar = checkFogOfWar(matches, routesToUse, normalizedPath);
+    if (fogOfWar.active && fogOfWar.matches) {
+      matches = fogOfWar.matches;
+    }
     if (!matches) {
       setFetcherError(key, routeId, getInternalRouterError(404, {
         pathname: normalizedPath
@@ -39081,7 +40341,7 @@ function router_createRouter(init) {
     let match = getTargetMatch(matches, path);
     pendingPreventScrollReset = (opts && opts.preventScrollReset) === true;
     if (submission && isMutationMethod(submission.formMethod)) {
-      handleFetcherAction(key, routeId, path, match, matches, flushSync, submission);
+      handleFetcherAction(key, routeId, path, match, matches, fogOfWar.active, flushSync, submission);
       return;
     }
     // Store off the match so we can call it's shouldRevalidate on subsequent
@@ -39090,22 +40350,28 @@ function router_createRouter(init) {
       routeId,
       path
     });
-    handleFetcherLoader(key, routeId, path, match, matches, flushSync, submission);
+    handleFetcherLoader(key, routeId, path, match, matches, fogOfWar.active, flushSync, submission);
   }
   // Call the action for the matched fetcher.submit(), and then handle redirects,
   // errors, and revalidation
-  async function handleFetcherAction(key, routeId, path, match, requestMatches, flushSync, submission) {
+  async function handleFetcherAction(key, routeId, path, match, requestMatches, isFogOfWar, flushSync, submission) {
     interruptActiveLoads();
     fetchLoadMatches.delete(key);
-    if (!match.route.action && !match.route.lazy) {
-      let error = getInternalRouterError(405, {
-        method: submission.formMethod,
-        pathname: path,
-        routeId: routeId
-      });
-      setFetcherError(key, routeId, error, {
-        flushSync
-      });
+    function detectAndHandle405Error(m) {
+      if (!m.route.action && !m.route.lazy) {
+        let error = getInternalRouterError(405, {
+          method: submission.formMethod,
+          pathname: path,
+          routeId: routeId
+        });
+        setFetcherError(key, routeId, error, {
+          flushSync
+        });
+        return true;
+      }
+      return false;
+    }
+    if (!isFogOfWar && detectAndHandle405Error(match)) {
       return;
     }
     // Put this fetcher into it's submitting state
@@ -39113,9 +40379,36 @@ function router_createRouter(init) {
     updateFetcherState(key, getSubmittingFetcher(submission, existingFetcher), {
       flushSync
     });
-    // Call the action for the fetcher
     let abortController = new AbortController();
     let fetchRequest = createClientSideRequest(init.history, path, abortController.signal, submission);
+    if (isFogOfWar) {
+      let discoverResult = await discoverRoutes(requestMatches, path, fetchRequest.signal);
+      if (discoverResult.type === "aborted") {
+        return;
+      } else if (discoverResult.type === "error") {
+        let {
+          error
+        } = handleDiscoverRouteError(path, discoverResult);
+        setFetcherError(key, routeId, error, {
+          flushSync
+        });
+        return;
+      } else if (!discoverResult.matches) {
+        setFetcherError(key, routeId, getInternalRouterError(404, {
+          pathname: path
+        }), {
+          flushSync
+        });
+        return;
+      } else {
+        requestMatches = discoverResult.matches;
+        match = getTargetMatch(requestMatches, path);
+        if (detectAndHandle405Error(match)) {
+          return;
+        }
+      }
+    }
+    // Call the action for the fetcher
     fetchControllers.set(key, abortController);
     let originatingLoadId = incrementingLoadId;
     let actionResults = await callDataStrategy("action", fetchRequest, [match], requestMatches);
@@ -39257,14 +40550,38 @@ function router_createRouter(init) {
     }
   }
   // Call the matched loader for fetcher.load(), handling redirects, errors, etc.
-  async function handleFetcherLoader(key, routeId, path, match, matches, flushSync, submission) {
+  async function handleFetcherLoader(key, routeId, path, match, matches, isFogOfWar, flushSync, submission) {
     let existingFetcher = state.fetchers.get(key);
     updateFetcherState(key, getLoadingFetcher(submission, existingFetcher ? existingFetcher.data : undefined), {
       flushSync
     });
-    // Call the loader for this fetcher route match
     let abortController = new AbortController();
     let fetchRequest = createClientSideRequest(init.history, path, abortController.signal);
+    if (isFogOfWar) {
+      let discoverResult = await discoverRoutes(matches, path, fetchRequest.signal);
+      if (discoverResult.type === "aborted") {
+        return;
+      } else if (discoverResult.type === "error") {
+        let {
+          error
+        } = handleDiscoverRouteError(path, discoverResult);
+        setFetcherError(key, routeId, error, {
+          flushSync
+        });
+        return;
+      } else if (!discoverResult.matches) {
+        setFetcherError(key, routeId, getInternalRouterError(404, {
+          pathname: path
+        }), {
+          flushSync
+        });
+        return;
+      } else {
+        matches = discoverResult.matches;
+        match = getTargetMatch(matches, path);
+      }
+    }
+    // Call the loader for this fetcher route match
     fetchControllers.set(key, abortController);
     let originatingLoadId = incrementingLoadId;
     let results = await callDataStrategy("loader", fetchRequest, [match], matches);
@@ -39631,6 +40948,38 @@ function router_createRouter(init) {
       return blockerKey;
     }
   }
+  function handleNavigational404(pathname) {
+    let error = getInternalRouterError(404, {
+      pathname
+    });
+    let routesToUse = inFlightDataRoutes || dataRoutes;
+    let {
+      matches,
+      route
+    } = getShortCircuitMatches(routesToUse);
+    // Cancel all pending deferred on 404s since we don't keep any routes
+    cancelActiveDeferreds();
+    return {
+      notFoundMatches: matches,
+      route,
+      error
+    };
+  }
+  function handleDiscoverRouteError(pathname, discoverResult) {
+    let matches = discoverResult.partialMatches;
+    let route = matches[matches.length - 1].route;
+    let error = getInternalRouterError(400, {
+      type: "route-discovery",
+      routeId: route.id,
+      pathname,
+      message: discoverResult.error != null && "message" in discoverResult.error ? discoverResult.error : String(discoverResult.error)
+    });
+    return {
+      notFoundMatches: matches,
+      route,
+      error
+    };
+  }
   function cancelActiveDeferreds(predicate) {
     let cancelledRouteIds = [];
     activeDeferreds.forEach((dfd, routeId) => {
@@ -39692,9 +41041,127 @@ function router_createRouter(init) {
     }
     return null;
   }
+  function checkFogOfWar(matches, routesToUse, pathname) {
+    if (patchRoutesOnMissImpl) {
+      if (!matches) {
+        let fogMatches = matchRoutesImpl(routesToUse, pathname, basename, true);
+        return {
+          active: true,
+          matches: fogMatches || []
+        };
+      } else {
+        let leafRoute = matches[matches.length - 1].route;
+        if (leafRoute.path && (leafRoute.path === "*" || leafRoute.path.endsWith("/*"))) {
+          // If we matched a splat, it might only be because we haven't yet fetched
+          // the children that would match with a higher score, so let's fetch
+          // around and find out
+          let partialMatches = matchRoutesImpl(routesToUse, pathname, basename, true);
+          return {
+            active: true,
+            matches: partialMatches
+          };
+        }
+      }
+    }
+    return {
+      active: false,
+      matches: null
+    };
+  }
+  async function discoverRoutes(matches, pathname, signal) {
+    let partialMatches = matches;
+    let route = partialMatches.length > 0 ? partialMatches[partialMatches.length - 1].route : null;
+    while (true) {
+      let isNonHMR = inFlightDataRoutes == null;
+      let routesToUse = inFlightDataRoutes || dataRoutes;
+      try {
+        await loadLazyRouteChildren(patchRoutesOnMissImpl, pathname, partialMatches, routesToUse, manifest, mapRouteProperties, pendingPatchRoutes, signal);
+      } catch (e) {
+        return {
+          type: "error",
+          error: e,
+          partialMatches
+        };
+      } finally {
+        // If we are not in the middle of an HMR revalidation and we changed the
+        // routes, provide a new identity so when we `updateState` at the end of
+        // this navigation/fetch `router.routes` will be a new identity and
+        // trigger a re-run of memoized `router.routes` dependencies.
+        // HMR will already update the identity and reflow when it lands
+        // `inFlightDataRoutes` in `completeNavigation`
+        if (isNonHMR) {
+          dataRoutes = [...dataRoutes];
+        }
+      }
+      if (signal.aborted) {
+        return {
+          type: "aborted"
+        };
+      }
+      let newMatches = router_matchRoutes(routesToUse, pathname, basename);
+      let matchedSplat = false;
+      if (newMatches) {
+        let leafRoute = newMatches[newMatches.length - 1].route;
+        if (leafRoute.index) {
+          // If we found an index route, we can stop
+          return {
+            type: "success",
+            matches: newMatches
+          };
+        }
+        if (leafRoute.path && leafRoute.path.length > 0) {
+          if (leafRoute.path === "*") {
+            // If we found a splat route, we can't be sure there's not a
+            // higher-scoring route down some partial matches trail so we need
+            // to check that out
+            matchedSplat = true;
+          } else {
+            // If we found a non-splat route, we can stop
+            return {
+              type: "success",
+              matches: newMatches
+            };
+          }
+        }
+      }
+      let newPartialMatches = matchRoutesImpl(routesToUse, pathname, basename, true);
+      // If we are no longer partially matching anything, this was either a
+      // legit splat match above, or it's a 404.  Also avoid loops if the
+      // second pass results in the same partial matches
+      if (!newPartialMatches || partialMatches.map(m => m.route.id).join("-") === newPartialMatches.map(m => m.route.id).join("-")) {
+        return {
+          type: "success",
+          matches: matchedSplat ? newMatches : null
+        };
+      }
+      partialMatches = newPartialMatches;
+      route = partialMatches[partialMatches.length - 1].route;
+      if (route.path === "*") {
+        // The splat is still our most accurate partial, so run with it
+        return {
+          type: "success",
+          matches: partialMatches
+        };
+      }
+    }
+  }
   function _internalSetRoutes(newRoutes) {
     manifest = {};
     inFlightDataRoutes = convertRoutesToDataRoutes(newRoutes, mapRouteProperties, undefined, manifest);
+  }
+  function patchRoutes(routeId, children) {
+    let isNonHMR = inFlightDataRoutes == null;
+    let routesToUse = inFlightDataRoutes || dataRoutes;
+    patchRoutesImpl(routeId, children, routesToUse, manifest, mapRouteProperties);
+    // If we are not in the middle of an HMR revalidation and we changed the
+    // routes, provide a new identity and trigger a reflow via `updateState`
+    // to re-run memoized `router.routes` dependencies.
+    // HMR will already update the identity and reflow when it lands
+    // `inFlightDataRoutes` in `completeNavigation`
+    if (isNonHMR) {
+      dataRoutes = [...dataRoutes];
+      updateState({});
+    }
   }
   router = {
     get basename() {
@@ -39727,6 +41194,7 @@ function router_createRouter(init) {
     dispose,
     getBlocker,
     deleteBlocker,
+    patchRoutes,
     _internalFetchControllers: fetchControllers,
     _internalActiveDeferreds: activeDeferreds,
     // TODO: Remove setRoutes, it's temporary to avoid dealing with
@@ -40503,6 +41971,49 @@ function shouldRevalidateLoader(loaderMatch, arg) {
   return arg.defaultShouldRevalidate;
 }
 /**
+ * Idempotent utility to execute patchRoutesOnMiss() to lazily load route
+ * definitions and update the routes/routeManifest
+ */
+async function loadLazyRouteChildren(patchRoutesOnMissImpl, path, matches, routes, manifest, mapRouteProperties, pendingRouteChildren, signal) {
+  let key = [path, ...matches.map(m => m.route.id)].join("-");
+  try {
+    let pending = pendingRouteChildren.get(key);
+    if (!pending) {
+      pending = patchRoutesOnMissImpl({
+        path,
+        matches,
+        patch: (routeId, children) => {
+          if (!signal.aborted) {
+            patchRoutesImpl(routeId, children, routes, manifest, mapRouteProperties);
+          }
+        }
+      });
+      pendingRouteChildren.set(key, pending);
+    }
+    if (pending && isPromise(pending)) {
+      await pending;
+    }
+  } finally {
+    pendingRouteChildren.delete(key);
+  }
+}
+function patchRoutesImpl(routeId, children, routesToUse, manifest, mapRouteProperties) {
+  if (routeId) {
+    var _route$children;
+    let route = manifest[routeId];
+    router_invariant(route, "No route found to patch children into: routeId = " + routeId);
+    let dataChildren = convertRoutesToDataRoutes(children, mapRouteProperties, [routeId, "patch", String(((_route$children = route.children) == null ? void 0 : _route$children.length) || "0")], manifest);
+    if (route.children) {
+      route.children.push(...dataChildren);
+    } else {
+      route.children = dataChildren;
+    }
+  } else {
+    let dataChildren = convertRoutesToDataRoutes(children, mapRouteProperties, ["patch", String(routesToUse.length || "0")], manifest);
+    routesToUse.push(...dataChildren);
+  }
+}
+/**
  * Execute route.lazy() methods to lazily load route modules (loader, action,
  * shouldRevalidate) and update the routeManifest in place which shares objects
  * with dataRoutes so those get updated as well.
@@ -41027,13 +42538,16 @@ function getInternalRouterError(status, _temp5) {
     pathname,
     routeId,
     method,
-    type
+    type,
+    message
   } = _temp5 === void 0 ? {} : _temp5;
   let statusText = "Unknown Server Error";
   let errorMessage = "Unknown @remix-run/router error";
   if (status === 400) {
     statusText = "Bad Request";
-    if (method && pathname && routeId) {
+    if (type === "route-discovery") {
+      errorMessage = "Unable to match URL \"" + pathname + "\" - the `children()` function for " + ("route `" + routeId + "` threw the following error:\n" + message);
+    } else if (method && pathname && routeId) {
       errorMessage = "You made a " + method + " request to \"" + pathname + "\" but " + ("did not provide a `loader` for route \"" + routeId + "\", ") + "so there is no way to handle the request.";
     } else if (type === "defer-action") {
       errorMessage = "defer() is not supported in actions";
@@ -41091,6 +42605,9 @@ function isHashChangeOnly(a, b) {
   // If the hash is removed the browser will re-perform a request to the server
   // /page#hash -> /page
   return false;
+}
+function isPromise(val) {
+  return typeof val === "object" && val != null && "then" in val;
 }
 function isHandlerResult(result) {
   return result != null && typeof result === "object" && "type" in result && "result" in result && (result.type === ResultType.data || result.type === ResultType.error);
@@ -41364,7 +42881,7 @@ function persistAppliedTransitions(_window, transitions) {
 
 ;// CONCATENATED MODULE: ./node_modules/react-router/dist/index.js
 /**
- * React Router v6.23.1
+ * React Router v6.24.1
  *
  * Copyright (c) Remix Software Inc.
  *
@@ -42741,7 +44258,8 @@ function createMemoryRouter(routes, opts) {
     hydrationData: opts == null ? void 0 : opts.hydrationData,
     routes,
     mapRouteProperties,
-    unstable_dataStrategy: opts == null ? void 0 : opts.unstable_dataStrategy
+    unstable_dataStrategy: opts == null ? void 0 : opts.unstable_dataStrategy,
+    unstable_patchRoutesOnMiss: opts == null ? void 0 : opts.unstable_patchRoutesOnMiss
   }).initialize();
 }
 
@@ -42750,7 +44268,7 @@ function createMemoryRouter(routes, opts) {
 
 ;// CONCATENATED MODULE: ./node_modules/react-router-dom/dist/index.js
 /**
- * React Router DOM v6.23.1
+ * React Router DOM v6.24.1
  *
  * Copyright (c) Remix Software Inc.
  *
@@ -42990,6 +44508,7 @@ function createBrowserRouter(routes, opts) {
     routes,
     mapRouteProperties: UNSAFE_mapRouteProperties,
     unstable_dataStrategy: opts == null ? void 0 : opts.unstable_dataStrategy,
+    unstable_patchRoutesOnMiss: opts == null ? void 0 : opts.unstable_patchRoutesOnMiss,
     window: opts == null ? void 0 : opts.window
   }).initialize();
 }
@@ -43006,6 +44525,7 @@ function createHashRouter(routes, opts) {
     routes,
     mapRouteProperties: UNSAFE_mapRouteProperties,
     unstable_dataStrategy: opts == null ? void 0 : opts.unstable_dataStrategy,
+    unstable_patchRoutesOnMiss: opts == null ? void 0 : opts.unstable_patchRoutesOnMiss,
     window: opts == null ? void 0 : opts.window
   }).initialize();
 }
@@ -44214,7 +45734,7 @@ const TitleText = (0,react.memo)(
         },
         className: "relative z-10 font-title opacity-100 text-left text-3xl sm:text-3.5xl md:text-4xl"
       },
-      /* @__PURE__ */ React.createElement("span", { className: "relative dark:text-black text-white-8 uppercase whitespace-nowrap font-sans _outline-filter _gradient-text" }, APP_TITLE)
+      /* @__PURE__ */ React.createElement("span", { className: "relative dark:text-black text-white-8 uppercase whitespace-nowrap font-sans _sf-outline _bi-text" }, APP_TITLE)
     );
   }
 );
@@ -44277,7 +45797,7 @@ const Title = () => {
 ;// CONCATENATED MODULE: ./src/shell/ready/context/scroll/top.ts
 
 const useScrollTopHandler = () => {
-  const { ref } = useReadyContext();
+  const { ref } = useContextReady();
   const handler = () => {
     if (!ref.current)
       return;
@@ -44588,7 +46108,76 @@ const cell_usePicCell = (main, scrollY) => {
   };
 };
 
+;// CONCATENATED MODULE: ./src/hooks/pic/selected/write.tsx
+
+
+
+const write_usePicSelectedWrite = (key = SELECTED_PARAM_KEY) => {
+  const { pathname } = useLocation();
+  const navigate = useNavigate();
+  const [searchParams] = useSearchParams();
+  const handler = (nextNames) => {
+    searchParams.delete(key);
+    nextNames.forEach((name) => {
+      if (name) {
+        searchParams.append(key, name);
+      }
+    });
+    paramsMoveToEnd(
+      searchParams,
+      OVER_CELL_PARAM_KEY
+    );
+    navigate(
+      `${pathname}?${searchParams}`
+    );
+  };
+  return handler;
+};
+
+;// CONCATENATED MODULE: ./src/hooks/pic/add-random/ref.ts
+
+
+
+const ref_useAddRandomRef = () => {
+  const { pics } = useTrillPicsStore(
+    ({ pics: pics2 }) => ({
+      pics: pics2
+    })
+  );
+  const handleRandoms = () => {
+    const randoms = resolvePicRandoms({
+      pics
+    });
+    return randoms;
+  };
+  const reducer = useReducer(handleRandoms, [], handleRandoms);
+  return reducer;
+};
+
+;// CONCATENATED MODULE: ./src/hooks/pic/add-random/handler.tsx
+
+
+
+const handler_useAddRandomHandler = () => {
+  const [randoms, randomize] = useAddRandomRef();
+  const handleBlur = useBlurAnimate(
+    "addRandom"
+  );
+  const select = usePicSelectedWrite();
+  const selectRandoms = () => {
+    handleBlur(10);
+    randomize();
+    select(randoms);
+  };
+  return [
+    randoms,
+    selectRandoms,
+    randomize
+  ];
+};
+
 ;// CONCATENATED MODULE: ./src/shell/ready/context/index.tsx
+
 
 
 
@@ -44601,14 +46190,15 @@ const cell_usePicCell = (main, scrollY) => {
 const ReadyContext = (0,react.createContext)(
   {}
 );
-const useReadyContext = () => (0,react.useContext)(ReadyContext);
+const useContextReady = () => (0,react.useContext)(ReadyContext);
 const ReadyContextProvider = ({ children, screen }) => {
-  const initContext = useInitContext();
+  const initContext = useContextInit();
   const [
     foundationValue,
     updateFoundation
   ] = useState(null);
   const isOnscreen = useOnscreen();
+  const random = useAddRandomHandler();
   const ref = useRef(null);
   const fonts = useFonts();
   const scrollTimeoutRef = useTimeoutRef();
@@ -44644,6 +46234,8 @@ const ReadyContextProvider = ({ children, screen }) => {
         resetLayout,
         scrollTimeoutRef,
         screen,
+        container: screen.container,
+        random,
         ...picCellResult,
         ...initContext
       }
@@ -44658,7 +46250,7 @@ const ReadyContextProvider = ({ children, screen }) => {
 
 const use_hover_key_useHoverKey = (config) => {
   const isDisabled = config == null ? void 0 : config.isDisabled;
-  const { main } = useReadyContext();
+  const { main } = useContextReady();
   const {
     hoverKeys,
     isHover,
@@ -44725,21 +46317,37 @@ const use_hover_key_useHoverKey = (config) => {
   };
 };
 
+;// CONCATENATED MODULE: ./src/hooks/pic/video/read/audio/index.ts
+
+
+const audio_resolveVideoReadAudio = (searchParams) => {
+  const src = searchParams.get(
+    QUERY_PARAM_KEYS[AUDIO_SRC_KEY]
+  );
+  const start = searchParams.get(
+    QUERY_PARAM_KEYS[AUDIO_START_PARAM_KEY]
+  );
+  const audio = !isNull(src) && !isNull(start) ? {
+    src,
+    start: Number(start)
+  } : null;
+  return audio;
+};
+
 ;// CONCATENATED MODULE: ./src/hooks/pic/video/read/inputs/index.ts
 
 
 
-const inputs_picVideoReadInputs = (searchParams, fps) => {
-  const seconds = Number(
-    searchParams.get(SECONDS_PARAM_KEY)
-  );
-  const pics = searchParams.getAll(
-    SELECTED_PARAM_KEY
-  );
+
+
+const inputs_picVideoReadInputs = (searchParams, fps, bpm = 60) => {
+  const pics = searchParams.getAll(SELECTED_PARAM_KEY).filter(isNonameInverted);
+  const audio = resolveVideoReadAudio(searchParams);
   const count = pics.length;
   const isPics = count > 0;
+  const seconds = resolveSecondsFromCount(count, bpm);
   return {
-    seconds: seconds || resolveSecondsFromCount(count),
+    seconds,
     pics,
     count,
     isPics,
@@ -44747,7 +46355,8 @@ const inputs_picVideoReadInputs = (searchParams, fps) => {
     fps,
     durationInFrames: Math.ceil(
       fps * seconds
-    )
+    ),
+    audio
   };
 };
 
@@ -44782,7 +46391,9 @@ const hook_usePicVideoReadInputs = () => {
     count,
     isPics,
     dimensions,
-    durationInFrames: Math.ceil(seconds * fps),
+    durationInFrames: Math.ceil(
+      seconds * fps
+    ),
     audio,
     fps
   };
@@ -44834,29 +46445,6 @@ const download_IconsDownload = (props) => {
   );
 };
 
-;// CONCATENATED MODULE: ./config/uno/rules/box/radius.ts
-const BORDER_RADIUS = {
-  s: 2,
-  m: 4,
-  l: 8,
-  xl: 40
-};
-const radius_boxRadius = (key = "xl") => {
-  return BORDER_RADIUS[key];
-};
-
-const boxBorder = ({
-  borderRadius
-}) => {
-  return {
-    ...borderRadius ? {
-      borderRadius: radius_boxRadius(
-        borderRadius
-      )
-    } : {}
-  };
-};
-
 ;// CONCATENATED MODULE: ./src/components/buttons/pill/b/icon.tsx
 
 
@@ -44870,12 +46458,11 @@ const icon_ButtonPillBIcon = ({
   ...props
 }) => {
   const borderRadius = boxRadius();
-  const s = boxSize();
-  size = size ?? s.m;
+  size = size ?? box._;
   return /* @__PURE__ */ React.createElement(
     "div",
     {
-      className: "center relative shrink-0 border-1 border-transparent _gradient-mesh bg-gray-04 dark:bg-black-04 pointer-events-none",
+      className: "center relative shrink-0 border-1 border-transparent _bi-mesh bg-gray-04 dark:bg-black-04 pointer-events-none",
       style: {
         borderRadius,
         height: size,
@@ -44899,67 +46486,53 @@ const icon_ButtonPillBIcon = ({
   );
 };
 
-;// CONCATENATED MODULE: ./src/components/buttons/pill/b/text.tsx
+;// CONCATENATED MODULE: ./src/components/layout/lighting/base.tsx
 
 
 
-
-
-
-
-const text_PillBText = ({
-  children,
-  size,
-  style,
+const base_LightingBase = ({
   classValue,
-  textSizeClass,
+  style,
+  insetClass,
+  opacityClass,
+  lightingClass,
   ...props
 }) => {
-  const s = boxSize();
-  size = size ?? s.m;
-  const { isIdle, isHover } = useTrillPicsStore(
-    ({ isIdle: isIdle2, isHover: isHover2 }) => ({
-      isIdle: isIdle2,
-      isHover: isHover2
-    })
-  );
-  return /* @__PURE__ */ React.createElement(React.Fragment, null, isString(children) ? /* @__PURE__ */ React.createElement(
+  const borderRadius = boxRadius();
+  return /* @__PURE__ */ React.createElement(
     motion.div,
     {
       className: clsx(
-        "relative top-2 px-0 text-left pointer-events-none z-0",
-        classValue,
-        textSizeClass ?? "text-sm"
+        "absolute",
+        lightingClass ?? "bg-white",
+        opacityClass ?? "dark:opacity-40 opacity-20",
+        insetClass ?? "-inset-1",
+        classValue
       ),
+      layout: true,
       style: {
-        height: s.height,
+        borderRadius,
+        filter: "blur(6px)",
         ...style
       },
       ...props
-    },
-    /* @__PURE__ */ React.createElement(SubtitleText, null, (isIdle || isHover(
-      TITLE_HOVER_KEY
-    )) && /* @__PURE__ */ React.createElement(
-      motion.div,
-      {
-        className: "absolute -inset-y-2 -inset-x-1 bg-white-2 dark:bg-gray-5 rounded-lg z-0 pointer-events-none",
-        initial: { opacity: 0 },
-        animate: {
-          opacity: 0.2
-        },
-        exit: { opacity: 0 },
-        style: {
-          filter: "blur(8px)"
-        }
-      }
-    ), /* @__PURE__ */ React.createElement("span", { className: "relative" }, children))
-  ) : /* @__PURE__ */ React.createElement(React.Fragment, null, children));
+    }
+  );
 };
-{
-}
+
+;// CONCATENATED MODULE: ./src/components/layout/lighting/glow.tsx
+
+const glow_LightingGlow = ({ ...props }) => {
+  return /* @__PURE__ */ React.createElement(
+    LightingBase,
+    {
+      lightingClass: "_bi-radial",
+      ...props
+    }
+  );
+};
 
 ;// CONCATENATED MODULE: ./src/components/buttons/pill/b/layout.tsx
-
 
 
 
@@ -44978,10 +46551,9 @@ const layout_PillBLayout = ({
     style: mainStyle,
     ...mainRest
   } = mainProps;
-  const s = boxSize();
-  size = size ?? s.m;
+  size = size ?? box._;
   const borderRadius = boxRadius();
-  return /* @__PURE__ */ React.createElement(React.Fragment, null, /* @__PURE__ */ React.createElement(
+  return /* @__PURE__ */ React.createElement(
     motion.div,
     {
       className: clsx(
@@ -44999,10 +46571,11 @@ const layout_PillBLayout = ({
     !children && /* @__PURE__ */ React.createElement(
       "div",
       {
-        className: "absolute -inset-0.675 _gradient-radial",
+        className: "absolute -inset-0.675 _bi-radial",
         style: { borderRadius }
       }
     ),
+    /* @__PURE__ */ React.createElement(LightingGlow, null),
     /* @__PURE__ */ React.createElement(
       ButtonPillBIcon,
       {
@@ -45011,10 +46584,74 @@ const layout_PillBLayout = ({
         outerCircle
       }
     )
-  ), children && /* @__PURE__ */ React.createElement(React.Fragment, null, isString(children) ? /* @__PURE__ */ React.createElement(PillBText, null, children) : /* @__PURE__ */ React.createElement(React.Fragment, null, children)));
+  );
 };
 
+;// CONCATENATED MODULE: ./src/components/buttons/pill/b/text.tsx
+
+
+
+
+
+
+const text_PillBText = ({
+  children,
+  size,
+  style,
+  classValue,
+  textSizeClass,
+  ...props
+}) => {
+  const s = box;
+  size = size ?? box._;
+  const { isIdle, isHover } = useTrillPicsStore(
+    ({ isIdle: isIdle2, isHover: isHover2 }) => ({
+      isIdle: isIdle2,
+      isHover: isHover2
+    })
+  );
+  return /* @__PURE__ */ React.createElement(
+    motion.div,
+    {
+      className: clsx(
+        "relative top-2 px-0 text-left pointer-events-none z-0",
+        classValue,
+        textSizeClass ?? "text-sm"
+      ),
+      style: {
+        height: box.height,
+        ...style
+      },
+      ...props
+    },
+    /* @__PURE__ */ React.createElement(SubtitleText, null, (isIdle || isHover(TITLE_HOVER_KEY)) && /* @__PURE__ */ React.createElement(
+      motion.div,
+      {
+        className: "fill bg-white-2 dark:bg-white _bi-radial z-0 pointer-events-none",
+        initial: { opacity: 0 },
+        animate: {
+          opacity: 0.6
+        },
+        exit: { opacity: 0 },
+        style: {
+          filter: "blur(14px)",
+          borderRadius: box.radius.xl,
+          mixBlendMode: "soft-light",
+          ...box.ix(-box._025),
+          ...box.iy(box._003125)
+        }
+      }
+    ), /* @__PURE__ */ React.createElement("span", { className: "relative" }, children))
+  );
+};
+{
+}
+
 ;// CONCATENATED MODULE: ./src/components/buttons/pill/b/index.tsx
+
+
+
+
 
 
 
@@ -45030,9 +46667,9 @@ const b_PillB = (props) => {
     style,
     direction = "ltr",
     disabled,
-    positionClass
+    positionClass,
+    children
   } = props;
-  const s = boxSize();
   const borderRadius = boxRadius();
   return /* @__PURE__ */ React.createElement(
     Root,
@@ -45050,19 +46687,43 @@ const b_PillB = (props) => {
         "shrink-0",
         "cursor-pointer",
         "disabled:(grayscale-100 brightness-60 opacity-80 cursor-not-allowed)",
-        "hover:grayscale-100",
+        "hover:brightness-120",
         classValue,
         direction === "ltr" ? "row" : "row-reverse"
       ),
       style: {
-        gap: s.m05,
-        height: s.m,
+        gap: box._,
+        height: box._,
         borderRadius,
         ...style
       },
       ...props
     },
-    /* @__PURE__ */ React.createElement(PillBLayout, { ...props })
+    /* @__PURE__ */ React.createElement(PillBLayout, { ...props }),
+    /* @__PURE__ */ React.createElement(AnimatePresence, null, children && /* @__PURE__ */ React.createElement(
+      Fragment,
+      {
+        key: resolveCompositeKey(
+          "pill-b-children",
+          title
+        )
+      },
+      /* @__PURE__ */ React.createElement(
+        "div",
+        {
+          style: {
+            padding: box._0125
+          }
+        }
+      ),
+      isString(children) ? /* @__PURE__ */ React.createElement(
+        PillBText,
+        {
+          ...PRESENCE_OPACITY
+        },
+        children
+      ) : /* @__PURE__ */ React.createElement(React.Fragment, null, children)
+    ))
   );
 };
 
@@ -45080,9 +46741,8 @@ const overlay_LayoutOverlay = ({
   subtitle,
   direction = "ltr",
   isShown = true,
-  backdrop = /* @__PURE__ */ React.createElement(LayoutOverlayBackdrop, null)
+  backdrop = /* @__PURE__ */ React.createElement(LayoutOverlayBackdrop, { direction })
 }) => {
-  const s = boxSize();
   return /* @__PURE__ */ React.createElement(PortalBody, null, /* @__PURE__ */ React.createElement(AnimatePresence, null, isShown && /* @__PURE__ */ React.createElement(React.Fragment, null, backdrop, /* @__PURE__ */ React.createElement(
     motion.div,
     {
@@ -45099,13 +46759,13 @@ const overlay_LayoutOverlay = ({
           "relative center min-w-0 w-full sm:px-2 lg:px-12 xl:px-24 xl:w-xl top-0 left-1/2 -translate-x-1/2",
           direction === "ltr" ? "column-end text-right" : "column-start text-left"
         ),
-        style: { gap: s.m05 }
+        style: { gap: box._05 }
       },
-      /* @__PURE__ */ React.createElement("h3", { className: "text-5xl sm:text-6xl xl:text-8xl char-gap-6 text-white-8 dark:text-black-2 font-title _outline-filter" }, children),
-      subtitle && /* @__PURE__ */ React.createElement(React.Fragment, null, /* @__PURE__ */ React.createElement("div", { className: "relative w-full" }, /* @__PURE__ */ React.createElement(
+      /* @__PURE__ */ React.createElement("h3", { className: "text-5xl sm:text-6xl xl:text-8xl char-gap-6 text-white-8 dark:text-black-2 font-sans uppercase _sf-outline" }, children),
+      /* @__PURE__ */ React.createElement("div", { className: "relative w-full" }, /* @__PURE__ */ React.createElement(
         LinesHorizontal,
         {
-          colorClass: "text-teal dark:text-blue border-t-current _gradient-border",
+          colorClass: "_bi-border",
           opacityClass: "opacity-100",
           sizeClass: "border-t-4"
         }
@@ -45115,7 +46775,8 @@ const overlay_LayoutOverlay = ({
           opacityClass: "opacity-100",
           sizeClass: "border-t-4"
         }
-      )), /* @__PURE__ */ React.createElement("div", { className: "px-2 relative text-3.5xl md:text-4xl xl:text-5xl font-sans mix-blend-soft-light" }, /* @__PURE__ */ React.createElement(LinesHorizontalShadow, null), /* @__PURE__ */ React.createElement(
+      )),
+      subtitle && /* @__PURE__ */ React.createElement(React.Fragment, null, /* @__PURE__ */ React.createElement("div", { className: "px-2 relative text-3.5xl md:text-4xl xl:text-5xl font-sans mix-blend-soft-light" }, /* @__PURE__ */ React.createElement(LinesHorizontalShadow, null), /* @__PURE__ */ React.createElement(
         "div",
         {
           className: clsx(
@@ -45144,15 +46805,19 @@ const hover_PillBHover = ({
   subtitle,
   children = title,
   onClick,
+  style,
+  hoverKeyConfig,
   ...props
 }) => {
   const { endTimeout, timeoutRef } = useTimeoutRef();
   const { pathname } = useLocation();
   const [isMoving, setMoving] = useState(false);
-  const { set, isIdle } = useTrillPicsStore(
-    ({ set: set2, isIdle: isIdle2 }) => ({ set: set2, isIdle: isIdle2 })
+  const { isIdle } = useTrillPicsStore(
+    ({ isIdle: isIdle2 }) => ({
+      isIdle: isIdle2
+    })
   );
-  const { motionHandlers, isHover } = useHoverKey();
+  const { motionHandlers, isHover } = useHoverKey(hoverKeyConfig);
   useEffect(() => {
     endTimeout();
     if (!isMoving) {
@@ -45176,6 +46841,10 @@ const hover_PillBHover = ({
     {
       title,
       onClick: handleClick,
+      style: {
+        ...isHovering ? { zIndex: 99 } : {},
+        ...style
+      },
       ...motionHandlers(title),
       ...props
     },
@@ -45192,120 +46861,7 @@ const hover_PillBHover = ({
   ));
 };
 
-;// CONCATENATED MODULE: ./src/shell/global/sound/index.tsx
-
-
-
-const Context = (0,react.createContext)(
-  {}
-);
-const sound_useSoundContext = () => useContext(Context);
-const ShellSoundProvider = ({ children }) => {
-  const [audio, setAudio] = useState(null);
-  const [bpm, setBpm] = useState(80);
-  const isAudio = isString(audio);
-  const saveProgress = useMotionValue(0);
-  const { context, master, bufferSourceRecord, ...sound } = useMemo(() => {
-    const context2 = new AudioContext();
-    const master2 = context2.createGain();
-    master2.gain.value = 4;
-    master2.connect(
-      context2.destination
-    );
-    const destination = new MediaStreamAudioDestinationNode(
-      context2
-    );
-    master2.connect(destination);
-    const recorder = new MediaRecorder(
-      destination.stream
-    );
-    const chunks = [];
-    const arrayBuffer = new Float32Array();
-    return {
-      isRecording: false,
-      context: context2,
-      master: master2,
-      destination,
-      recorder,
-      chunks,
-      arrayBuffer,
-      saveProgress,
-      bufferSourceRecord: {}
-    };
-  }, []);
-  const start = () => {
-    sound.recorder.ondataavailable = (event) => {
-      var _a;
-      console.log(
-        "sound.recorder.ondataavailable "
-      );
-      console.dir(event);
-      if (((_a = event.data) == null ? void 0 : _a.size) > 0) {
-        sound.chunks = [
-          ...sound.chunks,
-          event.data
-        ];
-      }
-    };
-    sound.recorder.start();
-    sound.isRecording = true;
-  };
-  const stop = () => {
-    sound.recorder.stop();
-    sound.isRecording = false;
-  };
-  useEffect(() => {
-    sound.recorder.onstop = (event) => {
-      console.log(
-        "sound.recorder.onstop "
-      );
-      console.dir(event);
-      console.log(sound.chunks);
-      const audioBlob = new Blob(
-        sound.chunks,
-        {
-          type: "audio/webm"
-        }
-      );
-      if (isAudio) {
-        window.URL.revokeObjectURL(
-          audio
-        );
-      }
-      const url = window.URL.createObjectURL(
-        audioBlob
-      );
-      setAudio({
-        src: url,
-        seconds: bpm / 60 * 8
-      });
-      console.log(
-        `Recorder stopped: Recorded chunks: ${sound.chunks.length}`
-      );
-    };
-  }, []);
-  return /* @__PURE__ */ React.createElement(
-    Context.Provider,
-    {
-      value: {
-        start,
-        stop,
-        context,
-        master,
-        sound,
-        bufferSourceRecord,
-        saveProgress,
-        audio,
-        bpm,
-        updateBpm: setBpm
-      }
-    },
-    children
-  );
-};
-
 ;// CONCATENATED MODULE: ./src/pages/video/player/_controls/download/index.tsx
-
 
 
 
@@ -45326,10 +46882,11 @@ const DEFAULT_INPUT = {
   count: 0,
   seconds: 1,
   isPics: false,
-  dimensions: { ...remotion_PIC_DIMENSIONS }
+  dimensions: { ...remotion_PIC_DIMENSIONS },
+  recording: null,
+  audio: null
 };
 const Download = ({ children, ...props }) => {
-  const s = boxSize();
   const inputFromParams = usePicVideoReadInputs();
   const { set } = useTrillPicsStore(
     ({ set: set2 }) => ({
@@ -45397,7 +46954,6 @@ const Download = ({ children, ...props }) => {
   useEffect(() => {
     return reset;
   }, []);
-  const { audio } = useSoundContext();
   const {
     isError,
     isIdle,
@@ -45422,8 +46978,7 @@ const Download = ({ children, ...props }) => {
     }
   });
   const input = {
-    ...inputFromParams,
-    audio
+    ...inputFromParams
   };
   const handleGenerate = () => {
     console.log(
@@ -45434,7 +46989,7 @@ const Download = ({ children, ...props }) => {
     mutate({
       // ...(audioBlob && audioBlob instanceof
       //   ? {
-      //       audio:
+      //       recording:
       //         window.URL.createObjectURL(
       //           audioBlob
       //         ),
@@ -45448,7 +47003,9 @@ const Download = ({ children, ...props }) => {
     "div",
     {
       className: "relative flex",
-      style: { ...resolveSquare(s.m) }
+      style: {
+        ...resolveSquare(box._)
+      }
     },
     /* @__PURE__ */ React.createElement(
       PillBHover,
@@ -45456,7 +47013,7 @@ const Download = ({ children, ...props }) => {
         title,
         isSelected: isHovering,
         style: {
-          ...resolveSquare(s.m)
+          ...resolveSquare(box._)
         },
         circleProps: {
           isGlow: isSuccess,
@@ -45488,15 +47045,21 @@ const TOTAL_GAP = 40;
 
 ;// CONCATENATED MODULE: ./src/hooks/pic/randoms/index.ts
 
-const resolvePicRandoms = ({
+const resolveRandomPic = (pics) => `${Math.floor(
+  (pics.length - 1) * Math.random() + 1
+)}`;
+const randoms_resolvePicRandoms = ({
   pics,
   count = MAX_COUNT
 }) => {
-  return [...Array(count)].map(
-    () => `${Math.floor(
-      (pics.length - 1) * Math.random() + 1
-    )}`
-  );
+  const randoms = [];
+  while (randoms.length < count) {
+    const next = resolveRandomPic(pics);
+    if (!randoms.includes(next)) {
+      randoms.push(next);
+    }
+  }
+  return randoms;
 };
 
 ;// CONCATENATED MODULE: ./src/hooks/within-player-bounds.ts
@@ -45545,7 +47108,32 @@ const within_player_bounds_dimensionsWithinPlayerBounds = ({
 };
 
 ;// CONCATENATED MODULE: ./src/hooks/pic/video/read/seconds/from-count.ts
-const from_count_resolveSecondsFromCount = (count) => count * 1.6;
+const MIN_VIDEO_SECONDS = 12;
+const from_count_resolveSecondsFromCount = (count, bpm) => {
+  if (count === 0)
+    return 0;
+  const bps = bpm / 60 / count;
+  let seconds = 0;
+  while (seconds < MIN_VIDEO_SECONDS) {
+    seconds += bps;
+  }
+  return seconds;
+};
+
+;// CONCATENATED MODULE: ./src/constants/keys.ts
+const LOCAL_STORAGE_USER_KEY = "LOCAL_STORAGE_USER_KEY";
+const LOCAL_STORAGE_FORM_KEY = "LOCAL_STORAGE_FORM_KEY";
+const NONAME_PREFIX = "noname-";
+
+;// CONCATENATED MODULE: ./src/utils/validation/is/noname.ts
+
+
+const isNoname = (name) => {
+  if (defined_isDefined(name) && name.startsWith(NONAME_PREFIX))
+    return true;
+  return false;
+};
+const noname_isNonameInverted = (name) => !isNoname(name);
 
 ;// CONCATENATED MODULE: ./src/hooks/remotion/use-props.ts
 
@@ -45555,10 +47143,23 @@ const from_count_resolveSecondsFromCount = (count) => count * 1.6;
 
 
 
+
 const useRemotionProps = (picVideoInputs = DEFAULT_INPUT) => {
-  const { pics: allPics } = middleware_useTrillPicsStore(({ pics: pics2 }) => ({
-    pics: pics2
-  }));
+  const {
+    pics: allPics,
+    fps
+    // bpm,
+  } = middleware_useTrillPicsStore(
+    ({
+      pics: pics2,
+      fps: fps2
+      // bpm,
+    }) => ({
+      pics: pics2,
+      fps: fps2
+      // bpm,
+    })
+  );
   const canvasDimensions = remotion_DIMENSIONS;
   const dimensions = within_player_bounds_dimensionsWithinPlayerBounds({
     canvasDimensions,
@@ -45566,22 +47167,24 @@ const useRemotionProps = (picVideoInputs = DEFAULT_INPUT) => {
     fillMode: "cover"
   });
   const pics = (0,react.useMemo)(() => {
-    return picVideoInputs.isPics ? picVideoInputs.pics : resolvePicRandoms({
+    const result = picVideoInputs.isPics ? picVideoInputs.pics : randoms_resolvePicRandoms({
       pics: allPics
     });
+    return result.filter(
+      noname_isNonameInverted
+    );
   }, [picVideoInputs]);
   const count = pics.length;
-  const seconds = picVideoInputs.seconds || from_count_resolveSecondsFromCount(count);
+  const seconds = picVideoInputs.seconds || from_count_resolveSecondsFromCount(count, 60);
   return {
-    props: {
-      ...picVideoInputs,
-      pics,
-      count,
-      seconds,
-      isPics: count > 0,
-      dimensions
-    },
-    ...canvasDimensions
+    ...picVideoInputs,
+    pics,
+    count,
+    seconds,
+    isPics: count > 0,
+    dimensions,
+    fps,
+    canvasDimensions
   };
 };
 
@@ -45593,8 +47196,8 @@ const useRemotionProps = (picVideoInputs = DEFAULT_INPUT) => {
 const pic_series_INPUT_PROPS = (0,cjs.getInputProps)();
 const CompositionsPicSeries = (__inputPropsPartial) => {
   const {
-    props: inputProps,
-    ...props
+    canvasDimensions,
+    ...inputProps
   } = useRemotionProps({
     ...__inputPropsPartial,
     ...pic_series_INPUT_PROPS
@@ -45608,7 +47211,7 @@ const CompositionsPicSeries = (__inputPropsPartial) => {
       schema: PIC_SERIES_SCHEMA,
       defaultProps: inputProps,
       ...{ fps, durationInFrames },
-      ...props
+      ...canvasDimensions
     }
   );
 };
@@ -45797,7 +47400,10 @@ const GetVideo = ({ state }) => {
   );
 };
 const waitForRootHandle = (0,remotion__WEBPACK_IMPORTED_MODULE_2__.delayRender)(
-  "Loading root component - See https://remotion.dev/docs/troubleshooting/loading-root-component if you experience a timeout"
+  "Loading root component - See https://remotion.dev/docs/troubleshooting/loading-root-component if you experience a timeout",
+  {
+    timeoutInMilliseconds: 1e4
+  }
 );
 const videoContainer = document.getElementById(
   "video-container"
