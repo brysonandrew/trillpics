@@ -18,13 +18,19 @@ import { AudioUploadedItemTimer } from "~/pages/video/music/audio/uploaded/item/
 type TProps = {
   name: string;
   src: string;
+  start: number;
   children(
     elapsed: number
   ): JSX.Element;
 };
 export const AudioUploadedItem: FC<
   TProps
-> = ({ name, src, children }) => {
+> = ({
+  name,
+  src,
+  start,
+  children,
+}) => {
   const [
     uploadedAudioPlayingKey,
     setUploadedAudioPlayingKey,
@@ -33,7 +39,7 @@ export const AudioUploadedItem: FC<
   const [status, setStatus] =
     useState<TAudioStatus>("idle");
   const [elapsed, setElapsed] =
-    useState(0);
+    useState(start);
   const audioRef =
     useRef<HTMLAudioElement | null>(
       null
@@ -47,6 +53,9 @@ export const AudioUploadedItem: FC<
   const handlePlay = async () => {
     if (audioRef.current === null)
       return;
+    audioRef.current.currentTime =
+      start;
+
     await audioRef.current.play();
     setUploadedAudioPlayingKey(src);
   };
@@ -66,7 +75,8 @@ export const AudioUploadedItem: FC<
     handlePause();
     if (audioRef.current === null)
       return;
-    audioRef.current.currentTime = 0;
+    audioRef.current.currentTime =
+      start;
   };
 
   const handleTimeUpdate = () => {

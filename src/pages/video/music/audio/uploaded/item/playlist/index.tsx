@@ -7,6 +7,7 @@ import {
 import { IconsCheckboxChecked } from "~/components/icons/inputs/checkbox/checked";
 import { IconsCheckboxEmpty } from "~/components/icons/inputs/checkbox/empty";
 import { BackgroundGlass } from "~/components/layout/background/glass";
+import { LightingGlow } from "~/components/layout/lighting/glow";
 import {
   AUDIO_SRC_KEY,
   AUDIO_START_PARAM_KEY,
@@ -40,11 +41,14 @@ export const AudioPlaylist: FC = () => {
             className="relative text-white dark:bg-black-2 bg-transparent row-stretch"
             style={{ gap: box._05, ...box.p(box._025) }}
           >
+            <LightingGlow classValue='-inset-2'/>
             <PlayerBackgroundOpaque />
-            <BackgroundGlass />
+            <div className="fill _bi-conic-metal opacity-20"/>
             <AudioUploadedItem
               name={track.title}
               src={track.src}
+              start={isSelected?audio.start:0}
+              
             >
               {(elapsed) => (
                 <button

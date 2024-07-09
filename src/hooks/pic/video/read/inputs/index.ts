@@ -1,12 +1,6 @@
 import { TPicSeriesProps } from "~/components/remotion/pic-series/types";
 import { PIC_DIMENSIONS } from "~/constants/remotion";
-import {
-  AUDIO_SRC_KEY,
-  AUDIO_START_PARAM_KEY,
-  QUERY_PARAM_KEYS,
-  SECONDS_PARAM_KEY,
-  SELECTED_PARAM_KEY,
-} from "~/hooks/pic/constants";
+import { SELECTED_PARAM_KEY } from "~/hooks/pic/constants";
 import { resolveVideoReadAudio } from "~/hooks/pic/video/read/audio";
 import { resolveSecondsFromCount } from "~/hooks/pic/video/read/seconds/from-count";
 import { isNonameInverted } from "~/utils/validation/is/noname";

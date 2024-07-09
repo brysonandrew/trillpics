@@ -13,6 +13,8 @@ import { LinesHorizontal } from "~/components/lines/horizontal";
 import { box } from "~uno/rules/box";
 import { LinesVertical } from "~/components/lines/vertical";
 import { useContextReady } from "~/shell/ready/context";
+import { TypographyXxs } from "~/components/layout/typography/xxs";
+import { TypographySm } from "~/components/layout/typography/sm";
 
 export const OVERFLOW_HIDDEN =
   "overflow: hidden;";
@@ -46,7 +48,7 @@ export const VideoPlayer_ScreenGenerate: FC<
         ref.current.scrollHeight;
     }
   }, [logs.length]);
-  
+
   return (
     <motion.div
       className="fill flex flex-col items-stretch inset-2 -outline-filter text-white dark:text-black"
@@ -61,7 +63,7 @@ export const VideoPlayer_ScreenGenerate: FC<
           style={{
             gap: box._025,
             margin: box._025,
-            padding: `0 ${box._}px`
+            padding: `0 ${box._}px`,
           }}
         >
           <h3
@@ -133,10 +135,12 @@ export const VideoPlayer_ScreenGenerate: FC<
         className="relative hidden md:flex grow h-2/3 overflow-auto bg-gray-04"
         style={{
           margin: box._025,
-          paddingLeft: box._05,
-          paddingRight: box._05,
+          ...box.p(box._05),
         }}
       >
+        <TypographySm>
+          logs
+        </TypographySm>
         <ul>
           {logs.map((log, index) => (
             <li

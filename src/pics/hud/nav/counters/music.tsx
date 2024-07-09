@@ -12,6 +12,7 @@ import { LayoutOverlay } from "~/components/layout/overlay";
 import { IconsCheckboxEmpty } from "~/components/icons/inputs/checkbox/empty";
 import { useSearchParams } from "react-router-dom";
 import { QUERY_PARAM_KEYS } from "~/hooks/pic/constants";
+import { resolveVideoReadAudio } from "~/hooks/pic/video/read/audio";
 
 type TProps = { isHovering: boolean };
 export const NavCountersMusic: FC<
@@ -19,10 +20,9 @@ export const NavCountersMusic: FC<
 > = ({ isHovering }) => {
   const [searchParams] =
     useSearchParams();
-  const audio = searchParams.get(
-    QUERY_PARAM_KEYS["audio-src"]
+  const audio = resolveVideoReadAudio(
+    searchParams
   );
-  const s = box;
   const borderRadius = boxRadius();
 
   if (audio) {

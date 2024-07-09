@@ -8,9 +8,12 @@ import {
   AbsoluteFill,
   Img,
   useCurrentFrame,
-  Audio
+  Audio,
 } from "remotion";
-import { linearTiming, TransitionSeries } from "@remotion/transitions";
+import {
+  linearTiming,
+  TransitionSeries,
+} from "@remotion/transitions";
 import { slide } from "@remotion/transitions/slide";
 import { isDefined } from "~/utils/validation/is/defined";
 
@@ -28,32 +31,32 @@ export const PicSeries: FC<
     seconds,
     count,
     base,
-    recording,
+    audio,
   } = inputProps;
 
-  const frame = useCurrentFrame();
   const {
-    fps,
     width,
     height,
     durationInFrames,
+    fps,
   } = useVideoConfig();
   const unitSeconds = seconds / count;
   const unitFrames = Math.floor(
     durationInFrames / count
-  ); //  unitSeconds * fps;
-  const frameInUnit =
-    frame % unitFrames;
-  // const secondInUnit =
-  //   frameInUnit / (fps * unitSeconds);
+  );
   const delta =
     height -
     inputProps.dimensions.height;
   return (
     <AbsoluteFill>
-      {recording !== null &&
-        isDefined(recording) && (
-          <Audio src={recording.src} />
+      {audio !== null &&
+        isDefined(audio) && (
+          <Audio
+            src={staticFile(audio.src)}
+            startFrom={
+              audio.start * fps
+            }
+          />
         )}
       <TransitionSeries>
         {pics.map((pic, index) => {
@@ -72,10 +75,13 @@ export const PicSeries: FC<
             <Fragment key={`${src}`}>
               {index !== 0 && (
                 <TransitionSeries.Transition
-                  presentation={slide()}
+                  presentation={slide({
+                    direction:
+                      "from-bottom",
+                  })}
                   timing={linearTiming({
                     durationInFrames:
-                      unitFrames/2,
+                      unitFrames / 2,
                   })}
                 />
               )}
@@ -84,14 +90,21 @@ export const PicSeries: FC<
                   unitFrames * 1.5
                 }
               >
-                <Img
-                  src={src}
-                  alt={`${pic}`}
-                  {...{
-                    width,
-                    height: width,
+                <AbsoluteFill
+                  style={{
+                    top:0,
+                    left:0
                   }}
-                />
+                >
+                  <Img
+                    src={src}
+                    alt={`${pic}`}
+                    {...{
+                      width,
+                      height: width,
+                    }}
+                  />
+                </AbsoluteFill>
               </TransitionSeries.Sequence>
             </Fragment>
           );

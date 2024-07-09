@@ -33,8 +33,8 @@ export const AudioUploadedItemWaveform: FC<
       }
     >
       <div
-        className="pointer-events-none bg-black-2 grow"
-        style={{ height: box._05 }}
+        className="pointer-events-none bg-black-4 border-white-01 border grow"
+        style={{ height: box._05, ...box.r.l }}
       />
       <div
         style={{

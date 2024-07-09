@@ -1,4 +1,4 @@
-export const MIN_VIDEO_SECONDS = 8;
+export const MIN_VIDEO_SECONDS = 12;
 export const resolveSecondsFromCount = (
   count: number,
   bpm: number
