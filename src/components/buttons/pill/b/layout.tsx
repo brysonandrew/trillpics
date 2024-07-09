@@ -5,9 +5,10 @@ import { isString } from "unocss";
 import { TPillBProps } from "~/components/buttons/pill/b";
 import { ButtonPillBIcon } from "~/components/buttons/pill/b/icon";
 import { boxRadius } from "~uno/rules/box/radius";
-import { boxSize } from "~uno/rules/box/size";
+import { box } from "~uno/rules/box";
 import { TDivMotionProps } from "@brysonandrew/config-types";
 import { PillBText } from "~/components/buttons/pill/b/text";
+import { LightingGlow } from "~/components/layout/lighting/glow";
 export type TPillBLayoutProps = Partial<
   Pick<
     TPillBProps,
@@ -34,12 +35,12 @@ export const PillBLayout: FC<
     style: mainStyle,
     ...mainRest
   } = mainProps;
-  const s = boxSize();
-  size = size ?? s.m;
+  
+  size = size ?? box._;
   const borderRadius = boxRadius();
 
   return (
-    <>
+
       <motion.div
         className={clsx(
           "center relative bg-white dark:bg-black pointer-events-none z-0 border-2 border-transparent"
@@ -55,27 +56,18 @@ export const PillBLayout: FC<
       >
         {!children && (
           <div
-            className="absolute -inset-0.675 _gradient-radial"
+            className="absolute -inset-0.675 _bi-radial"
             style={{ borderRadius }}
           />
         )}
+        <LightingGlow/>
         <ButtonPillBIcon
           isSelected={isSelected}
           Icon={Icon}
           outerCircle={outerCircle}
         />
       </motion.div>
-      {children && (
-        <>
-          {isString(children) ? (
-            <PillBText>
-              {children}
-            </PillBText>
-          ) : (
-            <>{children}</>
-          )}
-        </>
-      )}
-    </>
+
+
   );
 };

@@ -5,12 +5,12 @@ import {
   TPicDisplayProps,
 } from "~/pics/grid/pic/display";
 import { centerInScreen } from "~/utils/dimensions/center-in-viewport";
-import { useReadyContext } from "~/shell/ready/context";
+import { useContextReady } from "~/shell/ready/context";
 
 export const PicZoomedDisplay: FC<
   TPicDisplayProps
 > = (props) => {
-  const { screen } = useReadyContext();
+  const { screen } = useContextReady();
   const shortest = Math.min(
     screen.width,
     screen.height

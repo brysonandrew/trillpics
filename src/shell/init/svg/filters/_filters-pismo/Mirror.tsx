@@ -3,7 +3,7 @@ import type { FC } from "react";
 const RANDOM = ~~Math.random() * 3.99;
 const COLORS = [...Array(3)].map(() => ~~(Math.random() * 360));
 
-type TProps = { phase: string };
+type TProps = { phase?: string };
 export const Mirror: FC<TProps> = ({ phase }) => (
   <filter id="mirror">
     <feTurbulence
@@ -24,6 +24,6 @@ export const Mirror: FC<TProps> = ({ phase }) => (
     />
     <feGaussianBlur in="displacement" stdDeviation="18 12" numOctaves="2" result="blur" />
     <feOffset in="blur" dx="-12" dy="-10" result="offset" />
-    {/* {phase === "open" && <feColorMatrix in="A" type="hueRotate" values={COLORS[RANDOM] + ""} />} */}
+    {phase === "open" && <feColorMatrix in="A" type="hueRotate" values={COLORS[RANDOM] + ""} />}
   </filter>
 );

@@ -1,4 +1,7 @@
-import { STEPS } from "~/constants/music/steps";
+import {
+  STEPS,
+  STEPS_COUNT,
+} from "~/constants/music/timing";
 
 const resolveBeats = (
   stagger: number,
@@ -7,8 +10,10 @@ const resolveBeats = (
   [...STEPS].map((_, index) =>
     (index + offset) % stagger === 0
       ? 1
-      : 0
+      : null
   );
+
+export const BEATS_1 = resolveBeats(1);
 
 export const BEATS_2 = resolveBeats(2);
 export const BEATS_2_1 = resolveBeats(
@@ -29,3 +34,17 @@ export const BEATS_8_1 = resolveBeats(
   8,
   1
 );
+export const BEATS_8_4 = resolveBeats(
+  8,
+  4
+);
+
+export const resolveBeatsFromIndicies =
+  (indicies: number[]) =>
+    [...STEPS].map((_, index) =>
+      indicies.includes(
+        index % STEPS_COUNT
+      )
+        ? 1
+        : null
+    );

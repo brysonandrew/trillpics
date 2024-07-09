@@ -19,24 +19,27 @@ import {
   TReadyContext,
   TReadyContextProviderProps,
 } from "~/shell/ready/context/types";
-import { useInitContext } from "~/shell/init/context";
+import { useContextInit } from "~/shell/init/context";
+import { useAddRandomHandler } from "~/hooks/pic/add-random/handler";
 
 const ReadyContext = createContext(
   {} as TReadyContext
 );
 
-export const useReadyContext = () =>
+export const useContextReady = () =>
   useContext(ReadyContext);
 
 export const ReadyContextProvider: FC<
   TReadyContextProviderProps
 > = ({ children, screen }) => {
-  const initContext = useInitContext();
+  const initContext = useContextInit();
   const [
     foundationValue,
     updateFoundation,
   ] = useState<TFoundationValue>(null);
   const isOnscreen = useOnscreen();
+  const random=
+  useAddRandomHandler();
 
   const ref: TRefMutable<TGridHandle> =
     useRef<TGridHandle | null>(null);
@@ -81,6 +84,9 @@ export const ReadyContextProvider: FC<
         resetLayout,
         scrollTimeoutRef,
         screen,
+        container: screen.container,
+        random,
+
         ...picCellResult,
         ...initContext,
       }}

@@ -15,6 +15,7 @@ export const RemotionPlayer: FC<
   const { inputProps, ...props } =
     useRemotionPlayerProps(_inputProps);
   const renderLoading = useLoading();
+  console.log(props,inputProps)
   return (
     <Player<
       TPicSeriesSchema,
@@ -29,6 +30,7 @@ export const RemotionPlayer: FC<
       schema={PIC_SERIES_SCHEMA}
       inputProps={inputProps}
       {...props}
+      fps={24}
     />
   );
 };

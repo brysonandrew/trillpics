@@ -4,7 +4,7 @@ import { useAddRandomHandler } from "~/hooks/pic/add-random/handler";
 
 export const useAddRandomEffect =
   () => {
-    const handleAddRandom =
+    const [_,handleAddRandom] =
       useAddRandomHandler();
     const count =
       usePicVideoReadCount();

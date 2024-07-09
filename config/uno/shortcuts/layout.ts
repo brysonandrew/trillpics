@@ -1,6 +1,6 @@
 import { StaticShortcutMap } from "unocss";
 
-export const LAYOUT: StaticShortcutMap =
+export const SHORTCUTS_LAYOUT: StaticShortcutMap =
   {
     container:
       "w-[calc(100%_-_2.75rem)] mx-auto max-w-5xl",

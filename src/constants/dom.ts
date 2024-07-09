@@ -5,7 +5,7 @@ export const ELEMENT_TAGS = [
   'area',
   'article',
   'aside',
-  'audio',
+  'recording',
   'b',
   'base',
   'bdi',

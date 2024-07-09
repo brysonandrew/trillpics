@@ -1,189 +1,150 @@
-"use client";
-
-import * as React from "react";
-
-import CheckIcon from "@/assets/icons/check.svg";
-import ChevronLeftIcon from "@/assets/icons/chevron-left.svg";
-import * as SelectPrimitive from "@radix-ui/react-select";
+import { FC, Fragment } from "react";
+import { cx } from "class-variance-authority";
+import { IconsChevronsDown } from "~/components/icons/chevrons/down";
+import { TSelectValues } from "~/components/inputs/select/types";
 import clsx from "clsx";
+import { SelectItem } from "~/components/inputs/select/item";
+import { box } from "~uno/rules/box";
+import { LinesHorizontalLight } from "~/components/lines/horizontal/light";
+import { InputsBox } from "~/components/inputs/box";
+import { TypographyXxxs } from "~/components/layout/typography/xxxs";
+import { InputsBoxTitle } from "~/components/inputs/box/title";
+import { resolveSquare } from "@brysonandrew/measure";
+import {
+  INPUTS_NUMBER_DROPDOWN_STYLE,
+  INPUTS_NUMBER_DROPDOWN_STYLE_SM,
+  INPUTS_NUMBER_DROPDOWN_TITLE_STYLE,
+} from "~/components/inputs/constants";
+import * as Select from "@radix-ui/react-select";
 
-const Select = SelectPrimitive.Root;
+export type TInputsSelectProps =
+  Select.SelectProps;
+export type TBaseInputsSelectProps =
+  Pick<
+    TInputsSelectProps,
+    "onValueChange" | "defaultValue"
+  >;
+type TProps = TInputsSelectProps &{
+    title?: string | JSX.Element;
+    placeholder: string;
+    values: TSelectValues;
+  };
+export const InputsSelect: FC<
+  TProps
+> = ({
+  values,
+  title,
+  placeholder,
+  ...props
+}) => {
+  return (
+    <Select.Root {...props}>
+      <InputsBox>
+        <Select.Trigger
+          className={clsx(
+            "column-start justify-start bg-black-2",
+            "text-left text-xs font-slab",
+            "truncate",
+            "ring-0 outline-0",
+            "bg-black-2"
+            // "border border-white-01"
+          )}
+          aria-label={placeholder}
+        >
+          {title && (
+            <InputsBoxTitle
+              classValue={cx(
+                "row",
+                "bg-black-2",
+                "border border-white-02"
+              )}
+              style={
+                INPUTS_NUMBER_DROPDOWN_TITLE_STYLE
+              }
+            >
+              {title}
+            </InputsBoxTitle>
+          )}
+          <div
+            className={cx(
+              "w-full",
+            )}
+            style={{
+              ...box.px(box._0125),
+            }}
+          >
+            <TypographyXxxs
+              classValue="truncate w-full"
+              style={{
+                height: box._05,
+              }}
+            >
+              <Select.Value
+                placeholder={
+                  placeholder
+                }
+              />
+            </TypographyXxxs>
 
-const SelectGroup =
-  SelectPrimitive.Group;
+            <Select.Icon
+              className="center"
+              style={{
+              }}
+            >
+              <IconsChevronsDown />
+            </Select.Icon>
+          </div>
+        </Select.Trigger>
+      </InputsBox>
 
-const SelectValue =
-  SelectPrimitive.Value;
-
-const SelectTrigger = React.forwardRef<
-  React.ElementRef<
-    typeof SelectPrimitive.Trigger
-  >,
-  React.ComponentPropsWithoutRef<
-    typeof SelectPrimitive.Trigger
-  >
->(
-  (
-    { className, children, ...props },
-    ref
-  ) => (
-    <SelectPrimitive.Trigger
-      ref={ref}
-      className={clsx(
-        "bg-white text-md flex w-full items-center justify-between rounded-lg border border-gray-200 px-3.5 py-2.5 placeholder:text-gray-500 focus:outline-none focus:ring-4 focus:ring-slate-400 disabled:cursor-not-allowed disabled:opacity-50",
-        className
-      )}
-      {...props}
-    >
-      {children}
-      <ChevronLeftIcon className="size-5 -rotate-90 opacity-50" />
-    </SelectPrimitive.Trigger>
-  )
-);
-SelectTrigger.displayName =
-  SelectPrimitive.Trigger.displayName;
-
-const SelectContent = React.forwardRef<
-  React.ElementRef<
-    typeof SelectPrimitive.Content
-  >,
-  React.ComponentPropsWithoutRef<
-    typeof SelectPrimitive.Content
-  >
->(
-  (
-    { className, children, ...props },
-    ref
-  ) => (
-    <SelectPrimitive.Portal>
-      <SelectPrimitive.Content
-        ref={ref}
-        className={clsx(
-          "animate-in fade-in-80 bg-white relative z-50 min-w-[8rem] overflow-hidden rounded-lg border border-gray-200 text-gray-900 shadow-lg",
-          className
-        )}
-        {...props}
-      >
-        <SelectPrimitive.Viewport className="p-1">
-          {children}
-        </SelectPrimitive.Viewport>
-      </SelectPrimitive.Content>
-    </SelectPrimitive.Portal>
-  )
-);
-SelectContent.displayName =
-  SelectPrimitive.Content.displayName;
-
-const SelectLabel = React.forwardRef<
-  React.ElementRef<
-    typeof SelectPrimitive.Label
-  >,
-  React.ComponentPropsWithoutRef<
-    typeof SelectPrimitive.Label
-  >
->(({ className, ...props }, ref) => (
-  <SelectPrimitive.Label
-    ref={ref}
-    className={clsx(
-      "py-1.5 pl-8 pr-2 text-sm font-semibold text-slate-900 dark:text-slate-300",
-      className
-    )}
-    {...props}
-  />
-));
-SelectLabel.displayName =
-  SelectPrimitive.Label.displayName;
-
-const SelectIcon = React.forwardRef<
-  React.ElementRef<
-    typeof SelectPrimitive.Icon
-  >,
-  React.ComponentPropsWithoutRef<
-    typeof SelectPrimitive.Icon
-  >
->(
-  (
-    { className, children, ...props },
-    ref
-  ) => (
-    <SelectPrimitive.Icon
-      ref={ref}
-      className={clsx(
-        "shrink-0",
-        className
-      )}
-      {...props}
-    >
-      {children}
-    </SelectPrimitive.Icon>
-  )
-);
-SelectIcon.displayName =
-  SelectPrimitive.Icon.displayName;
-
-const SelectItem = React.forwardRef<
-  React.ElementRef<
-    typeof SelectPrimitive.Item
-  >,
-  React.ComponentPropsWithoutRef<
-    typeof SelectPrimitive.Item
-  >
->(
-  (
-    { className, children, ...props },
-    ref
-  ) => (
-    <SelectPrimitive.Item
-      ref={ref}
-      className={clsx(
-        "text-md relative flex cursor-default select-none items-center rounded-md py-2.5 pl-3 pr-4 font-medium outline-none hover:bg-gray-50 focus:bg-slate-100 data-[disabled]:pointer-events-none data-[disabled]:opacity-50 dark:focus:bg-slate-700",
-        className
-      )}
-      {...props}
-    >
-      <SelectPrimitive.ItemText className="flex gap-2">
-        {children}
-      </SelectPrimitive.ItemText>
-      <span className="text-primary-600 absolute right-4 flex size-3.5 items-center justify-center">
-        <SelectPrimitive.ItemIndicator>
-          <CheckIcon className="size-4" />
-        </SelectPrimitive.ItemIndicator>
-      </span>
-    </SelectPrimitive.Item>
-  )
-);
-SelectItem.displayName =
-  SelectPrimitive.Item.displayName;
-
-const SelectSeparator =
-  React.forwardRef<
-    React.ElementRef<
-      typeof SelectPrimitive.Separator
-    >,
-    React.ComponentPropsWithoutRef<
-      typeof SelectPrimitive.Separator
-    >
-  >(({ className, ...props }, ref) => (
-    <SelectPrimitive.Separator
-      ref={ref}
-      className={clsx(
-        "-mx-1 my-1 h-px bg-slate-100 dark:bg-slate-700",
-        className
-      )}
-      {...props}
-    />
-  ));
-SelectSeparator.displayName =
-  SelectPrimitive.Separator.displayName;
-
-export {
-  Select,
-  SelectGroup,
-  SelectValue,
-  SelectTrigger,
-  SelectContent,
-  SelectIcon,
-  SelectLabel,
-  SelectItem,
-  SelectSeparator,
+      <Select.Portal>
+        <Select.Content
+          position="popper"
+          className={clsx(
+            "column-stretch bg-black-02 backdrop-blur-lg z-20",
+            "border border-white-02 my-2"
+          )}
+          align="center"
+          side="top"
+          style={{
+            borderRadius: box.radius.m,
+          }}
+        >
+          <Select.Viewport>
+            {values.map(
+              (value, index) => (
+                <Fragment key={value}>
+                  {index !== 0 && (
+                    <LinesHorizontalLight />
+                  )}
+                  <SelectItem
+                    classValue={cx(
+                      "relative row-space cursor-pointer outline-none select-none",
+                      "data-[highlighted]:bg-gray-02",
+                      "overflow-hidden"
+                    )}
+                    value={value}
+                    style={{
+                      paddingTop:
+                        box._0125,
+                      paddingBottom:
+                        box._0125,
+                      paddingLeft:
+                        box._0125,
+                      paddingRight:
+                        box._0125,
+                      // borderRadius:
+                      //   box.radius.l,
+                    }}
+                  >
+                    {value}
+                  </SelectItem>
+                </Fragment>
+              )
+            )}
+          </Select.Viewport>
+        </Select.Content>
+      </Select.Portal>
+    </Select.Root>
+  );
 };

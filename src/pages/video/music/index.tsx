@@ -1,107 +1,50 @@
 import { Helmet } from "react-helmet-async";
 import { VideoPlayer_Backdrop } from "~/pages/video/player/_backdrop";
-import { useVideoPlayerStyle } from "~/pages/video/player/style";
-import { boxSize } from "~uno/rules/box/size";
-import { MusicBackground } from "~/pages/video/music/background";
-import { boxRadius } from "~uno/rules/box/radius";
-import { VideoMusicPlayback } from "~/pages/video/music/playback/index";
-import { VideoMusicSynth } from "~/pages/video/music/synth";
-import { Bpm } from "~/pages/video/music/bpm";
-import { VideoMusicDrums } from "~/pages/video/music/drums";
-import { MusicProvider } from "~/pages/video/music/context";
+import { useAddRandomEffect } from "~/hooks/pic/add-random/effect";
+import { useVideoStyle } from "~/pages/video/style";
+import { AudioPlaylist } from "~/pages/video/music/audio/uploaded/item/playlist";
+
+export const OVERFLOW_HIDDEN =
+  "overflow: hidden;";
 
 export const VideoMusic = () => {
   const {
     playerStyle,
+    screenHeight,
     y,
     gap,
-    left,
-    width,
-    sidebarWidth,
-  } = useVideoPlayerStyle();
-  const s = boxSize();
-  const borderRadius = boxRadius();
+  } = useVideoStyle();
+  useAddRandomEffect();
+
   return (
-    <MusicProvider>
+    <>
       <Helmet>
         <title>
-          Trill Pics | Music Sequencer
+          Trill Pics | Music
         </title>
       </Helmet>
+
       <VideoPlayer_Backdrop />
       <div
-        className="fill  overflow-auto"
+        className="fill column-start justify-center lg:justify-start overflow-auto"
         style={{
+          paddingTop: y,
+          paddingBottom: y,
           gap,
         }}
       >
         <div
-          className="relative flex flex-row items-stretch justify-stretch"
+          className="relative"
           style={{
-            gap,
+            ...playerStyle,
+            height: screenHeight,
           }}
         >
-          <aside
-            className="absolute grow"
-            style={{
-              left: playerStyle.left,
-              width: sidebarWidth,
-              gap,
-              top: y,
-              bottom: y * 1.5,
-            }}
-          >
-            <MusicBackground
-              style={{
-                borderTopLeftRadius:
-                  borderRadius,
-                borderBottomLeftRadius:
-                  borderRadius,
-              }}
-            />
-          </aside>
-          <div
-            className="relative column-stretch grow"
-            style={{
-              left,
-              gap,
-              width,
-              paddingTop: y,
-              paddingBottom: y * 1.5,
-            }}
-          >
-            <div
-              className="relative column-stretch"
-              style={{
-                width,
-                gap: s.m025 * 1.5,
-              }}
-            >
-              <VideoMusicSynth />
-            </div>
-            <div
-              className="relative row"
-              style={{
-                gap: s.m0125 / 4,
-                width,
-                paddingRight: s.m05,
-              }}
-            >
-              <VideoMusicDrums />
-            </div>
-            <div
-              className="relative column-stretch"
-              style={{
-                gap: s.m05,
-                width,
-              }}
-            >
-              <Bpm />
-              <VideoMusicPlayback />
-            </div>
-          </div>
+          <AudioPlaylist />
         </div>
       </div>
-    </MusicProvider>
+
+      <div style={{ height: y }} />
+    </>
   );
 };

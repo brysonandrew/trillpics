@@ -1,20 +1,14 @@
 import type { FC } from "react";
-import {
-  AnimatePresence,
-  motion,
-} from "framer-motion";
+import { motion } from "framer-motion";
 import { IconsTrash } from "~/components/icons/video/trash";
 import { TUsePicSelected } from "~/hooks/pic/selected";
 import { TCommonProps } from "~/pages/video/_root/reorder/types";
-import { boxSize } from "~uno/rules/box/size";
-import { useHoverKey } from "~/hooks/use-hover-key";
-import { _RootReorderControlsButton } from "~/pages/video/_root/reorder/controls/button";
-import { IconsPlusQuestion } from "~/components/icons/plus";
-import { boxRadius } from "~uno/rules/box/radius";
-import { PRESENCE_OPACITY } from "@brysonandrew/motion-config-constants";
-import { useReadyContext } from "~/shell/ready/context";
+import { box } from "~uno/rules/box";
+import { IconsPlusQuestion } from "~/components/icons/plus/question";
 import { TMotionPoint } from "@brysonandrew/motion-config-types";
 import { TDimensions } from "@brysonandrew/config-types";
+import { PillBSm } from "~/components/buttons/pill/b/sm";
+import { VideoRootReorderBox } from "~/pages/video/_root/reorder/box";
 
 type TProps = TMotionPoint &
   Pick<TCommonProps, "itemDimensions"> &
@@ -44,19 +38,7 @@ export const _RootReorderControls: FC<
   isColumn,
   y,
 }) => {
-  const s = boxSize();
-  const borderRadius = boxRadius();
-  // const { main } = useReadyContext();
-  // const start = () => {
-  //   main.cursor.isOnGrid = false;
-  // };
-  // const stop = () => {
-  //   main.cursor.isOnGrid = true;
-  // };
-  // // const { motionHandlers } =
-  // //   useHoverKey({
-  // //     handlers: { start, stop },
-  // //   });
+  
 
   return (
     <motion.div
@@ -68,22 +50,16 @@ export const _RootReorderControls: FC<
         top: isColumn
           ? itemDimensions.height *
             index
-          : -s.m15,
+          : -box._15,
         zIndex: index,
       }}
     >
-      <motion.div
+      <VideoRootReorderBox
         key={`group-${index}`}
-        className="absolute w-full row-start-space border border-white-06 dark:border-black-06 bg-white-01 dark:bg-black-01 backdrop-blur-sm"
-        style={{
-          borderRadius:
-            borderRadius / 2,
-          padding: s.padding,
-          ...itemDimensions,
-        }}
-        {...PRESENCE_OPACITY}
+        index={index}
+        style={itemDimensions}
       >
-        <_RootReorderControlsButton
+        <PillBSm
           title="Replace with random pic"
           onClick={() => {
             const randomName =
@@ -99,17 +75,15 @@ export const _RootReorderControls: FC<
           iconProps={{
             Icon: IconsPlusQuestion,
           }}
-          currName={name}
         />
-        <_RootReorderControlsButton
+        <PillBSm
           title={`Delete pic from video`}
           onClick={() => deselect(name)}
           iconProps={{
             Icon: IconsTrash,
           }}
-          currName={name}
         />
-      </motion.div>
+      </VideoRootReorderBox>
     </motion.div>
   );
 };

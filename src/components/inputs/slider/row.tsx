@@ -1,54 +1,29 @@
 import { type FC } from "react";
-import { cx } from "class-variance-authority";
-import { TClassValueProps } from "@brysonandrew/config-types";
-import { DEFAULT_SLIDER_WIDTH } from "~/constants/inputs";
-import { UiInputsSliderValue } from "~/components/inputs/slider/value";
 import {
-  SliderStyled,
-  TSliderStyledProps,
-} from "~/components/inputs/slider/styled";
-import { boxSize } from "~uno/rules/box/size";
-import { MusicLayout } from "~/pages/video/music/layout";
-import { title } from "process";
-import { MusicBackground } from "~/pages/video/music/background";
-import { useVideoPlayerStyle } from "~/pages/video/player/style";
+  TClassValueProps,
+  TTitleProps,
+} from "@brysonandrew/config-types";
+import { MeshBackgroundText } from "~/components/layout/background/mesh/text";
+import { BackgroundGlass } from "~/components/layout/background/glass";
+import { cx } from "class-variance-authority";
+import { TypographyXxxs } from "~/components/layout/typography/xxxs";
+import { TypographyXxs } from "~/components/layout/typography/xxs";
+import { box } from "~uno/rules/box";
+import { TSliderStyledProps } from "~/components/inputs/slider/types";
 
-export type TUpdateSliderHandler = (
-  name: string,
-  value: number | string
-) => void;
-type TValueChangeHandler =
-  TSliderStyledProps["onValueChange"];
-type TProps = Omit<
-  TSliderStyledProps,
-  "value" | "name"
-> &
-  TClassValueProps & {
-    name: string;
-    value?: number;
-    onUpdate: TUpdateSliderHandler;
-  };
-export const UiInputsSliderRow: FC<
-  TProps
-> = ({
-  name,
-  title,
-  classValue,
-  value,
-  onUpdate,
-  ...props
-}) => {
-  const inputValue = value
-    ? [value]
-    : undefined;
-
-  const handleValueChange: TValueChangeHandler =
-    ([value]) => {
-      onUpdate(name, value);
-    };
-  const { sidebarWidthOffset, width } =
-    useVideoPlayerStyle();
-  const s = boxSize();
+export type TSliderRowProps =
+  TClassValueProps &
+    TSliderStyledProps &
+    TTitleProps;
+export const SliderRow: FC<
+  TSliderRowProps
+> = (props) => {
+  const {
+    children,
+    title,
+    classValue,
+    ...sliderProps
+  } = props;
   return (
     <div
       className={cx(
@@ -56,55 +31,60 @@ export const UiInputsSliderRow: FC<
         classValue
       )}
       style={{
-        gap: s.m025,
-        height: s.m075,
+        left: box._00625,
+        gap: box._075,
+        height: box._075,
       }}
     >
-      <MusicBackground
-        boxStyle={{
-          left: sidebarWidthOffset,
-        }}
-      />
-      <MusicLayout
+      <TypographyXxxs
         style={{
+          left: box._0125,
           width:
-            sidebarWidthOffset - s.m025,
-          height: s.m,
-          left: 0,
+            box._15 - box._0125 / 2,
+          textAlign: "left",
         }}
       >
         {title}
-      </MusicLayout>
+      </TypographyXxxs>
       <div
-        className="relative"
+        className="row grow"
         style={{
-          left: s.m025,
-          width:
-            width -
-            sidebarWidthOffset -
-            s.m -
-            s.m2,
+          gap: box._05,
         }}
       >
-        <SliderStyled
-          name={name}
-          value={inputValue}
-          onValueChange={
-            handleValueChange
+        <div
+          className="relative grow"
+          style={
+            {
+              ...box.p(box._0125)
+            }
           }
-          {...props}
-        />
+        >
+          <BackgroundGlass
+            boxStyle={{
+              ...box.i(-box._0125),
+            }}
+          />
+          {children}
+        </div>
+        <MeshBackgroundText
+          classValue="relative"
+          style={{
+            right: box._0125,
+            width:
+              box._15 - box._0125 / 2,
+          }}
+        >
+          <TypographyXxs
+            style={{
+              textAlign: "right",
+            }}
+          >
+            {sliderProps.value?.toString() ??
+              "-"}
+          </TypographyXxs>
+        </MeshBackgroundText>
       </div>
-      <MusicLayout
-        classValue="relative"
-        style={{
-          width: s.m2,
-          height: s.m,
-          right: 0,
-        }}
-      >
-        {value?.toString() ?? "-"}
-      </MusicLayout>
     </div>
   );
 };

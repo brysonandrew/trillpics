@@ -8,7 +8,6 @@ import {
   TPillBHoverProps,
 } from "~/components/buttons/pill/b/hover";
 import { useNavigationControls } from "~/hooks/navigation/controls";
-import { TVideoFooterProps } from "~/pages/video/_common/footer/types";
 import {
   HOME_ROUTE,
   VIDEO_PLAYER_ROUTE,
@@ -18,9 +17,12 @@ import { IconsHome } from "~/components/icons/home";
 
 export const CONTROLS_PLAYER_TITLE =
   "Viewing room";
-type TProps = TVideoFooterProps &
+type TProps =
   Partial<TPillBHoverProps> & {
     isShowOnlyActive?: boolean;
+    Button?: FC<
+      Partial<TPillBHoverProps>
+    >;
   };
 
 export const ControlsPlayer: FC<

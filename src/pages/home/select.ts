@@ -1,4 +1,4 @@
-import { useReadyContext } from "~/shell/ready/context";
+import { useContextReady } from "~/shell/ready/context";
 import { useClickGrid } from "~/shell/ready/context/hooks/click";
 import {
   QUERY_PARAM_KEYS,
@@ -11,26 +11,14 @@ export const useHomeClickSelect =
   () => {
     const {
       hoverKeys,
-      isHover,
-      hover,
-      unhover,
-      cooldownEnd,
     } = useTrillPicsStore(
       ({
         hoverKeys,
-        isHover,
-        hover,
-        unhover,
-        cooldownEnd,
       }) => ({
         hoverKeys,
-        isHover,
-        hover,
-        unhover,
-        cooldownEnd,
       })
     );
-    const { ref } = useReadyContext();
+    const { ref } = useContextReady();
     const props = usePicSelected(
       QUERY_PARAM_KEYS[ZOOM_PARAM_KEY]
     );

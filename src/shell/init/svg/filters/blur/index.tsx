@@ -4,7 +4,6 @@ import {
   MotionValue,
 } from "framer-motion";
 import { SvgWrap } from "@brysonandrew/svg-dimensionless";
-import { TPropsWithChildren } from "@brysonandrew/config-types";
 
 type TProps ={
   id: string;
@@ -24,7 +23,6 @@ export const FiltersBlur: FC<
 > = ({
   id,
   tType =  "fractalNoise",
-  dScale = 12,
   turbulence,
   blur,
   morph,
@@ -32,10 +30,6 @@ export const FiltersBlur: FC<
   offsetX=0,
   offsetY=0,
 }) => {
-  // let o = -(dScale / 2);
-  // if (tType === "fractalNoise") {
-  //   o = 0;
-  // }
   return (
     <SvgWrap>
       <filter id={id}>

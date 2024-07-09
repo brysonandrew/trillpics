@@ -8,6 +8,7 @@ import { resolveSecondsFromCount } from "~/hooks/pic/video/read/seconds/from-cou
 
 export const usePicVideoReadSeconds =
   () => {
+
     const [searchParams] =
       useSearchParams();
     const seconds = Number(
@@ -15,6 +16,7 @@ export const usePicVideoReadSeconds =
         SECONDS_PARAM_KEY
       )
     );
+
     const paramValues =
       searchParams.getAll(
         SELECTED_PARAM_KEY
@@ -22,8 +24,11 @@ export const usePicVideoReadSeconds =
     const count = picVideoReadCount(
       paramValues
     );
-    return (
+    const result =
       seconds ||
-      resolveSecondsFromCount(count)
-    );
+      resolveSecondsFromCount(
+        count,
+        60
+      );
+    return result;
   };

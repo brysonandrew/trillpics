@@ -3,7 +3,7 @@ import { ClassValue } from "clsx";
 import { resolveUrlId } from "@brysonandrew/utils-attributes";
 import { LINEAR_GRADIENT_SVG_ID } from "~uno/rules/gradient/constants";
 import { TSvgProps } from "@brysonandrew/config-types";
-import { IconsSvgGradient18vb24 } from "~/components/icons/svg/gradient/16vb24";
+import { IconsSvgGradient18vb24 } from "~/components/icons/svg/gradient/18vb24";
 
 
 type TProps = TSvgProps & {

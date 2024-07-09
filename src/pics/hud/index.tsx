@@ -1,14 +1,12 @@
 import { FC } from "react";
-import { AnimatePresence } from "framer-motion";
 import clsx from "clsx";
 import { TMeasureContainerResult } from "~/shell/init/hooks/measure/container";
-import { useReadyContext } from "~/shell/ready/context";
+import { useContextReady } from "~/shell/ready/context";
 import { PicsHudHeader } from "~/pics/hud/header";
 import { PicsHudLeft } from "~/pics/hud/left";
-import { boxSize } from "~uno/rules/box/size";
+import { box } from "~uno/rules/box";
 import { withControlsCheck } from "~/store/hocs/with-controls-check";
-import { PicsHudFooterNav } from "~/pics/hud/nav";
-import { resolveGradient } from "@brysonandrew/color-gradient";
+import { HudFooter } from "~/pics/hud/footer";
 
 export type THudContainer = Extract<
   TMeasureContainerResult,
@@ -17,13 +15,13 @@ export type THudContainer = Extract<
 export const Hud: FC =
   withControlsCheck(() => {
     const { foundationValue, screen } =
-      useReadyContext();
-    const s = boxSize();
+      useContextReady();
+    
     const container = screen.container;
     return (
       <>
         <div
-          className="fixed w-0 z-0"
+          className="fixed w-0 z-10"
           style={{
             left: container.left,
             top: container.top,
@@ -36,7 +34,7 @@ export const Hud: FC =
             )}
             style={{
               width: container.width,
-              gap: s.m05,
+              gap: box._05,
             }}
           >
             <PicsHudHeader
@@ -65,37 +63,8 @@ export const Hud: FC =
             </div>
           </div>
         </div>
-        <div
-          className="absolute left-0 right-0 w-full pointer-events-none opacity-100"
-          style={{
-            height: s.m3,
-            top:
-              container.height-s.m075,
-            backgroundImage:
-              resolveGradient({
-                name: "linear-gradient",
-                parts: [
-                  "transparent",
-                  "var(--gray-5)",
-                ],
-              }),
-          }}
-        />
-        <footer
-          className="fixed w-full z-20 h-0"
-          style={{
-            left: container.left,
-            width: container.width,
-            top: s.m2,
-          }}
-        >
-          {!screen.isResizing && (
-            <PicsHudFooterNav
-              key="PicsHudFooterNav"
-              container={container}
-            />
-          )}
-        </footer>
+        <HudFooter />
+
       </>
     );
   });

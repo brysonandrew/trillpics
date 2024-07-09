@@ -1,7 +1,7 @@
 import { THoverKey } from "@brysonandrew/hooks-dom";
 import { useTimebomb } from "~/hooks/use-time-bomb";
 import { useTrillPicsStore } from "~/store/middleware";
-import { useReadyContext } from "~/shell/ready/context";
+import { useContextReady } from "~/shell/ready/context";
 type TEventUnion = any;
 type TEventCallback = (
   event: TEventUnion
@@ -14,7 +14,7 @@ type THandler = (
   key: THoverKey
 ) => void;
 
-type TConfig = {
+export type THoverKeyConfig = {
   handlers?: {
     start?: THandler;
     stop?: THandler;
@@ -22,10 +22,10 @@ type TConfig = {
   isDisabled?: boolean;
 };
 export const useHoverKey = (
-  config?: TConfig
+  config?: THoverKeyConfig
 ) => {
   const isDisabled = config?.isDisabled;
-  const { main } = useReadyContext();
+  const { main } = useContextReady();
   const {
     hoverKeys,
     isHover,
@@ -108,7 +108,7 @@ export const useHoverKey = (
     isCooldown: isArmed,
   };
 };
-export type THoverKeyConfig =
+export type TUseHoverKeyConfig =
   ReturnType<typeof useHoverKey>;
 export type THoverKeyHandlers =
   THoverKeyConfig["handlers"];

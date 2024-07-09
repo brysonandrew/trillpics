@@ -8,7 +8,7 @@ import { useHoverKey } from "~/hooks/use-hover-key";
 import { usePicVideoReadInputs } from "~/hooks/pic/video/read/inputs/hook";
 import { IconsDownload } from "~/components/icons/download";
 import { PillBHover } from "~/components/buttons/pill/b/hover";
-import { boxSize } from "~uno/rules/box/size";
+import { box } from "~uno/rules/box";
 import { resolveSquare } from "@brysonandrew/measure";
 import {
   DEFAULT_FPS,
@@ -18,7 +18,6 @@ import { useTrillPicsStore } from "~/store/middleware";
 import { useTimebomb } from "~/hooks/use-time-bomb";
 import { UGenerateSubscriptionResult } from "~/store/state/generate/types";
 import { TState } from "~/store/types";
-import { useSoundContext } from "~/shell/global/sound";
 import { TPicSeriesProps } from "~/components/remotion/pic-series/types";
 
 export const DEFAULT_INPUT: TGenerateInput =
@@ -30,12 +29,13 @@ export const DEFAULT_INPUT: TGenerateInput =
     seconds: 1,
     isPics: false,
     dimensions: { ...PIC_DIMENSIONS },
+    recording: null,
+    audio: null,
   };
 
 export const Download: FC<
   Partial<TPillBProps>
 > = ({ children, ...props }) => {
-  const s = boxSize();
   const inputFromParams =
     usePicVideoReadInputs();
   const { set } = useTrillPicsStore(
@@ -45,7 +45,6 @@ export const Download: FC<
   );
   const { handlers, isHover } =
     useHoverKey();
-
   const title = "Download video";
   // console.log(audioBlob);
   // const dl = async (blob: Blob) => {};
@@ -117,8 +116,6 @@ export const Download: FC<
   useEffect(() => {
     return reset;
   }, []);
-  const { audio } =
-    useSoundContext();
 
   const {
     isError,
@@ -148,7 +145,6 @@ export const Download: FC<
   });
   const input: TPicSeriesProps = {
     ...inputFromParams,
-    audio,
   };
   const handleGenerate = () => {
     console.log(
@@ -160,7 +156,7 @@ export const Download: FC<
     mutate({
       // ...(audioBlob && audioBlob instanceof
       //   ? {
-      //       audio:
+      //       recording:
       //         window.URL.createObjectURL(
       //           audioBlob
       //         ),
@@ -175,13 +171,15 @@ export const Download: FC<
   return (
     <div
       className="relative flex"
-      style={{ ...resolveSquare(s.m) }}
+      style={{
+        ...resolveSquare(box._),
+      }}
     >
       <PillBHover
         title={title}
         isSelected={isHovering}
         style={{
-          ...resolveSquare(s.m),
+          ...resolveSquare(box._),
         }}
         circleProps={{
           isGlow: isSuccess,

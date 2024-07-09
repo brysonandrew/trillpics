@@ -8,7 +8,7 @@ import {
 import { motion } from "framer-motion";
 import clsx from "clsx";
 import { useTrillPicsStore } from "~/store/middleware";
-import { useReadyContext } from "~/shell/ready/context";
+import { useContextReady } from "~/shell/ready/context";
 import { MOTION_BLUR_SHUFFLE_PROPS } from "~/shell/init/svg/filters/blur/constants";
 
 export type TInnerHandle = {
@@ -29,7 +29,7 @@ const Inner = forwardRef<
     ref
   ) => {
     const { main, scrollY } =
-      useReadyContext();
+      useContextReady();
     const {
       hoverKeys,
       set,

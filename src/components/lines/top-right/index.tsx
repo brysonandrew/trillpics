@@ -7,7 +7,7 @@ import clsx from "clsx";
 import { TLinesOptions } from "~/components/lines/types";
 import { Lines_Line } from "~/components/lines/_line";
 import { boxRadius } from "~uno/rules/box/radius";
-import { boxSize } from "~uno/rules/box/size";
+import { box } from "~uno/rules/box";
 import { THudContainer } from "~/pics/hud";
 
 type TProps = TDivMotionProps &
@@ -23,7 +23,7 @@ export const LinesTopRight: FC<
   ...props
 }) => {
   const rounded = boxRadius();
-  const s = boxSize();
+  
   return (
     <Lines_Line
       classValue={clsx(classValue)}
@@ -31,8 +31,8 @@ export const LinesTopRight: FC<
       style={{
         borderTopRightRadius: rounded,
         top: 0,
-        height: s.m,
-        marginRight: s.m05,
+        height: box._,
+        marginRight: box._05,
         ...style,
       }}
       {...props}

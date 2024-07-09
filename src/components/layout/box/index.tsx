@@ -1,6 +1,6 @@
 import type { FC } from "react";
 import { boxRadius } from "~uno/rules/box/radius";
-import { boxSize } from "~uno/rules/box/size";
+import { box } from "~uno/rules/box";
 import {
   Pill,
   TPillProps,
@@ -21,7 +21,6 @@ export const LayoutBox: FC<
   style,
   ...props
 }) => {
-
   return (
     <Pill
       classValue={clsx(

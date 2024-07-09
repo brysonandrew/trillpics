@@ -3,13 +3,13 @@ import {
   MotionValue,
 } from "framer-motion";
 import { TBlurVariant } from "~/shell/init/context/blur";
-import { useReadyContext } from "~/shell/ready/context";
+import { useContextReady } from "~/shell/ready/context";
 import { useTrillPicsStore } from "~/store/middleware";
 
 export const useBlurAnimate1 = (
   axis: TBlurVariant = "scrollY"
 ) => {
-  const { main } = useReadyContext();
+  const { main } = useContextReady();
   const { set } = useTrillPicsStore(
     ({ set }) => ({
       set,

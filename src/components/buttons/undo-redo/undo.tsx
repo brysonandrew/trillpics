@@ -1,12 +1,15 @@
 import type { FC } from "react";
-import { PillBHover } from "~/components/buttons/pill/b/hover";
-import { TVideoFooterProps } from "~/pages/video/_common/footer/types";
+import { PillBHover, TPillBHoverProps } from "~/components/buttons/pill/b/hover";
 import { NOOP } from "@brysonandrew/utils-function";
 import { IconsUndo } from "~/components/icons/undo";
 import { useTemporalStore } from "~/store/middleware/5.temporal/store";
 
 export const LeftButtonsUndo: FC<
-  TVideoFooterProps
+{
+  Button?: FC<
+  Partial<TPillBHoverProps>
+>;
+}
 > = ({
   Button = PillBHover,
   ...props

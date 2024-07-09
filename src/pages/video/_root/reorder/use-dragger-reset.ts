@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { animate } from "framer-motion";
-import { useInitContext } from "~/shell/init/context";
+import { useContextInit } from "~/shell/init/context";
 
 type TConfig = {
   to: number;from:number
@@ -8,7 +8,7 @@ type TConfig = {
 export const useDraggerReset = ({
   to,from
 }: TConfig) => {
-  const { main } = useInitContext();
+  const { main } = useContextInit();
   useEffect(() => {
     if (
       main.dragger.animateY !== null

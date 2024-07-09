@@ -1,4 +1,7 @@
 export const SIZE_PARAM_KEY = "size";
+export const AUDIO_SRC_PARAM_KEY = "audio-src";
+export const AUDIO_START_PARAM_KEY = "audio-start";
+
 export const COLUMNS_COUNT_PARAM_KEY =
   "cols";
 export const ROWS_COUNT_PARAM_KEY =
@@ -24,6 +27,9 @@ export const ZOOM_PARAM_KEY = "z";
 
 export const QUERY_PARAM_KEYS = {
   [SIZE_PARAM_KEY]: SIZE_PARAM_KEY,
+  [AUDIO_SRC_PARAM_KEY]: AUDIO_SRC_PARAM_KEY,
+  [AUDIO_START_PARAM_KEY]: AUDIO_START_PARAM_KEY,
+
   [COLUMNS_COUNT_PARAM_KEY]:
     COLUMNS_COUNT_PARAM_KEY,
   [ROWS_COUNT_PARAM_KEY]:

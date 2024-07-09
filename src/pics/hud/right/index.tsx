@@ -4,7 +4,7 @@ import {
   motion,
 } from "framer-motion";
 import { LinesVertical } from "~/components/lines/vertical";
-import { boxSize } from "~uno/rules/box/size";
+import { box } from "~uno/rules/box";
 import { HideControls } from "~/pics/header/right/zen-mode";
 import { DarkMode } from "~/pics/header/right/dark-mode";
 import { THudContainer } from "~/pics/hud";
@@ -16,13 +16,13 @@ type TProps = {
 export const PicsHudRight: FC<
   TProps
 > = ({ foundation, container }) => {
-  const s = boxSize();
+  
   return (
     <LayoutGroup>
       <motion.div
         className="absolute flex flex-col items-end justify-evenly shrink-0 w-0"
         style={{
-          right: -s.m05,
+          right: -box._05,
           top:
             foundation.top +
             foundation.height,
@@ -30,28 +30,28 @@ export const PicsHudRight: FC<
             ? 0
             : container.height -
               foundation.height +
-              s.m025,
+              box._025,
         }}
       >
         <div
           className="relative flex flex-col items-end justify-evenly shrink-0 w-0"
           style={{
-            top: -s.m025,
-            gap: s.m025,
-            height: s.m3,
+            top: -box._025,
+            gap: box._025,
+            height: box._3,
           }}
         >
           <DarkMode />
           <LinesVertical
             classValue="hidden md:flex"
-            style={{ left: -s.m05 }}
+            style={{ left: -box._05 }}
           />
           <HideControls direction="rtl" />
         </div>
         <LinesVertical
           classValue="opacity-0 md:opacity-50"
           style={{
-            left: -s.m05,
+            left: -box._05,
           }}
         />
       </motion.div>

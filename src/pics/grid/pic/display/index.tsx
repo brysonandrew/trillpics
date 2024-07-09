@@ -7,6 +7,11 @@ import {
   TImgMotionProps,
 } from "@brysonandrew/config-types";
 import clsx from "clsx";
+import { TPic } from "~/store/state/pics/types";
+
+export const resolvePicLayoutId = (
+  name: TPic
+) => `pic-${name}` as const;
 
 export type TPicDisplayProps =
   TDivMotionProps &
@@ -16,7 +21,10 @@ export const PicDisplay: FC<
   TPicDisplayProps
 > = ({
   name,
-  src = resolvePicSrc({base:'remotion',name}),
+  src = resolvePicSrc({
+    base: "remotion",
+    name,
+  }),
   classValue,
   style,
   ...props
@@ -27,7 +35,9 @@ export const PicDisplay: FC<
         classValue ?? "relative"
       )}
       key={name}
-      layoutId={name}
+      layoutId={resolvePicLayoutId(
+        name
+      )}
       src={src}
       alt={`░▒▓█ pic #${name} █▓▒░`}
       draggable={false}

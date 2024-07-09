@@ -1,6 +1,7 @@
 import { FC } from "react";
 import { MonoChars } from "~/pages/video/player/_controls/playback/timer/numbers";
 import { useContextPlayer_Init } from "~/pages/video/player/_context/init";
+import clsx from "clsx";
 
 export type TTimerDisplayProps = {
   elapsed: number;
@@ -16,7 +17,7 @@ export const TimerDisplay: FC<
     unit === "frames"
       ? elapsed
       : elapsed * fps;
-      
+
   const totalSeconds =
     unit === "seconds"
       ? elapsed
@@ -35,7 +36,12 @@ export const TimerDisplay: FC<
   ).padStart(2, "0");
 
   return (
-    <div className="row">
+    <div
+      className={clsx(
+        "row",
+        "font-slab text-left text-sm text-white dark:text-gray"
+      )}
+    >
       <MonoChars>{m}</MonoChars>:
       <MonoChars>{s}</MonoChars>:
       <MonoChars>{ms}</MonoChars>

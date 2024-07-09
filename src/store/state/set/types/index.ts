@@ -1,5 +1,4 @@
 import { Draft } from "immer";
-import { TStateWithMiddleware } from "~/store/middleware";
 import { TState } from "~/store/types";
 
 export type TStoreImmer<S> = S extends {

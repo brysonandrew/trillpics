@@ -2,9 +2,11 @@ import defaultTheme from "tailwindcss/defaultTheme";
 type TFontFamilyKey =
   keyof typeof defaultTheme.fontFamily;
 
+const ARMSTRONG3_FONT_NAME =
+  "Armstrong3";
 export const FONT_NAMES = [
   ["Dragon", "title"],
-  ["Armstrong3", "slab"],
+  [ARMSTRONG3_FONT_NAME, "slab"],
   ["Toxigenesis", "sans"],
 ] as const;
 
@@ -17,6 +19,11 @@ const withDefault = (
     key as TFontFamilyKey
   ],
 ];
+export const ARMSTRONG3_FULL_FONT_FAMILY =
+  withDefault(
+    ARMSTRONG3_FONT_NAME
+  ).join(" ");
+
 type TFontShareConfig = {
   key: string;
   provider: "none";

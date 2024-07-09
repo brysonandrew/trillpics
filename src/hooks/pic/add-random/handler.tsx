@@ -1,30 +1,27 @@
-import { resolvePicRandoms } from "~/hooks/pic/randoms";
-import { useTrillPicsStore } from "~/store/middleware";
 import { usePicSelectedWrite } from "~/hooks/pic/selected/write";
 import { useBlurAnimate } from "~/hooks/animate/blur/animate";
+import { useAddRandomRef } from "~/hooks/pic/add-random/ref";
 
 export const useAddRandomHandler =
   () => {
-    const { pics } = useTrillPicsStore(
-      ({ pics }) => ({
-        pics,
-      })
-    );
+    const [randoms, randomize] =
+      useAddRandomRef();
     const handleBlur = useBlurAnimate(
-      "addRandom",
+      "addRandom"
     );
 
     const select =
       usePicSelectedWrite();
-    const handleClick = () => {
+    const selectRandoms = () => {
       handleBlur(10);
-      const randoms = resolvePicRandoms(
-        {
-          pics,
-        }
-      );
+
+      randomize();
       select(randoms);
     };
 
-    return handleClick;
+    return [
+      randoms,
+      selectRandoms,
+      randomize,
+    ] as const;
   };

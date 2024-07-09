@@ -23,7 +23,7 @@ export const PlaybackTimer: FC<
         "pt-1 px-2 rounded-lg",
         "bg-gray-5 dark:bg-black-3",
         "font-slab text-left text-sm text-white dark:text-gray",
-        "_gradient-mesh",
+        "_bi-mesh",
         "pointer-events-none"
       )}
     >

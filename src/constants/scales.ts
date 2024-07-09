@@ -1,5 +1,6 @@
+export const SCALE_VALUE_COUNT = 12;
 export const SCALE_RECORD = {
-  all: [...Array(12)].map((_, index) => index),
+  all: [...Array(SCALE_VALUE_COUNT)].map((_, index) => index),
   aeolian: [0, 2, 3, 5, 7, 8, 10], //minor
   blues: [0, 3, 5, 6, 7, 10], //basic with blues note // includes d5 that ive made 6
   chromatic: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11],

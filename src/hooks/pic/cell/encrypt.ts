@@ -3,9 +3,12 @@ import { DELIMITER_CELL_KEY } from "~/hooks/pic/constants";
 import { isNull } from "~/utils/validation/is/null";
 
 type TConfig = TCell | null;
+export type TCellKey =
+  | `${string}${typeof DELIMITER_CELL_KEY}${string}`
+  | null;
 export const cellEncrypt = (
   config: TConfig
-) => {
+): TCellKey => {
   if (isNull(config)) return null;
   const { column, row } = config;
   const x = String(column).padStart(

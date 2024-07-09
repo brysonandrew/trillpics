@@ -6,7 +6,7 @@ import { Player_InitContextProvider } from "~/pages/video/player/_context/init";
 import { isPlayerInstance } from "~/utils/validation/is/player";
 import { Player_ReadyContextProvider } from "~/pages/video/player/_context/ready";
 import { useAddRandomEffect } from "~/hooks/pic/add-random/effect";
-import { useVideoPlayerStyle } from "~/pages/video/player/style";
+import { useVideoStyle } from "~/pages/video/style";
 
 export const OVERFLOW_HIDDEN =
   "overflow: hidden;";
@@ -17,7 +17,7 @@ export const VideoPlayer = () => {
     screenHeight,
     y,
     gap,
-  } = useVideoPlayerStyle();
+  } = useVideoStyle();
   useAddRandomEffect();
 
   return (
@@ -27,6 +27,7 @@ export const VideoPlayer = () => {
           Trill Pics | Viewing Room
         </title>
       </Helmet>
+      
       <VideoPlayer_Backdrop />
 
       <div
@@ -85,8 +86,8 @@ export const VideoPlayer = () => {
 // style={{
 //   height: 0,
 //   width:
-//     container.width + s.m,
-//   bottom: s.m2 - s.m0125,
+//     container.width + box._,
+//   bottom: box._2 - box._0125,
 //   x: dragger.x05,
 //   left: 0,
 //   y: dragger.y,
@@ -94,7 +95,7 @@ export const VideoPlayer = () => {
 // >
 // <div
 //   style={{
-//     width: s.m,
+//     width: box._,
 //   }}
 // />
 // <ControlsPlayer />

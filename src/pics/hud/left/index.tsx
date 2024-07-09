@@ -7,10 +7,10 @@ import {
   LayoutGroup,
   motion,
 } from "framer-motion";
-import { boxSize } from "~uno/rules/box/size";
+import { box } from "~uno/rules/box";
 import { boxRadius } from "~uno/rules/box/radius";
 import { Lines_Line } from "~/components/lines/_line";
-import { useReadyContext } from "~/shell/ready/context";
+import { useContextReady } from "~/shell/ready/context";
 import { useVideoPicsCheck } from "~/hooks/pic/video/read/video-pics-check/hook";
 import { THudContainer } from "~/pics/hud";
 import clsx from "clsx";
@@ -22,7 +22,7 @@ type TProps = PropsWithChildren<{
 export const PicsHudLeft: FC<
   TProps
 > = ({ foundation, container }) => {
-  const s = boxSize();
+  
   const rounded = boxRadius();
 
   return (
@@ -33,11 +33,11 @@ export const PicsHudLeft: FC<
           "absolute flex flex-col justify-start items-end w-0 shrink-0"
         )}
         style={{
-          left: -s.m05,
-          gap: s.m05,
-          top: foundation.height + s.m+s.m025,
+          left: -box._05,
+          gap: box._05,
+          top: foundation.height + box._+box._025,
           height:
-            container.height + s.m2,
+            container.height + box._2,
         }}
       >
         <Lines_Line
@@ -46,9 +46,9 @@ export const PicsHudLeft: FC<
           style={{
             borderTopLeftRadius:
               rounded,
-            width: s.m,
+            width: box._,
             height: container.height,
-            left: s.m15,
+            left: box._15,
           }}
         />
       </motion.div>
@@ -61,12 +61,12 @@ export const PicsHudLeft: FC<
 // className="absolute  w-0 h-0 column-end"
 // style={{
 //   height: 0,
-//   right: s.m2,
+//   right: box._2,
 //   bottom:
-//     s.m2 + s.m0125,
+//     box._2 + box._0125,
 //   x:
 //     container.width +
-//     s.m,
+//     box._,
 //   y: dragger.y,
 // }}
 // >
@@ -79,10 +79,10 @@ export const PicsHudLeft: FC<
 //   y: dragger.y,
 //   x:
 //     container.width +
-//     s.m,
+//     box._,
 //   right: 0,
 //   bottom:
-//     s.m3 - s.m05,
+//     box._3 - box._05,
 // }}
 // >
 // </motion.div>
@@ -93,12 +93,12 @@ style={{
   y: dragger.y06,
   x:
     container.width -
-    s.m05,
-  left: s.m15,
+    box._05,
+  left: box._15,
   top:
     container.height -
     size / 2 -
-    s.m0125,
+    box._0125,
 }}
 >
 

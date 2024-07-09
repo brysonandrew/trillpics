@@ -1,5 +1,5 @@
 import { TDimensionsReady } from "@brysonandrew/config-types";
-import { boxSize } from "~uno/rules/box/size";
+import { box } from "~uno/rules/box";
 const MAX_WIDTH = 1020;
 export const measureContainer = (
   screen: Omit<
@@ -7,11 +7,11 @@ export const measureContainer = (
     "isDimensions"
   >
 ) => {
-  const s = boxSize();
+  
   const isMobile = screen.width < 450;
   const isTablet = screen.width < 769;
 
-  const padding = s.m2;
+  const padding = box._2;
   const width =
     Math.min(screen.width, MAX_WIDTH) -
     padding;
@@ -33,8 +33,8 @@ export const measureContainer = (
     width,
     playerHeight,
     height,
-    left: pX05 - s.m0125,
-    right: pX05 + s.m0125,
+    left: pX05 - box._0125,
+    right: pX05 + box._0125,
     top: pY05,
     bottom: pY05,
     isMobile,

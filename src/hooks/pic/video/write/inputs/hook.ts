@@ -14,6 +14,7 @@ export const usePicVideoWriteInputs =
     const navigate = useNavigate();
     const [searchParams] =
       useSearchParams();
+  
     const {
       seconds,
       pics,

@@ -1,5 +1,5 @@
 import { FC } from "react";
-import { boxSize } from "~uno/rules/box/size";
+import { box } from "~uno/rules/box";
 import {
   TDivProps,
   TSvgProps,
@@ -31,12 +31,12 @@ export const ButtonPillBIcon: FC<
   ...props
 }) => {
   const borderRadius = boxRadius();
-  const s = boxSize();
-  size = size ?? s.m;
+  
+  size = size ?? box._;
 
   return (
     <div
-      className="center relative shrink-0 border-1 border-transparent _gradient-mesh bg-gray-04 dark:bg-black-04 pointer-events-none"
+      className="center relative shrink-0 border-1 border-transparent _bi-mesh bg-gray-04 dark:bg-black-04 pointer-events-none"
       style={{
         borderRadius,
         height: size,

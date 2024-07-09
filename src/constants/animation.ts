@@ -125,6 +125,17 @@ export const PRESENCE_OPACITY_01 = {
     opacity: 0,
   },
 };
+export const PRESENCE_OPACITY_02 = {
+  initial: {
+    opacity: 0,
+  },
+  animate: {
+    opacity: 0.2,
+  },
+  exit: {
+    opacity: 0,
+  },
+};
 export const PRESENCE_OPACITY_04 = {
   initial: {
     opacity: 0,

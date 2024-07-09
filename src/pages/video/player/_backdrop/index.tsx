@@ -11,11 +11,11 @@ export const VideoPlayer_Backdrop =
       useSearchParams();
 
     return (
-      <Link
-        className="fill"
-        to={`${VIDEO_ROUTE}?${searchParams}`}
-      >
+      // <Link
+      //   className="fill"
+      //   to={`${VIDEO_ROUTE}?${searchParams}`}
+      // >
         <PicBackdrop />
-      </Link>
+      // </Link>
     );
   };

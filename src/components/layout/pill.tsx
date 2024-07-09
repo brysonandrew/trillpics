@@ -1,8 +1,5 @@
 import { FC } from "react";
-import {
-  HTMLMotionProps,
-  motion,
-} from "framer-motion";
+import { motion } from "framer-motion";
 import clsx, { ClassValue } from "clsx";
 import { TGradientShortcut } from "~uno/shortcuts/gradient";
 import {
@@ -12,7 +9,8 @@ import {
 import { boxRadius } from "~uno/rules/box/radius";
 import { isString } from "~/utils/validation/is/string";
 import { isNumber } from "~/utils/validation/is/number";
-import { boxSize } from "~uno/rules/box/size";
+import { box } from "~uno/rules/box";
+import { boxPx } from "~/utils/box/px";
 
 export type TPillProps = Omit<
   TDivMotionProps,
@@ -24,7 +22,7 @@ export type TPillProps = Omit<
   isCircle?: boolean;
   isActive?: boolean;
   background?: TChildren;
-  children: TChildren;
+  children: TChildren | number;
 };
 export const Pill: FC<TPillProps> = ({
   isCircle,
@@ -37,13 +35,13 @@ export const Pill: FC<TPillProps> = ({
   background,
   ...props
 }) => {
-  const s = boxSize();
+  
 
   const borderRadius = boxRadius();
   return (
     <motion.div
       className={clsx(
-        "center h-4",
+        "center",
         sizeClass ??
           "h-4" +
             (isCircle ? " w-4" : ""),
@@ -51,8 +49,7 @@ export const Pill: FC<TPillProps> = ({
       )}
       style={{
         borderRadius,
-        paddingLeft: s.m0125,
-        paddingRight: s.m0125,
+        ...boxPx(box._0125),
         ...style,
       }}
       {...props}

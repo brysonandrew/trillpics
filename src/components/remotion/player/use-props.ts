@@ -8,16 +8,16 @@ import { TGenerateInput } from "~/types/trpc/generate";
 export const useRemotionPlayerProps = (
   _inputProps: TGenerateInput
 ) => {
-  const {fps} = useContextPlayer_Init()
   const {
     playerInstance,
     updatePlayerInstance,
   } = useContextPlayer_Init();
   const {
-    width: compositionWidth,
-    height: compositionHeight,
-    props: inputProps,
-    ...props
+    canvasDimensions: {
+      width: compositionWidth,
+      height: compositionHeight,
+    },
+    ...inputProps
   } = useRemotionProps(_inputProps);
 
   const resolveRef: LegacyRef<
@@ -27,13 +27,11 @@ export const useRemotionPlayerProps = (
       updatePlayerInstance(instance);
     }
   };
-
   return {
     ref: resolveRef,
     compositionWidth,
     compositionHeight,
-    fps,
-    durationInFrames: Math.ceil(fps * inputProps.seconds),
+
     style: {
       cursor: "pointer",
       width: "100%",
@@ -42,6 +40,10 @@ export const useRemotionPlayerProps = (
       base: "remotion",
       ...inputProps,
     },
-    ...props,
+    ...inputProps,
+    durationInFrames: Math.ceil(
+      inputProps.fps *
+        inputProps.seconds
+    ),
   };
 };

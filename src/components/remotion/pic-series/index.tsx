@@ -1,4 +1,4 @@
-import { FC } from "react";
+import { FC, Fragment } from "react";
 import { TPicSeriesProps } from "~/components/remotion/pic-series/types";
 import { resolvePicSrc } from "~/utils/src";
 import {
@@ -6,12 +6,17 @@ import {
   useVideoConfig,
   staticFile,
   AbsoluteFill,
-  Series,
   Img,
-  Audio,
   useCurrentFrame,
-  Sequence,
+  Audio,
 } from "remotion";
+import {
+  linearTiming,
+  TransitionSeries,
+} from "@remotion/transitions";
+import { slide } from "@remotion/transitions/slide";
+import { isDefined } from "~/utils/validation/is/defined";
+
 const INPUT_PROPS = getInputProps();
 
 export const PicSeries: FC<
@@ -29,52 +34,32 @@ export const PicSeries: FC<
     audio,
   } = inputProps;
 
-  const frame = useCurrentFrame();
   const {
-    fps,
     width,
     height,
     durationInFrames,
+    fps,
   } = useVideoConfig();
-  const durationInSeconds =
-    durationInFrames / fps;
-
   const unitSeconds = seconds / count;
-  const unitFrames = unitSeconds * fps;
-  const frameInUnit =
-    frame % unitFrames;
-  const secondInUnit =
-    frameInUnit / (fps * unitSeconds);
+  const unitFrames = Math.floor(
+    durationInFrames / count
+  );
   const delta =
     height -
     inputProps.dimensions.height;
-  const audioLoopDurationInSeconds =
-    audio?.seconds ?? durationInSeconds;
-  const audioLoopCount = Math.ceil(
-    durationInSeconds /
-      audioLoopDurationInSeconds
-  );
   return (
     <AbsoluteFill>
-      {audio && (
-        <Series>
-          {[
-            ...Array(audioLoopCount),
-          ].map((_, index) => (
-            <Series.Sequence
-              key={`${index}`}
-              durationInFrames={
-                audioLoopDurationInSeconds *
-                fps
-              }
-            >
-              <Audio src={audio.src} />
-            </Series.Sequence>
-          ))}
-        </Series>
-      )}
-      <Series>
-        {pics.map((pic) => {
+      {audio !== null &&
+        isDefined(audio) && (
+          <Audio
+            src={staticFile(audio.src)}
+            startFrom={
+              audio.start * fps
+            }
+          />
+        )}
+      <TransitionSeries>
+        {pics.map((pic, index) => {
           const srcPath = resolvePicSrc(
             { base, name: pic }
           );
@@ -83,36 +68,48 @@ export const PicSeries: FC<
 
           const top = `${Math.floor(
             (delta / height) *
-              secondInUnit *
+              unitSeconds *
               100
           )}%`;
           return (
-            <Series.Sequence
-              key={`${src}`}
-              durationInFrames={
-                unitFrames
-              }
-            >
-              <div
-                style={{
-                  position: "absolute",
-                  left: 0,
-                  top,
-                }}
-              >
-                <Img
-                  src={src}
-                  alt={`${pic}`}
-                  {...{
-                    width,
-                    height: width,
-                  }}
+            <Fragment key={`${src}`}>
+              {index !== 0 && (
+                <TransitionSeries.Transition
+                  presentation={slide({
+                    direction:
+                      "from-bottom",
+                  })}
+                  timing={linearTiming({
+                    durationInFrames:
+                      unitFrames / 2,
+                  })}
                 />
-              </div>
-            </Series.Sequence>
+              )}
+              <TransitionSeries.Sequence
+                durationInFrames={
+                  unitFrames * 1.5
+                }
+              >
+                <AbsoluteFill
+                  style={{
+                    top:0,
+                    left:0
+                  }}
+                >
+                  <Img
+                    src={src}
+                    alt={`${pic}`}
+                    {...{
+                      width,
+                      height: width,
+                    }}
+                  />
+                </AbsoluteFill>
+              </TransitionSeries.Sequence>
+            </Fragment>
           );
         })}
-      </Series>
+      </TransitionSeries>
     </AbsoluteFill>
   );
 };
@@ -120,7 +117,7 @@ export const PicSeries: FC<
 //   base,
 //   name: "insurrection-10941",
 // });
-// const audio = staticFile(
+// const recording = staticFile(
 //   audioSrcPath
 // const source = new AudioBufferSourceNode(offlineCtx, {
 //   buffer: decodedBuffer,

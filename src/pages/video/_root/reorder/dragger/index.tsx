@@ -7,11 +7,11 @@ import {
   motion,
   useMotionValueEvent,
 } from "framer-motion";
-import { useReadyContext } from "~/shell/ready/context";
+import { useContextReady } from "~/shell/ready/context";
 import { useHoverKey } from "~/hooks/use-hover-key";
 import clsx from "clsx";
 import { resolveAccessibilityTitles } from "@brysonandrew/utils-attributes";
-import { boxSize } from "~uno/rules/box/size";
+import { box } from "~uno/rules/box";
 import { THudContainer } from "~/pics/hud";
 import { TButtonMotionProps } from "@brysonandrew/config-types";
 
@@ -34,26 +34,14 @@ export const _RootReorderDragger: FC<
   left,
   ...props
 }) => {
-  const s = boxSize();
+  
   const bottom =
-    container.height / 2 - s.m15;
+    container.height / 2 - box._15;
   const { main, move } =
-    useReadyContext();
+    useContextReady();
   const { x, y } = main.dragger;
   const title =
     "Drag video pic position";
-
-  const start = () => {
-    main.cursor.isOnGrid = false;
-  };
-  const stop = () => {
-    main.cursor.isOnGrid = true;
-  };
-
-  // const { isHover, motionHandlers } =
-  //   useHoverKey({
-  //     handlers: { start, stop },
-  //   });
 
   const handlePointerDown: PointerEventHandler<
     HTMLButtonElement
@@ -100,7 +88,7 @@ export const _RootReorderDragger: FC<
     handleAnimationComplete
   );
 
-  size = size ?? s.m;
+  size = size ?? box._;
   return (
     <motion.button
       drag
@@ -113,7 +101,7 @@ export const _RootReorderDragger: FC<
         top: 0,
       }}
       className={clsx(
-        "center absolute rounded-md _gradient-radial",
+        "center absolute rounded-md _bi-radial",
         // isHover(title)
         //   ? "grayscale-100"
         //   : ""
@@ -137,7 +125,7 @@ export const _RootReorderDragger: FC<
       {...props}
     >
       <div
-        className="relative rounded-md _box-dots cursor-grab focus:cursor-grabbing"
+        className="relative rounded-md _bi-dots cursor-grab focus:cursor-grabbing"
         style={{
           width: size - size / 12,
           height: size - size / 12,

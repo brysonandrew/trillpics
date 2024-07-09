@@ -37,6 +37,15 @@ const width = {
   xxxxl: "2200px",
 } as const;
 
+export const THEME_FONT_SIZES_LOOKUP = {
+  xxxxs: ["0.4rem", "0.625rem"],
+  xxxs: ["0.65rem", "0.75rem"],
+  xxs: ["0.7rem", "1.25rem"],
+  "4xl": ["2.25rem", "2.5rem"],
+  "4.5xl": ["2.5rem", "2.75rem"],
+  "11xl": ["14rem", "17rem"],
+} as const;
+
 export const theme = resolveTheme({
   colors: COLOR_VARS_RECORD,
   spacing: SPACING,
@@ -47,9 +56,7 @@ export const theme = resolveTheme({
   screen,
   fontSize: {
     ...THEME_FONT_SIZE,
-    "4xl": ["2.25rem", "2.5rem"],
-    "4.5xl": ["2.5rem", "2.75rem"],
-    "11xl": ["14rem", "17rem"],
+    ...THEME_FONT_SIZES_LOOKUP,
   },
   extend: {
     keyframes: {

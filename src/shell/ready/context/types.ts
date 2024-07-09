@@ -3,10 +3,7 @@ import {
   PropsWithChildren,
   SetStateAction,
 } from "react";
-import {
-  MotionValue,
-  ValueAnimationTransition,
-} from "framer-motion";
+import { ValueAnimationTransition } from "framer-motion";
 import {
   FixedSizeList,
   ListOnScrollProps,
@@ -19,6 +16,7 @@ import { useTimeoutRef } from "@brysonandrew/hooks-window";
 import { TUsePicCell } from "~/hooks/pic/cell";
 import { TFontsResult } from "~/shell/ready/context/fonts";
 import { TInitContext } from "~/shell/init/context/types";
+import { useAddRandomHandler } from "~/hooks/pic/add-random/handler";
 
 export type TScreenReadyProps = {
   screen: TScreenReady;
@@ -60,6 +58,11 @@ export type TReadyContext =
   TInitContext &
     TUsePicCell &
     TScreenReadyProps & {
+      random: ReturnType<
+        typeof useAddRandomHandler
+      >;
+      container: TScreenReady["container"];
+
       foundationValue: TFoundationValue;
       updateFoundation: Dispatch<
         SetStateAction<TFoundationValue>

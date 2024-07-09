@@ -5,7 +5,7 @@ export const BlurTest: FC = () => {
   return (
     <div>
       <div
-        className="fill bg-red opacity-50 _gradient-radial"
+        className="fill bg-red opacity-50 _bi-radial"
         // style={EMBERS_FILTER_SVG_PROPS}
       />
       <motion.div

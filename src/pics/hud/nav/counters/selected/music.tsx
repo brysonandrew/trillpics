@@ -1,29 +1,32 @@
 import type { FC } from "react";
-import { useSoundContext } from "~/shell/global/sound";
-import { IconsMute } from "~/components/icons/playback/mute";
 import { IconsTick } from "~/components/icons/tick";
-import { BackgroundMeshRadialFlat } from "~/components/layout/background/mesh-radial-flat";
 import { boxRadius } from "~uno/rules/box/radius";
-import { boxSize } from "~uno/rules/box/size";
+import { box } from "~uno/rules/box";
 import { BackgroundMesh } from "~/components/layout/background/mesh";
+import { IconsCross24 } from "~/components/icons/cross/24";
+import { QUERY_PARAM_KEYS } from "~/hooks/pic/constants";
+import { useSearchParams } from "react-router-dom";
 
 export const NavCountersSelectedMusic: FC =
   () => {
-    const { audio } = useSoundContext();
-    const s = boxSize();
+    const [searchParams] =
+      useSearchParams();
+    const audio = searchParams.get(
+      QUERY_PARAM_KEYS["audio-src"]
+    );
+
     const borderRadius = boxRadius();
     if (audio) {
       return (
         <div
           className="relative center"
           style={{
-            width: s.m05,
-            height: s.m05,
+            width: box._05,
+            height: box._05,
             borderRadius,
           }}
         >
           <BackgroundMesh />
-
           <IconsTick />
         </div>
       );
@@ -32,15 +35,14 @@ export const NavCountersSelectedMusic: FC =
       <div
         className="relative center z-10"
         style={{
-          width: s.m05,
-          height: s.m05,
-          padding: s.m025,
+          width: box._05,
+          height: box._05,
+          padding: box._025,
           borderRadius,
         }}
       >
         <BackgroundMesh />
-
-        <IconsMute size={14} />
+        <IconsCross24 size={14} />
       </div>
     );
   };

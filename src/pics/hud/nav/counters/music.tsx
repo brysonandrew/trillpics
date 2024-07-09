@@ -1,70 +1,79 @@
 import type { FC } from "react";
 import { motion } from "framer-motion";
-import { useSoundContext } from "~/shell/global/sound";
 import { IconsMute } from "~/components/icons/playback/mute";
-import { boxSize } from "~uno/rules/box/size";
 import { boxRadius } from "~uno/rules/box/radius";
-import { useHoverKey } from "~/hooks/use-hover-key";
-import { LayoutOverlay } from "~/components/layout/overlay";
-import { IconsUnmute } from "~/components/icons/playback/unmute";
 import { IconsTick } from "~/components/icons/tick";
-import { PillBLayout } from "~/components/buttons/pill/b/layout";
 import { LayoutBox } from "~/components/layout/box";
 import { BackgroundMeshRadialFlat } from "~/components/layout/background/mesh-radial-flat";
-const key = "NavCountersMusic";
+import { useTrillPicsStore } from "~/store/middleware";
+import { LightingGlow } from "~/components/layout/lighting/glow";
+import { box } from "~uno/rules/box";
+import { LayoutOverlay } from "~/components/layout/overlay";
+import { IconsCheckboxEmpty } from "~/components/icons/inputs/checkbox/empty";
+import { useSearchParams } from "react-router-dom";
+import { QUERY_PARAM_KEYS } from "~/hooks/pic/constants";
+import { resolveVideoReadAudio } from "~/hooks/pic/video/read/audio";
 
-export const NavCountersMusic: FC =
-  () => {
-    const { audio } = useSoundContext();
-    const s = boxSize();
-    const borderRadius = boxRadius();
-    const { motionHandlers, isHover } =
-      useHoverKey();
-    const isHovering = isHover(key);
+type TProps = { isHovering: boolean };
+export const NavCountersMusic: FC<
+  TProps
+> = ({ isHovering }) => {
+  const [searchParams] =
+    useSearchParams();
+  const audio = resolveVideoReadAudio(
+    searchParams
+  );
+  const borderRadius = boxRadius();
 
-    if (audio) {
-      return (
-        <div className="absolute -top-2 -right-2 z-10">
-          <div
-            className="relative"
-            style={{
-              width: s.m05,
-              height: s.m05,
-              borderRadius,
-            }}
-          >
-            <BackgroundMeshRadialFlat />
-            <IconsTick />
-          </div>
-        </div>
-      );
-    }
+  if (audio) {
     return (
-      <>
-        <motion.div
-          className="center absolute -top-1 -right-1 cursor-pointer z-10"
+      <div className="absolute -top-2 -right-2 z-10 pointer-events-none">
+        <div
+          className="relative"
           style={{
-            width: s.m05,
-            height: s.m05,
+            width: box._05,
+            height: box._05,
             borderRadius,
           }}
-          {...motionHandlers(key)}
         >
-          <div
-            className="fill _gradient-mesh opacity-100"
-            style={{
-              borderRadius,
-            }}
-          />
-          <LayoutBox>
-            <IconsMute size={16} />
-          </LayoutBox>
-        </motion.div>
+          <BackgroundMeshRadialFlat />
+          <IconsTick />
+          <>
+            {isHovering && (
+              <LayoutOverlay>
+                Soundtrack added
+              </LayoutOverlay>
+            )}
+          </>
+        </div>
+      </div>
+    );
+  }
+  return (
+    <motion.div
+      className="center absolute -top-2 -left-2 cursor-pointer z-10 pointer-events-none"
+      style={{
+        width: box._05,
+        height: box._05,
+        borderRadius,
+      }}
+    >
+      <>
         {isHovering && (
           <LayoutOverlay>
-            No audio track recorded
+            No soundtrack
           </LayoutOverlay>
         )}
       </>
-    );
-  };
+      <div
+        className="fill _bi-mesh opacity-100"
+        style={{
+          borderRadius,
+        }}
+      />
+      <LayoutBox>
+        <IconsMute size={16} />
+      </LayoutBox>
+    </motion.div>
+  );
+};

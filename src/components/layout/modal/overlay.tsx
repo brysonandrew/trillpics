@@ -1,7 +1,7 @@
 import type { FC } from "react";
 import { IconsInfo } from "~/components/icons/info";
 import clsx from "clsx";
-import { TexturesMesh } from "~/components/textures/mesh";
+import { TexturesMesh } from "~/components/layout/modal/textures/mesh";
 import {
   TDivProps,
   TSvgProps,
@@ -47,7 +47,7 @@ export const ModalOverlay: FC<
             {props.title}
           </h4>
         </div>
-        <div className="relative _gradient-radial w-full h-1" />
+        <div className="relative _bi-radial w-full h-1" />
         <p className="relative p-4 text-lg">
           {children}
         </p>
@@ -61,7 +61,7 @@ export const ModalOverlay: FC<
               {onCancel && (
                 <button
                   onClick={onCancel}
-                  className="relative px-4 py-2.5 border border-main hover:_gradient-radial"
+                  className="relative px-4 py-2.5 border border-main hover:_bi-radial"
                 >
                   <TexturesMesh classValue="inset-2" />
                   Cancel
@@ -70,7 +70,7 @@ export const ModalOverlay: FC<
               {onOk && (
                 <button
                   onClick={onOk}
-                  className="relative px-4 py-2.5 border border-main hover:_gradient-radial"
+                  className="relative px-4 py-2.5 border border-main hover:_bi-radial"
                 >
                   <TexturesMesh classValue="inset-2" />
                   Ok

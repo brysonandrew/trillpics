@@ -19,9 +19,15 @@ const persistKey = resolveCompositeKey(
 
 export const PERSIST_STATE_RECORD = {
   picsCount: "picsCount",
+  // steps: "steps",
   pics: "pics",
-  music: "music",
-} as const;
+  // synth: "synth",
+  // sequence: "sequence",
+  // scale: "scale",
+  // beats: "beats",
+} as const satisfies Partial<
+  Record<keyof TState, keyof TState>
+>;
 
 const KEYS = Object.keys(
   PERSIST_STATE_RECORD
@@ -32,8 +38,8 @@ export const PERSIST_STORAGE: PersistOptions<
   TPersistPartializedState
 > = {
   name: persistKey,
-  partialize: (state: TState) =>
-    KEYS.reduce(
+  partialize: (state: TState) => {
+    const persisted = KEYS.reduce(
       (a, key: TPersistKey) => {
         const value = state[key];
         return {
@@ -42,6 +48,14 @@ export const PERSIST_STORAGE: PersistOptions<
         };
       },
       {} as TPersistPartializedState
-    ),
+    );
+    return {
+      ...persisted,
+      // steps: resolveMidiSteps({
+      //   ...persisted.scale,
+      //   ...persisted.sequence,
+      // }),
+    };
+  },
   storage: STORAGE_JSON,
 };

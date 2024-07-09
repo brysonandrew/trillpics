@@ -8,7 +8,6 @@ export const LightingLamp: FC<
 > = ({ classValue, ...props }) => {
   return (
     <LightingBase
-      lightingClassValue=""
       classValue={clsx(classValue)}
       {...props}
     />

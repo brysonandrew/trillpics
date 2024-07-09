@@ -1,10 +1,17 @@
+import { TCellKey } from "~/hooks/pic/types";
 import {
   THoverChecksHandler,
   THoverChecksKeyHandler,
 } from "~/store/state/hover/checks/active/types";
 import { THoverCooldownEndHandler } from "~/store/state/hover/cooldown/types";
+type TD =  '-';
+export type TMidiHoverKey =
+  `midi${TD}${number}${TD}${TCellKey}`;
 
-export type THoverKey = string | number;
+export type THoverKey =
+  | TMidiHoverKey
+  | string
+  | number;
 export type THoverKeys = THoverKey;
 
 export type THoverKeysState = {

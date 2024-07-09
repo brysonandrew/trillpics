@@ -7,7 +7,6 @@ export const _ControlsPlaybackTimer: FC =
   () => {
     const seconds =
       usePicVideoReadSeconds();
-console.log(seconds)
     return (
       <PlaybackTimer
         durationProps={{
@@ -16,7 +15,6 @@ console.log(seconds)
         }}
         TimerCurrentFc={
           () => {
-            console.log("<TimerCurrentProgressFromFrames/>")
             return <TimerCurrentProgressFromFrames/>
           }
         }

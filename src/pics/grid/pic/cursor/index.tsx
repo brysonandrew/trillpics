@@ -4,7 +4,7 @@ import {
   motion,
   MotionConfig,
 } from "framer-motion";
-import { useReadyContext } from "~/shell/ready/context";
+import { useContextReady } from "~/shell/ready/context";
 import { resolveCompositeKey } from "@brysonandrew/utils-key";
 import { CursorCorners } from "~/pics/grid/pic/cursor/corners";
 import { TPropsWithChildren } from "@brysonandrew/config-types";
@@ -12,6 +12,8 @@ import { resolvePositionFromCell } from "~/pics/grid/pic/cursor/position-from-ce
 import {
   DELAY_TRANSITION_PROPS,
   PRESENCE_OPACITY_01,
+  PRESENCE_OPACITY_02,
+  PRESENCE_OPACITY_04,
 } from "~/constants/animation";
 import { boxRadius } from "~uno/rules/box/radius";
 import { PRESENCE_OPACITY } from "@brysonandrew/motion-config-constants";
@@ -27,13 +29,14 @@ import {
 } from "~uno/rules/gradient/constants";
 import { useDarkMode } from "@brysonandrew/dark-mode";
 import { resolveSquare } from "@brysonandrew/measure";
+import { resolveVarCss } from "@brysonandrew/color-base";
 
 export const PicCursor: FC<
   TPropsWithChildren<TUseShowCursorConfig>
 > = ({ children, ...props }) => {
   const { currCell, size, currKey } =
     props;
-  const { scrollY } = useReadyContext();
+  const { scrollY } = useContextReady();
 
   const position =
     resolvePositionFromCell({
@@ -52,7 +55,7 @@ export const PicCursor: FC<
           key={resolveCompositeKey(
             "PicCursor-cursor"
           )}
-          className="fill center text-2xl _outline-filter-inverted text-black-5 dark:text-gray-9 pointer-events-none"
+          className="fill center text-2xl text-black pointer-events-none"
           style={{
             y: scrollY,
             borderRadius,
@@ -81,13 +84,14 @@ export const PicCursor: FC<
                   name: "radial-gradient",
                   parts: [
                     "circle",
-                    ...(isDarkMode
-                      ? GRADIENT_BLUE_PINK_YELLOW_COLORS
-                      : GRADIENT_TEAL_YELLOW_PINK_COLORS),
+                    resolveVarCss(
+                      "white"
+                    ),
+                    "transparent",
                   ],
                 }),
             }}
-            {...PRESENCE_OPACITY_01}
+            {...PRESENCE_OPACITY_02}
           />
           <PicCursorSquare
             key={resolveCompositeKey(

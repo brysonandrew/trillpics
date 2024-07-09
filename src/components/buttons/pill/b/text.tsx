@@ -1,7 +1,6 @@
 import type { FC } from "react";
 import { motion } from "framer-motion";
-import { isString } from "unocss";
-import { boxSize } from "~uno/rules/box/size";
+import { box } from "~uno/rules/box";
 import {
   TDivMotionProps,
   TPropsWithChildren,
@@ -10,16 +9,17 @@ import { SubtitleText } from "~/pics/header/subtitle/text";
 import { useTrillPicsStore } from "~/store/middleware";
 import { TITLE_HOVER_KEY } from "~/pics/header/left";
 import clsx from "clsx";
-export type TPillBLayoutProps =
-  TDivMotionProps &
-    Partial<
-      TPropsWithChildren<{
-        size: number;
-        textSizeClass?: string;
-      }>
-    >;
+
+export type TPillBLayoutProps = Omit<
+  TDivMotionProps,
+  "children"
+> &
+  Partial<{
+    size: number;
+    textSizeClass?: string;
+  }>;
 export const PillBText: FC<
-  TPillBLayoutProps
+  TPropsWithChildren<TPillBLayoutProps>
 > = ({
   children,
   size,
@@ -28,8 +28,8 @@ export const PillBText: FC<
   textSizeClass,
   ...props
 }) => {
-  const s = boxSize();
-  size = size ?? s.m;
+  const s = box;
+  size = size ?? box._;
   const { isIdle, isHover } =
     useTrillPicsStore(
       ({ isIdle, isHover }) => ({
@@ -38,58 +38,56 @@ export const PillBText: FC<
       })
     );
   return (
-    <>
-      {isString(children) ? (
-        <motion.div
-          className={clsx(
-            "relative top-2 px-0 text-left pointer-events-none z-0",
-            classValue,
-            textSizeClass ?? "text-sm"
-          )}
-          style={{
-            height: s.height,
-            ...style,
-          }}
-          {...props}
-        >
-          <SubtitleText>
-            {(isIdle ||
-              isHover(
-                TITLE_HOVER_KEY
-              )) && (
-              <motion.div
-                className="absolute -inset-y-2 -inset-x-1 bg-white-2 dark:bg-gray-5 rounded-lg z-0 pointer-events-none"
-                initial={{ opacity: 0 }}
-                animate={{
-                  opacity: 0.2,
-                }}
-                exit={{ opacity: 0 }}
-                style={{
-                  filter: "blur(8px)",
-                }}
-              />
-            )}
-
-            <span className="relative">
-              {children}
-            </span>
-          </SubtitleText>
-        </motion.div>
-      ) : (
-        <>{children}</>
+    <motion.div
+      className={clsx(
+        "relative top-2 px-0 text-left pointer-events-none z-0",
+        classValue,
+        textSizeClass ?? "text-sm"
       )}
-    </>
+      style={{
+        height: box.height,
+        ...style,
+      }}
+      {...props}
+    >
+      <SubtitleText>
+        {(isIdle ||
+          isHover(TITLE_HOVER_KEY)) && (
+          <motion.div
+            className="fill bg-white-2 dark:bg-white _bi-radial z-0 pointer-events-none"
+            initial={{ opacity: 0 }}
+            animate={{
+              opacity: 0.6,
+            }}
+            exit={{ opacity: 0 }}
+            style={{
+              filter: "blur(14px)",
+              borderRadius:
+                box.radius.xl,
+              mixBlendMode:
+                "soft-light",
+              ...box.ix(-box._025),
+              ...box.iy(box._003125),
+            }}
+          />
+        )}
+
+        <span className="relative">
+          {children}
+        </span>
+      </SubtitleText>
+    </motion.div>
   );
 };
 {
-  /* <div className="uppercase font-sans _outline-filter lg:(text-sm whitespace-nowrap) pointer-events-none">
+  /* <div className="uppercase font-sans _sf-outline lg:(text-sm whitespace-nowrap) pointer-events-none">
 <div
-  className="absolute -inset-y-4 -inset-x-1 _gradient-radial opacity-10 filter-blur-md pointer-events-none"
+  className="absolute -inset-y-4 -inset-x-1 _bi-radial opacity-10 filter-blur-md pointer-events-none"
   style={{
     borderRadius,
   }}
 />
-<span className="relative dark:text-black text-white-8 _outline-filter whitespace-nowrap pointer-events-none">
+<span className="relative dark:text-black text-white-8 _sf-outline whitespace-nowrap pointer-events-none">
   {children}
 </span>
 </div> */

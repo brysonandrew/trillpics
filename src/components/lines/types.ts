@@ -1,11 +1,9 @@
-import { TDivMotionProps, TDivProps } from "@brysonandrew/config-types";
-import { ClassValue } from "clsx";
+import {
+  TDivMotionProps,
+  TDivProps,
+} from "@brysonandrew/config-types";
+import { TClassOverrides } from "~/types/classes";
 
-export type TLinesOptions =TDivProps & 
-  TDivMotionProps & {
-    colorClass?: ClassValue;
-    sizeClass?: ClassValue;
-    opacityClass?: ClassValue;
-    positionClass?: ClassValue;
-
-  };
+export type TLinesOptions = TDivProps &
+  TDivMotionProps &
+  TClassOverrides;

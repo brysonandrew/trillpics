@@ -4,20 +4,24 @@ import { resolveSquare } from "@brysonandrew/measure";
 import { PicDisplay } from "~/pics/grid/pic/display";
 import { isVNumber } from "~/utils/validation/is/number";
 import { useTrillPicsStore } from "~/store/middleware";
-import { boxSize } from "~uno/rules/box/size";
+import { box } from "~uno/rules/box";
 import { TUsePicSelected } from "~/hooks/pic/selected";
 import {
   TOTAL_GAP,
   MAX_COUNT,
 } from "~/pages/video/_root/reorder/constants";
-import { LEFT_BUTTONS_CLEAR_TITLE } from "~/pages/video/_root/clear";
-import { useReadyContext } from "~/shell/ready/context";
-import { HUD_LEFT_ADD_RANDOM_HOVER_KEY } from "~/pages/video/_root/add-random";
+import { LEFT_BUTTONS_CLEAR_TITLE } from "~/pages/video/_root/controls/clear";
+import { useContextReady } from "~/shell/ready/context";
+import { ADD_RANDOM_HOVER_KEY } from "~/pages/video/_root/controls/add-random";
 import { resolveCompositeKey } from "@brysonandrew/utils-key";
 import clsx from "clsx";
 import { _RootReorderControls } from "~/pages/video/_root/reorder/controls";
 import { useHoverKey } from "~/hooks/use-hover-key";
-
+import { isDefined } from "~/utils/validation/is/defined";
+import { NONAME_PREFIX } from "~/constants/keys";
+import { isNoname } from "~/utils/validation/is/noname";
+export const HOVER_KEY_RootReorderList =
+  "_RootReorderList";
 type TProps = TUsePicSelected;
 export const _RootReorderList: FC<
   TProps
@@ -29,24 +33,22 @@ export const _RootReorderList: FC<
   add,
   pics,
 }) => {
-  const {
-    hoverKeys,
-    isHover,
-  } = useTrillPicsStore(
-    ({
-      hoverKeys,
-      isControls,
-      isHover,
-    }) => ({
-      hoverKeys,
-      isControls,
-      isHover,
-    })
-  );
+  const { hoverKeys, isHover } =
+    useTrillPicsStore(
+      ({
+        hoverKeys,
+        isControls,
+        isHover,
+      }) => ({
+        hoverKeys,
+        isControls,
+        isHover,
+      })
+    );
   const {
     screen,
     main: { dragger },
-  } = useReadyContext();
+  } = useContextReady();
 
   const isVideoPlayerButtonHover =
     hoverKeys.includes(
@@ -54,16 +56,16 @@ export const _RootReorderList: FC<
     );
   const is5RandomPicsHover =
     hoverKeys.includes(
-      HUD_LEFT_ADD_RANDOM_HOVER_KEY
+      ADD_RANDOM_HOVER_KEY
     );
 
-  const s = boxSize();
+  
   const isColumn =
     screen.container.width < 600;
   const width =
     screen.container.width -
-    (isColumn ? s.m : s.m3);
-  const left = isColumn ? s.m05 : s.m25;
+    (isColumn ? box._ : box._3);
+  const left = isColumn ? box._05 : box._25;
   const gap =
     TOTAL_GAP / (MAX_COUNT - 1);
   const size =
@@ -75,8 +77,7 @@ export const _RootReorderList: FC<
     height,
     width,
     left,
-    top: s.m3,
-
+    top: box._3,
   };
   const boxProps = {
     className: clsx(
@@ -90,30 +91,39 @@ export const _RootReorderList: FC<
   const itemDimensions = isColumn
     ? {
         height:
-          size / MAX_COUNT + s.m05,
+          size / MAX_COUNT + box._05,
         width: size,
       }
     : imageDimensions;
-    const {motionHandlers} =useHoverKey()
+  const { motionHandlers } =
+    useHoverKey();
 
+  const listNames = [
+    ...Array(MAX_COUNT),
+  ].map(
+    (_, index) =>
+      names[index] ??
+      (`${NONAME_PREFIX}${index}` as const)
+  );
   return (
     <Reorder.Group
       axis={isColumn ? "y" : "x"}
-      values={names}
+      values={listNames}
       onReorder={select}
       {...boxProps}
       style={{
         ...boxStyle,
-        top: s.m4,
+        top: box._4,
       }}
-      {...motionHandlers('_RootReorderList')}
+      {...motionHandlers(
+        HOVER_KEY_RootReorderList
+      )}
     >
-      {names.map((name, index) => {
+      {listNames.map((name, index) => {
+        const isName = !isNoname(name);
+
         isVNumber(size);
-        const key = resolveCompositeKey(
-          "reorder",
-          name
-        );
+
         const controlKey =
           resolveCompositeKey(
             name,
@@ -121,7 +131,11 @@ export const _RootReorderList: FC<
           );
         return (
           <Reorder.Item
-            key={key}
+            key={resolveCompositeKey(
+              "active",
+              "reorder",
+              name
+            )}
             value={name}
             whileDrag={{
               cursor: "grabbing",
@@ -131,51 +145,56 @@ export const _RootReorderList: FC<
               filter: is5RandomPicsHover
                 ? "blur(6px)"
                 : "",
+
               cursor: "grab",
             }}
           >
-            <_RootReorderControls
-              x={dragger.x}
-              y={dragger.y075}
-              key={controlKey}
-              name={name}
-              title={controlKey}
-              isColumn={isColumn}
-              index={index}
-              itemDimensions={
-                itemDimensions
-              }
-              imageDimensions={
-                imageDimensions
-              }
-              deselect={deselect}
-              add={add}
-              pics={pics}
-            />
-            {!isHover(
-              LEFT_BUTTONS_CLEAR_TITLE
-            ) &&
+            {isName &&
+              !isHover(
+                LEFT_BUTTONS_CLEAR_TITLE
+              ) &&
               !isVideoPlayerButtonHover && (
-                <PicDisplay
-                  key={resolveCompositeKey(
-                    "reorder-list-pic-display",
-                    name
-                  )}
-                  name={name}
-                  whileTap={{
-                    cursor: "grabbing",
-                  }}
-                  style={{
-                    left: 0,
-                    top: dragger.y06,
-                    zIndex: index + 2,
-                    ...imageDimensions,
-                  }}
-                  transition={{
-                    duration: 0.6,
-                    ease: "easeIn",
-                  }}
-                />
+                <>
+                  <_RootReorderControls
+                    x={dragger.x}
+                    y={dragger.y075}
+                    key={controlKey}
+                    name={name}
+                    title={controlKey}
+                    isColumn={isColumn}
+                    index={index}
+                    itemDimensions={
+                      itemDimensions
+                    }
+                    imageDimensions={
+                      imageDimensions
+                    }
+                    deselect={deselect}
+                    add={add}
+                    pics={pics}
+                  />
+                  <PicDisplay
+                    key={resolveCompositeKey(
+                      "reorder-list-pic-display",
+                      name
+                    )}
+                    name={name}
+                    whileTap={{
+                      cursor:
+                        "grabbing",
+                    }}
+                    style={{
+                      left: 0,
+                      top: dragger.y06,
+                      zIndex: index + 2,
+                      ...imageDimensions,
+                    }}
+                    transition={{
+                      duration: 0.6,
+                      ease: "easeIn",
+                    }}
+                  />
+                </>
               )}
           </Reorder.Item>
         );

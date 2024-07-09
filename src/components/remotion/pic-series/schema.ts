@@ -3,7 +3,7 @@ import { z } from "zod";
 export const PIC_SERIES_SCHEMA =
   z.object({
     base: z.string().optional(),
-    audio: z
+    recording: z
       .object({
         src: z.string(),
         seconds: z.number(),
@@ -23,4 +23,5 @@ export const PIC_SERIES_SCHEMA =
     onProgress: z.function().optional(),
     onLog: z.function().optional(),
     onDownload: z.function().optional(),
+    audio: z.object({src:z.string(),start:z.number()}).nullable()
   });

@@ -1,30 +1,28 @@
 import type { FC } from "react";
-import { motion } from "framer-motion";
-import { TUlProps } from "@brysonandrew/config-types";
-import { container } from "tailwindcss/defaultTheme";
+import { TDivProps } from "@brysonandrew/config-types";
 import { TUsePicSelected } from "~/hooks/pic/selected";
-import { resolvePicSrc } from "~/utils/src";
 import { MAX_COUNT } from "~/pages/video/_root/reorder/constants";
-import { useReadyContext } from "~/shell/ready/context";
-import { boxSize } from "~uno/rules/box/size";
+import { useContextReady } from "~/shell/ready/context";
+import { box } from "~uno/rules/box";
+import { PicDisplay } from "~/pics/grid/pic/display";
 
 type TProps = Pick<
   TUsePicSelected,
   "names"
 > &
-  TUlProps & { title?: string };
+  TDivProps & { title?: string };
 export const ShowPics: FC<TProps> = ({
   title,
   names,
   style,
   ...props
 }) => {
-  const { screen } = useReadyContext();
+  const { screen } = useContextReady();
 
   const container = screen.container;
   const unitSize =
     container.width / MAX_COUNT;
-  const s = boxSize();
+  
 
   return (
     <>
@@ -34,33 +32,27 @@ export const ShowPics: FC<TProps> = ({
           <div className="h-6" />
         </>
       )}
-      <ul
-        className="relative grid gap-2"
+      <div
+        className="relative grid gap-2 pointer-events-none"
         style={{
           display: "grid",
           left: 0,
           width: container.width,
-          gap: s.m,
+          gap: box._,
           gridTemplateColumns: `repeat(auto-fill, minmax(${unitSize}px, 1fr))`,
           ...style,
         }}
         {...props}
       >
         {names.map((name) => (
-          <li key={name}>
-            <motion.img
-              layoutId={name}
-              alt={name}
-              src={resolvePicSrc({
-                base: "remotion",
-                name,
-              })}
-              width={unitSize}
-              height={unitSize}
-            />
-          </li>
+          <PicDisplay
+            key={`shown-pic-${name}`}
+            name={name}
+            width={unitSize}
+            height={unitSize}
+          />
         ))}
-      </ul>
+      </div>
     </>
   );
 };

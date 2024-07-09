@@ -6,7 +6,7 @@ import { motion } from "framer-motion";
 import { TDivMotionProps } from "@brysonandrew/config-types";
 import clsx from "clsx";
 import { FULLSCREEN_Z } from "~/constants/dom";
-import { useReadyContext } from "~/shell/ready/context";
+import { useContextReady } from "~/shell/ready/context";
 
 type TProps = PropsWithChildren<
   Partial<TDivMotionProps>
@@ -19,7 +19,7 @@ export const PicBackdrop: FC<
   classValue,
   ...props
 }) => {
-  const { screen } = useReadyContext();
+  const { screen } = useContextReady();
   const screenDimensions = {
     width: screen.width,
     height: screen.height,
@@ -27,7 +27,8 @@ export const PicBackdrop: FC<
   return (
     <motion.div
       className={clsx(
-        "fill"
+        "fill",
+        classValue
       )}
       style={{
         ...(screenDimensions ?? {}),
@@ -43,7 +44,7 @@ export const PicBackdrop: FC<
       }}
       {...props}
     >
-      <div className="fill _box-dots opacity-20"/>
+      <div className="fill _bi-dots opacity-20 brightness-80"/>
     </motion.div>
   );
 };
