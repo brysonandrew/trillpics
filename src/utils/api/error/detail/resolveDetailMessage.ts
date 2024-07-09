@@ -14,7 +14,7 @@ export const resolveDetailMessage = (
     message: ${msg}
     type: ${type}
 `;
-      toast.error(content);
+      console.error(content);
     }
   );
 };
