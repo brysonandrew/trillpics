@@ -1,5 +1,4 @@
 import { TError } from '@brysonandrew/config-types';
-import { toast } from 'react-hot-toast';
 
 const toMessage = (
   content: string,
@@ -21,6 +20,6 @@ export const resolveErrorMessage = (
     error.message;
   content = toMessage(error, source);
   if (content) {
-    toast.error(content);
+    console.error(content);
   }
 };

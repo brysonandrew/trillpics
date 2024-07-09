@@ -29,7 +29,7 @@ const Checkbox = forwardRef<
       {...props}
     >
       {!checked && (
-        <div className="data-[state=checked]:bg-red size-23 brightness-40">
+        <div className="data-[state=checked]:bg-white size-23 brightness-40">
           <IconsCheckboxEmpty className="size-4" />
         </div>
       )}
