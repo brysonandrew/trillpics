@@ -5,13 +5,9 @@ import { boxRadius } from "~uno/rules/box/radius";
 import { IconsTick } from "~/components/icons/tick";
 import { LayoutBox } from "~/components/layout/box";
 import { BackgroundMeshRadialFlat } from "~/components/layout/background/mesh-radial-flat";
-import { useTrillPicsStore } from "~/store/middleware";
-import { LightingGlow } from "~/components/layout/lighting/glow";
 import { box } from "~uno/rules/box";
 import { LayoutOverlay } from "~/components/layout/overlay";
-import { IconsCheckboxEmpty } from "~/components/icons/inputs/checkbox/empty";
 import { useSearchParams } from "react-router-dom";
-import { QUERY_PARAM_KEYS } from "~/hooks/pic/constants";
 import { resolveVideoReadAudio } from "~/hooks/pic/video/read/audio";
 
 type TProps = { isHovering: boolean };
