@@ -11,7 +11,6 @@ import type {
   RenderMediaOnProgress,
   RenderMediaOnDownload,
 } from "@remotion/renderer";
-import { songs } from "~/server/ncs";
 import { generate } from "./generate";
 
 export const SCHEMA_INPUT =

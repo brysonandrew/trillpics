@@ -1,4 +1,4 @@
-import type { FC } from "react";
+import { FC, useEffect } from "react";
 import {
   useLocation,
   useNavigate,
@@ -6,7 +6,6 @@ import {
 } from "react-router-dom";
 import { IconsCheckboxChecked } from "~/components/icons/inputs/checkbox/checked";
 import { IconsCheckboxEmpty } from "~/components/icons/inputs/checkbox/empty";
-import { BackgroundGlass } from "~/components/layout/background/glass";
 import { LightingGlow } from "~/components/layout/lighting/glow";
 import {
   AUDIO_SRC_KEY,
@@ -18,6 +17,7 @@ import { AudioUploadedItem } from "~/pages/video/music/audio/uploaded/item";
 import { TRACKS } from "~/pages/video/music/constants";
 import { PlayerBackgroundOpaque } from "~/pages/video/player/_background/opaque";
 import { box } from "~uno/rules/box";
+import { prefetch } from "remotion";
 
 export const AudioPlaylist: FC = () => {
   const { pathname } = useLocation();
@@ -27,6 +27,11 @@ export const AudioPlaylist: FC = () => {
   const audio = resolveVideoReadAudio(
     searchParams
   );
+  useEffect(() => {
+    TRACKS.forEach((track) => {
+      prefetch(track.src);
+    });
+  }, []);
   return (
     <ul
       className="column-stretch"
@@ -39,16 +44,22 @@ export const AudioPlaylist: FC = () => {
           <li
             key={track.src}
             className="relative text-white dark:bg-black-2 bg-transparent row-stretch"
-            style={{ gap: box._05, ...box.p(box._025) }}
+            style={{
+              gap: box._05,
+              ...box.p(box._025),
+            }}
           >
-            <LightingGlow classValue='-inset-2'/>
+            <LightingGlow classValue="-inset-2" />
             <PlayerBackgroundOpaque />
-            <div className="fill _bi-conic-metal opacity-20"/>
+            <div className="fill _bi-conic-metal opacity-20" />
             <AudioUploadedItem
               name={track.title}
               src={track.src}
-              start={isSelected?audio.start:0}
-              
+              start={
+                isSelected
+                  ? audio.start
+                  : 0
+              }
             >
               {(elapsed) => (
                 <button
@@ -69,6 +80,9 @@ export const AudioPlaylist: FC = () => {
                         QUERY_PARAM_KEYS[
                           AUDIO_SRC_KEY
                         ],
+                        track.src
+                      );
+                      prefetch(
                         track.src
                       );
                       searchParams.set(

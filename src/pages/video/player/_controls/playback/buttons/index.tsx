@@ -13,8 +13,6 @@ import { _ControlsPlaybackTimer } from "~/pages/video/player/_controls/playback/
 
 export const PlaybackButtons: FC =
   () => {
-    
-
     return (
       <div
         className="relative flex flex-col md:(flex-row justify-start) lg:(flex-row justify-between)"
@@ -34,7 +32,9 @@ export const PlaybackButtons: FC =
         <div className="relative row w-full justify-end md:(justify-end w-auto self-end grow) gap-2">
           <PlaybackButtonsMute direction="rtl" />
           <PlaybackButtonsFullscreen direction="rtl" />
-          <Download direction="rtl" />
+          {import.meta.env.DEV && (
+            <Download direction="rtl" />
+          )}
         </div>
       </div>
     );
