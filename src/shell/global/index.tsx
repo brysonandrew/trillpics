@@ -9,11 +9,11 @@ export const ShellGlobal: FC<
   TProps
 > = ({ children }) => {
   return (
-      <DarkModeProvider>
-        <ShellGlobalCss />
-        <GlobalProvidersApi>
-          {children}
-        </GlobalProvidersApi>
-      </DarkModeProvider>
+    <DarkModeProvider>
+      <ShellGlobalCss />
+      {/* <GlobalProvidersApi>
+        </GlobalProvidersApi> */}
+      {children}
+    </DarkModeProvider>
   );
 };
