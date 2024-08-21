@@ -4,7 +4,7 @@ export const resolveComposition = (
 ) => {
   const cwd = process.cwd();
 
-  console.log(inputProps);
+  // console.log(inputProps);
   // const isLocal = (
   //   import.meta.env ?? process.env
   // )._IS_LOCAL;
