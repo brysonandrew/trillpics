@@ -6,6 +6,7 @@ import {
   TPillBProps,
 } from "~/components/buttons/pill/b";
 import { useContextPlayer_Ready } from "~/pages/video/player/_context/ready";
+import { IconsPause } from "~/components/icons/playback/pause";
 
 export const PlaybackButtonsPlay: FC<
   Partial<TPillBProps>
@@ -26,7 +27,7 @@ export const PlaybackButtonsPlay: FC<
       onClick={handlePlay}
       Icon={
         isPlaying
-          ? IconsPlay
+          ? IconsPause
           : IconsPlay
       }
       {...props}
