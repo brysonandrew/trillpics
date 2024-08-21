@@ -8,6 +8,7 @@ import { PlaybackButtonsPlay } from "~/pages/video/player/_controls/playback/but
 import { box } from "~uno/rules/box";
 import { PlayerBackground } from "~/pages/video/player/_background";
 import { PlayerBackgroundOpaque } from "~/pages/video/player/_background/opaque";
+import { Download } from "~/pages/video/player/_controls/download";
 import { _ControlsPlaybackTimer } from "~/pages/video/player/_controls/playback/timer";
 
 export const PlaybackButtons: FC =
@@ -31,6 +32,9 @@ export const PlaybackButtons: FC =
         <div className="relative row w-full justify-end md:(justify-end w-auto self-end grow) gap-2">
           <PlaybackButtonsMute direction="rtl" />
           <PlaybackButtonsFullscreen direction="rtl" />
+          {import.meta.env.DEV && (
+            <Download direction="rtl" />
+          )}
         </div>
       </div>
     );
