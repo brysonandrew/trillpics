@@ -23071,7 +23071,6 @@ const onscreen_useOnscreen = () => {
   );
   const onPointerEnter = () => {
     if (pointerLeaveWhileNoControlsCheck.current) {
-      console.log("OON");
       toggleControls(true);
       pointerLeaveWhileNoControlsCheck.current = false;
     }
