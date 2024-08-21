@@ -14,24 +14,25 @@ export const LeftButtonsUndo: FC<
   Button = PillBHover,
   ...props
 }) => {
-  const { undo, pastStates } =
-    useTemporalStore((state) => state);
-  const isNoPast =
-    pastStates.length === 0;
-  const title = `${
-    isNoPast ? "Nothing to " : ""
-  }Undo`;
+  // const { undo, pastStates } =
+  //   useTemporalStore((state) => state);
+  // const isNoPast =
+  //   pastStates.length === 0;
+  // const title = `${
+  //   isNoPast ? "Nothing to " : ""
+  // }Undo`;
   return (
-    <Button
-      disabled={isNoPast}
-      onClick={
-        isNoPast ? NOOP : () => undo()
-      }
-      {...props}
-      title={title}
-      Icon={IconsUndo}
-    >
-      {title}
-    </Button>
+    null
+    // <Button
+    //   disabled={isNoPast}
+    //   onClick={
+    //     isNoPast ? NOOP : () => undo()
+    //   }
+    //   {...props}
+    //   title={title}
+    //   Icon={IconsUndo}
+    // >
+    //   {title}
+    // </Button>
   );
 };
