@@ -7,7 +7,8 @@ import { useVideoSelect } from "~/pages/video/_root/hooks/select";
 import { Video_RootTutorial } from "~/pages/video/_root/tutorial";
 
 export const Video_Root: FC = () => {
-  const {isRunning,onEnd, ...props} = useVideoSelect();
+  const { isRunning, onEnd, ...props } =
+    useVideoSelect();
 
   return (
     <>
@@ -18,12 +19,13 @@ export const Video_Root: FC = () => {
       </PicCursor>
       <AnimatePresence>
         {isRunning && (
-          <Video_RootTutorial onClick={onEnd} key="Video_RootTutorial" />
+          <Video_RootTutorial
+            onClick={onEnd}
+            key="Video_RootTutorial"
+          />
         )}
       </AnimatePresence>
-      <Video_RootReorder
-      
-      {...props} />
+      <Video_RootReorder {...props} />
     </>
   );
 };

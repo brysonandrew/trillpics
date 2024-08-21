@@ -27,7 +27,7 @@ TUsePicSelected
 
   return (
     <footer
-      className="relative h-0 w-full z-10"
+      className="relative h-0 w-full z-20"
       style={{
         left: container.left - box._,
         bottom:
