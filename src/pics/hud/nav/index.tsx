@@ -15,7 +15,6 @@ import { useContextInit } from "~/shell/init/context";
 import { THudContainer } from "~/pics/hud";
 import { FooterNavItem } from "~/pics/hud/nav/item";
 import { resolveCompositeKey } from "@brysonandrew/utils-key";
-import { NavItemGlow } from "~/pics/hud/nav/glow";
 
 const SPRING = {
   type: "spring",
@@ -32,7 +31,6 @@ type TProps = {
 export const PicsHudFooterNav: FC<
   TProps
 > = ({ container }) => {
-  
   const { pathname } = useLocation();
   const { main } = useContextInit();
   const navItemGap =
@@ -60,7 +58,8 @@ export const PicsHudFooterNav: FC<
         style={{
           top: container.height - box._,
           left:
-            container.width / 2 - box._15,
+            container.width / 2 -
+            box._15,
           width: width + box._2,
           borderRadius,
           x: main.dragger.navX,
@@ -69,7 +68,6 @@ export const PicsHudFooterNav: FC<
           "PicsHudFooterNav"
         )}
       >
-        <NavItemGlow />
         <AnimatePresence>
           <ul className="row-space w-full h-0">
             {NAV_ITEMS.map(
