@@ -187,8 +187,9 @@ export const AudioUploadedItem: FC<
               {status === "error" ? (
                 <TypographyXxxs classValue="text-xs p-0.5 rounded-md text-red pointer-events-none">
                   Most likely resource
-                  has expired. Click
-                  here to delete
+                  is no longer
+                  available. Try
+                  reloading the page.
                 </TypographyXxxs>
               ) : (
                 <>
