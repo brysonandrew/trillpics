@@ -27,7 +27,6 @@ export const useOnscreen = () => {
     if (
       pointerLeaveWhileNoControlsCheck.current
     ) {
-      console.log("OON")
       toggleControls(true);
       pointerLeaveWhileNoControlsCheck.current =
         false;
