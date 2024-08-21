@@ -30,29 +30,29 @@ import { OPTIONS_UNDO_REDO } from "~/store/middleware/5.temporal/options";
 const stateWithImmer: TImmerStateResult =
   middlewareImmer(initState);
 
-const stateSubscribeWithSelector: TSubscribeStateResult =
-  middlewareSubscribeWithSelector(
-    stateWithImmer
-  );
+// const stateSubscribeWithSelector: TSubscribeStateResult =
+//   middlewareSubscribeWithSelector(
+//     stateWithImmer
+//   );
 
-const stateWithPersist: TPersistStateResult =
-  middlewarePersist(
-    stateSubscribeWithSelector,
-    PERSIST_STORAGE
-  );
+// const stateWithPersist: TPersistStateResult =
+//   middlewarePersist(
+//     stateSubscribeWithSelector,
+//     PERSIST_STORAGE
+//   );
 
-const stateWithDevtools: TDevtoolsStateResult =
-  middlewareDevtools(stateWithPersist);
+// const stateWithDevtools: TDevtoolsStateResult =
+//   middlewareDevtools(stateWithPersist);
 
-const stateWithTemporal: TTemporalStateResult =
-  middlewareTemporal(
-    stateWithDevtools,
-    OPTIONS_UNDO_REDO
-  );
-export type TStateWithMiddleware =
-  TTemporalStateResult;
+// const stateWithTemporal: TTemporalStateResult =
+//   middlewareTemporal(
+//     stateWithDevtools,
+//     OPTIONS_UNDO_REDO
+//   );
+export type TStateWithMiddleware =TImmerStateResult;
+  // TTemporalStateResult;
 const stateWithMiddleware: TStateWithMiddleware =
-  stateWithTemporal;
+stateWithImmer;
 
 export const useTrillPicsStoreBase =
   create<TState>()<TMiddlewares>(

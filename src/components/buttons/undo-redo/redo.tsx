@@ -14,25 +14,24 @@ export const LeftButtonsRedo: FC<
   Button = PillBHover,
   ...props
 }) => {
-  const { redo, futureStates } =
-    useTemporalStore((state) => state);
-  const isNoFuture =
-    futureStates.length === 0;
-
-  const title = `${
-    isNoFuture ? "Nothing to " : ""
-  }Redo`;
+  // const { redo, futureStates } =
+  //   useTemporalStore((state) => state);
+  // const isNoFuture =
+  //   futureStates.length === 0;
+  // const title = `${
+  //   isNoFuture ? "Nothing to " : ""
+  // }Redo`;
   return (
     <Button
-      disabled={isNoFuture}
-      onClick={
-        isNoFuture ? NOOP : () => redo()
-      }
+      // disabled={isNoFuture}
+      // onClick={
+      //   isNoFuture ? NOOP : () => redo()
+      // }
+      title={'title'}
       {...props}
-      title={title}
       Icon={IconsRedo} 
     >
-      {title}
+      {/* {title} */}
     </Button>
   );
 };
