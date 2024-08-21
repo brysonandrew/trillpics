@@ -7,7 +7,7 @@ import {
   API_PORT,
 } from "~/constants/api";
 import { applyWSSHandler } from "@trpc/server/adapters/ws";
-import { WebSocketServer } from "ws";
+// import { WebSocketServer } from "ws";
 import { router } from "./router";
 import { createContext } from "./context";
 
@@ -38,27 +38,27 @@ const server = api.listen(
     )
 );
 
-const wss = new WebSocketServer({
-  server,
-});
-const wsHandler = applyWSSHandler({
-  wss,
-  router,
-  createContext,
-});
+// const wss = new WebSocketServer({
+//   server,
+// });
+// const wsHandler = applyWSSHandler({
+//   wss,
+//   router,
+//   createContext,
+// });
 
-wss.on("connection", (ws) => {
-  console.log(
-    `➕➕ Connection (${wss.clients.size})`
-  );
-  ws.once("close", () => {
-    console.log(
-      `➖➖ Connection (${wss.clients.size})`
-    );
-  });
-});
+// wss.on("connection", (ws) => {
+//   console.log(
+//     `➕➕ Connection (${wss.clients.size})`
+//   );
+//   ws.once("close", () => {
+//     console.log(
+//       `➖➖ Connection (${wss.clients.size})`
+//     );
+//   });
+// });
 process.on("SIGTERM", () => {
-  wsHandler.broadcastReconnectNotification();
-  wss.close();
+  // wsHandler.broadcastReconnectNotification();
+  // wss.close();
   server.close();
 });
