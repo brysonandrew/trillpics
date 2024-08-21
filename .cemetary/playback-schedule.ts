@@ -11,11 +11,10 @@ export const usePlaybackSchedule = (
 ) => {
   const handleGridCell =
     useGridCellHandler();
-
   const audioSeconds =
     useAudioSeconds();
+
   const handleDone = () => {
-    console.log("DONE");
     handleGridCell();
   };
   const [isCooldown, startCooldown] =
@@ -38,6 +37,5 @@ export const usePlaybackSchedule = (
     isActive,
     seconds: audioSeconds,
     start,
-    //
   };
 };
