@@ -1,1 +1,0 @@
-export const PRESETS_OCCAMS_LASER = {}
