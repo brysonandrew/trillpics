@@ -69,7 +69,6 @@ export const PicsHudFooterNav: FC<
           "PicsHudFooterNav"
         )}
       >
-        <NavItemGlow />
         <AnimatePresence>
           <ul className="row-space w-full h-0">
             {NAV_ITEMS.map(

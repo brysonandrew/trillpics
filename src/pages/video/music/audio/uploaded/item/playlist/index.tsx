@@ -85,11 +85,13 @@ export const AudioPlaylist: FC = () => {
                       prefetch(
                         track.src
                       );
+                      const start = elapsed.toString()
+                      console.log(start)
                       searchParams.set(
                         QUERY_PARAM_KEYS[
                           AUDIO_START_PARAM_KEY
                         ],
-                        elapsed.toString()
+                        start
                       );
                     }
                     navigate(

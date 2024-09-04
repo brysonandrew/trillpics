@@ -6,7 +6,7 @@ import {
   SERVER_PATH,
   API_PORT,
 } from "~/constants/api";
-import { applyWSSHandler } from "@trpc/server/adapters/ws";
+// import { applyWSSHandler } from "@trpc/server/adapters/ws";
 // import { WebSocketServer } from "ws";
 import { router } from "./router";
 import { createContext } from "./context";
